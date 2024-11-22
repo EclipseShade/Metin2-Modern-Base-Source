@@ -8,7 +8,7 @@
 - [Metin2 Client Compilation Guide](https://github.com/EclipseShade/Metin2-Source/wiki/Compiling-Client-Binary)
 
 **Compiling Server**
-- FreeBSD 9.2
+- [Metin2 Server Compilation Guide](https://github.com/EclipseShade/Metin2-Source/wiki/Compiling-Server)
 
 **Compiling ItemEditor**
 - Visual Studio 2008
