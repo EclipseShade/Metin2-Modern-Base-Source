@@ -31,14 +31,8 @@ INCDIR += -I../../libdevil
 LIBDIR += -L../../libdevil
 LIBS += -lpng -ltiff -lmng -llcms -ljpeg
 
-# MySQL
-#ifeq ($(BSD_VERSION), 7)
-INCDIR += -I../../libmysql/7.x-5.1.35
-LIBDIR += -L../../libmysql/7.x-5.1.35
-#else
-#INCDIR += -I../../libmysql/5.x-5.1.35
-#LIBDIR += -L../../libmysql/5.x-5.1.35
-#endif
+# MySQL | MariaDB
+LIBDIR += -L /usr/local/lib/mysql
 
 LIBS += -lmysqlclient -L/usr/local/lib/mysql -lz
 
