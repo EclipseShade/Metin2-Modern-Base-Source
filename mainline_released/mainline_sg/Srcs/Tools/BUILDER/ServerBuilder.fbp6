@@ -1,0 +1,1442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VSXML>
+  <Object Class="TFBProject" XMLID="{159A9F66-82D1-419F-B897-8BA4728A92EC}">
+    <Property MultiValue="0" name="EncryptedEditPassword" type="string"></Property>
+    <Property MultiValue="0" name="Name" type="string"></Property>
+    <Property MultiValue="0" name="ProjectAuthor" type="string"></Property>
+    <Property MultiValue="0" name="ProjectID" type="string"></Property>
+    <Property MultiValue="0" name="ProjectNotes" type="string"></Property>
+    <Property MultiValue="0" name="SCCAuxPath" type="string"></Property>
+    <Property MultiValue="0" name="SCCProjectName" type="string"></Property>
+    <Property MultiValue="0" name="SCCProviderBinding" type="string"></Property>
+    <Property MultiValue="0" name="SCCUserName" type="string"></Property>
+    <Object Class="TFBActionListCollection" XMLID="{7B46BED1-34DF-4638-904C-DB3DF17BA2E5}">
+      <Object Class="TFBActionList" XMLID="{077AA4C8-3522-4D1C-BE7C-A194779490C3}">
+        <Property name="IsFailure" type="Boolean">False</Property>
+        <Property name="IsMain" type="Boolean">True</Property>
+        <Property MultiValue="0" name="Name" type="string">Main</Property>
+        <Property MultiValue="0" name="UniqueID" type="string">{7F9FD25F-4406-4FAD-A9A2-3580209E8AAD}</Property>
+        <Object Class="TFBAction" XMLID="{564B7FA5-7C2D-4043-8C96-F331D26EC8B5}">
+          <Property MultiValue="0" name="ActionComment" type="string"></Property>
+          <Property MultiValue="0" name="ActionDescription" type="string">FinalBuilderAction</Property>
+          <Property name="ActionTextColor" type="Cardinal">0</Property>
+          <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+          <Property name="DoNotValidateAction" type="Boolean">False</Property>
+          <Property name="Enabled" type="WordBool">True</Property>
+          <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+          <Property name="HideActionFromLog" type="Boolean">False</Property>
+          <Property name="IgnoreFailure" type="WordBool">False</Property>
+          <Property name="LogActionProperties" type="Boolean">False</Property>
+          <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+          <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+          <Property name="PauseInterval" type="Cardinal">0</Property>
+          <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+          <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+          <Object Class="TGroupAction" XMLID="{2B1651EC-D108-41F6-BFD6-B7F224007FBB}">
+            <Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="0" name="ActionDescription" type="string">ServerBuild</Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property MultiValue="0" name="Description" type="string">ServerBuild</Property>
+            <Property name="DoNotValidateAction" type="Boolean">False</Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+            <Property name="HideActionFromLog" type="Boolean">False</Property>
+            <Property name="IgnoreFailure" type="WordBool">False</Property>
+            <Property name="LogActionProperties" type="Boolean">False</Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            <Object Class="TDeleteDirectoryAction" XMLID="{27D5DA36-A5B6-4823-B4AC-D8C13726F47D}">
+              <Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string">
+                <![CDATA[Delete Tree [ $(DIR_TEMP) ]]]>
+              </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property name="DeleteHidden" type="WordBool">False</Property>
+              <Property name="DeleteReadOnly" type="WordBool">False</Property>
+              <Property name="DeleteTree" type="WordBool">True</Property>
+              <Property name="DoNotValidateAction" type="Boolean">False</Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="EnableDelay" type="Boolean">False</Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+              <Property MultiValue="0" name="FileOrDirectory" type="WideString">$(DIR_TEMP)</Property>
+              <Property name="Force" type="Boolean">False</Property>
+              <Property name="HideActionFromLog" type="Boolean">False</Property>
+              <Property name="IgnoreFailure" type="WordBool">False</Property>
+              <Property name="LogActionProperties" type="Boolean">False</Property>
+              <Property name="LogDeletedFiles" type="Boolean">False</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            </Object>
+            <Object Class="TCreateDirectoryAction" XMLID="{CF133DB1-86BD-4F18-8A79-05B83C62D451}">
+              <Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string">
+                <![CDATA[Create Directory [ $(DIR_TEMP) ]]]>
+              </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property name="DoNotValidateAction" type="Boolean">False</Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+              <Property MultiValue="0" name="FileOrDirectory" type="WideString">$(DIR_TEMP)</Property>
+              <Property name="Force" type="Boolean">False</Property>
+              <Property name="HideActionFromLog" type="Boolean">False</Property>
+              <Property name="IgnoreFailure" type="WordBool">False</Property>
+              <Property name="LogActionProperties" type="Boolean">False</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            </Object>
+            <Object Class="TRunDosCMDAction" XMLID="{0CC057C9-7CB8-4574-9418-0564D948D474}">
+              <Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string">
+                <![CDATA[CLEAR BUILD SERVER]]>
+              </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property name="CaptureOutput" type="Boolean">True</Property>
+              <Property MultiValue="1" name="Command" type="WideString">
+                <![CDATA[$(DIR_TOOLS)\plink -pw $(DEV_PASSWD) $(DEV_USER)@$(BUILD_SERVER) &quot;./clear_build_server.sh&quot;]]>
+              </Property>
+              <Property MultiValue="1" name="Description" type="string">
+                <![CDATA[CLEAR BUILD SERVER]]>
+              </Property>
+              <Property name="DoNotValidateAction" type="Boolean">False</Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="EnableLiveCapture" type="Boolean">True</Property>
+              <Property name="EnableReturnCodeCheck" type="Boolean">True</Property>
+              <Property name="EnableTimeout" type="Boolean">False</Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+              <Property name="ExpandImpersonationToken" type="Boolean">False</Property>
+              <Property MultiValue="0" name="ExtraCmdLineParamsAtEnd" type="string"></Property>
+              <Property MultiValue="0" name="ExtraCmdLineParamsAtStart" type="string"></Property>
+              <Property name="HideActionFromLog" type="Boolean">False</Property>
+              <Property name="HideWindow" type="Boolean">True</Property>
+              <Property name="IgnoreFailure" type="WordBool">False</Property>
+              <Property MultiValue="0" name="ImpersonateToken" type="string"></Property>
+              <Property name="ImpersonateUser" type="Boolean">False</Property>
+              <Property MultiValue="0" name="ImpersonateUserName" type="string"></Property>
+              <Property MultiValue="0" name="InputFile" type="string"></Property>
+              <Property name="LogActionProperties" type="Boolean">False</Property>
+              <Property name="LogOutput" type="WordBool">True</Property>
+              <Property name="LogProcessParameters" type="Boolean">True</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property MultiValue="1" name="Params" type="WideString">
+                <![CDATA[$(DIR_TOOLS)\plink -pw $(DEV_PASSWD) $(DEV_USER)@$(BUILD_SERVER) &quot;./clear_build_server.sh&quot;]]>
+              </Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property name="ProcessorAffinity" type="Cardinal">0</Property>
+              <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
+              <Property name="RedirectStdErr" type="Boolean">True</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property name="ReturnCodeComparator" type="TFBRunReturnCodeComparator">rcEqualTo</Property>
+              <Property name="ReturnCodeToCheck" type="Integer">0</Property>
+              <Property MultiValue="0" name="StartInDir" type="WideString">$(DIR_TEMP)</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+              <Property name="TerminateOnTimeout" type="Boolean">False</Property>
+              <Property name="TimeoutLength" type="Cardinal">1</Property>
+              <Property name="UseErrorDialogMonitor" type="Boolean">False</Property>
+              <Property name="WaitForCompletion" type="Boolean">True</Property>
+            </Object>
+            <Object Class="TFBIfThenAction" XMLID="{E0811690-76E9-4784-A133-3A768A55627A}">
+              <Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string">
+                <![CDATA[If [$(REVISION)] = []]]>
+              </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property name="DoNotValidateAction" type="Boolean">False</Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">False</Property>
+              <Property name="HideActionFromLog" type="Boolean">False</Property>
+              <Property name="IgnoreFailure" type="WordBool">False</Property>
+              <Property MultiValue="1" name="LHSStorageString" type="string">
+                <![CDATA[$(REVISION)
+]]>
+              </Property>
+              <Property name="LogActionProperties" type="Boolean">False</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property MultiValue="1" name="OperatorsStorageString" type="string">
+                <![CDATA[=
+]]>
+              </Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property name="ResultInLogTitle" type="Boolean">True</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property MultiValue="1" name="RHSStorageString" type="string">
+                <![CDATA[
+]]>
+              </Property>
+              <Property name="ShortCircuitEvaluation" type="Boolean">True</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+              <Property name="TermJoiner" type="TFBIfTermJoiner">jwOr</Property>
+              <Object Class="TSetVariableAction" XMLID="{16DDCDD3-933D-4E6C-B509-9DF63AE67319}">
+                <Property MultiValue="0" name="ActionComment" type="string"></Property>
+                <Property MultiValue="1" name="ActionDescription" type="string">
+                  <![CDATA[Set Variable REVISION to [ head ]]]>
+                </Property>
+                <Property name="ActionTextColor" type="Cardinal">0</Property>
+                <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+                <Property name="ApplyToExisting" type="Boolean">False</Property>
+                <Property name="DoExpandExpression" type="Boolean">True</Property>
+                <Property name="DoNotValidateAction" type="Boolean">False</Property>
+                <Property name="Enabled" type="WordBool">True</Property>
+                <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+                <Property name="ForceType" type="TFBSetVariableForceType">ftDefault</Property>
+                <Property name="HideActionFromLog" type="Boolean">False</Property>
+                <Property name="IgnoreFailure" type="WordBool">False</Property>
+                <Property name="LogActionProperties" type="Boolean">False</Property>
+                <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+                <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+                <Property name="Modifier" type="TFBSetVariableModifier">smNone</Property>
+                <Property MultiValue="0" name="NewValue" type="WideString">head</Property>
+                <Property name="PauseInterval" type="Cardinal">0</Property>
+                <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+                <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+                <Property MultiValue="0" name="VariableName" type="WideString">REVISION</Property>
+              </Object>
+            </Object>
+            <Object Class="TFBIfThenAction" XMLID="{80A01581-684E-41F7-8D56-2853088124F3}">
+              <Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string">
+                <![CDATA[If [$(DESCRIPTION)] &lt;&gt; []]]>
+              </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property name="DoNotValidateAction" type="Boolean">False</Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">False</Property>
+              <Property name="HideActionFromLog" type="Boolean">False</Property>
+              <Property name="IgnoreFailure" type="WordBool">False</Property>
+              <Property MultiValue="1" name="LHSStorageString" type="string">
+                <![CDATA[$(DESCRIPTION)
+]]>
+              </Property>
+              <Property name="LogActionProperties" type="Boolean">False</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property MultiValue="1" name="OperatorsStorageString" type="string">
+                <![CDATA[&lt;&gt;
+]]>
+              </Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property name="ResultInLogTitle" type="Boolean">True</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property MultiValue="1" name="RHSStorageString" type="string">
+                <![CDATA[
+]]>
+              </Property>
+              <Property name="ShortCircuitEvaluation" type="Boolean">True</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+              <Property name="TermJoiner" type="TFBIfTermJoiner">jwOr</Property>
+              <Object Class="TFBCreateTextFileAction" XMLID="{C74B7FCF-6A20-4EDD-BACD-A0627C5C1B20}">
+                <Property MultiValue="0" name="ActionComment" type="string"></Property>
+                <Property MultiValue="1" name="ActionDescription" type="string">
+                  <![CDATA[Create Text File [ DESCRIPTION.txt ]]]>
+                </Property>
+                <Property MultiValue="1" name="ActionLogTitle" type="WideString">
+                  <![CDATA[Create Text File [ $(DIR_TEMP)DESCRIPTION.txt ]]]>
+                </Property>
+                <Property name="ActionTextColor" type="Cardinal">0</Property>
+                <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+                <Property name="CreateDirectory" type="Boolean">False</Property>
+                <Property name="DoNotValidateAction" type="Boolean">False</Property>
+                <Property name="Enabled" type="WordBool">True</Property>
+                <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+                <Property MultiValue="0" name="FileContents" type="string">$(DESCRIPTION)</Property>
+                <Property name="HideActionFromLog" type="Boolean">False</Property>
+                <Property name="IgnoreFailure" type="WordBool">False</Property>
+                <Property name="LogActionProperties" type="Boolean">False</Property>
+                <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+                <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+                <Property MultiValue="0" name="NewFileName" type="string">$(DIR_TEMP)\DESCRIPTION.txt</Property>
+                <Property name="OverwriteExisting" type="Boolean">True</Property>
+                <Property name="PauseInterval" type="Cardinal">0</Property>
+                <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+                <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+              </Object>
+              <Object Class="TRunDosCMDAction" XMLID="{C961AD7F-138A-48C5-B7BA-9B02A8204716}">
+                <Property MultiValue="0" name="ActionComment" type="string"></Property>
+                <Property MultiValue="1" name="ActionDescription" type="string">
+                  <![CDATA[PUT DESCRIPTION]]>
+                </Property>
+                <Property name="ActionTextColor" type="Cardinal">0</Property>
+                <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+                <Property name="CaptureOutput" type="Boolean">True</Property>
+                <Property MultiValue="1" name="Command" type="WideString">
+                  <![CDATA[$(DIR_WINSCP)\winscp $(DEV_USER)@$(BUILD_SERVER) /privatekey=$(KEY_FILE) /script=$(DIR_SCRIPT)\put_description.txt]]>
+                </Property>
+                <Property MultiValue="1" name="Description" type="string">
+                  <![CDATA[PUT DESCRIPTION]]>
+                </Property>
+                <Property name="DoNotValidateAction" type="Boolean">False</Property>
+                <Property name="Enabled" type="WordBool">True</Property>
+                <Property name="EnableLiveCapture" type="Boolean">True</Property>
+                <Property name="EnableReturnCodeCheck" type="Boolean">False</Property>
+                <Property name="EnableTimeout" type="Boolean">False</Property>
+                <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+                <Property name="ExpandImpersonationToken" type="Boolean">False</Property>
+                <Property MultiValue="0" name="ExtraCmdLineParamsAtEnd" type="string"></Property>
+                <Property MultiValue="0" name="ExtraCmdLineParamsAtStart" type="string"></Property>
+                <Property name="HideActionFromLog" type="Boolean">False</Property>
+                <Property name="HideWindow" type="Boolean">True</Property>
+                <Property name="IgnoreFailure" type="WordBool">False</Property>
+                <Property MultiValue="0" name="ImpersonateToken" type="string"></Property>
+                <Property name="ImpersonateUser" type="Boolean">False</Property>
+                <Property MultiValue="0" name="ImpersonateUserName" type="string"></Property>
+                <Property MultiValue="0" name="InputFile" type="string"></Property>
+                <Property name="LogActionProperties" type="Boolean">False</Property>
+                <Property name="LogOutput" type="WordBool">True</Property>
+                <Property name="LogProcessParameters" type="Boolean">True</Property>
+                <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+                <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+                <Property MultiValue="1" name="Params" type="WideString">
+                  <![CDATA[$(DIR_WINSCP)\winscp $(DEV_USER)@$(BUILD_SERVER) /privatekey=$(KEY_FILE) /script=$(DIR_SCRIPT)\put_description.txt]]>
+                </Property>
+                <Property name="PauseInterval" type="Cardinal">0</Property>
+                <Property name="ProcessorAffinity" type="Cardinal">0</Property>
+                <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
+                <Property name="RedirectStdErr" type="Boolean">True</Property>
+                <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+                <Property name="ReturnCodeComparator" type="TFBRunReturnCodeComparator">rcEqualTo</Property>
+                <Property name="ReturnCodeToCheck" type="Integer">0</Property>
+                <Property MultiValue="0" name="StartInDir" type="WideString">$(DIR_TEMP)</Property>
+                <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+                <Property name="TerminateOnTimeout" type="Boolean">False</Property>
+                <Property name="TimeoutLength" type="Cardinal">1</Property>
+                <Property name="UseErrorDialogMonitor" type="Boolean">False</Property>
+                <Property name="WaitForCompletion" type="Boolean">True</Property>
+              </Object>
+            </Object>
+            <Object Class="TFBIfThenAction" XMLID="{EA2804C7-FA17-43F2-8DD1-8AE9ACA02346}">
+              <Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string">
+                <![CDATA[If [$(BRANCH_NAME)] = []]]>
+              </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property name="DoNotValidateAction" type="Boolean">False</Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">False</Property>
+              <Property name="HideActionFromLog" type="Boolean">False</Property>
+              <Property name="IgnoreFailure" type="WordBool">False</Property>
+              <Property MultiValue="1" name="LHSStorageString" type="string">
+                <![CDATA[$(BRANCH_NAME)
+]]>
+              </Property>
+              <Property name="LogActionProperties" type="Boolean">False</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property MultiValue="1" name="OperatorsStorageString" type="string">
+                <![CDATA[=
+]]>
+              </Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property name="ResultInLogTitle" type="Boolean">True</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property MultiValue="1" name="RHSStorageString" type="string">
+                <![CDATA[
+]]>
+              </Property>
+              <Property name="ShortCircuitEvaluation" type="Boolean">True</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+              <Property name="TermJoiner" type="TFBIfTermJoiner">jwOr</Property>
+              <Object Class="TSetVariableAction" XMLID="{9447D4F9-BC61-4961-98A6-A24776F56ECD}">
+                <Property MultiValue="0" name="ActionComment" type="string"></Property>
+                <Property MultiValue="1" name="ActionDescription" type="string">
+                  <![CDATA[Set Variable BRANCH_NAME to [ Test ]]]>
+                </Property>
+                <Property name="ActionTextColor" type="Cardinal">0</Property>
+                <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+                <Property name="ApplyToExisting" type="Boolean">False</Property>
+                <Property name="DoExpandExpression" type="Boolean">True</Property>
+                <Property name="DoNotValidateAction" type="Boolean">False</Property>
+                <Property name="Enabled" type="WordBool">True</Property>
+                <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+                <Property name="ForceType" type="TFBSetVariableForceType">ftDefault</Property>
+                <Property name="HideActionFromLog" type="Boolean">False</Property>
+                <Property name="IgnoreFailure" type="WordBool">False</Property>
+                <Property name="LogActionProperties" type="Boolean">False</Property>
+                <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+                <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+                <Property name="Modifier" type="TFBSetVariableModifier">smNone</Property>
+                <Property MultiValue="0" name="NewValue" type="WideString">Test</Property>
+                <Property name="PauseInterval" type="Cardinal">0</Property>
+                <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+                <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+                <Property MultiValue="0" name="VariableName" type="WideString">BRANCH_NAME</Property>
+              </Object>
+            </Object>
+            <Object Class="TFBIfThenAction" XMLID="{E7D08D50-1857-4FDC-AD78-6F49B918A31E}">
+              <Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string">
+                <![CDATA[If [$(TARGET_SERVER)] = [GAME]]]>
+              </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property name="DoNotValidateAction" type="Boolean">False</Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">False</Property>
+              <Property name="HideActionFromLog" type="Boolean">False</Property>
+              <Property name="IgnoreFailure" type="WordBool">False</Property>
+              <Property MultiValue="1" name="LHSStorageString" type="string">
+                <![CDATA[$(TARGET_SERVER)
+]]>
+              </Property>
+              <Property name="LogActionProperties" type="Boolean">False</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property MultiValue="1" name="OperatorsStorageString" type="string">
+                <![CDATA[=
+]]>
+              </Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property name="ResultInLogTitle" type="Boolean">True</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property MultiValue="1" name="RHSStorageString" type="string">
+                <![CDATA[GAME
+]]>
+              </Property>
+              <Property name="ShortCircuitEvaluation" type="Boolean">True</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+              <Property name="TermJoiner" type="TFBIfTermJoiner">jwOr</Property>
+              <Object Class="TGroupAction" XMLID="{5F4F2E5C-4E88-454C-B0AE-95BA8543822F}">
+                <Property MultiValue="0" name="ActionComment" type="string"></Property>
+                <Property MultiValue="1" name="ActionDescription" type="string">
+                  <![CDATA[GAME Build]]>
+                </Property>
+                <Property name="ActionTextColor" type="Cardinal">0</Property>
+                <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+                <Property MultiValue="1" name="Description" type="string">
+                  <![CDATA[GAME Build]]>
+                </Property>
+                <Property name="DoNotValidateAction" type="Boolean">False</Property>
+                <Property name="Enabled" type="WordBool">True</Property>
+                <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+                <Property name="HideActionFromLog" type="Boolean">False</Property>
+                <Property name="IgnoreFailure" type="WordBool">False</Property>
+                <Property name="LogActionProperties" type="Boolean">False</Property>
+                <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+                <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+                <Property name="PauseInterval" type="Cardinal">0</Property>
+                <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+                <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+                <Object Class="TRunDosCMDAction" XMLID="{B643D711-B52E-450E-B2DD-33B5530F128B}">
+                  <Property MultiValue="0" name="ActionComment" type="string"></Property>
+                  <Property MultiValue="1" name="ActionDescription" type="string">
+                    <![CDATA[BUILD GAME SERVER BINARY]]>
+                  </Property>
+                  <Property name="ActionTextColor" type="Cardinal">0</Property>
+                  <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+                  <Property name="CaptureOutput" type="Boolean">True</Property>
+                  <Property MultiValue="1" name="Command" type="WideString">
+                    <![CDATA[$(DIR_SCRIPT)\game_builder.bat $(BRANCH_NAME)]]>
+                  </Property>
+                  <Property MultiValue="1" name="Description" type="string">
+                    <![CDATA[BUILD GAME SERVER BINARY]]>
+                  </Property>
+                  <Property name="DoNotValidateAction" type="Boolean">False</Property>
+                  <Property name="Enabled" type="WordBool">True</Property>
+                  <Property name="EnableLiveCapture" type="Boolean">True</Property>
+                  <Property name="EnableReturnCodeCheck" type="Boolean">True</Property>
+                  <Property name="EnableTimeout" type="Boolean">False</Property>
+                  <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+                  <Property name="ExpandImpersonationToken" type="Boolean">False</Property>
+                  <Property MultiValue="0" name="ExtraCmdLineParamsAtEnd" type="string"></Property>
+                  <Property MultiValue="0" name="ExtraCmdLineParamsAtStart" type="string"></Property>
+                  <Property name="HideActionFromLog" type="Boolean">False</Property>
+                  <Property name="HideWindow" type="Boolean">True</Property>
+                  <Property name="IgnoreFailure" type="WordBool">False</Property>
+                  <Property MultiValue="0" name="ImpersonateToken" type="string"></Property>
+                  <Property name="ImpersonateUser" type="Boolean">False</Property>
+                  <Property MultiValue="0" name="ImpersonateUserName" type="string"></Property>
+                  <Property MultiValue="0" name="InputFile" type="string"></Property>
+                  <Property name="LogActionProperties" type="Boolean">False</Property>
+                  <Property name="LogOutput" type="WordBool">True</Property>
+                  <Property name="LogProcessParameters" type="Boolean">True</Property>
+                  <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+                  <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+                  <Property MultiValue="1" name="Params" type="WideString">
+                    <![CDATA[$(DIR_SCRIPT)\game_builder.bat $(BRANCH_NAME)]]>
+                  </Property>
+                  <Property name="PauseInterval" type="Cardinal">0</Property>
+                  <Property name="ProcessorAffinity" type="Cardinal">0</Property>
+                  <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
+                  <Property name="RedirectStdErr" type="Boolean">True</Property>
+                  <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+                  <Property name="ReturnCodeComparator" type="TFBRunReturnCodeComparator">rcEqualTo</Property>
+                  <Property name="ReturnCodeToCheck" type="Integer">0</Property>
+                  <Property MultiValue="0" name="StartInDir" type="WideString">$(DIR_TEMP)</Property>
+                  <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+                  <Property name="TerminateOnTimeout" type="Boolean">False</Property>
+                  <Property name="TimeoutLength" type="Cardinal">1</Property>
+                  <Property name="UseErrorDialogMonitor" type="Boolean">False</Property>
+                  <Property name="WaitForCompletion" type="Boolean">True</Property>
+                </Object>
+                <Object Class="TRunDosCMDAction" XMLID="{21055DCE-73ED-4F52-94B0-EC5ED4BB106A}">
+                  <Property MultiValue="0" name="ActionComment" type="string"></Property>
+                  <Property MultiValue="1" name="ActionDescription" type="string">
+                    <![CDATA[GET BUILD LOG]]>
+                  </Property>
+                  <Property name="ActionTextColor" type="Cardinal">0</Property>
+                  <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+                  <Property name="CaptureOutput" type="Boolean">False</Property>
+                  <Property MultiValue="1" name="Command" type="WideString">
+                    <![CDATA[$(DIR_WinScp)\winscp $(DEV_USER)@$(BUILD_SERVER) /privatekey=$(KEY_FILE) /script=$(DIR_SCRIPT)\get_game_build_log.txt]]>
+                  </Property>
+                  <Property MultiValue="1" name="Description" type="string">
+                    <![CDATA[GET BUILD LOG]]>
+                  </Property>
+                  <Property name="DoNotValidateAction" type="Boolean">False</Property>
+                  <Property name="Enabled" type="WordBool">True</Property>
+                  <Property name="EnableLiveCapture" type="Boolean">True</Property>
+                  <Property name="EnableReturnCodeCheck" type="Boolean">True</Property>
+                  <Property name="EnableTimeout" type="Boolean">False</Property>
+                  <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+                  <Property name="ExpandImpersonationToken" type="Boolean">False</Property>
+                  <Property MultiValue="0" name="ExtraCmdLineParamsAtEnd" type="string"></Property>
+                  <Property MultiValue="0" name="ExtraCmdLineParamsAtStart" type="string"></Property>
+                  <Property name="HideActionFromLog" type="Boolean">False</Property>
+                  <Property name="HideWindow" type="Boolean">True</Property>
+                  <Property name="IgnoreFailure" type="WordBool">False</Property>
+                  <Property MultiValue="0" name="ImpersonateToken" type="string"></Property>
+                  <Property name="ImpersonateUser" type="Boolean">False</Property>
+                  <Property MultiValue="0" name="ImpersonateUserName" type="string"></Property>
+                  <Property MultiValue="0" name="InputFile" type="string"></Property>
+                  <Property name="LogActionProperties" type="Boolean">False</Property>
+                  <Property name="LogOutput" type="WordBool">False</Property>
+                  <Property name="LogProcessParameters" type="Boolean">True</Property>
+                  <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+                  <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+                  <Property MultiValue="1" name="Params" type="WideString">
+                    <![CDATA[$(DIR_WinScp)\winscp $(DEV_USER)@$(BUILD_SERVER) /privatekey=$(KEY_FILE) /script=$(DIR_SCRIPT)\get_game_build_log.txt]]>
+                  </Property>
+                  <Property name="PauseInterval" type="Cardinal">0</Property>
+                  <Property name="ProcessorAffinity" type="Cardinal">0</Property>
+                  <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
+                  <Property name="RedirectStdErr" type="Boolean">True</Property>
+                  <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+                  <Property name="ReturnCodeComparator" type="TFBRunReturnCodeComparator">rcEqualTo</Property>
+                  <Property name="ReturnCodeToCheck" type="Integer">0</Property>
+                  <Property MultiValue="0" name="StartInDir" type="WideString">$(DIR_TEMP)</Property>
+                  <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+                  <Property name="TerminateOnTimeout" type="Boolean">False</Property>
+                  <Property name="TimeoutLength" type="Cardinal">1</Property>
+                  <Property name="UseErrorDialogMonitor" type="Boolean">False</Property>
+                  <Property name="WaitForCompletion" type="Boolean">True</Property>
+                </Object>
+              </Object>
+            </Object>
+            <Object Class="TFBIfThenAction" XMLID="{34797206-48D3-4184-A455-BCB7AB2AB6C8}">
+              <Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string">
+                <![CDATA[If [$(TARGET_SERVER)] = [DB]]]>
+              </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property name="DoNotValidateAction" type="Boolean">False</Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">False</Property>
+              <Property name="HideActionFromLog" type="Boolean">False</Property>
+              <Property name="IgnoreFailure" type="WordBool">False</Property>
+              <Property MultiValue="1" name="LHSStorageString" type="string">
+                <![CDATA[$(TARGET_SERVER)
+]]>
+              </Property>
+              <Property name="LogActionProperties" type="Boolean">False</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property MultiValue="1" name="OperatorsStorageString" type="string">
+                <![CDATA[=
+]]>
+              </Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property name="ResultInLogTitle" type="Boolean">True</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property MultiValue="1" name="RHSStorageString" type="string">
+                <![CDATA[DB
+]]>
+              </Property>
+              <Property name="ShortCircuitEvaluation" type="Boolean">True</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+              <Property name="TermJoiner" type="TFBIfTermJoiner">jwOr</Property>
+              <Object Class="TGroupAction" XMLID="{E509F5A9-9263-461C-B642-69B8509FA6FA}">
+                <Property MultiValue="0" name="ActionComment" type="string"></Property>
+                <Property MultiValue="1" name="ActionDescription" type="string">
+                  <![CDATA[DB Build]]>
+                </Property>
+                <Property name="ActionTextColor" type="Cardinal">0</Property>
+                <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+                <Property MultiValue="1" name="Description" type="string">
+                  <![CDATA[DB Build]]>
+                </Property>
+                <Property name="DoNotValidateAction" type="Boolean">False</Property>
+                <Property name="Enabled" type="WordBool">True</Property>
+                <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+                <Property name="HideActionFromLog" type="Boolean">False</Property>
+                <Property name="IgnoreFailure" type="WordBool">False</Property>
+                <Property name="LogActionProperties" type="Boolean">False</Property>
+                <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+                <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+                <Property name="PauseInterval" type="Cardinal">0</Property>
+                <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+                <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+                <Object Class="TRunDosCMDAction" XMLID="{00D4CFB2-DB5D-43F1-81B0-21083305492F}">
+                  <Property MultiValue="0" name="ActionComment" type="string"></Property>
+                  <Property MultiValue="1" name="ActionDescription" type="string">
+                    <![CDATA[BUILD DB SERVER BINARY]]>
+                  </Property>
+                  <Property name="ActionTextColor" type="Cardinal">0</Property>
+                  <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+                  <Property name="CaptureOutput" type="Boolean">True</Property>
+                  <Property MultiValue="1" name="Command" type="WideString">
+                    <![CDATA[$(DIR_SCRIPT)\db_builder.bat $(BRANCH_NAME)]]>
+                  </Property>
+                  <Property MultiValue="1" name="Description" type="string">
+                    <![CDATA[BUILD DB SERVER BINARY]]>
+                  </Property>
+                  <Property name="DoNotValidateAction" type="Boolean">False</Property>
+                  <Property name="Enabled" type="WordBool">True</Property>
+                  <Property name="EnableLiveCapture" type="Boolean">True</Property>
+                  <Property name="EnableReturnCodeCheck" type="Boolean">True</Property>
+                  <Property name="EnableTimeout" type="Boolean">False</Property>
+                  <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+                  <Property name="ExpandImpersonationToken" type="Boolean">False</Property>
+                  <Property MultiValue="0" name="ExtraCmdLineParamsAtEnd" type="string"></Property>
+                  <Property MultiValue="0" name="ExtraCmdLineParamsAtStart" type="string"></Property>
+                  <Property name="HideActionFromLog" type="Boolean">False</Property>
+                  <Property name="HideWindow" type="Boolean">True</Property>
+                  <Property name="IgnoreFailure" type="WordBool">False</Property>
+                  <Property MultiValue="0" name="ImpersonateToken" type="string"></Property>
+                  <Property name="ImpersonateUser" type="Boolean">False</Property>
+                  <Property MultiValue="0" name="ImpersonateUserName" type="string"></Property>
+                  <Property MultiValue="0" name="InputFile" type="string"></Property>
+                  <Property name="LogActionProperties" type="Boolean">False</Property>
+                  <Property name="LogOutput" type="WordBool">True</Property>
+                  <Property name="LogProcessParameters" type="Boolean">True</Property>
+                  <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+                  <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+                  <Property MultiValue="1" name="Params" type="WideString">
+                    <![CDATA[$(DIR_SCRIPT)\db_builder.bat $(BRANCH_NAME)]]>
+                  </Property>
+                  <Property name="PauseInterval" type="Cardinal">0</Property>
+                  <Property name="ProcessorAffinity" type="Cardinal">0</Property>
+                  <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
+                  <Property name="RedirectStdErr" type="Boolean">True</Property>
+                  <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+                  <Property name="ReturnCodeComparator" type="TFBRunReturnCodeComparator">rcEqualTo</Property>
+                  <Property name="ReturnCodeToCheck" type="Integer">0</Property>
+                  <Property MultiValue="0" name="StartInDir" type="WideString">$(DIR_TEMP)</Property>
+                  <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+                  <Property name="TerminateOnTimeout" type="Boolean">False</Property>
+                  <Property name="TimeoutLength" type="Cardinal">1</Property>
+                  <Property name="UseErrorDialogMonitor" type="Boolean">False</Property>
+                  <Property name="WaitForCompletion" type="Boolean">True</Property>
+                </Object>
+                <Object Class="TRunDosCMDAction" XMLID="{D9901491-B26A-4E22-A9CD-CBBC57F0B7DD}">
+                  <Property MultiValue="0" name="ActionComment" type="string"></Property>
+                  <Property MultiValue="1" name="ActionDescription" type="string">
+                    <![CDATA[GET BUILD LOG]]>
+                  </Property>
+                  <Property name="ActionTextColor" type="Cardinal">0</Property>
+                  <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+                  <Property name="CaptureOutput" type="Boolean">True</Property>
+                  <Property MultiValue="1" name="Command" type="WideString">
+                    <![CDATA[$(DIR_WINSCP)\winscp $(DEV_USER)@$(BUILD_SERVER) /privatekey=$(KEY_FILE) /script=$(DIR_SCRIPT)\get_db_build_log.txt]]>
+                  </Property>
+                  <Property MultiValue="1" name="Description" type="string">
+                    <![CDATA[GET BUILD LOG]]>
+                  </Property>
+                  <Property name="DoNotValidateAction" type="Boolean">False</Property>
+                  <Property name="Enabled" type="WordBool">True</Property>
+                  <Property name="EnableLiveCapture" type="Boolean">True</Property>
+                  <Property name="EnableReturnCodeCheck" type="Boolean">True</Property>
+                  <Property name="EnableTimeout" type="Boolean">False</Property>
+                  <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+                  <Property name="ExpandImpersonationToken" type="Boolean">False</Property>
+                  <Property MultiValue="0" name="ExtraCmdLineParamsAtEnd" type="string"></Property>
+                  <Property MultiValue="0" name="ExtraCmdLineParamsAtStart" type="string"></Property>
+                  <Property name="HideActionFromLog" type="Boolean">False</Property>
+                  <Property name="HideWindow" type="Boolean">True</Property>
+                  <Property name="IgnoreFailure" type="WordBool">False</Property>
+                  <Property MultiValue="0" name="ImpersonateToken" type="string"></Property>
+                  <Property name="ImpersonateUser" type="Boolean">False</Property>
+                  <Property MultiValue="0" name="ImpersonateUserName" type="string"></Property>
+                  <Property MultiValue="0" name="InputFile" type="string"></Property>
+                  <Property name="LogActionProperties" type="Boolean">False</Property>
+                  <Property name="LogOutput" type="WordBool">True</Property>
+                  <Property name="LogProcessParameters" type="Boolean">True</Property>
+                  <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+                  <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+                  <Property MultiValue="1" name="Params" type="WideString">
+                    <![CDATA[$(DIR_WINSCP)\winscp $(DEV_USER)@$(BUILD_SERVER) /privatekey=$(KEY_FILE) /script=$(DIR_SCRIPT)\get_db_build_log.txt]]>
+                  </Property>
+                  <Property name="PauseInterval" type="Cardinal">0</Property>
+                  <Property name="ProcessorAffinity" type="Cardinal">0</Property>
+                  <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
+                  <Property name="RedirectStdErr" type="Boolean">True</Property>
+                  <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+                  <Property name="ReturnCodeComparator" type="TFBRunReturnCodeComparator">rcEqualTo</Property>
+                  <Property name="ReturnCodeToCheck" type="Integer">0</Property>
+                  <Property MultiValue="0" name="StartInDir" type="WideString">$(DIR_TEMP)</Property>
+                  <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+                  <Property name="TerminateOnTimeout" type="Boolean">False</Property>
+                  <Property name="TimeoutLength" type="Cardinal">1</Property>
+                  <Property name="UseErrorDialogMonitor" type="Boolean">False</Property>
+                  <Property name="WaitForCompletion" type="Boolean">True</Property>
+                </Object>
+              </Object>
+            </Object>
+          </Object>
+          <Object Class="TMoveFilesAction" XMLID="{4EE284AA-4F09-4829-A852-3F155A054A22}">
+            <Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string">
+              <![CDATA[Move File(s) [ $(DIR_TEMP)\GAME_BUILD_LOG.txt -&gt; $(DIR_RELEASE) ]]]>
+            </Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property name="ClearAttributes" type="WordBool">False</Property>
+            <Property name="DoNotValidateAction" type="Boolean">False</Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+            <Property name="FailIfExists" type="WordBool">False</Property>
+            <Property name="FailIfZeroFiles" type="WordBool">False</Property>
+            <Property MultiValue="0" name="FileSpec" type="WideString">$(DIR_TEMP)\GAME_BUILD_LOG.txt</Property>
+            <Property name="Force" type="WordBool">True</Property>
+            <Property name="HideActionFromLog" type="Boolean">False</Property>
+            <Property name="IgnoreFailure" type="WordBool">True</Property>
+            <Property name="LogActionProperties" type="Boolean">False</Property>
+            <Property name="LogFilesAffected" type="Boolean">True</Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property name="Overwrite" type="Boolean">True</Property>
+            <Property name="OverwriteReadOnly" type="WordBool">True</Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            <Property MultiValue="0" name="Target" type="WideString">$(DIR_RELEASE)</Property>
+            <Property name="TargetIsDir" type="WordBool">True</Property>
+          </Object>
+          <Object Class="TMoveFilesAction" XMLID="{C20F6979-D923-49B2-A322-85E9A47C8F68}">
+            <Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string">
+              <![CDATA[Move File(s) [ $(DIR_TEMP)\DB_BUILD_LOG.txt -&gt; $(DIR_RELEASE) ]]]>
+            </Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property name="ClearAttributes" type="WordBool">False</Property>
+            <Property name="DoNotValidateAction" type="Boolean">False</Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+            <Property name="FailIfExists" type="WordBool">False</Property>
+            <Property name="FailIfZeroFiles" type="WordBool">False</Property>
+            <Property MultiValue="0" name="FileSpec" type="WideString">$(DIR_TEMP)\DB_BUILD_LOG.txt</Property>
+            <Property name="Force" type="WordBool">True</Property>
+            <Property name="HideActionFromLog" type="Boolean">False</Property>
+            <Property name="IgnoreFailure" type="WordBool">True</Property>
+            <Property name="LogActionProperties" type="Boolean">False</Property>
+            <Property name="LogFilesAffected" type="Boolean">True</Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property name="Overwrite" type="Boolean">True</Property>
+            <Property name="OverwriteReadOnly" type="WordBool">True</Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            <Property MultiValue="0" name="Target" type="WideString">$(DIR_RELEASE)</Property>
+            <Property name="TargetIsDir" type="WordBool">True</Property>
+          </Object>
+          <Object Class="TMoveFilesAction" XMLID="{90DD76D3-7482-4321-A1AA-A11B31F5AE23}">
+            <Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string">
+              <![CDATA[Move File(s) [ $(DIR_TEMP)\LIB_BUILD_LOG.txt -&gt; $(DIR_RELEASE) ]]]>
+            </Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property name="ClearAttributes" type="WordBool">False</Property>
+            <Property name="DoNotValidateAction" type="Boolean">False</Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+            <Property name="FailIfExists" type="WordBool">False</Property>
+            <Property name="FailIfZeroFiles" type="WordBool">False</Property>
+            <Property MultiValue="0" name="FileSpec" type="WideString">$(DIR_TEMP)\LIB_BUILD_LOG.txt</Property>
+            <Property name="Force" type="WordBool">True</Property>
+            <Property name="HideActionFromLog" type="Boolean">False</Property>
+            <Property name="IgnoreFailure" type="WordBool">True</Property>
+            <Property name="LogActionProperties" type="Boolean">False</Property>
+            <Property name="LogFilesAffected" type="Boolean">True</Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property name="Overwrite" type="Boolean">True</Property>
+            <Property name="OverwriteReadOnly" type="WordBool">True</Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            <Property MultiValue="0" name="Target" type="WideString">$(DIR_RELEASE)</Property>
+            <Property name="TargetIsDir" type="WordBool">True</Property>
+          </Object>
+        </Object>
+        <Object Class="TFBActionListParametersCollection" XMLID="{7D0F30B9-E271-4A49-A94D-60B2307632E3}"/>
+      </Object>
+      <Object Class="TFBActionList" XMLID="{46B10F7C-F880-49AA-B9D1-409B28C4C6BB}">
+        <Property name="IsFailure" type="Boolean">True</Property>
+        <Property name="IsMain" type="Boolean">False</Property>
+        <Property MultiValue="0" name="Name" type="string">OnFailure</Property>
+        <Property MultiValue="0" name="UniqueID" type="string">{EE93A266-D254-487A-ADCF-2981481A82B0}</Property>
+        <Object Class="TFBAction" XMLID="{C256041F-A1E3-4B63-9C2F-D159BE60674D}">
+          <Property MultiValue="0" name="ActionComment" type="string"></Property>
+          <Property MultiValue="0" name="ActionDescription" type="string">FinalBuilderAction</Property>
+          <Property name="ActionTextColor" type="Cardinal">0</Property>
+          <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+          <Property name="DoNotValidateAction" type="Boolean">False</Property>
+          <Property name="Enabled" type="WordBool">True</Property>
+          <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+          <Property name="HideActionFromLog" type="Boolean">False</Property>
+          <Property name="IgnoreFailure" type="WordBool">False</Property>
+          <Property name="LogActionProperties" type="Boolean">False</Property>
+          <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+          <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+          <Property name="PauseInterval" type="Cardinal">0</Property>
+          <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+          <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+          <Object Class="TFBIfThenAction" XMLID="{1AF94D01-72F1-4D8C-B30F-50C08BBF75E6}">
+            <Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string">
+              <![CDATA[If [$(TARGET_SERVER)] = [GAME]]]>
+            </Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property name="DoNotValidateAction" type="Boolean">False</Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">False</Property>
+            <Property name="HideActionFromLog" type="Boolean">False</Property>
+            <Property name="IgnoreFailure" type="WordBool">True</Property>
+            <Property MultiValue="1" name="LHSStorageString" type="string">
+              <![CDATA[$(TARGET_SERVER)
+]]>
+            </Property>
+            <Property name="LogActionProperties" type="Boolean">False</Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property MultiValue="1" name="OperatorsStorageString" type="string">
+              <![CDATA[=
+]]>
+            </Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property name="ResultInLogTitle" type="Boolean">True</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property MultiValue="1" name="RHSStorageString" type="string">
+              <![CDATA[GAME
+]]>
+            </Property>
+            <Property name="ShortCircuitEvaluation" type="Boolean">True</Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            <Property name="TermJoiner" type="TFBIfTermJoiner">jwOr</Property>
+            <Object Class="TDeleteFilesAction" XMLID="{00F30125-C0F5-4707-BDF6-585A62CB2F34}">
+              <Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string">
+                <![CDATA[Delete File(s) [ $(DIR_TEMP)GAME_BUILD_LOG.txt ]]]>
+              </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property name="DeleteHidden" type="WordBool">False</Property>
+              <Property name="DeleteReadOnly" type="WordBool">False</Property>
+              <Property name="DoNotValidateAction" type="Boolean">False</Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+              <Property name="FailIfNoFile" type="WordBool">False</Property>
+              <Property MultiValue="0" name="FileSpec" type="string">$(DIR_TEMP)GAME_BUILD_LOG.txt</Property>
+              <Property name="HideActionFromLog" type="Boolean">False</Property>
+              <Property name="IgnoreFailure" type="WordBool">True</Property>
+              <Property name="LogActionProperties" type="Boolean">False</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            </Object>
+            <Object Class="TDeleteFilesAction" XMLID="{8E5B65CF-462D-4878-8AE5-FEB86DA4E316}">
+              <Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string">
+                <![CDATA[Delete File(s) [ $(DIR_TEMP)LIB_BUILD_LOG.txt ]]]>
+              </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property name="DeleteHidden" type="WordBool">False</Property>
+              <Property name="DeleteReadOnly" type="WordBool">False</Property>
+              <Property name="DoNotValidateAction" type="Boolean">False</Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+              <Property name="FailIfNoFile" type="WordBool">False</Property>
+              <Property MultiValue="0" name="FileSpec" type="string">$(DIR_TEMP)LIB_BUILD_LOG.txt</Property>
+              <Property name="HideActionFromLog" type="Boolean">False</Property>
+              <Property name="IgnoreFailure" type="WordBool">True</Property>
+              <Property name="LogActionProperties" type="Boolean">False</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            </Object>
+            <Object Class="TRunDosCMDAction" XMLID="{D51CEF67-6862-4224-8FDE-F09E515A174A}">
+              <Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string">
+                <![CDATA[GET BUILD LOG]]>
+              </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property name="CaptureOutput" type="Boolean">False</Property>
+              <Property MultiValue="1" name="Command" type="WideString">
+                <![CDATA[$(DIR_WINSCP)\winscp $(DEV_USER)@$(BUILD_SERVER) /privatekey=$(KEY_FILE) /script=$(DIR_SCRIPT)\get_game_build_log.txt]]>
+              </Property>
+              <Property MultiValue="1" name="Description" type="string">
+                <![CDATA[GET BUILD LOG]]>
+              </Property>
+              <Property name="DoNotValidateAction" type="Boolean">False</Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="EnableLiveCapture" type="Boolean">True</Property>
+              <Property name="EnableReturnCodeCheck" type="Boolean">True</Property>
+              <Property name="EnableTimeout" type="Boolean">False</Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+              <Property name="ExpandImpersonationToken" type="Boolean">False</Property>
+              <Property MultiValue="0" name="ExtraCmdLineParamsAtEnd" type="string"></Property>
+              <Property MultiValue="0" name="ExtraCmdLineParamsAtStart" type="string"></Property>
+              <Property name="HideActionFromLog" type="Boolean">False</Property>
+              <Property name="HideWindow" type="Boolean">True</Property>
+              <Property name="IgnoreFailure" type="WordBool">True</Property>
+              <Property MultiValue="0" name="ImpersonateToken" type="string"></Property>
+              <Property name="ImpersonateUser" type="Boolean">False</Property>
+              <Property MultiValue="0" name="ImpersonateUserName" type="string"></Property>
+              <Property MultiValue="0" name="InputFile" type="string"></Property>
+              <Property name="LogActionProperties" type="Boolean">False</Property>
+              <Property name="LogOutput" type="WordBool">False</Property>
+              <Property name="LogProcessParameters" type="Boolean">True</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property MultiValue="1" name="Params" type="WideString">
+                <![CDATA[$(DIR_WINSCP)\winscp $(DEV_USER)@$(BUILD_SERVER) /privatekey=$(KEY_FILE) /script=$(DIR_SCRIPT)\get_game_build_log.txt]]>
+              </Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property name="ProcessorAffinity" type="Cardinal">0</Property>
+              <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
+              <Property name="RedirectStdErr" type="Boolean">True</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property name="ReturnCodeComparator" type="TFBRunReturnCodeComparator">rcEqualTo</Property>
+              <Property name="ReturnCodeToCheck" type="Integer">0</Property>
+              <Property MultiValue="0" name="StartInDir" type="WideString">$(DIR_TEMP)</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+              <Property name="TerminateOnTimeout" type="Boolean">False</Property>
+              <Property name="TimeoutLength" type="Cardinal">1</Property>
+              <Property name="UseErrorDialogMonitor" type="Boolean">False</Property>
+              <Property name="WaitForCompletion" type="Boolean">True</Property>
+            </Object>
+          </Object>
+          <Object Class="TFBIfThenAction" XMLID="{7EC01417-A46B-4016-89CF-4CED31E16B40}">
+            <Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string">
+              <![CDATA[If [$(TARGET_SERVER)] = [DB]]]>
+            </Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property name="DoNotValidateAction" type="Boolean">False</Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">False</Property>
+            <Property name="HideActionFromLog" type="Boolean">False</Property>
+            <Property name="IgnoreFailure" type="WordBool">True</Property>
+            <Property MultiValue="1" name="LHSStorageString" type="string">
+              <![CDATA[$(TARGET_SERVER)
+]]>
+            </Property>
+            <Property name="LogActionProperties" type="Boolean">False</Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property MultiValue="1" name="OperatorsStorageString" type="string">
+              <![CDATA[=
+]]>
+            </Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property name="ResultInLogTitle" type="Boolean">True</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property MultiValue="1" name="RHSStorageString" type="string">
+              <![CDATA[DB
+]]>
+            </Property>
+            <Property name="ShortCircuitEvaluation" type="Boolean">True</Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            <Property name="TermJoiner" type="TFBIfTermJoiner">jwOr</Property>
+            <Object Class="TDeleteFilesAction" XMLID="{1EDD2DEF-49D9-471A-9210-8780184732F5}">
+              <Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string">
+                <![CDATA[Delete File(s) [ $(DIR_TEMP)DB_BUILD_LOG.txt ]]]>
+              </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property name="DeleteHidden" type="WordBool">False</Property>
+              <Property name="DeleteReadOnly" type="WordBool">False</Property>
+              <Property name="DoNotValidateAction" type="Boolean">False</Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+              <Property name="FailIfNoFile" type="WordBool">False</Property>
+              <Property MultiValue="0" name="FileSpec" type="string">$(DIR_TEMP)DB_BUILD_LOG.txt</Property>
+              <Property name="HideActionFromLog" type="Boolean">False</Property>
+              <Property name="IgnoreFailure" type="WordBool">True</Property>
+              <Property name="LogActionProperties" type="Boolean">False</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            </Object>
+            <Object Class="TDeleteFilesAction" XMLID="{B76FB432-15EB-48AF-8713-13A850F6FD59}">
+              <Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string">
+                <![CDATA[Delete File(s) [ $(DIR_TEMP)LIB_BUILD_LOG.txt ]]]>
+              </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property name="DeleteHidden" type="WordBool">False</Property>
+              <Property name="DeleteReadOnly" type="WordBool">False</Property>
+              <Property name="DoNotValidateAction" type="Boolean">False</Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+              <Property name="FailIfNoFile" type="WordBool">False</Property>
+              <Property MultiValue="0" name="FileSpec" type="string">$(DIR_TEMP)LIB_BUILD_LOG.txt</Property>
+              <Property name="HideActionFromLog" type="Boolean">False</Property>
+              <Property name="IgnoreFailure" type="WordBool">True</Property>
+              <Property name="LogActionProperties" type="Boolean">False</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            </Object>
+            <Object Class="TRunDosCMDAction" XMLID="{84EB1322-9966-4ED6-8EEF-B5D81B8D144A}">
+              <Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string">
+                <![CDATA[GET BUILD LOG]]>
+              </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property name="CaptureOutput" type="Boolean">True</Property>
+              <Property MultiValue="1" name="Command" type="WideString">
+                <![CDATA[$(DIR_WINSCP)\winscp $(DEV_USER)@$(BUILD_SERVER) /privatekey=$(KEY_FILE) /script=$(DIR_SCRIPT)\get_db_build_log.txt]]>
+              </Property>
+              <Property MultiValue="1" name="Description" type="string">
+                <![CDATA[GET BUILD LOG]]>
+              </Property>
+              <Property name="DoNotValidateAction" type="Boolean">False</Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="EnableLiveCapture" type="Boolean">True</Property>
+              <Property name="EnableReturnCodeCheck" type="Boolean">True</Property>
+              <Property name="EnableTimeout" type="Boolean">False</Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+              <Property name="ExpandImpersonationToken" type="Boolean">False</Property>
+              <Property MultiValue="0" name="ExtraCmdLineParamsAtEnd" type="string"></Property>
+              <Property MultiValue="0" name="ExtraCmdLineParamsAtStart" type="string"></Property>
+              <Property name="HideActionFromLog" type="Boolean">False</Property>
+              <Property name="HideWindow" type="Boolean">True</Property>
+              <Property name="IgnoreFailure" type="WordBool">True</Property>
+              <Property MultiValue="0" name="ImpersonateToken" type="string"></Property>
+              <Property name="ImpersonateUser" type="Boolean">False</Property>
+              <Property MultiValue="0" name="ImpersonateUserName" type="string"></Property>
+              <Property MultiValue="0" name="InputFile" type="string"></Property>
+              <Property name="LogActionProperties" type="Boolean">False</Property>
+              <Property name="LogOutput" type="WordBool">True</Property>
+              <Property name="LogProcessParameters" type="Boolean">True</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property MultiValue="1" name="Params" type="WideString">
+                <![CDATA[$(DIR_WINSCP)\winscp $(DEV_USER)@$(BUILD_SERVER) /privatekey=$(KEY_FILE) /script=$(DIR_SCRIPT)\get_db_build_log.txt]]>
+              </Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property name="ProcessorAffinity" type="Cardinal">0</Property>
+              <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
+              <Property name="RedirectStdErr" type="Boolean">True</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property name="ReturnCodeComparator" type="TFBRunReturnCodeComparator">rcEqualTo</Property>
+              <Property name="ReturnCodeToCheck" type="Integer">0</Property>
+              <Property MultiValue="0" name="StartInDir" type="WideString">$(DIR_TEMP)</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+              <Property name="TerminateOnTimeout" type="Boolean">False</Property>
+              <Property name="TimeoutLength" type="Cardinal">1</Property>
+              <Property name="UseErrorDialogMonitor" type="Boolean">False</Property>
+              <Property name="WaitForCompletion" type="Boolean">True</Property>
+            </Object>
+          </Object>
+          <Object Class="TRunDosCMDAction" XMLID="{A59E34AA-E0BC-46D5-A77A-716A12D301B1}">
+            <Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string">
+              <![CDATA[Run DOS Command / Batch File [ type $(DIR_TEMP)\ERROR.txt ]]]>
+            </Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property name="CaptureOutput" type="Boolean">True</Property>
+            <Property MultiValue="1" name="Command" type="WideString">
+              <![CDATA[type $(DIR_TEMP)\ERROR.txt]]>
+            </Property>
+            <Property name="DoNotValidateAction" type="Boolean">False</Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="EnableLiveCapture" type="Boolean">True</Property>
+            <Property name="EnableReturnCodeCheck" type="Boolean">True</Property>
+            <Property name="EnableTimeout" type="Boolean">False</Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+            <Property name="ExpandImpersonationToken" type="Boolean">False</Property>
+            <Property MultiValue="0" name="ExtraCmdLineParamsAtEnd" type="string"></Property>
+            <Property MultiValue="0" name="ExtraCmdLineParamsAtStart" type="string"></Property>
+            <Property name="HideActionFromLog" type="Boolean">False</Property>
+            <Property name="HideWindow" type="Boolean">True</Property>
+            <Property name="IgnoreFailure" type="WordBool">True</Property>
+            <Property MultiValue="0" name="ImpersonateToken" type="string"></Property>
+            <Property name="ImpersonateUser" type="Boolean">False</Property>
+            <Property MultiValue="0" name="ImpersonateUserName" type="string"></Property>
+            <Property MultiValue="0" name="InputFile" type="string"></Property>
+            <Property name="LogActionProperties" type="Boolean">False</Property>
+            <Property name="LogOutput" type="WordBool">True</Property>
+            <Property name="LogProcessParameters" type="Boolean">True</Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property MultiValue="1" name="Params" type="WideString">
+              <![CDATA[type $(DIR_TEMP)\ERROR.txt]]>
+            </Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property name="ProcessorAffinity" type="Cardinal">0</Property>
+            <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
+            <Property name="RedirectStdErr" type="Boolean">True</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property name="ReturnCodeComparator" type="TFBRunReturnCodeComparator">rcEqualTo</Property>
+            <Property name="ReturnCodeToCheck" type="Integer">0</Property>
+            <Property MultiValue="0" name="StartInDir" type="WideString"></Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            <Property name="TerminateOnTimeout" type="Boolean">False</Property>
+            <Property name="TimeoutLength" type="Cardinal">1</Property>
+            <Property name="UseErrorDialogMonitor" type="Boolean">False</Property>
+            <Property name="WaitForCompletion" type="Boolean">True</Property>
+          </Object>
+          <Object Class="TMoveFilesAction" XMLID="{AFCE3308-5A7C-45DF-8F0F-0351DDB2AB54}">
+            <Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string">
+              <![CDATA[Move File(s) [ $(DIR_TEMP)\ERROR.txt -&gt; $(DIR_RELEASE) ]]]>
+            </Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property name="ClearAttributes" type="WordBool">False</Property>
+            <Property name="DoNotValidateAction" type="Boolean">False</Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+            <Property name="FailIfExists" type="WordBool">False</Property>
+            <Property name="FailIfZeroFiles" type="WordBool">False</Property>
+            <Property MultiValue="0" name="FileSpec" type="WideString">$(DIR_TEMP)\ERROR.txt</Property>
+            <Property name="Force" type="WordBool">True</Property>
+            <Property name="HideActionFromLog" type="Boolean">False</Property>
+            <Property name="IgnoreFailure" type="WordBool">True</Property>
+            <Property name="LogActionProperties" type="Boolean">False</Property>
+            <Property name="LogFilesAffected" type="Boolean">True</Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property name="Overwrite" type="Boolean">True</Property>
+            <Property name="OverwriteReadOnly" type="WordBool">True</Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            <Property MultiValue="0" name="Target" type="WideString">$(DIR_RELEASE)</Property>
+            <Property name="TargetIsDir" type="WordBool">True</Property>
+          </Object>
+          <Object Class="TMoveFilesAction" XMLID="{FCFFC222-CFD7-4FB2-91B4-F285AAD4B9DC}">
+            <Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string">
+              <![CDATA[Move File(s) [ $(DIR_TEMP)\GAME_BUILD_LOG.txt -&gt; $(DIR_RELEASE) ]]]>
+            </Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property name="ClearAttributes" type="WordBool">False</Property>
+            <Property name="DoNotValidateAction" type="Boolean">False</Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+            <Property name="FailIfExists" type="WordBool">False</Property>
+            <Property name="FailIfZeroFiles" type="WordBool">False</Property>
+            <Property MultiValue="0" name="FileSpec" type="WideString">$(DIR_TEMP)\GAME_BUILD_LOG.txt</Property>
+            <Property name="Force" type="WordBool">True</Property>
+            <Property name="HideActionFromLog" type="Boolean">False</Property>
+            <Property name="IgnoreFailure" type="WordBool">True</Property>
+            <Property name="LogActionProperties" type="Boolean">False</Property>
+            <Property name="LogFilesAffected" type="Boolean">True</Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property name="Overwrite" type="Boolean">True</Property>
+            <Property name="OverwriteReadOnly" type="WordBool">True</Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            <Property MultiValue="0" name="Target" type="WideString">$(DIR_RELEASE)</Property>
+            <Property name="TargetIsDir" type="WordBool">True</Property>
+          </Object>
+          <Object Class="TMoveFilesAction" XMLID="{698B3296-3009-4AE6-8331-AA63172B721D}">
+            <Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string">
+              <![CDATA[Move File(s) [ $(DIR_TEMP)\DB_BUILD_LOG.txt -&gt; $(DIR_RELEASE) ]]]>
+            </Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property name="ClearAttributes" type="WordBool">False</Property>
+            <Property name="DoNotValidateAction" type="Boolean">False</Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+            <Property name="FailIfExists" type="WordBool">False</Property>
+            <Property name="FailIfZeroFiles" type="WordBool">False</Property>
+            <Property MultiValue="0" name="FileSpec" type="WideString">$(DIR_TEMP)\DB_BUILD_LOG.txt</Property>
+            <Property name="Force" type="WordBool">True</Property>
+            <Property name="HideActionFromLog" type="Boolean">False</Property>
+            <Property name="IgnoreFailure" type="WordBool">True</Property>
+            <Property name="LogActionProperties" type="Boolean">False</Property>
+            <Property name="LogFilesAffected" type="Boolean">True</Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property name="Overwrite" type="Boolean">True</Property>
+            <Property name="OverwriteReadOnly" type="WordBool">True</Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            <Property MultiValue="0" name="Target" type="WideString">$(DIR_RELEASE)</Property>
+            <Property name="TargetIsDir" type="WordBool">True</Property>
+          </Object>
+          <Object Class="TMoveFilesAction" XMLID="{E1C2BE0E-CB86-4CE4-AB8E-3AEAC932D3A6}">
+            <Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string">
+              <![CDATA[Move File(s) [ $(DIR_TEMP)\LIB_BUILD_LOG.txt -&gt; $(DIR_RELEASE) ]]]>
+            </Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property name="ClearAttributes" type="WordBool">False</Property>
+            <Property name="DoNotValidateAction" type="Boolean">False</Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+            <Property name="FailIfExists" type="WordBool">False</Property>
+            <Property name="FailIfZeroFiles" type="WordBool">False</Property>
+            <Property MultiValue="0" name="FileSpec" type="WideString">$(DIR_TEMP)\LIB_BUILD_LOG.txt</Property>
+            <Property name="Force" type="WordBool">True</Property>
+            <Property name="HideActionFromLog" type="Boolean">False</Property>
+            <Property name="IgnoreFailure" type="WordBool">True</Property>
+            <Property name="LogActionProperties" type="Boolean">False</Property>
+            <Property name="LogFilesAffected" type="Boolean">True</Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property name="Overwrite" type="Boolean">True</Property>
+            <Property name="OverwriteReadOnly" type="WordBool">True</Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            <Property MultiValue="0" name="Target" type="WideString">$(DIR_RELEASE)</Property>
+            <Property name="TargetIsDir" type="WordBool">True</Property>
+          </Object>
+        </Object>
+        <Object Class="TFBActionListParametersCollection" XMLID="{F90C2656-E8A9-4FE3-84C0-F57E1EF42E49}"/>
+      </Object>
+    </Object>
+    <Object Class="TFBVariablesCollection" XMLID="{91783FC7-7DA4-461E-96E3-2F2BB5DBF51A}">
+      <Property MultiValue="0" name="Name" type="string">Project</Property>
+      <Object Class="TFBVariable" XMLID="{A7786AE4-7FE9-437A-8AD0-963705D54C27}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="1" name="DefaultValue" type="string">
+          <![CDATA[NO COMMENT]]>
+        </Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">False</Property>
+        <Property MultiValue="0" name="Name" type="string">DESCRIPTION</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{40F32DFB-2AE4-46C1-A642-ADB0BA4750A0}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">head</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">True</Property>
+        <Property MultiValue="0" name="Name" type="string">REVISION</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{A047F173-C9C5-4FBD-99FE-D6A845196E0D}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">br</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">True</Property>
+        <Property MultiValue="0" name="Name" type="string">LOCALE</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{DBE383E4-3495-4CC4-A14C-73717556EC53}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">GAME</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">True</Property>
+        <Property MultiValue="0" name="Name" type="string">TARGET_SERVER</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{B750B8C3-8CB5-4A7A-8A06-6BFFF015FA61}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">metin2</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">True</Property>
+        <Property MultiValue="0" name="Name" type="string">DEV_USER</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{F5B97214-5475-46E3-A4AB-4858BE50BA39}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">tufel@)dlsl80woalTek</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">True</Property>
+        <Property MultiValue="0" name="Name" type="string">DEV_PASSWD</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{5174F9FE-8268-4F2F-9DF4-56BD28161281}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">10.1.89.13</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">True</Property>
+        <Property MultiValue="0" name="Name" type="string">BUILD_SERVER</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{99965FC4-6E04-40F6-940A-09AA01101013}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">YES</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">False</Property>
+        <Property MultiValue="0" name="Name" type="string">DO_BUILD</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{19FAB750-2FC7-4CFE-AEBA-88DCB082AB99}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">YES</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">False</Property>
+        <Property MultiValue="0" name="Name" type="string">DO_RESTART_TEST_SERVER</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{C6C0F6D3-B741-4467-AB3F-C510CE613BFB}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">10.1.89.23</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">False</Property>
+        <Property MultiValue="0" name="Name" type="string">TEST_SERVER</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{7273506D-1224-43DB-9C66-B0A47A4BD1FB}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">metin2</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">False</Property>
+        <Property MultiValue="0" name="Name" type="string">TESTER_ID</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{77979177-63CB-448E-9ECD-D05631BF7D8D}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">qwer1234</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">False</Property>
+        <Property MultiValue="0" name="Name" type="string">TESTER_PASSWD</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{82CF9ACE-593B-4487-AE80-E5B041C552E0}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">S:\Temp</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">False</Property>
+        <Property MultiValue="0" name="Name" type="string">DIR_TEMP</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{14E6F0DF-227B-4363-B47B-D80201286C61}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">$(DIR_TOOLS)\BUILDER\Script</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">True</Property>
+        <Property MultiValue="0" name="Name" type="string">DIR_SCRIPT</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{B85AD73D-6397-4EBC-A0A3-193AF7B37A0E}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">S:\PROJECT\metin2\mainline\Srcs\Tools</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">True</Property>
+        <Property MultiValue="0" name="Name" type="string">DIR_TOOLS</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{44025520-5BD9-4656-B411-6CBEB93FC59B}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">S:\ppk</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">False</Property>
+        <Property MultiValue="0" name="Name" type="string">DIR_KEY</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{08869571-FE55-4641-B857-6A24E2C2840C}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">$(DIR_TOOLS)\WinScp</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">True</Property>
+        <Property MultiValue="0" name="Name" type="string">DIR_WINSCP</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{E279D9A0-A8B3-4E4A-A299-D9590B871677}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">$(DIR_KEY)\metin2buildserver.ppk</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">False</Property>
+        <Property MultiValue="0" name="Name" type="string">KEY_FILE</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+      <Object Class="TFBVariable" XMLID="{70A30CE9-0CB0-4FDE-BE70-9FF5C2ED2CC9}">
+        <Property MultiValue="0" name="Comment" type="string"></Property>
+        <Property MultiValue="0" name="DefaultValue" type="string">Test</Property>
+        <Property MultiValue="0" name="GroupName" type="string"></Property>
+        <Property name="IsMacro" type="Boolean">False</Property>
+        <Property name="IsPersistent" type="Boolean">False</Property>
+        <Property name="MakeEnv" type="Boolean">True</Property>
+        <Property MultiValue="0" name="Name" type="string">BRANCH_NAME</Property>
+        <Property name="VariableType" type="TFBVariableType">vtProject</Property>
+      </Object>
+    </Object>
+  </Object>
+</VSXML>

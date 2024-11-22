@@ -1,0 +1,863 @@
+05330	Dragon Jaw Bell+0	
+05331	Dragon Jaw Bell+1	
+05332	Dragon Jaw Bell+2	
+05333	Dragon Jaw Bell+3	
+05334	Dragon Jaw Bell+4	
+05335	Dragon Jaw Bell+5	
+05336	Dragon Jaw Bell+6	
+05337	Dragon Jaw Bell+7	
+05338	Dragon Jaw Bell+8	
+05339	Dragon Jaw Bell+9	
+11901	Tuxedo	A black suit for a man to wear at a wedding.
+11902	Tuxedo	A black suit for a man to wear at a wedding.
+11903	Wedding Dress	A special dress for a woman to wear at her wedding.
+11904	Wedding Dress	A special dress for a woman to wear at her wedding.
+22000	Town Scroll	The scroll allows you to teleport back to the town.
+22010	Scroll of the Location	The scroll enables your return to the location you last marked.
+25040	Blessing Scroll	Reduces the risk of destroying an Item if the upgrade fails. The cost of this save is that the quality is reduced by 1 point.
+25041	Magic Stone	The legendary metal that helps to create the best weapons. The Magical Stone increases the chance of upgrading an item. Item gets destroyed when the upgrade fails.
+25100	Spirit Stone Scroll	The scroll allows you to extract the Spirit Stone from a weapon or armour. It leaves a mark of extraction.
+27600	Bonfire	Wood that has been chopped for a bonfire.
+27610	Fishing Marble	This magic marble reveals what kind of fish is on the hook.
+27620	Fishing Book	A book that provides information about fish.
+27799	Fishbones	The bones of a fish
+27800	Paste	A lightweight and cheap bait
+27801	Worm	Popular bait that attracts fish.
+27802	Minnow	Bait that attracts big fish.
+27803	Zander	A common fish that usually lives in a pond.
+27804	Mandarin Fish	A very tasty fish.
+27805	Large Zander	A rather fat example of a Zander
+27806	Carp	A large silver-coloured fish.
+27807	Salmon	A fish that returns home during mating season.
+27808	Grass Carp	A carp that usually feeds on grass.
+27809	Brook Trout	A fish that is related to Salmon.
+27810	Eel	A long, thin fish that looks like a snake. It has a lot of stamina.
+27811	Rainbow Trout	A fish that has a rainbow-coloured back.
+27812	River Trout	A freshwater fish that is very common in this area.
+27813	Rudd	A red, shimmery fish who lives in a swarm.
+27814	Perch	A fish known as the "shark of the seas".
+27815	Tenchi	A type of barb that lives only in clean water.
+27816	Catfish	A fish that has a distinctive big mouth with cat-like whiskers.
+27817	Loach	A slippery fish, that usually lives in shallow, muddy water.
+27818	Lotus Fish	A big fresh water fish that lives on a mixed diet.
+27819	Sweetfish	Related to the Smelt. It lives along coasts and in estuaries.
+27820	Smelt	A winter fish that is most caught whilst ice fishing.
+27821	Shiri	A fish with a beautiful shape and colour.
+27822	Mirror Carp	An indigenous Carp.
+27823	Goldfish	A rare, golden shiny fish.
+27833	Dead Zander	A fish that is perfect for grilling on a campfire.
+27834	Dead Mandarin Fish	A perfect fish to grill on a campfire.
+27835	Dead Large Zander	Perfect for grilling on a campfire.
+27836	Dead Carp	Perfect for grilling on a campfire.
+27837	Dead Salmon	This fish can be grilled on a campfire.
+27838	Dead Grass Carp	Tastes great when grilled on a campfire.
+27839	Dead Brook Trout	Tastes great when grilled on a campfire.
+27840	Dead Eel	Tastes great when grilled on a campfire.
+27841	Dead Rainbow Trout	Tastes great when grilled on a campfire.
+27842	Dead River Trout	Tastes great when it is grilled on a campfire.
+27843	Dead Rudd	Tastes great when grilled on a campfire.
+27844	Dead Perch	Tastes great when grilled on a campfire.
+27845	Dead Tenchi	Tastes great when grilled on a campfire.
+27846	Dead Catfish	Tastes great when grilled on a campfire.
+27847	Dead Loach	Tastes great when grilled on a campfire.
+27848	Dead Lotus Fish	Tastes great when grilled on a campfire.
+27849	Dead Sweet Fish	Tastes great when grilled on a campfire.
+27850	Dead Smelt	Tastes great when grilled on a campfire.
+27851	Dead Shiri	Tastes great when grilled on a campfire.
+27852	Dead Mirror Carp	Tastes great when grilled on a campfire.
+27853	Dead Goldfish	Tastes great when grilled on a campfire.
+27863	Grilled Zander	Restores some HP.
+27864	Grilled Mandarin Fish	Recovers some SP
+27865	Grilled Large Zander	Restores some HP.
+27866	Grilled Carp	Increases moving speed for a duration of time.
+27867	Grilled Salmon	Recovers some SP
+27868	Grilled Grass Carp	Increases attack speed for a duration of time.
+27869	Grilled Brook Trout	Restores a large amount of HP.
+27870	Grilled Eel	Increases your strength by 10 points for 10 minutes.
+27871	Grilled Rainbow Trout	Recovers some SP
+27872	Grilled River Trout	Recovers some SP immediately
+27873	Grilled Rudd	Increases your dexterity by 10 points for 10 minutes.
+27874	Grilled Perch	Removes bad effects.
+27875	Grilled Tenchi	Recovers some HP immediately.
+27876	Grilled Catfish	Recovers some SP immediately.
+27877	Grilled Loach	Makes you invisible for 5 minutes.
+27878	Grilled Lotus Fish	Recovers some HP immediately.
+27879	Grilled Sweetfish	This fish gets its pleasant smoky taste from being prepared over a fire.
+27880	Grilled Smelt	By preparing it over the fire this fish gets a pleasant smoky taste.
+27881	Grilled Shiri	This fish gets its pleasant smoky taste from being prepared over a fire.
+27882	Grilled Mirror Carp	By preparing it over the fire this fish gets a pleasant-smoky taste.
+27883	Grilled Goldfish	By preparing it over the fire this fish gets a pleasant smoky taste.
+27987	Clam	A shellfish with a pretty shell. Sometimes it holds a precious pearl inside it.
+27988	Treasure Map	A worn out map which reveals the location of an ancient treasure.
+27989	Compass for Metin Stones	The compass shows you the position and distance to the next Metin Stone. The brighter it glows, the closer you are. It can be activated 6 times.
+27990	Piece of Stone	Because of the small size it can be transported very well. It can be used in many different ways.
+27991	Water Stone	A hard, coarse stone which can be used to grind weapons or kitchen utensils.
+27992	White Pearl	The pure white treasure found inside a seashell.
+27993	Blue Pearl	A magnificent deep blue pearl found inside a seashell.
+27994	Blood Pearl	The tawny-coloured treasure from the inside of a mollusc.
+27995	Empty Bottle	An empty, but intact bottle made from glass.
+27996	Poison Bottle	A bottle with a deadly poison in it.
+27997	Vigour Marble	A marble that restores some HP.
+27998	Alchemy Pouch	A bag marked by wear and tear, which keeps the secrets of alchemy hidden from the eyes of strangers.
+27999	Spirit Stone Pouch	A pouch that holds Spirit Stones.
+29001	Scallop	One of the largest and tastiest mussels. It has a comb-shaped shell.
+29002	Blue Scallop	The nacre layer of this scallop shimmers in countless merging blue tones.
+29003	Yellow Scallop	The nacre film of this scallop shimmers in countless merging yellow tones.
+29004	Red Scallop	The nacre film of this scallop shimmers in countless merging red tones.
+29005	Green Scallop	The nacre film of this scallop shimmers in countless merging green tones.
+29006	Yellow Tartar	Tartar with a darker colour.
+29007	Blue Tartar	Tartar with a dark blue colour.
+29008	Blue Holy Water	In sunlight the surface of this holy water shines a soft blue.
+29009	Yellow Holy Water	In sunlight the surface of this holy water shines a soft yellow.
+29010	Red Holy Water	In sunlight the surface of this holy water shines a soft red.
+29011	Green Holy Water	In sunlight the surface of this holy water shines a soft green.
+29012	Dark Blue Hand of God	Dark blue holy water
+29013	Dark Yellow Hand of God	Yellow holy water with a dark colour.
+29014	Magenta Hand of God	Holy water with a dark red colour.
+29015	Dark Green Hand of God	Holy water with a dark green colour.
+30000	Barley	A commonly cultivated plant that is used to make beer and food.
+30001	Letter	A piece of paper that has neat handwriting written on it.
+30002	Fried Sausage	A stir-fry with vegetables and spices.
+30003	Pig Nose	The nose from a pig
+30004	Wild Boar Tooth	The very strong tooth of a wild boar.
+30005	Piece of Broken Armour	A fragment of a broken suit of armour.
+30006	Orc Tooth	A yellow-brown, vile smelling tooth of an Orc. On the edges there are indefinable, crusty residues.
+30007	Orc Amulet	An amulet which encourages Orcs during battle.
+30008	Esoteric Primer	The beginner's handbook of Esoteric Doctrine.
+30009	Unknown Medicine	Unknown medicine with unknown ingredients.
+30010	Bear Gall	Bear gall is known for reviving the sense of taste.
+30011	Ball	A silky ball of thread.
+30012	Wine Bottle	The bottle contains a very fragrant wine.
+30013	Liquor Jug	A jug that is used to age liquor.
+30014	Yeti Fur	The fur of the legendary creature, the Yeti, that protects against the cold.
+30015	Demon's Keepsake	A grim keepsake of a Demon that exudes cold air.
+30016	Demon's Gem	A gem that is known for holding the souls of the dead.
+30017	Ornamental Hairpin	A decorated hairpin for a woman.
+30018	Red Hairband	A fancy ribbon to tie up a woman's hair.
+30019	Flaming Mane	A flaming mane thread that is used to make winter clothes.
+30020	Peach Seed	Used to get healthy skin.
+30021	Piece of Gem	A gem broken apart by a hard substance.
+30022	Snake Tail	The scaly, multicoloured tail of a rattlesnake.
+30023	White Tiger Hide	Valued as the most precious animal hide among collectors.
+30024	Horsetail	A horse's tail can be used for making quality items such as brushes, hats, and rope.
+30025	Spider's Poison Sack	The venom sack of a spider
+30026	Wolf Intestine	An ingredient used for making sausages, a food famous in the Empire.
+30027	Wolf Fur	The thickest hair in wolf's fur is used to make combs and brushes.
+30028	Wolf Claw	A wolf's sharp claw is used to make accessories.
+30029	Wolf Liver	An ingredient for making sausages, a food famous in the Empire.
+30030	Rusty Blade	A rusty dagger blade
+30031	Ornament	A favourite ornament amongst girls.
+30032	Black Uniform	A worn out black uniform.
+30033	Broken Porcelain	Some valuable porcelain from the region that has been broken into pieces.
+30034	White Hairband	An elegant ribbon to tie up a woman's hair.
+30035	Face Cream	Women use it to keep their skin youthful.
+30036	Mystic Herb	The legendary herb with miraculous effects.
+30037	Tiger Claw	Some fighters wear a necklace made of Tiger Claws to show others their courage.
+30038	Tiger Hide	A favourite animal hide amongst collectors.
+30039	Piece of Fabric	Fabric used to cover someone's wound.
+30040	Leaf	Unknown plant leaf.
+30041	Shiriken	A throwing weapon that Assassins use.
+30042	Tiger Fang	The solid, shiny fang of this wildcat.
+30043	Bean	An ingredient used in many cuisines.
+30044	Clay	A material used to make porcelain.
+30045	Scorpion Needle	A needle that contains lethal scorpion poison.
+30046	Scorpion Tail	A poisonous scorpion tail.
+30047	Curse Book	An esoteric book used to curse people.
+30048	Piece of Ice	A clump of frozen water that consistently exudes cold air.
+30049	Ice Killer Whale Horn	It is a valuable sculpting material.
+30050	Ice Marble	A marble made from ice. It does not melt in hot weather.
+30051	Unknown Talisman	Unknown talisman, only Esoterics can read it.
+30052	Flag	A flag to mark savage troops.
+30053	Bear Foot Skin	A favourite stamina food among many people.
+30054	Wedding Ring	The only ring you wear until the end of your days.
+30055	Scorpion Claw	The sturdy looking claw from the tentacle of a scorpion.
+30056	Spider Web	A spider uses its silk to make its home.
+30057	Spider Eyes	Spider eyes are a favourite with collectors.
+30058	Spider Egg Sack	It is used as a charm by woman who do not have any children.
+30059	Spider Legs	Shamans use the hairy legs of spiders at work.
+30060	Frog Tongue	An elastic, very sticky tongue.
+30061	Frog's Legs	An exotic cooking ingredient, that tastes like chicken!
+30062	Medicine Bowl	A light coloured bowl used by pharmacists.
+30063	Skin Medicine	A medicine that cures skin disease.
+30064	Sharp Stone	A stone that is used to make an arrowhead.
+30065	Bell	A small bell that makes a ringing sound.
+30066	Hot Pepper	The dried fruits from the pepper plant, which are very spicy.
+30067	Snakeskin	The scaly, shiny skin of a snake.
+30068	Tofu Steak	Fusion style tofu cuisine
+30069	Wolf Claw+	The sharp claw of wolf that is used to make an accessory.
+30070	Wolf Fur+	The thickest hairs in wolf's fur are used to make combs and brushes.
+30071	Bear Gall+	Bear gall is known for reviving the sense of taste.
+30072	Bear Foot Skin+	A favourite stamina food among many people.
+30073	White Hairband+	A popular ribbon to tie up a woman's hair.
+30074	Black Uniform+	A worn out black Uniform.
+30075	Shiriken+	A throwing weapon used by Assassins.
+30076	Orc Amulet+	An amulet that encourages Orcs during battle.
+30077	Orc Tooth+	A yellow-brown, vile smelling tooth of an Orc. On the edges there are indefinable, crusty residues.
+30078	Esoteric Primer+	A beginners handbook of esoteric doctrine.
+30079	Unknown Talisman+	An unknown talisman, only Esoterics can read it.
+30080	Curse Book+	This Esoteric Book can be used to curse someone.
+30081	Scorpion Tail+	A poisonous scorpion tail.
+30082	Snake Tail+	The scaly, colourful tail of a rattlesnake.
+30083	Unknown Medicine+	Unknown medicine with unknown ingredients.
+30084	Unknown Talisman+	An unknown talisman, only Esoterics can read it.
+30085	Piece of Fabric+	A fabric used to cover someone's wound.
+30086	Demon's Keepsake+	A gloomy keepsake of a Demon.
+30087	Demon's Gem+	A gem that is known for holding the souls of the dead.
+30088	Piece of Ice+	Frozen water that remains exudes cold air.
+30089	Yeti Fur+	The fur of the legendary creature, the Yeti, protects against the cold.
+30090	Ice Marble+	A marble made from ice. It does not melt in the hot weather.
+30091	Warrior's Symbol	The Warrior symbol given to the legendary Warriors.
+30092	Savage's Booty	The spoils of war.
+30093	Lucky Pouch	A silk pouch that holds valuables
+30094	Lucky Pouch	A silk pouch that holds valuables.
+30095	Lucky Pouch	A silk pouch that holds valuables.
+30096	Lucky Pouch	A silk pouch that holds valuables
+30129	Order of the Rider	A document, containing a military mission
+30130	Empty Bottle	An empty, but intact bottle made of glass.
+30131	Letter from Blacksmith	A letter from the Blacksmith to his friend Deokbae.
+30132	Uriel's Book	One of Uriel's favourite books. It has the title "The secret of the Temple of Darkness".
+30133	Flower Shoes	Comfortable and pretty women's shoes.
+30134	Uriel's Package	A package containing several different books.
+30135	Letter from Ariyoung	A letter form Ariyoung to Ayoo.
+30136	Lavishly Decorated Bow	A wonderful bow made of an animal's horn.
+30137	Monkey blood	The dark red blood of a monkey. It smells terrible.
+30138	Desert sand	This particularly fine sand is used to make Celadon Porcelain.
+30139	Orc Molar	The molar of an orc. Is used as a talisman.
+30140	Thread	Strong yarn. It is used for repairing Clothing and necklaces are also made of it.
+30141	Piece of Jewellery	Jewellery is worn, or used to decorate clothing.
+30142	Letter	You can not read, what is written on the letter. Perhaps you might have to learn the language.
+30143	Medicinal Herbs	A collection of dried healing herbs. Unfortunately they're a little dusty.
+30144	Tiger Liver	The reddish brown hand-sized liver of a fully grown wildcat.
+30145	Balso's Medicine	A seemingly unimpressive medicine, however, it has a strong effect.
+30146	Chunk of Ice	An irregularly formed cold block of ice.
+30147	Temple Doctrine	A book containing detailed information about the Temple of Darkness.
+30148	Temple Scarf	A Scarf, that is used for praying.
+30149	Ice Cream with Syrup	A dish containing a portion of ice cream and syrup. Wonderful in summer.
+30150	Diary Page	A page from a diary written by the old dynasty.
+30151	Wolf Pelt	Is often used as a duster.
+30152	Medicine	Apparently it can cure strange diseases. But nobody knows what's in it.
+30153	Flowers	A rare flower, its scent reminds you of something from the past.
+30154	Secret Temple Book	The analysis of the history and doctrine of the secret temple.
+30155	Mirine's Pendant	A necklace pendant. Engraved on the reverse side, is the name "Mirine".
+30156	Secret Temple Book	The analysis of the history and doctrine of the secret temple.
+30157	Arrowhead	These poisonous arrowheads will help to defend the empire.
+30177	Musk Oil	Musk Oil is used by the Weapon Shop Dealer during a quest. The item does not have any further functions.
+30178	Glyph Stone	
+30179	Dragon God Symbol	
+30180	Dragon God Amulet	This piece of golden jewellery can shorten the way to the Grotto of Exile.
+30181	Page	The faded writing on this parchment is difficult to decipher - this page seems to be very old.
+30182	Legendary Diary	This duplicate of an ancient book looks very valuable.
+30183	Sombre Wooden Mask	This wooden mask seems to be staring right at you. It is most probably a ceremonial item.
+30184	Bewitched Ashes	The ashes are in a container covered with strange symbols, and surrounded by a soft glow.
+30185	Black Ice	Deep shadows seem to be gathering below this shiny, smooth surface.
+30186	Fossilised Tear	A fossilised tear from the God Baljit-Elvedin, who is nowadays known as the Dragon God.
+30187	Drop of Blood	A Drop of Blood from the murdered Goddess Bahar-Taraji, creator of the world.
+30188	Obsidian	Formerly liquid, rapidly frozen volcanic stone.
+30189	Baljit-Elvedin's Tears	This skilfully sculptured vase contains the tears of the God Baljit-Elvedin.
+30190	Blood Stone	This stone is made from the blood of Bahar-Taraji and grants you entrance into the Grotto of Exile.
+30191	Blood Stone	Blood Stones grant you entrance into the Grotto of Exile.
+30210	Piece of Gemstone	A stone that is as clear as crystal and sparkles in the light.
+30211	Piece of Gemstone	A crystal-clear stone, that sparkles in the light.
+30212	Piece of Gemstone	A small sparkling stone
+30213	Piece of Gemstone	A small sparkling stone.
+30214	Piece of Gemstone	A small sparkling stone.
+30215	Piece of Gemstone	A small sparkling stone.
+30216	Piece of Gemstone	A small sparkling stone.
+30217	Piece of Gemstone	A small sparkling stone.
+30218	Piece of Gemstone	A small sparkling stone
+30219	Piece of Gemstone	A small sparkling stone.
+30220	Jinunggyi's Soul Stone	A legendary stone, it contains the soul of an Jinung aristocrat.
+30221	Temple Soul Stone	A legendary stone, it contains the soul of a temple follower.
+30222	Sagyi's Soul Stone	A legendary stone, it contains the soul of an Sagyis aristocrat.
+30223	Aurtumryu's Soul Stone	A legendary stone, it contains the soul of an Aurtumryus aristocrat.
+30224	Gyimok's Soul Stone	A legendary stone, it contains the soul of an Gyimoks aristocrat.
+30225	Tugyi's Soul Stone	A legendary stone, it contains the soul of an Tugyis aristocrat.
+30251	Malevolence Jewel	A diamond drenched in wickedness.
+30252	Wisdom Jewel	This diamond's aura is peaceful and noble.
+30253	Loyalty Jewel	An aura of fighting spirit and honesty surrounds this diamond.
+50001	Lucky Book	A book with lucky numbers. The lottery is run by the government.
+50002	Gold Ring	A simple gold ring, that can be sold in shops for high prices.
+50003	Skill Reset Document	Allows you to reset your skills in order to learn new ones.
+50004	Event Detector	This item shows you, where missions can be found.
+50005	Horse Riding Ticket	You can ride a horse for free if you show it to a stable guard. Required level is 40.
+50006	Gold Treasure Box	A decorated gold box, that can be opened with a gold key.
+50007	Silver Treasure Box	A silver decorated box, that can be opened with a Silver Key.
+50008	Gold Key	A key made of gold. It can unlock the gold treasure box as well as the Gold Treasure Box+.
+50009	Silver Key	A key made of silver that can unlock the silver treasure box as well as the Silver Treasure Box+.
+50010	Sock	Socks made from warm sheep's wool.
+50011	Moonlight Treasure Box	An impressive, dazzling decoration. Supernatural things happen when moonlight falls on it.
+50012	Gold Treasure Box+	A decorated gold box that can be opened with a gold key.
+50013	Silver Treasure Box+	A decorated silver box, that can be opened with silver key.
+50016	Bean Paste	An ingredient used for traditional bean cake.
+50017	Sugar Paste	An ingredient used for traditional sugar cake.
+50018	Fruit Paste	An ingredient used for traditional fruit cake.
+50019	Sweet Rice	An ingredient used for traditional cake.
+50020	Bean Cake	A traditional cake that restores full HP.
+50021	Sugar Cake	A traditional cake that restores full SP.
+50022	Fruit Cake	A traditional cake that restores full stamina.
+50023	Money Pouch	Money Pouch
+50024	Rose	A romantic flower used to show affection. Only female characters can use it.
+50025	Chocolate	Made of cacao, milk, butter, and sugar. Chocolate is given to show affection. Only male characters can use it.
+50027	Lottery Ticket	Unfortunately this lottery ticket is a useless item. It is not lucky.
+50031	Rose	A flower used to show affection for somebody. Only male characters can use it.
+50032	Candy	A popular sweet; candy is given to show affection. Only female characters can use it.
+50033	Mysterious Chest	A chest with a strange letter engraved on it. Something will pop up if it is opened.
+50034	Puzzle Box	This box contains an unsolved puzzle.
+50035	Gift Box (yellow)	A thoughtful gift is in the box.
+50036	Gift Box (violet)	A thoughtful gift is in the box.
+50037	Hexagonal Treasure Box	It is made from special paper. It has a thoughtful gift in it.
+50050	Horse Medal	The Stable Boy needs this Medal to record the results of the qualification test on it.
+50051	Horse Picture	As soon as you have passed the qualification test at the stable, you will receive this licence for calling your horse.
+50052	Armed Horse Book	As soon as you have passed the advanced qualification test at the stable, you can call your horse with this licence.
+50053	Military Horse Book	As soon as you have passed the professional qualification test at the stable, you can call your horse with this licence.
+50054	Hay	Dry hay to feed a horse.
+50055	Carrot	A horse's favourite vegetable.
+50056	Red Ginseng	Steamed ginseng. Only military horses eat Red Ginseng.
+50057	Herb of easy monkeys	A legendary herb which riding beginners can use to revive their horses. To get to the plant, you have to get past the monkeys in the beginner's dungeon.
+50058	Herb of normal monkeys	A legendary herb which intermediate riders can use to revive their battle horses. To get to the plant, you have to get past the monkeys in the normal dungeon.
+50059	Herb of hard monkeys	A legendary herb which advanced riders can use to revive their military horses. To get to the plant, you have to get past the monkeys in the expert dungeon.
+50060	Horse Riding Manual	Successfully reading this book allows you an increase of your riding skills. It disappears after you have read it.
+50070	Chief Orc's Box	The chest of the Orc Lord. Apparently something valuable is in the box.
+50071	Esoteric Leader's Box	The chest of the Esoteric Lord. Apparently something valuable is in the box.
+50072	Ghost Leader's Box	The chest of the Reincarnated Esoteric Lord. Apparently something valuable is in the box.
+50073	Queen Spider Box	The chest of the Queen Spider. Apparently something valuable is in the box.
+50074	Giant Spider Box	The chest of the Giant Spider. Apparently something valuable is in the box.
+50075	Giant Plague Carrier Box	The chest of the Giant Germ Carrier. Apparently something valuable is in the box.
+50076	Desert Tortoise Chest	The chest of the Giant Dessert Turtle. Apparently something valuable is in the box.
+50077	Nine Tails' Chest	The chest of the Nine Tails. Apparently something valuable is in the box.
+50078	Yellow Tiger's Chest	The chest of the Giant Tiger. Apparently something valuable is in the box.
+50079	Flame King's Chest	The chest of the Flame King. Apparently something valuable is in the box.
+50080	Red Dragon's Chest	The chest of the Red Dragon. Apparently something valuable is in the box.
+50081	Demon King's Chest	The chest of the Demon Lord. Apparently something valuable is in the box.
+50082	Grim Reaper's Chest	The chest of the Grim Reaper. Apparently something valuable is in the box.
+50083	Horse Riding Ticket	You can ride a horse for free if you show it to the stable guard.
+50084	Key Stone	An energy-laden aura surrounds this stone. It works against seal magic.
+50091	Goldfish Sushi	A popular dish made from goldfish and cold rice.
+50092	Carp Sushi	A special dish made from raw carp and cold rice.
+50093	Salmon Sushi	A special dish made from raw salmon and cold rice. Increases your attack value by 10 points for 30 seconds.
+50094	Catfish Sushi	A special dish made from raw catfish and cold rice. Increases your defence by 10 points for 30 seconds.
+50100	Fire Crackers	Fireworks fill the sky during a festival.(Purple)
+50101	Fire Crackers	Fireworks fill the sky during a festival.(Yellow)
+50102	Fire Crackers	Fireworks fill the sky during a festival.(Sky Blue)
+50103	Fire Crackers	Fireworks fill the sky during a festival.(Red)
+50104	Fire Crackers	Fireworks fill the sky during a festival. (Green)
+50105	Fire Crackers	Fireworks fill the sky during a festival.(White)
+50106	Christmas Fire Cracker	Christmas fireworks are more magnificent than normal fireworks and also last longer.
+50108	Fireworks Top	A ground firework that throws sparks.
+50124	Rotten Wooden Box	Soft animal sounds seem to be coming out from within.
+50200	Bundle	Allows you to open a private shop.
+50300	Skill Book	Increases Master Skill Level
+50301	Sun Zi Art of War	One of the three books of war strategy - it increases its owner's leadership skills. The book disappears after being read.
+50302	Wu zi Art of War	One of the three books of war strategy - it increases its owner's leadership skills. The book disappears being read.
+50303	WeiLiao Zi Art of War	One of the three books of war strategy - it increases its owner's leadership skills. The book disappears after being read.
+50304	Combo Mastery	A tactics book that is used to train Combos. The book disappears after reading.
+50305	Combo Master Book	The advanced tactics book is used used to train Combos. The book disappears after reading.
+50306	Art of Combo	The master tactics book is used to train Combos. | The book disappears after reading.
+50307	Mission Book (Easy)	Contains an easy mission that will be rewarded upon successful completion.
+50308	Mission Book (Normal)	Contains a normal mission, which will be rewarded upon successful completion.
+50309	Mission Book (Hard)	Contains a difficult mission, which will be rewarded upon successful completion.
+50310	Mission Book (Expert)	Contains an expert mission, which will be rewarded upon successful completion.
+50311	Shinsoo Linguistics	This textbook, made from bound tissue paper, allows you to understand the Shinsoo language, as soon as you have reached the master level.
+50312	Chunjo Linguistics	This textbook, made from bound tissue paper, allows you to understand the Chunjo language, as soon as you have reached the master level.
+50313	Jinno Linguistics	This textbook, made from bound tissue paper, allows you to understand the Jinno language, as soon as you have reached the master level.
+50314	Polymorph Book	Use this book to learn how to transform into a monster. It increases leadership. The book disappears after reading.
+50315	Advanced Polymorph Book	Successfully studying this book increases your transformation skills. It disappears after you have read it.
+50316	Master Polymorph Book	Successfully reading this book allows you an increase of your transformation skills. It disappears after you have read it.
+50322	Transformation Role	
+50401	Three-Way Cut Manual	Use to master the skills of Arahan Force & the Three-way Cut. The book disappears after reading.
+50402	Sword Spin Manual	Use to master the skills of Arahan Force & Sword Spin. The book disappears after reading.
+50403	Berserk Manual	Use to master the skills of Arahan Force & Berserker. The book disappears after reading.
+50404	Aura of Sword Manual	Use to master the skills of Arahan Force & the Aura of Sword.|The book disappears after reading.
+50405	Dash Manual	Use to master the skills of Arahan Force & Dash. The book disappears after reading.
+50416	Strike Manual	Use to master the skills of Partisan Force & Spirit Strike. The book disappears after reading.
+50417	Bash Manual	Use to master the skills of Partisan Force & Bash. The book disappears after reading.
+50418	Pounding Manual	Use to master the skills of Partisan Force & Stump. The book disappears after reading.
+50419	Strong Body Manual	Use to master the skills of Partisan Force & Strong Body. The book disappears after reading.
+50420	Sword Strike Manual	Use to master the skills of Partisan Force & Sword Strike. The book disappears after reading.
+50431	Ambush Manual	Use to master the skills of Assassin Force & Ambush. The book disappears after reading.
+50432	Fast Attack Manual	Use to master the skills of Assassin Force & Fast Attack. The book disappears after reading.
+50433	Rolling Dagger Manual	Use to master the skills of Assassin Force & Rolling Dagger. The book disappears after reading.
+50434	Disguise Manual	Use to master the skills of Assassin Force & Disguise. The book disappears after reading.
+50435	Poisonous Cloud Manual	Use to master the skills of Assassin Force & Poisonous Cloud.The book disappears after reading.
+50446	Repetitiive Shot Manual	Use to master the skills of Archery Force & Repetition Shot. The book disappears after reading.
+50447	Arrow Shower Manual	Use to master the skills of Archery Force & Arrow Shower. The book disappears after reading.
+50448	Fire Arrow Manual	Use to master the skills of Archery Force & Fire Arrow. The book disappears after reading.
+50449	Feather Walk Manual	Use to master the skills of Archery Force & Feather Walk. The book disappears after reading.
+50450	Poison Arrow Manual	Use to master the skills of Archery Force & Poison Arrow. The book disappears after reading.
+50461	Finger Strike Manual	Use to master the skills of Mirage Force & Finger Strike. The book disappears after reading.
+50462	Dragon Swirl Manual	Use to master the skills of Mirage Force & Dragon Swirl. The book disappears after reading.
+50463	Enchanted Blade Manual	Use to master the skills of Mirage Force & Enchant Blade. The book disappears after reading.
+50464	Fear Manual	Use to master the skills of Mirage Force & Fear. The book disappears after reading.
+50465	Enchanted Armour Manual	Use to master the skills of Mirage Force & Enchant Armour. The book disappears after reading.
+50466	Dispel Manual	Use to master the skills of Mirage Force & Dispel. The book disappears after reading.
+50476	Dark Strike Manual	Use to master the skills of Black Magic Force & Dark Strike. The book disappears after reading.
+50477	Flame Strike Manual	Use to master the skills of Black Magic Force & Flame Strike. The book disappears after reading.
+50478	Flame Spirit Manual	Use to master the skills of Black Magic Force & Flame Spirit. The book disappears after reading.
+50479	Dark Protection Manual	Use to master the skills of Black Magic Force & Dark Protection. The book disappears after reading.
+50480	Spirit Strike Manual	Use to master the skills of Black Magic Force & Spirit Strike. The book disappears after reading.
+50481	Dark Orb Manual	Use to master the skills of Black Magic Force & Dark Orb. The book disappears after reading.
+50491	Flying Talisman Manual	Use to master the skills of Dragon Force & Flying Talisman. The book disappears after reading.
+50492	Shooting Dragon Manual	Use to master the skills of Dragon Force & Shooting Dragon. The book disappears after reading.
+50493	Dragon's Roar Manual	Use to master the skills of Dragon Force & Dragon Roar. The book disappears after reading.
+50494	Blessing Manual	Use to master the skills of Dragon Force & Blessing. The book disappears after reading.
+50495	Reflection Manual	Use to master the skills of Dragon Force & Reflect. The book disappears after reading.
+50496	Dragon's Strength Manual	Use to master the skills of Dragon Force & Dragons Help. The book disappears after reading.
+50506	Lightning Throw Manual	Use to master the skills of Lightning Force & Lightning Throw. The book disappears after reading.
+50507	Summon Lightning Manual	Use to master the skills of Lightning Force & Summon Lightning. The book disappears after reading.
+50508	Lighting Claw Manual	Use to master the skills of Lightning Force & Lightning Claw. The book disappears after reading.
+50509	Cure Manual	Use to master the skills of Lightning Force & Cure. The book disappears after reading.
+50510	Swiftness Manual	Use to master the skills of Lightning Force & Swiftness. The book disappears after reading.
+50511	Attack Manual	Use to master the skills of Attack. The book disappears after reading.
+50512	Rainbow Stone	The stone that opens spiritual eyes and reveals all skills.
+50513	Soul Stone	The legendary stone used to increase your grand master skills. It disappears after use.
+50600	Mining Guide	It is used to increase mining level. The book disappears after reading.
+50601	Diamond Stone	It can be refined to a diamond using the guild diamond furnace.
+50602	Amber Stone	It can be refined to a amber using the guild amber furnace.
+50603	Fossil Trunk	It can be refined to fossil wood using the guild fossil wood furnace.
+50604	Copper Ore	It can be refined to copper using the guild copper furnace.
+50605	Silver Ore	It can be refined to silver using the guild silver furnace.
+50606	Gold Ore	It can be refined to gold using the guild gold furnace.
+50607	Jade Ore	It can be refined to jade using the guild jade furnace.
+50608	Ebony Ore	It can be refined to ebony using the guild ebony furnace.
+50609	Piece of Pearl	It can be refined to a pearl using the guild pearl furnace.
+50610	White Gold Ore	It can be refined to white gold using the guild white gold furnace.
+50611	Crystal Ore	It can be refined to a crystal using the guild crystal furnace.
+50612	Amethyst Ore	It can be refined to an amethyst using the guild amethyst furnace.
+50613	Heaven's Tear Ore	It can be refined to a heaven tear using the guild heaven's tear smelter.
+50621	Diamond	The strongest and most well-known gem that can be worked into accessories and jewellery.
+50622	Amber	A clear gem made from fossilised resin, that shines in honey or golden tones.
+50623	Fossil Wood	A valuable wood that can worked into wood accessories.
+50624	Copper	Sometimes used to make bronze and coins. It can be worked into copper accessories.
+50625	Silver	Shiny metal used to make jewellery. It can be worked into silver accessories.
+50626	Gold	Golden metal used to make jewellery. It can be worked into gold accessories.
+50627	Jade	A valuable mineral that has been used for over 5000 years.  It can be worked into accessories and jewellery.
+50628	Ebony	The lightest and the strongest wood of all. It can be worked into accessories and jewellery.
+50629	Pearl	Used for making jewellery. It can be worked into accessories and jewellery.
+50630	White Gold	A hard, white alloy of gold that is often used for jewellery.
+50631	Crystal	A hard stone made of crystalline quartz that can be found in different colours. Often used for jewellery.
+50632	Amethyst	A popular quartz that can be found in different shades of purple. It is often used to make jewellery.
+50633	Heaven's Tear	Crystallized rain from heaven. It can be used to make jewellery.
+50701	Peach Blossom	In the past peach flowers were used to make special skin creams.
+50702	Bellflower	This flower is widespread and really helps against a cold and cough.
+50703	Kaki Blossom	Legend has that a woman who wears this blossom around her neck will bear a son.
+50704	Gango Root	The Gango Root strengthens the immune system and the stamina of the body.	Research
+50705	Lilac	This plant raises memory skills and the ability to concentrate better.
+50706	Tue Fungus	This mushroom is seldom used as curative medicine and helps against sleeplessness.
+50707	Alpine Rose	This plant strengthens the immune system.
+50708	Mulberry	Mulberries give strength and perk you up.
+50709	Dandelion	The Dandelion used to be used to cure eye maladies. Now it is used to help  sore throats.
+50710	Thistle	A plant that strengthens bones.
+50711	Date	The aromatic fruits of the date tree are one of the main sources of food in a lot of areas.
+50712	Sam-Zi Plant	This very rare plant works as a strengthening potion if it is prepared correctly.
+50721	Peach Blossom	In the past peach flowers were used to make special skin creams.
+50722	Bellflower	This flower is widespread and really helps against a cold and cough.
+50723	Kaki Blossom	Legend has it that a woman who wears this blossom around her neck is going to bear a son.
+50724	Gango Root	The Gango Root strengthens the immune system and the stamina of the body.	Potion production
+50725	Lilac	This plant raises memory skills and concentration levels.
+50726	Tue Fungus	This mushroom is rarely used as curative medicine but helps against insomnia.
+50727	Alpine Rose	This plant strengthens the immune system.
+50728	Mulberry	The mulberry gives you strength and perks you up.
+50729	Dandelion	The Dandelion used to be used to cure eye maladies but is now used help sore throats.
+50730	Thistle	A plant that strengthens bones.
+50731	Date	The aromatic fruits of the date tree are one of the main sources of food in a lot of areas.
+50732	Sam-Zi Plant	This very rare plant works as a restorer if it is prepared correctly.
+50801	Peach Blossom Juice	This is a juice made out of Peach blossoms. It improves your physical strength.
+50802	Bellflower Juice	This potion made from Bellflowers increases your strength by 5 points for 3 minutes.
+50803	Kaki Blossom Juice	This is a juice made from the Kaki blossom. Strengthens your concentration level.
+50804	Gango Root Juice	This is a juice made from Gango roots. It heals small wounds.
+50805	Lilac Juice	This is a juice made from lilac.
+50806	Tue Fungal Resin	The resin won from Tue Fungi act as a sleep aid.
+50807	Alpine Rose Juice	This is a juice made out of alpine roses and strengthens the immune system.
+50808	Mulberry Juice	This is a juice made from Mulberries, that acts as a stimulant.
+50809	Dandelion Juice	This is a juice made out of dandelion and helps cure colds.
+50810	Thistle Juice	A juice made from Dates that strengthens bones.
+50811	Date Extract	This is juice made from dates is nutritious and satiable.
+50812	Juice of Sam-Zi Plant	This is a juice made from the Sam-Zi plant and has a strengthening effect.
+50813	Sim Water	A potion made from Peach Blossom Juice and Lilac, which increases your chance of scoring a piercing hit by 10% for 3 minutes.
+50814	Dok Water	A potion made from Bellflower Juice and Lilac, which increases your chance of scoring a critical hit by 10% for 3 minutes.
+50815	Bo Water	This potion is made of kaki blossom juice and tue fungi. It strengthens your brain.
+50816	Young Water	This potion is made from Gango root juice and tue fungi. It strengthens your physical and mental performance.
+50817	Zin Water	A potion made from Sim Water and Alpine Roses, which increases your attack value by 50 points for 3 minutes.
+50818	SamBo Water	A potion made from Dok Water and Alpine Roses, which increases your defence by 70 points for 3 minutes.
+50819	Mong Water	A potion made from Bo Water and Mulberries, which increases your magic defence by 10% for 3 minutes.
+50820	Hwal Water	A potion made from Young Water and Mulberries, which increases your attack speed by 3 points for 3 minutes.
+50901	Empty Bottle	Used to manufacture potions
+50902	Recipe for Beginners	An easy to get recipe which can also be done by greenhorns.
+50903	Recipe	A recipe that needs a bit of practice.
+50904	Expert's Recipe	A recipe that can only be done correctly by experts.
+50905	Recipe for Sim Water	It describes the exact manufacture of the water made from Peach Blossom Juice and Lilac.
+50906	Recipe for Dok Water	It describes the exact manufacture of the water made from Harebell Juice and Lilac.
+50907	Recipe for Bo Water	It describes the exact manufacture of the water made from Kaki Blossom Juice and Tue Fungi.
+50908	Recipe for Young Water	It describes the exact manufacture of the water made from Gango Root Juice and Tue Fungi.
+50909	Recipe for Zin Water	It describes the exact manufacture of the water made from Peach Blossom Juice, Lilac and Alpine Roses.
+50910	Recipe for Hwal Water	It describes the exact manufacture of the water made from Gango Root Juice, Tue Fungi and Mulberry.
+60001	Gall	A dogged body fluid which is won from the liver.
+60002	Note from Storage Guard	The parchment bears the energetic handwriting of the storage guard.
+60003	Heroic Symbol	An item which is not passed on with levity.
+70001	Goddess' Doll	
+70002	Third Hand	A hand which picks up Yang automatically.
+70003	Book of the Leader	One of the seven war strategy books. While the leader of a group has this book on him, all his group member will receive 30% more experience points.
+70004	Medal of Diligence	A reward for hard work.
+70005	Experience Ring	You collect 50% more experience points during a battle.
+70006	Language Ring	This ring was crafted for diplomacy in the ancient era. Use it to talk to people from other empires.
+70007	Warp Ring	
+70008	White Flag	A white flag that indicates surrender.
+70009	Treasure Box	A chest which is decorated with a lot of ornaments. Can only be opened with a special key.
+70010	Storage Ticket	A document which helps to organise the storage rooms.
+70011	Upgrade Bottle	
+70012	Goddess Tear	Rumour has it, that the Goddess gave her tears to the heroes of battle because they fought so bravely against the evil.
+70013	Giant Goddess Tear	The tear of the ancient dancer Tae-Hwa is said to comfort the soul of a fighter.
+70014	Blood Pill	A pill that is made of deer blood. It has a severe hallucinogenic effect.
+70015	Cheap Brush	A ordinary, robust brush with a solid wooden handle.
+70020	Peach Flower Wine	Beverage that will immediately regenerate your Hit Points (HP) by 500 points.
+70024	Blessing Marble	Legendary blessed marble. When an item has four attributes, it adds another attribute.
+70027	Blacksmith's Memo	A memo from the blacksmith which shows you how to upgrade your weapons.
+70031	Fencing Pamphlet	This pamphlet concerns, amongst other things, the potential and weaknesses of the human anatomy.
+70035	Magic Copper Ore	When you combine this ore with a Blessing Scroll at the blacksmith's, you can create a Scroll of War.
+70037	Book of Forgetfulness	The legendary book that removes the memory of a learned skill completely. You can move 1 skill point.
+70038	Bravery Cape	Ancient Warriors showed off their bravery by wearing a colourful cape with which they attracted the attention of monsters.
+70039	Blacksmith' Handbook	This book contains the soul of an old blacksmith. If it is used, it raises the chance of successfully ameliorating an item.
+70040	Orc Stubbornness	Reduces stamina use by half.
+70043	Thief's Glove	Doubles the probability of looting items.
+70047	Language Ring(Sample)	This ring is used to talk to people from other empires.
+70048	Fugitive's Cape	A priceless cape that helps you to become inconspicuous and that is used by lots of runaways.
+70049	Lucy's Ring	The engraving on the ring says: "May the Dragon God bless you." The ring reduces your chance of losing items in battle.
+70050	Sage King's Symbol	An inherited symbol from the ancient royal family that grants the master great power.
+70051	Sage King's Glove	An inherited article from the ancient royal family that grants the master mysterious power.
+70052	Charm of Karma1	A charm that is used by Buddhists to safeguard against bad luck.
+70053	Charm of Karma2	A charm that is used by Buddhists to safeguard against bad luck.
+70054	Charm of Karma3	A charm that is used by Buddhists to safeguard against bad luck.
+70102	Zen Bean	Reduces the evil and raises the good in a character's disposition.
+70104	Polymorph Marble	You can use this marble to transform into a monster.
+70105	Polymorph Marble	You can use this marble to transform into a monster.
+70106	Polymorph Marble	You can use this marble to transform into a monster.
+70107	Polymorph Marble	You can use this marble to transform into a monster.
+70201	Bleach	It turns your hair back into its original colour. Bleached hair can be dyed again.
+70202	White Hair Dye	Dyes your hair white. You can dye your hair once every 3 levels.
+70203	Blonde Hair Dye	Dyes your hair blonde. You can dye your hair once every 3 levels.
+70204	Red Hair Dye	Dyes your hair red. You can dye your hair once every 3 levels.
+70205	Brown Hair Dye	Dyes your hair brown. You can dye your hair once every 3 levels.
+70206	Black Hair Dye	Dyes your hair black. You can dye your hair once every 3 levels.
+70301	Engagement Ring	A ring that is worn by lovers.
+70302	Wedding Ring	A ring that is worn by a married couple.
+71001	Exorcism Scroll	Will lift the curse of the evil spirit, if learning is not successful. With the help of this scroll you can read another document on the same day.
+71002	Status Reset Document	Resets status points so that you can change the development of your character.
+71003	Skill Reset Document	Resets skill points.
+71004	Medal of the Dragon	Protects you from a loss of experience points at your next revival.
+71005	Language Ring	You can understand all empire languages for 7 days.
+71006	Language Ring	You can understand all Languages of the empire for 15 days.
+71007	Language Ring	You can understand all empire languages for 30 days.
+71008	Fishing Book	Book that doubles the chance of catching rare fish.
+71009	Storage Chest	Your Storeroom will receive 2 additional storage rooms.
+71010	Third Hand	Your character will pick up all dropped Yang automatically if equipped with this hand.
+71011	Emotion Mask	You can let you feelings run free for 30 days.
+71012	Book of the Leader	While the leader of a group is equipped with this book, all members will gain 30% more Experience points.
+71013	Firework	Rocket that lights up the sky for all players.
+71014	Potion of Attack+10	Increases your attack speed by 10% for 30 minutes.
+71015	Experience Ring	Your character collects 50% more experience points while fighting.
+71016	Thief's Gloves	Doubles the probability of looting items.
+71017	Lucky Medal	Doubles the probability of looting Yang by 50%.
+71018	Blessing of Life	A blessing with which your HP are immediately recovered to 100%.
+71019	Blessing of Magic	A blessing that regenerates all your MP immediately.
+71020	Blessing of the Dragon	A blessing with which your HP and MP are immediately recovered to 100%.
+71021	Scroll of War	Improvement of items will succeed (100%). Only works on items +0 to +3.
+71022	Return of Intelligence	Resets your intelligence points back to basic level, so you can redistribute them.
+71023	Return of Vitality	Resets your vitality points back to basic level, so you can redistribute them.
+71024	Return of Strength	Resets your Strength points back to basic level, so you can redistribute them.
+71025	Stone of the Blacksmith	At the blacksmith's you can create a blacksmith handbook with the help of this stone and a blessing scroll.
+71026	Magic Iron Ore	This ore, when combined with a blessing scroll, enables the crafting of a dragon scroll at the blacksmiths.
+71027	Dragon God Life	Increases your maximum HP by 20% for 30 minutes.
+71028	Dragon God Attack	Increases the damage you cause during a fight by 12-15% for 30 minutes.
+71029	Dragon God Intelligence	Increases your maximum SP by 20% for 30 minutes.
+71030	Dragon God Defence	Lowers the damage you receive during a fight by 12-15% for 30 minutes.
+71031	Dragon God Support	The vitality, strength, intelligence and dexterity of your character will temporarily quintuple.
+71032	Dragon Scroll	Eliminates the risk of destroying an item if the improvement fails. Only its quality will be decreased by 1. Additionally, the probability of a successful improvement will increase by 10%.
+71033	Emotion Mask	You can let your feelings run free for 15 days.
+71034	Potion of Attack +15	Increases your attack speed by 15% for 30 minutes.
+71035	Researcher's Elixir	Improves the quality of the research objects which you have collected, thereby increasing the likelihood that they will be accepted.
+71036	Scroll - Chief Orc	Will summon an Orc Chieftain next to your Character. Beware! It is a Boss Monster!
+71037	Scroll - Leader	Will summon a Dark Leader next to your character. Beware! It is a Boss Monster!
+71038	Scroll - Queen Spider	Will summon a King Spider next to your Character. Beware! It is a Boss Monster!
+71039	Scroll - Tortoise	Will summon a Turtle next to your Character. Beware! It is a Boss Monster!
+71040	Scroll - Flame King	Will summon the King of Flames next to your Character. Beware! It is a Boss Monster!
+71041	Scroll - Nine Tails	Will summon a Nine tail next to your Character. Beware! It is a Boss Monster!
+71042	Scroll - Demon King	Will summon a Ghost of a Tiger next to your Character. Beware! It is a Boss Monster!
+71043	Scroll - Tiger Ghost	Makes a yellow tiger ghost appear next to your character. Be careful, it's a boss!
+71044	Critical Strike	Increases the chance of landing a critical hit by 20% for 10 minutes.
+71045	Piercing Strike	Increases the chance of a piercing hit for by 20% for 10 minutes.
+71047	Spirit Stone Tincture	Removes a Spirit Stone from one of your items.
+71048	Modification Charm	This charm can change the gender of your character.
+71049	Silk Bundle	With this bundle you can open a private shop for 10 days free of charge.
+71050	Potion of Speed	Boosts your motion speed by 60 for 30 minutes.
+71051	Bewitch Item	Removes the special-bonus on one of your items and adds another one.
+71052	Bless Item	Add a special new bonus onto one of your items, if it does not already have one.
+71054	Tincture of Kingdoms	A character is able to go into exile in another kingdom, this means changing the kingdom.
+71055	Tincture of the Name	Changes the name of a Character.
+71056	Tincture of Heaven	Increases the chance of successfully improving a Spirit Stone.
+71057	Stone of Fossil Trunk O.	Creates a fossil wood lode next to your character.
+71058	Stone of Copper Lode	Creates a copper ore lode next to your character
+71059	Stone of Silver Lode	Creates a silver ore lode next to your character.
+71060	Stone of Gold Lode	Creates a gold lode next to your character.
+71061	Stone of Jade Lode	Creates a jade lode next to your character.
+71062	Stone of Ebony Lode	Creates an ebony lode next to your character.
+71063	Stone of Clams	Creates a pile of shells next to your character
+71064	Stone of White Gold Lode	Creates a white gold lode next to your character.
+71065	Stone of Crystal Lode	Creates a crystal lode next to your character.
+71066	Stone of Amethyst Lode	Creates quartz crystal lode next to your character.
+71067	Stone of Heaven's Ode	Creates a tears of heaven lode next to your character.
+71068	Feather of Lovers	Your love points will rise twice as fast for 30 days, if equipped with this feather.
+71069	Earring of Harmony	Increases the chance of a piercing hit for married players for 3 hours if worn by one of the spouses.
+71070	Love Bracelet	Increases the collection of experience points for married players for 3 hours if worn by one of the spouses.
+71071	Earring of Love	Increases the chance of a lethal hit for married players for 3 hours if worn by one of the spouses.
+71072	Harmony Bracelet	Reduces the attack power of the monsters, against which married people fight, if carried by a marriage partner. (Lasts 3 Hours)
+71073	Necklace of Love	Increases the attack power for married players for 3 hours if worn by one of the spouses.
+71074	Necklace of Harmony	Increases the defence value of married players for 3 hours if worn by one of the spouses.
+71075	Hair Dye (White)	Dyes hair white.
+71076	Hair Dye (Blonde)	Dyes hair blonde.
+71077	Hari Dye (Red)	Dyes hair red.
+71078	Hair Dye (Brown)	Dyes hair brown.
+71079	Hair Dye (Black)	Dyes hair black.
+71080	Metin Stone(L)	A light Metin stone will be dropped near your character.
+71081	Metin Stone(N)	A medium Metin stone will be dropped near your character.
+71082	Metin Stone(H)	A large Metin stone will be dropped near your character.
+71083	Stone Handbook	Removes all broken stones from an item. With that you will get another chance to improve your weapon or amour.
+71084	Enchant Item	Removes the bonuses from one of your items and adds new ones.
+71085	Reinforce Item	Adds a bonus to one of your items if it has not got bonus yet.
+71086	Level Up Quest(20~29)	
+71087	Level Up Quest(30~39)	
+71088	Mission Book (Easy)	The book which is bound in brown leather contains a mission which can also be solved by greenhorn fighters.
+71089	Mission Book (Normal)	The book which is bound in brown leather contains a mission which can only be solved by those who are already experienced in fighting.
+71090	Mission Book (Hard)	The book which is bound in brown leather contains a mission which can only be solved by really experienced fighters.
+71091	Tincture of Trade	You can choose a different colour for your shop sign.
+71092	Polymorph Book	Successfully studying this book increases your transformation skills. It disappears after you have read it.
+71093	Polymorph Marble	You can use this marble to transform into a monster.
+71094	Concentrated Reading	Increases the chance of successful skill training with your next book by 2.5 times.
+71095	Passage Ticket	If you give this ticket to the guard, you will be allowed to enter a new floor of the Spider-Dungeon.
+71096	Passage Tablet	This medal allows you to pass through a gate.
+71099	Ring of Successor	Allows the leader of a guild to set up a successor.
+71100	Scroll of Lore Change	Forget your lore and start a new one. You need to be at least on level 31 to do it.
+71101	Potion of Haste	This potion decreases your cooldown time by 20 percent for 30 minutes.
+71103	Redistribution (VIT)	Puts your vitality back to 1 and allows you to redistribute your points.
+71104	Redistribution (INT)	Puts your intelligence back to 1 and allows you to redistribute your points.
+71105	Redistribution (STR)	Puts your strength back to 1 and allows you to redistribute your points.
+71106	Redistribution (DEX)	Resets your dexterity back to 1 and allows you to redistribute your points.
+71107	Fruit of Life	Increases rank points by 3000 (cooldown time: 5 hours).
+71109	Scroll of Correction	This scroll allows you to remove the last successfully added Spirit Stone from an item.
+71110	Horse Sugar	This piece of sugar allows you to give your mount a name. It also increases is defence value by 20.
+71113	Glass of Insight	Allows you to show another player items from your inventory. The glass breaks in the process.
+71114	Wild Boar Seal (yellow)	This seal's magic calls upon a mighty animal spirit that will quickly carry you to the place of your choice.
+71115	Wild Boar Seal (blue)	This seal's magic calls upon a mighty animal spirit that will quickly carry you to the place of your choice.
+71116	Wolf Seal (yellow)	This seal's magic calls upon a mighty animal spirit that will quickly carry you to the place of your choice.
+71117	Wolf Seal (blue)	This seal's magic calls upon a mighty animal spirit that will quickly carry you to the place of your choice.
+71118	Tiger Seal (yellow)	This seal's magic calls upon a mighty animal spirit that will quickly carry you to the place of your choice.
+71119	Tiger Seal (blue)	This seal's magic calls upon a mighty animal spirit that will quickly carry you to the place of your choice.
+71120	Lion Seal (yellow)	This seal's magic calls upon a mighty animal spirit that will quickly carry you to the place of your choice.
+71121	Lion Seal (blue)	This seal's magic calls upon a mighty animal spirit that will quickly carry you to the place of your choice.
+72001	Experience Ring	Increases the collection of experience by 50% for 10 hours.
+72002	Experience Ring	Increases the collection of experience by 50% for 30 minutes.
+72003	Experience Ring	Increases the collection of experience by 50% for 3 hours.
+72004	Thief's Gloves	Doubles your chance of looting items for 10 hours.
+72005	Thief's Gloves	Doubles your chance of looting items for 30 minutes.
+72006	Thief's Gloves	Doubles your chance of looting items for 3 hours.
+72007	Silk Bundle	You can open a private shop for 10 hours.
+72008	Silk Bundle	You can open a private shop for 30 minutes.
+72009	Silk Bundle	You can open a private shop for 3 hours.
+72010	Lovebird Feather	When it is equipped, the love points of a couple increase twice as fast for 15 minutes.
+72011	Lovebird Feather	When it is equipped, the love points of a couple increase twice as fast for 30 minutes.
+72012	Lovebird Feather	When it is equipped, the love points of a couple increase twice as fast for 3 hours.
+72013	Fishing Book	Your chance of catching a rare fish is doubled for 15 minutes.
+72014	Fishing Book	Your chance of catching a rare fish is doubled for 30 minutes.
+72015	Fishing Book	Your chance of catching a rare fish is doubled for 3 hours.
+72016	Third Hand	A hand that picks up dropped Yang automatically for 15 minutes.
+72017	Third Hand	A hand that picks up dropped Yang automatically for 30 minutes.
+72018	Third Hand	A hand that picks up dropped Yang automatically for 3 hours.
+72019	Storage Chest	Your Storeroom gets two additional storage rooms for a duration of 15 minutes.
+72020	Storage Chest	Your Storeroom gets two additional storage rooms for a duration of 30 minutes.
+72021	Storage Chest	Your Storeroom gets 2 additional storage rooms for a duration for 3 hours.
+72022	Lucky Gold Coin	Doubles your chance of capturing Yang for 10 hours.
+72023	Lucky Gold Coin	Doubles your chance of capturing Yang for 30 minutes.
+72024	Lucky Gold Coin	Doubles your chance of capturing Yang for 3 hours.
+72025	Critical Strike	Increases the chance of landing a critical hit by 20% for 10 minutes.
+72026	Critical Strike	Increases the chance of landing a critical hit by 20% for 10 minutes.
+72027	Critical Strike	Increases the chance of landing a critical hit by 20% for 10 minutes.
+72028	Emotion Mask	You can let your emotions run free for 7 days.
+72029	Emotion Mask	You can let your emotions run free for 15 days.
+72030	Emotion Mask	You can let your emotions run free for 30 days.
+72031	Dragon God Attack	Increases your attack value by 12 to 15% for 30 minutes.
+72032	Dragon God Attack	Increases your attack value by 12 to 15% for 30 minutes.
+72033	Dragon God Attack	Increases your attack value by 12 to 15% for 30 minutes.
+72034	Dragon God Defence	Reduces damage by 12% - 15% when you defend.
+72035	Dragon God Defence	Reduces damage by 12% - 15% when you defend.
+72036	Dragon God Defence	Reduces damage by 12% - 15% when you defend.
+72037	Dragon God Life	Increases your maximum HP by 20% for 30 minutes.
+72038	Dragon God Life	Increases your maximum HP by 20% for 30 minutes.
+72039	Dragon God Life	Increases your maximum HP by 20% for 30 minutes.
+72040	Dragon God Intelligence	Increases your maximum SP by 20% for 30 minutes.
+72041	Dragon God Intelligence	Increases your maximum SP by 20% for 30 minutes.
+72042	Dragon God Intelligence	Increases your maximum SP by 20% for 30 minutes.
+72043	Book of the Leader	When the group leader is equipped with it, it increases the experience points of group members and the leader by 30%.
+72044	Book of the Leader	When the group leader is equipped with it, it increases the experience points of group members and the leader by 30%.
+72045	Book of the Leader	When the party leader is equipped with it, it increases the experience point of group members and the leader by 30%.
+72046	Critical Chance	Increases your chance of a piercing hit by 20% for 10 minutes.
+72047	Criticial Chance	Increases your chance of a piercing hit by 20% for 10 minutes.
+72048	Critical Chance	Increases your chance of a piercing hit by 20% for 10 minutes.
+72501	Experience Ring (iCafe)	Increases collection of experience points by 20% in the membership iCafe.
+72502	Thief's Glove (iCafe)	Chance of items being dropped increases by 1.5 times in Membership iCafe.
+72701	Wind Shoes	Increases your movement speed by 30 when equipped.
+73001	Trendy Hairstyle (Red)	A trendy hairstyle, that gives you a striking appearance.
+73002	Trendy Hairstyle (Light)	A trendy hairstyle, that gives you a striking appearance.
+73003	Trendy Hairstyle (Blue)	A trendy hairstyle, that gives you a striking appearance.
+73004	Trendy Hairstyle (Brown)	A trendy hairstyle, that gives you a striking appearance.
+73005	Bandanna	Short hair that is tamed with a headband.
+73006	Bandanna	Short hair that is tamed with a headband.
+73007	Bandanna	Short hair that is tamed with a headband.
+73008	Bandanna	Short hair that is tamed with a headband.
+73009	Long Hair (Black)	An impressive hairstyle with magnificent, black hair.
+73010	Long Hair (Red)	An impressive hairstyle with magnificent, red hair.
+73011	Long Hair (Brown)	An impressive hairstyle with magnificent, brown hair.
+73012	Long Hair (Green)	An impressive hairstyle with magnificent, green hair.
+73251	Ponytail (Brown)	Long hair done up in a plait.
+73252	Ponytail (Green)	Long hair done up a plait.
+73253	Ponytail (Blue)	Long hair done up in a plait.
+73254	Ponytail (Light)	Long hair done up in a plait.
+73255	Shoulder Length (Red)	A natural-looking shoulder-length hairstyle.
+73256	Shoulder Length (Brown)	A natural-looking shoulder-length hair cut.
+73257	Shoulder Length (Light)	A natural-looking shoulder-length hairstyle.
+73258	Shoulder Length (Purple)	A natural-looking shoulder-length hairstyle.
+73259	Short Hair (Red)	A hairstyle that gives you a threatening look.
+73260	Short Hair (Blue)	A short hairstyle that gives you a threatening look.
+73261	Short Hair (Black)	A short hairstyle that gives you a threatening look.
+73262	Short Hair (Blonde)	A short hairstyle that gives you a threatening look.
+73501	Sporty Haircut (Light)	An extravagant short hairstyle.
+73502	Sporty Haircut (Brown)	An extravagant short hairstyle.
+73503	Sporty Haircut (Blonde)	An extravagant short hairstyle.
+73504	Sporty Haircut (Green)	An extravagant short hairstyle.
+73505	Charisma Hair (White)	A charismatic hairstyle with long hair.
+73506	Charisma Hair (Red)	A charismatic hairstyle with long hair.
+73507	Charisma Hair (Black)	A charismatic hairstyle with long hair.
+73508	Charisma Hair (Purple)	A charismatic hairstyle with long hair.
+73509	Long Plait (White)	A traditional plait.
+73510	Long Plait (Blue)	A traditional plait.
+73511	Long Plait (Black)	A traditional plait.
+73512	Long Plait (Brown)	A traditional plait.
+73751	Elegant Hairstyle(Brown)	An elegant hairstyle with tied back hair.
+73752	Elegant Hairstyle(Black)	An elegant haircut with tied back hair.
+73753	Elegant Hairstyle (Blue)	An elegant hairstyle with tied back hair.
+73754	Elegant Hairstyle(Light)	An elegant hairstyle with tied back hair.
+73755	Med. Length Hair (Brown)	Elegant, straight hair.
+73756	Med. Length Hair (Black)	Elegant, straight hair.
+73757	Med.Length Hair (Blonde)	Elegant, straight hair.
+73758	Med.Length Hair (Purple)	Elegant, straight hair.
+73759	Old Hairstyle (Brown)	Long hair, worn in a traditional way.
+73760	Old Hairstyle (Light)	Long hair, worn in a traditional way.
+73761	Old Hairstyle (Purple)	Long hair, worn in a traditional way.
+73762	Old Hairstyle (Red)	Long hair, worn in a traditional way.
+74001	Trendy Hairstyle (Red)	A hairstyle giving you a distinctive look (+10% defence against Warriors)
+74002	Trendy Hairstyle (Light)	A hairstyle giving you a distinctive look (+10% defence against Ninjas)
+74003	Trendy Hairstyle (Blue)	A hairstyle giving you a distinctive look (+10% defence against Suras)
+74004	Trendy Hairstyle (Brown)	A hairstyle giving you a distinctive look (+10% defence against Shamans)
+74005	Headband (Red)	A spiky hairstyle with a headband (+10% defence against Warriors)
+74006	Headband (Brown plaid)	A spiky hairstyle worn with a headband (+10% defence against Ninjas)
+74007	Headband (Blue)	A spiky hairstyle worn with a bandanna (+10% defence against Suras)
+74008	Headband (Green plaid)	Short green hairstyle worn with a headband (+10% defence against Shamans)
+74009	Long Hair (Black)	A hairstyle giving you a distinctive look (+10% defence against Warriors)
+74010	Long Hair (Red)	A hairstyle giving you a distinctive look (+10% defence against Ninjas)
+74011	Long Hair (Brown)	A hairstyle giving you a distinctive look (+10% defence against Suras)
+74012	Long Hair (Green)	A hairstyle giving you a distinctive look (+10% defence against Shamans)
+74251	Ponytail (Brown)	A popular women's hairstyle in which hair is tied up into a long plait (+10% against Warriors)
+74252	Ponytail (Green)	A hairstyle in which the hair has been tied up into a long plait (+10% against Ninjas)
+74253	Ponytail (Blue)	A hairstyle in which the hair has been tied up into a long plait (+10% against Suras)
+74254	Ponytail (Light)	A hairstyle in which the hair has been tied up into a long plait (+10% against Shamans)
+74255	Shoulder Length (Red)	A hairstyle with a sassy, trendy look (+10% against Warriors)
+74256	Shoulder Length (Brown)	A hairstyle with a sassy, trendy look (+10% against Ninjas)
+74257	Shoulder Length (Light)	A hairstyle with a sassy, trendy look (+10% against Suras)
+74258	Shoulder Length (Purple)	A hairstyle with a sassy, trendy look (+10% against Shamans)
+74259	Short Hair (Red)	A hairstyle giving you a malicious assassin look (+10% against Warriors)
+74260	Short Hair (Blue)	A hairstyle giving you a malicious assassin look (+10% against Ninjas)
+74261	Short Hair (Black)	A hairstyle giving you a malicious assassin look (+10% against Suras)
+74262	Short Hair (Blonde)	A hairstyle giving you a malicious assassin look (+10% against Shamans)
+74501	Sporty Hairstyle (White)	A short hairstyle that gives you a military look (+10% against Warriors)
+74502	Sporty Hairstyle (Brown)	A short hairstyle that gives you a military look (+10% against Ninja)
+74503	Sporty Hairstyle(Blonde)	A short hairstyle that gives you a military look (+10% against Suras)
+74504	Sporty Hairstyle (Green)	A short hairstyle that gives you military look (+10% against Shamans)
+74505	Charisma Hair (White)	A hairstyle accentuating a strong individual character (+10% defence against Warriors)
+74506	Charisma Hair (Red)	A hairstyle accentuating a strong individual character (+10% against Ninjas)
+74507	Charisma Hair (Black)	A hairstyle accentuating a strong individual character (+10% against Suras)
+74508	Charisma Hair (Purple)	A hairstyle accentuating a strong individual character (+10% defence against Shamans)
+74509	Long Plait (White)	A plaited old fashioned hairstyle that was symbolic of the rich (+10% defence against Warriors)
+74510	Long Plait (Blue)	A plaited old fashioned hairstyle that was symbolic of the rich (+10% defence against Ninjas)
+74511	Long Plait (Black)	A plaited old fashioned hairstyle that was symbolic of the rich. (+10% defence against Suras)
+74512	Long Plait (Brown)	A plaited old fashioned hairstyle that was symbolic of the rich (+10% defence against Shamans)
+74751	Elegant Hairstyle(Brown)	An elegant, hairstyle pinned up with a butterfly hairpin (+10% defence against Warriors)
+74752	Elegant Hairstyle(Black)	An elegant, hairstyle pinned up with a butterfly hairpin (+10% defence against Ninjas)
+74753	Elegant Hairstyle (Blue)	An elegant, hairstyle pinned up with a butterfly hairpin (+10% defence against Suras).
+74754	Elegant Hairstyle(Light)	An elegant, hairstyle pinned up with a butterfly hairpin (+10% defence against Ninjas).
+74755	Med.Length Hair (Brown)	An elegant Shaman hairstyle (+10% against Warriors).
+74756	Med. Length Hair (Black)	An elegant Shaman hairstyle (+10% against Ninjas).
+74757	Med.Length Hair (Blonde)	An elegant Shaman hairstyle (+10% against Suras).
+74758	Med.Length Hair (Purple)	An elegant Shaman hairstyle (+10% against Shamans).
+74759	Old Hairstyle (Brown)	A feminine hairstyle with long, layered hair (+10% defence against Warriors)
+74760	Old Hairstyle (Blonde)	A feminine hairstyle with long, layered hair (+10% defence against Ninjas)
+74761	Old Hairstyle (Purple)	A feminine hairstyle with long, layered hair (+10% defence against Suras)
+74762	Old Hairstyle (Red)	A feminine hairstyle with long, layered hair (+10% defence against Shamans)
+75001	Trendy Hairstyle (Red)	Trendy hairstyle with red hair and a hair-band (+10% defence against Warriors)
+75002	Trendy Hairstyle (Light)	Trendy hairstyle with light coloured hair and a hair-band (+10% defence against Ninjas)
+75003	Trendy Hairstyle (Blue)	Trendy hairstyle with blue hair and a hair-band (+10% against Suras)
+75004	Trendy Hairstyle (Brown)	Trendy hairstyle with brown hair and a hair-band (+10% against Shamans)
+75005	Headband (Brown)	Short, tousled hair controlled with a headband (+10% defence against Warriors)
+75006	Headband (Blonde)	Short, tousled hair controlled with a headband (+10% defence against Ninjas)
+75007	Headband (Blue)	Short, tousled hair controlled with a headband (+10% defence against Suras)
+75008	Headband (Green)	Short, tousled hair controlled with a headband (+10% defence against Shamans)
+75009	Long Hair (Black)	Marvellous, black hair (+10% against Warriors)
+75010	Long Hair (Red)	Marvellous, red hair (+10% against Ninjas)
+75011	Long Hair (Brown)	Marvellous, brown hair (+10% against Suras)
+75012	Long Hair (Green)	Marvellous, green hair (+10% against Shamans)
+75201	Ponytail (Brown)	Brown hair with a nice, long ponytail. (+10% defence against Warriors)
+75202	Ponytail (Green)	Green hair with a nice, long ponytail (+10% against Ninjas)
+75203	Ponytail (Blue)	Blue hair with a nice, long ponytail (+10% against Suras)
+75204	Ponytail (Light)	Grey hair with a nice, long ponytail (+10% against Shamans)
+75205	Shoulder Length (Red)	A discreet hairstyle with a white bandanna (+10% against Warriors)
+75206	Shoulder Length (Brown)	A discreet hairstyle with a white headband (+10% against Ninjas)
+75207	Shoulder Length (Light)	A discreet hairstyle with a white headband (+10% against Suras)
+75208	Shoulder Length (Purple)	A discreet hairstyle with a white headband (+10% against Shamans)
+75209	Short Hair (Red)	A hairstyle that gives you a sinister look (+10% against Warriors)
+75210	Short Hair (Blue)	A hairstyle that gives you a sinister look (+10% against Ninjas)
+75211	Short Hair (Black)	A hairstyle that gives you a sinister look (+10% against Suras)
+75212	Short Hair (Blonde)	A hairstyle that gives you a sinister look (+10% against Shamans)
+75401	Sporty Hairstyle (Light)	An extravagant hairstyle that is popular with female Suras (+10% against Warriors)
+75402	Sporty Hairstyle (Brown)	An extravagant hairstyle that is popular with female Suras (+10% against Ninjas)
+75403	Sporty Hairstyle(Blonde)	An extravagant hairstyle that is popular with female Suras (+10% against Suras)
+75404	Sporty Hairstyle (Green)	An extravagant hairstyle that is popular with female Suras (+10% against Shamans)
+75405	Charisma Style (White)	Long, snow-white hair, that makes you look opinionated (+10% defence against Warriors)
+75406	Charisma Style (Red)	Long, red hair that makes you look opinionated (+10% defence against Ninjas)
+75407	Charisma Style (Black)	Long, jet-black hair, that makes you look opinionated (+10% defence against Suras)
+75408	Charisma Style (Purple)	Long, purple hair, that makes you look opinionated (+10% defence against Warriors)
+75409	Long Plait (White)	Plait (+10%  defence against Warriors)
+75410	Long Plait (Blue)	Plait (+10% against Ninjas)
+75411	Long Plait (Black)	Plait (+10% against Suras)
+75412	Long Plait (Brown)	Plait (+10% against Shamans)
+75601	Smart Hairstyle (Brown)	A trendy trim giving Shamans a strong expression (+10% against Warriors)
+75602	Smart Hairstyle (Black)	A trendy trim giving Shamans a strong expression (+10% against Ninjas)
+75603	Smart Hairstyle (Blue)	A trendy trim giving Shamans a strong expression (+10% against Suras)
+75604	Smart Hairstyle (Light)	A trendy trim that gives Shamans a strong expression (+10% against Shaman)
+75605	Med. Length Hair (Brown)	Smooth, brown hair (+10% against Warriors)
+75606	Med. Length Hair (Black)	Straight, black hair (+10% against Ninja)
+75607	Med.Length Hair (Blonde)	Straight, light coloured hair (+10% against Sura)
+75608	Med.Length Hair (Purple)	Straight, purple hair (+10% against Shaman)
+75609	Old Hairstyle (Brown)	Old Warrior hairstyle. The brown hair is tied up in a plait (+10% against Warriors)
+75610	Old Hairstyle (Light)	Old warrior hairstyle. The light coloured hair is tied up in a plait (+10% against Ninjas)
+75611	Old Hairstyle (Purple)	Old Warrior hairstyle. The purple hair is tied up in a plait (+10% against Suras)
+75612	Old Hairstyle (Red)	Old warrior hairstyle. The red hair is tied up in a plait (+10% against Shamans)
+80001	Money Pouch	A dark and already worn out pouch sewed from leather.
+80002	Blank Paper	An unused parchment of good quality.
+80008	Lump of Gold	A lump of gold that has never been crafted. It is being sold in a shop for a high price.
+90001	Empty Water Bottle	A stable travel case to transport water - sadly it is empty right now.
+90002	Water Bottle	A stable travel case to transport water.
+90003	Crystal	An especially nice and clear gemstone which shines fascinatingly in the sunlight.
+90004	Gem	A nice coloured and flat cut stone which is used for producing ornaments.
+90005	Water Stone	A hard, coarse stone which can be used to grind weapons or kitchen utensils.
+90006	Spirit Stone	This stone, added to weapons or armour, increases the quality of the item.
+90007	Mineral	There are around 4000 minerals which differ in crystal structure and so also differ in shape and colour.
+90010	Foundation Stone	Building Material for the Guild Building
+90011	Trunk	Building Material for the Guild Building
+90012	Plywood	Building Material for the Guild Building

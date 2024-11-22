@@ -1,0 +1,6 @@
+103 path=mainline_released/mainline_sg/Srcs/Server/Doc/_______ì ê²ìë°©íë²½.txt
+20 ctime=1378889013
+20 atime=1378889013
+17 SCHILY.dev=89
+23 SCHILY.ino=38727922
+18 SCHILY.nlink=1

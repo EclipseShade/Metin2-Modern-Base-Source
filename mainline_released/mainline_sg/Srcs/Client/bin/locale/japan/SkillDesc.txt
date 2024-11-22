@@ -1,0 +1,80 @@
+1	WARRIOR	三連斬	快風斬	豪流風斬	敵を素早く3回斬りつける	前方範囲攻撃				ATTACK_SKILL|NEED_TARGET|WEAPON_LIMITATION	SWORD|TWO_HANDED	samyeon	1	4			総攻撃力 : %.0f-%.0f	(1.1*MinATK + (0.1*MinATK + 1.5*STR)*SkillPoint) * 3	(1.1*MaxATK + (0.1*MaxATK + 1.5*STR)*SkillPoint) * 3		
+2	WARRIOR	八方乱雨	真円斬	竜雲爆天	剣を振り回し、周囲 | の敵を攻撃	前進範囲攻撃				ATTACK_SKILL|CAN_CHANGE_DIRECTION|WEAPON_LIMITATION	SWORD|TWO_HANDED	palbang	2	4			攻撃力 : %.0f-%.0f	3*MinATK + (0.8*MinATK + STR*6 + DEX*2 + CON) * SkillPoint	3*MaxATK + (0.8*MaxATK + STR*6 + DEX*2 + CON) * SkillPoint		
+3	WARRIOR	戦鬼魂	金剛魂	破戦道	ひたすら攻撃だけに専念	攻撃速度上昇	移動速度上昇	自身へのダメージ増加		STANDING_SKILL		jeongwi	3	4			攻撃速度 : +%.0f%%	50 * SkillPoint		移動速度 : +%.0f%%	20 * SkillPoint
+4	WARRIOR	剣業	岩心剣	心剣合一	攻撃力を一定 | 時間増加させる	基本攻撃力上昇				STANDING_SKILL|WEAPON_LIMITATION	SWORD|TWO_HANDED	geomgyeong	4	4			攻撃力 : +%.0f	(100 + STR) * SkillPoint			
+5	WARRIOR	弾丸撃	弾丸撃	極剛砲撃	素早く走り、敵を倒す	突撃範囲攻撃				ATTACK_SKILL|NEED_TARGET|CHARGE_ATTACK|WEAPON_LIMITATION	SWORD|TWO_HANDED	tanhwan	5	4			攻撃力 : %.0f-%.0f	2*MinATK + (MinATK + 3*DEX + 7*STR + CON)*SkillPoint	2*MaxATK + (MaxATK + 3*DEX + 7*STR + CON)*SkillPoint		
+6	WARRIOR	気血取明	気血取明	気血取明	全力で気を爆発させ前方 | の敵に強い一撃を加える	前方範囲攻撃				ATTACK_SKILL|NEED_TARGET|WEAPON_LIMITATION	SWORD|TWO_HANDED	gihyeol	6	4			攻撃力 %.0f-%.0f	(3*MinATK + (MinATK + 1.5*STR)*SkillPoint)*1.07	(3*MaxATK + (MaxATK + 1.5*STR)*SkillPoint)*1.07		
+16	WARRIOR	気功衝	断越波	捌風矢襲　	前方の敵を攻撃	前方範囲攻撃				ATTACK_SKILL|CAN_CHANGE_DIRECTION|NEED_TARGET|WEAPON_LIMITATION	SWORD|TWO_HANDED	gigongcham	16	4			攻撃力 : %.0f-%.0f	2.3*MinATK + (MinATK*4 + 4*STR + CON)*SkillPoint	2.3*MaxATK + (MaxATK*4 + 4*STR + CON)*SkillPoint		
+17	WARRIOR	撃散打	豪威	龍翔天撃	前方の敵を攻撃	直線範囲攻撃				ATTACK_SKILL|CAN_CHANGE_DIRECTION|WEAPON_LIMITATION	SWORD|TWO_HANDED	gyeoksan	17	4			攻撃力 : %.0f-%.0f	2.3*MinATK + (3*MinATK + 4*STR + 3*CON)*SkillPoint	2.3*MaxATK + (3*MaxATK + 4*STR + 3*CON)*SkillPoint		
+18	WARRIOR	大震脚	獅子吼	反功震天	周囲の敵を四方に | 跳ね飛ばす	全方位範囲攻撃	一定確率で気絶効果			ATTACK_SKILL|STANDING_SKILL		daejin	18	4			攻撃力 : %.0f-%.0f	2*MinATK + (2*MinATK + 2*DEX + 2*CON + 4*STR)*SkillPoint	2*MaxATK + (2*MaxATK + 2*DEX + 2*CON + 4*STR)*SkillPoint	気絶確率 : %.0f%%	(100 + 1000*SkillPoint/6)/10
+19	WARRIOR	典根樹	鉄敷山	泰山圧頂	一時的に防御力を上昇させ、 | 強力な攻撃を受けても倒れない	防御力上昇	移動速度低下	倒れない		STANDING_SKILL		cheongeun	19	4			防御力 : +%.0f	7+(40 + 0.2*str + 0.4*con)*k		移動速度 : -%.0f	1 + 9*SkillPoint
+20	WARRIOR	剣風	気結斬	剣気衝伝	前方の敵を攻撃	長距離対象周辺攻撃	気絶効果	対象跳ね飛ばし		ATTACK_SKILL|CAN_CHANGE_DIRECTION|WEAPON_LIMITATION	SWORD|TWO_HANDED	geompung	20	4			攻撃力 : %.0f-%.0f	2*minatk + (minatk + dex*3 + str*5 + con)*k	2*maxatk + (maxatk + dex*3 + str*5 + con)*k		
+21	WARRIOR	脳剣到来	脳剣到来	脳剣到来	剣気のある剣で周りの敵 | に致命的な打撃を与える	自分の周りの範囲を攻撃				ATTACK_SKILL|STANDING_SKILL|WEAPON_LIMITATION	SWORD|TWO_HANDED	noegeom	21	4			攻撃力 %.0f-%.0f	(2*MinATK + (2*MinATK + 2*DEX + 2*CON + STR*4)*SkillPoint)*1.1	(2*MaxATK + (2*MaxATK + 2*DEX + 2*CON + STR*4)*SkillPoint)*1.1		
+31	ASSASSIN	暗襲	隠撃	流貫走絶	密かに敵に近寄り、 | 致命傷を与える	背後から奇襲時攻撃力上昇	短剣ボーナス	隠蛍法ボーナス		ATTACK_SKILL|MELEE_ATTACK|NEED_TARGET|WEAPON_LIMITATION	DAGGER|DOUBLE_SWORD|SWORD	amseup	1	4			攻撃力 : %.0f-%.0f	minatk + (1.2 * minatk + 500 + dex*12)*k	maxatk + (1.2 * maxatk + 700 + dex*12)*k		
+32	ASSASSIN	影迅	無影剣	業影断魔	素早く敵に接近し、 | 致命傷を与える	瞬間移動攻撃	短剣ボーナス			ATTACK_SKILL|NEED_TARGET|WEAPON_LIMITATION	DAGGER|DOUBLE_SWORD|SWORD	gungsin	2	4			攻撃力 : %.0f-%.0f	(minatk + (1.6* minatk + 200 + dex*7 + str*7)*k)	(maxatk + (1.6* maxatk + 300 + dex*7 + str*7)*k)		
+33	ASSASSIN	車輪殺	舞輪斬	背雨氾雲	素早く回転し、 | 前方の敵を斬る	脱出範囲攻撃	持続毒攻撃			ATTACK_SKILL|CAN_CHANGE_DIRECTION|WEAPON_LIMITATION	DAGGER|DOUBLE_SWORD|SWORD	charyun	3	4			攻撃力 : %.0f-%.0f	2*minatk + (0.5*minatk + dex*9 + str*7)*k	2*maxatk + (0.5*maxatk + dex*9 + str*7)*k	中毒確率 : %.0f%%	1 + 4*k
+34	ASSASSIN	隠蛍法	転変術	遮天避日	自分の姿を隠す	攻撃時解除				STANDING_SKILL		eunhyeong	4	4			暗殺技術追加ダメージ : +%.0f%%	50 * SkillPoint			
+35	ASSASSIN	散恐粉	癖燐雲	含賜死迎	周囲に毒の雲を作り、 | 敵を毒にさせる	長距離対象周辺攻撃	持続毒攻撃			ATTACK_SKILL|NEED_TARGET		sangong	5	4			攻撃力 : %.0f-%.0f	lv*2+(minatk + str*3 + dex*18)*k	lv*2+(maxatk + str*3 + dex*18)*k	中毒確率 :  %.0f%%	40*k
+36	ASSASSIN	黒島数	黒島数	黒島数	超スピードで瞬間的に消え、相手に一撃を加える	瞬間移動攻撃	持続的な毒攻撃			ATTACK_SKILL|NEED_TARGET|WEAPON_LIMITATION	DAGGER|DOUBLE_SWORD|SWORD	seomjeon	6	4			攻撃力 %.0f-%.0f	(lv*2 + (MinATK+STR*3+DEX*18)*SkillPoint)*1.1	(lv*2 + (MaxATK+STR*3+DEX*18)*SkillPoint)*1.1	中毒確率 %.0f%%	40*k
+46	ASSASSIN	連射	貫一殺	幾万衝紅	1人の敵にいくつ | もの矢を放つ	長距離連続攻撃				ATTACK_SKILL|NEED_TARGET|WEAPON_LIMITATION	BOW	yeonsa	16	4		2 + floor(6 * SkillPoint)	総攻撃力 : %.0f-%.0f	minatk + 0.2*minatk*floor(2+k*6)+ (0.8*minatk+dex*8*ar) *k	maxatk + 0.2*maxatk*floor(2+k*6)+ (0.8*maxatk+dex*8*ar) *k	%.0f発の矢を放つ	2 + floor(6 * SkillPoint)
+47	ASSASSIN	貫撃術	雨天殺	天峰鋭刺	1度で複数の敵に矢を放つ	長距離複数対象攻撃				ATTACK_SKILL|FAN_RANGE|NEED_TARGET|WEAPON_LIMITATION	BOW	gwangyeok	17	4	2 + floor(6 * SkillPoint)		攻撃力 : %.0f-%0.f	minatk + (1.7*minatk + 100 + dex*2 + str*2)*k	maxatk + (1.7*maxatk + 300 + dex*2 + str*2)*k	最大%.0f人まで攻撃	2 + floor(6 * SkillPoint)
+48	ASSASSIN	火双波	舞火	神舞震天	火炎の矢を放つ	長距離対象範囲攻撃	火炎攻撃			ATTACK_SKILL|NEED_TARGET|WEAPON_LIMITATION	BOW	hwajo	18	4			攻撃力 : %.0f-%.0f	1.5*minatk + (2.6*minatk + 100 )*k	1.5*maxatk + (2.6*maxatk + 300 )*k		
+49	ASSASSIN	軽空術	迅行	踏雪無碍	体を軽くし、 | 移動速度を高める					STANDING_SKILL		gyeonggong	19	4			移動速度 : +%.0f	60*SkillPoint			
+50	ASSASSIN	毒奇弓	息毒針	追魂奪命	強力な毒の矢を放つ	長距離対象範囲攻撃	気絶効果	対象跳ね飛ばし	持続毒攻撃	ATTACK_SKILL|NEED_TARGET|WEAPON_LIMITATION	BOW	gigung	20	4			攻撃力 : %.0f-%.0f	minatk + (1.2*minatk + 100 + dex*6 + str*2)*k	maxatk + (1.2*maxatk + 200 + dex*6 + str*2)*k	中毒確率 : %.0f%%	80*k
+51	ASSASSIN	島光弾	島光弾	島光弾	瞬間的に強い光が | 出て周りの敵に致命的な | 打撃を与える	自分の周りの範囲を攻撃	持続的な毒攻撃			ATTACK_SKILL|STANDING_SKILL		seomgwang	21	4			攻撃力 %.0f-%.0f	(MinATK + (1.2*MinATK + 100 + DEX*6 + STR*2)*SkillPoint)*1.1	(MaxATK + (1.2*MaxATK + 200 + DEX*6 + STR*2)*SkillPoint)1.1	中毒確率 %.0f%%	80*k
+61	SURA	砕零指	熱旋散	天崩地裂	指先から強力な | 爆発を起こす	前方範囲攻撃	相手防御無視効果	知能ボーナス		ATTACK_SKILL|MELEE_ATTACK|NEED_TARGET		swaeryeong	1	4			攻撃力 : %.0f-%.0f	minatk + 2*lv + iq*2 + (2*minatk + str*4 + iq*14) * k	maxatk + 2*lv + iq*2 + (2*maxatk + str*4 + iq*14) * k	相手の防御を無効にする確率 : %.0f%%	1 + 9*SkillPoint
+62	SURA	踊巻波	旋風陣	光迅奏巻	強力な旋風を起こし、 | 周辺の敵を切り裂く	全方位範囲攻撃	相手回避無視効果	知能ボーナス		ATTACK_SKILL|STANDING_SKILL		yonggwon	2	4			攻撃力 : %.0f-%.0f	1.1 * minatk + 2*lv + 2*iq + (1.5*minatk + str + iq*12) * k	1.1 * maxatk + 2*lv + 2*iq + (1.5*maxatk + str + iq*12) * k	相手の回避を無効にする確率 : %.0f%%	1 + 9*SkillPoint
+63	SURA	鬼剣	斬霊剣	屠竜在天	剣に鬼の力を宿らせる	基本攻撃力上昇	知能ボーナス	吸血攻撃		STANDING_SKILL|TOGGLE|WEAPON_LIMITATION	SWORD	gwigeom	3	4			攻撃力 : +%.1f	7 + (5*iq+13)*k		ダメージ%.0f%%を生命力として吸収	10*k
+64	SURA	恐包	血罪	積憐狂魔	攻撃してくる敵に恐怖 | を植え付け、能力を下げる	相手攻撃力低下	相手攻撃失敗確率増加	自分へのダメージ時のみ適用		STANDING_SKILL		gongpo	4	4			相手攻撃力 : -%.0f%%	5 + 20*SkillPoint		相手の攻撃を失敗させる確率 : %.0f%%	1 + 29*SkillPoint
+65	SURA	鋳魔甲	魂覇	天魔式体	闇の鎧で体を保護する	被害時、直接攻撃の一部反射	防御力上昇	知能ボーナス		STANDING_SKILL		jumagap	5	4			防御力 : +%.0f	(iq+30)*k		物理攻撃を反射する確率 : %.0f%%	(iq/4+10)*k
+66	SURA	破法術	三燕術	無骨消魂	全補助魔法を無効化させる	長距離攻撃	対象周辺範囲攻撃	相手の補助効果除去		ATTACK_SKILL|NEED_TARGET		pabeop	6	4			魔法攻撃力 : %.0f-%.0f	40 + 5*lv + 2*iq + (18*iq + 7*minmtk + 50)*ar*k	40 + 5*lv + 2*iq + (18*iq + 7*maxmtk + 100)*ar*k	魔法確率 : %.0f%%	50*k
+76	SURA	魔霊	鬼霊	奪魂霊	闇の力をぶつけ、 | 敵にダメージを与える	長距離対象範囲攻撃				ATTACK_SKILL|NEED_TARGET		maryeong	16	4			魔法攻撃力 : %.0f-%.0f	40 +5*lv + 2*iq + (20*iq + 7*minmtk + 50 )*ar*k	40 +5*lv + 2*iq + (20*iq + 7*maxmtk + 100 )*ar*k		
+77	SURA	火炎爆	爆炎陣	魔竜焦天	爆発を起こし、 | 周辺の敵を燃やす	全方位範囲攻撃	火炎攻撃			ATTACK_SKILL|STANDING_SKILL		hwayeom	17	4			魔法攻撃力 : %.0f-%.0f	5*lv + 2*iq + (20*iq + 8*mtk + str*4 + con*2 + 180 )*k	5*lv + 2*iq + (20*iq + 8*mtk + str*4 + con*2 + 200 )*k		
+78	SURA	武影陣	魔炎	獄火分体	自分を守る爆発体を作る	長距離対象範囲攻撃	対象任意選択			ATTACK_SKILL|STANDING_SKILL|TOGGLE		muyeong	18	4			魔法攻撃力 : %.0f-%.0f	30+ 2*lv + 2*iq + (18*iq + 6*minmtk + 200)*ar*k	30+ 2*lv + 2*iq + (18*iq + 6*maxmtk + 500)*ar*k		
+79	SURA	黒神守護	御魂術	天曲死魂　	闇の力で体を覆い、肉体の | 苦痛を精神力で耐える	ダメージを精神力で減殺	防御力上昇			STANDING_SKILL|TOGGLE		heuksin	19	4			ダメージ減少率 : %.0f%%	(iq*0.84)*k		防御力 : +%.0f	(0.5*iq+15)*k
+80	SURA	闘魔霊	縛身霊	寸歩難行	束縛の悪霊を敵にぶつけ、 | ダメージを与える	長距離対象範囲攻撃	対象の動きを遅らせる			ATTACK_SKILL|NEED_TARGET		tusok	20	4			魔法攻撃力 : %.0f-%.0f	40 + 2*lv + 2*iq + (2 * con + 2 * dex + 22*iq + 6*minmtk+ 180)*ar*k	40 + 2 * lv + 2*iq + (2 * con + 2 * dex + 22*iq + 6*maxmtk + 200)*ar*k	スロー確率 : %.1f%%	(333 + (300 * k))/10
+81	SURA	魔幻撃	血霊籠	乾坤暗煙	闇の気を飛ばし、 | ダメージを与える	長距離対象範囲攻撃				ATTACK_SKILL|NEED_TARGET		geomhwan	21	4			魔法攻撃力 : %.0f-%.0f	120 + 6*lv + (5 * con + 5 * dex + 40*iq + 12*minmtk)*ar*k	120 + 6*lv + (5 * con + 5 * dex + 40*iq + 12*maxmtk)*ar*k		
+91	SHAMAN	秘破符	鬼燕破	五彩運河	敵に呪符を投げつけ、 | ダメージを与える	長距離攻撃	対象周辺範囲攻撃			ATTACK_SKILL|FAN_RANGE|NEED_TARGET		bipabu	1	4			魔法攻撃力 : %.0f-%.0f	70 + 4*lv + (20*iq+5*minmwep+50)*ar*k	70 + 4*lv + (20*iq+5*maxmwep+50)*ar*k		
+92	SHAMAN	竜波散	波竜符	暫竜獄天	竜神の姿の気を撃ち、 | 前方の敵を攻撃	直線範囲攻撃	持続火炎効果			ATTACK_SKILL|NEED_TARGET		yongpa	2	4			魔法攻撃力 : %.0f-%.0f	60 + 5*lv + (18*iq+6*minmwep+120)*ar*k	60 + 5*lv + (18*iq+6*maxmwep+120)*ar*k	持続火炎確率 : %.0f%%	iq*0.2*k
+93	SHAMAN	覇竜爆	昇竜波	天竜波尾	竜神の姿で周辺の | 敵を攻撃	全方位範囲攻撃	持続火炎効果			ATTACK_SKILL|STANDING_SKILL		paeryong	3	4			魔法攻撃力 : %.0f-%.0f	70 + 3*lv + (22*iq+13*minmwep+100)*ar*k	70 + 3*lv + (22*iq+13*maxmwep+100)*ar*k	持続火炎確率 : %.0f%%	iq*0.2*k
+94	SHAMAN	護神	天壁	真竜護体	味方に保護の陣を作り、 | 防御力を上げる	物理攻撃抵抗	味方に使用可能			CAN_USE_FOR_ME|NEED_TARGET|ONLY_FOR_ALLIANCE		hosin	4	4			物理攻撃抵抗 : %.1f%%	(iq*0.3+5)*(2*k+0.5)/(k+1.5)			
+95	SHAMAN	反射陣	守鏡陣	天剛晶気	味方に敵の攻撃を | 跳ね返す陣を作る	物理攻撃反射	味方に使用可能			CAN_USE_FOR_ME|NEED_TARGET|ONLY_FOR_ALLIANCE		boho	5	4			物理攻撃反射確率 : %.1f%%	5+(iq*0.3 + 5)*k			
+96	SHAMAN	気天帯甲	天竜魂	竜神聖宿	味方の手に神の意思を宿す	クリティカル率上昇	味方に使用可能			CAN_USE_FOR_ME|NEED_TARGET|ONLY_FOR_ALLIANCE		gicheon	6	4			致命打確率 : %.1f%%	(iq*0.3+5)*(2*k+0.5)/(k+1.5)			
+106	SHAMAN	雷電凌	真天雷	電仙雷鳴	雷を敵に打ち出す	長距離攻撃	対象周辺範囲攻撃	電気属性		ATTACK_SKILL|NEED_TARGET		noejeon	16	4			魔法攻撃力 : %.0f-%.0f	60 + 4*lv + (7*iq+8*minmwep+iq*5)*ar*k	60 + 4*lv + (7*iq+8*maxmwep+iq*15)*ar*k		
+107	SHAMAN	落雷	脳炎閃	青天霹靂	空の力を借りて | 敵に雷を落とす	長距離攻撃	対象周辺範囲攻撃	電気属性	気絶効果	ATTACK_SKILL|NEED_TARGET		byeorak	17	4			魔法攻撃力 %.0f-%.0f	40 + 4*lv + (13*iq+7*minmwep+iq*5)*ar*k	40 + 4*lv + (13*iq+7*maxmwep+iq*16)*ar*k	気絶確率 : %.0f%%	(50+1000*k/6)/10
+108	SHAMAN	爆雷撃	破天雷	九天暴雷	手から雷を打ち出す	長距離攻撃	電気属性	周辺対象に連続攻撃		ATTACK_SKILL|NEED_TARGET		pokroe	18	4			魔法攻撃力 : %.0f-%.0f	(50 + 5*lv + (6*iq+6*minmwep+1)*ar*k)	(50 + 5*lv + (6*iq+6*maxmwep+800)*ar*k)		
+109	SHAMAN	浄業	大浄業	光法浄	光の力で傷を治療	生命力回復	状態異常回復	味方に使用可能		CAN_USE_FOR_ME|NEED_TARGET|ONLY_FOR_ALLIANCE		jeongeop	19	4			生命力回復 : %.0f-%.0f	200+4*lv+(10*iq+6*minmwep+600)*k	200+4*lv+(10*iq+6*maxmwep+800)*k	状態異常の回復確率 : %.0f%%	20+80*k
+110	SHAMAN	快足	風進	風妙踏雲	風に乗り駆け巡る	移動速度上昇	呪文時間減少	味方に使用可能		CAN_USE_FOR_ME|NEED_TARGET|ONLY_FOR_ALLIANCE		kwaesok	20	4			移動速度 : +%.0f%%	5 + (35 * k)		呪文速度 : +%.0f%%	3+33*k
+111	SHAMAN	練力術			味方の力をより強くする	基本攻撃力上昇	味方に使用可能			CAN_USE_FOR_ME|NEED_TARGET|ONLY_FOR_ALLIANCE		jeungryeok	21	4			攻撃力 : +%.1f	5+(iq*0.2 + 15)*k			
+112	PASSIVE	弾丸撃破解			弾丸撃の被害を減らす	弾丸撃被害抵抗				PASSIVE		p_tanhwan					弾丸撃被害防衛率 +%.1f%%	13.3*k			
+113	PASSIVE	暗襲破解			暗襲の被害を減らす	暗襲被害抵抗				PASSIVE		p_amseup					暗襲被害防衛率 +%.1f%%	13.3*k			
+114	PASSIVE	砕零指破解			砕零指の被害を減らす	砕零指被害抵抗				PASSIVE		p_swaeryeong					砕零指被害防衛率 +%.1f%%	13.3*k			
+115	PASSIVE	竜波散破解			竜波散の被害を減らす	竜波散被害抵抗				PASSIVE		p_yongpa					竜波散被害防衛率 +%.1f%%	13.3*k			
+116	PASSIVE	気功衝破解			気功衝の被害を減らす	気功衝被害抵抗				PASSIVE		p_gigongcham					気功衝被害防衛率 +%.1f%%	13.3*k			
+117	PASSIVE	連射破解			連射の被害を減らす	連射被害抵抗				PASSIVE		p_yeonsa					連射被害防衛率 +%.1f%%	13.3*k			
+118	PASSIVE	魔幻撃破解			魔幻撃の被害を減らす	魔幻撃被害抵抗				PASSIVE		p_geomhwan					魔幻撃被害防衛率 +%.1f%%	13.3*k			
+119	PASSIVE	落雷破解			落雷の被害を減らす	落雷被害抵抗				PASSIVE		p_byeorak					落雷被害防衛率 +%.1f%%	13.3*k			
+121	SUPPORT	統率力			仲間を引っ張っていく能力					PASSIVE		tongsol									
+122	SUPPORT	連携技			連続攻撃回数を増加させる					CANNOT_LEVEL_UP|TOGGLE		combo									
+123	SUPPORT	釣り			川沿いで魚を釣る					CANNOT_LEVEL_UP		fishing									
+124	SUPPORT	採掘			鉱石を掘り出す					PASSIVE		mining									
+125	SUPPORT	製造			アイテムを作る					CANNOT_LEVEL_UP|PASSIVE		making									
+126	SUPPORT	新授語			新授国の言語を | 自由にあやつれる					CANNOT_LEVEL_UP|PASSIVE		language1									
+127	SUPPORT	天調語			天調国の言語を | 自由にあやつれる					CANNOT_LEVEL_UP|PASSIVE		language2									
+128	SUPPORT	進努語			進努国の言語を | 自由にあやつれる					CANNOT_LEVEL_UP|PASSIVE		language3									
+129	SUPPORT	変身			モンスターに変身する					CANNOT_LEVEL_UP|PASSIVE		polymorph									
+130	SUPPORT	乗馬			馬に乗る能力					CANNOT_LEVEL_UP|PASSIVE		riding									
+131	SUPPORT	召喚			馬を召喚する							summon									
+137	HORSE	騎馬乱舞			馬に乗りながら周辺 | の敵に攻撃	馬上技術				ATTACK_SKILL|HORSE_SKILL|MOVING_SKILL|WEAPON_LIMITATION	SWORD|TWO_HANDED|DAGGER|DOUBLE_SWORD|FAN|BELL	wildattack	121	1							
+138	HORSE	疾風走馬			前方へ立ち向かう | すべての敵を薙ぎ倒す	馬上技術				ATTACK_SKILL|HORSE_SKILL|SEARCH_TARGET|CHARGE_ATTACK		charge	122	1							
+139	HORSE	地軸昇天			周辺のすべての敵を攻撃	馬上技術				ATTACK_SKILL|HORSE_SKILL|WEAPON_LIMITATION	SWORD|TWO_HANDED|DAGGER|DOUBLE_SWORD|BOW|FAN|BELL	splash	123	1							
+140	HORSE	秋雨乱舞			前方へ立ち向かう | 敵を弓で射る	馬上技術				ATTACK_SKILL|FAN_RANGE|NEED_TARGET|HORSE_SKILL|WEAPON_LIMITATION	BOW	wildattack	121	1	5						
+141	SUPPORT	HP補強			最大体力が増加					PASSIVE		jeunghyul					最大HPアップ +%.0f	k * 1333.33			
+142	SUPPORT	貫通回避			貫通攻撃を回避					PASSIVE		chultong					貫通回避率 + %.0f%%	k * 20			
+151	GUILD	竜眼			最大竜神力が増加					PASSIVE		yongan					最大竜神力 : +%.0f	k * 1400			
+152	GUILD	竜神の血			ギルドメンバー全員の | 最大生命力を一時的に | 上昇させる	ギルド戦専用				ONLY_FOR_GUILD_WAR		gaho	101	1			最大HP上昇 : +%.0f%%	k * 20			
+153	GUILD	竜神の祝福			ギルドメンバー全員の | 最大精神力を一時的に | 上昇させる	ギルド戦専用				ONLY_FOR_GUILD_WAR		chukbok	102	1			最大精神力上昇 : +%.0f%%	k * 20			
+154	GUILD	聖輝甲			ギルドメンバー全員の | 防御力を一時的に | 上昇する	ギルド戦専用				ONLY_FOR_GUILD_WAR		seonghwi	103	1			防御力上昇 : +%.1f%%	k * 10			
+155	GUILD	叫速術			ギルドメンバー全員の | 攻撃速度と移動速度が | 一時的に上昇	ギルド戦専用				ONLY_FOR_GUILD_WAR		gasok	104	1			攻撃・移動速度上昇 : +%.1f	k * 30			
+156	GUILD	竜神の怒り	 		ギルドメンバー全員の | クリティカル確率が一時的に | 上昇する	ギルド戦専用				ONLY_FOR_GUILD_WAR		bunno	105	1			クリティカル確率 : +%.0f%%	k * 50			
+157	GUILD	呪功術			ギルドメンバー全員の | スキルクールタイムが | 一時的に減少	ギルド戦専用				ONLY_FOR_GUILD_WAR		jumunsul	106	1			呪文速度上昇 : +%.0f%%	k * 50			

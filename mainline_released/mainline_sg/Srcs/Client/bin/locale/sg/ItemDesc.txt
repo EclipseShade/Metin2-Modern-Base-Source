@@ -1,0 +1,958 @@
+11901	Tuxedo	Male character's wedding cloth	
+11902	Tuxedo	Male character's wedding cloth	
+11903	Wedding Dress	Female character's wedding cloth	
+11904	Wedding Dress	Female character's wedding cloth	
+			
+22000	Town Recall Scroll	Teleport to village	
+22010	Teleportation Scroll	Teleports to saved location.	
+			
+25040	Blessing Scroll	Prevents loss of items if upgrade fails. Items decrease 1 Level	
+25041	Magic Metal	Upgrades Blessing Scroll  to Dragon God Blessing Scroll	
+			
+25100	Spirit Stone Scroll	Removes gems from sockets	
+			
+27600	Bonfire	Use for cooking fish	
+27610	Fishing Guide	Increases chance to get better fish by 2%	
+27620	Fishing Manual	The chance of catching a rare fish is doubled	
+			
+27799	Fishbone	Bait	
+27800	Riceball	Bait	
+27801	Worm	Bait	
+27802	Minnow	Bait	
+			
+27803	Crucian Carp	Abundant and easy to catch	
+27804	Mandarin Fish	Delicious type of fish	
+27805	Grayling	Fresh water fish with an excellent flavor	
+27806	Carp	Rare fish	
+27807	Salmon	Salmon sashimi very popular Japanese food	
+27808	Grass Carp	Seasonal fish	
+27809	Brook Trout	Usually appear around|upper river bank	
+27810	Eel	Highly nutritious	
+27811	Rainbow Trout	Bodies glow like rainbows	
+27812	Tilapia	Special species and mildly sweet in flavor	
+27813	Pikes	Found in great lakes	
+27814	Perch	Called dragon of the river	
+27815	Tenchi	Live in clean water	
+27816	Catfish	Make great soup	
+27817	Loach	"Smooth body, hard to catch"	
+27818	Lotus Fish	Omnivorous habit animal 	
+27819	Striped Bass	"Rare versatile fish that is tender, white and mildy sweet"	
+27820	Smelt	Found in ice cold river	
+27821	Shiri	Beautiful fish	
+27822	Mirror Carp	Popular because has few bones	
+27823	Gold Crucian Carp	Body color as golden as real gold	
+			
+27833	Raw Crucian Carp	Can be grilled with bonfire	
+27834	Raw Mandarin Fish	Can be grilled with bonfire	
+27835	Raw Grayling	Can be grilled with bonfire	
+27836	Raw Carp	Can be grilled with bonfire	
+27837	Raw Salmon	Can be grilled with bonfire	
+27838	Raw Grass Carp	Can be grilled with bonfire	
+27839	Raw Brook Trout	Can be grilled with bonfire	
+27840	Raw Eel	Can be grilled with bonfire	
+27841	Raw Rainbow Trout	Can be grilled with bonfire	
+27842	Raw Tilapia	Can be grilled with bonfire	
+27843	Raw Pikes	Can be grilled with bonfire	
+27844	Raw Perch	Can be grilled with bonfire	
+27845	Raw Tenchi	Can be grilled with bonfire	
+27846	Raw Catfish	Can be grilled with bonfire	
+27847	Raw Loach	Can be grilled with bonfire	
+27848	Raw Lotus Fish	Can be grilled with bonfire	
+27849	Raw Striped Bass	Can be grilled with bonfire	
+27850	Raw Smelt	Can be grilled with bonfire	
+27851	Raw Shiri	Can be grilled with bonfire	
+27852	Raw Mirror Carp	Can be grilled with bonfire	
+27853	Raw Gold Crucian Carp	Can be grilled with bonfire	
+			
+27863	Grilled Crucian Carp	Use: restores 180 HP	
+27864	Grilled Mandarin Fish	Use: restores 180 MP	
+27865	Grilled Grayling	Use: restores 350 HP	
+27866	Grilled Carp	Use: increases moving|speed by 20 for 10 mins	
+27867	Grilled Salmon	Use: restores 350 MP	
+27868	Grilled Grass Carp	Use: increases attack|speed by 20 for 10 mins	
+27869	Grilled Brook Trout	Use: restores 600 HP	
+27870	Grilled Eel	Use: increases strength by 10	
+27871	Grilled Rainbow Trout	Use: restores 600 MP	
+27872	Grilled Tilapia	Use: restores 230 MP	
+27873	Grilled Pikes	Use: increases agility by 10 for 10 mins	
+27874	Grilled Perch	Use: restores the unusual situation	
+27875	Grilled Tenchi	Use: restores HP by 230	
+27876	Grilled Catfish	Use: restores MP by 500	
+27877	Grilled Loach	Use: gives player|invisibility for 5 mins	
+27878	Grilled Lotus Fish	Use: restores 500 HP	
+27879	Grilled Striped Bass		
+27880	Grilled Smelt		
+27881	Grilled Shiri		
+27882	Grilled Mirror Carp		
+27883	Grilled Gold Crucian Carp		
+			
+27987	Clam	Could find pearl inside	
+27988	Treasure Map	Ancient treasure map	
+27989	Spirit Gem Detector	Detect gem locations	
+27990	Piece of Stone		
+27991	Water Gem		
+27992	White Pearl	Jewelry	
+27993	Blue Pearl	Jewelry	
+27994	Red Pearl	Jewelry	
+27995	Empty Bottle	An empty bottle	
+27996	Poison Bottle	Very strong poison	
+27997	Vital Marble	Use: restores HP to 100%	
+27998	Alchemy Pouch	Has alchemy receipt inside	
+27999	Gem Pouch	Gem bag	
+			
+			
+29001	Scallop		
+29002	Blue Scallop		
+29003	Yellow Scallop		
+29004	Red Scallop		
+29005	Green Scallop		
+29006	Yellow Tartar		
+29007	Dark Yellow Tartar		
+29006	Yellow Tartar		
+29007	Dark Yellow Tartar		
+29008	Blue Holy Water		
+29009	Yellow Holy Water		
+29010	Red Holy Water		
+29011	Green Holy Water		
+29012	Light Blue Holy Water		
+29013	Light Yellow Holy Water		
+29014	Light Red Holy Water		
+29015	Light Green Holy Water		
+29012	Light Blue Holy Water		
+29013	Light Yellow Holy Water		
+29014	Light Red Holy Water		
+29015	Light Green Holy Water		
+			
+30000	Barley	"Main food source, can make wine"	
+30001	Letter	A letter from someone	
+30002	Stir-fried Sausage	Spicy food	
+30003	Pig Nose	Legend says it can bring happiness	
+30004	Wild Boar Tooth	Very tough	
+30005	Piece of Broken Armor	Piece of broken armor	
+30006	Orc Tooth	Very stinky	
+30007	Orc Amulet	Increases Orc's attacking power	
+30008	Esoteric Primer	Beginner's handbook to Esoteric Doctrine	
+30009	Unknown Medicine	Medicine with unknown ingredient	
+30010	Bear Gall	Legend says it can heal people who lost their sense of taste	
+30011	Skein	A ball of string	
+30012	Wine Bottle	Wine bottle	
+30013	Liquor Jar	Used for making wine	
+30014	Yeti Fur	Use as coat for warmth	
+30015	Demon's Keepsake	Very unlucky	
+30016	Demon's Gem	It is said there are ghosts inside	
+30017	Ornamental Hairpin	Accessory for girls	
+30018	Red Pigtail Ribbon	Accessory for girls	
+30019	Flaming Mane	Flaming mane thread	
+30020	Walnut	Can embellish girls' looks	
+30021	Piece of Gem	A piece of gem	
+30022	Snake Tail	Snake's tail	
+30023	White Tiger Hide	Very popular collectable	
+30024	Horsetail	Can use it in making writing brush and hats	
+30025	Spider's Poison Sack	Bag filled with spider's poison	
+30026	Wolf Intestine	Cooking material for stir-fried sausage	
+30027	Wolf Fur	Can use to make hair brush	
+30028	Wolf Claw	Can use as a decoration	
+30029	Wolf Liver	Cooking material for stir-fried sausage	
+30030	Rusty Blade	This blade is rusty	
+30031	Toy	Toy for girls	
+30032	Worn Out Black Uniform	Girls' favorite toy	
+30033	Broken China	A piece of broken china	
+30034	White Pigtail Ribbon	Accessory for hair	
+30035	Facial Cream	Cosmetic for girls	
+30036	Mystic Herb	It is said this herb has a mystic affect	
+30037	Tiger Claw	Decoration	
+30038	Tiger Hide	Collector's favorite	
+30039	Piece of Fabric	Used fabric	
+30040	Leaf	Unknown leaves	
+30041	Shiriken	A weapon used by ninja	
+30042	Fighting Tiger Fang	Tiger's fang	
+30043	Bean	Highly nutritious	
+30044	Clay	Material for making china	
+30045	Scorpion Needle	A needle having scorpion poison	
+30046	Scorpion Tail	Poisoned scorpion tail	
+30047	Curse Book	Teaches how to use curses	
+30048	Piece of Ice	A piece of ice	
+30049	Ice Killer Whale Horn	Very famous material for carving	
+30050	Ice Marble	"Made by ice, but won't melt"	
+30051	Unknown Talisman	Only Esoteric Leader can read it	
+30052	Flag	Savage's Flag	
+30053	Bear Feet	Cooking material which can increase stats	
+30054	Wedding Ring	Wedding ring	
+30055	Scorpion Claw	Very sharp and long	
+30056	Spider Web	Can be used in construction	
+30057	Spider Eyes	Very popular collectable	
+30058	Spider Egg Sack	It is said it makes baby delivery easier	
+30059	Spider Legs	Can be used as a talisman	
+30060	Frog Tongue	Very sticky	
+30061	Frog Legs	Popular cooking material	
+30062	Medicine Vessel	Can be found in alchemy store	
+30063	Skin Medicine 	Medicine to cure skin disease	
+30064	Sharp Stone	Item to make arrows	
+30065	Bell	Has ding ding sound	
+30066	Hot Pepper	Very hot pepper	
+30067	Snakeskin	The skin of a snake	
+30068	Tofu Steak	Made from tofu	
+30069	Wolf Claw+	Used to make an accessory	
+30070	Wolf Fur+	The thickest hairs in wolf fur are used to make combs and brushes.	
+30071	Bear Gall+	Bear gall is known for reviving the sense of taste	
+30072	Bear Foot Skin+	Favorite stamina food of many people	
+30073	White Pigtail Ribbon+	A popular ribbon to tie up a woman's hair	
+30074	Worn Out Black Uniform+	A worn out black uniform	
+30075	Shiriken+	A throwing weapon used by Assassins	
+30076	Orc Amulet+	An amulet which encourages Giant Goblins	
+30077	Orc Tooth+	An amulet which encourages Giant Goblins	
+30078	Esoteric Primer+	Beginner's Handbook to Esoteric Doctrine	
+30079	Unknown Talisman+	"An unknown talisman, only Esoterics can read it"	
+30080	Curse Book+	This Esoteric Book can be used to curse someone	
+30081	Scorpion Tail+	A poisonous scorpion tail	
+30082	Snake Tail+	The tail of a rattlesnake	
+30083	Unknown Medicine+	Unknown medicine with unknown ingredients	
+30084	Unknown Talisman+	"An unknown talisman, only Esoterics can read it"	
+30085	Piece of Fabric+	Fabric used to cover a wound	
+30086	Demon's Keepsake+	It will bring you misfortune	
+30087	Demon's Gem+	A gem that is known for holding the souls of the dead	
+30088	Piece of Ice+	Frozen water that remains eternally cold	
+30089	Yeti Fur+	"The fur of the legendary creature, the Yeti, protects against the cold"	
+30090	Ice Marble+	A marble made out of ice. It does not melt in the hot weather	
+30091	Warrior's Symbol	Proof of a valiant warrior	
+30092	Savage's Booty	Booty from defeating savages	
+			
+30129	Secret Information	Used in army	
+30130	Empty Bottle	An empty bottle	
+30131	Blacksmith's Letter	Blacksmith's letter	
+30132	Sage's Book	Sage's favorite book which records Korean and Japanese culture	
+30133	Trade Good Vendor's Shoes	Trade good vendor's new beautiful shoes	
+30134	Sage's Package	Sage's book package	
+30135	Alice's Letter	Letter from Alice	
+			
+30136	Golden Bow	Hunters' favorite bow	
+30137	Monkey's Blood	Blood from monkey	
+30138	Plasticine	"It's from desert, can be used as a medicine"	
+30139	Evil Tooth	Tooth from baby monster	
+30140	String	Material to make cloth	
+30141	Materials Stone	Material to make jewelry	
+30142	Letter	You can not read this letter. Perhaps you have to learn the language	
+30143	Herb	Can be used in medicines	
+30144	Tiger's Liver	Tiger's liver 	
+30145	Betrayer Balso's Herb	Betrayer Balso's feet medicine	
+30146	Crabbed Ice	A piece of ice	
+30147	Esoteric Dogmata	A book containing detailed information about the dark temple	
+30148	Esoteric Symbol	Symbol used by Esoteric group.	
+30149	Ice Water	Cooking material	
+30150	Page of Old Diary	Diary which records locations	
+30151	Lupine Fur	Wolf's fur	
+30152	Plague Potion	Rare medicine which can cure unknown sickness	
+30153	Flowers	Smells very good	
+30154	Esoteric Sutra	Records how to defeat the Esoteric Leader	
+30155	Mirine's Ring	Necklace with name on it	
+30156	Obent Book	The analysis of the history and the doctrine of the secret temple	
+			
+30093	Lucky Pouch	A silk pouch that holds valuables	
+30094	Lucky Pouch	A silk pouch that holds valuables	
+30095	Lucky Pouch	A silk pouch that holds valuables	
+30096	Lucky Pouch	A silk pouch that holds valuables	
+			
+30210	Emerald	A small sparkling stone	
+30211	Emerald	A small sparkling stone	
+30212	Emerald	A small sparkling stone	
+30213	Emerald	A small sparkling stone	
+30214	Emerald	A small sparkling stone	
+30215	Emerald	A small sparkling stone	
+30216	Emerald	A small sparkling stone	
+30217	Emerald	A small sparkling stone	
+30218	Emerald	A small sparkling stone	
+30219	Emerald	A small sparkling stone	
+			
+30220	Orc's soul Stone	"A legendary stone, it contains the soul of Orc"	
+30221	Esoteric's soul Stone	"A legendary stone, it contains the soul of Esoteric"	
+30222	Demon's soul Stone	"A legendary stone, it contains the soul of Demon"	
+30223	Icer's soul Stone	"A legendary stone, it contains the soul of Icer"	
+30224	Ghost's soul Stone	"A legendary stone, it contains the soul of Ghost"	
+30225	Giant's soul Stone	"A legendary stone, it contains the soul of Giant"	
+			
+50001	Good Luck Book	Hold onto this ticket to win prizes.Do NOT BUY FROM OTHER PLAYERS.	
+50002	Gold Ring	Lost ring - can sell in store for high price	
+50003	Skill Reset Scroll	Can reset skills	
+50004	Event Detector		
+50005	Horse Riding Ticket	Use: ride horses for free. Must be Level 40+	
+			
+50006	Gold Treasure Box	Only gold key can open it	
+50007	Silver Treasure Box	Only silver key can open it	
+50008	Gold Key	Can open gold treasure box and gold treasure box+ 	
+50009	Silver Key	Can open silver treasure box and silver treasure box+	
+			
+50010	Holiday Stockings	use near a Christmas Tree and make a wish	
+			
+50011	Moonlight Treasure Box	It's said that the box will appear supernatural phenomenon under the moonlight	
+			
+50012	Gold Treasure Box+	Only gold key can open it	
+50013	Silver Treasure Box+	Only silver key can open it	
+			
+50016	Bean Paste	Holiday food	
+50017	Sugar Paste	Holiday food	
+50018	Fruit Paste	Holiday food	
+50019	Sweet Rice Wrap	An ingredient of ancient cake	
+50020	Bean Cake	"Holiday food, restores HP to 100%"	
+50021	Sugar Cake	"Holiday food, restores MP to 100%"	
+50022	Fruit Cake	"Holiday food, restores stemina"	
+			
+50023	Red Pocket	Chinese New Year's gift from Unknown.  Must be Level 15+	
+			
+50024	Rose	Valentine item. Only female characters can use it	
+50025	Chocolate	Valentine item. Only male characters can use it	
+			
+50027	Lottery Ticket	The Lottery Ticket. Exchange is not in the game.It is a useless item	
+50031	Rose	A romantic flower used to show affection. Only male characters can use it	
+50032	Candy	"Made of cacao, milk, butter, and sugar. Only female characters can use it"	
+50033	Mystery Box	No one knows what is inside the box	
+			
+50034	Puzzle Box	Box with puzzles	
+50035	Children's Day Gift Box	Gift box for children	
+50036	Children's Day Gift Box	Gift box for children	
+50037	Hexagonal Treasure Box	Box filled with gifts and treasures	
+			
+50070	Chief Orc's Treasure Box	Chief Orc's Treasure Box	
+50071	Esoteric Leader's Treasure Box	Esoteric Leader's Treasure Box	
+50072	Reincarnated Esoteric Leader's Treasure Box	Reincarnated Esoteric Leader's Treasure Box	
+50073	Queen Spider's Treasure Box	Queen Spider's Treasure Box	
+50074	Giant Spider's Treasure Box	Giant Spider's Treasure Box	
+50075	Giant Plague Carrier's Treasure Box	Giant Plague Carrier's Treasure Box	
+50076	Giant Desert Tortoise's Treasure Box	Giant Desert Tortoise's Treasure Box	
+50077	Nine Tails' Treasure Box	Nine Tails' Treasure Box	
+50078	Yellow Tiger Ghost's Treasure Box	Yellow Tiger Ghost's Treasure Box	
+50079	Flame King's Treasure Box	Flame King's Treasure Box	
+50080	Red Dragon's Treasure Box	Red Dragon's Treasure Box	
+50081	Demon King's Treasure Box	Demon King's Treasure Box	
+50082	Death Reaper's Treasure Box	Death Reaper's Treasure Box	
+			
+50050	Horse Medal	Quest item	
+50051	Horse Sword	Use: summons pony Increases moving speed	
+50052	Armed Horse Painting	"Use: summons armed horse, enables attacks using horse, and increases moving speed"	
+50053	Military Horse Painting	"Use: summons military horse, enables attacks using horse and skills, and increases moving speed"	
+50054	Hay	Pony's favorite snack	
+50055	Carrot	Armed horse's favorite snack 	
+50056	Red Ginseng	Military horse's favorite snack	
+50057	Sujin Dungeon Herb	Use: revives pony	
+50058	Honobo Dungeon Herb	Use: revives armed horse	
+50059	Joklor Dungeon Herb	Use: revives military horse	
+50060	Horse Riding Tome	Use: increases riding skill by 1 point. Can only be used once and must be Level 50+	
+			
+50083	Horse Riding Ticket	"If shown to stable guard, can ride horse for free"	
+			
+50084	Unlock Stone	This item is required to remove the Ancient Seal	
+			
+50091	Crucian Carp Sushi	Made of Gold Crucian Carp Special Meal	
+50092	Carp Sushi	Made of Crucian Carp Special Meal	
+50093	Salmon Sushi	Made of Salmon. Because of the luminous colour it is almost a pity to eat it	
+50094	Catfish Sushi	Made of Catfish. The strange smell is extenuated by several herbals	
+			
+50100	Fire Crackers	Fireworks fill the sky during a festival|(Purple)	
+50101	Fire Crackers	Fireworks fill the sky during a festival|(Yellow)	
+50102	Fire Crackers	Fireworks fill the sky during a festival|(Sky Blue)	
+50103	Fire Crackers	Fireworks fill the sky during a festival|(Toy Top Red)	
+50104	Fire Crackers	Fireworks fill the sky during a festival|(Toy Top Green)	
+50105	Fire Crackers	Fireworks fill the sky during a festival|(Toy Top White)	
+			
+50106	Fire Crackers	Fire Crackers	
+50108	Toy Top	Kids' favorite toy	
+			
+50200	Package	Item to open your private shop	
+50300	Skill Book	To level up your skills	
+			
+50301	SunZi Art of War	Skill book for Level 1-20 leadership. Can only be used once	
+50302	WuZi Art of War	Skill book for Level 21-30 leadership. Can only be used once	
+50303	GuiGu Art of War	Skill book for Level 31+ leadership. Can only be used once	
+			
+50304	Beginner Continuum Book	Increase continuum level	
+50305	Advanced Continuum Book	Increase continuum level	
+50306	Expert Continuum Book	Increase continuum level	
+			
+50311	Pandemonia Linguistics	Book for study Pandemonia language	
+50312	Asmodia Linguistics	Book for study Asmodia language	
+50313	Elgoria Linguistics 	Book for study Elgoria language	
+			
+50307	Mission Book(Easy)	Proof to get the easy missions	
+50308	Mission Book(Normal)	Proof to get the normal missions	
+50309	Mission Book(Hard)	Proof to get the hard missions	
+50310	Mission Book(Expert)	Proof to get the expert missions	
+			
+50314	Polymorph Book	"Use to transform. Must be Level 15+. Can only be|used once, but increases leadership."	
+50315	Advanced Polymorph Book	"Use to transform. Must be Level 25+. Can only be|used once, but increases leadership."	
+50316	Master Polymorph Book	"Use to transform. Must be Level 35+. Can only be|used once, but increases leadership."	
+			
+50401	Tome of Shaolin Stance	Can only be used once teaches Shaolin Stance	
+50402	Tome of Whirlwind	Can only be used once teaches Whirlwind	
+50403	Tome of Berserk 	Can only be used once teaches Berserk	
+50404	Tome of Aura of Sword	Can only be used once teaches Aura of Sword	
+50405	Tome of Charge	Can only be used once teaches Charge	
+50416	Tome of Spirit Strike	Can only be used once teaches Spirit Strike	
+50417	Tome of Tiger Bash	Can only be used once teaches Tiger Bash	
+50418	Tome of Lion Stomp	Can only be used once teaches Lion Stomp	
+50419	Tome of Taichi 	Can only be used once teaches Taichi	
+50420	Tome of Sword Strike	Can only be used once teaches Sword Strike	
+			
+50431	Tome of Ghost Attack	Can only be used once teaches Ghost Attack	
+50432	Tome of Fatal Strike	Can only be used once teaches Fatal Strike	
+50433	Tome of Spinning Dagger	Can only be used once teaches Spinning Dagger	
+50434	Tome of Stealth	Can only be used once teaches Stealth	
+50435	Tome of Poisonous Cloud	Can only be used once teaches Poisonous Cloud	
+50446	Tome of Repetition Shot	Can only be used once teaches Repetition Shot	
+50447	Tome of Arrow Shower	Can only be used once teaches Arrow Shower	
+50448	Tome of Flaming Arrow	Can only be used once teaches Flaming Arrow	
+50449	Tome of Swiftness	Can only be used once teaches Swiftness	
+50450	Tome of Toxic Arrow	Can only be used once teaches Toxic Arrow	
+			
+50461	Tome of Rupture	Can only be used once teaches Rupture	
+50462	Tome of Dark Twister	Can only be used once teaches Dark Twister	
+50463	Tome of Enchanted Blade	Can only be used once teaches Enchanted Blade	
+50464	Tome of Fear	Can only be used once teaches Fear	
+50465	Tome of Aphonic Shield 	Can only be used once teaches Aphonic Shield	
+50466	Tome of Remove Magic	Can only be used once teaches Remove Magic	
+50476	Tome of Dark Strike	Can only be used once teaches Dark Strike	
+50477	Tome of Flame Strike	Can only be used once teaches Flame Strike	
+50478	Tome of Ritual of Doom 	Can only be used once teaches Ritual Of Doom	
+50479	Tome of Aphotic Shield	Can only be used once teaches Aphotic Shield	
+50480	Tome of Spirit Entangle 	Can only be used once teaches Spirit Entangle	
+50481	Tome of Dark Orb	Can only be used once teaches Dark Orb	
+			
+50491	Tome of Flying Talisman	Can only be used once teaches Flying Talisman	
+50492	Tome of Inferno	Can only be used once teaches Inferno	
+50493	Tome of Dragon Roar 	Can only be used once teaches Dragon Roar	
+50494	Tome of Blessing Spell	Can only be used once teaches Blessing Spell	
+50495	Tome of Reflect Damage	Can only be used once teaches Reflect Damage	
+50496	Tome of Enchant Damage 	Can only be used once teaches Enchant Damage	
+50506	Tome of Lightning Strike	Can only be used once teaches Lightning Strike	
+50507	Tome of Thunder Bolt	Can only be used once teaches Thunder Bolt	
+50508	Tome of Lightning Claw	Can only be used once teaches Lightning Claw	
+50509	Tome of Cure	Can only be used once teaches Cure	
+50510	Tome of Dance with Wind	Can only be used once teaches Dance with Wind	
+50511	Tome of Natures Enchantment	"Can only be used once, teaches Natures Enchantment"	
+			
+50512	Rainbow Stone	Can increase skill level after use	
+50513	Soul Stone	Can increase skill level after use	
+			
+50600	Mining Guide	Can only be used once	
+			
+50601	Diamond Stone Ore	Can change to diamond with diamond forge	
+50602	Amber Stone Ore	Can change to amber stone with amber stone forge	
+50603	Fossil Trunk Ore	Can change to fossil trunk with fossil trunk forge	
+50604	Copper Ore	Can change to copper with copper forge	
+50605	Silver Ore	Can change to silver with silver forge	
+50606	Gold Ore	Can change to gold with gold forge	
+50607	Jade Ore	Can change to jade with jade forge	
+50608	Ebony Ore	Can change to ebony with ebony forge	
+50609	Piece of Pearl	Can change to pearl with pearl forge	
+50610	White Gold Ore	Can change to white gold with white gold forge	
+50611	Crystal Ore	Can change to crystal with crystal forge	
+50612	Amethyst Ore	Can change to amethyst with amethyst forge	
+50613	Heaven's Tear Ore	Can change to heaven's tear with heaven's tear forge	
+			
+50621	Diamond	Can make sockets on item	
+50622	Amber	Increases gem's quality	
+50623	Fossil Wood	Can be used on wooden accessories	
+50624	Copper	Can be used on copper accessories	
+50625	Silver	Can be used on silver accessories	
+50626	Gold	Can be used on gold accessories	
+50627	Jade	Can be used on jade accessories	
+50628	Agate	Can be used on agate accessories	
+50629	Pearl	Used for making jewelry. Can be attached in Pearl Accessory	
+50630	White gold	"Gold that looks like, but is harder than silver. Can be attached in White Gold Accessory"	
+50631	Crystal	Called Rock Crystal or Quartz.  Can be attached in Crystal Accessory	
+50632	Amethyst	Purple quartz.  Can be attached in Amethyst Accessory	
+50633	Agate	Crystallized rain from heaven. Can be attached in Heaven's Tear Accessory	
+			
+50701	Peach Bloom	Grown from peach tree in the forest and the flower used to make skill care medicine	
+50702	Thistle	Used in Chinese medicine and has a medicinal effect on asthma	
+50703	Plumbago	Used as a medicine to give chronic infection for giving birth	
+50704	Grinderlia	Resembles the look of ginseng and it is used to cure diabetes	
+50705	Jamul	Used as a mixture ingredient for drugs	
+50706	Ganoderma	A Chinese medicine used to cure insomnia	
+50707	Lippia	A common drug used for nervous breakdown	
+50708	Sundew	Parts of the plant is used to make papers and also to cure obesity	
+50709	Dandelion	This drug is effective for sore-throat	
+50710	Saffron 	This drug is used as an asteoporosis	
+50711	Jujube	Serve as a catalyst for asteoporosis drug	
+50712	Burdock	This drug is used to suppress the effect of diabetes	
+			
+50721	Peach Bloom	Grown from peach tree in the forest and the flower used to make skill care medicine	
+50722	Thistle	Used in Chinese medicine and has a medicinal effect on asthma	
+50723	Plumbago	Used as a medicine to give chronic infection for giving birth	
+50724	Grinderlia	Resembles the look of ginseng and it is used to cure diabetes	
+50725	Jamul	Used as a mixture ingredient for drugs	
+50726	Ganoderma	A Chinese medicine used to cure insomnia	
+50727	Lippia	A common drug used for nervous breakdown	
+50728	Sundew	Parts of the plant is used to make papers and also to cure obesity	
+50729	Dandelion	This drug is effective for sore-throat	
+50730	Saffron 	This drug is used as an asteoporosis	
+50731	Jujube	Serve as a catalyst for asteoporosis drug	
+50732	Burdock	This drug is used to suppress the effect of diabetes	
+			
+50801	Elixir of Agility	Increases the agility	
+50802	Elixir of Strength	Give the ability to add STR +5	
+50803	Mana Potion	Heal your Mana	
+50804	Healing Potion	Heal your HP	
+50805	Jamul Liquid 	Made from Jamul	
+50806	Ganoderma Liquid 	Made from Ganoderma	
+50807	Lippia Liquid 	Made from Lippia	
+50808	Sundew Liquid 	Made from Sundew	
+50809	Dandelion Liquid 	Made from Dandelion	
+50810	Saffron Liquid 	Made from Saffron	
+50811	Jujube Liquid 	Made from Jujube	
+50812	Burdock Liquid 	Made from Burdock	
+50813	Basic Resist Potion	Chance to pierce attack +10% for 3 minutes	
+50814	Double Attack Potion	Chance to critical attack +10% for 3 minutes	
+50815	Greater Mana Potion	Heal your Mana	
+50816	Greater Healing Potion	Heal your HP	
+50817	Elixir Of Attack Power	Add 50 damage	
+50818	Elixir Of Defense	Add 70 defense	
+50819	Magic Resistance Potion	Add 10% magic resistance	
+50820	Elixir Of Attack Speed	Enhance the attacking speed	
+			
+50821	Red Liquid	"This item is a combat-supportive potion, which is created by mixing with Double Attack Potion "	
+50822	Pink Liquid	"This item is a combat-supportive potion, which is created by mixing with Basic Resist Potion"	
+50823	Yellow Liquid	"This item is a combat-supportive potion, which is created by mixing with Elixir Of Attack Speed"	
+50824	Green Liquid	"This item is a combat-supportive potion, which is created by mixing with Magic Resistance Potion"	
+50825	Blue Liquid	"This item is a combat-supportive potion, which is created by mixing with Elixir Of Attack Power"	
+50826	White Liquid	"This item is a combat-supportive potion, which is created by mixing with Elixir Of Defense"	
+			
+50901	Empty Bottle	It is used for Alchemy	
+			
+50902	Formula Manual(Beginner)		
+50903	Formula Manual(Advanced)		
+50904	Formula Manual(Expert)		
+			
+50905	Basic Resist Pot Formula		
+50906	Double Attack Pot Formula		
+50907	Greater Mana Pot x 100 Formula		
+50908	Greater Healing Pot x100 Formula		
+50909	Elixir Of AC Formula		
+50910	Basic Resist Pot Formula		
+			
+60001	Gall		
+60002	Recommendation from Storage Guard		
+60003	Heroic Symbol		
+			
+70001	Goddess' Doll		
+70002	Third Hand	Automatically picks up gold while you are killing mobs	
+70003	Liutao	Can be used by team leader. Increases team members' experience by 30%.	
+70004	Medal of Diligence	A reward for hard working men	
+70005	Experience Ring	"Once equipped, increases experience 20% while killing mobs"	
+70006	Language Ring	Use: can communicate with players from other kingdoms	
+70007	Warp Ring		
+70008	White Flag	Used to stop fighting	
+70009	Treasure Box		
+70010	Storage Ticket		
+70011	Upgrade Liquid Bottle		
+70012	Goddess Tear	Use: Decreases experience lost from death	
+70013	Giant Goddess Tear		
+70014	Blood Pill	Use: Undo one stat point	
+70015	Cheap Brush		
+70020	Peach Flower Wine	Restores 500 HP	
+70024	Blessing Marble	"Legendary blessed marble. When an item's attributes (CON, STR, DEX, INT) are over 4, this adds one more"	
+70027	Blacksmith's Memo	Blacksmith's memo	
+70035	Perpetual Iron	The Blacksmith can combine this with a Bless Scroll to create a War God Bless Scroll	
+70037	Forgetfulness Book	Use: Undo one skill point	
+70038	Bravery Cape	Use: Summon all nearby monsters. Can only be used once	
+70039	Master Compass	This powerful item has the highest chance to successfully upgrade items	
+70040	Orc Stubbornness	Reduces stamina consumption by half	
+70043	Thief's Glove	Use: Increases item drop rate of monsters by 1.5x	
+70047	Language Ring(Sample)	Use: Can communicate with players from other kingdoms	
+70048	Escapee's Cape	Use: Hide Hostile Killer Points	
+70049	Lucy's Ring	Use: Prevents dropping of items	
+70050	Sage King's Symbol	Use: Receive double Hostile Killer Points when killing monsters	
+70051	Sage King's Glove	Use: Receive double Hostile Killer Points when killing monsters.	
+70052	Charm of Karma1	A charm that is used by Buddhists to safeguard against bad luck	
+70053	Charm of Karma2	A charm that is used by Buddhists to safeguard against bad luck	
+70054	Charm of Karma3	A charm that is used by Buddhists to safeguard against bad luck	
+			
+70102	Zen Bean	Use: Increases Hostile Killer Points	
+			
+70104	Polymorph Marble	Used for transformation	
+70105	Polymorph Marble	Used for transformation	
+70106	Polymorph Marble	Used for transformation	
+70107	Polymorph Marble	Used for transformation	
+			
+70201	Bleach	Return your original hair color	
+70202	White Hair Dye	Can only be used every 3 levels	
+70203	Blonde Hair Dye	Can only be used every 3 levels	
+70204	Red Hair Dye	Can only be used every 3 levels	
+70205	Purple Hair Dye	Can only be used every 3 levels	
+70206	Black Hair Dye	Can only be used every 3 levels	
+			
+70301	Couple's Ring	Engagement ring	
+70302	Wedding Ring	Proof of Marriage	
+			
+			
+71001	Exorcism Scroll	Reset the time of learning Skill Book.	
+71002	Stats Reset Scroll	Resets both skill and stats points.	
+71003	Skill Reset Scroll	Resets a skill bask to 0	
+71004	Dragon God Blessing	Prevents EXP lose from death.	
+71005	Language Ring 	Can speak all kingdoms' languages	
+71006	Language Ring 	Can speak all kingdoms' languages	
+71007	Language Ring 	Can speak all kingdoms' languages	
+71008	Fishing Manual	Chance of catching a rare fish is doubled	
+71009	Expanded Storage	Expands your bank to 3 slots in 30 days.	
+71010	Third Hand	Auto-picks up dropped Gold	
+71011	Emotion Mask	"Once equipped, allows you to express emotions."	
+71012	Liutao	"When equipped by a party leader, it increases EXP of party members and leader by 30%"	
+71013	Fireworks	Fireworks fill the sky during a festival	
+71014	Liquor of Speed	Use: Attack Speed +10 for 30 mins	
+71015	Experience Ring	Use: Increases EXP by 50% for 30 mins	
+71016	Thief's Glove	Use: Increases item drop rate by 1.5x for 30 mins	
+71017	Lucky Gold Coin	Increases gold drop rate by 2x for 30 mins	
+71018	Life Pill	Use: Fully recovers HP	
+71019	Spirit Pill	Use: Fully recovers MP	
+71020	Dragon God's Pill	Use: fully recovers HP & MP	
+71021	War God Blessing Scroll	It guarantees successful +0 to +3 item upgrades	
+71022	Attribute Reset Scroll	"Reset your stats ONLY(CON,STR,INT and DEX)"	
+71023	Vitality Oblivion Book	Use: resets MP points	
+71024	Strength Oblivion Book	Use: resets STR points	
+71025	Agility Oblivion Stone	The Blacksmith can combine this with a Bless Scroll to create a Master Compass.	
+71026	Magic Metal	Use to make a Dragon God Bless Scroll	
+71027	Dragon God Life	Use: increases max HP by 20% for 30 mins	
+71028	Dragon God Attack	Use: increases damage by 18-20% for 30 mins	
+71029	Dragon God Intelligence	Use: increases max MP by 20% for 30 mins	
+71030	Dragon God Defense	Use: decreases hurt rate by 18-20% for 30 mins	
+71031	Dragon God Support	Use: increases all stats by 5 points	
+71032	Dragon God Blessing Scroll	"Increases item upgrade chance by 10%, and prevents destruction of item if upgrade fails"	
+71033	Emotion Mask	Can use emotional actions	
+71034	Liquor of Speed+	Use: Attack speed +15 for 30 mins	
+71035	Quest Potion	Increases the success rate of handing in Lin's quest items by 80%	
+71036	Summon Scroll - Chief Orc	Use: summons Chief Orc	
+71037	Summon Scroll - Esoteric Leader	Use: summons Esoteric Leader	
+71038	Summon Scroll - Queen Spider	Use: summons Queen Spider	
+71039	Summon Scroll - Giant Desert Tortoise	Use: summons Giant Desert Tortoise	
+71040	Summon Scroll - Flame King	Use: summons Flame King	
+71041	Summon Scroll - Nine Tails	Use: summons Nine Tails	
+71042	Summon Scroll - Demon King	Use: summons Demon King	
+71043	Summon Scroll - Yellow Tiger Ghost	Use: summons Yellow Tiger Ghost	
+71044	Palm of Critical	Use: increases chance of critical damage in attacks by 20% for 10 mins	
+71045	Palm of Pierce	Use: increases chance of piercing armor in attacks by 10% for 10 mins	
+71047	Unburden	Removes Spirit Stone from socket of an item	
+71048	Gender Change Scroll	Changes the sex of a character	
+71049	Silk Bundle	Opens up a private shop with unlimited usage.	
+71050	Leopard Pill	Movement Speed +60 for 30 mins.	
+71051	Blast	Fireworks fill the sky during a festival	
+71052		"When equipped, prevents items dropping"	
+71053		"When equipped, regenerates alignment twice as fast"	
+71054	Scroll of Betrayal	Allow players to change their Kingdom. Can only be used once a week.	
+71055	Change of Name List	Use: changes character's name	
+71056	Breath of the Blue Dragon	Significantly increases success rate of upgrading +4 Spirit Stone to +5 Spirit Stone.	
+71057	Summon Scroll - Vein of Fossil Trunk Ore	Use: finds vein of Fossil Trunk	
+71058	Summon Scroll - Vein of Copper Ore	Use: finds vein of Copper	
+71059	Summon Scroll - Vein of Silver Ore	Use: finds vein of Silver	
+71060	Summon Scroll - Vein of Gold Ore	Use: finds vein of Gold	
+71061	Summon Scroll - Vein of Jade Ore	Use: finds vein of Jade	
+71062	Summon Scroll - Vein of Ebony Ore	Use: finds vein of Ebony	
+71063	Summon Scroll - Pile of Clams 	Use: finds vein of Clams	
+71064	Summon Scroll - Vein of White Gold Ore	Use: finds vein of White Gold	
+71065	Summon Scroll - Vein of Crystal Ore	Use: finds vein of Crystal	
+71066	Summon Scroll - Vein of Amethyst Ore	Use: finds vein of Amethyst	
+71067	Summon Scroll - Vein of Heaven's Tear Ore	Use: finds vein of Heaven's Tear	
+71068	Lovebird Feather	Use: double Couples' Love Points	
+71069	Harmony Earring	 Increases your spouse and your pierce chance	
+71070	Love Bracelet	"Once equipped, increases couples' experience for 3 hrs.  Must be Level 35+."	
+71071	Love Earring	"Once equipped, increases couples' chance of|critical attacks for 3 hrs.  Must be Level 35+"	
+71072	Harmony Bracelet	"Once equipped, decreases mobs attack power for 3 hrs.  Must be Level 35+"	
+71073	Love Necklace	"Once equipped, increases couples' attack power for 3 hrs.  Must be Level 35+"	
+71074	Harmony Necklace	"Once equipped, increases couples' defenses for 3 hrs.  Must be Level 35+"	
+71075	Hair Dye(Blue)	Dyes hair blue	
+71076	Hair Dye(Black)	Dyes hair black	
+71077	Hair Dye(White)	Dyes hair white	
+71078	Hair Dye(Blonde)	Dyes hair blonde	
+71079	Hair Dye(Brown)	Dyes hair brown	
+71080	Summon Scroll - Metin Stone(L)	Use: summons Metin Stone (L)	
+71081	Summon Scroll - Metin Stone(N)	Use: summons Metin Stone (N)	
+71082	Summon Scroll - Metin Stone(H)	Use: summon Metin Stone (H)	
+71083	Stone Craft Book	Use: Removes the stone pieces from the sockets	
+71084	Enhancement Scroll	Use: Changes items stats	
+71085	Enhancement Change Scroll	Use: Adds stats on item	
+71086	Level Up Quest(20~29)		
+71087	Level Up Quest(30~39)		
+71088	Mission Book(Easy)		
+71089	Mission Book(Normal)		
+71090	Mission Book(Hard)		
+71091	Signed Bundle	Use: changes color of letters on store sign	
+71092	Polymorph Book	Teaches transformation	
+71093	Polymorph Marble	Use: transformation	
+71094	Hermit's Advice	Increases chance of using skill book successfully by 2.5x.  Can only be used once	
+71097	Strength Potion+	Increases 45-50% of attack damage continuously for 30 minutes	
+71098	Defense Potion+	Increases 45-50% of damage reduce continuously for 30 minutes	
+71101	Haste Potion 	Movement rate is 20% faster (Duration 30 minutes)	
+71102	Haste Potion+	Movement rate is 30% faster (Duration 30 minutes)	
+71103	Stamina Reset Scroll 	Resets character's constitution stat to 1.	
+71104	Intelligence Reset Scroll	Resets character's intelligence stat to 1.	
+71105	Strength Reset Scroll	Resets character's strength stat to 1.	
+71106	Agility Reset Scroll	Resets character's agility stat to 1.	
+71107	Heavenly Peach	Restores 3000 Hostile Kill points (Cooldown: 5 hours).	
+71108	Heavenly Peach Wine+	Made out of Heavenly Peach Flowers. Restores Health instantly.	
+71109	Scroll of the Revoker	Removes the most recent spirite stone you have added to the item.	
+71110	Artemis Candy	Give a name to the horse and +20 defense | Item valid for 30 days only	
+71111	Christmas socks	Old weary socks however you can hang on the christmas tree.	
+71112	Stone retrieve scroll	Retrieve metin stone.	
+71113	Book of Diamond Budah	Broadcast Item status through the chat window.	
+71114	Boar Medal	You can mount a Boar for 5 minutes.	AC +75
+71116	Wolf Medal	You can mount a Wolf for 5 minutes.	AC +100
+71118	Tiger Medal	You can mount a Tiger for 5 minutes.	AC +125
+71120	Lion Medal	You can mount a Lion for 5 minutes.	AP +200
+
+			
+72001	Experience Ring	Increases EXP by 50%	
+72002	Experience Ring	Increases EXP by 50%	
+72003	Experience Ring	Increases EXP by 50%	
+72004	Thief's Glove	Increases item drop rate by 50%	
+72005	Thief's Glove	Increases item drop rate by 50%	
+72006	Thief's Glove	Increases item drop rate by 50%	
+72007	Silk Bundle	Can open a private shop for 15 minutes	
+72008	Silk Bundle	Can open a private shop for 15 minutes	
+72009	Silk Bundle	Can open a private shop for 15 minutes	
+72010	Lovebird Feather	"When it is equipped, love points increase faster for 15 minutes"	
+72011	Lovebird Feather	"When it is equipped, love points increase faster for 15 minutes"	
+72012	Lovebird Feather	"When it is equipped, love points increase faster for 15 minutes"	
+72013	Fishing Manual	Chance of catching a rare fish is doubled 	
+72014	Fishing Manual	Chance of catching a rare fish is doubled 	
+72015	Fishing Manual	Chance of catching a rare fish is doubled 	
+72016	Third Hand	A hand that picks up dropped money automatically for 15 minutes	
+72017	Third Hand	A hand that picks up dropped money automatically for 15 minutes	
+72018	Third Hand	A hand that picks up dropped money automatically for 15 minutes	
+72019	Expanded Storage	Get 3 storage rooms for 15 minutes	
+72020	Expanded Storage	Get 3 storage rooms for 15 minutes	
+72021	Expanded Storage	Get 3 storage rooms for 15 minutes	
+72022	Lucky Gold Coin	Increases gold drop rate by 2x for 30 mins	
+72023	Lucky Gold Coin	Increases gold drop rate by 2x for 30 mins	
+72024	Lucky Gold Coin	Increases gold drop rate by 2x for 30 mins	
+72025	Palm of Pierce	Increases chance of hitting through opponent's defenses by 20% for 10 mins	
+72026	Palm of Pierce	Increases chance of hitting through opponent's defenses by 20% for 10 mins	
+72027	Palm of Pierce	Increases chance of hitting through opponent's defenses by 20% for 10 mins	
+72028	Emotion Mask	Can use emotional actions	
+72029	Emotion Mask	Can use emotional actions	
+72030	Emotion Mask	Can use emotional actions	
+72031	Dragon God Attack	Increases attacking damage to opponents by 12%-15%	
+72032	Dragon God Attack	Increases attacking damage to opponents by 12%-15%	
+72033	Dragon God Attack	Increases attacking damage to opponents by 12%-15%	
+72034	Dragon God Defence 	Reduces damage received by 12%-15%	
+72035	Dragon God Defence 	Reduces damage received by 12%-15%	
+72036	Dragon God Defence 	Reduces damage received by 12%-15%	
+72037	Dragon God Life 	Max HP +20% 	
+72038	Dragon God Life 	Max HP +20% 	
+72039	Dragon God Life 	Max HP +20% 	
+72040	Dragon God Intelligence 	Max MP +20%	
+72041	Dragon God Intelligence 	Max MP +20%	
+72042	Dragon God Intelligence 	Max MP +20%	
+72043	Liutao		
+72044	Liutao		
+72045	Liutao	"When it is equipped by party leader, it increases EXP of party members and leader by 30%"	
+72046	Palm of Critical	Critical Chance +10%	
+72047	Palm of Critical	Critical Chance +10% 	
+72048	Palm of Critical	Critical Chance +10% 	
+			
+72301	Blessing scroll	"After use it to upgrade the equipment, even though the upgrade failed, only the rank will go down one level."	"Direct use to item. Does not disappear when upgrade fails. Quest reward item. Cannot trade, sell or drop."
+72302	Liutao	One of the best war manual.	"When Group Leader equips it, whole group gains experience 30% more. Quest reward item. Cannot trade, sell or drop."
+72303	Experience ring	Legendary ring from an ancient hero.	"More experience gain when equipped. Cannot be unequipped. Quest reward item. Cannot trade, sell or drop."
+72304	Blessing marble	"Legendary blessed marble. When an item's attributes (CON, STR, DEX, INT) are over 4, this adds one more"	"Quest reward item. Cannot trade, sell or drop."
+72305	Vanishing mirror		"Quest reward item. Cannot trade, sell or drop."
+72306	Blacksmith¡¯s Memo	Memo from legendary blacksmith.	"Upgrade from 4th grade item to 5th grade item. Quest reward item. Cannot trade, sell or drop."
+72307	Blacksmith¡¯s manual	A Letter from legendary blacksmith 	"Quest reward item. Cannot trade, sell or drop."
+72308	Perpetual Iron	The Blacksmith can combine this with a Blessing Scroll to create a War God Blessing Scroll	"Quest reward item. Cannot trade, sell or drop."
+72309	Master Compass	Letter of blacksmith. Gives higher chance of successful upgrade.	"Quest reward item. Cannot trade, sell or drop."
+72310	Exorcism Scroll	"When learning failed, curse can be lifted to provide another chance to continue learning."	"Quest reward item. Cannot trade, sell or drop."
+72311	Dragon God's pill	Restores HP and MP 100%.	"Quest reward item. Cannot trade, sell or drop."
+72312	Dragon God Attack	Increases attacking damage to opponents by 12%-15%. Duration 30 min.	"Quest reward item. Cannot trade, sell or drop."
+72313	Dragon God Defence 	Reduces damage received by 12%-15%. Duration 30 min.	"Quest reward item. Cannot trade, sell or drop."
+72314	Dragon God Blessing Scroll	"Increases item upgrade chance by 10%, and prevents destruction of item if upgrade fails."	"Quest reward item. Cannot trade, sell or drop."
+72315	Movement Speed Liquor	Increases movenment speed 60%.	"Quest reward item. Cannot trade, sell or drop."
+72316	Stone Craft Book	Removes the stone pieces from the sockets.	"Quest reward item. Cannot trade, sell or drop."
+72317	Enhancement Scroll	Change item stats	"Quest reward item. Cannot trade, sell or drop."
+72318	Enhancement Change Scroll	Add stats on item.	"Quest reward item. Cannot trade, sell or drop."
+			
+72501	Experience Ring	Increases gaining EXP by 50% in Membership	
+72502	Thief's Gloves	Item Drop Rate increases by 1.5 times in Membership	
+		Movement Speed +30 (50 hours)	
+72701	Boots of wind	Wind god gives faster movement.	Give +30 Speed
+			
+72703	Tiger Earring	Increases damage 300.	50 hours
+72704	Dragon Earring	Increases Defence 300.	50 hours
+72705	Tiger Bracelet	Increases Skill attack 30%	50 hours
+72706	Dragon Bracelet	Increases Skill defence 30%	50 hours
+			
+72709	Tiger Earring	Increases damage 300.	20 hours
+72710	Dragon Earring	Increases Defence 300.	20 hours
+72711	Tiger Bracelet	Increases Skill attack 30%	20 hours
+72712	Dragon Bracelet	Increases Skill defence 30%	20 hours
+			
+73001	Shaggy Short Cut(Red)	"Shaggy red short hair, designed for warrior"	
+73002	Shaggy Short Cut(Light Brown)	"Shaggy light brown short hair, designed for warrior"	
+73003	Shaggy Short Cut(Sky Blue)	"Shaggy sky blue short hair, designed for warrior"	
+73004	Shaggy Short Cut(Brown)	"Shaggy brown short hair, designed for warrior"	
+73005	Bandanna(Red)	Red bandanna keeps your hair neat	
+73006	Bandanna(Check)	Check pattern bandanna keeps your hair neat	
+73007	Bandanna(Blue)	Blue bandanna keeps your hair neat	
+73008	Bandanna(Green Symbol)	Green symbol bandanna keeps your hair neat	
+73009	Tied Back Long Hair(Black)	Popular hair style for ancient fighters	
+73010	Tied Back Long Hair(Red)	Popular hair style for ancient fighters	
+73011	Tied Back Long Hair(Light Brown)	Popular hair style for ancient fighters	
+73012	Tied Back Long Hair(Lime Green)	Popular hair style for ancient fighters	
+			
+73251	Ponytail(Brown)	One of girls' favorite hair style	
+73252	Ponytail(Green)	One of girls' favorite hair style	
+73253	Ponytail(Blue)	One of girls' favorite hair style	
+73254	Ponytail(Ivory)	One of girls' favorite hair style	
+73255	Medium Short Cut(Red)	Assassin's red medium short hair cut	
+73256	Medium Short Cut(Brown)	Assassin's brown medium short hair cut	
+73257	Medium Short Cut(Light Brown)	Assassin's light brown medium short hair cut	
+73258	Medium Short Cut(Purple)	Assassin's purple medium short hair cut	
+73259	Short Cut(Red)	Assassin's red short hair cut	
+73260	Short Cut(Sky Blue)	Assassin's  brown short hair cut	
+73261	Short Cut(Black)	Assassin's light brown short hair cut	
+73262	Short Cut(Yellow)	Assassin's purple short hair cut	
+			
+73501	Sporty Hair Cut(White)	Sura's white sporty hair style	
+73502	Sporty Hair Cut(Brown)	Sura's brown sporty hair style	
+73503	Sporty Hair Cut(Yellow)	Sura's yellow sporty hair style	
+73504	Sporty Hair Cut(Green)	Sura's green sporty hair style	
+73505	Charisma Hair(White)	Old style hair cut but very glamorous	
+73506	Charisma Hair(Red)	Old style hair cut but very glamorous	
+73507	Charisma Hair(Black)	Old style hair cut but very glamorous	
+73508	Charisma Hair(Purple)	Old style hair cut but very glamorous	
+73509	Chic Swept-Back(White)		
+73510	Chic Swept-Back(Sky Blue)	This sky blue chic swept-back hair style is very fashionable	
+73511	Chic Swept-Back(Black)	This black chic swept-back hair style is very fashionable	
+73512	Chic Swept-Back(Brown)	This brown chic swept-back hair style is very fashionable	
+			
+73751	Butterfly Hairpin(Brown)	Beautiful brown long hair with butterfly hairpin on it	
+73752	Butterfly Hairpin(Black)	Beautiful black long hair with butterfly hairpin on it	
+73753	Butterfly Hairpin(Sky Blue)	Beautiful sky blue long hair with butterfly hairpin on it	
+73754	Butterfly Hairpin(White)	Beautiful white long hair with butterfly hairpin on it	
+73755	Semi-Long Short Cut(Brown)	"A neat hair cut, both guys and girls like it"	
+73756	Semi-Long Short Cut(Black)	"A neat hair cut, both guys and girls like it"	
+73757	Semi-Long Short Cut(Yellow)	"A neat hair cut, both guys and girls like it"	
+73758	Semi-Long Short Cut(Purple)	"A neat hair cut, both guys and girls like it"	
+73759	Long Hair Cut(Light Brown)	"A neat hair cut, both guys and girls like it"	
+73760	Long Hair Cut(Yellow)	A feminine hairstyle with long hair cut in layers	
+73761	Long Hair Cut(Purple)	A feminine hairstyle with long hair cut in layers	
+73762	Long Hair Cut(Brown)	A feminine hairstyle with long hair cut in layers	
+			
+			
+			
+			
+74001	Shaggy Short Cut(Red)	"Right-click to use, type hair to check expiry day."	
+74002	Shaggy Short Cut(Light Brown)	"Right-click to use, type hair to check expiry day."	
+74003	Shaggy Short Cut(Sky Blue)	"Right-click to use, type hair to check expiry day."	
+74004	Shaggy Short Cut(Brown)	"Right-click to use, type hair to check expiry day."	
+74005	Neat Hair Band(Red)	"Right-click to use, type hair to check expiry day."	
+74006	Neat Hair Band(Check)	"Right-click to use, type hair to check expiry day."	
+74007	Neat Hair Band(Blue)	"Right-click to use, type hair to check expiry day."	
+74008	Neat Hair Band(Green Symbol)	"Right-click to use, type hair to check expiry day."	
+74009	Tied Back Long Hair(Black)	"Right-click to use, type hair to check expiry day."	
+74010	Tied Back Long Hair(Red)	"Right-click to use, type hair to check expiry day."	
+74011	Tied Back Long Hair(Light Brown)	"Right-click to use, type hair to check expiry day."	
+74012	Tied Back Long Hair(Lime Green)	"Right-click to use, type hair to check expiry day."	
+			
+74251	Ponytail(Brown)	"Right-click to use, type hair to check expiry day."	
+74252	Ponytail(Green)	"Right-click to use, type hair to check expiry day."	
+74253	Ponytail(Blue)	"Right-click to use, type hair to check expiry day."	
+74254	Ponytail(Ivory)	"Right-click to use, type hair to check expiry day."	
+74255	Medium Short Cut(Red)	"Right-click to use, type hair to check expiry day."	
+74256	Medium Short Cut(Brown)	"Right-click to use, type hair to check expiry day."	
+74257	Medium Short Cut(Light Brown)	"Right-click to use, type hair to check expiry day."	
+74258	Medium Short Cut(Purple)	"Right-click to use, type hair to check expiry day."	
+74259	Short Cut(Red)	"Right-click to use, type hair to check expiry day."	
+74260	Short Cut(Sky Blue)	"Right-click to use, type hair to check expiry day."	
+74261	Short Cut(Black)	"Right-click to use, type hair to check expiry day."	
+74262	Short Cut(Yellow)	"Right-click to use, type hair to check expiry day."	
+			
+74501	Sporty Hair Cut(White)	"Right-click to use, type hair to check expiry day."	
+74502	Sporty Hair Cut(Brown)	"Right-click to use, type hair to check expiry day."	
+74503	Sporty Hair Cut(Yellow)	"Right-click to use, type hair to check expiry day."	
+74504	Sporty Hair Cut(Green)	"Right-click to use, type hair to check expiry day."	
+74505	Charisma Hair(White)	"Right-click to use, type hair to check expiry day."	
+74506	Charisma Hair(Red)	"Right-click to use, type hair to check expiry day."	
+74507	Charisma Hair(Black)	"Right-click to use, type hair to check expiry day."	
+74508	Charisma Hair(Purple)	"Right-click to use, type hair to check expiry day."	
+74509	Chic Swept-Back(White)	"Right-click to use, type hair to check expiry day."	
+74510	Chic Swept-Back(Sky Blue)	"Right-click to use, type hair to check expiry day."	
+74511	Chic Swept-Back(Black)	"Right-click to use, type hair to check expiry day."	
+74512	Chic Swept-Back(Brown)	"Right-click to use, type hair to check expiry day."	
+			
+74751	Butterfly Hairpin(Brown)	"Right-click to use, type hair to check expiry day."	
+74752	Butterfly Hairpin(Black)	"Right-click to use, type hair to check expiry day."	
+74753	Butterfly Hairpin(Sky Blue)	"Right-click to use, type hair to check expiry day."	
+74754	Butterfly Hairpin(White)	"Right-click to use, type hair to check expiry day."	
+74755	Semi-Long Short Cut(Brown)	"Right-click to use, type hair to check expiry day."	
+74756	Semi-Long Short Cut(Black)	"Right-click to use, type hair to check expiry day."	
+74757	Semi-Long Short Cut(Yellow)	"Right-click to use, type hair to check expiry day."	
+74758	Semi-Long Short Cut(Purple)	"Right-click to use, type hair to check expiry day."	
+74759	Semi-Long Hair Cut(Light Brown)	"Right-click to use, type hair to check expiry day."	
+74760	Semi-Long Hair Cut(Yellow)	"Right-click to use, type hair to check expiry day."	
+74761	Semi-Long Hair Cut(Purple)	"Right-click to use, type hair to check expiry day."	
+74762	Semi-Long Hair Cut(Brown)	"Right-click to use, type hair to check expiry day."	
+			
+			
+			
+			
+75001	Cute chinese Double-Bun Hair(Red)	"Right-click to use, type hair to check expiry day."	
+75002	Cute chinese Double-Bun Hair(Pink)	"Right-click to use, type hair to check expiry day."	
+75003	Cute chinese Double-Bun Hair(Light Blue)	"Right-click to use, type hair to check expiry day."	
+75004	Cute chinese Double-Bun Hair(Light Brown)	"Right-click to use, type hair to check expiry day."	
+75005	Headband Short cut(Brown)	"Right-click to use, type hair to check expiry day."	
+75006	Headband Short cut(Ivory)	"Right-click to use, type hair to check expiry day."	
+75007	Headband Short cut(Light Blue)	"Right-click to use, type hair to check expiry day."	
+75008	Headband Short cut(Green)	"Right-click to use, type hair to check expiry day."	
+75009	Ballerina Bun Hair(Black)	"Right-click to use, type hair to check expiry day."	
+75010	Ballerina Bun Hair(Pink)	"Right-click to use, type hair to check expiry day."	
+75011	Ballerina Bun Hair(Light Brown)	"Right-click to use, type hair to check expiry day."	
+75012	Ballerina Bun Hair(Green)	"Right-click to use, type hair to check expiry day."	
+			
+75201	Long Tied Hair(Brown)	"Right-click to use, type hair to check expiry day."	
+75202	Long Tied Hair(Green)	"Right-click to use, type hair to check expiry day."	
+75203	Long Tied Hair(Blue)	"Right-click to use, type hair to check expiry day."	
+75204	Long Tied Hair(Ivory)	"Right-click to use, type hair to check expiry day."	
+75205	Du-rag(White)	"Right-click to use, type hair to check expiry day."	
+75206	Du-rag(Dark Green)	"Right-click to use, type hair to check expiry day."	
+75207	Du-rag(Ocher)	"Right-click to use, type hair to check expiry day."	
+75208	Du-rag(Red)	"Right-click to use, type hair to check expiry day."	
+75209	Shaggy Cut(Red)	"Right-click to use, type hair to check expiry day."	
+75210	Shaggy Cut(Blue)	"Right-click to use, type hair to check expiry day."	
+75211	Shaggy Cut(Black)	"Right-click to use, type hair to check expiry day."	
+75212	Shaggy Cut(Yellow)	"Right-click to use, type hair to check expiry day."	
+			
+75401	Boyish Tied Hair(Gey)	"Right-click to use, type hair to check expiry day."	
+75402	Boyish Tied Hair(Light Brown)	"Right-click to use, type hair to check expiry day."	
+75403	Boyish Tied Hair(Yellow)	"Right-click to use, type hair to check expiry day."	
+75404	Boyish Tied Hair(Green)	"Right-click to use, type hair to check expiry day."	
+75405	Fantastic Straight Hair(White)	"Right-click to use, type hair to check expiry day."	
+75406	Fantastic Straight Hair(Red)	"Right-click to use, type hair to check expiry day."	
+75407	Fantastic Straight Hair(Black)	"Right-click to use, type hair to check expiry day."	
+75408	Fantastic Straight Hair(Purple)	"Right-click to use, type hair to check expiry day."	
+75409	Sausage Tied Hair(White)	"Right-click to use, type hair to check expiry day."	
+75410	Sausage Tied Hair(Purple)	"Right-click to use, type hair to check expiry day."	
+75411	Sausage Tied Hair(Black)	"Right-click to use, type hair to check expiry day."	
+75412	Sausage Tied Hair(Brown)	"Right-click to use, type hair to check expiry day."	
+			
+75601	Long Highlighted Swept-Back(Ocher)	"Right-click to use, type hair to check expiry day."	
+75602	Long Highlighted Swept-Back(Dark Blue)	"Right-click to use, type hair to check expiry day."	
+75603	Long Highlighted Swept-Back(Blue)	"Right-click to use, type hair to check expiry day."	
+75604	Long Highlighted Swept-Back(Grey)	"Right-click to use, type hair to check expiry day."	
+75605	Long Straight(Brown)	"Right-click to use, type hair to check expiry day."	
+75606	Long Straight(Dark Blue)	"Right-click to use, type hair to check expiry day."	
+75607	Long Straight(Yellow)	"Right-click to use, type hair to check expiry day."	
+75608	Long Straight(Purple)	"Right-click to use, type hair to check expiry day."	
+75609	Classic Swordman Hair(Brown)	"Right-click to use, type hair to check expiry day."	
+75610	Classic Swordman Hair(Grey-Brown)	"Right-click to use, type hair to check expiry day."	
+75611	Classic Swordman Hair(Purple)	"Right-click to use, type hair to check expiry day."	
+75612	Classic Swordman Hair(Red)	"Right-click to use, type hair to check expiry day."	
+			
+			
+			
+80001	Money Pouch		
+80002	Blank Paper		
+80008	Lump of Gold	Has a very high value	
+80009	Teleport Ring	Teleport to city from anywhere.	
+			
+90001	Empty Water Bottle		
+90002	Water Bottle		
+90003	Crystal		
+90004	Gem		
+90005	Water Stone		
+90006	Spirit Stone		
+90007	Mineral		

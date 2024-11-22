@@ -1,0 +1,9 @@
+SCC = This is a source code control file
+
+[TorrentPatch_VC90.vcproj]
+SCC_Aux_Path = "P4SCC#10.1.89.15:1901#utf8#rtsummit##rtsummit_RTSUMMIT-PC"
+SCC_Project_Name = Perforce Project
+
+[TorrentPatch_VC90.sln]
+SCC_Aux_Path = "P4SCC#10.1.89.15:1901#utf8-bom#rtsummit##rtsummit_RTSUMMIT-PC"
+SCC_Project_Name = Perforce Project

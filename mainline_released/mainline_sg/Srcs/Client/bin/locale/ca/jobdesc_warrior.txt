@@ -1,0 +1,19 @@
+[DELAY value;10]
+Warriors have a sharp sword[ENTER]
+and a thick shield.[ENTER]
+They are the chief players on[ENTER]
+the battlefield from the[ENTER]
+beginning to the end.[ENTER]
+[WAIT]
+The are proud and[ENTER]
+charismatic, gathering allies[ENTER]
+and followers around them.[ENTER]
+No one dares offend them.[ENTER]
+They use cold steel and a[ENTER]
+[WAIT]
+blazing spirit to bring[ENTER]
+tranquility to the world.[ENTER]
+However,[ENTER]
+magic is their weakness.
+
+

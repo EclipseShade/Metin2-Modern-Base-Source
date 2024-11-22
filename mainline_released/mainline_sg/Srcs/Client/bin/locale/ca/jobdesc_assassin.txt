@@ -1,0 +1,17 @@
+[DELAY value;10]
+Assassins are the masters of[ENTER]
+daggers and bows.[ENTER]
+Only a few rare minds and[ENTER]
+bodies can survive the brutal[ENTER]
+training.[ENTER]
+[WAIT]
+However, if the conditions[ENTER]
+are met, they have the power[ENTER]
+to turn the tide of a battle[ENTER]
+in their favor.[ENTER]
+They are a lightly armored[ENTER]
+[WAIT]
+class and have the highest[ENTER]
+agility of all the classes,[ENTER]
+but their defence is low.
+

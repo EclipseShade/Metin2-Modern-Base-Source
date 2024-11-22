@@ -1,0 +1,1118 @@
+11901	Fraque	Traje masculino de casamento.
+11902	Fraque	Traje masculino de casamento.
+11903	Vestido de noiva	Traje feminino de casamento.
+11904	Vestido de noiva	Traje feminino de casamento.
+		
+22000	Pergaminho de Retorno a Vila	Teleporte para o vilarejo.
+22010	Pergaminho de Retorno	Teleporte para o local marcado.
+		
+25040	Pergaminho da Benção	O item não quebra caso ocorra falha no refinamento, porém diminui um nível.
+25041	metal mágico	Com a ajuda do Ferreiro, tranforma o Pergaminho da Paz no Pergaminho do Dragão.
+		
+25100	pergaminho da pedra espiritual	Remove as Gemas dos Slots do acessório.
+		
+27600	Fogueira	Use para cozinhar peixes.
+27610	Manual de Pesca	Aumenta em 2% a chance de pescar um peixe melhor.
+27620	Pesca Ilustrada	Livro contendo uma vasta informação sobre Peixes, te ajuda a ter maior sucesso em sua pescaria.
+		
+27799	Espinha de Peixe	Carcaça de peixe, serve como isca.
+27800	Isca de Bolinho de Arroz	Os peixes não resistem a essa isca.
+27801	Minhoca	Comida preferida dos peixes.
+27802	Isca de Peixe	Um pequeno peixe usado para fisgar maiores.
+		
+27803	Crucian	Estão por toda parte, fácil de capturar.
+27804	Peixe Mandarin	Peixe delicioso.
+27805	Crucian Grande	Eles são grandes.
+27806	Carpa	Eles são razoavelmente raros.
+27807	Salmão	O sashimi de salmão é muito popular no Japão.
+27808	Carpa Capim	Só aparecem em algumas épocas do ano.
+27809	Truta Ribeirinha	Eles geralmente são encontrados nas margens superiores dos rios.
+27810	Enguia	Eles são muito nutritivos.
+27811	Truta Arco-Íris	Os seus corpos são brilhantes como o arco-íris.
+27812	Truta de Rio	Eles são encontrados nos rios.
+27813	Escardin	
+27814	Perca	As pessoas o chamam de dragão dos rios.
+27815	Tinca	Eles vivem em águas claras.
+27816	Peixe-Gato	As pessoas adoram a sua sopa.
+27817	Bótia	Um peixe liso, difícil de capturar.
+27818	Peixe Lótus	Animal de hábito onívoro.
+27819	Peixe Doce	Pode ser encontrado nos oceanos.
+27820	Peixe Rei	Pode ser encontrados nos rios gelados.
+27821	Shiri	Um peixe muito bonito.
+27822	Carpa Espelhada	Apreciado por não conter muitos espinhos.
+27823	Crucian Dourado	A cor de seu corpo é dourada como ouro.
+		
+27833	Crucian Cru	Pode ser preparado em uma fogueira.
+27834	Peixe Mandarin Cru	Pode ser preparado em uma fogueira.
+27835	Crucian Grande Cru	Pode ser preparado em uma fogueira.
+27836	Carpa Crua	Pode ser preparado em uma fogueira.
+27837	Salmão Cru	Pode ser preparado em uma fogueira.
+27838	Carpa Capim Crua	Pode ser preparado em uma fogueira.
+27839	Truta Ribeirinha Crua	Pode ser preparado em uma fogueira.
+27840	Enguia Crua	Pode ser preparado em uma fogueira.
+27841	Truta Arco-Íris Crua	Pode ser preparado em uma fogueira.
+27842	Truta de Rio Crua	Pode ser preparado em uma fogueira.
+27843	Escardin Cru	Pode ser preparado em uma fogueira.
+27844	Perca Crua	Pode ser preparado em uma fogueira.
+27845	Tinca Crua	Pode ser preparado em uma fogueira.
+27846	Peixe-Gato Cru	Pode ser preparado em uma fogueira.
+27847	Bótia Crua	Pode ser preparado em uma fogueira.
+27848	Peixe Lótus Cru	Pode ser preparado em uma fogueira.
+27849	Peixe Doce Cru	Pode ser preparado em uma fogueira.
+27850	Peixe Rei Cru	Pode ser preparado em uma fogueira.
+27851	Shiri Cru	Pode ser preparado em uma fogueira.
+27852	Carpa Espelhada Crua	Pode ser preparado em uma fogueira.
+27853	Crucian Dourado Cru	Pode ser preparado em uma fogueira.
+		
+27863	Crucian Grelhado	Recupera 180 HP
+27864	Peixe Mandarin Grelhado	Recupera 180 MP
+27865	Crucian Grande Grelhado	Recupera 350 HP
+27866	Carpa Grelhada	Aumenta a velocidade de Movimento em 20% por 10 minutos.
+27867	Salmão Grelhado	Recupera 350 MP
+27868	Carpa Capim Grelhada	Aumenta a velocidade de ataque em 20% por 10 minutos.
+27869	Truta Ribeirinha Grelhada	Recupera 600 HP
+27870	Enguia Grelhada	Aumenta sua Força em 10 pontos por 10 minutos.
+27871	Truta Arco-Iris Grelhada	Recupera 600 MP
+27872	Truta de Rio Grelhada	Recupera 230 MP instantaneamente.
+27873	Escardin Grelhado	Aumenta sua Agilidade em 10 pontos por 10 minutos.
+27874	Perca Grelhada	Retira feitiços negativos do seu personagem.
+27875	Tinca Grelhada	Recupera 230 HP instantaneamente.
+27876	Peixe-Gato Grelhado	Recupera 500 MP instantaneamente.
+27877	Bótia Grelhada	Invisibilidade por 5 minutos.
+27878	Peixe Lótus Grelhado	Recupera 500 HP instantaneamente.
+27879	Peixe Doce Grelhado	.
+27880	Peixe Rei Grelhado	.
+27881	Shiri Grelhado	.
+27882	Carpa Espelhada Grelhada	.
+27883	Crucian Dourado Grelhado	.
+		
+27987	Marisco	Chance de encontrar uma pérola em seu interior.
+27988	Mapa do Tesouro	Antigo mapa do tesouro.
+27989	Detector de Gemas	Detecta a localização das Gemas.
+27990	Lasca de Pedra	
+27991	Gema D'água	
+27992	Pérola Branca	Jóia
+27993	Pérola Azul	Jóia
+27994	Pérola Escarlate	Jóia
+27995	Garrafa Vazia	Garrafa vazia.
+27996	Garrafa de Veneno	Veneno muito forte, não pode beber.
+27997	Esfera Vital	Recupera completamente o HP.
+27998	Bolsa de Alquimia	Contém uma receita de alquimía.
+27999	Bolsa de Gemas	Bolsa de Gemas.
+		
+		
+29001	Vieira	
+29002	Vieira Azul	
+29003	Vieira Amarela	
+29004	Vieira Vermelha	
+29005	Vieira Verde	
+29006	Tártaro Amarelo	
+29007	Tártaro Amarelo Escuro	
+29006	Tártaro Azul	
+29007	Tártaro Azul Escuro	
+29008	Água Benta Azul	
+29009	Água Benta Ouro	
+29010	Água Benta Rubra	
+29011	Água Benta Verde	
+29012	Água Benta Azul Fraco	
+29013	Agua Benta Ouro Fraco	
+29014	Água Benta Rubra Fraco	
+29015	Água Benta Verde Fraco	
+29012	Água Benta Azul Forte	
+29013	Agua Benta Ouro Forte	
+29014	Água Benta Rubra Forte	
+29015	Água Benta Verde Forte	
+		
+30000	Cevada	Alimento básico, pode ser utilizado para a fabricação de bebidas.
+30001	Carta	Carta enviada para alguém.
+30002	Salsicha Frita	Comida apimentada.
+30003	Focinho de Porco	Dizem que pode trazer sorte (usado para refinação).
+30004	Presa de Javali	Bastante resistente (usado para refinação).
+30005	Lasca de Armadura	Lasca retirada de uma armadura antiga (usado para refinação).
+30006	Dente de Orc	Dente de Orc, está bem desgastado (usado para refinação).
+30007	Amuleto Orc	Dizem que esse amuleto aumenta a força dos Orcs (usado para refinação).
+30008	Dogmas do Culto Secreto	Documento de iniciação sobre o Culto Secreto (usado para refinação).
+30009	Remédio Desconhecido	Medicamento com ingrediente desconhecido (usado para refinação).
+30010	Bílis de Urso	Dizem que pode curar as pessoas que perderam o paladar (usado para refinação).
+30011	Novelo	Uma bola feita de fibras vegetais.
+30012	Garrafa de Vinho	Garrafa que exala um delicioso aroma de vinho.
+30013	Jarro de Bebida	Usado para servir bebidas.
+30014	Pêlo de Yeti	Grande proteção contra o frio por pertencer aos lendários Yetis (usado para refinação).
+30015	Lembrança Demoníaca	Cuidado, diz a lenda que quem o possui pode ter muito azar (usado para refinação).
+30016	Gema Demoníaca	Uma Gema perigosa, guarda dentro dela espíritos malignos (usado para refinação).
+30017	Presilha Ornamental	Usada para prender cabelos (usado para refinação).
+30018	Laço Vermelho	Muito comum para decorar cabelos com rabo-de-cavalo (usado para refinação).
+30019	Cachos-Flamejantes	Pode ser usado para a confecção de roupas, lhe aquece e ameniza o inverno (usado para refinação).
+30020	Avelã	Usada antigamente para tratamentos de beleza.
+30021	Pedaço de Gema	Um pedaço de Gema misterioso, em formato de castanha (usado para refinação).
+30022	Cauda de Cobra	Cauda de serpente, faz um barulho peculiar (usado para refinação).
+30023	Listras de Tigre Branco	Essa pele de animal é muito popular, usada como adorno (usado para refinação).
+30024	Rabo de Cavalo	Pode ser utilizado para se fazer pincéis e chapéus.
+30025	Bolsa Venenosa de Aranha	Bolsa interna onde as aranhas guardam seu poderoso veneno (usado para refinação).
+30026	Intestino de Lobo	Ingrediente usado na fabricação de um tipo muito popular de lingüiça no oriente (usado para refinação).
+30027	Pêlo de Lobo	Utilizado na fabricação de escovas para cabelo (usado para refinação).
+30028	Garra de Lobo	Extremamente afiada, é usada como ornamento (usado para refinação).
+30029	Fígado de Lobo	Ingrediente usado na fabricação de um tipo muito popular de lingüiça no oriente (usado para refinação).
+30030	Lâmina Enferrujada	Lâmina muito antiga, enferrujada com o tempo (usado para refinação).
+30031	Brinquedo	Antigo brinquedo para meninas, também usado como ornamento (usado para refinação).
+30032	Uniforme Antigo	Antigo uniforme negro para realização de artes marciais, desgastado com o tempo (usado para refinação).
+30033	Porcelana Quebrada	Um pedaço de um antigo vaso chinês quebrado (usado para refinação).
+30034	Laços Brancos	Muito comum para decorar cabelos com rabo-de-cavalo (usado para refinação).
+30035	Creme Facial	Uma antiga receita de cosmético, muito apreciado pelas mulheres (usado para refinação).
+30036	Erva Mística	Dizem que esta erva possui um efeito místico (usado para refinação).
+30037	Garra de Tigre	Usado com orgulho pelos caçadores que abatem um tigre (usado para refinação).
+30038	Listras de Tigre	Essa pele de animal é muito popular, usada como adorno (usado para refinação).
+30039	Pedaço de Tecido	Um pedaço de tecido retirado de alguma vestimenta, também usado para cobrir ferimentos em soldados (usado para refinação).
+30040	Folha	Uma folha nova de uma árvore desconhecida (usado para refinação).
+30041	Shuriken	Arremessado corretamente, pode ser fatal (usado para refinação).
+30042	Presas de Tigre Lutador	Presa de tigre, extremamente afiada (usado para refinação).
+30043	Feijão	Rico em proteinas, esse grão pode ser cozinhado e é delicioso.
+30044	Argila	Tipo de barro usado na fabricação de vasos chineses.
+30045	Ferrão de Escorpião	Através do ferrão o escorpião aplica seu veneno em suas vítimas (usado para refinação).
+30046	Cauda de Escorpião	É onde o escorpião guarda todo o veneno (usado para refinação).
+0	Livro de Maldições	Antigo livro com linguas perdidas e simbolos que dizem ensinar maldições (usado para refinação).
+30048	Fragmento de Gelo	Um pedaço de gelo que esfria o ar até mesmo no mais quente verão (usado para refinação).
+30049	Chifre de Orca do Gelo	Famosa ferramenta de esculpir (usado para refinação).
+30050	Esfera de Gelo	Feito de gelo, possuí uma propriedade mágica que lhe impede de derreter (usado para refinação).
+30051	Talismã Desconhecido	Antigo talismã, somente o Lider dos Fanáticos pode usar seu poder (usado para refinação).
+30052	Bandeira	Bandeira usada pelos selvagens em suas guerras (usado para refinação).
+30053	Pata de Urso	Dizem que é um ingrediente para cozinhar extremamente saboroso (usado para refinação).
+30054	Anel Precioso	Um anel feito de ouro.
+30055	Garra de Escorpião	As pinças de ataque do escorpiam, são muito afiadas (usado para refinação).
+30056	Teia de Aranha	Material extremamente resistente, lançado pelas aranhas para locomoção ou captura (usado para refinação).
+30057	Olhos de Aranha	Apesar de pequenos eram muito desejados por colecionadores (usado para refinação).
+30058	Bolsa de Ovos de Aranha	É usado por mulheres supersticiosas que desejam ter um filho logo (usado para refinação).
+30059	Patas de Aranha	Cheias de pêlos de aranha, agem como um talismã (usado para refinação).
+30060	Língua de Sapo	Comprida e pegajosa (usado para refinação).
+30061	Pata de Sapo	Um ingrediente muito raro para pratos exóticos (usado para refinação).
+30062	Frasco de Remédio	Onde se guardam os remédios vendidos pelos alquimistas (usado para refinação).
+30063	Remédio de Pele	Medicamento para problemas de pele (usado para refinação).
+30064	Pedra Afiada	Ferramenta antiga para se fabricar flechas (usado para refinação).
+30065	Sino	Tem o som bem agudo de um pequeno sino.
+30066	Pimenta	Pimenta bem forte (usado para refinação).
+30067	Pele de Cobra	Pele retirada da cobra, gelada e maleável (usado para refinação).
+30068	Carne de Soja	Feito de tofu (queijo de soja).
+30069	Garra de Lobo Ancião	Extremamente afiada, é usada como ornamento (usado para refinação).
+30070	Pêlo de Lobo Ancião	Utilizado na fabricação de escovas para cabelo (usado para refinação).
+30071	Bílis de Urso	Dizem que com ele pode-se recuperar a visão de um cego (necessário refinar)
+30072	Pata de Urso+	Um ítem procuradíssimo, por ser um alimento que proporciona alta resistência (necessário refinar)
+30073	Laços Brancos+	Laço utilizado para  trançar o cabelo.(necessário refinar)
+30074	Uniforme Antigo+	vestimenta utilizada pelas guildas (X). Parece desgastado (necessário refinar)
+30075	Shuriken+	Arma de arremesso, utilizado para ataques silenciosos (necessário refinar)
+30076	Amuleto Orc+	
+30077	Dente de Orc+	
+30078	Dogmas do Culto Secreto+	Documento para iniciante contendo as dogmas da Religião Secreta (Necessita refinação)
+30079	Talismã Desconhecido+	Talismã com uma inscrição. Apenas os membros da Religião Secreta poderão reconhecer. (necessário refinar)
+30080	Livro de Maldições+	Livro da Religião Secreta utilizado para amaldiçoar o oponente. (necessário refinar)
+30081	Rabo de Escorpião+	Rabo de Escorpião. Dizem que possui veneno. (necessário refinar)
+30082	Rabo de Cobra+	Rabo de Cobra. Faz barulho ao chacoalhar. (necessário refinar)
+30083	Remédio Desconhecido+	Remédio de composição desconhecida, uma esfera feita de gelo que não derrete mesmo com intenso calor (necessário refinar)
+30084	Talismã Desconhecido+	Talismã contendo alguma inscrição. Apenas os membros da Religião Secreta poderá reconhecer. (Necessita refinação)
+30085	Pedaço de Tecido+	
+30086	Lembrança Demoníaca+	Irá atrair o azar.
+30087	Gema Demoníaca+	
+30088	Fragmento de Gelo+	
+30089	Pêlo de Yeti+	
+30090	Esfera de Gelo+	
+30091	Símbolo do Guerreiro	Somente os guerreiros lendários possuem (usado para refinação).
+30092	Tesouro Selvagem	Recompensa pela vitória sobre os selvagens (usado para refinação).
+		
+30129 	Informação Secreta	Documento que contém instruções secretas do exército.
+30130 	Garrafa Vazia	Pode ser usada para guardar vários tipos de líquido.
+30131 	Carta do Ferreiro	Carta com instruções do Ferreiro para o Lenhador.
+30132 	Livro do Sábio	O livro favorito do sábio, contém informações sobre a cultura oriental.
+30133 	Sapatos do Vendedor	Um sapato bonito e novo.
+30134 	Sacola do Sábio	Sacola onde o Sábio guarda vários livros.
+30135 	Carta da Ariyoung	Uma carta destinada a Ariyoung.
+		
+30136 	Arco Dourado	Lendário arco místico, desejado por todos os caçadores.
+30137 	Sangue de Macaco	Sangue extraído de um macaco, tem um cheiro forte e azedo.
+30138 	Plasticina	Material ilegal encontrado nos desertos, tem propriedades medicinais.
+30139 	Dente Maligno	Usado como material para acessórios, esse pequeno dente tem um cheiro muito ruim.
+30140 	Linha	Material para fabricação de roupas, as deixando mais resistentes.
+30141 	Pedra Material	Material para fabricação de jóias.
+30142 	Carta	Uma carta selada com algo escrito. Os mais curiosos podem querer ler seu conteúdo.
+30143 	Erva Medicinal	Utilizada como remédio contra várias doenças.
+30144 	Fígado de Tigre	Dizem que, se preparado corretamente, pode melhorar a Resistência de quem o consome.
+30145 	Erva de Balso	O medicamento para os pés do Balso, o traidor.
+30146 	Gelo	Um pedaço de gelo normalmente usado para criar sobremesas.
+30147 	Princípios Fanáticos	Livro com detalhes dos dogmas do Culto Secreto.
+30148 	Símbolo Fanático	Simbólo que marca os cultistas Fanáticos.
+30149 	Raspas de Gelo	As comidas feitas com as raspas de gelo e alguns ingredientes fornecem um sabor refrescante no verão
+30150 	Folha de Antigo Diário	Página de um antigo diário com anotações de coordenadas.
+30151 	Felpa de Lobo	Corte de pelo macio de lobo, usado para a fabricação de espanadores.
+30152 	Poção de Zumbi	Dizem possuir propriedades de cura para doenças desconhecidas. Não teve ainda sua eficácia comprovada.
+30153 	Flor	Possui um odor agradável.
+30154 	Sutra Fanático	Anotações sobre como derrotar um Fanático Lider.
+30155 	Pingente da Mirine	Pode ser usado como um pingente para colar. Na parte de dentro está escrito o nome Mirine.
+30156 	Estudo do Culto Secreto	Várias anotações sobre o Culto Secreto, sua formação, seus principios e sua história.
+	.	
+30093	Bolsa da Sorte	Uma Bolsa de Seda que parece conter objetos valiosos
+30094	Bolsa da Sorte	Uma Bolsa de Seda que parece conter objetos valiosos
+30095	Bolsa da Sorte	Uma Bolsa de Seda que parece conter objetos valiosos
+30096	Bolsa da Sorte	Uma Bolsa de Seda que parece conter objetos valiosos
+	.	
+30210	Pedaço de Pérola	Pedaço de Pedra, parece azulado quando recebe um feixe de luz.
+30211	Pedaço de Pérola	Pedaço de Pedra, parece azulado quando recebe um feixe de luz.
+30212	Pedaço de Pérola	Pedaço de Pedra, parece azulado quando recebe um feixe de luz.
+30213	Pedaço de Pérola	Pedaço de Pedra, parece azulado quando recebe um feixe de luz.
+30214	Pedaço de Pérola	Pedaço de Pedra, parece azulado quando recebe um feixe de luz.
+30215	Pedaço de Pérola	Pedaço de Pedra, parece azulado quando recebe um feixe de luz.
+30216	Pedaço de Pérola	Pedaço de Pedra, parece azulado quando recebe um feixe de luz.
+30217	Pedaço de Pérola	Pedaço de Pedra, parece azulado quando recebe um feixe de luz.
+30218	Pedaço de Pérola	Pedaço de Pedra, parece azulado quando recebe um feixe de luz.
+30219	Pedaço de Pérola	Pedaço de Pedra, parece azulado quando recebe um feixe de luz.
+		
+30220 	Pedra da Alma Orc	Pedra lendária. Dizem que contém a alma de um Orc.
+30221 	Pedra da Alma Fanática	Pedra lendária. Dizem que contém a alma de um Fanático.
+30222 	Pedra da Alma Demoníaca	Pedra lendária. Dizem que contém a alma de um Demônio.
+30223 	Pedra da Alma Gelada	Pedra lendária. Dizem que contém a alma de um monstro do Gelo.
+30224 	Pedra da Alma Fantasma	Pedra lendária. Dizem que contém a alma de um Fantasma.
+30225 	Pedra da Alma Gigante	Pedra lendária. Dizem que contém a alma de um Gigante.
+30265	Fragmento da Medalha  (A)	1 fragmento de 5 partes.
+30266	Fragmento da Medalha  (B)	1 fragmento de 5 partes.
+30267	Fragmento da Medalha  (C)	1 fragmento de 5 partes.
+30268	Fragmento da Medalha  (D)	1 fragmento de 5 partes.
+30269	Fragmento da Medalha  (E)	1 fragmento de 5 partes.
+
+30311	Chave infernal	Arraste a chave infernal para a pedra infernar antes que termine o tempo. A chave sumirá após o tempo restante esgotar.
+30315	Pão de Rosca	Pão feito com cevada fresca. Parece muito atraente, com um aroma distinto decorrente da semente de gergelim polvilhada por cima.
+30316	Prato para Pães	Prato usado para pães.
+30317	Prato de Pães de Rosca 	Um belo prato servindo deliciosos pães de rosca. Embora seja muito apetitoso, eu prefiro dar a alguém que precise do que comer sozinho.
+30318	Figo	A fruta sem flor. Sabor como nenhum antes provado, uma rara mercadoria difícil de encontrar no império. Dizem que pode trazer grande sorte.		
+
+30321	Abóbora	O Sr.Jack perdeu suas Abóboras Mágicas.  Ele ficara muito feliz se você devolvê-las.| Ou não... 
+30322	Varinha Mágica	Tenha em mãos uma Abóbora  e esta Varinha Mágica. Veja a mágica acontecer!	
+30323	Cupom Mascara de abobora	Oh! Jack ficara feliz em trocar esse cupom por um máscara igualzinha a dele!	
+
+31001	Informação do Túmulo	Inscrição no túmulo sobre a origem da Nação da Escuridão.
+31002	Documento Antigo	Documento sobre a Nação da Escuridão.
+31003	Antídoto	Antídoto usado como cura para veneno de demônio.
+31004	Seiva Sagrada	Seiva de uma árvore sagrada, preenchida com energia da terra.
+31005	Cristal Azul	Cristal tão gelado quanto a montanha Sohan e tão fanstamagórico quanto o Nove Caudas.
+31006	Cristal Vermelho	Cristal vermelho que não derrete nem mesmo sob as mais fortes temperaturas.
+31007	Solo Vermelho	Solo vermelho escuro do campo Doyama.
+31008	Lágrima do Paraíso	Padra com poder sagrado. Emite um poder incríve.
+
+
+
+41005	Uniforme  de Esgrima Padrão	Uniforme Padrãp usado para treino de compate com espadas nível avançado. 
+41006	Uniforme  de Esgrima Padrão	Uniforme Padrão usado para treino de compate com espadas nível avançado. 
+41011	Uniforme  de Esgrima Brasileiro	Uniforme usado para treino de compate com espadas nível avançado. 
+41012	Uniforme  de Esgrima Brasileiro	Uniforme usado para treino de compate com espadas nível avançado. 
+41013	Uniforme de Futebol Padrão	Uniforme usado para treinos de Futebol.
+41014	Uniforme de Futebol Padrão	Uniforme usado para treinos de Futebol.
+41019	Uniforme de Futebol Brasileiro 	Uniforme usado para treinos de Futebol.
+41020	Uniforme de Futebol Brasileiro 	Uniforme usado para treinos de Futebol.
+41021	Uniforme de Boxe Padrão	Uniforme usado para combates agressivos com os braços.
+41022	Uniforme de Boxe Padrão	Uniforme usado para combates agressivos com os braços.
+41027	Uniforme de Boxe Brasileiro	Uniforme usado para combates agressivos com os braços.
+41028	Uniforme de Boxe Brasileiro	Uniforme usado para combates agressivos com os braços.
+41031	Uniforme  de Esgrima Padrão	Uniforme Padrãp usado para treino de compate com espadas nível avançado. 
+41032	Uniforme  de Esgrima Padrão	Uniforme Padrão usado para treino de compate com espadas nível avançado. 
+41037	Uniforme  de Esgrima Brasileiro	Uniforme usado para treino de compate com espadas nível avançado. 
+41038	Uniforme  de Esgrima Brasileiro	Uniforme usado para treino de compate com espadas nível avançado. 
+41039	Uniforme de Futebol Padrão	Uniforme usado para treinos de Futebol.
+41040	Uniforme de Futebol Padrão	Uniforme usado para treinos de Futebol.
+41045	Uniforme de Futebol Brasileiro 	Uniforme usado para treinos de Futebol.
+41046	Uniforme de Futebol Brasileiro 	Uniforme usado para treinos de Futebol.
+41047	Uniforme de Boxe Padrão	Uniforme usado para combates agressivos com os braços.
+41048	Uniforme de Boxe Padrão	Uniforme usado para combates agressivos com os braços.
+41053	Uniforme de Boxe Brasileiro	Uniforme usado para combates agressivos com os braços.
+41054	Uniforme de Boxe Brasileiro	Uniforme usado para combates agressivos com os braços.
+
+45005	Visual de Esgrima	Pentado masculino geralmente usado para apresentações de esgrima.
+45006	Visual de Esgrima	Pentado feminino geralmente usado para apresentações de esgrima.
+45007	Visual Esportista	Última moda de estilo de visual para cabelos de esportistas de Futebol.
+45008	Visual Esportista	Última moda de estilo de visual para cabelos de esportistas de Futebol.
+45009	Visual trançado	Muito eficaz para lutadores de boxe! O visual trançado não deixa o cabelo tampar a visão do lutador.
+45010	Visual trançado	Muito eficaz para lutadores de boxe! O visual trançado não deixa o cabelo tampar a visão do lutador.
+45013	Visual de Esgrima	Pentado masculino geralmente usado para apresentações de esgrima.
+45014	Visual de Esgrima	Pentado feminino geralmente usado para apresentações de esgrima.
+45015	Visual Esportista	Última moda de estilo de visual para cabelos de esportistas de Futebol.
+45016	Visual Esportista	Última moda de estilo de visual para cabelos de esportistas de Futebol.
+45017	Visual trançado	Muito eficaz para lutadores de boxe! O visual trançado não deixa o cabelo tampar a visão do lutador.
+45018	Visual trançado	Muito eficaz para lutadores de boxe! O visual trançado não deixa o cabelo tampar a visão do lutador.
+
+
+50001	Livro da Sorte	O número escrito no livro pode ser premiado.
+50002	Anel de Ouro	Alguém perdeu esse anel, ele pode ser vendido por um bom preço em alguma loja da cidade.
+50003	Pergaminho do Reinício	Reinicia uma Skill escolhida pelo jogador.
+50004	Detector de Eventos
+50005	Bilhete de Cavalgada	É usado para uma cavalgada temporária, sem custos. Procure o Ajudante do Estábulo.
+		
+50006	Arca de Ouro	Guarda recompensas. Pode ser aberta somente com a Chave de Ouro.
+50007	Arca de Prata	Guarda recompensas. Pode ser aberta somente com a Chave de Prata.
+50008	Chave de Ouro	Chave usada para abrir a Arca de Ouro e Arca de Ouro Sagrada.
+50009	Chave de Prata	Chave usada para abrir a Arca de Prata e Arca de Prata Sagrada.
+		
+50010	Meias	A tradição manda pendurar numa árvore e seus desejos podem se realizar.
+		
+50011	Arca do Luar	Dizem que irá ocorrer um fenomeno sobrenatural se exposta aos raios da lua.
+		
+50012	Arca de Ouro Sagrada	Guarda recompensas. Pode ser aberta somente com a Chave de Ouro.
+50013	Arca de Prata Sagrada	Guarda recompensas. Pode ser aberta somente com a Chave de Prata.
+		
+50016	Pasta de Feijão	Alimento tradicional em dias festivos e feriados.
+50017	Caramelo	Alimento tradicional em dias festivos e feriados.
+50018	Geléia	Alimento tradicional em dias festivos e feriados.
+50019	Doce de Arroz	Alimento tradicional em dias festivos e feriados.
+50020	Bolinho de Feijão	Alimento tradicional em dias festivos e feriados, recupera todo o HP.
+50021	Bolo Doce	Alimento tradicional em dias festivos e feriados, recupera todo o MP.
+50022	Bolo de Frutas	Alimento tradicional em dias festivos e feriados, retira feitiços negativos quando consumido.
+		
+50023	Carteira Vermelha	Lembrança do Ano Novo Chinês.
+		
+50024	Rosa	Item do Dia dos Namorados, somente personagens femininos podem utilizar.
+50025	Chocolate	Item do Dia dos Namorados, somente personagens masculinos podem utilizar.
+		
+50027	Bilhete de Loteria	A loteria foi proibída em todo o Império. Item sem utilidade atualmente.
+50031	Rosa Perfumada	Flor que simboliza paixão, amor e felicidade. Muito utilizado para transmitir o amor entre quem se gosta.
+50032	Doce	Confeitado a partir de diversos ingredientes misturados com açúcar. Muito utilizado para transmitir o amor entre quem se gosta.
+50033	Caixa Misteriosa	O conteúdo do baú é desconhecido.
+		
+50034 	Caixa Enigmática	Segundo antigas fábulas, essas caixas, quando abertas, propõe uma pergunta ao seu dono. Se a resposta for incorreta uma terrível maldição pode acontecer.
+50035 	Presente das Crianças	É dado para alguém que se gosta muito. Contém um presente.
+50036 	Presente das Crianças	É dado para alguém que se gosta muito. Contém um presente.
+50037 	Arca Hexagonal	Baú recheado com presentes e tesouros.
+		
+50070	Tesouro do Chefe Orc	Baú de tesouros do Chefe Orc.
+50071	Tesouro do Fanático	Baú de tesouros do Lider Fanático.
+50072	Tesouro do Reencarnado	Baú de tesouros do Lider Fanático reencarnado.
+50073	Tesouro da Aranha Rainha	Baú de tesouros da Aranha Rainha.
+50074	Tesouro da Aranha	Baú de tesouros do Aranha Gigante.
+50075	Tesouro do Gigante	Baú de tesouros do Gigante.
+50076	Tesouro da Tartaruga	Baú de tesouros do Tartaruga Gigante.
+50077	Tesouro do Nove Caudas	Baú de tesouros do Nove Caudas.
+50078	Tesouro do Tigre Amarelo	Baú de tesouros do Tigre Amarelo.
+50079	Tesouro do Rei de Fogo	Baú de tesouros do Rei de Fogo.
+50080	Tesouro do Dragão	Baú de tesouros do Dragão Vermelho.
+50081	Tesouro do Rei Demônio	Baú de tesouros do Rei Demônio.
+50082	Tesouro do Ceifador	Baú de tesouros do Ceifador.
+		
+50050	Medalha Equestre	Medalha que era usada como um certificado pelos Oficiais do Governo solicitando cavalos para viajar para cidades distantes.
+50051	Espada Equestre	Evoca o Ponei. Ele aumenta sua velocidade de movimento.
+50052	Brasão Cavalo Armado	Evoca o Cavalo Armado. Ele aumenta sua velocidade de movimento e possibilita ataque montado.
+50053	Brasão Cavalo Militar	Evoca o Cavalo Militar. Ele aumenta sua velocidade de movimento, possibilita ataque montado e o uso de skills de ataque montado.
+50054	Feno	A comida favorita do Ponei.
+50055	Cenoura	A comida favorita do Cavalo Armado.
+50056	Ginseng Vermelho	A comida favorita do Cavalo Militar.
+50057	Erva da Gruta Sujin	Revive o Ponei.
+50058	Erva da Gruta Honobo	Revive o Cavalo Armado.
+50059	Erva da Gruta Joklor	Revive o Cavalo Militar.
+50060	Manual de Montaria	Aumenta 1 ponto na Skil Montaria. Pode ser utilizado somente uma vez e requer level 50+
+		
+50083	Bilhete de Cavalgada	Apresentando ao Ajudante do Estábulo, poderá usar um cavalo por tempo limitado, sem precisar pagar.
+		
+50084 	Pedra do Destravamento	Item utilizado para remover o selo mágico de uma pedra selada pelo antigo poder
+		
+50091 	Sushi de Crucian	Bolinho de arroz com peixe. Possui um cheiro bem característico, um pouco difícil de comer
+50092 	Sushi de Carpa	Bolinho de arroz com Carpa. Possui um cheiro bem característico, um pouco difícil de comer
+50093 	Sushi de Salmão	Bolinho de arroz com Salmão, tão bonito que  dá dó de comer. A cor avermelhada atiça os sentidos.
+50094 	Sushi de Peixe-Gato	Bolinho de arroz com peixe-gato. Para tirar o cheiro de lama utilizam-se diversos condimentos.
+		
+50100	Fogos de Artifício	Fogos de Artifício utilizado em festas (Violeta)
+50101	Fogos de Artifício	Fogos de Artifício utilizado em festas (Amarelo)
+50102	Fogos de Artifício	Fogos de Artifício utilizado em festas (Azul Celeste)
+50103	Fogos de Artifício	Fogos de Artifício utilizado em festas (Vermelho em forma de Pião)
+50104	Fogos de Artifício	Fogos de Artifício utilizado em festas (Verde em forma de Pião)
+50105	Fogos de Artifício	Fogos de Artifício utilizado em festas (Branco em forma de Pião)
+		
+50106	Fogos de Artifício	Fogos de artifício barulhentos.
+50108	Brinquedo Antigo	Um antigo brinquedo, muito popular entre as crianças orientais.
+50160	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50161	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50162	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50163	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50164	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50165	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50166	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50167	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50168	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50169	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50170	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50171	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50172	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50173	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50174	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50175	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50176	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50177	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50178	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50179	Ovinho de Páscoa	Monstros invejosos! | Roubaram todos os Ovinhos do Sr. Coelho. |  Ninguém resiste ao doce sabor do |  chocolate, até mesmo eles! |  Recupere o máximo de Ovinhos que puder |   e devolva ao Sr. Coelho Peppy.
+50187	Caixa do Aprendiz I	Caixa que contém itens que irão ajudá-lo em sua aventura.
+50188	Caixa do Aprendiz II	Caixa que contém itens que irão ajudá-lo em sua aventura.
+50189	Caixa do Aprendiz III	Caixa que contém itens que irão ajudá-lo em sua aventura.
+50190	Caixa do Expert I	Caixa que contém itens que irão ajudá-lo em sua aventura.
+50191	Caixa do Expert II	Caixa que contém itens que irão ajudá-lo em sua aventura.
+50192	Caixa do Expert III	Caixa que contém itens que irão ajudá-lo em sua aventura.
+50193	Caixa do Mestre I	Caixa que contém itens que irão ajudá-lo em sua aventura.
+50194	Caixa do Mestre II	Caixa que contém itens que irão ajudá-lo em sua aventura.
+50195	Caixa do Mestre III	Caixa que contém itens que irão ajudá-lo em sua aventura.
+50196	Caixa do Grande Mestre	Caixa que contém itens que irão ajudá-lo em sua aventura.
+50200	Pacote	Use-o para abrir a loja particular.
+50216	Gemada	Ótima bebida com um sabor, incrível! Espanta o frio e anima para ir procurar mais meias!
+
+50249	Presente Memorial	De alguma forma parece que há algo de bom nesta caixa.
+	
+50300	Livro de Habilidade	Usado para aumentar uma determinada Skill, a partir do nivel Master
+		
+50301	Arte da Guerra Sunzi	Livro da Skill Liderança até nível 20. Pode ser utilizado somente uma vez.
+50302	Arte da Guerra Wuzi	Livro da Skill Liderança para nível 21 a 30. Pode ser utilizado somente uma vez.
+50303	Arte da Guerra de Guigu	Livro da Skill Liderança para nível 31 a 40. Pode ser utilizado somente uma vez.
+		
+50304	Manual de Mineração 1	Manual da Skill Mineração para jogadores iniciantes em minerar.
+50305	Manual de Mineração 2	Manual da Skill Mineração para jogadores com conhecimentos avançados em minerar.
+50306	Manual de Mineração 3	Manual da Skill Mineração para jogadores experientes em minerar.
+		
+50311	Língua de Shinsu	Livro de estudo do idioma do reino Shinsu.
+50312	Língua de Chonjo	Livro de estudo do idioma do reino Chonjo.
+50313	Língua de Jinno	Livro de estudo do idioma do reino Jinno.
+		
+50307	Livro de Missões 1	Lendo o livro você recebe uma quest de nível Fácil. Se completá-la, pode ganhar boas recompensas.
+50308	Livro de Missões 2	Lendo o livro você recebe uma quest de nível Médio. Se completá-la, pode ganhar boas recompensas.
+50309	Livro de Missões 3	Lendo o livro você recebe uma quest de nível Difícil. Se completá-la, pode ganhar boas recompensas.
+50310	Livro de Missões 4	Lendo o livro você recebe uma quest de nível Expert. Se completá-la, pode ganhar boas recompensas.
+		
+50314	Livro de Polimorfia 1	Use para transformar, level 15+. Pode ser utilizado somente uma vez, aumenta a Liderança.
+50315	Livro de Polimorfia 2	Use para transformar, level 25+. Pode ser utilizado somente uma vez, aumenta a Liderança.
+50316	Livro de Polimorfia 3	Use para transformar, level 35+. Pode ser utilizado somente uma vez, aumenta a Liderança.
+		
+50401	Tomo Sequencia de Golpes	Aumenta o nível da Skill Sequencia de Golpes a partir do nível Master.
+50402	Tomo Vórtice	Aumenta o nível da Skill Vórtice a partir do nível Master.
+50403	Tomo Fúria	Aumenta o nível da Skill Fúria a partir do nível Master.
+50404	Tomo Lâmina Espiritual	Aumenta o nível da Skill Lâmina Espiritual a partir do nível Master.
+50405	Tomo Ataque de Terror	Aumenta o nível da Skill Ataque de Terror a partir do nível Master.
+50416	Tomo Investida Rápida	Aumenta o nível da Skill Investida Rápida a partir do nível Master.
+50417	Tomo Impacto Terrestre	Aumenta o nível da Skill Impacto Terrestre a partir do nível Master.
+50418	Tomo Tremor	Aumenta o nível da Skill Tremor a partir do nível Master.
+50419	Tomo Defesa Superior	Aumenta o nível da Skill Defesa Superior a partir do nível Master.
+50420	Tomo Disparo de Energia	Aumenta o nível da Skill Disparo de Energia a partir do nível Master.
+		
+50431	Tomo Sombra Fantasma	Aumenta o nível da Skill Sombra Fantasma a partir do nível Master.
+50432	Tomo Ataque Ligeiro	Aumenta o nível da Skill Ataque Ligeiro a partir do nível Master.
+50433	Tomo Fuga	Aumenta o nível da Skill Fuga a partir do nível Master.
+50434	Tomo Ataque Sombrio	Aumenta o nível da Skill Ataque Sombrio a partir do nível Master.
+50435	Tomo Víbora Venenosa	Aumenta o nível da Skill Vibora Venenosa a partir do nível Master.
+50446	Tomo Aniquilação	Aumenta o nível da Skill Aniquilação a partir do nível Master.
+50447	Tomo Tiro Múltiplo	Aumenta o nível da Skill Tiro Múltiplo a partir do nível Master.
+50448	Tomo Flecha Flamejante	Aumenta o nível da Skill Flecha Flamejante a partir do nível Master.
+50449	Tomo Rapidez	Aumenta o nível da Skill Rapidez a partir do nível Master.
+50450	Tomo Veneno da Serpente	Aumenta o nível da Skill Veneno de Serpente a partir do nível Master.
+		
+50461	Tomo Ruptura Demoníaca	Aumenta o nível da Skill Ruptura Demoníaca a partir do nível Master.
+50462	Tomo Ciclone Negro	Aumenta o nível da Skill Ciclone Negro a partir do nível Master.
+50463	Tomo Lâmina das Sombras	Aumenta o nível da Skill Lâmina das Sombras a partir do nível Master.
+50464	Tomo Terror	Aumenta o nível da Skill Terror a partir do nível Master.
+50465	Tomo Escudo Afônico	Aumenta o nível da Skill Escudo Afônico a partir do nível Master.
+50466	Tomo Dissipação Magica	Aumenta o nível da Skill Dissipação Magica a partir do nível Master.
+50476	Tomo Espíritos Malignos	Aumenta o nível da Skill Espíritos Malignos a partir do nível Master.
+50477	Tomo Pulso Mortal	Aumenta o nível da Skill Pulso Mortal a partir do nível Master.
+50478	Tomo Ritual da Perdição	Aumenta o nível da Skill Ritual da Perdição a partir do nível Master.
+50479	Tomo Proteção d'Sombra	Aumenta o nível da Skill Proteção da Sombra a partir do nível Master.
+50480	Tomo Confusão Leve	Aumenta o nível da Skill Confusão Leve a partir do nível Master.
+50481	Tomo Espiral Mortal	Aumenta o nível da Skill Espiral Mortal a partir do nível Master.
+		
+50491	Tomo Tormenta do Trovão	Aumenta o nível da Skill Tormenta do Trovão a partir do nível Master.
+50492	Tomo Vácuo do Dragão	Aumenta o nível da Skill Vácuo do Dragão a partir do nível Master.
+50493	Tomo Rugido do Dragão	Aumenta o nível da Skill Rugido do Dragão a partir do nível Master.
+50494	Tomo Armadura do Dragão	Aumenta o nível da Skill Armadura do Dragão a partir do nível Master.
+50495	Tomo Fogo Reverso	Aumenta o nível da Skill Fogo Reverso a partir do nível Master.
+50496	Tomo Dano Encantado	Aumenta o nível da Skill Dano Encantado a partir do nível Master.
+50506	Tomo Lança Espiritual	Aumenta o nível da Skill Lança Espiritual a partir do nível Master.
+50507	Tomo Campo Estático	Aumenta o nível da Skill Campo Estático a partir do nível Master.
+50508	Tomo Relâmpagos	Aumenta o nível da Skill Relâmpagos a partir do nível Master.
+50509	Tomo Graça Natural	Aumenta o nível da Skill Graça Natural a partir do nível Master.
+50510	Tomo Vôo No Vento	Aumenta o nível da Skill Vôo no Vento a partir do nível Master.
+50511	Tomo Encantos Naturais	Aumenta o nível da Skill Encantos Naturais a partir do nível Master.
+		
+50512 	Pedra Arco-Íris	Pode aumentar o level de sua Skill após a utilização.
+50513 	Pedra Espiritual	Pode aumentar o level de sua Skill após a utilização.
+		
+50600 	Guia de Mineração	Pode aumentar 1 ponto em sua Skill de Mineração.
+		
+50601 	Minério de Diamante	Pode ser transformado em gema de Diamante através do Alquimista de alguma Guilda.
+50602 	Minério de Âmbar	Pode ser transformado em gema de Âmbar através do Alquimista de alguma Guilda.
+50603 	Minério de Fóssil	Pode ser transformado em gema de Fóssil através do Alquimista de alguma Guilda.
+50604 	Minério de Cobre	Pode ser transformado em gema de Cobre através do Alquimista de alguma Guilda.
+50605 	Minério de Prata	Pode ser transformado em gema de Prata através do Alquimista de alguma Guilda.
+50606 	Minério de Ouro	Pode ser transformado em gema de Ouro através do Alquimista de alguma Guilda.
+50607 	Minério de Jade	Pode ser transformado em gema de Jade através do Alquimista de alguma Guilda.
+50608 	Minério de Ébano	Pode ser transformado em gema de Ébano através do Alquimista de alguma Guilda.
+50609 	Pedaço de Pérola	Pode ser transformado em gema de Pérola através do Alquimista de alguma Guilda.
+50610 	Minério de Ouro Branco	Pode ser transformado em gema de Ouro Branco através do Alquimista de alguma Guilda.
+50611 	Minério de Cristal	Pode ser transformado em gema de Cristal através do Alquimista de alguma Guilda.
+50612 	Minério de Ametista	Pode ser transformado em gema de Ametista através do Alquimista de alguma Guilda.
+50613 	Minério de Ágata	Pode ser transformado em gema de Ágata através do Alquimista de alguma Guilda.
+		
+50621 	Diamante	Usado para criar um Slot para outras Gemas em acessórios.
+50622 	Âmbar	Aumenta a eficácia das Gemas.
+50623 	Fóssil	Pode ser utilizado em acessórios de Madeira
+50624 	Cobre	Pode ser utilizado em acessórios de Cobre.
+50625 	Prata	Pode ser utilizado em acessórios de Prata.
+50626 	Ouro	Pode ser utilizado em acessórios de Ouro.
+50627 	Jade	Pode ser utilizado em acessórios de Jade.
+50628 	Ébano	Pode ser utilizado em acessórios de Ébano.
+50629 	Pérola	Pode ser utilizado em acessórios de Pérola.
+50630 	Ouro Branco	Pode ser utilizado em acessórios de Ouro Branco.
+50631 	Cristal	Pode ser utilizado em acessórios de Cristal.
+50632 	Ametista	Pode ser utilizado em acessórios de Ametista.
+50633 	Ágata	Pode ser utilizado em acessórios de Ágata.
+
+50182	Baú Vermelho	Um Baú vermelho com aparência elegante. Parece guardar algo raro e valioso. 
+50183	Doce	Doce feito de xarope de cana de açúcar extraído. Comer demais pode causar obesidade e dentes podres.	+10% movimento | +5% Ataque físico | +10% Experiência | (30 minutos)
+51001	Artefato de Vitalidade	Infundido com itens mágicos adquiridos em rochas trituradas
+51002	Energético	Artefato de Vitalidade quimicamente destilado.
+
+51215	Tesouro de Jack	Travessuras ou gostosuras? Abra e descubra!
+
+
+52066	Rena Pai Obediente	Bônus contra Monstros +3%
+52067	Rena Pai Obediente	Bônus EXP +3%
+52068	Rena Pai Obediente	HP Máximo +250
+52069	Rena Pai Obediente	Defesa +50
+52070	Rena Pai Obediente	Ataque +30
+52071	Rena Pai Treinado	Bônus contra Monstros  5%
+52072	Rena Pai Treinado	Bônus EXP 5%
+52073	Rena Pai Treinado	HP Máximo +500
+52074	Rena Pai Treinado	Defesa +150
+52075	Rena Pai Treinado	Ataque +100
+52081	Rena Mãe Obediente	Bônus contra Monstros +3%
+52082	Rena Mãe Obediente	Bônus EXP +3%
+52083	Rena Mãe Obediente	HP Máximo +250
+52084	Rena Mãe Obediente	Defesa +50
+52085	Rena Mãe Obediente	Ataque +30
+52086	Rena Mãe Treinada	Bônus contra Monstros  5%
+52087	Rena Mãe Treinada	Bônus EXP 5%
+52088	Rena Mãe Treinada	HP Máximo +500
+52089	Rena Mãe Treinada	Defesa +150
+52090	Rena Mãe Treinada	Ataque +100
+
+
+53002	Rena Treinada	A Rena Bebê foi treinada exclusivamente para encontrar meias fedorentas! Eca!~
+60001	Bílis	
+60002	Indicação do Armazém	
+60003	Símbolo Heróico	
+		
+70001	Boneca da Deusa	
+70002	Terceira Mão	Recolhe automaticamente o Gold derrubado pelos monstros que você derrotar.
+70003	Liutao	Aumenta em até 30% a exp ganha pelo grupo (deve ser usada pelo líder do grupo).
+70004 	Medalha do Empenho	Prêmio entregue às pessoas dedicadas e competentes
+70005	Anel da Experiência	Dobra a experiência ganha ao derrotar monstros.
+70006	Anel da Linguagem	Permite compreender a lingua falada em outros reinos temporariamente.
+70007	Anel da Distorção	
+70008	Bandeira Branca	Utilize para parar a batalha.
+70009	Caixa do Tesouro	
+70010	Bilhete de Armazenamento	
+70011	Garrafa do Aprimoramento	
+70012	Lágrima da Deusa	Diminui a perda de experiência caso seu personagem seja derrotado.
+70013	Lágrima da Deusa Maior	
+70014	Pílula de Sangue	Retorna seu ponto de Stats (somente 1 ponto)
+70015	Pincel Barato	
+70020	Poção Regeneradora	Regenera instantaneamente 500HP.
+70024	Esfera da Bênção	De acordo com a lenda, é uma esfera com a bênção dos Deuses.
+70027	Memórias do Ferreiro	Anotações visionárias feitas por um lendário ferreiro. Fala sobre a produção em massa de armas.
+70031	Tomo Divino	Usado para transmutar determinados itens em itens divinos.	
+70035 	Ferro Eterno	Aço de alta qualidade, se não a melhor. encontrado apenas nas regiões altas das terras antigas. Transforma o Pergaminho da Paz em Pergaminho do Jihad (Ferreiro).
+70037	Livro do Esquecimento	Retorna seu ponto de Skill (somente 1 ponto)
+70038	Manto da Bravura	Provoca todos os monstros ao seu redor, fazendo com que todos ataquem quem vestir o manto. Pode ser utilizado somente uma vez.
+70039	Livro do Ferreiro	Livro que contém o a arte do ferreiro. Aumenta bastante as chances do refinamento e evita a quebra do item.
+70040	Teimosia do Orc	Reduz pela metade o consumo da Resistência.
+70043	Luva do Ladrão	Dobra a chance de drop de itens.
+70047	Anel da Linguagem (amostra)	Permite compreender a lingua falada em outros reinos temporariamente.
+70048	Manto do Escapista	Oculta seus pontos e seu nível de Honra.
+70049	Anel da Heun	Não ocorre drop de itens se for derrotado.
+70050	Símbolo do Rei Sábio	Dobra os pontos de Honra ganhos ao derrotar monstros.
+70051	Luva do Rei Sábio	Dobra os pontos de Honra ganhos ao derrotar monstros.
+70052	Feitiço do Karma1	Talismã Budista, protege contra o mal.
+70053	Feitiço do Karma2	Talismã que vem do Budismo, protege contra as maldades
+70054	Feitiço do Karma3	Talismã que vem do Budismo, protege contra as maldades
+		
+70102	Feijão Zen	Aumenta os pontos de Honra.
+		
+70104	Esfera Poliforma	Transfiguração.
+70105	Esfera Poliforma	Transfiguração.
+70106	Esfera Poliforma	Transfiguração.
+70107	Esfera Poliforma	Transfiguração.
+		
+70201	Descolorante	Recupera a cor original de seus cabelos.
+70202	Tintura Branca de Cabelo	Pode ser utilizado somente a cada 3 níveis.
+70203	Tintura Loira de Cabelo	Pode ser utilizado somente a cada 3 níveis.
+70204	Tintura Ruiva de Cabelo	Pode ser utilizado somente a cada 3 níveis.
+70205	Tintura Roxa de Cabelo	Pode ser utilizado somente a cada 3 níveis.
+70206	Tintura Negra de Cabelo	Pode ser utilizado somente a cada 3 níveis.
+		
+70301 	Anel do Casal	Anel necessário para poder se casar.
+70302 	Anel de Casamento	Anel que demonstrar o amor por outra pessoa, formando um casal.
+		
+		
+71001 	Pergaminho do Exorcismo	Ignora o tempo de espera de aprendizado entre a leitura dos Livros de Skill.
+71002 	Pergaminho do Recomeço	Reinicia os Status, as Skills e a força de Skill do personagem.
+71003 	Pergaminho do Reinício	Reinicia uma Skill escolhida pelo jogador.
+71004 	Bênção do Deus Dragão	Evita a perda de experiência ao morrer.
+71005 	Anel da Linguagem	Permite compreender a lingua falada em outros reinos temporariamente.
+71006 	Anel da Linguagem	Permite compreender a lingua falada em outros reinos temporariamente.
+71007 	Anel da Linguagem	Permite compreender a lingua falada em outros reinos temporariamente.
+71008 	Pesca Ilustrada	Dobra as chances de pescar um peixe raro.
+71009 	Expansão de Armazém	Aumenta 3 slots no seu Armazém.
+71010 	Terceira Mão	Recolhe automaticamente o Gold derrubado pelos monstros que você derrotar.
+71011 	Máscara Emotiva	Permite demonstrar emoções e realizar ações com seu personagem.
+71012 	Liutao	Aumenta em até 30% a exp ganha pelo grupo (deve ser usada pelo líder do grupo).
+71013 	Fogos de Artifício	Fogos de artifício utilizado em festas.
+71014 	Poção do Lobo	Aumenta a velocidade de ataque em 10%. (30 minutos de duração).
+71015 	Anel da Experiência	Dobra a experiência ganha.
+71016 	Luva do Ladrão	Dobra a chance de drop de itens.
+71017 	Moeda Dourada da Sorte	Dobra a chance de drop de Gold.
+71018 	Poção da Vida	Recupera 100% do HP.
+71019 	Poção Espiritual	Recupera 100% do MP.
+71020 	Poção do Deus Dragão	Recupera 100% do HP e MP.
+71021 	Pergaminho do Jihad	Garante que qualquer refinação até +3 tenha 100% de sucesso	
+
+71022 	Livro do Arrependimento	Reinicía os pontos de Inteligência.
+71023 	Livro do Oblívio Vital	Reinicía os pontos de Constituição.
+71024 	Livro do Oblívio Físico	Reinicía os pontos de Força.
+71025 	Pedra do Ferreiro	Minério lendário formado pelo suor e sangue de Ferreiros. Transforma o Pergaminho da Paz em Livro do Ferreiro (Ferreiro).
+71026 	Metal Mágico	Metal desconhecido, tem propriedades especiais. Transforma o Pergaminho da Paz em Pergaminho do Dragão (Ferreiro).
+71027 	Vida do Deus Dragão	Aumenta seu HP máximo em 20% por um período de tempo.
+71028 	Ataque do Deus Dragão	Aumenta o dano entre 12-15% por um período de tempo.
+71029 	Saber do Deus Dragão	Aumenta seu MP máximo em 20% por um período de tempo.
+71030 	Defesa do Deus Dragão	Diminui o dano recebido entre 12-15% por um período de tempo.
+71031 	Auxílio do Deus Dragão	Aumenta 5 pontos em todos os Stats.
+71032 	Pergaminho do Dragão	Aumenta em 10% a chance de sucesso na refinação do item e se a refinação do item falhar ele não é destruido, apenas perde 1 nível.
+71033 	Máscara Emotiva	Permite demonstrar emoções e realizar ações com seu personagem.
+71034 	Poção do Puma	Aumenta a velocidade de ataque em 15% (30 minutos de duração)
+71035 	Soro da Persuasão	Aumenta a aceitação de itens de quest em 30%.
+71036 	Pergaminho do Chefe Orc	Evoca um Chefe Orc.
+71037 	Pergaminho do Fanático	Evoca um Líder Fanático.
+71038 	Pergaminho da Aranha	Evoca uma Aranha Rainha.
+71039 	Pergaminho da Tartaruga	Evoca uma Tartaruga de Pedra.
+71040 	Pergaminho do Flamejante	Evoca um Rei Flamejante.
+71041 	Pergaminho do 9 Caudas	Evoca um Nove Caudas.
+71042 	Pergaminho do Demônio	Evoca um Rei Demônio de Elite.
+71043 	Pergaminho do Tigre	Evoca um Comandante Tigre.
+71044 	Palma da Precisão	Aumenta em 10% a chance de um ataque crítico. Um ataque crítico bem sucedido dobra o dano daquele ataque.
+71045 	Palma Perfurante	Aumenta em 10% a chance de um ataque perfurante. Um ataque perfurante bem sucedido ignora a Defesa do oponente.
+71047 	Descarrego	Retira a pedra que está no slot do equipamento.
+71048 		
+71049 	Bolsa de Seda	Permite abrir a Loja Particular quantas vezes quiser dentro do período do item.
+71050 	Poção Leopardo	Aumenta o movimento em 60% por 30 minutos (não cumulativo com Poção Roxa).
+71051 	Leitura de Jolla	Adiciona até +2 propriedades "brancas" em um item	
+71052 	Leitura de Arumaka	Altera as propriedades "brancas" em um item.	
+71053 		
+71054 	Permissão de Exílio	Ordem do antigo imperador, autorizando a troca de Reino uma única vez.
+71055 	Lista de Troca de Nome	Possibilita trocar o nome do personagem.
+71056 	Sopro do Dragão Azul	Dobra a chance de sucesso ao refinar Jóias +4 para +5.	
+71057 	Pergaminho do Fóssil	Evoca uma jazida de Fóssil.
+71058 	Pergaminho do Cobre	Evoca uma jazida de Cobre.
+71059 	Pergaminho da Prata	Evoca uma jazida de Prata.
+71060 	Pergaminho do Ouro	Evoca uma jazida de Ouro.
+71061 	Pergaminho da Jade	Evoca uma jazida de Jade.
+71062 	Pergaminho do Ébano	Evoca uma jazida de Ébano.
+71063 	Pergaminho das Ostras	Evoca uma pilha de Ostras.
+71064 	Pergaminho do OuroBranco	Evoca uma jazida de Ouro Branco.
+71065 	Pergaminho do Cristal	Evoca uma jazida de Cristal.
+71066 	Pergaminho da Ametista	Evoca uma jazida de Ametista.
+71067 	Pergaminho da Ágata	Evoca uma jazida de Ágata.
+71068 	Pena de Ave do Amor	Dobra a taxa de ganho de Pontos de Amor.
+71069 	Brinco da Harmonia	Aumenta a chance do casal de acertar um ataque perfurante. Um ataque perfurante bem sucedido ignora a Defesa do oponente.
+71070 	Bracelete do Amor	Aumenta em 20% a experiência ganha pelo casal.
+71071 	Brinco do Amor	Aumenta a chance do casal de acertar um ataque crítico. Um ataque crítico bem sucedido dobra o dano daquele ataque.
+71072 	Bracelete da Harmonia	Diminui a força de ataque dos monstros em 15%.
+71073 	Colar do Amor	Aumenta o ataque do casal (nível mínimo 40).
+71074 	Colar da Harmonia	Aumenta a defesa do casal (nível mínimo 30).
+71075 	Tintura Azul de Cabelo	Tintura Branca (Prata)
+71076 	Tintura Negra de Cabelo	Tintura Loira
+71077 	Tintura Branca de Cabelo	Tintura Ruiva
+71078 	Tintura Loira de Cabelo	Tintura Castanha
+71079 	Tintura Marrom de Cabelo	Tintura Preta
+71080 	Pergaminho da Metin 1	Evoca uma Pedra Metin de nível baixo.
+71081 	Pergaminho da Metin 2	Evoca uma Pedra Metin de nível médio.
+71082 	Pergaminho da Metin 3	Evoca uma Pedra Metin de nível alto.
+71083 	Livro de Arte Em Pedra	Remove pedras quebradas no soquete de um equipamento.
+71084 	Pergam. do Aprimoramento	Altera uma propriedade já existente no item.
+71085 	Pergam. Novo Aprim.	Adiciona uma nova propriedade ao item.
+71086 	Missão Aprimo.(20 a 29)	
+71087 	Missão Aprimo.(30 a 39)	
+71088 	Livro de Quest (Fácil)	
+71089 	Livro de Quest (Normal)	
+71090 	Livro de Quest (Difícil)	
+71091 	Bolsa Sinalizada	Permite modificar a cor da fonte da Loja Particular.
+71092 	Livro de Polimorfia	Permite se transformar em um monstro.
+71093 	Espera de Polimorfia	Transforme-se no monstro exibido na esfera.
+71094 	Conselho do Eremita	Aumenta a probabilidade de sucesso ao ler um Livro de Skill em 150%.
+71099 	Anel da sucessão	Com esse anel é possível transferir a liderança da guilda para outro membro.	
+
+		
+71101 	Poção Sagaz	Cooldown das skills fica 20% mais rápido	
+71102 	Poção Sagaz+	Cooldown das skills fica 30% mais rápido	
+71103 	Leitura Vital	Reinicia os pontos de Vitalidade do seu personagem.	
+71104 	Leitura Mental	Reinicia os pontos de Inteligência do seu personagem.	
+71105 	Leitura Física	Reinicia os pontos de Força do seu personagem.	
+71106 	Leitura Ágil	Reinicia os pontos de Agilidade do seu personagem.	
+71107 	Pomo da Honra	Adiciona 3.000 pontos de honra	
+71108 	Poção Regeneradora+		
+71109 	Pergaminho Impuro	Retira a última Gema acoplada ao item. Não funciona com Lascas de Pedra	
+71110 	Torrão de Açúcar	Permite escolher um nome para sua montaria e aumenta a Defesa em 20 pontos.	
+71113 	Lupa	Facilita o comércio, exibindo no chat o nome e stats do item anunciado. Use Alt + click no item que deseja anunciar no chat	
+71124	Édem Celestial	Sumona o Édem Celestial| Exp +30%, Movimento+20 
+71131	Cavalo Negro 30min.	Bilhete usado para convocar o Cavalo Negro por 30 minutos.
+71132	Cavalo Negro 1h.	Bilhete usado para convocar o Cavalo Negro por 1 hora.
+71133	Cavalo Negro 2h.	Bilhete usado para convocar o Cavalo Negro por 2 horas.
+71134	Cavalo Negro 3h.	Bilhete usado para convocar o Cavalo Negro por 3 horas.
+71135	Anel Lua Crescente	Um lindo anel em formato de lua crescente. A aura brilhante do anel parece adicionar força para aquele que usar.	+50% Expriência | +20% Velocidade de ataque | +20% Velocidade de Skill | +30% Ataque físico | +10% HP Máximo | +10% MP Máximo | (7 dias)
+71136	Doce de Halloween	Esse doce possui um grande efeito mágico!|Foi produzido com as coisas mais estranhas que você possa imaginas.
+71137	Anima de Sohan	Sumona o Anima Sohan| Exp +30%, Movimento+20
+71138	Anima de Doyama	Sumona o Anima Doyama| Exp +30%, Movimento+20
+71139	Anima Yonbi	Sumona o Anima Yongi| Exp +30%, Movimento+20
+71140	Anima Gwimok	Sumona o Anima Gwimok| Exp +30%, Movimento+20
+71141	Anima Ceifador	Sumona o Anima Ceifador| Exp +30%, Movimento+20
+71142	Anima Celestial	Sumona o Anima Celestial| Exp +30%, Movimento+20
+71143	Anel Felicidade	Um lindo Anel Verde, inspirando a alegria natalina! Esse anel fornece uma poderosa áurea, ao seu dono! O tempo do anel gastará equipado ou não!	Exp +50% | Velocidade do Ataque +20% | Velocidade de Skill + 20% | Dano +20% | Max HP +10% | Max MP +10%
+71144	Presente de Natal	Um lindo presente, não?! O que será que tem dentro? Abra e descubra!
+71145	Pingente do Amor Eterno	Um lindo pingente em forma de coração, | recheado de pequenas safiras e Ametistas  brilhantes. | Até mesmo a velha casamenteira gostaria de ter um.	Max HP +5% | Max MP +5% | Exp +30% | Velocidade de Skill + 10% | Velocidade do Ataque +10% | Bônus contra monstro +10%
+71146	Caixa do Amor Rosa	Uma linda caixa em forma de coração na cor Rosa.|  O Amor é tanto que você poderá abri-lá 10 vezes! | Ah o amor! |  ~S2~
+71147	Caixa do Amor Azul	Uma linda caixa em forma de coração na cor Azul. | O Amor é tanto que você poderá abri-lá 10 vezes! | Ah o amor! |  ~S2~
+71148	Anel da Sabedoria	Sinta-se mais poderoso usando | o mais novo anel criado pela família | Arumaka. | EXP + 30% | Resistência contra  Guerreiro + 20% | Resistência contra Ninja + 20% | Bônus contra Monstros +10% | Melhora em Trajes + 5%
+71149	Anel da Força Letal	Sinta-se mais poderoso usando | o mais novo anel criado pela família | Jolla. | EXP + 30% | Resistência contra Shura +20% | Resistência contra Shaman  +20% | Bônus contra Monstros +10% | Max HP + 10% | Melhora em Trajes + 5%
+71150	Ovo Surpresa	Ovo magico que contem varias surpresas. Pode ser aberto 1 vezes.
+71153	Poção de Experiência	Aumenta em 100% a EXP recebida ao derrotar monstros. | Duração de 1 hora (Consumível).
+71158	Medalha do Heroi	Medalha concedida ao herói honrado da familha Jolla. Cujo salvou a vida de muitos!
+71159	Presente Memorial	De alguma forma parece que há algo de bom nesta caixa.
+71160	Presente Memorial	De alguma forma parece que há algo de bom nesta caixa.
+	
+72001 	Anel da Experiência	Dobra a experiência ganha derrotando monstros.
+72002 	Anel da Experiência	Dobra a experiência ganha derrotando monstros.
+72003 	Anel da Experiência	Dobra a experiência ganha derrotando monstros.
+72004 	Luva do Ladrão	Dobra a chance de drop de itens.
+72005 	Luva do Ladrão	Dobra a chance de drop de itens.
+72006 	Luva do Ladrão	Dobra a chance de drop de itens.
+72007 	Bolsa de Seda	Permite abrir a Loja Particular quantas vezes quiser dentro do período do item.
+72008 	Bolsa de Seda	Permite abrir a Loja Particular quantas vezes quiser dentro do período do item.
+72009 	Bolsa de Seda	Permite abrir a Loja Particular quantas vezes quiser dentro do período do item.
+72010 	Pena de Ave do Amor	Dobra a taxa de ganho de Pontos de Amor.
+72011 	Pena de Ave do Amor	Dobra a taxa de ganho de Pontos de Amor.
+72012 	Pena de Ave do Amor	Dobra a taxa de ganho de Pontos de Amor.
+72013 	Pesca Ilustrada	Dobra as chances de pescar um peixe raro.
+72014 	Pesca Ilustrada	Dobra as chances de pescar um peixe raro.
+72015 	Pesca Ilustrada	Dobra as chances de pescar um peixe raro.
+72016 	Terceira Mão	Recolhe automaticamente o Gold derrubado pelos monstros que você derrotar.
+72017 	Terceira Mão	Recolhe automaticamente o Gold derrubado pelos monstros que você derrotar.
+72018 	Terceira Mão	Recolhe automaticamente o Gold derrubado pelos monstros que você derrotar.
+72019 	Expansão de Armazém	Aumenta seu espaço no Armazém para 3 slots.
+72020 	Expansão de Armazém	Aumenta seu espaço no Armazém para 3 slots.
+72021 	Expansão de Armazém	Aumenta seu espaço no Armazém para 3 slots.
+72022 	Moeda Dourada da Sorte	Dobra a chance de drop de Gold.
+72023 	Moeda Dourada da Sorte	Dobra a chance de drop de Gold.
+72024 	Moeda Dourada da Sorte	Dobra a chance de drop de Gold.
+72025 	Palma Perfurante	Aumenta em 10% a chance de um ataque perfurante. Um ataque perfurante bem sucedido ignora a Defesa do oponente.
+72026 	Palma Perfurante	Aumenta em 10% a chance de um ataque perfurante. Um ataque perfurante bem sucedido ignora a Defesa do oponente.
+72027 	Palma Perfurante	Aumenta em 10% a chance de um ataque perfurante. Um ataque perfurante bem sucedido ignora a Defesa do oponente.
+72028 	Máscara Emotiva	Permite demonstrar emoções e realizar ações com seu personagem (através do menu Ações - tecla de atalho B)
+72029 	Máscara Emotiva	Permite demonstrar emoções e realizar ações com seu personagem (através do menu Ações - tecla de atalho B)
+72030 	Máscara Emotiva	Permite demonstrar emoções e realizar ações com seu personagem (através do menu Ações - tecla de atalho B)
+72031 	Ataque do Deus Dragão	Aumento de 12% a 15% no ataque (máximo de 300).
+72032 	Ataque do Deus Dragão	Aumento de 12% a 15% no ataque (máximo de 300).
+72033 	Ataque do Deus Dragão	Aumento de 12% a 15% no ataque (máximo de 300).
+72034 	Defesa do Deus Dragão	Aumento de 12% a 15% na defesa (máximo de 300).
+72035 	Defesa do Deus Dragão	Aumento de 12% a 15% na defesa (máximo de 300).
+72036 	Defesa do Deus Dragão	Aumento de 12% a 15% na defesa (máximo de 300).
+72037 	Vida do Deus Dragão	Aumenta o HP Máximo em 20%
+72038 	Vida do Deus Dragão	Aumenta o HP Máximo em 20%
+72039 	Vida do Deus Dragão	Aumenta o HP Máximo em 20%
+72040 	Sabedoria do Deus Dragão	Aumenta o MP Máximo em 20%
+72041 	Sabedoria do Deus Dragão	Aumenta o MP Máximo em 20%
+72042 	Sabedoria do Deus Dragão	Aumenta o MP Máximo em 20%
+72043 	Liutao	Aumenta em até 30% a exp ganha pelo grupo (deve ser usada pelo líder do grupo).
+72044 	Liutao	Aumenta em até 30% a exp ganha pelo grupo (deve ser usada pelo líder do grupo).
+72045 	Liutao	Aumenta em até 30% a exp ganha pelo grupo (deve ser usada pelo líder do grupo).
+72046 	Palma da Precisão	Aumenta em 10% a chance de um ataque crítico. Um ataque crítico bem sucedido dobra o dano daquele ataque.
+72047 	Palma da Precisão	Aumenta em 10% a chance de um ataque crítico. Um ataque crítico bem sucedido dobra o dano daquele ataque.
+72048 	Palma da Precisão	Aumenta em 10% a chance de um ataque crítico. Um ataque crítico bem sucedido dobra o dano daquele ataque.
+		
+72501 	Anel de Experiência-LAN	Dobra a experiência ganha derrotando monstros. Uso exclusivo em uma Lan House parceira.
+72502 	Luva do Ladrão-LAN	Dobra a chance de drop de itens. Uso exclusivo em uma Lan House parceira.
+		
+72723	Benção de Helong(P)	A benção de Helong é uma poção feita da energia recebida dos dragões, isso mantém o vigor de quem a usa sempre em seu melhor estado.	Recupera até 1.000.000 HP.
+72724	Benção de Helong(M)	A benção de Helong é uma poção feita da energia recebida dos dragões, isso mantém o vigor de quem a usa sempre em seu melhor estado.	Recupera até 3.000.000 HP.
+72725	Benção de Helong(G)	A benção de Helong é uma poção feita da energia recebida dos dragões, isso mantém o vigor de quem a usa sempre em seu melhor estado.	Recupera até 7.000.000 HP.
+72726	Benção de Helong(S)	A benção de Helong é uma poção feita da energia recebida dos dragões, isso mantém o vigor de quem a usa sempre em seu melhor estado.	Recupera até 10.000.000 HP e aumenta HP Maximo.
+72727	Benção de Yoora(P)	A benção de Yoora é uma poção feita da energia recebida dos dragões, isso mantém o estado mental de quem a usa sempre em seu melhor estado.	Recupera até 100.000 MP.
+72728	Benção de Yoora(M)	A benção de Yoora é uma poção feita da energia recebida dos dragões, isso mantém o estado mental de quem a usa sempre em seu melhor estado.	Recupera até 300.000 MP.
+72729	Benção de Yoora(G)	A benção de Yoora é uma poção feita da energia recebida dos dragões, isso mantém o estado mental de quem a usa sempre em seu melhor estado.	Recupera até 700.000 MP.
+72730	Benção de Yoora(S)	A benção de Yoora é uma poção feita da energia recebida dos dragões, isso mantém o estado mental de quem a usa sempre em seu melhor estado.	Recupera até 1.000.000 MP e aumenta MP Máximo.
+
+
+
+
+73001 	Corte Repicado (Ruivo)	Cabelos soltos e repicados, na cor vermelha.
+73002 	Corte Repicado (Loiro)	Cabelos soltos e repicados, na cor amarela.
+73003 	Corte Repicado (Azul)	Cabelos soltos e repicados, na cor azul.
+73004 	Corte Repicado (Marrom)	Cabelos soltos e repicados, na cor marrom.
+73005 	Bandana Vermelha	Bandana que prende os cabelos durante as batalhas, na cor vermelha.
+73006 	Bandana Xadrez	Bandana que prende os cabelos durante as batalhas, com estampa xadrez.
+73007 	Bandana Azul	Bandana que prende os cabelos durante as batalhas, na cor azul.
+73008 	Bandana Verde	Bandana que prende os cabelos durante as batalhas, quadriculada verde e vermelha.
+73009 	Cabelo Amarrado (Preto)	Volumoso rabo de cavalo com mechas, na cor preta.
+73010 	Cabelo Amarrado (Ruivo)	Volumoso rabo de cavalo com mechas, na cor vermelha.
+73011 	Cabelo Amarrado (Loiro)	Volumoso rabo de cavalo com mechas, na cor amarela.
+73012 	Cabelo Amarrado (Verde)	Volumoso rabo de cavalo com mechas, na cor verde.
+		
+73251 	Rabo de Cavalo (Marrom)	Tradicional cabelo preso em rabo-de-cavalo, na cor marrom.
+73252 	Rabo de Cavalo (Verde)	Tradicional cabelo preso em rabo-de-cavalo, na cor verde.
+73253 	Rabo de Cavalo (Azul)	Tradicional cabelo preso em rabo-de-cavalo, na cor azul.
+73254 	Rabo de Cavalo (Pérola)	Tradicional cabelo preso em rabo-de-cavalo, na cor pérola.
+73255 	Corte Médio (Ruivo)	Corte circular, cobrindo toda a cabeça, na cor vermelha.
+73256 	Corte Médio (Castanho)	Corte circular, cobrindo toda a cabeça, na cor castanha.
+73257 	Corte Médio (Loiro)	Corte circular, cobrindo toda a cabeça, na cor amarela.
+73258 	Corte Médio (Roxo)	Corte circular, cobrindo toda a cabeça, na cor roxa.
+73259 	Corte Curto (Ruivo)	Corte curto com franja lateral, na cor vermelha.
+73260 	Corte Curto (Azul)	Corte curto com franja lateral, na cor azul.
+73261 	Corte Curto (Preto)	Corte curto com franja lateral, na cor preta.
+73262 	Corte Curto (Dourado)	Corte curto com franja lateral, na cor dourada.
+		
+73501 	Estilo Soldado (Branco)	Corte muito curto, com costeletas, na cor branca.
+73502 	Estilo Soldado (Marrom)	Corte muito curto, com costeletas, na cor marrom.
+73503 	Estilo Soldado (Loiro)	Corte muito curto, com costeletas, na cor amarela.
+73504 	Estilo Soldado (Verde)	Corte muito curto, com costeletas, na cor verde.
+73505 	Franja (Branco)	Cabelo comprido e uma longa franja, na cor branca.
+73506 	Franja (Ruivo)	Cabelo comprido e uma longa franja, na cor vermelha.
+73507 	Franja (Preto)	Cabelo comprido e uma longa franja, na cor preta.
+73508 	Franja (Lilás)	Cabelo comprido e uma longa franja, na cor lilás.
+73509 	Cabelo Preso (Branco)	Cabelo todo preso para trás, na cor branca.
+73510 	Cabelo Preso (Azul)	Cabelo todo preso para trás, na cor azul.
+73511 	Cabelo Preso (Preto)	Cabelo todo preso para trás, na cor preta.
+73512 	Cabelo Preso (Castanho)	Cabelo todo preso para trás, na cor castanha.
+		
+73751 	Presilha (Castanho)	Cabelo preso por uma singela presilha, na cor castanha.
+73752 	Presilha (Preto)	Cabelo preso por uma singela presilha, na cor preta.
+73753 	Presilha (Azul)	Cabelo preso por uma singela presilha, na cor azul.
+73754 	Presilha (Branco)	Cabelo preso por uma singela presilha, na cor branca.
+73755 	Corte Desfiado (Marrom)	Corte liso, com as pontas desfiadas, na cor marrom.
+73756 	Corte Desfiado (Preto)	Corte liso, com as pontas desfiadas, na cor preta.
+73757 	Corte Desfiado (Loiro)	Corte liso, com as pontas desfiadas, na cor amarela.
+73758 	Corte Desfiado (Lilás)	Corte liso, com as pontas desfiadas, na cor lilás.
+73759 	Cabelo Longo (Castanho)	Cabelo penteado todo para um lado, na cor castanha.
+73760 	Cabelo Longo (Loiro)	Cabelo penteado todo para um lado, na cor amarela.
+73761 	Cabelo Longo (Lilás)	Cabelo penteado todo para um lado, na cor lilás.
+73762 	Cabelo Longo (Marrom)	Cabelo penteado todo para um lado, na cor marrom.
+		
+		
+		
+		
+74001 	Corte Repicado (Ruivo)	Cabelos soltos e repicados, na cor vermelha.
+74002 	Corte Repicado (Loiro)	Cabelos soltos e repicados, na cor amarela.
+74003 	Corte Repicado (Azul)	Cabelos soltos e repicados, na cor azul.
+74004 	Corte Repicado (Marrom)	Cabelos soltos e repicados, na cor marrom.
+74005 	Bandana Vermelha	Bandana que prende os cabelos durante as batalhas, na cor vermelha.
+74006 	Bandana Xadrez	Bandana que prende os cabelos durante as batalhas, com estampa xadrez.
+74007 	Bandana Azul	Bandana que prende os cabelos durante as batalhas, na cor azul.
+74008 	Bandana Verde	Bandana que prende os cabelos durante as batalhas, quadriculada verde e vermelha.
+74009 	Cabelo Amarrado (Preto)	Volumoso rabo de cavalo com mechas, na cor preta.
+74010 	Cabelo Amarrado (Ruivo)	Volumoso rabo de cavalo com mechas, na cor vermelha.
+74011 	Cabelo Amarrado (Loiro)	Volumoso rabo de cavalo com mechas, na cor amarela.
+74012 	Cabelo Amarrado (Verde)	Volumoso rabo de cavalo com mechas, na cor verde.
+		
+74251 	Rabo de Cavalo (Marrom)	Tradicional cabelo preso em rabo-de-cavalo, na cor marrom.
+74252 	Rabo de Cavalo (Verde)	Tradicional cabelo preso em rabo-de-cavalo, na cor verde.
+74253 	Rabo de Cavalo (Azul)	Tradicional cabelo preso em rabo-de-cavalo, na cor azul.
+74254 	Rabo de Cavalo (Pérola)	Tradicional cabelo preso em rabo-de-cavalo, na cor pérola.
+74255 	Corte Médio (Ruivo)	Corte circular, cobrindo toda a cabeça, na cor vermelha.
+74256 	Corte Médio (Castanho)	Corte circular, cobrindo toda a cabeça, na cor castanha.
+74257 	Corte Médio (Loiro)	Corte circular, cobrindo toda a cabeça, na cor amarela.
+74258 	Corte Médio (Roxo)	Corte circular, cobrindo toda a cabeça, na cor roxa.
+74259 	Corte Curto (Ruivo)	Corte curto com franja lateral, na cor vermelha.
+74260 	Corte Curto (Azul)	Corte curto com franja lateral, na cor azul.
+74261 	Corte Curto (Preto)	Corte curto com franja lateral, na cor preta.
+74262 	Corte Curto (Dourado)	Corte curto com franja lateral, na cor dourada.
+		
+74501 	Estilo Soldado (Branco)	Corte muito curto, com costeletas, na cor branca.
+74502 	Estilo Soldado (Marrom)	Corte muito curto, com costeletas, na cor marrom.
+74503 	Estilo Soldado (Loiro)	Corte muito curto, com costeletas, na cor amarela.
+74504 	Estilo Soldado (Verde)	Corte muito curto, com costeletas, na cor verde.
+74505 	Franja (Branco)	Cabelo comprido e uma longa franja, na cor branca.
+74506 	Franja (Ruivo)	Cabelo comprido e uma longa franja, na cor vermelha.
+74507 	Franja (Preto)	Cabelo comprido e uma longa franja, na cor preta.
+74508 	Franja (Lilás)	Cabelo comprido e uma longa franja, na cor lilás.
+74509 	Cabelo Preso (Branco)	Cabelo todo preso para trás, na cor branca.
+74510 	Cabelo Preso (Azul)	Cabelo todo preso para trás, na cor azul.
+74511 	Cabelo Preso (Preto)	Cabelo todo preso para trás, na cor preta.
+74512 	Cabelo Preso (Castanho)	Cabelo todo preso para trás, na cor castanha.
+		
+74751 	Presilha (Castanho)	Cabelo preso por uma singela presilha, na cor castanha.
+74752 	Presilha (Preto)	Cabelo preso por uma singela presilha, na cor preta.
+74753 	Presilha (Azul)	Cabelo preso por uma singela presilha, na cor azul.
+74754 	Presilha (Branco)	Cabelo preso por uma singela presilha, na cor branca.
+74755 	Corte Desfiado (Marrom)	Corte liso, com as pontas desfiadas, na cor marrom.
+74756 	Corte Desfiado (Preto)	Corte liso, com as pontas desfiadas, na cor preta.
+74757 	Corte Desfiado (Loiro)	Corte liso, com as pontas desfiadas, na cor amarela.
+74758 	Corte Desfiado (Lilás)	Corte liso, com as pontas desfiadas, na cor lilás.
+74759 	Cabelo Longo (Castanho)	Cabelo penteado todo para um lado, na cor castanha.
+74760 	Cabelo Longo (Loiro)	Cabelo penteado todo para um lado, na cor amarela.
+74761 	Cabelo Longo (Lilás)	Cabelo penteado todo para um lado, na cor lilás.
+74762 	Cabelo Longo (Marrom)	Cabelo penteado todo para um lado, na cor marrom.
+75001	Corte Odango (Ruivo)	Cabelos presos ao lado da cabeça em pequenos coques, na cor vermelha.	Duração: 30 dias
+75002	Corte Odango (Rosa)	Cabelos presos ao lado da cabeça em pequenos coques, na cor rosa.	Duração: 30 dias
+75003 	Corte Odango (Azul)	Cabelos presos ao lado da cabeça em pequenos coques, na cor azul.	Duração: 30 dias
+75004 	Corte Odango (Castanho)	Cabelos presos ao lado da cabeça em pequenos coques, na cor castanha.	Duração: 30 dias
+75005 	Curto com faixa (Ruivo)	Corte curto com uma faixa presa à testa, na cor vermelha.	Duração: 30 dias
+75006 	Curto com faixa (Loiro)	Corte curto com uma faixa presa à testa, na cor amarela.	Duração: 30 dias
+75007 	Curto com faixa (Azul)	Corte curto com uma faixa presa à testa, na cor azul.	Duração: 30 dias
+75008 	Curto com faixa (Verde)	Corte curto com uma faixa presa à testa, na cor verde.	Duração: 30 dias
+75009 	Coque com mecha (Preto)	Cabelo preso com uma mecha caindo pelo rosto, na cor preta.	Duração: 30 dias
+75010 	Coque com mecha (Ruivo)	Cabelo preso com uma mecha caindo pelo rosto, na cor vermelha.	Duração: 30 dias
+75011 	Coque com mecha (Marrom)	Cabelo preso com uma mecha caindo pelo rosto, na cor marrom.	Duração: 30 dias
+75012 	Coque com mecha (Verde)	Cabelo preso com uma mecha caindo pelo rosto, na cor verde.	Duração: 30 dias
+			
+75201 	Estilo Samurai (Marrom)	Corte que honra a antiga tradição samurai, na cor marrom.	Duração: 30 dias
+75202 	Estilo Samurai (Verde)	Corte que honra a antiga tradição samurai, na cor verde.	Duração: 30 dias
+75203 	Estilo Samurai (Azul)	Corte que honra a antiga tradição samurai, na cor azul.	Duração: 30 dias
+75204 	Estilo Samurai (Loiro)	Corte que honra a antiga tradição samurai, na cor amarela.	Duração: 30 dias
+75205 	Lenço Branco	Cabelo coberto por um lenço, deixando uma pequena franja à mostra, na cor branca.	Duração: 30 dias
+75206 	Lenço Escuro	Cabelo coberto por um lenço, deixando uma pequena franja à mostra, na cor verde.	Duração: 30 dias
+75207 	Lenço Bege	Cabelo coberto por um lenço, deixando uma pequena franja à mostra, na cor bege.	Duração: 30 dias
+75208 	Lenço Vermelho	Cabelo coberto por um lenço, deixando uma pequena franja à mostra, na cor vermelha.	Duração: 30 dias
+75209 	Corte Shaggy (Ruivo)	Cabelo bagunçado, na cor vermelha.	Duração: 30 dias
+75210 	Corte Shaggy (Azul)	Cabelo bagunçado, na cor azul.	Duração: 30 dias
+75211 	Corte Shaggy (Preto)	Cabelo bagunçado, na cor preta.	Duração: 30 dias
+75212 	Corte Shaggy (Loiro)	Cabelo bagunçado, na cor amarela.	Duração: 30 dias
+			
+75401 	Corte Tridente (Cinza)	Cabelo preso em 3 pontas, na cor cinza.	Duração: 30 dias
+75402 	Corte Tridente (Marrom)	Cabelo preso em 3 pontas, na cor marrom.	Duração: 30 dias
+75403 	Corte Tridente (Loiro)	Cabelo preso em 3 pontas, na cor amarela.	Duração: 30 dias
+75404 	Corte Tridente (Verde)	Cabelo preso em 3 pontas, na cor verde.	Duração: 30 dias
+75405 	Cabelo Liso (Prata)	Cabelo superliso com detalhes dos lados, na cor prata.	Duração: 30 dias
+75406 	Cabelo Liso (Rosa)	Cabelo superliso com detalhes dos lados, na cor rosa.	Duração: 30 dias
+75407 	Cabelo Liso (Preto)	Cabelo superliso com detalhes dos lados, na cor preta.	Duração: 30 dias
+75408 	Cabelo Liso (Lilás)	Cabelo superliso com detalhes dos lados, na cor lilás.	Duração: 30 dias
+75409 	Corte Viena (Prata)	Corte clássico, com os cabelos presos no topo da cabeça, na cor prata.	Duração: 30 dias
+75410 	Corte Viena (Azul)	Corte clássico, com os cabelos presos no topo da cabeça, na cor azul.	Duração: 30 dias
+75411 	Corte Viena (Preto)	Corte clássico, com os cabelos presos no topo da cabeça, na cor preta.	Duração: 30 dias
+75412 	Corte Viena (Castanho)	Corte clássico, com os cabelos presos no topo da cabeça, na cor castanha.	Duração: 30 dias
+			
+75601 	Para Trás (Castanho)	Cabelo comprido todo penteado para trás, na cor castanha.	Duração: 30 dias
+75602 	Para Trás (Preto)	Cabelo comprido todo penteado para trás, na cor preta.	Duração: 30 dias
+75603 	Para Trás (Azul)	Cabelo comprido todo penteado para trás, na cor azul.	Duração: 30 dias
+75604 	Para Trás (Cinza)	Cabelo comprido todo penteado para trás, na cor cinza.	Duração: 30 dias
+75605 	Cabelo Solto (Ruivo)	Cabelo solto na altura dos ombros, na cor vermelha.	Duração: 30 dias
+75606 	Cabelo Solto (Preto)	Cabelo solto na altura dos ombros, na cor preta.	Duração: 30 dias
+75607 	Cabelo Solto (Loiro)	Cabelo solto na altura dos ombros, na cor amarela.	Duração: 30 dias
+75608 	Cabelo Solto (Roxo)	Cabelo solto na altura dos ombros, na cor roxa.	Duração: 30 dias
+75609 	Tradicional (Castanho)	Corte tradicional dos antigos guerreiros orientais, na cor castanha.	Duração: 30 dias
+75610 	Tradicional (Loiro)	Corte tradicional dos antigos guerreiros orientais, na cor amarela.	Duração: 30 dias
+75611 	Tradicional (Azul)	Corte tradicional dos antigos guerreiros orientais, na cor azul.	Duração: 30 dias
+75612 	Tradicional (Ruivo)	Corte tradicional dos antigos guerreiros orientais, na cor vermelha.	Duração: 30 dias
+	
+
+74013	Black Power	Esse estiloso Penteado, eleva a autoconfiaça e o vigor de quem usa. 	Aumenta HP Máximo (7 dias)
+74014	Black Power	Esse estiloso Penteado, eleva a autoconfiaça e o vigor de quem usa. 	Aumenta MP Máximo (7 dias)
+74015	Sakkat Helong	Chapéu simbolizando o poder e beleza do grande deus dragão Helong. Os mais corajosos mostram seu vigor e honra quando usam.	Aumenta HP Máximo (7 dias)
+74016	Sakkat Helong	Chapéu simbolizando o poder e beleza do grande deus dragão Helong. Os mais corajosos mostram seu vigor e honra quando usam.	Aumenta MP Máximo (7 dias)
+74263	Pink Power	Esse estiloso Penteado, eleva a autoconfiaça e o vigor de quem usa. 	Aumenta HP Máximo (7 dias)
+74264	Pink Power	Esse estiloso Penteado, eleva a autoconfiaça e o vigor de quem usa. 	Aumenta MP Máximo (7 dias)
+74265	Sakkat Yoora	Chapéu simbolizando a antiga tradição de beleza, honrando a grandeza da deusa dragão Yoora. As mulheres mais lindas usam para demosntrar seu poder.	Aumenta HP Máximo (7 dias)
+74266	Sakkat Yoora	Chapéu simbolizando a antiga tradição de beleza, honrando a grandeza da deusa dragão Yoora. As mulheres mais lindas usam para demosntrar seu poder.	Aumenta MP Máximo (7 dias)
+74513	Black Power	Esse estiloso Penteado, eleva a autoconfiaça e o vigor de quem usa. 	Aumenta HP Máximo (7 dias)
+74514	Black Power	Esse estiloso Penteado, eleva a autoconfiaça e o vigor de quem usa. 	Aumenta MP Máximo (7 dias)
+74515	Sakkat Helong	Chapéu simbolizando o poder e beleza do grande deus dragão Helong. Os mais corajosos mostram seu vigor e honra quando usam.	Aumenta HP Máximo (7 dias)
+74516	Sakkat Helong	Chapéu simbolizando o poder e beleza do grande deus dragão Helong. Os mais corajosos mostram seu vigor e honra quando usam.	Aumenta MP Máximo (7 dias)
+74763	Pink Power	Esse estiloso Penteado, eleva a autoconfiaça e o vigor de quem usa. 	Aumenta HP Máximo (7 dias)
+74764	Pink Power	Esse estiloso Penteado, eleva a autoconfiaça e o vigor de quem usa. 	Aumenta MP Máximo (7 dias)
+74765	Sakkat Yoora	Chapéu simbolizando a antiga tradição de beleza, honrando a grandeza da deusa dragão Yoora. As mulheres mais lindas usam para demosntrar seu poder.	Aumenta HP Máximo (7 dias)
+74766	Sakkat Yoora	Chapéu simbolizando a antiga tradição de beleza, honrando a grandeza da deusa dragão Yoora. As mulheres mais lindas usam para demosntrar seu poder.	Aumenta MP Máximo (7 dias)
+75013	Pink Power	Esse estiloso Penteado, eleva a autoconfiaça e o vigor de quem usa. 	Aumenta HP Máximo (7 dias)
+75014	Pink Power	Esse estiloso Penteado, eleva a autoconfiaça e o vigor de quem usa. 	Aumenta MP Máximo (7 dias)
+75015	Sakkat Yoora	Chapéu simbolizando a antiga tradição de beleza, honrando a grandeza da deusa dragão Yoora. As mulheres mais lindas usam para demosntrar seu poder.	Aumenta HP Máximo (7 dias)
+75016	Sakkat Yoora	Chapéu simbolizando a antiga tradição de beleza, honrando a grandeza da deusa dragão Yoora. As mulheres mais lindas usam para demosntrar seu poder.	Aumenta MP Máximo (7 dias)
+75213	Black Power	Esse estiloso Penteado, eleva a autoconfiaça e o vigor de quem usa. 	Aumenta HP Máximo (7 dias)
+75214	Black Power	Esse estiloso Penteado, eleva a autoconfiaça e o vigor de quem usa. 	Aumenta MP Máximo (7 dias)
+75215	Sakkat Helong	Chapéu simbolizando o poder e beleza do grande deus dragão Helong. Os mais corajosos mostram seu vigor e honra quando usam.	Aumenta HP Máximo (7 dias)
+75216	Sakkat Helong	Chapéu simbolizando o poder e beleza do grande deus dragão Helong. Os mais corajosos mostram seu vigor e honra quando usam.	Aumenta MP Máximo (7 dias)
+75413	Pink Power	Esse estiloso Penteado eleva a autoconfiaça e o vigor de quem usa. 	Aumenta HP Máximo (7 dias)
+75414	Pink Power	Esse estiloso Penteado, eleva a autoconfiaça e o vigor de quem usa. 	Aumenta MP Máximo (7 dias)
+75415	Sakkat Yoora	Chapéu simbolizando a antiga tradição de beleza, honrando a grandeza da deusa dragão Yoora. As mulheres mais lindas usam para demosntrar seu poder.	Aumenta HP Máximo (7 dias)
+75416	Sakkat Yoora	Chapéu simbolizando a antiga tradição de beleza, honrando a grandeza da deusa dragão Yoora. As mulheres mais lindas usam para demosntrar seu poder.	Aumenta MP Máximo (7 dias)
+75613	Black Power	Esse estiloso Penteado, eleva a autoconfiaça e o vigor de quem usa. 	Aumenta HP Máximo (7 dias)
+75614	Black Power	Esse estiloso Penteado, eleva a autoconfiaça e o vigor de quem usa. 	Aumenta MP Máximo (7 dias)
+75615	Sakkat Helong	Chapéu simbolizando o poder e beleza do grande deus dragão Helong. Os mais corajosos mostram seu vigor e honra quando usam.	Aumenta HP Máximo (7 dias)
+75616	Sakkat Helong	Chapéu simbolizando o poder e beleza do grande deus dragão Helong. Os mais corajosos mostram seu vigor e honra quando usam.	Aumenta MP Máximo (7 dias)
+
+74017	Chapéu vermelho	Um chapéu vermelho tubular popularmente conhecido pelos habitantes dos desertos.	+10 Bônus contra mosntro | (7 dias)
+74018	Lenço do deserto	Lenço resistente capaz de proteger a cabeça do sol escaldante. Técnica usada pelos exploradores do deserto.	+10 Bônus contra mosntro | (7 dias)
+74019	Turbante	Acredita-se que esse visual imponente, pode intimidar as criaturas do deserto. Grandes exploradores, nunca dispensaram o uso.	+10 Bônus contra mosntro | (7 dias)
+74267	Véu	Antigo visual desenvolvido para proteger os cabelos longos e naturais e a pele, de mulheres que viajam pelo deserto.	+10 Bônus contra mosntro | (7 dias)
+74268	Máscara do deserto	Fornece uma melhor proteção contra o sol e tempestades de areia do deserto. Algumas mulheres usam também para esconder seu lindo rosto.	+10 Bônus contra mosntro | (7 dias)
+74269	Turbante	Acredita-se que esse visual imponente, pode intimidar as criaturas do deserto. Grandes exploradores, nunca dispensaram o uso.	+10 Bônus contra mosntro | (7 dias)
+74517	Chapéu vermelho	Um chapéu vermelho tubular popularmente conhecido pelos habitantes dos desertos.	+10 Bônus contra mosntro | (7 dias)
+74518	Lenço do deserto	Lenço resistente capaz de proteger a cabeça do sol escaldante. Técnica usada pelos exploradores do deserto.	+10 Bônus contra mosntro | (7 dias)
+74519	Turbante	Acredita-se que esse visual imponente, pode intimidar as criaturas do deserto. Grandes exploradores, nunca dispensaram o uso.	+10 Bônus contra mosntro | (7 dias)
+74767	Véu	Antigo visual desenvolvido para proteger os cabelos longos e naturais e a pele, de mulheres que viajam pelo deserto.	+10 Bônus contra mosntro | (7 dias)
+74768	Máscara do deserto	Fornece uma melhor proteção contra o sol e tempestades de areia do deserto. Algumas mulheres usam também para esconder seu lindo rosto.	+10 Bônus contra mosntro | (7 dias)
+74769	Turbante	Acredita-se que esse visual imponente, pode intimidar as criaturas do deserto. Grandes exploradores, nunca dispensaram o uso.	+10 Bônus contra mosntro | (7 dias)
+75017	Véu	Antigo visual desenvolvido para proteger os cabelos longos e naturais e a pele, de mulheres que viajam pelo deserto.	+10 Bônus contra mosntro | (7 dias)
+75018	Máscara do deserto	Fornece uma melhor proteção contra o sol e tempestades de areia do deserto. Algumas mulheres usam também para esconder seu lindo rosto.	+10 Bônus contra mosntro | (7 dias)
+75019	Turbante	Acredita-se que esse visual imponente, pode intimidar as criaturas do deserto. Grandes exploradores, nunca dispensaram o uso.	+10 Bônus contra mosntro | (7 dias)
+75217	Chapéu vermelho	Um chapéu vermelho tubular popularmente conhecido pelos habitantes dos desertos.	+10 Bônus contra mosntro | (7 dias)
+75218	Lenço do deserto	Lenço resistente capaz de proteger a cabeça do sol escaldante. Técnica usada pelos exploradores do deserto.	+10 Bônus contra mosntro | (7 dias)
+75219	Turbante	Acredita-se que esse visual imponente, pode intimidar as criaturas do deserto. Grandes exploradores, nunca dispensaram o uso.	+10 Bônus contra mosntro | (7 dias)
+75417	Véu	Antigo visual desenvolvido para proteger os cabelos longos e naturais e a pele, de mulheres que viajam pelo deserto.	+10 Bônus contra mosntro | (7 dias)
+75418	Máscara do deserto	Fornece uma melhor proteção contra o sol e tempestades de areia do deserto. Algumas mulheres usam também para esconder seu lindo rosto.	+10 Bônus contra mosntro | (7 dias)
+75419	Turbante	Acredita-se que esse visual imponente, pode intimidar as criaturas do deserto. Grandes exploradores, nunca dispensaram o uso.	+10 Bônus contra mosntro | (7 dias)
+75617	Chapéu vermelho	Um chapéu vermelho tubular popularmente conhecido pelos habitantes dos desertos.	+10 Bônus contra mosntro | (7 dias)
+75618	Lenço do deserto	Lenço resistente capaz de proteger a cabeça do sol escaldante. Técnica usada pelos exploradores do deserto.	+10 Bônus contra mosntro | (7 dias)
+75619	Turbante	Acredita-se que esse visual imponente, pode intimidar as criaturas do deserto. Grandes exploradores, nunca dispensaram o uso.	+10 Bônus contra mosntro | (7 dias)
+
+74020	Máscara de abobora	Guerreiro(M)
+74270	Máscara de abobora	Ninja (F)	
+74520	Máscara de abobora	Shura (M)
+74770	Máscara de abobora	Shaman (F)
+75020	Máscara de abobora	Guerreiro (F)
+75220	Máscara de abobora	Ninja (M)
+75420	Máscara de abobora	Shura (F)
+75620	Máscara de abobora	Shaman (M)
+76000	Poção Regeneradora	Regenera instantaneamente 500HP.
+76001	Pergaminho do Recomeço	Reinicia os Status, as Skills, e a força de Skill do personagem.
+76003	Poção Sagaz	Cooldown das skills fica 20% mais rápido
+76004	Benção de Yoora (PP)	A Benção de Yoora é uma poção feita da energia recebida dos dragões , isso mantem o estado mental de quem a usa sempre no melhor estado.
+76005	Bencao de Yoora (P)	A Benção de Yoora é uma poção feita da energia recebida dos dragões , isso mantem o estado mental de quem a usa sempre no melhor estado.
+76006	Detector de Metins	Detecta a localização de pedras Metin.
+76007	Manto da Bravura	Provoca todos os montros ao seu redor, fazendo com que todos ataquem quem vestir o manto. Pode ser usado somente uma vez.
+76008	Benção do Deus Dragão	Evita a perda de experiência ao morrer.
+76009	Pergaminho do Dragão	Aumenta em 10% a chance de sucesso na refinação do item, e se a refinação falhar ele não é destruído, apenas perde 1 nível.
+76011	Liutao	Aumenta em até 30% a exp ganha pelo grupo (deve ser usada pelo líder do grupo).
+76012	Poção Leopardo	Aumenta o movimento em 60 por 30 minutos (não cumulativo com Poção Roxa).
+76013	Pergam. Novo Aprim.	Adiciona uma nova propriedade ao item.
+76014	Pergam. do Aprimoramento	Altera uma propriedade já existente no item.
+76015	Esfera da Benção	De acondo com a lenda, é uma esfera com a benção dos Deuses.
+76016	Pergaminho da Paz	O item não quebra caso ocorra falha no refinamento, porém diminui um nível.
+76017	Poção Verde (M)	Velocidade de Ataque: +20 | Duração :10m
+76018	Poção Verde (G)	Velocidade de Ataque: +30 | Duração :10m
+76020	Soro da Persuasão	Aumenta a aceitação de itens de quest em 30%
+76021	Benção de Helong (PP)	A Benção de Helong é uma poção feita da energia recebida dos dragões , isso mantém o vigor de quem a usa sempre no melhor estado. | Recupera até 100.000 HP
+76022	Benção de Helong (P)	A Benção de Helong é uma poção feita da energia recebida dos dragões , isso mantem o vigor de quem a usa sempre no melhor estado. | Recupera até 1.000.000 HP
+76023	Aprimoramento Leve	Altera uma propriedade já existente em uma arma/armadura que possua nível igual ou menor que 40.
+76024	Novo Aprim. Leve	Adiciona uma nova propriedade em uma arma/armadura que possua nível igual ou menor que 40.
+		
+80001	Bolsa de Dinheiro	
+80002	Papel em Branco	
+80008	Pepita de Ouro	Pedra bruta muito valiosa.
+		
+90001	Garrafa D'água Vazia	
+90002	Garrafa D'água	
+90003	Cristal	
+90004	Gema	
+90005	Pedra D'água	
+90006	Pedra Espiritual	
+90007	Mineral	
+	
+
+79004	Baú Vermelho	Um Baú vermelho com aparência elegante. Parece guardar algo raro e valioso. 
+79005 	Pergaminho do Recomeço	Reinicia os Status, as Skills e a força de Skill do personagem.
+79006 	Bênção do Deus Dragão	Evita a perda de experiência ao morrer.
+79007 	Poção Sagaz	Cooldown das skills fica 20% mais rápido	
+79008 	Anel da Experiência	Dobra a experiência ganha derrotando monstros.
+79009	Luva do Ladrão	Dobra a chance de drop de itens.
+79010 	Moeda Dourada da Sorte	Dobra a chance de drop de Gold.
+79011 	Liutao	Aumenta em até 30% a exp ganha pelo grupo (deve ser usada pelo líder do grupo).
+79012	Benção de Helong(P)	A benção de Helong é uma poção feita da energia recebida dos dragões, isso mantém o vigor de quem a usa sempre em seu melhor estado.	Recupera até 1.000.000 HP.
+79013	Benção de Yoora(P)	A benção de Yoora é uma poção feita da energia recebida dos dragões, isso mantém o estado mental de quem a usa sempre em seu melhor estado.	Recupera até 100.000 MP.
+
