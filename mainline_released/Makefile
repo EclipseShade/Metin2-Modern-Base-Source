@@ -10,14 +10,14 @@ default: libthecore libpoly libgame liblua libsql libserverkey game db
 	@echo "--------------------------------------"
 
 libserverkey: .
-	@touch $@/Depend
-	$(MAKE) -C $@ dep
-	$(MAKE) -C $@ clean
-	$(MAKE) -C $@
+	@touch ../ExternGame/libserverkey/Depend
+	$(MAKE) -C ../ExternGame/libserverkey dep
+	$(MAKE) -C ../ExternGame/libserverkey clean
+	$(MAKE) -C ../ExternGame/libserverkey
 
 liblua: .
-	$(MAKE) -C $@ clean
-	$(MAKE) -C $@
+	$(MAKE) -C ../ExternGame/liblua clean
+	$(MAKE) -C ../ExternGame/liblua
 
 libsql: .
 	@touch ../ExternGame/libsql/Depend
@@ -26,28 +26,22 @@ libsql: .
 	$(MAKE) -C ../ExternGame/libsql
 
 libgame: .
-	@touch $@/src/Depend
-	$(MAKE) -C $@/src dep
-	$(MAKE) -C $@/src clean
-	$(MAKE) -C $@/src
+	@touch ../ExternGame/libgame/src/Depend
+	$(MAKE) -C ../ExternGame/libgame/src dep
+	$(MAKE) -C ../ExternGame/libgame/src clean
+	$(MAKE) -C ../ExternGame/libgame/src
 
 libpoly: .
-	@touch $@/Depend
-	$(MAKE) -C $@ dep
-	$(MAKE) -C $@ clean
-	$(MAKE) -C $@ 
+	@touch ../ExternGame/libpoly/Depend
+	$(MAKE) -C ../ExternGame/libpoly dep
+	$(MAKE) -C ../ExternGame/libpoly clean
+	$(MAKE) -C ../ExternGame/libpoly
 
 libthecore: .
-	@touch $@/src/Depend
-	$(MAKE) -C $@/src dep
-	$(MAKE) -C $@/src clean
-	$(MAKE) -C $@/src
-
-libserverkey: .
-	@touch $@/Depend
-	$(MAKE) -C $@ dep
-	$(MAKE) -C $@ clean
-	$(MAKE) -C $@
+	@touch ../ExternGame/libthecore/src/Depend
+	$(MAKE) -C ../ExternGame/libthecore/src dep
+	$(MAKE) -C ../ExternGame/libthecore/src clean
+	$(MAKE) -C ../ExternGame/libthecore/src
 
 game: .
 	@touch $@/src/Depend
@@ -62,8 +56,12 @@ db: .
 	$(MAKE) -C $@/src
 
 clean:
+	$(MAKE) -C ../ExternGame/liblua clean
 	$(MAKE) -C ../ExternGame/libsql clean
+	$(MAKE) -C ../ExternGame/libgame/src clean
+	$(MAKE) -C ../ExternGame/libpoly clean
 	$(MAKE) -C ../ExternGame/libthecore/src clean
+	
 	$(MAKE) -C db/src clean
 	$(MAKE) -C game/src clean
 
@@ -72,28 +70,28 @@ all:
 	@echo "Full Build Start"
 	@echo "--------------------------------------"
 
-	$(MAKE) -C liblua clean
-	$(MAKE) -C liblua
+	$(MAKE) -C ../ExternGame/liblua clean
+	$(MAKE) -C ../ExternGame/liblua
 
 	@touch ../ExternGame/libsql/Depend
 	$(MAKE) -C ../ExternGame/libsql dep
 	$(MAKE) -C ../ExternGame/libsql clean
 	$(MAKE) -C ../ExternGame/libsql
 
-	@touch libgame/src/Depend
-	$(MAKE) -C libgame/src dep
-	$(MAKE) -C libgame/src clean
-	$(MAKE) -C libgame/src
+	@touch ../ExternGame/libgame/src/Depend
+	$(MAKE) -C ../ExternGame/libgame/src dep
+	$(MAKE) -C ../ExternGame/libgame/src clean
+	$(MAKE) -C ../ExternGame/libgame/src
 
-	@touch libpoly/Depend
-	$(MAKE) -C libpoly dep
-	$(MAKE) -C libpoly clean
-	$(MAKE) -C libpoly 
+	@touch ../ExternGame/libpoly/Depend
+	$(MAKE) -C ../ExternGame/libpoly dep
+	$(MAKE) -C ../ExternGame/libpoly clean
+	$(MAKE) -C ../ExternGame/libpoly 
 
-	@touch libthecore/src/Depend
-	$(MAKE) -C libthecore/src dep
-	$(MAKE) -C libthecore/src clean
-	$(MAKE) -C libthecore/src
+	@touch ../ExternGame/libthecore/src/Depend
+	$(MAKE) -C ../ExternGame/libthecore/src dep
+	$(MAKE) -C ../ExternGame/libthecore/src clean
+	$(MAKE) -C ../ExternGame/libthecore/src
 
 	@touch game/src/Depend
 	$(MAKE) -C game/src dep
