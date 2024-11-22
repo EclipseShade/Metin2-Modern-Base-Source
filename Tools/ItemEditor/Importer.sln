@@ -1,7 +1,6 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
+﻿Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dump_proto", "dump_proto\dump_proto.vcproj", "{DBCC99BC-1D68-4271-AC99-62EBBE37890F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ItemEditor", "ItemEditor\ItemEditor.vcproj", "{DBCC99BC-1D68-4271-AC99-62EBBE37890F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lzo", "lzo\lzo.vcproj", "{3AE0E6E6-B750-4769-9A6E-0D47012F1B40}"
 EndProject
@@ -9,8 +8,8 @@ Global
 	GlobalSection(SourceCodeControl) = preSolution
 		SccNumberOfProjects = 3
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = dump_proto\\dump_proto.vcproj
-		SccLocalPath1 = dump_proto
+		SccProjectUniqueName1 = ItemEditor\\ItemEditor.vcproj
+		SccLocalPath1 = ItemEditor
 		SccProjectUniqueName2 = lzo\\lzo.vcproj
 		SccLocalPath2 = lzo
 	EndGlobalSection

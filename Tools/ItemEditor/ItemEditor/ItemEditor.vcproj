@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="dump_proto"
+	Name="ItemEditor"
 	ProjectGUID="{DBCC99BC-1D68-4271-AC99-62EBBE37890F}"
-	RootNamespace="dump_proto"
+	RootNamespace="ItemEditor"
 	SccProjectName="SAK"
 	SccAuxPath="SAK"
 	SccLocalPath="SAK"
@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;___DUMP_PROTO__"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;___ItemEditor__"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -118,7 +118,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__DUMP_PROTO__"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__ItemEditor__"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -199,7 +199,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dump_proto.cpp"
+				RelativePath=".\ItemEditor.cpp"
 				>
 			</File>
 			<File
