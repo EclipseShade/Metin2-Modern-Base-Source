@@ -44,16 +44,16 @@ libthecore: .
 	$(MAKE) -C ../ExternGame/libthecore/src
 
 game: .
-	@touch $@/src/Depend
-	$(MAKE) -C $@/src dep
-	$(MAKE) -C $@/src clean
-	$(MAKE) -C $@/src
+	@touch game/Depend
+	$(MAKE) -C game dep
+	$(MAKE) -C game clean
+	$(MAKE) -C game
 
 db: .
-	@touch $@/src/Depend
-	$(MAKE) -C $@/src dep
-	$(MAKE) -C $@/src clean
-	$(MAKE) -C $@/src
+	@touch db/Depend
+	$(MAKE) -C db dep
+	$(MAKE) -C db clean
+	$(MAKE) -C db
 
 clean:
 	$(MAKE) -C ../ExternGame/liblua clean
@@ -62,8 +62,8 @@ clean:
 	$(MAKE) -C ../ExternGame/libpoly clean
 	$(MAKE) -C ../ExternGame/libthecore/src clean
 	
-	$(MAKE) -C db/src clean
-	$(MAKE) -C game/src clean
+	$(MAKE) -C db clean
+	$(MAKE) -C game clean
 
 all: 
 	@echo "--------------------------------------"
@@ -93,15 +93,15 @@ all:
 	$(MAKE) -C ../ExternGame/libthecore/src clean
 	$(MAKE) -C ../ExternGame/libthecore/src
 
-	@touch game/src/Depend
-	$(MAKE) -C game/src dep
-	$(MAKE) -C game/src clean
-	$(MAKE) -C game/src
+	@touch game/Depend
+	$(MAKE) -C game dep
+	$(MAKE) -C game clean
+	$(MAKE) -C game
 
-	@touch db/src/Depend
-	$(MAKE) -C db/src dep
-	$(MAKE) -C db/src clean
-	$(MAKE) -C db/src
+	@touch db/Depend
+	$(MAKE) -C db dep
+	$(MAKE) -C db clean
+	$(MAKE) -C db
 
 	@echo "--------------------------------------"
 	@echo "Full Build End"

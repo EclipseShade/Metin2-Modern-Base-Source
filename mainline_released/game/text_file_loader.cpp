@@ -1,5 +1,9 @@
 #include "stdafx.h"
-#include "../../common/stl.h"
+
+
+#include "../common/stl.h"
+
+
 #include "text_file_loader.h"
 
 CDynamicPool<CTextFileLoader::TGroupNode> CTextFileLoader::ms_groupNodePool;

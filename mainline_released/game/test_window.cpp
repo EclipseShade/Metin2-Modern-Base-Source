@@ -1,7 +1,13 @@
 #include "stdafx.h"
+
+
 #include "../../libgame/include/attribute.h"
 #include "../../libgame/include/targa.h"
-#include "../../common/d3dtype.h"
+
+
+#include "../common/d3dtype.h"
+
+
 #include "utils.h"
 #include "minilzo.h"
 #include "sectree.h"

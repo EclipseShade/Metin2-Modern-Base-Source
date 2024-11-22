@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 
-#include "../../../ExternGame/libthecore/include/log.h"
+#include "../../ExternGame/libthecore/include/log.h"
 
 
 #include "FileMonitor_FreeBSD.h"

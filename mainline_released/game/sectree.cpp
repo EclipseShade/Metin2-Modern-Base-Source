@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 
-#include "../../../ExternGame/libgame/include/attribute.h"
+#include "../../ExternGame/libgame/include/attribute.h"
 
 
 #include "sectree_manager.h"

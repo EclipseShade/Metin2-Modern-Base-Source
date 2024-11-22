@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #ifdef __FreeBSD__
 #include <md5.h>
 #else
@@ -33,7 +34,7 @@
 #include "unique_item.h"
 #include "threeway_war.h"
 #include "log.h"
-#include "../../common/VnumHelper.h"
+#include "../common/VnumHelper.h"
 #ifdef __AUCTION__
 #include "auction_manager.h"
 #endif

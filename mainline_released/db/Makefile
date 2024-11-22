@@ -22,12 +22,12 @@ CFLAGS += -mcpu=i686
 endif
 
 
-LIBDIR += -L../../../ExternGame/libthecore/lib 
-LIBDIR += -L../../../ExternGame/libpoly 
-LIBDIR += -L../../../ExternGame/libgame/lib
+LIBDIR += -L../../ExternGame/libthecore/lib 
+LIBDIR += -L../../ExternGame/libpoly 
+LIBDIR += -L../../ExternGame/libgame/lib
 
 # LibSQL
-LIBDIR += -L../../../ExternGame/libsql
+LIBDIR += -L../../ExternGame/libsql
 
 # MySQL | MariaDB
 LIBDIR += -L /usr/local/lib/mysql

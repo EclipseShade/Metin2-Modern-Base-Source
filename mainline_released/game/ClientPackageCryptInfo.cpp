@@ -1,6 +1,8 @@
 #include "stdafx.h"
+
 #include "ClientPackageCryptInfo.h"
-#include "../../common/stl.h"
+
+#include "../common/stl.h"
 
 #ifndef __FreeBSD__
 #include "../../libthecore/include/xdirent.h"

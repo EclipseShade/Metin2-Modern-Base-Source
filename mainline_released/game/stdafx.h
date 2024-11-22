@@ -6,11 +6,11 @@
 
 #include "debug_allocator.h"
 
-#include "../../../ExternGame/libthecore/include/stdafx.h"
+#include "../../ExternGame/libthecore/include/stdafx.h"
 
-#include "../../common/singleton.h"
-#include "../../common/utils.h"
-#include "../../common/service.h"
+#include "../common/singleton.h"
+#include "../common/utils.h"
+#include "../common/service.h"
 
 #include <algorithm>
 #include <math.h>
@@ -21,6 +21,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+
 
 #ifdef __GNUC__
 #include <float.h>

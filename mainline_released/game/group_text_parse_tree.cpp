@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../../common/stl.h"
+#include "../common/stl.h"
 #include "group_text_parse_tree.h"
 
 CGroupTextParseTreeLoader::CGroupTextParseTreeLoader()

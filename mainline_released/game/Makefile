@@ -39,28 +39,28 @@ LIBS += -lmysqlclient -lz
 LIBS += -lcryptopp
 
 # HackShield
-INCDIR += -I../../../ExternGame/libhackshield/include
-LIBDIR += -L../../../ExternGame/libhackshield/lib
+INCDIR += -I../../ExternGame/libhackshield/include
+LIBDIR += -L../../ExternGame/libhackshield/lib
 LIBS += -lanticpxsvr
 
 # XTrap
-INCDIR += -I../../../ExternGame/libxtrap/include
+INCDIR += -I../../ExternGame/libxtrap/include
 
 # LibSQL
-LIBDIR += -L../../../ExternGame/libsql
+LIBDIR += -L../../ExternGame/libsql
 
 # Project Library
 INCDIR += -I/usr/local/include
 LIBDIR += -L/usr/local/lib
 
-INCDIR += -I../../../ExternGame/liblua/include
-INCDIR += -I../../../ExternGame/libserverkey
+INCDIR += -I../../ExternGame/liblua/include
+INCDIR += -I../../ExternGame/libserverkey
 
-LIBDIR += -L../../../ExternGame/libthecore/lib 
-LIBDIR += -L../../../ExternGame/libpoly 
-LIBDIR += -L../../../ExternGame/libgame/lib 
-LIBDIR += -L../../../ExternGame/liblua/lib 
-LIBDIR += -L../../../ExternGame/libserverkey
+LIBDIR += -L../../ExternGame/libthecore/lib 
+LIBDIR += -L../../ExternGame/libpoly 
+LIBDIR += -L../../ExternGame/libgame/lib 
+LIBDIR += -L../../ExternGame/liblua/lib 
+LIBDIR += -L../../ExternGame/libserverkey
 
 LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame 
 LIBS += -lc++ -lboost_system

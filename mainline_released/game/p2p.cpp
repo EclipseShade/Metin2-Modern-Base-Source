@@ -1,5 +1,7 @@
 #include "stdafx.h"
-#include "../../common/stl.h"
+
+
+#include "../common/stl.h"
 
 #include "constants.h"
 #include "config.h"
@@ -14,7 +16,7 @@
 #include "marriage.h"
 #include "utils.h"
 #include "locale_service.h"
-#include <sstream>
+
 
 P2P_MANAGER::P2P_MANAGER()
 {

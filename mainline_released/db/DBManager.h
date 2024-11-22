@@ -7,7 +7,7 @@
 //                             코드 by 꼬붕 후로그래머 아노아~ = _=)b
 #include <mysql/mysql.h>
 
-#include "../../../ExternGame/libsql/AsyncSQL.h"
+#include "../../ExternGame/libsql/AsyncSQL.h"
 
 #define SQL_SAFE_LENGTH(size)	(size * 2 + 1)
 #define QUERY_SAFE_LENGTH(size)	(1024 + SQL_SAFE_LENGTH(size))
