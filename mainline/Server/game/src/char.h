@@ -444,6 +444,8 @@ EVENTINFO(char_event_info)
 	DynamicCharacterPtr ch;
 };
 
+typedef std::map<VID, size_t> targetMap;
+
 struct TSkillUseInfo
 {
 	int	    iHitCount;
@@ -455,7 +457,7 @@ struct TSkillUseInfo
 	DWORD   dwVID;
 	bool    isGrandMaster;
 
-	boost::unordered_map<VID, size_t> TargetVIDMap;
+	targetMap TargetVIDMap;
 
 	TSkillUseInfo()
 		: iHitCount(0), iMaxHitCount(0), iSplashCount(0), dwNextSkillUsableTime(0), iRange(0), bUsed(false),
