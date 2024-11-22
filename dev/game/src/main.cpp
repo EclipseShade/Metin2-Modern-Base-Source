@@ -503,7 +503,7 @@ int main(int argc, char **argv) {
 			fprintf(stderr, "[main] Check IP failed\n");
 #else 
 //old			strncpy(pszRevision, SVN_VERSION, sizeof(pszRevision));
-			strncpy(pszRevision, 40250, sizeof(pszRevision));
+			strncpy(pszRevision, "40250", sizeof(pszRevision));
 #endif
 			LogManager::Instance().InvalidServerLog(LC_GetLocalType(), g_szPublicIP, pszRevision);
 		}
