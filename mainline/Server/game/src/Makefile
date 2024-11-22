@@ -29,7 +29,9 @@ INCDIR += -I../../../Extern/include/boost
 # DevIL
 INCDIR += -I../../libdevil
 LIBDIR += -L../../libdevil
-LIBS += -lpng -ltiff -lmng -llcms -ljpeg
+
+# unused:
+# LIBS += -lpng -ltiff -lmng -llcms -ljpeg
 
 # MySQL | MariaDB
 LIBDIR += -L /usr/local/lib/mysql
@@ -39,7 +41,7 @@ LIBS += -lmysqlclient -L/usr/local/lib/mysql -lz
 # Miscellaneous external libraries
 INCDIR += -I../../../Extern/include
 LIBDIR += -L../../../Extern/lib
-LIBS += -lcryptopp -lgtest
+LIBS += -lcryptopp
 
 # HackShield
 INCDIR += -I../../libhackshield/include
