@@ -1,13 +1,0 @@
-
-
-Macros Processed
-----------------
-
-VM Macros = 0/0
-CodeReplace Macros = 0/0
-Encode Macros = 0/0
-Clear Macros = 0/0
-Mutate Macros = 0/0
-CheckProtection Macros = 0/0
-CheckCodeIntegrity Macros = 0/0
-CheckVirtualPC Macros = 0/0
