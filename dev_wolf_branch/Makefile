@@ -53,14 +53,13 @@ game: .
 	@touch $@/src/Depend
 	$(MAKE) -C $@/src dep
 	$(MAKE) -C $@/src clean
-	$(MAKE) -C $@/src limit_time
-#	$(MAKE) -C $@/src
+	$(MAKE) -C $@/src
 
 db: .
 	@touch $@/src/Depend
 	$(MAKE) -C $@/src dep
 	$(MAKE) -C $@/src clean
-#	$(MAKE) -C $@/src
+	$(MAKE) -C $@/src
 
 all: 
 	@echo "--------------------------------------"
@@ -93,13 +92,12 @@ all:
 	@touch game/src/Depend
 	$(MAKE) -C game/src dep
 	$(MAKE) -C game/src clean
-	$(MAKE) -C game/src limit_time
-#	$(MAKE) -C game/src
+	$(MAKE) -C game/src
 
 	@touch db/src/Depend
 	$(MAKE) -C db/src dep
 	$(MAKE) -C db/src clean
-#	$(MAKE) -C db/src
+	$(MAKE) -C db/src
 
 	@echo "--------------------------------------"
 	@echo "Full Build End"
