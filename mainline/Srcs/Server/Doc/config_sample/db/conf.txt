@@ -1,0 +1,21 @@
+WELCOME_MSG = "DB Server has been started"
+
+SQL_ACCOUNT = "10.1.89.23 ymir_account     metin2 dhels 0"
+SQL_PLAYER = "10.1.89.23 ymir_player metin2 dhels  0"
+SQL_COMMON = "10.1.89.23 ymir_common metin2 dhels 0"
+SQL_HOTBACKUP = "10.1.89.23 ymir_hotbackup metin2 dhels 0"
+
+TABLE_POSTFIX = ""
+
+BIND_PORT               = 15900
+DB_SLEEP_MSEC           = 10
+CLIENT_HEART_FPS        = 10
+HASH_PLAYER_LIFE_SEC    = 600
+BACKUP_LIMIT_SEC        = 3600
+PLAYER_ID_START = 100
+PLAYER_DELETE_LEVEL_LIMIT = 70
+
+ITEM_ID_RANGE = 2000000000 2100000000
+
+#NAME_COLUMN = "gb2312name"
+#LOCALE = "gb2312"

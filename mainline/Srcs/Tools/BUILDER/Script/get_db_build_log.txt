@@ -1,0 +1,5 @@
+option batch on
+option confirm off
+get LIB_BUILD_LOG.txt
+get DB_BUILD_LOG.txt
+exit

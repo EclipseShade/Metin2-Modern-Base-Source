@@ -1,0 +1,18 @@
+This doc is based on Ubuntu server 12.04.1 LTS x86_64 system. 
+Before compile login_checker, you must install this packages.
+
+sudo apt-get install ia32-libs lib32gcc1 lib32stdc++6 libc6-dev-i386 gcc-multilib
+sudo apt-get install swig
+sudo apt-get install python2.7
+
+optional:
+	Install cryptopp.
+		how to istall cryptopp.
+			1. cd ../cryptopp
+			2. ./configure
+			3. make
+			4. sudo make install		-- this is option.
+
+If any packages or libs needs to install this packages or compile login_checker exist, 
+   please install the packages or libs manually.
+

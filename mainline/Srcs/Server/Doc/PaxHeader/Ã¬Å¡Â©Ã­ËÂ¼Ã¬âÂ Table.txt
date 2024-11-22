@@ -1,0 +1,6 @@
+62 path=mainline/Srcs/Server/Doc/ì©í¼ì Table.txt
+20 ctime=1378435105
+20 atime=1378435105
+17 SCHILY.dev=89
+22 SCHILY.ino=4858913
+18 SCHILY.nlink=1
