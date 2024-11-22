@@ -109,11 +109,7 @@ CPPOBJS	= $(CPPFILE:%.cpp=$(OBJDIR)/%.o)
 MAINOBJ = $(OBJDIR)/main.o
 MAINCPP = main.cpp
 
-TESTOBJ = $(OBJDIR)/test.o
-TESTCPP = test.cpp
-TEST_TARGET = $(BINDIR)/test
-
-default: $(TARGET) $(TEST_TARGET)
+default: $(TARGET)
 
 $(OBJDIR)/minilzo.o: minilzo.c
 	@$(CC) $(CFLAGS) $(INCDIR) -c $< -o $@
@@ -135,10 +131,6 @@ $(TARGET): $(CPPOBJS) $(COBJS) $(MAINOBJ)
 	@echo linking $(TARGET)....
 	@$(CC) $(CFLAGS) $(LIBDIR) $(COBJS) $(CPPOBJS) $(MAINOBJ) $(LIBS) -o $(TARGET)
 
-$(TEST_TARGET): $(TESTCPP) $(CPPOBJS) $(COBJS) $(TESTOBJ)
-	@echo linking $(TEST_TARGET)
-	@$(CC) $(CFLAGS) $(LIBDIR) $(COBJS) $(CPPOBJS) $(TESTOBJ) $(LIBS) -o ../test
-
 clean:
 	@rm -f $(COBJS) $(CPPOBJS)
 	@rm -f $(BINDIR)/game_r* $(BINDIR)/conv
@@ -147,6 +139,6 @@ tag:
 	ctags *.cpp *.h *.c
 
 dep:
-	makedepend -f Depend $(INCDIR) -I/usr/include/c++/3.3 -I/usr/include/c++/4.2 -p$(OBJDIR)/ $(CPPFILE) $(CFILE) $(MAINCPP) $(TESTCPP) 2> /dev/null > Depend
+	makedepend -f Depend $(INCDIR) -I/usr/include/c++/4.2 -p $(OBJDIR)/ $(CPPFILE) $(CFILE) $(MAINCPP) 2> /dev/null > Depend
 
 sinclude Depend
