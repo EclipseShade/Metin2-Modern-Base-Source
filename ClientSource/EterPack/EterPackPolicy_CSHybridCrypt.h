@@ -2,10 +2,11 @@
 #define __INC_ETERPACKLIB_ETERPACKPOLICY_CSHYBRIDCRYPT_H__
 
 #include <boost/unordered_map.hpp>
-#include <cryptopp/cryptlib.h>
-#include <cryptopp/camellia.h>
-#include <cryptopp/twofish.h>
-#include <cryptopp/tea.h>
+
+#include <cryptopp565/cryptlib.h>
+#include <cryptopp565/camellia.h>
+#include <cryptopp565/twofish.h>
+#include <cryptopp565/tea.h>
 
 enum eHybridCipherAlgorithm
 {

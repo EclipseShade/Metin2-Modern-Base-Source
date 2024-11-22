@@ -7,34 +7,35 @@
 //#pragma warning(push)
 //#pragma warning(disable: 4100 4127 4189 4231 4512 4706)
 
-#include <cryptopp/modes.h>
-#include <cryptopp/nbtheory.h>
-#include <cryptopp/osrng.h>
+#include <cryptopp565/modes.h>
+#include <cryptopp565/nbtheory.h>
+#include <cryptopp565/osrng.h>
 
 // Diffie-Hellman key agreement
-#include <cryptopp/dh.h>
-#include <cryptopp/dh2.h>
+#include <cryptopp565/dh.h>
+#include <cryptopp565/dh2.h>
 
 // AES winner and candidates
-#include <cryptopp/aes.h>
-#include <cryptopp/cast.h>
-#include <cryptopp/rc6.h>
-#include <cryptopp/mars.h>
-#include <cryptopp/serpent.h>
-#include <cryptopp/twofish.h>
+#include <cryptopp565/aes.h>
+#include <cryptopp565/cast.h>
+#include <cryptopp565/rc6.h>
+#include <cryptopp565/mars.h>
+#include <cryptopp565/serpent.h>
+#include <cryptopp565/twofish.h>
+
 // Other block ciphers
-#include <cryptopp/blowfish.h>
-#include <cryptopp/camellia.h>
-#include <cryptopp/des.h>
-#include <cryptopp/idea.h>
-#include <cryptopp/rc5.h>
-#include <cryptopp/seed.h>
-#include <cryptopp/shacal2.h>
-#include <cryptopp/skipjack.h>
-#include <cryptopp/tea.h>
+#include <cryptopp565/blowfish.h>
+#include <cryptopp565/camellia.h>
+#include <cryptopp565/des.h>
+#include <cryptopp565/idea.h>
+#include <cryptopp565/rc5.h>
+#include <cryptopp565/seed.h>
+#include <cryptopp565/shacal2.h>
+#include <cryptopp565/skipjack.h>
+#include <cryptopp565/tea.h>
 
 #ifdef __THEMIDA__
-#include <ThemidaSDK.h>
+	#include <ThemidaSDK.h>
 #endif
 
 #include "Debug.h"

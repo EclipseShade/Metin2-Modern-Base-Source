@@ -10,16 +10,16 @@
 #include "EterPackPolicy_CSHybridCrypt.h"
 
 #pragma warning(push, 3)
-#include <cryptopp/cryptlib.h>
-#include <cryptopp/filters.h>
-#include <cryptopp/modes.h>
-#include <cryptopp/tiger.h>
-#include <cryptopp/sha.h>
-#include <cryptopp/ripemd.h>
-#include <cryptopp/whrlpool.h>
-#include <cryptopp/panama.h>
 
-#include <cryptopp/cryptoppLibLink.h>
+#include <cryptopp565/cryptlib.h>
+#include <cryptopp565/filters.h>
+#include <cryptopp565/modes.h>
+#include <cryptopp565/tiger.h>
+#include <cryptopp565/sha.h>
+#include <cryptopp565/ripemd.h>
+#include <cryptopp565/whrlpool.h>
+#include <cryptopp565/panama.h>
+
 #pragma warning(pop)
 
 #include "../EterBase/utils.h"

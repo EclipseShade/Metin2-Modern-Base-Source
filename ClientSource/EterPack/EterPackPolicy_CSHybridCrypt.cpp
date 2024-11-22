@@ -1,13 +1,16 @@
 #include "Stdafx.h"
+
 #include "EterPackPolicy_CSHybridCrypt.h"
+
 #include "../EterBase/Stl.h"
 #include "../EterBase/FileName.h"
 #include "../EterBase/FileBase.h"
 #include "../EterBase/Crc32.h"
 #include "../EterBase/lzo.h"
 #include "../EterBase/Random.h"
-#include <cryptopp/modes.h>
-#include <cryptopp/osrng.h>
+
+#include <cryptopp565/modes.h>
+#include <cryptopp565/osrng.h>
 
 using namespace CryptoPP;
 
