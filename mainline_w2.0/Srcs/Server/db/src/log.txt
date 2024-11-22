@@ -1,0 +1,126 @@
+compile Config.cpp
+compile NetBase.cpp
+compile Peer.cpp
+compile PeerBase.cpp
+compile Main.cpp
+compile Lock.cpp
+compile DBManager.cpp
+compile Cache.cpp
+compile LoginData.cpp
+compile ClientManager.cpp
+compile ClientManagerPlayer.cpp
+compile ClientManagerLogin.cpp
+compile ClientManagerBoot.cpp
+compile ClientManagerParty.cpp
+compile ClientManagerGuild.cpp
+compile GuildManager.cpp
+compile PrivManager.cpp
+compile HB.cpp
+compile MoneyLog.cpp
+compile ItemAwardManager.cpp
+In file included from ClientManager.cpp:6:
+../../common/VnumHelper.h:59:32: warning: no newline at end of file
+compile ClientManagerEventFlag.cpp
+compile Marriage.cpp
+compile Monarch.cpp
+compile BlockCountry.cpp
+compile ItemIDRangeManager.cpp
+In file included from ClientManagerBoot.cpp:8:
+ProtoReader.h:36:7: warning: no newline at end of file
+compile ClientManagerHorseName.cpp
+ClientManagerBoot.cpp: In member function 'bool CClientManager::InitializeMobTable()':
+ClientManagerBoot.cpp:402: warning: statement has no effect
+ClientManagerBoot.cpp: In member function 'bool CClientManager::InitializeItemTable()':
+ClientManagerBoot.cpp:703: warning: unused variable 'testValue'
+ClientManagerBoot.cpp: In member function 'bool CClientManager::MirrorItemTableIntoDB()':
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 25 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 27 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 29 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 31 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 33 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 34 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 35 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 36 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 37 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 38 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 39 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 25 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 27 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 29 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 31 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 33 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 34 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 35 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 36 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 37 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 38 has type 'long int'
+ClientManagerBoot.cpp:1491: warning: format '%d' expects type 'int', but argument 39 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 23 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 25 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 27 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 29 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 31 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 32 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 33 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 34 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 35 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 36 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 37 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 23 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 25 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 27 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 29 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 31 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 32 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 33 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 34 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 35 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 36 has type 'long int'
+ClientManagerBoot.cpp:1519: warning: format '%d' expects type 'int', but argument 37 has type 'long int'
+compile AuctionManager.cpp
+compile ProtoReader.cpp
+AuctionManager.cpp:719:7: warning: no newline at end of file
+compile CsvReader.cpp
+compile version.cpp
+In file included from ProtoReader.cpp:4:
+ProtoReader.h:36:7: warning: no newline at end of file
+ProtoReader.cpp: In function 'std::string* StringSplit(std::string, std::string)':
+ProtoReader.cpp:31: warning: comparison between signed and unsigned integer expressions
+ProtoReader.cpp: In function 'int get_Item_Type_Value(std::string)':
+ProtoReader.cpp:81: warning: comparison between signed and unsigned integer expressions
+ProtoReader.cpp: In function 'int get_Item_AntiFlag_Value(std::string)':
+ProtoReader.cpp:230: warning: comparison between signed and unsigned integer expressions
+CsvReader.cpp: In member function 'const char* cCsvAlias::operator[](size_t) const':
+CsvReader.cpp:72: warning: left-hand operand of comma has no effect
+CsvReader.cpp:72: warning: right-hand operand of comma has no effect
+CsvReader.cpp: In member function 'size_t cCsvAlias::operator[](const char*) const':
+CsvReader.cpp:90: warning: left-hand operand of comma has no effect
+CsvReader.cpp:90: warning: right-hand operand of comma has no effect
+ProtoReader.cpp: In function 'int get_Item_Flag_Value(std::string)':
+ProtoReader.cpp:259: warning: comparison between signed and unsigned integer expressions
+ProtoReader.cpp: In function 'int get_Item_WearFlag_Value(std::string)':
+ProtoReader.cpp:287: warning: comparison between signed and unsigned integer expressions
+ProtoReader.cpp: In function 'int get_Item_Immune_Value(std::string)':
+ProtoReader.cpp:313: warning: comparison between signed and unsigned integer expressions
+ProtoReader.cpp: In function 'int get_Item_LimitType_Value(std::string)':
+ProtoReader.cpp:341: warning: comparison between signed and unsigned integer expressions
+ProtoReader.cpp: In function 'int get_Item_ApplyType_Value(std::string)':
+ProtoReader.cpp:380: warning: comparison between signed and unsigned integer expressions
+ProtoReader.cpp: In function 'int get_Mob_Rank_Value(std::string)':
+ProtoReader.cpp:406: warning: comparison between signed and unsigned integer expressions
+ProtoReader.cpp: In function 'int get_Mob_Type_Value(std::string)':
+ProtoReader.cpp:428: warning: comparison between signed and unsigned integer expressions
+ProtoReader.cpp: In function 'int get_Mob_BattleType_Value(std::string)':
+ProtoReader.cpp:449: warning: comparison between signed and unsigned integer expressions
+ProtoReader.cpp: In function 'int get_Mob_Size_Value(std::string)':
+ProtoReader.cpp:470: warning: comparison between signed and unsigned integer expressions
+ProtoReader.cpp: In function 'int get_Mob_AIFlag_Value(std::string)':
+ProtoReader.cpp:492: warning: comparison between signed and unsigned integer expressions
+ProtoReader.cpp: In function 'int get_Mob_RaceFlag_Value(std::string)':
+ProtoReader.cpp:517: warning: comparison between signed and unsigned integer expressions
+ProtoReader.cpp: In function 'int get_Mob_ImmuneFlag_Value(std::string)':
+ProtoReader.cpp:541: warning: comparison between signed and unsigned integer expressions
+ProtoReader.cpp: In function 'bool Set_Proto_Item_Table(TItemTable*, cCsvTable&, std::map<int, const char*, std::less<int>, std::allocator<std::pair<const int, const char*> > >&)':
+ProtoReader.cpp:674: warning: comparison between signed and unsigned integer expressions
+ProtoReader.cpp:728: warning: comparison between signed and unsigned integer expressions
+linking ...

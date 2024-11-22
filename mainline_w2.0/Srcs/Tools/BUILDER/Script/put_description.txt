@@ -1,0 +1,4 @@
+option batch on
+option confirm off
+put DESCRIPTION.txt
+exit
