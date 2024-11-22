@@ -27,8 +27,10 @@ volatile int _AVOID_FLOATING_POINT_LIBRARY_BUG = _fltused;
 
 #pragma comment(linker, "/NODEFAULTLIB:libci.lib")
 
+#pragma comment(lib, "cryptlib.lib")
+#pragma comment(lib, "python27.lib")
+
 #pragma comment( lib, "version.lib" )
-#pragma comment( lib, "python22.lib" )
 #pragma comment( lib, "imagehlp.lib" )
 #pragma comment( lib, "devil.lib" )
 #pragma comment( lib, "granny2.lib" )
