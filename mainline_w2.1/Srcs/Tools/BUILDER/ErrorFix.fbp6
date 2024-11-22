@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VSXML>
+  <Object Class="TFBProject" XMLID="{00FCFE79-0170-444C-90FA-C00E1461CA53}">
+    <Property MultiValue="0" name="EncryptedEditPassword" type="string"></Property>
+    <Property MultiValue="0" name="Name" type="string"></Property>
+    <Property MultiValue="0" name="ProjectAuthor" type="string"></Property>
+    <Property MultiValue="0" name="ProjectID" type="string"></Property>
+    <Property MultiValue="0" name="ProjectNotes" type="string"></Property>
+    <Property MultiValue="0" name="SCCAuxPath" type="string"></Property>
+    <Property MultiValue="0" name="SCCProjectName" type="string"></Property>
+    <Property MultiValue="0" name="SCCProviderBinding" type="string"></Property>
+    <Property MultiValue="0" name="SCCUserName" type="string"></Property>
+    <Object Class="TFBActionListCollection" XMLID="{309521E1-9AA1-49FD-A04F-55B693DE8854}">
+      <Object Class="TFBActionList" XMLID="{1B5B9FD7-F752-4C88-B340-CDA18B15E742}">
+        <Property name="IsFailure" type="Boolean">False</Property>
+        <Property name="IsMain" type="Boolean">True</Property>
+        <Property MultiValue="0" name="Name" type="string">Main</Property>
+        <Property MultiValue="0" name="UniqueID" type="string">{DE832C98-8C38-4230-9F05-99114D5344AB}</Property>
+        <Object Class="TFBAction" XMLID="{96AC0823-03AF-4448-B811-60F491C1DEC0}">
+          <Property MultiValue="0" name="ActionComment" type="string"></Property>
+          <Property MultiValue="0" name="ActionDescription" type="string">FinalBuilderAction</Property>
+          <Property name="ActionTextColor" type="Cardinal">0</Property>
+          <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+          <Property name="DoNotValidateAction" type="Boolean">False</Property>
+          <Property name="Enabled" type="WordBool">True</Property>
+          <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+          <Property name="HideActionFromLog" type="Boolean">False</Property>
+          <Property name="IgnoreFailure" type="WordBool">False</Property>
+          <Property name="LogActionProperties" type="Boolean">False</Property>
+          <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+          <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+          <Property name="PauseInterval" type="Cardinal">0</Property>
+          <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+          <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+          <Object Class="TFileExistsAction" XMLID="{5853EED4-3CEB-4A85-9263-5CC9651E8F31}">
+            <Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string">
+              <![CDATA[Check If [ %USERPROFILE%\.p4pwd.txt ] Exists]]>
+            </Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property name="DoNotValidateAction" type="Boolean">False</Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="ExistsMode" type="TFileExistsMode">feFailIfMissing</Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+            <Property MultiValue="0" name="FileOrDirectory" type="WideString">%USERPROFILE%\.p4pwd.txt</Property>
+            <Property MultiValue="0" name="FileSet" type="string"></Property>
+            <Property name="HideActionFromLog" type="Boolean">False</Property>
+            <Property name="IgnoreFailure" type="WordBool">True</Property>
+            <Property name="LogActionProperties" type="Boolean">False</Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            <Property name="UseFileSpec" type="Boolean">True</Property>
+            <Property MultiValue="0" name="Variable" type="string"></Property>
+            <Object Class="TPerforceGenericAction" XMLID="{B23E50EE-6A49-4592-A0B4-C295CDB66564}">
+              <Property MultiValue="0" name="ActionComment" type="string"></Property>
+              <Property MultiValue="1" name="ActionDescription" type="string">
+                <![CDATA[Perforce Login]]>
+              </Property>
+              <Property name="ActionTextColor" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+              <Property MultiValue="0" name="CommandLineArgs" type="string"></Property>
+              <Property MultiValue="1" name="Description" type="string">
+                <![CDATA[Perforce Login]]>
+              </Property>
+              <Property name="DoNotValidateAction" type="Boolean">False</Property>
+              <Property name="Enabled" type="WordBool">True</Property>
+              <Property name="EnableTimeout" type="Boolean">False</Property>
+              <Property MultiValue="0" name="EncryptedPasswd" type="string"></Property>
+              <Property name="ErrorList" type="TStrings">
+                <![CDATA[]]>
+              </Property>
+              <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+              <Property name="ExpandImpersonationToken" type="Boolean">False</Property>
+              <Property MultiValue="0" name="ExtraCmdLineParamsAtEnd" type="string"></Property>
+              <Property MultiValue="0" name="ExtraCmdLineParamsAtStart" type="string"></Property>
+              <Property name="HideActionFromLog" type="Boolean">False</Property>
+              <Property name="IgnoreFailure" type="WordBool">False</Property>
+              <Property MultiValue="0" name="ImpersonateToken" type="string"></Property>
+              <Property name="ImpersonateUser" type="Boolean">False</Property>
+              <Property MultiValue="0" name="ImpersonateUserName" type="string"></Property>
+              <Property MultiValue="0" name="InputFile" type="string">%USERPROFILE%\.p4pwd.txt</Property>
+              <Property name="LogActionProperties" type="Boolean">False</Property>
+              <Property name="LogProcessParameters" type="Boolean">True</Property>
+              <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+              <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="OverrideClient" type="string"></Property>
+              <Property MultiValue="0" name="OverrideCurrDir" type="string"></Property>
+              <Property name="OverrideDefaults" type="TOverrideDefaults">UseFBDefault</Property>
+              <Property MultiValue="0" name="OverrideHost" type="string"></Property>
+              <Property MultiValue="0" name="OverridePassword" type="string"></Property>
+              <Property MultiValue="0" name="OverridePort" type="string"></Property>
+              <Property MultiValue="0" name="OverrideUsername" type="string"></Property>
+              <Property name="PauseInterval" type="Cardinal">0</Property>
+              <Property MultiValue="0" name="PerforceCommand" type="string">login</Property>
+              <Property name="ProcessorAffinity" type="Cardinal">0</Property>
+              <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
+              <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+              <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+              <Property name="TerminateOnTimeout" type="Boolean">False</Property>
+              <Property name="TimeoutLength" type="Cardinal">2</Property>
+              <Property name="UseErrorDialogMonitor" type="Boolean">False</Property>
+              <Property name="UseTicketBasedAuth" type="Boolean">False</Property>
+            </Object>
+          </Object>
+          <Object Class="TPerforceSyncAction" XMLID="{D0DEFB24-1119-46EC-A2EE-AAF79729710E}">
+            <Property MultiValue="0" name="ActionComment" type="string"></Property>
+            <Property MultiValue="1" name="ActionDescription" type="string">
+              <![CDATA[Get specified revision files from Perforce [ Client  ]]]>
+            </Property>
+            <Property name="ActionTextColor" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+            <Property MultiValue="0" name="ChangeNum" type="string">$(CURRENTREVISION)</Property>
+            <Property MultiValue="1" name="Description" type="string">
+              <![CDATA[Get specified revision files from Perforce [ Client  ]]]>
+            </Property>
+            <Property name="DoNotUpdateHaveList" type="Boolean">False</Property>
+            <Property name="DoNotValidateAction" type="Boolean">False</Property>
+            <Property name="Enabled" type="WordBool">True</Property>
+            <Property name="EnableTimeout" type="Boolean">False</Property>
+            <Property MultiValue="0" name="EncryptedPasswd" type="string"></Property>
+            <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+            <Property name="ExpandImpersonationToken" type="Boolean">False</Property>
+            <Property MultiValue="0" name="ExtraCmdLineParamsAtEnd" type="string"></Property>
+            <Property MultiValue="0" name="ExtraCmdLineParamsAtStart" type="string"></Property>
+            <Property name="FailIfNoFilesProcessed" type="Boolean">False</Property>
+            <Property name="FileList" type="TStrings">
+              <![CDATA[//metin2/dist/newcibn/Test/Client/Pack/npc.epk
+//metin2/dist/newcibn/Test/Client/Pack/npc.eix
+]]>
+            </Property>
+            <Property name="ForceSync" type="Boolean">True</Property>
+            <Property name="HideActionFromLog" type="Boolean">False</Property>
+            <Property name="IgnoreFailure" type="WordBool">False</Property>
+            <Property MultiValue="0" name="ImpersonateToken" type="string"></Property>
+            <Property name="ImpersonateUser" type="Boolean">False</Property>
+            <Property MultiValue="0" name="ImpersonateUserName" type="string"></Property>
+            <Property name="LogActionProperties" type="Boolean">False</Property>
+            <Property name="LogProcessParameters" type="Boolean">True</Property>
+            <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+            <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+            <Property MultiValue="0" name="OverrideClient" type="string"></Property>
+            <Property MultiValue="0" name="OverrideCurrDir" type="string"></Property>
+            <Property name="OverrideDefaults" type="TOverrideDefaults">UseFBDefault</Property>
+            <Property MultiValue="0" name="OverrideHost" type="string"></Property>
+            <Property MultiValue="0" name="OverridePassword" type="string"></Property>
+            <Property MultiValue="0" name="OverridePort" type="string"></Property>
+            <Property name="OverrideStartDir" type="Boolean">False</Property>
+            <Property MultiValue="0" name="OverrideUsername" type="string"></Property>
+            <Property name="PauseInterval" type="Cardinal">0</Property>
+            <Property name="ProcessorAffinity" type="Cardinal">0</Property>
+            <Property name="ProcessPriority" type="TFBExecuteThreadPriority">tpNormal</Property>
+            <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+            <Property name="RevDateTime" type="TDateTime">0</Property>
+            <Property MultiValue="0" name="RevisionLabel" type="string"></Property>
+            <Property MultiValue="0" name="RevisionNum" type="string"></Property>
+            <Property name="RevisionType" type="TP4RevisionType">rtHead</Property>
+            <Property MultiValue="0" name="StartDir" type="string"></Property>
+            <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+            <Property name="TerminateOnTimeout" type="Boolean">False</Property>
+            <Property name="TimeoutLength" type="Cardinal">2</Property>
+            <Property name="UseErrorDialogMonitor" type="Boolean">False</Property>
+            <Property name="UseTicketBasedAuth" type="Boolean">False</Property>
+          </Object>
+        </Object>
+        <Object Class="TFBActionListParametersCollection" XMLID="{3A853733-37E9-4A60-8BCF-4B490FC28277}"/>
+      </Object>
+      <Object Class="TFBActionList" XMLID="{30549E2B-E83B-43C1-9273-16CBD047E764}">
+        <Property name="IsFailure" type="Boolean">True</Property>
+        <Property name="IsMain" type="Boolean">False</Property>
+        <Property MultiValue="0" name="Name" type="string">OnFailure</Property>
+        <Property MultiValue="0" name="UniqueID" type="string">{E588999C-95D4-4819-93DF-F18E9BDC177B}</Property>
+        <Object Class="TFBAction" XMLID="{AC308F85-A8AF-4D7F-A08C-E6B1DC67486F}">
+          <Property MultiValue="0" name="ActionComment" type="string"></Property>
+          <Property MultiValue="0" name="ActionDescription" type="string">FinalBuilderAction</Property>
+          <Property name="ActionTextColor" type="Cardinal">0</Property>
+          <Property MultiValue="0" name="ActionTypeID" type="string"></Property>
+          <Property name="DoNotValidateAction" type="Boolean">False</Property>
+          <Property name="Enabled" type="WordBool">True</Property>
+          <Property name="ExpandActionLogTitle" type="Boolean">True</Property>
+          <Property name="HideActionFromLog" type="Boolean">False</Property>
+          <Property name="IgnoreFailure" type="WordBool">False</Property>
+          <Property name="LogActionProperties" type="Boolean">False</Property>
+          <Property MultiValue="0" name="LogToVariable" type="string"></Property>
+          <Property name="MaxRetryAttempts" type="Cardinal">0</Property>
+          <Property name="PauseInterval" type="Cardinal">0</Property>
+          <Property name="RetryPauseInterval" type="Cardinal">1000</Property>
+          <Property name="SuppressStatusMessages" type="Boolean">False</Property>
+        </Object>
+        <Object Class="TFBActionListParametersCollection" XMLID="{0C65D4B7-BF3F-40C8-812F-773E5B471924}"/>
+      </Object>
+    </Object>
+    <Object Class="TFBVariablesCollection" XMLID="{957AE44D-4A8A-4EEF-94AF-E216D6D8E578}">
+      <Property MultiValue="0" name="Name" type="string">Project</Property>
+    </Object>
+  </Object>
+</VSXML>

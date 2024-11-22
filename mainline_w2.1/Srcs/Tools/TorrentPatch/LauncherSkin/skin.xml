@@ -1,0 +1,23 @@
+<skin background_image="main">
+	<control type="iframe" id="IFRAME_MAIN" x="12" y="40" width="566" height="284" link_url="http://inferna.co.kr/launcher/load.htm" />
+
+	<control type="gauge" id="PROGRESS_SUB" image="sub_progress" x="20" y="370" />
+	<control type="gauge" id="PROGRESS_MAIN" image="total_progress" x="20" y="410" />
+
+	<control type="button" id="URL_NEWACCOUNT" image="btn_account" x="10" y="443" link_url="http://www.inferna.co.kr/member/member_agree.php" />
+
+	<control type="button" id="OPTION" image="btn_option" x="100" y="443" exec_path="bin/inferna_main.exe" />
+
+	<control type="button" id="MINIMIZE" image="btn_minimize" x="543" y="20" />
+	<control type="button" id="QUIT" image="btn_quit" x="562" y="20" />
+
+	<control type="button" id="START" image="btn_start" x="464" y="443" />
+
+	<control type="text" id="TEXT_SUB" image="TORRENT_SEEDS_COUNT" x="20" y="354" color="#787878" bg_color="#343434" />
+	<control type="text" id="TEXT_MAIN" image="TORRENT_SEEDS_COUNT" x="20" y="395" color="#787878" bg_color="#343434" />
+
+	<control type="text" id="TEXT_DNSPEED" image="TORRENT_DOWNLOAD_SPEED" x="411" y="347" color="#787878" bg_color="#343434" />
+	<control type="text" id="TEXT_UPSPEED" image="TORRENT_UPLOAD_SPEED" x="411" y="361" color="#787878" bg_color="#343434" />
+	<control type="text" id="TEXT_PEERS" image="TORRENT_PEERS_COUNT" x="411" y="376" color="#787878" bg_color="#343434" />
+	<control type="text" id="TEXT_SEEDS" image="TORRENT_SEEDS_COUNT" x="411" y="390" color="#787878" bg_color="#343434" />
+</skin>
