@@ -29,23 +29,20 @@ INCDIR += -I../../../Extern/include/boost
 # DevIL
 INCDIR += -I../../libdevil
 LIBDIR += -L../../libdevil
-LIBS += -lIL -lpng -ltiff -lmng -llcms -ljpeg
+LIBS += -lIL
 
-# MySQL
-ifeq ($(BSD_VERSION), 7)
-INCDIR += -I../../libmysql/7.x-5.1.35
-LIBDIR += -L../../libmysql/7.x-5.1.35
-else
-INCDIR += -I../../libmysql/5.x-5.1.35
-LIBDIR += -L../../libmysql/5.x-5.1.35
-endif
+# unused
+# LIBS += -lpng -ltiff -lmng -llcms -ljpeg
+
+# MySQL | MariaDB
+LIBDIR += -L /usr/local/lib/mysql
 
 LIBS += -lmysqlclient -lz
 
 # Miscellaneous external libraries
 INCDIR += -I../../../Extern/include
 LIBDIR += -L../../../Extern/lib
-LIBS += -lcryptopp -lgtest
+LIBS += -lcryptopp
 
 # HackShield
 INCDIR += -I../../libhackshield/include
@@ -66,7 +63,8 @@ INCDIR += -I/usr/local/include
 INCDIR += -I../../libserverkey
 LIBDIR += -L../../libthecore/lib -L../../libpoly -L../../libsql -L../../libgame/lib -L../../liblua/lib -L../../libserverkey
 LIBDIR += -L/usr/local/lib
-LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame -lserverkey
+LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame
+LIBS += -lc++ -lIL -lboost_system
 USE_STACKTRACE = 0
 ifeq ($(USE_STACKTRACE), 1)
 LIBS += /usr/local/lib/libexecinfo.a
