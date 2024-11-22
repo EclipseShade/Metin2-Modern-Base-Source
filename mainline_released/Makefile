@@ -20,10 +20,10 @@ liblua: .
 	$(MAKE) -C $@
 
 libsql: .
-	@touch $@/Depend
-	$(MAKE) -C $@ dep
-	$(MAKE) -C $@ clean
-	$(MAKE) -C $@
+	@touch ../ExternGame/libsql/Depend
+	$(MAKE) -C ../ExternGame/libsql dep
+	$(MAKE) -C ../ExternGame/libsql clean
+	$(MAKE) -C ../ExternGame/libsql
 
 libgame: .
 	@touch $@/src/Depend
@@ -69,10 +69,10 @@ all:
 	$(MAKE) -C liblua clean
 	$(MAKE) -C liblua
 
-	@touch libsql/Depend
-	$(MAKE) -C libsql dep
-	$(MAKE) -C libsql clean
-	$(MAKE) -C libsql
+	@touch ../ExternGame/libsql/Depend
+	$(MAKE) -C ../ExternGame/libsql dep
+	$(MAKE) -C ../ExternGame/libsql clean
+	$(MAKE) -C ../ExternGame/libsql
 
 	@touch libgame/src/Depend
 	$(MAKE) -C libgame/src dep

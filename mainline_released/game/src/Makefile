@@ -53,11 +53,14 @@ LIBS += -lanticpxsvr
 # XTrap
 INCDIR += -I../../libxtrap/include
 
+# LibSQL
+LIBDIR += -L../../../ExternGame/libsql
+
 # Project Library
 INCDIR += -I../../liblua/include
 INCDIR += -I/usr/local/include
 INCDIR += -I../../libserverkey
-LIBDIR += -L../../libthecore/lib -L../../libpoly -L../../libsql -L../../libgame/lib -L../../liblua/lib -L../../libserverkey
+LIBDIR += -L../../libthecore/lib -L../../libpoly -L../../libgame/lib -L../../liblua/lib -L../../libserverkey
 LIBDIR += -L/usr/local/lib
 LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame 
 LIBS += -lc++ -lboost_system

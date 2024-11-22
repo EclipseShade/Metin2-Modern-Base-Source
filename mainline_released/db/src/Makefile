@@ -24,7 +24,10 @@ endif
 # boost
 INCDIR += -I../../boost
 
-LIBDIR += -L../../libthecore/lib -L../../libsql -L../../libpoly -L../../libgame/lib
+LIBDIR += -L../../libthecore/lib -L../../libpoly -L../../libgame/lib
+
+# LibSQL
+LIBDIR += -L../../../ExternGame/libsql
 
 # MySQL | MariaDB
 LIBDIR += -L /usr/local/lib/mysql
