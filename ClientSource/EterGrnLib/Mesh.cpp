@@ -42,8 +42,7 @@ void CGrannyMesh::NEW_LoadVertices(void * dstBaseVertices)
 	GrannyCopyMeshVertices(pgrnMesh, m_pgrnMeshType, dstVertices);
 }
 
-void CGrannyMesh::DeformPNTVertices(void * dstBaseVertices, D3DXMATRIX * boneMatrices, granny_mesh_binding* pgrnMeshBinding) const
-{
+void CGrannyMesh::DeformPNTVertices(void * dstBaseVertices, D3DXMATRIX * boneMatrices, granny_mesh_binding* pgrnMeshBinding) const {
 	assert(dstBaseVertices != NULL);
 	assert(boneMatrices != NULL);
 	assert(m_pgrnMeshDeformer != NULL);
@@ -54,18 +53,9 @@ void CGrannyMesh::DeformPNTVertices(void * dstBaseVertices, D3DXMATRIX * boneMat
 	TPNTVertex * dstVertices = ((TPNTVertex *) dstBaseVertices) + m_vtxBasePos;
 	
 	int vtxCount = GrannyGetMeshVertexCount(pgrnMesh);
+	int * boneIndices = (int*)GrannyGetMeshBindingToBoneIndices(pgrnMeshBinding);
 
-	// WORK
-	int * boneIndices = GrannyGetMeshBindingToBoneIndices(pgrnMeshBinding);
-	// END_OF_WORK
-
-	GrannyDeformVertices(
-		m_pgrnMeshDeformer, 
-		boneIndices, 
-		(float *)boneMatrices,
-		vtxCount,
-		srcVertices,
-		dstVertices);
+	GrannyDeformVertices(m_pgrnMeshDeformer, boneIndices, (float *)boneMatrices, vtxCount, srcVertices, dstVertices);
 }
 
 bool CGrannyMesh::CanDeformPNTVertices() const
@@ -99,12 +89,9 @@ int CGrannyMesh::GetIndexBasePosition() const
 	return m_idxBasePos;
 }
 
-// WORK
-int * CGrannyMesh::GetDefaultBoneIndices() const
-{
-	return GrannyGetMeshBindingToBoneIndices(m_pgrnMeshBindingTemp);
+int * CGrannyMesh::GetDefaultBoneIndices() const {
+	return (int*)GrannyGetMeshBindingToBoneIndices(m_pgrnMeshBindingTemp);
 }
-// END_OF_WORK
 
 bool CGrannyMesh::IsEmpty() const
 {
@@ -114,29 +101,26 @@ bool CGrannyMesh::IsEmpty() const
 	return true;
 }
 
-bool CGrannyMesh::CreateFromGrannyMeshPointer(granny_skeleton * pgrnSkeleton, granny_mesh * pgrnMesh, int vtxBasePos, int idxBasePos, CGrannyMaterialPalette& rkMtrlPal)
-{
+bool CGrannyMesh::CreateFromGrannyMeshPointer(granny_skeleton * pgrnSkeleton, granny_mesh * pgrnMesh, int vtxBasePos, int idxBasePos, CGrannyMaterialPalette& rkMtrlPal) {
 	assert(IsEmpty());
 
 	m_pgrnMesh = pgrnMesh;
 	m_vtxBasePos = vtxBasePos;
 	m_idxBasePos = idxBasePos;
 
-	if (m_pgrnMesh->BoneBindingCount < 0)
+	if (m_pgrnMesh->BoneBindingCount < 0) {
 		return true;
+	}
 
-	// WORK
-	m_pgrnMeshBindingTemp = GrannyNewMeshBinding(m_pgrnMesh, pgrnSkeleton, pgrnSkeleton);	
-	// END_OF_WORK
+	m_pgrnMeshBindingTemp = GrannyNewMeshBinding(m_pgrnMesh, pgrnSkeleton, pgrnSkeleton);
 
-	if (!GrannyMeshIsRigid(m_pgrnMesh))
-	{
+	if (!GrannyMeshIsRigid(m_pgrnMesh)) {
 		m_canDeformPNTVertex = true;
 
 		granny_data_type_definition * pgrnInputType = GrannyGetMeshVertexType(m_pgrnMesh);
 		granny_data_type_definition * pgrnOutputType = m_pgrnMeshType;
 
-		m_pgrnMeshDeformer = GrannyNewMeshDeformer(pgrnInputType, pgrnOutputType, GrannyDeformPositionNormal);
+		m_pgrnMeshDeformer = GrannyNewMeshDeformer(pgrnInputType, pgrnOutputType, GrannyDeformPositionNormal, GrannyAllowUncopiedTail);
 		assert(m_pgrnMeshDeformer != NULL && "Cannot create mesh deformer");
 	}
 
@@ -144,11 +128,9 @@ bool CGrannyMesh::CreateFromGrannyMeshPointer(granny_skeleton * pgrnSkeleton, gr
 	if (!strncmp(m_pgrnMesh->Name, "2x", 2))
 		m_isTwoSide = true;
 
-	if (!LoadMaterials(rkMtrlPal))
+	if (!LoadMaterials(rkMtrlPal) || !LoadTriGroupNodeList(rkMtrlPal)) {
 		return false;
-
-	if (!LoadTriGroupNodeList(rkMtrlPal))
-		return false;
+	}
 
 	return true;
 }

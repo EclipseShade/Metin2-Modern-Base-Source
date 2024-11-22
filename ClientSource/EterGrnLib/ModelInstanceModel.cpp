@@ -74,10 +74,10 @@ granny_world_pose* CGrannyModelInstance::__GetWorldPosePtr() const
 	return NULL;	
 }
 
-int* CGrannyModelInstance::__GetMeshBoneIndices(unsigned int iMeshBinding) const
-{
+int* CGrannyModelInstance::__GetMeshBoneIndices(unsigned int iMeshBinding) const {
 	assert(iMeshBinding<m_vct_pgrnMeshBinding.size());
-	return GrannyGetMeshBindingToBoneIndices(m_vct_pgrnMeshBinding[iMeshBinding]);
+	
+	return (int*)GrannyGetMeshBindingToBoneIndices(m_vct_pgrnMeshBinding[iMeshBinding]);
 }
 
 bool CGrannyModelInstance::__CreateMeshBindingVector(CGrannyModelInstance* pkDstModelInst)

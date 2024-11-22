@@ -40,16 +40,13 @@ void CGrannyModelInstance::UpdateLocalTime(float fElapsedTime)
 	m_fLocalTime += fElapsedTime;
 }
 
-void CGrannyModelInstance::UpdateTransform(D3DXMATRIX * pMatrix, float fSecondsElapsed)
-{
-	if (!m_pgrnModelInstance)
-	{
+void CGrannyModelInstance::UpdateTransform(D3DXMATRIX * pMatrix, float fSecondsElapsed) {
+	if (!m_pgrnModelInstance) {
 		TraceError("CGrannyModelIstance::UpdateTransform - m_pgrnModelInstance = NULL");
 		return;
 	}
-	GrannyUpdateModelMatrix(m_pgrnModelInstance, fSecondsElapsed, (const float *) pMatrix, (float *) pMatrix);
-	//Tracef("%f %f %f",pMatrix->_41,pMatrix->_42,pMatrix->_43);
 	
+	GrannyUpdateModelMatrix(m_pgrnModelInstance, fSecondsElapsed, (const float *) pMatrix, (float *) pMatrix, false);
 }
 
 void CGrannyModelInstance::Deform(const D3DXMATRIX * c_pWorldMatrix)

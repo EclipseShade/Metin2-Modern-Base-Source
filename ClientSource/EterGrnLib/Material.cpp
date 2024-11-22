@@ -1,6 +1,8 @@
 #include "StdAfx.h"
+
 #include "Material.h"
 #include "Mesh.h"
+
 #include "../eterbase/Filename.h"
 #include "../eterlib/ResourceManager.h"
 #include "../eterlib/StateManager.h"
@@ -218,55 +220,53 @@ CGraphicImage* CGrannyMaterial::__GetImagePointer(const char* fileName)
 	return static_cast<CGraphicImage*>(pResource);
 }
 
-bool CGrannyMaterial::CreateFromGrannyMaterialPointer(granny_material * pgrnMaterial)
-{
+bool CGrannyMaterial::CreateFromGrannyMaterialPointer(granny_material * pgrnMaterial) {
 	m_pgrnMaterial = pgrnMaterial;
 
 	granny_texture * pgrnDiffuseTexture = NULL;
 	granny_texture * pgrnOpacityTexture = NULL;
 
-	if (pgrnMaterial)
-	{
-		if (pgrnMaterial->MapCount > 1 && !strnicmp(pgrnMaterial->Name, "Blend", 5))
-		{
+	if (pgrnMaterial) {
+		if (pgrnMaterial->MapCount > 1 && !strnicmp(pgrnMaterial->Name, "Blend", 5)) {
 			pgrnDiffuseTexture = GrannyGetMaterialTextureByType(pgrnMaterial->Maps[0].Material, GrannyDiffuseColorTexture);
 			pgrnOpacityTexture = GrannyGetMaterialTextureByType(pgrnMaterial->Maps[1].Material, GrannyDiffuseColorTexture);
-		}
-		else
-		{
+		} else {
 			pgrnDiffuseTexture = GrannyGetMaterialTextureByType(m_pgrnMaterial, GrannyDiffuseColorTexture);
 			pgrnOpacityTexture = GrannyGetMaterialTextureByType(m_pgrnMaterial, GrannyOpacityTexture);
 		}
 
 		// Two-Side 렌더링이 필요한 지 검사
-		{			
+		{
 			granny_int32 twoSided = 0;
-			granny_data_type_definition TwoSidedFieldType[] =
-			{
+			granny_data_type_definition TwoSidedFieldType[] = {
 				{GrannyInt32Member, "Two-sided"},
 				{GrannyEndMember},
 			};
 
-			granny_variant twoSideResult = GrannyFindMatchingMember(pgrnMaterial->ExtendedData.Type, pgrnMaterial->ExtendedData.Object, "Two-sided");
+			granny_variant twoSideResult;
 
-			if (NULL != twoSideResult.Type)
-				GrannyConvertSingleObject(twoSideResult.Type, twoSideResult.Object, TwoSidedFieldType, &twoSided);
+			if (GrannyFindMatchingMember(pgrnMaterial->ExtendedData.Type, pgrnMaterial->ExtendedData.Object, "Two-sided", &twoSideResult) && NULL != twoSideResult.Type) {
+				GrannyConvertSingleObject(twoSideResult.Type, twoSideResult.Object, TwoSidedFieldType, &twoSided, NULL);
+			}
 
 			m_bTwoSideRender = 1 == twoSided;
 		}
 	}
 
-	if (pgrnDiffuseTexture)
+	if (pgrnDiffuseTexture) {
 		m_roImage[0].SetPointer(__GetImagePointer(pgrnDiffuseTexture->FromFileName));
+	}
 
-	if (pgrnOpacityTexture)
+	if (pgrnOpacityTexture) {
 		m_roImage[1].SetPointer(__GetImagePointer(pgrnOpacityTexture->FromFileName));
+	}
 
 	// 오퍼시티가 있으면 블렌딩 메쉬
-	if (!m_roImage[1].IsNull())
+	if (!m_roImage[1].IsNull()) {
 		m_eType = TYPE_BLEND_PNT;
-	else
+	} else {
 		m_eType = TYPE_DIFFUSE_PNT;
+	}
 
 	return true;
 }

@@ -691,11 +691,7 @@ Clean:
 	return 0;
 }
 
-static void GrannyError(granny_log_message_type Type,
-						granny_log_message_origin Origin,
-						char const *Error,
-						void *UserData)
-{
+static void GrannyError(granny_log_message_type Type, granny_log_message_origin Origin, char const* File, granny_int32x Line, char const *Error, void *UserData) {
     TraceError("GRANNY: %s", Error);
 }
 
