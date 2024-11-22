@@ -1,1 +1,0 @@
-ServerKeyGenerator -k

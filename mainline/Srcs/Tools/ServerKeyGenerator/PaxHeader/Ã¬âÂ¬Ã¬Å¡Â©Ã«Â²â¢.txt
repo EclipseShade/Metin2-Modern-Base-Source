@@ -1,6 +1,0 @@
-70 path=mainline/Srcs/Tools/ServerKeyGenerator/ì¬ì©ë².txt
-20 ctime=1343035118
-20 atime=1343035118
-17 SCHILY.dev=89
-22 SCHILY.ino=6576617
-18 SCHILY.nlink=1
