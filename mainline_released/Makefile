@@ -57,7 +57,7 @@ db: .
 	
 quest: .
 	@touch game/quest/Depend
-	$(MAKE) -C game/quest dep
+#	$(MAKE) -C game/quest dep
 	$(MAKE) -C game/quest clean
 	$(MAKE) -C game/quest
 
@@ -70,6 +70,7 @@ clean:
 	
 	$(MAKE) -C db clean
 	$(MAKE) -C game clean
+	$(MAKE) -C game/quest clean
 
 all: 
 	@echo "--------------------------------------"
@@ -110,7 +111,7 @@ all:
 	$(MAKE) -C db
 	
 	@touch game/quest/Depend
-	$(MAKE) -C game/quest dep
+#	$(MAKE) -C game/quest dep
 	$(MAKE) -C game/quest clean
 	$(MAKE) -C game/quest
 
