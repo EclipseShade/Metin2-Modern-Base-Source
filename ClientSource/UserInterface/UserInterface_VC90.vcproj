@@ -84,7 +84,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				ShowProgress="0"
-				OutputFile="Distribute/metin2client.exe"
+				OutputFile="../bin/metin2client - Distribute.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../../extern/lib;../../extern/lib/vc90"
