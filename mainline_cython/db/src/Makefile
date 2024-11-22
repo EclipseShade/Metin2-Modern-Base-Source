@@ -26,13 +26,8 @@ INCDIR += -I../../boost
 
 LIBDIR += -L../../libthecore/lib -L../../libsql -L../../libpoly -L../../libgame/lib
 
-ifeq ($(BSD_VERSION), 7)
-INCDIR += -I../../libmysql/7.x-5.1.35
-LIBDIR += -L../../libmysql/7.x-5.1.35
-else
-INCDIR += -I../../libmysql/5.x-5.1.35
-LIBDIR += -L../../libmysql/5.x-5.1.35
-endif
+# MySQL | MariaDB
+LIBDIR += -L /usr/local/lib/mysql
 
 LIBS = -lthecore -lmysqlclient -lsql -lpoly -lgame -lm -lz
 
