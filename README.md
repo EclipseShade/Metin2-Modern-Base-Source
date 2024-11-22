@@ -1,8 +1,8 @@
 **Compiling Client**
-* Visual Studio 2008
+- Visual Studio 2008
 
 **Compiling Server**
-* FreeBSD 9.2
+- FreeBSD 9.2
 
 **Compiling ItemEditor**
 - Visual Studio 2008
