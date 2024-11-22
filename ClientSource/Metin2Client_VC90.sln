@@ -1,38 +1,108 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CWebBrowser", "CWebBrowser\CWebBrowser_VC90.vcxproj", "{D64AE35F-F982-46D4-8E38-09E5C9752955}"
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CWebBrowser", "CWebBrowser\CWebBrowser_VC90.vcproj", "{D64AE35F-F982-46D4-8E38-09E5C9752955}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EffectLib", "EffectLib\EffectLib_VC90.vcxproj", "{790B152D-6582-467F-B767-8603C5A9E613}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EffectLib", "EffectLib\EffectLib_VC90.vcproj", "{790B152D-6582-467F-B767-8603C5A9E613}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EterPack", "EterPack\EterPack_VC90.vcxproj", "{4950BA04-3877-4F66-BCA0-60E00DE3770B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EterPack", "EterPack\EterPack_VC90.vcproj", "{4950BA04-3877-4F66-BCA0-60E00DE3770B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PRTerrainLib", "PRTerrainLib\PRTerrainLib_VC90.vcxproj", "{8B1D0DDE-A521-4EB2-9544-F606376278CC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PRTerrainLib", "PRTerrainLib\PRTerrainLib_VC90.vcproj", "{8B1D0DDE-A521-4EB2-9544-F606376278CC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SpeedTreeLib", "SpeedTreeLib\SpeedTreeLib_VC90.vcxproj", "{0FDDD886-1EB5-4655-80C3-EF08087FAEFD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SpeedTreeLib", "SpeedTreeLib\SpeedTreeLib_VC90.vcproj", "{0FDDD886-1EB5-4655-80C3-EF08087FAEFD}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SphereLib", "SphereLib\SphereLib_VC90.vcxproj", "{A5D7AF9F-0A4F-4ED3-B209-2553B1ADD17D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SphereLib", "SphereLib\SphereLib_VC90.vcproj", "{A5D7AF9F-0A4F-4ED3-B209-2553B1ADD17D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UserInterface", "UserInterface\UserInterface_VC90.vcxproj", "{F6CEB04C-4403-4CD4-84A2-D6A372BD4334}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UserInterface", "UserInterface\UserInterface_VC90.vcproj", "{F6CEB04C-4403-4CD4-84A2-D6A372BD4334}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4950BA04-3877-4F66-BCA0-60E00DE3770B} = {4950BA04-3877-4F66-BCA0-60E00DE3770B}
+		{FE95382C-8E3E-40AC-8060-634D1A0D4CF5} = {FE95382C-8E3E-40AC-8060-634D1A0D4CF5}
+		{790B152D-6582-467F-B767-8603C5A9E613} = {790B152D-6582-467F-B767-8603C5A9E613}
+		{E1FF7630-628F-4AD0-BF66-F14D86A04035} = {E1FF7630-628F-4AD0-BF66-F14D86A04035}
+		{D64AE35F-F982-46D4-8E38-09E5C9752955} = {D64AE35F-F982-46D4-8E38-09E5C9752955}
+		{0FDDD886-1EB5-4655-80C3-EF08087FAEFD} = {0FDDD886-1EB5-4655-80C3-EF08087FAEFD}
+		{24516A87-8544-46A9-A0C8-0A01269642D9} = {24516A87-8544-46A9-A0C8-0A01269642D9}
+		{9189BA90-1997-4B47-A673-A54C7DF4A4F7} = {9189BA90-1997-4B47-A673-A54C7DF4A4F7}
+		{A5D7AF9F-0A4F-4ED3-B209-2553B1ADD17D} = {A5D7AF9F-0A4F-4ED3-B209-2553B1ADD17D}
+		{E682CEA2-1D79-4DE9-A2CE-6AED27E4170E} = {E682CEA2-1D79-4DE9-A2CE-6AED27E4170E}
+		{678C47DC-B3EF-460E-A932-56F3208FC65E} = {678C47DC-B3EF-460E-A932-56F3208FC65E}
+		{8B1D0DDE-A521-4EB2-9544-F606376278CC} = {8B1D0DDE-A521-4EB2-9544-F606376278CC}
+		{887F89DF-A1A2-47DF-A869-F3FC84704E3E} = {887F89DF-A1A2-47DF-A869-F3FC84704E3E}
+		{1801F0ED-7DE6-4175-BF25-6FA98AAA350B} = {1801F0ED-7DE6-4175-BF25-6FA98AAA350B}
+	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eterBase", "EterBase\eterBase_VC90.vcxproj", "{678C47DC-B3EF-460E-A932-56F3208FC65E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eterBase", "EterBase\eterBase_VC90.vcproj", "{678C47DC-B3EF-460E-A932-56F3208FC65E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eterGrnLib", "eterGrnLib\eterGrnLib_VC90.vcxproj", "{E1FF7630-628F-4AD0-BF66-F14D86A04035}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eterGrnLib", "eterGrnLib\eterGrnLib_VC90.vcproj", "{E1FF7630-628F-4AD0-BF66-F14D86A04035}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eterImageLib", "eterImageLib\eterImageLib_VC90.vcxproj", "{FE95382C-8E3E-40AC-8060-634D1A0D4CF5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eterImageLib", "eterImageLib\eterImageLib_VC90.vcproj", "{FE95382C-8E3E-40AC-8060-634D1A0D4CF5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eterPythonLib", "eterPythonLib\eterPythonLib_VC90.vcxproj", "{24516A87-8544-46A9-A0C8-0A01269642D9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eterPythonLib", "eterPythonLib\eterPythonLib_VC90.vcproj", "{24516A87-8544-46A9-A0C8-0A01269642D9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eterlib", "EterLib\eterlib_VC90.vcxproj", "{887F89DF-A1A2-47DF-A869-F3FC84704E3E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eterlib", "EterLib\eterlib_VC90.vcproj", "{887F89DF-A1A2-47DF-A869-F3FC84704E3E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{05207E97-C83A-49C6-8E08-403679963A7B} = {05207E97-C83A-49C6-8E08-403679963A7B}
+	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gamelib", "GameLib\gamelib_VC90.vcxproj", "{1801F0ED-7DE6-4175-BF25-6FA98AAA350B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gamelib", "GameLib\gamelib_VC90.vcproj", "{1801F0ED-7DE6-4175-BF25-6FA98AAA350B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mileslib", "MilesLib\mileslib_VC90.vcxproj", "{9189BA90-1997-4B47-A673-A54C7DF4A4F7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mileslib", "MilesLib\mileslib_VC90.vcproj", "{9189BA90-1997-4B47-A673-A54C7DF4A4F7}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scriptLib", "scriptLib\scriptLib_VC90.vcxproj", "{E682CEA2-1D79-4DE9-A2CE-6AED27E4170E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "scriptLib", "scriptLib\scriptLib_VC90.vcproj", "{E682CEA2-1D79-4DE9-A2CE-6AED27E4170E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EterLocale", "EterLocale\EterLocale_VC90.vcxproj", "{05207E97-C83A-49C6-8E08-403679963A7B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EterLocale", "EterLocale\EterLocale_VC90.vcproj", "{05207E97-C83A-49C6-8E08-403679963A7B}"
 EndProject
 Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 17
+		SccProjectUniqueName0 = EterPack\\EterPack_VC90.vcproj
+		SccLocalPath0 = EterPack
+		SccProjectUniqueName1 = UserInterface\\UserInterface_VC90.vcproj
+		SccLocalPath1 = .
+		SccProjectFilePathRelativizedFromConnection1 = UserInterface\\
+		SccLocalPath2 = .
+		SccProjectUniqueName3 = CWebBrowser\\CWebBrowser_VC90.vcproj
+		SccLocalPath3 = .
+		SccProjectFilePathRelativizedFromConnection3 = CWebBrowser\\
+		SccProjectUniqueName4 = EffectLib\\EffectLib_VC90.vcproj
+		SccLocalPath4 = .
+		SccProjectFilePathRelativizedFromConnection4 = EffectLib\\
+		SccProjectUniqueName5 = PRTerrainLib\\PRTerrainLib_VC90.vcproj
+		SccLocalPath5 = .
+		SccProjectFilePathRelativizedFromConnection5 = PRTerrainLib\\
+		SccProjectUniqueName6 = SpeedTreeLib\\SpeedTreeLib_VC90.vcproj
+		SccLocalPath6 = .
+		SccProjectFilePathRelativizedFromConnection6 = SpeedTreeLib\\
+		SccProjectUniqueName7 = SphereLib\\SphereLib_VC90.vcproj
+		SccLocalPath7 = .
+		SccProjectFilePathRelativizedFromConnection7 = SphereLib\\
+		SccProjectUniqueName8 = EterBase\\eterBase_VC90.vcproj
+		SccLocalPath8 = .
+		SccProjectFilePathRelativizedFromConnection8 = EterBase\\
+		SccProjectUniqueName9 = eterGrnLib\\eterGrnLib_VC90.vcproj
+		SccLocalPath9 = .
+		SccProjectFilePathRelativizedFromConnection9 = eterGrnLib\\
+		SccProjectUniqueName10 = eterImageLib\\eterImageLib_VC90.vcproj
+		SccLocalPath10 = .
+		SccProjectFilePathRelativizedFromConnection10 = eterImageLib\\
+		SccProjectUniqueName11 = eterPythonLib\\eterPythonLib_VC90.vcproj
+		SccLocalPath11 = .
+		SccProjectFilePathRelativizedFromConnection11 = eterPythonLib\\
+		SccProjectUniqueName12 = EterLib\\eterlib_VC90.vcproj
+		SccLocalPath12 = .
+		SccProjectFilePathRelativizedFromConnection12 = EterLib\\
+		SccProjectUniqueName13 = GameLib\\gamelib_VC90.vcproj
+		SccLocalPath13 = .
+		SccProjectFilePathRelativizedFromConnection13 = GameLib\\
+		SccProjectUniqueName14 = MilesLib\\mileslib_VC90.vcproj
+		SccLocalPath14 = .
+		SccProjectFilePathRelativizedFromConnection14 = MilesLib\\
+		SccProjectUniqueName15 = scriptLib\\scriptLib_VC90.vcproj
+		SccLocalPath15 = .
+		SccProjectFilePathRelativizedFromConnection15 = scriptLib\\
+		SccProjectUniqueName16 = EterLocale\\EterLocale_VC90.vcproj
+		SccLocalPath16 = .
+		SccProjectFilePathRelativizedFromConnection16 = EterLocale\\
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
