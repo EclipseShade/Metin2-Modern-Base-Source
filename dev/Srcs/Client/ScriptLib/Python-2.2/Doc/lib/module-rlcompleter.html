@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.17 rlcompleter -- Completion function for GNU readline</title>
+<META NAME="description" CONTENT="7.17 rlcompleter -- Completion function for GNU readline">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-readline.html">
+<LINK REL="up" href="someos.html">
+<LINK REL="next" href="completer-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="readline-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="completer-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="readline-example.html">7.16.1 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="completer-objects.html">7.17.1 Completer Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0091700000000000000000">
+7.17 <tt class="module">rlcompleter</tt> --
+         Completion function for GNU readline</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Unix</span>.</p>
+
+<P>
+The <tt class="module">rlcompleter</tt> module defines a completion function for
+the <tt class="module"><a href="module-readline.html">readline</a></tt> module by completing valid Python identifiers
+and keywords.
+
+<P>
+This module is Unix-specific due to its dependence on the
+<tt class="module"><a href="module-readline.html">readline</a></tt> module.
+
+<P>
+The <tt class="module">rlcompleter</tt> module defines the <tt class="class">Completer</tt> class.
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import rlcompleter
+&gt;&gt;&gt; import readline
+&gt;&gt;&gt; readline.parse_and_bind("tab: complete")
+&gt;&gt;&gt; readline. &lt;TAB PRESSED&gt;
+readline.__doc__          readline.get_line_buffer  readline.read_init_file
+readline.__file__         readline.insert_text      readline.set_completer
+readline.__name__         readline.parse_and_bind
+&gt;&gt;&gt; readline.
+</pre></dl>
+
+<P>
+The <tt class="module">rlcompleter</tt> module is designed for use with Python's
+interactive mode.  A user can add the following lines to his or her
+initialization file (identified by the <a class="envvar" name="l2h-2119">PYTHONSTARTUP</a>
+environment variable) to get automatic <kbd>Tab</kbd> completion:
+
+<P>
+<dl><dd><pre class="verbatim">
+try:
+    import readline
+except ImportError:
+    print "Module readline not available."
+else:
+    import rlcompleter
+    readline.parse_and_bind("tab: complete")
+</pre></dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="completer-objects.html">7.17.1 Completer Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="readline-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="completer-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="readline-example.html">7.16.1 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="completer-objects.html">7.17.1 Completer Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

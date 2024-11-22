@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>15.4 mpz -- GNU arbitrary magnitude integers</title>
+<META NAME="description" CONTENT="15.4 mpz -- GNU arbitrary magnitude integers">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-rotor.html">
+<LINK REL="previous" href="module-sha.html">
+<LINK REL="up" href="crypto.html">
+<LINK REL="next" href="module-rotor.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-sha.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="crypto.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-rotor.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-sha.html">15.3 sha  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="crypto.html">15. Cryptographic Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-rotor.html">15.5 rotor  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0017400000000000000000">
+15.4 <tt class="module">mpz</tt> --
+         GNU arbitrary magnitude integers</A>
+</H1>
+
+<P>
+
+
+<P>
+<div class="versionnote"><b>Deprecated since release 2.2.</b>
+See the references at the end of this section for
+                 information about packages which provide similar
+                 functionality.  This module will be removed in Python
+                 2.3.</div><p>
+
+<P>
+This is an optional module.  It is only available when Python is
+configured to include it, which requires that the GNU MP software is
+installed.
+<a name="l2h-3651">&nbsp;</a>
+<P>
+This module implements the interface to part of the GNU MP library,
+which defines arbitrary precision integer and rational number
+arithmetic routines.  Only the interfaces to the <i>integer</i>
+(<tt class="function">mpz_*()</tt>) routines are provided. If not stated
+otherwise, the description in the GNU MP documentation can be applied.
+
+<P>
+Support for rational numbers<a name="l2h-3652">&nbsp;</a>can be
+implemented in Python.  For an example, see the
+<tt class="module">Rat</tt><a name="l2h-3641">&nbsp;</a> module, provided as
+<span class="file">Demos/classes/Rat.py</span> in the Python source distribution.
+
+<P>
+In general, <i class="dfn">mpz</i>-numbers can be used just like other standard
+Python numbers, e.g., you can use the built-in operators like <code>+</code>,
+<code>*</code>, etc., as well as the standard built-in functions like
+<tt class="function">abs()</tt>, <tt class="function">int()</tt>, ..., <tt class="function">divmod()</tt>,
+<tt class="function">pow()</tt>.  <b>Please note:</b> the <i>bitwise-xor</i>
+operation has been implemented as a bunch of <i>and</i>s,
+<i>invert</i>s and <i>or</i>s, because the library lacks an
+<tt class="cfunction">mpz_xor()</tt> function, and I didn't need one.
+
+<P>
+You create an mpz-number by calling the function <tt class="function">mpz()</tt> (see
+below for an exact description). An mpz-number is printed like this:
+<code>mpz(<var>value</var>)</code>.
+
+<P>
+<dl><dt><b><a name="l2h-3642"><tt class="function">mpz</tt></a></b>(<var>value</var>)
+<dd>
+  Create a new mpz-number. <var>value</var> can be an integer, a long,
+  another mpz-number, or even a string. If it is a string, it is
+  interpreted as an array of radix-256 digits, least significant digit
+  first, resulting in a positive number. See also the <tt class="method">binary()</tt>
+  method, described below.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3643"><tt>MPZType</tt></a></b>
+<dd>
+  The type of the objects returned by <tt class="function">mpz()</tt> and most other
+  functions in this module.
+</dl>
+
+<P>
+A number of <i>extra</i> functions are defined in this module. Non
+mpz-arguments are converted to mpz-values first, and the functions
+return mpz-numbers.
+
+<P>
+<dl><dt><b><a name="l2h-3644"><tt class="function">powm</tt></a></b>(<var>base, exponent, modulus</var>)
+<dd>
+  Return <code>pow(<var>base</var>, <var>exponent</var>) % <var>modulus</var></code>. If
+  <code><var>exponent</var> == 0</code>, return <code>mpz(1)</code>. In contrast to the
+  C library function, this version can handle negative exponents.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3645"><tt class="function">gcd</tt></a></b>(<var>op1, op2</var>)
+<dd>
+  Return the greatest common divisor of <var>op1</var> and <var>op2</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3646"><tt class="function">gcdext</tt></a></b>(<var>a, b</var>)
+<dd>
+  Return a tuple <code>(<var>g</var>, <var>s</var>, <var>t</var>)</code>, such that
+  <code><var>a</var>*<var>s</var> + <var>b</var>*<var>t</var> == <var>g</var> == gcd(<var>a</var>, <var>b</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3647"><tt class="function">sqrt</tt></a></b>(<var>op</var>)
+<dd>
+  Return the square root of <var>op</var>. The result is rounded towards zero.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3648"><tt class="function">sqrtrem</tt></a></b>(<var>op</var>)
+<dd>
+  Return a tuple <code>(<var>root</var>, <var>remainder</var>)</code>, such that
+  <code><var>root</var>*<var>root</var> + <var>remainder</var> == <var>op</var></code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3649"><tt class="function">divm</tt></a></b>(<var>numerator, denominator, modulus</var>)
+<dd>
+  Returns a number <var>q</var> such that
+  <code><var>q</var> * <var>denominator</var> % <var>modulus</var> ==
+  <var>numerator</var></code>.  One could also implement this function in Python,
+  using <tt class="function">gcdext()</tt>.
+</dl>
+
+<P>
+An mpz-number has one method:
+
+<P>
+<dl><dt><b><a name="l2h-3650"><tt class="method">binary</tt></a></b>()
+<dd>
+  Convert this mpz-number to a binary string, where the number has been
+  stored as an array of radix-256 digits, least significant digit first.
+
+<P>
+The mpz-number must have a value greater than or equal to zero,
+  otherwise <tt class="exception">ValueError</tt> will be raised.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://gmpy.sourceforge.net/"
+        >General Multiprecision Python</a></em>
+    <dd>
+            This project is building new numeric types to allow
+            arbitrary-precision arithmetic in Python.  Their first
+            efforts are also based on the GNU MP library.
+  </dl>
+
+<P>
+<dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.egenix.com/files/python/mxNumber.html"
+        >mxNumber
+            -- Extended Numeric Types for Python</a></em>
+    <dd>Another wrapper
+            around the GNU MP library, including a port of that
+            library to Windows.
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-sha.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="crypto.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-rotor.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-sha.html">15.3 sha  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="crypto.html">15. Cryptographic Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-rotor.html">15.5 rotor  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.6 dbm -- Simple ``database'' interface</title>
+<META NAME="description" CONTENT="8.6 dbm -- Simple ``database'' interface">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-gdbm.html">
+<LINK REL="previous" href="module-dl.html">
+<LINK REL="up" href="unix.html">
+<LINK REL="next" href="module-gdbm.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dl-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-gdbm.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dl-objects.html">8.5.1 Dl Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-gdbm.html">8.7 gdbm  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0010600000000000000000">
+8.6 <tt class="module">dbm</tt> --
+         Simple ``database'' interface</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Unix</span>.</p>
+
+<P>
+The <tt class="module">dbm</tt> module provides an interface to the Unix
+(<code>n</code>)<code>dbm</code> library.  Dbm objects behave like mappings
+(dictionaries), except that keys and values are always strings.
+Printing a dbm object doesn't print the keys and values, and the
+<tt class="method">items()</tt> and <tt class="method">values()</tt> methods are not supported.
+
+<P>
+This module can be used with the ``classic'' ndbm interface, the BSD
+DB compatibility interface, or the GNU GDBM compatibility interface.
+On Unix, the <b class="program">configure</b> script will attempt to locate the
+appropriate header file to simplify building this module.
+
+<P>
+The module defines the following:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2147"><tt class="exception">error</tt></a></b>
+<dd>
+Raised on dbm-specific errors, such as I/O errors.
+<tt class="exception">KeyError</tt> is raised for general mapping errors like
+specifying an incorrect key.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2148"><tt>library</tt></a></b>
+<dd>
+Name of the <code>ndbm</code> implementation library used.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2149"><tt class="function">open</tt></a></b>(<var>filename</var><big>[</big><var>, flag</var><big>[</big><var>, mode</var><big>]</big><big>]</big>)
+<dd>
+Open a dbm database and return a dbm object.  The <var>filename</var>
+argument is the name of the database file (without the <span class="file">.dir</span> or
+<span class="file">.pag</span> extensions; note that the BSD DB implementation of the
+interface will append the extension <span class="file">.db</span> and only create one
+file).
+
+<P>
+The optional <var>flag</var> argument must be one of these values:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Value</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><code>'r'</code></td>
+        <td align="left">Open existing database for reading only (default)</td>
+    <tr><td align="center" valign="baseline"><code>'w'</code></td>
+        <td align="left">Open existing database for reading and writing</td>
+    <tr><td align="center" valign="baseline"><code>'c'</code></td>
+        <td align="left">Open database for reading and writing, creating it if
+               it doesn't exist</td>
+    <tr><td align="center" valign="baseline"><code>'n'</code></td>
+        <td align="left">Always create a new, empty database, open for reading
+               and writing</td></tbody>
+</table>
+
+<P>
+The optional <var>mode</var> argument is the Unix mode of the file, used
+only when the database has to be created.  It defaults to octal
+<code>0666</code>.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-anydbm.html">anydbm</a></tt>:</b>
+    <dd>Generic interface to <code>dbm</code>-style databases.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-gdbm.html">gdbm</a></tt>:</b>
+    <dd>Similar interface to the GNU GDBM library.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-whichdb.html">whichdb</a></tt>:</b>
+    <dd>Utility module used to determine the type of an
+                      existing database.
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dl-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-gdbm.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dl-objects.html">8.5.1 Dl Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-gdbm.html">8.7 gdbm  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

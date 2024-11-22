@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.14.5.2 Pickling and unpickling extension types</title>
+<META NAME="description" CONTENT="3.14.5.2 Pickling and unpickling extension types">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node66.html">
+<LINK REL="previous" href="pickle-inst.html">
+<LINK REL="up" href="pickle-protocol.html">
+<LINK REL="next" HREF="node66.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pickle-inst.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pickle-protocol.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node66.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pickle-inst.html">3.14.5.1 Pickling and unpickling</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pickle-protocol.html">3.14.5 The pickle protocol</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node66.html">3.14.5.3 Pickling and unpickling</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0051452000000000000000">
+3.14.5.2 Pickling and unpickling extension types</A>
+</H3>
+
+<P>
+When the <tt class="class">Pickler</tt> encounters an object of a type it knows
+nothing about -- such as an extension type -- it looks in two places
+for a hint of how to pickle it.  One alternative is for the object to
+implement a <tt class="method">__reduce__()</tt> method.  If provided, at pickling
+time <tt class="method">__reduce__()</tt> will be called with no arguments, and it
+must return either a string or a tuple.
+
+<P>
+If a string is returned, it names a global variable whose contents are
+pickled as normal.  When a tuple is returned, it must be of length two
+or three, with the following semantics:
+
+<P>
+
+<UL>
+<LI>A callable object, which in the unpickling environment must be
+      either a class, a callable registered as a ``safe constructor''
+      (see below), or it must have an attribute
+      <tt class="member">__safe_for_unpickling__</tt> with a true value.  Otherwise,
+      an <tt class="exception">UnpicklingError</tt> will be raised in the unpickling
+      environment.  Note that as usual, the callable itself is pickled
+      by name.
+
+<P>
+</LI>
+<LI>A tuple of arguments for the callable object, or <code>None</code>.
+
+<P>
+</LI>
+<LI>Optionally, the object's state, which will be passed to
+      the object's <tt class="method">__setstate__()</tt> method as described in
+      section&nbsp;<A href="pickle-inst.html#pickle-inst">3.14.5</A>.  If the object has no
+      <tt class="method">__setstate__()</tt> method, then, as above, the value must
+      be a dictionary and it will be added to the object's
+      <tt class="member">__dict__</tt>.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Upon unpickling, the callable will be called (provided that it meets
+the above criteria), passing in the tuple of arguments; it should
+return the unpickled object.  If the second item was <code>None</code>, then
+instead of calling the callable directly, its <tt class="method">__basicnew__()</tt>
+method is called without arguments.  It should also return the
+unpickled object.
+
+<P>
+An alternative to implementing a <tt class="method">__reduce__()</tt> method on the
+object to be pickled, is to register the callable with the
+<tt class="module"><a href="module-copyreg.html">copy_reg</a></tt> module.  This module provides a way
+for programs to register ``reduction functions'' and constructors for
+user-defined types.   Reduction functions have the same semantics and
+interface as the <tt class="method">__reduce__()</tt> method described above, except
+that they are called with a single argument, the object to be pickled.
+
+<P>
+The registered constructor is deemed a ``safe constructor'' for purposes
+of unpickling as described above.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pickle-inst.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pickle-protocol.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node66.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pickle-inst.html">3.14.5.1 Pickling and unpickling</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pickle-protocol.html">3.14.5 The pickle protocol</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node66.html">3.14.5.3 Pickling and unpickling</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

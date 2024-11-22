@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.11 Index-generating Markup </title>
+<META NAME="description" CONTENT="6.11 Index-generating Markup ">
+<META NAME="keywords" CONTENT="doc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="doc.css">
+<link rel="first" href="doc.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="grammar-displays.html">
+<LINK REL="previous" href="references.html">
+<LINK REL="up" href="special-constructs.html">
+<LINK REL="next" href="grammar-displays.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="references.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="special-constructs.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="grammar-displays.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="references.html">6.10 Reference List Markup</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="special-constructs.html">6 Special Markup Constructs</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="grammar-displays.html">6.12 Grammar Production Displays</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0007110000000000000000">&nbsp;</A>
+<BR>
+6.11 Index-generating Markup 
+</H2>
+
+<P>
+Effective index generation for technical documents can be very
+    difficult, especially for someone familiar with the topic but not
+    the creation of indexes.  Much of the difficulty arises in the
+    area of terminology: including the terms an expert would use for a
+    concept is not sufficient.  Coming up with the terms that a novice
+    would look up is fairly difficult for an author who, typically, is
+    an expert in the area she is writing on.
+
+<P>
+The truly difficult aspects of index generation are not areas with
+    which the documentation tools can help.  However, ease
+    of producing the index once content decisions are made is within
+    the scope of the tools.  Markup is provided which the processing
+    software is able to use to generate a variety of kinds of index
+    entry with minimal effort.  Additionally, many of the environments
+    described in section <A href="info-units.html#info-units">6.3</A>, ``Information Units,'' will
+    generate appropriate entries into the general and module indexes.
+
+<P>
+The following macro can be used to control the generation of index
+    data, and should be used in the document preamble:
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;makemodindex</tt></b>
+    
+<dd>
+      This should be used in the document preamble if a ``Module
+      Index'' is desired for a document containing reference material
+      on many modules.  This causes a data file
+      <code>lib<var>jobname</var>.idx</code> to be created from the
+      <tt class='macro'>&#92;declaremodule</tt> macros.  This file can be processed by the
+      <b class="program">makeindex</b> program to generate a file which can be
+      <tt class='macro'>&#92;input</tt> into the document at the desired location of the
+      module index.
+    </dl>
+
+<P>
+There are a number of macros that are useful for adding index
+    entries for particular concepts, many of which are specific to
+    programming languages or even Python.
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;bifuncindex</tt></b>
+    <tt>{</tt><var>name</var><tt>}</tt>
+<dd>
+      Add an index entry referring to a built-in function named
+      <var>name</var>; parentheses should not be included after
+      <var>name</var>.
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;exindex</tt></b>
+    <tt>{</tt><var>exception</var><tt>}</tt>
+<dd>
+      Add a reference to an exception named <var>exception</var>.  The
+      exception may be either string- or class-based.
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;kwindex</tt></b>
+    <tt>{</tt><var>keyword</var><tt>}</tt>
+<dd>
+      Add a reference to a language keyword (not a keyword parameter
+      in a function or method call).
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;obindex</tt></b>
+    <tt>{</tt><var>object type</var><tt>}</tt>
+<dd>
+      Add an index entry for a built-in object type.
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;opindex</tt></b>
+    <tt>{</tt><var>operator</var><tt>}</tt>
+<dd>
+      Add a reference to an operator, such as "<tt class="samp">+</tt>".
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;refmodindex</tt></b>
+    <tt>[</tt><var>key</var><tt>]</tt><tt>{</tt><var>module</var><tt>}</tt>
+<dd>
+      Add an index entry for module <var>module</var>; if <var>module</var>
+      contains an underscore, the optional parameter <var>key</var> should
+      be provided as the same string with underscores removed.  An
+      index entry ``<var>module</var> (module)'' will be generated.  This
+      is intended for use with non-standard modules implemented in
+      Python.
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;refexmodindex</tt></b>
+    <tt>[</tt><var>key</var><tt>]</tt><tt>{</tt><var>module</var><tt>}</tt>
+<dd>
+      As for <tt class='macro'>&#92;refmodindex</tt>, but the index entry will be
+      ``<var>module</var> (extension module).''  This is intended for use
+      with non-standard modules not implemented in Python.
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;refbimodindex</tt></b>
+    <tt>[</tt><var>key</var><tt>]</tt><tt>{</tt><var>module</var><tt>}</tt>
+<dd>
+      As for <tt class='macro'>&#92;refmodindex</tt>, but the index entry will be
+      ``<var>module</var> (built-in module).''  This is intended for use
+      with standard modules not implemented in Python.
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;refstmodindex</tt></b>
+    <tt>[</tt><var>key</var><tt>]</tt><tt>{</tt><var>module</var><tt>}</tt>
+<dd>
+      As for <tt class='macro'>&#92;refmodindex</tt>, but the index entry will be
+      ``<var>module</var> (standard module).''  This is intended for use
+      with standard modules implemented in Python.
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;stindex</tt></b>
+    <tt>{</tt><var>statement</var><tt>}</tt>
+<dd>
+      Add an index entry for a statement type, such as <tt class="keyword">print</tt>
+      or <tt class="keyword">try</tt>/<tt class="keyword">finally</tt>.
+
+<P>
+XXX Need better examples of difference from <tt class='macro'>&#92;kwindex</tt>.
+    </dl>
+
+<P>
+Additional macros are provided which are useful for conveniently
+    creating general index entries which should appear at many places
+    in the index by rotating a list of words.  These are simple macros
+    that simply use <tt class='macro'>&#92;index</tt> to build some number of index
+    entries.  Index entries build using these macros contain both
+    primary and secondary text.
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;indexii</tt></b>
+    <tt>{</tt><var>word1</var><tt>}</tt><tt>{</tt><var>word2</var><tt>}</tt>
+<dd>
+      Build two index entries.  This is exactly equivalent to using
+      <code>&#92;index{<var>word1</var>!<var>word2</var>}</code> and 
+      <code>&#92;index{<var>word2</var>!<var>word1</var>}</code>.
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;indexiii</tt></b>
+    <tt>{</tt><var>word1</var><tt>}</tt><tt>{</tt><var>word2</var><tt>}</tt><tt>{</tt><var>word3</var><tt>}</tt>
+<dd>
+      Build three index entries.  This is exactly equivalent to using
+      <code>&#92;index{<var>word1</var>!<var>word2</var> <var>word3</var>}</code>,
+      <code>&#92;index{<var>word2</var>!<var>word3</var>, <var>word1</var>}</code>, and
+      <code>&#92;index{<var>word3</var>!<var>word1</var> <var>word2</var>}</code>.
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;indexiv</tt></b>
+    <tt>{</tt><var>word1</var><tt>}</tt><tt>{</tt><var>word2</var><tt>}</tt><tt>{</tt><var>word3</var><tt>}</tt><tt>{</tt><var>word4</var><tt>}</tt>
+<dd>
+      Build four index entries.  This is exactly equivalent to using
+      <code>&#92;index{<var>word1</var>!<var>word2</var> <var>word3</var> <var>word4</var>}</code>,
+      <code>&#92;index{<var>word2</var>!<var>word3</var> <var>word4</var>, <var>word1</var>}</code>,
+      <code>&#92;index{<var>word3</var>!<var>word4</var>, <var>word1</var> <var>word2</var>}</code>,
+      and
+      <code>&#92;index{<var>word4</var>!<var>word1</var> <var>word2</var> <var>word3</var>}</code>.
+    </dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="references.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="special-constructs.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="grammar-displays.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="references.html">6.10 Reference List Markup</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="special-constructs.html">6 Special Markup Constructs</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="grammar-displays.html">6.12 Grammar Production Displays</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

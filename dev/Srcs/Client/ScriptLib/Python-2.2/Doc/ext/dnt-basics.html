@@ -1,0 +1,452 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.1 The Basics
+</title>
+<META NAME="description" CONTENT="2.1 The Basics
+">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="dnt-type-methods.html">
+<LINK REL="previous" href="defining-new-types.html">
+<LINK REL="up" href="defining-new-types.html">
+<LINK REL="next" href="dnt-type-methods.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="defining-new-types.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="defining-new-types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dnt-type-methods.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="defining-new-types.html">2. Defining New Types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="defining-new-types.html">2. Defining New Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dnt-type-methods.html">2.2 Type Methods</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION004100000000000000000">&nbsp;</A>
+<BR>
+2.1 The Basics
+    
+</H1>
+
+<P>
+The Python runtime sees all Python objects as variables of type
+<tt class="ctype">PyObject*</tt>.  A <tt class="ctype">PyObject</tt> is not a very magnificent
+object - it just contains the refcount and a pointer to the object's
+``type object''.  This is where the action is; the type object
+determines which (C) functions get called when, for instance, an
+attribute gets looked up on an object or it is multiplied by another
+object.  I call these C functions ``type methods'' to distinguish them
+from things like <code>[].append</code> (which I will call ``object
+methods'' when I get around to them).
+
+<P>
+So, if you want to define a new object type, you need to create a new
+type object.
+
+<P>
+This sort of thing can only be explained by example, so here's a
+minimal, but complete, module that defines a new type:
+
+<P>
+<dl><dd><pre class="verbatim">
+#include &lt;Python.h&gt;
+
+staticforward PyTypeObject noddy_NoddyType;
+
+typedef struct {
+    PyObject_HEAD
+} noddy_NoddyObject;
+
+static PyObject*
+noddy_new_noddy(PyObject* self, PyObject* args)
+{
+    noddy_NoddyObject* noddy;
+
+    if (!PyArg_ParseTuple(args,":new_noddy")) 
+        return NULL;
+
+    noddy = PyObject_New(noddy_NoddyObject, &amp;noddy_NoddyType);
+
+    return (PyObject*)noddy;
+}
+
+static void
+noddy_noddy_dealloc(PyObject* self)
+{
+    PyObject_Del(self);
+}
+
+static PyTypeObject noddy_NoddyType = {
+    PyObject_HEAD_INIT(NULL)
+    0,
+    "Noddy",
+    sizeof(noddy_NoddyObject),
+    0,
+    noddy_noddy_dealloc, /*tp_dealloc*/
+    0,          /*tp_print*/
+    0,          /*tp_getattr*/
+    0,          /*tp_setattr*/
+    0,          /*tp_compare*/
+    0,          /*tp_repr*/
+    0,          /*tp_as_number*/
+    0,          /*tp_as_sequence*/
+    0,          /*tp_as_mapping*/
+    0,          /*tp_hash */
+};
+
+static PyMethodDef noddy_methods[] = {
+    {"new_noddy", noddy_new_noddy, METH_VARARGS,
+     "Create a new Noddy object."},
+    {NULL, NULL, 0, NULL}
+};
+
+DL_EXPORT(void)
+initnoddy(void) 
+{
+    noddy_NoddyType.ob_type = &amp;PyType_Type;
+
+    Py_InitModule("noddy", noddy_methods);
+}
+</pre></dl>
+
+<P>
+Now that's quite a bit to take in at once, but hopefully bits will
+seem familiar from the last chapter.
+
+<P>
+The first bit that will be new is:
+
+<P>
+<dl><dd><pre class="verbatim">
+staticforward PyTypeObject noddy_NoddyType;
+</pre></dl>
+
+<P>
+This names the type object that will be defining further down in the
+file.  It can't be defined here because its definition has to refer to
+functions that have no yet been defined, but we need to be able to
+refer to it, hence the declaration.
+
+<P>
+The <code>staticforward</code> is required to placate various brain dead
+compilers.
+
+<P>
+<dl><dd><pre class="verbatim">
+typedef struct {
+    PyObject_HEAD
+} noddy_NoddyObject;
+</pre></dl>
+
+<P>
+This is what a Noddy object will contain.  In this case nothing more
+than every Python object contains - a refcount and a pointer to a type
+object.  These are the fields the <code>PyObject_HEAD</code> macro brings
+in.  The reason for the macro is to standardize the layout and to
+enable special debugging fields to be brought in debug builds.
+
+<P>
+For contrast
+
+<P>
+<dl><dd><pre class="verbatim">
+typedef struct {
+    PyObject_HEAD
+    long ob_ival;
+} PyIntObject;
+</pre></dl>
+
+<P>
+is the corresponding definition for standard Python integers.
+
+<P>
+Next up is:
+
+<P>
+<dl><dd><pre class="verbatim">
+static PyObject*
+noddy_new_noddy(PyObject* self, PyObject* args)
+{
+    noddy_NoddyObject* noddy;
+
+    if (!PyArg_ParseTuple(args,":new_noddy")) 
+        return NULL;
+
+    noddy = PyObject_New(noddy_NoddyObject, &amp;noddy_NoddyType);
+
+    return (PyObject*)noddy;
+}
+</pre></dl>
+
+<P>
+This is in fact just a regular module function, as described in the
+last chapter.  The reason it gets special mention is that this is
+where we create our Noddy object.  Defining PyTypeObject structures is
+all very well, but if there's no way to actually <i>create</i> one
+of the wretched things it is not going to do anyone much good.
+
+<P>
+Almost always, you create objects with a call of the form:
+
+<P>
+<dl><dd><pre class="verbatim">
+PyObject_New(&lt;type&gt;, &amp;&lt;type object&gt;);
+</pre></dl>
+
+<P>
+This allocates the memory and then initializes the object (sets
+the reference count to one, makes the <tt class="cdata">ob_type</tt> pointer point at
+the right place and maybe some other stuff, depending on build options).
+You <i>can</i> do these steps separately if you have some reason to
+-- but at this level we don't bother.
+
+<P>
+We cast the return value to a <tt class="ctype">PyObject*</tt> because that's what
+the Python runtime expects.  This is safe because of guarantees about
+the layout of structures in the C standard, and is a fairly common C
+programming trick.  One could declare <tt class="cfunction">noddy_new_noddy</tt> to
+return a <tt class="ctype">noddy_NoddyObject*</tt> and then put a cast in the
+definition of <tt class="cdata">noddy_methods</tt> further down the file -- it
+doesn't make much difference.
+
+<P>
+Now a Noddy object doesn't do very much and so doesn't need to
+implement many type methods.  One you can't avoid is handling
+deallocation, so we find
+
+<P>
+<dl><dd><pre class="verbatim">
+static void
+noddy_noddy_dealloc(PyObject* self)
+{
+    PyObject_Del(self);
+}
+</pre></dl>
+
+<P>
+This is so short as to be self explanatory.  This function will be
+called when the reference count on a Noddy object reaches <code>0</code> (or
+it is found as part of an unreachable cycle by the cyclic garbage
+collector).  <tt class="cfunction">PyObject_Del()</tt> is what you call when you want
+an object to go away.  If a Noddy object held references to other
+Python objects, one would decref them here.
+
+<P>
+Moving on, we come to the crunch -- the type object.
+
+<P>
+<dl><dd><pre class="verbatim">
+static PyTypeObject noddy_NoddyType = {
+    PyObject_HEAD_INIT(NULL)
+    0,
+    "Noddy",
+    sizeof(noddy_NoddyObject),
+    0,
+    noddy_noddy_dealloc, /*tp_dealloc*/
+    0,                   /*tp_print*/
+    0,                   /*tp_getattr*/
+    0,                   /*tp_setattr*/
+    0,                   /*tp_compare*/
+    0,                   /*tp_repr*/
+    0,                   /*tp_as_number*/
+    0,                   /*tp_as_sequence*/
+    0,                   /*tp_as_mapping*/
+    0,                   /*tp_hash */
+};
+</pre></dl>
+
+<P>
+Now if you go and look up the definition of <tt class="ctype">PyTypeObject</tt> in
+<span class="file">object.h</span> you'll see that it has many, many more fields that the
+definition above.  The remaining fields will be filled with zeros by
+the C compiler, and it's common practice to not specify them
+explicitly unless you need them.  
+
+<P>
+This is so important that I'm going to pick the top of it apart still
+further:
+
+<P>
+<dl><dd><pre class="verbatim">
+    PyObject_HEAD_INIT(NULL)
+</pre></dl>
+
+<P>
+This line is a bit of a wart; what we'd like to write is:
+
+<P>
+<dl><dd><pre class="verbatim">
+    PyObject_HEAD_INIT(&amp;PyType_Type)
+</pre></dl>
+
+<P>
+as the type of a type object is ``type'', but this isn't strictly
+conforming C and some compilers complain.  So instead we fill in the
+<tt class="cdata">ob_type</tt> field of <tt class="cdata">noddy_NoddyType</tt> at the earliest
+oppourtunity -- in <tt class="cfunction">initnoddy()</tt>.
+
+<P>
+<dl><dd><pre class="verbatim">
+    0,
+</pre></dl>
+
+<P>
+XXX why does the type info struct start PyObject_*VAR*_HEAD??
+
+<P>
+<dl><dd><pre class="verbatim">
+    "Noddy",
+</pre></dl>
+
+<P>
+The name of our type.  This will appear in the default textual
+representation of our objects and in some error messages, for example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; "" + noddy.new_noddy()
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+TypeError: cannot add type "Noddy" to string
+</pre></dl>
+
+<P>
+<dl><dd><pre class="verbatim">
+    sizeof(noddy_NoddyObject),
+</pre></dl>
+
+<P>
+This is so that Python knows how much memory to allocate when you call
+<tt class="cfunction">PyObject_New</tt>.
+
+<P>
+<dl><dd><pre class="verbatim">
+    0,
+</pre></dl>
+
+<P>
+This has to do with variable length objects like lists and strings.
+Ignore for now...
+
+<P>
+Now we get into the type methods, the things that make your objects
+different from the others.  Of course, the Noddy object doesn't
+implement many of these, but as mentioned above you have to implement
+the deallocation function.
+
+<P>
+<dl><dd><pre class="verbatim">
+    noddy_noddy_dealloc, /*tp_dealloc*/
+</pre></dl>
+
+<P>
+From here, all the type methods are nil so I won't go over them yet -
+that's for the next section!
+
+<P>
+Everything else in the file should be familiar, except for this line
+in <tt class="cfunction">initnoddy</tt>:
+
+<P>
+<dl><dd><pre class="verbatim">
+    noddy_NoddyType.ob_type = &amp;PyType_Type;
+</pre></dl>
+
+<P>
+This was alluded to above -- the <tt class="cdata">noddy_NoddyType</tt> object should
+have type ``type'', but <code>&amp;PyType_Type</code> is not constant and so
+can't be used in its initializer.  To work around this, we patch it up
+in the module initialization.
+
+<P>
+That's it!  All that remains is to build it; put the above code in a
+file called <span class="file">noddymodule.c</span> and
+
+<P>
+<dl><dd><pre class="verbatim">
+from distutils.core import setup, Extension
+setup(name = "noddy", version = "1.0",
+    ext_modules = [Extension("noddy", ["noddymodule.c"])])
+</pre></dl>
+
+<P>
+in a file called <span class="file">setup.py</span>; then typing
+
+<P>
+<dl><dd><pre class="verbatim">
+$ python setup.py build%$
+</pre></dl>
+
+<P>
+at a shell should produce a file <span class="file">noddy.so</span> in a subdirectory;
+move to that directory and fire up Python -- you should be able to
+<code>import noddy</code> and play around with Noddy objects.
+
+<P>
+That wasn't so hard, was it?
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="defining-new-types.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="defining-new-types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dnt-type-methods.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="defining-new-types.html">2. Defining New Types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="defining-new-types.html">2. Defining New Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dnt-type-methods.html">2.2 Type Methods</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

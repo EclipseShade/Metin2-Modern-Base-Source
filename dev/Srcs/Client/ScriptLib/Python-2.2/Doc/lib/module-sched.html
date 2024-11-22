@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.10 sched -- Event scheduler</title>
+<META NAME="description" CONTENT="6.10 sched -- Event scheduler">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-mutex.html">
+<LINK REL="previous" href="module-time.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" href="scheduler-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-time.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="scheduler-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-time.html">6.9 time  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="scheduler-objects.html">6.10.1 Scheduler Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0081000000000000000000">
+6.10 <tt class="module">sched</tt> --
+         Event scheduler</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">sched</tt> module defines a class which implements a general
+purpose event scheduler:<a name="l2h-1397">&nbsp;</a>
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-1396"><tt class="class">scheduler</tt></a></b>(<var>timefunc, delayfunc</var>)
+<dd>
+The <tt class="class">scheduler</tt> class defines a generic interface to scheduling
+events. It needs two functions to actually deal with the ``outside world''
+-- <var>timefunc</var> should be callable without arguments, and return 
+a number (the ``time'', in any units whatsoever).  The <var>delayfunc</var>
+function should be callable with one argument, compatible with the output
+of <var>timefunc</var>, and should delay that many time units.
+<var>delayfunc</var> will also be called with the argument <code>0</code> after
+each event is run to allow other threads an opportunity to run in
+multi-threaded applications.
+</dl>
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import sched, time
+&gt;&gt;&gt; s=sched.scheduler(time.time, time.sleep)
+&gt;&gt;&gt; def print_time(): print "From print_time", time.time()
+...
+&gt;&gt;&gt; def print_some_times():
+...     print time.time()
+...     s.enter(5, 1, print_time, ())
+...     s.enter(10, 1, print_time, ())
+...     s.run()
+...     print time.time()
+...
+&gt;&gt;&gt; print_some_times()
+930343690.257
+From print_time 930343695.274
+From print_time 930343700.273
+930343700.276
+</pre></dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="scheduler-objects.html">6.10.1 Scheduler Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-time.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="scheduler-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-time.html">6.9 time  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="scheduler-objects.html">6.10.1 Scheduler Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

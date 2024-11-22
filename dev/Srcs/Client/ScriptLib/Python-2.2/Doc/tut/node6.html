@@ -1,0 +1,780 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4. More Control Flow Tools </title>
+<META NAME="description" CONTENT="4. More Control Flow Tools ">
+<META NAME="keywords" CONTENT="tut">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="tut.css">
+<link rel="first" href="tut.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node7.html">
+<LINK REL="previous" HREF="node5.html">
+<LINK REL="up" HREF="tut.html">
+<LINK REL="next" HREF="node7.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node5.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="tut.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node7.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Tutorial</td>
+<td><A HREF="node2.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node5.html">3. An Informal Introduction</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="tut.html">Python Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node7.html">5. Data Structures</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="#SECTION006100000000000000000">4.1 <tt class="keyword">if</tt> Statements</a>
+<LI><A href="#SECTION006200000000000000000">4.2 <tt class="keyword">for</tt> Statements</a>
+<LI><A href="#SECTION006300000000000000000">4.3 The <tt class="function">range()</tt> Function</a>
+<LI><A href="#SECTION006400000000000000000">4.4 <tt class="keyword">break</tt> and <tt class="keyword">continue</tt> Statements, and
+         <tt class="keyword">else</tt> Clauses on Loops</a>
+<LI><A href="#SECTION006500000000000000000">4.5 <tt class="keyword">pass</tt> Statements</a>
+<LI><A href="#SECTION006600000000000000000">4.6 Defining Functions</a>
+<LI><A href="#SECTION006700000000000000000">4.7 More on Defining Functions</a>
+<UL>
+<LI><A href="#SECTION006710000000000000000">4.7.1 Default Argument Values</a>
+<LI><A href="#SECTION006720000000000000000">4.7.2 Keyword Arguments</a>
+<LI><A href="#SECTION006730000000000000000">4.7.3 Arbitrary Argument Lists</a>
+<LI><A href="#SECTION006740000000000000000">4.7.4 Lambda Forms</a>
+<LI><A href="#SECTION006750000000000000000">4.7.5 Documentation Strings</a>
+</ul></ul>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION006000000000000000000">&nbsp;</A>
+<BR>
+4. More Control Flow Tools 
+</H1>
+
+<P>
+Besides the <tt class="keyword">while</tt> statement just introduced, Python knows
+the usual control flow statements known from other languages, with
+some twists.
+
+<P>
+
+<H1><A NAME="SECTION006100000000000000000">&nbsp;</A>
+<BR>
+4.1 <tt class="keyword">if</tt> Statements 
+</H1>
+
+<P>
+Perhaps the most well-known statement type is the
+<tt class="keyword">if</tt> statement.  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; x = int(raw_input("Please enter an integer: "))
+&gt;&gt;&gt; if x &lt; 0:
+...      x = 0
+...      print 'Negative changed to zero'
+... elif x == 0:
+...      print 'Zero'
+... elif x == 1:
+...      print 'Single'
+... else:
+...      print 'More'
+...
+</pre></dl>
+
+<P>
+There can be zero or more <tt class="keyword">elif</tt> parts, and the
+<tt class="keyword">else</tt> part is optional.  The keyword `<tt class="keyword">elif</tt>' is
+short for `else if', and is useful to avoid excessive indentation.  An 
+<tt class="keyword">if</tt> ... <tt class="keyword">elif</tt> ... <tt class="keyword">elif</tt> ... sequence
+is a substitute for the <tt class="keyword">switch</tt> or
+<tt class="keyword">case</tt> statements found in other languages.
+
+<P>
+
+<H1><A NAME="SECTION006200000000000000000">&nbsp;</A>
+<BR>
+4.2 <tt class="keyword">for</tt> Statements 
+</H1>
+
+<P>
+The <tt class="keyword">for</tt><a name="l2h-4">&nbsp;</a>statement in Python differs a bit from
+what you may be used to in C or Pascal.  Rather than always
+iterating over an arithmetic progression of numbers (like in Pascal),
+or giving the user the ability to define both the iteration step and
+halting condition (as C), Python's
+<tt class="keyword">for</tt><a name="l2h-5">&nbsp;</a>statement iterates over the items of any
+sequence (a list or a string), in the order that they appear in
+the sequence.  For example (no pun intended):
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; # Measure some strings:
+... a = ['cat', 'window', 'defenestrate']
+&gt;&gt;&gt; for x in a:
+...     print x, len(x)
+... 
+cat 3
+window 6
+defenestrate 12
+</pre></dl>
+
+<P>
+It is not safe to modify the sequence being iterated over in the loop
+(this can only happen for mutable sequence types, such as lists).  If
+you need to modify the list you are iterating over (for example, to
+duplicate selected items) you must iterate over a copy.  The slice
+notation makes this particularly convenient:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; for x in a[:]: # make a slice copy of the entire list
+...    if len(x) &gt; 6: a.insert(0, x)
+... 
+&gt;&gt;&gt; a
+['defenestrate', 'cat', 'window', 'defenestrate']
+</pre></dl>
+
+<P>
+
+<H1><A NAME="SECTION006300000000000000000">&nbsp;</A>
+<BR>
+4.3 The <tt class="function">range()</tt> Function 
+</H1>
+
+<P>
+If you do need to iterate over a sequence of numbers, the built-in
+function <tt class="function">range()</tt> comes in handy.  It generates lists
+containing arithmetic progressions:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; range(10)
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</pre></dl>
+
+<P>
+The given end point is never part of the generated list;
+<code>range(10)</code> generates a list of 10 values, exactly the legal
+indices for items of a sequence of length 10.  It is possible to let
+the range start at another number, or to specify a different increment
+(even negative; sometimes this is called the `step'):
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; range(5, 10)
+[5, 6, 7, 8, 9]
+&gt;&gt;&gt; range(0, 10, 3)
+[0, 3, 6, 9]
+&gt;&gt;&gt; range(-10, -100, -30)
+[-10, -40, -70]
+</pre></dl>
+
+<P>
+To iterate over the indices of a sequence, combine
+<tt class="function">range()</tt> and <tt class="function">len()</tt> as follows:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; a = ['Mary', 'had', 'a', 'little', 'lamb']
+&gt;&gt;&gt; for i in range(len(a)):
+...     print i, a[i]
+... 
+0 Mary
+1 had
+2 a
+3 little
+4 lamb
+</pre></dl>
+
+<P>
+
+<H1><A NAME="SECTION006400000000000000000">&nbsp;</A>
+<BR>
+4.4 <tt class="keyword">break</tt> and <tt class="keyword">continue</tt> Statements, and
+         <tt class="keyword">else</tt> Clauses on Loops
+         
+</H1>
+
+<P>
+The <tt class="keyword">break</tt> statement, like in C, breaks out of the smallest
+enclosing <tt class="keyword">for</tt> or <tt class="keyword">while</tt> loop.
+
+<P>
+The <tt class="keyword">continue</tt> statement, also borrowed from C, continues
+with the next iteration of the loop.
+
+<P>
+Loop statements may have an <code>else</code> clause; it is executed when
+the loop terminates through exhaustion of the list (with
+<tt class="keyword">for</tt>) or when the condition becomes false (with
+<tt class="keyword">while</tt>), but not when the loop is terminated by a
+<tt class="keyword">break</tt> statement.  This is exemplified by the following loop,
+which searches for prime numbers:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; for n in range(2, 10):
+...     for x in range(2, n):
+...         if n % x == 0:
+...            print n, 'equals', x, '*', n/x
+...            break
+...     else:
+...          # loop fell through without finding a factor
+...          print n, 'is a prime number'
+... 
+2 is a prime number
+3 is a prime number
+4 equals 2 * 2
+5 is a prime number
+6 equals 2 * 3
+7 is a prime number
+8 equals 2 * 4
+9 equals 3 * 3
+</pre></dl>
+
+<P>
+
+<H1><A NAME="SECTION006500000000000000000">&nbsp;</A>
+<BR>
+4.5 <tt class="keyword">pass</tt> Statements 
+</H1>
+
+<P>
+The <tt class="keyword">pass</tt> statement does nothing.
+It can be used when a statement is required syntactically but the
+program requires no action.
+For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; while 1:
+...       pass # Busy-wait for keyboard interrupt
+...
+</pre></dl>
+
+<P>
+
+<H1><A NAME="SECTION006600000000000000000">&nbsp;</A>
+<BR>
+4.6 Defining Functions 
+</H1>
+
+<P>
+We can create a function that writes the Fibonacci series to an
+arbitrary boundary:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; def fib(n):    # write Fibonacci series up to n
+...     """Print a Fibonacci series up to n."""
+...     a, b = 0, 1
+...     while b &lt; n:
+...         print b,
+...         a, b = b, a+b
+... 
+&gt;&gt;&gt; # Now call the function we just defined:
+... fib(2000)
+1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597
+</pre></dl>
+
+<P>
+The keyword <tt class="keyword">def</tt> introduces a function <i>definition</i>.  It
+must be followed by the function name and the parenthesized list of
+formal parameters.  The statements that form the body of the function
+start at the next line, and must be indented.  The first statement of
+the function body can optionally be a string literal; this string
+literal is the function's <a name="l2h-6">&nbsp;</a>documentation
+string, or <i class="dfn">docstring</i>.<a name="l2h-7">&nbsp;</a>
+<P>
+There are tools which use docstrings to automatically produce online
+or printed documentation, or to let the user interactively browse
+through code; it's good practice to include docstrings in code that
+you write, so try to make a habit of it.
+
+<P>
+The <i>execution</i> of a function introduces a new symbol table used
+for the local variables of the function.  More precisely, all variable
+assignments in a function store the value in the local symbol table;
+whereas variable references first look in the local symbol table, then
+in the global symbol table, and then in the table of built-in names.
+Thus,  global variables cannot be directly assigned a value within a
+function (unless named in a <tt class="keyword">global</tt> statement), although
+they may be referenced.
+
+<P>
+The actual parameters (arguments) to a function call are introduced in
+the local symbol table of the called function when it is called; thus,
+arguments are passed using <i>call by value</i> (where the
+<i>value</i> is always an object <i>reference</i>, not the value of
+the object).<A NAME="tex2html2"
+  HREF="#foot1349"><SUP>4.1</SUP></A> When a function calls another function, a new local symbol table is
+created for that call.
+
+<P>
+A function definition introduces the function name in the current
+symbol table.  The value of the function name
+has a type that is recognized by the interpreter as a user-defined
+function.  This value can be assigned to another name which can then
+also be used as a function.  This serves as a general renaming
+mechanism:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; fib
+&lt;function object at 10042ed0&gt;
+&gt;&gt;&gt; f = fib
+&gt;&gt;&gt; f(100)
+1 1 2 3 5 8 13 21 34 55 89
+</pre></dl>
+
+<P>
+You might object that <code>fib</code> is not a function but a procedure.  In
+Python, like in C, procedures are just functions that don't return a
+value.  In fact, technically speaking, procedures do return a value,
+albeit a rather boring one.  This value is called <code>None</code> (it's a
+built-in name).  Writing the value <code>None</code> is normally suppressed by
+the interpreter if it would be the only value written.  You can see it
+if you really want to:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; print fib(0)
+None
+</pre></dl>
+
+<P>
+It is simple to write a function that returns a list of the numbers of
+the Fibonacci series, instead of printing it:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; def fib2(n): # return Fibonacci series up to n
+...     """Return a list containing the Fibonacci series up to n."""
+...     result = []
+...     a, b = 0, 1
+...     while b &lt; n:
+...         result.append(b)    # see below
+...         a, b = b, a+b
+...     return result
+... 
+&gt;&gt;&gt; f100 = fib2(100)    # call it
+&gt;&gt;&gt; f100                # write the result
+[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+</pre></dl>
+
+<P>
+This example, as usual, demonstrates some new Python features:
+
+<P>
+
+<UL>
+<LI>The <tt class="keyword">return</tt> statement returns with a value from a function.
+<tt class="keyword">return</tt> without an expression argument returns <code>None</code>.
+Falling off the end of a procedure also returns <code>None</code>.
+
+<P>
+</LI>
+<LI>The statement <code>result.append(b)</code> calls a <i>method</i> of the list
+object <code>result</code>.  A method is a function that `belongs' to an
+object and is named <code>obj.methodname</code>, where <code>obj</code> is some
+object (this may be an expression), and <code>methodname</code> is the name
+of a method that is defined by the object's type.  Different types
+define different methods.  Methods of different types may have the
+same name without causing ambiguity.  (It is possible to define your
+own object types and methods, using <i>classes</i>, as discussed later
+in this tutorial.)
+The method <tt class="method">append()</tt> shown in the example, is defined for
+list objects; it adds a new element at the end of the list.  In this
+example it is equivalent to "<tt class="samp">result = result + [b]</tt>", but more
+efficient.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H1><A NAME="SECTION006700000000000000000">&nbsp;</A>
+<BR>
+4.7 More on Defining Functions 
+</H1>
+
+<P>
+It is also possible to define functions with a variable number of
+arguments.  There are three forms, which can be combined.
+
+<P>
+
+<H2><A NAME="SECTION006710000000000000000">&nbsp;</A>
+<BR>
+4.7.1 Default Argument Values 
+</H2>
+
+<P>
+The most useful form is to specify a default value for one or more
+arguments.  This creates a function that can be called with fewer
+arguments than it is defined
+
+<P>
+<dl><dd><pre class="verbatim">
+def ask_ok(prompt, retries=4, complaint='Yes or no, please!'):
+    while 1:
+        ok = raw_input(prompt)
+        if ok in ('y', 'ye', 'yes'): return 1
+        if ok in ('n', 'no', 'nop', 'nope'): return 0
+        retries = retries - 1
+        if retries &lt; 0: raise IOError, 'refusenik user'
+        print complaint
+</pre></dl>
+
+<P>
+This function can be called either like this:
+<code>ask_ok('Do you really want to quit?')</code> or like this:
+<code>ask_ok('OK to overwrite the file?', 2)</code>.
+
+<P>
+The default values are evaluated at the point of function definition
+in the <i>defining</i> scope, so that
+
+<P>
+<dl><dd><pre class="verbatim">
+i = 5
+
+def f(arg=i):
+    print arg
+
+i = 6
+f()
+</pre></dl>
+
+<P>
+will print <code>5</code>.
+
+<P>
+<b>Important warning:</b>  The default value is evaluated only once.
+This makes a difference when the default is a mutable object such as a
+list or dictionary.  For example, the following function accumulates
+the arguments passed to it on subsequent calls:
+
+<P>
+<dl><dd><pre class="verbatim">
+def f(a, L=[]):
+    L.append(a)
+    return L
+
+print f(1)
+print f(2)
+print f(3)
+</pre></dl>
+
+<P>
+This will print
+
+<P>
+<dl><dd><pre class="verbatim">
+[1]
+[1, 2]
+[1, 2, 3]
+</pre></dl>
+
+<P>
+If you don't want the default to be shared between subsequent calls,
+you can write the function like this instead:
+
+<P>
+<dl><dd><pre class="verbatim">
+def f(a, L=None):
+    if L is None:
+        L = []
+    L.append(a)
+    return L
+</pre></dl>
+
+<P>
+
+<H2><A NAME="SECTION006720000000000000000">&nbsp;</A>
+<BR>
+4.7.2 Keyword Arguments 
+</H2>
+
+<P>
+Functions can also be called using
+keyword arguments of the form "<tt class="samp"><var>keyword</var> = <var>value</var></tt>".  For
+instance, the following function:
+
+<P>
+<dl><dd><pre class="verbatim">
+def parrot(voltage, state='a stiff', action='voom', type='Norwegian Blue'):
+    print "-- This parrot wouldn't", action,
+    print "if you put", voltage, "Volts through it."
+    print "-- Lovely plumage, the", type
+    print "-- It's", state, "!"
+</pre></dl>
+
+<P>
+could be called in any of the following ways:
+
+<P>
+<dl><dd><pre class="verbatim">
+parrot(1000)
+parrot(action = 'VOOOOOM', voltage = 1000000)
+parrot('a thousand', state = 'pushing up the daisies')
+parrot('a million', 'bereft of life', 'jump')
+</pre></dl>
+
+<P>
+but the following calls would all be invalid:
+
+<P>
+<dl><dd><pre class="verbatim">
+parrot()                     # required argument missing
+parrot(voltage=5.0, 'dead')  # non-keyword argument following keyword
+parrot(110, voltage=220)     # duplicate value for argument
+parrot(actor='John Cleese')  # unknown keyword
+</pre></dl>
+
+<P>
+In general, an argument list must have any positional arguments
+followed by any keyword arguments, where the keywords must be chosen
+from the formal parameter names.  It's not important whether a formal
+parameter has a default value or not.  No argument may receive a
+value more than once -- formal parameter names corresponding to
+positional arguments cannot be used as keywords in the same calls.
+Here's an example that fails due to this restriction:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; def function(a):
+...     pass
+... 
+&gt;&gt;&gt; function(0, a=0)
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+TypeError: keyword parameter redefined
+</pre></dl>
+
+<P>
+When a final formal parameter of the form <code>**<var>name</var></code> is
+present, it receives a dictionary containing all keyword arguments
+whose keyword doesn't correspond to a formal parameter.  This may be
+combined with a formal parameter of the form
+<code>*<var>name</var></code> (described in the next subsection) which receives a
+tuple containing the positional arguments beyond the formal parameter
+list.  (<code>*<var>name</var></code> must occur before <code>**<var>name</var></code>.)
+For example, if we define a function like this:
+
+<P>
+<dl><dd><pre class="verbatim">
+def cheeseshop(kind, *arguments, **keywords):
+    print "-- Do you have any", kind, '?'
+    print "-- I'm sorry, we're all out of", kind
+    for arg in arguments: print arg
+    print '-'*40
+    for kw in keywords.keys(): print kw, ':', keywords[kw]
+</pre></dl>
+
+<P>
+It could be called like this:
+
+<P>
+<dl><dd><pre class="verbatim">
+cheeseshop('Limburger', "It's very runny, sir.",
+           "It's really very, VERY runny, sir.",
+           client='John Cleese',
+           shopkeeper='Michael Palin',
+           sketch='Cheese Shop Sketch')
+</pre></dl>
+
+<P>
+and of course it would print:
+
+<P>
+<dl><dd><pre class="verbatim">
+-- Do you have any Limburger ?
+-- I'm sorry, we're all out of Limburger
+It's very runny, sir.
+It's really very, VERY runny, sir.
+----------------------------------------
+client : John Cleese
+shopkeeper : Michael Palin
+sketch : Cheese Shop Sketch
+</pre></dl>
+
+<P>
+
+<H2><A NAME="SECTION006730000000000000000">&nbsp;</A>
+<BR>
+4.7.3 Arbitrary Argument Lists 
+</H2>
+
+<P>
+Finally, the least frequently used option is to specify that a
+function can be called with an arbitrary number of arguments.  These
+arguments will be wrapped up in a tuple.  Before the variable number
+of arguments, zero or more normal arguments may occur.
+
+<P>
+<dl><dd><pre class="verbatim">
+def fprintf(file, format, *args):
+    file.write(format % args)
+</pre></dl>
+
+<P>
+
+<H2><A NAME="SECTION006740000000000000000">&nbsp;</A>
+<BR>
+4.7.4 Lambda Forms 
+</H2>
+
+<P>
+By popular demand, a few features commonly found in functional
+programming languages and Lisp have been added to Python.  With the
+<tt class="keyword">lambda</tt> keyword, small anonymous functions can be created.
+Here's a function that returns the sum of its two arguments:
+"<tt class="samp">lambda a, b: a+b</tt>".  Lambda forms can be used wherever function
+objects are required.  They are syntactically restricted to a single
+expression.  Semantically, they are just syntactic sugar for a normal
+function definition.  Like nested function definitions, lambda forms
+can reference variables from the containing scope:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; def make_incrementor(n):
+...     return lambda x: x + n
+...
+&gt;&gt;&gt; f = make_incrementor(42)
+&gt;&gt;&gt; f(0)
+42
+&gt;&gt;&gt; f(1)
+43
+</pre></dl>
+
+<P>
+
+<H2><A NAME="SECTION006750000000000000000">&nbsp;</A>
+<BR>
+4.7.5 Documentation Strings 
+</H2>
+
+<P>
+There are emerging conventions about the content and formatting of
+documentation strings.
+<a name="l2h-8">&nbsp;</a>
+<P>
+The first line should always be a short, concise summary of the
+object's purpose.  For brevity, it should not explicitly state the
+object's name or type, since these are available by other means
+(except if the name happens to be a verb describing a function's
+operation).  This line should begin with a capital letter and end with
+a period.
+
+<P>
+If there are more lines in the documentation string, the second line
+should be blank, visually separating the summary from the rest of the
+description.  The following lines should be one or more paragraphs
+describing the object's calling conventions, its side effects, etc.
+
+<P>
+The Python parser does not strip indentation from multi-line string
+literals in Python, so tools that process documentation have to strip
+indentation if desired.  This is done using the following convention.
+The first non-blank line <i>after</i> the first line of the string
+determines the amount of indentation for the entire documentation
+string.  (We can't use the first line since it is generally adjacent
+to the string's opening quotes so its indentation is not apparent in
+the string literal.)  Whitespace ``equivalent'' to this indentation is
+then stripped from the start of all lines of the string.  Lines that
+are indented less should not occur, but if they occur all their
+leading whitespace should be stripped.  Equivalence of whitespace
+should be tested after expansion of tabs (to 8 spaces, normally).
+
+<P>
+Here is an example of a multi-line docstring:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; def my_function():
+...     """Do nothing, but document it.
+... 
+...     No, really, it doesn't do anything.
+...     """
+...     pass
+... 
+&gt;&gt;&gt; print my_function.__doc__
+Do nothing, but document it.
+
+    No, really, it doesn't do anything.
+</pre></dl>
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot1349">... object).</A><A NAME="foot1349"
+ HREF="node6.html#tex2html2"><SUP>4.1</SUP></A>
+<DD>
+         Actually, <i>call by object reference</i> would be a better
+         description, since if a mutable object is passed, the caller
+         will see any changes the callee makes to it (items
+         inserted into a list).
+
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node5.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="tut.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node7.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Tutorial</td>
+<td><A HREF="node2.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node5.html">3. An Informal Introduction</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="tut.html">Python Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node7.html">5. Data Structures</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

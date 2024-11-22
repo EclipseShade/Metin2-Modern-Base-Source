@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>14.8 rgbimg -- Read and write ``SGI RGB'' files</title>
+<META NAME="description" CONTENT="14.8 rgbimg -- Read and write ``SGI RGB'' files">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-imghdr.html">
+<LINK REL="previous" href="module-colorsys.html">
+<LINK REL="up" href="mmedia.html">
+<LINK REL="next" href="module-imghdr.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-colorsys.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="mmedia.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-imghdr.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-colorsys.html">14.7 colorsys  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-imghdr.html">14.9 imghdr  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0016800000000000000000">
+14.8 <tt class="module">rgbimg</tt> --
+         Read and write ``SGI RGB'' files</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">rgbimg</tt> module allows Python programs to access SGI imglib image
+files (also known as <span class="file">.rgb</span> files).  The module is far from
+complete, but is provided anyway since the functionality that there is
+enough in some cases.  Currently, colormap files are not supported.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+This module is only built by default for 32-bit platforms; it is
+not expected to work properly on other systems.</span>
+
+<P>
+The module defines the following variables and functions:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-3597"><tt class="exception">error</tt></a></b>
+<dd>
+This exception is raised on all errors, such as unsupported file type, etc.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3598"><tt class="function">sizeofimage</tt></a></b>(<var>file</var>)
+<dd>
+This function returns a tuple <code>(<var>x</var>, <var>y</var>)</code> where
+<var>x</var> and <var>y</var> are the size of the image in pixels.
+Only 4 byte RGBA pixels, 3 byte RGB pixels, and 1 byte greyscale pixels
+are currently supported.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3599"><tt class="function">longimagedata</tt></a></b>(<var>file</var>)
+<dd>
+This function reads and decodes the image on the specified file, and
+returns it as a Python string. The string has 4 byte RGBA pixels.
+The bottom left pixel is the first in
+the string. This format is suitable to pass to <tt class="function">gl.lrectwrite()</tt>,
+for instance.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3600"><tt class="function">longstoimage</tt></a></b>(<var>data, x, y, z, file</var>)
+<dd>
+This function writes the RGBA data in <var>data</var> to image
+file <var>file</var>. <var>x</var> and <var>y</var> give the size of the image.
+<var>z</var> is 1 if the saved image should be 1 byte greyscale, 3 if the
+saved image should be 3 byte RGB data, or 4 if the saved images should
+be 4 byte RGBA data.  The input data always contains 4 bytes per pixel.
+These are the formats returned by <tt class="function">gl.lrectread()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3601"><tt class="function">ttob</tt></a></b>(<var>flag</var>)
+<dd>
+This function sets a global flag which defines whether the scan lines
+of the image are read or written from bottom to top (flag is zero,
+compatible with SGI GL) or from top to bottom(flag is one,
+compatible with X).  The default is zero.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-colorsys.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="mmedia.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-imghdr.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-colorsys.html">14.7 colorsys  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-imghdr.html">14.9 imghdr  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

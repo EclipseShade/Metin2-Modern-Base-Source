@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>10. The Python Profiler </title>
+<META NAME="description" CONTENT="10. The Python Profiler ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="internet.html">
+<LINK REL="previous" href="module-pdb.html">
+<LINK REL="up" HREF="lib.html">
+<LINK REL="next" HREF="node281.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="debugger-hooks.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node281.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="debugger-hooks.html">9.2 How It Works</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node281.html">10.1 Introduction to the</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0012000000000000000000">&nbsp;</A>
+<BR>
+10. The Python Profiler 
+</H1>
+
+<P>
+
+<P>
+Copyright &#169; 1994, by InfoSeek Corporation, all rights reserved.
+<a name="l2h-2256">&nbsp;</a>
+<P>
+Written by James Roskind.<A NAME="tex2html43"
+  HREF="#foot28675"><SUP>10.1</SUP></A>
+<P>
+Permission to use, copy, modify, and distribute this Python software
+and its associated documentation for any purpose (subject to the
+restriction in the following sentence) without fee is hereby granted,
+provided that the above copyright notice appears in all copies, and
+that both that copyright notice and this permission notice appear in
+supporting documentation, and that the name of InfoSeek not be used in
+advertising or publicity pertaining to distribution of the software
+without specific, written prior permission.  This permission is
+explicitly restricted to the copying and modification of the software
+to remain in Python, compiled Python, or other languages (such as C)
+wherein the modified or derived code is exclusively imported into a
+Python module.
+
+<P>
+INFOSEEK CORPORATION DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS
+SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS. IN NO EVENT SHALL INFOSEEK CORPORATION BE LIABLE FOR ANY
+SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER
+RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF
+CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
+CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+<P>
+The profiler was written after only programming in Python for 3 weeks.
+As a result, it is probably clumsy code, but I don't know for sure yet
+'cause I'm a beginner :-).  I did work hard to make the code run fast,
+so that profiling would be a reasonable thing to do.  I tried not to
+repeat code fragments, but I'm sure I did some stuff in really awkward
+ways at times.  Please send suggestions for improvements to:
+<span class="email">jar@netscape.com</span>.  I won't promise <i>any</i> support.  ...but
+I'd appreciate the feedback.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot28675">... Roskind.</A><A NAME="foot28675"
+ href="profile.html#tex2html43"><SUP>10.1</SUP></A>
+<DD>
+  Updated and converted to <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> by Guido van Rossum.  The references to
+  the old profiler are left in the text, although it no longer exists.
+
+</DL>
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node281.html">10.1 Introduction to the profiler</a>
+<LI><A href="node282.html">10.2 How Is This Profiler Different From The Old Profiler?</a>
+<LI><A href="profile-instant.html">10.3 Instant Users Manual</a>
+<LI><A href="node284.html">10.4 What Is Deterministic Profiling?</a>
+<LI><A href="module-profile.html">10.5 Reference Manual</a>
+<UL>
+<LI><A href="profile-stats.html">10.5.1 The <tt class="class">Stats</tt> Class</a>
+</ul>
+<LI><A href="profile-limits.html">10.6 Limitations</a>
+<LI><A href="profile-calibration.html">10.7 Calibration</a>
+<LI><A href="node289.html">10.8 Extensions -- Deriving Better Profilers</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="debugger-hooks.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node281.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="debugger-hooks.html">9.2 How It Works</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node281.html">10.1 Introduction to the</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

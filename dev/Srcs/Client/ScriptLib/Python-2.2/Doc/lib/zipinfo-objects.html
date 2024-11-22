@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.15.3 ZipInfo Objects </title>
+<META NAME="description" CONTENT="7.15.3 ZipInfo Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="pyzipfile-objects.html">
+<LINK REL="up" href="module-zipfile.html">
+<LINK REL="next" href="module-readline.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyzipfile-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-zipfile.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-readline.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyzipfile-objects.html">7.15.2 PyZipFile Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-zipfile.html">7.15 zipfile  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-readline.html">7.16 readline  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0091530000000000000000">&nbsp;</A>
+<BR>
+7.15.3 ZipInfo Objects 
+</H2>
+
+<P>
+Instances of the <tt class="class">ZipInfo</tt> class are returned by the
+<tt class="method">getinfo()</tt> and <tt class="method">infolist()</tt> methods of
+<tt class="class">ZipFile</tt> objects.  Each object stores information about a
+single member of the ZIP archive.
+
+<P>
+Instances have the following attributes:
+
+<P>
+<dl><dt><b><a name="l2h-2082"><tt class="member">filename</tt></a></b>
+<dd>
+  Name of the file in the archive.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2083"><tt class="member">date_time</tt></a></b>
+<dd>
+  The time and date of the last modification to to the archive
+  member.  This is a tuple of six values:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Index</b>&nbsp;</th>
+      <th align="left"><b>Value</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><code>0</code></td>
+        <td align="left">Year</td>
+    <tr><td align="center" valign="baseline"><code>1</code></td>
+        <td align="left">Month (one-based)</td>
+    <tr><td align="center" valign="baseline"><code>2</code></td>
+        <td align="left">Day of month (one-based)</td>
+    <tr><td align="center" valign="baseline"><code>3</code></td>
+        <td align="left">Hours (zero-based)</td>
+    <tr><td align="center" valign="baseline"><code>4</code></td>
+        <td align="left">Minutes (zero-based)</td>
+    <tr><td align="center" valign="baseline"><code>5</code></td>
+        <td align="left">Seconds (zero-based)</td></tbody>
+</table>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2084"><tt class="member">compress_type</tt></a></b>
+<dd>
+  Type of compression for the archive member.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2085"><tt class="member">comment</tt></a></b>
+<dd>
+  Comment for the individual archive member.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2086"><tt class="member">extra</tt></a></b>
+<dd>
+  Expansion field data.  The
+  <em class="citetitle"><a
+ href="http://www.pkware.com/appnote.html"
+ title="PKZIP Application
+  Note"
+ >PKZIP Application
+  Note</a></em> contains some comments on the internal structure of the data
+  contained in this string.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2087"><tt class="member">create_system</tt></a></b>
+<dd>
+  System which created ZIP archive.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2088"><tt class="member">create_version</tt></a></b>
+<dd>
+  PKZIP version which created ZIP archive.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2089"><tt class="member">extract_version</tt></a></b>
+<dd>
+  PKZIP version needed to extract archive.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2090"><tt class="member">reserved</tt></a></b>
+<dd>
+  Must be zero.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2091"><tt class="member">flag_bits</tt></a></b>
+<dd>
+  ZIP flag bits.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2092"><tt class="member">volume</tt></a></b>
+<dd>
+  Volume number of file header.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2093"><tt class="member">internal_attr</tt></a></b>
+<dd>
+  Internal attributes.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2094"><tt class="member">external_attr</tt></a></b>
+<dd>
+ External file attributes.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2095"><tt class="member">header_offset</tt></a></b>
+<dd>
+  Byte offset to the file header.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2096"><tt class="member">file_offset</tt></a></b>
+<dd>
+  Byte offset to the start of the file data.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2097"><tt class="member">CRC</tt></a></b>
+<dd>
+  CRC-32 of the uncompressed file.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2098"><tt class="member">compress_size</tt></a></b>
+<dd>
+  Size of the compressed data.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2099"><tt class="member">file_size</tt></a></b>
+<dd>
+  Size of the uncompressed file.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pyzipfile-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-zipfile.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-readline.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pyzipfile-objects.html">7.15.2 PyZipFile Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-zipfile.html">7.15 zipfile  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-readline.html">7.16 readline  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

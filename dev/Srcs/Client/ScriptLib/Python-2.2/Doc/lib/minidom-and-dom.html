@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.7.3 minidom and the DOM standard </title>
+<META NAME="description" CONTENT="13.7.3 minidom and the DOM standard ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="dom-example.html">
+<LINK REL="up" href="module-xml.dom.minidom.html">
+<LINK REL="next" href="module-xml.dom.pulldom.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dom-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.dom.minidom.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-xml.dom.pulldom.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dom-example.html">13.7.2 DOM Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.dom.minidom.html">13.7 xml.dom.minidom  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-xml.dom.pulldom.html">13.8 xml.dom.pulldom  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0015730000000000000000">&nbsp;</A>
+<BR>
+13.7.3 minidom and the DOM standard 
+</H2>
+
+<P>
+The <tt class="module"><a href="module-xml.dom.minidom.html">xml.dom.minidom</a></tt> module is essentially a DOM
+1.0-compatible DOM with some DOM 2 features (primarily namespace
+features).
+
+<P>
+Usage of the DOM interface in Python is straight-forward.  The
+following mapping rules apply:
+
+<P>
+
+<UL>
+<LI>Interfaces are accessed through instance objects. Applications
+      should not instantiate the classes themselves; they should use
+      the creator functions available on the <tt class="class">Document</tt> object.
+      Derived interfaces support all operations (and attributes) from
+      the base interfaces, plus any new operations.
+
+<P>
+</LI>
+<LI>Operations are used as methods. Since the DOM uses only
+      <tt class="keyword">in</tt> parameters, the arguments are passed in normal
+      order (from left to right).   There are no optional
+      arguments. <tt class="keyword">void</tt> operations return <code>None</code>.
+
+<P>
+</LI>
+<LI>IDL attributes map to instance attributes. For compatibility
+      with the OMG IDL language mapping for Python, an attribute
+      <code>foo</code> can also be accessed through accessor methods
+      <tt class="method">_get_foo()</tt> and <tt class="method">_set_foo()</tt>.  <tt class="keyword">readonly</tt>
+      attributes must not be changed; this is not enforced at
+      runtime.
+
+<P>
+</LI>
+<LI>The types <code>short int</code>, <code>unsigned int</code>, <code>unsigned
+      long long</code>, and <code>boolean</code> all map to Python integer
+      objects.
+
+<P>
+</LI>
+<LI>The type <code>DOMString</code> maps to Python strings.
+      <tt class="module"><a href="module-xml.dom.minidom.html">xml.dom.minidom</a></tt> supports either byte or Unicode
+      strings, but will normally produce Unicode strings.  Values
+      of type <code>DOMString</code> may also be <code>None</code> where allowed
+      to have the IDL <code>null</code> value by the DOM specification from
+      the W3C.
+
+<P>
+</LI>
+<LI><tt class="keyword">const</tt> declarations map to variables in their
+      respective scope
+      (e.g. <code>xml.dom.minidom.Node.PROCESSING_INSTRUCTION_NODE</code>);
+      they must not be changed.
+
+<P>
+</LI>
+<LI><code>DOMException</code> is currently not supported in
+      <tt class="module"><a href="module-xml.dom.minidom.html">xml.dom.minidom</a></tt>.  Instead,
+      <tt class="module"><a href="module-xml.dom.minidom.html">xml.dom.minidom</a></tt> uses standard Python exceptions such
+      as <tt class="exception">TypeError</tt> and <tt class="exception">AttributeError</tt>.
+
+<P>
+</LI>
+<LI><tt class="class">NodeList</tt> objects are implemented using Python's built-in
+      list type.  Starting with Python 2.2, these objects provide the
+      interface defined in the DOM specification, but with earlier
+      versions of Python they do not support the official API.  They
+      are, however, much more ``Pythonic'' than the interface defined
+      in the W3C recommendations.
+</LI>
+</UL>
+
+<P>
+The following interfaces have no implementation in
+<tt class="module"><a href="module-xml.dom.minidom.html">xml.dom.minidom</a></tt>:
+
+<P>
+
+<UL>
+<LI><tt class="class">DOMTimeStamp</tt>
+
+<P>
+</LI>
+<LI><tt class="class">DocumentType</tt> (added in Python 2.1)
+
+<P>
+</LI>
+<LI><tt class="class">DOMImplementation</tt> (added in Python 2.1)
+
+<P>
+</LI>
+<LI><tt class="class">CharacterData</tt>
+
+<P>
+</LI>
+<LI><tt class="class">CDATASection</tt>
+
+<P>
+</LI>
+<LI><tt class="class">Notation</tt>
+
+<P>
+</LI>
+<LI><tt class="class">Entity</tt>
+
+<P>
+</LI>
+<LI><tt class="class">EntityReference</tt>
+
+<P>
+</LI>
+<LI><tt class="class">DocumentFragment</tt>
+</LI>
+</UL>
+
+<P>
+Most of these reflect information in the XML document that is not of
+general utility to most DOM users.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dom-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.dom.minidom.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-xml.dom.pulldom.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dom-example.html">13.7.2 DOM Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.dom.minidom.html">13.7 xml.dom.minidom  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-xml.dom.pulldom.html">13.8 xml.dom.pulldom  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

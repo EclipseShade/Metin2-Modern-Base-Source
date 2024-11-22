@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.20 xmlrpclib -- XML-RPC client access</title>
+<META NAME="description" CONTENT="11.20 xmlrpclib -- XML-RPC client access">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-SimpleXMLRPCServer.html">
+<LINK REL="previous" href="module-Cookie.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="server-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="cookie-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="server-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="cookie-example.html">11.19.3 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="server-objects.html">11.20.1 Server Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00132000000000000000000">
+11.20 <tt class="module">xmlrpclib</tt> -- XML-RPC client access</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.2.</span>
+
+<P>
+XML-RPC is a Remote Procedure Call method that uses XML passed via
+HTTP as a transport.  With it, a client can call methods with
+parameters on a remote server (the server is named by a URI) and get back
+structured data.  This module supports writing XML-RPC client code; it
+handles all the details of translating between conformable Python
+objects and XML on the wire.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2709"><tt class="class">Server</tt></a></b>(<var>uri</var><big>[</big><var>, transport</var><big>[</big><var>,
+                          encoding</var><big>[</big><var>, verbose</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+A <tt class="class">Server</tt> instance is a server proxy that manages communication
+with a remote XML-RPC server.  The required first argument is a URI
+(Uniform Resource Indicator), and will normally be the URL of the
+server.  The optional second argument is a transport factory instance;
+by default it is an internal <tt class="class">SafeTransport</tt> instance for https:
+URLs and an internal HTTP <tt class="class">Transport</tt> instance otherwise.  The
+optional third argument is an encoding, by default UTF-8. The optional
+fourth argument is a debugging flag.
+
+<P>
+The returned instance is a proxy object with methods that can be used
+to invoke corresponding RPC calls on the remote server.  If the remote
+server supports the introspection API, the proxy can also be used to query
+the remote server for the methods it supports (service discovery) and
+fetch other server-associated metadata.
+
+<P>
+<tt class="class">Server</tt> instance methods take Python basic types and objects as 
+arguments and return Python basic types and classes.  Types that are
+conformable (e.g. that can be marshalled through XML), include the
+following (and except where noted, they are unmarshalled as the same
+Python type):
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Name</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><tt class="constant">boolean</tt></td>
+        <td align="left">The <tt class="constant">True</tt> and <tt class="constant">False</tt> constants</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">integers</tt></td>
+        <td align="left">Pass in directly</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">floating-point numbers</tt></td>
+        <td align="left">Pass in directly</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">strings</tt></td>
+        <td align="left">Pass in directly</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">arrays</tt></td>
+        <td align="left">Any Python sequence type containing conformable
+                  elements. Arrays are returned as lists</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">structures</tt></td>
+        <td align="left">A Python dictionary. Keys must be strings,
+                      values may be any conformable type.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">dates</tt></td>
+        <td align="left">in seconds since the epoch; pass in an instance of the
+                 <tt class="class">DateTime</tt> wrapper class</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">binary data</tt></td>
+        <td align="left">pass in an instance of the <tt class="class">Binary</tt>
+                       wrapper class</td></tbody>
+</table>
+
+<P>
+This is the full set of data types supported by XML-RPC.  Method calls
+may also raise a special <tt class="exception">Fault</tt> instance, used to signal
+XML-RPC server errors, or <tt class="exception">ProtocolError</tt> used to signal an
+error in the HTTP/HTTPS transport layer.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://xmlrpc-c.sourceforge.net/xmlrpc-howto/xmlrpc-howto.html"
+        >XML-RPC HOWTO</a></em>
+    <dd>A good description of XML operation and
+            client software in several languages.  Contains pretty much
+            everything an XML-RPC client developer needs to know.
+  </dl>
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://xmlrpc-c.sourceforge.net/hacks.php"
+        >XML-RPC-Hacks page</a></em>
+    <dd>Extensions for various open-source
+            libraries to support instrospection and multicall.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="server-objects.html">11.20.1 Server Objects</a>
+<LI><A href="boolean-objects.html">11.20.2 Boolean Objects</a>
+<LI><A href="datetime-objects.html">11.20.3 DateTime Objects</a>
+<LI><A href="binary-objects.html">11.20.4 Binary Objects</a>
+<LI><A href="fault-objects.html">11.20.5 Fault Objects</a>
+<LI><A href="protocol-error-objects.html">11.20.6 ProtocolError Objects</a>
+<LI><A href="node365.html">11.20.7 Convenience Functions</a>
+<LI><A href="xmlrpc-client-example.html">11.20.8 Example of Client Usage</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="cookie-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="server-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="cookie-example.html">11.19.3 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="server-objects.html">11.20.1 Server Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

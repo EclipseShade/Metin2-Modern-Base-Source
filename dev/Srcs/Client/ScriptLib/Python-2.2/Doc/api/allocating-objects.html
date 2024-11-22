@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>10.1 Allocating Objects on the Heap </title>
+<META NAME="description" CONTENT="10.1 Allocating Objects on the Heap ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="common-structs.html">
+<LINK REL="previous" href="newTypes.html">
+<LINK REL="up" href="newTypes.html">
+<LINK REL="next" href="common-structs.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="newTypes.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="newTypes.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="common-structs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="newTypes.html">10. Defining New Object</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="newTypes.html">10. Defining New Object</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="common-structs.html">10.2 Common Object Structures</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0012100000000000000000">&nbsp;</A>
+<BR>
+10.1 Allocating Objects on the Heap
+         
+</H1>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-769"><tt class="cfunction">_PyObject_New</tt></a></b>(<var>PyTypeObject *type</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+</dl>
+
+<P>
+<dl><dt>PyVarObject* <b><a name="l2h-770"><tt class="cfunction">_PyObject_NewVar</tt></a></b>(<var>PyTypeObject *type, int size</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-771"><tt class="cfunction">_PyObject_Del</tt></a></b>(<var>PyObject *op</var>)
+<dd>
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-772"><tt class="cfunction">PyObject_Init</tt></a></b>(<var>PyObject *op,
+					    PyTypeObject *type</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Initialize a newly-allocated object <var>op</var> with its type and
+  initial reference.  Returns the initialized object.  If <var>type</var>
+  indicates that the object participates in the cyclic garbage
+  detector, it it added to the detector's set of observed objects.
+  Other fields of the object are not affected.
+</dl>
+
+<P>
+<dl><dt>PyVarObject* <b><a name="l2h-773"><tt class="cfunction">PyObject_InitVar</tt></a></b>(<var>PyVarObject *op,
+						  PyTypeObject *type, int size</var>)
+<dd>
+  This does everything <tt class="cfunction">PyObject_Init()</tt> does, and also
+  initializes the length information for a variable-size object.
+</dl>
+
+<P>
+<dl><dt><var>TYPE</var>* <b><a name="l2h-774"><tt class="cfunction">PyObject_New</tt></a></b>(<var>TYPE, PyTypeObject *type</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Allocate a new Python object using the C structure type <var>TYPE</var>
+  and the Python type object <var>type</var>.  Fields not defined by the
+  Python object header are not initialized; the object's reference
+  count will be one.  The size of the memory
+  allocation is determined from the <tt class="member">tp_basicsize</tt> field of the
+  type object.
+</dl>
+
+<P>
+<dl><dt><var>TYPE</var>* <b><a name="l2h-775"><tt class="cfunction">PyObject_NewVar</tt></a></b>(<var>TYPE, PyTypeObject *type,
+                                                int size</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Allocate a new Python object using the C structure type <var>TYPE</var>
+  and the Python type object <var>type</var>.  Fields not defined by the
+  Python object header are not initialized.  The allocated memory
+  allows for the <var>TYPE</var> structure plus <var>size</var> fields of the
+  size given by the <tt class="member">tp_itemsize</tt> field of <var>type</var>.  This is
+  useful for implementing objects like tuples, which are able to
+  determine their size at construction time.  Embedding the array of
+  fields into the same allocation decreases the number of allocations,
+  improving the memory management efficiency.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-776"><tt class="cfunction">PyObject_Del</tt></a></b>(<var>PyObject *op</var>)
+<dd>
+  Releases memory allocated to an object using
+  <tt class="cfunction">PyObject_New()</tt> or <tt class="cfunction">PyObject_NewVar()</tt>.  This
+  is normally called from the <tt class="member">tp_dealloc</tt> handler specified in
+  the object's type.  The fields of the object should not be accessed
+  after this call as the memory is no longer a valid Python object.
+</dl>
+
+<P>
+<dl><dt><var>TYPE</var>* <b><a name="l2h-777"><tt class="cfunction">PyObject_NEW</tt></a></b>(<var>TYPE, PyTypeObject *type</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Macro version of <tt class="cfunction">PyObject_New()</tt>, to gain performance at
+  the expense of safety.  This does not check <var>type</var> for a <tt class="constant">NULL</tt>
+  value.
+</dl>
+
+<P>
+<dl><dt><var>TYPE</var>* <b><a name="l2h-778"><tt class="cfunction">PyObject_NEW_VAR</tt></a></b>(<var>TYPE, PyTypeObject *type,
+                                                int size</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Macro version of <tt class="cfunction">PyObject_NewVar()</tt>, to gain performance
+  at the expense of safety.  This does not check <var>type</var> for a
+  <tt class="constant">NULL</tt> value.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-779"><tt class="cfunction">PyObject_DEL</tt></a></b>(<var>PyObject *op</var>)
+<dd>
+  Macro version of <tt class="cfunction">PyObject_Del()</tt>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-780"><tt class="cfunction">Py_InitModule</tt></a></b>(<var>char *name,
+                                            PyMethodDef *methods</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Create a new module object based on a name and table of functions,
+  returning the new module object.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-781"><tt class="cfunction">Py_InitModule3</tt></a></b>(<var>char *name,
+                                             PyMethodDef *methods,
+                                             char *doc</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Create a new module object based on a name and table of functions,
+  returning the new module object.  If <var>doc</var> is non-<tt class="constant">NULL</tt>, it will
+  be used to define the docstring for the module.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-782"><tt class="cfunction">Py_InitModule4</tt></a></b>(<var>char *name,
+                                             PyMethodDef *methods,
+                                             char *doc, PyObject *self,
+                                             int apiver</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Create a new module object based on a name and table of functions,
+  returning the new module object.  If <var>doc</var> is non-<tt class="constant">NULL</tt>, it will
+  be used to define the docstring for the module.  If <var>self</var> is
+  non-<tt class="constant">NULL</tt>, it will passed to the functions of the module as their
+  (otherwise <tt class="constant">NULL</tt>) first parameter.  (This was added as an
+  experimental feature, and there are no known uses in the current
+  version of Python.)  For <var>apiver</var>, the only value which should
+  be passed is defined by the constant <tt class="constant">PYTHON_API_VERSION</tt>.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+Most uses of this function should probably be using
+  the <tt class="cfunction">Py_InitModule3()</tt> instead; only use this if you are
+  sure you need it.</span>
+</dl>
+
+<P>
+DL_IMPORT
+
+<P>
+<dl><dt>PyObject <b><a name="l2h-783"><tt class="cdata">_Py_NoneStruct</tt></a></b>
+<dd>
+  Object which is visible in Python as <code>None</code>.  This should only
+  be accessed using the <code>Py_None</code> macro, which evaluates to a
+  pointer to this object.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="newTypes.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="newTypes.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="common-structs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="newTypes.html">10. Defining New Object</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="newTypes.html">10. Defining New Object</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="common-structs.html">10.2 Common Object Structures</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

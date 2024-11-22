@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.6 The print statement </title>
+<META NAME="description" CONTENT="6.6 The print statement ">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="return.html">
+<LINK REL="previous" href="del.html">
+<LINK REL="up" href="simple.html">
+<LINK REL="next" href="return.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="del.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="simple.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="return.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="del.html">6.5 The del statement</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="simple.html">6. Simple statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="return.html">6.7 The return statement</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008600000000000000000">&nbsp;</A>
+<BR>
+6.6 The <tt class="keyword">print</tt> statement 
+</H1>
+<a name="l2h-328">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-print_stmt">print_stmt</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"print" ( <big>[</big><a href="lambda.html#tok-expression">expression</a> ("," <a href="lambda.html#tok-expression">expression</a>)* <big>[</big>","<big>]</big><big>]</big>
+                      | "&gt;<code>&gt;</code>" <a href="lambda.html#tok-expression">expression</a>
+                        <big>[</big>("," <a href="lambda.html#tok-expression">expression</a>)+ <big>[</big>","<big>]</big><big>]</big>)</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+<tt class="keyword">print</tt> evaluates each expression in turn and writes the
+resulting object to standard output (see below).  If an object is not
+a string, it is first converted to a string using the rules for string
+conversions.  The (resulting or original) string is then written.  A
+space is written before each object is (converted and) written, unless
+the output system believes it is positioned at the beginning of a
+line.  This is the case (1) when no characters have yet been written
+to standard output, (2) when the last character written to standard
+output is "<tt class="character">&#92;n</tt>", or (3) when the last write operation on
+standard output was not a <tt class="keyword">print</tt> statement.  (In some cases
+it may be functional to write an empty string to standard output for
+this reason.)  <span class="note"><b class="label">Note:</b>
+Objects which act like file objects but which are
+not the built-in file objects often do not properly emulate this
+aspect of the file object's behavior, so it is best not to rely on
+this.</span>
+<a name="l2h-329">&nbsp;</a>
+<P>
+A "<tt class="character">&#92;n</tt>" character is written at the end, unless the
+<tt class="keyword">print</tt> statement ends with a comma.  This is the only action
+if the statement contains just the keyword <tt class="keyword">print</tt>.
+<a name="l2h-330">&nbsp;</a>
+<P>
+Standard output is defined as the file object named <code>stdout</code>
+in the built-in module <tt class="module">sys</tt>.  If no such object exists, or if
+it does not have a <tt class="method">write()</tt> method, a <tt class="exception">RuntimeError</tt>
+exception is raised.
+<a name="l2h-331">&nbsp;</a><a name="l2h-327">&nbsp;</a><a name="l2h-332">&nbsp;</a>
+<P>
+<tt class="keyword">print</tt> also has an extended<a name="l2h-333">&nbsp;</a>form, defined by the second portion of the syntax described above.
+This form is sometimes referred to as ``<tt class="keyword">print</tt> chevron.''
+In this form, the first expression after the <code>&gt;</code><code>&gt;</code> must
+evaluate to a ``file-like'' object, specifically an object that has a
+<tt class="method">write()</tt> method as described above.  With this extended form,
+the subsequent expressions are printed to this file object.  If the
+first expression evaluates to <code>None</code>, then <code>sys.stdout</code> is
+used as the file for output.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="del.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="simple.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="return.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="del.html">6.5 The del statement</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="simple.html">6. Simple statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="return.html">6.7 The return statement</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

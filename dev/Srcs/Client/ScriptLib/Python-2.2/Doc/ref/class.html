@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.6 Class definitions</title>
+<META NAME="description" CONTENT="7.6 Class definitions">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="function.html">
+<LINK REL="up" href="compound.html">
+<LINK REL="next" href="top-level.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="function.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="compound.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="top-level.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="function.html">7.5 Function definitions</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="compound.html">7. Compound statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="top-level.html">8. Top-level components</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION009600000000000000000">&nbsp;</A>
+<BR>
+7.6 Class definitions
+</H1>
+<a name="l2h-399">&nbsp;</a>
+<P>
+A class definition defines a class object (see section <A href="types.html#types">3.2</A>):
+<a name="l2h-400">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-classdef">classdef</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"class" <a href="class.html#tok-classname">classname</a> [<a href="class.html#tok-inheritance">inheritance</a>] ":"
+              <a href="compound.html#tok-suite">suite</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-inheritance">inheritance</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"(" [<a href="exprlists.html#tok-expression_list">expression_list</a>] ")"</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-classname">classname</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="identifiers.html#tok-identifier">identifier</a></code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+A class definition is an executable statement.  It first evaluates the
+inheritance list, if present.  Each item in the inheritance list
+should evaluate to a class object.  The class's suite is then executed
+in a new execution frame (see section <A href="execframes.html#execframes">4.1</A>), using a newly
+created local namespace and the original global namespace.
+(Usually, the suite contains only function definitions.)  When the
+class's suite finishes execution, its execution frame is discarded but
+its local namespace is saved.  A class object is then created using
+the inheritance list for the base classes and the saved local
+namespace for the attribute dictionary.  The class name is bound to this
+class object in the original local namespace.
+<a name="l2h-401">&nbsp;</a>
+<P>
+<b>Programmer's note:</b> variables defined in the class definition
+are class variables; they are shared by all instances.  To define
+instance variables, they must be given a value in the the
+<tt class="method">__init__()</tt> method or in another method.  Both class and
+instance variables are accessible through the notation
+``<code>self.name</code>'', and an instance variable hides a class variable
+with the same name when accessed in this way.  Class variables with
+immutable values can be used as defaults for instance variables.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="function.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="compound.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="top-level.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="function.html">7.5 Function definitions</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="compound.html">7. Compound statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="top-level.html">8. Top-level components</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

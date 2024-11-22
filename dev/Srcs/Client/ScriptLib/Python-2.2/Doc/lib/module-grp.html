@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.3 grp -- The group database</title>
+<META NAME="description" CONTENT="8.3 grp -- The group database">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-crypt.html">
+<LINK REL="previous" href="module-pwd.html">
+<LINK REL="up" href="unix.html">
+<LINK REL="next" href="module-crypt.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-pwd.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-crypt.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-pwd.html">8.2 pwd  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-crypt.html">8.4 crypt  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0010300000000000000000">
+8.3 <tt class="module">grp</tt> --
+         The group database</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Unix</span>.</p>
+
+<P>
+This module provides access to the Unix group database.
+It is available on all Unix versions.
+
+<P>
+Group database entries are reported as 4-tuples containing the
+following items from the group database (see <code>&lt;grp.h&gt;</code>), in order:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="right"><b>Index</b>&nbsp;</th>
+      <th align="left"><b>Field</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="right" valign="baseline">0&nbsp;</td>
+        <td align="left">gr_name</td>
+        <td align="left">the name of the group</td>
+    <tr><td align="right" valign="baseline">1&nbsp;</td>
+        <td align="left">gr_passwd</td>
+        <td align="left">the (encrypted) group password; often empty</td>
+    <tr><td align="right" valign="baseline">2&nbsp;</td>
+        <td align="left">gr_gid</td>
+        <td align="left">the numerical group ID</td>
+    <tr><td align="right" valign="baseline">3&nbsp;</td>
+        <td align="left">gr_mem</td>
+        <td align="left">all the group member's  user  names</td></tbody>
+</table>
+
+<P>
+The gid is an integer, name and password are strings, and the member
+list is a list of strings.
+(Note that most users are not explicitly listed as members of the
+group they are in according to the password database.  Check both
+databases to get complete membership information.)
+
+<P>
+It defines the following items:
+
+<P>
+<dl><dt><b><a name="l2h-2131"><tt class="function">getgrgid</tt></a></b>(<var>gid</var>)
+<dd>
+Return the group database entry for the given numeric group ID.
+<tt class="exception">KeyError</tt> is raised if the entry asked for cannot be found.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2132"><tt class="function">getgrnam</tt></a></b>(<var>name</var>)
+<dd>
+Return the group database entry for the given group name.
+<tt class="exception">KeyError</tt> is raised if the entry asked for cannot be found.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2133"><tt class="function">getgrall</tt></a></b>()
+<dd>
+Return a list of all available group entries, in arbitrary order.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-pwd.html">pwd</a></tt>:</b>
+    <dd>An interface to the user database, similar to this.
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-pwd.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-crypt.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-pwd.html">8.2 pwd  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-crypt.html">8.4 crypt  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

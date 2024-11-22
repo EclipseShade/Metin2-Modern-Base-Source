@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.12.1 AEServer Objects </title>
+<META NAME="description" CONTENT="2.12.1 AEServer Objects ">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-MiniAEFrame.html">
+<LINK REL="up" href="module-MiniAEFrame.html">
+<LINK REL="next" href="module-aepack.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-MiniAEFrame.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-MiniAEFrame.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-aepack.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-MiniAEFrame.html">2.12 MiniAEFrame  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-MiniAEFrame.html">2.12 MiniAEFrame  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-aepack.html">2.13 aepack  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0041210000000000000000">&nbsp;</A>
+<BR>
+2.12.1 AEServer Objects 
+</H2>
+
+<P>
+<dl><dt><b><a name="l2h-173"><tt class="method">installaehandler</tt></a></b>(<var>classe, type, callback</var>)
+<dd>
+Installs an AppleEvent handler. <var>classe</var> and <var>type</var> are the
+four-character OSA Class and Type designators, <code>'****'</code> wildcards
+are allowed. When a matching AppleEvent is received the parameters are
+decoded and your callback is invoked.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-174"><tt class="method">callback</tt></a></b>(<var>_object, **kwargs</var>)
+<dd>
+Your callback is called with the OSA Direct Object as first positional
+parameter. The other parameters are passed as keyword arguments, with
+the 4-character designator as name. Three extra keyword parameters are
+passed: <code>_class</code> and <code>_type</code> are the Class and Type
+designators and <code>_attributes</code> is a dictionary with the AppleEvent
+attributes.
+
+<P>
+The return value of your method is packed with
+<tt class="function">aetools.packevent()</tt> and sent as reply.
+</dl>
+
+<P>
+Note that there are some serious problems with the current
+design. AppleEvents which have non-identifier 4-character designators
+for arguments are not implementable, and it is not possible to return
+an error to the originator. This will be addressed in a future
+release.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-MiniAEFrame.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-MiniAEFrame.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-aepack.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-MiniAEFrame.html">2.12 MiniAEFrame  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-MiniAEFrame.html">2.12 MiniAEFrame  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-aepack.html">2.13 aepack  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

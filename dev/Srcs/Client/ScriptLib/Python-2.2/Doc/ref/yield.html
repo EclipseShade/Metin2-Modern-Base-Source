@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.8 The yield statement </title>
+<META NAME="description" CONTENT="6.8 The yield statement ">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="raise.html">
+<LINK REL="previous" href="return.html">
+<LINK REL="up" href="simple.html">
+<LINK REL="next" href="raise.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="return.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="simple.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="raise.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="return.html">6.7 The return statement</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="simple.html">6. Simple statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="raise.html">6.9 The raise statement</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008800000000000000000">&nbsp;</A>
+<BR>
+6.8 The <tt class="keyword">yield</tt> statement 
+</H1>
+<a name="l2h-337">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-yield_stmt">yield_stmt</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"yield" <a href="exprlists.html#tok-expression_list">expression_list</a></code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+<a name="l2h-338">&nbsp;</a>
+<P>
+The <tt class="keyword">yield</tt> statement is only used when defining a generator
+function, and is only used in the body of the generator function.
+Using a <tt class="keyword">yield</tt> statement in a function definition is
+sufficient to cause that definition to create a generator function
+instead of a normal function.
+
+<P>
+When a generator function is called, it returns an iterator known as a
+generator iterator, or more commonly, a generator.  The body of the
+generator function is executed by calling the generator's
+<tt class="method">next()</tt> method repeatedly until it raises an exception.
+
+<P>
+When a <tt class="keyword">yield</tt> statement is executed, the state of the
+generator is frozen and the value of <a href="exprlists.html#tok-expression_list">expression_list</a> is
+returned to <tt class="method">next()</tt>'s caller.  By ``frozen'' we mean that all
+local state is retained, including the current bindings of local
+variables, the instruction pointer, and the internal evaluation stack:
+enough information is saved so that the next time <tt class="method">next()</tt> is
+invoked, the function can proceed exactly as if the <tt class="keyword">yield</tt>
+statement were just another external call.
+
+<P>
+The <tt class="keyword">yield</tt> statement is not allowed in the <tt class="keyword">try</tt>
+clause of a <tt class="keyword">try</tt> ... <tt class="keyword">finally</tt> construct.  The
+difficulty is that there's no guarantee the generator will ever be
+resumed, hence no guarantee that the <tt class="keyword">finally</tt> block will ever
+get executed.
+
+<P>
+<div class="note"><b class="label">Note:</b>
+In Python 2.2, the <tt class="keyword">yield</tt> statement is only allowed
+when the <code>generators</code> feature has been enabled.  It will always
+be enabled in Python 2.3.  This <code>__future__</code> import statment can
+be used to enable the feature:
+
+<P>
+<dl><dd><pre class="verbatim">
+from __future__ import generators
+</pre></dl>
+</div>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seerfc">
+    <dt><a href="http://python.sourceforge.net/peps/pep-0255.html"
+        title="Simple Generators"
+        >PEP 0255, <em>Simple Generators</em></a>
+    <dd>The proposal for adding generators and the <tt class="keyword">yield</tt>
+          statement to Python.
+  </dl>
+</div>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="return.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="simple.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="raise.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="return.html">6.7 The return statement</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="simple.html">6. Simple statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="raise.html">6.9 The raise statement</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.2.2 Boolean Operations </title>
+<META NAME="description" CONTENT="2.2.2 Boolean Operations ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="comparisons.html">
+<LINK REL="previous" href="truth.html">
+<LINK REL="up" href="types.html">
+<LINK REL="next" href="comparisons.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="truth.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="comparisons.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="truth.html">2.2.1 Truth Value Testing</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="types.html">2.2 Built-in Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="comparisons.html">2.2.3 Comparisons</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004220000000000000000">&nbsp;</A>
+<BR>
+2.2.2 Boolean Operations 
+</H2>
+
+<P>
+These are the Boolean operations, ordered by ascending priority:
+<a name="l2h-79">&nbsp;</a>
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Operation</b>&nbsp;</th>
+      <th align="left"><b>Result</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><code><var>x</var> or <var>y</var></code></td>
+        <td align="left">if <var>x</var> is false, then <var>y</var>, else <var>x</var></td>
+        <td align="center">(1)</td>
+    <tr><td align="center" valign="baseline"><code><var>x</var> and <var>y</var></code></td>
+        <td align="left">if <var>x</var> is false, then <var>x</var>, else <var>y</var></td>
+        <td align="center">(1)</td>
+  
+    <tr><td align="center" valign="baseline"><code>not <var>x</var></code></td>
+        <td align="left">if <var>x</var> is false, then <code>1</code>, else <code>0</code></td>
+        <td align="center">(2)</td></tbody>
+</table>
+<a name="l2h-80">&nbsp;</a>
+<P>
+Notes:
+
+<P>
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>These only evaluate their second argument if needed for their outcome.
+
+<P>
+</DD>
+<DT><STRONG>(2)</STRONG></DT>
+<DD>"<tt class="samp">not</tt>" has a lower priority than non-Boolean operators, so
+<code>not <var>a</var> == <var>b</var></code> is interpreted as <code>not (<var>a</var> ==
+<var>b</var>)</code>, and <code><var>a</var> == not <var>b</var></code> is a syntax error.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="truth.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="comparisons.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="truth.html">2.2.1 Truth Value Testing</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="types.html">2.2 Built-in Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="comparisons.html">2.2.3 Comparisons</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

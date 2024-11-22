@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.1 webbrowser -- Convenient Web-browser controller</title>
+<META NAME="description" CONTENT="11.1 webbrowser -- Convenient Web-browser controller">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-cgi.html">
+<LINK REL="previous" href="internet.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="browser-controllers.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="internet.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="browser-controllers.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="browser-controllers.html">11.1.1 Browser Controller Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0013100000000000000000">
+11.1 <tt class="module">webbrowser</tt> --
+         Convenient Web-browser controller</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">webbrowser</tt> module provides a very high-level interface to
+allow displaying Web-based documents to users.  The controller objects
+are easy to use and are platform-independent.  Under most
+circumstances, simply calling the <tt class="function">open()</tt> function from this
+module will do the right thing.
+
+<P>
+Under Unix, graphical browsers are preferred under X11, but text-mode
+browsers will be used if graphical browsers are not available or an X11
+display isn't available.  If text-mode browsers are used, the calling
+process will block until the user exits the browser.
+
+<P>
+Under Unix, if the environment variable <a class="envvar" name="l2h-2278">BROWSER</a> exists, it
+is interpreted to override the platform default list of browsers, as a
+colon-separated list of browsers to try in order.  When the value of
+a list part contains the string <code>%s</code>, then it is interpreted as
+a literal browser command line to be used with the argument URL
+substituted for the <code>%s</code>; if the part does not contain
+<code>%s</code>, it is simply interpreted as the name of the browser to
+launch.
+
+<P>
+For non-Unix platforms, or when X11 browsers are available on
+Unix, the controlling process will not wait for the user to finish
+with the browser, but allow the browser to maintain its own window on
+the display.
+
+<P>
+The following exception is defined:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2273"><tt class="exception">Error</tt></a></b>
+<dd>
+  Exception raised when a browser control error occurs.
+</dl>
+
+<P>
+The following functions are defined:
+
+<P>
+<dl><dt><b><a name="l2h-2274"><tt class="function">open</tt></a></b>(<var>url</var><big>[</big><var>, new=0</var><big>]</big><big>[</big><var>, autoraise=1</var><big>]</big>)
+<dd>
+  Display <var>url</var> using the default browser.  If <var>new</var> is true,
+  a new browser window is opened if possible.  If <var>autoraise</var> is
+  true, the window is raised if possible (note that under many window
+  managers this will occur regardless of the setting of this variable).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2275"><tt class="function">open_new</tt></a></b>(<var>url</var>)
+<dd>
+  Open <var>url</var> in a new window of the default browser, if possible,
+  otherwise, open <var>url</var> in the only browser window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2276"><tt class="function">get</tt></a></b>(<big>[</big><var>name</var><big>]</big>)
+<dd>
+  Return a controller object for the browser type <var>name</var>.  If
+  <var>name</var> is empty, return a controller for a default browser
+  appropriate to the caller's environment.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2277"><tt class="function">register</tt></a></b>(<var>name, constructor</var><big>[</big><var>, instance</var><big>]</big>)
+<dd>
+  Register the browser type <var>name</var>.  Once a browser type is
+  registered, the <tt class="function">get()</tt> function can return a controller
+  for that browser type.  If <var>instance</var> is not provided, or is
+  <code>None</code>, <var>constructor</var> will be called without parameters to
+  create an instance when needed.  If <var>instance</var> is provided,
+  <var>constructor</var> will never be called, and may be <code>None</code>.
+
+<P>
+This entry point is only useful if you plan to either set the
+  <a class="envvar" name="l2h-2279">BROWSER</a> variable or call <tt class="function">get</tt> with a nonempty
+  argument matching the name of a handler you declare.  
+</dl>
+
+<P>
+A number of browser types are predefined.  This table gives the type
+names that may be passed to the <tt class="function">get()</tt> function and the
+corresponding instantiations for the controller classes, all defined
+in this module.
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Type Name</b>&nbsp;</th>
+      <th align="left"><b>Class Name</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>'mozilla'</code></td>
+        <td align="left"><tt class="class">Netscape('mozilla')</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><code>'netscape'</code></td>
+        <td align="left"><tt class="class">Netscape('netscape')</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><code>'mosaic'</code></td>
+        <td align="left"><tt class="class">GenericBrowser('mosaic %s &amp;')</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><code>'kfm'</code></td>
+        <td align="left"><tt class="class">Konqueror()</tt></td>
+        <td align="center">(1)</td>
+    <tr><td align="left" valign="baseline"><code>'grail'</code></td>
+        <td align="left"><tt class="class">Grail()</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><code>'links'</code></td>
+        <td align="left"><tt class="class">GenericBrowser('links %s')</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><code>'lynx'</code></td>
+        <td align="left"><tt class="class">GenericBrowser('lynx %s')</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><code>'w3m'</code></td>
+        <td align="left"><tt class="class">GenericBrowser('w3m %s')</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><code>'windows-default'</code></td>
+        <td align="left"><tt class="class">WindowsDefault</tt></td>
+        <td align="center">(2)</td>
+    <tr><td align="left" valign="baseline"><code>'internet-config'</code></td>
+        <td align="left"><tt class="class">InternetConfig</tt></td>
+        <td align="center">(3)</td></tbody>
+</table>
+
+<P>
+Notes:
+
+<P>
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>``Konqueror'' is the file manager for the KDE desktop environment for
+UNIX, and only makes sense to use if KDE is running.  Some way of
+reliably detecting KDE would be nice; the <a class="envvar" name="l2h-2280">KDEDIR</a> variable is
+not sufficient.  Note also that the name ``kfm'' is used even when
+using the <b class="program">konqueror</b> command with KDE 2 -- the
+implementation selects the best strategy for running Konqueror.
+
+<P>
+</DD>
+<DT><STRONG>(2)</STRONG></DT>
+<DD>Only on Windows platforms; requires the common
+extension modules <tt class="module">win32api</tt> and <tt class="module">win32con</tt>.
+
+<P>
+</DD>
+<DT><STRONG>(3)</STRONG></DT>
+<DD>Only on MacOS platforms; requires the standard MacPython <tt class="module">ic</tt>
+module, described in the <em class="citetitle"><a
+ href="../mac/module-ic.html"
+ title="Macintosh
+Library Modules"
+ >Macintosh
+Library Modules</a></em> manual.
+</DD>
+</DL>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="browser-controllers.html">11.1.1 Browser Controller Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="internet.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="browser-controllers.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="browser-controllers.html">11.1.1 Browser Controller Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

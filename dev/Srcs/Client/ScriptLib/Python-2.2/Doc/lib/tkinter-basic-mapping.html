@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>16.1.4 Mapping Basic Tk into Tkinter </title>
+<META NAME="description" CONTENT="16.1.4 Mapping Basic Tk into Tkinter ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node506.html">
+<LINK REL="previous" HREF="node504.html">
+<LINK REL="up" href="module-Tkinter.html">
+<LINK REL="next" HREF="node506.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node504.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-Tkinter.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node506.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node504.html">16.1.3 A (Very) Quick</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-Tkinter.html">16.1 Tkinter  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node506.html">16.1.5 How Tk and</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0018140000000000000000">&nbsp;</A>
+<BR>
+16.1.4 Mapping Basic Tk into Tkinter
+            
+</H2>
+
+<P>
+Class commands in Tk correspond to class constructors in Tkinter.
+
+<P>
+<dl><dd><pre class="verbatim">
+    button .fred                =====&gt;  fred = Button()
+</pre></dl>
+
+<P>
+The master of an object is implicit in the new name given to it at
+creation time.  In Tkinter, masters are specified explicitly.
+
+<P>
+<dl><dd><pre class="verbatim">
+    button .panel.fred          =====&gt;  fred = Button(panel)
+</pre></dl>
+
+<P>
+The configuration options in Tk are given in lists of hyphened tags
+followed by values.  In Tkinter, options are specified as
+keyword-arguments in the instance constructor, and keyword-args for
+configure calls or as instance indices, in dictionary style, for
+established instances.  See section&nbsp;<A href="tkinter-setting-options.html#tkinter-setting-options">16.1.6</A> on
+setting options.
+
+<P>
+<dl><dd><pre class="verbatim">
+    button .fred -fg red        =====&gt;  fred = Button(panel, fg = "red")
+    .fred configure -fg red     =====&gt;  fred["fg"] = red
+                                OR ==&gt;  fred.config(fg = "red")
+</pre></dl>
+
+<P>
+In Tk, to perform an action on a widget, use the widget name as a
+command, and follow it with an action name, possibly with arguments
+(options).  In Tkinter, you call methods on the class instance to
+invoke actions on the widget.  The actions (methods) that a given
+widget can perform are listed in the Tkinter.py module.
+
+<P>
+<dl><dd><pre class="verbatim">
+    .fred invoke                =====&gt;  fred.invoke()
+</pre></dl>
+
+<P>
+To give a widget to the packer (geometry manager), you call pack with
+optional arguments.  In Tkinter, the Pack class holds all this
+functionality, and the various forms of the pack command are
+implemented as methods.  All widgets in <tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt> are
+subclassed from the Packer, and so inherit all the packing
+methods. See the <tt class="module"><a href="module-Tix.html">Tix</a></tt> module documentation for additional
+information on the Form geometry manager.
+
+<P>
+<dl><dd><pre class="verbatim">
+    pack .fred -side left       =====&gt;  fred.pack(side = "left")
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node504.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-Tkinter.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node506.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node504.html">16.1.3 A (Very) Quick</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-Tkinter.html">16.1 Tkinter  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node506.html">16.1.5 How Tk and</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

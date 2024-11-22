@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>22.2.1 Registry Handle Objects </title>
+<META NAME="description" CONTENT="22.2.1 Registry Handle Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module--winreg.html">
+<LINK REL="up" href="module--winreg.html">
+<LINK REL="next" href="module-winsound.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module--winreg.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module--winreg.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-winsound.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module--winreg.html">22.2 _winreg - Windows</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module--winreg.html">22.2 _winreg - Windows</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-winsound.html">22.3 winsound  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0024210000000000000000">&nbsp;</A>
+<BR>
+22.2.1 Registry Handle Objects 
+</H2>
+
+<P>
+This object wraps a Windows HKEY object, automatically closing it when
+ the object is destroyed.  To guarantee cleanup, you can call either
+ the <tt class="method">Close()</tt> method on the object, or the 
+ <tt class="function">CloseKey()</tt> function.
+
+<P>
+All registry functions in this module return one of these objects.
+
+<P>
+All registry functions in this module which accept a handle object 
+ also accept an integer, however, use of the handle object is 
+ encouraged.
+
+<P>
+Handle objects provide semantics for <tt class="method">__nonzero__()</tt> - thus
+<dl><dd><pre class="verbatim">
+    if handle:
+        print "Yes"
+</pre></dl>
+ will print <code>Yes</code> if the handle is currently valid (has not been
+ closed or detached).
+
+<P>
+The object also support comparison semantics, so handle
+ objects will compare true if they both reference the same
+ underlying Windows handle value.
+
+<P>
+Handle objects can be converted to an integer (eg, using the
+ builtin <tt class="function">int()</tt> function, in which case the underlying
+ Windows handle value is returned.  You can also use the 
+ <tt class="method">Detach()</tt> method to return the integer handle, and
+ also disconnect the Windows handle from the handle object.
+
+<P>
+<dl><dt><b><a name="l2h-4090"><tt class="method">Close</tt></a></b>()
+<dd>
+  Closes the underlying Windows handle.
+
+<P>
+If the handle is already closed, no error is raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4091"><tt class="method">Detach</tt></a></b>()
+<dd>
+  Detaches the Windows handle from the handle object.
+
+<P>
+The result is an integer (or long on 64 bit Windows) that holds
+ the value of the handle before it is detached.  If the
+ handle is already detached or closed, this will return zero.
+
+<P>
+After calling this function, the handle is effectively invalidated,
+ but the handle is not closed.  You would call this function when 
+ you need the underlying Win32 handle to exist beyond the lifetime 
+ of the handle object.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module--winreg.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module--winreg.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-winsound.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module--winreg.html">22.2 _winreg - Windows</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module--winreg.html">22.2 _winreg - Windows</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-winsound.html">22.3 winsound  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

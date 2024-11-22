@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.2 Differences Between Unix and Windows </title>
+<META NAME="description" CONTENT="4.2 Differences Between Unix and Windows ">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="win-dlls.html">
+<LINK REL="previous" href="win-cookbook.html">
+<LINK REL="up" href="building-on-windows.html">
+<LINK REL="next" href="win-dlls.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="win-cookbook.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="building-on-windows.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="win-dlls.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="win-cookbook.html">4.1 A Cookbook Approach</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="building-on-windows.html">4. Building C and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="win-dlls.html">4.3 Using DLLs in</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006200000000000000000">&nbsp;</A>
+<BR>
+4.2 Differences Between Unix and Windows
+     
+</H1>
+
+<P>
+Unix and Windows use completely different paradigms for run-time
+loading of code.  Before you try to build a module that can be
+dynamically loaded, be aware of how your system works.
+
+<P>
+In Unix, a shared object (<span class="file">.so</span>) file contains code to be used by the
+program, and also the names of functions and data that it expects to
+find in the program.  When the file is joined to the program, all
+references to those functions and data in the file's code are changed
+to point to the actual locations in the program where the functions
+and data are placed in memory.  This is basically a link operation.
+
+<P>
+In Windows, a dynamic-link library (<span class="file">.dll</span>) file has no dangling
+references.  Instead, an access to functions or data goes through a
+lookup table.  So the DLL code does not have to be fixed up at runtime
+to refer to the program's memory; instead, the code already uses the
+DLL's lookup table, and the lookup table is modified at runtime to
+point to the functions and data.
+
+<P>
+In Unix, there is only one type of library file (<span class="file">.a</span>) which
+contains code from several object files (<span class="file">.o</span>).  During the link
+step to create a shared object file (<span class="file">.so</span>), the linker may find
+that it doesn't know where an identifier is defined.  The linker will
+look for it in the object files in the libraries; if it finds it, it
+will include all the code from that object file.
+
+<P>
+In Windows, there are two types of library, a static library and an
+import library (both called <span class="file">.lib</span>).  A static library is like a
+Unix <span class="file">.a</span> file; it contains code to be included as necessary.
+An import library is basically used only to reassure the linker that a
+certain identifier is legal, and will be present in the program when
+the DLL is loaded.  So the linker uses the information from the
+import library to build the lookup table for using identifiers that
+are not included in the DLL.  When an application or a DLL is linked,
+an import library may be generated, which will need to be used for all
+future DLLs that depend on the symbols in the application or DLL.
+
+<P>
+Suppose you are building two dynamic-load modules, B and C, which should
+share another block of code A.  On Unix, you would <i>not</i> pass
+<span class="file">A.a</span> to the linker for <span class="file">B.so</span> and <span class="file">C.so</span>; that would
+cause it to be included twice, so that B and C would each have their
+own copy.  In Windows, building <span class="file">A.dll</span> will also build
+<span class="file">A.lib</span>.  You <i>do</i> pass <span class="file">A.lib</span> to the linker for B and
+C.  <span class="file">A.lib</span> does not contain code; it just contains information
+which will be used at runtime to access A's code.  
+
+<P>
+In Windows, using an import library is sort of like using "<tt class="samp">import
+spam</tt>"; it gives you access to spam's names, but does not create a
+separate copy.  On Unix, linking with a library is more like
+"<tt class="samp">from spam import *</tt>"; it does create a separate copy.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="win-cookbook.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="building-on-windows.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="win-dlls.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="win-cookbook.html">4.1 A Cookbook Approach</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="building-on-windows.html">4. Building C and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="win-dlls.html">4.3 Using DLLs in</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

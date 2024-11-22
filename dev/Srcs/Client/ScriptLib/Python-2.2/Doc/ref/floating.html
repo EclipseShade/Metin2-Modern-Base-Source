@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.4.5 Floating point literals</title>
+<META NAME="description" CONTENT="2.4.5 Floating point literals">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="imaginary.html">
+<LINK REL="previous" href="integers.html">
+<LINK REL="up" href="literals.html">
+<LINK REL="next" href="imaginary.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="integers.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="literals.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="imaginary.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="integers.html">2.4.4 Integer and long</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="literals.html">2.4 Literals</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="imaginary.html">2.4.6 Imaginary literals</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004450000000000000000">&nbsp;</A>
+<BR>
+2.4.5 Floating point literals
+</H2>
+
+<P>
+Floating point literals are described by the following lexical
+definitions:
+
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-floatnumber">floatnumber</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="floating.html#tok-pointfloat">pointfloat</a> | <a href="floating.html#tok-exponentfloat">exponentfloat</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-pointfloat">pointfloat</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>[<a href="floating.html#tok-intpart">intpart</a>] <a href="floating.html#tok-fraction">fraction</a> | <a href="floating.html#tok-intpart">intpart</a> "."</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-exponentfloat">exponentfloat</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>(<a href="floating.html#tok-intpart">intpart</a> | <a href="floating.html#tok-pointfloat">pointfloat</a>)
+              <a href="floating.html#tok-exponent">exponent</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-intpart">intpart</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="identifiers.html#tok-digit">digit</a>+</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-fraction">fraction</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"." <a href="identifiers.html#tok-digit">digit</a>+</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-exponent">exponent</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>("e" | "E") ["+" | "-"] <a href="identifiers.html#tok-digit">digit</a>+</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+Note that the integer and exponent parts of floating point numbers
+can look like octal integers, but are interpreted using radix 10.  For
+example, "<tt class="samp">077e010</tt>" is legal, and denotes the same number
+as "<tt class="samp">77e10</tt>".
+The allowed range of floating point literals is
+implementation-dependent.
+Some examples of floating point literals:
+
+<P>
+<dl><dd><pre class="verbatim">
+3.14    10.    .001    1e100    3.14e-10    0e0
+</pre></dl>
+
+<P>
+Note that numeric literals do not include a sign; a phrase like
+<code>-1</code> is actually an expression composed of the operator
+<code>-</code> and the literal <code>1</code>.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="integers.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="literals.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="imaginary.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="integers.html">2.4.4 Integer and long</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="literals.html">2.4 Literals</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="imaginary.html">2.4.6 Imaginary literals</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,716 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5. Data Structures </title>
+<META NAME="description" CONTENT="5. Data Structures ">
+<META NAME="keywords" CONTENT="tut">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="tut.css">
+<link rel="first" href="tut.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node8.html">
+<LINK REL="previous" HREF="node6.html">
+<LINK REL="up" HREF="tut.html">
+<LINK REL="next" HREF="node8.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node6.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="tut.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node8.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Tutorial</td>
+<td><A HREF="node2.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node6.html">4. More Control Flow</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="tut.html">Python Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node8.html">6. Modules</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="#SECTION007100000000000000000">5.1 More on Lists</a>
+<UL>
+<LI><A href="#SECTION007110000000000000000">5.1.1 Using Lists as Stacks</a>
+<LI><A href="#SECTION007120000000000000000">5.1.2 Using Lists as Queues</a>
+<LI><A href="#SECTION007130000000000000000">5.1.3 Functional Programming Tools</a>
+<LI><A href="#SECTION007140000000000000000">5.1.4 List Comprehensions</a>
+</ul>
+<LI><A href="#SECTION007200000000000000000">5.2 The <tt class="keyword">del</tt> statement</a>
+<LI><A href="#SECTION007300000000000000000">5.3 Tuples and Sequences</a>
+<LI><A href="#SECTION007400000000000000000">5.4 Dictionaries</a>
+<LI><A href="#SECTION007500000000000000000">5.5 More on Conditions</a>
+<LI><A href="#SECTION007600000000000000000">5.6 Comparing Sequences and Other Types</a>
+</ul>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION007000000000000000000">&nbsp;</A>
+<BR>
+5. Data Structures 
+</H1>
+
+<P>
+This chapter describes some things you've learned about already in
+more detail, and adds some new things as well.
+
+<P>
+
+<H1><A NAME="SECTION007100000000000000000">&nbsp;</A>
+<BR>
+5.1 More on Lists 
+</H1>
+
+<P>
+The list data type has some more methods.  Here are all of the methods
+of list objects:
+
+<P>
+<DL>
+<DT><STRONG><code>append(x)</code></STRONG></DT>
+<DD>Add an item to the end of the list;
+equivalent to <code>a[len(a):] = [x]</code>.
+
+<P>
+</DD>
+<DT><STRONG><code>extend(L)</code></STRONG></DT>
+<DD>Extend the list by appending all the items in the given list;
+equivalent to <code>a[len(a):] = L</code>.
+
+<P>
+</DD>
+<DT><STRONG><code>insert(i, x)</code></STRONG></DT>
+<DD>Insert an item at a given position.  The first argument is the index of
+the element before which to insert, so <code>a.insert(0, x)</code> inserts at
+the front of the list, and <code>a.insert(len(a), x)</code> is equivalent to
+<code>a.append(x)</code>.
+
+<P>
+</DD>
+<DT><STRONG><code>remove(x)</code></STRONG></DT>
+<DD>Remove the first item from the list whose value is <code>x</code>.
+It is an error if there is no such item.
+
+<P>
+</DD>
+<DT><STRONG><code>pop(<big>[</big>i<big>]</big>)</code></STRONG></DT>
+<DD>Remove the item at the given position in the list, and return it.  If
+no index is specified, <code>a.pop()</code> returns the last item in the
+list.  The item is also removed from the list.
+
+<P>
+</DD>
+<DT><STRONG><code>index(x)</code></STRONG></DT>
+<DD>Return the index in the list of the first item whose value is <code>x</code>.
+It is an error if there is no such item.
+
+<P>
+</DD>
+<DT><STRONG><code>count(x)</code></STRONG></DT>
+<DD>Return the number of times <code>x</code> appears in the list.
+
+<P>
+</DD>
+<DT><STRONG><code>sort()</code></STRONG></DT>
+<DD>Sort the items of the list, in place.
+
+<P>
+</DD>
+<DT><STRONG><code>reverse()</code></STRONG></DT>
+<DD>Reverse the elements of the list, in place.
+
+<P>
+</DD>
+</DL>
+
+<P>
+An example that uses most of the list methods:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; a = [66.6, 333, 333, 1, 1234.5]
+&gt;&gt;&gt; print a.count(333), a.count(66.6), a.count('x')
+2 1 0
+&gt;&gt;&gt; a.insert(2, -1)
+&gt;&gt;&gt; a.append(333)
+&gt;&gt;&gt; a
+[66.6, 333, -1, 333, 1, 1234.5, 333]
+&gt;&gt;&gt; a.index(333)
+1
+&gt;&gt;&gt; a.remove(333)
+&gt;&gt;&gt; a
+[66.6, -1, 333, 1, 1234.5, 333]
+&gt;&gt;&gt; a.reverse()
+&gt;&gt;&gt; a
+[333, 1234.5, 1, 333, -1, 66.6]
+&gt;&gt;&gt; a.sort()
+&gt;&gt;&gt; a
+[-1, 1, 66.6, 333, 333, 1234.5]
+</pre></dl>
+
+<P>
+
+<H2><A NAME="SECTION007110000000000000000">&nbsp;</A>
+<BR>
+5.1.1 Using Lists as Stacks 
+</H2>
+
+<P>
+The list methods make it very easy to use a list as a stack, where the
+last element added is the first element retrieved (``last-in,
+first-out'').  To add an item to the top of the stack, use
+<tt class="method">append()</tt>.  To retrieve an item from the top of the stack, use
+<tt class="method">pop()</tt> without an explicit index.  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; stack = [3, 4, 5]
+&gt;&gt;&gt; stack.append(6)
+&gt;&gt;&gt; stack.append(7)
+&gt;&gt;&gt; stack
+[3, 4, 5, 6, 7]
+&gt;&gt;&gt; stack.pop()
+7
+&gt;&gt;&gt; stack
+[3, 4, 5, 6]
+&gt;&gt;&gt; stack.pop()
+6
+&gt;&gt;&gt; stack.pop()
+5
+&gt;&gt;&gt; stack
+[3, 4]
+</pre></dl>
+
+<P>
+
+<H2><A NAME="SECTION007120000000000000000">&nbsp;</A>
+<BR>
+5.1.2 Using Lists as Queues 
+</H2>
+
+<P>
+You can also use a list conveniently as a queue, where the first
+element added is the first element retrieved (``first-in,
+first-out'').  To add an item to the back of the queue, use
+<tt class="method">append()</tt>.  To retrieve an item from the front of the queue,
+use <tt class="method">pop()</tt> with <code>0</code> as the index.  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; queue = ["Eric", "John", "Michael"]
+&gt;&gt;&gt; queue.append("Terry")           # Terry arrives
+&gt;&gt;&gt; queue.append("Graham")          # Graham arrives
+&gt;&gt;&gt; queue.pop(0)
+'Eric'
+&gt;&gt;&gt; queue.pop(0)
+'John'
+&gt;&gt;&gt; queue
+['Michael', 'Terry', 'Graham']
+</pre></dl>
+
+<P>
+
+<H2><A NAME="SECTION007130000000000000000">&nbsp;</A>
+<BR>
+5.1.3 Functional Programming Tools 
+</H2>
+
+<P>
+There are three built-in functions that are very useful when used with
+lists: <tt class="function">filter()</tt>, <tt class="function">map()</tt>, and <tt class="function">reduce()</tt>.
+
+<P>
+"<tt class="samp">filter(<var>function</var>, <var>sequence</var>)</tt>" returns a sequence (of
+the same type, if possible) consisting of those items from the
+sequence for which <code><var>function</var>(<var>item</var>)</code> is true.  For
+example, to compute some primes:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; def f(x): return x % 2 != 0 and x % 3 != 0
+...
+&gt;&gt;&gt; filter(f, range(2, 25))
+[5, 7, 11, 13, 17, 19, 23]
+</pre></dl>
+
+<P>
+"<tt class="samp">map(<var>function</var>, <var>sequence</var>)</tt>" calls
+<code><var>function</var>(<var>item</var>)</code> for each of the sequence's items and
+returns a list of the return values.  For example, to compute some
+cubes:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; def cube(x): return x*x*x
+...
+&gt;&gt;&gt; map(cube, range(1, 11))
+[1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]
+</pre></dl>
+
+<P>
+More than one sequence may be passed; the function must then have as
+many arguments as there are sequences and is called with the
+corresponding item from each sequence (or <code>None</code> if some sequence
+is shorter than another).  If <code>None</code> is passed for the function,
+a function returning its argument(s) is substituted.
+
+<P>
+Combining these two special cases, we see that
+"<tt class="samp">map(None, <var>list1</var>, <var>list2</var>)</tt>" is a convenient way of
+turning a pair of lists into a list of pairs.  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; seq = range(8)
+&gt;&gt;&gt; def square(x): return x*x
+...
+&gt;&gt;&gt; map(None, seq, map(square, seq))
+[(0, 0), (1, 1), (2, 4), (3, 9), (4, 16), (5, 25), (6, 36), (7, 49)]
+</pre></dl>
+
+<P>
+"<tt class="samp">reduce(<var>func</var>, <var>sequence</var>)</tt>" returns a single value
+constructed by calling the binary function <var>func</var> on the first two
+items of the sequence, then on the result and the next item, and so
+on.  For example, to compute the sum of the numbers 1 through 10:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; def add(x,y): return x+y
+...
+&gt;&gt;&gt; reduce(add, range(1, 11))
+55
+</pre></dl>
+
+<P>
+If there's only one item in the sequence, its value is returned; if
+the sequence is empty, an exception is raised.
+
+<P>
+A third argument can be passed to indicate the starting value.  In this
+case the starting value is returned for an empty sequence, and the
+function is first applied to the starting value and the first sequence
+item, then to the result and the next item, and so on.  For example,
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; def sum(seq):
+...     def add(x,y): return x+y
+...     return reduce(add, seq, 0)
+... 
+&gt;&gt;&gt; sum(range(1, 11))
+55
+&gt;&gt;&gt; sum([])
+0
+</pre></dl>
+
+<P>
+
+<H2><A NAME="SECTION007140000000000000000">
+5.1.4 List Comprehensions</A>
+</H2>
+
+<P>
+List comprehensions provide a concise way to create lists without resorting
+to use of <tt class="function">map()</tt>, <tt class="function">filter()</tt> and/or <tt class="keyword">lambda</tt>.
+The resulting list definition tends often to be clearer than lists built
+using those constructs.  Each list comprehension consists of an expression
+following by a <tt class="keyword">for</tt> clause, then zero or more <tt class="keyword">for</tt> or
+<tt class="keyword">if</tt> clauses.  The result will be a list resulting from evaluating
+the expression in the context of the <tt class="keyword">for</tt> and <tt class="keyword">if</tt> clauses
+which follow it.  If the expression would evaluate to a tuple, it must be
+parenthesized.
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; freshfruit = ['  banana', '  loganberry ', 'passion fruit  ']
+&gt;&gt;&gt; [weapon.strip() for weapon in freshfruit]
+['banana', 'loganberry', 'passion fruit']
+&gt;&gt;&gt; vec = [2, 4, 6]
+&gt;&gt;&gt; [3*x for x in vec]
+[6, 12, 18]
+&gt;&gt;&gt; [3*x for x in vec if x &gt; 3]
+[12, 18]
+&gt;&gt;&gt; [3*x for x in vec if x &lt; 2]
+[]
+&gt;&gt;&gt; [{x: x**2} for x in vec]
+[{2: 4}, {4: 16}, {6: 36}]
+&gt;&gt;&gt; [[x,x**2] for x in vec]
+[[2, 4], [4, 16], [6, 36]]
+&gt;&gt;&gt; [x, x**2 for x in vec]	# error - parens required for tuples
+  File "&lt;stdin&gt;", line 1, in ?
+    [x, x**2 for x in vec]
+               ^
+SyntaxError: invalid syntax
+&gt;&gt;&gt; [(x, x**2) for x in vec]
+[(2, 4), (4, 16), (6, 36)]
+&gt;&gt;&gt; vec1 = [2, 4, 6]
+&gt;&gt;&gt; vec2 = [4, 3, -9]
+&gt;&gt;&gt; [x*y for x in vec1 for y in vec2]
+[8, 6, -18, 16, 12, -36, 24, 18, -54]
+&gt;&gt;&gt; [x+y for x in vec1 for y in vec2]
+[6, 5, -7, 8, 7, -5, 10, 9, -3]
+&gt;&gt;&gt; [vec1[i]*vec2[i] for i in range(len(vec1))]
+[8, 12, -54]
+</pre></dl>
+
+<P>
+
+<H1><A NAME="SECTION007200000000000000000">&nbsp;</A>
+<BR>
+5.2 The <tt class="keyword">del</tt> statement 
+</H1>
+
+<P>
+There is a way to remove an item from a list given its index instead
+of its value: the <tt class="keyword">del</tt> statement.  This can also be used to
+remove slices from a list (which we did earlier by assignment of an
+empty list to the slice).  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; a
+[-1, 1, 66.6, 333, 333, 1234.5]
+&gt;&gt;&gt; del a[0]
+&gt;&gt;&gt; a
+[1, 66.6, 333, 333, 1234.5]
+&gt;&gt;&gt; del a[2:4]
+&gt;&gt;&gt; a
+[1, 66.6, 1234.5]
+</pre></dl>
+
+<P>
+<tt class="keyword">del</tt> can also be used to delete entire variables:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; del a
+</pre></dl>
+
+<P>
+Referencing the name <code>a</code> hereafter is an error (at least until
+another value is assigned to it).  We'll find other uses for
+<tt class="keyword">del</tt> later.
+
+<P>
+
+<H1><A NAME="SECTION007300000000000000000">&nbsp;</A>
+<BR>
+5.3 Tuples and Sequences 
+</H1>
+
+<P>
+We saw that lists and strings have many common properties, such as
+indexing and slicing operations.  They are two examples of
+<i>sequence</i> data types.  Since Python is an evolving language,
+other sequence data types may be added.  There is also another
+standard sequence data type: the <i>tuple</i>.
+
+<P>
+A tuple consists of a number of values separated by commas, for
+instance:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; t = 12345, 54321, 'hello!'
+&gt;&gt;&gt; t[0]
+12345
+&gt;&gt;&gt; t
+(12345, 54321, 'hello!')
+&gt;&gt;&gt; # Tuples may be nested:
+... u = t, (1, 2, 3, 4, 5)
+&gt;&gt;&gt; u
+((12345, 54321, 'hello!'), (1, 2, 3, 4, 5))
+</pre></dl>
+
+<P>
+As you see, on output tuples are alway enclosed in parentheses, so
+that nested tuples are interpreted correctly; they may be input with
+or without surrounding parentheses, although often parentheses are
+necessary anyway (if the tuple is part of a larger expression).
+
+<P>
+Tuples have many uses.  For example: (x, y) coordinate pairs, employee
+records from a database, etc.  Tuples, like strings, are immutable: it
+is not possible to assign to the individual items of a tuple (you can
+simulate much of the same effect with slicing and concatenation,
+though).  It is also possible to create tuples which contain mutable
+objects, such as lists.
+
+<P>
+A special problem is the construction of tuples containing 0 or 1
+items: the syntax has some extra quirks to accommodate these.  Empty
+tuples are constructed by an empty pair of parentheses; a tuple with
+one item is constructed by following a value with a comma
+(it is not sufficient to enclose a single value in parentheses).
+Ugly, but effective.  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; empty = ()
+&gt;&gt;&gt; singleton = 'hello',    # &lt;-- note trailing comma
+&gt;&gt;&gt; len(empty)
+0
+&gt;&gt;&gt; len(singleton)
+1
+&gt;&gt;&gt; singleton
+('hello',)
+</pre></dl>
+
+<P>
+The statement <code>t = 12345, 54321, 'hello!'</code> is an example of
+<i>tuple packing</i>: the values <code>12345</code>, <code>54321</code> and
+<code>'hello!'</code> are packed together in a tuple.  The reverse operation
+is also possible:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; x, y, z = t
+</pre></dl>
+
+<P>
+This is called, appropriately enough, <i>sequence unpacking</i>.
+Sequence unpacking requires that the list of variables on the left
+have the same number of elements as the length of the sequence.  Note
+that multiple assignment is really just a combination of tuple packing
+and sequence unpacking!
+
+<P>
+There is a small bit of asymmetry here:  packing multiple values
+always creates a tuple, and unpacking works for any sequence.
+
+<P>
+
+<H1><A NAME="SECTION007400000000000000000">&nbsp;</A>
+<BR>
+5.4 Dictionaries 
+</H1>
+
+<P>
+Another useful data type built into Python is the <i>dictionary</i>.
+Dictionaries are sometimes found in other languages as ``associative
+memories'' or ``associative arrays''.  Unlike sequences, which are
+indexed by a range of numbers, dictionaries are indexed by <i>keys</i>,
+which can be any immutable type; strings and numbers can always be
+keys.  Tuples can be used as keys if they contain only strings,
+numbers, or tuples; if a tuple contains any mutable object either
+directly or indirectly, it cannot be used as a key.  You can't use
+lists as keys, since lists can be modified in place using their
+<tt class="method">append()</tt> and <tt class="method">extend()</tt> methods, as well as slice and
+indexed assignments.
+
+<P>
+It is best to think of a dictionary as an unordered set of
+<i>key: value</i> pairs, with the requirement that the keys are unique
+(within one dictionary).
+A pair of braces creates an empty dictionary: <code>{}</code>.
+Placing a comma-separated list of key:value pairs within the
+braces adds initial key:value pairs to the dictionary; this is also the
+way dictionaries are written on output.
+
+<P>
+The main operations on a dictionary are storing a value with some key
+and extracting the value given the key.  It is also possible to delete
+a key:value pair
+with <code>del</code>.
+If you store using a key that is already in use, the old value
+associated with that key is forgotten.  It is an error to extract a
+value using a non-existent key.
+
+<P>
+The <code>keys()</code> method of a dictionary object returns a list of all
+the keys used in the dictionary, in random order (if you want it
+sorted, just apply the <code>sort()</code> method to the list of keys).  To
+check whether a single key is in the dictionary, use the
+<code>has_key()</code> method of the dictionary.
+
+<P>
+Here is a small example using a dictionary:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; tel = {'jack': 4098, 'sape': 4139}
+&gt;&gt;&gt; tel['guido'] = 4127
+&gt;&gt;&gt; tel
+{'sape': 4139, 'guido': 4127, 'jack': 4098}
+&gt;&gt;&gt; tel['jack']
+4098
+&gt;&gt;&gt; del tel['sape']
+&gt;&gt;&gt; tel['irv'] = 4127
+&gt;&gt;&gt; tel
+{'guido': 4127, 'irv': 4127, 'jack': 4098}
+&gt;&gt;&gt; tel.keys()
+['guido', 'irv', 'jack']
+&gt;&gt;&gt; tel.has_key('guido')
+1
+</pre></dl>
+
+<P>
+
+<H1><A NAME="SECTION007500000000000000000">&nbsp;</A>
+<BR>
+5.5 More on Conditions 
+</H1>
+
+<P>
+The conditions used in <code>while</code> and <code>if</code> statements above can
+contain other operators besides comparisons.
+
+<P>
+The comparison operators <code>in</code> and <code>not in</code> check whether a value
+occurs (does not occur) in a sequence.  The operators <code>is</code> and
+<code>is not</code> compare whether two objects are really the same object; this
+only matters for mutable objects like lists.  All comparison operators
+have the same priority, which is lower than that of all numerical
+operators.
+
+<P>
+Comparisons can be chained.  For example, <code>a &lt; b == c</code> tests
+whether <code>a</code> is less than <code>b</code> and moreover <code>b</code> equals
+<code>c</code>.
+
+<P>
+Comparisons may be combined by the Boolean operators <code>and</code> and
+<code>or</code>, and the outcome of a comparison (or of any other Boolean
+expression) may be negated with <code>not</code>.  These all have lower
+priorities than comparison operators again; between them, <code>not</code> has
+the highest priority, and <code>or</code> the lowest, so that
+<code>A and not B or C</code> is equivalent to <code>(A and (not B)) or C</code>.  Of
+course, parentheses can be used to express the desired composition.
+
+<P>
+The Boolean operators <code>and</code> and <code>or</code> are so-called
+<i>shortcut</i> operators: their arguments are evaluated from left to
+right, and evaluation stops as soon as the outcome is determined.
+E.g., if <code>A</code> and <code>C</code> are true but <code>B</code> is false, <code>A
+and B and C</code> does not evaluate the expression C.  In general, the
+return value of a shortcut operator, when used as a general value and
+not as a Boolean, is the last evaluated argument.
+
+<P>
+It is possible to assign the result of a comparison or other Boolean
+expression to a variable.  For example,
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; string1, string2, string3 = '', 'Trondheim', 'Hammer Dance'
+&gt;&gt;&gt; non_null = string1 or string2 or string3
+&gt;&gt;&gt; non_null
+'Trondheim'
+</pre></dl>
+
+<P>
+Note that in Python, unlike C, assignment cannot occur inside expressions.
+C programmers may grumble about this, but it avoids a common class of
+problems encountered in C programs: typing <code>=</code> in an expression when
+<code>==</code> was intended.
+
+<P>
+
+<H1><A NAME="SECTION007600000000000000000">&nbsp;</A>
+<BR>
+5.6 Comparing Sequences and Other Types 
+</H1>
+
+<P>
+Sequence objects may be compared to other objects with the same
+sequence type.  The comparison uses <i>lexicographical</i> ordering:
+first the first two items are compared, and if they differ this
+determines the outcome of the comparison; if they are equal, the next
+two items are compared, and so on, until either sequence is exhausted.
+If two items to be compared are themselves sequences of the same type,
+the lexicographical comparison is carried out recursively.  If all
+items of two sequences compare equal, the sequences are considered
+equal.  If one sequence is an initial sub-sequence of the other, the
+shorter sequence is the smaller (lesser) one.  Lexicographical
+ordering for strings uses the ASCII ordering for individual
+characters.  Some examples of comparisons between sequences with the
+same types:
+
+<P>
+<dl><dd><pre class="verbatim">
+(1, 2, 3)              &lt; (1, 2, 4)
+[1, 2, 3]              &lt; [1, 2, 4]
+'ABC' &lt; 'C' &lt; 'Pascal' &lt; 'Python'
+(1, 2, 3, 4)           &lt; (1, 2, 4)
+(1, 2)                 &lt; (1, 2, -1)
+(1, 2, 3)             == (1.0, 2.0, 3.0)
+(1, 2, ('aa', 'ab'))   &lt; (1, 2, ('abc', 'a'), 4)
+</pre></dl>
+
+<P>
+Note that comparing objects of different types is legal.  The outcome
+is deterministic but arbitrary: the types are ordered by their name.
+Thus, a list is always smaller than a string, a string is always
+smaller than a tuple, etc.  Mixed numeric types are compared according
+to their numeric value, so 0 equals 0.0, etc.<A NAME="tex2html3"
+  HREF="#foot611"><SUP>5.1</SUP></A>
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot611">... etc.</A><A NAME="foot611"
+ HREF="node7.html#tex2html3"><SUP>5.1</SUP></A>
+<DD>
+        The rules for comparing objects of different types should
+        not be relied upon; they may change in a future version of
+        the language.
+
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node6.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="tut.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node8.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Tutorial</td>
+<td><A HREF="node2.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node6.html">4. More Control Flow</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="tut.html">Python Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node8.html">6. Modules</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

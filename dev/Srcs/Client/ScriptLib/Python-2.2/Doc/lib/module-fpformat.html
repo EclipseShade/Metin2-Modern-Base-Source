@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.5 fpformat -- Floating point conversions</title>
+<META NAME="description" CONTENT="4.5 fpformat -- Floating point conversions">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-StringIO.html">
+<LINK REL="previous" href="module-difflib.html">
+<LINK REL="up" href="strings.html">
+<LINK REL="next" href="module-StringIO.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="differ-examples.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="strings.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-StringIO.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="differ-examples.html">4.4.4 Differ Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="strings.html">4. String Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-StringIO.html">4.6 StringIO  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006500000000000000000">
+4.5 <tt class="module">fpformat</tt> --
+         Floating point conversions</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">fpformat</tt> module defines functions for dealing with
+floating point numbers representations in 100% pure
+Python. <span class="note"><b class="label">Note:</b>
+This module is unneeded: everything here could
+be done via the <code>%</code> string interpolation operator.</span>
+
+<P>
+The <tt class="module">fpformat</tt> module defines the following functions and an
+exception:
+
+<P>
+<dl><dt><b><a name="l2h-781"><tt class="function">fix</tt></a></b>(<var>x, digs</var>)
+<dd>
+Format <var>x</var> as <code>[-]ddd.ddd</code> with <var>digs</var> digits after the
+point and at least one digit before.
+If <code><var>digs</var> &lt;= 0</code>, the decimal point is suppressed.
+
+<P>
+<var>x</var> can be either a number or a string that looks like
+one. <var>digs</var> is an integer.
+
+<P>
+Return value is a string.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-782"><tt class="function">sci</tt></a></b>(<var>x, digs</var>)
+<dd>
+Format <var>x</var> as <code>[-]d.dddE[+-]ddd</code> with <var>digs</var> digits after the 
+point and exactly one digit before.
+If <code><var>digs</var> &lt;= 0</code>, one digit is kept and the point is suppressed.
+
+<P>
+<var>x</var> can be either a real number, or a string that looks like
+one. <var>digs</var> is an integer.
+
+<P>
+Return value is a string.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-783"><tt class="exception">NotANumber</tt></a></b>
+<dd>
+Exception raised when a string passed to <tt class="function">fix()</tt> or
+<tt class="function">sci()</tt> as the <var>x</var> parameter does not look like a number.
+This is a subclass of <tt class="exception">ValueError</tt> when the standard
+exceptions are strings.  The exception value is the improperly
+formatted string that caused the exception to be raised.
+</dl>
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import fpformat
+&gt;&gt;&gt; fpformat.fix(1.23, 1)
+'1.2'
+</pre></dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="differ-examples.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="strings.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-StringIO.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="differ-examples.html">4.4.4 Differ Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="strings.html">4. String Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-StringIO.html">4.6 StringIO  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

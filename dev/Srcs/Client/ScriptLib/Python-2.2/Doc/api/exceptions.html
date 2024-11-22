@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.3 Exceptions </title>
+<META NAME="description" CONTENT="1.3 Exceptions ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="embedding.html">
+<LINK REL="previous" href="objects.html">
+<LINK REL="up" href="intro.html">
+<LINK REL="next" href="embedding.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="types.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="embedding.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="types.html">1.2.2 Types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Introduction</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="embedding.html">1.4 Embedding Python</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION003300000000000000000">&nbsp;</A>
+<BR>
+1.3 Exceptions 
+</H1>
+
+<P>
+The Python programmer only needs to deal with exceptions if specific 
+error handling is required; unhandled exceptions are automatically 
+propagated to the caller, then to the caller's caller, and so on, until
+they reach the top-level interpreter, where they are reported to the 
+user accompanied by a stack traceback.
+
+<P>
+For C programmers, however, error checking always has to be explicit.  
+All functions in the Python/C API can raise exceptions, unless an 
+explicit claim is made otherwise in a function's documentation.  In 
+general, when a function encounters an error, it sets an exception, 
+discards any object references that it owns, and returns an 
+error indicator -- usually <tt class="constant">NULL</tt> or <code>-1</code>.  A few functions 
+return a Boolean true/false result, with false indicating an error.
+Very few functions return no explicit error indicator or have an 
+ambiguous return value, and require explicit testing for errors with 
+<tt class="cfunction">PyErr_Occurred()</tt><a name="l2h-20">&nbsp;</a>
+
+<P>
+Exception state is maintained in per-thread storage (this is 
+equivalent to using global storage in an unthreaded application).  A 
+thread can be in one of two states: an exception has occurred, or not.
+The function <tt class="cfunction">PyErr_Occurred()</tt> can be used to check for
+this: it returns a borrowed reference to the exception type object
+when an exception has occurred, and <tt class="constant">NULL</tt> otherwise.  There are a
+number of functions to set the exception state:
+<tt class="cfunction">PyErr_SetString()</tt><a name="l2h-21">&nbsp;</a>is the most
+common (though not the most general) function to set the exception
+state, and <tt class="cfunction">PyErr_Clear()</tt><a name="l2h-22">&nbsp;</a>clears the
+exception state.
+
+<P>
+The full exception state consists of three objects (all of which can 
+be <tt class="constant">NULL</tt>): the exception type, the corresponding exception 
+value, and the traceback.  These have the same meanings as the Python
+<a name="l2h-17">&nbsp;</a>objects <code>sys.exc_type</code>, <code>sys.exc_value</code>, and
+<code>sys.exc_traceback</code>; however, they are not the same: the Python
+objects represent the last exception being handled by a Python 
+<tt class="keyword">try</tt> ... <tt class="keyword">except</tt> statement, while the C level
+exception state only exists while an exception is being passed on
+between C functions until it reaches the Python bytecode interpreter's 
+main loop, which takes care of transferring it to <code>sys.exc_type</code>
+and friends.
+
+<P>
+Note that starting with Python 1.5, the preferred, thread-safe way to 
+access the exception state from Python code is to call the function
+<a name="l2h-19">&nbsp;</a><tt class="function">sys.exc_info()</tt>, which returns the per-thread exception state 
+for Python code.  Also, the semantics of both ways to access the 
+exception state have changed so that a function which catches an 
+exception will save and restore its thread's exception state so as to 
+preserve the exception state of its caller.  This prevents common bugs 
+in exception handling code caused by an innocent-looking function 
+overwriting the exception being handled; it also reduces the often 
+unwanted lifetime extension for objects that are referenced by the 
+stack frames in the traceback.
+
+<P>
+As a general principle, a function that calls another function to 
+perform some task should check whether the called function raised an 
+exception, and if so, pass the exception state on to its caller.  It 
+should discard any object references that it owns, and return an 
+error indicator, but it should <i>not</i> set another exception --
+that would overwrite the exception that was just raised, and lose
+important information about the exact cause of the error.
+
+<P>
+A simple example of detecting exceptions and passing them on is shown
+in the <tt class="cfunction">sum_sequence()</tt><a name="l2h-23">&nbsp;</a>example
+above.  It so happens that that example doesn't need to clean up any
+owned references when it detects an error.  The following example
+function shows some error cleanup.  First, to remind you why you like
+Python, we show the equivalent Python code:
+
+<P>
+<dl><dd><pre class="verbatim">
+def incr_item(dict, key):
+    try:
+        item = dict[key]
+    except KeyError:
+        item = 0
+    dict[key] = item + 1
+</pre></dl>
+
+<P>
+Here is the corresponding C code, in all its glory:
+
+<P>
+<dl><dd><pre class="verbatim">
+int
+incr_item(PyObject *dict, PyObject *key)
+{
+    /* Objects all initialized to NULL for Py_XDECREF */
+    PyObject *item = NULL, *const_one = NULL, *incremented_item = NULL;
+    int rv = -1; /* Return value initialized to -1 (failure) */
+
+    item = PyObject_GetItem(dict, key);
+    if (item == NULL) {
+        /* Handle KeyError only: */
+        if (!PyErr_ExceptionMatches(PyExc_KeyError))
+            goto error;
+
+        /* Clear the error and use zero: */
+        PyErr_Clear();
+        item = PyInt_FromLong(0L);
+        if (item == NULL)
+            goto error;
+    }
+    const_one = PyInt_FromLong(1L);
+    if (const_one == NULL)
+        goto error;
+
+    incremented_item = PyNumber_Add(item, const_one);
+    if (incremented_item == NULL)
+        goto error;
+
+    if (PyObject_SetItem(dict, key, incremented_item) &lt; 0)
+        goto error;
+    rv = 0; /* Success */
+    /* Continue with cleanup code */
+
+ error:
+    /* Cleanup code, shared by success and failure path */
+
+    /* Use Py_XDECREF() to ignore NULL references */
+    Py_XDECREF(item);
+    Py_XDECREF(const_one);
+    Py_XDECREF(incremented_item);
+
+    return rv; /* -1 for error, 0 for success */
+}
+</pre></dl>
+
+<P>
+This example represents an endorsed use of the <tt class="keyword">goto</tt> statement 
+in C!  It illustrates the use of
+<tt class="cfunction">PyErr_ExceptionMatches()</tt><a name="l2h-24">&nbsp;</a>and
+<tt class="cfunction">PyErr_Clear()</tt><a name="l2h-25">&nbsp;</a>to
+handle specific exceptions, and the use of
+<tt class="cfunction">Py_XDECREF()</tt><a name="l2h-26">&nbsp;</a>to
+dispose of owned references that may be <tt class="constant">NULL</tt> (note the
+"<tt class="character">X</tt>" in the name; <tt class="cfunction">Py_DECREF()</tt> would crash when
+confronted with a <tt class="constant">NULL</tt> reference).  It is important that the
+variables used to hold owned references are initialized to <tt class="constant">NULL</tt> for
+this to work; likewise, the proposed return value is initialized to
+<code>-1</code> (failure) and only set to success after the final call made
+is successful.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="types.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="embedding.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="types.html">1.2.2 Types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Introduction</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="embedding.html">1.4 Embedding Python</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

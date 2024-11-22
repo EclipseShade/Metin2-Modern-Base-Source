@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>14.10 sndhdr -- Determine type of sound file</title>
+<META NAME="description" CONTENT="14.10 sndhdr -- Determine type of sound file">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-imghdr.html">
+<LINK REL="up" href="mmedia.html">
+<LINK REL="next" href="crypto.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-imghdr.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="mmedia.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="crypto.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-imghdr.html">14.9 imghdr  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="crypto.html">15. Cryptographic Services</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00161000000000000000000">
+14.10 <tt class="module">sndhdr</tt> --
+         Determine type of sound file</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">sndhdr</tt> provides utility functions which attempt to
+determine the type of sound data which is in a file.  When these
+functions are able to determine what type of sound data is stored in a
+file, they return a tuple <code>(<var>type</var>, <var>sampling_rate</var>,
+<var>channels</var>, <var>frames</var>, <var>bits_per_sample</var>)</code>.  The value for
+<var>type</var> indicates the data type and will be one of the strings
+<code>'aifc'</code>, <code>'aiff'</code>, <code>'au'</code>, <code>'hcom'</code>,
+<code>'sndr'</code>, <code>'sndt'</code>, <code>'voc'</code>, <code>'wav'</code>,
+<code>'8svx'</code>, <code>'sb'</code>, <code>'ub'</code>, or <code>'ul'</code>.  The
+<var>sampling_rate</var> will be either the actual value or <code>0</code> if
+unknown or difficult to decode.  Similarly, <var>channels</var> will be
+either the number of channels or <code>0</code> if it cannot be determined
+or if the value is difficult to decode.  The value for <var>frames</var>
+will be either the number of frames or <code>-1</code>.  The last item in
+the tuple, <var>bits_per_sample</var>, will either be the sample size in
+bits or <code>'A'</code> for A-LAW<a name="l2h-3608">&nbsp;</a>or <code>'U'</code> for
+u-LAW<a name="l2h-3609">&nbsp;</a>.
+
+<P>
+<dl><dt><b><a name="l2h-3606"><tt class="function">what</tt></a></b>(<var>filename</var>)
+<dd>
+  Determines the type of sound data stored in the file <var>filename</var>
+  using <tt class="function">whathdr()</tt>.  If it succeeds, returns a tuple as
+  described above, otherwise <code>None</code> is returned.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3607"><tt class="function">whathdr</tt></a></b>(<var>filename</var>)
+<dd>
+  Determines the type of sound data stored in a file based on the file 
+  header.  The name of the file is given by <var>filename</var>.  This
+  function returns a tuple as described above on success, or
+  <code>None</code>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-imghdr.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="mmedia.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="crypto.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-imghdr.html">14.9 imghdr  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="crypto.html">15. Cryptographic Services</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

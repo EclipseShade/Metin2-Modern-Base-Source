@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.6.1 Additional Methods of Message Objects </title>
+<META NAME="description" CONTENT="12.6.1 Additional Methods of Message Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-mimetools.html">
+<LINK REL="up" href="module-mimetools.html">
+<LINK REL="next" href="module-mimetypes.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-mimetools.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-mimetools.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-mimetypes.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-mimetools.html">12.6 mimetools  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-mimetools.html">12.6 mimetools  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-mimetypes.html">12.7 mimetypes  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0014610000000000000000">&nbsp;</A>
+<BR>
+12.6.1 Additional Methods of Message Objects
+            
+</H2>
+
+<P>
+The <tt class="class">Message</tt> class defines the following methods in
+addition to the <tt class="class">rfc822.Message</tt> methods:
+
+<P>
+<dl><dt><b><a name="l2h-2918"><tt class="method">getplist</tt></a></b>()
+<dd>
+Return the parameter list of the <span class="mailheader">Content-Type:</span> header.
+This is a list of strings.  For parameters of the form
+"<tt class="samp"><var>key</var>=<var>value</var></tt>", <var>key</var> is converted to lower case but
+<var>value</var> is not.  For example, if the message contains the header
+"<tt class="samp">Content-type: text/html; spam=1; Spam=2; Spam</tt>" then
+<tt class="method">getplist()</tt> will return the Python list <code>['spam=1',
+'spam=2', 'Spam']</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2919"><tt class="method">getparam</tt></a></b>(<var>name</var>)
+<dd>
+Return the <var>value</var> of the first parameter (as returned by
+<tt class="method">getplist()</tt> of the form "<tt class="samp"><var>name</var>=<var>value</var></tt>" for the
+given <var>name</var>.  If <var>value</var> is surrounded by quotes of the form
+`<code>&lt;</code>...<code>&gt;</code>' or `<code>"</code>...<code>"</code>', these are removed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2920"><tt class="method">getencoding</tt></a></b>()
+<dd>
+Return the encoding specified in the
+<span class="mailheader">Content-Transfer-Encoding:</span> message header.  If no such
+header exists, return <code>'7bit'</code>.  The encoding is converted to
+lower case.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2921"><tt class="method">gettype</tt></a></b>()
+<dd>
+Return the message type (of the form "<tt class="samp"><var>type</var>/<var>subtype</var></tt>")
+as specified in the <span class="mailheader">Content-Type:</span> header.  If no such
+header exists, return <code>'text/plain'</code>.  The type is converted to
+lower case.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2922"><tt class="method">getmaintype</tt></a></b>()
+<dd>
+Return the main type as specified in the <span class="mailheader">Content-Type:</span>
+header.  If no such header exists, return <code>'text'</code>.  The main
+type is converted to lower case.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2923"><tt class="method">getsubtype</tt></a></b>()
+<dd>
+Return the subtype as specified in the <span class="mailheader">Content-Type:</span>
+header.  If no such header exists, return <code>'plain'</code>.  The subtype
+is converted to lower case.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-mimetools.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-mimetools.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-mimetypes.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-mimetools.html">12.6 mimetools  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-mimetools.html">12.6 mimetools  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-mimetypes.html">12.7 mimetypes  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

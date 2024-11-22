@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.2.6 Exception classes</title>
+<META NAME="description" CONTENT="12.2.6 Exception classes">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-email.Utils.html">
+<LINK REL="previous" href="module-email.Encoders.html">
+<LINK REL="up" href="module-email.html">
+<LINK REL="next" href="module-email.Utils.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-email.Encoders.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-email.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-email.Utils.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-email.Encoders.html">12.2.5 Encoders</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-email.html">12.2 email  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-email.Utils.html">12.2.7 Miscellaneous utilities</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0014260000000000000000">
+12.2.6 Exception classes</A>
+</H2>
+
+
+<P>
+The following exception classes are defined in the
+<tt class="module">email.Errors</tt> module:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2846"><tt class="exception">MessageError</tt></a></b>()
+<dd>
+This is the base class for all exceptions that the <tt class="module">email</tt>
+package can raise.  It is derived from the standard
+<tt class="exception">Exception</tt> class and defines no additional methods.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2847"><tt class="exception">MessageParseError</tt></a></b>()
+<dd>
+This is the base class for exceptions thrown by the <tt class="class">Parser</tt>
+class.  It is derived from <tt class="exception">MessageError</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2848"><tt class="exception">HeaderParseError</tt></a></b>()
+<dd>
+Raised under some error conditions when parsing the <a class="rfc" name="rfcref-63779"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a> headers of
+a message, this class is derived from <tt class="exception">MessageParseError</tt>.
+It can be raised from the <tt class="method">Parser.parse()</tt> or
+<tt class="method">Parser.parsestr()</tt> methods.
+
+<P>
+Situations where it can be raised include finding a <i>Unix-From</i>
+header after the first <a class="rfc" name="rfcref-63781"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a> header of the message, finding a
+continuation line before the first <a class="rfc" name="rfcref-63783"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a> header is found, or finding
+a line in the headers which is neither a header or a continuation
+line.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2849"><tt class="exception">BoundaryError</tt></a></b>()
+<dd>
+Raised under some error conditions when parsing the <a class="rfc" name="rfcref-63785"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a> headers of
+a message, this class is derived from <tt class="exception">MessageParseError</tt>.
+It can be raised from the <tt class="method">Parser.parse()</tt> or
+<tt class="method">Parser.parsestr()</tt> methods.
+
+<P>
+Situations where it can be raised include not being able to find the
+starting or terminating boundary in a <span class="mimetype">multipart/*</span> message.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2850"><tt class="exception">MultipartConversionError</tt></a></b>()
+<dd>
+Raised when a payload is added to a <tt class="class">Message</tt> object using
+<tt class="method">add_payload()</tt>, but the payload is already a scalar and the
+message's <span class="mailheader">Content-Type:</span> main type is not either
+<span class="mimetype">multipart</span> or missing.  <tt class="exception">MultipartConversionError</tt>
+multiply inherits from <tt class="exception">MessageError</tt> and the built-in
+<tt class="exception">TypeError</tt>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-email.Encoders.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-email.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-email.Utils.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-email.Encoders.html">12.2.5 Encoders</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-email.html">12.2 email  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-email.Utils.html">12.2.7 Miscellaneous utilities</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

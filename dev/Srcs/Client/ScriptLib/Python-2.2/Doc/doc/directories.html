@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2 Directory Structure </title>
+<META NAME="description" CONTENT="2 Directory Structure ">
+<META NAME="keywords" CONTENT="doc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="doc.css">
+<link rel="first" href="doc.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="style-guide.html">
+<LINK REL="previous" href="intro.html">
+<LINK REL="up" HREF="doc.html">
+<LINK REL="next" href="style-guide.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="intro.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="doc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="style-guide.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="intro.html">1 Introduction</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="doc.html">Documenting Python</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="style-guide.html">3 Style Guide</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION000300000000000000000">&nbsp;</A>
+<BR>
+2 Directory Structure 
+</H1>
+
+<P>
+The source distribution for the standard Python documentation
+  contains a large number of directories.  While third-party documents
+  do not need to be placed into this structure or need to be placed
+  within a similar structure, it can be helpful to know where to look
+  for examples and tools when developing new documents using the
+  Python documentation tools.  This section describes this directory
+  structure.
+
+<P>
+The documentation sources are usually placed within the Python
+  source distribution as the top-level directory <span class="file">Doc/</span>, but
+  are not dependent on the Python source distribution in any way.
+
+<P>
+The <span class="file">Doc/</span> directory contains a few files and several
+  subdirectories.  The files are mostly self-explanatory, including a
+  <span class="file">README</span> and a <span class="file">Makefile</span>.  The directories fall into
+  three categories:
+
+<P>
+<dl class="definitions">
+    <dt><b><a name="l2h-1">Document Sources</a></b>
+<dd>
+	The <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> sources for each document are placed in a
+	separate directory.  These directories are given short
+	names which vaguely indicate the document in each:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Directory</b>&nbsp;</th>
+      <th align="left"><b>Document Title</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><tt class="file">api/</tt></td>
+        <td align="left"><em class="citetitle"><a
+ href="../api/api.html"
+ title="The Python/C API"
+ >The Python/C API</a></em></td>
+    <tr><td align="left" valign="baseline"><tt class="file">dist/</tt></td>
+        <td align="left"><em class="citetitle"><a
+ href="../dist/dist.html"
+ title="Distributing Python Modules"
+ >Distributing Python Modules</a></em></td>
+    <tr><td align="left" valign="baseline"><tt class="file">doc/</tt></td>
+        <td align="left"><em class="citetitle"><a
+ href="../doc/doc.html"
+ title="Documenting Python"
+ >Documenting Python</a></em></td>
+    <tr><td align="left" valign="baseline"><tt class="file">ext/</tt></td>
+        <td align="left"><em class="citetitle"><a
+ href="../ext/ext.html"
+ title="Extending and Embedding the Python Interpreter"
+ >Extending and Embedding the Python Interpreter</a></em></td>
+    <tr><td align="left" valign="baseline"><tt class="file">inst/</tt></td>
+        <td align="left"><em class="citetitle"><a
+ href="../inst/inst.html"
+ title="Installing Python Modules"
+ >Installing Python Modules</a></em></td>
+    <tr><td align="left" valign="baseline"><tt class="file">lib/</tt></td>
+        <td align="left"><em class="citetitle"><a
+ href="../lib/lib.html"
+ title="Python Library Reference"
+ >Python Library Reference</a></em></td>
+    <tr><td align="left" valign="baseline"><tt class="file">mac/</tt></td>
+        <td align="left"><em class="citetitle"><a
+ href="../mac/mac.html"
+ title="Macintosh Module Reference"
+ >Macintosh Module Reference</a></em></td>
+    <tr><td align="left" valign="baseline"><tt class="file">ref/</tt></td>
+        <td align="left"><em class="citetitle"><a
+ href="../ref/ref.html"
+ title="Python Reference Manual"
+ >Python Reference Manual</a></em></td>
+    <tr><td align="left" valign="baseline"><tt class="file">tut/</tt></td>
+        <td align="left"><em class="citetitle"><a
+ href="../tut/tut.html"
+ title="Python Tutorial"
+ >Python Tutorial</a></em></td></tbody>
+</table>
+
+<P>
+<dt><b><a name="l2h-2">Format-Specific Output</a></b>
+<dd>
+	Most output formats have a directory which contains a
+	<span class="file">Makefile</span> which controls the generation of that format
+	and provides storage for the formatted documents.  The only
+	variations within this category are the Portable Document
+        Format (PDF) and PostScript versions are placed in the
+	directories <span class="file">paper-a4/</span> and <span class="file">paper-letter/</span> (this
+	causes all the temporary files created by <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> to be kept
+	in the same place for each paper size, where they can be more
+	easily ignored).
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Directory</b>&nbsp;</th>
+      <th align="left"><b>Output Formats</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><tt class="file">html/</tt></td>
+        <td align="left">HTML output</td>
+    <tr><td align="left" valign="baseline"><tt class="file">info/</tt></td>
+        <td align="left">GNU info output</td>
+    <tr><td align="left" valign="baseline"><tt class="file">paper-a4/</tt></td>
+        <td align="left">PDF and PostScript, A4 paper</td>
+    <tr><td align="left" valign="baseline"><tt class="file">paper-letter/</tt></td>
+        <td align="left">PDF and PostScript, US-Letter paper</td></tbody>
+</table>
+
+<P>
+<dt><b><a name="l2h-3">Supplemental Files</a></b>
+<dd>
+	Some additional directories are used to store supplemental
+	files used for the various processes.  Directories are
+	included for the shared <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> document classes, the
+	<SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN>2HTML support, template files for various document
+	components, and the scripts used to perform various steps in
+	the formatting processes.
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Directory</b>&nbsp;</th>
+      <th align="left"><b>Contents</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><tt class="file">perl/</tt></td>
+        <td align="left">Support for <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN>2HTML processing</td>
+    <tr><td align="left" valign="baseline"><tt class="file">templates/</tt></td>
+        <td align="left">Example files for source documents</td>
+    <tr><td align="left" valign="baseline"><tt class="file">texinputs/</tt></td>
+        <td align="left">Style implementation for <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN></td>
+    <tr><td align="left" valign="baseline"><tt class="file">tools/</tt></td>
+        <td align="left">Custom processing scripts</td></tbody>
+</table>
+
+<P>
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="intro.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="doc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="style-guide.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="intro.html">1 Introduction</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="doc.html">Documenting Python</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="style-guide.html">3 Style Guide</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

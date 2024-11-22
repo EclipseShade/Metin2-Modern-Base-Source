@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.25.3 Internationalizing your programs and modules</title>
+<META NAME="description" CONTENT="6.25.3 Internationalizing your programs and modules">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node211.html">
+<LINK REL="previous" HREF="node201.html">
+<LINK REL="up" href="module-gettext.html">
+<LINK REL="next" HREF="node207.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node205.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-gettext.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node207.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node205.html">6.25.2.4 The Catalog constructor</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-gettext.html">6.25 gettext  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node207.html">6.25.3.1 Localizing your module</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0082530000000000000000">
+6.25.3 Internationalizing your programs and modules</A>
+</H2>
+Internationalization (I18N) refers to the operation by which a program
+is made aware of multiple languages.  Localization (L10N) refers to
+the adaptation of your program, once internationalized, to the local
+language and cultural habits.  In order to provide multilingual
+messages for your Python programs, you need to take the following
+steps:
+
+<P>
+
+<OL>
+<LI>prepare your program or module by specially marking
+          translatable strings
+</LI>
+<LI>run a suite of tools over your marked files to generate raw
+          messages catalogs
+</LI>
+<LI>create language specific translations of the message catalogs
+</LI>
+<LI>use the <tt class="module">gettext</tt> module so that message strings are
+          properly translated
+</LI>
+</OL>
+
+<P>
+In order to prepare your code for I18N, you need to look at all the
+strings in your files.  Any string that needs to be translated
+should be marked by wrapping it in <code>_('...')</code> -- that is, a call
+to the function <tt class="function">_()</tt>.  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+filename = 'mylog.txt'
+message = _('writing a log message')
+fp = open(filename, 'w')
+fp.write(message)
+fp.close()
+</pre></dl>
+
+<P>
+In this example, the string <code>'writing a log message'</code> is marked as
+a candidate for translation, while the strings <code>'mylog.txt'</code> and
+<code>'w'</code> are not.
+
+<P>
+The Python distribution comes with two tools which help you generate
+the message catalogs once you've prepared your source code.  These may
+or may not be available from a binary distribution, but they can be
+found in a source distribution, in the <span class="file">Tools/i18n</span> directory.
+
+<P>
+The <b class="program">pygettext</b><A NAME="tex2html39"
+  HREF="#foot22675"><SUP>6.4</SUP></A> program
+scans all your Python source code looking for the strings you
+previously marked as translatable.  It is similar to the GNU
+<b class="program">gettext</b> program except that it understands all the
+intricacies of Python source code, but knows nothing about C or C++
+source code.  You don't need GNU <code>gettext</code> unless you're also
+going to be translating C code (such as C extension modules).
+
+<P>
+<b class="program">pygettext</b> generates textual Uniforum-style human readable
+message catalog <span class="file">.pot</span> files, essentially structured human
+readable files which contain every marked string in the source code,
+along with a placeholder for the translation strings.
+<b class="program">pygettext</b> is a command line script that supports a similar
+command line interface as <b class="program">xgettext</b>; for details on its use,
+run:
+
+<P>
+<dl><dd><pre class="verbatim">
+pygettext.py --help
+</pre></dl>
+
+<P>
+Copies of these <span class="file">.pot</span> files are then handed over to the
+individual human translators who write language-specific versions for
+every supported natural language.  They send you back the filled in
+language-specific versions as a <span class="file">.po</span> file.  Using the
+<b class="program">msgfmt.py</b><A NAME="tex2html40"
+  HREF="#foot22676"><SUP>6.5</SUP></A> program (in the <span class="file">Tools/i18n</span> directory), you take the
+<span class="file">.po</span> files from your translators and generate the
+machine-readable <span class="file">.mo</span> binary catalog files.  The <span class="file">.mo</span>
+files are what the <tt class="module">gettext</tt> module uses for the actual
+translation processing during run-time.
+
+<P>
+How you use the <tt class="module">gettext</tt> module in your code depends on
+whether you are internationalizing your entire application or a single
+module.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot22675">...pygettext</A><A NAME="foot22675"
+ HREF="node206.html#tex2html39"><SUP>6.4</SUP></A>
+<DD>Fran&#231;ois Pinard has
+written a program called
+<b class="program">xpot</b> which does a similar job.  It is available as part of
+his <b class="program">po-utils</b> package at
+<a class="url" href="http://www.iro.umontreal.ca/contrib/po-utils/HTML">http://www.iro.umontreal.ca/contrib/po-utils/HTML</a>.
+
+<DT><A NAME="foot22676">...msgfmt.py</A><A NAME="foot22676"
+ HREF="node206.html#tex2html40"><SUP>6.5</SUP></A>
+<DD><b class="program">msgfmt.py</b> is binary
+compatible with GNU <b class="program">msgfmt</b> except that it provides a
+simpler, all-Python implementation.  With this and
+<b class="program">pygettext.py</b>, you generally won't need to install the GNU
+<b class="program">gettext</b> package to internationalize your Python
+applications.
+
+</DL>
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node207.html">6.25.3.1 Localizing your module</a>
+<LI><A href="node208.html">6.25.3.2 Localizing your application</a>
+<LI><A href="node209.html">6.25.3.3 Changing languages on the fly</a>
+<LI><A href="node210.html">6.25.3.4 Deferred translations</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node205.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-gettext.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node207.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node205.html">6.25.2.4 The Catalog constructor</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-gettext.html">6.25 gettext  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node207.html">6.25.3.1 Localizing your module</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

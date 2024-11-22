@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.2 Assert statements </title>
+<META NAME="description" CONTENT="6.2 Assert statements ">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="assignment.html">
+<LINK REL="previous" href="exprstmts.html">
+<LINK REL="up" href="simple.html">
+<LINK REL="next" href="assignment.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="exprstmts.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="simple.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="assignment.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="exprstmts.html">6.1 Expression statements</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="simple.html">6. Simple statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="assignment.html">6.3 Assignment statements</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008200000000000000000">&nbsp;</A>
+<BR>
+6.2 Assert statements 
+</H1>
+
+<P>
+Assert statements<a name="l2h-303">&nbsp;</a>are a convenient way to insert
+debugging assertions<a name="l2h-304">&nbsp;</a>into a program:
+
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-assert_statement">assert_statement</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"assert" <a href="lambda.html#tok-expression">expression</a> ["," <a href="lambda.html#tok-expression">expression</a>]</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+The simple form, "<tt class="samp">assert expression</tt>", is equivalent to
+
+<P>
+<dl><dd><pre class="verbatim">
+if __debug__:
+   if not expression: raise AssertionError
+</pre></dl>
+
+<P>
+The extended form, "<tt class="samp">assert expression1, expression2</tt>", is
+equivalent to
+
+<P>
+<dl><dd><pre class="verbatim">
+if __debug__:
+   if not expression1: raise AssertionError, expression2
+</pre></dl>
+
+<P>
+These equivalences assume that <code>__debug__</code><a name="l2h-305">&nbsp;</a>and
+<tt class="exception">AssertionError</tt><a name="l2h-306">&nbsp;</a>refer to the built-in
+variables with those names.  In the current implementation, the
+built-in variable <code>__debug__</code> is 1 under normal circumstances, 0
+when optimization is requested (command line option -O).  The current
+code generator emits no code for an assert statement when optimization
+is requested at compile time.  Note that it is unnecessary to include
+the source code for the expression that failed in the error message;
+it will be displayed as part of the stack trace.
+
+<P>
+Assignments to <code>__debug__</code> are illegal.  The value for the
+built-in variable is determined when the interpreter starts.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="exprstmts.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="simple.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="assignment.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="exprstmts.html">6.1 Expression statements</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="simple.html">6. Simple statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="assignment.html">6.3 Assignment statements</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

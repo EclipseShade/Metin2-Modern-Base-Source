@@ -1,0 +1,534 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8. Errors and Exceptions </title>
+<META NAME="description" CONTENT="8. Errors and Exceptions ">
+<META NAME="keywords" CONTENT="tut">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="tut.css">
+<link rel="first" href="tut.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node11.html">
+<LINK REL="previous" HREF="node9.html">
+<LINK REL="up" HREF="tut.html">
+<LINK REL="next" HREF="node11.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node9.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="tut.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node11.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Tutorial</td>
+<td><A HREF="node2.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node9.html">7. Input and Output</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="tut.html">Python Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node11.html">9. Classes</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="#SECTION0010100000000000000000">8.1 Syntax Errors</a>
+<LI><A href="#SECTION0010200000000000000000">8.2 Exceptions</a>
+<LI><A href="#SECTION0010300000000000000000">8.3 Handling Exceptions</a>
+<LI><A href="#SECTION0010400000000000000000">8.4 Raising Exceptions</a>
+<LI><A href="#SECTION0010500000000000000000">8.5 User-defined Exceptions</a>
+<LI><A href="#SECTION0010600000000000000000">8.6 Defining Clean-up Actions</a>
+</ul>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0010000000000000000000">&nbsp;</A>
+<BR>
+8. Errors and Exceptions 
+</H1>
+
+<P>
+Until now error messages haven't been more than mentioned, but if you
+have tried out the examples you have probably seen some.  There are
+(at least) two distinguishable kinds of errors:
+<i>syntax errors</i> and <i>exceptions</i>.
+
+<P>
+
+<H1><A NAME="SECTION0010100000000000000000">&nbsp;</A>
+<BR>
+8.1 Syntax Errors 
+</H1>
+
+<P>
+Syntax errors, also known as parsing errors, are perhaps the most common
+kind of complaint you get while you are still learning Python:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; while 1 print 'Hello world'
+  File "&lt;stdin&gt;", line 1, in ?
+    while 1 print 'Hello world'
+                ^
+SyntaxError: invalid syntax
+</pre></dl>
+
+<P>
+The parser repeats the offending line and displays a little `arrow'
+pointing at the earliest point in the line where the error was
+detected.  The error is caused by (or at least detected at) the token
+<i>preceding</i> the arrow: in the example, the error is detected at
+the keyword <tt class="keyword">print</tt>, since a colon ("<tt class="character">:</tt>") is missing
+before it.  File name and line number are printed so you know where to
+look in case the input came from a script.
+
+<P>
+
+<H1><A NAME="SECTION0010200000000000000000">&nbsp;</A>
+<BR>
+8.2 Exceptions 
+</H1>
+
+<P>
+Even if a statement or expression is syntactically correct, it may
+cause an error when an attempt is made to execute it.
+Errors detected during execution are called <i>exceptions</i> and are
+not unconditionally fatal: you will soon learn how to handle them in
+Python programs.  Most exceptions are not handled by programs,
+however, and result in error messages as shown here:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; 10 * (1/0)
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+ZeroDivisionError: integer division or modulo
+&gt;&gt;&gt; 4 + spam*3
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+NameError: spam
+&gt;&gt;&gt; '2' + 2
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+TypeError: illegal argument type for built-in operation
+</pre></dl>
+
+<P>
+The last line of the error message indicates what happened.
+Exceptions come in different types, and the type is printed as part of
+the message: the types in the example are
+<tt class="exception">ZeroDivisionError</tt>, <tt class="exception">NameError</tt> and
+<tt class="exception">TypeError</tt>.
+The string printed as the exception type is the name of the built-in
+name for the exception that occurred.  This is true for all built-in
+exceptions, but need not be true for user-defined exceptions (although
+it is a useful convention).
+Standard exception names are built-in identifiers (not reserved
+keywords).
+
+<P>
+The rest of the line is a detail whose interpretation depends on the
+exception type; its meaning is dependent on the exception type.
+
+<P>
+The preceding part of the error message shows the context where the
+exception happened, in the form of a stack backtrace.
+In general it contains a stack backtrace listing source lines; however,
+it will not display lines read from standard input.
+
+<P>
+The <em class="citetitle"><a
+ href="../lib/module-exceptions.html"
+ title="Python Library
+Reference"
+ >Python Library
+Reference</a></em> lists the built-in exceptions and their meanings.
+
+<P>
+
+<H1><A NAME="SECTION0010300000000000000000">&nbsp;</A>
+<BR>
+8.3 Handling Exceptions 
+</H1>
+
+<P>
+It is possible to write programs that handle selected exceptions.
+Look at the following example, which asks the user for input until a
+valid integer has been entered, but allows the user to interrupt the
+program (using <kbd>Control-C</kbd> or whatever the operating system
+supports); note that a user-generated interruption is signalled by
+raising the <tt class="exception">KeyboardInterrupt</tt> exception.
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; while 1:
+...     try:
+...         x = int(raw_input("Please enter a number: "))
+...         break
+...     except ValueError:
+...         print "Oops! That was no valid number.  Try again..."
+...
+</pre></dl>
+
+<P>
+The <tt class="keyword">try</tt> statement works as follows.
+
+<P>
+
+<UL>
+<LI>First, the <i>try clause</i> (the statement(s) between the
+<tt class="keyword">try</tt> and <tt class="keyword">except</tt> keywords) is executed.
+
+<P>
+</LI>
+<LI>If no exception occurs, the <i>except clause</i> is skipped and
+execution of the <tt class="keyword">try</tt> statement is finished.
+
+<P>
+</LI>
+<LI>If an exception occurs during execution of the try clause, the rest of
+the clause is skipped.  Then if its type matches the exception named
+after the <tt class="keyword">except</tt> keyword, the rest of the try clause is
+skipped, the except clause is executed, and then execution continues
+after the <tt class="keyword">try</tt> statement.
+
+<P>
+</LI>
+<LI>If an exception occurs which does not match the exception named in the
+except clause, it is passed on to outer <tt class="keyword">try</tt> statements; if
+no handler is found, it is an <i>unhandled exception</i> and execution
+stops with a message as shown above.
+
+<P>
+</LI>
+</UL>
+
+<P>
+A <tt class="keyword">try</tt> statement may have more than one except clause, to
+specify handlers for different exceptions.  At most one handler will
+be executed.  Handlers only handle exceptions that occur in the
+corresponding try clause, not in other handlers of the same
+<tt class="keyword">try</tt> statement.  An except clause may name multiple exceptions
+as a parenthesized list, for example:
+
+<P>
+<dl><dd><pre class="verbatim">
+... except (RuntimeError, TypeError, NameError):
+...     pass
+</pre></dl>
+
+<P>
+The last except clause may omit the exception name(s), to serve as a
+wildcard.  Use this with extreme caution, since it is easy to mask a
+real programming error in this way!  It can also be used to print an
+error message and then re-raise the exception (allowing a caller to
+handle the exception as well):
+
+<P>
+<dl><dd><pre class="verbatim">
+import string, sys
+
+try:
+    f = open('myfile.txt')
+    s = f.readline()
+    i = int(string.strip(s))
+except IOError, (errno, strerror):
+    print "I/O error(%s): %s" % (errno, strerror)
+except ValueError:
+    print "Could not convert data to an integer."
+except:
+    print "Unexpected error:", sys.exc_info()[0]
+    raise
+</pre></dl>
+
+<P>
+The <tt class="keyword">try</tt> ... <tt class="keyword">except</tt> statement has an optional
+<i>else clause</i>, which, when present, must follow all except
+clauses.  It is useful for code that must be executed if the try
+clause does not raise an exception.  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+for arg in sys.argv[1:]:
+    try:
+        f = open(arg, 'r')
+    except IOError:
+        print 'cannot open', arg
+    else:
+        print arg, 'has', len(f.readlines()), 'lines'
+        f.close()
+</pre></dl>
+
+<P>
+The use of the <tt class="keyword">else</tt> clause is better than adding additional
+code to the <tt class="keyword">try</tt> clause because it avoids accidentally
+catching an exception that wasn't raised by the code being protected
+by the <tt class="keyword">try</tt> ... <tt class="keyword">except</tt> statement.
+
+<P>
+When an exception occurs, it may have an associated value, also known as
+the exception's <i>argument</i>.
+The presence and type of the argument depend on the exception type.
+For exception types which have an argument, the except clause may
+specify a variable after the exception name (or list) to receive the
+argument's value, as follows:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; try:
+...     spam()
+... except NameError, x:
+...     print 'name', x, 'undefined'
+... 
+name spam undefined
+</pre></dl>
+
+<P>
+If an exception has an argument, it is printed as the last part
+(`detail') of the message for unhandled exceptions.
+
+<P>
+Exception handlers don't just handle exceptions if they occur
+immediately in the try clause, but also if they occur inside functions
+that are called (even indirectly) in the try clause.
+For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; def this_fails():
+...     x = 1/0
+... 
+&gt;&gt;&gt; try:
+...     this_fails()
+... except ZeroDivisionError, detail:
+...     print 'Handling run-time error:', detail
+... 
+Handling run-time error: integer division or modulo
+</pre></dl>
+
+<P>
+
+<H1><A NAME="SECTION0010400000000000000000">&nbsp;</A>
+<BR>
+8.4 Raising Exceptions 
+</H1>
+
+<P>
+The <tt class="keyword">raise</tt> statement allows the programmer to force a
+specified exception to occur.
+For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; raise NameError, 'HiThere'
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+NameError: HiThere
+</pre></dl>
+
+<P>
+The first argument to <tt class="keyword">raise</tt> names the exception to be
+raised.  The optional second argument specifies the exception's
+argument.
+
+<P>
+If you need to determine whether an exception was raised but don't
+intend to handle it, a simpler form of the <tt class="keyword">raise</tt> statement
+allows you to re-raise the exception:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; try:
+...     raise NameError, 'HiThere'
+... except NameError:
+...     print 'An exception flew by!'
+...     raise
+...
+An exception flew by!
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 2, in ?
+NameError: HiThere
+</pre></dl>
+
+<P>
+
+<H1><A NAME="SECTION0010500000000000000000">&nbsp;</A>
+<BR>
+8.5 User-defined Exceptions 
+</H1>
+
+<P>
+Programs may name their own exceptions by creating a new exception
+class.  Exceptions should typically be derived from the
+<tt class="exception">Exception</tt> class, either directly or indirectly.  For
+example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; class MyError(Exception):
+...     def __init__(self, value):
+...         self.value = value
+...     def __str__(self):
+...         return `self.value`
+... 
+&gt;&gt;&gt; try:
+...     raise MyError(2*2)
+... except MyError, e:
+...     print 'My exception occurred, value:', e.value
+... 
+My exception occurred, value: 4
+&gt;&gt;&gt; raise MyError, 'oops!'
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+__main__.MyError: 'oops!'
+</pre></dl>
+
+<P>
+Exception classes can be defined which do anything any other class can
+do, but are usually kept simple, often only offering a number of
+attributes that allow information about the error to be extracted by
+handlers for the exception.  When creating a module which can raise
+several distinct errors, a common practice is to create a base class
+for exceptions defined by that module, and subclass that to create
+specific exception classes for different error conditions:
+
+<P>
+<dl><dd><pre class="verbatim">
+class Error(Exception):
+    """Base class for exceptions in this module."""
+    pass
+
+class InputError(Error):
+    """Exception raised for errors in the input.
+
+    Attributes:
+        expression -- input expression in which the error occurred
+        message -- explanation of the error
+    """
+
+    def __init__(self, expression, message):
+        self.expression = expression
+        self.message = message
+
+class TransitionError(Error):
+    """Raised when an operation attempts a state transition that's not
+    allowed.
+
+    Attributes:
+        previous -- state at beginning of transition
+        next -- attempted new state
+        message -- explanation of why the specific transition is not allowed
+    """
+
+    def __init__(self, previous, next, message):
+        self.previous = previous
+        self.next = next
+        self.message = message
+</pre></dl>
+
+<P>
+Most exceptions are defined with names that end in ``Error,'' similar
+to the naming of the standard exceptions.
+
+<P>
+Many standard modules define their own exceptions to report errors
+that may occur in functions they define.  More information on classes
+is presented in chapter <A HREF="node11.html#classes">9</A>, ``Classes.''
+
+<P>
+
+<H1><A NAME="SECTION0010600000000000000000">&nbsp;</A>
+<BR>
+8.6 Defining Clean-up Actions 
+</H1>
+
+<P>
+The <tt class="keyword">try</tt> statement has another optional clause which is
+intended to define clean-up actions that must be executed under all
+circumstances.  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; try:
+...     raise KeyboardInterrupt
+... finally:
+...     print 'Goodbye, world!'
+... 
+Goodbye, world!
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 2, in ?
+KeyboardInterrupt
+</pre></dl>
+
+<P>
+A <i>finally clause</i> is executed whether or not an exception has
+occurred in the try clause.  When an exception has occurred, it is
+re-raised after the finally clause is executed.  The finally clause is
+also executed ``on the way out'' when the <tt class="keyword">try</tt> statement is
+left via a <tt class="keyword">break</tt> or <tt class="keyword">return</tt> statement.
+
+<P>
+The code in the finally clause is useful for releasing external
+resources (such as files or network connections), regardless of
+whether or not the use of the resource was successful.
+
+<P>
+A <tt class="keyword">try</tt> statement must either have one or more except clauses
+or one finally clause, but not both.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node9.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="tut.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node11.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Tutorial</td>
+<td><A HREF="node2.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node9.html">7. Input and Output</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="tut.html">Python Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node11.html">9. Classes</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

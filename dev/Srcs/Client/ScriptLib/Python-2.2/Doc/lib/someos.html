@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7. Optional Operating System Services</title>
+<META NAME="description" CONTENT="7. Optional Operating System Services">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="unix.html">
+<LINK REL="previous" href="allos.html">
+<LINK REL="up" HREF="lib.html">
+<LINK REL="next" href="module-signal.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node211.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-signal.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node211.html">6.25.4 Acknowledgements</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-signal.html">7.1 signal  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION009000000000000000000">&nbsp;</A>
+<BR>
+7. Optional Operating System Services
+</H1>
+
+<P>
+The modules described in this chapter provide interfaces to operating
+system features that are available on selected operating systems only.
+The interfaces are generally modeled after the Unix or C
+interfaces but they are available on some other systems as well
+(e.g. Windows or NT).  Here's an overview:
+
+<P>
+<table class='synopsistable' valign='baseline'>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-signal.html'>signal</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Set handlers for asynchronous events.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-socket.html'>socket</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Low-level networking interface.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-select.html'>select</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Wait for I/O completion on multiple streams.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-thread.html'>thread</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Create multiple threads of control within one interpreter.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-threading.html'>threading</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Higher-level threading interface.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-Queue.html'>Queue</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>A synchronized queue class.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-mmap.html'>mmap</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to memory-mapped files for Unix and Windows.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-anydbm.html'>anydbm</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Generic interface to DBM-style database modules.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-dumbdbm.html'>dumbdbm</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Portable implementation of the simple DBM interface.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-dbhash.html'>dbhash</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>DBM-style interface to the BSD database library.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-whichdb.html'>whichdb</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Guess which DBM-style module created a given database.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-bsddb.html'>bsddb</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to Berkeley DB database library</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-zlib.html'>zlib</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Low-level interface to compression and decompression
+                routines compatible with <b class="program">gzip</b>.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-gzip.html'>gzip</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interfaces for <b class="program">gzip</b> compression and
+decompression using file objects.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-zipfile.html'>zipfile</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Read and write ZIP-format archive files.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-readline.html'>readline</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>GNU readline support for Python.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-rlcompleter.html'>rlcompleter</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Python identifier completion for the GNU readline library.</td></tr>
+</table>
+
+<BR>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node211.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-signal.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node211.html">6.25.4 Acknowledgements</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-signal.html">7.1 signal  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

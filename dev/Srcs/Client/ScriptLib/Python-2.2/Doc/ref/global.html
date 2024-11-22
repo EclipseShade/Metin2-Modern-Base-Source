@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.13 The global statement </title>
+<META NAME="description" CONTENT="6.13 The global statement ">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="exec.html">
+<LINK REL="previous" href="import.html">
+<LINK REL="up" href="simple.html">
+<LINK REL="next" href="exec.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="import.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="simple.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="exec.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="import.html">6.12 The import statement</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="simple.html">6. Simple statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="exec.html">6.14 The exec statement</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0081300000000000000000">&nbsp;</A>
+<BR>
+6.13 The <tt class="keyword">global</tt> statement 
+</H1>
+<a name="l2h-362">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-global_stmt">global_stmt</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"global" <a href="identifiers.html#tok-identifier">identifier</a> ("," <a href="identifiers.html#tok-identifier">identifier</a>)*</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+The <tt class="keyword">global</tt> statement is a declaration which holds for the
+entire current code block.  It means that the listed identifiers are to be
+interpreted as globals.  While <i>using</i> global names is automatic
+if they are not defined in the local scope, <i>assigning</i> to global
+names would be impossible without <tt class="keyword">global</tt>.
+<a name="l2h-363">&nbsp;</a>
+<P>
+Names listed in a <tt class="keyword">global</tt> statement must not be used in the same
+code block textually preceding that <tt class="keyword">global</tt> statement.
+
+<P>
+Names listed in a <tt class="keyword">global</tt> statement must not be defined as formal
+parameters or in a <tt class="keyword">for</tt> loop control target, <tt class="keyword">class</tt>
+definition, function definition, or <tt class="keyword">import</tt> statement.
+
+<P>
+(The current implementation does not enforce the latter two
+restrictions, but programs should not abuse this freedom, as future
+implementations may enforce them or silently change the meaning of the
+program.)
+
+<P>
+<b>Programmer's note:</b>
+the <tt class="keyword">global</tt> is a directive to the parser.  It
+applies only to code parsed at the same time as the <tt class="keyword">global</tt>
+statement.  In particular, a <tt class="keyword">global</tt> statement contained in an
+<tt class="keyword">exec</tt> statement does not affect the code block <i>containing</i>
+the <tt class="keyword">exec</tt> statement, and code contained in an <tt class="keyword">exec</tt>
+statement is unaffected by <tt class="keyword">global</tt> statements in the code
+containing the <tt class="keyword">exec</tt> statement.  The same applies to the
+<tt class="function">eval()</tt>, <tt class="function">execfile()</tt> and <tt class="function">compile()</tt> functions.
+<a name="l2h-364">&nbsp;</a>
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="import.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="simple.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="exec.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="import.html">6.12 The import statement</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="simple.html">6. Simple statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="exec.html">6.14 The exec statement</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

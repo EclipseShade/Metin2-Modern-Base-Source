@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.2.2 Object Representation</title>
+<META NAME="description" CONTENT="2.2.2 Object Representation">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node25.html">
+<LINK REL="previous" HREF="node23.html">
+<LINK REL="up" href="dnt-type-methods.html">
+<LINK REL="next" HREF="node25.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node23.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dnt-type-methods.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node25.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node23.html">2.2.1 Finalization and De-allocation</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dnt-type-methods.html">2.2 Type Methods</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node25.html">2.2.3 Attribute Management Functions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004220000000000000000">
+2.2.2 Object Representation</A>
+</H2>
+
+<P>
+In Python, there are three ways to generate a textual representation
+of an object: the <tt class="function">repr()</tt><a name="l2h-6">&nbsp;</a>function (or
+equivalent backtick syntax), the <tt class="function">str()</tt><a name="l2h-7">&nbsp;</a>function, and the <tt class="keyword">print</tt> statement.  For most objects, the
+<tt class="keyword">print</tt> statement is equivalent to the <tt class="function">str()</tt>
+function, but it is possible to special-case printing to a
+<tt class="ctype">FILE*</tt> if necessary; this should only be done if efficiency is
+identified as a problem and profiling suggests that creating a
+temporary string object to be written to a file is too expensive.
+
+<P>
+These handlers are all optional, and most types at most need to
+implement the <tt class="member">tp_str</tt> and <tt class="member">tp_repr</tt> handlers.
+
+<P>
+<dl><dd><pre class="verbatim">
+    reprfunc tp_repr;
+    reprfunc tp_str;
+    printfunc tp_print;
+</pre></dl>
+
+<P>
+The <tt class="member">tp_repr</tt> handler should return a string object containing
+a representation of the instance for which it is called.  Here is a
+simple example:
+
+<P>
+<dl><dd><pre class="verbatim">
+static PyObject *
+newdatatype_repr(newdatatypeobject * obj)
+{
+    return PyString_FromFormat("Repr-ified_newdatatype{{size:\%d}}",
+            obj-&gt;obj_UnderlyingDatatypePtr-&gt;size);
+}
+</pre></dl>
+
+<P>
+If no <tt class="member">tp_repr</tt> handler is specified, the interpreter will
+supply a representation that uses the type's <tt class="member">tp_name</tt> and a
+uniquely-identifying value for the object.
+
+<P>
+The <tt class="member">tp_str</tt> handler is to <tt class="function">str()</tt> what the
+<tt class="member">tp_repr</tt> handler described above is to <tt class="function">repr()</tt>; that
+is, it is called when Python code calls <tt class="function">str()</tt> on an
+instance of your object.  It's implementation is very similar to the
+<tt class="member">tp_repr</tt> function, but the resulting string is intended for
+human consumption.  It <tt class="member">tp_str</tt> is not specified, the
+<tt class="member">tp_repr</tt> handler is used instead.
+
+<P>
+Here is a simple example:
+
+<P>
+<dl><dd><pre class="verbatim">
+static PyObject *
+newdatatype_str(newdatatypeobject * obj)
+{
+    return PyString_FromFormat("Stringified_newdatatype{{size:\%d}}",
+        obj-&gt;obj_UnderlyingDatatypePtr-&gt;size
+        );
+}
+</pre></dl>
+
+<P>
+The print function will be called whenever Python needs to "print" an
+instance of the type.  For example, if 'node' is an instance of type
+TreeNode, then the print function is called when Python code calls:
+
+<P>
+<dl><dd><pre class="verbatim">
+print node
+</pre></dl>
+
+<P>
+There is a flags argument and one flag, <tt class="constant">Py_PRINT_RAW</tt>, and
+it suggests that you print without string quotes and possibly without
+interpreting escape sequences.
+
+<P>
+The print function receives a file object as an argument. You will
+likely want to write to that file object.
+
+<P>
+Here is a sampe print function:
+
+<P>
+<dl><dd><pre class="verbatim">
+static int
+newdatatype_print(newdatatypeobject *obj, FILE *fp, int flags)
+{
+    if (flags &amp; Py_PRINT_RAW) {
+        fprintf(fp, "&lt;{newdatatype object--size: %d}&gt;",
+                obj-&gt;obj_UnderlyingDatatypePtr-&gt;size);
+    }
+    else {
+        fprintf(fp, "\"&lt;{newdatatype object--size: %d}&gt;\"",
+                obj-&gt;obj_UnderlyingDatatypePtr-&gt;size);
+    }
+    return 0;
+}
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node23.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dnt-type-methods.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node25.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node23.html">2.2.1 Finalization and De-allocation</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dnt-type-methods.html">2.2 Type Methods</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node25.html">2.2.3 Attribute Management Functions</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

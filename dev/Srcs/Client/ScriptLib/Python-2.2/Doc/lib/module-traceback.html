@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.12 traceback -- Print or retrieve a stack traceback</title>
+<META NAME="description" CONTENT="3.12 traceback -- Print or retrieve a stack traceback">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-linecache.html">
+<LINK REL="previous" href="module-inspect.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="traceback-example.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="inspect-stack.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="traceback-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="inspect-stack.html">3.11.4 The interpreter stack</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="traceback-example.html">3.12.1 Traceback Example</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0051200000000000000000">
+3.12 <tt class="module">traceback</tt> --
+         Print or retrieve a stack traceback</A>
+</H1>
+
+<P>
+
+
+<P>
+This module provides a standard interface to extract, format and print
+stack traces of Python programs.  It exactly mimics the behavior of
+the Python interpreter when it prints a stack trace.  This is useful
+when you want to print stack traces under program control, e.g. in a
+``wrapper'' around the interpreter.
+
+<P>
+The module uses traceback objects -- this is the object type
+that is stored in the variables <code>sys.exc_traceback</code> and
+<code>sys.last_traceback</code> and returned as the third item from
+<tt class="function">sys.exc_info()</tt>.
+<a name="l2h-505">&nbsp;</a>
+<P>
+The module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-492"><tt class="function">print_tb</tt></a></b>(<var>traceback</var><big>[</big><var>, limit</var><big>[</big><var>, file</var><big>]</big><big>]</big>)
+<dd>
+Print up to <var>limit</var> stack trace entries from <var>traceback</var>.  If
+<var>limit</var> is omitted or <code>None</code>, all entries are printed.
+If <var>file</var> is omitted or <code>None</code>, the output goes to
+<code>sys.stderr</code>; otherwise it should be an open file or file-like
+object to receive the output.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-493"><tt class="function">print_exception</tt></a></b>(<var>type, value, traceback</var><big>[</big><var>,
+                                  limit</var><big>[</big><var>, file</var><big>]</big><big>]</big>)
+<dd>
+Print exception information and up to <var>limit</var> stack trace entries
+from <var>traceback</var> to <var>file</var>.
+This differs from <tt class="function">print_tb()</tt> in the
+following ways: (1) if <var>traceback</var> is not <code>None</code>, it prints a
+header "<tt class="samp">Traceback (most recent call last):</tt>"; (2) it prints the
+exception <var>type</var> and <var>value</var> after the stack trace; (3) if
+<var>type</var> is <tt class="exception">SyntaxError</tt> and <var>value</var> has the appropriate
+format, it prints the line where the syntax error occurred with a
+caret indicating the approximate position of the error.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-494"><tt class="function">print_exc</tt></a></b>(<big>[</big><var>limit</var><big>[</big><var>, file</var><big>]</big><big>]</big>)
+<dd>
+This is a shorthand for `<code>print_exception(sys.exc_type,</code>
+<code>sys.exc_value,</code> <code>sys.exc_traceback,</code> <var>limit</var><code>,</code>
+<var>file</var><code>)</code>'.  (In fact, it uses <code>sys.exc_info()</code> to
+retrieve the same information in a thread-safe way.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-495"><tt class="function">print_last</tt></a></b>(<big>[</big><var>limit</var><big>[</big><var>, file</var><big>]</big><big>]</big>)
+<dd>
+This is a shorthand for `<code>print_exception(sys.last_type,</code>
+<code>sys.last_value,</code> <code>sys.last_traceback,</code> <var>limit</var><code>,</code>
+<var>file</var><code>)</code>'.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-496"><tt class="function">print_stack</tt></a></b>(<big>[</big><var>f</var><big>[</big><var>, limit</var><big>[</big><var>, file</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+This function prints a stack trace from its invocation point.  The
+optional <var>f</var> argument can be used to specify an alternate stack
+frame to start.  The optional <var>limit</var> and <var>file</var> arguments have the
+same meaning as for <tt class="function">print_exception()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-497"><tt class="function">extract_tb</tt></a></b>(<var>traceback</var><big>[</big><var>, limit</var><big>]</big>)
+<dd>
+Return a list of up to <var>limit</var> ``pre-processed'' stack trace
+entries extracted from the traceback object <var>traceback</var>.  It is
+useful for alternate formatting of stack traces.  If <var>limit</var> is
+omitted or <code>None</code>, all entries are extracted.  A
+``pre-processed'' stack trace entry is a quadruple (<var>filename</var>,
+<var>line number</var>, <var>function name</var>, <var>text</var>) representing
+the information that is usually printed for a stack trace.  The
+<var>text</var> is a string with leading and trailing whitespace
+stripped; if the source is not available it is <code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-498"><tt class="function">extract_stack</tt></a></b>(<big>[</big><var>f</var><big>[</big><var>, limit</var><big>]</big><big>]</big>)
+<dd>
+Extract the raw traceback from the current stack frame.  The return
+value has the same format as for <tt class="function">extract_tb()</tt>.  The
+optional <var>f</var> and <var>limit</var> arguments have the same meaning as
+for <tt class="function">print_stack()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-499"><tt class="function">format_list</tt></a></b>(<var>list</var>)
+<dd>
+Given a list of tuples as returned by <tt class="function">extract_tb()</tt> or
+<tt class="function">extract_stack()</tt>, return a list of strings ready for
+printing.  Each string in the resulting list corresponds to the item
+with the same index in the argument list.  Each string ends in a
+newline; the strings may contain internal newlines as well, for those
+items whose source text line is not <code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-500"><tt class="function">format_exception_only</tt></a></b>(<var>type, value</var>)
+<dd>
+Format the exception part of a traceback.  The arguments are the
+exception type and value such as given by <code>sys.last_type</code> and
+<code>sys.last_value</code>.  The return value is a list of strings, each
+ending in a newline.  Normally, the list contains a single string;
+however, for <code>SyntaxError</code> exceptions, it contains several lines
+that (when printed) display detailed information about where the
+syntax error occurred.  The message indicating which exception
+occurred is the always last string in the list.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-501"><tt class="function">format_exception</tt></a></b>(<var>type, value, tb</var><big>[</big><var>, limit</var><big>]</big>)
+<dd>
+Format a stack trace and the exception information.  The arguments 
+have the same meaning as the corresponding arguments to
+<tt class="function">print_exception()</tt>.  The return value is a list of strings,
+each ending in a newline and some containing internal newlines.  When
+these lines are concatenated and printed, exactly the same text is
+printed as does <tt class="function">print_exception()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-502"><tt class="function">format_tb</tt></a></b>(<var>tb</var><big>[</big><var>, limit</var><big>]</big>)
+<dd>
+A shorthand for <code>format_list(extract_tb(<var>tb</var>, <var>limit</var>))</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-503"><tt class="function">format_stack</tt></a></b>(<big>[</big><var>f</var><big>[</big><var>, limit</var><big>]</big><big>]</big>)
+<dd>
+A shorthand for <code>format_list(extract_stack(<var>f</var>, <var>limit</var>))</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-504"><tt class="function">tb_lineno</tt></a></b>(<var>tb</var>)
+<dd>
+This function returns the current line number set in the traceback
+object.  This is normally the same as the <code><var>tb</var>.tb_lineno</code>
+field of the object, but when optimization is used (the -O flag) this
+field is not updated correctly; this function calculates the correct
+value.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="traceback-example.html">3.12.1 Traceback Example</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="inspect-stack.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="traceback-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="inspect-stack.html">3.11.4 The interpreter stack</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="traceback-example.html">3.12.1 Traceback Example</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

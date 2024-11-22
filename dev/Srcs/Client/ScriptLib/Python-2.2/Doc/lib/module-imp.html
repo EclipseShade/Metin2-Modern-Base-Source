@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.21 imp -- Access the import internals</title>
+<META NAME="description" CONTENT="3.21 imp -- Access the import internals">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-code.html">
+<LINK REL="previous" href="module-warnings.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="examples-imp.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="warning-functions.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="examples-imp.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="warning-functions.html">3.20.3 Available Functions</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="examples-imp.html">3.21.1 Examples</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0052100000000000000000">
+3.21 <tt class="module">imp</tt> --
+         Access the <tt class="keyword">import</tt> internals</A>
+</H1>
+
+<P>
+
+
+<P>
+This<a name="l2h-590">&nbsp;</a>module provides an interface to the mechanisms
+used to implement the <tt class="keyword">import</tt> statement.  It defines the
+following constants and functions:
+
+<P>
+<dl><dt><b><a name="l2h-569"><tt class="function">get_magic</tt></a></b>()
+<dd>
+<a name="l2h-591">&nbsp;</a>Return the magic string value used to recognize byte-compiled code
+files (<span class="file">.pyc</span> files).  (This value may be different for each
+Python version.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-570"><tt class="function">get_suffixes</tt></a></b>()
+<dd>
+Return a list of triples, each describing a particular type of module.
+Each triple has the form <code>(<var>suffix</var>, <var>mode</var>,
+<var>type</var>)</code>, where <var>suffix</var> is a string to be appended to the
+module name to form the filename to search for, <var>mode</var> is the mode
+string to pass to the built-in <tt class="function">open()</tt> function to open the
+file (this can be <code>'r'</code> for text files or <code>'rb'</code> for binary
+files), and <var>type</var> is the file type, which has one of the values
+<tt class="constant">PY_SOURCE</tt>, <tt class="constant">PY_COMPILED</tt>, or
+<tt class="constant">C_EXTENSION</tt>, described below.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-571"><tt class="function">find_module</tt></a></b>(<var>name</var><big>[</big><var>, path</var><big>]</big>)
+<dd>
+Try to find the module <var>name</var> on the search path <var>path</var>.  If
+<var>path</var> is a list of directory names, each directory is searched
+for files with any of the suffixes returned by <tt class="function">get_suffixes()</tt>
+above.  Invalid names in the list are silently ignored (but all list
+items must be strings).  If <var>path</var> is omitted or <code>None</code>, the
+list of directory names given by <code>sys.path</code> is searched, but
+first it searches a few special places: it tries to find a built-in
+module with the given name (<tt class="constant">C_BUILTIN</tt>), then a frozen module
+(<tt class="constant">PY_FROZEN</tt>), and on some systems some other places are looked
+in as well (on the Mac, it looks for a resource (<tt class="constant">PY_RESOURCE</tt>);
+on Windows, it looks in the registry which may point to a specific
+file).
+
+<P>
+If search is successful, the return value is a triple
+<code>(<var>file</var>, <var>pathname</var>, <var>description</var>)</code> where
+<var>file</var> is an open file object positioned at the beginning,
+<var>pathname</var> is the pathname of the
+file found, and <var>description</var> is a triple as contained in the list
+returned by <tt class="function">get_suffixes()</tt> describing the kind of module found.
+If the module does not live in a file, the returned <var>file</var> is
+<code>None</code>, <var>filename</var> is the empty string, and the
+<var>description</var> tuple contains empty strings for its suffix and
+mode; the module type is as indicate in parentheses above.  If the
+search is unsuccessful, <tt class="exception">ImportError</tt> is raised.  Other
+exceptions indicate problems with the arguments or environment.
+
+<P>
+This function does not handle hierarchical module names (names
+containing dots).  In order to find <var>P</var>.<var>M</var>, that is, submodule
+<var>M</var> of package <var>P</var>, use <tt class="function">find_module()</tt> and
+<tt class="function">load_module()</tt> to find and load package <var>P</var>, and then use
+<tt class="function">find_module()</tt> with the <var>path</var> argument set to
+<code><var>P</var>.__path__</code>.  When <var>P</var> itself has a dotted name, apply
+this recipe recursively.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-572"><tt class="function">load_module</tt></a></b>(<var>name, file, filename, description</var>)
+<dd>
+Load a module that was previously found by <tt class="function">find_module()</tt> (or by
+an otherwise conducted search yielding compatible results).  This
+function does more than importing the module: if the module was
+already imported, it is equivalent to a
+<tt class="function">reload()</tt><a name="l2h-592">&nbsp;</a>!  The <var>name</var> argument
+indicates the full module name (including the package name, if this is
+a submodule of a package).  The <var>file</var> argument is an open file,
+and <var>filename</var> is the corresponding file name; these can be
+<code>None</code> and <code>''</code>, respectively, when the module is not being
+loaded from a file.  The <var>description</var> argument is a tuple, as
+would be returned by <tt class="function">get_suffixes()</tt>, describing what kind
+of module must be loaded.
+
+<P>
+If the load is successful, the return value is the module object;
+otherwise, an exception (usually <tt class="exception">ImportError</tt>) is raised.
+
+<P>
+<b>Important:</b> the caller is responsible for closing the
+<var>file</var> argument, if it was not <code>None</code>, even when an exception
+is raised.  This is best done using a <tt class="keyword">try</tt>
+... <tt class="keyword">finally</tt> statement.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-573"><tt class="function">new_module</tt></a></b>(<var>name</var>)
+<dd>
+Return a new empty module object called <var>name</var>.  This object is
+<i>not</i> inserted in <code>sys.modules</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-574"><tt class="function">lock_held</tt></a></b>()
+<dd>
+Return 1 if the import lock is currently held, else 0.
+On platforms without threads, always return 0.
+
+<P>
+On platforms with threads, a thread executing an import holds an internal
+lock until the import is complete.
+This lock blocks other threads from doing an import until the original
+import completes, which in turn prevents other threads from seeing
+incomplete module objects constructed by the original thread while in
+the process of completing its import (and the imports, if any,
+triggered by that).
+</dl>
+
+<P>
+The following constants with integer values, defined in this module,
+are used to indicate the search result of <tt class="function">find_module()</tt>.
+
+<P>
+<dl><dt><b><a name="l2h-575"><tt>PY_SOURCE</tt></a></b>
+<dd>
+The module was found as a source file.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-576"><tt>PY_COMPILED</tt></a></b>
+<dd>
+The module was found as a compiled code object file.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-577"><tt>C_EXTENSION</tt></a></b>
+<dd>
+The module was found as dynamically loadable shared library.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-578"><tt>PY_RESOURCE</tt></a></b>
+<dd>
+The module was found as a Macintosh resource.  This value can only be
+returned on a Macintosh.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-579"><tt>PKG_DIRECTORY</tt></a></b>
+<dd>
+The module was found as a package directory.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-580"><tt>C_BUILTIN</tt></a></b>
+<dd>
+The module was found as a built-in module.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-581"><tt>PY_FROZEN</tt></a></b>
+<dd>
+The module was found as a frozen module (see <tt class="function">init_frozen()</tt>).
+</dl>
+
+<P>
+The following constant and functions are obsolete; their functionality
+is available through <tt class="function">find_module()</tt> or <tt class="function">load_module()</tt>.
+They are kept around for backward compatibility:
+
+<P>
+<dl><dt><b><a name="l2h-582"><tt>SEARCH_ERROR</tt></a></b>
+<dd>
+Unused.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-583"><tt class="function">init_builtin</tt></a></b>(<var>name</var>)
+<dd>
+Initialize the built-in module called <var>name</var> and return its module
+object.  If the module was already initialized, it will be initialized
+<i>again</i>.  A few modules cannot be initialized twice -- attempting
+to initialize these again will raise an <tt class="exception">ImportError</tt>
+exception.  If there is no
+built-in module called <var>name</var>, <code>None</code> is returned.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-584"><tt class="function">init_frozen</tt></a></b>(<var>name</var>)
+<dd>
+Initialize the frozen module called <var>name</var> and return its module
+object.  If the module was already initialized, it will be initialized
+<i>again</i>.  If there is no frozen module called <var>name</var>,
+<code>None</code> is returned.  (Frozen modules are modules written in
+Python whose compiled byte-code object is incorporated into a
+custom-built Python interpreter by Python's <b class="program">freeze</b> utility.
+See <span class="file">Tools/freeze/</span> for now.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-585"><tt class="function">is_builtin</tt></a></b>(<var>name</var>)
+<dd>
+Return <code>1</code> if there is a built-in module called <var>name</var> which
+can be initialized again.  Return <code>-1</code> if there is a built-in
+module called <var>name</var> which cannot be initialized again (see
+<tt class="function">init_builtin()</tt>).  Return <code>0</code> if there is no built-in
+module called <var>name</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-586"><tt class="function">is_frozen</tt></a></b>(<var>name</var>)
+<dd>
+Return <code>1</code> if there is a frozen module (see
+<tt class="function">init_frozen()</tt>) called <var>name</var>, or <code>0</code> if there is
+no such module.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-587"><tt class="function">load_compiled</tt></a></b>(<var>name, pathname, file</var>)
+<dd>
+<a name="l2h-593">&nbsp;</a>Load and initialize a module implemented as a byte-compiled code file
+and return its module object.  If the module was already initialized,
+it will be initialized <i>again</i>.  The <var>name</var> argument is used
+to create or access a module object.  The <var>pathname</var> argument
+points to the byte-compiled code file.  The <var>file</var>
+argument is the byte-compiled code file, open for reading in binary
+mode, from the beginning.
+It must currently be a real file object, not a
+user-defined class emulating a file.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-588"><tt class="function">load_dynamic</tt></a></b>(<var>name, pathname</var><big>[</big><var>, file</var><big>]</big>)
+<dd>
+Load and initialize a module implemented as a dynamically loadable
+shared library and return its module object.  If the module was
+already initialized, it will be initialized <i>again</i>.  Some modules
+don't like that and may raise an exception.  The <var>pathname</var>
+argument must point to the shared library.  The <var>name</var> argument is
+used to construct the name of the initialization function: an external
+C function called "<tt class="samp">init<var>name</var>()</tt>" in the shared library is
+called.  The optional <var>file</var> argument is ignored.  (Note: using
+shared libraries is highly system dependent, and not all systems
+support it.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-589"><tt class="function">load_source</tt></a></b>(<var>name, pathname, file</var>)
+<dd>
+Load and initialize a module implemented as a Python source file and
+return its module object.  If the module was already initialized, it
+will be initialized <i>again</i>.  The <var>name</var> argument is used to
+create or access a module object.  The <var>pathname</var> argument points
+to the source file.  The <var>file</var> argument is the source
+file, open for reading as text, from the beginning.
+It must currently be a real file
+object, not a user-defined class emulating a file.  Note that if a
+properly matching byte-compiled file (with suffix <span class="file">.pyc</span> or
+<span class="file">.pyo</span>) exists, it will be used instead of parsing the given
+source file.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="examples-imp.html">3.21.1 Examples</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="warning-functions.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="examples-imp.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="warning-functions.html">3.20.3 Available Functions</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="examples-imp.html">3.21.1 Examples</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

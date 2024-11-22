@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.1 A Simple Example
+</title>
+<META NAME="description" CONTENT="1.1 A Simple Example
+">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="errors.html">
+<LINK REL="previous" href="intro.html">
+<LINK REL="up" href="intro.html">
+<LINK REL="next" href="errors.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="intro.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="errors.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="errors.html">1.2 Intermezzo: Errors and</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION003100000000000000000">&nbsp;</A>
+<BR>
+1.1 A Simple Example
+         
+</H1>
+
+<P>
+Let's create an extension module called "<tt class="samp">spam</tt>" (the favorite food
+of Monty Python fans...) and let's say we want to create a Python
+interface to the C library function <tt class="cfunction">system()</tt>.<A NAME="tex2html1"
+  HREF="#foot751"><SUP>1.1</SUP></A>This function takes a null-terminated character string as argument and
+returns an integer.  We want this function to be callable from Python
+as follows:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import spam
+&gt;&gt;&gt; status = spam.system("ls -l")
+</pre></dl>
+
+<P>
+Begin by creating a file <span class="file">spammodule.c</span>.  (Historically, if a
+module is called "<tt class="samp">spam</tt>", the C file containing its implementation
+is called <span class="file">spammodule.c</span>; if the module name is very long, like
+"<tt class="samp">spammify</tt>", the module name can be just <span class="file">spammify.c</span>.)
+
+<P>
+The first line of our file can be:
+
+<P>
+<dl><dd><pre class="verbatim">
+#include &lt;Python.h&gt;
+</pre></dl>
+
+<P>
+which pulls in the Python API (you can add a comment describing the
+purpose of the module and a copyright notice if you like).
+Since Python may define some pre-processor definitions which affect
+the standard headers on some systems, you must include <span class="file">Python.h</span>
+before any standard headers are included.
+
+<P>
+All user-visible symbols defined by <span class="file">Python.h</span> have a prefix of
+"<tt class="samp">Py</tt>" or "<tt class="samp">PY</tt>", except those defined in standard header files.
+For convenience, and since they are used extensively by the Python
+interpreter, <code>"Python.h"</code> includes a few standard header files:
+<code>&lt;stdio.h&gt;</code>, <code>&lt;string.h&gt;</code>, <code>&lt;errno.h&gt;</code>, and
+<code>&lt;stdlib.h&gt;</code>.  If the latter header file does not exist on your
+system, it declares the functions <tt class="cfunction">malloc()</tt>,
+<tt class="cfunction">free()</tt> and <tt class="cfunction">realloc()</tt> directly.
+
+<P>
+The next thing we add to our module file is the C function that will
+be called when the Python expression "<tt class="samp">spam.system(<var>string</var>)</tt>"is evaluated (we'll see shortly how it ends up being called):
+
+<P>
+<dl><dd><pre class="verbatim">
+static PyObject *
+spam_system(self, args)
+    PyObject *self;
+    PyObject *args;
+{
+    char *command;
+    int sts;
+
+    if (!PyArg_ParseTuple(args, "s", &amp;command))
+        return NULL;
+    sts = system(command);
+    return Py_BuildValue("i", sts);
+}
+</pre></dl>
+
+<P>
+There is a straightforward translation from the argument list in
+Python (for example, the single expression <code>"ls -l"</code>) to the
+arguments passed to the C function.  The C function always has two
+arguments, conventionally named <var>self</var> and <var>args</var>.
+
+<P>
+The <var>self</var> argument is only used when the C function implements a
+built-in method, not a function. In the example, <var>self</var> will
+always be a <tt class="constant">NULL</tt> pointer, since we are defining a function, not a
+method.  (This is done so that the interpreter doesn't have to
+understand two different types of C functions.)
+
+<P>
+The <var>args</var> argument will be a pointer to a Python tuple object
+containing the arguments.  Each item of the tuple corresponds to an
+argument in the call's argument list.  The arguments are Python
+objects -- in order to do anything with them in our C function we have
+to convert them to C values.  The function <tt class="cfunction">PyArg_ParseTuple()</tt>
+in the Python API checks the argument types and converts them to C
+values.  It uses a template string to determine the required types of
+the arguments as well as the types of the C variables into which to
+store the converted values.  More about this later.
+
+<P>
+<tt class="cfunction">PyArg_ParseTuple()</tt> returns true (nonzero) if all arguments have
+the right type and its components have been stored in the variables
+whose addresses are passed.  It returns false (zero) if an invalid
+argument list was passed.  In the latter case it also raises an
+appropriate exception so the calling function can return
+<tt class="constant">NULL</tt> immediately (as we saw in the example).
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot751">...system().</A><A NAME="foot751"
+ href="simpleExample.html#tex2html1"><SUP>1.1</SUP></A>
+<DD>An
+interface for this function already exists in the standard module
+<tt class="module">os</tt> -- it was chosen as a simple and straightfoward example.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="intro.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="errors.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="errors.html">1.2 Intermezzo: Errors and</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

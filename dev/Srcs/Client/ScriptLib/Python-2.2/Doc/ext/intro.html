@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1. Extending Python with C or C++</title>
+<META NAME="description" CONTENT="1. Extending Python with C or C++">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="defining-new-types.html">
+<LINK REL="previous" href="contents.html">
+<LINK REL="up" HREF="ext.html">
+<LINK REL="next" href="simpleExample.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="contents.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="ext.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="simpleExample.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="contents.html">Contents</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="ext.html">Extending and Embedding the</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="simpleExample.html">1.1 A Simple Example</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION003000000000000000000">&nbsp;</A>
+<BR>
+1. Extending Python with C or C++
+</H1>
+
+<P>
+It is quite easy to add new built-in modules to Python, if you know
+how to program in C.  Such <i class="dfn">extension modules</i> can do two things
+that can't be done directly in Python: they can implement new built-in
+object types, and they can call C library functions and system calls.
+
+<P>
+To support extensions, the Python API (Application Programmers
+Interface) defines a set of functions, macros and variables that
+provide access to most aspects of the Python run-time system.  The
+Python API is incorporated in a C source file by including the header
+<code>"Python.h"</code>.
+
+<P>
+The compilation of an extension module depends on its intended use as
+well as on your system setup; details are given in later chapters.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="simpleExample.html">1.1 A Simple Example</a>
+<LI><A href="errors.html">1.2 Intermezzo: Errors and Exceptions</a>
+<LI><A href="backToExample.html">1.3 Back to the Example</a>
+<LI><A href="methodTable.html">1.4 The Module's Method Table and Initialization Function</a>
+<LI><A href="compilation.html">1.5 Compilation and Linkage</a>
+<LI><A href="callingPython.html">1.6 Calling Python Functions from C</a>
+<LI><A href="parseTuple.html">1.7 Extracting Parameters in Extension Functions</a>
+<LI><A href="parseTupleAndKeywords.html">1.8 Keyword Parameters for Extension Functions</a>
+<LI><A href="buildValue.html">1.9 Building Arbitrary Values</a>
+<LI><A href="refcounts.html">1.10 Reference Counts</a>
+<UL>
+<LI><A href="refcountsInPython.html">1.10.1 Reference Counting in Python</a>
+<LI><A href="ownershipRules.html">1.10.2 Ownership Rules</a>
+<LI><A href="thinIce.html">1.10.3 Thin Ice</a>
+<LI><A href="nullPointers.html">1.10.4 NULL Pointers</a>
+</ul>
+<LI><A href="cplusplus.html">1.11 Writing Extensions in C++</a>
+<LI><A href="using-cobjects.html">1.12 Providing a C API for an Extension Module</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="contents.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="ext.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="simpleExample.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="contents.html">Contents</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="ext.html">Extending and Embedding the</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="simpleExample.html">1.1 A Simple Example</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

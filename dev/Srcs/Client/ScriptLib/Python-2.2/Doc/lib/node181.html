@@ -1,0 +1,515 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.13.3 Constants</title>
+<META NAME="description" CONTENT="6.13.3 Constants">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="curses-window-objects.html">
+<LINK REL="up" href="module-curses.html">
+<LINK REL="next" href="module-curses.textpad.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="curses-window-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-curses.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-curses.textpad.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="curses-window-objects.html">6.13.2 Window Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-curses.html">6.13 curses  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-curses.textpad.html">6.14 curses.textpad  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0081330000000000000000">
+6.13.3 Constants</A>
+</H2>
+
+<P>
+The <tt class="module">curses</tt> module defines the following data members:
+
+<P>
+<dl><dt><b><a name="l2h-1557"><tt>ERR</tt></a></b>
+<dd>
+Some curses routines  that  return  an integer, such as 
+<tt class="function">getch()</tt>, return <tt class="constant">ERR</tt> upon failure.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1558"><tt>OK</tt></a></b>
+<dd>
+Some curses routines  that  return  an integer, such as 
+<tt class="function">napms()</tt>, return <tt class="constant">OK</tt> upon success.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1559"><tt>version</tt></a></b>
+<dd>
+A string representing the current version of the module. 
+Also available as <tt class="constant">__version__</tt>.
+</dl>
+
+<P>
+Several constants are available to specify character cell attributes:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Attribute</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>A_ALTCHARSET</code></td>
+        <td align="left">Alternate character set mode.</td>
+    <tr><td align="left" valign="baseline"><code>A_BLINK</code></td>
+        <td align="left">Blink mode.</td>
+    <tr><td align="left" valign="baseline"><code>A_BOLD</code></td>
+        <td align="left">Bold mode.</td>
+    <tr><td align="left" valign="baseline"><code>A_DIM</code></td>
+        <td align="left">Dim mode.</td>
+    <tr><td align="left" valign="baseline"><code>A_NORMAL</code></td>
+        <td align="left">Normal attribute.</td>
+    <tr><td align="left" valign="baseline"><code>A_STANDOUT</code></td>
+        <td align="left">Standout mode.</td>
+    <tr><td align="left" valign="baseline"><code>A_UNDERLINE</code></td>
+        <td align="left">Underline mode.</td></tbody>
+</table>
+
+<P>
+Keys are referred to by integer constants with names starting with 
+"<tt class="samp">KEY_</tt>".   The exact keycaps available are system dependent.
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Key constant</b>&nbsp;</th>
+      <th align="left"><b>Key</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>KEY_MIN</code></td>
+        <td align="left">Minimum key value</td>
+    <tr><td align="left" valign="baseline"><code>KEY_BREAK</code></td>
+        <td align="left"> Break key (unreliable) </td>
+    <tr><td align="left" valign="baseline"><code>KEY_DOWN</code></td>
+        <td align="left"> Down-arrow </td>
+    <tr><td align="left" valign="baseline"><code>KEY_UP</code></td>
+        <td align="left"> Up-arrow </td>
+    <tr><td align="left" valign="baseline"><code>KEY_LEFT</code></td>
+        <td align="left"> Left-arrow </td>
+    <tr><td align="left" valign="baseline"><code>KEY_RIGHT</code></td>
+        <td align="left"> Right-arrow </td>
+    <tr><td align="left" valign="baseline"><code>KEY_HOME</code></td>
+        <td align="left"> Home key (upward+left arrow) </td>
+    <tr><td align="left" valign="baseline"><code>KEY_BACKSPACE</code></td>
+        <td align="left"> Backspace (unreliable) </td>
+    <tr><td align="left" valign="baseline"><code>KEY_F0</code></td>
+        <td align="left"> Function keys.  Up to 64 function keys are supported. </td>
+    <tr><td align="left" valign="baseline"><code>KEY_F<var>n</var></code></td>
+        <td align="left"> Value of function key <var>n</var> </td>
+    <tr><td align="left" valign="baseline"><code>KEY_DL</code></td>
+        <td align="left"> Delete line </td>
+    <tr><td align="left" valign="baseline"><code>KEY_IL</code></td>
+        <td align="left"> Insert line </td>
+    <tr><td align="left" valign="baseline"><code>KEY_DC</code></td>
+        <td align="left"> Delete character </td>
+    <tr><td align="left" valign="baseline"><code>KEY_IC</code></td>
+        <td align="left"> Insert char or enter insert mode </td>
+    <tr><td align="left" valign="baseline"><code>KEY_EIC</code></td>
+        <td align="left"> Exit insert char mode </td>
+    <tr><td align="left" valign="baseline"><code>KEY_CLEAR</code></td>
+        <td align="left"> Clear screen </td>
+    <tr><td align="left" valign="baseline"><code>KEY_EOS</code></td>
+        <td align="left"> Clear to end of screen </td>
+    <tr><td align="left" valign="baseline"><code>KEY_EOL</code></td>
+        <td align="left"> Clear to end of line </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SF</code></td>
+        <td align="left"> Scroll 1 line forward </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SR</code></td>
+        <td align="left"> Scroll 1 line backward (reverse) </td>
+    <tr><td align="left" valign="baseline"><code>KEY_NPAGE</code></td>
+        <td align="left"> Next page </td>
+    <tr><td align="left" valign="baseline"><code>KEY_PPAGE</code></td>
+        <td align="left"> Previous page </td>
+    <tr><td align="left" valign="baseline"><code>KEY_STAB</code></td>
+        <td align="left"> Set tab </td>
+    <tr><td align="left" valign="baseline"><code>KEY_CTAB</code></td>
+        <td align="left"> Clear tab </td>
+    <tr><td align="left" valign="baseline"><code>KEY_CATAB</code></td>
+        <td align="left"> Clear all tabs </td>
+    <tr><td align="left" valign="baseline"><code>KEY_ENTER</code></td>
+        <td align="left"> Enter or send (unreliable) </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SRESET</code></td>
+        <td align="left"> Soft (partial) reset (unreliable) </td>
+    <tr><td align="left" valign="baseline"><code>KEY_RESET</code></td>
+        <td align="left"> Reset or hard reset (unreliable) </td>
+    <tr><td align="left" valign="baseline"><code>KEY_PRINT</code></td>
+        <td align="left"> Print </td>
+    <tr><td align="left" valign="baseline"><code>KEY_LL</code></td>
+        <td align="left"> Home down or bottom (lower left) </td>
+    <tr><td align="left" valign="baseline"><code>KEY_A1</code></td>
+        <td align="left"> Upper left of keypad </td>
+    <tr><td align="left" valign="baseline"><code>KEY_A3</code></td>
+        <td align="left"> Upper right of keypad </td>
+    <tr><td align="left" valign="baseline"><code>KEY_B2</code></td>
+        <td align="left"> Center of keypad </td>
+    <tr><td align="left" valign="baseline"><code>KEY_C1</code></td>
+        <td align="left"> Lower left of keypad </td>
+    <tr><td align="left" valign="baseline"><code>KEY_C3</code></td>
+        <td align="left"> Lower right of keypad </td>
+    <tr><td align="left" valign="baseline"><code>KEY_BTAB</code></td>
+        <td align="left"> Back tab </td>
+    <tr><td align="left" valign="baseline"><code>KEY_BEG</code></td>
+        <td align="left"> Beg (beginning) </td>
+    <tr><td align="left" valign="baseline"><code>KEY_CANCEL</code></td>
+        <td align="left"> Cancel </td>
+    <tr><td align="left" valign="baseline"><code>KEY_CLOSE</code></td>
+        <td align="left"> Close </td>
+    <tr><td align="left" valign="baseline"><code>KEY_COMMAND</code></td>
+        <td align="left"> Cmd (command) </td>
+    <tr><td align="left" valign="baseline"><code>KEY_COPY</code></td>
+        <td align="left"> Copy </td>
+    <tr><td align="left" valign="baseline"><code>KEY_CREATE</code></td>
+        <td align="left"> Create </td>
+    <tr><td align="left" valign="baseline"><code>KEY_END</code></td>
+        <td align="left"> End </td>
+    <tr><td align="left" valign="baseline"><code>KEY_EXIT</code></td>
+        <td align="left"> Exit </td>
+    <tr><td align="left" valign="baseline"><code>KEY_FIND</code></td>
+        <td align="left"> Find </td>
+    <tr><td align="left" valign="baseline"><code>KEY_HELP</code></td>
+        <td align="left"> Help </td>
+    <tr><td align="left" valign="baseline"><code>KEY_MARK</code></td>
+        <td align="left"> Mark </td>
+    <tr><td align="left" valign="baseline"><code>KEY_MESSAGE</code></td>
+        <td align="left"> Message </td>
+    <tr><td align="left" valign="baseline"><code>KEY_MOVE</code></td>
+        <td align="left"> Move </td>
+    <tr><td align="left" valign="baseline"><code>KEY_NEXT</code></td>
+        <td align="left"> Next </td>
+    <tr><td align="left" valign="baseline"><code>KEY_OPEN</code></td>
+        <td align="left"> Open </td>
+    <tr><td align="left" valign="baseline"><code>KEY_OPTIONS</code></td>
+        <td align="left"> Options </td>
+    <tr><td align="left" valign="baseline"><code>KEY_PREVIOUS</code></td>
+        <td align="left"> Prev (previous) </td>
+    <tr><td align="left" valign="baseline"><code>KEY_REDO</code></td>
+        <td align="left"> Redo </td>
+    <tr><td align="left" valign="baseline"><code>KEY_REFERENCE</code></td>
+        <td align="left"> Ref (reference) </td>
+    <tr><td align="left" valign="baseline"><code>KEY_REFRESH</code></td>
+        <td align="left"> Refresh </td>
+    <tr><td align="left" valign="baseline"><code>KEY_REPLACE</code></td>
+        <td align="left"> Replace </td>
+    <tr><td align="left" valign="baseline"><code>KEY_RESTART</code></td>
+        <td align="left"> Restart </td>
+    <tr><td align="left" valign="baseline"><code>KEY_RESUME</code></td>
+        <td align="left"> Resume </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SAVE</code></td>
+        <td align="left"> Save </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SBEG</code></td>
+        <td align="left"> Shifted Beg (beginning) </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SCANCEL</code></td>
+        <td align="left"> Shifted Cancel </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SCOMMAND</code></td>
+        <td align="left"> Shifted Command </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SCOPY</code></td>
+        <td align="left"> Shifted Copy </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SCREATE</code></td>
+        <td align="left"> Shifted Create </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SDC</code></td>
+        <td align="left"> Shifted Delete char </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SDL</code></td>
+        <td align="left"> Shifted Delete line </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SELECT</code></td>
+        <td align="left"> Select </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SEND</code></td>
+        <td align="left"> Shifted End </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SEOL</code></td>
+        <td align="left"> Shifted Clear line </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SEXIT</code></td>
+        <td align="left"> Shifted Dxit </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SFIND</code></td>
+        <td align="left"> Shifted Find </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SHELP</code></td>
+        <td align="left"> Shifted Help </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SHOME</code></td>
+        <td align="left"> Shifted Home </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SIC</code></td>
+        <td align="left"> Shifted Input </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SLEFT</code></td>
+        <td align="left"> Shifted Left arrow </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SMESSAGE</code></td>
+        <td align="left"> Shifted Message </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SMOVE</code></td>
+        <td align="left"> Shifted Move </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SNEXT</code></td>
+        <td align="left"> Shifted Next </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SOPTIONS</code></td>
+        <td align="left"> Shifted Options </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SPREVIOUS</code></td>
+        <td align="left"> Shifted Prev </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SPRINT</code></td>
+        <td align="left"> Shifted Print </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SREDO</code></td>
+        <td align="left"> Shifted Redo </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SREPLACE</code></td>
+        <td align="left"> Shifted Replace </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SRIGHT</code></td>
+        <td align="left"> Shifted Right arrow </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SRSUME</code></td>
+        <td align="left"> Shifted Resume </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SSAVE</code></td>
+        <td align="left"> Shifted Save </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SSUSPEND</code></td>
+        <td align="left"> Shifted Suspend </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SUNDO</code></td>
+        <td align="left"> Shifted Undo </td>
+    <tr><td align="left" valign="baseline"><code>KEY_SUSPEND</code></td>
+        <td align="left"> Suspend </td>
+    <tr><td align="left" valign="baseline"><code>KEY_UNDO</code></td>
+        <td align="left"> Undo </td>
+    <tr><td align="left" valign="baseline"><code>KEY_MOUSE</code></td>
+        <td align="left"> Mouse event has occurred </td>
+    <tr><td align="left" valign="baseline"><code>KEY_RESIZE</code></td>
+        <td align="left"> Terminal resize event </td>
+    <tr><td align="left" valign="baseline"><code>KEY_MAX</code></td>
+        <td align="left">Maximum key value</td></tbody>
+</table>
+
+<P>
+On VT100s and their software emulations, such as X terminal emulators,
+there are normally at least four function keys (<tt class="constant">KEY_F1</tt>,
+<tt class="constant">KEY_F2</tt>, <tt class="constant">KEY_F3</tt>, <tt class="constant">KEY_F4</tt>) available,
+and the arrow keys mapped to <tt class="constant">KEY_UP</tt>, <tt class="constant">KEY_DOWN</tt>,
+<tt class="constant">KEY_LEFT</tt> and <tt class="constant">KEY_RIGHT</tt> in the obvious way.  If
+your machine has a PC keybboard, it is safe to expect arrow keys and
+twelve function keys (older PC keyboards may have only ten function
+keys); also, the following keypad mappings are standard:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Keycap</b>&nbsp;</th>
+      <th align="left"><b>Constant</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>Insert</code></td>
+        <td align="left">KEY_IC</td>
+    <tr><td align="left" valign="baseline"><code>Delete</code></td>
+        <td align="left">KEY_DC</td>
+    <tr><td align="left" valign="baseline"><code>Home</code></td>
+        <td align="left">KEY_HOME</td>
+    <tr><td align="left" valign="baseline"><code>End</code></td>
+        <td align="left">KEY_END</td>
+    <tr><td align="left" valign="baseline"><code>Page Up</code></td>
+        <td align="left">KEY_NPAGE</td>
+    <tr><td align="left" valign="baseline"><code>Page Down</code></td>
+        <td align="left">KEY_PPAGE</td></tbody>
+</table>
+
+<P>
+The following table lists characters from the alternate character set.
+These are inherited from the VT100 terminal, and will generally be 
+available on software emulations such as X terminals.  When there
+is no graphic available, curses falls back on a crude printable ASCII
+approximation.
+<span class="note"><b class="label">Note:</b>
+These are available only after <tt class="function">initscr()</tt> has 
+been called.</span>
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>ACS code</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>ACS_BBSS</code></td>
+        <td align="left">alternate name for upper right corner</td>
+    <tr><td align="left" valign="baseline"><code>ACS_BLOCK</code></td>
+        <td align="left">solid square block</td>
+    <tr><td align="left" valign="baseline"><code>ACS_BOARD</code></td>
+        <td align="left">board of squares</td>
+    <tr><td align="left" valign="baseline"><code>ACS_BSBS</code></td>
+        <td align="left">alternate name for horizontal line</td>
+    <tr><td align="left" valign="baseline"><code>ACS_BSSB</code></td>
+        <td align="left">alternate name for upper left corner</td>
+    <tr><td align="left" valign="baseline"><code>ACS_BSSS</code></td>
+        <td align="left">alternate name for top tee</td>
+    <tr><td align="left" valign="baseline"><code>ACS_BTEE</code></td>
+        <td align="left">bottom tee</td>
+    <tr><td align="left" valign="baseline"><code>ACS_BULLET</code></td>
+        <td align="left">bullet</td>
+    <tr><td align="left" valign="baseline"><code>ACS_CKBOARD</code></td>
+        <td align="left">checker board (stipple)</td>
+    <tr><td align="left" valign="baseline"><code>ACS_DARROW</code></td>
+        <td align="left">arrow pointing down</td>
+    <tr><td align="left" valign="baseline"><code>ACS_DEGREE</code></td>
+        <td align="left">degree symbol</td>
+    <tr><td align="left" valign="baseline"><code>ACS_DIAMOND</code></td>
+        <td align="left">diamond</td>
+    <tr><td align="left" valign="baseline"><code>ACS_GEQUAL</code></td>
+        <td align="left">greater-than-or-equal-to</td>
+    <tr><td align="left" valign="baseline"><code>ACS_HLINE</code></td>
+        <td align="left">horizontal line</td>
+    <tr><td align="left" valign="baseline"><code>ACS_LANTERN</code></td>
+        <td align="left">lantern symbol</td>
+    <tr><td align="left" valign="baseline"><code>ACS_LARROW</code></td>
+        <td align="left">left arrow</td>
+    <tr><td align="left" valign="baseline"><code>ACS_LEQUAL</code></td>
+        <td align="left">less-than-or-equal-to</td>
+    <tr><td align="left" valign="baseline"><code>ACS_LLCORNER</code></td>
+        <td align="left">lower left-hand corner</td>
+    <tr><td align="left" valign="baseline"><code>ACS_LRCORNER</code></td>
+        <td align="left">lower right-hand corner</td>
+    <tr><td align="left" valign="baseline"><code>ACS_LTEE</code></td>
+        <td align="left">left tee</td>
+    <tr><td align="left" valign="baseline"><code>ACS_NEQUAL</code></td>
+        <td align="left">not-equal sign</td>
+    <tr><td align="left" valign="baseline"><code>ACS_PI</code></td>
+        <td align="left">letter pi</td>
+    <tr><td align="left" valign="baseline"><code>ACS_PLMINUS</code></td>
+        <td align="left">plus-or-minus sign</td>
+    <tr><td align="left" valign="baseline"><code>ACS_PLUS</code></td>
+        <td align="left">big plus sign</td>
+    <tr><td align="left" valign="baseline"><code>ACS_RARROW</code></td>
+        <td align="left">right arrow</td>
+    <tr><td align="left" valign="baseline"><code>ACS_RTEE</code></td>
+        <td align="left">right tee</td>
+    <tr><td align="left" valign="baseline"><code>ACS_S1</code></td>
+        <td align="left">scan line 1</td>
+    <tr><td align="left" valign="baseline"><code>ACS_S3</code></td>
+        <td align="left">scan line 3</td>
+    <tr><td align="left" valign="baseline"><code>ACS_S7</code></td>
+        <td align="left">scan line 7</td>
+    <tr><td align="left" valign="baseline"><code>ACS_S9</code></td>
+        <td align="left">scan line 9</td>
+    <tr><td align="left" valign="baseline"><code>ACS_SBBS</code></td>
+        <td align="left">alternate name for lower right corner</td>
+    <tr><td align="left" valign="baseline"><code>ACS_SBSB</code></td>
+        <td align="left">alternate name for vertical line</td>
+    <tr><td align="left" valign="baseline"><code>ACS_SBSS</code></td>
+        <td align="left">alternate name for right tee</td>
+    <tr><td align="left" valign="baseline"><code>ACS_SSBB</code></td>
+        <td align="left">alternate name for lower left corner</td>
+    <tr><td align="left" valign="baseline"><code>ACS_SSBS</code></td>
+        <td align="left">alternate name for bottom tee</td>
+    <tr><td align="left" valign="baseline"><code>ACS_SSSB</code></td>
+        <td align="left">alternate name for left tee</td>
+    <tr><td align="left" valign="baseline"><code>ACS_SSSS</code></td>
+        <td align="left">alternate name for crossover or big plus</td>
+    <tr><td align="left" valign="baseline"><code>ACS_STERLING</code></td>
+        <td align="left">pound sterling</td>
+    <tr><td align="left" valign="baseline"><code>ACS_TTEE</code></td>
+        <td align="left">top tee</td>
+    <tr><td align="left" valign="baseline"><code>ACS_UARROW</code></td>
+        <td align="left">up arrow</td>
+    <tr><td align="left" valign="baseline"><code>ACS_ULCORNER</code></td>
+        <td align="left">upper left corner</td>
+    <tr><td align="left" valign="baseline"><code>ACS_URCORNER</code></td>
+        <td align="left">upper right corner</td>
+    <tr><td align="left" valign="baseline"><code>ACS_VLINE</code></td>
+        <td align="left">vertical line</td></tbody>
+</table>
+
+<P>
+The following table lists the predefined colors:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Constant</b>&nbsp;</th>
+      <th align="left"><b>Color</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>COLOR_BLACK</code></td>
+        <td align="left">Black</td>
+    <tr><td align="left" valign="baseline"><code>COLOR_BLUE</code></td>
+        <td align="left">Blue</td>
+    <tr><td align="left" valign="baseline"><code>COLOR_CYAN</code></td>
+        <td align="left">Cyan (light greenish blue)</td>
+    <tr><td align="left" valign="baseline"><code>COLOR_GREEN</code></td>
+        <td align="left">Green</td>
+    <tr><td align="left" valign="baseline"><code>COLOR_MAGENTA</code></td>
+        <td align="left">Magenta (purplish red)</td>
+    <tr><td align="left" valign="baseline"><code>COLOR_RED</code></td>
+        <td align="left">Red</td>
+    <tr><td align="left" valign="baseline"><code>COLOR_WHITE</code></td>
+        <td align="left">White</td>
+    <tr><td align="left" valign="baseline"><code>COLOR_YELLOW</code></td>
+        <td align="left">Yellow</td></tbody>
+</table>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="curses-window-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-curses.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-curses.textpad.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="curses-window-objects.html">6.13.2 Window Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-curses.html">6.13 curses  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-curses.textpad.html">6.14 curses.textpad  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

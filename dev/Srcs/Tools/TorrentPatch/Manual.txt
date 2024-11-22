@@ -1,0 +1,209 @@
+METIN2TORRENT
+-------------
+
+* OBJECTIVE
+
+	* Applying patch on Metin2 LIVE version
+
+
+	old SVN version(mixed) ->
+
+
+		monster.epk (old monsters + new monsters)
+
+
+			LIVE + PATCH (seperated) -> (TODAY)
+
+				monster.epk (old monsters)
+				season3.epk (new monsters)
+
+					new SVN version(seprated) (TOMMOROW ~11:59am)
+
+	
+
+
++ FEATURES
+
+	=== DONE ===
+	1 P2P patch (with web seeding)
+	2 Foreground p2p patch : user cannot run game before this end
+	3 Background p2p patch : pre-download, will start after game ends.
+	4 Overlapped running checking : if user restart game, background p2p patch will stop while game is running.
+	5 Make P2P patch network speed slower when game running (or pausing torrent)
+	6 Unicode file path	
+
+	=== TODO ===
+	1 Seed count checking
+	2 Bandwidth changing for user
+	3 Localization
+	... etc...
+	
+* TORRENT PATCH CONFIG
+
+	=== REMOTE_CONFIG ===
+	<torrent_config
+		port_range="MIN_PORT~MAX_PORT" 
+		bandwidth_range="BANDWIDTH_MIN:BANDWIDTH_1:BANDWIDTH_2:...:BANDWIDTH_N:BANDWIDTH_MAX" 
+		foreground_speed_percent="FOREGROUND_SPEED_PERCENT" 
+		background_speed_percent="BACKGROUND_SPEED_PERCENT" 
+		run_path="METIN2.CLIENT.BIN" >
+		<foreground_patch torrent_url="FOREGROUND_PATCH1.TORRENT" />
+		<foreground_patch torrent_url="FOREGROUND_PATCH2.TORRENT" />
+		<background_patch torrent_url="BACKGROUND_PATCH1.TORRENT" />
+		<background_patch torrent_url="BACKGROUND_PATCH2.TORRENT" />
+	</torrent_config>	
+
+
+	bandwidth_range = "10:20:30:40:50:60:70:80:90:100"
+
+			10kb/s 20kb/s ....      90kb/s 100kb/s
+
+	speed_percent = 100 (unlimit)
+
+		0 	low speed(min_bandwidth)
+		50	mid speed
+		99 	high speed(max_bandwidth)
+		100 	high speed(unlimit_bandwidth)
+	
+	=== USER_CONFIG ===
+	<torrent_config 
+		port_range="MIN_PORT~MAX_PORT" 
+		foreground_speed_percent="FOREGROUND_SPEED_PERCENT" 
+		background_speed_percent="BACKGROUND_SPEED_PERCENT">		
+	</torrent_config>
+	
+	=== LOCALE_CONFIG ===
+	<torrent_config config_url="METIN2_REMOTE_CONFIG_URL"/>	
+	
+
+
+
+
+* TORRENT NOTE
+
+	=== TORRENT FOREGROUND PATCH EXCLUDED FILES ===
+	metin2.exe|metin2.bin|channel.inf|syserr.txt|patch.log|patch.add|patch.cfg|patch.ver|patchskin
+	artpclnt.dll|devil.dll|dsetup.dll|granny2.dll|ijl15.dll|ilu.dll|metin2.bin|metin2.exe|mscoree.dll|mss32.dll|msvcp60.dll|msvcrtd.dll|patch.add|patch.cfg|patch.ver|patchupdater.exe|patchw32.dll|python22.dll|speedtreert.dll|patchskin|patch.log|channel.inf|syserr.txt
+	http://torrenttest.metin2.de/
+
+	
+	if torrent break these files, user can not patch;;
+	
+	=== TORRENT BACKGROUND PATCH INCLUDED FILES ===
+	season?.eix
+	season?.epk
+
+	
+
+	
+* TORRENT SEEDING PROBLEM
+
+	*NAT problems
+	*WEB seeding problems
+	
+	-> MIN 1 PEER seeding from publisher MUST exist
+
+
+
+
+* PATCH WEB FOLDER SETTINGS	
+
+	=== NO CHANGE ===
+	* patchserverlist
+	* version	
+	
+	=== MODIFIED FILES ===
+	* crcver: $(VERSION)
+	* $(VERSION)/crclist
+		metin2.bin (metin2torrent.exe renamed)
+		metin2.ico
+		metin2torrent.locale.xml		
+		
+	!!Patch Uploader (exclude "pack" folder)
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+	=== NEW FILES ===
+	*$(METIN2TORRENT.CONFIG.XML)
+	
+	*$(FOREGROUND_PATCH?.TORRENT)
+	*$(BACKGROUND_PATCH?.TORRENT)
+	
+	=== OPTIONAL DIRECTORY & FILES (for WEB SEEDING)===
+	*$(FOREGROUND_PATCH?)/...
+	*$(BACKGROUND_PATCH?)/...
+
+* SIMPLE FLOW
+
+	1. User execute metin2.exe
+	2. metin2.exe: run NEW metin2.bin (new patcher)
+	3. metin2.bin: foreground P2P patch
+	4. metin2.bin: run metin2.client.bin (game binary)
+	5. metin2.bin: background P2P patch
+
+
+* DETAIL FLOW
+
+    metin2.exe (original patcher) 
+     -> metin2.bin (new patcher)
+       -> metin2.client.bin (game binary)
+    
+	=== metin2.exe (original patcher) ===
+	
+	1. Load patch.add to $(METIN2_PATCH_URL)
+
+	2. Download $(METIN2_PATCH_URL)/patch_server_list to $(PATCH_SERVER_LIST)
+
+	3. Select patch address from $(PATCH_SERVER_LIST) if count of $(PATCH_SERVER_LIST) > 1
+
+	4. RTP Patch
+	
+		1) Download $(METIN2_PATCH_URL)/version to $(REMOTE_VERSION)
+		2) Load "patch.ver" to $(LOCAL_VERSION)
+		3) if $(REMOTE_VERSION) != $(LOCAL_VERSION):
+			for $(NEXT_VERSION) in $(LOCAL_VERSION) ~ $(REMOTE_VERSION):			
+				download $(NEXT_VERSION).INF and $(NEXT_VERSION).RTP
+				
+		-> DO_NOT_USED
+				
+	6. CRC Patch
+		
+		1) Download $(METIN2_PATCH_URL)/crcver to $(CRCVER)
+		2) Download $(METIN2_PATCH_URL)/$(CRCVER)/crclist to $(CRCLIST)
+		3) Check all files in $(CRCLIST)
+		
+		-> SOMETIME_USED
+		
+			For patch relation files updating
+			( metin2.bin (metin2torrent.exe renamed), patchskin, patch.add, patch.cfg, ... )
+			
+			Because libtorrent BREAK somefiles for CHECKING TIME
+			
+			
+	7. Run metin2.bin (metin2torrent.exe renamed)
+	
+	=== metin2.bin (new patcher) ===
+
+	0. Notify START_GAME and exit if other metin2torrent process is running
+
+	1. Load locale config file: ./metin2torrent.locale.xml
+	
+		Read remote config url to $(REMOTE_CONFIG_URL)
+		
+		<torrent_config config_url = "$(REMOTE_CONFIG_URL)"/>
+		
+	2. Load user config file: ./metin2torrent.user.xml
+
+
+	3. Download remote config file from $(REMOTE_CONFIG_URL)
+
+		Read foreground_patch list to $(FOREGROUND_PATCH_LIST)
+		
+		Read background_patch list to $(BACKGROUND_PATCH_LIST)
+		
+	4. P2P patch in $(FOREGROUND_PATCH_LIST)
+
+	5. Run metin2.client.bin
+
+	6. P2P patch in $(BACKGROUND_PATCH_LIST)
+
+	7. Seeding

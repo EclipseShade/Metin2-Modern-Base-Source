@@ -1,0 +1,30 @@
+﻿Der Buildvorgang wurde am 27.09.2013 20:04:01 gestartet.
+     1>Projekt "D:\tt (1)\dev\Srcs\Client\SphereLib\SphereLib_VC90.vcxproj" auf Knoten "5", build Ziel(e).
+     1>InitializeBuildStatus:
+         ".\Debug\SphereLib.unsuccessfulbuild" wird erstellt, da "AlwaysCreate" angegeben wurde.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I../../extern/include /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:strict /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp".\Debug/SphereLib.pch" /Fo".\Debug/" /Fd".\Debug/vc100.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt StdAfx.cpp
+         StdAfx.cpp
+     1>d:\tt (1)\dev\srcs\client\eterbase\filename.h(236): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(105): Siehe Deklaration von 'strcpy'
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I../../extern/include /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:strict /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp".\Debug/SphereLib.pch" /Fo".\Debug/" /Fd".\Debug/vc100.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt frustum.cpp sphere.cpp spherepack.cpp
+         frustum.cpp
+         sphere.cpp
+         spherepack.cpp
+         Code wird generiert...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:".\Debug\SphereLib.lib" /NOLOGO .\Debug/frustum.obj
+         .\Debug/sphere.obj
+         .\Debug/spherepack.obj
+         .\Debug/StdAfx.obj
+         SphereLib_VC90.vcxproj -> D:\tt (1)\dev\Srcs\Client\SphereLib\.\Debug\SphereLib.lib
+       BscMake:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\bscmake.exe /nologo /o".\Debug\SphereLib.bsc" .\Debug\frustum.sbr .\Debug\sphere.sbr .\Debug\spherepack.sbr .\Debug\StdAfx.sbr
+       FinalizeBuildStatus:
+         Die Datei ".\Debug\SphereLib.unsuccessfulbuild" wird gelöscht.
+         Aktualisieren des Timestamps von ".\Debug\SphereLib.lastbuildstate".
+     1>Die Erstellung des Projekts "D:\tt (1)\dev\Srcs\Client\SphereLib\SphereLib_VC90.vcxproj" ist abgeschlossen, build Ziel(e).
+
+Das Erstellen war erfolgreich.
+
+Verstrichene Zeit 00:00:05.05

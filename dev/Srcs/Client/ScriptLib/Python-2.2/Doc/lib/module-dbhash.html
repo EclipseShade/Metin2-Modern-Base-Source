@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.10 dbhash -- DBM-style interface to the BSD database library</title>
+<META NAME="description" CONTENT="7.10 dbhash -- DBM-style interface to the BSD database library">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-whichdb.html">
+<LINK REL="previous" href="module-dumbdbm.html">
+<LINK REL="up" href="someos.html">
+<LINK REL="next" href="dbhash-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-dumbdbm.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dbhash-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-dumbdbm.html">7.9 dumbdbm  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dbhash-objects.html">7.10.1 Database Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0091000000000000000000">
+7.10 <tt class="module">dbhash</tt> --
+         DBM-style interface to the BSD database library</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Unix, Windows</span>.</p>
+
+<P>
+The <tt class="module">dbhash</tt> module provides a function to open databases using
+the BSD <code>db</code> library.  This module mirrors the interface of the
+other Python database modules that provide access to DBM-style
+databases.  The <tt class="module"><a href="module-bsddb.html">bsddb</a></tt><a name="l2h-2023">&nbsp;</a>module is required 
+to use <tt class="module">dbhash</tt>.
+
+<P>
+This module provides an exception and a function:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2021"><tt class="exception">error</tt></a></b>
+<dd>
+  Exception raised on database errors other than
+  <tt class="exception">KeyError</tt>.  It is a synonym for <tt class="exception">bsddb.error</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2022"><tt class="function">open</tt></a></b>(<var>path</var><big>[</big><var>, flag</var><big>[</big><var>, mode</var><big>]</big><big>]</big>)
+<dd>
+  Open a <code>db</code> database and return the database object.  The
+  <var>path</var> argument is the name of the database file.
+
+<P>
+The <var>flag</var> argument can be
+  <code>'r'</code> (the default), <code>'w'</code>,
+  <code>'c'</code> (which creates the database if it doesn't exist), or
+  <code>'n'</code> (which always creates a new empty database).
+  For platforms on which the BSD <code>db</code> library supports locking,
+  an "<tt class="character">l</tt>" can be appended to indicate that locking should be
+  used.
+
+<P>
+The optional <var>mode</var> parameter is used to indicate the Unix
+  permission bits that should be set if a new database must be
+  created; this will be masked by the current umask value for the
+  process.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-anydbm.html">anydbm</a></tt>:</b>
+    <dd>Generic interface to <code>dbm</code>-style databases.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-bsddb.html">bsddb</a></tt>:</b>
+    <dd>Lower-level interface to the BSD <code>db</code> library.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-whichdb.html">whichdb</a></tt>:</b>
+    <dd>Utility module used to determine the type of an
+                      existing database.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="dbhash-objects.html">7.10.1 Database Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-dumbdbm.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dbhash-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-dumbdbm.html">7.9 dumbdbm  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dbhash-objects.html">7.10.1 Database Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

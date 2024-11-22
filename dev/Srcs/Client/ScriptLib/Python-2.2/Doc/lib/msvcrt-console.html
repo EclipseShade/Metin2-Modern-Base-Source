@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>22.1.2 Console I/O </title>
+<META NAME="description" CONTENT="22.1.2 Console I/O ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="msvcrt-other.html">
+<LINK REL="previous" href="msvcrt-files.html">
+<LINK REL="up" href="module-msvcrt.html">
+<LINK REL="next" href="msvcrt-other.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="msvcrt-files.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-msvcrt.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="msvcrt-other.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="msvcrt-files.html">22.1.1 File Operations</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-msvcrt.html">22.1 msvcrt - Useful</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="msvcrt-other.html">22.1.3 Other Functions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0024120000000000000000">&nbsp;</A>
+<BR>
+22.1.2 Console I/O 
+</H2>
+
+<P>
+<dl><dt><b><a name="l2h-4066"><tt class="function">kbhit</tt></a></b>()
+<dd>
+  Return true if a keypress is waiting to be read.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4067"><tt class="function">getch</tt></a></b>()
+<dd>
+  Read a keypress and return the resulting character.  Nothing is
+  echoed to the console.  This call will block if a keypress is not
+  already available, but will not wait for <kbd>Enter</kbd> to be pressed.
+  If the pressed key was a special function key, this will return
+  <code>'&#92;000'</code> or <code>'&#92;xe0'</code>; the next call will return the
+  keycode.  The <kbd>Control-C</kbd> keypress cannot be read with this
+  function.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4068"><tt class="function">getche</tt></a></b>()
+<dd>
+  Similar to <tt class="function">getch()</tt>, but the keypress will be echoed if it 
+  represents a printable character.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4069"><tt class="function">putch</tt></a></b>(<var>char</var>)
+<dd>
+  Print the character <var>char</var> to the console without buffering.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4070"><tt class="function">ungetch</tt></a></b>(<var>char</var>)
+<dd>
+  Cause the character <var>char</var> to be ``pushed back'' into the
+  console buffer; it will be the next character read by
+  <tt class="function">getch()</tt> or <tt class="function">getche()</tt>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="msvcrt-files.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-msvcrt.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="msvcrt-other.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="msvcrt-files.html">22.1.1 File Operations</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-msvcrt.html">22.1 msvcrt - Useful</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="msvcrt-other.html">22.1.3 Other Functions</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

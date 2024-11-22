@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.7 UserDict -- Class wrapper for dictionary objects</title>
+<META NAME="description" CONTENT="3.7 UserDict -- Class wrapper for dictionary objects">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-UserList.html">
+<LINK REL="previous" href="module-types.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="module-UserList.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-types.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-UserList.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-types.html">3.6 types  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-UserList.html">3.8 UserList  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005700000000000000000">
+3.7 <tt class="module">UserDict</tt> --
+         Class wrapper for dictionary objects</A>
+</H1>
+
+<P>
+
+
+<P>
+<span class="note"><b class="label">Note:</b>
+This module is available for backward compatibility only.  If
+you are writing code that does not need to work with versions of
+Python earlier than Python 2.2, please consider subclassing directly
+from the built-in <tt class="class">dictionary</tt> type.</span>
+
+<P>
+This module defines a class that acts as a wrapper around
+dictionary objects.  It is a useful base class for
+your own dictionary-like classes, which can inherit from
+them and override existing methods or add new ones.  In this way one
+can add new behaviors to dictionaries.
+
+<P>
+The <tt class="module">UserDict</tt> module defines the <tt class="class">UserDict</tt> class:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-375"><tt class="class">UserDict</tt></a></b>(<big>[</big><var>initialdata</var><big>]</big>)
+<dd>
+Class that simulates a dictionary.  The instance's
+contents are kept in a regular dictionary, which is accessible via the
+<tt class="member">data</tt> attribute of <tt class="class">UserDict</tt> instances.  If
+<var>initialdata</var> is provided, <tt class="member">data</tt> is initialized with its
+contents; note that a reference to <var>initialdata</var> will not be kept, 
+allowing it be used used for other purposes.
+</dl>
+
+<P>
+In addition to supporting the methods and operations of mappings (see
+section <A href="typesmapping.html#typesmapping">2.2.7</A>), <tt class="class">UserDict</tt> instances provide the
+following attribute:
+
+<P>
+<dl><dt><b><a name="l2h-376"><tt class="member">data</tt></a></b>
+<dd>
+A real dictionary used to store the contents of the <tt class="class">UserDict</tt>
+class.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-types.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-UserList.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-types.html">3.6 types  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-UserList.html">3.8 UserList  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

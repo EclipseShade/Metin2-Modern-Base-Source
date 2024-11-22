@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.11 pty -- Pseudo-terminal utilities</title>
+<META NAME="description" CONTENT="8.11 pty -- Pseudo-terminal utilities">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-fcntl.html">
+<LINK REL="previous" href="module-tty.html">
+<LINK REL="up" href="unix.html">
+<LINK REL="next" href="module-fcntl.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-tty.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-fcntl.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-tty.html">8.10 tty  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-fcntl.html">8.12 fcntl  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00101100000000000000000">
+8.11 <tt class="module">pty</tt> --
+         Pseudo-terminal utilities</A>
+</H1>
+  
+<p class="availability">Availability: <span
+ class="platform">IRIX, Linux</span>.</p>
+
+<P>
+The <tt class="module">pty</tt> module defines operations for handling the
+pseudo-terminal concept: starting another process and being able to
+write to and read from its controlling terminal programmatically.
+
+<P>
+Because pseudo-terminal handling is highly platform dependant, there
+is code to do it only for SGI and Linux. (The Linux code is supposed
+to work on other platforms, but hasn't been tested yet.)
+
+<P>
+The <tt class="module">pty</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-2173"><tt class="function">fork</tt></a></b>()
+<dd>
+Fork. Connect the child's controlling terminal to a pseudo-terminal.
+Return value is <code>(<var>pid</var>, <var>fd</var>)</code>. Note that the child 
+gets <var>pid</var> 0, and the <var>fd</var> is <i>invalid</i>. The parent's
+return value is the <var>pid</var> of the child, and <var>fd</var> is a file
+descriptor connected to the child's controlling terminal (and also
+to the child's standard input and output.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2174"><tt class="function">openpty</tt></a></b>()
+<dd>
+Open a new pseudo-terminal pair, using <tt class="function">os.openpty()</tt> if
+possible, or emulation code for SGI and generic Unix systems.
+Return a pair of file descriptors <code>(<var>master</var>, <var>slave</var>)</code>,
+for the master and the slave end, respectively.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2175"><tt class="function">spawn</tt></a></b>(<var>argv</var><big>[</big><var>, master_read</var><big>[</big><var>, stdin_read</var><big>]</big><big>]</big>)
+<dd>
+Spawn a process, and connect its controlling terminal with the current 
+process's standard io. This is often used to baffle programs which
+insist on reading from the controlling terminal.
+
+<P>
+The functions <var>master_read</var> and <var>stdin_read</var> should be
+functions which read from a file-descriptor. The defaults try to read
+1024 bytes each time they are called.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-tty.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-fcntl.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-tty.html">8.10 tty  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-fcntl.html">8.12 fcntl  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

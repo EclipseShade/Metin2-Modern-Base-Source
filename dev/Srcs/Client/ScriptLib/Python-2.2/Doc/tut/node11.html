@@ -1,0 +1,961 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>9. Classes </title>
+<META NAME="description" CONTENT="9. Classes ">
+<META NAME="keywords" CONTENT="tut">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="tut.css">
+<link rel="first" href="tut.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node12.html">
+<LINK REL="previous" HREF="node10.html">
+<LINK REL="up" HREF="tut.html">
+<LINK REL="next" HREF="node12.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node10.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="tut.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node12.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Tutorial</td>
+<td><A HREF="node2.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node10.html">8. Errors and Exceptions</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="tut.html">Python Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node12.html">10. What Now?</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="#SECTION0011100000000000000000">9.1 A Word About Terminology</a>
+<LI><A href="#SECTION0011200000000000000000">9.2 Python Scopes and Name Spaces</a>
+<LI><A href="#SECTION0011300000000000000000">9.3 A First Look at Classes</a>
+<UL>
+<LI><A href="#SECTION0011310000000000000000">9.3.1 Class Definition Syntax</a>
+<LI><A href="#SECTION0011320000000000000000">9.3.2 Class Objects</a>
+<LI><A href="#SECTION0011330000000000000000">9.3.3 Instance Objects</a>
+<LI><A href="#SECTION0011340000000000000000">9.3.4 Method Objects</a>
+</ul>
+<LI><A href="#SECTION0011400000000000000000">9.4 Random Remarks</a>
+<LI><A href="#SECTION0011500000000000000000">9.5 Inheritance</a>
+<UL>
+<LI><A href="#SECTION0011510000000000000000">9.5.1 Multiple Inheritance</a>
+</ul>
+<LI><A href="#SECTION0011600000000000000000">9.6 Private Variables</a>
+<LI><A href="#SECTION0011700000000000000000">9.7 Odds and Ends</a>
+<UL>
+<LI><A href="#SECTION0011710000000000000000">9.7.1 Exceptions Can Be Classes</a>
+</ul></ul>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0011000000000000000000">&nbsp;</A>
+<BR>
+9. Classes 
+</H1>
+
+<P>
+Python's class mechanism adds classes to the language with a minimum
+of new syntax and semantics.  It is a mixture of the class mechanisms
+found in C++ and Modula-3.  As is true for modules, classes in Python
+do not put an absolute barrier between definition and user, but rather
+rely on the politeness of the user not to ``break into the
+definition.''  The most important features of classes are retained
+with full power, however: the class inheritance mechanism allows
+multiple base classes, a derived class can override any methods of its
+base class or classes, a method can call the method of a base class with the
+same name.  Objects can contain an arbitrary amount of private data.
+
+<P>
+In C++ terminology, all class members (including the data members) are
+<i>public</i>, and all member functions are <i>virtual</i>.  There are
+no special constructors or destructors.  As in Modula-3, there are no
+shorthands for referencing the object's members from its methods: the
+method function is declared with an explicit first argument
+representing the object, which is provided implicitly by the call.  As
+in Smalltalk, classes themselves are objects, albeit in the wider
+sense of the word: in Python, all data types are objects.  This
+provides semantics for importing and renaming.  But, just like in
+C++ or Modula-3, built-in types cannot be used as base classes for
+extension by the user.  Also, like in C++ but unlike in Modula-3, most
+built-in operators with special syntax (arithmetic operators,
+subscripting etc.) can be redefined for class instances.
+
+<P>
+
+<H1><A NAME="SECTION0011100000000000000000">&nbsp;</A>
+<BR>
+9.1 A Word About Terminology 
+</H1>
+
+<P>
+Lacking universally accepted terminology to talk about classes, I will
+make occasional use of Smalltalk and C++ terms.  (I would use Modula-3
+terms, since its object-oriented semantics are closer to those of
+Python than C++, but I expect that few readers have heard of it.)
+
+<P>
+I also have to warn you that there's a terminological pitfall for
+object-oriented readers: the word ``object'' in Python does not
+necessarily mean a class instance.  Like C++ and Modula-3, and
+unlike Smalltalk, not all types in Python are classes: the basic
+built-in types like integers and lists are not, and even somewhat more
+exotic types like files aren't.  However, <i>all</i> Python types
+share a little bit of common semantics that is best described by using
+the word object.
+
+<P>
+Objects have individuality, and multiple names (in multiple scopes)
+can be bound to the same object.  This is known as aliasing in other
+languages.  This is usually not appreciated on a first glance at
+Python, and can be safely ignored when dealing with immutable basic
+types (numbers, strings, tuples).  However, aliasing has an
+(intended!) effect on the semantics of Python code involving mutable
+objects such as lists, dictionaries, and most types representing
+entities outside the program (files, windows, etc.).  This is usually
+used to the benefit of the program, since aliases behave like pointers
+in some respects.  For example, passing an object is cheap since only
+a pointer is passed by the implementation; and if a function modifies
+an object passed as an argument, the caller will see the change -- this
+obviates the need for two different argument passing mechanisms as in
+Pascal.
+
+<P>
+
+<H1><A NAME="SECTION0011200000000000000000">&nbsp;</A>
+<BR>
+9.2 Python Scopes and Name Spaces 
+</H1>
+
+<P>
+Before introducing classes, I first have to tell you something about
+Python's scope rules.  Class definitions play some neat tricks with
+namespaces, and you need to know how scopes and namespaces work to
+fully understand what's going on.  Incidentally, knowledge about this
+subject is useful for any advanced Python programmer.
+
+<P>
+Let's begin with some definitions.
+
+<P>
+A <i>namespace</i> is a mapping from names to objects.  Most
+namespaces are currently implemented as Python dictionaries, but
+that's normally not noticeable in any way (except for performance),
+and it may change in the future.  Examples of namespaces are: the set
+of built-in names (functions such as <tt class="function">abs()</tt>, and built-in
+exception names); the global names in a module; and the local names in
+a function invocation.  In a sense the set of attributes of an object
+also form a namespace.  The important thing to know about namespaces
+is that there is absolutely no relation between names in different
+namespaces; for instance, two different modules may both define a
+function ``maximize'' without confusion -- users of the modules must
+prefix it with the module name.
+
+<P>
+By the way, I use the word <i>attribute</i> for any name following a
+dot -- for example, in the expression <code>z.real</code>, <code>real</code> is
+an attribute of the object <code>z</code>.  Strictly speaking, references to
+names in modules are attribute references: in the expression
+<code>modname.funcname</code>, <code>modname</code> is a module object and
+<code>funcname</code> is an attribute of it.  In this case there happens to
+be a straightforward mapping between the module's attributes and the
+global names defined in the module: they share the same namespace!
+<A NAME="tex2html5"
+  HREF="#foot1407"><SUP>9.1</SUP></A>
+<P>
+Attributes may be read-only or writable.  In the latter case,
+assignment to attributes is possible.  Module attributes are writable:
+you can write "<tt class="samp">modname.the_answer = 42</tt>".  Writable attributes may
+also be deleted with the <tt class="keyword">del</tt> statement.  For example,
+"<tt class="samp">del modname.the_answer</tt>" will remove the attribute
+<tt class="member">the_answer</tt> from the object named by <code>modname</code>.
+
+<P>
+Name spaces are created at different moments and have different
+lifetimes.  The namespace containing the built-in names is created
+when the Python interpreter starts up, and is never deleted.  The
+global namespace for a module is created when the module definition
+is read in; normally, module namespaces also last until the
+interpreter quits.  The statements executed by the top-level
+invocation of the interpreter, either read from a script file or
+interactively, are considered part of a module called
+<tt class="module">__main__</tt>, so they have their own global namespace.  (The
+built-in names actually also live in a module; this is called
+<tt class="module">__builtin__</tt>.)
+
+<P>
+The local namespace for a function is created when the function is
+called, and deleted when the function returns or raises an exception
+that is not handled within the function.  (Actually, forgetting would
+be a better way to describe what actually happens.)  Of course,
+recursive invocations each have their own local namespace.
+
+<P>
+A <i>scope</i> is a textual region of a Python program where a
+namespace is directly accessible.  ``Directly accessible'' here means
+that an unqualified reference to a name attempts to find the name in
+the namespace.
+
+<P>
+Although scopes are determined statically, they are used dynamically.
+At any time during execution, exactly three nested scopes are in use
+(exactly three namespaces are directly accessible): the
+innermost scope, which is searched first, contains the local names,
+the middle scope, searched next, contains the current module's global
+names, and the outermost scope (searched last) is the namespace
+containing built-in names.
+
+<P>
+Usually, the local scope references the local names of the (textually)
+current function.  Outside of functions, the local scope references
+the same namespace as the global scope: the module's namespace.
+Class definitions place yet another namespace in the local scope.
+
+<P>
+It is important to realize that scopes are determined textually: the
+global scope of a function defined in a module is that module's
+namespace, no matter from where or by what alias the function is
+called.  On the other hand, the actual search for names is done
+dynamically, at run time -- however, the language definition is
+evolving towards static name resolution, at ``compile'' time, so don't
+rely on dynamic name resolution!  (In fact, local variables are
+already determined statically.)
+
+<P>
+A special quirk of Python is that assignments always go into the
+innermost scope.  Assignments do not copy data -- they just
+bind names to objects.  The same is true for deletions: the statement
+"<tt class="samp">del x</tt>" removes the binding of <code>x</code> from the namespace
+referenced by the local scope.  In fact, all operations that introduce
+new names use the local scope: in particular, import statements and
+function definitions bind the module or function name in the local
+scope.  (The <tt class="keyword">global</tt> statement can be used to indicate that
+particular variables live in the global scope.)
+
+<P>
+
+<H1><A NAME="SECTION0011300000000000000000">&nbsp;</A>
+<BR>
+9.3 A First Look at Classes 
+</H1>
+
+<P>
+Classes introduce a little bit of new syntax, three new object types,
+and some new semantics.
+
+<P>
+
+<H2><A NAME="SECTION0011310000000000000000">&nbsp;</A>
+<BR>
+9.3.1 Class Definition Syntax 
+</H2>
+
+<P>
+The simplest form of class definition looks like this:
+
+<P>
+<dl><dd><pre class="verbatim">
+class ClassName:
+    &lt;statement-1&gt;
+    .
+    .
+    .
+    &lt;statement-N&gt;
+</pre></dl>
+
+<P>
+Class definitions, like function definitions
+(<tt class="keyword">def</tt> statements) must be executed before they have any
+effect.  (You could conceivably place a class definition in a branch
+of an <tt class="keyword">if</tt> statement, or inside a function.)
+
+<P>
+In practice, the statements inside a class definition will usually be
+function definitions, but other statements are allowed, and sometimes
+useful -- we'll come back to this later.  The function definitions
+inside a class normally have a peculiar form of argument list,
+dictated by the calling conventions for methods -- again, this is
+explained later.
+
+<P>
+When a class definition is entered, a new namespace is created, and
+used as the local scope -- thus, all assignments to local variables
+go into this new namespace.  In particular, function definitions bind
+the name of the new function here.
+
+<P>
+When a class definition is left normally (via the end), a <i>class
+object</i> is created.  This is basically a wrapper around the contents
+of the namespace created by the class definition; we'll learn more
+about class objects in the next section.  The original local scope
+(the one in effect just before the class definitions was entered) is
+reinstated, and the class object is bound here to the class name given
+in the class definition header (<tt class="class">ClassName</tt> in the example).
+
+<P>
+
+<H2><A NAME="SECTION0011320000000000000000">&nbsp;</A>
+<BR>
+9.3.2 Class Objects 
+</H2>
+
+<P>
+Class objects support two kinds of operations: attribute references
+and instantiation.
+
+<P>
+<i>Attribute references</i> use the standard syntax used for all
+attribute references in Python: <code>obj.name</code>.  Valid attribute
+names are all the names that were in the class's namespace when the
+class object was created.  So, if the class definition looked like
+this:
+
+<P>
+<dl><dd><pre class="verbatim">
+class MyClass:
+    "A simple example class"
+    i = 12345
+    def f(self):
+        return 'hello world'
+</pre></dl>
+
+<P>
+then <code>MyClass.i</code> and <code>MyClass.f</code> are valid attribute
+references, returning an integer and a method object, respectively.
+Class attributes can also be assigned to, so you can change the value
+of <code>MyClass.i</code> by assignment.  <tt class="member">__doc__</tt> is also a valid
+attribute, returning the docstring belonging to the class: <code>"A
+simple example class"</code>). 
+
+<P>
+Class <i>instantiation</i> uses function notation.  Just pretend that
+the class object is a parameterless function that returns a new
+instance of the class.  For example (assuming the above class):
+
+<P>
+<dl><dd><pre class="verbatim">
+x = MyClass()
+</pre></dl>
+
+<P>
+creates a new <i>instance</i> of the class and assigns this object to
+the local variable <code>x</code>.
+
+<P>
+The instantiation operation (``calling'' a class object) creates an
+empty object.  Many classes like to create objects in a known initial
+state.  Therefore a class may define a special method named
+<tt class="method">__init__()</tt>, like this:
+
+<P>
+<dl><dd><pre class="verbatim">
+    def __init__(self):
+        self.data = []
+</pre></dl>
+
+<P>
+When a class defines an <tt class="method">__init__()</tt> method, class
+instantiation automatically invokes <tt class="method">__init__()</tt> for the
+newly-created class instance.  So in this example, a new, initialized
+instance can be obtained by:
+
+<P>
+<dl><dd><pre class="verbatim">
+x = MyClass()
+</pre></dl>
+
+<P>
+Of course, the <tt class="method">__init__()</tt> method may have arguments for
+greater flexibility.  In that case, arguments given to the class
+instantiation operator are passed on to <tt class="method">__init__()</tt>.  For
+example,
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; class Complex:
+...     def __init__(self, realpart, imagpart):
+...         self.r = realpart
+...         self.i = imagpart
+... 
+&gt;&gt;&gt; x = Complex(3.0, -4.5)
+&gt;&gt;&gt; x.r, x.i
+(3.0, -4.5)
+</pre></dl>
+
+<P>
+
+<H2><A NAME="SECTION0011330000000000000000">&nbsp;</A>
+<BR>
+9.3.3 Instance Objects 
+</H2>
+
+<P>
+Now what can we do with instance objects?  The only operations
+understood by instance objects are attribute references.  There are
+two kinds of valid attribute names.
+
+<P>
+The first I'll call <i>data attributes</i>.  These correspond to
+``instance variables'' in Smalltalk, and to ``data members'' in
+C++.  Data attributes need not be declared; like local variables,
+they spring into existence when they are first assigned to.  For
+example, if <code>x</code> is the instance of <tt class="class">MyClass</tt> created above,
+the following piece of code will print the value <code>16</code>, without
+leaving a trace:
+
+<P>
+<dl><dd><pre class="verbatim">
+x.counter = 1
+while x.counter &lt; 10:
+    x.counter = x.counter * 2
+print x.counter
+del x.counter
+</pre></dl>
+
+<P>
+The second kind of attribute references understood by instance objects
+are <i>methods</i>.  A method is a function that ``belongs to'' an
+object.  (In Python, the term method is not unique to class instances:
+other object types can have methods as well.  For example, list objects have
+methods called append, insert, remove, sort, and so on.  However,
+below, we'll use the term method exclusively to mean methods of class
+instance objects, unless explicitly stated otherwise.)
+
+<P>
+Valid method names of an instance object depend on its class.  By
+definition, all attributes of a class that are (user-defined) function 
+objects define corresponding methods of its instances.  So in our
+example, <code>x.f</code> is a valid method reference, since
+<code>MyClass.f</code> is a function, but <code>x.i</code> is not, since
+<code>MyClass.i</code> is not.  But <code>x.f</code> is not the same thing as
+<code>MyClass.f</code> -- it is a <a name="l2h-23">&nbsp;</a><i>method object</i>, not
+a function object.
+
+<P>
+
+<H2><A NAME="SECTION0011340000000000000000">&nbsp;</A>
+<BR>
+9.3.4 Method Objects 
+</H2>
+
+<P>
+Usually, a method is called immediately:
+
+<P>
+<dl><dd><pre class="verbatim">
+x.f()
+</pre></dl>
+
+<P>
+In our example, this will return the string <code>'hello world'</code>.
+However, it is not necessary to call a method right away:
+<code>x.f</code> is a method object, and can be stored away and called at a
+later time.  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+xf = x.f
+while 1:
+    print xf()
+</pre></dl>
+
+<P>
+will continue to print "<tt class="samp">hello world</tt>" until the end of time.
+
+<P>
+What exactly happens when a method is called?  You may have noticed
+that <code>x.f()</code> was called without an argument above, even though
+the function definition for <tt class="method">f</tt> specified an argument.  What
+happened to the argument?  Surely Python raises an exception when a
+function that requires an argument is called without any -- even if
+the argument isn't actually used...
+
+<P>
+Actually, you may have guessed the answer: the special thing about
+methods is that the object is passed as the first argument of the
+function.  In our example, the call <code>x.f()</code> is exactly equivalent
+to <code>MyClass.f(x)</code>.  In general, calling a method with a list of
+<var>n</var> arguments is equivalent to calling the corresponding function
+with an argument list that is created by inserting the method's object
+before the first argument.
+
+<P>
+If you still don't understand how methods work, a look at the
+implementation can perhaps clarify matters.  When an instance
+attribute is referenced that isn't a data attribute, its class is
+searched.  If the name denotes a valid class attribute that is a
+function object, a method object is created by packing (pointers to)
+the instance object and the function object just found together in an
+abstract object: this is the method object.  When the method object is
+called with an argument list, it is unpacked again, a new argument
+list is constructed from the instance object and the original argument
+list, and the function object is called with this new argument list.
+
+<P>
+
+<H1><A NAME="SECTION0011400000000000000000">&nbsp;</A>
+<BR>
+9.4 Random Remarks 
+</H1>
+
+<P>
+[These should perhaps be placed more carefully...]
+
+<P>
+Data attributes override method attributes with the same name; to
+avoid accidental name conflicts, which may cause hard-to-find bugs in
+large programs, it is wise to use some kind of convention that
+minimizes the chance of conflicts.  Possible conventions include
+capitalizing method names, prefixing data attribute names with a small
+unique string (perhaps just an underscore), or using verbs for methods
+and nouns for data attributes.
+
+<P>
+Data attributes may be referenced by methods as well as by ordinary
+users (``clients'') of an object.  In other words, classes are not
+usable to implement pure abstract data types.  In fact, nothing in
+Python makes it possible to enforce data hiding -- it is all based
+upon convention.  (On the other hand, the Python implementation,
+written in C, can completely hide implementation details and control
+access to an object if necessary; this can be used by extensions to
+Python written in C.)
+
+<P>
+Clients should use data attributes with care -- clients may mess up
+invariants maintained by the methods by stamping on their data
+attributes.  Note that clients may add data attributes of their own to
+an instance object without affecting the validity of the methods, as
+long as name conflicts are avoided -- again, a naming convention can
+save a lot of headaches here.
+
+<P>
+There is no shorthand for referencing data attributes (or other
+methods!) from within methods.  I find that this actually increases
+the readability of methods: there is no chance of confusing local
+variables and instance variables when glancing through a method.
+
+<P>
+Conventionally, the first argument of methods is often called
+<code>self</code>.  This is nothing more than a convention: the name
+<code>self</code> has absolutely no special meaning to Python.  (Note,
+however, that by not following the convention your code may be less
+readable by other Python programmers, and it is also conceivable that
+a <i>class browser</i> program be written which relies upon such a
+convention.)
+
+<P>
+Any function object that is a class attribute defines a method for
+instances of that class.  It is not necessary that the function
+definition is textually enclosed in the class definition: assigning a
+function object to a local variable in the class is also ok.  For
+example:
+
+<P>
+<dl><dd><pre class="verbatim">
+# Function defined outside the class
+def f1(self, x, y):
+    return min(x, x+y)
+
+class C:
+    f = f1
+    def g(self):
+        return 'hello world'
+    h = g
+</pre></dl>
+
+<P>
+Now <code>f</code>, <code>g</code> and <code>h</code> are all attributes of class
+<tt class="class">C</tt> that refer to function objects, and consequently they are all
+methods of instances of <tt class="class">C</tt> -- <code>h</code> being exactly equivalent
+to <code>g</code>.  Note that this practice usually only serves to confuse
+the reader of a program.
+
+<P>
+Methods may call other methods by using method attributes of the
+<code>self</code> argument:
+
+<P>
+<dl><dd><pre class="verbatim">
+class Bag:
+    def __init__(self):
+        self.data = []
+    def add(self, x):
+        self.data.append(x)
+    def addtwice(self, x):
+        self.add(x)
+        self.add(x)
+</pre></dl>
+
+<P>
+Methods may reference global names in the same way as ordinary
+functions.  The global scope associated with a method is the module
+containing the class definition.  (The class itself is never used as a
+global scope!)  While one rarely encounters a good reason for using
+global data in a method, there are many legitimate uses of the global
+scope: for one thing, functions and modules imported into the global
+scope can be used by methods, as well as functions and classes defined
+in it.  Usually, the class containing the method is itself defined in
+this global scope, and in the next section we'll find some good
+reasons why a method would want to reference its own class!
+
+<P>
+
+<H1><A NAME="SECTION0011500000000000000000">&nbsp;</A>
+<BR>
+9.5 Inheritance 
+</H1>
+
+<P>
+Of course, a language feature would not be worthy of the name ``class''
+without supporting inheritance.  The syntax for a derived class
+definition looks as follows:
+
+<P>
+<dl><dd><pre class="verbatim">
+class DerivedClassName(BaseClassName):
+    &lt;statement-1&gt;
+    .
+    .
+    .
+    &lt;statement-N&gt;
+</pre></dl>
+
+<P>
+The name <tt class="class">BaseClassName</tt> must be defined in a scope containing
+the derived class definition.  Instead of a base class name, an
+expression is also allowed.  This is useful when the base class is
+defined in another module,
+
+<P>
+<dl><dd><pre class="verbatim">
+class DerivedClassName(modname.BaseClassName):
+</pre></dl>
+
+<P>
+Execution of a derived class definition proceeds the same as for a
+base class.  When the class object is constructed, the base class is
+remembered.  This is used for resolving attribute references: if a
+requested attribute is not found in the class, it is searched in the
+base class.  This rule is applied recursively if the base class itself
+is derived from some other class.
+
+<P>
+There's nothing special about instantiation of derived classes:
+<code>DerivedClassName()</code> creates a new instance of the class.  Method
+references are resolved as follows: the corresponding class attribute
+is searched, descending down the chain of base classes if necessary,
+and the method reference is valid if this yields a function object.
+
+<P>
+Derived classes may override methods of their base classes.  Because
+methods have no special privileges when calling other methods of the
+same object, a method of a base class that calls another method
+defined in the same base class, may in fact end up calling a method of
+a derived class that overrides it.  (For C++ programmers: all methods
+in Python are effectively <tt class="keyword">virtual</tt>.)
+
+<P>
+An overriding method in a derived class may in fact want to extend
+rather than simply replace the base class method of the same name.
+There is a simple way to call the base class method directly: just
+call "<tt class="samp">BaseClassName.methodname(self, arguments)</tt>".  This is
+occasionally useful to clients as well.  (Note that this only works if
+the base class is defined or imported directly in the global scope.)
+
+<P>
+
+<H2><A NAME="SECTION0011510000000000000000">&nbsp;</A>
+<BR>
+9.5.1 Multiple Inheritance 
+</H2>
+
+<P>
+Python supports a limited form of multiple inheritance as well.  A
+class definition with multiple base classes looks as follows:
+
+<P>
+<dl><dd><pre class="verbatim">
+class DerivedClassName(Base1, Base2, Base3):
+    &lt;statement-1&gt;
+    .
+    .
+    .
+    &lt;statement-N&gt;
+</pre></dl>
+
+<P>
+The only rule necessary to explain the semantics is the resolution
+rule used for class attribute references.  This is depth-first,
+left-to-right.  Thus, if an attribute is not found in
+<tt class="class">DerivedClassName</tt>, it is searched in <tt class="class">Base1</tt>, then
+(recursively) in the base classes of <tt class="class">Base1</tt>, and only if it is
+not found there, it is searched in <tt class="class">Base2</tt>, and so on.
+
+<P>
+(To some people breadth first -- searching <tt class="class">Base2</tt> and
+<tt class="class">Base3</tt> before the base classes of <tt class="class">Base1</tt> -- looks more
+natural.  However, this would require you to know whether a particular
+attribute of <tt class="class">Base1</tt> is actually defined in <tt class="class">Base1</tt> or in
+one of its base classes before you can figure out the consequences of
+a name conflict with an attribute of <tt class="class">Base2</tt>.  The depth-first
+rule makes no differences between direct and inherited attributes of
+<tt class="class">Base1</tt>.)
+
+<P>
+It is clear that indiscriminate use of multiple inheritance is a
+maintenance nightmare, given the reliance in Python on conventions to
+avoid accidental name conflicts.  A well-known problem with multiple
+inheritance is a class derived from two classes that happen to have a
+common base class.  While it is easy enough to figure out what happens
+in this case (the instance will have a single copy of ``instance
+variables'' or data attributes used by the common base class), it is
+not clear that these semantics are in any way useful.
+
+<P>
+
+<H1><A NAME="SECTION0011600000000000000000">&nbsp;</A>
+<BR>
+9.6 Private Variables 
+</H1>
+
+<P>
+There is limited support for class-private
+identifiers.  Any identifier of the form <code>__spam</code> (at least two
+leading underscores, at most one trailing underscore) is now textually
+replaced with <code>_classname__spam</code>, where <code>classname</code> is the
+current class name with leading underscore(s) stripped.  This mangling
+is done without regard of the syntactic position of the identifier, so
+it can be used to define class-private instance and class variables,
+methods, as well as globals, and even to store instance variables
+private to this class on instances of <i>other</i> classes.  Truncation
+may occur when the mangled name would be longer than 255 characters.
+Outside classes, or when the class name consists of only underscores,
+no mangling occurs.
+
+<P>
+Name mangling is intended to give classes an easy way to define
+``private'' instance variables and methods, without having to worry
+about instance variables defined by derived classes, or mucking with
+instance variables by code outside the class.  Note that the mangling
+rules are designed mostly to avoid accidents; it still is possible for
+a determined soul to access or modify a variable that is considered
+private.  This can even be useful in special circumstances, such as in
+the debugger, and that's one reason why this loophole is not closed.
+(Buglet: derivation of a class with the same name as the base class
+makes use of private variables of the base class possible.)
+
+<P>
+Notice that code passed to <code>exec</code>, <code>eval()</code> or
+<code>evalfile()</code> does not consider the classname of the invoking 
+class to be the current class; this is similar to the effect of the 
+<code>global</code> statement, the effect of which is likewise restricted to 
+code that is byte-compiled together.  The same restriction applies to
+<code>getattr()</code>, <code>setattr()</code> and <code>delattr()</code>, as well as
+when referencing <code>__dict__</code> directly.
+
+<P>
+Here's an example of a class that implements its own
+<tt class="method">__getattr__()</tt> and <tt class="method">__setattr__()</tt> methods and stores
+all attributes in a private variable, in a way that works in all
+versions of Python, including those available before this feature was
+added:
+
+<P>
+<dl><dd><pre class="verbatim">
+class VirtualAttributes:
+    __vdict = None
+    __vdict_name = locals().keys()[0]
+     
+    def __init__(self):
+        self.__dict__[self.__vdict_name] = {}
+    
+    def __getattr__(self, name):
+        return self.__vdict[name]
+    
+    def __setattr__(self, name, value):
+        self.__vdict[name] = value
+</pre></dl>
+
+<P>
+
+<H1><A NAME="SECTION0011700000000000000000">&nbsp;</A>
+<BR>
+9.7 Odds and Ends 
+</H1>
+
+<P>
+Sometimes it is useful to have a data type similar to the Pascal
+``record'' or C ``struct'', bundling together a couple of named data
+items.  An empty class definition will do nicely:
+
+<P>
+<dl><dd><pre class="verbatim">
+class Employee:
+    pass
+
+john = Employee() # Create an empty employee record
+
+# Fill the fields of the record
+john.name = 'John Doe'
+john.dept = 'computer lab'
+john.salary = 1000
+</pre></dl>
+
+<P>
+A piece of Python code that expects a particular abstract data type
+can often be passed a class that emulates the methods of that data
+type instead.  For instance, if you have a function that formats some
+data from a file object, you can define a class with methods
+<tt class="method">read()</tt> and <tt class="method">readline()</tt> that gets the data from a string
+buffer instead, and pass it as an argument.
+<P>
+Instance method objects have attributes, too: <code>m.im_self</code> is the
+object of which the method is an instance, and <code>m.im_func</code> is the
+function object corresponding to the method.
+
+<P>
+
+<H2><A NAME="SECTION0011710000000000000000">&nbsp;</A>
+<BR>
+9.7.1 Exceptions Can Be Classes 
+</H2>
+
+<P>
+User-defined exceptions are no longer limited to being string objects
+-- they can be identified by classes as well.  Using this mechanism it
+is possible to create extensible hierarchies of exceptions.
+
+<P>
+There are two new valid (semantic) forms for the raise statement:
+
+<P>
+<dl><dd><pre class="verbatim">
+raise Class, instance
+
+raise instance
+</pre></dl>
+
+<P>
+In the first form, <code>instance</code> must be an instance of
+<tt class="class">Class</tt> or of a class derived from it.  The second form is a
+shorthand for:
+
+<P>
+<dl><dd><pre class="verbatim">
+raise instance.__class__, instance
+</pre></dl>
+
+<P>
+An except clause may list classes as well as string objects.  A class
+in an except clause is compatible with an exception if it is the same
+class or a base class thereof (but not the other way around -- an
+except clause listing a derived class is not compatible with a base
+class).  For example, the following code will print B, C, D in that
+order:
+
+<P>
+<dl><dd><pre class="verbatim">
+class B:
+    pass
+class C(B):
+    pass
+class D(C):
+    pass
+
+for c in [B, C, D]:
+    try:
+        raise c()
+    except D:
+        print "D"
+    except C:
+        print "C"
+    except B:
+        print "B"
+</pre></dl>
+
+<P>
+Note that if the except clauses were reversed (with
+"<tt class="samp">except B</tt>" first), it would have printed B, B, B -- the first
+matching except clause is triggered.
+
+<P>
+When an error message is printed for an unhandled exception which is a
+class, the class name is printed, then a colon and a space, and
+finally the instance converted to a string using the built-in function
+<tt class="function">str()</tt>.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot1407">... namespace!</A><A NAME="foot1407"
+ HREF="node11.html#tex2html5"><SUP>9.1</SUP></A>
+<DD>
+        Except for one thing.  Module objects have a secret read-only
+        attribute called <tt class="member">__dict__</tt> which returns the dictionary
+        used to implement the module's namespace; the name
+        <tt class="member">__dict__</tt> is an attribute but not a global name.
+        Obviously, using this violates the abstraction of namespace
+        implementation, and should be restricted to things like
+        post-mortem debuggers.
+
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node10.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="tut.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node12.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Tutorial</td>
+<td><A HREF="node2.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node10.html">8. Errors and Exceptions</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="tut.html">Python Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node12.html">10. What Now?</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

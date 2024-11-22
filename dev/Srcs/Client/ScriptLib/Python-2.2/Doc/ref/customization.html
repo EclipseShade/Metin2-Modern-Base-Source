@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.3.1 Basic customization</title>
+<META NAME="description" CONTENT="3.3.1 Basic customization">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="attribute-access.html">
+<LINK REL="previous" href="specialnames.html">
+<LINK REL="up" href="specialnames.html">
+<LINK REL="next" href="attribute-access.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="specialnames.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="specialnames.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="attribute-access.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="specialnames.html">3.3 Special method names</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="specialnames.html">3.3 Special method names</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="attribute-access.html">3.3.2 Customizing attribute access</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION005310000000000000000">&nbsp;</A><a name="l2h-84">&nbsp;</a>
+<BR>
+3.3.1 Basic customization
+</H2>
+
+<P>
+<dl><dt><b><a name="l2h-85"><tt class="method">__init__</tt></a></b>(<var>self</var><big>[</big><var>, ...</var><big>]</big>)
+<dd>
+Called<a name="l2h-103">&nbsp;</a>when the instance is created.  The
+arguments are those passed to the class constructor expression.  If a
+base class has an <tt class="method">__init__()</tt> method the derived class's
+<tt class="method">__init__()</tt> method must explicitly call it to ensure proper
+initialization of the base class part of the instance; for example:
+"<tt class="samp">BaseClass.__init__(<var>self</var>, [<var>args</var>...])</tt>".  As a special
+contraint on constructors, no value may be returned; doing so will
+cause a <tt class="exception">TypeError</tt> to be raised at runtime.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-86"><tt class="method">__del__</tt></a></b>(<var>self</var>)
+<dd>
+Called when the instance is about to be destroyed.  This is also
+called a destructor<a name="l2h-104">&nbsp;</a>  If a base class
+has a <tt class="method">__del__()</tt> method, the derived class's <tt class="method">__del__()</tt> method
+must explicitly call it to ensure proper deletion of the base class
+part of the instance.  Note that it is possible (though not recommended!)
+for the <tt class="method">__del__()</tt>
+method to postpone destruction of the instance by creating a new
+reference to it.  It may then be called at a later time when this new
+reference is deleted.  It is not guaranteed that
+<tt class="method">__del__()</tt> methods are called for objects that still exist when
+the interpreter exits.
+
+<P>
+<div class="note"><b class="label">Note:</b>
+"<tt class="samp">del x</tt>" doesn't directly call
+<code>x.__del__()</code> -- the former decrements the reference count for
+<code>x</code> by one, and the latter is only called when its reference
+count reaches zero.  Some common situations that may prevent the
+reference count of an object to go to zero include: circular
+references between objects (e.g., a doubly-linked list or a tree data
+structure with parent and child pointers); a reference to the object
+on the stack frame of a function that caught an exception (the
+traceback stored in <code>sys.exc_traceback</code> keeps the stack frame
+alive); or a reference to the object on the stack frame that raised an
+unhandled exception in interactive mode (the traceback stored in
+<code>sys.last_traceback</code> keeps the stack frame alive).  The first
+situation can only be remedied by explicitly breaking the cycles; the
+latter two situations can be resolved by storing <code>None</code> in
+<code>sys.exc_traceback</code> or <code>sys.last_traceback</code>.  Circular
+references which are garbage are detected when the option cycle
+detector is enabled (it's on by default), but can only be cleaned up
+if there are no Python-level <tt class="method">__del__()</tt> methods involved.
+Refer to the documentation for the <a class="ulink" href="../lib/module-gc.html"
+  ><tt class="module">gc</tt>
+module</a> for more information about how
+<tt class="method">__del__()</tt> methods are handled by the cycle detector,
+particularly the description of the <code>garbage</code> value.
+</div>
+
+<P>
+<div class="warning"><b class="label">Warning:</b>
+
+Due to the precarious circumstances under which
+<tt class="method">__del__()</tt> methods are invoked, exceptions that occur during their
+execution are ignored, and a warning is printed to <code>sys.stderr</code>
+instead.  Also, when <tt class="method">__del__()</tt> is invoked in response to a module
+being deleted (e.g., when execution of the program is done), other
+globals referenced by the <tt class="method">__del__()</tt> method may already have been
+deleted.  For this reason, <tt class="method">__del__()</tt> methods should do the
+absolute minimum needed to maintain external invariants.  Python 1.5
+guarantees that globals whose name begins with a single underscore are
+deleted from their module before other globals are deleted; if no
+other references to such globals exist, this may help in assuring that
+imported modules are still available at the time when the
+<tt class="method">__del__()</tt> method is called.
+</div>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-87"><tt class="method">__repr__</tt></a></b>(<var>self</var>)
+<dd>
+Called by the <tt class="function">repr()</tt><a name="l2h-105">&nbsp;</a>built-in function
+and by string conversions (reverse quotes) to compute the ``official''
+string representation of an object.  If at all possible, this should
+look like a valid Python expression that could be used to recreate an
+object with the same value (given an appropriate environment).  If
+this is not possible, a string of the form "<tt class="samp">&lt;<var>...some useful
+description...</var>&gt;</tt>" should be returned.  The return value must be a
+string object.
+
+<P>
+This is typically used for debugging, so it is important that the
+representation is information-rich and unambiguous.
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-88"><tt class="method">__str__</tt></a></b>(<var>self</var>)
+<dd>
+Called by the <tt class="function">str()</tt><a name="l2h-106">&nbsp;</a>built-in function and
+by the <tt class="keyword">print</tt><a name="l2h-107">&nbsp;</a>statement to compute the
+``informal'' string representation of an object.  This differs from
+<tt class="method">__repr__()</tt> in that it does not have to be a valid Python
+expression: a more convenient or concise representation may be used
+instead.  The return value must be a string object.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-89"><tt class="method">__lt__</tt></a></b>(<var>self, other</var>)
+<dd>
+<dt><b><a name="l2h-90"><tt class="method">__le__</tt></a></b>(<var>self, other</var>)
+<dd><dt><b><a name="l2h-91"><tt class="method">__eq__</tt></a></b>(<var>self, other</var>)
+<dd><dt><b><a name="l2h-92"><tt class="method">__ne__</tt></a></b>(<var>self, other</var>)
+<dd><dt><b><a name="l2h-93"><tt class="method">__gt__</tt></a></b>(<var>self, other</var>)
+<dd><dt><b><a name="l2h-94"><tt class="method">__ge__</tt></a></b>(<var>self, other</var>)
+<dd>
+<span class="versionnote">New in version 2.1.</span>
+
+These are the so-called ``rich comparison'' methods, and are called
+for comparison operators in preference to <tt class="method">__cmp__()</tt> below.
+The correspondence between operator symbols and method names is as
+follows:
+<code><var>x</var>&lt;<var>y</var></code> calls <code><var>x</var>.__lt__(<var>y</var>)</code>,
+<code><var>x</var>&lt;=<var>y</var></code> calls <code><var>x</var>.__le__(<var>y</var>)</code>,
+<code><var>x</var>==<var>y</var></code> calls <code><var>x</var>.__eq__(<var>y</var>)</code>,
+<code><var>x</var>!=<var>y</var></code> and <code><var>x</var>&lt;&gt;<var>y</var></code> call
+<code><var>x</var>.__ne__(<var>y</var>)</code>,
+<code><var>x</var>&gt;<var>y</var></code> calls <code><var>x</var>.__gt__(<var>y</var>)</code>, and
+<code><var>x</var>&gt;=<var>y</var></code> calls <code><var>x</var>.__ge__(<var>y</var>)</code>.
+These methods can return any value, but if the comparison operator is
+used in a Boolean context, the return value should be interpretable as
+a Boolean value, else a <tt class="exception">TypeError</tt> will be raised.
+By convention, <code>0</code> is used for false and <code>1</code> for true.
+
+<P>
+There are no reflected (swapped-argument) versions of these methods
+(to be used when the left argument does not support the operation but
+the right argument does); rather, <tt class="method">__lt__()</tt> and
+<tt class="method">__gt__()</tt> are each other's reflection, <tt class="method">__le__()</tt> and
+<tt class="method">__ge__()</tt> are each other's reflection, and <tt class="method">__eq__()</tt>
+and <tt class="method">__ne__()</tt> are their own reflection.
+
+<P>
+Arguments to rich comparison methods are never coerced.  A rich
+comparison method may return <code>NotImplemented</code> if it does not
+implement the operation for a given pair of arguments.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-95"><tt class="method">__cmp__</tt></a></b>(<var>self, other</var>)
+<dd>
+Called by comparison operations if rich comparison (see above) is not
+defined.  Should return a negative integer if <code>self &lt; other</code>,
+zero if <code>self == other</code>, a positive integer if <code>self &gt;
+other</code>.  If no <tt class="method">__cmp__()</tt>, <tt class="method">__eq__()</tt> or
+<tt class="method">__ne__()</tt> operation is defined, class instances are compared
+by object identity (``address'').  See also the description of
+<tt class="method">__hash__()</tt> for some important notes on creating objects which
+support custom comparison operations and are usable as dictionary
+keys.
+(Note: the restriction that exceptions are not propagated by
+<tt class="method">__cmp__()</tt> has been removed in Python 1.5.)
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-96"><tt class="method">__rcmp__</tt></a></b>(<var>self, other</var>)
+<dd>
+  
+<span class="versionnote">Changed in version 2.1:
+No longer supported.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-97"><tt class="method">__hash__</tt></a></b>(<var>self</var>)
+<dd>
+Called for the key object for dictionary<a name="l2h-108">&nbsp;</a>operations, and by the built-in function
+<tt class="function">hash()</tt><a name="l2h-109">&nbsp;</a>  Should return a 32-bit integer
+usable as a hash value
+for dictionary operations.  The only required property is that objects
+which compare equal have the same hash value; it is advised to somehow
+mix together (e.g., using exclusive or) the hash values for the
+components of the object that also play a part in comparison of
+objects.  If a class does not define a <tt class="method">__cmp__()</tt> method it should
+not define a <tt class="method">__hash__()</tt> operation either; if it defines
+<tt class="method">__cmp__()</tt> or <tt class="method">__eq__()</tt> but not <tt class="method">__hash__()</tt>,
+its instances will not be usable as dictionary keys.  If a class
+defines mutable objects and implements a <tt class="method">__cmp__()</tt> or
+<tt class="method">__eq__()</tt> method, it should not implement <tt class="method">__hash__()</tt>,
+since the dictionary implementation requires that a key's hash value
+is immutable (if the object's hash value changes, it will be in the
+wrong hash bucket).
+<a name="l2h-99">&nbsp;</a></dl>
+
+<P>
+<dl><dt><b><a name="l2h-100"><tt class="method">__nonzero__</tt></a></b>(<var>self</var>)
+<dd>
+Called to implement truth value testing; should return <code>0</code> or
+<code>1</code>.  When this method is not defined, <tt class="method">__len__()</tt> is
+called, if it is defined (see below).  If a class defines neither
+<tt class="method">__len__()</tt> nor <tt class="method">__nonzero__()</tt>, all its instances are
+considered true.
+<a name="l2h-102">&nbsp;</a></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="specialnames.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="specialnames.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="attribute-access.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="specialnames.html">3.3 Special method names</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="specialnames.html">3.3 Special method names</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="attribute-access.html">3.3.2 Customizing attribute access</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

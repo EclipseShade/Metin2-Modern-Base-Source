@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.4 Distributing your extension modules </title>
+<META NAME="description" CONTENT="3.4 Distributing your extension modules ">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="previous" href="module-defn-example.html">
+<LINK REL="up" href="building-on-unix.html">
+<LINK REL="next" href="building-on-windows.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-defn-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="building-on-unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="building-on-windows.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-defn-example.html">3.3 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="building-on-unix.html">3. Building C and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="building-on-windows.html">4. Building C and</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005400000000000000000">&nbsp;</A>
+<BR>
+3.4 Distributing your extension modules
+     
+</H1>
+
+<P>
+There are two ways to distribute extension modules for others to use.
+The way that allows the easiest cross-platform support is to use the
+<tt class="module">distutils</tt><a name="l2h-8">&nbsp;</a>package.  The manual
+<em class="citetitle"><a
+ href="../dist/dist.html"
+ title="Distributing Python Modules"
+ >Distributing Python Modules</a></em> contains
+information on this approach.  It is recommended that all new
+extensions be distributed using this approach to allow easy building
+and installation across platforms.  Older extensions should migrate to
+this approach as well.
+
+<P>
+What follows describes the older approach; there are still many
+extensions which use this.
+
+<P>
+When distributing your extension modules in source form, make sure to
+include a <span class="file">Setup</span> file.  The <span class="file">Setup</span> file should be named
+<span class="file">Setup.in</span> in the distribution.  The make file make file,
+<span class="file">Makefile.pre.in</span>, will copy <span class="file">Setup.in</span> to <span class="file">Setup</span> if
+the person installing the extension doesn't do so manually.
+Distributing a <span class="file">Setup.in</span> file makes it easy for people to
+customize the <span class="file">Setup</span> file while keeping the original in
+<span class="file">Setup.in</span>.
+
+<P>
+It is a good idea to include a copy of <span class="file">Makefile.pre.in</span> for
+people who do not have a source distribution of Python.
+
+<P>
+Do not distribute a make file.  People building your modules
+should use <span class="file">Makefile.pre.in</span> to build their own make file.  A
+<span class="file">README</span> file included in the package should provide simple
+instructions to perform the build.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-defn-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="building-on-unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="building-on-windows.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-defn-example.html">3.3 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="building-on-unix.html">3. Building C and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="building-on-windows.html">4. Building C and</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

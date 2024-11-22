@@ -1,0 +1,21 @@
+// japan live
+// update: 2011.11.29 - LIVE PVP 서버 구축
+//
+// right format:
+//
+// [IP]\t[MAC]\n	-- check ip and mac(format: aa-bb-cc-dd-ee-ff)
+// [IP]\n		-- check ip only
+// \t[MAC]\n		-- check mac only
+// [IP]~[IP]\n		-- check ip range
+//
+// wrong format:
+//
+// [IP]~[IP]\t[MAC]\n	-- wrong. cannot check ip range with mac
+//
+// game server ip
+// single ip: ip1
+// range: ip1~ip2
+122.129.238.74~122.129.238.79
+122.129.238.85~122.129.238.94
+122.129.233.242
+122.129.233.136

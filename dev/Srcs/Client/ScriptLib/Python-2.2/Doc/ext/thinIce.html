@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.10.3 Thin Ice
+</title>
+<META NAME="description" CONTENT="1.10.3 Thin Ice
+">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="nullPointers.html">
+<LINK REL="previous" href="ownershipRules.html">
+<LINK REL="up" href="refcounts.html">
+<LINK REL="next" href="nullPointers.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="ownershipRules.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="refcounts.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="nullPointers.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="ownershipRules.html">1.10.2 Ownership Rules</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="refcounts.html">1.10 Reference Counts</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="nullPointers.html">1.10.4 NULL Pointers</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0031030000000000000000">&nbsp;</A>
+<BR>
+1.10.3 Thin Ice
+            
+</H2>
+
+<P>
+There are a few situations where seemingly harmless use of a borrowed
+reference can lead to problems.  These all have to do with implicit
+invocations of the interpreter, which can cause the owner of a
+reference to dispose of it.
+
+<P>
+The first and most important case to know about is using
+<tt class="cfunction">Py_DECREF()</tt> on an unrelated object while borrowing a
+reference to a list item.  For instance:
+
+<P>
+<dl><dd><pre class="verbatim">
+bug(PyObject *list) {
+    PyObject *item = PyList_GetItem(list, 0);
+
+    PyList_SetItem(list, 1, PyInt_FromLong(0L));
+    PyObject_Print(item, stdout, 0); /* BUG! */
+}
+</pre></dl>
+
+<P>
+This function first borrows a reference to <code>list[0]</code>, then
+replaces <code>list[1]</code> with the value <code>0</code>, and finally prints
+the borrowed reference.  Looks harmless, right?  But it's not!
+
+<P>
+Let's follow the control flow into <tt class="cfunction">PyList_SetItem()</tt>.  The list
+owns references to all its items, so when item 1 is replaced, it has
+to dispose of the original item 1.  Now let's suppose the original
+item 1 was an instance of a user-defined class, and let's further
+suppose that the class defined a <tt class="method">__del__()</tt> method.  If this
+class instance has a reference count of 1, disposing of it will call
+its <tt class="method">__del__()</tt> method.
+
+<P>
+Since it is written in Python, the <tt class="method">__del__()</tt> method can execute
+arbitrary Python code.  Could it perhaps do something to invalidate
+the reference to <code>item</code> in <tt class="cfunction">bug()</tt>?  You bet!  Assuming
+that the list passed into <tt class="cfunction">bug()</tt> is accessible to the
+<tt class="method">__del__()</tt> method, it could execute a statement to the effect of
+"<tt class="samp">del list[0]</tt>", and assuming this was the last reference to that
+object, it would free the memory associated with it, thereby
+invalidating <code>item</code>.
+
+<P>
+The solution, once you know the source of the problem, is easy:
+temporarily increment the reference count.  The correct version of the
+function reads:
+
+<P>
+<dl><dd><pre class="verbatim">
+no_bug(PyObject *list) {
+    PyObject *item = PyList_GetItem(list, 0);
+
+    Py_INCREF(item);
+    PyList_SetItem(list, 1, PyInt_FromLong(0L));
+    PyObject_Print(item, stdout, 0);
+    Py_DECREF(item);
+}
+</pre></dl>
+
+<P>
+This is a true story.  An older version of Python contained variants
+of this bug and someone spent a considerable amount of time in a C
+debugger to figure out why his <tt class="method">__del__()</tt> methods would fail...
+
+<P>
+The second case of problems with a borrowed reference is a variant
+involving threads.  Normally, multiple threads in the Python
+interpreter can't get in each other's way, because there is a global
+lock protecting Python's entire object space.  However, it is possible
+to temporarily release this lock using the macro
+<code>Py_BEGIN_ALLOW_THREADS</code>, and to re-acquire it using
+<code>Py_END_ALLOW_THREADS</code>.  This is common around blocking I/O
+calls, to let other threads use the processor while waiting for the I/O to
+complete.  Obviously, the following function has the same problem as
+the previous one:
+
+<P>
+<dl><dd><pre class="verbatim">
+bug(PyObject *list) {
+    PyObject *item = PyList_GetItem(list, 0);
+    Py_BEGIN_ALLOW_THREADS
+    ...some blocking I/O call...
+    Py_END_ALLOW_THREADS
+    PyObject_Print(item, stdout, 0); /* BUG! */
+}
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="ownershipRules.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="refcounts.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="nullPointers.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="ownershipRules.html">1.10.2 Ownership Rules</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="refcounts.html">1.10 Reference Counts</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="nullPointers.html">1.10.4 NULL Pointers</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

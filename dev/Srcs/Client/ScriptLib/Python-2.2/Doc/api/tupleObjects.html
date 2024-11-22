@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.3.4 Tuple Objects </title>
+<META NAME="description" CONTENT="7.3.4 Tuple Objects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="listObjects.html">
+<LINK REL="previous" href="bufferObjects.html">
+<LINK REL="up" href="sequenceObjects.html">
+<LINK REL="next" href="listObjects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="bufferObjects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="sequenceObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="listObjects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="bufferObjects.html">7.3.3 Buffer Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="sequenceObjects.html">7.3 Sequence Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="listObjects.html">7.3.5 List Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009340000000000000000">&nbsp;</A>
+<BR>
+7.3.4 Tuple Objects 
+</H2>
+
+<P>
+<a name="l2h-487">&nbsp;</a><dl><dt><b><tt class="ctype"><a name="l2h-472">PyTupleObject</a></tt></b>
+<dd>
+  This subtype of <tt class="ctype">PyObject</tt> represents a Python tuple object.
+</dl>
+
+<P>
+<dl><dt>PyTypeObject <b><a name="l2h-473"><tt class="cdata">PyTuple_Type</tt></a></b>
+<dd>
+  This instance of <tt class="ctype">PyTypeObject</tt> represents the Python tuple
+  type; it is the same object as <code>types.TupleType</code> in the Python
+  layer.<a name="l2h-475">&nbsp;</a>.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-476"><tt class="cfunction">PyTuple_Check</tt></a></b>(<var>PyObject *p</var>)
+<dd>
+  Return true if <var>p</var> is a tuple object or an instance of a subtype
+  of the tuple type.
+  
+<span class="versionnote">Changed in version 2.2:
+Allowed subtypes to be accepted.</span>
+
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-477"><tt class="cfunction">PyTuple_CheckExact</tt></a></b>(<var>PyObject *p</var>)
+<dd>
+  Return true if <var>p</var> is a tuple object, but not an instance of a
+  subtype of the tuple type.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-478"><tt class="cfunction">PyTuple_New</tt></a></b>(<var>int len</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Return a new tuple object of size <var>len</var>, or <tt class="constant">NULL</tt> on failure.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-479"><tt class="cfunction">PyTuple_Size</tt></a></b>(<var>PyObject *p</var>)
+<dd>
+  Takes a pointer to a tuple object, and returns the size of that
+  tuple.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-480"><tt class="cfunction">PyTuple_GET_SIZE</tt></a></b>(<var>PyObject *p</var>)
+<dd>
+  Return the size of the tuple <var>p</var>, which must be non-<tt class="constant">NULL</tt> and
+  point to a tuple; no error checking is performed.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-481"><tt class="cfunction">PyTuple_GetItem</tt></a></b>(<var>PyObject *p, int pos</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Returns the object at position <var>pos</var> in the tuple pointed to by
+  <var>p</var>.  If <var>pos</var> is out of bounds, returns <tt class="constant">NULL</tt> and sets an
+  <tt class="exception">IndexError</tt> exception.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-482"><tt class="cfunction">PyTuple_GET_ITEM</tt></a></b>(<var>PyObject *p, int pos</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Like <tt class="cfunction">PyTuple_GetItem()</tt>, but does no checking of its
+  arguments.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-483"><tt class="cfunction">PyTuple_GetSlice</tt></a></b>(<var>PyObject *p,
+                                               int low, int high</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Takes a slice of the tuple pointed to by <var>p</var> from <var>low</var> to
+  <var>high</var> and returns it as a new tuple.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-484"><tt class="cfunction">PyTuple_SetItem</tt></a></b>(<var>PyObject *p,
+                                        int pos, PyObject *o</var>)
+<dd>
+  Inserts a reference to object <var>o</var> at position <var>pos</var> of the
+  tuple pointed to by <var>p</var>. It returns <code>0</code> on success.
+  <span class="note"><b class="label">Note:</b>
+This function ``steals'' a reference to <var>o</var>.</span>
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-485"><tt class="cfunction">PyTuple_SET_ITEM</tt></a></b>(<var>PyObject *p,
+                                          int pos, PyObject *o</var>)
+<dd>
+  Like <tt class="cfunction">PyTuple_SetItem()</tt>, but does no error checking, and
+  should <i>only</i> be used to fill in brand new tuples.  <span class="note"><b class="label">Note:</b>
+This
+  function ``steals'' a reference to <var>o</var>.</span>
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-486"><tt class="cfunction">_PyTuple_Resize</tt></a></b>(<var>PyObject **p, int newsize</var>)
+<dd>
+  Can be used to resize a tuple.  <var>newsize</var> will be the new length
+  of the tuple.  Because tuples are <i>supposed</i> to be immutable,
+  this should only be used if there is only one reference to the
+  object.  Do <i>not</i> use this if the tuple may already be known to
+  some other part of the code.  The tuple will always grow or shrink
+  at the end.  Think of this as destroying the old tuple and creating
+  a new one, only more efficiently.  Returns <code>0</code> on success.
+  Client code should never assume that the resulting value of
+  <code>*<var>p</var></code> will be the same as before calling this function.
+  If the object referenced by <code>*<var>p</var></code> is replaced, the
+  original <code>*<var>p</var></code> is destroyed.  On failure, returns
+  <code>-1</code> and sets <code>*<var>p</var></code> to <tt class="constant">NULL</tt>, and raises
+  <tt class="exception">MemoryError</tt> or
+  <tt class="exception">SystemError</tt>.
+  
+<span class="versionnote">Changed in version 2.2:
+Removed unused third parameter, <var>last_is_sticky</var>.</span>
+
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="bufferObjects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="sequenceObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="listObjects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="bufferObjects.html">7.3.3 Buffer Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="sequenceObjects.html">7.3 Sequence Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="listObjects.html">7.3.5 List Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

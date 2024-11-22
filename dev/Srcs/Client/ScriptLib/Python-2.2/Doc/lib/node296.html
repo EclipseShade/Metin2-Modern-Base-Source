@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.2.3 Higher Level Interface</title>
+<META NAME="description" CONTENT="11.2.3 Higher Level Interface">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node297.html">
+<LINK REL="previous" HREF="node295.html">
+<LINK REL="up" href="module-cgi.html">
+<LINK REL="next" HREF="node297.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node295.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-cgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node297.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node295.html">11.2.2 Using the cgi</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-cgi.html">11.2 cgi  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node297.html">11.2.4 Old classes</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013230000000000000000">
+11.2.3 Higher Level Interface</A>
+</H2>
+
+<P>
+
+<span class="versionnote">New in version 2.2.</span>
+  
+<P>
+The previous section explains how to read CGI form data using the
+<tt class="class">FieldStorage</tt> class.  This section describes a higher level
+interface which was added to this class to allow one to do it in a
+more readable and intuitive way.  The interface doesn't make the
+techniques described in previous sections obsolete -- they are still
+useful to process file uploads efficiently, for example.
+
+<P>
+The interface consists of two simple methods. Using the methods
+you can process form data in a generic way, without the need to worry
+whether only one or more values were posted under one name.
+
+<P>
+In the previous section, you learned to write following code anytime
+you expected a user to post more than one value under one name:
+
+<P>
+<dl><dd><pre class="verbatim">
+from types import ListType
+
+item = form.getvalue("item")
+if isinstance(item, ListType):
+    # The user is requesting more than one item.
+else:
+    # The user is requesting only one item.
+</pre></dl>
+
+<P>
+This situation is common for example when a form contains a group of
+multiple checkboxes with the same name:
+
+<P>
+<dl><dd><pre class="verbatim">
+&lt;input type="checkbox" name="item" value="1" /&gt;
+&lt;input type="checkbox" name="item" value="2" /&gt;
+</pre></dl>
+
+<P>
+In most situations, however, there's only one form control with a
+particular name in a form and then you expect and need only one value
+associated with this name.  So you write a script containing for
+example this code:
+
+<P>
+<dl><dd><pre class="verbatim">
+user = form.getvalue("user").toupper()
+</pre></dl>
+
+<P>
+The problem with the code is that you should never expect that a
+client will provide valid input to your scripts.  For example, if a
+curious user appends another "<tt class="samp">user=foo</tt>" pair to the query string,
+then the script would crash, because in this situation the
+<code>getvalue("user")</code> method call returns a list instead of a
+string.  Calling the <tt class="method">toupper()</tt> method on a list is not valid
+(since lists do not have a method of this name) and results in an
+<tt class="exception">AttributeError</tt> exception.
+
+<P>
+Therefore, the appropriate way to read form data values was to always
+use the code which checks whether the obtained value is a single value
+or a list of values.  That's annoying and leads to less readable
+scripts.
+
+<P>
+A more convenient approach is to use the methods <tt class="method">getfirst()</tt>
+and <tt class="method">getlist()</tt> provided by this higher level interface.
+
+<P>
+<dl><dt><b><a name="l2h-2286"><tt class="method">getfirst</tt></a></b>(<var>name</var><big>[</big><var>, default</var><big>]</big>)
+<dd>
+  Thin method always returns only one value associated with form field
+  <var>name</var>.  The method returns only the first value in case that
+  more values were posted under such name.  Please note that the order
+  in which the values are received may vary from browser to browser
+  and should not be counted on.  If no such form field or value exists
+  then the method returns the value specified by the optional
+  parameter <var>default</var>.  This parameter defaults to <code>None</code> if
+  not specified.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2287"><tt class="method">getlist</tt></a></b>(<var>name</var>)
+<dd>
+  This method always returns a list of values associated with form
+  field <var>name</var>.  The method returns an empty list if no such form
+  field or value exists for <var>name</var>.  It returns a list consisting
+  of one item if only one such value exists.
+</dl>
+
+<P>
+Using these methods you can write nice compact code:
+
+<P>
+<dl><dd><pre class="verbatim">
+import cgi
+form = cgi.FieldStorage()
+user = form.getfirst("user").toupper()    # This way it's safe.
+for item in form.getlist("item"):
+    do_something(item)
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node295.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-cgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node297.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node295.html">11.2.2 Using the cgi</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-cgi.html">11.2 cgi  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node297.html">11.2.4 Old classes</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

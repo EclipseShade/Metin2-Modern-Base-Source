@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.2.4.2 Complex Numbers as Python Objects</title>
+<META NAME="description" CONTENT="7.2.4.2 Complex Numbers as Python Objects">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" HREF="node37.html">
+<LINK REL="up" href="complexObjects.html">
+<LINK REL="next" href="sequenceObjects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node37.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="complexObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="sequenceObjects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node37.html">7.2.4.1 Complex Numbers as</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="complexObjects.html">7.2.4 Complex Number Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="sequenceObjects.html">7.3 Sequence Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION009242000000000000000">
+7.2.4.2 Complex Numbers as Python Objects</A>
+</H3>
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-350">PyComplexObject</a></tt></b>
+<dd>
+  This subtype of <tt class="ctype">PyObject</tt> represents a Python complex number
+  object.
+</dl>
+
+<P>
+<dl><dt>PyTypeObject <b><a name="l2h-351"><tt class="cdata">PyComplex_Type</tt></a></b>
+<dd>
+  This instance of <tt class="ctype">PyTypeObject</tt> represents the Python complex
+  number type.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-352"><tt class="cfunction">PyComplex_Check</tt></a></b>(<var>PyObject *p</var>)
+<dd>
+  Returns true if its argument is a <tt class="ctype">PyComplexObject</tt> or a
+  subtype of <tt class="ctype">PyComplexObject</tt>.
+  
+<span class="versionnote">Changed in version 2.2:
+Allowed subtypes to be accepted.</span>
+
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-353"><tt class="cfunction">PyComplex_CheckExact</tt></a></b>(<var>PyObject *p</var>)
+<dd>
+  Returns true if its argument is a <tt class="ctype">PyComplexObject</tt>, but not a
+  subtype of <tt class="ctype">PyComplexObject</tt>.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-354"><tt class="cfunction">PyComplex_FromCComplex</tt></a></b>(<var>Py_complex v</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Create a new Python complex number object from a C
+  <tt class="ctype">Py_complex</tt> value.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-355"><tt class="cfunction">PyComplex_FromDoubles</tt></a></b>(<var>double real, double imag</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Returns a new <tt class="ctype">PyComplexObject</tt> object from <var>real</var> and
+  <var>imag</var>.
+</dl>
+
+<P>
+<dl><dt>double <b><a name="l2h-356"><tt class="cfunction">PyComplex_RealAsDouble</tt></a></b>(<var>PyObject *op</var>)
+<dd>
+  Returns the real part of <var>op</var> as a C <tt class="ctype">double</tt>.
+</dl>
+
+<P>
+<dl><dt>double <b><a name="l2h-357"><tt class="cfunction">PyComplex_ImagAsDouble</tt></a></b>(<var>PyObject *op</var>)
+<dd>
+  Returns the imaginary part of <var>op</var> as a C <tt class="ctype">double</tt>.
+</dl>
+
+<P>
+<dl><dt>Py_complex <b><a name="l2h-358"><tt class="cfunction">PyComplex_AsCComplex</tt></a></b>(<var>PyObject *op</var>)
+<dd>
+  Returns the <tt class="ctype">Py_complex</tt> value of the complex number
+  <var>op</var>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node37.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="complexObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="sequenceObjects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node37.html">7.2.4.1 Complex Numbers as</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="complexObjects.html">7.2.4 Complex Number Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="sequenceObjects.html">7.3 Sequence Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

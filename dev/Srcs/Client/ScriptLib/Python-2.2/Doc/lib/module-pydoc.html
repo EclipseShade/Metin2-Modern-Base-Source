@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.1 pydoc -- Documentation generator and online help system</title>
+<META NAME="description" CONTENT="5.1 pydoc -- Documentation generator and online help system">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-doctest.html">
+<LINK REL="previous" href="misc.html">
+<LINK REL="up" href="misc.html">
+<LINK REL="next" href="module-doctest.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="misc.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-doctest.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-doctest.html">5.2 doctest  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007100000000000000000">
+5.1 <tt class="module">pydoc</tt> --
+         Documentation generator and online help system</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.1.</span>
+
+<a name="l2h-834">&nbsp;</a>
+<P>
+The <tt class="module">pydoc</tt> module automatically generates documentation from
+Python modules.  The documentation can be presented as pages of text
+on the console, served to a Web browser, or saved to HTML files.
+
+<P>
+The built-in function <tt class="function">help()</tt> invokes the online help system
+in the interactive interpreter, which uses <tt class="module">pydoc</tt> to generate
+its documentation as text on the console.  The same text documentation
+can also be viewed from outside the Python interpreter by running
+<b class="program">pydoc</b> as a script at the operating system's command prompt.
+For example, running
+
+<P>
+<dl><dd><pre class="verbatim">
+pydoc sys
+</pre></dl>
+
+<P>
+at a shell prompt will display documentation on the <tt class="module"><a href="module-sys.html">sys</a></tt>
+module, in a style similar to the manual pages shown by the Unix
+<b class="program">man</b> command.  The argument to <b class="program">pydoc</b> can be the name
+of a function, module, or package, or a dotted reference to a class,
+method, or function within a module or module in a package.  If the
+argument to <b class="program">pydoc</b> looks like a path (that is, it contains the
+path separator for your operating system, such as a slash in Unix),
+and refers to an existing Python source file, then documentation is
+produced for that file.
+
+<P>
+Specifying a <b class="programopt">-w</b> flag before the argument will cause HTML
+documentation to be written out to a file in the current directory,
+instead of displaying text on the console.
+
+<P>
+Specifying a <b class="programopt">-k</b> flag before the argument will search the
+synopsis lines of all available modules for the keyword given as the
+argument, again in a manner similar to the Unix <b class="program">man</b>
+command.  The synopsis line of a module is the first line of its
+documentation string.
+
+<P>
+You can also use <b class="program">pydoc</b> to start an HTTP server on the local
+machine that will serve documentation to visiting Web browsers.
+<b class="program">pydoc</b> <b class="programopt">-p 1234</b> will start a HTTP server on port
+1234, allowing you to browse the documentation at
+<code>http://localhost:1234/</code> in your preferred Web browser.
+<b class="program">pydoc</b> <b class="programopt">-g</b> will start the server and additionally
+bring up a small <tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt>-based graphical interface to help
+you search for documentation pages.
+
+<P>
+When <b class="program">pydoc</b> generates documentation, it uses the current
+environment and path to locate modules.  Thus, invoking
+<b class="program">pydoc</b> <b class="programopt">spam</b> documents precisely the version of
+the module you would get if you started the Python interpreter and
+typed "<tt class="samp">import spam</tt>".
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="misc.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-doctest.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-doctest.html">5.2 doctest  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

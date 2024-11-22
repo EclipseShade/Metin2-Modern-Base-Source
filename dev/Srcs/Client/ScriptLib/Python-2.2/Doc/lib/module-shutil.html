@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.23 shutil -- High-level file operations</title>
+<META NAME="description" CONTENT="6.23 shutil -- High-level file operations">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-locale.html">
+<LINK REL="previous" href="module-fnmatch.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" href="shutil-example.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-fnmatch.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="shutil-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-fnmatch.html">6.22 fnmatch  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="shutil-example.html">6.23.1 Example</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0082300000000000000000">
+6.23 <tt class="module">shutil</tt> --
+         High-level file operations</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">shutil</tt> module offers a number of high-level operations on
+files and collections of files.  In particular, functions are provided 
+which support file copying and removal.
+<a name="l2h-1762">&nbsp;</a>
+<P>
+<b>Caveat:</b>  On MacOS, the resource fork and other metadata are
+not used.  For file copies, this means that resources will be lost and 
+file type and creator codes will not be correct.
+
+<P>
+<dl><dt><b><a name="l2h-1754"><tt class="function">copyfile</tt></a></b>(<var>src, dst</var>)
+<dd>
+  Copy the contents of the file named <var>src</var> to a file named
+  <var>dst</var>.  If <var>dst</var> exists, it will be replaced, otherwise it
+  will be created.  Special files such as character or block devices
+  and pipes cannot not be copied with this function.  <var>src</var> and
+  <var>dst</var> are path names given as strings.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1755"><tt class="function">copyfileobj</tt></a></b>(<var>fsrc, fdst</var><big>[</big><var>, length</var><big>]</big>)
+<dd>
+  Copy the contents of the file-like object <var>fsrc</var> to the
+  file-like object <var>fdst</var>.  The integer <var>length</var>, if given,
+  is the buffer size. In particular, a negative <var>length</var> value
+  means to copy the data without looping over the source data in
+  chunks; by default the data is read in chunks to avoid uncontrolled
+  memory consumption.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1756"><tt class="function">copymode</tt></a></b>(<var>src, dst</var>)
+<dd>
+  Copy the permission bits from <var>src</var> to <var>dst</var>.  The file
+  contents, owner, and group are unaffected.  <var>src</var> and <var>dst</var>
+  are path names given as strings.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1757"><tt class="function">copystat</tt></a></b>(<var>src, dst</var>)
+<dd>
+  Copy the permission bits, last access time, and last modification
+  time from <var>src</var> to <var>dst</var>.  The file contents, owner, and
+  group are unaffected.  <var>src</var> and <var>dst</var> are path names given
+  as strings.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1758"><tt class="function">copy</tt></a></b>(<var>src, dst</var>)
+<dd>
+  Copy the file <var>src</var> to the file or directory <var>dst</var>.  If
+  <var>dst</var> is a directory, a file with the same basename as <var>src</var> 
+  is created (or overwritten) in the directory specified.  Permission
+  bits are copied.  <var>src</var> and <var>dst</var> are path names given as
+  strings.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1759"><tt class="function">copy2</tt></a></b>(<var>src, dst</var>)
+<dd>
+  Similar to <tt class="function">copy()</tt>, but last access time and last
+  modification time are copied as well.  This is similar to the
+  Unix command <b class="program">cp</b> <b class="programopt">-p</b>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1760"><tt class="function">copytree</tt></a></b>(<var>src, dst</var><big>[</big><var>, symlinks</var><big>]</big>)
+<dd>
+  Recursively copy an entire directory tree rooted at <var>src</var>.  The
+  destination directory, named by <var>dst</var>, must not already exist;
+  it will be created.  Individual files are copied using
+  <tt class="function">copy2()</tt>.  If <var>symlinks</var> is true, symbolic links in
+  the source tree are represented as symbolic links in the new tree;
+  if false or omitted, the contents of the linked files are copied to
+  the new tree.  Errors are reported to standard output.
+
+<P>
+The source code for this should be considered an example rather than 
+  a tool.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1761"><tt class="function">rmtree</tt></a></b>(<var>path</var><big>[</big><var>, ignore_errors</var><big>[</big><var>, onerror</var><big>]</big><big>]</big>)
+<dd>
+<a name="l2h-1763">&nbsp;</a>  Delete an entire directory tree.  If <var>ignore_errors</var> is true,
+  errors will be ignored; if false or omitted, errors are handled by
+  calling a handler specified by <var>onerror</var> or raise an exception.
+
+<P>
+If <var>onerror</var> is provided, it must be a callable that accepts
+  three parameters: <var>function</var>, <var>path</var>, and <var>excinfo</var>.
+  The first parameter, <var>function</var>, is the function which raised
+  the exception; it will be <tt class="function">os.remove()</tt> or
+  <tt class="function">os.rmdir()</tt>.  The second parameter, <var>path</var>, will be
+  the path name passed to <var>function</var>.  The third parameter,
+  <var>excinfo</var>, will be the exception information return by
+  <tt class="function">sys.exc_info()</tt>.  Exceptions raised by <var>onerror</var> will
+  not be caught.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="shutil-example.html">6.23.1 Example</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-fnmatch.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="shutil-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-fnmatch.html">6.22 fnmatch  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="shutil-example.html">6.23.1 Example</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

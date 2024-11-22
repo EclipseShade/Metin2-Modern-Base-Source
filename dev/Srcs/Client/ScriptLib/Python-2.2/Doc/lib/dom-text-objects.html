@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.6.2.10 Text and CDATASection Objects </title>
+<META NAME="description" CONTENT="13.6.2.10 Text and CDATASection Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="dom-pi-objects.html">
+<LINK REL="previous" href="dom-comment-objects.html">
+<LINK REL="up" HREF="node438.html">
+<LINK REL="next" href="dom-pi-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dom-comment-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node438.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dom-pi-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dom-comment-objects.html">13.6.2.9 Comment Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node438.html">13.6.2 Objects in the</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dom-pi-objects.html">13.6.2.11 ProcessingInstruction Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00156210000000000000000">&nbsp;</A>
+<BR>
+13.6.2.10 Text and CDATASection Objects 
+</H3>
+
+<P>
+The <tt class="class">Text</tt> interface represents text in the XML document.  If
+the parser and DOM implementation support the DOM's XML extension,
+portions of the text enclosed in CDATA marked sections are stored in
+<tt class="class">CDATASection</tt> objects.  These two interfaces are identical, but
+provide different values for the <tt class="member">nodeType</tt> attribute.
+
+<P>
+These interfaces extend the <tt class="class">Node</tt> interface.  They cannot have
+child nodes.
+
+<P>
+<dl><dt><b><a name="l2h-3269"><tt class="member">data</tt></a></b>
+<dd>
+The content of the text node as a string.
+</dl>
+
+<P>
+<span class="note"><b class="label">Note:</b>
+The use of a <tt class="class">CDATASection</tt> node does not
+indicate that the node represents a complete CDATA marked section,
+only that the content of the node was part of a CDATA section.  A
+single CDATA section may be represented by more than one node in the
+document tree.  There is no way to determine whether two adjacent
+<tt class="class">CDATASection</tt> nodes represent different CDATA marked sections.</span>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dom-comment-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node438.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dom-pi-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dom-comment-objects.html">13.6.2.9 Comment Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node438.html">13.6.2 Objects in the</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dom-pi-objects.html">13.6.2.11 ProcessingInstruction Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

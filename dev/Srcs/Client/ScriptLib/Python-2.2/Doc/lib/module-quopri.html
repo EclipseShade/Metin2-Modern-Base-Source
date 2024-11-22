@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.15 quopri -- Encode and decode MIME quoted-printable data</title>
+<META NAME="description" CONTENT="12.15 quopri -- Encode and decode MIME quoted-printable data">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-uu.html">
+<LINK REL="previous" href="module-binhex.html">
+<LINK REL="up" href="netdata.html">
+<LINK REL="next" href="module-uu.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="binhex-notes.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-uu.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="binhex-notes.html">12.14.1 Notes</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-uu.html">12.16 uu  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00141500000000000000000">
+12.15 <tt class="module">quopri</tt> --
+         Encode and decode MIME quoted-printable data</A>
+</H1>
+
+<P>
+
+
+<P>
+This module performs quoted-printable transport encoding and decoding,
+as defined in <a class="rfc" name="rfcref-64075"
+href="http://www.faqs.org/rfcs/rfc1521.html">RFC 1521</a>: ``MIME (Multipurpose Internet Mail
+Extensions) Part One: Mechanisms for Specifying and Describing the
+Format of Internet Message Bodies''.  The quoted-printable encoding is
+designed for data where there are relatively few nonprintable
+characters; the base64 encoding scheme available via the
+<tt class="module"><a href="module-base64.html">base64</a></tt> module is more compact if there are many such
+characters, as when sending a graphics file.
+<a name="l2h-3046">&nbsp;</a>
+<P>
+<dl><dt><b><a name="l2h-3042"><tt class="function">decode</tt></a></b>(<var>input, output</var><big>[</big><var>,header</var><big>]</big>)
+<dd>
+Decode the contents of the <var>input</var> file and write the resulting
+decoded binary data to the <var>output</var> file.
+<var>input</var> and <var>output</var> must either be file objects or objects that
+mimic the file object interface. <var>input</var> will be read until
+<code><var>input</var>.readline()</code> returns an empty string.
+If the optional argument <var>header</var> is present and true, underscore
+will be decoded as space. This is used to decode
+``Q''-encoded headers as described in <a class="rfc" name="rfcref-64080"
+href="http://www.faqs.org/rfcs/rfc1522.html">RFC 1522</a>: ``MIME (Multipurpose Internet Mail Extensions)
+Part Two: Message Header Extensions for Non-ASCII Text''.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3043"><tt class="function">encode</tt></a></b>(<var>input, output, quotetabs</var>)
+<dd>
+Encode the contents of the <var>input</var> file and write the resulting
+quoted-printable data to the <var>output</var> file.
+<var>input</var> and <var>output</var> must either be file objects or objects that
+mimic the file object interface. <var>input</var> will be read until
+<code><var>input</var>.readline()</code> returns an empty string.
+<var>quotetabs</var> is a flag which controls whether to encode embedded
+spaces and tabs; when true it encodes such embedded whitespace, and
+when false it leaves them unencoded.  Note that spaces and tabs
+appearing at the end of lines are always encoded, as per <a class="rfc" name="rfcref-64082"
+href="http://www.faqs.org/rfcs/rfc1521.html">RFC 1521</a>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3044"><tt class="function">decodestring</tt></a></b>(<var>s</var><big>[</big><var>,header</var><big>]</big>)
+<dd>
+Like <tt class="function">decode()</tt>, except that it accepts a source string and
+returns the corresponding decoded string.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3045"><tt class="function">encodestring</tt></a></b>(<var>s</var><big>[</big><var>, quotetabs</var><big>]</big>)
+<dd>
+Like <tt class="function">encode()</tt>, except that it accepts a source string and
+returns the corresponding encoded string.  <var>quotetabs</var> is optional
+(defaulting to 0), and is passed straight through to
+<tt class="function">encode()</tt>.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-mimify.html">mimify</a></tt>:</b>
+    <dd>General utilities for processing of MIME messages.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-base64.html">base64</a></tt>:</b>
+    <dd>Encode and decode MIME base64 data.
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="binhex-notes.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-uu.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="binhex-notes.html">12.14.1 Notes</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-uu.html">12.16 uu  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.5.3 Condition Objects </title>
+<META NAME="description" CONTENT="7.5.3 Condition Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="semaphore-objects.html">
+<LINK REL="previous" href="rlock-objects.html">
+<LINK REL="up" href="module-threading.html">
+<LINK REL="next" href="semaphore-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="rlock-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-threading.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="semaphore-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="rlock-objects.html">7.5.2 RLock Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-threading.html">7.5 threading  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="semaphore-objects.html">7.5.4 Semaphore Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009530000000000000000">&nbsp;</A>
+<BR>
+7.5.3 Condition Objects 
+</H2>
+
+<P>
+A condition variable is always associated with some kind of lock;
+this can be passed in or one will be created by default.  (Passing
+one in is useful when several condition variables must share the
+same lock.)
+
+<P>
+A condition variable has <tt class="method">acquire()</tt> and <tt class="method">release()</tt>
+methods that call the corresponding methods of the associated lock.
+It also has a <tt class="method">wait()</tt> method, and <tt class="method">notify()</tt> and
+<tt class="method">notifyAll()</tt> methods.  These three must only be called when
+the calling thread has acquired the lock.
+
+<P>
+The <tt class="method">wait()</tt> method releases the lock, and then blocks until it
+is awakened by a <tt class="method">notify()</tt> or <tt class="method">notifyAll()</tt> call for
+the same condition variable in another thread.  Once awakened, it
+re-acquires the lock and returns.  It is also possible to specify a
+timeout.
+
+<P>
+The <tt class="method">notify()</tt> method wakes up one of the threads waiting for
+the condition variable, if any are waiting.  The <tt class="method">notifyAll()</tt>
+method wakes up all threads waiting for the condition variable.
+
+<P>
+Note: the <tt class="method">notify()</tt> and <tt class="method">notifyAll()</tt> methods don't
+release the lock; this means that the thread or threads awakened will
+not return from their <tt class="method">wait()</tt> call immediately, but only when
+the thread that called <tt class="method">notify()</tt> or <tt class="method">notifyAll()</tt>
+finally relinquishes ownership of the lock.
+
+<P>
+Tip: the typical programming style using condition variables uses the
+lock to synchronize access to some shared state; threads that are
+interested in a particular change of state call <tt class="method">wait()</tt>
+repeatedly until they see the desired state, while threads that modify
+the state call <tt class="method">notify()</tt> or <tt class="method">notifyAll()</tt> when they
+change the state in such a way that it could possibly be a desired
+state for one of the waiters.  For example, the following code is a
+generic producer-consumer situation with unlimited buffer capacity:
+
+<P>
+<dl><dd><pre class="verbatim">
+# Consume one item
+cv.acquire()
+while not an_item_is_available():
+    cv.wait()
+get_an_available_item()
+cv.release()
+
+# Produce one item
+cv.acquire()
+make_an_item_available()
+cv.notify()
+cv.release()
+</pre></dl>
+
+<P>
+To choose between <tt class="method">notify()</tt> and <tt class="method">notifyAll()</tt>, consider
+whether one state change can be interesting for only one or several
+waiting threads.  E.g. in a typical producer-consumer situation,
+adding one item to the buffer only needs to wake up one consumer
+thread.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-1958"><tt class="class">Condition</tt></a></b>(<big>[</big><var>lock</var><big>]</big>)
+<dd>
+If the <var>lock</var> argument is given and not <code>None</code>, it must be a
+<tt class="class">Lock</tt> or <tt class="class">RLock</tt> object, and it is used as the underlying
+lock.  Otherwise, a new <tt class="class">RLock</tt> object is created and used as
+the underlying lock.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1959"><tt class="method">acquire</tt></a></b>(<var>*args</var>)
+<dd>
+Acquire the underlying lock.
+This method calls the corresponding method on the underlying
+lock; the return value is whatever that method returns.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1960"><tt class="method">release</tt></a></b>()
+<dd>
+Release the underlying lock.
+This method calls the corresponding method on the underlying
+lock; there is no return value.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1961"><tt class="method">wait</tt></a></b>(<big>[</big><var>timeout</var><big>]</big>)
+<dd>
+Wait until notified or until a timeout occurs.
+This must only be called when the calling thread has acquired the
+lock.
+
+<P>
+This method releases the underlying lock, and then blocks until it is
+awakened by a <tt class="method">notify()</tt> or <tt class="method">notifyAll()</tt> call for the
+same condition variable in another thread, or until the optional
+timeout occurs.  Once awakened or timed out, it re-acquires the lock
+and returns.
+
+<P>
+When the <var>timeout</var> argument is present and not <code>None</code>, it
+should be a floating point number specifying a timeout for the
+operation in seconds (or fractions thereof).
+
+<P>
+When the underlying lock is an <tt class="class">RLock</tt>, it is not released using
+its <tt class="method">release()</tt> method, since this may not actually unlock the
+lock when it was acquired multiple times recursively.  Instead, an
+internal interface of the <tt class="class">RLock</tt> class is used, which really
+unlocks it even when it has been recursively acquired several times.
+Another internal interface is then used to restore the recursion level
+when the lock is reacquired.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1962"><tt class="method">notify</tt></a></b>()
+<dd>
+Wake up a thread waiting on this condition, if any.
+This must only be called when the calling thread has acquired the
+lock.
+
+<P>
+This method wakes up one of the threads waiting for the condition
+variable, if any are waiting; it is a no-op if no threads are waiting.
+
+<P>
+The current implementation wakes up exactly one thread, if any are
+waiting.  However, it's not safe to rely on this behavior.  A future,
+optimized implementation may occasionally wake up more than one
+thread.
+
+<P>
+Note: the awakened thread does not actually return from its
+<tt class="method">wait()</tt> call until it can reacquire the lock.  Since
+<tt class="method">notify()</tt> does not release the lock, its caller should.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1963"><tt class="method">notifyAll</tt></a></b>()
+<dd>
+Wake up all threads waiting on this condition.  This method acts like
+<tt class="method">notify()</tt>, but wakes up all waiting threads instead of one.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="rlock-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-threading.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="semaphore-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="rlock-objects.html">7.5.2 RLock Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-threading.html">7.5 threading  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="semaphore-objects.html">7.5.4 Semaphore Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

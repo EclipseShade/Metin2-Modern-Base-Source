@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.4 Data marshalling support </title>
+<META NAME="description" CONTENT="5.4 Data marshalling support ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="arg-parsing.html">
+<LINK REL="previous" href="importing.html">
+<LINK REL="up" href="utilities.html">
+<LINK REL="next" href="arg-parsing.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="importing.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="utilities.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="arg-parsing.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="importing.html">5.3 Importing Modules</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="utilities.html">5. Utilities</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="arg-parsing.html">5.5 Parsing arguments and</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007400000000000000000">&nbsp;</A>
+<BR>
+5.4 Data marshalling support 
+</H1>
+
+<P>
+These routines allow C code to work with serialized objects using the
+same data format as the <tt class="module">marshal</tt> module.  There are functions
+to write data into the serialization format, and additional functions
+that can be used to read the data back.  Files used to store marshalled
+data must be opened in binary mode.
+
+<P>
+Numeric values are stored with the least significant byte first.
+
+<P>
+<dl><dt>void <b><a name="l2h-147"><tt class="cfunction">PyMarshal_WriteLongToFile</tt></a></b>(<var>long value, FILE *file</var>)
+<dd>
+  Marshal a <tt class="ctype">long</tt> integer, <var>value</var>, to <var>file</var>.  This
+  will only write the least-significant 32 bits of <var>value</var>;
+  regardless of the size of the native <tt class="ctype">long</tt> type.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-148"><tt class="cfunction">PyMarshal_WriteShortToFile</tt></a></b>(<var>short value, FILE *file</var>)
+<dd>
+  Marshal a <tt class="ctype">short</tt> integer, <var>value</var>, to <var>file</var>.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-149"><tt class="cfunction">PyMarshal_WriteObjectToFile</tt></a></b>(<var>PyObject *value,
+                                                     FILE *file</var>)
+<dd>
+  Marshal a Python object, <var>value</var>, to <var>file</var>.  This
+  will only write the least-significant 16 bits of <var>value</var>;
+  regardless of the size of the native <tt class="ctype">short</tt> type.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-150"><tt class="cfunction">PyMarshal_WriteObjectToString</tt></a></b>(<var>PyObject *value</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Return a string object containing the marshalled representation of
+  <var>value</var>.
+</dl>
+
+<P>
+The following functions allow marshalled values to be read back in.
+
+<P>
+XXX What about error detection?  It appears that reading past the end
+of the file will always result in a negative numeric value (where
+that's relevant), but it's not clear that negative values won't be
+handled properly when there's no error.  What's the right way to tell?
+Should only non-negative values be written using these routines?
+
+<P>
+<dl><dt>long <b><a name="l2h-151"><tt class="cfunction">PyMarshal_ReadLongFromFile</tt></a></b>(<var>FILE *file</var>)
+<dd>
+  Return a C <tt class="ctype">long</tt> from the data stream in a <tt class="ctype">FILE*</tt>
+  opened for reading.  Only a 32-bit value can be read in using
+  this function, regardless of the native size of <tt class="ctype">long</tt>.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-152"><tt class="cfunction">PyMarshal_ReadShortFromFile</tt></a></b>(<var>FILE *file</var>)
+<dd>
+  Return a C <tt class="ctype">short</tt> from the data stream in a <tt class="ctype">FILE*</tt>
+  opened for reading.  Only a 16-bit value can be read in using
+  this function, regardless of the native size of <tt class="ctype">long</tt>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-153"><tt class="cfunction">PyMarshal_ReadObjectFromFile</tt></a></b>(<var>FILE *file</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Return a Python object from the data stream in a <tt class="ctype">FILE*</tt>
+  opened for reading.  On error, sets the appropriate exception
+  (<tt class="exception">EOFError</tt> or <tt class="exception">TypeError</tt>) and returns <tt class="constant">NULL</tt>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-154"><tt class="cfunction">PyMarshal_ReadLastObjectFromFile</tt></a></b>(<var>FILE *file</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Return a Python object from the data stream in a <tt class="ctype">FILE*</tt>
+  opened for reading.  Unlike
+  <tt class="cfunction">PyMarshal_ReadObjectFromFile()</tt>, this function assumes
+  that no further objects will be read from the file, allowing it to
+  aggressively load file data into memory so that the de-serialization
+  can operate from data in memory rather than reading a byte at a time
+  from the file.  Only use these variant if you are certain that you
+  won't be reading anything else from the file.  On error, sets the
+  appropriate exception (<tt class="exception">EOFError</tt> or
+  <tt class="exception">TypeError</tt>) and returns <tt class="constant">NULL</tt>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-155"><tt class="cfunction">PyMarshal_ReadObjectFromString</tt></a></b>(<var>char *string,
+                                                             int len</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Return a Python object from the data stream in a character buffer
+  containing <var>len</var> bytes pointed to by <var>string</var>.  On error,
+  sets the appropriate exception (<tt class="exception">EOFError</tt> or
+  <tt class="exception">TypeError</tt>) and returns <tt class="constant">NULL</tt>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="importing.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="utilities.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="arg-parsing.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="importing.html">5.3 Importing Modules</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="utilities.html">5. Utilities</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="arg-parsing.html">5.5 Parsing arguments and</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

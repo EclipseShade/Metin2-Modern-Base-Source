@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.1.7 Indentation</title>
+<META NAME="description" CONTENT="2.1.7 Indentation">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="whitespace.html">
+<LINK REL="previous" href="blank-lines.html">
+<LINK REL="up" href="line-structure.html">
+<LINK REL="next" href="whitespace.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="blank-lines.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="line-structure.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="whitespace.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="blank-lines.html">2.1.6 Blank lines &nbsp;</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="line-structure.html">2.1 Line structure</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="whitespace.html">2.1.8 Whitespace between tokens</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004170000000000000000">&nbsp;</A><a name="l2h-8">&nbsp;</a>
+<BR>
+2.1.7 Indentation
+</H2>
+
+<P>
+Leading whitespace (spaces and tabs) at the beginning of a logical
+line is used to compute the indentation level of the line, which in
+turn is used to determine the grouping of statements.
+
+<P>
+First, tabs are replaced (from left to right) by one to eight spaces
+such that the total number of characters up to and including the
+replacement is a multiple of
+eight (this is intended to be the same rule as used by Unix).  The
+total number of spaces preceding the first non-blank character then
+determines the line's indentation.  Indentation cannot be split over
+multiple physical lines using backslashes; the whitespace up to the
+first backslash determines the indentation.
+
+<P>
+<b>Cross-platform compatibility note:</b> because of the nature of
+text editors on non-UNIX platforms, it is unwise to use a mixture of
+spaces and tabs for the indentation in a single source file.
+
+<P>
+A formfeed character may be present at the start of the line; it will
+be ignored for the indentation calculations above.  Formfeed
+characters occurring elsewhere in the leading whitespace have an
+undefined effect (for instance, they may reset the space count to
+zero).
+
+<P>
+The indentation levels of consecutive lines are used to generate
+INDENT and DEDENT tokens, using a stack, as follows.
+
+<P>
+Before the first line of the file is read, a single zero is pushed on
+the stack; this will never be popped off again.  The numbers pushed on
+the stack will always be strictly increasing from bottom to top.  At
+the beginning of each logical line, the line's indentation level is
+compared to the top of the stack.  If it is equal, nothing happens.
+If it is larger, it is pushed on the stack, and one INDENT token is
+generated.  If it is smaller, it <i>must</i> be one of the numbers
+occurring on the stack; all numbers on the stack that are larger are
+popped off, and for each number popped off a DEDENT token is
+generated.  At the end of the file, a DEDENT token is generated for
+each number remaining on the stack that is larger than zero.
+
+<P>
+Here is an example of a correctly (though confusingly) indented piece
+of Python code:
+
+<P>
+<dl><dd><pre class="verbatim">
+def perm(l):
+        # Compute the list of all permutations of l
+    if len(l) &lt;= 1:
+                  return [l]
+    r = []
+    for i in range(len(l)):
+             s = l[:i] + l[i+1:]
+             p = perm(s)
+             for x in p:
+              r.append(l[i:i+1] + x)
+    return r
+</pre></dl>
+
+<P>
+The following example shows various indentation errors:
+
+<P>
+<dl><dd><pre class="verbatim">
+ def perm(l):                       # error: first line indented
+for i in range(len(l)):             # error: not indented
+    s = l[:i] + l[i+1:]
+        p = perm(l[:i] + l[i+1:])   # error: unexpected indent
+        for x in p:
+                r.append(l[i:i+1] + x)
+            return r                # error: inconsistent dedent
+</pre></dl>
+
+<P>
+(Actually, the first three errors are detected by the parser; only the
+last error is found by the lexical analyzer -- the indentation of
+<code>return r</code> does not match a level popped off the stack.)
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="blank-lines.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="line-structure.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="whitespace.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="blank-lines.html">2.1.6 Blank lines &nbsp;</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="line-structure.html">2.1 Line structure</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="whitespace.html">2.1.8 Whitespace between tokens</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

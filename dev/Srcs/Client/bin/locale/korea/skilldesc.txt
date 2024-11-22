@@ -1,0 +1,72 @@
+1	WARRIOR	삼연참	쾌풍참	호함풍소	적을 빠르게 세번 베어낸다	전방 범위 공격 3회				ATTACK_SKILL|NEED_TARGET|WEAPON_LIMITATION	SWORD|TWO_HANDED	samyeon	1	4			총 공격력 %.0f-%.0f	(1.1*MinATK + (0.1*MinATK + 1.5*STR)*SkillPoint) * 3	(1.1*MaxATK + (0.1*MaxATK + 1.5*STR)*SkillPoint) * 3		
+2	WARRIOR	팔방풍우	진염참	 용음박천	칼을 잡고 회전하여 주위의 적을 공격한다	전진 범위 공격				ATTACK_SKILL|CAN_CHANGE_DIRECTION|WEAPON_LIMITATION	SWORD|TWO_HANDED	palbang	2	4			공격력 %.0f-%.0f	3*MinATK + (0.8*MinATK + STR*6 + DEX*2 + CON) * SkillPoint	3*MaxATK + (0.8*MaxATK + STR*6 + DEX*2 + CON) * SkillPoint		
+3	WARRIOR	전귀혼	금강노	파부전도	오로지 공격에만 전념한다	공격 속도 상승	이동 속도 증가	자기 피해 증가		STANDING_SKILL		jeongwi	3	4			공격 속도 +%.0f%%	50 * SkillPoint		이동 속도 +%.0f%%	20 * SkillPoint
+4	WARRIOR	검경	간심검	신검합일	공격력을 일정시간 동안 증가시킨다	기본 공격력 상승				STANDING_SKILL|WEAPON_LIMITATION	SWORD|TWO_HANDED	geomgyeong	4	4			공격력 +%.0f	(100 + STR) * SkillPoint			
+5	WARRIOR	탄환격	암쇄	태청강기	총알처럼 달려가 적을 넘어뜨린다	돌격 범위 공격				ATTACK_SKILL|NEED_TARGET|CHARGE_ATTACK|WEAPON_LIMITATION	SWORD|TWO_HANDED	tanhwan	5	4			공격력 %.0f-%.0f	2*MinATK + (MinATK + 3*DEX + 7*STR + CON)*SkillPoint	2*MaxATK + (MaxATK + 3*DEX + 7*STR + CON)*SkillPoint		
+6	WARRIOR	기혈취명	기혈취명	기혈취명	전력을 다해 기를 폭발시켜 전방의 적들에게 강력한 일격을 날린다	전방 범위 공격				ATTACK_SKILL|NEED_TARGET|WEAPON_LIMITATION	SWORD|TWO_HANDED	gihyeol	6	4			공격력 %.0f-%.0f	(3*MinATK + (MinATK + 1.5*STR)*SkillPoint)*1.07	(3*MaxATK + (MaxATK + 1.5*STR)*SkillPoint)*1.07		
+16	WARRIOR	기공참	단월파	팔풍야우	전방의 적을 공격한다	전방 범위 공격				ATTACK_SKILL|CAN_CHANGE_DIRECTION|NEED_TARGET|WEAPON_LIMITATION	SWORD|TWO_HANDED	gigongcham	16	4			공격력 %.0f-%.0f	2.3*MinATK + (MinATK*4 + 4*STR + CON)*SkillPoint	2.3*MaxATK + (MaxATK*4 + 4*STR + CON)*SkillPoint		
+17	WARRIOR	격산타우	호위	용상구천	전방의 적을 공격한다	직선 범위 공격				ATTACK_SKILL|CAN_CHANGE_DIRECTION|WEAPON_LIMITATION	SWORD|TWO_HANDED	gyeoksan	17	4			공격력 %.0f-%.0f	2.3*MinATK + (3*MinATK + 4*STR + 3*CON)*SkillPoint	2.3*MaxATK + (3*MaxATK + 4*STR + 3*CON)*SkillPoint		
+18	WARRIOR	대진각	사자후	반고진천	주위의 적을 사방으로 날려보낸다	제자리 주변 범위 공격	일정 확률로 기절 효과			ATTACK_SKILL|STANDING_SKILL		daejin	18	4			공격력 %.0f-%.0f	2*MinATK + (2*MinATK + 2*DEX + 2*CON + 4*STR)*SkillPoint	2*MaxATK + (2*MaxATK + 2*DEX + 2*CON + 4*STR)*SkillPoint	기절 확률 %.0f%%	(100 + 1000*SkillPoint/6)/10
+19	WARRIOR	천근추	철부산	태산압정	일시적으로 방어력이 상승하며 강력한 공격에도 쓰러지지 않는다	방어력 상승	이동 속도 하락	넘어지지 않음		STANDING_SKILL		cheongeun	19	4			방어력 : +%.0f	7+(40 + 0.2*str + 0.4*con)*k		이동 속도 : -%.0f	1 + 9*SkillPoint
+20	WARRIOR	검풍	기결참	검기충전	전방의 적을 공격한다	장거리 공격	대상 주변 공격	기절 효과	대상 날리기	ATTACK_SKILL|CAN_CHANGE_DIRECTION|WEAPON_LIMITATION	SWORD|TWO_HANDED	geompung	20	4			공격력 %.0f-%.0f	2*minatk + (minatk + dex*3 + str*5 + con)*k	2*maxatk + (maxatk + dex*3 + str*5 + con)*k	
+21	WARRIOR	뇌검도래	뇌검도래	뇌검도래	검기가 실린 검을 내려쳐서 주변 적들에게 치명적인 타격을 입힌다	제자리 주변 범위 공격				ATTACK_SKILL|STANDING_SKILL|WEAPON_LIMITATION	SWORD|TWO_HANDED	noegeom	21	4			공격력 %.0f-%.0f	(2*MinATK + (2*MinATK + 2*DEX + 2*CON + STR*4)*SkillPoint)*1.1	(2*MaxATK + (2*MaxATK + 2*DEX + 2*CON + STR*4)*SkillPoint)*1.1		
+31	ASSASSIN	암습	은격	류광주선	적에게 몰래 다가가 치명타를 입힌다	후방 기습시 공격력 상승	은형법 보너스			ATTACK_SKILL|MELEE_ATTACK|NEED_TARGET|WEAPON_LIMITATION	DAGGER|DOUBLE_SWORD|SWORD	amseup	1	4			공격력 : %.0f-%.0f	minatk + (1.2 * minatk + 500 + dex*12)*k	maxatk + (1.2 * maxatk + 700 + dex*12)*k		
+32	ASSASSIN	궁신탄영	무영검	난영강마	빠르게 적에게 접근하여 치명타를 입힌다	순간 이동 공격	은형법 보너스			ATTACK_SKILL|NEED_TARGET|WEAPON_LIMITATION	DAGGER|DOUBLE_SWORD|SWORD	gungsin	2	4			공격력 %.0f-%.0f	(minatk + (1.6* minatk + 200 + dex*7 + str*7)*k)	(maxatk + (1.6* maxatk + 300 + dex*7 + str*7)*k)		
+33	ASSASSIN	차륜살	무륜참	폐우판운	빠르게 회전하며 전방의 적을 벤다	탈출 범위 공격	지속 독 공격			ATTACK_SKILL|CAN_CHANGE_DIRECTION|WEAPON_LIMITATION	DAGGER|DOUBLE_SWORD|SWORD	charyun	3	4			공격력 %.0f-%.0f	2*minatk + (0.5*minatk + dex*9 + str*7)*k	2*maxatk + (0.5*maxatk + dex*9 + str*7)*k	중독 확률 %.0f%%	1 + 4*k
+34	ASSASSIN	은형법	천변술	차천피일	자신의 모습을 감춘다	공격시 해제				STANDING_SKILL		eunhyeong	4	4			암살 기술 추가 타격치 : +%.0f%%	50 * SkillPoint			
+35	ASSASSIN	산공분	벽린운	함사사영	주위에 독으로 구름을 만들어 적을 중독 시킨다	장거리 공격	대상 주변 범위 공격	지속 독 공격		ATTACK_SKILL|NEED_TARGET		sangong	5	4			공격력 %.0f-%.0f	lv*2+(minatk + str*3 + dex*18)*k	lv*2+(maxatk + str*3 + dex*18)*k	중독 확률 %.0f%%	40*k
+36	ASSASSIN	흑섬수	흑섬수	흑섬수	눈부시게 빠른 속도로 순간 사라지며 상대에게 일격을 가한다	순간 이동 공격	지속 독 공격			ATTACK_SKILL|NEED_TARGET|WEAPON_LIMITATION	DAGGER|DOUBLE_SWORD|SWORD	seomjeon	6	4			공격력 %.0f-%.0f	(lv*2 + (MinATK+STR*3+DEX*18)*SkillPoint)*1.1	(lv*2 + (MaxATK+STR*3+DEX*18)*SkillPoint)*1.1	중독 확률 %.0f%%	40*k
+46	ASSASSIN	연사	관일살	기만장홍	한명의 적에게 여러발의 화살을 쏜다	장거리 공격	여러번 공격			ATTACK_SKILL|NEED_TARGET|WEAPON_LIMITATION	BOW	yeonsa	16	4		2 + floor(6 * SkillPoint)	총 공격력 %.0f-%.0f	minatk + 0.2*minatk*floor(2+k*6)+ (0.8*minatk+dex*8*ar) *k	maxatk + 0.2*maxatk*floor(2+k*6)+ (0.8*maxatk+dex*8*ar) *k	%.0f발의 화살을 쏜다	2 + floor(6 * SkillPoint)
+47	ASSASSIN	관격술	우전살	천봉예자	한번에 여러명의 적에게 화살을 쏜다	장거리 공격	동시에 여러 대상 공격			ATTACK_SKILL|FAN_RANGE|NEED_TARGET|WEAPON_LIMITATION	BOW	gwangyeok	17	4	2 + floor(6 * SkillPoint)		공격력 %.0f-%0.f	minatk + (1.7*minatk + 100 + dex*2 + str*2)*k	maxatk + (1.7*maxatk + 300 + dex*2 + str*2)*k	최대 %.0f 명까지 공격	2 + floor(6 * SkillPoint)
+48	ASSASSIN	화조파	무력	신무진천	화살에 불꽃의 힘을 깃들여 쏜다	장거리 공격	대상 주변 범위 공격	화염 공격		ATTACK_SKILL|NEED_TARGET|WEAPON_LIMITATION	BOW	hwajo	18	4			공격력 %.0f-%.0f	1.5*minatk + (2.6*minatk + 100 )*k	1.5*maxatk + (2.6*maxatk + 300 )*k		
+49	ASSASSIN	경공술	신행	답설무흔	몸을 가볍게 하여 이동 속도를 높인다					STANDING_SKILL		gyeonggong	19	4			이동속도 : +%.0f	60*SkillPoint			
+50	ASSASSIN	독기궁	식독전	추혼탈명	화살에 강력한 독을 모아 쏜다	장거리 공격	대상 주변 공격	대상 날리기	지속 독 공격	ATTACK_SKILL|NEED_TARGET|WEAPON_LIMITATION	BOW	gigung	20	4			공격력 %.0f-%.0f	minatk + (1.2*minatk + 100 + dex*6 + str*2)*k	maxatk + (1.2*maxatk + 200 + dex*6 + str*2)*k	중독 확률 %.0f%%	80*k
+51	ASSASSIN	섬광탄	섬광탄	섬광탄	순간적으로 강력한 빛을 뿌려 주변 적들에게 치명적인 타격을 입힌다	제자리 주변 범위 공격	지속 독 공격			ATTACK_SKILL|STANDING_SKILL		seomgwang	21	4			공격력 %.0f-%.0f	(MinATK + (1.2*MinATK + 100 + DEX*6 + STR*2)*SkillPoint)*1.1	(MaxATK + (1.2*MaxATK + 200 + DEX*6 + STR*2)*SkillPoint)1.1	중독 확률 %.0f%%	80*k
+61	SURA	쇄령지	열선자	천붕지열	손가락 끝에서 강력한 폭발을 일으킨다	전방 범위 공격	상대 방어 무시 효과	지능 보너스		ATTACK_SKILL|MELEE_ATTACK|NEED_TARGET		swaeryeong	1	4			공격력 %.0f-%.0f	minatk + 2*lv + iq*2 + (2*minatk + str*4 + iq*14) * k	maxatk + 2*lv + iq*2 + (2*maxatk + str*4 + iq*14) * k	상대 방어 무시 확률 %.0f%%	1 + 9*SkillPoint
+62	SURA	용권파	선풍진	광신주검	모든 것을 베어버리는 강력한 회오리 바람을 일으켜 주변의 적을 섬멸한다	제자리 주변 범위 공격	상대 회피 무시 효과	지능 보너스		ATTACK_SKILL|STANDING_SKILL		yonggwon	2	4			공격력 %.0f-%.0f	1.1 * minatk + 2*lv + 2*iq + (1.5*minatk + str + iq*12) * k	1.1 * maxatk + 2*lv + 2*iq + (1.5*maxatk + str + iq*12) * k	상대 회피 무시 확률 %.0f%%	1 + 9*SkillPoint
+63	SURA	귀검	참령검	도룡재천	검에 귀신의 힘을 불어 넣는다	기본 공격력 상승	지능 보너스	흡혈 공격		STANDING_SKILL|TOGGLE|WEAPON_LIMITATION	SWORD	gwigeom	3	4			공격력 +%.1f	7 + (5*iq+13)*k		타격치 %.0f%% 를 생명력으로 흡수	10*k
+64	SURA	공포	혈제	적련광마	자신을 공격하는 적에게 두려움을 일으켜 능력을 약화 시킨다	상대 공격력 저하	상대 공격 실패 확률 증가	자기 피해시만 적용		STANDING_SKILL		gongpo	4	4			상대 공격력 -%.0f%%	5 + 20*SkillPoint		상대 공격 실패 확률 %.0f%%	1 + 29*SkillPoint
+65	SURA	주마갑	혼패	천마부체	어둠의 갑옷으로 몸을 보호한다	피해시 직접 타격치 일부를 반사	방어력 상승	지능 보너스		STANDING_SKILL		jumagap	5	4			방어력 +%.0f	(iq+30)*k		물리 공격 반사 확률 %.0f%%	(iq/4+10)*k
+66	SURA	파법술	삼원술	부골소혼	모든 이로운 술법을 무효화 시킨다	장거리 공격	대상 주변 범위 공격	상대 보조 효과 제거		ATTACK_SKILL|NEED_TARGET		pabeop	6	4			마법공격력 %.0f-%.0f	40 + 5*lv + 2*iq + (18*iq + 7*minmtk + 50)*ar*k	40 + 5*lv + 2*iq + (18*iq + 7*maxmtk + 100)*ar*k	파법 확률 %.0f%%	50*k
+76	SURA	마령	귀령	탈혼령	어둠의 힘을 던져 적에게 상처를 입힌다	장거리 공격	대상 주변 공격			ATTACK_SKILL|NEED_TARGET		maryeong	16	4			마법공격력 : %.0f-%.0f	40 +5*lv + 2*iq + (20*iq + 7*minmtk + 50 )*ar*k	40 +5*lv + 2*iq + (20*iq + 7*maxmtk + 100 )*ar*k		
+77	SURA	화염폭	폭염진	마룡주천	폭발을 일으켜 주변의 적을 불태운다	제자리 주변 범위 공격	화염 공격			ATTACK_SKILL|STANDING_SKILL		hwayeom	17	4			마법공격력 : %.0f-%.0f	5*lv + 2*iq + (20*iq + 8*mtk + str*4 + con*2 + 180 )*k	5*lv + 2*iq + (20*iq + 8*mtk + str*4 + con*2 + 200 )*k		
+78	SURA	무영진	마염	옥화분체	주인을 지키는 폭발체를 만든다	장거리 공격	대상 임의 선택	대상 주변 범위 공격		ATTACK_SKILL|STANDING_SKILL|TOGGLE		muyeong	18	4			마법공격력 : %.0f-%.0f	30+ 2*lv + 2*iq + (18*iq + 6*minmtk + 200)*ar*k	30+ 2*lv + 2*iq + (18*iq + 6*maxmtk + 500)*ar*k		
+79	SURA	흑신수호	어혼술	천곡지읍	어둠의 힘으로 몸을 감싸고 육체의 고통을 정신력으로 버텨낸다	타격치를 정신력으로 감쇄	방어력 상승			STANDING_SKILL|TOGGLE		heuksin	19	4			타격치 감쇄율 %.0f%%	(iq*0.84)*k		방어력 +%.0f	(0.5*iq+15)*k
+80	SURA	투속마령	곤신령	촌보난행	속박의 악령들을 적에게 던져 상처 입힌다	장거리 공격	대상 주변 공격	느려짐		ATTACK_SKILL|NEED_TARGET		tusok	20	4			마법공격력 : %.0f-%.0f	40 + 2*lv + 2*iq + (2 * con + 2 * dex + 22*iq + 6*minmtk+ 180)*ar*k	40 + 2 * lv + 2*iq + (2 * con + 2 * dex + 22*iq + 6*maxmtk + 200)*ar*k	느려짐 확률 : %.1f%%	(333 + (300 * k))/10
+81	SURA	마환격	혈령농	건곤암연	어둠의 기를 던져 적에게 피해를 입힌다	장거리 공격	대상 주변 공격			ATTACK_SKILL|NEED_TARGET		geomhwan	21	4			마법공격력 %.0f-%.0f	120 + 6*lv + (5 * con + 5 * dex + 40*iq + 12*minmtk)*ar*k	120 + 6*lv + (5 * con + 5 * dex + 40*iq + 12*maxmtk)*ar*k		
+91	SHAMAN	비파부	귀원파	오채운하	적에게 부적을 던져 상처 입힌다	장거리 공격	대상 주변 범위 공격			ATTACK_SKILL|FAN_RANGE|NEED_TARGET		bipabu	1	4			마법공격력 : %.0f-%.0f	70 + 4*lv + (20*iq+5*minmwep+50)*ar*k	70 + 4*lv + (20*iq+5*maxmwep+50)*ar*k		
+92	SHAMAN	용파산	파룡부	잠룡옥천	용신의 형상을 쏘아 전방의 적을 공격한다	직선 범위 공격	지속 화염 효과			ATTACK_SKILL|NEED_TARGET		yongpa	2	4			마법공격력 : %.0f-%.0f	60 + 5*lv + (18*iq+6*minmwep+120)*ar*k	60 + 5*lv + (18*iq+6*maxmwep+120)*ar*k	지속 화염 확률  %.0f%%	iq*0.2*k
+93	SHAMAN	패룡폭	승룡파	천룡파미	용신의 형상으로 주변의 적을 공격한다	제자리 주변 범위 공격	지속 화염 효과			ATTACK_SKILL|STANDING_SKILL		paeryong	3	4			마법 공격력 %.0f-%.0f	70 + 3*lv + (22*iq+13*minmwep+100)*ar*k	70 + 3*lv + (22*iq+13*maxmwep+100)*ar*k	지속 화염 확률 %.0f%%	iq*0.2*k
+94	SHAMAN	호신	천벽	진룡호체	돕고자 하는 자에게 보호의 진을 그려 보호한다	물리 공격 저항	동료에게 사용 가능			CAN_USE_FOR_ME|NEED_TARGET|ONLY_FOR_ALLIANCE		hosin	4	4			물리 공격 저항 : %.1f%%	(iq*0.3+5)*(2*k+0.5)/(k+1.5)			
+95	SHAMAN	반사	수경진	천강정기	돕고자 하는 자에게 적의 공격을 되돌리는 진을 그린다	물리 공격 반사	동료에게 사용 가능			CAN_USE_FOR_ME|NEED_TARGET|ONLY_FOR_ALLIANCE		boho	5	4			물리 공격 반사 확률 %.1f%%	5+(iq*0.3 + 5)*k			
+96	SHAMAN	기천대공	천룡혼	용신성위	돕고자 하는 자의 손에 하늘의 의지를 불태운다	치명타 공격	동료에게 사용 가능			CAN_USE_FOR_ME|NEED_TARGET|ONLY_FOR_ALLIANCE		gicheon	6	4			치명타 확률 : %.1f%%	(iq*0.3+5)*(2*k+0.5)/(k+1.5)			
+106	SHAMAN	뇌전령	진천뢰	전섬뢰명	벼락을 적에게 던진다	장거리 공격	대상 주변 범위 공격	전기 속성		ATTACK_SKILL|NEED_TARGET		noejeon	16	4			마법공격력 : %.0f-%.0f	60 + 4*lv + (7*iq+8*minmwep+iq*5)*ar*k	60 + 4*lv + (7*iq+8*maxmwep+iq*15)*ar*k		
+107	SHAMAN	벼락	뇌염섬	청천벽력	하늘의 힘을 빌어 적에게 벼락을 내린다	장거리 공격	대상 주변 범위 공격	전기 속성	기절 효과	ATTACK_SKILL|NEED_TARGET		byeorak	17	4			마법공격력 %.0f-%.0f	40 + 4*lv + (13*iq+7*minmwep+iq*5)*ar*k	40 + 4*lv + (13*iq+7*maxmwep+iq*16)*ar*k	기절 확률 %.0f%%	(50+1000*k/6)/10
+108	SHAMAN	폭뢰격	파천뢰	구천폭뢰	손에서 벼락을 뿜어낸다	장거리 공격	전기 속성	주변 대상 연이어 공격		ATTACK_SKILL|NEED_TARGET		pokroe	18	4			마법공격력 : %.0f-%.0f	(50 + 5*lv + (6*iq+6*minmwep+1)*ar*k)	(50 + 5*lv + (6*iq+6*maxmwep+800)*ar*k)		
+109	SHAMAN	정업인	대정업인	불광보조	빛의 기운으로 상처를 치유한다	생명력 회복	상태이상 회복	동료에게 사용 가능		CAN_USE_FOR_ME|NEED_TARGET|ONLY_FOR_ALLIANCE		jeongeop	19	4			생명력 회복 %.0f-%.0f	200+4*lv+(10*iq+6*minmwep+600)*k	200+4*lv+(10*iq+6*maxmwep+800)*k	상태이상 회복 확률 %.0f%%	20+80*k
+110	SHAMAN	쾌속	풍진	풍묘답운	바람을 타고 달린다	이동 속도 상승	주문 시간 감소	동료에게 사용 가능		CAN_USE_FOR_ME|NEED_TARGET|ONLY_FOR_ALLIANCE		kwaesok	20	4			이동 속도 +%.0f%%	5 + (35 * k)		주문 속도 +%.0f%%	3+33*k
+111	SHAMAN	증력술			돕고자 하는 자의 힘을 더욱 강하게 한다	기본 공격력 상승	동료에게 사용 가능			CAN_USE_FOR_ME|NEED_TARGET|ONLY_FOR_ALLIANCE		jeungryeok	21	4			공격력 : +%.1f	5+(iq*0.2 + 15)*k			
+121	SUPPORT	통솔력			동료들을 이끄는 능력					PASSIVE		tongsol									
+122	SUPPORT	연계기			연속 공격 횟수를 증가|시킨다					CANNOT_LEVEL_UP|TOGGLE		combo									
+123	SUPPORT	낚시			물가에서 물고기를 낚는다					CANNOT_LEVEL_UP		fishing									
+124	SUPPORT	채광			광석을 캐낸다					PASSIVE		mining									
+125	SUPPORT	제조			아이템을 만든다					CANNOT_LEVEL_UP|PASSIVE		making						
+126	SUPPORT	신수어			신수국의 언어를 말하고 들을 수 있다					CANNOT_LEVEL_UP|PASSIVE		language1						
+127	SUPPORT	천조어			천조국의 언어를 말하고 들을 수 있다					CANNOT_LEVEL_UP|PASSIVE		language2						
+128	SUPPORT	진노어			진노국의 언어를 말하고 들을 수 있다					CANNOT_LEVEL_UP|PASSIVE		language3						
+129	SUPPORT	변신			몬스터로 변신한다					CANNOT_LEVEL_UP|PASSIVE		polymorph						
+130	SUPPORT	승마			말을 타는 능력					CANNOT_LEVEL_UP|PASSIVE		riding						
+131	SUPPORT	소환			말을 소환한다							summon						
+137	HORSE	철마난무			말을 타고 달리며 주변의 적을 공격한다	마상 기술				ATTACK_SKILL|HORSE_SKILL|MOVING_SKILL|WEAPON_LIMITATION	SWORD|TWO_HANDED|DAGGER|DOUBLE_SWORD|FAN|BELL	wildattack	121	1				
+138	HORSE	질풍주마			전방을 가로 막는 적들을 모두 넘어뜨린다	마상 기술				ATTACK_SKILL|HORSE_SKILL|SEARCH_TARGET|CHARGE_ATTACK		charge	122	1				
+139	HORSE	지축승천			주변의 모든 적을 공격한다	마상 기술				ATTACK_SKILL|HORSE_SKILL|WEAPON_LIMITATION	SWORD|TWO_HANDED|DAGGER|DOUBLE_SWORD|BOW|FAN|BELL	splash	123	1				
+140	HORSE	추엽난무			앞을 가로막는 적들에게 화살을 날린다	마상 기술				ATTACK_SKILL|FAN_RANGE|NEED_TARGET|HORSE_SKILL|WEAPON_LIMITATION	BOW	wildattack	121	1	5
+141	SUPPORT	HP보강			최대 체력이 증가한다					PASSIVE		jeunghyul					최대 HP 상승 +%.0f	k * 1333.33			
+142	SUPPORT	관통회피			관통 공격을 회피한다					PASSIVE		chultong					관통 회피율 + %.0f%%	k * 20			
+151	GUILD	용안			최대 용신력이 증가한다					PASSIVE		yongan					최대 용신력 +%.0f	k * 1400
+152	GUILD	용신의 피			길드원 전원의 최대 생명력을 일시적으로 상승 시킨다	길드전 전용				ONLY_FOR_GUILD_WAR		gaho	101	1			최대Hp상승 +%.0f%%	k * 20
+153	GUILD	용신의 축복			길드원 전원의 최대 정신력을 일시적으로 상승 시킨다	길드전 전용				ONLY_FOR_GUILD_WAR		chukbok	102	1			최대 정신력 상승 +%.0f%%	k * 20
+154	GUILD	성휘갑			길드원 전원의 방어력이 일시적으로 상승한다	길드전 전용				ONLY_FOR_GUILD_WAR		seonghwi	103	1			방어력상승 +%.1f%%	k * 10
+155	GUILD	가속화			길드원 전원의 공격 속도와 이동 속도가 일시적으로 상승한다	길드전 전용				ONLY_FOR_GUILD_WAR		gasok	104	1			공격,이동 속도상승 +%.1f	k * 30
+156	GUILD	용신의 분노			길드원 전원의 크리티컬 확률이 일시적으로 상승한다	길드전 전용				ONLY_FOR_GUILD_WAR		bunno	105	1			크리티컬 확률 +%.0f%%	k * 50
+157	GUILD	주문술			길드원 전원의 기술 사용 쿨타임이 일시적으로 줄어든다	길드전 전용				ONLY_FOR_GUILD_WAR		jumunsul	106	1			주문속도상승 +%.0f%%	k * 50

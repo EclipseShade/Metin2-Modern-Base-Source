@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.2 gc -- Garbage Collector interface</title>
+<META NAME="description" CONTENT="3.2 gc -- Garbage Collector interface">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-weakref.html">
+<LINK REL="previous" href="module-sys.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="module-weakref.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-sys.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-weakref.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-sys.html">3.1 sys  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-weakref.html">3.3 weakref  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005200000000000000000">
+3.2 <tt class="module">gc</tt> --
+         Garbage Collector interface</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">gc</tt> module is only available if the interpreter was built
+with the optional cyclic garbage detector (enabled by default).  If
+this was not enabled, an <tt class="exception">ImportError</tt> is raised by attempts
+to import this module.
+
+<P>
+This module provides an interface to the optional garbage collector.  It
+provides the ability to disable the collector, tune the collection
+frequency, and set debugging options.  It also provides access to
+unreachable objects that the collector found but cannot free.  Since the
+collector supplements the reference counting already used in Python, you
+can disable the collector if you are sure your program does not create
+reference cycles.  Automatic collection can be disabled by calling
+<code>gc.disable()</code>.  To debug a leaking program call
+<code>gc.set_debug(gc.DEBUG_LEAK)</code>.
+
+<P>
+The <tt class="module">gc</tt> module provides the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-299"><tt class="function">enable</tt></a></b>()
+<dd>
+Enable automatic garbage collection.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-300"><tt class="function">disable</tt></a></b>()
+<dd>
+Disable automatic garbage collection.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-301"><tt class="function">isenabled</tt></a></b>()
+<dd>
+Returns true if automatic collection is enabled.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-302"><tt class="function">collect</tt></a></b>()
+<dd>
+Run a full collection.  All generations are examined and the
+number of unreachable objects found is returned.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-303"><tt class="function">set_debug</tt></a></b>(<var>flags</var>)
+<dd>
+Set the garbage collection debugging flags.
+Debugging information will be written to <code>sys.stderr</code>.  See below
+for a list of debugging flags which can be combined using bit
+operations to control debugging.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-304"><tt class="function">get_debug</tt></a></b>()
+<dd>
+Return the debugging flags currently set.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-305"><tt class="function">set_threshold</tt></a></b>(<var>threshold0</var><big>[</big><var>,
+                                threshold1</var><big>[</big><var>, threshold2</var><big>]</big><big>]</big>)
+<dd>
+Set the garbage collection thresholds (the collection frequency).
+Setting <var>threshold0</var> to zero disables collection.
+
+<P>
+The GC classifies objects into three generations depending on how many
+collection sweeps they have survived.  New objects are placed in the
+youngest generation (generation <code>0</code>).  If an object survives a
+collection it is moved into the next older generation.  Since
+generation <code>2</code> is the oldest generation, objects in that
+generation remain there after a collection.  In order to decide when
+to run, the collector keeps track of the number object allocations and
+deallocations since the last collection.  When the number of
+allocations minus the number of deallocations exceeds
+<var>threshold0</var>, collection starts.  Initially only generation
+<code>0</code> is examined.  If generation <code>0</code> has been examined more
+than <var>threshold1</var> times since generation <code>1</code> has been
+examined, then generation <code>1</code> is examined as well.  Similarly,
+<var>threshold2</var> controls the number of collections of generation
+<code>1</code> before collecting generation <code>2</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-306"><tt class="function">get_threshold</tt></a></b>()
+<dd>
+Return the current collection thresholds as a tuple of
+<code>(<var>threshold0</var>, <var>threshold1</var>, <var>threshold2</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-307"><tt class="function">get_referrers</tt></a></b>(<var>*objs</var>)
+<dd>
+Return the list of objects that directly refer to any of objs. This
+function will only locate those containers which support garbage
+collection; extension types which do refer to other objects but do not
+support garbage collection will not be found.
+
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+The following variable is provided for read-only access (you can
+mutate its value but should not rebind it):
+
+<P>
+<dl><dt><b><a name="l2h-308"><tt>garbage</tt></a></b>
+<dd>
+A list of objects which the collector found to be unreachable
+but could not be freed (uncollectable objects).  By default, this list
+contains only objects with <tt class="method">__del__()</tt> methods.<A NAME="tex2html13"
+  HREF="#foot4192"><SUP>3.1</SUP></A>Objects that have
+<tt class="method">__del__()</tt> methods and are part of a reference cycle cause
+the entire reference cycle to be uncollectable, including objects
+not necessarily in the cycle but reachable only from it.  Python doesn't
+collect such cycles automatically because, in general, it isn't possible
+for Python to guess a safe order in which to run the <tt class="method">__del__()</tt>
+methods.  If you know a safe order, you can force the issue by examining
+the <var>garbage</var> list, and explicitly breaking cycles due to your
+objects within the list.  Note that these objects are kept alive even
+so by virtue of being in the <var>garbage</var> list, so they should be
+removed from <var>garbage</var> too.  For example, after breaking cycles, do
+<code>del gc.garbage[:]</code> to empty the list.  It's generally better
+to avoid the issue by not creating cycles containing objects with
+<tt class="method">__del__()</tt> methods, and <var>garbage</var> can be examined in that
+case to verify that no such cycles are being created.
+
+<P>
+If <tt class="constant">DEBUG_SAVEALL</tt> is set, then all unreachable objects will
+be added to this list rather than freed.
+</dl>
+
+<P>
+The following constants are provided for use with
+<tt class="function">set_debug()</tt>:
+
+<P>
+<dl><dt><b><a name="l2h-309"><tt>DEBUG_STATS</tt></a></b>
+<dd>
+Print statistics during collection.  This information can
+be useful when tuning the collection frequency.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-310"><tt>DEBUG_COLLECTABLE</tt></a></b>
+<dd>
+Print information on collectable objects found.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-311"><tt>DEBUG_UNCOLLECTABLE</tt></a></b>
+<dd>
+Print information of uncollectable objects found (objects which are
+not reachable but cannot be freed by the collector).  These objects
+will be added to the <code>garbage</code> list.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-312"><tt>DEBUG_INSTANCES</tt></a></b>
+<dd>
+When <tt class="constant">DEBUG_COLLECTABLE</tt> or <tt class="constant">DEBUG_UNCOLLECTABLE</tt> is
+set, print information about instance objects found.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-313"><tt>DEBUG_OBJECTS</tt></a></b>
+<dd>
+When <tt class="constant">DEBUG_COLLECTABLE</tt> or <tt class="constant">DEBUG_UNCOLLECTABLE</tt> is
+set, print information about objects other than instance objects found.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-314"><tt>DEBUG_SAVEALL</tt></a></b>
+<dd>
+When set, all unreachable objects found will be appended to
+<var>garbage</var> rather than being freed.  This can be useful for debugging
+a leaking program.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-315"><tt>DEBUG_LEAK</tt></a></b>
+<dd>
+The debugging flags necessary for the collector to print
+information about a leaking program (equal to <code>DEBUG_COLLECTABLE |
+DEBUG_UNCOLLECTABLE | DEBUG_INSTANCES | DEBUG_OBJECTS | DEBUG_SAVEALL</code>).
+</dl>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot4192">... methods.</A><A NAME="foot4192"
+ href="module-gc.html#tex2html13"><SUP>3.1</SUP></A>
+<DD>Prior to
+  Python 2.2, the list contained all instance objects in unreachable
+  cycles,  not only those with <tt class="method">__del__()</tt> methods.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-sys.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-weakref.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-sys.html">3.1 sys  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-weakref.html">3.3 weakref  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

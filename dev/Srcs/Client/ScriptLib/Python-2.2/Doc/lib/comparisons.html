@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.2.3 Comparisons </title>
+<META NAME="description" CONTENT="2.2.3 Comparisons ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="typesnumeric.html">
+<LINK REL="previous" href="boolean.html">
+<LINK REL="up" href="types.html">
+<LINK REL="next" href="typesnumeric.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="boolean.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="typesnumeric.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="boolean.html">2.2.2 Boolean Operations</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="types.html">2.2 Built-in Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="typesnumeric.html">2.2.4 Numeric Types</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004230000000000000000">&nbsp;</A>
+<BR>
+2.2.3 Comparisons 
+</H2>
+
+<P>
+Comparison operations are supported by all objects.  They all have the
+same priority (which is higher than that of the Boolean operations).
+Comparisons can be chained arbitrarily; for example, <code><var>x</var> &lt;
+<var>y</var> &lt;= <var>z</var></code> is equivalent to <code><var>x</var> &lt; <var>y</var> and
+<var>y</var> &lt;= <var>z</var></code>, except that <var>y</var> is evaluated only once (but
+in both cases <var>z</var> is not evaluated at all when <code><var>x</var> &lt;
+<var>y</var></code> is found to be false).
+<a name="l2h-83">&nbsp;</a>
+<P>
+This table summarizes the comparison operations:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Operation</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><code>&lt;</code></td>
+        <td align="left">strictly less than</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>&lt;=</code></td>
+        <td align="left">less than or equal</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>&gt;</code></td>
+        <td align="left">strictly greater than</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>&gt;=</code></td>
+        <td align="left">greater than or equal</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>==</code></td>
+        <td align="left">equal</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>!=</code></td>
+        <td align="left">not equal</td>
+        <td align="center">(1)</td>
+    <tr><td align="center" valign="baseline"><code>&lt;&gt;</code></td>
+        <td align="left">not equal</td>
+        <td align="center">(1)</td>
+    <tr><td align="center" valign="baseline"><code>is</code></td>
+        <td align="left">object identity</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>is not</code></td>
+        <td align="left">negated object identity</td>
+        <td align="center">&nbsp;</td></tbody>
+</table>
+<a name="l2h-84">&nbsp;</a><a name="l2h-85">&nbsp;</a>
+<P>
+Notes:
+
+<P>
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD><code>&lt;&gt;</code> and <code>!=</code> are alternate spellings for the same operator.
+(I couldn't choose between ABC and C! :-)
+<a name="l2h-86">&nbsp;</a><code>!=</code> is the preferred spelling; <code>&lt;&gt;</code> is obsolescent.
+
+<P>
+</DD>
+</DL>
+
+<P>
+Objects of different types, except different numeric types, never
+compare equal; such objects are ordered consistently but arbitrarily
+(so that sorting a heterogeneous array yields a consistent result).
+Furthermore, some types (for example, file objects) support only a
+degenerate notion of comparison where any two objects of that type are
+unequal.  Again, such objects are ordered arbitrarily but
+consistently.
+<a name="l2h-87">&nbsp;</a>
+<P>
+Instances of a class normally compare as non-equal unless the class
+<a name="l2h-82">&nbsp;</a>defines the <tt class="method">__cmp__()</tt> method.  Refer to the
+<em class="citetitle"><a
+ href="../ref/customization.html"
+ title="Python Reference Manual"
+ >Python Reference Manual</a></em> for
+information on the use of this method to effect object comparisons.
+
+<P>
+<b>Implementation note:</b> Objects of different types except
+numbers are ordered by their type names; objects of the same types
+that don't support proper comparison are ordered by their address.
+
+<P>
+Two more operations with the same syntactic priority,
+"<tt class="samp">in</tt>"<a name="l2h-88">&nbsp;</a>and "<tt class="samp">not in</tt>"<a name="l2h-89">&nbsp;</a>, are supported
+only by sequence types (below).
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="boolean.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="typesnumeric.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="boolean.html">2.2.2 Boolean Operations</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="types.html">2.2 Built-in Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="typesnumeric.html">2.2.4 Numeric Types</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

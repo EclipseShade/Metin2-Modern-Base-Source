@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.3 htmllib -- A parser for HTML documents</title>
+<META NAME="description" CONTENT="13.3 htmllib -- A parser for HTML documents">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-htmlentitydefs.html">
+<LINK REL="previous" href="module-sgmllib.html">
+<LINK REL="up" href="markup.html">
+<LINK REL="next" href="html-parser-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-sgmllib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="html-parser-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-sgmllib.html">13.2 sgmllib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="html-parser-objects.html">13.3.1 HTMLParser Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0015300000000000000000">
+13.3 <tt class="module">htmllib</tt> --
+         A parser for HTML documents</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name="l2h-3143">&nbsp;</a>
+<P>
+This module defines a class which can serve as a base for parsing text
+files formatted in the HyperText Mark-up Language (HTML).  The class
+is not directly concerned with I/O -- it must be provided with input
+in string form via a method, and makes calls to methods of a
+``formatter'' object in order to produce output.  The
+<tt class="class">HTMLParser</tt> class is designed to be used as a base class for
+other classes in order to add functionality, and allows most of its
+methods to be extended or overridden.  In turn, this class is derived
+from and extends the <tt class="class">SGMLParser</tt> class defined in module
+<tt class="module"><a href="module-sgmllib.html">sgmllib</a></tt><a name="l2h-3144">&nbsp;</a>.  The <tt class="class">HTMLParser</tt>
+implementation supports the HTML 2.0 language as described in
+<a class="rfc" name="rfcref-64204"
+href="http://www.faqs.org/rfcs/rfc1866.html">RFC 1866</a>.  Two implementations of formatter objects are provided in
+the <tt class="module"><a href="module-formatter.html">formatter</a></tt><a name="l2h-3145">&nbsp;</a>module; refer to the
+documentation for that module for information on the formatter
+interface.
+<a name="l2h-3141">&nbsp;</a>
+<P>
+The following is a summary of the interface defined by
+<tt class="class">sgmllib.SGMLParser</tt>:
+
+<P>
+
+<UL>
+<LI>The interface to feed data to an instance is through the <tt class="method">feed()</tt>
+method, which takes a string argument.  This can be called with as
+little or as much text at a time as desired; "<tt class="samp">p.feed(a);
+p.feed(b)</tt>" has the same effect as "<tt class="samp">p.feed(a+b)</tt>".  When the data
+contains complete HTML tags, these are processed immediately;
+incomplete elements are saved in a buffer.  To force processing of all
+unprocessed data, call the <tt class="method">close()</tt> method.
+
+<P>
+For example, to parse the entire contents of a file, use:
+<dl><dd><pre class="verbatim">
+parser.feed(open('myfile.html').read())
+parser.close()
+</pre></dl>
+
+<P>
+</LI>
+<LI>The interface to define semantics for HTML tags is very simple: derive
+a class and define methods called <tt class="method">start_<var>tag</var>()</tt>,
+<tt class="method">end_<var>tag</var>()</tt>, or <tt class="method">do_<var>tag</var>()</tt>.  The parser will
+call these at appropriate moments: <tt class="method">start_<var>tag</var></tt> or
+<tt class="method">do_<var>tag</var>()</tt> is called when an opening tag of the form
+<code>&lt;<var>tag</var> ...&gt;</code> is encountered; <tt class="method">end_<var>tag</var>()</tt> is called
+when a closing tag of the form <code>&lt;<var>tag</var>&gt;</code> is encountered.  If
+an opening tag requires a corresponding closing tag, like <code>&lt;H1&gt;</code>
+... <code>&lt;/H1&gt;</code>, the class should define the <tt class="method">start_<var>tag</var>()</tt>
+method; if a tag requires no closing tag, like <code>&lt;P&gt;</code>, the class
+should define the <tt class="method">do_<var>tag</var>()</tt> method.
+
+<P>
+</LI>
+</UL>
+
+<P>
+The module defines a single class:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3142"><tt class="class">HTMLParser</tt></a></b>(<var>formatter</var>)
+<dd>
+This is the basic HTML parser class.  It supports all entity names
+required by the HTML 2.0 specification (<a class="rfc" name="rfcref-64207"
+href="http://www.faqs.org/rfcs/rfc1866.html">RFC 1866</a>).  It also defines
+handlers for all HTML 2.0 and many HTML 3.0 and 3.2 elements.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-HTMLParser.html">HTMLParser</a></tt>:</b>
+    <dd>Alternate HTML parser that offers a slightly
+                         lower-level view of the input, but is
+                         designed to work with XHTML, and does not
+                         implement some of the SGML syntax not used in
+                         ``HTML as deployed'' and which isn't legal
+                         for XHTML.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-htmlentitydefs.html">htmlentitydefs</a></tt>:</b>
+    <dd>Definition of replacement text for HTML
+                             2.0 entities.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-sgmllib.html">sgmllib</a></tt>:</b>
+    <dd>Base class for <tt class="class">HTMLParser</tt>.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="html-parser-objects.html">13.3.1 HTMLParser Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-sgmllib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="html-parser-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-sgmllib.html">13.2 sgmllib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="html-parser-objects.html">13.3.1 HTMLParser Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

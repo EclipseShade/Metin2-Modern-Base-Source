@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2. Built-in Functions, Types, and Exceptions </title>
+<META NAME="description" CONTENT="2. Built-in Functions, Types, and Exceptions ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="python.html">
+<LINK REL="previous" href="intro.html">
+<LINK REL="up" HREF="lib.html">
+<LINK REL="next" href="built-in-funcs.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="intro.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="built-in-funcs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="intro.html">1. Introduction</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="built-in-funcs.html">2.1 Built-in Functions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION004000000000000000000">&nbsp;</A>
+<BR>
+2. Built-in Functions, Types, and Exceptions 
+</H1>
+
+<P>
+Names for built-in exceptions and functions are found in a separate
+symbol table.  This table is searched last when the interpreter looks
+up the meaning of a name, so local and global
+user-defined names can override built-in names.  Built-in types are
+described together here for easy reference.<A NAME="tex2html1"
+  HREF="#foot91"><SUP>2.1</SUP></A><a name="l2h-1">&nbsp;</a>
+<P>
+The tables in this chapter document the priorities of operators by
+listing them in order of ascending priority (within a table) and
+grouping operators that have the same priority in the same box.
+Binary operators of the same priority group from left to right.
+(Unary operators group from right to left, but there you have no real
+choice.)  See chapter 5 of the <em class="citetitle"><a
+ href="../ref/ref.html"
+ title="Python
+Reference Manual"
+ >Python
+Reference Manual</a></em> for the complete picture on operator priorities.
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot91">... reference.</A><A NAME="foot91"
+ href="builtin.html#tex2html1"><SUP>2.1</SUP></A>
+<DD>
+	Most descriptions sorely lack explanations of the exceptions
+	that may be raised -- this will be fixed in a future version of
+	this manual.
+
+</DL>
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="built-in-funcs.html">2.1 Built-in Functions</a>
+<LI><A href="types.html">2.2 Built-in Types</a>
+<UL>
+<LI><A href="truth.html">2.2.1 Truth Value Testing</a>
+<LI><A href="boolean.html">2.2.2 Boolean Operations</a>
+<LI><A href="comparisons.html">2.2.3 Comparisons</a>
+<LI><A href="typesnumeric.html">2.2.4 Numeric Types</a>
+<UL>
+<LI><A href="bitstring-ops.html">2.2.4.1 Bit-string Operations on Integer Types</a>
+</ul>
+<LI><A href="typeiter.html">2.2.5 Iterator Types</a>
+<LI><A href="typesseq.html">2.2.6 Sequence Types</a>
+<UL>
+<LI><A href="string-methods.html">2.2.6.1 String Methods</a>
+<LI><A href="typesseq-strings.html">2.2.6.2 String Formatting Operations</a>
+<LI><A href="typesseq-xrange.html">2.2.6.3 XRange Type</a>
+<LI><A href="typesseq-mutable.html">2.2.6.4 Mutable Sequence Types</a>
+</ul>
+<LI><A href="typesmapping.html">2.2.7 Mapping Types</a>
+<LI><A href="bltin-file-objects.html">2.2.8 File Objects</a>
+<LI><A href="typesother.html">2.2.9 Other Built-in Types</a>
+<UL>
+<LI><A href="typesmodules.html">2.2.9.1 Modules</a>
+<LI><A href="typesobjects.html">2.2.9.2 Classes and Class Instances</a>
+<LI><A href="typesfunctions.html">2.2.9.3 Functions</a>
+<LI><A href="typesmethods.html">2.2.9.4 Methods</a>
+<LI><A href="bltin-code-objects.html">2.2.9.5 Code Objects</a>
+<LI><A href="bltin-type-objects.html">2.2.9.6 Type Objects</a>
+<LI><A href="bltin-null-object.html">2.2.9.7 The Null Object</a>
+<LI><A href="bltin-ellipsis-object.html">2.2.9.8 The Ellipsis Object</a>
+<LI><A href="typesinternal.html">2.2.9.9 Internal Objects</a>
+</ul>
+<LI><A href="specialattrs.html">2.2.10 Special Attributes</a>
+</ul>
+<LI><A href="module-exceptions.html">2.3 Built-in Exceptions</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="intro.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="built-in-funcs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="intro.html">1. Introduction</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="built-in-funcs.html">2.1 Built-in Functions</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

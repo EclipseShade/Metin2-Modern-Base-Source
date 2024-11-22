@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.5.3 BaseHandler Objects </title>
+<META NAME="description" CONTENT="11.5.3 BaseHandler Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="http-redirect-handler.html">
+<LINK REL="previous" href="opener-director-objects.html">
+<LINK REL="up" href="module-urllib2.html">
+<LINK REL="next" href="http-redirect-handler.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="opener-director-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-urllib2.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="http-redirect-handler.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="opener-director-objects.html">11.5.2 OpenerDirector Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-urllib2.html">11.5 urllib2  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="http-redirect-handler.html">11.5.4 HTTPRedirectHandler Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013530000000000000000">&nbsp;</A>
+<BR>
+11.5.3 BaseHandler Objects 
+</H2>
+
+<P>
+<tt class="class">BaseHandler</tt> objects provide a couple of methods that are
+directly useful, and others that are meant to be used by derived
+classes.  These are intended for direct use:
+
+<P>
+<dl><dt><b><a name="l2h-2379"><tt class="method">add_parent</tt></a></b>(<var>director</var>)
+<dd>
+Add a director as parent.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2380"><tt class="method">close</tt></a></b>()
+<dd>
+Remove any parents.
+</dl>
+
+<P>
+The following members and methods should only be used by classes
+derived from <tt class="class">BaseHandler</tt>:
+
+<P>
+<dl><dt><b><a name="l2h-2381"><tt class="member">parent</tt></a></b>
+<dd>
+A valid <tt class="class">OpenerDirector</tt>, which can be used to open using a
+different protocol, or handle errors.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2382"><tt class="method">default_open</tt></a></b>(<var>req</var>)
+<dd>
+This method is <i>not</i> defined in <tt class="class">BaseHandler</tt>, but
+subclasses should define it if they want to catch all URLs.
+
+<P>
+This method, if implemented, will be called by the parent
+<tt class="class">OpenerDirector</tt>.  It should return a file-like object as
+described in the return value of the <tt class="method">open()</tt> of
+<tt class="class">OpenerDirector</tt>, or <code>None</code>.  It should raise
+<tt class="exception">URLError</tt>, unless a truly exceptional thing happens (for
+example, <tt class="exception">MemoryError</tt> should not be mapped to
+<tt class="exception">URLError</tt>).
+
+<P>
+This method will be called before any protocol-specific open method.
+</dl>
+
+<P>
+<dl><dt><b><var>protocol</var>_open</b>(<var>req</var>)
+<dd>
+This method is <i>not</i> defined in <tt class="class">BaseHandler</tt>, but
+subclasses should define it if they want to handle URLs with the given
+protocol.
+
+<P>
+This method, if defined, will be called by the parent
+<tt class="class">OpenerDirector</tt>.  Return values should be the same as for 
+<tt class="method">default_open()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2383"><tt class="method">unknown_open</tt></a></b>(<var>req</var>)
+<dd>
+This method is <var>not</var> defined in <tt class="class">BaseHandler</tt>, but
+subclasses should define it if they want to catch all URLs with no
+specific registered handler to open it.
+
+<P>
+This method, if implemented, will be called by the <tt class="member">parent</tt> 
+<tt class="class">OpenerDirector</tt>.  Return values should be the same as for 
+<tt class="method">default_open()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2384"><tt class="method">http_error_default</tt></a></b>(<var>req, fp, code, msg, hdrs</var>)
+<dd>
+This method is <i>not</i> defined in <tt class="class">BaseHandler</tt>, but
+subclasses should override it if they intend to provide a catch-all
+for otherwise unhandled HTTP errors.  It will be called automatically
+by the  <tt class="class">OpenerDirector</tt> getting the error, and should not
+normally be called in other circumstances.
+
+<P>
+<var>req</var> will be a <tt class="class">Request</tt> object, <var>fp</var> will be a
+file-like object with the HTTP error body, <var>code</var> will be the
+three-digit code of the error, <var>msg</var> will be the user-visible
+explanation of the code and <var>hdrs</var> will be a mapping object with
+the headers of the error.
+
+<P>
+Return values and exceptions raised should be the same as those
+of <tt class="function">urlopen()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2385"><tt class="method">http_error_<var>nnn</var></tt></a></b>(<var>req, fp, code, msg, hdrs</var>)
+<dd>
+<var>nnn</var> should be a three-digit HTTP error code.  This method is
+also not defined in <tt class="class">BaseHandler</tt>, but will be called, if it
+exists, on an instance of a subclass, when an HTTP error with code
+<var>nnn</var> occurs.
+
+<P>
+Subclasses should override this method to handle specific HTTP
+errors.
+
+<P>
+Arguments, return values and exceptions raised should be the same as
+for <tt class="method">http_error_default()</tt>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="opener-director-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-urllib2.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="http-redirect-handler.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="opener-director-objects.html">11.5.2 OpenerDirector Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-urllib2.html">11.5 urllib2  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="http-redirect-handler.html">11.5.4 HTTPRedirectHandler Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

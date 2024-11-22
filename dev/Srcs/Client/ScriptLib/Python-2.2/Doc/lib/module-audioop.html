@@ -1,0 +1,420 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>14.1 audioop -- Manipulate raw audio data</title>
+<META NAME="description" CONTENT="14.1 audioop -- Manipulate raw audio data">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-imageop.html">
+<LINK REL="previous" href="mmedia.html">
+<LINK REL="up" href="mmedia.html">
+<LINK REL="next" href="module-imageop.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="mmedia.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="mmedia.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-imageop.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-imageop.html">14.2 imageop  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0016100000000000000000">
+14.1 <tt class="module">audioop</tt> --
+         Manipulate raw audio data</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">audioop</tt> module contains some useful operations on sound
+fragments.  It operates on sound fragments consisting of signed
+integer samples 8, 16 or 32 bits wide, stored in Python strings.  This
+is the same format as used by the <tt class="module"><a href="module-al.html">al</a></tt> and <tt class="module"><a href="module-sunaudiodev.html">sunaudiodev</a></tt>
+modules.  All scalar items are integers, unless specified otherwise.
+
+<P>
+This module provides support for u-LAW and Intel/DVI ADPCM encodings.
+<a name="l2h-3462">&nbsp;</a>
+<P>
+A few of the more complicated operations only take 16-bit samples,
+otherwise the sample size (in bytes) is always a parameter of the
+operation.
+
+<P>
+The module defines the following variables and functions:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-3436"><tt class="exception">error</tt></a></b>
+<dd>
+This exception is raised on all errors, such as unknown number of bytes
+per sample, etc.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3437"><tt class="function">add</tt></a></b>(<var>fragment1, fragment2, width</var>)
+<dd>
+Return a fragment which is the addition of the two samples passed as
+parameters.  <var>width</var> is the sample width in bytes, either
+<code>1</code>, <code>2</code> or <code>4</code>.  Both fragments should have the same
+length.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3438"><tt class="function">adpcm2lin</tt></a></b>(<var>adpcmfragment, width, state</var>)
+<dd>
+Decode an Intel/DVI ADPCM coded fragment to a linear fragment.  See
+the description of <tt class="function">lin2adpcm()</tt> for details on ADPCM coding.
+Return a tuple <code>(<var>sample</var>, <var>newstate</var>)</code> where the sample
+has the width specified in <var>width</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3439"><tt class="function">adpcm32lin</tt></a></b>(<var>adpcmfragment, width, state</var>)
+<dd>
+Decode an alternative 3-bit ADPCM code.  See <tt class="function">lin2adpcm3()</tt>
+for details.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3440"><tt class="function">avg</tt></a></b>(<var>fragment, width</var>)
+<dd>
+Return the average over all samples in the fragment.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3441"><tt class="function">avgpp</tt></a></b>(<var>fragment, width</var>)
+<dd>
+Return the average peak-peak value over all samples in the fragment.
+No filtering is done, so the usefulness of this routine is
+questionable.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3442"><tt class="function">bias</tt></a></b>(<var>fragment, width, bias</var>)
+<dd>
+Return a fragment that is the original fragment with a bias added to
+each sample.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3443"><tt class="function">cross</tt></a></b>(<var>fragment, width</var>)
+<dd>
+Return the number of zero crossings in the fragment passed as an
+argument.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3444"><tt class="function">findfactor</tt></a></b>(<var>fragment, reference</var>)
+<dd>
+Return a factor <var>F</var> such that
+<code>rms(add(<var>fragment</var>, mul(<var>reference</var>, -<var>F</var>)))</code> is
+minimal, i.e., return the factor with which you should multiply
+<var>reference</var> to make it match as well as possible to
+<var>fragment</var>.  The fragments should both contain 2-byte samples.
+
+<P>
+The time taken by this routine is proportional to
+<code>len(<var>fragment</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3445"><tt class="function">findfit</tt></a></b>(<var>fragment, reference</var>)
+<dd>
+Try to match <var>reference</var> as well as possible to a portion of
+<var>fragment</var> (which should be the longer fragment).  This is
+(conceptually) done by taking slices out of <var>fragment</var>, using
+<tt class="function">findfactor()</tt> to compute the best match, and minimizing the
+result.  The fragments should both contain 2-byte samples.  Return a
+tuple <code>(<var>offset</var>, <var>factor</var>)</code> where <var>offset</var> is the
+(integer) offset into <var>fragment</var> where the optimal match started
+and <var>factor</var> is the (floating-point) factor as per
+<tt class="function">findfactor()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3446"><tt class="function">findmax</tt></a></b>(<var>fragment, length</var>)
+<dd>
+Search <var>fragment</var> for a slice of length <var>length</var> samples (not
+bytes!) with maximum energy, i.e., return <var>i</var> for which
+<code>rms(fragment[i*2:(i+length)*2])</code> is maximal.  The fragments
+should both contain 2-byte samples.
+
+<P>
+The routine takes time proportional to <code>len(<var>fragment</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3447"><tt class="function">getsample</tt></a></b>(<var>fragment, width, index</var>)
+<dd>
+Return the value of sample <var>index</var> from the fragment.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3448"><tt class="function">lin2lin</tt></a></b>(<var>fragment, width, newwidth</var>)
+<dd>
+Convert samples between 1-, 2- and 4-byte formats.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3449"><tt class="function">lin2adpcm</tt></a></b>(<var>fragment, width, state</var>)
+<dd>
+Convert samples to 4 bit Intel/DVI ADPCM encoding.  ADPCM coding is an
+adaptive coding scheme, whereby each 4 bit number is the difference
+between one sample and the next, divided by a (varying) step.  The
+Intel/DVI ADPCM algorithm has been selected for use by the IMA, so it
+may well become a standard.
+
+<P>
+<var>state</var> is a tuple containing the state of the coder.  The coder
+returns a tuple <code>(<var>adpcmfrag</var>, <var>newstate</var>)</code>, and the
+<var>newstate</var> should be passed to the next call of
+<tt class="function">lin2adpcm()</tt>.  In the initial call, <code>None</code> can be
+passed as the state.  <var>adpcmfrag</var> is the ADPCM coded fragment
+packed 2 4-bit values per byte.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3450"><tt class="function">lin2adpcm3</tt></a></b>(<var>fragment, width, state</var>)
+<dd>
+This is an alternative ADPCM coder that uses only 3 bits per sample.
+It is not compatible with the Intel/DVI ADPCM coder and its output is
+not packed (due to laziness on the side of the author).  Its use is
+discouraged.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3451"><tt class="function">lin2ulaw</tt></a></b>(<var>fragment, width</var>)
+<dd>
+Convert samples in the audio fragment to u-LAW encoding and return
+this as a Python string.  u-LAW is an audio encoding format whereby
+you get a dynamic range of about 14 bits using only 8 bit samples.  It
+is used by the Sun audio hardware, among others.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3452"><tt class="function">minmax</tt></a></b>(<var>fragment, width</var>)
+<dd>
+Return a tuple consisting of the minimum and maximum values of all
+samples in the sound fragment.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3453"><tt class="function">max</tt></a></b>(<var>fragment, width</var>)
+<dd>
+Return the maximum of the <i>absolute value</i> of all samples in a
+fragment.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3454"><tt class="function">maxpp</tt></a></b>(<var>fragment, width</var>)
+<dd>
+Return the maximum peak-peak value in the sound fragment.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3455"><tt class="function">mul</tt></a></b>(<var>fragment, width, factor</var>)
+<dd>
+Return a fragment that has all samples in the original fragment
+multiplied by the floating-point value <var>factor</var>.  Overflow is
+silently ignored.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3456"><tt class="function">ratecv</tt></a></b>(<var>fragment, width, nchannels, inrate, outrate,
+                         state</var><big>[</big><var>, weightA</var><big>[</big><var>, weightB</var><big>]</big><big>]</big>)
+<dd>
+Convert the frame rate of the input fragment.
+
+<P>
+<var>state</var> is a tuple containing the state of the converter.  The
+converter returns a tuple <code>(<var>newfragment</var>, <var>newstate</var>)</code>,
+and <var>newstate</var> should be passed to the next call of
+<tt class="function">ratecv()</tt>.  The initial call should pass <code>None</code>
+as the state.
+
+<P>
+The <var>weightA</var> and <var>weightB</var> arguments are parameters for a
+simple digital filter and default to <code>1</code> and <code>0</code> respectively.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3457"><tt class="function">reverse</tt></a></b>(<var>fragment, width</var>)
+<dd>
+Reverse the samples in a fragment and returns the modified fragment.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3458"><tt class="function">rms</tt></a></b>(<var>fragment, width</var>)
+<dd>
+Return the root-mean-square of the fragment, i.e.
+<BR><P></P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<!-- MATH
+ \begin{displaymath}
+\catcode`_=8
+\sqrt{\frac{\sum{{S_{i}}^{2}}}{n}}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="60" HEIGHT="55" BORDER="0"
+ SRC="img1.gif"
+ ALT="\begin{displaymath}
+\catcode\lq _=8
+\sqrt{\frac{\sum{{S_{i}}^{2}}}{n}}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+This is a measure of the power in an audio signal.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3459"><tt class="function">tomono</tt></a></b>(<var>fragment, width, lfactor, rfactor</var>)
+<dd> 
+Convert a stereo fragment to a mono fragment.  The left channel is
+multiplied by <var>lfactor</var> and the right channel by <var>rfactor</var>
+before adding the two channels to give a mono signal.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3460"><tt class="function">tostereo</tt></a></b>(<var>fragment, width, lfactor, rfactor</var>)
+<dd>
+Generate a stereo fragment from a mono fragment.  Each pair of samples
+in the stereo fragment are computed from the mono sample, whereby left
+channel samples are multiplied by <var>lfactor</var> and right channel
+samples by <var>rfactor</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3461"><tt class="function">ulaw2lin</tt></a></b>(<var>fragment, width</var>)
+<dd>
+Convert sound fragments in u-LAW encoding to linearly encoded sound
+fragments.  u-LAW encoding always uses 8 bits samples, so <var>width</var>
+refers only to the sample width of the output fragment here.
+</dl>
+
+<P>
+Note that operations such as <tt class="function">mul()</tt> or <tt class="function">max()</tt> make
+no distinction between mono and stereo fragments, i.e. all samples
+are treated equal.  If this is a problem the stereo fragment should be
+split into two mono fragments first and recombined later.  Here is an
+example of how to do that:
+
+<P>
+<dl><dd><pre class="verbatim">
+def mul_stereo(sample, width, lfactor, rfactor):
+    lsample = audioop.tomono(sample, width, 1, 0)
+    rsample = audioop.tomono(sample, width, 0, 1)
+    lsample = audioop.mul(sample, width, lfactor)
+    rsample = audioop.mul(sample, width, rfactor)
+    lsample = audioop.tostereo(lsample, width, 1, 0)
+    rsample = audioop.tostereo(rsample, width, 0, 1)
+    return audioop.add(lsample, rsample, width)
+</pre></dl>
+
+<P>
+If you use the ADPCM coder to build network packets and you want your
+protocol to be stateless (i.e. to be able to tolerate packet loss)
+you should not only transmit the data but also the state.  Note that
+you should send the <var>initial</var> state (the one you passed to
+<tt class="function">lin2adpcm()</tt>) along to the decoder, not the final state (as
+returned by the coder).  If you want to use <tt class="function">struct.struct()</tt>
+to store the state in binary you can code the first element (the
+predicted value) in 16 bits and the second (the delta index) in 8.
+
+<P>
+The ADPCM coders have never been tried against other ADPCM coders,
+only against themselves.  It could well be that I misinterpreted the
+standards in which case they will not be interoperable with the
+respective standards.
+
+<P>
+The <tt class="function">find*()</tt> routines might look a bit funny at first sight.
+They are primarily meant to do echo cancellation.  A reasonably
+fast way to do this is to pick the most energetic piece of the output
+sample, locate that in the input sample and subtract the whole output
+sample from the input sample:
+
+<P>
+<dl><dd><pre class="verbatim">
+def echocancel(outputdata, inputdata):
+    pos = audioop.findmax(outputdata, 800)    # one tenth second
+    out_test = outputdata[pos*2:]
+    in_test = inputdata[pos*2:]
+    ipos, factor = audioop.findfit(in_test, out_test)
+    # Optional (for better cancellation):
+    # factor = audioop.findfactor(in_test[ipos*2:ipos*2+len(out_test)], 
+    #              out_test)
+    prefill = '\0'*(pos+ipos)*2
+    postfill = '\0'*(len(inputdata)-len(prefill)-len(outputdata))
+    outputdata = prefill + audioop.mul(outputdata,2,-factor) + postfill
+    return audioop.add(inputdata, outputdata, 2)
+</pre></dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="mmedia.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="mmedia.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-imageop.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-imageop.html">14.2 imageop  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

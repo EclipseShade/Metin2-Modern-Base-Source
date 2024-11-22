@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.21 SimpleXMLRPCServer -- Basic XML-RPC server</title>
+<META NAME="description" CONTENT="11.21 SimpleXMLRPCServer -- Basic XML-RPC server">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-asyncore.html">
+<LINK REL="previous" href="module-xmlrpclib.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="simple-xmlrpc-servers.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="xmlrpc-client-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="simple-xmlrpc-servers.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="xmlrpc-client-example.html">11.20.8 Example of Client</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="simple-xmlrpc-servers.html">11.21.1 SimpleXMLRPCServer Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00132100000000000000000">
+11.21 <tt class="module">SimpleXMLRPCServer</tt> --
+         Basic XML-RPC server</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">SimpleXMLRPCServer</tt> module provides a basic server
+framework for XML-RPC servers written in Python.  The server object is
+based on the <tt class="class"><tt class="module"><a href="module-SocketServer.html">SocketServer</a></tt>.TCPServer</tt> class,
+and the request handler is based on the
+<tt class="class"><tt class="module"><a href="module-BaseHTTPServer.html">BaseHTTPServer</a></tt>.BaseHTTPRequestHandler</tt> class.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2727"><tt class="class">SimpleXMLRPCServer</tt></a></b>(<var>addr</var><big>[</big><var>,
+                                      requestHandler</var><big>[</big><var>, logRequests</var><big>]</big><big>]</big>)
+<dd>
+  Create a new server instance.  The <var>requestHandler</var> parameter
+  should be a factory for request handler instances; it defaults to
+  <tt class="class">SimpleXMLRPCRequestHandler</tt>.  The <var>addr</var> and
+  <var>requestHandler</var> parameters are passed to the
+  <tt class="class"><tt class="module"><a href="module-SocketServer.html">SocketServer</a></tt>.TCPServer</tt> constructor.  If
+  <var>logRequests</var> is true (the default), requests will be logged;
+  setting this parameter to false will turn off logging.  This class
+  provides methods for registration of functions that can be called by
+  the XML-RPC protocol.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2728"><tt class="class">SimpleXMLRPCRequestHandler</tt></a></b>()
+<dd>
+  Create a new request handler instance.  This request handler
+  supports <code>POST</code> requests and modifies logging so that the
+  <var>logRequests</var> parameter to the <tt class="class">SimpleXMLRPCServer</tt>
+  constructor parameter is honored.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="simple-xmlrpc-servers.html">11.21.1 SimpleXMLRPCServer Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="xmlrpc-client-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="simple-xmlrpc-servers.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="xmlrpc-client-example.html">11.20.8 Example of Client</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="simple-xmlrpc-servers.html">11.21.1 SimpleXMLRPCServer Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

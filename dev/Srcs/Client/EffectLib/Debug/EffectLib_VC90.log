@@ -1,0 +1,56 @@
+﻿Der Buildvorgang wurde am 27.09.2013 20:03:58 gestartet.
+     1>Projekt "D:\tt (1)\dev\Srcs\Client\EffectLib\EffectLib_VC90.vcxproj" auf Knoten "5", build Ziel(e).
+     1>InitializeBuildStatus:
+         ".\Debug\EffectLib.unsuccessfulbuild" wird erstellt, da "AlwaysCreate" angegeben wurde.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I../../extern/include /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp".\Debug/EffectLib.pch" /Fo".\Debug/" /Fd".\Debug/vc100.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt StdAfx.cpp
+         StdAfx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I../../extern/include /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp".\Debug/EffectLib.pch" /Fo".\Debug/" /Fd".\Debug/vc100.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt EffectData.cpp EffectElementBase.cpp EffectElementBaseInstance.cpp EffectInstance.cpp EffectManager.cpp EffectMesh.cpp EffectMeshInstance.cpp EffectUpdateDecorator.cpp EmitterProperty.cpp FrameController.cpp ParticleInstance.cpp ParticleProperty.cpp ParticleSystemData.cpp ParticleSystemInstance.cpp SimpleLightData.cpp SimpleLightInstance.cpp Type.cpp
+         EffectData.cpp
+         EffectElementBase.cpp
+         EffectElementBaseInstance.cpp
+         EffectInstance.cpp
+         EffectManager.cpp
+         EffectMesh.cpp
+         EffectMeshInstance.cpp
+         EffectUpdateDecorator.cpp
+         EmitterProperty.cpp
+         FrameController.cpp
+         ParticleInstance.cpp
+         ParticleProperty.cpp
+         ParticleSystemData.cpp
+         ParticleSystemInstance.cpp
+         SimpleLightData.cpp
+         SimpleLightInstance.cpp
+         Type.cpp
+         Code wird generiert...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:".\Debug\EffectLib.lib" /NOLOGO .\Debug/EffectData.obj
+         .\Debug/EffectElementBase.obj
+         .\Debug/EffectElementBaseInstance.obj
+         .\Debug/EffectInstance.obj
+         .\Debug/EffectManager.obj
+         .\Debug/EffectMesh.obj
+         .\Debug/EffectMeshInstance.obj
+         .\Debug/EffectUpdateDecorator.obj
+         .\Debug/EmitterProperty.obj
+         .\Debug/FrameController.obj
+         .\Debug/ParticleInstance.obj
+         .\Debug/ParticleProperty.obj
+         .\Debug/ParticleSystemData.obj
+         .\Debug/ParticleSystemInstance.obj
+         .\Debug/SimpleLightData.obj
+         .\Debug/SimpleLightInstance.obj
+         .\Debug/StdAfx.obj
+         .\Debug/Type.obj
+         EffectLib_VC90.vcxproj -> D:\tt (1)\dev\Srcs\Client\EffectLib\.\Debug\EffectLib.lib
+       BscMake:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\bscmake.exe /nologo /o".\Debug\EffectLib.bsc" .\Debug\EffectData.sbr .\Debug\EffectElementBase.sbr .\Debug\EffectElementBaseInstance.sbr .\Debug\EffectInstance.sbr .\Debug\EffectManager.sbr .\Debug\EffectMesh.sbr .\Debug\EffectMeshInstance.sbr .\Debug\EffectUpdateDecorator.sbr .\Debug\EmitterProperty.sbr .\Debug\FrameController.sbr .\Debug\ParticleInstance.sbr .\Debug\ParticleProperty.sbr .\Debug\ParticleSystemData.sbr .\Debug\ParticleSystemInstance.sbr .\Debug\SimpleLightData.sbr .\Debug\SimpleLightInstance.sbr .\Debug\StdAfx.sbr .\Debug\Type.sbr
+       FinalizeBuildStatus:
+         Die Datei ".\Debug\EffectLib.unsuccessfulbuild" wird gelöscht.
+         Aktualisieren des Timestamps von ".\Debug\EffectLib.lastbuildstate".
+     1>Die Erstellung des Projekts "D:\tt (1)\dev\Srcs\Client\EffectLib\EffectLib_VC90.vcxproj" ist abgeschlossen, build Ziel(e).
+
+Das Erstellen war erfolgreich.
+
+Verstrichene Zeit 00:00:15.34

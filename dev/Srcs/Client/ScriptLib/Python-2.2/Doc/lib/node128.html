@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.2.6 How are Docstring Examples Recognized?</title>
+<META NAME="description" CONTENT="5.2.6 How are Docstring Examples Recognized?">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node129.html">
+<LINK REL="previous" HREF="node127.html">
+<LINK REL="up" href="module-doctest.html">
+<LINK REL="next" HREF="node129.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node127.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-doctest.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node129.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node127.html">5.2.5 Advanced Usage</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-doctest.html">5.2 doctest  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node129.html">5.2.7 Warnings</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007260000000000000000">
+5.2.6 How are Docstring Examples Recognized?</A>
+</H2>
+
+<P>
+In most cases a copy-and-paste of an interactive console session works fine
+-- just make sure the leading whitespace is rigidly consistent (you can mix
+tabs and spaces if you're too lazy to do it right, but doctest is not in
+the business of guessing what you think a tab means).
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; # comments are ignored
+&gt;&gt;&gt; x = 12
+&gt;&gt;&gt; x
+12
+&gt;&gt;&gt; if x == 13:
+...     print "yes"
+... else:
+...     print "no"
+...     print "NO"
+...     print "NO!!!"
+...
+no
+NO
+NO!!!
+&gt;&gt;&gt;
+</pre></dl>
+
+<P>
+Any expected output must immediately follow the final
+<code>'&gt;<code>&gt;</code>&gt;&nbsp;'</code> or <code>'...&nbsp;'</code> line containing the code, and
+the expected output (if any) extends to the next <code>'&gt;<code>&gt;</code>&gt;&nbsp;'</code>
+or all-whitespace line.
+
+<P>
+The fine print:
+
+<P>
+
+<UL>
+<LI>Expected output cannot contain an all-whitespace line, since such a
+  line is taken to signal the end of expected output.
+
+<P>
+</LI>
+<LI>Output to stdout is captured, but not output to stderr (exception
+  tracebacks are captured via a different means).
+
+<P>
+</LI>
+<LI>If you continue a line via backslashing in an interactive session, or
+  for any other reason use a backslash, you need to double the backslash in
+  the docstring version.  This is simply because you're in a string, and so
+  the backslash must be escaped for it to survive intact.  Like:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; if "yes" == \\
+...     "y" +   \\
+...     "es":
+...     print 'yes'
+yes
+</pre></dl>
+
+<P>
+</LI>
+<LI>The starting column doesn't matter:
+
+<P>
+<dl><dd><pre class="verbatim">
+  &gt;&gt;&gt; assert "Easy!"
+        &gt;&gt;&gt; import math
+            &gt;&gt;&gt; math.floor(1.9)
+            1.0
+</pre></dl>
+
+<P>
+and as many leading whitespace characters are stripped from the
+expected output as appeared in the initial <code>'&gt;<code>&gt;</code>&gt;&nbsp;'</code> line
+that triggered it.
+</LI>
+</UL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node127.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-doctest.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node129.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node127.html">5.2.5 Advanced Usage</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-doctest.html">5.2 doctest  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node129.html">5.2.7 Warnings</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

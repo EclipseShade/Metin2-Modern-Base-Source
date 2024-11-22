@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.8 anydbm -- Generic access to DBM-style databases</title>
+<META NAME="description" CONTENT="7.8 anydbm -- Generic access to DBM-style databases">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-dumbdbm.html">
+<LINK REL="previous" href="module-mmap.html">
+<LINK REL="up" href="someos.html">
+<LINK REL="next" href="module-dumbdbm.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-mmap.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-dumbdbm.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-mmap.html">7.7 mmap  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-dumbdbm.html">7.9 dumbdbm  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION009800000000000000000">
+7.8 <tt class="module">anydbm</tt> --
+         Generic access to DBM-style databases</A>
+</H1>
+
+<P>
+
+
+<P>
+<tt class="module">anydbm</tt> is a generic interface to variants of the DBM
+database -- <tt class="module"><a href="module-dbhash.html">dbhash</a></tt><a name="l2h-2012">&nbsp;</a>(requires
+<tt class="module"><a href="module-bsddb.html">bsddb</a></tt><a name="l2h-2013">&nbsp;</a>),
+<tt class="module"><a href="module-gdbm.html">gdbm</a></tt><a name="l2h-2014">&nbsp;</a>, or
+<tt class="module"><a href="module-dbm.html">dbm</a></tt><a name="l2h-2015">&nbsp;</a>.  If none of these modules is
+installed, the slow-but-simple implementation in module
+<tt class="module"><a href="module-dumbdbm.html">dumbdbm</a></tt><a name="l2h-2016">&nbsp;</a>will be used.
+
+<P>
+<dl><dt><b><a name="l2h-2010"><tt class="function">open</tt></a></b>(<var>filename</var><big>[</big><var>, flag</var><big>[</big><var>, mode</var><big>]</big><big>]</big>)
+<dd>
+Open the database file <var>filename</var> and return a corresponding object.
+
+<P>
+If the database file already exists, the <tt class="module"><a href="module-whichdb.html">whichdb</a></tt> module is 
+used to determine its type and the appropriate module is used; if it
+does not exist, the first module listed above that can be imported is
+used.
+
+<P>
+The optional <var>flag</var> argument can be
+<code>'r'</code> to open an existing database for reading only,
+<code>'w'</code> to open an existing database for reading and writing,
+<code>'c'</code> to create the database if it doesn't exist, or
+<code>'n'</code>, which will always create a new empty database.  If not
+specified, the default value is <code>'r'</code>.
+
+<P>
+The optional <var>mode</var> argument is the Unix mode of the file, used
+only when the database has to be created.  It defaults to octal
+<code>0666</code> (and will be modified by the prevailing umask).
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2011"><tt class="exception">error</tt></a></b>
+<dd>
+A tuple containing the exceptions that can be raised by each of the
+supported modules, with a unique exception <tt class="exception">anydbm.error</tt> as
+the first item -- the latter is used when <tt class="exception">anydbm.error</tt> is
+raised.
+</dl>
+
+<P>
+The object returned by <tt class="function">open()</tt> supports most of the same
+functionality as dictionaries; keys and their corresponding values can
+be stored, retrieved, and deleted, and the <tt class="method">has_key()</tt> and
+<tt class="method">keys()</tt> methods are available.  Keys and values must always be
+strings.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-dbhash.html">dbhash</a></tt>:</b>
+    <dd>BSD <code>db</code> database interface.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-dbm.html">dbm</a></tt>:</b>
+    <dd>Standard Unix database interface.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-dumbdbm.html">dumbdbm</a></tt>:</b>
+    <dd>Portable implementation of the <code>dbm</code> interface.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-gdbm.html">gdbm</a></tt>:</b>
+    <dd>GNU database interface, based on the <code>dbm</code> interface.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-shelve.html">shelve</a></tt>:</b>
+    <dd>General object persistence built on top of 
+                     the Python <code>dbm</code> interface.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-whichdb.html">whichdb</a></tt>:</b>
+    <dd>Utility module used to determine the type of an
+                      existing database.
+  </dl>
+</div>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-mmap.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-dumbdbm.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-mmap.html">7.7 mmap  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-dumbdbm.html">7.9 dumbdbm  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

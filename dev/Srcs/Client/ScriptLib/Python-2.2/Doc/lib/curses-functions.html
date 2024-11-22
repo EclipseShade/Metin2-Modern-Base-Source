@@ -1,0 +1,726 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.13.1 Functions </title>
+<META NAME="description" CONTENT="6.13.1 Functions ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="curses-window-objects.html">
+<LINK REL="previous" href="module-curses.html">
+<LINK REL="up" href="module-curses.html">
+<LINK REL="next" href="curses-window-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-curses.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-curses.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="curses-window-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-curses.html">6.13 curses  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-curses.html">6.13 curses  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="curses-window-objects.html">6.13.2 Window Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0081310000000000000000">&nbsp;</A>
+<BR>
+6.13.1 Functions 
+</H2>
+
+<P>
+The module <tt class="module">curses</tt> defines the following exception:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-1417"><tt class="exception">error</tt></a></b>
+<dd>
+Exception raised when a curses library function returns an error.
+</dl>
+
+<P>
+<span class="note"><b class="label">Note:</b>
+Whenever <var>x</var> or <var>y</var> arguments to a function
+or a method are optional, they default to the current cursor location.
+Whenever <var>attr</var> is optional, it defaults to <tt class="constant">A_NORMAL</tt>.</span>
+
+<P>
+The module <tt class="module">curses</tt> defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-1418"><tt class="function">baudrate</tt></a></b>()
+<dd>
+Returns the output speed of the terminal in bits per second.  On
+software terminal emulators it will have a fixed high value.
+Included for historical reasons; in former times, it was used to 
+write output loops for time delays and occasionally to change
+interfaces depending on the line speed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1419"><tt class="function">beep</tt></a></b>()
+<dd>
+Emit a short attention sound.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1420"><tt class="function">can_change_color</tt></a></b>()
+<dd>
+Returns true or false, depending on whether the programmer can change
+the colors displayed by the terminal.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1421"><tt class="function">cbreak</tt></a></b>()
+<dd>
+Enter cbreak mode.  In cbreak mode (sometimes called ``rare'' mode)
+normal tty line buffering is turned off and characters are available
+to be read one by one.  However, unlike raw mode, special characters
+(interrupt, quit, suspend, and flow control) retain their effects on
+the tty driver and calling program.  Calling first <tt class="function">raw()</tt>
+then <tt class="function">cbreak()</tt> leaves the terminal in cbreak mode.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1422"><tt class="function">color_content</tt></a></b>(<var>color_number</var>)
+<dd>
+Returns the intensity of the red, green, and blue (RGB) components in
+the color <var>color_number</var>, which must be between <code>0</code> and
+<tt class="constant">COLORS</tt>.  A 3-tuple is returned, containing the R,G,B values
+for the given color, which will be between <code>0</code> (no component) and
+<code>1000</code> (maximum amount of component).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1423"><tt class="function">color_pair</tt></a></b>(<var>color_number</var>)
+<dd>
+Returns the attribute value for displaying text in the specified
+color.  This attribute value can be combined with
+<tt class="constant">A_STANDOUT</tt>, <tt class="constant">A_REVERSE</tt>, and the other
+<tt class="constant">A_*</tt> attributes.  <tt class="function">pair_number()</tt> is the
+counterpart to this function.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1424"><tt class="function">curs_set</tt></a></b>(<var>visibility</var>)
+<dd>
+Sets the cursor state.  <var>visibility</var> can be set to 0, 1, or 2, for
+invisible, normal, or very visible.  If the terminal supports the
+visibility requested, the previous cursor state is returned;
+otherwise, an exception is raised.  On many terminals, the ``visible''
+mode is an underline cursor and the ``very visible'' mode is a block cursor.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1425"><tt class="function">def_prog_mode</tt></a></b>()
+<dd>
+Saves the current terminal mode as the ``program'' mode, the mode when
+the running program is using curses.  (Its counterpart is the
+``shell'' mode, for when the program is not in curses.)  Subsequent calls
+to <tt class="function">reset_prog_mode()</tt> will restore this mode.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1426"><tt class="function">def_shell_mode</tt></a></b>()
+<dd>
+Saves the current terminal mode as the ``shell'' mode, the mode when
+the running program is not using curses.  (Its counterpart is the
+``program'' mode, when the program is using curses capabilities.)
+Subsequent calls
+to <tt class="function">reset_shell_mode()</tt> will restore this mode.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1427"><tt class="function">delay_output</tt></a></b>(<var>ms</var>)
+<dd>
+Inserts an <var>ms</var> millisecond pause in output.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1428"><tt class="function">doupdate</tt></a></b>()
+<dd>
+Update the physical screen.  The curses library keeps two data
+structures, one representing the current physical screen contents
+and a virtual screen representing the desired next state.  The
+<tt class="function">doupdate()</tt> ground updates the physical screen to match the
+virtual screen.
+
+<P>
+The virtual screen may be updated by a <tt class="method">noutrefresh()</tt> call
+after write operations such as <tt class="method">addstr()</tt> have been performed
+on a window.  The normal <tt class="method">refresh()</tt> call is simply
+<tt class="method">noutrefresh()</tt> followed by <tt class="function">doupdate()</tt>; if you have
+to update multiple windows, you can speed performance and perhaps
+reduce screen flicker by issuing <tt class="method">noutrefresh()</tt> calls on
+all windows, followed by a single <tt class="function">doupdate()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1429"><tt class="function">echo</tt></a></b>()
+<dd>
+Enter echo mode.  In echo mode, each character input is echoed to the
+screen as it is entered.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1430"><tt class="function">endwin</tt></a></b>()
+<dd>
+De-initialize the library, and return terminal to normal status.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1431"><tt class="function">erasechar</tt></a></b>()
+<dd>
+Returns the user's current erase character.  Under Unix operating
+systems this is a property of the controlling tty of the curses
+program, and is not set by the curses library itself.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1432"><tt class="function">filter</tt></a></b>()
+<dd>
+The <tt class="function">filter()</tt> routine, if used, must be called before
+<tt class="function">initscr()</tt> is  called.  The effect is that, during those
+calls, LINES is set to 1; the capabilities clear, cup, cud, cud1,
+cuu1, cuu, vpa are disabled; and the home string is set to the value of cr.
+The effect is that the cursor is confined to the current line, and so
+are screen updates.  This may be used for enabling cgaracter-at-a-time 
+line editing without touching the rest of the screen.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1433"><tt class="function">flash</tt></a></b>()
+<dd>
+Flash the screen.  That is, change it to reverse-video and then change
+it back in a short interval.  Some people prefer such as `visible bell'
+to the audible attention signal produced by <tt class="function">beep()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1434"><tt class="function">flushinp</tt></a></b>()
+<dd>
+Flush all input buffers.  This throws away any  typeahead  that  has
+been typed by the user and has not yet been processed by the program.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1435"><tt class="function">getmouse</tt></a></b>()
+<dd>
+After <tt class="method">getch()</tt> returns <tt class="constant">KEY_MOUSE</tt> to signal a mouse
+event, this method should be call to retrieve the queued mouse event,
+represented as a 5-tuple
+<code>(<var>id</var>, <var>x</var>, <var>y</var>, <var>z</var>, <var>bstate</var>)</code>.
+<var>id</var> is an ID value used to distinguish multiple devices,
+and <var>x</var>, <var>y</var>, <var>z</var> are the event's coordinates.  (<var>z</var>
+is currently unused.).  <var>bstate</var> is an integer value whose bits
+will be set to indicate the type of event, and will be the bitwise OR
+of one or more of the following constants, where <var>n</var> is the button
+number from 1 to 4:
+<tt class="constant">BUTTON<var>n</var>_PRESSED</tt>,
+<tt class="constant">BUTTON<var>n</var>_RELEASED</tt>,
+<tt class="constant">BUTTON<var>n</var>_CLICKED</tt>,
+<tt class="constant">BUTTON<var>n</var>_DOUBLE_CLICKED</tt>,
+<tt class="constant">BUTTON<var>n</var>_TRIPLE_CLICKED</tt>,
+<tt class="constant">BUTTON_SHIFT</tt>,
+<tt class="constant">BUTTON_CTRL</tt>,
+<tt class="constant">BUTTON_ALT</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1436"><tt class="function">getsyx</tt></a></b>()
+<dd>
+Returns the current coordinates of the virtual screen cursor in y and
+x.  If leaveok is currently true, then -1,-1 is returned.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1437"><tt class="function">getwin</tt></a></b>(<var>file</var>)
+<dd>
+Reads window related data stored in the file by an earlier
+<tt class="function">putwin()</tt> call.  The routine then creates and initializes a
+new window using that data, returning the new window object.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1438"><tt class="function">has_colors</tt></a></b>()
+<dd>
+Returns true if the terminal can display colors; otherwise, it
+returns false. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1439"><tt class="function">has_ic</tt></a></b>()
+<dd>
+Returns true if the terminal has insert- and delete- character
+capabilities.  This function is included for historical reasons only,
+as all modern software terminal emulators have such capabilities.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1440"><tt class="function">has_il</tt></a></b>()
+<dd>
+Returns true if the terminal has insert- and
+delete-line  capabilities,  or  can  simulate  them  using
+scrolling regions. This function is included for historical reasons only,
+as all modern software terminal emulators have such capabilities.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1441"><tt class="function">has_key</tt></a></b>(<var>ch</var>)
+<dd>
+Takes a key value <var>ch</var>, and returns true if the current terminal
+type recognizes a key with that value.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1442"><tt class="function">halfdelay</tt></a></b>(<var>tenths</var>)
+<dd>
+Used for half-delay mode, which is similar to cbreak mode in that
+characters typed by the user are immediately available to the program.
+However, after blocking for <var>tenths</var> tenths of seconds, an
+exception is raised if nothing has been typed.  The value of
+<var>tenths</var> must be a number between 1 and 255.  Use
+<tt class="function">nocbreak()</tt> to leave half-delay mode.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1443"><tt class="function">init_color</tt></a></b>(<var>color_number, r, g, b</var>)
+<dd>
+Changes the definition of a color, taking the number of the color to
+be changed followed by three RGB values (for the amounts of red,
+green, and blue components).  The value of <var>color_number</var> must be
+between <code>0</code> and <tt class="constant">COLORS</tt>.  Each of <var>r</var>, <var>g</var>,
+<var>b</var>, must be a value between <code>0</code> and <code>1000</code>.  When
+<tt class="function">init_color()</tt> is used, all occurrences of that color on the
+screen immediately change to the new definition.  This function is a
+no-op on most terminals; it is active only if
+<tt class="function">can_change_color()</tt> returns <code>1</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1444"><tt class="function">init_pair</tt></a></b>(<var>pair_number, fg, bg</var>)
+<dd>
+Changes the definition of a color-pair.  It takes three arguments: the
+number of the color-pair to be changed, the foreground color number,
+and the background color number.  The value of <var>pair_number</var> must
+be between <code>1</code> and <code>COLOR_PAIRS - 1</code> (the <code>0</code> color
+pair is wired to white on black and cannot be changed).  The value of
+<var>fg</var> and <var>bg</var> arguments must be between <code>0</code> and
+<tt class="constant">COLORS</tt>.  If the color-pair was previously initialized, the
+screen is refreshed and all occurrences of that color-pair are changed
+to the new definition.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1445"><tt class="function">initscr</tt></a></b>()
+<dd>
+Initialize the library. Returns a <tt class="class">WindowObject</tt> which represents
+the whole screen.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1446"><tt class="function">isendwin</tt></a></b>()
+<dd>
+Returns true if <tt class="function">endwin()</tt> has been called (that is, the 
+curses library has been deinitialized).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1447"><tt class="function">keyname</tt></a></b>(<var>k</var>)
+<dd>
+Return the name of the key numbered <var>k</var>.  The name of a key
+generating printable ASCII character is the key's character.  The name
+of a control-key combination is a two-character string consisting of a
+caret followed by the corresponding printable ASCII character.  The
+name of an alt-key combination (128-255) is a string consisting of the
+prefix `M-' followed by the name of the corresponding ASCII character.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1448"><tt class="function">killchar</tt></a></b>()
+<dd>
+Returns the user's current line kill character. Under Unix operating
+systems this is a property of the controlling tty of the curses
+program, and is not set by the curses library itself.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1449"><tt class="function">longname</tt></a></b>()
+<dd>
+Returns a string containing the terminfo long name field describing the current
+terminal.  The maximum length of a verbose description is 128
+characters.  It is defined only after the call to
+<tt class="function">initscr()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1450"><tt class="function">meta</tt></a></b>(<var>yes</var>)
+<dd>
+If <var>yes</var> is 1, allow 8-bit characters to be input. If <var>yes</var> is 0, 
+allow only 7-bit chars.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1451"><tt class="function">mouseinterval</tt></a></b>(<var>interval</var>)
+<dd>
+Sets the maximum time in milliseconds that can elapse between press and
+release events in order for them to be recognized as a click, and
+returns the previous interval value.  The default value is 200 msec,
+or one fifth of a second.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1452"><tt class="function">mousemask</tt></a></b>(<var>mousemask</var>)
+<dd>
+Sets the mouse events to be reported, and returns a tuple
+<code>(<var>availmask</var>, <var>oldmask</var>)</code>.  
+<var>availmask</var> indicates which of the
+specified mouse events can be reported; on complete failure it returns
+0.  <var>oldmask</var> is the previous value of the given window's mouse
+event mask.  If this function is never called, no mouse events are
+ever reported.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1453"><tt class="function">napms</tt></a></b>(<var>ms</var>)
+<dd>
+Sleep for <var>ms</var> milliseconds.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1454"><tt class="function">newpad</tt></a></b>(<var>nlines, ncols</var>)
+<dd>
+Creates and returns a pointer to a new pad data structure with the
+given number of lines and columns.  A pad is returned as a
+window object.
+
+<P>
+A pad is like a window, except that it is not restricted by the screen
+size, and is not necessarily associated with a particular part of the
+screen.  Pads can be used when a large window is needed, and only a
+part of the window will be on the screen at one time.  Automatic
+refreshes of pads (such as from scrolling or echoing of input) do not
+occur.  The <tt class="method">refresh()</tt> and <tt class="method">noutrefresh()</tt> methods of a
+pad require 6 arguments to specify the part of the pad to be
+displayed and the location on the screen to be used for the display.
+The arguments are pminrow, pmincol, sminrow, smincol, smaxrow,
+smaxcol; the p arguments refer to the upper left corner of the the pad
+region to be displayed and the s arguments define a clipping box on
+the screen within which the pad region is to be displayed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1455"><tt class="function">newwin</tt></a></b>(<big>[</big><var>nlines, ncols,</var><big>]</big><var> begin_y, begin_x</var>)
+<dd>
+Return a new window, whose left-upper corner is at 
+<code>(<var>begin_y</var>, <var>begin_x</var>)</code>, and whose height/width is 
+<var>nlines</var>/<var>ncols</var>.  
+
+<P>
+By default, the window will extend from the 
+specified position to the lower right corner of the screen.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1456"><tt class="function">nl</tt></a></b>()
+<dd>
+Enter newline mode.  This mode translates the return key into newline
+on input, and translates newline into return and line-feed on output.
+Newline mode is initially on.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1457"><tt class="function">nocbreak</tt></a></b>()
+<dd>
+Leave cbreak mode.  Return to normal ``cooked'' mode with line buffering.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1458"><tt class="function">noecho</tt></a></b>()
+<dd>
+Leave echo mode.  Echoing of input characters is turned off,
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1459"><tt class="function">nonl</tt></a></b>()
+<dd>
+Leave newline mode.  Disable translation of return into newline on
+input, and disable low-level translation of newline into
+newline/return on output (but this does not change the behavior of
+<code>addch('&#92;n')</code>, which always does the equivalent of return and
+line feed on the virtual screen).  With translation off, curses can
+sometimes speed up vertical motion a little; also, it will be able to
+detect the return key on input.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1460"><tt class="function">noqiflush</tt></a></b>()
+<dd>
+When the noqiflush routine is used, normal flush of input and
+output queues associated with the INTR, QUIT and SUSP
+characters will not be done.  You may want to call
+<tt class="function">noqiflush()</tt> in a signal handler if you want output
+to continue as though the interrupt had not occurred, after the
+handler exits.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1461"><tt class="function">noraw</tt></a></b>()
+<dd>
+Leave raw mode. Return to normal ``cooked'' mode with line buffering.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1462"><tt class="function">pair_content</tt></a></b>(<var>pair_number</var>)
+<dd>
+Returns a tuple <var>(fg,bg)</var> containing the colors for the requested
+color pair.  The value of <var>pair_number</var> must be between 0 and
+COLOR_PAIRS-1.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1463"><tt class="function">pair_number</tt></a></b>(<var>attr</var>)
+<dd>
+Returns the number of the color-pair set by the attribute value <var>attr</var>.
+<tt class="function">color_pair()</tt> is the counterpart to this function.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1464"><tt class="function">putp</tt></a></b>(<var>string</var>)
+<dd>
+Equivalent to <code>tputs(str, 1, putchar)</code>; emits the value of a
+specified terminfo capability for the current terminal.  Note that the
+output of putp always goes to standard output.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1465"><tt class="function">qiflush</tt></a></b>(<big>[</big><var>flag</var><big>]</big>)
+<dd>
+If <var>flag</var> is false, the effect is the same as calling
+<tt class="function">noqiflush()</tt>. If <var>flag</var> is true, or no argument is
+provided, the queues will be flushed when these control characters are
+read.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1466"><tt class="function">raw</tt></a></b>()
+<dd>
+Enter raw mode.  In raw mode, normal line buffering and 
+processing of interrupt, quit, suspend, and flow control keys are
+turned off; characters are presented to curses input functions one
+by one.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1467"><tt class="function">reset_prog_mode</tt></a></b>()
+<dd>
+Restores the  terminal  to ``program'' mode, as previously saved 
+by <tt class="function">def_prog_mode()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1468"><tt class="function">reset_shell_mode</tt></a></b>()
+<dd>
+Restores the  terminal  to ``shell'' mode, as previously saved 
+by <tt class="function">def_shell_mode()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1469"><tt class="function">setsyx</tt></a></b>(<var>y, x</var>)
+<dd>
+Sets the virtual screen cursor to <var>y</var>, <var>x</var>.
+If <var>y</var> and <var>x</var> are both -1, then leaveok is set.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1470"><tt class="function">setupterm</tt></a></b>(<big>[</big><var>termstr, fd</var><big>]</big>)
+<dd>
+Initializes the terminal.  <var>termstr</var> is a string giving the
+terminal name; if omitted, the value of the TERM environment variable
+will be used.  <var>fd</var> is the file descriptor to which any
+initialization sequences will be sent; if not supplied, the file
+descriptor for <code>sys.stdout</code> will be used.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1471"><tt class="function">start_color</tt></a></b>()
+<dd>
+Must be called if the programmer wants to use colors, and before any
+other color manipulation routine is called.  It is good
+practice to call this routine right after <tt class="function">initscr()</tt>.
+
+<P>
+<tt class="function">start_color()</tt> initializes eight basic colors (black, red, 
+green, yellow, blue, magenta, cyan, and white), and two global
+variables in the <tt class="module">curses</tt> module, <tt class="constant">COLORS</tt> and
+<tt class="constant">COLOR_PAIRS</tt>, containing the maximum number of colors and
+color-pairs the terminal can support.  It also restores the colors on
+the terminal to the values they had when the terminal was just turned
+on.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1472"><tt class="function">termattrs</tt></a></b>()
+<dd>
+Returns a logical OR of all video attributes supported by the
+terminal.  This information is useful when a curses program needs
+complete control over the appearance of the screen.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1473"><tt class="function">termname</tt></a></b>()
+<dd>
+Returns the value of the environment variable TERM, truncated to 14
+characters.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1474"><tt class="function">tigetflag</tt></a></b>(<var>capname</var>)
+<dd>
+Returns the value of the Boolean capability corresponding to the
+terminfo capability name <var>capname</var>.  The value <code>-1</code> is
+returned if <var>capname</var> is not a Boolean capability, or <code>0</code> if
+it is canceled or absent from the terminal description.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1475"><tt class="function">tigetnum</tt></a></b>(<var>capname</var>)
+<dd>
+Returns the value of the numeric capability corresponding to the
+terminfo capability name <var>capname</var>.  The value <code>-2</code> is
+returned if <var>capname</var> is not a numeric capability, or <code>-1</code> if
+it is canceled or absent from the terminal description.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1476"><tt class="function">tigetstr</tt></a></b>(<var>capname</var>)
+<dd>
+Returns the value of the string capability corresponding to the
+terminfo capability name <var>capname</var>.  <code>None</code> is returned if
+<var>capname</var> is not a string capability, or is canceled or absent
+from the terminal description.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1477"><tt class="function">tparm</tt></a></b>(<var>str</var><big>[</big><var>,...</var><big>]</big>)
+<dd>
+Instantiates the string <var>str</var> with the supplied parameters, where 
+<var>str</var> should be a parameterized string obtained from the terminfo 
+database.  E.g. <code>tparm(tigetstr("cup"), 5, 3)</code> could result in 
+<code>'&#92;033[6;4H'</code>, the exact result depending on terminal type.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1478"><tt class="function">typeahead</tt></a></b>(<var>fd</var>)
+<dd>
+Specifies that the file descriptor <var>fd</var> be used for typeahead
+checking.  If <var>fd</var> is <code>-1</code>, then no typeahead checking is
+done.
+
+<P>
+The curses library does ``line-breakout optimization'' by looking for
+typeahead periodically while updating the screen.  If input is found,
+and it is coming from a tty, the current update is postponed until
+refresh or doupdate is called again, allowing faster response to
+commands typed in advance. This function allows specifying a different
+file descriptor for typeahead checking.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1479"><tt class="function">unctrl</tt></a></b>(<var>ch</var>)
+<dd>
+Returns a string which is a printable representation of the character
+<var>ch</var>.  Control characters are displayed as a caret followed by the
+character, for example as <code>^C</code>. Printing
+characters are left as they are.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1480"><tt class="function">ungetch</tt></a></b>(<var>ch</var>)
+<dd>
+Push <var>ch</var> so the next <tt class="method">getch()</tt> will return it.
+<span class="note"><b class="label">Note:</b>
+Only one <var>ch</var> can be pushed before <tt class="method">getch()</tt>
+is called.</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1481"><tt class="function">ungetmouse</tt></a></b>(<var>id, x, y, z, bstate</var>)
+<dd>
+Push a <tt class="constant">KEY_MOUSE</tt> event onto the input queue, associating
+the given state data with it.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1482"><tt class="function">use_env</tt></a></b>(<var>flag</var>)
+<dd>
+If used, this function should be called before <tt class="function">initscr()</tt> or
+newterm are called.  When <var>flag</var> is false, the values of
+lines and columns specified in the terminfo database will be
+used, even if environment variables <a class="envvar" name="l2h-1483">LINES</a> and
+<a class="envvar" name="l2h-1484">COLUMNS</a> (used by default) are set, or if curses is running in
+a window (in which case default behavior would be to use the window
+size if <a class="envvar" name="l2h-1485">LINES</a> and <a class="envvar" name="l2h-1486">COLUMNS</a> are not set).
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-curses.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-curses.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="curses-window-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-curses.html">6.13 curses  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-curses.html">6.13 curses  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="curses-window-objects.html">6.13.2 Window Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.23 codeop -- Compile Python code</title>
+<META NAME="description" CONTENT="3.23 codeop -- Compile Python code">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-pprint.html">
+<LINK REL="previous" href="module-code.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="module-pprint.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="console-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-pprint.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="console-objects.html">3.22.2 Interactive Console Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-pprint.html">3.24 pprint  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0052300000000000000000">
+3.23 <tt class="module">codeop</tt> --
+         Compile Python code</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">codeop</tt> module provides utilities upon which the Python
+read-eval-print loop can be emulated, as is done in the
+<tt class="module"><a href="module-code.html">code</a></tt> module.  As a result, you probably don't want to use
+the module directly; if you want to include such a loop in your
+program you probably want to use the <tt class="module"><a href="module-code.html">code</a></tt> module instead.
+
+<P>
+There are two parts to this job: 
+
+<P>
+
+<OL>
+<LI>Being able to tell if a line of input completes a Python 
+        statement: in short, telling whether to print
+        `<code>&gt;<code>&gt;</code>&gt;&nbsp;</code> or `<code>...&nbsp;</code>' next.
+</LI>
+<LI>Remembering which future statements the user has entered, so 
+        subsequent input can be compiled with these in effect.
+</LI>
+</OL>
+
+<P>
+The <tt class="module">codeop</tt> module provides a way of doing each of these
+things, and a way of doing them both.
+
+<P>
+To do just the former:
+
+<P>
+<dl><dt><b><a name="l2h-611"><tt class="function">compile_command</tt></a></b>(<var>source</var><big>[</big><var>, filename</var><big>[</big><var>, symbol</var><big>]</big><big>]</big>)
+<dd>
+Tries to compile <var>source</var>, which should be a string of Python
+code and return a code object if <var>source</var> is valid
+Python code. In that case, the filename attribute of the code object
+will be <var>filename</var>, which defaults to <code>'&lt;input&gt;'</code>.
+Returns <code>None</code> if <var>source</var> is <i>not</i> valid Python
+code, but is a prefix of valid Python code.
+
+<P>
+If there is a problem with <var>source</var>, an exception will be raised.
+<tt class="exception">SyntaxError</tt> is raised if there is invalid Python syntax,
+and <tt class="exception">OverflowError</tt> or <tt class="exception">ValueError</tt> if there is an
+invalid literal.
+
+<P>
+The <var>symbol</var> argument determines whether <var>source</var> is compiled
+as a statement (<code>'single'</code>, the default) or as an expression
+(<code>'eval'</code>).  Any other value will cause <tt class="exception">ValueError</tt> to 
+be raised.
+
+<P>
+<b>Caveat:</b>
+It is possible (but not likely) that the parser stops parsing
+with a successful outcome before reaching the end of the source;
+in this case, trailing symbols may be ignored instead of causing an
+error.  For example, a backslash followed by two newlines may be
+followed by arbitrary garbage.  This will be fixed once the API
+for the parser is better.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-612"><tt class="class">Compile</tt></a></b>()
+<dd>
+Instances of this class have <tt class="method">__call__()</tt> methods indentical in
+signature to the built-in function <tt class="function">compile()</tt>, but with the
+difference that if the instance compiles program text containing a
+<tt class="module">__future__</tt> statement, the instance 'remembers' and compiles
+all subsequent program texts with the statement in force.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-613"><tt class="class">CommandCompiler</tt></a></b>()
+<dd>
+Instances of this class have <tt class="method">__call__()</tt> methods identical in
+signature to <tt class="function">compile_command()</tt>; the difference is that if
+the instance compiles program text containing a <code>__future__</code>
+statement, the instance 'remembers' and compiles all subsequent
+program texts with the statement in force.
+</dl>
+
+<P>
+A note on version compatibility: the <tt class="class">Compile</tt> and
+<tt class="class">CommandCompiler</tt> are new in Python 2.2.  If you want to enable
+the future-tracking features of 2.2 but also retain compatibility with
+2.1 and earlier versions of Python you can either write
+
+<P>
+<dl><dd><pre class="verbatim">
+try:
+    from codeop import CommandCompiler
+    compile_command = CommandCompiler()
+    del CommandCompiler
+except ImportError:
+    from codeop import compile_command
+</pre></dl>
+
+<P>
+which is a low-impact change, but introduces possibly unwanted global
+state into your program, or you can write:
+
+<P>
+<dl><dd><pre class="verbatim">
+try:
+    from codeop import CommandCompiler
+except ImportError:
+    def CommandCompiler():
+        from codeop import compile_command
+        return compile_comamnd
+</pre></dl>
+
+<P>
+and then call <code>CommandCompiler</code> every time you need a fresh
+compiler object.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="console-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-pprint.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="console-objects.html">3.22.2 Interactive Console Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-pprint.html">3.24 pprint  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

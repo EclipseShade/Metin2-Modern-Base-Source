@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.9 macspeech -- Interface to the Macintosh Speech Manager</title>
+<META NAME="description" CONTENT="2.9 macspeech -- Interface to the Macintosh Speech Manager">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-EasyDialogs.html">
+<LINK REL="previous" href="module-findertools.html">
+<LINK REL="up" href="macpython-modules.html">
+<LINK REL="next" href="voice-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-findertools.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="voice-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-findertools.html">2.8 findertools  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="voice-objects.html">2.9.1 Voice Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION004900000000000000000">
+2.9 <tt class="module">macspeech</tt> --
+         Interface to the Macintosh Speech Manager</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Macintosh</span>.</p>
+
+<P>
+This module provides an interface to the Macintosh Speech Manager,
+<a name="l2h-115">&nbsp;</a>allowing you to let the Macintosh utter phrases. You need a version of
+the Speech Manager extension (version 1 and 2 have been tested) in
+your <span class="file">Extensions</span> folder for this to work. The module does not
+provide full access to all features of the Speech Manager.
+
+<P>
+This module is only available on MacOS9 and earlier in classic PPC
+MacPython.
+
+<P>
+<dl><dt><b><a name="l2h-109"><tt class="function">Available</tt></a></b>()
+<dd>
+Test availability of the Speech Manager extension (and, on the
+PowerPC, the Speech Manager shared library). Return <code>0</code> or
+<code>1</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-110"><tt class="function">Version</tt></a></b>()
+<dd>
+Return the (integer) version number of the Speech Manager.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-111"><tt class="function">SpeakString</tt></a></b>(<var>str</var>)
+<dd>
+Utter the string <var>str</var> using the default voice,
+asynchronously. This aborts any speech that may still be active from
+prior <tt class="function">SpeakString()</tt> invocations.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-112"><tt class="function">Busy</tt></a></b>()
+<dd>
+Return the number of speech channels busy, system-wide.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-113"><tt class="function">CountVoices</tt></a></b>()
+<dd>
+Return the number of different voices available.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-114"><tt class="function">GetIndVoice</tt></a></b>(<var>num</var>)
+<dd>
+Return a Voice object for voice number <var>num</var>.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="voice-objects.html">2.9.1 Voice Objects</a>
+<LI><A href="speech-channel-objects.html">2.9.2 Speech Channel Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-findertools.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="voice-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-findertools.html">2.8 findertools  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="voice-objects.html">2.9.1 Voice Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

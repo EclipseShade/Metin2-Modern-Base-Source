@@ -1,0 +1,466 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8. Initialization, Finalization, and Threads </title>
+<META NAME="description" CONTENT="8. Initialization, Finalization, and Threads ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="memory.html">
+<LINK REL="previous" href="concrete.html">
+<LINK REL="up" HREF="api.html">
+<LINK REL="next" href="threads.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="cell-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="api.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="threads.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="cell-objects.html">7.5.10 Cell Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="api.html">Python/C API Reference Manual</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="threads.html">8.1 Thread State and</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0010000000000000000000">&nbsp;</A>
+<BR>
+8. Initialization, Finalization, and Threads
+         
+</H1>
+
+<P>
+<dl><dt>void <b><a name="l2h-643"><tt class="cfunction">Py_Initialize</tt></a></b>()
+<dd>
+  Initialize the Python interpreter.  In an application embedding 
+  Python, this should be called before using any other Python/C API
+  functions; with the exception of
+  <tt class="cfunction">Py_SetProgramName()</tt><a name="l2h-682">&nbsp;</a>,
+  <tt class="cfunction">PyEval_InitThreads()</tt><a name="l2h-683">&nbsp;</a>,
+  <tt class="cfunction">PyEval_ReleaseLock()</tt><a name="l2h-684">&nbsp;</a>,
+  and <tt class="cfunction">PyEval_AcquireLock()</tt><a name="l2h-685">&nbsp;</a>.
+  This initializes the table of loaded modules (<code>sys.modules</code>),
+  and<a name="l2h-645">&nbsp;</a>  creates the fundamental modules
+  <tt class="module">__builtin__</tt><a name="l2h-686">&nbsp;</a>,
+  <tt class="module">__main__</tt><a name="l2h-687">&nbsp;</a>and
+  <tt class="module">sys</tt><a name="l2h-688">&nbsp;</a>.  It also initializes the module
+  search<a name="l2h-689">&nbsp;</a>path (<code>sys.path</code>).
+  It does not set <code>sys.argv</code>; use
+  <tt class="cfunction">PySys_SetArgv()</tt><a name="l2h-690">&nbsp;</a>for that.  This
+  is a no-op when called for a second time (without calling
+  <tt class="cfunction">Py_Finalize()</tt><a name="l2h-691">&nbsp;</a>first).  There is
+  no return value; it is a fatal error if the initialization fails.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-646"><tt class="cfunction">Py_IsInitialized</tt></a></b>()
+<dd>
+  Return true (nonzero) when the Python interpreter has been
+  initialized, false (zero) if not.  After <tt class="cfunction">Py_Finalize()</tt>
+  is called, this returns false until <tt class="cfunction">Py_Initialize()</tt> is
+  called again.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-647"><tt class="cfunction">Py_Finalize</tt></a></b>()
+<dd>
+  Undo all initializations made by <tt class="cfunction">Py_Initialize()</tt> and
+  subsequent use of Python/C API functions, and destroy all
+  sub-interpreters (see <tt class="cfunction">Py_NewInterpreter()</tt> below) that
+  were created and not yet destroyed since the last call to
+  <tt class="cfunction">Py_Initialize()</tt>.  Ideally, this frees all memory
+  allocated by the Python interpreter.  This is a no-op when called
+  for a second time (without calling <tt class="cfunction">Py_Initialize()</tt> again
+  first).  There is no return value; errors during finalization are
+  ignored.
+
+<P>
+This function is provided for a number of reasons.  An embedding
+  application might want to restart Python without having to restart
+  the application itself.  An application that has loaded the Python
+  interpreter from a dynamically loadable library (or DLL) might want
+  to free all memory allocated by Python before unloading the
+  DLL. During a hunt for memory leaks in an application a developer
+  might want to free all memory allocated by Python before exiting
+  from the application.
+
+<P>
+<b>Bugs and caveats:</b> The destruction of modules and objects in
+  modules is done in random order; this may cause destructors
+  (<tt class="method">__del__()</tt> methods) to fail when they depend on other
+  objects (even functions) or modules.  Dynamically loaded extension
+  modules loaded by Python are not unloaded.  Small amounts of memory
+  allocated by the Python interpreter may not be freed (if you find a
+  leak, please report it).  Memory tied up in circular references
+  between objects is not freed.  Some memory allocated by extension
+  modules may not be freed.  Some extension may not work properly if
+  their initialization routine is called more than once; this can
+  happen if an applcation calls <tt class="cfunction">Py_Initialize()</tt> and
+  <tt class="cfunction">Py_Finalize()</tt> more than once.
+</dl>
+
+<P>
+<dl><dt>PyThreadState* <b><a name="l2h-648"><tt class="cfunction">Py_NewInterpreter</tt></a></b>()
+<dd>
+  Create a new sub-interpreter.  This is an (almost) totally separate
+  environment for the execution of Python code.  In particular, the
+  new interpreter has separate, independent versions of all imported
+  modules, including the fundamental modules
+  <tt class="module">__builtin__</tt><a name="l2h-692">&nbsp;</a>,
+  <tt class="module">__main__</tt><a name="l2h-693">&nbsp;</a>and
+  <tt class="module">sys</tt><a name="l2h-694">&nbsp;</a>.  The table of loaded modules
+  (<code>sys.modules</code>) and the module search path (<code>sys.path</code>)
+  are also separate.  The new environment has no <code>sys.argv</code>
+  variable.  It has new standard I/O stream file objects
+  <code>sys.stdin</code>, <code>sys.stdout</code> and <code>sys.stderr</code> (however
+  these refer to the same underlying <tt class="ctype">FILE</tt> structures in the C
+  library).
+  <a name="l2h-650">&nbsp;</a>
+<P>
+The return value points to the first thread state created in the new
+  sub-interpreter.  This thread state is made the current thread
+  state.  Note that no actual thread is created; see the discussion of
+  thread states below.  If creation of the new interpreter is
+  unsuccessful, <tt class="constant">NULL</tt> is returned; no exception is set since the
+  exception state is stored in the current thread state and there may
+  not be a current thread state.  (Like all other Python/C API
+  functions, the global interpreter lock must be held before calling
+  this function and is still held when it returns; however, unlike
+  most other Python/C API functions, there needn't be a current thread
+  state on entry.)
+
+<P>
+Extension modules are shared between (sub-)interpreters as follows:
+  the first time a particular extension is imported, it is initialized
+  normally, and a (shallow) copy of its module's dictionary is
+  squirreled away.  When the same extension is imported by another
+  (sub-)interpreter, a new module is initialized and filled with the
+  contents of this copy; the extension's <code>init</code> function is not
+  called.  Note that this is different from what happens when an
+  extension is imported after the interpreter has been completely
+  re-initialized by calling
+  <tt class="cfunction">Py_Finalize()</tt><a name="l2h-695">&nbsp;</a>and
+  <tt class="cfunction">Py_Initialize()</tt><a name="l2h-696">&nbsp;</a>; in that case,
+  the extension's <code>init<var>module</var></code> function <i>is</i> called
+  again.
+
+<P>
+<b>Bugs and caveats:</b> Because sub-interpreters (and the main
+  interpreter) are part of the same process, the insulation between
+  them isn't perfect -- for example, using low-level file operations
+  like <a name="l2h-652">&nbsp;</a>  <tt class="function">os.close()</tt> they can (accidentally or maliciously) affect
+  each other's open files.  Because of the way extensions are shared
+  between (sub-)interpreters, some extensions may not work properly;
+  this is especially likely when the extension makes use of (static)
+  global variables, or when the extension manipulates its module's
+  dictionary after its initialization.  It is possible to insert
+  objects created in one sub-interpreter into a namespace of another
+  sub-interpreter; this should be done with great care to avoid
+  sharing user-defined functions, methods, instances or classes
+  between sub-interpreters, since import operations executed by such
+  objects may affect the wrong (sub-)interpreter's dictionary of
+  loaded modules.  (XXX This is a hard-to-fix bug that will be
+  addressed in a future release.)
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-653"><tt class="cfunction">Py_EndInterpreter</tt></a></b>(<var>PyThreadState *tstate</var>)
+<dd>
+  Destroy the (sub-)interpreter represented by the given thread state.
+  The given thread state must be the current thread state.  See the
+  discussion of thread states below.  When the call returns, the
+  current thread state is <tt class="constant">NULL</tt>.  All thread states associated with
+  this interpreted are destroyed.  (The global interpreter lock must
+  be held before calling this function and is still held when it
+  returns.)  <tt class="cfunction">Py_Finalize()</tt><a name="l2h-697">&nbsp;</a>will
+  destroy all sub-interpreters that haven't been explicitly destroyed
+  at that point.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-654"><tt class="cfunction">Py_SetProgramName</tt></a></b>(<var>char *name</var>)
+<dd>
+  This function should be called before
+  <tt class="cfunction">Py_Initialize()</tt><a name="l2h-698">&nbsp;</a>is called
+  for the first time, if it is called at all.  It tells the
+  interpreter the value of the <code>argv[0]</code> argument to the
+  <tt class="cfunction">main()</tt><a name="l2h-699">&nbsp;</a>function of the program.  This is
+  used by <tt class="cfunction">Py_GetPath()</tt><a name="l2h-700">&nbsp;</a>and some
+  other functions below to find the Python run-time libraries relative
+  to the interpreter executable.  The default value is
+  <code>'python'</code>.  The argument should point to a zero-terminated
+  character string in static storage whose contents will not change
+  for the duration of the program's execution.  No code in the Python
+  interpreter will change the contents of this storage.
+</dl>
+
+<P>
+<dl><dt>char* <b><a name="l2h-655"><tt class="cfunction">Py_GetProgramName</tt></a></b>()
+<dd>
+  Return the program name set with
+  <tt class="cfunction">Py_SetProgramName()</tt><a name="l2h-701">&nbsp;</a>, or the
+  default.  The returned string points into static storage; the caller
+  should not modify its value.
+</dl>
+
+<P>
+<dl><dt>char* <b><a name="l2h-656"><tt class="cfunction">Py_GetPrefix</tt></a></b>()
+<dd>
+  Return the <i>prefix</i> for installed platform-independent files.
+  This is derived through a number of complicated rules from the
+  program name set with <tt class="cfunction">Py_SetProgramName()</tt> and some
+  environment variables; for example, if the program name is
+  <code>'/usr/local/bin/python'</code>, the prefix is <code>'/usr/local'</code>.
+  The returned string points into static storage; the caller should
+  not modify its value.  This corresponds to the <span class="makevar">prefix</span>
+  variable in the top-level <span class="file">Makefile</span> and the
+  <b class="programopt">--prefix</b> argument to the <b class="program">configure</b> script
+  at build time.  The value is available to Python code as
+  <code>sys.prefix</code>.  It is only useful on Unix.  See also the next
+  function.
+</dl>
+
+<P>
+<dl><dt>char* <b><a name="l2h-657"><tt class="cfunction">Py_GetExecPrefix</tt></a></b>()
+<dd>
+  Return the <i>exec-prefix</i> for installed
+  platform-<i>de</i>pendent files.  This is derived through a number
+  of complicated rules from the program name set with
+  <tt class="cfunction">Py_SetProgramName()</tt> and some environment variables; for
+  example, if the program name is <code>'/usr/local/bin/python'</code>, the
+  exec-prefix is <code>'/usr/local'</code>.  The returned string points into
+  static storage; the caller should not modify its value.  This
+  corresponds to the <span class="makevar">exec_prefix</span> variable in the top-level
+  <span class="file">Makefile</span> and the <b class="programopt">--exec-prefix</b> argument to the
+  <b class="program">configure</b> script at build  time.  The value is available
+  to Python code as <code>sys.exec_prefix</code>.  It is only useful on
+  Unix.
+
+<P>
+Background: The exec-prefix differs from the prefix when platform
+  dependent files (such as executables and shared libraries) are
+  installed in a different directory tree.  In a typical installation,
+  platform dependent files may be installed in the
+  <span class="file">/usr/local/plat</span> subtree while platform independent may be
+  installed in <span class="file">/usr/local</span>.
+
+<P>
+Generally speaking, a platform is a combination of hardware and
+  software families, e.g.  Sparc machines running the Solaris 2.x
+  operating system are considered the same platform, but Intel
+  machines running Solaris 2.x are another platform, and Intel
+  machines running Linux are yet another platform.  Different major
+  revisions of the same operating system generally also form different
+  platforms.  Non-Unix operating systems are a different story; the
+  installation strategies on those systems are so different that the
+  prefix and exec-prefix are meaningless, and set to the empty string.
+  Note that compiled Python bytecode files are platform independent
+  (but not independent from the Python version by which they were
+  compiled!).
+
+<P>
+System administrators will know how to configure the <b class="program">mount</b>
+  or <b class="program">automount</b> programs to share <span class="file">/usr/local</span> between
+  platforms while having <span class="file">/usr/local/plat</span> be a different
+  filesystem for each platform.
+</dl>
+
+<P>
+<dl><dt>char* <b><a name="l2h-658"><tt class="cfunction">Py_GetProgramFullPath</tt></a></b>()
+<dd>
+  Return the full program name of the Python executable; this is 
+  computed as a side-effect of deriving the default module search path 
+  from the program name (set by
+  <tt class="cfunction">Py_SetProgramName()</tt><a name="l2h-702">&nbsp;</a>above).
+  The returned string points into static storage; the caller should
+  not modify its value.  The value is available to Python code as
+  <code>sys.executable</code>.
+  <a name="l2h-660">&nbsp;</a></dl>
+
+<P>
+<dl><dt>char* <b><a name="l2h-661"><tt class="cfunction">Py_GetPath</tt></a></b>()
+<dd>
+  <a name="l2h-703">&nbsp;</a>  Return the default module search path; this is computed from the 
+  program name (set by <tt class="cfunction">Py_SetProgramName()</tt> above) and some
+  environment variables.  The returned string consists of a series of
+  directory names separated by a platform dependent delimiter
+  character.  The delimiter character is "<tt class="character">:</tt>" on Unix,
+  "<tt class="character">;</tt>" on DOS/Windows, and "<tt class="character">&#92;n</tt>" (the ASCII
+  newline character) on Macintosh.  The returned string points into
+  static storage; the caller should not modify its value.  The value
+  is available to Python code as the list
+  <code>sys.path</code><a name="l2h-663">&nbsp;</a>, which
+  may be modified to change the future search path for loaded
+  modules.
+
+<P>
+</dl>
+
+<P>
+<dl><dt>const char* <b><a name="l2h-664"><tt class="cfunction">Py_GetVersion</tt></a></b>()
+<dd>
+  Return the version of this Python interpreter.  This is a string
+  that looks something like
+
+<P>
+<dl><dd><pre class="verbatim">
+"1.5 (#67, Dec 31 1997, 22:34:28) [GCC 2.7.2.2]"
+</pre></dl>
+
+<P>
+The first word (up to the first space character) is the current
+  Python version; the first three characters are the major and minor
+  version separated by a period.  The returned string points into
+  static storage; the caller should not modify its value.  The value
+  is available to Python code as the list <code>sys.version</code>.
+  <a name="l2h-666">&nbsp;</a></dl>
+
+<P>
+<dl><dt>const char* <b><a name="l2h-667"><tt class="cfunction">Py_GetPlatform</tt></a></b>()
+<dd>
+  Return the platform identifier for the current platform.  On Unix,
+  this is formed from the ``official'' name of the operating system,
+  converted to lower case, followed by the major revision number;
+  e.g., for Solaris 2.x, which is also known as SunOS 5.x, the value
+  is <code>'sunos5'</code>.  On Macintosh, it is <code>'mac'</code>.  On Windows,
+  it is <code>'win'</code>.  The returned string points into static storage;
+  the caller should not modify its value.  The value is available to
+  Python code as <code>sys.platform</code>.
+  <a name="l2h-669">&nbsp;</a></dl>
+
+<P>
+<dl><dt>const char* <b><a name="l2h-670"><tt class="cfunction">Py_GetCopyright</tt></a></b>()
+<dd>
+  Return the official copyright string for the current Python version,
+  for example
+
+<P>
+<code>'Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam'</code>
+
+<P>
+The returned string points into static storage; the caller should
+  not modify its value.  The value is available to Python code as the
+  list <code>sys.copyright</code>.
+  <a name="l2h-672">&nbsp;</a></dl>
+
+<P>
+<dl><dt>const char* <b><a name="l2h-673"><tt class="cfunction">Py_GetCompiler</tt></a></b>()
+<dd>
+  Return an indication of the compiler used to build the current
+  Python version, in square brackets, for example:
+
+<P>
+<dl><dd><pre class="verbatim">
+"[GCC 2.7.2.2]"
+</pre></dl>
+
+<P>
+The returned string points into static storage; the caller should
+  not modify its value.  The value is available to Python code as part
+  of the variable <code>sys.version</code>.
+  <a name="l2h-675">&nbsp;</a></dl>
+
+<P>
+<dl><dt>const char* <b><a name="l2h-676"><tt class="cfunction">Py_GetBuildInfo</tt></a></b>()
+<dd>
+  Return information about the sequence number and build date and time 
+  of the current Python interpreter instance, for example
+
+<P>
+<dl><dd><pre class="verbatim">
+"#67, Aug  1 1997, 22:34:28"
+</pre></dl>
+
+<P>
+The returned string points into static storage; the caller should
+  not modify its value.  The value is available to Python code as part
+  of the variable <code>sys.version</code>.
+  <a name="l2h-678">&nbsp;</a></dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-679"><tt class="cfunction">PySys_SetArgv</tt></a></b>(<var>int argc, char **argv</var>)
+<dd>
+  Set <code>sys.argv</code> based on <var>argc</var> and <var>argv</var>.  These
+  parameters are similar to those passed to the program's
+  <tt class="cfunction">main()</tt><a name="l2h-704">&nbsp;</a>function with the difference that
+  the first entry should refer to the script file to be executed
+  rather than the executable hosting the Python interpreter.  If there
+  isn't a script that will be run, the first entry in <var>argv</var> can
+  be an empty string.  If this function fails to initialize
+  <code>sys.argv</code>, a fatal condition is signalled using
+  <tt class="cfunction">Py_FatalError()</tt><a name="l2h-705">&nbsp;</a>.
+  <a name="l2h-681">&nbsp;</a>  </dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="threads.html">8.1 Thread State and the Global Interpreter Lock</a>
+<LI><A href="profiling.html">8.2 Profiling and Tracing</a>
+<LI><A href="advanced-debugging.html">8.3 Advanced Debugger Support</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="cell-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="api.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="threads.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="cell-objects.html">7.5.10 Cell Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="api.html">Python/C API Reference Manual</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="threads.html">8.1 Thread State and</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

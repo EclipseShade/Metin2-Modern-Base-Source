@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7 Reference</title>
+<META NAME="description" CONTENT="7 Reference">
+<META NAME="keywords" CONTENT="dist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="dist.css">
+<link rel="first" href="dist.html">
+
+<LINK REL="next" href="module-distutils.sysconfig.html">
+<LINK REL="previous" href="creating-wininst.html">
+<LINK REL="up" HREF="dist.html">
+<LINK REL="next" href="module-distutils.sysconfig.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="creating-wininst.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="dist.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-distutils.sysconfig.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Distributing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="creating-wininst.html">6 Creating Built Distributions</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="dist.html">Distributing Python Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-distutils.sysconfig.html">8 distutils.sysconfig  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="#SECTION000710000000000000000">7.1 Installing modules: the <code>install</code> command family</a>
+<UL>
+<LI><A href="#SECTION000711000000000000000">7.1.1 <code>install_data</code></a>
+<LI><A href="#SECTION000712000000000000000">7.1.2 <code>install_scripts</code></a>
+</ul>
+<LI><A href="#SECTION000720000000000000000">7.2 Creating a source distribution: the
+            <code>sdist</code> command</a>
+</ul>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION000700000000000000000">&nbsp;</A>
+<BR>
+7 Reference
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION000710000000000000000">&nbsp;</A>
+<BR>
+7.1 Installing modules: the <code>install</code> command family
+</H2>
+
+<P>
+The install command ensures that the build commands have been run and then
+runs the subcommands <code>install_lib</code>,
+<code>install_data</code> and
+<code>install_scripts</code>.
+
+<P>
+
+<H3><A NAME="SECTION000711000000000000000">&nbsp;</A>
+<BR>
+7.1.1 <code>install_data</code>
+</H3>
+This command installs all data files provided with the distribution.
+
+<P>
+
+<H3><A NAME="SECTION000712000000000000000">&nbsp;</A>
+<BR>
+7.1.2 <code>install_scripts</code>
+</H3>
+This command installs all (Python) scripts in the distribution.
+
+<P>
+
+<H2><A NAME="SECTION000720000000000000000">&nbsp;</A>
+<BR>
+7.2 Creating a source distribution: the
+            <code>sdist</code> command
+</H2>
+
+<P>
+<b>** fragment moved down from above: needs context! **</b>
+
+<P>
+The manifest template commands are:
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Command</b>&nbsp;</th>
+      <th><b>Description</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>include <var>pat1</var> <var>pat2</var> ... </code></td>
+        <td>include all files matching any of the listed patterns</td>
+    <tr><td align="left" valign="baseline"><code>exclude <var>pat1</var> <var>pat2</var> ... </code></td>
+        <td>exclude all files matching any of the listed patterns</td>
+    <tr><td align="left" valign="baseline"><code>recursive-include <var>dir</var> <var>pat1</var> <var>pat2</var> ... </code></td>
+        <td>include all files under <var>dir</var> matching any of the listed patterns</td>
+    <tr><td align="left" valign="baseline"><code>recursive-exclude <var>dir</var> <var>pat1</var> <var>pat2</var> ...</code></td>
+        <td>exclude all files under <var>dir</var> matching any of the listed patterns</td>
+    <tr><td align="left" valign="baseline"><code>global-include <var>pat1</var> <var>pat2</var> ...</code></td>
+        <td>include all files anywhere in the source tree matching
+<BR>&amp;
+     any of the listed patterns</td>
+    <tr><td align="left" valign="baseline"><code>global-exclude <var>pat1</var> <var>pat2</var> ...</code></td>
+        <td>exclude all files anywhere in the source tree matching
+<BR>&amp;
+     any of the listed patterns</td>
+    <tr><td align="left" valign="baseline"><code>prune <var>dir</var></code></td>
+        <td>exclude all files under <var>dir</var></td>
+    <tr><td align="left" valign="baseline"><code>graft <var>dir</var></code></td>
+        <td>include all files under <var>dir</var></td></tbody>
+</table>
+The patterns here are Unix-style ``glob'' patterns: <code>*</code> matches any
+sequence of regular filename characters, <code>?</code> matches any single
+regular filename character, and <code>[<var>range</var>]</code> matches any of the
+characters in <var>range</var> (e.g., <code>a-z</code>, <code>a-zA-Z</code>,
+<code>a-f0-9_.</code>).  The definition of ``regular filename character'' is
+platform-specific: on Unix it is anything except slash; on Windows
+anything except backslash or colon; on MacOS anything except colon.
+
+<P>
+<b>** Windows and MacOS support not there yet **</b>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="creating-wininst.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="dist.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-distutils.sysconfig.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Distributing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="creating-wininst.html">6 Creating Built Distributions</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="dist.html">Distributing Python Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-distutils.sysconfig.html">8 distutils.sysconfig  </A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

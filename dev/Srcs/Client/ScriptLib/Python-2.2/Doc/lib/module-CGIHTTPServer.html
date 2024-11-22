@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.18 CGIHTTPServer -- CGI-capable HTTP request handler</title>
+<META NAME="description" CONTENT="11.18 CGIHTTPServer -- CGI-capable HTTP request handler">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-Cookie.html">
+<LINK REL="previous" href="module-SimpleHTTPServer.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="module-Cookie.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-SimpleHTTPServer.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-Cookie.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-SimpleHTTPServer.html">11.17 SimpleHTTPServer  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-Cookie.html">11.19 Cookie  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00131800000000000000000">
+11.18 <tt class="module">CGIHTTPServer</tt> --
+         CGI-capable HTTP request handler</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">CGIHTTPServer</tt> module defines a request-handler class,
+interface compatible with
+<tt class="class">BaseHTTPServer.BaseHTTPRequestHandler</tt> and inherits behavior
+from <tt class="class">SimpleHTTPServer.SimpleHTTPRequestHandler</tt> but can also
+run CGI scripts.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+This module can run CGI scripts on Unix and Windows systems;
+on Mac OS it will only be able to run Python scripts within the same
+process as itself.</span>
+
+<P>
+The <tt class="module">CGIHTTPServer</tt> module defines the following class:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2685"><tt class="class">CGIHTTPRequestHandler</tt></a></b>(<var>request, client_address, server</var>)
+<dd>
+This class is used to serve either files or output of CGI scripts from 
+the current directory and below. Note that mapping HTTP hierarchic
+structure to local directory structure is exactly as in
+<tt class="class">SimpleHTTPServer.SimpleHTTPRequestHandler</tt>.
+
+<P>
+The class will however, run the CGI script, instead of serving it as a
+file, if it guesses it to be a CGI script. Only directory-based CGI
+are used -- the other common server configuration is to treat special
+extensions as denoting CGI scripts.
+
+<P>
+The <tt class="function">do_GET()</tt> and <tt class="function">do_HEAD()</tt> functions are
+modified to run CGI scripts and serve the output, instead of serving
+files, if the request leads to somewhere below the
+<code>cgi_directories</code> path.
+</dl>
+
+<P>
+The <tt class="class">CGIHTTPRequestHandler</tt> defines the following data member:
+
+<P>
+<dl><dt><b><a name="l2h-2686"><tt class="member">cgi_directories</tt></a></b>
+<dd>
+This defaults to <code>['/cgi-bin', '/htbin']</code> and describes
+directories to treat as containing CGI scripts.
+</dl>
+
+<P>
+The <tt class="class">CGIHTTPRequestHandler</tt> defines the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-2687"><tt class="method">do_POST</tt></a></b>()
+<dd>
+This method serves the <code>'POST'</code> request type, only allowed for
+CGI scripts.  Error 501, "Can only POST to CGI scripts", is output
+when trying to POST to a non-CGI url.
+</dl>
+
+<P>
+Note that CGI scripts will be run with UID of user nobody, for security
+reasons. Problems with the CGI script will be translated to error 403.
+
+<P>
+For example usage, see the implementation of the <tt class="function">test()</tt>
+function.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-BaseHTTPServer.html">BaseHTTPServer</a></tt>:</b>
+    <dd>Base class implementation for Web server
+                             and request handler.
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-SimpleHTTPServer.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-Cookie.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-SimpleHTTPServer.html">11.17 SimpleHTTPServer  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-Cookie.html">11.19 Cookie  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

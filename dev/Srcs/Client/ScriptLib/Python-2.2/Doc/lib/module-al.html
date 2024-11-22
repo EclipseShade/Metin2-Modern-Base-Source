@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>20.1 al -- Audio functions on the SGI</title>
+<META NAME="description" CONTENT="20.1 al -- Audio functions on the SGI">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-al-constants.html">
+<LINK REL="previous" href="sgi.html">
+<LINK REL="up" href="sgi.html">
+<LINK REL="next" href="al-config-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="sgi.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="sgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="al-config-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="sgi.html">20. SGI IRIX Specific</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="sgi.html">20. SGI IRIX Specific</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="al-config-objects.html">20.1.1 Configuration Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0022100000000000000000">
+20.1 <tt class="module">al</tt> --
+         Audio functions on the SGI</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">IRIX</span>.</p>
+
+<P>
+This module provides access to the audio facilities of the SGI Indy
+and Indigo workstations.  See section 3A of the IRIX man pages for
+details.  You'll need to read those man pages to understand what these
+functions do!  Some of the functions are not available in IRIX
+releases before 4.0.5.  Again, see the manual to check whether a
+specific function is available on your platform.
+
+<P>
+All functions and methods defined in this module are equivalent to
+the C functions with "<tt class="samp">AL</tt>" prefixed to their name.
+
+<P>
+Symbolic constants from the C header file <code>&lt;audio.h&gt;</code> are
+defined in the standard module
+<tt class="module"><a href="module-al-constants.html">AL</a></tt><a name="l2h-3860">&nbsp;</a>, see below.
+
+<P>
+<span class="warning"><b class="label">Warning:</b>
+The current version of the audio library may dump core
+when bad argument values are passed rather than returning an error
+status.  Unfortunately, since the precise circumstances under which
+this may happen are undocumented and hard to check, the Python
+interface can provide no protection against this kind of problems.
+(One example is specifying an excessive queue size -- there is no
+documented upper limit.)</span>
+
+<P>
+The module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-3855"><tt class="function">openport</tt></a></b>(<var>name, direction</var><big>[</big><var>, config</var><big>]</big>)
+<dd>
+The name and direction arguments are strings.  The optional
+<var>config</var> argument is a configuration object as returned by
+<tt class="function">newconfig()</tt>.  The return value is an <i class="dfn">audio port
+object</i>; methods of audio port objects are described below.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3856"><tt class="function">newconfig</tt></a></b>()
+<dd>
+The return value is a new <i class="dfn">audio configuration object</i>; methods of
+audio configuration objects are described below.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3857"><tt class="function">queryparams</tt></a></b>(<var>device</var>)
+<dd>
+The device argument is an integer.  The return value is a list of
+integers containing the data returned by <tt class="cfunction">ALqueryparams()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3858"><tt class="function">getparams</tt></a></b>(<var>device, list</var>)
+<dd>
+The <var>device</var> argument is an integer.  The list argument is a list
+such as returned by <tt class="function">queryparams()</tt>; it is modified in place
+(!).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3859"><tt class="function">setparams</tt></a></b>(<var>device, list</var>)
+<dd>
+The <var>device</var> argument is an integer.  The <var>list</var> argument is a
+list such as returned by <tt class="function">queryparams()</tt>.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="al-config-objects.html">20.1.1 Configuration Objects</a>
+<LI><A href="al-port-objects.html">20.1.2 Port Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="sgi.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="sgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="al-config-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="sgi.html">20. SGI IRIX Specific</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="sgi.html">20. SGI IRIX Specific</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="al-config-objects.html">20.1.1 Configuration Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

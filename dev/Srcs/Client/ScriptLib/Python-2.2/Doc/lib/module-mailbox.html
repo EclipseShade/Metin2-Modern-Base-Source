@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.4 mailbox -- Read various mailbox formats</title>
+<META NAME="description" CONTENT="12.4 mailbox -- Read various mailbox formats">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-mhlib.html">
+<LINK REL="previous" href="module-mailcap.html">
+<LINK REL="up" href="netdata.html">
+<LINK REL="next" href="mailbox-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-mailcap.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="mailbox-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-mailcap.html">12.3 mailcap  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="mailbox-objects.html">12.4.1 Mailbox Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0014400000000000000000">
+12.4 <tt class="module">mailbox</tt> --
+         Read various mailbox formats</A>
+</H1>
+
+<P>
+
+
+<P>
+This module defines a number of classes that allow easy and uniform
+access to mail messages in a (Unix) mailbox.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2870"><tt class="class">UnixMailbox</tt></a></b>(<var>fp</var><big>[</big><var>, factory</var><big>]</big>)
+<dd>
+Access to a classic Unix-style mailbox, where all messages are
+contained in a single file and separated by "<tt class="samp">From </tt>"(a.k.a. "<tt class="samp">From_</tt>") lines.  The file object <var>fp</var> points to the
+mailbox file.  The optional <var>factory</var> parameter is a callable that
+should create new message objects.  <var>factory</var> is called with one
+argument, <var>fp</var> by the <tt class="method">next()</tt> method of the mailbox
+object.  The default is the <tt class="class">rfc822.Message</tt> class (see the
+<tt class="module"><a href="module-rfc822.html">rfc822</a></tt> module).
+
+<P>
+For maximum portability, messages in a Unix-style mailbox are
+separated by any line that begins exactly with the string <code>'From
+'</code> (note the trailing space) if preceded by exactly two newlines.
+Because of the wide-range of variations in practice, nothing else on
+the From_ line should be considered.  However, the current
+implementation doesn't check for the leading two newlines.  This is
+usually fine for most applications.
+
+<P>
+The <tt class="class">UnixMailbox</tt> class implements a more strict version of
+From_ line checking, using a regular expression that usually correctly
+matched From_ delimiters.  It considers delimiter line to be separated
+by "<tt class="samp">From <var>name</var> <var>time</var></tt>" lines.  For maximum portability,
+use the <tt class="class">PortableUnixMailbox</tt> class instead.  This class is
+identical to <tt class="class">UnixMailbox</tt> except that individual messages are
+separated by only "<tt class="samp">From </tt>" lines.
+
+<P>
+For more information, see
+<em class="citetitle"><a
+ href="http://home.netscape.com/eng/mozilla/2.0/relnotes/demo/content-length.html"
+ title="Configuring
+Netscape Mail on Unix: Why the Content-Length Format is Bad"
+ >Configuring
+Netscape Mail on Unix: Why the Content-Length Format is Bad</a></em>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2871"><tt class="class">PortableUnixMailbox</tt></a></b>(<var>fp</var><big>[</big><var>, factory</var><big>]</big>)
+<dd>
+A less-strict version of <tt class="class">UnixMailbox</tt>, which considers only the
+"<tt class="samp">From </tt>" at the beginning of the line separating messages.  The
+``<var>name</var> <var>time</var>'' portion of the From line is ignored, to
+protect against some variations that are observed in practice.  This
+works since lines in the message which begin with <code>'From '</code> are
+quoted by mail handling software well before delivery.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2872"><tt class="class">MmdfMailbox</tt></a></b>(<var>fp</var><big>[</big><var>, factory</var><big>]</big>)
+<dd>
+Access an MMDF-style mailbox, where all messages are contained
+in a single file and separated by lines consisting of 4 control-A
+characters.  The file object <var>fp</var> points to the mailbox file.
+Optional <var>factory</var> is as with the <tt class="class">UnixMailbox</tt> class.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2873"><tt class="class">MHMailbox</tt></a></b>(<var>dirname</var><big>[</big><var>, factory</var><big>]</big>)
+<dd>
+Access an MH mailbox, a directory with each message in a separate
+file with a numeric name.
+The name of the mailbox directory is passed in <var>dirname</var>.
+<var>factory</var> is as with the <tt class="class">UnixMailbox</tt> class.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2874"><tt class="class">Maildir</tt></a></b>(<var>dirname</var><big>[</big><var>, factory</var><big>]</big>)
+<dd>
+Access a Qmail mail directory.  All new and current mail for the
+mailbox specified by <var>dirname</var> is made available.
+<var>factory</var> is as with the <tt class="class">UnixMailbox</tt> class.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2875"><tt class="class">BabylMailbox</tt></a></b>(<var>fp</var><big>[</big><var>, factory</var><big>]</big>)
+<dd>
+Access a Babyl mailbox, which is similar to an MMDF mailbox.  In
+Babyl format, each message has two sets of headers, the
+<i>original</i> headers and the <i>visible</i> headers.  The original
+headers appear before a a line containing only <code>'*** EOOH ***'</code>
+(End-Of-Original-Headers) and the visible headers appear after the
+<code>EOOH</code> line.  Babyl-compliant mail readers will show you only the
+visible headers, and <tt class="class">BabylMailbox</tt> objects will return messages
+containing only the visible headers.  You'll have to do your own
+parsing of the mailbox file to get at the original headers.  Mail
+messages start with the EOOH line and end with a line containing only
+<code>'&#92;037&#92;014'</code>.  <var>factory</var> is as with the
+<tt class="class">UnixMailbox</tt> class.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.qmail.org/man/man5/mbox.html"
+        >mbox -
+            file containing mail messages</a></em>
+    <dd>Description of the
+            traditional ``mbox'' mailbox format.
+  </dl>
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.qmail.org/man/man5/maildir.html"
+        >maildir -
+            directory for incoming mail messages</a></em>
+    <dd>Description of the
+            ``maildir'' mailbox format.
+  </dl>
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://home.netscape.com/eng/mozilla/2.0/relnotes/demo/content-length.html"
+        >Configuring
+            Netscape Mail on Unix: Why the Content-Length Format is
+            Bad</a></em>
+    <dd>A description of problems with relying on the
+            <span class="mailheader">Content-Length:</span> header for messages stored in
+            mailbox files.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="mailbox-objects.html">12.4.1 Mailbox Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-mailcap.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="mailbox-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-mailcap.html">12.3 mailcap  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="mailbox-objects.html">12.4.1 Mailbox Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.2.9 Differences from mimelib</title>
+<META NAME="description" CONTENT="12.2.9 Differences from mimelib">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node389.html">
+<LINK REL="previous" href="module-email.Iterators.html">
+<LINK REL="up" href="module-email.html">
+<LINK REL="next" HREF="node389.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-email.Iterators.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-email.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node389.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-email.Iterators.html">12.2.8 Iterators</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-email.html">12.2 email  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node389.html">12.2.10 Examples</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0014290000000000000000">
+12.2.9 Differences from <tt class="module">mimelib</tt></A>
+</H2>
+
+<P>
+The <tt class="module">email</tt> package was originally prototyped as a separate
+library called
+<a class="ulink" href="http://mimelib.sf.net/"
+  ><tt class="module">mimelib</tt></a>.
+Changes have been made so that
+method names are more consistent, and some methods or modules have
+either been added or removed.  The semantics of some of the methods
+have also changed.  For the most part, any functionality available in
+<tt class="module">mimelib</tt> is still available in the <tt class="module"><a href="module-email.html">email</a></tt> package,
+albeit often in a different way.
+
+<P>
+Here is a brief description of the differences between the
+<tt class="module">mimelib</tt> and the <tt class="module"><a href="module-email.html">email</a></tt> packages, along with hints on
+how to port your applications.
+
+<P>
+Of course, the most visible difference between the two packages is
+that the package name has been changed to <tt class="module"><a href="module-email.html">email</a></tt>.  In
+addition, the top-level package has the following differences:
+
+<P>
+
+<UL>
+<LI><tt class="function">messageFromString()</tt> has been renamed to
+      <tt class="function">message_from_string()</tt>.
+</LI>
+<LI><tt class="function">messageFromFile()</tt> has been renamed to
+      <tt class="function">message_from_file()</tt>.
+</LI>
+</UL>
+
+<P>
+The <tt class="class">Message</tt> class has the following differences:
+
+<P>
+
+<UL>
+<LI>The method <tt class="method">asString()</tt> was renamed to <tt class="method">as_string()</tt>.
+</LI>
+<LI>The method <tt class="method">ismultipart()</tt> was renamed to
+      <tt class="method">is_multipart()</tt>.
+</LI>
+<LI>The <tt class="method">get_payload()</tt> method has grown a <var>decode</var>
+      optional argument.
+</LI>
+<LI>The method <tt class="method">getall()</tt> was renamed to <tt class="method">get_all()</tt>.
+</LI>
+<LI>The method <tt class="method">addheader()</tt> was renamed to <tt class="method">add_header()</tt>.
+</LI>
+<LI>The method <tt class="method">gettype()</tt> was renamed to <tt class="method">get_type()</tt>.
+</LI>
+<LI>The method<tt class="method">getmaintype()</tt> was renamed to
+      <tt class="method">get_main_type()</tt>.
+</LI>
+<LI>The method <tt class="method">getsubtype()</tt> was renamed to
+      <tt class="method">get_subtype()</tt>.
+</LI>
+<LI>The method <tt class="method">getparams()</tt> was renamed to
+      <tt class="method">get_params()</tt>.
+      Also, whereas <tt class="method">getparams()</tt> returned a list of strings,
+      <tt class="method">get_params()</tt> returns a list of 2-tuples, effectively
+      the key/value pairs of the parameters, split on the "<tt class="character">=</tt>"
+      sign.
+</LI>
+<LI>The method <tt class="method">getparam()</tt> was renamed to <tt class="method">get_param()</tt>.
+</LI>
+<LI>The method <tt class="method">getcharsets()</tt> was renamed to
+      <tt class="method">get_charsets()</tt>.
+</LI>
+<LI>The method <tt class="method">getfilename()</tt> was renamed to
+      <tt class="method">get_filename()</tt>.
+</LI>
+<LI>The method <tt class="method">getboundary()</tt> was renamed to
+      <tt class="method">get_boundary()</tt>.
+</LI>
+<LI>The method <tt class="method">setboundary()</tt> was renamed to
+      <tt class="method">set_boundary()</tt>.
+</LI>
+<LI>The method <tt class="method">getdecodedpayload()</tt> was removed.  To get
+      similar functionality, pass the value 1 to the <var>decode</var> flag
+      of the get_payload() method.
+</LI>
+<LI>The method <tt class="method">getpayloadastext()</tt> was removed.  Similar
+      functionality
+      is supported by the <tt class="class">DecodedGenerator</tt> class in the
+      <tt class="module"><a href="module-email.Generator.html">email.Generator</a></tt> module.
+</LI>
+<LI>The method <tt class="method">getbodyastext()</tt> was removed.  You can get
+      similar functionality by creating an iterator with
+      <tt class="function">typed_subpart_iterator()</tt> in the
+      <tt class="module"><a href="module-email.Iterators.html">email.Iterators</a></tt> module.
+</LI>
+</UL>
+
+<P>
+The <tt class="class">Parser</tt> class has no differences in its public interface.
+It does have some additional smarts to recognize
+<span class="mimetype">message/delivery-status</span> type messages, which it represents as
+a <tt class="class">Message</tt> instance containing separate <tt class="class">Message</tt>
+subparts for each header block in the delivery status
+notification<A NAME="tex2html88"
+  HREF="#foot36813"><SUP>12.4</SUP></A>.
+
+<P>
+The <tt class="class">Generator</tt> class has no differences in its public
+interface.  There is a new class in the <tt class="module"><a href="module-email.Generator.html">email.Generator</a></tt>
+module though, called <tt class="class">DecodedGenerator</tt> which provides most of
+the functionality previously available in the
+<tt class="method">Message.getpayloadastext()</tt> method.
+
+<P>
+The following modules and classes have been changed:
+
+<P>
+
+<UL>
+<LI>The <tt class="class">MIMEBase</tt> class constructor arguments <var>_major</var>
+      and <var>_minor</var> have changed to <var>_maintype</var> and
+      <var>_subtype</var> respectively.
+</LI>
+<LI>The <code>Image</code> class/module has been renamed to
+      <code>MIMEImage</code>.  The <var>_minor</var> argument has been renamed to
+      <var>_subtype</var>.
+</LI>
+<LI>The <code>Text</code> class/module has been renamed to
+      <code>MIMEText</code>.  The <var>_minor</var> argument has been renamed to
+      <var>_subtype</var>.
+</LI>
+<LI>The <code>MessageRFC822</code> class/module has been renamed to
+      <code>MIMEMessage</code>.  Note that an earlier version of
+      <tt class="module">mimelib</tt> called this class/module <code>RFC822</code>, but
+      that clashed with the Python standard library module
+      <tt class="module"><a href="module-rfc822.html">rfc822</a></tt> on some case-insensitive file systems.
+
+<P>
+Also, the <tt class="class">MIMEMessage</tt> class now represents any kind of
+      MIME message with main type <span class="mimetype">message</span>.  It takes an
+      optional argument <var>_subtype</var> which is used to set the MIME
+      subtype.  <var>_subtype</var> defaults to <span class="mimetype">rfc822</span>.
+</LI>
+</UL>
+
+<P>
+<tt class="module">mimelib</tt> provided some utility functions in its
+<tt class="module">address</tt> and <tt class="module">date</tt> modules.  All of these functions
+have been moved to the <tt class="module"><a href="module-email.Utils.html">email.Utils</a></tt> module.
+
+<P>
+The <code>MsgReader</code> class/module has been removed.  Its functionality
+is most closely supported in the <tt class="function">body_line_iterator()</tt>
+function in the <tt class="module"><a href="module-email.Iterators.html">email.Iterators</a></tt> module.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot36813">...
+notification</A><A NAME="foot36813"
+ HREF="node388.html#tex2html88"><SUP>12.4</SUP></A>
+<DD>Delivery Status Notifications (DSN) are defined
+in <a class="rfc" name="rfcref-63822"
+href="http://www.faqs.org/rfcs/rfc1894.html">RFC 1894</a>.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-email.Iterators.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-email.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node389.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-email.Iterators.html">12.2.8 Iterators</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-email.html">12.2 email  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node389.html">12.2.10 Examples</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

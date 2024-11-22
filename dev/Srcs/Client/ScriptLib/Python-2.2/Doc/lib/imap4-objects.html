@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.10.1 IMAP4 Objects </title>
+<META NAME="description" CONTENT="11.10.1 IMAP4 Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="imap4-example.html">
+<LINK REL="previous" href="module-imaplib.html">
+<LINK REL="up" href="module-imaplib.html">
+<LINK REL="next" href="imap4-example.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-imaplib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-imaplib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="imap4-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-imaplib.html">11.10 imaplib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-imaplib.html">11.10 imaplib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="imap4-example.html">11.10.2 IMAP4 Example</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00131010000000000000000">&nbsp;</A>
+<BR>
+11.10.1 IMAP4 Objects 
+</H2>
+
+<P>
+All IMAP4rev1 commands are represented by methods of the same name,
+either upper-case or lower-case.
+
+<P>
+All arguments to commands are converted to strings, except for
+"<tt class="samp">AUTHENTICATE</tt>", and the last argument to "<tt class="samp">APPEND</tt>" which is
+passed as an IMAP4 literal.  If necessary (the string contains IMAP4
+protocol-sensitive characters and isn't enclosed with either
+parentheses or double quotes) each string is quoted. However, the
+<var>password</var> argument to the "<tt class="samp">LOGIN</tt>" command is always quoted.
+If you want to avoid having an argument string quoted
+(eg: the <var>flags</var> argument to "<tt class="samp">STORE</tt>") then enclose the string in
+parentheses (eg: <code>r'(&#92;Deleted)'</code>).
+
+<P>
+Each command returns a tuple: <code>(<var>type</var>, [<var>data</var>,
+...])</code> where <var>type</var> is usually <code>'OK'</code> or <code>'NO'</code>,
+and <var>data</var> is either the text from the command response, or
+mandated results from the command.
+
+<P>
+An <tt class="class">IMAP4</tt> instance has the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-2507"><tt class="method">append</tt></a></b>(<var>mailbox, flags, date_time, message</var>)
+<dd>
+  Append message to named mailbox. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2508"><tt class="method">authenticate</tt></a></b>(<var>func</var>)
+<dd>
+  Authenticate command -- requires response processing. This is
+  currently unimplemented, and raises an exception. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2509"><tt class="method">check</tt></a></b>()
+<dd>
+  Checkpoint mailbox on server. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2510"><tt class="method">close</tt></a></b>()
+<dd>
+  Close currently selected mailbox. Deleted messages are removed from
+  writable mailbox. This is the recommended command before
+  "<tt class="samp">LOGOUT</tt>".
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2511"><tt class="method">copy</tt></a></b>(<var>message_set, new_mailbox</var>)
+<dd>
+  Copy <var>message_set</var> messages onto end of <var>new_mailbox</var>. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2512"><tt class="method">create</tt></a></b>(<var>mailbox</var>)
+<dd>
+  Create new mailbox named <var>mailbox</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2513"><tt class="method">delete</tt></a></b>(<var>mailbox</var>)
+<dd>
+  Delete old mailbox named <var>mailbox</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2514"><tt class="method">expunge</tt></a></b>()
+<dd>
+  Permanently remove deleted items from selected mailbox. Generates an
+  "<tt class="samp">EXPUNGE</tt>" response for each deleted message. Returned data
+  contains a list of "<tt class="samp">EXPUNGE</tt>" message numbers in order
+  received.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2515"><tt class="method">fetch</tt></a></b>(<var>message_set, message_parts</var>)
+<dd>
+  Fetch (parts of) messages.  <var>message_parts</var> should be
+  a string of message part names enclosed within parentheses,
+  eg: "<tt class="samp">"(UID BODY[TEXT])"</tt>".  Returned data are tuples
+  of message part envelope and data.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2516"><tt class="method">getacl</tt></a></b>(<var>mailbox</var>)
+<dd>
+  Get the "<tt class="samp">ACL</tt>"s for <var>mailbox</var>.
+  The method is non-standard, but is supported by the "<tt class="samp">Cyrus</tt>" server.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2517"><tt class="method">list</tt></a></b>(<big>[</big><var>directory</var><big>[</big><var>, pattern</var><big>]</big><big>]</big>)
+<dd>
+  List mailbox names in <var>directory</var> matching
+  <var>pattern</var>.  <var>directory</var> defaults to the top-level mail
+  folder, and <var>pattern</var> defaults to match anything.  Returned data
+  contains a list of "<tt class="samp">LIST</tt>" responses.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2518"><tt class="method">login</tt></a></b>(<var>user, password</var>)
+<dd>
+  Identify the client using a plaintext password.
+  The <var>password</var> will be quoted.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2519"><tt class="method">logout</tt></a></b>()
+<dd>
+  Shutdown connection to server. Returns server "<tt class="samp">BYE</tt>" response.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2520"><tt class="method">lsub</tt></a></b>(<big>[</big><var>directory</var><big>[</big><var>, pattern</var><big>]</big><big>]</big>)
+<dd>
+  List subscribed mailbox names in directory matching pattern.
+  <var>directory</var> defaults to the top level directory and
+  <var>pattern</var> defaults to match any mailbox.
+  Returned data are tuples of message part envelope and data.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2521"><tt class="method">noop</tt></a></b>()
+<dd>
+  Send "<tt class="samp">NOOP</tt>" to server.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2522"><tt class="method">open</tt></a></b>(<var>host, port</var>)
+<dd>
+  Opens socket to <var>port</var> at <var>host</var>.
+  The connection objects established by this method
+  will be used in the <code>read</code>, <code>readline</code>, and <code>shutdown</code> methods.
+  You may override this method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2523"><tt class="method">partial</tt></a></b>(<var>message_num, message_part, start, length</var>)
+<dd>
+  Fetch truncated part of a message.
+  Returned data is a tuple of message part envelope and data.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2524"><tt class="method">read</tt></a></b>(<var>size</var>)
+<dd>
+  Reads <var>size</var> bytes from the remote server.
+  You may override this method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2525"><tt class="method">readline</tt></a></b>()
+<dd>
+  Reads one line from the remote server.
+  You may override this method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2526"><tt class="method">recent</tt></a></b>()
+<dd>
+  Prompt server for an update. Returned data is <code>None</code> if no new
+  messages, else value of "<tt class="samp">RECENT</tt>" response.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2527"><tt class="method">rename</tt></a></b>(<var>oldmailbox, newmailbox</var>)
+<dd>
+  Rename mailbox named <var>oldmailbox</var> to <var>newmailbox</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2528"><tt class="method">response</tt></a></b>(<var>code</var>)
+<dd>
+  Return data for response <var>code</var> if received, or
+  <code>None</code>. Returns the given code, instead of the usual type.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2529"><tt class="method">search</tt></a></b>(<var>charset, criterium</var><big>[</big><var>, ...</var><big>]</big>)
+<dd>
+  Search mailbox for matching messages.  Returned data contains a space
+  separated list of matching message numbers.  <var>charset</var> may be
+  <code>None</code>, in which case no "<tt class="samp">CHARSET</tt>" will be specified in the
+  request to the server.  The IMAP protocol requires that at least one
+  criterium be specified; an exception will be raised when the server
+  returns an error.
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+# M is a connected IMAP4 instance...
+msgnums = M.search(None, 'FROM', '"LDJ"')
+
+# or:
+msgnums = M.search(None, '(FROM "LDJ")')
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2530"><tt class="method">select</tt></a></b>(<big>[</big><var>mailbox</var><big>[</big><var>, readonly</var><big>]</big><big>]</big>)
+<dd>
+  Select a mailbox. Returned data is the count of messages in
+  <var>mailbox</var> ("<tt class="samp">EXISTS</tt>" response).  The default <var>mailbox</var>
+  is <code>'INBOX'</code>.  If the <var>readonly</var> flag is set, modifications
+  to the mailbox are not allowed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2531"><tt class="method">setacl</tt></a></b>(<var>mailbox, who, what</var>)
+<dd>
+  Set an "<tt class="samp">ACL</tt>" for <var>mailbox</var>.
+  The method is non-standard, but is supported by the "<tt class="samp">Cyrus</tt>" server.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2532"><tt class="method">shutdown</tt></a></b>()
+<dd>
+  Close connection established in <code>open</code>.
+  You may override this method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2533"><tt class="method">socket</tt></a></b>()
+<dd>
+  Returns socket instance used to connect to server.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2534"><tt class="method">sort</tt></a></b>(<var>sort_criteria, charset, search_criterium</var><big>[</big><var>, ...</var><big>]</big>)
+<dd>
+  The <code>sort</code> command is a variant of <code>search</code> with sorting semantics for
+  the results.  Returned data contains a space
+  separated list of matching message numbers.
+
+<P>
+Sort has two arguments before the <var>search_criterium</var>
+  argument(s); a parenthesized list of <var>sort_criteria</var>, and the searching <var>charset</var>.
+  Note that unlike <code>search</code>, the searching <var>charset</var> argument is mandatory.
+  There is also a <code>uid sort</code> command which corresponds to <code>sort</code> the way
+  that <code>uid search</code> corresponds to <code>search</code>.
+  The <code>sort</code> command first searches the mailbox for messages that
+  match the given searching criteria using the charset argument for
+  the interpretation of strings in the searching criteria.  It then
+  returns the numbers of matching messages.
+
+<P>
+This is an "<tt class="samp">IMAP4rev1</tt>" extension command.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2535"><tt class="method">status</tt></a></b>(<var>mailbox, names</var>)
+<dd>
+  Request named status conditions for <var>mailbox</var>. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2536"><tt class="method">store</tt></a></b>(<var>message_set, command, flag_list</var>)
+<dd>
+  Alters flag dispositions for messages in mailbox.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2537"><tt class="method">subscribe</tt></a></b>(<var>mailbox</var>)
+<dd>
+  Subscribe to new mailbox.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2538"><tt class="method">uid</tt></a></b>(<var>command, arg</var><big>[</big><var>, ...</var><big>]</big>)
+<dd>
+  Execute command args with messages identified by UID, rather than
+  message number.  Returns response appropriate to command.  At least
+  one argument must be supplied; if none are provided, the server will
+  return an error and an exception will be raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2539"><tt class="method">unsubscribe</tt></a></b>(<var>mailbox</var>)
+<dd>
+  Unsubscribe from old mailbox.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2540"><tt class="method">xatom</tt></a></b>(<var>name</var><big>[</big><var>, arg</var><big>[</big><var>, ...</var><big>]</big><big>]</big>)
+<dd>
+  Allow simple extension commands notified by server in
+  "<tt class="samp">CAPABILITY</tt>" response.
+</dl>
+
+<P>
+The following attributes are defined on instances of <tt class="class">IMAP4</tt>:
+
+<P>
+<dl><dt><b><a name="l2h-2541"><tt class="member">PROTOCOL_VERSION</tt></a></b>
+<dd>
+The most recent supported protocol in the
+"<tt class="samp">CAPABILITY</tt>" response from the server.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2542"><tt class="member">debug</tt></a></b>
+<dd>
+Integer value to control debugging output.  The initialize value is
+taken from the module variable <code>Debug</code>.  Values greater than
+three trace each command.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-imaplib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-imaplib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="imap4-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-imaplib.html">11.10 imaplib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-imaplib.html">11.10 imaplib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="imap4-example.html">11.10.2 IMAP4 Example</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

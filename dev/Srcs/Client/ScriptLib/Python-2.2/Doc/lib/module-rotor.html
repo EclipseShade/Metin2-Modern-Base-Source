@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>15.5 rotor -- Enigma-like encryption and decryption</title>
+<META NAME="description" CONTENT="15.5 rotor -- Enigma-like encryption and decryption">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-mpz.html">
+<LINK REL="up" href="crypto.html">
+<LINK REL="next" href="tkinter.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-mpz.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="crypto.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="tkinter.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-mpz.html">15.4 mpz  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="crypto.html">15. Cryptographic Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="tkinter.html">16. Graphical User Interfaces</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0017500000000000000000">
+15.5 <tt class="module">rotor</tt> --
+         Enigma-like encryption and decryption</A>
+</H1>
+
+<P>
+
+
+<P>
+This module implements a rotor-based encryption algorithm, contributed by
+Lance Ellinghouse<a name="l2h-3660">&nbsp;</a>.  The design is derived
+from the Enigma device<a name="l2h-3661">&nbsp;</a>, a machine
+used during World War II to encipher messages.  A rotor is simply a
+permutation.  For example, if the character `A' is the origin of the rotor,
+then a given rotor might map `A' to `L', `B' to `Z', `C' to `G', and so on.
+To encrypt, we choose several different rotors, and set the origins of the
+rotors to known positions; their initial position is the ciphering key.  To
+encipher a character, we permute the original character by the first rotor,
+and then apply the second rotor's permutation to the result. We continue
+until we've applied all the rotors; the resulting character is our
+ciphertext.  We then change the origin of the final rotor by one position,
+from `A' to `B'; if the final rotor has made a complete revolution, then we
+rotate the next-to-last rotor by one position, and apply the same procedure
+recursively.  In other words, after enciphering one character, we advance
+the rotors in the same fashion as a car's odometer. Decoding works in the
+same way, except we reverse the permutations and apply them in the opposite
+order.
+<a name="l2h-3662">&nbsp;</a>
+<P>
+The available functions in this module are:
+
+<P>
+<dl><dt><b><a name="l2h-3654"><tt class="function">newrotor</tt></a></b>(<var>key</var><big>[</big><var>, numrotors</var><big>]</big>)
+<dd>
+Return a rotor object. <var>key</var> is a string containing the encryption key
+for the object; it can contain arbitrary binary data. The key will be used
+to randomly generate the rotor permutations and their initial positions.
+<var>numrotors</var> is the number of rotor permutations in the returned object;
+if it is omitted, a default value of 6 will be used.
+</dl>
+
+<P>
+Rotor objects have the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-3655"><tt class="method">setkey</tt></a></b>(<var>key</var>)
+<dd>
+Sets the rotor's key to <var>key</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3656"><tt class="method">encrypt</tt></a></b>(<var>plaintext</var>)
+<dd>
+Reset the rotor object to its initial state and encrypt <var>plaintext</var>,
+returning a string containing the ciphertext.  The ciphertext is always the
+same length as the original plaintext.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3657"><tt class="method">encryptmore</tt></a></b>(<var>plaintext</var>)
+<dd>
+Encrypt <var>plaintext</var> without resetting the rotor object, and return a
+string containing the ciphertext.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3658"><tt class="method">decrypt</tt></a></b>(<var>ciphertext</var>)
+<dd>
+Reset the rotor object to its initial state and decrypt <var>ciphertext</var>,
+returning a string containing the plaintext.  The plaintext string will
+always be the same length as the ciphertext.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3659"><tt class="method">decryptmore</tt></a></b>(<var>ciphertext</var>)
+<dd>
+Decrypt <var>ciphertext</var> without resetting the rotor object, and return a
+string containing the plaintext.
+</dl>
+
+<P>
+An example usage:
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import rotor
+&gt;&gt;&gt; rt = rotor.newrotor('key', 12)
+&gt;&gt;&gt; rt.encrypt('bar')
+'\xab4\xf3'
+&gt;&gt;&gt; rt.encryptmore('bar')
+'\xef\xfd$'
+&gt;&gt;&gt; rt.encrypt('bar')
+'\xab4\xf3'
+&gt;&gt;&gt; rt.decrypt('\xab4\xf3')
+'bar'
+&gt;&gt;&gt; rt.decryptmore('\xef\xfd$')
+'bar'
+&gt;&gt;&gt; rt.decrypt('\xef\xfd$')
+'l(\xcd'
+&gt;&gt;&gt; del rt
+</pre></dl>
+
+<P>
+The module's code is not an exact simulation of the original Enigma
+device; it implements the rotor encryption scheme differently from the
+original. The most important difference is that in the original
+Enigma, there were only 5 or 6 different rotors in existence, and they
+were applied twice to each character; the cipher key was the order in
+which they were placed in the machine.  The Python <tt class="module">rotor</tt>
+module uses the supplied key to initialize a random number generator;
+the rotor permutations and their initial positions are then randomly
+generated.  The original device only enciphered the letters of the
+alphabet, while this module can handle any 8-bit binary data; it also
+produces binary output.  This module can also operate with an
+arbitrary number of rotors.
+
+<P>
+The original Enigma cipher was broken in 1944. The version implemented here is probably a good deal more difficult to crack
+(especially if you use many rotors), but it won't be impossible for
+a truly skillful and determined attacker to break the cipher.  So if you want
+to keep the NSA out of your files, this rotor cipher may well be unsafe, but
+for discouraging casual snooping through your files, it will probably be
+just fine, and may be somewhat safer than using the Unix <b class="program">crypt</b>
+command.
+<a name="l2h-3663">&nbsp;</a>
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-mpz.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="crypto.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="tkinter.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-mpz.html">15.4 mpz  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="crypto.html">15. Cryptographic Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="tkinter.html">16. Graphical User Interfaces</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

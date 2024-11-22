@@ -1,0 +1,374 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2 Standard Build and Install</title>
+<META NAME="description" CONTENT="2 Standard Build and Install">
+<META NAME="keywords" CONTENT="inst">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="inst.css">
+<link rel="first" href="inst.html">
+
+<LINK REL="next" href="non-ms-compilers.html">
+<LINK REL="previous" href="trivial-install.html">
+<LINK REL="up" HREF="inst.html">
+<LINK REL="next" href="non-ms-compilers.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="trivial-install.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="inst.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="non-ms-compilers.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Installing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="trivial-install.html">1 Introduction</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="inst.html">Installing Python Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="non-ms-compilers.html">3 Building Extensions: Tips</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="#SECTION000210000000000000000">2.1 Platform variations</a>
+<LI><A href="#SECTION000220000000000000000">2.2 Splitting the job up</a>
+<LI><A href="#SECTION000230000000000000000">2.3 How building works</a>
+<LI><A href="#SECTION000240000000000000000">2.4 How installation works</a>
+</ul>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION000200000000000000000">&nbsp;</A>
+<BR>
+2 Standard Build and Install
+</H1>
+
+<P>
+As described in section&nbsp;<A href="trivial-install.html#new-standard">1.2</A>, building and installing
+a module distribution using the Distutils is usually one simple command:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py install
+</pre></dl>
+
+<P>
+On Unix, you'd run this command from a shell prompt; on Windows, you
+have to open a command prompt window (``DOS box'') and do it there; on
+Mac OS, things are a tad more complicated (see below).
+
+<P>
+
+<H2><A NAME="SECTION000210000000000000000">&nbsp;</A>
+<BR>
+2.1 Platform variations
+</H2>
+
+<P>
+You should always run the setup command from the distribution root
+directory, i.e. the top-level subdirectory that the module source
+distribution unpacks into.  For example, if you've just downloaded a
+module source distribution <span class="file">foo-1.0.tar.gz</span> onto a
+Unix system, the normal thing to do is:
+
+<P>
+<dl><dd><pre class="verbatim">
+gunzip -c foo-1.0.tar.gz | tar xf -    # unpacks into directory foo-1.0
+cd foo-1.0
+python setup.py install
+</pre></dl>
+
+<P>
+On Windows, you'd probably download <span class="file">foo-1.0.zip</span>.  If you
+downloaded the archive file to <span class="file">C:&#92;Temp</span>, then it
+would unpack into <span class="file">C:&#92;Temp&#92;foo-1.0</span>;
+you can use either a archive manipulator with a grapical user interface
+(such as WinZip) or a command-line tool (such as <b class="program">unzip</b> or
+<b class="program">pkunzip</b>) to unpack the archive.  Then, open a command prompt
+window (``DOS box''), and run:
+
+<P>
+<dl><dd><pre class="verbatim">
+cd c:\Temp\foo-1.0
+python setup.py install
+</pre></dl>
+
+<P>
+On Mac OS, you have to go through a bit more effort to supply
+command-line arguments to the setup script:
+
+<UL>
+<LI>hit option-double-click on the script's icon (or option-drop it
+  onto the Python interpreter's icon)
+</LI>
+<LI>press the ``Set unix-style command line'' button
+</LI>
+<LI>set the ``Keep stdio window open on termination'' if you're
+  interested in seeing the output of the setup script (which is usually
+  voluminous and often useful)
+</LI>
+<LI>when the command-line dialog pops up, enter ``install'' (you
+  can, of course, enter any Distutils command-line as described in this
+  document or in <em class="citetitle"><a
+ href="../dist/dist.html"
+ title="Distributing Python
+  Modules"
+ >Distributing Python
+  Modules</a></em>: just leave off the initial <code>python setup.py</code> and
+  you'll be fine)
+</LI>
+</UL>
+<b>** this should change: every Distutils setup script will need
+  command-line arguments for every run (and should probably keep stdout
+  around), so all this should happen automatically for setup scripts **</b>
+
+<P>
+
+<H2><A NAME="SECTION000220000000000000000">&nbsp;</A>
+<BR>
+2.2 Splitting the job up
+</H2>
+
+<P>
+Running <code>setup.py install</code> builds and installs all modules in one
+run.  If you prefer to work incrementally--especially useful if you
+want to customize the build process, or if things are going wrong--you
+can use the setup script to do one thing at a time.  This is
+particularly helpful when the build and install will be done by
+different users--e.g., you might want to build a module distribution
+and hand it off to a system administrator for installation (or do it
+yourself, with super-user privileges).
+
+<P>
+For example, you can build everything in one step, and then install
+everything in a second step, by invoking the setup script twice:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py build
+python setup.py install
+</pre></dl>
+
+<P>
+(If you do this, you will notice that running the <code>install</code>
+command first runs the <code>build</code> command, which--in this
+case--quickly notices that it has nothing to do, since everything in
+the <span class="file">build</span> directory is up-to-date.)
+
+<P>
+You may not need this ability to break things down often if all you do
+is install modules downloaded off the 'net, but it's very handy for more
+advanced tasks.  If you get into distributing your own Python modules
+and extensions, you'll run lots of individual Distutils commands on
+their own.
+
+<P>
+
+<H2><A NAME="SECTION000230000000000000000">&nbsp;</A>
+<BR>
+2.3 How building works
+</H2>
+
+<P>
+As implied above, the <code>build</code> command is responsible for putting
+the files to install into a <i>build directory</i>.  By default, this is
+<span class="file">build</span> under the distribution root; if you're excessively
+concerned with speed, or want to keep the source tree pristine, you can
+change the build directory with the <b class="programopt">--build-base</b> option.
+For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py build --build-base=/tmp/pybuild/foo-1.0
+</pre></dl>
+
+<P>
+(Or you could do this permanently with a directive in your system or
+personal Distutils configuration file; see
+section&nbsp;<A href="config-syntax.html#config-files">6</A>.)  Normally, this isn't necessary.
+
+<P>
+The default layout for the build tree is as follows:
+
+<P>
+<dl><dd><pre class="verbatim">
+--- build/ --- lib/
+or
+--- build/ --- lib.&lt;plat&gt;/
+               temp.&lt;plat&gt;/
+</pre></dl>
+
+<P>
+where <code>&lt;plat&gt;</code> expands to a brief description of the current
+OS/hardware platform and Python version.  The first form, with just a
+<span class="file">lib</span> directory, is used for ``pure module distributions''--that
+is, module distributions that include only pure Python modules.  If a
+module distribution contains any extensions (modules written in C/C++),
+then the second form, with two <code>&lt;plat&gt;</code> directories, is used.  In
+that case, the <span class="file">temp.<font face="sans-serif"></i>plat</i></font></span> directory holds temporary
+files generated by the compile/link process that don't actually get
+installed.  In either case, the <span class="file">lib</span> (or
+<span class="file">lib.<font face="sans-serif"></i>plat</i></font></span>) directory contains all Python modules (pure
+Python and extensions) that will be installed.
+
+<P>
+In the future, more directories will be added to handle Python scripts,
+documentation, binary executables, and whatever else is needed to handle
+the job of installing Python modules and applications.
+
+<P>
+
+<H2><A NAME="SECTION000240000000000000000">&nbsp;</A>
+<BR>
+2.4 How installation works
+</H2>
+
+<P>
+After the <code>build</code> command runs (whether you run it explicitly,
+or the <code>install</code> command does it for you), the work of the
+<code>install</code> command is relatively simple: all it has to do is copy
+everything under <span class="file">build/lib</span> (or <span class="file">build/lib.<font face="sans-serif"></i>plat</i></font></span>)
+to your chosen installation directory.
+
+<P>
+If you don't choose an installation directory--i.e., if you just run
+<code>setup.py install</code>--then the <code>install</code> command installs to
+the standard location for third-party Python modules.  This location
+varies by platform and by how you built/installed Python itself.  On
+Unix and Mac OS, it also depends on whether the module distribution
+being installed is pure Python or contains extensions (``non-pure''):
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Platform</b>&nbsp;</th>
+      <th align="left"><b>Standard installation location</b>&nbsp;</th>
+      <th align="left"><b>Default value</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline">Unix (pure)</td>
+        <td align="left"><span class="file"><font face="sans-serif"></i>prefix</i></font>/lib/python2.0/site-packages</span></td>
+        <td align="left"><span class="file">/usr/local/lib/python2.0/site-packages</span></td>
+        <td align="center">(1)</td>
+    <tr><td align="left" valign="baseline">Unix (non-pure)</td>
+        <td align="left"><span class="file"><font face="sans-serif"></i>exec-prefix</i></font>/lib/python2.0/site-packages</span></td>
+        <td align="left"><span class="file">/usr/local/lib/python2.0/site-packages</span></td>
+        <td align="center">(1)</td>
+    <tr><td align="left" valign="baseline">Windows</td>
+        <td align="left"><span class="file"><font face="sans-serif"></i>prefix</i></font></span></td>
+        <td align="left"><span class="file">C:&#92;Python</span></td>
+        <td align="center">(2)</td>
+    <tr><td align="left" valign="baseline">Mac OS (pure)</td>
+        <td align="left"><span class="file"><font face="sans-serif"></i>prefix</i></font>:Lib:site-packages</span></td>
+        <td align="left"><span class="file">Python:Lib:site-packages</span></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline">Mac OS (non-pure)</td>
+        <td align="left"><span class="file"><font face="sans-serif"></i>prefix</i></font>:Lib:site-packages</span></td>
+        <td align="left"><span class="file">Python:Lib:site-packages</span></td>
+        <td align="center">&nbsp;</td></tbody>
+</table>
+
+<P>
+Notes:
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>Most Linux distributions include Python as a standard part of
+  the system, so <font face="sans-serif"></i>prefix</i></font> and <font face="sans-serif"></i>exec-prefix</i></font> are usually
+  both <span class="file">/usr</span> on Linux.  If you build Python yourself on Linux (or
+  any Unix-like system), the default <font face="sans-serif"></i>prefix</i></font> and
+  <font face="sans-serif"></i>exec-prefix</i></font> are <span class="file">/usr/local</span>.
+</DD>
+<DT><STRONG>(2)</STRONG></DT>
+<DD>The default installation directory on Windows was
+  <span class="file">C:&#92;Program Files&#92;Python</span> under
+  Python 1.6a1, 1.5.2, and earlier.
+</DD>
+</DL>
+
+<P>
+<font face="sans-serif"></i>prefix</i></font> and <font face="sans-serif"></i>exec-prefix</i></font> stand for the directories
+that Python is installed to, and where it finds its libraries at
+run-time.  They are always the same under Windows and Mac OS, and very
+often the same under Unix.  You can find out what your Python
+installation uses for <font face="sans-serif"></i>prefix</i></font> and <font face="sans-serif"></i>exec-prefix</i></font> by
+running Python in interactive mode and typing a few simple commands.
+Under Unix, just type <code>python</code> at the shell prompt.  Under
+Windows, choose Start  > Programs  > Python
+2.1  > Python (command line).  Under Mac OS, <b>** ??? **</b>.
+Once the interpreter is started, you type Python code at the
+prompt.  For example, on my Linux system, I type the three Python
+statements shown below, and get the output as shown, to find out my
+<font face="sans-serif"></i>prefix</i></font> and <font face="sans-serif"></i>exec-prefix</i></font>:
+
+<P>
+<dl><dd><pre class="verbatim">
+Python 1.5.2 (#1, Apr 18 1999, 16:03:16)  [GCC pgcc-2.91.60 19981201 (egcs-1.1.1  on linux2
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+&gt;&gt;&gt; import sys
+&gt;&gt;&gt; sys.prefix
+'/usr'
+&gt;&gt;&gt; sys.exec_prefix
+'/usr'
+</pre></dl>
+
+<P>
+If you don't want to install modules to the standard location, or if you
+don't have permission to write there, then you need to read about
+alternate installations in section&nbsp;<A href="alt-install-windows.html#alt-install">4</A>.  If you want to
+customize your installation directories more heavily, see
+section&nbsp;<A href="custom-install.html#custom-install">5</A> on custom installations.
+
+<P>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="trivial-install.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="inst.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="non-ms-compilers.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Installing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="trivial-install.html">1 Introduction</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="inst.html">Installing Python Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="non-ms-compilers.html">3 Building Extensions: Tips</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

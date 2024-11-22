@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.11 xml.sax.saxutils -- SAX Utilities</title>
+<META NAME="description" CONTENT="13.11 xml.sax.saxutils -- SAX Utilities">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-xml.sax.xmlreader.html">
+<LINK REL="previous" href="module-xml.sax.handler.html">
+<LINK REL="up" href="markup.html">
+<LINK REL="next" href="module-xml.sax.xmlreader.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="sax-error-handler.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-xml.sax.xmlreader.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="sax-error-handler.html">13.10.4 ErrorHandler Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-xml.sax.xmlreader.html">13.12 xml.sax.xmlreader  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00151100000000000000000">
+13.11 <tt class="module">xml.sax.saxutils</tt> --
+         SAX Utilities</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.0.</span>
+
+<P>
+The module <tt class="module">xml.sax.saxutils</tt> contains a number of classes and
+functions that are commonly useful when creating SAX applications,
+either in direct use, or as base classes.
+
+<P>
+<dl><dt><b><a name="l2h-3352"><tt class="function">escape</tt></a></b>(<var>data</var><big>[</big><var>, entities</var><big>]</big>)
+<dd>
+  Escape "<tt class="character">&amp;</tt>", "<tt class="character">&lt;</tt>", and "<tt class="character">&gt;</tt>" in a string
+  of data.
+
+<P>
+You can escape other strings of data by passing a dictionary as the
+  optional <var>entities</var> parameter.  The keys and values must all be
+  strings; each key will be replaced with its corresponding value.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3353"><tt class="function">quoteattr</tt></a></b>(<var>data</var><big>[</big><var>, entities</var><big>]</big>)
+<dd>
+  Similar to <tt class="function">escape()</tt>, but also prepares <var>data</var> to be
+  used as an attribute value.  The return value is a quoted version of
+  <var>data</var> with any additional required replacements.
+  <tt class="function">quoteattr()</tt> will select a quote character based on the
+  content of <var>data</var>, attempting to avoid encoding any quote
+  characters in the string.  If both single- and double-quote
+  characters are already in <var>data</var>, the double-quote characters
+  will be encoded and <var>data</var> will be wrapped in doule-quotes.  The
+  resulting string can be used directly as an attribute value:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; print "&lt;element attr=%s&gt;" % quoteattr("ab ' cd \" ef")
+&lt;element attr="ab ' cd &amp;quot; ef"&gt;
+</pre></dl>
+
+<P>
+This function is useful when generating attribute values for HTML or
+  any SGML using the reference concrete syntax.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3354"><tt class="class">XMLGenerator</tt></a></b>(<big>[</big><var>out</var><big>[</big><var>, encoding</var><big>]</big><big>]</big>)
+<dd>
+  This class implements the <tt class="class">ContentHandler</tt> interface by
+  writing SAX events back into an XML document. In other words, using
+  an <tt class="class">XMLGenerator</tt> as the content handler will reproduce the
+  original document being parsed. <var>out</var> should be a file-like
+  object which will default to <var>sys.stdout</var>. <var>encoding</var> is the
+  encoding of the output stream which defaults to <code>'iso-8859-1'</code>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3355"><tt class="class">XMLFilterBase</tt></a></b>(<var>base</var>)
+<dd>
+  This class is designed to sit between an <tt class="class">XMLReader</tt> and the
+  client application's event handlers.  By default, it does nothing
+  but pass requests up to the reader and events on to the handlers
+  unmodified, but subclasses can override specific methods to modify
+  the event stream or the configuration requests as they pass through.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3356"><tt class="function">prepare_input_source</tt></a></b>(<var>source</var><big>[</big><var>, base</var><big>]</big>)
+<dd>
+  This function takes an input source and an optional base URL and
+  returns a fully resolved <tt class="class">InputSource</tt> object ready for
+  reading.  The input source can be given as a string, a file-like
+  object, or an <tt class="class">InputSource</tt> object; parsers will use this
+  function to implement the polymorphic <var>source</var> argument to their
+  <tt class="method">parse()</tt> method.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="sax-error-handler.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-xml.sax.xmlreader.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="sax-error-handler.html">13.10.4 ErrorHandler Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-xml.sax.xmlreader.html">13.12 xml.sax.xmlreader  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

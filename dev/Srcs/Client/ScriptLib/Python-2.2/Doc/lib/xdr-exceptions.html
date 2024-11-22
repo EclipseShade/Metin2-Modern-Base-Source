@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.17.3 Exceptions </title>
+<META NAME="description" CONTENT="12.17.3 Exceptions ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="xdr-unpacker-objects.html">
+<LINK REL="up" href="module-xdrlib.html">
+<LINK REL="next" href="module-netrc.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="xdr-unpacker-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xdrlib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-netrc.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="xdr-unpacker-objects.html">12.17.2 Unpacker Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xdrlib.html">12.17 xdrlib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-netrc.html">12.18 netrc  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00141730000000000000000">&nbsp;</A>
+<BR>
+12.17.3 Exceptions 
+</H2>
+
+<P>
+Exceptions in this module are coded as class instances:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-3083"><tt class="exception">Error</tt></a></b>
+<dd>
+The base exception class.  <tt class="exception">Error</tt> has a single public data
+member <tt class="member">msg</tt> containing the description of the error.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-3084"><tt class="exception">ConversionError</tt></a></b>
+<dd>
+Class derived from <tt class="exception">Error</tt>.  Contains no additional instance
+variables.
+</dl>
+
+<P>
+Here is an example of how you would catch one of these exceptions:
+
+<P>
+<dl><dd><pre class="verbatim">
+import xdrlib
+p = xdrlib.Packer()
+try:
+    p.pack_double(8.01)
+except xdrlib.ConversionError, instance:
+    print 'packing the double failed:', instance.msg
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="xdr-unpacker-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xdrlib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-netrc.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="xdr-unpacker-objects.html">12.17.2 Unpacker Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xdrlib.html">12.17 xdrlib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-netrc.html">12.18 netrc  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

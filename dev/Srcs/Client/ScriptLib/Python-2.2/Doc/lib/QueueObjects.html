@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.6.1 Queue Objects</title>
+<META NAME="description" CONTENT="7.6.1 Queue Objects">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-Queue.html">
+<LINK REL="up" href="module-Queue.html">
+<LINK REL="next" href="module-mmap.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-Queue.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-Queue.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-mmap.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-Queue.html">7.6 Queue  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-Queue.html">7.6 Queue  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-mmap.html">7.7 mmap  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009610000000000000000">&nbsp;</A>
+<BR>
+7.6.1 Queue Objects
+</H2>
+
+<P>
+Class <tt class="class">Queue</tt> implements queue objects and has the methods
+described below.  This class can be derived from in order to implement
+other queue organizations (e.g. stack) but the inheritable interface
+is not described here.  See the source code for details.  The public
+methods are:
+
+<P>
+<dl><dt><b><a name="l2h-1987"><tt class="method">qsize</tt></a></b>()
+<dd>
+Return the approximate size of the queue.  Because of multithreading
+semantics, this number is not reliable.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1988"><tt class="method">empty</tt></a></b>()
+<dd>
+Return <code>1</code> if the queue is empty, <code>0</code> otherwise.  Because
+of multithreading semantics, this is not reliable.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1989"><tt class="method">full</tt></a></b>()
+<dd>
+Return <code>1</code> if the queue is full, <code>0</code> otherwise.  Because of
+multithreading semantics, this is not reliable.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1990"><tt class="method">put</tt></a></b>(<var>item</var><big>[</big><var>, block</var><big>]</big>)
+<dd>
+Put <var>item</var> into the queue.  If optional argument <var>block</var> is 1
+(the default), block if necessary until a free slot is available.
+Otherwise (<var>block</var> is 0), put <var>item</var> on the queue if a free
+slot is immediately available, else raise the <tt class="exception">Full</tt>
+exception.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1991"><tt class="method">put_nowait</tt></a></b>(<var>item</var>)
+<dd>
+Equivalent to <code>put(<var>item</var>, 0)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1992"><tt class="method">get</tt></a></b>(<big>[</big><var>block</var><big>]</big>)
+<dd>
+Remove and return an item from the queue.  If optional argument
+<var>block</var> is 1 (the default), block if necessary until an item is
+available.  Otherwise (<var>block</var> is 0), return an item if one is
+immediately available, else raise the
+<tt class="exception">Empty</tt> exception.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1993"><tt class="method">get_nowait</tt></a></b>()
+<dd>
+Equivalent to <code>get(0)</code>.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-Queue.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-Queue.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-mmap.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-Queue.html">7.6 Queue  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-Queue.html">7.6 Queue  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-mmap.html">7.7 mmap  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

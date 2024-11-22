@@ -1,0 +1,12 @@
+[DELAY value;10]
+םÓÊÚדב ÇבÔÇדÇה Ýם ÇבÞÊÇב[ENTER]
+ÇבÔÚזÐÉ זÇבÓÍÑ ÞÏÑÇÊ ÞÇדזÇ[ENTER]
+ÈÏÑÇÓÊוÇ זÅËÞÇהוÇ ÈÚÏ ÏÑÇÓÇÊ[ENTER]
+ד‗ËÝÉ ז דÍ‗דÉ. בÇ ÊÔ‗ב[ENTER]
+ÞÏÑÇÊוד ÇבÎÝםÉ ÏÚדÇנ בוד[ENTER]
+[WAIT]
+ÝÞÁ Èב ÅהוÇ ÊÏÚד ÃÕÏÞÇÆוד[ENTER]
+Ýם ÇבÞÊÇב ÃםÖÇנ. דה ÎבÇב[ENTER]
+םץד‗רצה ÇבÇÎÊÕÇÕ ÇבÔÇדÇה דה[ENTER]
+ÏÚד ÇבוÌדÇÊ Ýם ÇבÍÑזÈ ז[ENTER]
+ÊØזםÑ ÓÍÑ בדÚÇבÌÉ ÇבדÕÇÈםה.

@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.3.5 Additional methods for emulation of sequence types
+</title>
+<META NAME="description" CONTENT="3.3.5 Additional methods for emulation of sequence types
+">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="numeric-types.html">
+<LINK REL="previous" href="sequence-types.html">
+<LINK REL="up" href="specialnames.html">
+<LINK REL="next" href="numeric-types.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="sequence-types.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="specialnames.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="numeric-types.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="sequence-types.html">3.3.4 Emulating container types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="specialnames.html">3.3 Special method names</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="numeric-types.html">3.3.6 Emulating numeric types</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION005350000000000000000">&nbsp;</A>
+<BR>
+3.3.5 Additional methods for emulation of sequence types
+  
+</H2>
+
+<P>
+The following methods can be defined to further emulate sequence
+objects.  Immutable sequences methods should only define
+<tt class="method">__getslice__()</tt>; mutable sequences, should define all three
+three methods.
+
+<P>
+<dl><dt><b><a name="l2h-135"><tt class="method">__getslice__</tt></a></b>(<var>self, i, j</var>)
+<dd>
+<div class="versionnote"><b>Deprecated since release 2.0.</b>
+Support slice objects as parameters to the
+<tt class="method">__getitem__()</tt> method.</div><p>
+Called to implement evaluation of <code><var>self</var>[<var>i</var>:<var>j</var>]</code>.
+The returned object should be of the same type as <var>self</var>.  Note
+that missing <var>i</var> or <var>j</var> in the slice expression are replaced
+by zero or <code>sys.maxint</code>, respectively.  If negative indexes are
+used in the slice, the length of the sequence is added to that index.
+If the instance does not implement the <tt class="method">__len__()</tt> method, an
+<tt class="exception">AttributeError</tt> is raised.
+No guarantee is made that indexes adjusted this way are not still
+negative.  Indexes which are greater than the length of the sequence
+are not modified.
+If no <tt class="method">__getslice__()</tt> is found, a slice
+object is created instead, and passed to <tt class="method">__getitem__()</tt> instead.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-136"><tt class="method">__setslice__</tt></a></b>(<var>self, i, j, sequence</var>)
+<dd>
+Called to implement assignment to <code><var>self</var>[<var>i</var>:<var>j</var>]</code>.
+Same notes for <var>i</var> and <var>j</var> as for <tt class="method">__getslice__()</tt>.
+
+<P>
+This method is deprecated. If no <tt class="method">__setslice__()</tt> is found, a
+slice object is created instead, and passed to <tt class="method">__setitem__()</tt>
+instead.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-137"><tt class="method">__delslice__</tt></a></b>(<var>self, i, j</var>)
+<dd>
+Called to implement deletion of <code><var>self</var>[<var>i</var>:<var>j</var>]</code>.
+Same notes for <var>i</var> and <var>j</var> as for <tt class="method">__getslice__()</tt>.
+This method is deprecated. If no <tt class="method">__delslice__()</tt> is found, a
+slice object is created instead, and passed to <tt class="method">__delitem__()</tt>
+instead.
+</dl>
+
+<P>
+Notice that these methods are only invoked when a single slice with a
+single colon is used, and the slice method is available.  For slice
+operations involving extended slice notation, or in absence of the
+slice methods, <tt class="method">__getitem__()</tt>, <tt class="method">__setitem__()</tt> or
+<tt class="method">__delitem__()</tt> is called with a slice object as argument.
+
+<P>
+The following example demonstrate how to make your program or module
+compatible with earlier versions of Python (assuming that methods
+<tt class="method">__getitem__()</tt>, <tt class="method">__setitem__()</tt> and <tt class="method">__delitem__()</tt>
+support slice objects as arguments):
+
+<P>
+<dl><dd><pre class="verbatim">
+class MyClass:
+    ...
+    def __getitem__(self, index):
+        ...
+    def __setitem__(self, index, value):
+        ...
+    def __delitem__(self, index):
+        ...
+
+    if sys.version_info &lt; (2, 0):
+        # They won't be defined if version is at least 2.0 final
+
+        def __getslice__(self, i, j):
+            return self[max(0, i):max(0, j):]
+        def __setslice__(self, i, j, seq):
+            self[max(0, i):max(0, j):] = seq
+        def __delslice__(self, i, j):
+            del self[max(0, i):max(0, j):]
+    ...
+</pre></dl>
+
+<P>
+Note the calls to <tt class="function">max()</tt>; these are actually necessary due
+to the handling of negative indices before the
+<tt class="method">__*slice__()</tt> methods are called.  When negative indexes are
+used, the <tt class="method">__*item__()</tt> methods receive them as provided, but
+the <tt class="method">__*slice__()</tt> methods get a ``cooked'' form of the index
+values.  For each negative index value, the length of the sequence is
+added to the index before calling the method (which may still result
+in a negative index); this is the customary handling of negative
+indexes by the built-in sequence types, and the <tt class="method">__*item__()</tt>
+methods are expected to do this as well.  However, since they should
+already be doing that, negative indexes cannot be passed in; they must
+be be constrained to the bounds of the sequence before being passed to
+the <tt class="method">__*item__()</tt> methods.
+Calling <code>max(0, i)</code> conveniently returns the proper value.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="sequence-types.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="specialnames.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="numeric-types.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="sequence-types.html">3.3.4 Emulating container types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="specialnames.html">3.3 Special method names</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="numeric-types.html">3.3.6 Emulating numeric types</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

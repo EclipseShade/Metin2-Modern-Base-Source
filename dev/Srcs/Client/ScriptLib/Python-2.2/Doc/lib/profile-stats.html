@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>10.5.1 The Stats Class </title>
+<META NAME="description" CONTENT="10.5.1 The Stats Class ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-profile.html">
+<LINK REL="up" href="module-profile.html">
+<LINK REL="next" href="profile-limits.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-profile.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-profile.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="profile-limits.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-profile.html">10.5 Reference Manual</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-profile.html">10.5 Reference Manual</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="profile-limits.html">10.6 Limitations</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0012510000000000000000">&nbsp;</A>
+<BR>
+10.5.1 The <tt class="class">Stats</tt> Class 
+</H2>
+
+<P>
+<tt class="class">Stats</tt> objects have the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-2262"><tt class="method">strip_dirs</tt></a></b>()
+<dd>
+This method for the <tt class="class">Stats</tt> class removes all leading path
+information from file names.  It is very useful in reducing the size
+of the printout to fit within (close to) 80 columns.  This method
+modifies the object, and the stripped information is lost.  After
+performing a strip operation, the object is considered to have its
+entries in a ``random'' order, as it was just after object
+initialization and loading.  If <tt class="method">strip_dirs()</tt> causes two
+function names to be indistinguishable (they are on the same
+line of the same filename, and have the same function name), then the
+statistics for these two entries are accumulated into a single entry.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2263"><tt class="method">add</tt></a></b>(<var>filename</var><big>[</big><var>, ...</var><big>]</big>)
+<dd>
+This method of the <tt class="class">Stats</tt> class accumulates additional
+profiling information into the current profiling object.  Its
+arguments should refer to filenames created by the corresponding
+version of <tt class="function">profile.run()</tt>.  Statistics for identically named
+(re: file, line, name) functions are automatically accumulated into
+single function statistics.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2264"><tt class="method">sort_stats</tt></a></b>(<var>key</var><big>[</big><var>, ...</var><big>]</big>)
+<dd>
+This method modifies the <tt class="class">Stats</tt> object by sorting it according
+to the supplied criteria.  The argument is typically a string
+identifying the basis of a sort (example: <code>'time'</code> or
+<code>'name'</code>).
+
+<P>
+When more than one key is provided, then additional keys are used as
+secondary criteria when the there is equality in all keys selected
+before them.  For example, "<tt class="samp">sort_stats('name', 'file')</tt>" will sort
+all the entries according to their function name, and resolve all ties
+(identical function names) by sorting by file name.
+
+<P>
+Abbreviations can be used for any key names, as long as the
+abbreviation is unambiguous.  The following are the keys currently
+defined:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Valid Arg</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>'calls'</code></td>
+        <td align="left">call count</td>
+    <tr><td align="left" valign="baseline"><code>'cumulative'</code></td>
+        <td align="left">cumulative time</td>
+    <tr><td align="left" valign="baseline"><code>'file'</code></td>
+        <td align="left">file name</td>
+    <tr><td align="left" valign="baseline"><code>'module'</code></td>
+        <td align="left">file name</td>
+    <tr><td align="left" valign="baseline"><code>'pcalls'</code></td>
+        <td align="left">primitive call count</td>
+    <tr><td align="left" valign="baseline"><code>'line'</code></td>
+        <td align="left">line number</td>
+    <tr><td align="left" valign="baseline"><code>'name'</code></td>
+        <td align="left">function name</td>
+    <tr><td align="left" valign="baseline"><code>'nfl'</code></td>
+        <td align="left">name/file/line</td>
+    <tr><td align="left" valign="baseline"><code>'stdname'</code></td>
+        <td align="left">standard name</td>
+    <tr><td align="left" valign="baseline"><code>'time'</code></td>
+        <td align="left">internal time</td></tbody>
+</table>
+
+<P>
+Note that all sorts on statistics are in descending order (placing
+most time consuming items first), where as name, file, and line number
+searches are in ascending order (alphabetical). The subtle
+distinction between <code>'nfl'</code> and <code>'stdname'</code> is that the
+standard name is a sort of the name as printed, which means that the
+embedded line numbers get compared in an odd way.  For example, lines
+3, 20, and 40 would (if the file names were the same) appear in the
+string order 20, 3 and 40.  In contrast, <code>'nfl'</code> does a numeric
+compare of the line numbers.  In fact, <code>sort_stats('nfl')</code> is the
+same as <code>sort_stats('name', 'file', 'line')</code>.
+
+<P>
+For compatibility with the old profiler, the numeric arguments
+<code>-1</code>, <code>0</code>, <code>1</code>, and <code>2</code> are permitted.  They are
+interpreted as <code>'stdname'</code>, <code>'calls'</code>, <code>'time'</code>, and
+<code>'cumulative'</code> respectively.  If this old style format (numeric)
+is used, only one sort key (the numeric key) will be used, and
+additional arguments will be silently ignored.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2265"><tt class="method">reverse_order</tt></a></b>()
+<dd>
+This method for the <tt class="class">Stats</tt> class reverses the ordering of the basic
+list within the object.  This method is provided primarily for
+compatibility with the old profiler.  Its utility is questionable
+now that ascending vs descending order is properly selected based on
+the sort key of choice.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2266"><tt class="method">print_stats</tt></a></b>(<big>[</big><var>restriction, ...</var><big>]</big>)
+<dd>
+This method for the <tt class="class">Stats</tt> class prints out a report as described
+in the <tt class="function">profile.run()</tt> definition.
+
+<P>
+The order of the printing is based on the last <tt class="method">sort_stats()</tt>
+operation done on the object (subject to caveats in <tt class="method">add()</tt> and
+<tt class="method">strip_dirs()</tt>.
+
+<P>
+The arguments provided (if any) can be used to limit the list down to
+the significant entries.  Initially, the list is taken to be the
+complete set of profiled functions.  Each restriction is either an
+integer (to select a count of lines), or a decimal fraction between
+0.0 and 1.0 inclusive (to select a percentage of lines), or a regular
+expression (to pattern match the standard name that is printed; as of
+Python 1.5b1, this uses the Perl-style regular expression syntax
+defined by the <tt class="module"><a href="module-re.html">re</a></tt> module).  If several restrictions are
+provided, then they are applied sequentially.  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+print_stats(.1, 'foo:')
+</pre></dl>
+
+<P>
+would first limit the printing to first 10% of list, and then only
+print functions that were part of filename "<tt class="samp">.*foo:</tt>".  In
+contrast, the command:
+
+<P>
+<dl><dd><pre class="verbatim">
+print_stats('foo:', .1)
+</pre></dl>
+
+<P>
+would limit the list to all functions having file names "<tt class="samp">.*foo:</tt>",
+and then proceed to only print the first 10% of them.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2267"><tt class="method">print_callers</tt></a></b>(<big>[</big><var>restriction, ...</var><big>]</big>)
+<dd>
+This method for the <tt class="class">Stats</tt> class prints a list of all functions
+that called each function in the profiled database.  The ordering is
+identical to that provided by <tt class="method">print_stats()</tt>, and the definition
+of the restricting argument is also identical.  For convenience, a
+number is shown in parentheses after each caller to show how many
+times this specific call was made.  A second non-parenthesized number
+is the cumulative time spent in the function at the right.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2268"><tt class="method">print_callees</tt></a></b>(<big>[</big><var>restriction, ...</var><big>]</big>)
+<dd>
+This method for the <tt class="class">Stats</tt> class prints a list of all function
+that were called by the indicated function.  Aside from this reversal
+of direction of calls (re: called vs was called by), the arguments and
+ordering are identical to the <tt class="method">print_callers()</tt> method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2269"><tt class="method">ignore</tt></a></b>()
+<dd>
+<div class="versionnote"><b>Deprecated since release 1.5.1.</b>
+This is not needed in modern versions of
+Python.<A NAME="tex2html44"
+  HREF="#foot28921"><SUP>10.2</SUP></A></div><p>
+</dl>
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot28921">...
+Python.</A><A NAME="foot28921"
+ href="profile-stats.html#tex2html44"><SUP>10.2</SUP></A>
+<DD>
+  This was once necessary, when Python would print any unused expression
+  result that was not <code>None</code>.  The method is still defined for
+  backward compatibility.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-profile.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-profile.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="profile-limits.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-profile.html">10.5 Reference Manual</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-profile.html">10.5 Reference Manual</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="profile-limits.html">10.6 Limitations</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

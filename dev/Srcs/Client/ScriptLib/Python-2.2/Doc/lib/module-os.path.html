@@ -1,0 +1,369 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.2 os.path -- Common pathname manipulations</title>
+<META NAME="description" CONTENT="6.2 os.path -- Common pathname manipulations">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-dircache.html">
+<LINK REL="previous" href="module-os.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" href="module-dircache.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="os-path.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-dircache.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="os-path.html">6.1.6 Miscellaneous System Information</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-dircache.html">6.3 dircache  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008200000000000000000">
+6.2 <tt class="module">os.path</tt> --
+         Common pathname manipulations</A>
+</H1>
+
+<P>
+
+<P>
+This module implements some useful functions on pathnames.
+<a name="l2h-1291">&nbsp;</a>
+<P>
+<span class="warning"><b class="label">Warning:</b>
+On Windows, many of these functions do not properly
+support UNC pathnames.  <tt class="function">splitunc()</tt> and <tt class="function">ismount()</tt>
+do handle them correctly.</span>
+
+<P>
+<dl><dt><b><a name="l2h-1265"><tt class="function">abspath</tt></a></b>(<var>path</var>)
+<dd>
+Return a normalized absolutized version of the pathname <var>path</var>.
+On most platforms, this is equivalent to
+<code>normpath(join(os.getcwd(), <var>path</var>))</code>.
+
+<span class="versionnote">New in version 1.5.2.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1266"><tt class="function">basename</tt></a></b>(<var>path</var>)
+<dd>
+Return the base name of pathname <var>path</var>.  This is the second half
+of the pair returned by <code>split(<var>path</var>)</code>.  Note that the
+result of this function is different from the
+Unix <b class="program">basename</b> program; where <b class="program">basename</b> for
+<code>'/foo/bar/'</code> returns <code>'bar'</code>, the <tt class="function">basename()</tt>
+function returns an empty string (<code>''</code>).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1267"><tt class="function">commonprefix</tt></a></b>(<var>list</var>)
+<dd>
+Return the longest path prefix (taken character-by-character) that is a
+prefix of all paths in 
+<var>list</var>.  If <var>list</var> is empty, return the empty string
+(<code>''</code>).  Note that this may return invalid paths because it works a
+character at a time.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1268"><tt class="function">dirname</tt></a></b>(<var>path</var>)
+<dd>
+Return the directory name of pathname <var>path</var>.  This is the first
+half of the pair returned by <code>split(<var>path</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1269"><tt class="function">exists</tt></a></b>(<var>path</var>)
+<dd>
+Return true if <var>path</var> refers to an existing path.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1270"><tt class="function">expanduser</tt></a></b>(<var>path</var>)
+<dd>
+Return the argument with an initial component of "<tt class="samp">~</tt>" or
+"<tt class="samp">~<var>user</var></tt>" replaced by that <var>user</var>'s home directory.  An
+initial "<tt class="samp">~</tt>" is replaced by the environment variable
+<a class="envvar" name="l2h-1292">HOME</a>; an initial "<tt class="samp">~<var>user</var></tt>" is looked up in the
+password directory through the built-in module
+<tt class="module"><a href="module-pwd.html">pwd</a></tt><a name="l2h-1293">&nbsp;</a>.  If the expansion fails, or if the
+path does not begin with a tilde, the path is returned unchanged.  On
+the Macintosh, this always returns <var>path</var> unchanged.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1271"><tt class="function">expandvars</tt></a></b>(<var>path</var>)
+<dd>
+Return the argument with environment variables expanded.  Substrings
+of the form "<tt class="samp">$<var>name</var></tt>" or "<tt class="samp">${<var>name</var>}</tt>" are
+replaced by the value of environment variable <var>name</var>.  Malformed
+variable names and references to non-existing variables are left
+unchanged.  On the Macintosh, this always returns <var>path</var>
+unchanged.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1272"><tt class="function">getatime</tt></a></b>(<var>path</var>)
+<dd>
+Return the time of last access of <var>filename</var>.  The return
+value is integer giving the number of seconds since the epoch (see the 
+<tt class="module"><a href="module-time.html">time</a></tt> module).  Raise <tt class="exception">os.error</tt> if the file does
+not exist or is inaccessible.
+
+<span class="versionnote">New in version 1.5.2.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1273"><tt class="function">getmtime</tt></a></b>(<var>path</var>)
+<dd>
+Return the time of last modification of <var>filename</var>.  The return
+value is integer giving the number of seconds since the epoch (see the 
+<tt class="module"><a href="module-time.html">time</a></tt> module).  Raise <tt class="exception">os.error</tt> if the file does
+not exist or is inaccessible.
+
+<span class="versionnote">New in version 1.5.2.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1274"><tt class="function">getsize</tt></a></b>(<var>path</var>)
+<dd>
+Return the size, in bytes, of <var>filename</var>.  Raise
+<tt class="exception">os.error</tt> if the file does not exist or is inaccessible.
+
+<span class="versionnote">New in version 1.5.2.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1275"><tt class="function">isabs</tt></a></b>(<var>path</var>)
+<dd>
+Return true if <var>path</var> is an absolute pathname (begins with a
+slash).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1276"><tt class="function">isfile</tt></a></b>(<var>path</var>)
+<dd>
+Return true if <var>path</var> is an existing regular file.  This follows
+symbolic links, so both <tt class="function">islink()</tt> and <tt class="function">isfile()</tt>
+can be true for the same path.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1277"><tt class="function">isdir</tt></a></b>(<var>path</var>)
+<dd>
+Return true if <var>path</var> is an existing directory.  This follows
+symbolic links, so both <tt class="function">islink()</tt> and <tt class="function">isdir()</tt> can
+be true for the same path.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1278"><tt class="function">islink</tt></a></b>(<var>path</var>)
+<dd>
+Return true if <var>path</var> refers to a directory entry that is a
+symbolic link.  Always false if symbolic links are not supported.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1279"><tt class="function">ismount</tt></a></b>(<var>path</var>)
+<dd>
+Return true if pathname <var>path</var> is a <i class="dfn">mount point</i>: a point in
+a file system where a different file system has been mounted.  The
+function checks whether <var>path</var>'s parent, <span class="file"><var>path</var>/..</span>, is
+on a different device than <var>path</var>, or whether <span class="file"><var>path</var>/..</span>
+and <var>path</var> point to the same i-node on the same device -- this
+should detect mount points for all Unix and POSIX variants.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1280"><tt class="function">join</tt></a></b>(<var>path1</var><big>[</big><var>, path2</var><big>[</big><var>, ...</var><big>]</big><big>]</big>)
+<dd>
+Joins one or more path components intelligently.  If any component is
+an absolute path, all previous components are thrown away, and joining
+continues.  The return value is the concatenation of <var>path1</var>, and
+optionally <var>path2</var>, etc., with exactly one slash (<code>'/'</code>)
+inserted between components, unless <var>path</var> is empty.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1281"><tt class="function">normcase</tt></a></b>(<var>path</var>)
+<dd>
+Normalize the case of a pathname.  On Unix, this returns the path
+unchanged; on case-insensitive filesystems, it converts the path to
+lowercase.  On Windows, it also converts forward slashes to backward
+slashes.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1282"><tt class="function">normpath</tt></a></b>(<var>path</var>)
+<dd>
+Normalize a pathname.  This collapses redundant separators and
+up-level references, e.g. <code>A//B</code>, <code>A/./B</code> and
+<code>A/foo/../B</code> all become <code>A/B</code>.  It does not normalize the
+case (use <tt class="function">normcase()</tt> for that).  On Windows, it converts
+forward slashes to backward slashes.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1283"><tt class="function">realpath</tt></a></b>(<var>path</var>)
+<dd>
+Return the canonical path of the specified filename, eliminating any
+symbolic links encountered in the path.
+Availability:  Unix.
+
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1284"><tt class="function">samefile</tt></a></b>(<var>path1, path2</var>)
+<dd>
+Return true if both pathname arguments refer to the same file or
+directory (as indicated by device number and i-node number).
+Raise an exception if a <tt class="function">os.stat()</tt> call on either pathname
+fails.
+Availability:  Macintosh, Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1285"><tt class="function">sameopenfile</tt></a></b>(<var>fp1, fp2</var>)
+<dd>
+Return true if the file objects <var>fp1</var> and <var>fp2</var> refer to the
+same file.  The two file objects may represent different file
+descriptors.
+Availability:  Macintosh, Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1286"><tt class="function">samestat</tt></a></b>(<var>stat1, stat2</var>)
+<dd>
+Return true if the stat tuples <var>stat1</var> and <var>stat2</var> refer to
+the same file.  These structures may have been returned by
+<tt class="function">fstat()</tt>, <tt class="function">lstat()</tt>, or <tt class="function">stat()</tt>.  This
+function implements the underlying comparison used by
+<tt class="function">samefile()</tt> and <tt class="function">sameopenfile()</tt>.
+Availability:  Macintosh, Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1287"><tt class="function">split</tt></a></b>(<var>path</var>)
+<dd>
+Split the pathname <var>path</var> into a pair, <code>(<var>head</var>,
+<var>tail</var>)</code> where <var>tail</var> is the last pathname component and
+<var>head</var> is everything leading up to that.  The <var>tail</var> part will
+never contain a slash; if <var>path</var> ends in a slash, <var>tail</var> will
+be empty.  If there is no slash in <var>path</var>, <var>head</var> will be
+empty.  If <var>path</var> is empty, both <var>head</var> and <var>tail</var> are
+empty.  Trailing slashes are stripped from <var>head</var> unless it is the
+root (one or more slashes only).  In nearly all cases,
+<code>join(<var>head</var>, <var>tail</var>)</code> equals <var>path</var> (the only
+exception being when there were multiple slashes separating <var>head</var>
+from <var>tail</var>).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1288"><tt class="function">splitdrive</tt></a></b>(<var>path</var>)
+<dd>
+Split the pathname <var>path</var> into a pair <code>(<var>drive</var>,
+<var>tail</var>)</code> where <var>drive</var> is either a drive specification or the
+empty string.  On systems which do not use drive specifications,
+<var>drive</var> will always be the empty string.  In all cases,
+<code><var>drive</var> + <var>tail</var></code> will be the same as <var>path</var>.
+
+<span class="versionnote">New in version 1.3.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1289"><tt class="function">splitext</tt></a></b>(<var>path</var>)
+<dd>
+Split the pathname <var>path</var> into a pair <code>(<var>root</var>, <var>ext</var>)</code> 
+such that <code><var>root</var> + <var>ext</var> == <var>path</var></code>,
+and <var>ext</var> is empty or begins with a period and contains
+at most one period.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1290"><tt class="function">walk</tt></a></b>(<var>path, visit, arg</var>)
+<dd>
+Calls the function <var>visit</var> with arguments
+<code>(<var>arg</var>, <var>dirname</var>, <var>names</var>)</code> for each directory in the
+directory tree rooted at <var>path</var> (including <var>path</var> itself, if it
+is a directory).  The argument <var>dirname</var> specifies the visited
+directory, the argument <var>names</var> lists the files in the directory
+(gotten from <code>os.listdir(<var>dirname</var>)</code>).
+The <var>visit</var> function may modify <var>names</var> to
+influence the set of directories visited below <var>dirname</var>, e.g., to
+avoid visiting certain parts of the tree.  (The object referred to by
+<var>names</var> must be modified in place, using <tt class="keyword">del</tt> or slice
+assignment.)
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="os-path.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-dircache.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="os-path.html">6.1.6 Miscellaneous System Information</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-dircache.html">6.3 dircache  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

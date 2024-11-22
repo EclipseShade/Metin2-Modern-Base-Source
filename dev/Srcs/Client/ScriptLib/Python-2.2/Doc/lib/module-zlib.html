@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.13 zlib -- Compression compatible with gzip</title>
+<META NAME="description" CONTENT="7.13 zlib -- Compression compatible with gzip">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-gzip.html">
+<LINK REL="previous" href="module-bsddb.html">
+<LINK REL="up" href="someos.html">
+<LINK REL="next" href="module-gzip.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="bsddb-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-gzip.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="bsddb-objects.html">7.12.1 Hash, BTree and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-gzip.html">7.14 gzip  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0091300000000000000000">
+7.13 <tt class="module">zlib</tt> --
+         Compression compatible with <b class="program">gzip</b></A>
+</H1>
+
+<P>
+
+
+<P>
+For applications that require data compression, the functions in this
+module allow compression and decompression, using the zlib library.
+The zlib library has its own home page at
+<a class="url" href="http://www.gzip.org/zlib/">http://www.gzip.org/zlib/</a>.  Version 1.1.3 is the
+most recent version as of September 2000; use a later version if one
+is available.  There are known incompatibilities between the Python
+module and earlier versions of the zlib library.
+
+<P>
+The available exception and functions in this module are:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2045"><tt class="exception">error</tt></a></b>
+<dd>
+  Exception raised on compression and decompression errors.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2046"><tt class="function">adler32</tt></a></b>(<var>string</var><big>[</big><var>, value</var><big>]</big>)
+<dd>
+   Computes a Adler-32 checksum of <var>string</var>.  (An Adler-32
+   checksum is almost as reliable as a CRC32 but can be computed much
+   more quickly.)  If <var>value</var> is present, it is used as the
+   starting value of the checksum; otherwise, a fixed default value is
+   used.  This allows computing a running checksum over the
+   concatenation of several input strings.  The algorithm is not
+   cryptographically strong, and should not be used for
+   authentication or digital signatures.  Since the algorithm is
+   designed for use as a checksum algorithm, it is not suitable for
+   use as a general hash algorithm.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2047"><tt class="function">compress</tt></a></b>(<var>string</var><big>[</big><var>, level</var><big>]</big>)
+<dd>
+  Compresses the data in <var>string</var>, returning a string contained
+  compressed data.  <var>level</var> is an integer from <code>1</code> to
+  <code>9</code> controlling the level of compression; <code>1</code> is fastest
+  and produces the least compression, <code>9</code> is slowest and produces
+  the most.  The default value is <code>6</code>.  Raises the
+  <tt class="exception">error</tt> exception if any error occurs.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2048"><tt class="function">compressobj</tt></a></b>(<big>[</big><var>level</var><big>]</big>)
+<dd>
+  Returns a compression object, to be used for compressing data streams
+  that won't fit into memory at once.  <var>level</var> is an integer from
+  <code>1</code> to <code>9</code> controlling the level of compression; <code>1</code> is
+  fastest and produces the least compression, <code>9</code> is slowest and
+  produces the most.  The default value is <code>6</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2049"><tt class="function">crc32</tt></a></b>(<var>string</var><big>[</big><var>, value</var><big>]</big>)
+<dd>
+  Computes a CRC (Cyclic Redundancy Check)<a name="l2h-2058">&nbsp;</a>  checksum of <var>string</var>. If
+  <var>value</var> is present, it is used as the starting value of the
+  checksum; otherwise, a fixed default value is used.  This allows
+  computing a running checksum over the concatenation of several
+  input strings.  The algorithm is not cryptographically strong, and
+  should not be used for authentication or digital signatures.  Since
+  the algorithm is designed for use as a checksum algorithm, it is not
+  suitable for use as a general hash algorithm.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2050"><tt class="function">decompress</tt></a></b>(<var>string</var><big>[</big><var>, wbits</var><big>[</big><var>, bufsize</var><big>]</big><big>]</big>)
+<dd>
+  Decompresses the data in <var>string</var>, returning a string containing
+  the uncompressed data.  The <var>wbits</var> parameter controls the size of
+  the window buffer.  If <var>bufsize</var> is given, it is used as the
+  initial size of the output buffer.  Raises the <tt class="exception">error</tt>
+  exception if any error occurs.
+
+<P>
+The absolute value of <var>wbits</var> is the base two logarithm of the
+size of the history buffer (the ``window size'') used when compressing
+data.  Its absolute value should be between 8 and 15 for the most
+recent versions of the zlib library, larger values resulting in better
+compression at the expense of greater memory usage.  The default value
+is 15.  When <var>wbits</var> is negative, the standard
+<b class="program">gzip</b> header is suppressed; this is an undocumented feature
+of the zlib library, used for compatibility with <b class="program">unzip</b>'s
+compression file format.
+
+<P>
+<var>bufsize</var> is the initial size of the buffer used to hold
+decompressed data.  If more space is required, the buffer size will be
+increased as needed, so you don't have to get this value exactly
+right; tuning it will only save a few calls to <tt class="cfunction">malloc()</tt>.  The
+default size is 16384.
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2051"><tt class="function">decompressobj</tt></a></b>(<big>[</big><var>wbits</var><big>]</big>)
+<dd>
+  Returns a decompression object, to be used for decompressing data
+  streams that won't fit into memory at once.  The <var>wbits</var>
+  parameter controls the size of the window buffer.
+</dl>
+
+<P>
+Compression objects support the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-2052"><tt class="method">compress</tt></a></b>(<var>string</var>)
+<dd>
+Compress <var>string</var>, returning a string containing compressed data
+for at least part of the data in <var>string</var>.  This data should be
+concatenated to the output produced by any preceding calls to the
+<tt class="method">compress()</tt> method.  Some input may be kept in internal buffers
+for later processing.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2053"><tt class="method">flush</tt></a></b>(<big>[</big><var>mode</var><big>]</big>)
+<dd>
+All pending input is processed, and a string containing the remaining
+compressed output is returned.  <var>mode</var> can be selected from the
+constants <tt class="constant">Z_SYNC_FLUSH</tt>,  <tt class="constant">Z_FULL_FLUSH</tt>,  or 
+<tt class="constant">Z_FINISH</tt>, defaulting to <tt class="constant">Z_FINISH</tt>.  <tt class="constant">Z_SYNC_FLUSH</tt> and 
+<tt class="constant">Z_FULL_FLUSH</tt> allow compressing further strings of data and
+are used to allow partial error recovery on decompression, while
+<tt class="constant">Z_FINISH</tt> finishes the compressed stream and 
+prevents compressing any more data.  After calling
+<tt class="method">flush()</tt> with <var>mode</var> set to <tt class="constant">Z_FINISH</tt>, the
+<tt class="method">compress()</tt> method cannot be called again; the only realistic
+action is to delete the object.  
+</dl>
+
+<P>
+Decompression objects support the following methods, and two attributes:
+
+<P>
+<dl><dt><b><a name="l2h-2054"><tt class="member">unused_data</tt></a></b>
+<dd>
+A string which contains any unused data from the last string fed to
+this decompression object.  If the whole string turned out to contain
+compressed data, this is <code>""</code>, the empty string. 
+
+<P>
+The only way to determine where a string of compressed data ends is by
+actually decompressing it.  This means that when compressed data is
+contained part of a larger file, you can only find the end of it by
+reading data and feeding it into a decompression object's
+<tt class="method">decompress</tt> method until the <tt class="member">unused_data</tt> attribute is
+no longer the empty string.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2055"><tt class="member">unconsumed_tail</tt></a></b>
+<dd>
+A string that contains any data that was not consumed by the last
+<tt class="method">decompress</tt> call because it exceeded the limit for the
+uncompressed data buffer.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2056"><tt class="method">decompress</tt></a></b>(<var>string</var>)
+<dd><big>[</big>max_length<big>]</big>
+Decompress <var>string</var>, returning a string containing the
+uncompressed data corresponding to at least part of the data in
+<var>string</var>.  This data should be concatenated to the output produced
+by any preceding calls to the
+<tt class="method">decompress()</tt> method.  Some of the input data may be preserved
+in internal buffers for later processing.
+
+<P>
+If the optional parameter <var>max_length</var> is supplied then the return value
+will be no longer than <var>max_length</var>. This may mean that not all of the
+compressed input can be processed; and unconsumed data will be stored
+in the attribute <tt class="member">unconsumed_tail</tt>. This string must be passed
+to a subsequent call to <tt class="method">decompress()</tt> if decompression is to
+continue.  If <var>max_length</var> is not supplied then the whole input is
+decompressed, and <tt class="member">unconsumed_tail</tt> is an empty string.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2057"><tt class="method">flush</tt></a></b>()
+<dd>
+All pending input is processed, and a string containing the remaining
+uncompressed output is returned.  After calling <tt class="method">flush()</tt>, the
+<tt class="method">decompress()</tt> method cannot be called again; the only realistic
+action is to delete the object.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-gzip.html">gzip</a></tt>:</b>
+    <dd>Reading and writing <b class="program">gzip</b>-format files.
+  </dl>
+  <dl compact class="seeurl">
+    <dt><a href="http://www.gzip.org/zlib/"
+        class="url">http://www.gzip.org/zlib/</a>
+    <dd>The zlib library home page.
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="bsddb-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-gzip.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="bsddb-objects.html">7.12.1 Hash, BTree and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-gzip.html">7.14 gzip  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

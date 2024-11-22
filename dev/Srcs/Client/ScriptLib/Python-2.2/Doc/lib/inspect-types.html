@@ -1,0 +1,410 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.11.1 Types and members </title>
+<META NAME="description" CONTENT="3.11.1 Types and members ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="inspect-source.html">
+<LINK REL="previous" href="module-inspect.html">
+<LINK REL="up" href="module-inspect.html">
+<LINK REL="next" href="inspect-source.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-inspect.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-inspect.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="inspect-source.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-inspect.html">3.11 inspect  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-inspect.html">3.11 inspect  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="inspect-source.html">3.11.2 Retrieving source code</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0051110000000000000000">&nbsp;</A>
+<BR>
+3.11.1 Types and members
+            
+</H2>
+
+<P>
+The <tt class="function">getmembers()</tt> function retrieves the members
+of an object such as a class or module.
+The nine functions whose names begin with ``is'' are mainly
+provided as convenient choices for the second argument to
+<tt class="function">getmembers()</tt>.  They also help you determine when
+you can expect to find the following special attributes:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Type</b>&nbsp;</th>
+      <th align="left"><b>Attribute</b>&nbsp;</th>
+      <th align="left"><b>Description</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline">module</td>
+        <td align="left">__doc__</td>
+        <td align="left">documentation string</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">__file__</td>
+        <td align="left">filename (missing for built-in modules)</td>
+        <td align="center">&nbsp;</td>
+  
+    <tr><td align="center" valign="baseline">class</td>
+        <td align="left">__doc__</td>
+        <td align="left">documentation string</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">__module__</td>
+        <td align="left">name of module in which this class was defined</td>
+        <td align="center">&nbsp;</td>
+  
+    <tr><td align="center" valign="baseline">method</td>
+        <td align="left">__doc__</td>
+        <td align="left">documentation string</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">__name__</td>
+        <td align="left">name with which this method was defined</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">im_class</td>
+        <td align="left">class object that asked for this method</td>
+        <td align="center">(1)</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">im_func</td>
+        <td align="left">function object containing implementation of method</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">im_self</td>
+        <td align="left">instance to which this method is bound, or <code>None</code></td>
+        <td align="center">&nbsp;</td>
+  
+    <tr><td align="center" valign="baseline">function</td>
+        <td align="left">__doc__</td>
+        <td align="left">documentation string</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">__name__</td>
+        <td align="left">name with which this function was defined</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">func_code</td>
+        <td align="left">code object containing compiled function bytecode</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">func_defaults</td>
+        <td align="left">tuple of any default values for arguments</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">func_doc</td>
+        <td align="left">(same as __doc__)</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">func_globals</td>
+        <td align="left">global namespace in which this function was defined</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">func_name</td>
+        <td align="left">(same as __name__)</td>
+        <td align="center">&nbsp;</td>
+  
+    <tr><td align="center" valign="baseline">traceback</td>
+        <td align="left">tb_frame</td>
+        <td align="left">frame object at this level</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">tb_lasti</td>
+        <td align="left">index of last attempted instruction in bytecode</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">tb_lineno</td>
+        <td align="left">current line number in Python source code</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">tb_next</td>
+        <td align="left">next inner traceback object (called by this level)</td>
+        <td align="center">&nbsp;</td>
+  
+    <tr><td align="center" valign="baseline">frame</td>
+        <td align="left">f_back</td>
+        <td align="left">next outer frame object (this frame's caller)</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">f_builtins</td>
+        <td align="left">built-in namespace seen by this frame</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">f_code</td>
+        <td align="left">code object being executed in this frame</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">f_exc_traceback</td>
+        <td align="left">traceback if raised in this frame, or <code>None</code></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">f_exc_type</td>
+        <td align="left">exception type if raised in this frame, or <code>None</code></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">f_exc_value</td>
+        <td align="left">exception value if raised in this frame, or <code>None</code></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">f_globals</td>
+        <td align="left">global namespace seen by this frame</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">f_lasti</td>
+        <td align="left">index of last attempted instruction in bytecode</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">f_lineno</td>
+        <td align="left">current line number in Python source code</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">f_locals</td>
+        <td align="left">local namespace seen by this frame</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">f_restricted</td>
+        <td align="left">0 or 1 if frame is in restricted execution mode</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">f_trace</td>
+        <td align="left">tracing function for this frame, or <code>None</code></td>
+        <td align="center">&nbsp;</td>
+  
+    <tr><td align="center" valign="baseline">code</td>
+        <td align="left">co_argcount</td>
+        <td align="left">number of arguments (not including * or ** args)</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">co_code</td>
+        <td align="left">string of raw compiled bytecode</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">co_consts</td>
+        <td align="left">tuple of constants used in the bytecode</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">co_filename</td>
+        <td align="left">name of file in which this code object was created</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">co_firstlineno</td>
+        <td align="left">number of first line in Python source code</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">co_flags</td>
+        <td align="left">bitmap: 1=optimized <code>|</code> 2=newlocals <code>|</code> 4=*arg <code>|</code> 8=**arg</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">co_lnotab</td>
+        <td align="left">encoded mapping of line numbers to bytecode indices</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">co_name</td>
+        <td align="left">name with which this code object was defined</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">co_names</td>
+        <td align="left">tuple of names of local variables</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">co_nlocals</td>
+        <td align="left">number of local variables</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">co_stacksize</td>
+        <td align="left">virtual machine stack space required</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">co_varnames</td>
+        <td align="left">tuple of names of arguments and local variables</td>
+        <td align="center">&nbsp;</td>
+  
+    <tr><td align="center" valign="baseline">builtin</td>
+        <td align="left">__doc__</td>
+        <td align="left">documentation string</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">__name__</td>
+        <td align="left">original name of this function or method</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">&nbsp;</td>
+        <td align="left">__self__</td>
+        <td align="left">instance to which a method is bound, or <code>None</code></td>
+        <td align="center">&nbsp;</td></tbody>
+</table>
+
+<P>
+Note:
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>
+<span class="versionnote">Changed in version 2.2:
+<tt class="member">im_class</tt> used to refer to the class that
+                defined the method.</span>
+
+</DD>
+</DL>
+
+<P>
+<dl><dt><b><a name="l2h-460"><tt class="function">getmembers</tt></a></b>(<var>object</var><big>[</big><var>, predicate</var><big>]</big>)
+<dd>
+  Return all the members of an object in a list of (name, value) pairs
+  sorted by name.  If the optional <var>predicate</var> argument is supplied,
+  only members for which the predicate returns a true value are included.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-461"><tt class="function">getmoduleinfo</tt></a></b>(<var>path</var>)
+<dd>
+  Return a tuple of values that describe how Python will interpret the
+  file identified by <var>path</var> if it is a module, or <code>None</code> if
+  it would not be identified as a module.  The return tuple is
+  <code>(<var>name</var>, <var>suffix</var>, <var>mode</var>, <var>mtype</var>)</code>, where
+  <var>name</var> is the name of the module without the name of any
+  enclosing package, <var>suffix</var> is the trailing part of the file
+  name (which may not be a dot-delimited extension), <var>mode</var> is the
+  <tt class="function">open()</tt> mode that would be used (<code>'r'</code> or
+  <code>'rb'</code>), and <var>mtype</var> is an integer giving the type of the
+  module.  <var>mtype</var> will have a value which can be compared to the
+  constants defined in the <tt class="module"><a href="module-imp.html">imp</a></tt> module; see the
+  documentation for that module for more information on module types.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-462"><tt class="function">getmodulename</tt></a></b>(<var>path</var>)
+<dd>
+  Return the name of the module named by the file <var>path</var>, without
+  including the names of enclosing packages.  This uses the same
+  algortihm as the interpreter uses when searching for modules.  If
+  the name cannot be matched according to the interpreter's rules,
+  <code>None</code> is returned.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-463"><tt class="function">ismodule</tt></a></b>(<var>object</var>)
+<dd>
+  Return true if the object is a module.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-464"><tt class="function">isclass</tt></a></b>(<var>object</var>)
+<dd>
+  Return true if the object is a class.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-465"><tt class="function">ismethod</tt></a></b>(<var>object</var>)
+<dd>
+  Return true if the object is a method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-466"><tt class="function">isfunction</tt></a></b>(<var>object</var>)
+<dd>
+  Return true if the object is a Python function or unnamed (lambda) function.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-467"><tt class="function">istraceback</tt></a></b>(<var>object</var>)
+<dd>
+  Return true if the object is a traceback.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-468"><tt class="function">isframe</tt></a></b>(<var>object</var>)
+<dd>
+  Return true if the object is a frame.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-469"><tt class="function">iscode</tt></a></b>(<var>object</var>)
+<dd>
+  Return true if the object is a code.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-470"><tt class="function">isbuiltin</tt></a></b>(<var>object</var>)
+<dd>
+  Return true if the object is a built-in function.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-471"><tt class="function">isroutine</tt></a></b>(<var>object</var>)
+<dd>
+  Return true if the object is a user-defined or built-in function or method.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-inspect.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-inspect.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="inspect-source.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-inspect.html">3.11 inspect  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-inspect.html">3.11 inspect  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="inspect-source.html">3.11.2 Retrieving source code</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

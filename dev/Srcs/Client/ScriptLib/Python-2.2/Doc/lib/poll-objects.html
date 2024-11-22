@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.3.1 Polling Objects </title>
+<META NAME="description" CONTENT="7.3.1 Polling Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-select.html">
+<LINK REL="up" href="module-select.html">
+<LINK REL="next" href="module-thread.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-select.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-select.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-thread.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-select.html">7.3 select  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-select.html">7.3 select  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-thread.html">7.4 thread  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009310000000000000000">&nbsp;</A>
+<BR>
+7.3.1 Polling Objects
+            
+</H2>
+
+<P>
+The <tt class="cfunction">poll()</tt> system call, supported on most Unix systems,
+provides better scalability for network servers that service many,
+many clients at the same time.
+<tt class="cfunction">poll()</tt> scales better because the system call only
+requires listing the file descriptors of interest, while <tt class="cfunction">select()</tt>
+builds a bitmap, turns on bits for the fds of interest, and then
+afterward the whole bitmap has to be linearly scanned again.
+<tt class="cfunction">select()</tt> is O(highest file descriptor), while
+<tt class="cfunction">poll()</tt> is O(number of file descriptors).
+
+<P>
+<dl><dt><b><a name="l2h-1924"><tt class="method">register</tt></a></b>(<var>fd</var><big>[</big><var>, eventmask</var><big>]</big>)
+<dd>
+Register a file descriptor with the polling object.  Future calls to
+the <tt class="method">poll()</tt> method will then check whether the file descriptor
+has any pending I/O events.  <var>fd</var> can be either an integer, or an
+object with a <tt class="method">fileno()</tt> method that returns an integer.  File
+objects implement
+<tt class="method">fileno()</tt>, so they can also be used as the argument.
+
+<P>
+<var>eventmask</var> is an optional bitmask describing the type of events you
+want to check for, and can be a combination of the constants
+<tt class="constant">POLLIN</tt>, <tt class="constant">POLLPRI</tt>, and <tt class="constant">POLLOUT</tt>,
+described in the table below.  If not specified, the default value
+used will check for all 3 types of events.
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Constant</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><tt class="constant">POLLIN</tt></td>
+        <td align="left">There is data to read</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">POLLPRI</tt></td>
+        <td align="left">There is urgent data to read</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">POLLOUT</tt></td>
+        <td align="left">Ready for output: writing will not block</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">POLLERR</tt></td>
+        <td align="left">Error condition of some sort</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">POLLHUP</tt></td>
+        <td align="left">Hung up</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">POLLNVAL</tt></td>
+        <td align="left">Invalid request: descriptor not open</td></tbody>
+</table>
+
+<P>
+Registering a file descriptor that's already registered is not an
+error, and has the same effect as registering the descriptor exactly
+once. 
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1925"><tt class="method">unregister</tt></a></b>(<var>fd</var>)
+<dd>
+Remove a file descriptor being tracked by a polling object.  Just like
+the <tt class="method">register()</tt> method, <var>fd</var> can be an integer or an
+object with a <tt class="method">fileno()</tt> method that returns an integer.
+
+<P>
+Attempting to remove a file descriptor that was never registered
+causes a <tt class="exception">KeyError</tt> exception to be raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1926"><tt class="method">poll</tt></a></b>(<big>[</big><var>timeout</var><big>]</big>)
+<dd>
+Polls the set of registered file descriptors, and returns a
+possibly-empty list containing <code>(<var>fd</var>, <var>event</var>)</code> 2-tuples
+for the descriptors that have events or errors to report.
+<var>fd</var> is the file descriptor, and <var>event</var> is a bitmask 
+with bits set for the reported events for that descriptor
+-- <tt class="constant">POLLIN</tt> for waiting input, 
+<tt class="constant">POLLOUT</tt> to indicate that the descriptor can be written to, and
+so forth.
+An empty list indicates that the call timed out and no file
+descriptors had any events to report.
+If <var>timeout</var> is given, it specifies the length of time in
+milliseconds which the system will wait for events before returning.
+If <var>timeout</var> is omitted, negative, or <code>None</code>, the call will
+block until there is an event for this poll object.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-select.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-select.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-thread.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-select.html">7.3 select  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-select.html">7.3 select  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-thread.html">7.4 thread  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

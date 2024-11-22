@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.2.5 Encoders</title>
+<META NAME="description" CONTENT="12.2.5 Encoders">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-email.Errors.html">
+<LINK REL="previous" HREF="node383.html">
+<LINK REL="up" href="module-email.html">
+<LINK REL="next" href="module-email.Errors.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node383.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-email.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-email.Errors.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node383.html">12.2.4 Creating email and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-email.html">12.2 email  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-email.Errors.html">12.2.6 Exception classes</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0014250000000000000000">
+12.2.5 Encoders</A>
+</H2>
+
+
+<P>
+When creating <tt class="class">Message</tt> objects from scratch, you often need to
+encode the payloads for transport through compliant mail servers.
+This is especially true for <span class="mimetype">image/*</span> and <span class="mimetype">text/*</span>
+type messages containing binary data.
+
+<P>
+The <tt class="module">email</tt> package provides some convenient encodings in its
+<tt class="module">Encoders</tt> module.  These encoders are actually used by the
+<tt class="class">MIMEImage</tt> and <tt class="class">MIMEText</tt> class constructors to provide default
+encodings.  All encoder functions take exactly one argument, the
+message object to encode.  They usually extract the payload, encode
+it, and reset the payload to this newly encoded value.  They should also
+set the <span class="mailheader">Content-Transfer-Encoding:</span> header as appropriate.
+
+<P>
+Here are the encoding functions provided:
+
+<P>
+<dl><dt><b><a name="l2h-2841"><tt class="function">encode_quopri</tt></a></b>(<var>msg</var>)
+<dd>
+Encodes the payload into <i>Quoted-Printable</i> form and sets the
+<code>Content-Transfer-Encoding:</code> header to
+<code>quoted-printable</code><A NAME="tex2html76"
+  HREF="#foot36426"><SUP>12.2</SUP></A>.
+This is a good encoding to use when most of your payload is normal
+printable data, but contains a few unprintable characters.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2842"><tt class="function">encode_base64</tt></a></b>(<var>msg</var>)
+<dd>
+Encodes the payload into <i>Base64</i> form and sets the
+<span class="mailheader">Content-Transfer-Encoding:</span> header to
+<code>base64</code>.  This is a good encoding to use when most of your payload
+is unprintable data since it is a more compact form than
+Quoted-Printable.  The drawback of Base64 encoding is that it
+renders the text non-human readable.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2843"><tt class="function">encode_7or8bit</tt></a></b>(<var>msg</var>)
+<dd>
+This doesn't actually modify the message's payload, but it does set
+the <span class="mailheader">Content-Transfer-Encoding:</span> header to either <code>7bit</code> or
+<code>8bit</code> as appropriate, based on the payload data.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2844"><tt class="function">encode_noop</tt></a></b>(<var>msg</var>)
+<dd>
+This does nothing; it doesn't even set the
+<span class="mailheader">Content-Transfer-Encoding:</span> header.
+</dl>
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot36426">...quoted-printable</A><A NAME="foot36426"
+ href="module-email.Encoders.html#tex2html76"><SUP>12.2</SUP></A>
+<DD>Note that encoding with
+<tt class="method">encode_quopri()</tt> also encodes all tabs and space characters in
+the data.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node383.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-email.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-email.Errors.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node383.html">12.2.4 Creating email and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-email.html">12.2 email  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-email.Errors.html">12.2.6 Exception classes</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

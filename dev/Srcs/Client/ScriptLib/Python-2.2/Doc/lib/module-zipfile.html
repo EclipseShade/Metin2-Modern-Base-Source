@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.15 zipfile -- Work with ZIP archives</title>
+<META NAME="description" CONTENT="7.15 zipfile -- Work with ZIP archives">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-readline.html">
+<LINK REL="previous" href="module-gzip.html">
+<LINK REL="up" href="someos.html">
+<LINK REL="next" href="zipfile-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-gzip.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="zipfile-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-gzip.html">7.14 gzip  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="zipfile-objects.html">7.15.1 ZipFile Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0091500000000000000000">
+7.15 <tt class="module">zipfile</tt> --
+         Work with ZIP archives</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 1.6.</span>
+
+<P>
+The ZIP file format is a common archive and compression standard.
+This module provides tools to create, read, write, append, and list a
+ZIP file.  Any advanced use of this module will require an
+understanding of the format, as defined in
+<em class="citetitle"><a
+ href="http://www.pkware.com/appnote.html"
+ title="PKZIP Application
+Note"
+ >PKZIP Application
+Note</a></em>.
+
+<P>
+This module does not currently handle ZIP files which have appended
+comments, or multi-disk ZIP files.
+
+<P>
+The available attributes of this module are:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2063"><tt class="exception">error</tt></a></b>
+<dd>
+  The error raised for bad ZIP files.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2064"><tt class="class">ZipFile</tt></a></b>
+<dd>
+  The class for reading and writing ZIP files.  See
+  ``<em class="citetitle"
+ >ZipFile Objects</em>'' (section <A href="zipfile-objects.html#zipfile-objects">7.15.1</A>) for
+  constructor details.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2065"><tt class="class">PyZipFile</tt></a></b>
+<dd>
+  Class for creating ZIP archives containing Python libraries.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2066"><tt class="class">ZipInfo</tt></a></b>(<big>[</big><var>filename</var><big>[</big><var>, date_time</var><big>]</big><big>]</big>)
+<dd>
+  Class used the represent infomation about a member of an archive.
+  Instances of this class are returned by the <tt class="method">getinfo()</tt> and
+  <tt class="method">infolist()</tt> methods of <tt class="class">ZipFile</tt> objects.  Most users
+  of the <tt class="module">zipfile</tt> module will not need to create these, but
+  only use those created by this module.
+  <var>filename</var> should be the full name of the archive member, and
+  <var>date_time</var> should be a tuple containing six fields which
+  describe the time of the last modification to the file; the fields
+  are described in section <A href="zipinfo-objects.html#zipinfo-objects">7.15.3</A>, ``ZipInfo Objects.''
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2067"><tt class="function">is_zipfile</tt></a></b>(<var>filename</var>)
+<dd>
+  Returns true if <var>filename</var> is a valid ZIP file based on its magic
+  number, otherwise returns false.  This module does not currently
+  handle ZIP files which have appended comments.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2068"><tt>ZIP_STORED</tt></a></b>
+<dd>
+  The numeric constant for an uncompressed archive member.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2069"><tt>ZIP_DEFLATED</tt></a></b>
+<dd>
+  The numeric constant for the usual ZIP compression method.  This
+  requires the zlib module.  No other compression methods are
+  currently supported.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.pkware.com/appnote.html"
+        >PKZIP Application
+            Note</a></em>
+    <dd>Documentation on the ZIP file format by Phil
+            Katz, the creator of the format and algorithms used.
+  </dl>
+
+<P>
+<dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.info-zip.org/pub/infozip/"
+        >Info-ZIP Home Page</a></em>
+    <dd>
+            Information about the Info-ZIP project's ZIP archive
+            programs and development libraries.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="zipfile-objects.html">7.15.1 ZipFile Objects</a>
+<LI><A href="pyzipfile-objects.html">7.15.2 PyZipFile Objects</a>
+<LI><A href="zipinfo-objects.html">7.15.3 ZipInfo Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-gzip.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="zipfile-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-gzip.html">7.14 gzip  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="zipfile-objects.html">7.15.1 ZipFile Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

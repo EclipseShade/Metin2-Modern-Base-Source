@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.12 bsddb -- Interface to Berkeley DB library</title>
+<META NAME="description" CONTENT="7.12 bsddb -- Interface to Berkeley DB library">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-zlib.html">
+<LINK REL="previous" href="module-whichdb.html">
+<LINK REL="up" href="someos.html">
+<LINK REL="next" href="bsddb-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-whichdb.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="bsddb-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-whichdb.html">7.11 whichdb  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="bsddb-objects.html">7.12.1 Hash, BTree and</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0091200000000000000000">
+7.12 <tt class="module">bsddb</tt> --
+         Interface to Berkeley DB library</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Unix, Windows</span>.</p>
+
+<P>
+The <tt class="module">bsddb</tt> module provides an interface to the Berkeley DB
+library.  Users can create hash, btree or record based library files
+using the appropriate open call. Bsddb objects behave generally like
+dictionaries.  Keys and values must be strings, however, so to use
+other objects as keys or to store other kinds of objects the user must
+serialize them somehow, typically using marshal.dumps or pickle.dumps.
+
+<P>
+There are two incompatible versions of the underlying library.
+Version 1.85 is widely available, but has some known bugs.  Version 2
+is not quite as widely used, but does offer some improvements.  The
+<tt class="module">bsddb</tt> module uses the 1.85 interface.  Starting with Python
+2.0, the <b class="program">configure</b> script can usually determine the
+version of the library which is available and build it correctly.  If
+you have difficulty getting <b class="program">configure</b> to do the right thing,
+run it with the <b class="programopt">--help</b> option to get information about
+additional options that can help.  On Windows, you will need to define
+the <code>HAVE_DB_185_H</code> macro if you are building Python from source
+and using version 2 of the DB library.
+
+<P>
+The <tt class="module">bsddb</tt> module defines the following functions that create
+objects that access the appropriate type of Berkeley DB file.  The
+first two arguments of each function are the same.  For ease of
+portability, only the first two arguments should be used in most
+instances.
+
+<P>
+<dl><dt><b><a name="l2h-2032"><tt class="function">hashopen</tt></a></b>(<var>filename</var><big>[</big><var>, flag</var><big>[</big><var>,
+                           mode</var><big>[</big><var>, bsize</var><big>[</big><var>,
+                           ffactor</var><big>[</big><var>, nelem</var><big>[</big><var>,
+                           cachesize</var><big>[</big><var>, hash</var><big>[</big><var>,
+                           lorder</var><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big>)
+<dd>
+Open the hash format file named <var>filename</var>.  The optional
+<var>flag</var> identifies the mode used to open the file.  It may be
+"<tt class="character">r</tt>" (read only), "<tt class="character">w</tt>" (read-write),
+"<tt class="character">c</tt>" (read-write - create if necessary) or
+"<tt class="character">n</tt>" (read-write - truncate to zero length).  The other
+arguments are rarely used and are just passed to the low-level
+<tt class="cfunction">dbopen()</tt> function.  Consult the Berkeley DB documentation
+for their use and interpretation.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2033"><tt class="function">btopen</tt></a></b>(<var>filename</var><big>[</big><var>, flag</var><big>[</big><var>,
+mode</var><big>[</big><var>, btflags</var><big>[</big><var>, cachesize</var><big>[</big><var>, maxkeypage</var><big>[</big><var>,
+minkeypage</var><big>[</big><var>, psize</var><big>[</big><var>, lorder</var><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big>)
+<dd>
+
+<P>
+Open the btree format file named <var>filename</var>.  The optional
+<var>flag</var> identifies the mode used to open the file.  It may be
+"<tt class="character">r</tt>" (read only), "<tt class="character">w</tt>" (read-write),
+"<tt class="character">c</tt>" (read-write - create if necessary) or
+"<tt class="character">n</tt>" (read-write - truncate to zero length).  The other
+arguments are rarely used and are just passed to the low-level dbopen
+function.  Consult the Berkeley DB documentation for their use and
+interpretation.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2034"><tt class="function">rnopen</tt></a></b>(<var>filename</var><big>[</big><var>, flag</var><big>[</big><var>, mode</var><big>[</big><var>,
+rnflags</var><big>[</big><var>, cachesize</var><big>[</big><var>, psize</var><big>[</big><var>, lorder</var><big>[</big><var>,
+reclen</var><big>[</big><var>, bval</var><big>[</big><var>, bfname</var><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big>)
+<dd>
+
+<P>
+Open a DB record format file named <var>filename</var>.  The optional
+<var>flag</var> identifies the mode used to open the file.  It may be
+"<tt class="character">r</tt>" (read only), "<tt class="character">w</tt>" (read-write),
+"<tt class="character">c</tt>" (read-write - create if necessary) or
+"<tt class="character">n</tt>" (read-write - truncate to zero length).  The other
+arguments are rarely used and are just passed to the low-level dbopen
+function.  Consult the Berkeley DB documentation for their use and
+interpretation.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-dbhash.html">dbhash</a></tt>:</b>
+    <dd>DBM-style interface to the <tt class="module">bsddb</tt>.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="bsddb-objects.html">7.12.1 Hash, BTree and Record Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-whichdb.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="bsddb-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-whichdb.html">7.11 whichdb  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="bsddb-objects.html">7.12.1 Hash, BTree and</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

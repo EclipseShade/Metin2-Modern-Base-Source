@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.5.5 Expat error constants </title>
+<META NAME="description" CONTENT="13.5.5 Expat error constants ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="expat-content-models.html">
+<LINK REL="up" href="module-xml.parsers.expat.html">
+<LINK REL="next" href="module-xml.dom.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="expat-content-models.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.parsers.expat.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-xml.dom.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="expat-content-models.html">13.5.4 Content Model Descriptions</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.parsers.expat.html">13.5 xml.parsers.expat  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-xml.dom.html">13.6 xml.dom  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0015550000000000000000">&nbsp;</A>
+<BR>
+13.5.5 Expat error constants 
+</H2>
+
+<P>
+The following constants are provided in the <code>errors</code> object of
+the <tt class="module"><a href="module-xml.parsers.expat.html">xml.parsers.expat</a></tt> module.  These constants are useful
+in interpreting some of the attributes of the <tt class="exception">ExpatError</tt>
+exception objects raised when an error has occurred.
+
+<P>
+The <code>errors</code> object has the following attributes:
+
+<P>
+<dl><dt><b><tt>XML_ERROR_ASYNC_ENTITY</tt></b>
+<dd>
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_ATTRIBUTE_EXTERNAL_ENTITY_REF</tt></b>
+<dd>
+An entity reference in an attribute value referred to an external
+entity instead of an internal entity.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_BAD_CHAR_REF</tt></b>
+<dd>
+A character reference referred to a character which is illegal in XML
+(for example, character <code>0</code>, or `<code>&amp;#0;</code>'.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_BINARY_ENTITY_REF</tt></b>
+<dd>
+An entity reference referred to an entity which was declared with a
+notation, so cannot be parsed.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_DUPLICATE_ATTRIBUTE</tt></b>
+<dd>
+An attribute was used more than once in a start tag.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_INCORRECT_ENCODING</tt></b>
+<dd>
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_INVALID_TOKEN</tt></b>
+<dd>
+Raised when an input byte could not properly be assigned to a
+character; for example, a NUL byte (value <code>0</code>) in a UTF-8 input
+stream.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_JUNK_AFTER_DOC_ELEMENT</tt></b>
+<dd>
+Something other than whitespace occurred after the document element.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_MISPLACED_XML_PI</tt></b>
+<dd>
+An XML declaration was found somewhere other than the start of the
+input data.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_NO_ELEMENTS</tt></b>
+<dd>
+The document contains no elements (XML requires all documents to
+contain exactly one top-level element)..
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_NO_MEMORY</tt></b>
+<dd>
+Expat was not able to allocate memory internally.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_PARAM_ENTITY_REF</tt></b>
+<dd>
+A parameter entity reference was found where it was not allowed.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_PARTIAL_CHAR</tt></b>
+<dd>
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_RECURSIVE_ENTITY_REF</tt></b>
+<dd>
+An entity reference contained another reference to the same entity;
+possibly via a different name, and possibly indirectly.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_SYNTAX</tt></b>
+<dd>
+Some unspecified syntax error was encountered.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_TAG_MISMATCH</tt></b>
+<dd>
+An end tag did not match the innermost open start tag.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_UNCLOSED_TOKEN</tt></b>
+<dd>
+Some token (such as a start tag) was not closed before the end of the
+stream or the next token was encountered.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_UNDEFINED_ENTITY</tt></b>
+<dd>
+A reference was made to a entity which was not defined.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_ERROR_UNKNOWN_ENCODING</tt></b>
+<dd>
+The document encoding is not supported by Expat.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="expat-content-models.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.parsers.expat.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-xml.dom.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="expat-content-models.html">13.5.4 Content Model Descriptions</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.parsers.expat.html">13.5 xml.parsers.expat  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-xml.dom.html">13.6 xml.dom  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

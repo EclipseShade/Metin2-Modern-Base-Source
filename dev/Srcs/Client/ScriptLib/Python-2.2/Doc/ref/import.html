@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.12 The import statement </title>
+<META NAME="description" CONTENT="6.12 The import statement ">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="global.html">
+<LINK REL="previous" href="continue.html">
+<LINK REL="up" href="simple.html">
+<LINK REL="next" href="global.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="continue.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="simple.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="global.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="continue.html">6.11 The continue statement</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="simple.html">6. Simple statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="global.html">6.13 The global statement</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0081200000000000000000">&nbsp;</A>
+<BR>
+6.12 The <tt class="keyword">import</tt> statement 
+</H1>
+<a name="l2h-351">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-import_stmt">import_stmt</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"import" <a href="node77.html#tok-module">module</a> ["as" <a href="">name</a>]
+                ( "," <a href="node77.html#tok-module">module</a> ["as" <a href="">name</a>] )*
+              | "from" <a href="node77.html#tok-module">module</a> "import" <a href="identifiers.html#tok-identifier">identifier</a>
+                ["as" <a href="">name</a>]
+                ( "," <a href="node16.html#tok-identifier">identifier</a> ["as" <a href="">name</a>] )*
+              | "from" <a href="import.html#tok-module">module</a> "import" "*"</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-module">module</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>(<a href="identifiers.html#tok-identifier">identifier</a> ".")* <a href="identifiers.html#tok-identifier">identifier</a></code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+Import statements are executed in two steps: (1) find a module, and
+initialize it if necessary; (2) define a name or names in the local
+namespace (of the scope where the <tt class="keyword">import</tt> statement occurs).
+The first form (without <tt class="keyword">from</tt>) repeats these steps for each
+identifier in the list.  The form with <tt class="keyword">from</tt> performs step
+(1) once, and then performs step (2) repeatedly.
+<a name="l2h-352">&nbsp;</a>
+<P>
+The system maintains a table of modules that have been initialized,
+indexed by module name.  This table is
+accessible as <code>sys.modules</code>.  When a module name is found in
+this table, step (1) is finished.  If not, a search for a module
+definition is started.  When a module is found, it is loaded.  Details
+of the module searching and loading process are implementation and
+platform specific.  It generally involves searching for a ``built-in''
+module with the given name and then searching a list of locations
+given as <code>sys.path</code>.
+<a name="l2h-350">&nbsp;</a><a name="l2h-353">&nbsp;</a>
+<P>
+If a built-in module is found, its built-in initialization code is
+executed and step (1) is finished.  If no matching file is found,
+<tt class="exception">ImportError</tt> is raised.  If a file is found, it is parsed,
+yielding an executable code block.  If a syntax error occurs,
+<tt class="exception">SyntaxError</tt> is raised.  Otherwise, an empty module of the given
+name is created and inserted in the module table, and then the code
+block is executed in the context of this module.  Exceptions during
+this execution terminate step (1).
+<a name="l2h-354">&nbsp;</a>
+<P>
+When step (1) finishes without raising an exception, step (2) can
+begin.
+
+<P>
+The first form of <tt class="keyword">import</tt> statement binds the module name in
+the local namespace to the module object, and then goes on to import
+the next identifier, if any.  If the module name is followed by
+<tt class="keyword">as</tt>, the name following <tt class="keyword">as</tt> is used as the local
+name for the module. To avoid confusion, you cannot import modules
+with dotted names <tt class="keyword">as</tt> a different local name. So <code>import
+module as m</code> is legal, but <code>import module.submod as s</code> is not.
+The latter should be written as <code>from module import submod as s</code>;
+see below.
+
+<P>
+The <tt class="keyword">from</tt> form does not bind the module name: it goes through the
+list of identifiers, looks each one of them up in the module found in step
+(1), and binds the name in the local namespace to the object thus found. 
+As with the first form of <tt class="keyword">import</tt>, an alternate local name can be
+supplied by specifying "<tt class="keyword">as</tt> localname".  If a name is not found,
+<tt class="exception">ImportError</tt> is raised.  If the list of identifiers is replaced
+by a star ("<tt class="character">*</tt>"), all public names defined in the module are
+bound in the local namespace of the <tt class="keyword">import</tt> statement..
+<a name="l2h-355">&nbsp;</a>
+<P>
+The <i>public names</i> defined by a module are determined by checking
+the module's namespace for a variable named <code>__all__</code>; if
+defined, it must be a sequence of strings which are names defined or
+imported by that module.  The names given in <code>__all__</code> are all
+considered public and are required to exist.  If <code>__all__</code> is not
+defined, the set of public names includes all names found in the
+module's namespace which do not begin with an underscore character
+("<tt class="character">_</tt>").
+
+<P>
+Names bound by <tt class="keyword">import</tt> statements may not occur in
+<tt class="keyword">global</tt> statements in the same scope.
+<a name="l2h-356">&nbsp;</a>
+<P>
+The <tt class="keyword">from</tt> form with "<tt class="samp">*</tt>" may only occur in a module scope.
+<a name="l2h-357">&nbsp;</a>
+<P>
+<b>Hierarchical module names:</b><a name="l2h-358">&nbsp;</a>when the module names contains one or more dots, the module search
+path is carried out differently.  The sequence of identifiers up to
+the last dot is used to find a ``package''<a name="l2h-359">&nbsp;</a>; the final
+identifier is then searched inside the package.  A package is
+generally a subdirectory of a directory on <code>sys.path</code> that has a
+file <span class="file">__init__.py</span>.<a name="l2h-360">&nbsp;</a>[XXX Can't be bothered to spell this out right now; see the URL
+<a class="url" href="http://www.python.org/doc/essays/packages.html">http://www.python.org/doc/essays/packages.html</a> for more details, also
+about how the module search works from inside a package.]
+
+<P>
+The built-in function <tt class="function">__import__()</tt> is provided to support
+applications that determine which modules need to be loaded
+dynamically; refer to <a class="ulink" href="../lib/built-in-funcs.html"
+  >Built-in
+Functions</a> in the
+<em class="citetitle"><a
+ href="../lib/lib.html"
+ title="Python Library Reference"
+ >Python Library Reference</a></em> for additional
+information.
+<a name="l2h-361">&nbsp;</a>
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="continue.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="simple.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="global.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="continue.html">6.11 The continue statement</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="simple.html">6. Simple statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="global.html">6.13 The global statement</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

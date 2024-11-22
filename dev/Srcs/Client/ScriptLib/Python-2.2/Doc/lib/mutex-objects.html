@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.11.1 Mutex Objects </title>
+<META NAME="description" CONTENT="6.11.1 Mutex Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-mutex.html">
+<LINK REL="up" href="module-mutex.html">
+<LINK REL="next" href="module-getpass.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-mutex.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-mutex.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-getpass.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-mutex.html">6.11 mutex  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-mutex.html">6.11 mutex  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-getpass.html">6.12 getpass  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0081110000000000000000">&nbsp;</A>
+<BR>
+6.11.1 Mutex Objects 
+</H2>
+
+<P>
+<tt class="class">mutex</tt> objects have following methods:
+
+<P>
+<dl><dt><b><a name="l2h-1405"><tt class="method">test</tt></a></b>()
+<dd>
+Check whether the mutex is locked.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1406"><tt class="method">testandset</tt></a></b>()
+<dd>
+``Atomic'' test-and-set, grab the lock if it is not set,
+and return true, otherwise, return false.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1407"><tt class="method">lock</tt></a></b>(<var>function, argument</var>)
+<dd>
+Execute <code><var>function</var>(<var>argument</var>)</code>, unless the mutex is locked.
+In the case it is locked, place the function and argument on the queue.
+See <tt class="method">unlock</tt> for explanation of when
+<code><var>function</var>(<var>argument</var>)</code> is executed in that case.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1408"><tt class="method">unlock</tt></a></b>()
+<dd>
+Unlock the mutex if queue is empty, otherwise execute the first element
+in the queue.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-mutex.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-mutex.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-getpass.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-mutex.html">6.11 mutex  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-mutex.html">6.11 mutex  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-getpass.html">6.12 getpass  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

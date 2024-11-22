@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>16.1.6.4 Coupling Widget Variables</title>
+<META NAME="description" CONTENT="16.1.6.4 Coupling Widget Variables">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node512.html">
+<LINK REL="previous" HREF="node510.html">
+<LINK REL="up" HREF="node507.html">
+<LINK REL="next" HREF="node512.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node510.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node507.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node512.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node510.html">16.1.6.3 Packer Options</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node507.html">16.1.6 Handy Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node512.html">16.1.6.5 The Window Manager</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0018164000000000000000">
+16.1.6.4 Coupling Widget Variables</A>
+</H3> 
+<P>
+The current-value setting of some widgets (like text entry widgets)
+can be connected directly to application variables by using special
+options.  These options are <code>variable</code>, <code>textvariable</code>,
+<code>onvalue</code>, <code>offvalue</code>, and <code>value</code>.  This
+connection works both ways: if the variable changes for any reason,
+the widget it's connected to will be updated to reflect the new value. 
+
+<P>
+Unfortunately, in the current implementation of <tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt> it is
+not possible to hand over an arbitrary Python variable to a widget
+through a <code>variable</code> or <code>textvariable</code> option.  The only
+kinds of variables for which this works are variables that are
+subclassed from a class called Variable, defined in the
+<tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt> module.
+
+<P>
+There are many useful subclasses of Variable already defined:
+<tt class="class">StringVar</tt>, <tt class="class">IntVar</tt>, <tt class="class">DoubleVar</tt>, and
+<tt class="class">BooleanVar</tt>.  To read the current value of such a variable,
+call the <tt class="method">get()</tt> method on
+it, and to change its value you call the <tt class="method">set()</tt> method.  If
+you follow this protocol, the widget will always track the value of
+the variable, with no further intervention on your part.
+
+<P>
+For example: 
+<dl><dd><pre class="verbatim">
+class App(Frame):
+    def __init__(self, master=None):
+        Frame.__init__(self, master)
+        self.pack()
+        
+        self.entrythingy = Entry()
+        self.entrythingy.pack()
+        
+        self.button.pack()
+        # here is the application variable
+        self.contents = StringVar()
+        # set it to some value
+        self.contents.set("this is a variable")
+        # tell the entry widget to watch this variable
+        self.entrythingy["textvariable"] = self.contents
+        
+        # and here we get a callback when the user hits return.
+        # we will have the program print out the value of the
+        # application variable when the user hits return
+        self.entrythingy.bind('&lt;Key-Return&gt;',
+                              self.print_contents)
+
+    def print_contents(self, event):
+        print "hi. contents of entry is now ----&gt;", \
+              self.contents.get()
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node510.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node507.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node512.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node510.html">16.1.6.3 Packer Options</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node507.html">16.1.6 Handy Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node512.html">16.1.6.5 The Window Manager</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

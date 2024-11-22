@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.9 Comparisons</title>
+<META NAME="description" CONTENT="5.9 Comparisons">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="lambda.html">
+<LINK REL="previous" href="bitwise.html">
+<LINK REL="up" href="expressions.html">
+<LINK REL="next" href="lambda.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="bitwise.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="expressions.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="lambda.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="bitwise.html">5.8 Binary bit-wise operations</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="expressions.html">5. Expressions</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="lambda.html">5.10 Boolean operations</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007900000000000000000">&nbsp;</A>
+<a name="l2h-284">&nbsp;</a>
+<BR>
+5.9 Comparisons
+</H1>
+
+<P>
+Unlike C, all comparison operations in Python have the same priority,
+which is lower than that of any arithmetic, shifting or bitwise
+operation.  Also unlike C, expressions like <code>a &lt; b &lt; c</code> have the
+interpretation that is conventional in mathematics:
+<a name="l2h-285">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-comparison">comparison</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="bitwise.html#tok-or_expr">or_expr</a> ( <a href="node60.html#tok-comp_operator">comp_operator</a> <a href="bitwise.html#tok-or_expr">or_expr</a> )*</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-comp_operator">comp_operator</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"&lt;" | "&gt;" | "==" | "&gt;=" | "&lt;=" | "&lt;&gt;" | "!="
+              | "is" ["not"] | ["not"] "in"</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+Comparisons yield integer values: <code>1</code> for true, <code>0</code> for false.
+
+<P>
+Comparisons can be chained arbitrarily, e.g., <code>x &lt; y &lt;= z</code> is
+equivalent to <code>x &lt; y and y &lt;= z</code>, except that <code>y</code> is
+evaluated only once (but in both cases <code>z</code> is not evaluated at all
+when <code>x &lt; y</code> is found to be false).
+<a name="l2h-286">&nbsp;</a>
+<P>
+Formally, if <var>a</var>, <var>b</var>, <var>c</var>, ..., <var>y</var>, <var>z</var> are
+expressions and <var>opa</var>, <var>opb</var>, ..., <var>opy</var> are comparison
+operators, then <var>a opa b opb c</var> ...<var>y opy z</var> is equivalent
+to <var>a opa b</var> <tt class="keyword">and</tt> <var>b opb c</var> <tt class="keyword">and</tt> ...
+<var>y opy z</var>, except that each expression is evaluated at most once.
+
+<P>
+Note that <var>a opa b opb c</var> doesn't imply any kind of comparison
+between <var>a</var> and <var>c</var>, so that, e.g., <code>x &lt; y &gt; z</code> is
+perfectly legal (though perhaps not pretty).
+
+<P>
+The forms <code>&lt;&gt;</code> and <code>!=</code> are equivalent; for consistency with
+C, <code>!=</code> is preferred; where <code>!=</code> is mentioned below
+<code>&lt;&gt;</code> is also accepted.  The <code>&lt;&gt;</code> spelling is considered
+obsolescent.
+
+<P>
+The operators <code>&lt;</code>, <code>&gt;</code>, <code>==</code>, <code>&gt;=</code>, <code>&lt;=</code>, and
+<code>!=</code> compare
+the values of two objects.  The objects need not have the same type.
+If both are numbers, they are coverted to a common type.  Otherwise,
+objects of different types <i>always</i> compare unequal, and are
+ordered consistently but arbitrarily.
+
+<P>
+(This unusual definition of comparison was used to simplify the
+definition of operations like sorting and the <tt class="keyword">in</tt> and
+<tt class="keyword">not in</tt> operators.  In the future, the comparison rules for
+objects of different types are likely to change.)
+
+<P>
+Comparison of objects of the same type depends on the type:
+
+<P>
+
+<UL>
+<LI>Numbers are compared arithmetically.
+
+<P>
+</LI>
+<LI>Strings are compared lexicographically using the numeric equivalents
+(the result of the built-in function <tt class="function">ord()</tt>) of their
+characters.  Unicode and 8-bit strings are fully interoperable in this
+behavior.
+
+<P>
+</LI>
+<LI>Tuples and lists are compared lexicographically using comparison of
+corresponding items.
+
+<P>
+</LI>
+<LI>Mappings (dictionaries) compare equal if and only if their sorted
+(key, value) lists compare equal.<A NAME="tex2html5"
+  HREF="#foot3339"><SUP>5.3</SUP></A>Outcomes other than equality are resolved consistently, but are not
+otherwise defined.<A NAME="tex2html6"
+  HREF="#foot3632"><SUP>5.4</SUP></A>
+<P>
+</LI>
+<LI>Most other types compare unequal unless they are the same object;
+the choice whether one object is considered smaller or larger than
+another one is made arbitrarily but consistently within one
+execution of a program.
+
+<P>
+</LI>
+</UL>
+
+<P>
+The operators <tt class="keyword">in</tt> and <tt class="keyword">not in</tt> test for set
+membership.  <code><var>x</var> in <var>s</var></code> evaluates to true if <var>x</var>
+is a member of the set <var>s</var>, and false otherwise.  <code><var>x</var>
+not in <var>s</var></code> returns the negation of <code><var>x</var> in <var>s</var></code>.
+The set membership test has traditionally been bound to sequences; an
+object is a member of a set if the set is a sequence and contains an
+element equal to that object.  However, it is possible for an object
+to support membership tests without being a sequence.  In particular,
+dictionaries support memership testing as a nicer way of spelling
+<code><var>key</var> in <var>dict</var></code>; other mapping types may follow suit.
+
+<P>
+For the list and tuple types, <code><var>x</var> in <var>y</var></code> is true if and
+only if there exists an index <var>i</var> such that
+<code><var>x</var> == <var>y</var>[<var>i</var>]</code> is true.
+
+<P>
+For the Unicode and string types, <code><var>x</var> in <var>y</var></code> is true if
+and only if there exists an index <var>i</var> such that <code><var>x</var> ==
+<var>y</var>[<var>i</var>]</code> is true. If <code><var>x</var></code> is not a string or
+Unicode object of length <code>1</code>, a <tt class="exception">TypeError</tt> exception
+is raised.
+
+<P>
+For user-defined classes which define the <tt class="method">__contains__()</tt> method,
+<code><var>x</var> in <var>y</var></code> is true if and only if
+<code><var>y</var>.__contains__(<var>x</var>)</code> is true.
+
+<P>
+For user-defined classes which do not define <tt class="method">__contains__()</tt> and
+do define <tt class="method">__getitem__()</tt>, <code><var>x</var> in <var>y</var></code> is true if
+and only if there is a non-negative integer index <var>i</var> such that
+<code><var>x</var> == <var>y</var>[<var>i</var>]</code>, and all lower integer indices
+do not raise <tt class="exception">IndexError</tt> exception. (If any other exception
+is raised, it is as if <tt class="keyword">in</tt> raised that exception).
+
+<P>
+The operator <tt class="keyword">not in</tt> is defined to have the inverse true value
+of <tt class="keyword">in</tt>.
+<a name="l2h-287">&nbsp;</a>
+<P>
+The operators <tt class="keyword">is</tt> and <tt class="keyword">is not</tt> test for object identity:
+<code><var>x</var> is <var>y</var></code> is true if and only if <var>x</var> and <var>y</var>
+are the same object.  <code><var>x</var> is not <var>y</var></code> yields the inverse
+truth value.
+<a name="l2h-288">&nbsp;</a>
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot3339">... equal.</A><A NAME="foot3339"
+ href="comparisons.html#tex2html5"><SUP>5.3</SUP></A>
+<DD>The implementation computes
+   this efficiently, without constructing lists or sorting.
+
+<DT><A NAME="foot3632">... defined.</A><A NAME="foot3632"
+ href="comparisons.html#tex2html6"><SUP>5.4</SUP></A>
+<DD>Earlier versions of Python used
+  lexicographic comparison of the sorted (key, value) lists, but this
+  was very expensive for the common case of comparing for equality.  An
+  even earlier version of Python compared dictionaries by identity only,
+  but this caused surprises because people expected to be able to test
+  a dictionary for emptiness by comparing it to <code>{}</code>.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="bitwise.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="expressions.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="lambda.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="bitwise.html">5.8 Binary bit-wise operations</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="expressions.html">5. Expressions</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="lambda.html">5.10 Boolean operations</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

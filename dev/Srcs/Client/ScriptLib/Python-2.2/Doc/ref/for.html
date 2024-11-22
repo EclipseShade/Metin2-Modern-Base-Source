@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.3 The for statement</title>
+<META NAME="description" CONTENT="7.3 The for statement">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="try.html">
+<LINK REL="previous" href="while.html">
+<LINK REL="up" href="compound.html">
+<LINK REL="next" href="try.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="while.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="compound.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="try.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="while.html">7.2 The while statement</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="compound.html">7. Compound statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="try.html">7.4 The try statement</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION009300000000000000000">&nbsp;</A>
+<BR>
+7.3 The <tt class="keyword">for</tt> statement
+</H1>
+<a name="l2h-380">&nbsp;</a>
+<P>
+The <tt class="keyword">for</tt> statement is used to iterate over the elements of a
+sequence (such as a string, tuple or list) or other iterable object:
+<a name="l2h-381">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-for_stmt">for_stmt</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"for" <a href="node67.html#tok-target_list">target_list</a> "in" <a href="exprlists.html#tok-expression_list">expression_list</a>
+              ":" <a href="compound.html#tok-suite">suite</a>
+              ["else" ":" <a href="compound.html#tok-suite">suite</a>]</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+The expression list is evaluated once; it should yield a sequence.  The
+suite is then executed once for each item in the sequence, in the
+order of ascending indices.  Each item in turn is assigned to the
+target list using the standard rules for assignments, and then the
+suite is executed.  When the items are exhausted (which is immediately
+when the sequence is empty), the suite in the <tt class="keyword">else</tt> clause, if
+present, is executed, and the loop terminates.
+<a name="l2h-382">&nbsp;</a>
+<P>
+A <tt class="keyword">break</tt> statement executed in the first suite terminates the
+loop without executing the <tt class="keyword">else</tt> clause's suite.  A
+<tt class="keyword">continue</tt> statement executed in the first suite skips the rest
+of the suite and continues with the next item, or with the <tt class="keyword">else</tt>
+clause if there was no next item.
+<a name="l2h-383">&nbsp;</a>
+<P>
+The suite may assign to the variable(s) in the target list; this does
+not affect the next item assigned to it.
+
+<P>
+The target list is not deleted when the loop is finished, but if the
+sequence is empty, it will not have been assigned to at all by the
+loop.  Hint: the built-in function <tt class="function">range()</tt> returns a
+sequence of integers suitable to emulate the effect of Pascal's
+<code>for i := a to b do</code>;
+e.g., <code>range(3)</code> returns the list <code>[0, 1, 2]</code>.
+<a name="l2h-384">&nbsp;</a>
+<P>
+<span class="warning"><b class="label">Warning:</b>
+There is a subtlety when the sequence is being modified
+by the loop (this can only occur for mutable sequences, i.e. lists).
+An internal counter is used to keep track of which item is used next,
+and this is incremented on each iteration.  When this counter has
+reached the length of the sequence the loop terminates.  This means that
+if the suite deletes the current (or a previous) item from the
+sequence, the next item will be skipped (since it gets the index of
+the current item which has already been treated).  Likewise, if the
+suite inserts an item in the sequence before the current item, the
+current item will be treated again the next time through the loop.
+This can lead to nasty bugs that can be avoided by making a temporary
+copy using a slice of the whole sequence, e.g.,
+<a name="l2h-379">&nbsp;</a></span>
+
+<P>
+<dl><dd><pre class="verbatim">
+for x in a[:]:
+    if x &lt; 0: a.remove(x)
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="while.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="compound.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="try.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="while.html">7.2 The while statement</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="compound.html">7. Compound statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="try.html">7.4 The try statement</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

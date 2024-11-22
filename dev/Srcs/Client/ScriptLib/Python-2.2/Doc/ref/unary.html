@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.5 Unary arithmetic operations </title>
+<META NAME="description" CONTENT="5.5 Unary arithmetic operations ">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="binary.html">
+<LINK REL="previous" href="power.html">
+<LINK REL="up" href="expressions.html">
+<LINK REL="next" href="binary.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="power.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="expressions.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="binary.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="power.html">5.4 The power operator</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="expressions.html">5. Expressions</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="binary.html">5.6 Binary arithmetic operations</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007500000000000000000">&nbsp;</A>
+<BR>
+5.5 Unary arithmetic operations 
+</H1>
+<a name="l2h-267">&nbsp;</a>
+<P>
+All unary arithmetic (and bit-wise) operations have the same priority:
+
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-u_expr">u_expr</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="node55.html#tok-power">power</a> | "-" <a href="unary.html#tok-u_expr">u_expr</a>
+              | "+" <a href="unary.html#tok-u_expr">u_expr</a> | "&nbsp;" <a href="unary.html#tok-u_expr">u_expr</a></code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+The unary <code>-</code> (minus) operator yields the negation of its
+numeric argument.
+<a name="l2h-268">&nbsp;</a>
+<P>
+The unary <code>+</code> (plus) operator yields its numeric argument
+unchanged.
+<a name="l2h-269">&nbsp;</a>
+<P>
+The unary <code>~</code> (invert) operator yields the bit-wise inversion
+of its plain or long integer argument.  The bit-wise inversion of
+<code>x</code> is defined as <code>-(x+1)</code>.  It only applies to integral
+numbers.
+<a name="l2h-270">&nbsp;</a>
+<P>
+In all three cases, if the argument does not have the proper type,
+a <tt class="exception">TypeError</tt> exception is raised.
+<a name="l2h-271">&nbsp;</a>
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="power.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="expressions.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="binary.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="power.html">5.4 The power operator</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="expressions.html">5. Expressions</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="binary.html">5.6 Binary arithmetic operations</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

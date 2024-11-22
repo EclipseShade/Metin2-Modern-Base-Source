@@ -1,0 +1,97 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eterBase", "..\..\Client\EterBase\eterBase_VC90.vcproj", "{678C47DC-B3EF-460E-A932-56F3208FC65E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EterPack", "..\..\Client\EterPack\EterPack_VC90.vcproj", "{4950BA04-3877-4F66-BCA0-60E00DE3770B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eterlib", "..\..\Client\EterLib\eterlib_VC90.vcproj", "{887F89DF-A1A2-47DF-A869-F3FC84704E3E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Metin2PackMaker", "Metin2PackMaker.vcproj", "{B7867A3F-5825-4490-8E41-D7586EF505E1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4950BA04-3877-4F66-BCA0-60E00DE3770B} = {4950BA04-3877-4F66-BCA0-60E00DE3770B}
+		{678C47DC-B3EF-460E-A932-56F3208FC65E} = {678C47DC-B3EF-460E-A932-56F3208FC65E}
+		{887F89DF-A1A2-47DF-A869-F3FC84704E3E} = {887F89DF-A1A2-47DF-A869-F3FC84704E3E}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 5
+		SccProjectUniqueName0 = ..\\..\\Client\\EterPack\\EterPack_VC90.vcproj
+		SccLocalPath0 = ..\\..\\Client\\EterPack
+		SccProjectName1 = Perforce\u0020Project
+		SccLocalPath1 = ..\\..
+		SccProvider1 = MSSCCI:Perforce\u0020SCM
+		SccProjectFilePathRelativizedFromConnection1 = Tools\\Metin2PackMaker\\
+		SccProjectUniqueName2 = ..\\..\\Client\\EterBase\\eterBase_VC90.vcproj
+		SccLocalPath2 = ..\\..
+		SccProjectFilePathRelativizedFromConnection2 = Client\\EterBase\\
+		SccProjectUniqueName3 = ..\\..\\Client\\EterLib\\eterlib_VC90.vcproj
+		SccLocalPath3 = ..\\..
+		SccProjectFilePathRelativizedFromConnection3 = Client\\EterLib\\
+		SccProjectUniqueName4 = Metin2PackMaker.vcproj
+		SccLocalPath4 = ..\\..
+		SccProjectFilePathRelativizedFromConnection4 = Tools\\Metin2PackMaker\\
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Distribute|Win32 = Distribute|Win32
+		MfcDebug|Win32 = MfcDebug|Win32
+		MfcRelease|Win32 = MfcRelease|Win32
+		Release|Win32 = Release|Win32
+		VTune|Win32 = VTune|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{678C47DC-B3EF-460E-A932-56F3208FC65E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{678C47DC-B3EF-460E-A932-56F3208FC65E}.Debug|Win32.Build.0 = Debug|Win32
+		{678C47DC-B3EF-460E-A932-56F3208FC65E}.Distribute|Win32.ActiveCfg = Distribute|Win32
+		{678C47DC-B3EF-460E-A932-56F3208FC65E}.Distribute|Win32.Build.0 = Distribute|Win32
+		{678C47DC-B3EF-460E-A932-56F3208FC65E}.MfcDebug|Win32.ActiveCfg = MfcDebug|Win32
+		{678C47DC-B3EF-460E-A932-56F3208FC65E}.MfcDebug|Win32.Build.0 = MfcDebug|Win32
+		{678C47DC-B3EF-460E-A932-56F3208FC65E}.MfcRelease|Win32.ActiveCfg = MfcRelease|Win32
+		{678C47DC-B3EF-460E-A932-56F3208FC65E}.MfcRelease|Win32.Build.0 = MfcRelease|Win32
+		{678C47DC-B3EF-460E-A932-56F3208FC65E}.Release|Win32.ActiveCfg = Release|Win32
+		{678C47DC-B3EF-460E-A932-56F3208FC65E}.Release|Win32.Build.0 = Release|Win32
+		{678C47DC-B3EF-460E-A932-56F3208FC65E}.VTune|Win32.ActiveCfg = VTune|Win32
+		{678C47DC-B3EF-460E-A932-56F3208FC65E}.VTune|Win32.Build.0 = VTune|Win32
+		{4950BA04-3877-4F66-BCA0-60E00DE3770B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4950BA04-3877-4F66-BCA0-60E00DE3770B}.Debug|Win32.Build.0 = Debug|Win32
+		{4950BA04-3877-4F66-BCA0-60E00DE3770B}.Distribute|Win32.ActiveCfg = Distribute|Win32
+		{4950BA04-3877-4F66-BCA0-60E00DE3770B}.Distribute|Win32.Build.0 = Distribute|Win32
+		{4950BA04-3877-4F66-BCA0-60E00DE3770B}.MfcDebug|Win32.ActiveCfg = MfcDebug|Win32
+		{4950BA04-3877-4F66-BCA0-60E00DE3770B}.MfcDebug|Win32.Build.0 = MfcDebug|Win32
+		{4950BA04-3877-4F66-BCA0-60E00DE3770B}.MfcRelease|Win32.ActiveCfg = MfcRelease|Win32
+		{4950BA04-3877-4F66-BCA0-60E00DE3770B}.MfcRelease|Win32.Build.0 = MfcRelease|Win32
+		{4950BA04-3877-4F66-BCA0-60E00DE3770B}.Release|Win32.ActiveCfg = Release|Win32
+		{4950BA04-3877-4F66-BCA0-60E00DE3770B}.Release|Win32.Build.0 = Release|Win32
+		{4950BA04-3877-4F66-BCA0-60E00DE3770B}.VTune|Win32.ActiveCfg = VTune|Win32
+		{4950BA04-3877-4F66-BCA0-60E00DE3770B}.VTune|Win32.Build.0 = VTune|Win32
+		{887F89DF-A1A2-47DF-A869-F3FC84704E3E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{887F89DF-A1A2-47DF-A869-F3FC84704E3E}.Debug|Win32.Build.0 = Debug|Win32
+		{887F89DF-A1A2-47DF-A869-F3FC84704E3E}.Distribute|Win32.ActiveCfg = Distribute|Win32
+		{887F89DF-A1A2-47DF-A869-F3FC84704E3E}.Distribute|Win32.Build.0 = Distribute|Win32
+		{887F89DF-A1A2-47DF-A869-F3FC84704E3E}.MfcDebug|Win32.ActiveCfg = MfcDebug|Win32
+		{887F89DF-A1A2-47DF-A869-F3FC84704E3E}.MfcDebug|Win32.Build.0 = MfcDebug|Win32
+		{887F89DF-A1A2-47DF-A869-F3FC84704E3E}.MfcRelease|Win32.ActiveCfg = MfcRelease|Win32
+		{887F89DF-A1A2-47DF-A869-F3FC84704E3E}.MfcRelease|Win32.Build.0 = MfcRelease|Win32
+		{887F89DF-A1A2-47DF-A869-F3FC84704E3E}.Release|Win32.ActiveCfg = Release|Win32
+		{887F89DF-A1A2-47DF-A869-F3FC84704E3E}.Release|Win32.Build.0 = Release|Win32
+		{887F89DF-A1A2-47DF-A869-F3FC84704E3E}.VTune|Win32.ActiveCfg = VTune|Win32
+		{887F89DF-A1A2-47DF-A869-F3FC84704E3E}.VTune|Win32.Build.0 = VTune|Win32
+		{B7867A3F-5825-4490-8E41-D7586EF505E1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B7867A3F-5825-4490-8E41-D7586EF505E1}.Debug|Win32.Build.0 = Debug|Win32
+		{B7867A3F-5825-4490-8E41-D7586EF505E1}.Distribute|Win32.ActiveCfg = Distribute|Win32
+		{B7867A3F-5825-4490-8E41-D7586EF505E1}.Distribute|Win32.Build.0 = Distribute|Win32
+		{B7867A3F-5825-4490-8E41-D7586EF505E1}.MfcDebug|Win32.ActiveCfg = Debug|Win32
+		{B7867A3F-5825-4490-8E41-D7586EF505E1}.MfcDebug|Win32.Build.0 = Debug|Win32
+		{B7867A3F-5825-4490-8E41-D7586EF505E1}.MfcRelease|Win32.ActiveCfg = Distribute|Win32
+		{B7867A3F-5825-4490-8E41-D7586EF505E1}.MfcRelease|Win32.Build.0 = Distribute|Win32
+		{B7867A3F-5825-4490-8E41-D7586EF505E1}.Release|Win32.ActiveCfg = Distribute|Win32
+		{B7867A3F-5825-4490-8E41-D7586EF505E1}.Release|Win32.Build.0 = Distribute|Win32
+		{B7867A3F-5825-4490-8E41-D7586EF505E1}.VTune|Win32.ActiveCfg = Distribute|Win32
+		{B7867A3F-5825-4490-8E41-D7586EF505E1}.VTune|Win32.Build.0 = Distribute|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

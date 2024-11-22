@@ -1,0 +1,7 @@
+<server_list>
+	<region key="ymir" name="ymir" cp="cp949">
+		<server name="dev" auth_ip="10.1.89.23" auth_port="60001" game_port="61000" mark="1">
+			<channel ip="10.1.89.23"/>
+		</server>
+	</region>
+</server_list>

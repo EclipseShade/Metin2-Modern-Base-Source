@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.3.1 Connection Objects </title>
+<META NAME="description" CONTENT="2.3.1 Connection Objects ">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-ctb.html">
+<LINK REL="up" href="module-ctb.html">
+<LINK REL="next" href="module-macfs.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-ctb.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-ctb.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-macfs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-ctb.html">2.3 ctb  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-ctb.html">2.3 ctb  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-macfs.html">2.4 macfs  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004310000000000000000">&nbsp;</A>
+<BR>
+2.3.1 Connection Objects 
+</H2>
+
+<P>
+For all connection methods that take a <var>timeout</var> argument, a value
+of <code>-1</code> is indefinite, meaning that the command runs to completion.
+
+<P>
+<dl><dt><b><a name="l2h-17"><tt class="member">callback</tt></a></b>
+<dd>
+If this member is set to a value other than <code>None</code> it should point
+to a function accepting a single argument (the connection
+object). This will make all connection object methods work
+asynchronously, with the callback routine being called upon
+completion.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+For reasons beyond my understanding, the callback routine
+is currently never called. You are advised against using asynchronous
+calls for the time being.</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-18"><tt class="method">Open</tt></a></b>(<var>timeout</var>)
+<dd>
+Open an outgoing connection, waiting at most <var>timeout</var> seconds for
+the connection to be established.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-19"><tt class="method">Listen</tt></a></b>(<var>timeout</var>)
+<dd>
+Wait for an incoming connection. Stop waiting after <var>timeout</var>
+seconds. This call is only meaningful to some tools.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-20"><tt class="method">accept</tt></a></b>(<var>yesno</var>)
+<dd>
+Accept (when <var>yesno</var> is non-zero) or reject an incoming call after
+<tt class="method">Listen()</tt> returned.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-21"><tt class="method">Close</tt></a></b>(<var>timeout, now</var>)
+<dd>
+Close a connection. When <var>now</var> is zero, the close is orderly
+(outstanding output is flushed, etc.) with a timeout of
+<var>timeout</var> seconds. When <var>now</var> is non-zero the close is
+immediate, discarding output.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-22"><tt class="method">Read</tt></a></b>(<var>len, chan, timeout</var>)
+<dd>
+Read <var>len</var> bytes, or until <var>timeout</var> seconds have passed, from 
+the channel <var>chan</var> (which is one of <tt class="constant">cmData</tt>,
+<tt class="constant">cmCntl</tt> or <tt class="constant">cmAttn</tt>). Return a 2-tuple: the data
+read and the end-of-message flag, <tt class="constant">cmFlagsEOM</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-23"><tt class="method">Write</tt></a></b>(<var>buf, chan, timeout, eom</var>)
+<dd>
+Write <var>buf</var> to channel <var>chan</var>, aborting after <var>timeout</var>
+seconds. When <var>eom</var> has the value <tt class="constant">cmFlagsEOM</tt>, an
+end-of-message indicator will be written after the data (if this
+concept has a meaning for this communication tool). The method returns
+the number of bytes written.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-24"><tt class="method">Status</tt></a></b>()
+<dd>
+Return connection status as the 2-tuple <code>(<var>sizes</var>,
+<var>flags</var>)</code>. <var>sizes</var> is a 6-tuple giving the actual buffer sizes used
+(see <tt class="function">CMNew()</tt>), <var>flags</var> is a set of bits describing the state
+of the connection.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-25"><tt class="method">GetConfig</tt></a></b>()
+<dd>
+Return the configuration string of the communication tool. These
+configuration strings are tool-dependent, but usually easily parsed
+and modified.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-26"><tt class="method">SetConfig</tt></a></b>(<var>str</var>)
+<dd>
+Set the configuration string for the tool. The strings are parsed
+left-to-right, with later values taking precedence. This means
+individual configuration parameters can be modified by simply appending
+something like <code>'baud 4800'</code> to the end of the string returned by
+<tt class="method">GetConfig()</tt> and passing that to this method. The method returns
+the number of characters actually parsed by the tool before it
+encountered an error (or completed successfully).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-27"><tt class="method">Choose</tt></a></b>()
+<dd>
+Present the user with a dialog to choose a communication tool and
+configure it. If there is an outstanding connection some choices (like
+selecting a different tool) may cause the connection to be
+aborted. The return value (one of the <tt class="constant">choose*</tt> constants) will
+indicate this.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-28"><tt class="method">Idle</tt></a></b>()
+<dd>
+Give the tool a chance to use the processor. You should call this
+method regularly.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-29"><tt class="method">Abort</tt></a></b>()
+<dd>
+Abort an outstanding asynchronous <tt class="method">Open()</tt> or <tt class="method">Listen()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-30"><tt class="method">Reset</tt></a></b>()
+<dd>
+Reset a connection. Exact meaning depends on the tool.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-31"><tt class="method">Break</tt></a></b>(<var>length</var>)
+<dd>
+Send a break. Whether this means anything, what it means and
+interpretation of the <var>length</var> parameter depends on the tool in
+use.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-ctb.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-ctb.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-macfs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-ctb.html">2.3 ctb  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-ctb.html">2.3 ctb  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-macfs.html">2.4 macfs  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

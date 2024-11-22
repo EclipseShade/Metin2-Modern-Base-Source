@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?> 
+<torrent_locale>
+  <!-- Configuration --> 
+  <string key="CONFIG_LOADING">設定の読み込み中…</string> 
+  <string key="CONFIG_APPYING">設定の適用中…</string> 
+  <!-- Torrent --> 
+  <string key="TORRENT_PATCH">METIN II TORRENT</string> 
+  <!-- Title --> 
+  <string key="TORRENT_PATCH_CANCEL">終了</string> 
+  <string key="TORRENT_PATCH_ERROR">エラー発生！</string> 
+  <string key="TORRENT_START">スタート…</string> 
+  <string key="TORRENT_PATCH_INIT">初期化…</string> 
+  <string key="TORRENT_TOTAL_PROGRESS">進行率</string> 
+  <string key="TORRENT_PATCH_SEEDING">配布中…</string> 
+  <string key="TORRENT_STATE_QUEUED_FOR_CHECKING">ファイルチェックのため、しばらくお待ちください。</string> 
+  <string key="TORRENT_STATE_CHECKING">ファイル確認中…</string> 
+  <string key="TORRENT_STATE_DOWNLOADING_METADATA">メタデータの受信中</string> 
+  <string key="TORRENT_STATE_DOWNLOADING">受信中…</string> 
+  <string key="TORRENT_STATE_FINISHED">受信完了！</string> 
+  <string key="TORRENT_STATE_SEEDING">配布中…</string> 
+  <string key="TORRENT_STATE_ALLOCATING">状態確認中…</string> 
+  <string key="TORRENT_STATE_CHECKING_RESUME_DATA">続けて受信情報の確認中</string> 
+  <string key="TORRENT_STATE_UNKNOWN">状態エラー！</string> 
+  <string key="TORRENT_STATE_CANCELING">終了を待っています。</string> 
+  <string key="TORRENT_FOREGROUND_PATCH_RUN_GAME">ゲームを実行します。</string> 
+  <string key="TORRENT_SESSION_PAUSING">ダウンロード一時停止</string> 
+  <string key="TORRENT_SESSION_CLOSING">セッション終了準備中</string> 
+  <string key="TORRENT_SESSION_CLOSED">セッション終了待機中</string> 
+  <string key="TORRENT_SAVING_RESUME_DATA">続けて受信情報の保存中</string> 
+  <string key="TORRENT_DOWNLOAD_SPEED">ダウンロード速度:</string> 
+  <string key="TORRENT_UPLOAD_SPEED">アップロード速度:</string> 
+  <string key="TORRENT_PEERS_COUNT">ピア:</string> 
+  <string key="TORRENT_SEEDS_COUNT">配布:</string> 
+  <string key="TORRENT_TRAY_SHOWHIDE">表示/非表示</string> 
+  <string key="TORRENT_TRAY_EXIT">終了</string> 
+  <string key="TORRENT_TRAY_BANDWIDTH_ALLOCATION">帯域割当</string> 
+  <string key="TORRENT_TRAY_BANDWIDTH_UNLIMITED">無制限</string> 
+  <string key="NEW_PATCHER_START">パッチランチャーがアップデートされました。再起動します。</string> 
+  <string key="NEW_PATCHER_CHANGE_ERROR">新しいパッチランチャーの切り替えに失敗しました。もう一度実行してください。</string> 
+  <!-- Error & Warning -->
+  <string key="SET_ICON_ERROR">アイコンが設定できません。</string>
+  <string key="LOCAL_CONFIG_OPEN_ERROR">ローカルで設定ファイルが読み込めません。</string>
+  <string key="REMOTE_CONFIG_OPEN_ERROR">リモートで設定ファイルが読み込めません。</string>
+  <string key="LOAD_FILE_FROM_SFX_ZIP_FAILED">ファイルが含まれておりません。(ディレクトリ %s)</string>
+  <string key="_WFOPEN_S_ERROR">ファイルが読み込めません。(ディレクトリ %s モード %s)</string>
+  <string key="CHECK_PROTOCOL_ERROR">プロトコールエラー ('%s' != '%s')</string>
+  <string key="INTERNET_OPEN_ERROR">インターネットに接続できません。(エラーコード %d)</string>
+  <string key="INTERNET_CONNECT_ERROR">接続できません。(アドレス %s エラーコード %d)</string>
+  <string key="HTTP_OPEN_REQUEST_ERROR">HTTP オープン失敗 (アドレス %s エラーコード %d)</string>
+  <string key="HTTP_SEND_REQUEST_ERROR">HTTP リクエスト失敗 (アドレス %s エラーコード %d)</string>
+  <string key="HTTP_QUERY_STATUS_CODE_ERROR">HTTP クエリー失敗 (アドレス %s エラーコード %d)</string>
+  <string key="HTTP_QUERY_STATUS_NOT_OK">ファイルが見つかりません。 (アドレス %s エラーコード %d Status %d)</string>
+  <string key="HTTP_QUERY_CONTENT_LENGTH_ERROR">HTTP ファイルサイズエラー (アドレス %s エラーコード %d)</string>
+  <string key="INTERNET_READ_FILE_ERROR">ダウンロード失敗 (アドレス %s エラーコード %d 場所 %ld サイズ %ld)</string>
+  <string key="XML_PARSING_ERROR">XML 解析エラー</string>
+  <string key="XML_FIRST_ELEMENT_ERROR">XMLで最初の要素が見つかりません。</string>
+  <string key="CREATE_PROCESS_ERROR_2">実行ファイルが見つかりません。</string>
+  <string key="TORRENT_FILE_NOT_FOUND">トレントファイルが見つかりません。</string>
+  <string key="TORRENT_DOWNLOAD_ERROR">ダウンロード中にエラーが発生しました。</string>
+  <string key="TORRENT_SESSION_LISTEN_ERROR">セッションが開きません。(ポート %d-%d)</string>
+  <string key="LAUNCH_ERROR_WITH_ADMIN_PRIVILEGES">管理者権限で実行してください。</string>
+  <string key="NOT_SUPPORT_UAC">使用者アカウントコントロール(UAC) 権限獲得に失敗しました。管理者権限で実行してください。</string>
+</torrent_locale>

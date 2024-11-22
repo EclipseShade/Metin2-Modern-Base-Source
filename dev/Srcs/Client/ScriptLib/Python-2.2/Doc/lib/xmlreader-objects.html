@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.12.1 XMLReader Objects </title>
+<META NAME="description" CONTENT="13.12.1 XMLReader Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="incremental-parser-objects.html">
+<LINK REL="previous" href="module-xml.sax.xmlreader.html">
+<LINK REL="up" href="module-xml.sax.xmlreader.html">
+<LINK REL="next" href="incremental-parser-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-xml.sax.xmlreader.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.sax.xmlreader.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="incremental-parser-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-xml.sax.xmlreader.html">13.12 xml.sax.xmlreader  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.sax.xmlreader.html">13.12 xml.sax.xmlreader  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="incremental-parser-objects.html">13.12.2 IncrementalParser Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00151210000000000000000">&nbsp;</A>
+<BR>
+13.12.1 XMLReader Objects 
+</H2>
+
+<P>
+The <tt class="class">XMLReader</tt> interface supports the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-3364"><tt class="method">parse</tt></a></b>(<var>source</var>)
+<dd>
+  Process an input source, producing SAX events. The <var>source</var>
+  object can be a system identifier (a string identifying the
+  input source - typically a file name or an URL), a file-like
+  object, or an <tt class="class">InputSource</tt> object. When <tt class="method">parse()</tt>
+  returns, the input is completely processed, and the parser object
+  can be discarded or reset. As a limitation, the current implementation
+  only accepts byte streams; processing of character streams is for
+  further study.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3365"><tt class="method">getContentHandler</tt></a></b>()
+<dd>
+  Return the current <tt class="class">ContentHandler</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3366"><tt class="method">setContentHandler</tt></a></b>(<var>handler</var>)
+<dd>
+  Set the current <tt class="class">ContentHandler</tt>.  If no
+  <tt class="class">ContentHandler</tt> is set, content events will be discarded.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3367"><tt class="method">getDTDHandler</tt></a></b>()
+<dd>
+  Return the current <tt class="class">DTDHandler</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3368"><tt class="method">setDTDHandler</tt></a></b>(<var>handler</var>)
+<dd>
+  Set the current <tt class="class">DTDHandler</tt>.  If no <tt class="class">DTDHandler</tt> is
+  set, DTD events will be discarded.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3369"><tt class="method">getEntityResolver</tt></a></b>()
+<dd>
+  Return the current <tt class="class">EntityResolver</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3370"><tt class="method">setEntityResolver</tt></a></b>(<var>handler</var>)
+<dd>
+  Set the current <tt class="class">EntityResolver</tt>.  If no
+  <tt class="class">EntityResolver</tt> is set, attempts to resolve an external
+  entity will result in opening the system identifier for the entity,
+  and fail if it is not available. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3371"><tt class="method">getErrorHandler</tt></a></b>()
+<dd>
+  Return the current <tt class="class">ErrorHandler</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3372"><tt class="method">setErrorHandler</tt></a></b>(<var>handler</var>)
+<dd>
+  Set the current error handler.  If no <tt class="class">ErrorHandler</tt> is set,
+  errors will be raised as exceptions, and warnings will be printed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3373"><tt class="method">setLocale</tt></a></b>(<var>locale</var>)
+<dd>
+  Allow an application to set the locale for errors and warnings. 
+
+<P>
+SAX parsers are not required to provide localization for errors and
+  warnings; if they cannot support the requested locale, however, they
+  must throw a SAX exception.  Applications may request a locale change
+  in the middle of a parse.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3374"><tt class="method">getFeature</tt></a></b>(<var>featurename</var>)
+<dd>
+  Return the current setting for feature <var>featurename</var>.  If the
+  feature is not recognized, <tt class="exception">SAXNotRecognizedException</tt> is
+  raised. The well-known featurenames are listed in the module
+  <tt class="module">xml.sax.handler</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3375"><tt class="method">setFeature</tt></a></b>(<var>featurename, value</var>)
+<dd>
+  Set the <var>featurename</var> to <var>value</var>. If the feature is not
+  recognized, <tt class="exception">SAXNotRecognizedException</tt> is raised. If the
+  feature or its setting is not supported by the parser,
+  <var>SAXNotSupportedException</var> is raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3376"><tt class="method">getProperty</tt></a></b>(<var>propertyname</var>)
+<dd>
+  Return the current setting for property <var>propertyname</var>. If the
+  property is not recognized, a <tt class="exception">SAXNotRecognizedException</tt>
+  is raised. The well-known propertynames are listed in the module
+  <tt class="module">xml.sax.handler</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3377"><tt class="method">setProperty</tt></a></b>(<var>propertyname, value</var>)
+<dd>
+  Set the <var>propertyname</var> to <var>value</var>. If the property is not
+  recognized, <tt class="exception">SAXNotRecognizedException</tt> is raised. If the
+  property or its setting is not supported by the parser,
+  <var>SAXNotSupportedException</var> is raised.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-xml.sax.xmlreader.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.sax.xmlreader.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="incremental-parser-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-xml.sax.xmlreader.html">13.12 xml.sax.xmlreader  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.sax.xmlreader.html">13.12 xml.sax.xmlreader  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="incremental-parser-objects.html">13.12.2 IncrementalParser Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

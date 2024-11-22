@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.25 repr -- Alternate repr() implementation</title>
+<META NAME="description" CONTENT="3.25 repr -- Alternate repr() implementation">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-new.html">
+<LINK REL="previous" href="module-pprint.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="Repr-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node85.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="Repr-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node85.html">3.24.1 PrettyPrinter Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="Repr-objects.html">3.25.1 Repr Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0052500000000000000000">
+3.25 <tt class="module">repr</tt> --
+         Alternate <tt class="function">repr()</tt> implementation</A>
+</H1>
+
+<P>
+
+
+
+<P>
+The <tt class="module">repr</tt> module provides a means for producing object
+representations with limits on the size of the resulting strings.
+This is used in the Python debugger and may be useful in other
+contexts as well.
+
+<P>
+This module provides a class, an instance, and a function:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-628"><tt class="class">Repr</tt></a></b>()
+<dd>
+  Class which provides formatting services useful in implementing
+  functions similar to the built-in <tt class="function">repr()</tt>; size limits for 
+  different object types are added to avoid the generation of
+  representations which are excessively long.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-629"><tt>aRepr</tt></a></b>
+<dd>
+  This is an instance of <tt class="class">Repr</tt> which is used to provide the
+  <tt class="function">repr()</tt> function described below.  Changing the attributes
+  of this object will affect the size limits used by <tt class="function">repr()</tt>
+  and the Python debugger.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-630"><tt class="function">repr</tt></a></b>(<var>obj</var>)
+<dd>
+  This is the <tt class="method">repr()</tt> method of <code>aRepr</code>.  It returns a
+  string similar to that returned by the built-in function of the same 
+  name, but with limits on most sizes.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="Repr-objects.html">3.25.1 Repr Objects</a>
+<LI><A href="subclassing-reprs.html">3.25.2 Subclassing Repr Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node85.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="Repr-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node85.html">3.24.1 PrettyPrinter Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="Repr-objects.html">3.25.1 Repr Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

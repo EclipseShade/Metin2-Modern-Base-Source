@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.6.2.2 Node Objects </title>
+<META NAME="description" CONTENT="13.6.2.2 Node Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="dom-nodelist-objects.html">
+<LINK REL="previous" href="dom-implementation-objects.html">
+<LINK REL="up" HREF="node438.html">
+<LINK REL="next" href="dom-nodelist-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dom-implementation-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node438.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dom-nodelist-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dom-implementation-objects.html">13.6.2.1 DOMImplementation Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node438.html">13.6.2 Objects in the</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dom-nodelist-objects.html">13.6.2.3 NodeList Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0015622000000000000000">&nbsp;</A>
+<BR>
+13.6.2.2 Node Objects 
+</H3>
+
+<P>
+All of the components of an XML document are subclasses of
+<tt class="class">Node</tt>.
+
+<P>
+<dl><dt><b><a name="l2h-3209"><tt class="member">nodeType</tt></a></b>
+<dd>
+An integer representing the node type.  Symbolic constants for the
+types are on the <tt class="class">Node</tt> object:
+<tt class="constant">ELEMENT_NODE</tt>, <tt class="constant">ATTRIBUTE_NODE</tt>,
+<tt class="constant">TEXT_NODE</tt>, <tt class="constant">CDATA_SECTION_NODE</tt>,
+<tt class="constant">ENTITY_NODE</tt>, <tt class="constant">PROCESSING_INSTRUCTION_NODE</tt>,
+<tt class="constant">COMMENT_NODE</tt>, <tt class="constant">DOCUMENT_NODE</tt>,
+<tt class="constant">DOCUMENT_TYPE_NODE</tt>, <tt class="constant">NOTATION_NODE</tt>.
+This is a read-only attribute.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3210"><tt class="member">parentNode</tt></a></b>
+<dd>
+The parent of the current node, or <code>None</code> for the document node.
+The value is always a <tt class="class">Node</tt> object or <code>None</code>.  For
+<tt class="class">Element</tt> nodes, this will be the parent element, except for the
+root element, in which case it will be the <tt class="class">Document</tt> object.
+For <tt class="class">Attr</tt> nodes, this is always <code>None</code>.
+This is a read-only attribute.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3211"><tt class="member">attributes</tt></a></b>
+<dd>
+A <tt class="class">NamedNodeMap</tt> of attribute objects.  Only elements have
+actual values for this; others provide <code>None</code> for this attribute.
+This is a read-only attribute.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3212"><tt class="member">previousSibling</tt></a></b>
+<dd>
+The node that immediately precedes this one with the same parent.  For
+instance the element with an end-tag that comes just before the
+<var>self</var> element's start-tag.  Of course, XML documents are made
+up of more than just elements so the previous sibling could be text, a
+comment, or something else.  If this node is the first child of the
+parent, this attribute will be <code>None</code>.
+This is a read-only attribute.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3213"><tt class="member">nextSibling</tt></a></b>
+<dd>
+The node that immediately follows this one with the same parent.  See
+also <tt class="member">previousSibling</tt>.  If this is the last child of the
+parent, this attribute will be <code>None</code>.
+This is a read-only attribute.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3214"><tt class="member">childNodes</tt></a></b>
+<dd>
+A list of nodes contained within this node.
+This is a read-only attribute.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3215"><tt class="member">firstChild</tt></a></b>
+<dd>
+The first child of the node, if there are any, or <code>None</code>.
+This is a read-only attribute.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3216"><tt class="member">lastChild</tt></a></b>
+<dd>
+The last child of the node, if there are any, or <code>None</code>.
+This is a read-only attribute.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3217"><tt class="member">localName</tt></a></b>
+<dd>
+The part of the <tt class="member">tagName</tt> following the colon if there is one,
+else the entire <tt class="member">tagName</tt>.  The value is a string.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3218"><tt class="member">prefix</tt></a></b>
+<dd>
+The part of the <tt class="member">tagName</tt> preceding the colon if there is one,
+else the empty string.  The value is a string, or <code>None</code>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3219"><tt class="member">namespaceURI</tt></a></b>
+<dd>
+The namespace associated with the element name.  This will be a
+string or <code>None</code>.  This is a read-only attribute.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3220"><tt class="member">nodeName</tt></a></b>
+<dd>
+This has a different meaning for each node type; see the DOM
+specification for details.  You can always get the information you
+would get here from another property such as the <tt class="member">tagName</tt>
+property for elements or the <tt class="member">name</tt> property for attributes.
+For all node types, the value of this attribute will be either a
+string or <code>None</code>.  This is a read-only attribute.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3221"><tt class="member">nodeValue</tt></a></b>
+<dd>
+This has a different meaning for each node type; see the DOM
+specification for details.  The situation is similar to that with
+<tt class="member">nodeName</tt>.  The value is a string or <code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3222"><tt class="method">hasAttributes</tt></a></b>()
+<dd>
+Returns true if the node has any attributes.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3223"><tt class="method">hasChildNodes</tt></a></b>()
+<dd>
+Returns true if the node has any child nodes.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3224"><tt class="method">isSameNode</tt></a></b>(<var>other</var>)
+<dd>
+Returns true if <var>other</var> refers to the same node as this node.
+This is especially useful for DOM implementations which use any sort
+of proxy architecture (because more than one object can refer to the
+same node).
+
+<P>
+<span class="note"><b class="label">Note:</b>
+This is based on a proposed DOM Level 3 API which is
+still in the ``working draft'' stage, but this particular interface
+appears uncontroversial.  Changes from the W3C will not necessarily
+affect this method in the Python DOM interface (though any new W3C
+API for this would also be supported).</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3225"><tt class="method">appendChild</tt></a></b>(<var>newChild</var>)
+<dd>
+Add a new child node to this node at the end of the list of children,
+returning <var>newChild</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3226"><tt class="method">insertBefore</tt></a></b>(<var>newChild, refChild</var>)
+<dd>
+Insert a new child node before an existing child.  It must be the case
+that <var>refChild</var> is a child of this node; if not,
+<tt class="exception">ValueError</tt> is raised.  <var>newChild</var> is returned.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3227"><tt class="method">removeChild</tt></a></b>(<var>oldChild</var>)
+<dd>
+Remove a child node.  <var>oldChild</var> must be a child of this node; if
+not, <tt class="exception">ValueError</tt> is raised.  <var>oldChild</var> is returned on
+success.  If <var>oldChild</var> will not be used further, its
+<tt class="method">unlink()</tt> method should be called.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3228"><tt class="method">replaceChild</tt></a></b>(<var>newChild, oldChild</var>)
+<dd>
+Replace an existing node with a new node. It must be the case that 
+<var>oldChild</var> is a child of this node; if not,
+<tt class="exception">ValueError</tt> is raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3229"><tt class="method">normalize</tt></a></b>()
+<dd>
+Join adjacent text nodes so that all stretches of text are stored as
+single <tt class="class">Text</tt> instances.  This simplifies processing text from a
+DOM tree for many applications.
+
+<span class="versionnote">New in version 2.1.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3230"><tt class="method">cloneNode</tt></a></b>(<var>deep</var>)
+<dd>
+Clone this node.  Setting <var>deep</var> means to clone all child nodes as
+well.  This returns the clone.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dom-implementation-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node438.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dom-nodelist-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dom-implementation-objects.html">13.6.2.1 DOMImplementation Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node438.html">13.6.2 Objects in the</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dom-nodelist-objects.html">13.6.2.3 NodeList Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

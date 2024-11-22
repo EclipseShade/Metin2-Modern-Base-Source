@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.15.2 Resource Usage</title>
+<META NAME="description" CONTENT="8.15.2 Resource Usage">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" HREF="node272.html">
+<LINK REL="up" href="module-resource.html">
+<LINK REL="next" href="module-nis.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node272.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-resource.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-nis.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node272.html">8.15.1 Resource Limits</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-resource.html">8.15 resource  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-nis.html">8.16 nis  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00101520000000000000000">
+8.15.2 Resource Usage</A>
+</H2>
+
+<P>
+These functiona are used to retrieve resource usage information:
+
+<P>
+<dl><dt><b><a name="l2h-2223"><tt class="function">getrusage</tt></a></b>(<var>who</var>)
+<dd>
+  This function returns a large tuple that describes the resources
+  consumed by either the current process or its children, as specified
+  by the <var>who</var> parameter.  The <var>who</var> parameter should be
+  specified using one of the <tt class="constant">RUSAGE_*</tt> constants described
+  below.
+
+<P>
+The elements of the return value each
+  describe how a particular system resource has been used, e.g. amount
+  of time spent running is user mode or number of times the process was
+  swapped out of main memory. Some values are dependent on the clock
+  tick internal, e.g. the amount of memory the process is using.
+
+<P>
+The first two elements of the return value are floating point values
+  representing the amount of time spent executing in user mode and the
+  amount of time spent executing in system mode, respectively. The
+  remaining values are integers. Consult the <span class="manpage"><i>getrusage</i>(2)</span>
+  man page for detailed information about these values. A brief
+  summary is presented here:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="right"><b>Offset</b>&nbsp;</th>
+      <th align="left"><b>Resource</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="right" valign="baseline"><code>0</code>&nbsp;</td>
+        <td align="left">time in user mode (float)</td>
+    <tr><td align="right" valign="baseline"><code>1</code>&nbsp;</td>
+        <td align="left">time in system mode (float)</td>
+    <tr><td align="right" valign="baseline"><code>2</code>&nbsp;</td>
+        <td align="left">maximum resident set size</td>
+    <tr><td align="right" valign="baseline"><code>3</code>&nbsp;</td>
+        <td align="left">shared memory size</td>
+    <tr><td align="right" valign="baseline"><code>4</code>&nbsp;</td>
+        <td align="left">unshared memory size</td>
+    <tr><td align="right" valign="baseline"><code>5</code>&nbsp;</td>
+        <td align="left">unshared stack size</td>
+    <tr><td align="right" valign="baseline"><code>6</code>&nbsp;</td>
+        <td align="left">page faults not requiring I/O</td>
+    <tr><td align="right" valign="baseline"><code>7</code>&nbsp;</td>
+        <td align="left">page faults requiring I/O</td>
+    <tr><td align="right" valign="baseline"><code>8</code>&nbsp;</td>
+        <td align="left">number of swap outs</td>
+    <tr><td align="right" valign="baseline"><code>9</code>&nbsp;</td>
+        <td align="left">block input operations</td>
+    <tr><td align="right" valign="baseline"><code>10</code>&nbsp;</td>
+        <td align="left">block output operations</td>
+    <tr><td align="right" valign="baseline"><code>11</code>&nbsp;</td>
+        <td align="left">messages sent</td>
+    <tr><td align="right" valign="baseline"><code>12</code>&nbsp;</td>
+        <td align="left">messages received</td>
+    <tr><td align="right" valign="baseline"><code>13</code>&nbsp;</td>
+        <td align="left">signals received</td>
+    <tr><td align="right" valign="baseline"><code>14</code>&nbsp;</td>
+        <td align="left">voluntary context switches</td>
+    <tr><td align="right" valign="baseline"><code>15</code>&nbsp;</td>
+        <td align="left">involuntary context switches</td></tbody>
+</table>
+
+<P>
+This function will raise a <tt class="exception">ValueError</tt> if an invalid
+  <var>who</var> parameter is specified. It may also raise
+  <tt class="exception">error</tt> exception in unusual circumstances.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2224"><tt class="function">getpagesize</tt></a></b>()
+<dd>
+  Returns the number of bytes in a system page. (This need not be the
+  same as the hardware page size.) This function is useful for
+  determining the number of bytes of memory a process is using. The
+  third element of the tuple returned by <tt class="function">getrusage()</tt> describes
+  memory usage in pages; multiplying by page size produces number of
+  bytes. 
+</dl>
+
+<P>
+The following <tt class="constant">RUSAGE_*</tt> symbols are passed to the
+<tt class="function">getrusage()</tt> function to specify which processes information
+should be provided for.
+
+<P>
+<dl><dt><b><a name="l2h-2225"><tt>RUSAGE_SELF</tt></a></b>
+<dd>
+  <tt class="constant">RUSAGE_SELF</tt> should be used to
+  request information pertaining only to the process itself.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2226"><tt>RUSAGE_CHILDREN</tt></a></b>
+<dd>
+  Pass to <tt class="function">getrusage()</tt> to request resource information for
+  child processes of the calling process.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2227"><tt>RUSAGE_BOTH</tt></a></b>
+<dd>
+  Pass to <tt class="function">getrusage()</tt> to request resources consumed by both
+  the current process and child processes.  May not be available on all
+  systems.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node272.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-resource.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-nis.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node272.html">8.15.1 Resource Limits</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-resource.html">8.15 resource  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-nis.html">8.16 nis  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

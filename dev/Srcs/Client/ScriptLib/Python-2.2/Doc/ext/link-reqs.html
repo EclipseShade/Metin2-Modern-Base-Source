@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.6 Linking Requirements </title>
+<META NAME="description" CONTENT="5.6 Linking Requirements ">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="previous" href="embeddingInCplusplus.html">
+<LINK REL="up" href="embedding.html">
+<LINK REL="next" href="reporting-bugs.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="embeddingInCplusplus.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="embedding.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="reporting-bugs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="embeddingInCplusplus.html">5.5 Embedding Python in</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="embedding.html">5. Embedding Python in</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="reporting-bugs.html">A. Reporting Bugs</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007600000000000000000">&nbsp;</A>
+<BR>
+5.6 Linking Requirements
+         
+</H1>
+
+<P>
+While the <b class="program">configure</b> script shipped with the Python sources
+will correctly build Python to export the symbols needed by
+dynamically linked extensions, this is not automatically inherited by
+applications which embed the Python library statically, at least on
+Unix.  This is an issue when the application is linked to the static
+runtime library (<span class="file">libpython.a</span>) and needs to load dynamic
+extensions (implemented as <span class="file">.so</span> files).
+
+<P>
+The problem is that some entry points are defined by the Python
+runtime solely for extension modules to use.  If the embedding
+application does not use any of these entry points, some linkers will
+not include those entries in the symbol table of the finished
+executable.  Some additional options are needed to inform the linker
+not to remove these symbols.
+
+<P>
+Determining the right options to use for any given platform can be
+quite difficult, but fortunately the Python configuration already has
+those values.  To retrieve them from an installed Python interpreter,
+start an interactive interpreter and have a short session like this:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import distutils.sysconfig
+&gt;&gt;&gt; distutils.sysconfig.get_config_var('LINKFORSHARED')
+'-Xlinker -export-dynamic'
+</pre></dl>
+<a name="l2h-9">&nbsp;</a>
+<P>
+The contents of the string presented will be the options that should
+be used.  If the string is empty, there's no need to add any
+additional options.  The <tt class="constant">LINKFORSHARED</tt> definition
+corresponds to the variable of the same name in Python's top-level
+<span class="file">Makefile</span>.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="embeddingInCplusplus.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="embedding.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="reporting-bugs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="embeddingInCplusplus.html">5.5 Embedding Python in</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="embedding.html">5. Embedding Python in</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="reporting-bugs.html">A. Reporting Bugs</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

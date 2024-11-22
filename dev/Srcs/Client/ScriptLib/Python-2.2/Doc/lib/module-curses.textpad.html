@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.14 curses.textpad -- Text input widget for curses programs</title>
+<META NAME="description" CONTENT="6.14 curses.textpad -- Text input widget for curses programs">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-curses.wrapper.html">
+<LINK REL="previous" href="module-curses.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" href="curses-textpad-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node181.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="curses-textpad-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node181.html">6.13.3 Constants</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="curses-textpad-objects.html">6.14.1 Textbox objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0081400000000000000000">
+6.14 <tt class="module">curses.textpad</tt> --
+         Text input widget for curses programs</A>
+</H1>
+
+<P>
+
+
+<span class="versionnote">New in version 1.6.</span>
+
+<P>
+The <tt class="module">curses.textpad</tt> module provides a <tt class="class">Textbox</tt> class
+that handles elementary text editing in a curses window, supporting a
+set of keybindings resembling those of Emacs (thus, also of Netscape
+Navigator, BBedit 6.x, FrameMaker, and many other programs).  The
+module also provides a rectangle-drawing function useful for framing
+text boxes or for other purposes.
+
+<P>
+The module <tt class="module">curses.textpad</tt> defines the following function:
+
+<P>
+<dl><dt><b><a name="l2h-1561"><tt class="function">rectangle</tt></a></b>(<var>win, uly, ulx, lry, lrx</var>)
+<dd>
+Draw a rectangle.  The first argument must be a window object; the
+remaining arguments are coordinates relative to that window.  The
+second and third arguments are the y and x coordinates of the upper
+left hand corner of the rectangle To be drawn; the fourth and fifth
+arguments are the y and x coordinates of the lower right hand corner.
+The rectangle will be drawn using VT100/IBM PC forms characters on
+terminals that make this possible (including xterm and most other
+software terminal emulators).  Otherwise it will be drawn with ASCII 
+dashes, vertical bars, and plus signs.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="curses-textpad-objects.html">6.14.1 Textbox objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node181.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="curses-textpad-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node181.html">6.13.3 Constants</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="curses-textpad-objects.html">6.14.1 Textbox objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

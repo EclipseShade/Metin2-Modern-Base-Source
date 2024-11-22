@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.1.5 Process Management </title>
+<META NAME="description" CONTENT="6.1.5 Process Management ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="os-path.html">
+<LINK REL="previous" href="os-file-dir.html">
+<LINK REL="up" href="module-os.html">
+<LINK REL="next" href="os-path.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="os-file-dir.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-os.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="os-path.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="os-file-dir.html">6.1.4 Files and Directories</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-os.html">6.1 os  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="os-path.html">6.1.6 Miscellaneous System Information</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008150000000000000000">&nbsp;</A>
+<BR>
+6.1.5 Process Management 
+</H2>
+
+<P>
+These functions may be used to create and manage processes.
+
+<P>
+The various <tt class="function">exec*()</tt> functions take a list of arguments for
+the new program loaded into the process.  In each case, the first of
+these arguments is passed to the new program as its own name rather
+than as an argument a user may have typed on a command line.  For the
+C programmer, this is the <code>argv[0]</code> passed to a program's
+<tt class="cfunction">main()</tt>.  For example, "<tt class="samp">os.execv('/bin/echo', ['foo',
+'bar'])</tt>" will only print "<tt class="samp">bar</tt>" on standard output; "<tt class="samp">foo</tt>"will seem to be ignored.
+
+<P>
+<dl><dt><b><a name="l2h-1205"><tt class="function">abort</tt></a></b>()
+<dd>
+Generate a <tt class="constant">SIGABRT</tt> signal to the current process.  On
+Unix, the default behavior is to produce a core dump; on Windows, the 
+process immediately returns an exit code of <code>3</code>.  Be aware that
+programs which use <tt class="function">signal.signal()</tt> to register a handler
+for <tt class="constant">SIGABRT</tt> will behave differently.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1206"><tt class="function">execl</tt></a></b>(<var>path, arg0, arg1, ...</var>)
+<dd>
+<dt><b><tt class="function">execle</tt></b>(<var>path, arg0, arg1, ..., env</var>)
+<dd>
+<dt><b><tt class="function">execlp</tt></b>(<var>file, arg0, arg1, ...</var>)
+<dd>
+<dt><b><tt class="function">execlpe</tt></b>(<var>file, arg0, arg1, ..., env</var>)
+<dd>
+<dt><b><tt class="function">execv</tt></b>(<var>path, args</var>)
+<dd>
+<dt><b><tt class="function">execve</tt></b>(<var>path, args, env</var>)
+<dd>
+<dt><b><tt class="function">execvp</tt></b>(<var>file, args</var>)
+<dd>
+<dt><b><tt class="function">execvpe</tt></b>(<var>file, args, env</var>)
+<dd>
+These functions all execute a new program, replacing the current
+process; they do not return.  On Unix, the new executable is loaded
+into the current process, and will have the same process ID as the
+caller.  Errors will be reported as <tt class="exception">OSError</tt> exceptions.
+
+<P>
+The "<tt class="character">l</tt>" and "<tt class="character">v</tt>" variants of the
+<tt class="function">exec*()</tt> functions differ in how command-line arguments are
+passed.  The "<tt class="character">l</tt>" variants are perhaps the easiest to work
+with if the number of parameters is fixed when the code is written;
+the individual parameters simply become additional parameters to the
+<tt class="function">execl*()</tt> functions.  The "<tt class="character">v</tt>" variants are good
+when the number of parameters is variable, with the arguments being
+passed in a list or tuple as the <var>args</var> parameter.  In either
+case, the arguments to the child process must start with the name of
+the command being run.
+
+<P>
+The variants which include a "<tt class="character">p</tt>" near the end
+(<tt class="function">execlp()</tt>, <tt class="function">execlpe()</tt>, <tt class="function">execvp()</tt>,
+and <tt class="function">execvpe()</tt>) will use the <a class="envvar" name="l2h-1236">PATH</a> environment
+variable to locate the program <var>file</var>.  When the environment is
+being replaced (using one of the <tt class="function">exec*e()</tt> variants,
+discussed in the next paragraph), the
+new environment is used as the source of the <a class="envvar" name="l2h-1237">PATH</a> variable.
+The other variants, <tt class="function">execl()</tt>, <tt class="function">execle()</tt>,
+<tt class="function">execv()</tt>, and <tt class="function">execve()</tt>, will not use the
+<a class="envvar" name="l2h-1238">PATH</a> variable to locate the executable; <var>path</var> must
+contain an appropriate absolute or relative path.
+
+<P>
+For <tt class="function">execle()</tt>, <tt class="function">execlpe()</tt>, <tt class="function">execve()</tt>,
+and <tt class="function">execvpe()</tt> (note that these all end in "<tt class="character">e</tt>"),
+the <var>env</var> parameter must be a mapping which is used to define the
+environment variables for the new process; the <tt class="function">execl()</tt>,
+<tt class="function">execlp()</tt>, <tt class="function">execv()</tt>, and <tt class="function">execvp()</tt>
+all cause the new process to inherit the environment of the current
+process.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1207"><tt class="function">_exit</tt></a></b>(<var>n</var>)
+<dd>
+Exit to the system with status <var>n</var>, without calling cleanup
+handlers, flushing stdio buffers, etc.
+Availability: Unix, Windows.
+
+<P>
+Note: the standard way to exit is <code>sys.exit(<var>n</var>)</code>.
+<tt class="function">_exit()</tt> should normally only be used in the child process
+after a <tt class="function">fork()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1208"><tt class="function">fork</tt></a></b>()
+<dd>
+Fork a child process.  Return <code>0</code> in the child, the child's
+process id in the parent.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1209"><tt class="function">forkpty</tt></a></b>()
+<dd>
+Fork a child process, using a new pseudo-terminal as the child's
+controlling terminal. Return a pair of <code>(<var>pid</var>, <var>fd</var>)</code>,
+where <var>pid</var> is <code>0</code> in the child, the new child's process id
+in the parent, and <var>fd</var> is the file descriptor of the master end
+of the pseudo-terminal.  For a more portable approach, use the
+<tt class="module"><a href="module-pty.html">pty</a></tt> module.
+Availability: Some flavors of Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1210"><tt class="function">kill</tt></a></b>(<var>pid, sig</var>)
+<dd>
+<a name="l2h-1239">&nbsp;</a>Kill the process <var>pid</var> with signal <var>sig</var>.  Constants for the
+specific signals available on the host platform are defined in the
+<tt class="module"><a href="module-signal.html">signal</a></tt> module.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1211"><tt class="function">nice</tt></a></b>(<var>increment</var>)
+<dd>
+Add <var>increment</var> to the process's ``niceness''.  Return the new
+niceness.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1212"><tt class="function">plock</tt></a></b>(<var>op</var>)
+<dd>
+Lock program segments into memory.  The value of <var>op</var>
+(defined in <code>&lt;sys/lock.h&gt;</code>) determines which segments are locked.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><tt class="function">popen</tt></b>(<var>...</var>)
+<dd>
+<dt><b><tt class="function">popen2</tt></b>(<var>...</var>)
+<dd>
+<dt><b><tt class="function">popen3</tt></b>(<var>...</var>)
+<dd>
+<dt><b><tt class="function">popen4</tt></b>(<var>...</var>)
+<dd>
+Run child processes, returning opened pipes for communications.  These
+functions are described in section <A href="os-newstreams.html#os-newstreams">6.1.2</A>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1213"><tt class="function">spawnl</tt></a></b>(<var>mode, path, ...</var>)
+<dd>
+<dt><b><tt class="function">spawnle</tt></b>(<var>mode, path, ..., env</var>)
+<dd>
+<dt><b><tt class="function">spawnlp</tt></b>(<var>mode, file, ...</var>)
+<dd>
+<dt><b><tt class="function">spawnlpe</tt></b>(<var>mode, file, ..., env</var>)
+<dd>
+<dt><b><tt class="function">spawnv</tt></b>(<var>mode, path, args</var>)
+<dd>
+<dt><b><tt class="function">spawnve</tt></b>(<var>mode, path, args, env</var>)
+<dd>
+<dt><b><tt class="function">spawnvp</tt></b>(<var>mode, file, args</var>)
+<dd>
+<dt><b><tt class="function">spawnvpe</tt></b>(<var>mode, file, args, env</var>)
+<dd>
+Execute the program <var>path</var> in a new process.  If <var>mode</var> is
+<tt class="constant">P_NOWAIT</tt>, this function returns the process ID of the new
+process; if <var>mode</var> is <tt class="constant">P_WAIT</tt>, returns the process's
+exit code if it exits normally, or <code>-<var>signal</var></code>, where
+<var>signal</var> is the signal that killed the process.
+
+<P>
+The "<tt class="character">l</tt>" and "<tt class="character">v</tt>" variants of the
+<tt class="function">spawn*()</tt> functions differ in how command-line arguments are
+passed.  The "<tt class="character">l</tt>" variants are perhaps the easiest to work
+with if the number of parameters is fixed when the code is written;
+the individual parameters simply become additional parameters to the
+<tt class="function">spawnl*()</tt> functions.  The "<tt class="character">v</tt>" variants are good
+when the number of parameters is variable, with the arguments being
+passed in a list or tuple as the <var>args</var> parameter.  In either
+case, the arguments to the child process must start with the name of
+the command being run.
+
+<P>
+The variants which include a second "<tt class="character">p</tt>" near the end
+(<tt class="function">spawnlp()</tt>, <tt class="function">spawnlpe()</tt>, <tt class="function">spawnvp()</tt>,
+and <tt class="function">spawnvpe()</tt>) will use the <a class="envvar" name="l2h-1247">PATH</a> environment
+variable to locate the program <var>file</var>.  When the environment is
+being replaced (using one of the <tt class="function">spawn*e()</tt> variants,
+discussed in the next paragraph), the new environment is used as the
+source of the <a class="envvar" name="l2h-1248">PATH</a> variable.  The other variants,
+<tt class="function">spawnl()</tt>, <tt class="function">spawnle()</tt>, <tt class="function">spawnv()</tt>, and
+<tt class="function">spawnve()</tt>, will not use the <a class="envvar" name="l2h-1249">PATH</a> variable to
+locate the executable; <var>path</var> must contain an appropriate absolute
+or relative path.
+
+<P>
+For <tt class="function">spawnle()</tt>, <tt class="function">spawnlpe()</tt>, <tt class="function">spawnve()</tt>,
+and <tt class="function">spawnvpe()</tt> (note that these all end in "<tt class="character">e</tt>"),
+the <var>env</var> parameter must be a mapping which is used to define the
+environment variables for the new process; the <tt class="function">spawnl()</tt>,
+<tt class="function">spawnlp()</tt>, <tt class="function">spawnv()</tt>, and <tt class="function">spawnvp()</tt>
+all cause the new process to inherit the environment of the current
+process.
+
+<P>
+As an example, the following calls to <tt class="function">spawnlp()</tt> and
+<tt class="function">spawnvpe()</tt> are equivalent:
+
+<P>
+<dl><dd><pre class="verbatim">
+import os
+os.spawnlp(os.P_WAIT, 'cp', 'cp', 'index.html', '/dev/null')
+
+L = ['cp', 'index.html', '/dev/null']
+os.spawnvpe(os.P_WAIT, 'cp', L, os.environ)
+</pre></dl>
+
+<P>
+Availability: Unix, Windows.  <tt class="function">spawnlp()</tt>,
+<tt class="function">spawnlpe()</tt>, <tt class="function">spawnvp()</tt> and <tt class="function">spawnvpe()</tt>
+are not available on Windows.
+
+<span class="versionnote">New in version 1.6.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1214"><tt>P_NOWAIT</tt></a></b>
+<dd>
+<dt><b><a name="l2h-1250"><tt>P_NOWAITO</tt></a></b><dd>
+Possible values for the <var>mode</var> parameter to the <tt class="function">spawn*()</tt>
+family of functions.  If either of these values is given, the
+<tt class="function">spawn*()</tt> functions will return as soon as the new process
+has been created, with the process ID as the return value.
+Availability: Unix, Windows.
+
+<span class="versionnote">New in version 1.6.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1215"><tt>P_WAIT</tt></a></b>
+<dd>
+Possible value for the <var>mode</var> parameter to the <tt class="function">spawn*()</tt>
+family of functions.  If this is given as <var>mode</var>, the
+<tt class="function">spawn*()</tt> functions will not return until the new process
+has run to completion and will return the exit code of the process the
+run is successful, or <code>-<var>signal</var></code> if a signal kills the
+process.
+Availability: Unix, Windows.
+
+<span class="versionnote">New in version 1.6.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1216"><tt>P_DETACH</tt></a></b>
+<dd>
+<dt><b><a name="l2h-1251"><tt>P_OVERLAY</tt></a></b><dd>
+Possible values for the <var>mode</var> parameter to the
+<tt class="function">spawn*()</tt> family of functions.  These are less portable than
+those listed above.
+<tt class="constant">P_DETACH</tt> is similar to <tt class="constant">P_NOWAIT</tt>, but the new
+process is detached from the console of the calling process.
+If <tt class="constant">P_OVERLAY</tt> is used, the current process will be replaced;
+the <tt class="function">spawn*()</tt> function will not return.
+Availability: Windows.
+
+<span class="versionnote">New in version 1.6.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1217"><tt class="function">startfile</tt></a></b>(<var>path</var>)
+<dd>
+Start a file with its associated application.  This acts like
+double-clicking the file in Windows Explorer, or giving the file name
+as an argument to the <b class="program">start</b> command from the interactive
+command shell: the file is opened with whatever application (if any)
+its extension is associated.
+
+<P>
+<tt class="function">startfile()</tt> returns as soon as the associated application
+is launched.  There is no option to wait for the application to close,
+and no way to retrieve the application's exit status.  The <var>path</var>
+parameter is relative to the current directory.  If you want to use an
+absolute path, make sure the first character is not a slash
+("<tt class="character">/</tt>"); the underlying Win32 <tt class="cfunction">ShellExecute()</tt>
+function doesn't work if it is.  Use the <tt class="function">os.path.normpath()</tt>
+function to ensure that the path is properly encoded for Win32.
+Availability: Windows.
+
+<span class="versionnote">New in version 2.0.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1218"><tt class="function">system</tt></a></b>(<var>command</var>)
+<dd>
+Execute the command (a string) in a subshell.  This is implemented by
+calling the Standard C function <tt class="cfunction">system()</tt>, and has the
+same limitations.  Changes to <code>posix.environ</code>, <code>sys.stdin</code>,
+etc. are not reflected in the environment of the executed command.
+The return value is the exit status of the process encoded in the
+format specified for <tt class="function">wait()</tt>, except on Windows 95 and 98,
+where it is always <code>0</code>.  Note that POSIX does not specify the
+meaning of the return value of the C <tt class="cfunction">system()</tt> function,
+so the return value of the Python function is system-dependent.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1219"><tt class="function">times</tt></a></b>()
+<dd>
+Return a 5-tuple of floating point numbers indicating accumulated
+(processor or other)
+times, in seconds.  The items are: user time, system time, children's
+user time, children's system time, and elapsed real time since a fixed
+point in the past, in that order.  See the Unix manual page
+<span class="manpage"><i>times</i>(2)</span> or the corresponding Windows Platform API
+documentation.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1220"><tt class="function">wait</tt></a></b>()
+<dd>
+Wait for completion of a child process, and return a tuple containing
+its pid and exit status indication: a 16-bit number, whose low byte is
+the signal number that killed the process, and whose high byte is the
+exit status (if the signal number is zero); the high bit of the low
+byte is set if a core file was produced.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1221"><tt class="function">waitpid</tt></a></b>(<var>pid, options</var>)
+<dd>
+Wait for completion of a child process given by process id <var>pid</var>,
+and return a tuple containing its process id and exit status
+indication (encoded as for <tt class="function">wait()</tt>).  The semantics of the
+call are affected by the value of the integer <var>options</var>, which
+should be <code>0</code> for normal operation.
+Availability: Unix.
+
+<P>
+If <var>pid</var> is greater than <code>0</code>, <tt class="function">waitpid()</tt> requests
+status information for that specific process.  If <var>pid</var> is
+<code>0</code>, the request is for the status of any child in the process
+group of the current process.  If <var>pid</var> is <code>-1</code>, the request
+pertains to any child of the current process.  If <var>pid</var> is less
+than <code>-1</code>, status is requested for any process in the process
+group <code>-<var>pid</var></code> (the absolute value of <var>pid</var>).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1222"><tt>WNOHANG</tt></a></b>
+<dd>
+The option for <tt class="function">waitpid()</tt> to avoid hanging if no child
+process status is available immediately.
+Availability: Unix.
+</dl>
+
+<P>
+The following functions take a process status code as returned by
+<tt class="function">system()</tt>, <tt class="function">wait()</tt>, or <tt class="function">waitpid()</tt> as a
+parameter.  They may be used to determine the disposition of a
+process.
+
+<P>
+<dl><dt><b><a name="l2h-1223"><tt class="function">WIFSTOPPED</tt></a></b>(<var>status</var>)
+<dd>
+Return true if the process has been stopped.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1224"><tt class="function">WIFSIGNALED</tt></a></b>(<var>status</var>)
+<dd>
+Return true if the process exited due to a signal.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1225"><tt class="function">WIFEXITED</tt></a></b>(<var>status</var>)
+<dd>
+Return true if the process exited using the <span class="manpage"><i>exit</i>(2)</span> system
+call.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1226"><tt class="function">WEXITSTATUS</tt></a></b>(<var>status</var>)
+<dd>
+If <code>WIFEXITED(<var>status</var>)</code> is true, return the integer
+parameter to the <span class="manpage"><i>exit</i>(2)</span> system call.  Otherwise, the return 
+value is meaningless.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1227"><tt class="function">WSTOPSIG</tt></a></b>(<var>status</var>)
+<dd>
+Return the signal which caused the process to stop.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1228"><tt class="function">WTERMSIG</tt></a></b>(<var>status</var>)
+<dd>
+Return the signal which caused the process to exit.
+Availability: Unix.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="os-file-dir.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-os.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="os-path.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="os-file-dir.html">6.1.4 Files and Directories</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-os.html">6.1 os  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="os-path.html">6.1.6 Miscellaneous System Information</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

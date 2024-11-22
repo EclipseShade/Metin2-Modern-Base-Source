@@ -1,0 +1,15 @@
+﻿Der Buildvorgang wurde am 27.09.2013 19:43:29 gestartet.
+     1>Projekt "D:\tt (1)\dev\Srcs\Client\SoundArranger\SoundArranger.vcxproj" auf Knoten "2", build Ziel(e).
+     1>InitializeBuildStatus:
+         "..\obj\SoundArranger\MfcDebug_VC80_x86\SoundArranger.unsuccessfulbuild" wird erstellt, da "AlwaysCreate" angegeben wurde.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I../../extern/include /I.. /ZI /nologo /W1 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _CRT_SECURE_NO_WARNINGS /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"..\obj\SoundArranger\MfcDebug_VC80_x86\SoundArranger.pch" /Fo"..\obj\SoundArranger\MfcDebug_VC80_x86\\" /Fd"..\obj\SoundArranger\MfcDebug_VC80_x86\vc100.pdb" /FR"..\obj\SoundArranger\MfcDebug_VC80_x86\\" /Gd /TP /analyze- /errorReport:prompt StdAfx.cpp
+         StdAfx.cpp
+         _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+     1>c:\program files (x86)\microsoft visual studio 10.0\vc\atlmfc\include\afxadv.h(92): error C2555: 'CSharedFile::Alloc': Der überschreibende virtuelle Funktionsrückgabetyp unterscheidet sich und ist keine 'covariant' von 'CMemFile::Alloc'
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\atlmfc\include\afx.h(1239): Siehe Deklaration von 'CMemFile::Alloc'
+     1>Die Erstellung des Projekts "D:\tt (1)\dev\Srcs\Client\SoundArranger\SoundArranger.vcxproj" ist abgeschlossen, build Ziel(e) -- FEHLER.
+
+Fehler beim Erstellen
+
+Verstrichene Zeit 00:00:03.46

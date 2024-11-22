@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.20.1 Server Objects </title>
+<META NAME="description" CONTENT="11.20.1 Server Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="boolean-objects.html">
+<LINK REL="previous" href="module-xmlrpclib.html">
+<LINK REL="up" href="module-xmlrpclib.html">
+<LINK REL="next" href="boolean-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-xmlrpclib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xmlrpclib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="boolean-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-xmlrpclib.html">11.20 xmlrpclib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xmlrpclib.html">11.20 xmlrpclib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="boolean-objects.html">11.20.2 Boolean Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00132010000000000000000">&nbsp;</A>
+<BR>
+11.20.1 Server Objects 
+</H2>
+
+<P>
+A <tt class="class">Server</tt> instance proxy object has a method corresponding to
+each remote procedure call accepted by the XML-RPC server.  Calling
+the method performs an RPC, dispatched by both name and argument
+signature (e.g. the same method name can be overloaded with multiple
+argument signatures).  The RPC finishes by returning a value, which
+may be either returned data in a conformant type or a <tt class="class">Fault</tt> or
+<tt class="class">ProtocolError</tt> object indicating an error.
+
+<P>
+Servers that support the XML introspection API support some common
+methods grouped under the reserved <tt class="member">system</tt> member:
+
+<P>
+<dl><dt><b><a name="l2h-2710"><tt class="method">system.listMethods</tt></a></b>()
+<dd>
+This method returns a list of strings, one for each (non-system)
+method supported by the XML-RPC server.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2711"><tt class="method">system.methodSignature</tt></a></b>(<var>name</var>)
+<dd>
+This method takes one parameter, the name of a method implemented by
+the XML-RPC server.It returns an array of possible signatures for this
+method. A signature is an array of types. The first of these types is
+the return type of the method, the rest are parameters.
+
+<P>
+Because multiple signatures (ie. overloading) is permitted, this method
+returns a list of signatures rather than a singleton.
+
+<P>
+Signatures themselves are restricted to the top level parameters
+expected by a method. For instance if a method expects one array of
+structs as a parameter, and it returns a string, its signature is
+simply "string, array". If it expects three integers and returns a
+string, its signature is "string, int, int, int".
+
+<P>
+If no signature is defined for the method, a non-array value is
+returned. In Python this means that the type of the returned 
+value will be something other that list.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2712"><tt class="method">system.methodHelp</tt></a></b>(<var>name</var>)
+<dd>
+This method takes one parameter, the name of a method implemented by
+the XML-RPC server.  It returns a documentation string describing the
+use of that method. If no such string is available, an empty string is
+returned. The documentation string may contain HTML markup.  
+</dl>
+
+<P>
+Introspection methods are currently supported by servers written in
+PHP, C and Microsoft .NET. Partial introspection support is included
+in recent updates to UserLand Frontier. Introspection support for
+Perl, Python and Java is available at the XML-RPC Hacks page.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-xmlrpclib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xmlrpclib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="boolean-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-xmlrpclib.html">11.20 xmlrpclib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xmlrpclib.html">11.20 xmlrpclib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="boolean-objects.html">11.20.2 Boolean Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

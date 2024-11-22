@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.25.2 Class-based API</title>
+<META NAME="description" CONTENT="6.25.2 Class-based API">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node206.html">
+<LINK REL="previous" HREF="node200.html">
+<LINK REL="up" href="module-gettext.html">
+<LINK REL="next" HREF="node202.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node200.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-gettext.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node202.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node200.html">6.25.1 GNU gettext API</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-gettext.html">6.25 gettext  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node202.html">6.25.2.1 The NullTranslations class</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0082520000000000000000">
+6.25.2 Class-based API</A>
+</H2>
+
+<P>
+The class-based API of the <tt class="module">gettext</tt> module gives you more
+flexibility and greater convenience than the GNU <b class="program">gettext</b>
+API.  It is the recommended way of localizing your Python applications and
+modules.  <tt class="module">gettext</tt> defines a ``translations'' class which
+implements the parsing of GNU <span class="file">.mo</span> format files, and has methods
+for returning either standard 8-bit strings or Unicode strings.
+Translations instances can also install themselves in the built-in
+namespace as the function <tt class="function">_()</tt>.
+
+<P>
+<dl><dt><b><a name="l2h-1822"><tt class="function">find</tt></a></b>(<var>domain</var><big>[</big><var>, localedir</var><big>[</big><var>, languages</var><big>]</big><big>]</big>)
+<dd>
+This function implements the standard <span class="file">.mo</span> file search
+algorithm.  It takes a <var>domain</var>, identical to what
+<tt class="function">textdomain()</tt> takes.  Optional <var>localedir</var> is as in
+<tt class="function">bindtextdomain()</tt>  Optional <var>languages</var> is a list of
+strings, where each string is a language code.
+
+<P>
+If <var>localedir</var> is not given, then the default system locale
+directory is used.<A NAME="tex2html37"
+  HREF="#foot22667"><SUP>6.3</SUP></A>  If <var>languages</var> is not given,
+then the following environment variables are searched: <a class="envvar" name="l2h-1825">LANGUAGE</a>,
+<a class="envvar" name="l2h-1826">LC_ALL</a>, <a class="envvar" name="l2h-1827">LC_MESSAGES</a>, and <a class="envvar" name="l2h-1828">LANG</a>.  The first one
+returning a non-empty value is used for the <var>languages</var> variable.
+The environment variables should contain a colon separated list of
+languages, which will be split on the colon to produce the expected
+list of language code strings.
+
+<P>
+<tt class="function">find()</tt> then expands and normalizes the languages, and then
+iterates through them, searching for an existing file built of these
+components:
+
+<P>
+<span class="file"><var>localedir</var>/<var>language</var>/LC_MESSAGES/<var>domain</var>.mo</span>
+
+<P>
+The first such file name that exists is returned by <tt class="function">find()</tt>.
+If no such file is found, then <code>None</code> is returned.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1823"><tt class="function">translation</tt></a></b>(<var>domain</var><big>[</big><var>, localedir</var><big>[</big><var>,
+                              languages</var><big>[</big><var>, class_</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+Return a <tt class="class">Translations</tt> instance based on the <var>domain</var>,
+<var>localedir</var>, and <var>languages</var>, which are first passed to
+<tt class="function">find()</tt> to get the
+associated <span class="file">.mo</span> file path.  Instances with
+identical <span class="file">.mo</span> file names are cached.  The actual class instantiated
+is either <var>class_</var> if provided, otherwise
+<tt class="class">GNUTranslations</tt>.  The class's constructor must take a single
+file object argument.  If no <span class="file">.mo</span> file is found, this
+function raises <tt class="exception">IOError</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1824"><tt class="function">install</tt></a></b>(<var>domain</var><big>[</big><var>, localedir</var><big>[</big><var>, unicode</var><big>]</big><big>]</big>)
+<dd>
+This installs the function <tt class="function">_</tt> in Python's builtin namespace,
+based on <var>domain</var>, and <var>localedir</var> which are passed to the
+function <tt class="function">translation()</tt>.  The <var>unicode</var> flag is passed to
+the resulting translation object's <tt class="method">install</tt> method.
+
+<P>
+As seen below, you usually mark the strings in your application that are
+candidates for translation, by wrapping them in a call to the
+<tt class="function">_()</tt> function, like this:
+
+<P>
+<dl><dd><pre class="verbatim">
+print _('This string will be translated.')
+</pre></dl>
+
+<P>
+For convenience, you want the <tt class="function">_()</tt> function to be installed in
+Python's builtin namespace, so it is easily accessible in all modules
+of your application.  
+</dl>
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot22667">... used.</A><A NAME="foot22667"
+ HREF="node201.html#tex2html37"><SUP>6.3</SUP></A>
+<DD>See the footnote for
+<tt class="function">bindtextdomain()</tt> above.
+
+</DL>
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node202.html">6.25.2.1 The <tt class="class">NullTranslations</tt> class</a>
+<LI><A href="node203.html">6.25.2.2 The <tt class="class">GNUTranslations</tt> class</a>
+<LI><A href="node204.html">6.25.2.3 Solaris message catalog support</a>
+<LI><A href="node205.html">6.25.2.4 The Catalog constructor</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node200.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-gettext.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node202.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node200.html">6.25.1 GNU gettext API</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-gettext.html">6.25 gettext  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node202.html">6.25.2.1 The NullTranslations class</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

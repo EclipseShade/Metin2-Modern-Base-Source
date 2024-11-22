@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.5.4 HTTPRedirectHandler Objects </title>
+<META NAME="description" CONTENT="11.5.4 HTTPRedirectHandler Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="proxy-handler.html">
+<LINK REL="previous" href="base-handler-objects.html">
+<LINK REL="up" href="module-urllib2.html">
+<LINK REL="next" href="proxy-handler.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="base-handler-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-urllib2.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="proxy-handler.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="base-handler-objects.html">11.5.3 BaseHandler Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-urllib2.html">11.5 urllib2  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="proxy-handler.html">11.5.5 ProxyHandler Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013540000000000000000">&nbsp;</A>
+<BR>
+11.5.4 HTTPRedirectHandler Objects 
+</H2>
+
+<P>
+<span class="note"><b class="label">Note:</b>
+303 redirection is not supported by this version of 
+<tt class="module">urllib2</tt>.</span>
+
+<P>
+<dl><dt><b><a name="l2h-2386"><tt class="method">http_error_301</tt></a></b>(<var>req,
+                                                  fp, code, msg, hdrs</var>)
+<dd>
+Redirect to the <code>Location:</code> URL.  This method is called by
+the parent <tt class="class">OpenerDirector</tt> when getting an HTTP
+permanent-redirect response.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2387"><tt class="method">http_error_302</tt></a></b>(<var>req,
+                                                  fp, code, msg, hdrs</var>)
+<dd>
+The same as <tt class="method">http_error_301()</tt>, but called for the
+temporary-redirect response.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="base-handler-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-urllib2.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="proxy-handler.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="base-handler-objects.html">11.5.3 BaseHandler Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-urllib2.html">11.5 urllib2  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="proxy-handler.html">11.5.5 ProxyHandler Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

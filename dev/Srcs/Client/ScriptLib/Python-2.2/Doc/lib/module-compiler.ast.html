@@ -1,0 +1,765 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>19.3.1 AST Nodes</title>
+<META NAME="description" CONTENT="19.3.1 AST Nodes">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node576.html">
+<LINK REL="previous" HREF="node574.html">
+<LINK REL="up" HREF="node574.html">
+<LINK REL="next" HREF="node576.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node574.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node574.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node576.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node574.html">19.3 Python Abstract Syntax</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node574.html">19.3 Python Abstract Syntax</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node576.html">19.3.2 Assignment nodes</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0021310000000000000000">
+19.3.1 AST Nodes</A>
+</H2>
+
+<P>
+
+<P>
+The <tt class="module">compiler.ast</tt> module is generated from a text file that
+describes each node type and its elements.  Each node type is
+represented as a class that inherits from the abstract base class
+<tt class="class">compiler.ast.Node</tt> and defines a set of named attributes for
+child nodes.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3845"><tt class="class">Node</tt></a></b>()
+<dd>
+
+<P>
+The <tt class="class">Node</tt> instances are created automatically by the parser
+  generator.  The recommended interface for specific <tt class="class">Node</tt>
+  instances is to use the public attributes to access child nodes.  A
+  public attribute may be bound to a single node or to a sequence of
+  nodes, depending on the <tt class="class">Node</tt> type.  For example, the
+  <tt class="member">bases</tt> attribute of the <tt class="class">Class</tt> node, is bound to a
+  list of base class nodes, and the <tt class="member">doc</tt> attribute is bound to
+  a single node.
+
+<P>
+Each <tt class="class">Node</tt> instance has a <tt class="member">lineno</tt> attribute which may
+  be <code>None</code>.  XXX Not sure what the rules are for which nodes
+  will have a useful lineno.
+</dl>
+
+<P>
+All <tt class="class">Node</tt> objects offer the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-3846"><tt class="method">getChildren</tt></a></b>()
+<dd>
+  Returns a flattened list of the child nodes and objects in the
+  order they occur.  Specifically, the order of the nodes is the
+  order in which they appear in the Python grammar.  Not all of the
+  children are <tt class="class">Node</tt> instances.  The names of functions and
+  classes, for example, are plain strings.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3847"><tt class="method">getChildNodes</tt></a></b>()
+<dd>
+  Returns a flattened list of the child nodes in the order they
+  occur.  This method is like <tt class="method">getChildren()</tt>, except that it
+  only returns those children that are <tt class="class">Node</tt> instances.
+</dl>
+
+<P>
+Two examples illustrate the general structure of <tt class="class">Node</tt>
+classes.  The <tt class="keyword">while</tt> statement is defined by the following
+grammar production: 
+
+<P>
+<dl><dd><pre class="verbatim">
+while_stmt:     "while" expression ":" suite
+               ["else" ":" suite]
+</pre></dl>
+
+<P>
+The <tt class="class">While</tt> node has three attributes: <tt class="member">test</tt>,
+<tt class="member">body</tt>, and <tt class="member">else_</tt>.  (If the natural name for an
+attribute is also a Python reserved word, it can't be used as an
+attribute name.  An underscore is appended to the word to make it a
+legal identifier, hence <tt class="member">else_</tt> instead of <tt class="keyword">else</tt>.)
+
+<P>
+The <tt class="keyword">if</tt> statement is more complicated because it can include
+several tests.  
+
+<P>
+<dl><dd><pre class="verbatim">
+if_stmt: 'if' test ':' suite ('elif' test ':' suite)* ['else' ':' suite]
+</pre></dl>
+
+<P>
+The <tt class="class">If</tt> node only defines two attributes: <tt class="member">tests</tt> and
+<tt class="member">else_</tt>.  The <tt class="member">tests</tt> attribute is a sequence of test
+expression, consequent body pairs.  There is one pair for each
+<tt class="keyword">if</tt>/<tt class="keyword">elif</tt> clause.  The first element of the pair is
+the test expression.  The second elements is a <tt class="class">Stmt</tt> node that
+contains the code to execute if the test is true.
+
+<P>
+The <tt class="method">getChildren()</tt> method of <tt class="class">If</tt> returns a flat list of
+child nodes.  If there are three <tt class="keyword">if</tt>/<tt class="keyword">elif</tt> clauses
+and no <tt class="keyword">else</tt> clause, then <tt class="method">getChildren()</tt> will return
+a list of six elements: the first test expression, the first
+<tt class="class">Stmt</tt>, the second text expression, etc.
+
+<P>
+The following table lists each of the <tt class="class">Node</tt> subclasses defined
+in <tt class="module">compiler.ast</tt> and each of the public attributes available
+on their instances.  The values of most of the attributes are
+themselves <tt class="class">Node</tt> instances or sequences of instances.  When the
+value is something other than an instance, the type is noted in the
+comment.  The attributes are listed in the order in which they are
+returned by <tt class="method">getChildren()</tt> and <tt class="method">getChildNodes()</tt>.
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Node type</b>&nbsp;</th>
+      <th><b>Attribute</b>&nbsp;</th>
+      <th><b>Value</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Add</tt></td>
+        <td><tt class="member">left</tt></td>
+        <td>left operand</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">right</tt></td>
+        <td>right operand</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">And</tt></td>
+        <td><tt class="member">nodes</tt></td>
+        <td>list of operands</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">AssAttr</tt></td>
+        
+        <td><i>attribute as target of assignment</i></td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">expr</tt></td>
+        <td>expression on the left-hand side of the dot</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">attrname</tt></td>
+        <td>the attribute name, a string</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">flags</tt></td>
+        <td>XXX</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">AssList</tt></td>
+        <td><tt class="member">nodes</tt></td>
+        <td>list of list elements being assigned to</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">AssName</tt></td>
+        <td><tt class="member">name</tt></td>
+        <td>name being assigned to</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">flags</tt></td>
+        <td>XXX</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">AssTuple</tt></td>
+        <td><tt class="member">nodes</tt></td>
+        <td>list of tuple elements being assigned to</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Assert</tt></td>
+        <td><tt class="member">test</tt></td>
+        <td>the expression to be tested</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">fail</tt></td>
+        <td>the value of the <tt class="exception">AssertionError</tt></td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Assign</tt></td>
+        <td><tt class="member">nodes</tt></td>
+        <td>a list of assignment targets, one per equal sign</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">expr</tt></td>
+        <td>the value being assigned</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">AugAssign</tt></td>
+        <td><tt class="member">node</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">op</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">expr</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Backquote</tt></td>
+        <td><tt class="member">expr</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Bitand</tt></td>
+        <td><tt class="member">nodes</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Bitor</tt></td>
+        <td><tt class="member">nodes</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Bitxor</tt></td>
+        <td><tt class="member">nodes</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Break</tt></td>
+        
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">CallFunc</tt></td>
+        <td><tt class="member">node</tt></td>
+        <td>expression for the callee</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">args</tt></td>
+        <td>a list of arguments</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">star_args</tt></td>
+        <td>the extended *-arg value</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">dstar_args</tt></td>
+        <td>the extended **-arg value</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Class</tt></td>
+        <td><tt class="member">name</tt></td>
+        <td>the name of the class, a string</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">bases</tt></td>
+        <td>a list of base classes</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">doc</tt></td>
+        <td>doc string, a string or <code>None</code></td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">code</tt></td>
+        <td>the body of the class statement</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Compare</tt></td>
+        <td><tt class="member">expr</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">ops</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Const</tt></td>
+        <td><tt class="member">value</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Continue</tt></td>
+        
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Dict</tt></td>
+        <td><tt class="member">items</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Discard</tt></td>
+        <td><tt class="member">expr</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Div</tt></td>
+        <td><tt class="member">left</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">right</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Ellipsis</tt></td>
+        
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Exec</tt></td>
+        <td><tt class="member">expr</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">locals</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">globals</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">For</tt></td>
+        <td><tt class="member">assign</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">list</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">body</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">else_</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">From</tt></td>
+        <td><tt class="member">modname</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">names</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Function</tt></td>
+        <td><tt class="member">name</tt></td>
+        <td>name used in def, a string</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">argnames</tt></td>
+        <td>list of argument names, as strings</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">defaults</tt></td>
+        <td>list of default values</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">flags</tt></td>
+        <td>xxx</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">doc</tt></td>
+        <td>doc string, a string or <code>None</code></td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">code</tt></td>
+        <td>the body of the function</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Getattr</tt></td>
+        <td><tt class="member">expr</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">attrname</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Global</tt></td>
+        <td><tt class="member">names</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">If</tt></td>
+        <td><tt class="member">tests</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">else_</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Import</tt></td>
+        <td><tt class="member">names</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Invert</tt></td>
+        <td><tt class="member">expr</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Keyword</tt></td>
+        <td><tt class="member">name</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">expr</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Lambda</tt></td>
+        <td><tt class="member">argnames</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">defaults</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">flags</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">code</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">LeftShift</tt></td>
+        <td><tt class="member">left</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">right</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">List</tt></td>
+        <td><tt class="member">nodes</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">ListComp</tt></td>
+        <td><tt class="member">expr</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">quals</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">ListCompFor</tt></td>
+        <td><tt class="member">assign</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">list</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">ifs</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">ListCompIf</tt></td>
+        <td><tt class="member">test</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Mod</tt></td>
+        <td><tt class="member">left</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">right</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Module</tt></td>
+        <td><tt class="member">doc</tt></td>
+        <td>doc string, a string or <code>None</code></td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">node</tt></td>
+        <td>body of the module, a <tt class="class">Stmt</tt></td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Mul</tt></td>
+        <td><tt class="member">left</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">right</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Name</tt></td>
+        <td><tt class="member">name</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Not</tt></td>
+        <td><tt class="member">expr</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Or</tt></td>
+        <td><tt class="member">nodes</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Pass</tt></td>
+        
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Power</tt></td>
+        <td><tt class="member">left</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">right</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Print</tt></td>
+        <td><tt class="member">nodes</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">dest</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Printnl</tt></td>
+        <td><tt class="member">nodes</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">dest</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Raise</tt></td>
+        <td><tt class="member">expr1</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">expr2</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">expr3</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Return</tt></td>
+        <td><tt class="member">value</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">RightShift</tt></td>
+        <td><tt class="member">left</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">right</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Slice</tt></td>
+        <td><tt class="member">expr</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">flags</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">lower</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">upper</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Sliceobj</tt></td>
+        <td><tt class="member">nodes</tt></td>
+        <td>list of statements</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Stmt</tt></td>
+        <td><tt class="member">nodes</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Sub</tt></td>
+        <td><tt class="member">left</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">right</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Subscript</tt></td>
+        <td><tt class="member">expr</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">flags</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">subs</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">TryExcept</tt></td>
+        <td><tt class="member">body</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">handlers</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">else_</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">TryFinally</tt></td>
+        <td><tt class="member">body</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">final</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Tuple</tt></td>
+        <td><tt class="member">nodes</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">UnaryAdd</tt></td>
+        <td><tt class="member">expr</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">UnarySub</tt></td>
+        <td><tt class="member">expr</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">While</tt></td>
+        <td><tt class="member">test</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">body</tt></td>
+        <td>&nbsp;</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td><tt class="member">else_</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    <tr><td align="left" valign="baseline"><tt class="class">Yield</tt></td>
+        <td><tt class="member">value</tt></td>
+        <td>&nbsp;</td>
+
+<P>
+
+    </tbody>
+</table>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node574.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node574.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node576.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node574.html">19.3 Python Abstract Syntax</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node574.html">19.3 Python Abstract Syntax</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node576.html">19.3.2 Assignment nodes</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

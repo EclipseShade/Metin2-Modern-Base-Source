@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.14 gzip -- Support for gzip files</title>
+<META NAME="description" CONTENT="7.14 gzip -- Support for gzip files">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-zipfile.html">
+<LINK REL="previous" href="module-zlib.html">
+<LINK REL="up" href="someos.html">
+<LINK REL="next" href="module-zipfile.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-zlib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-zipfile.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-zlib.html">7.13 zlib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-zipfile.html">7.15 zipfile  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0091400000000000000000">
+7.14 <tt class="module">gzip</tt> --
+         Support for <b class="program">gzip</b> files</A>
+</H1>
+
+<P>
+
+
+<P>
+The data compression provided by the <code>zlib</code> module is compatible
+with that used by the GNU compression program <b class="program">gzip</b>.
+Accordingly, the <tt class="module">gzip</tt> module provides the <tt class="class">GzipFile</tt>
+class to read and write <b class="program">gzip</b>-format files, automatically
+compressing or decompressing the data so it looks like an ordinary
+file object.  Note that additional file formats which can be
+decompressed by the <b class="program">gzip</b> and <b class="program">gunzip</b> programs, such 
+as those produced by <b class="program">compress</b> and <b class="program">pack</b>, are not
+supported by this module.
+
+<P>
+The module defines the following items:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2060"><tt class="class">GzipFile</tt></a></b>(<big>[</big><var>filename</var><big>[</big><var>, mode</var><big>[</big><var>,
+                            compresslevel</var><big>[</big><var>, fileobj</var><big>]</big><big>]</big><big>]</big><big>]</big>)
+<dd>
+Constructor for the <tt class="class">GzipFile</tt> class, which simulates most of
+the methods of a file object, with the exception of the <tt class="method">readinto()</tt>,
+<tt class="method">truncate()</tt>, and <tt class="method">xreadlines()</tt> methods.  At least one of
+<var>fileobj</var> and <var>filename</var> must be given a non-trivial value.
+
+<P>
+The new class instance is based on <var>fileobj</var>, which can be a
+regular file, a <tt class="class">StringIO</tt> object, or any other object which
+simulates a file.  It defaults to <code>None</code>, in which case
+<var>filename</var> is opened to provide a file object.
+
+<P>
+When <var>fileobj</var> is not <code>None</code>, the <var>filename</var> argument is
+only used to be included in the <b class="program">gzip</b> file header, which may
+includes the original filename of the uncompressed file.  It defaults
+to the filename of <var>fileobj</var>, if discernible; otherwise, it
+defaults to the empty string, and in this case the original filename
+is not included in the header.
+
+<P>
+The <var>mode</var> argument can be any of <code>'r'</code>, <code>'rb'</code>,
+<code>'a'</code>, <code>'ab'</code>, <code>'w'</code>, or <code>'wb'</code>, depending on
+whether the file will be read or written.  The default is the mode of
+<var>fileobj</var> if discernible; otherwise, the default is <code>'rb'</code>.
+Be aware that only the <code>'rb'</code>, <code>'ab'</code>, and <code>'wb'</code>
+values should be used for cross-platform portability.
+
+<P>
+The <var>compresslevel</var> argument is an integer from <code>1</code> to
+<code>9</code> controlling the level of compression; <code>1</code> is fastest and
+produces the least compression, and <code>9</code> is slowest and produces
+the most compression.  The default is <code>9</code>.
+
+<P>
+Calling a <tt class="class">GzipFile</tt> object's <tt class="method">close()</tt> method does not
+close <var>fileobj</var>, since you might wish to append more material
+after the compressed data.  This also allows you to pass a
+<tt class="class">StringIO</tt> object opened for writing as <var>fileobj</var>, and
+retrieve the resulting memory buffer using the <tt class="class">StringIO</tt>
+object's <tt class="method">getvalue()</tt> method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2061"><tt class="function">open</tt></a></b>(<var>filename</var><big>[</big><var>, mode</var><big>[</big><var>, compresslevel</var><big>]</big><big>]</big>)
+<dd>
+This is a shorthand for <code>GzipFile(<var>filename</var>,</code>
+<code><var>mode</var>,</code> <code><var>compresslevel</var>)</code>.  The <var>filename</var>
+argument is required; <var>mode</var> defaults to <code>'rb'</code> and
+<var>compresslevel</var> defaults to <code>9</code>.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-zlib.html">zlib</a></tt>:</b>
+    <dd>The basic data compression module needed to support
+                   the <b class="program">gzip</b> file format.
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-zlib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-zipfile.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-zlib.html">7.13 zlib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-zipfile.html">7.15 zipfile  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

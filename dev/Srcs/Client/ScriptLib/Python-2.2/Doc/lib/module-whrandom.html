@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.7 whrandom -- Pseudo-random number generator</title>
+<META NAME="description" CONTENT="5.7 whrandom -- Pseudo-random number generator">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-bisect.html">
+<LINK REL="previous" href="module-random.html">
+<LINK REL="up" href="misc.html">
+<LINK REL="next" href="module-bisect.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-random.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-bisect.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-random.html">5.6 random  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-bisect.html">5.8 bisect  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007700000000000000000">
+5.7 <tt class="module">whrandom</tt> --
+         Pseudo-random number generator</A>
+</H1>
+
+<P>
+
+
+<P>
+<div class="versionnote"><b>Deprecated since release 2.1.</b>
+Use <tt class="module"><a href="module-random.html">random</a></tt> instead.</div><p>
+
+<P>
+<span class="note"><b class="label">Note:</b>
+This module was an implementation detail of the
+<tt class="module"><a href="module-random.html">random</a></tt> module in releases of Python prior to 2.1.  It is
+no longer used.  Please do not use this module directly; use
+<tt class="module"><a href="module-random.html">random</a></tt> instead.</span>
+
+<P>
+This module implements a Wichmann-Hill pseudo-random number generator
+class that is also named <tt class="class">whrandom</tt>.  Instances of the
+<tt class="class">whrandom</tt> class conform to the Random Number Generator
+interface described in section <A HREF="#rng-objects"><tex2html_cross_ref_visible_mark></A>.  They also offer the 
+following method, specific to the Wichmann-Hill algorithm:
+
+<P>
+<dl><dt><b><a name="l2h-957"><tt class="method">seed</tt></a></b>(<big>[</big><var>x, y, z</var><big>]</big>)
+<dd>
+  Initializes the random number generator from the integers <var>x</var>,
+  <var>y</var> and <var>z</var>.  When the module is first imported, the random
+  number is initialized using values derived from the current time.
+  If <var>x</var>, <var>y</var>, and <var>z</var> are either omitted or <code>0</code>, the 
+  seed will be computed from the current system time.  If one or two
+  of the parameters are <code>0</code>, but not all three, the zero values
+  are replaced by ones.  This causes some apparently different seeds
+  to be equal, with the corresponding result on the pseudo-random
+  series produced by the generator.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-958"><tt class="function">choice</tt></a></b>(<var>seq</var>)
+<dd>
+Chooses a random element from the non-empty sequence <var>seq</var> and returns it.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-959"><tt class="function">randint</tt></a></b>(<var>a, b</var>)
+<dd>
+Returns a random integer <var>N</var> such that <code><var>a</var>&lt;=<var>N</var>&lt;=<var>b</var></code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-960"><tt class="function">random</tt></a></b>()
+<dd>
+Returns the next random floating point number in the range [0.0 ... 1.0).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-961"><tt class="function">seed</tt></a></b>(<var>x, y, z</var>)
+<dd>
+Initializes the random number generator from the integers <var>x</var>,
+<var>y</var> and <var>z</var>.  When the module is first imported, the random
+number is initialized using values derived from the current time.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-962"><tt class="function">uniform</tt></a></b>(<var>a, b</var>)
+<dd>
+Returns a random real number <var>N</var> such that <code><var>a</var>&lt;=<var>N</var>&lt;<var>b</var></code>.
+</dl>
+
+<P>
+When imported, the <tt class="module">whrandom</tt> module also creates an instance of
+the <tt class="class">whrandom</tt> class, and makes the methods of that instance
+available at the module level.  Therefore one can write either 
+<code>N = whrandom.random()</code> or:
+
+<P>
+<dl><dd><pre class="verbatim">
+generator = whrandom.whrandom()
+N = generator.random()
+</pre></dl>
+
+<P>
+Note that using separate instances of the generator leads to
+independent sequences of pseudo-random numbers.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-random.html">random</a></tt>:</b>
+    <dd>Generators for various random distributions and
+                     documentation for the Random Number Generator
+                     interface.
+  </dl>
+  <div class="seetext"><p>Wichmann, B. A. &amp; Hill, I. D., ``Algorithm AS 183: 
+           An efficient and portable pseudo-random number generator'',
+           <em class="citetitle"
+ >Applied Statistics</em> 31 (1982) 188-190.</div>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-random.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-bisect.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-random.html">5.6 random  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-bisect.html">5.8 bisect  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.1 os -- Miscellaneous operating system interfaces</title>
+<META NAME="description" CONTENT="6.1 os -- Miscellaneous operating system interfaces">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-os.path.html">
+<LINK REL="previous" href="allos.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" href="os-procinfo.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="allos.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="os-procinfo.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="os-procinfo.html">6.1.1 Process Parameters</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008100000000000000000">
+6.1 <tt class="module">os</tt> --
+         Miscellaneous operating system interfaces</A>
+</H1>
+
+<P>
+
+
+<P>
+This module provides a more portable way of using operating system
+dependent functionality than importing a operating system dependent
+built-in module like <tt class="module"><a href="module-posix.html">posix</a></tt> or <tt class="module">nt</tt>.
+
+<P>
+This module searches for an operating system dependent built-in module like
+<tt class="module">mac</tt> or <tt class="module"><a href="module-posix.html">posix</a></tt> and exports the same functions and data
+as found there.  The design of all Python's built-in operating system dependent
+modules is such that as long as the same functionality is available,
+it uses the same interface; for example, the function
+<code>os.stat(<var>path</var>)</code> returns stat information about <var>path</var> in
+the same format (which happens to have originated with the
+POSIX interface).
+
+<P>
+Extensions peculiar to a particular operating system are also
+available through the <tt class="module">os</tt> module, but using them is of course a
+threat to portability!
+
+<P>
+Note that after the first time <tt class="module">os</tt> is imported, there is
+<i>no</i> performance penalty in using functions from <tt class="module">os</tt>
+instead of directly from the operating system dependent built-in module,
+so there should be <i>no</i> reason not to use <tt class="module">os</tt>!
+
+<P>
+The <tt class="module">os</tt> module contains many functions and data values.
+The items below and in the following sub-sections are all available
+directly from the <tt class="module">os</tt> module.
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-1087"><tt class="exception">error</tt></a></b>
+<dd>
+This exception is raised when a function returns a system-related
+error (not for illegal argument types or other incidental errors).
+This is also known as the built-in exception <tt class="exception">OSError</tt>.  The
+accompanying value is a pair containing the numeric error code from
+<tt class="cdata">errno</tt> and the corresponding string, as would be printed by the
+C function <tt class="cfunction">perror()</tt>.  See the module
+<tt class="module"><a href="module-errno.html">errno</a></tt><a name="l2h-1090">&nbsp;</a>, which contains names for the
+error codes defined by the underlying operating system.
+
+<P>
+When exceptions are classes, this exception carries two attributes,
+<tt class="member">errno</tt> and <tt class="member">strerror</tt>.  The first holds the value of
+the C <tt class="cdata">errno</tt> variable, and the latter holds the corresponding
+error message from <tt class="cfunction">strerror()</tt>.  For exceptions that
+involve a file system path (such as <tt class="function">chdir()</tt> or
+<tt class="function">unlink()</tt>), the exception instance will contain a third
+attribute, <tt class="member">filename</tt>, which is the file name passed to the
+function.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1088"><tt>name</tt></a></b>
+<dd>
+The name of the operating system dependent module imported.  The
+following names have currently been registered: <code>'posix'</code>,
+<code>'nt'</code>, <code>'dos'</code>, <code>'mac'</code>, <code>'os2'</code>, <code>'ce'</code>,
+<code>'java'</code>, <code>'riscos'</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1089"><tt>path</tt></a></b>
+<dd>
+The corresponding operating system dependent standard module for pathname
+operations, such as <tt class="module">posixpath</tt> or <tt class="module">macpath</tt>.  Thus,
+given the proper imports, <code>os.path.split(<var>file</var>)</code> is
+equivalent to but more portable than
+<code>posixpath.split(<var>file</var>)</code>.  Note that this is also an
+importable module: it may be imported directly as
+<tt class="module"><a href="module-os.path.html">os.path</a></tt>.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="os-procinfo.html">6.1.1 Process Parameters</a>
+<LI><A href="os-newstreams.html">6.1.2 File Object Creation</a>
+<LI><A href="os-fd-ops.html">6.1.3 File Descriptor Operations</a>
+<LI><A href="os-file-dir.html">6.1.4 Files and Directories</a>
+<LI><A href="os-process.html">6.1.5 Process Management</a>
+<LI><A href="os-path.html">6.1.6 Miscellaneous System Information</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="allos.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="os-procinfo.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="os-procinfo.html">6.1.1 Process Parameters</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

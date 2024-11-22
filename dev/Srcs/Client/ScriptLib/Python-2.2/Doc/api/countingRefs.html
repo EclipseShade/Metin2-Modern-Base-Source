@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3. Reference Counting </title>
+<META NAME="description" CONTENT="3. Reference Counting ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="exceptionHandling.html">
+<LINK REL="previous" href="veryhigh.html">
+<LINK REL="up" HREF="api.html">
+<LINK REL="next" href="exceptionHandling.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="veryhigh.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="api.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="exceptionHandling.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="veryhigh.html">2. The Very High</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="api.html">Python/C API Reference Manual</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="exceptionHandling.html">4. Exception Handling</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005000000000000000000">&nbsp;</A>
+<BR>
+3. Reference Counting 
+</H1>
+
+<P>
+The macros in this section are used for managing reference counts
+of Python objects.
+
+<P>
+<dl><dt>void <b><a name="l2h-64"><tt class="cfunction">Py_INCREF</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+  Increment the reference count for object <var>o</var>.  The object must
+  not be <tt class="constant">NULL</tt>; if you aren't sure that it isn't <tt class="constant">NULL</tt>, use
+  <tt class="cfunction">Py_XINCREF()</tt>.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-65"><tt class="cfunction">Py_XINCREF</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+  Increment the reference count for object <var>o</var>.  The object may be
+  <tt class="constant">NULL</tt>, in which case the macro has no effect.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-66"><tt class="cfunction">Py_DECREF</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+  Decrement the reference count for object <var>o</var>.  The object must
+  not be <tt class="constant">NULL</tt>; if you aren't sure that it isn't <tt class="constant">NULL</tt>, use
+  <tt class="cfunction">Py_XDECREF()</tt>.  If the reference count reaches zero, the
+  object's type's deallocation function (which must not be <tt class="constant">NULL</tt>) is
+  invoked.
+
+<P>
+<span class="warning"><b class="label">Warning:</b>
+The deallocation function can cause arbitrary Python code
+  to be invoked (e.g. when a class instance with a <tt class="method">__del__()</tt>
+  method is deallocated).  While exceptions in such code are not
+  propagated, the executed code has free access to all Python global
+  variables.  This means that any object that is reachable from a
+  global variable should be in a consistent state before
+  <tt class="cfunction">Py_DECREF()</tt> is invoked.  For example, code to delete an
+  object from a list should copy a reference to the deleted object in
+  a temporary variable, update the list data structure, and then call
+  <tt class="cfunction">Py_DECREF()</tt> for the temporary variable.</span>
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-67"><tt class="cfunction">Py_XDECREF</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+  Decrement the reference count for object <var>o</var>.  The object may be
+  <tt class="constant">NULL</tt>, in which case the macro has no effect; otherwise the effect
+  is the same as for <tt class="cfunction">Py_DECREF()</tt>, and the same warning
+  applies.
+</dl>
+
+<P>
+The following functions or macros are only for use within the
+interpreter core: <tt class="cfunction">_Py_Dealloc()</tt>,
+<tt class="cfunction">_Py_ForgetReference()</tt>, <tt class="cfunction">_Py_NewReference()</tt>, as
+well as the global variable <tt class="cdata">_Py_RefTotal</tt>.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="veryhigh.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="api.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="exceptionHandling.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="veryhigh.html">2. The Very High</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="api.html">Python/C API Reference Manual</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="exceptionHandling.html">4. Exception Handling</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

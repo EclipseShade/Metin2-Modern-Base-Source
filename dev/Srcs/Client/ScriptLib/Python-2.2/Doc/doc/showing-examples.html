@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.4 Showing Code Examples </title>
+<META NAME="description" CONTENT="6.4 Showing Code Examples ">
+<META NAME="keywords" CONTENT="doc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="doc.css">
+<link rel="first" href="doc.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="inline-markup.html">
+<LINK REL="previous" href="info-units.html">
+<LINK REL="up" href="special-constructs.html">
+<LINK REL="next" href="inline-markup.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="info-units.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="special-constructs.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="inline-markup.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="info-units.html">6.3 Information Units</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="special-constructs.html">6 Special Markup Constructs</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="inline-markup.html">6.5 Inline Markup</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000740000000000000000">&nbsp;</A>
+<BR>
+6.4 Showing Code Examples 
+</H2>
+
+<P>
+Examples of Python source code or interactive sessions are
+    represented as <tt class='environment'>&#92;verbatim</tt> environments.  This environment
+    is a standard part of <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN>.  It is important to only use
+    spaces for indentation in code examples since <SPAN CLASS="logo-TeX">T<SMALL>E</SMALL>X</SPAN> drops tabs
+    instead of converting them to spaces.
+
+<P>
+Representing an interactive session requires including the prompts
+    and output along with the Python code.  No special markup is
+    required for interactive sessions.  After the last line of input
+    or output presented, there should not be an ``unused'' primary
+    prompt; this is an example of what <i>not</i> to do:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; 1 + 1
+2
+&gt;&gt;&gt;
+</pre></dl>
+
+<P>
+Within the <tt class='environment'>&#92;verbatim</tt> environment, characters special to
+    <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> do not need to be specially marked in any way.  The entire
+    example will be presented in a monospaced font; no attempt at
+    ``pretty-printing'' is made, as the environment must work for
+    non-Python code and non-code displays.  There should be no blank
+    lines at the top or bottom of any <tt class='environment'>&#92;verbatim</tt> display.
+
+<P>
+Longer displays of verbatim text may be included by storing the
+    example text in an external file containing only plain text.  The
+    file may be included using the standard <tt class='macro'>&#92;verbatiminput</tt>
+    macro; this macro takes a single argument naming the file
+    containing the text.  For example, to include the Python source
+    file <span class="file">example.py</span>, use:
+
+<P>
+<dl><dd><pre class="verbatim">
+\verbatiminput{example.py}
+</pre></dl>
+
+<P>
+Use of <tt class='macro'>&#92;verbatiminput</tt> allows easier use of special editing
+    modes for the included file.  The file should be placed in the
+    same directory as the <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> files for the document.
+
+<P>
+The Python Documentation Special Interest Group has discussed a
+    number of approaches to creating pretty-printed code displays and
+    interactive sessions; see the Doc-SIG area on the Python Web site
+    for more information on this topic.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="info-units.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="special-constructs.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="inline-markup.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="info-units.html">6.3 Information Units</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="special-constructs.html">6 Special Markup Constructs</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="inline-markup.html">6.5 Inline Markup</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

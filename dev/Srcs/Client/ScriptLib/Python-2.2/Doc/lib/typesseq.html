@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.2.6 Sequence Types </title>
+<META NAME="description" CONTENT="2.2.6 Sequence Types ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="typesmapping.html">
+<LINK REL="previous" href="typeiter.html">
+<LINK REL="up" href="types.html">
+<LINK REL="next" href="string-methods.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="typeiter.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="string-methods.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="typeiter.html">2.2.5 Iterator Types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="types.html">2.2 Built-in Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="string-methods.html">2.2.6.1 String Methods</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004260000000000000000">&nbsp;</A>
+<BR>
+2.2.6 Sequence Types 
+</H2>
+
+<P>
+There are six sequence types: strings, Unicode strings, lists,
+tuples, buffers, and xrange objects.
+
+<P>
+Strings literals are written in single or double quotes:
+<code>'xyzzy'</code>, <code>"frobozz"</code>.  See chapter 2 of the
+<em class="citetitle"><a
+ href="../ref/strings.html"
+ title="Python Reference Manual"
+ >Python Reference Manual</a></em> for more about
+string literals.  Unicode strings are much like strings, but are
+specified in the syntax using a preceeding "<tt class="character">u</tt>" character:
+<code>u'abc'</code>, <code>u"def"</code>.  Lists are constructed with square brackets,
+separating items with commas: <code>[a, b, c]</code>.  Tuples are
+constructed by the comma operator (not within square brackets), with
+or without enclosing parentheses, but an empty tuple must have the
+enclosing parentheses, e.g., <code>a, b, c</code> or <code>()</code>.  A single
+item tuple must have a trailing comma, e.g., <code>(d,)</code>.
+<a name="l2h-106">&nbsp;</a>
+<P>
+Buffer objects are not directly supported by Python syntax, but can be
+created by calling the builtin function
+<tt class="function">buffer()</tt>.<a name="l2h-107">&nbsp;</a>.  They don't support
+concatenation or repetition.
+<a name="l2h-108">&nbsp;</a>
+<P>
+Xrange objects are similar to buffers in that there is no specific
+syntax to create them, but they are created using the <tt class="function">xrange()</tt>
+function.<a name="l2h-109">&nbsp;</a> They don't support slicing,
+concatenation or repetition, and using <code>in</code>, <code>not in</code>,
+<tt class="function">min()</tt> or <tt class="function">max()</tt> on them is inefficient.
+<a name="l2h-110">&nbsp;</a>
+<P>
+Most sequence types support the following operations.  The "<tt class="samp">in</tt>" and
+"<tt class="samp">not in</tt>" operations have the same priorities as the comparison
+operations.  The "<tt class="samp">+</tt>" and "<tt class="samp">*</tt>" operations have the same
+priority as the corresponding numeric operations.<A NAME="tex2html8"
+  HREF="#foot1515"><SUP>2.7</SUP></A>
+<P>
+This table lists the sequence operations sorted in ascending priority
+(operations in the same box have the same priority).  In the table,
+<var>s</var> and <var>t</var> are sequences of the same type; <var>n</var>, <var>i</var>
+and <var>j</var> are integers:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Operation</b>&nbsp;</th>
+      <th align="left"><b>Result</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><code><var>x</var> in <var>s</var></code></td>
+        <td align="left"><code>1</code> if an item of <var>s</var> is equal to <var>x</var>, else <code>0</code></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code><var>x</var> not in <var>s</var></code></td>
+        <td align="left"><code>0</code> if an item of <var>s</var> is
+equal to <var>x</var>, else <code>1</code></td>
+        <td align="center">&nbsp;</td>
+  
+    <tr><td align="center" valign="baseline"><code><var>s</var> + <var>t</var></code></td>
+        <td align="left">the concatenation of <var>s</var> and <var>t</var></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code><var>s</var> * <var>n</var> , <var>n</var> * <var>s</var></code></td>
+        <td align="left"><var>n</var> shallow copies of <var>s</var> concatenated</td>
+        <td align="center">(1)</td>
+  
+    <tr><td align="center" valign="baseline"><code><var>s</var>[<var>i</var>]</code></td>
+        <td align="left"><var>i</var>'th item of <var>s</var>, origin 0</td>
+        <td align="center">(2)</td>
+    <tr><td align="center" valign="baseline"><code><var>s</var>[<var>i</var>:<var>j</var>]</code></td>
+        <td align="left">slice of <var>s</var> from <var>i</var> to <var>j</var></td>
+        <td align="center">(2), (3)</td>
+  
+    <tr><td align="center" valign="baseline"><code>len(<var>s</var>)</code></td>
+        <td align="left">length of <var>s</var></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>min(<var>s</var>)</code></td>
+        <td align="left">smallest item of <var>s</var></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>max(<var>s</var>)</code></td>
+        <td align="left">largest item of <var>s</var></td>
+        <td align="center">&nbsp;</td></tbody>
+</table>
+<a name="l2h-111">&nbsp;</a>
+<P>
+Notes:
+
+<P>
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>Values of <var>n</var> less than <code>0</code> are treated as
+  <code>0</code> (which yields an empty sequence of the same type as
+  <var>s</var>).  Note also that the copies are shallow; nested structures
+  are not copied.  This often haunts new Python programmers; consider:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; lists = [[]] * 3
+&gt;&gt;&gt; lists
+[[], [], []]
+&gt;&gt;&gt; lists[0].append(3)
+&gt;&gt;&gt; lists
+[[3], [3], [3]]
+</pre></dl>
+
+<P>
+What has happened is that <code>lists</code> is a list containing three
+  copies of the list <code>[[]]</code> (a one-element list containing an
+  empty list), but the contained list is shared by each copy.  You can
+  create a list of different lists this way:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; lists = [[] for i in range(3)]
+&gt;&gt;&gt; lists[0].append(3)
+&gt;&gt;&gt; lists[1].append(5)
+&gt;&gt;&gt; lists[2].append(7)
+&gt;&gt;&gt; lists
+[[3], [5], [7]]
+</pre></dl>
+
+<P>
+</DD>
+<DT><STRONG>(2)</STRONG></DT>
+<DD>If <var>i</var> or <var>j</var> is negative, the index is relative to
+  the end of the string: <code>len(<var>s</var>) + <var>i</var></code> or
+  <code>len(<var>s</var>) + <var>j</var></code> is substituted.  But note that <code>-0</code> is
+  still <code>0</code>.
+
+<P>
+</DD>
+<DT><STRONG>(3)</STRONG></DT>
+<DD>The slice of <var>s</var> from <var>i</var> to <var>j</var> is defined as
+  the sequence of items with index <var>k</var> such that <code><var>i</var> &lt;=
+  <var>k</var> &lt; <var>j</var></code>.  If <var>i</var> or <var>j</var> is greater than
+  <code>len(<var>s</var>)</code>, use <code>len(<var>s</var>)</code>.  If <var>i</var> is omitted,
+  use <code>0</code>.  If <var>j</var> is omitted, use <code>len(<var>s</var>)</code>.  If
+  <var>i</var> is greater than or equal to <var>j</var>, the slice is empty.
+</DD>
+</DL>
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot1515">... operations.</A><A NAME="foot1515"
+ href="typesseq.html#tex2html8"><SUP>2.7</SUP></A>
+<DD>They must
+have since the parser can't tell the type of the operands.
+
+</DL>
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="string-methods.html">2.2.6.1 String Methods</a>
+<LI><A href="typesseq-strings.html">2.2.6.2 String Formatting Operations</a>
+<LI><A href="typesseq-xrange.html">2.2.6.3 XRange Type</a>
+<LI><A href="typesseq-mutable.html">2.2.6.4 Mutable Sequence Types</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="typeiter.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="string-methods.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="typeiter.html">2.2.5 Iterator Types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="types.html">2.2 Built-in Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="string-methods.html">2.2.6.1 String Methods</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

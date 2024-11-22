@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.13 binascii -- Convert between binary and ASCII</title>
+<META NAME="description" CONTENT="12.13 binascii -- Convert between binary and ASCII">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-binhex.html">
+<LINK REL="previous" href="module-base64.html">
+<LINK REL="up" href="netdata.html">
+<LINK REL="next" href="module-binhex.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-base64.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-binhex.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-base64.html">12.12 base64  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-binhex.html">12.14 binhex  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00141300000000000000000">
+12.13 <tt class="module">binascii</tt> --
+         Convert between binary and ASCII</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">binascii</tt> module contains a number of methods to convert
+between binary and various ASCII-encoded binary
+representations. Normally, you will not use these functions directly
+but use wrapper modules like <tt class="module"><a href="module-uu.html">uu</a></tt><a name="l2h-3034">&nbsp;</a>or
+<tt class="module"><a href="module-binhex.html">binhex</a></tt><a name="l2h-3035">&nbsp;</a>instead, this module solely
+exists because bit-manipulation of large amounts of data is slow in
+Python.
+
+<P>
+The <tt class="module">binascii</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-3018"><tt class="function">a2b_uu</tt></a></b>(<var>string</var>)
+<dd>
+Convert a single line of uuencoded data back to binary and return the
+binary data. Lines normally contain 45 (binary) bytes, except for the
+last line. Line data may be followed by whitespace.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3019"><tt class="function">b2a_uu</tt></a></b>(<var>data</var>)
+<dd>
+Convert binary data to a line of ASCII characters, the return value
+is the converted line, including a newline char. The length of
+<var>data</var> should be at most 45.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3020"><tt class="function">a2b_base64</tt></a></b>(<var>string</var>)
+<dd>
+Convert a block of base64 data back to binary and return the
+binary data. More than one line may be passed at a time.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3021"><tt class="function">b2a_base64</tt></a></b>(<var>data</var>)
+<dd>
+Convert binary data to a line of ASCII characters in base64 coding.
+The return value is the converted line, including a newline char.
+The length of <var>data</var> should be at most 57 to adhere to the base64
+standard.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3022"><tt class="function">a2b_qp</tt></a></b>(<var>string</var><big>[</big><var>, header</var><big>]</big>)
+<dd>
+Convert a block of quoted-printable data back to binary and return the
+binary data. More than one line may be passed at a time.
+If the optional argument <var>header</var> is present and true, underscores
+will be decoded as spaces.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3023"><tt class="function">b2a_qp</tt></a></b>(<var>data</var><big>[</big><var>, quotetabs, istext, header</var><big>]</big>)
+<dd>
+Convert binary data to a line(s) of ASCII characters in
+quoted-printable encoding.  The return value is the converted line(s).
+If the optional argument <var>quotetabs</var> is present and true, all tabs
+and spaces will be encoded.  If the optional argument <var>header</var> is
+present and true, spaces will be encoded as underscores per RFC1522.
+If the optional argument <var>header</var> is present and false, newline
+characters will be encoded as well, otherwise linefeed conversion might
+corrupt the binary data stream.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3024"><tt class="function">a2b_hqx</tt></a></b>(<var>string</var>)
+<dd>
+Convert binhex4 formatted ASCII data to binary, without doing
+RLE-decompression. The string should contain a complete number of
+binary bytes, or (in case of the last portion of the binhex4 data)
+have the remaining bits zero.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3025"><tt class="function">rledecode_hqx</tt></a></b>(<var>data</var>)
+<dd>
+Perform RLE-decompression on the data, as per the binhex4
+standard. The algorithm uses <code>0x90</code> after a byte as a repeat
+indicator, followed by a count. A count of <code>0</code> specifies a byte
+value of <code>0x90</code>. The routine returns the decompressed data,
+unless data input data ends in an orphaned repeat indicator, in which
+case the <tt class="exception">Incomplete</tt> exception is raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3026"><tt class="function">rlecode_hqx</tt></a></b>(<var>data</var>)
+<dd>
+Perform binhex4 style RLE-compression on <var>data</var> and return the
+result.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3027"><tt class="function">b2a_hqx</tt></a></b>(<var>data</var>)
+<dd>
+Perform hexbin4 binary-to-ASCII translation and return the
+resulting string. The argument should already be RLE-coded, and have a
+length divisible by 3 (except possibly the last fragment).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3028"><tt class="function">crc_hqx</tt></a></b>(<var>data, crc</var>)
+<dd>
+Compute the binhex4 crc value of <var>data</var>, starting with an initial
+<var>crc</var> and returning the result.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3029"><tt class="function">crc32</tt></a></b>(<var>data</var><big>[</big><var>, crc</var><big>]</big>)
+<dd>
+Compute CRC-32, the 32-bit checksum of data, starting with an initial
+crc.  This is consistent with the ZIP file checksum.  Since the
+algorithm is designed for use as a checksum algorithm, it is not
+suitable for use as a general hash algorithm.  Use as follows:
+<dl><dd><pre class="verbatim">
+    print binascii.crc32("hello world")
+    # Or, in two pieces:
+    crc = binascii.crc32("hello")
+    crc = binascii.crc32(" world", crc)
+    print crc
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3030"><tt class="function">b2a_hex</tt></a></b>(<var>data</var>)
+<dd>
+<dt><b><tt class="function">hexlify</tt></b>(<var>data</var>)
+<dd>
+Return the hexadecimal representation of the binary <var>data</var>.  Every
+byte of <var>data</var> is converted into the corresponding 2-digit hex
+representation.  The resulting string is therefore twice as long as
+the length of <var>data</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3031"><tt class="function">a2b_hex</tt></a></b>(<var>hexstr</var>)
+<dd>
+<dt><b><tt class="function">unhexlify</tt></b>(<var>hexstr</var>)
+<dd>
+Return the binary data represented by the hexadecimal string
+<var>hexstr</var>.  This function is the inverse of <tt class="function">b2a_hex()</tt>.
+<var>hexstr</var> must contain an even number of hexadecimal digits (which
+can be upper or lower case), otherwise a <tt class="exception">TypeError</tt> is
+raised.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-3032"><tt class="exception">Error</tt></a></b>
+<dd>
+Exception raised on errors. These are usually programming errors.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-3033"><tt class="exception">Incomplete</tt></a></b>
+<dd>
+Exception raised on incomplete data. These are usually not programming
+errors, but may be handled by reading a little more data and trying
+again.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-base64.html">base64</a></tt>:</b>
+    <dd>Support for base64 encoding used in MIME email messages.
+  </dl>
+
+<P>
+<dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-binhex.html">binhex</a></tt>:</b>
+    <dd>Support for the binhex format used on the Macintosh.
+  </dl>
+
+<P>
+<dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-uu.html">uu</a></tt>:</b>
+    <dd>Support for UU encoding used on Unix.
+  </dl>
+
+<P>
+<dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-quopri.html">quopri</a></tt>:</b>
+    <dd>Support for quoted-printable encoding used in MIME email messages. .
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-base64.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-binhex.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-base64.html">12.12 base64  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-binhex.html">12.14 binhex  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

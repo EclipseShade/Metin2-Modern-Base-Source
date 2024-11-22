@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.3 weakref -- Weak references</title>
+<META NAME="description" CONTENT="3.3 weakref -- Weak references">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-fpectl.html">
+<LINK REL="previous" href="module-gc.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="weakref-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-gc.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="weakref-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-gc.html">3.2 gc  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="weakref-objects.html">3.3.1 Weak Reference Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005300000000000000000">
+3.3 <tt class="module">weakref</tt> --
+         Weak references</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.1.</span>
+
+<P>
+The <tt class="module">weakref</tt> module allows the Python programmer to create
+<i class="dfn">weak references</i> to objects.
+
+<P>
+In the discussion which follows, the term <i class="dfn">referent</i> means the
+object which is referred to by a weak reference.
+
+<P>
+XXX -- need to say more here!
+
+<P>
+Not all objects can be weakly referenced; those objects which do
+include class instances, functions written in Python (but not in C),
+and methods (both bound and unbound).  Extension types can easily
+be made to support weak references; see section <A href="weakref-extension.html#weakref-extension">3.3.3</A>,
+``Weak References in Extension Types,'' for more information.
+
+<P>
+<dl><dt><b><a name="l2h-317"><tt class="function">ref</tt></a></b>(<var>object</var><big>[</big><var>, callback</var><big>]</big>)
+<dd>
+  Return a weak reference to <var>object</var>.  The original object can be
+  retrieved by calling the reference object if the referent is still
+  alive; if the referent is no longer alive, calling the reference
+  object will cause <code>None</code> to be returned.  If <var>callback</var> is
+  provided, it will be called when the object is about to be
+  finalized; the weak reference object will be passed as the only
+  parameter to the callback; the referent will no longer be available.
+
+<P>
+It is allowable for many weak references to be constructed for the
+  same object.  Callbacks registered for each weak reference will be
+  called from the most recently registered callback to the oldest
+  registered callback.
+
+<P>
+Exceptions raised by the callback will be noted on the standard
+  error output, but cannot be propagated; they are handled in exactly
+  the same way as exceptions raised from an object's
+  <tt class="method">__del__()</tt> method.
+
+<P>
+Weak references are hashable if the <var>object</var> is hashable.  They
+  will maintain their hash value even after the <var>object</var> was
+  deleted.  If <tt class="function">hash()</tt> is called the first time only after
+  the <var>object</var> was deleted, the call will raise
+  <tt class="exception">TypeError</tt>.
+
+<P>
+Weak references support tests for equality, but not ordering.  If
+  the referents are still alive, two references have the same
+  equality relationship as their referents (regardless of the
+  <var>callback</var>).  If either referent has been deleted, the
+  references are equal only if the reference objects are the same
+  object.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-318"><tt class="function">proxy</tt></a></b>(<var>object</var><big>[</big><var>, callback</var><big>]</big>)
+<dd>
+  Return a proxy to <var>object</var> which uses a weak reference.  This
+  supports use of the proxy in most contexts instead of requiring the
+  explicit dereferencing used with weak reference objects.  The
+  returned object will have a type of either <code>ProxyType</code> or
+  <code>CallableProxyType</code>, depending on whether <var>object</var> is
+  callable.  Proxy objects are not hashable regardless of the
+  referent; this avoids a number of problems related to their
+  fundamentally mutable nature, and prevent their use as dictionary
+  keys.  <var>callback</var> is the same as the parameter of the same name
+  to the <tt class="function">ref()</tt> function.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-319"><tt class="function">getweakrefcount</tt></a></b>(<var>object</var>)
+<dd>
+  Return the number of weak references and proxies which refer to
+  <var>object</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-320"><tt class="function">getweakrefs</tt></a></b>(<var>object</var>)
+<dd>
+  Return a list of all weak reference and proxy objects which refer to
+  <var>object</var>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-321"><tt class="class">WeakKeyDictionary</tt></a></b>(<big>[</big><var>dict</var><big>]</big>)
+<dd>
+  Mapping class that references keys weakly.  Entries in the
+  dictionary will be discarded when there is no longer a strong
+  reference to the key.  This can be used to associate additional data
+  with an object owned by other parts of an application without adding
+  attributes to those objects.  This can be especially useful with
+  objects that override attribute accesses.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-322"><tt class="class">WeakValueDictionary</tt></a></b>(<big>[</big><var>dict</var><big>]</big>)
+<dd>
+  Mapping class that references values weakly.  Entries in the
+  dictionary will be discarded when no strong reference to the value
+  exists any more.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-323"><tt>ReferenceType</tt></a></b>
+<dd>
+  The type object for weak references objects.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-324"><tt>ProxyType</tt></a></b>
+<dd>
+  The type object for proxies of objects which are not callable.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-325"><tt>CallableProxyType</tt></a></b>
+<dd>
+  The type object for proxies of callable objects.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-326"><tt>ProxyTypes</tt></a></b>
+<dd>
+  Sequence containing all the type objects for proxies.  This can make
+  it simpler to test if an object is a proxy without being dependent
+  on naming both proxy types.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-327"><tt class="exception">ReferenceError</tt></a></b>
+<dd>
+  Exception raised when a proxy object is used but the underlying
+  object has been collected.  This is the same as the standard
+  <tt class="exception">ReferenceError</tt> exception.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seerfc">
+    <dt><a href="http://python.sourceforge.net/peps/pep-0205.html"
+        title="Weak References"
+        >PEP 0205, <em>Weak References</em></a>
+    <dd>The proposal and rationale for this
+                feature, including links to earlier implementations
+                and information about similar features in other
+                languages.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="weakref-objects.html">3.3.1 Weak Reference Objects</a>
+<LI><A href="weakref-example.html">3.3.2 Example</a>
+<LI><A href="weakref-extension.html">3.3.3 Weak References in Extension Types</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-gc.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="weakref-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-gc.html">3.2 gc  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="weakref-objects.html">3.3.1 Weak Reference Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

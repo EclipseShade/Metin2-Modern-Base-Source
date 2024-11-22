@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.3 Back to the Example
+</title>
+<META NAME="description" CONTENT="1.3 Back to the Example
+">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="methodTable.html">
+<LINK REL="previous" href="errors.html">
+<LINK REL="up" href="intro.html">
+<LINK REL="next" href="methodTable.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="errors.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="methodTable.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="errors.html">1.2 Intermezzo: Errors and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="methodTable.html">1.4 The Module's Method</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION003300000000000000000">&nbsp;</A>
+<BR>
+1.3 Back to the Example
+         
+</H1>
+
+<P>
+Going back to our example function, you should now be able to
+understand this statement:
+
+<P>
+<dl><dd><pre class="verbatim">
+    if (!PyArg_ParseTuple(args, "s", &amp;command))
+        return NULL;
+</pre></dl>
+
+<P>
+It returns <tt class="constant">NULL</tt> (the error indicator for functions returning
+object pointers) if an error is detected in the argument list, relying
+on the exception set by <tt class="cfunction">PyArg_ParseTuple()</tt>.  Otherwise the
+string value of the argument has been copied to the local variable
+<tt class="cdata">command</tt>.  This is a pointer assignment and you are not supposed
+to modify the string to which it points (so in Standard C, the variable
+<tt class="cdata">command</tt> should properly be declared as "<tt class="samp">const char
+*command</tt>").
+
+<P>
+The next statement is a call to the Unix function
+<tt class="cfunction">system()</tt>, passing it the string we just got from
+<tt class="cfunction">PyArg_ParseTuple()</tt>:
+
+<P>
+<dl><dd><pre class="verbatim">
+    sts = system(command);
+</pre></dl>
+
+<P>
+Our <tt class="function">spam.system()</tt> function must return the value of
+<tt class="cdata">sts</tt> as a Python object.  This is done using the function
+<tt class="cfunction">Py_BuildValue()</tt>, which is something like the inverse of
+<tt class="cfunction">PyArg_ParseTuple()</tt>: it takes a format string and an
+arbitrary number of C values, and returns a new Python object.
+More info on <tt class="cfunction">Py_BuildValue()</tt> is given later.
+
+<P>
+<dl><dd><pre class="verbatim">
+    return Py_BuildValue("i", sts);
+</pre></dl>
+
+<P>
+In this case, it will return an integer object.  (Yes, even integers
+are objects on the heap in Python!)
+
+<P>
+If you have a C function that returns no useful argument (a function
+returning <tt class="ctype">void</tt>), the corresponding Python function must return
+<code>None</code>.   You need this idiom to do so:
+
+<P>
+<dl><dd><pre class="verbatim">
+    Py_INCREF(Py_None);
+    return Py_None;
+</pre></dl>
+
+<P>
+<tt class="cdata">Py_None</tt> is the C name for the special Python object
+<code>None</code>.  It is a genuine Python object rather than a <tt class="constant">NULL</tt>
+pointer, which means ``error'' in most contexts, as we have seen.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="errors.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="methodTable.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="errors.html">1.2 Intermezzo: Errors and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="methodTable.html">1.4 The Module's Method</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

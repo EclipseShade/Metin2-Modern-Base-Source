@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.3.2 Reserved classes of identifiers</title>
+<META NAME="description" CONTENT="2.3.2 Reserved classes of identifiers">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="keywords.html">
+<LINK REL="up" href="identifiers.html">
+<LINK REL="next" href="literals.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="keywords.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="identifiers.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="literals.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="keywords.html">2.3.1 Keywords</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="identifiers.html">2.3 Identifiers and keywords</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="literals.html">2.4 Literals</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004320000000000000000">&nbsp;</A>
+<BR>
+2.3.2 Reserved classes of identifiers
+</H2>
+
+<P>
+Certain classes of identifiers (besides keywords) have special
+meanings.  These are:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Form</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      <th align="left"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>_*</code></td>
+        <td align="left">Not imported by "<tt class="samp">from <var>module</var> import *</tt>"</td>
+        <td align="left">(1)</td>
+    <tr><td align="left" valign="baseline"><code>__*__</code></td>
+        <td align="left">System-defined name</td>
+        <td align="left">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><code>__*</code></td>
+        <td align="left">Class-private name mangling</td>
+        <td align="left">&nbsp;</td></tbody>
+</table>
+
+<P>
+(XXX need section references here.)
+
+<P>
+Note:
+
+<P>
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>The special identifier "<tt class="samp">_</tt>" is used in the interactive
+interpreter to store the result of the last evaluation; it is stored
+in the <tt class="module">__builtin__</tt> module.  When not in interactive mode,
+"<tt class="samp">_</tt>" has no special meaning and is not defined.
+</DD>
+</DL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="keywords.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="identifiers.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="literals.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="keywords.html">2.3.1 Keywords</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="identifiers.html">2.3 Identifiers and keywords</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="literals.html">2.4 Literals</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

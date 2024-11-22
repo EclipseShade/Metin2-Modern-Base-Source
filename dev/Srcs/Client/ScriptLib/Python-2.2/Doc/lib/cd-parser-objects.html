@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>20.3.2 Parser Objects</title>
+<META NAME="description" CONTENT="20.3.2 Parser Objects">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="player-objects.html">
+<LINK REL="up" href="module-cd.html">
+<LINK REL="next" href="module-fl.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="player-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-cd.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-fl.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="player-objects.html">20.3.1 Player Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-cd.html">20.3 cd  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-fl.html">20.4 fl  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0022320000000000000000">&nbsp;</A>
+<BR>
+20.3.2 Parser Objects
+</H2>
+
+<P>
+Parser objects (returned by <tt class="function">createparser()</tt>) have the
+following methods:
+
+<P>
+<dl><dt><b><a name="l2h-3923"><tt class="method">addcallback</tt></a></b>(<var>type, func, arg</var>)
+<dd>
+Adds a callback for the parser.  The parser has callbacks for eight
+different types of data in the digital audio data stream.  Constants
+for these types are defined at the <tt class="module">cd</tt> module level (see above).
+The callback is called as follows: <code><var>func</var>(<var>arg</var>, type,
+data)</code>, where <var>arg</var> is the user supplied argument, <var>type</var> is
+the particular type of callback, and <var>data</var> is the data returned
+for this <var>type</var> of callback.  The type of the data depends on the
+<var>type</var> of callback as follows:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Type</b>&nbsp;</th>
+      <th align="left"><b>Value</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>audio</code></td>
+        <td align="left">String which can be passed unmodified to
+<tt class="function">al.writesamps()</tt>.</td>
+    <tr><td align="left" valign="baseline"><code>pnum</code></td>
+        <td align="left">Integer giving the program (track) number.</td>
+    <tr><td align="left" valign="baseline"><code>index</code></td>
+        <td align="left">Integer giving the index number.</td>
+    <tr><td align="left" valign="baseline"><code>ptime</code></td>
+        <td align="left">Tuple consisting of the program time in minutes,
+seconds, and frames.</td>
+    <tr><td align="left" valign="baseline"><code>atime</code></td>
+        <td align="left">Tuple consisting of the absolute time in minutes,
+seconds, and frames.</td>
+    <tr><td align="left" valign="baseline"><code>catalog</code></td>
+        <td align="left">String of 13 characters, giving the catalog number
+of the CD.</td>
+    <tr><td align="left" valign="baseline"><code>ident</code></td>
+        <td align="left">String of 12 characters, giving the ISRC
+identification number of the recording.  The string consists of two
+characters country code, three characters owner code, two characters
+giving the year, and five characters giving a serial number.</td>
+    <tr><td align="left" valign="baseline"><code>control</code></td>
+        <td align="left">Integer giving the control bits from the CD
+subcode data</td></tbody>
+</table>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3924"><tt class="method">deleteparser</tt></a></b>()
+<dd>
+Deletes the parser and frees the memory it was using.  The object
+should not be used after this call.  This call is done automatically
+when the last reference to the object is removed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3925"><tt class="method">parseframe</tt></a></b>(<var>frame</var>)
+<dd>
+Parses one or more frames of digital audio data from a CD such as
+returned by <tt class="method">readda()</tt>.  It determines which subcodes are
+present in the data.  If these subcodes have changed since the last
+frame, then <tt class="method">parseframe()</tt> executes a callback of the
+appropriate type passing to it the subcode data found in the frame.
+Unlike the C function, more than one frame of digital audio data
+can be passed to this method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3926"><tt class="method">removecallback</tt></a></b>(<var>type</var>)
+<dd>
+Removes the callback for the given <var>type</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3927"><tt class="method">resetparser</tt></a></b>()
+<dd>
+Resets the fields of the parser used for tracking subcodes to an
+initial state.  <tt class="method">resetparser()</tt> should be called after the disc
+has been changed.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="player-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-cd.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-fl.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="player-objects.html">20.3.1 Player Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-cd.html">20.3 cd  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-fl.html">20.4 fl  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

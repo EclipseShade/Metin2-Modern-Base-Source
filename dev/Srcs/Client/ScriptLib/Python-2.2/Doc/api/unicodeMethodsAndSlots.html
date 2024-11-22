@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.3.2.2 Methods and Slot Functions </title>
+<META NAME="description" CONTENT="7.3.2.2 Methods and Slot Functions ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="builtinCodecs.html">
+<LINK REL="up" href="unicodeObjects.html">
+<LINK REL="next" href="bufferObjects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="builtinCodecs.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unicodeObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="bufferObjects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="builtinCodecs.html">7.3.2.1 Built-in Codecs</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unicodeObjects.html">7.3.2 Unicode Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="bufferObjects.html">7.3.3 Buffer Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION009322000000000000000">&nbsp;</A>
+<BR>
+7.3.2.2 Methods and Slot Functions 
+</H3>
+
+<P>
+The following APIs are capable of handling Unicode objects and strings
+on input (we refer to them as strings in the descriptions) and return
+Unicode objects or integers as apporpriate.
+
+<P>
+They all return <tt class="constant">NULL</tt> or <code>-1</code> if an exception occurs.
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-446"><tt class="cfunction">PyUnicode_Concat</tt></a></b>(<var>PyObject *left,
+                                               PyObject *right</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Concat two strings giving a new Unicode string.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-447"><tt class="cfunction">PyUnicode_Split</tt></a></b>(<var>PyObject *s,
+                                              PyObject *sep,
+                                              int maxsplit</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Split a string giving a list of Unicode strings.  If sep is <tt class="constant">NULL</tt>,
+  splitting will be done at all whitespace substrings.  Otherwise,
+  splits occur at the given separator.  At most <var>maxsplit</var> splits
+  will be done.  If negative, no limit is set.  Separators are not
+  included in the resulting list.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-448"><tt class="cfunction">PyUnicode_Splitlines</tt></a></b>(<var>PyObject *s,
+                                                   int maxsplit</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Split a Unicode string at line breaks, returning a list of Unicode
+  strings.  CRLF is considered to be one line break.  The Line break
+  characters are not included in the resulting strings.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-449"><tt class="cfunction">PyUnicode_Translate</tt></a></b>(<var>PyObject *str,
+                                                  PyObject *table,
+                                                  const char *errors</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Translate a string by applying a character mapping table to it and
+  return the resulting Unicode object.
+
+<P>
+The mapping table must map Unicode ordinal integers to Unicode
+  ordinal integers or None (causing deletion of the character).
+
+<P>
+Mapping tables need only provide the <tt class="method">__getitem__()</tt>
+  interface; dictionaries and sequences work well.  Unmapped character
+  ordinals (ones which cause a <tt class="exception">LookupError</tt>) are left
+  untouched and are copied as-is.
+
+<P>
+<var>errors</var> has the usual meaning for codecs. It may be <tt class="constant">NULL</tt>
+  which indicates to use the default error handling.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-450"><tt class="cfunction">PyUnicode_Join</tt></a></b>(<var>PyObject *separator,
+                                             PyObject *seq</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Join a sequence of strings using the given separator and return the
+  resulting Unicode string.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-451"><tt class="cfunction">PyUnicode_Tailmatch</tt></a></b>(<var>PyObject *str,
+                                                  PyObject *substr,
+                                                  int start,
+                                                  int end,
+                                                  int direction</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Return 1 if <var>substr</var> matches <var>str</var>[<var>start</var>:<var>end</var>] at
+  the given tail end (<var>direction</var> == -1 means to do a prefix
+  match, <var>direction</var> == 1 a suffix match), 0 otherwise.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-452"><tt class="cfunction">PyUnicode_Find</tt></a></b>(<var>PyObject *str,
+                                                  PyObject *substr,
+                                                  int start,
+                                                  int end,
+                                                  int direction</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Return the first position of <var>substr</var> in
+  <var>str</var>[<var>start</var>:<var>end</var>] using the given <var>direction</var>
+  (<var>direction</var> == 1 means to do a forward search,
+  <var>direction</var> == -1 a backward search), 0 otherwise.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-453"><tt class="cfunction">PyUnicode_Count</tt></a></b>(<var>PyObject *str,
+                                                  PyObject *substr,
+                                                  int start,
+                                                  int end</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Count the number of occurrences of <var>substr</var> in
+  <var>str</var>[<var>start</var>:<var>end</var>]
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-454"><tt class="cfunction">PyUnicode_Replace</tt></a></b>(<var>PyObject *str,
+                                                PyObject *substr,
+                                                PyObject *replstr,
+                                                int maxcount</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Replace at most <var>maxcount</var> occurrences of <var>substr</var> in
+  <var>str</var> with <var>replstr</var> and return the resulting Unicode object.
+  <var>maxcount</var> == -1 means replace all occurrences.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-455"><tt class="cfunction">PyUnicode_Compare</tt></a></b>(<var>PyObject *left, PyObject *right</var>)
+<dd>
+  Compare two strings and return -1, 0, 1 for less than, equal, and
+  greater than, respectively.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-456"><tt class="cfunction">PyUnicode_Format</tt></a></b>(<var>PyObject *format,
+                                              PyObject *args</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Returns a new string object from <var>format</var> and <var>args</var>; this
+  is analogous to <code><var>format</var> % <var>args</var></code>.  The
+  <var>args</var> argument must be a tuple.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-457"><tt class="cfunction">PyUnicode_Contains</tt></a></b>(<var>PyObject *container,
+                                           PyObject *element</var>)
+<dd>
+  Checks whether <var>element</var> is contained in <var>container</var> and
+  returns true or false accordingly.
+
+<P>
+<var>element</var> has to coerce to a one element Unicode
+  string. <code>-1</code> is returned if there was an error.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="builtinCodecs.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unicodeObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="bufferObjects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="builtinCodecs.html">7.3.2.1 Built-in Codecs</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unicodeObjects.html">7.3.2 Unicode Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="bufferObjects.html">7.3.3 Buffer Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

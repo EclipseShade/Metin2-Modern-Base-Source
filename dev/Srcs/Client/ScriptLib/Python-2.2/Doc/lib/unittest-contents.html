@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.3.3 Classes and functions </title>
+<META NAME="description" CONTENT="5.3.3 Classes and functions ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="testcase-objects.html">
+<LINK REL="previous" href="legacy-unit-tests.html">
+<LINK REL="up" href="module-unittest.html">
+<LINK REL="next" href="testcase-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="legacy-unit-tests.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-unittest.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="testcase-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="legacy-unit-tests.html">5.3.2 Re-using old test</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-unittest.html">5.3 unittest  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="testcase-objects.html">5.3.4 TestCase Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007330000000000000000">&nbsp;</A>
+<BR>
+5.3.3 Classes and functions
+            
+</H2>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-841"><tt class="class">TestCase</tt></a></b>()
+<dd>
+  Instances of the <tt class="class">TestCase</tt> class represent the smallest
+  testable units in a set of tests.  This class is intended to be used
+  as a base class, with specific tests being implemented by concrete
+  subclasses.  This class implements the interface needed by the test
+  runner to allow it to drive the test, and methods that the test code
+  can use to check for and report various kinds of failures.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-842"><tt class="class">FunctionTestCase</tt></a></b>(<var>testFunc</var><big>[</big><var>,
+                  setUp</var><big>[</big><var>, tearDown</var><big>[</big><var>, description</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+  This class implements the portion of the <tt class="class">TestCase</tt> interface
+  which allows the test runner to drive the test, but does not provide
+  the methods which test code can use to check and report errors.
+  This is used to create test cases using legacy test code, allowing
+  it to be integrated into a <tt class="module"><a href="module-unittest.html">unittest</a></tt>-based test
+  framework.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-843"><tt class="class">TestSuite</tt></a></b>(<big>[</big><var>tests</var><big>]</big>)
+<dd>
+  This class represents an aggregation of individual tests cases and
+  test suites.  The class presents the interface needed by the test
+  runner to allow it to be run as any other test case, but all the
+  contained tests and test suites are executed.  Additional methods
+  are provided to add test cases and suites to the aggregation.  If
+  <var>tests</var> is given, it must be a sequence of individual tests that
+  will be added to the suite.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-844"><tt class="class">TestLoader</tt></a></b>()
+<dd>
+  This class is responsible for loading tests according to various
+  criteria and returning them wrapped in a <tt class="class">TestSuite</tt>.
+  It can load all tests within a given module or <tt class="class">TestCase</tt>
+  class.  When loading from a module, it considers all
+  <tt class="class">TestCase</tt>-derived classes.  For each such class, it creates
+  an instance for each method with a name beginning with the string
+  "<tt class="samp">test</tt>".
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-845"><tt>defaultTestLoader</tt></a></b>
+<dd>
+  Instance of the <tt class="class">TestLoader</tt> class which can be shared.  If no
+  customization of the <tt class="class">TestLoader</tt> is needed, this instance can
+  always be used instead of creating new instances.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-846"><tt class="class">TextTestRunner</tt></a></b>(<big>[</big><var>stream</var><big>[</big><var>,
+                  descriptions</var><big>[</big><var>, verbosity</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+  A basic test runner implementation which prints results on standard
+  output.  It has a few configurable parameters, but is essentially
+  very simple.  Graphical applications which run test suites should
+  provide alternate implementations.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-847"><tt class="function">main</tt></a></b>(<big>[</big><var>module</var><big>[</big><var>,
+                 defaultTest</var><big>[</big><var>, argv</var><big>[</big><var>,
+                 testRunner</var><big>[</big><var>, testRunner</var><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big>)
+<dd>
+  A command-line program that runs a set of tests; this is primarily
+  for making test modules conveniently executable.  The simplest use
+  for this function is:
+
+<P>
+<dl><dd><pre class="verbatim">
+if __name__ == '__main__':
+    unittest.main()
+</pre></dl>
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="legacy-unit-tests.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-unittest.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="testcase-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="legacy-unit-tests.html">5.3.2 Re-using old test</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-unittest.html">5.3 unittest  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="testcase-objects.html">5.3.4 TestCase Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

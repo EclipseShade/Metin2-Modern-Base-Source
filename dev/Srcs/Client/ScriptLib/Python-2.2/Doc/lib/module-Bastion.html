@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>17.2 Bastion -- Restricting access to objects</title>
+<META NAME="description" CONTENT="17.2 Bastion -- Restricting access to objects">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-rexec.html">
+<LINK REL="up" href="restricted.html">
+<LINK REL="next" href="language.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node547.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="restricted.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="language.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node547.html">17.1.3 An example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="restricted.html">17. Restricted Execution</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="language.html">18. Python Language Services</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0019200000000000000000">
+17.2 <tt class="module">Bastion</tt> --
+         Restricting access to objects</A>
+</H1>
+
+<P>
+
+
+<P>
+According to the dictionary, a bastion is ``a fortified area or
+position'', or ``something that is considered a stronghold.''  It's a
+suitable name for this module, which provides a way to forbid access
+to certain attributes of an object.  It must always be used with the
+<tt class="module"><a href="module-rexec.html">rexec</a></tt> module, in order to allow restricted-mode programs
+access to certain safe attributes of an object, while denying access
+to other, unsafe attributes.
+
+<P>
+<dl><dt><b><a name="l2h-3763"><tt class="function">Bastion</tt></a></b>(<var>object</var><big>[</big><var>, filter</var><big>[</big><var>,
+                          name</var><big>[</big><var>, class</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+Protect the object <var>object</var>, returning a bastion for the
+object.  Any attempt to access one of the object's attributes will
+have to be approved by the <var>filter</var> function; if the access is
+denied an <tt class="exception">AttributeError</tt> exception will be raised.
+
+<P>
+If present, <var>filter</var> must be a function that accepts a string
+containing an attribute name, and returns true if access to that
+attribute will be permitted; if <var>filter</var> returns false, the access
+is denied.  The default filter denies access to any function beginning
+with an underscore ("<tt class="character">_</tt>").  The bastion's string representation
+will be "<tt class="samp">&lt;Bastion for <var>name</var>&gt;</tt>" if a value for
+<var>name</var> is provided; otherwise, "<tt class="samp">repr(<var>object</var>)</tt>" will be
+used.
+
+<P>
+<var>class</var>, if present, should be a subclass of <tt class="class">BastionClass</tt>; 
+see the code in <span class="file">bastion.py</span> for the details.  Overriding the
+default <tt class="class">BastionClass</tt> will rarely be required.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3764"><tt class="class">BastionClass</tt></a></b>(<var>getfunc, name</var>)
+<dd>
+Class which actually implements bastion objects.  This is the default
+class used by <tt class="function">Bastion()</tt>.  The <var>getfunc</var> parameter is a
+function which returns the value of an attribute which should be
+exposed to the restricted execution environment when called with the
+name of the attribute as the only parameter.  <var>name</var> is used to
+construct the <tt class="function">repr()</tt> of the <tt class="class">BastionClass</tt> instance.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node547.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="restricted.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="language.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node547.html">17.1.3 An example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="restricted.html">17. Restricted Execution</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="language.html">18. Python Language Services</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

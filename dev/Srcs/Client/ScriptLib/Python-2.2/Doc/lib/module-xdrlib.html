@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.17 xdrlib -- Encode and decode XDR data</title>
+<META NAME="description" CONTENT="12.17 xdrlib -- Encode and decode XDR data">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-netrc.html">
+<LINK REL="previous" href="module-uu.html">
+<LINK REL="up" href="netdata.html">
+<LINK REL="next" href="xdr-packer-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-uu.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="xdr-packer-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-uu.html">12.16 uu  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="xdr-packer-objects.html">12.17.1 Packer Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00141700000000000000000">
+12.17 <tt class="module">xdrlib</tt> --
+         Encode and decode XDR data</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name="l2h-3055">&nbsp;</a>
+<P>
+The <tt class="module">xdrlib</tt> module supports the External Data Representation
+Standard as described in <a class="rfc" name="rfcref-64099"
+href="http://www.faqs.org/rfcs/rfc1014.html">RFC 1014</a>, written by Sun Microsystems,
+Inc. June 1987.  It supports most of the data types described in the
+RFC.
+
+<P>
+The <tt class="module">xdrlib</tt> module defines two classes, one for packing
+variables into XDR representation, and another for unpacking from XDR
+representation.  There are also two exception classes.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3053"><tt class="class">Packer</tt></a></b>()
+<dd>
+<tt class="class">Packer</tt> is the class for packing data into XDR representation.
+The <tt class="class">Packer</tt> class is instantiated with no arguments.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3054"><tt class="class">Unpacker</tt></a></b>(<var>data</var>)
+<dd>
+<code>Unpacker</code> is the complementary class which unpacks XDR data
+values from a string buffer.  The input buffer is given as
+<var>data</var>.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seerfc">
+    <dt><a href="http://www.faqs.org/rfcs/rfc1014.html"
+        title="XDR: External Data Representation Standard"
+        >RFC 1014, <em>XDR: External Data Representation Standard</em></a>
+    <dd>This RFC
+                defined the encoding of data which was XDR at the time
+                this module was originally written.  It has
+                appearantly been obsoleted by <a class="rfc" name="rfcref-64095"
+href="http://www.faqs.org/rfcs/rfc1832.html">RFC 1832</a>.
+  </dl>
+
+<P>
+<dl compact class="seerfc">
+    <dt><a href="http://www.faqs.org/rfcs/rfc1832.html"
+        title="XDR: External Data Representation Standard"
+        >RFC 1832, <em>XDR: External Data Representation Standard</em></a>
+    <dd>Newer RFC
+                that provides a revised definition of XDR.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="xdr-packer-objects.html">12.17.1 Packer Objects</a>
+<LI><A href="xdr-unpacker-objects.html">12.17.2 Unpacker Objects</a>
+<LI><A href="xdr-exceptions.html">12.17.3 Exceptions</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-uu.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="xdr-packer-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-uu.html">12.16 uu  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="xdr-packer-objects.html">12.17.1 Packer Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

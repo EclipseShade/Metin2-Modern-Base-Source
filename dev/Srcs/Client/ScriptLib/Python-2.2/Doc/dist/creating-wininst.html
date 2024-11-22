@@ -1,0 +1,509 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6 Creating Built Distributions</title>
+<META NAME="description" CONTENT="6 Creating Built Distributions">
+<META NAME="keywords" CONTENT="dist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="dist.css">
+<link rel="first" href="dist.html">
+
+<LINK REL="next" href="sdist-cmd.html">
+<LINK REL="previous" href="source-dist.html">
+<LINK REL="up" HREF="dist.html">
+<LINK REL="next" href="sdist-cmd.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="source-dist.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="dist.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="sdist-cmd.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Distributing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="source-dist.html">5 Creating a Source</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="dist.html">Distributing Python Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="sdist-cmd.html">7 Reference</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="#SECTION000610000000000000000">6.1 Creating dumb built distributions</a>
+<LI><A href="#SECTION000620000000000000000">6.2 Creating RPM packages</a>
+<LI><A href="#SECTION000630000000000000000">6.3 Creating Windows installers</a>
+</ul>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION000600000000000000000">&nbsp;</A>
+<BR>
+6 Creating Built Distributions
+</H1>
+
+<P>
+A ``built distribution'' is what you're probably used to thinking of
+either as a ``binary package'' or an ``installer'' (depending on your
+background).  It's not necessarily binary, though, because it might
+contain only Python source code and/or byte-code; and we don't call it a
+package, because that word is already spoken for in Python.  (And
+``installer'' is a term specific to the Windows world.  <b>** do Mac
+  people use it? **</b>)
+
+<P>
+A built distribution is how you make life as easy as possible for
+installers of your module distribution: for users of RPM-based Linux
+systems, it's a binary RPM; for Windows users, it's an executable
+installer; for Debian-based Linux users, it's a Debian package; and so
+forth.  Obviously, no one person will be able to create built
+distributions for every platform under the sun, so the Distutils are
+designed to enable module developers to concentrate on their
+specialty--writing code and creating source distributions--while an
+intermediary species of <i>packager</i> springs up to turn source
+distributions into built distributions for as many platforms as there
+are packagers.
+
+<P>
+Of course, the module developer could be his own packager; or the
+packager could be a volunteer ``out there'' somewhere who has access to
+a platform which the original developer does not; or it could be
+software periodically grabbing new source distributions and turning them
+into built distributions for as many platforms as the software has
+access to.  Regardless of the nature of the beast, a packager uses the
+setup script and the <code>bdist</code> command family to generate built
+distributions.
+
+<P>
+As a simple example, if I run the following command in the Distutils
+source tree:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py bdist
+</pre></dl>
+
+<P>
+then the Distutils builds my module distribution (the Distutils itself
+in this case), does a ``fake'' installation (also in the <span class="file">build</span>
+directory), and creates the default type of built distribution for my
+platform.  The default format for built distributions is a ``dumb'' tar
+file on Unix, and an simple executable installer on Windows.  (That tar
+file is considered ``dumb'' because it has to be unpacked in a specific
+location to work.)
+
+<P>
+Thus, the above command on a Unix system creates
+<span class="file">Distutils-0.9.1.<font face="sans-serif"></i>plat</i></font>.tar.gz</span>; unpacking this tarball
+from the right place installs the Distutils just as though you had
+downloaded the source distribution and run <code>python setup.py
+  install</code>.  (The ``right place'' is either the root of the filesystem or 
+Python's <font face="sans-serif"></i>prefix</i></font> directory, depending on the options given to
+the <code>bdist_dumb</code> command; the default is to make dumb
+distributions relative to <font face="sans-serif"></i>prefix</i></font>.)  
+
+<P>
+Obviously, for pure Python distributions, this isn't a huge win--but
+for non-pure distributions, which include extensions that would need to
+be compiled, it can mean the difference between someone being able to
+use your extensions or not.  And creating ``smart'' built distributions,
+such as an RPM package or an executable installer for Windows, is a big
+win for users even if your distribution doesn't include any extensions.
+
+<P>
+The <code>bdist</code> command has a <b class="programopt">--formats</b> option,
+similar to the <code>sdist</code> command, which you can use to select the
+types of built distribution to generate: for example,
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py bdist --format=zip
+</pre></dl>
+
+<P>
+would, when run on a Unix system, create
+<span class="file">Distutils-0.8.<font face="sans-serif"></i>plat</i></font>.zip</span>--again, this archive would be
+unpacked from the root directory to install the Distutils.
+
+<P>
+The available formats for built distributions are:
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Format</b>&nbsp;</th>
+      <th align="left"><b>Description</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>gztar</code></td>
+        <td align="left">gzipped tar file (<span class="file">.tar.gz</span>)</td>
+        <td align="center">(1),(3)</td>
+    <tr><td align="left" valign="baseline"><code>ztar</code></td>
+        <td align="left">compressed tar file (<span class="file">.tar.Z</span>)</td>
+        <td align="center">(3)</td>
+    <tr><td align="left" valign="baseline"><code>tar</code></td>
+        <td align="left">tar file (<span class="file">.tar</span>)</td>
+        <td align="center">(3)</td>
+    <tr><td align="left" valign="baseline"><code>zip</code></td>
+        <td align="left">zip file (<span class="file">.zip</span>)</td>
+        <td align="center">(4)</td>
+    <tr><td align="left" valign="baseline"><code>rpm</code></td>
+        <td align="left">RPM</td>
+        <td align="center">(5)</td>
+    <tr><td align="left" valign="baseline"><code>srpm</code></td>
+        <td align="left">source RPM</td>
+        <td align="center">(5) <b>** to do! **</b></td>
+    <tr><td align="left" valign="baseline"><code>wininst</code></td>
+        <td align="left">self-extracting ZIP file for Windows</td>
+        <td align="center">(2),(4)</td></tbody>
+</table>
+
+<P>
+Notes:
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>default on Unix
+</DD>
+<DT><STRONG>(2)</STRONG></DT>
+<DD>default on Windows <b>** to-do! **</b>
+</DD>
+<DT><STRONG>(3)</STRONG></DT>
+<DD>requires external utilities: <b class="program">tar</b> and possibly one
+  of <b class="program">gzip</b>, <b class="program">bzip2</b>, or <b class="program">compress</b>
+</DD>
+<DT><STRONG>(4)</STRONG></DT>
+<DD>requires either external <b class="program">zip</b> utility or
+  <tt class="module">zipfile</tt> module (not part of the standard Python library)
+</DD>
+<DT><STRONG>(5)</STRONG></DT>
+<DD>requires external <b class="program">rpm</b> utility, version 3.0.4 or
+  better (use <code>rpm -version</code> to find out which version you have)
+</DD>
+</DL>
+
+<P>
+You don't have to use the <code>bdist</code> command with the
+<b class="programopt">--formats</b> option; you can also use the command that
+directly implements the format you're interested in.  Some of these
+<code>bdist</code> ``sub-commands'' actually generate several similar
+formats; for instance, the <code>bdist_dumb</code> command generates all
+the ``dumb'' archive formats (<code>tar</code>, <code>ztar</code>, <code>gztar</code>, and
+<code>zip</code>), and <code>bdist_rpm</code> generates both binary and source
+RPMs.  The <code>bdist</code> sub-commands, and the formats generated by
+each, are:
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Command</b>&nbsp;</th>
+      <th align="left"><b>Formats</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>bdist_dumb</code></td>
+        <td align="left">tar, ztar, gztar, zip</td>
+    <tr><td align="left" valign="baseline"><code>bdist_rpm</code></td>
+        <td align="left">rpm, srpm</td>
+    <tr><td align="left" valign="baseline"><code>bdist_wininst</code></td>
+        <td align="left">wininst</td></tbody>
+</table>
+
+<P>
+The following sections give details on the individual <code>bdist_*</code>
+commands.
+
+<P>
+
+<H2><A NAME="SECTION000610000000000000000">&nbsp;</A>
+<BR>
+6.1 Creating dumb built distributions
+</H2>
+
+<P>
+<b>** Need to document absolute vs. prefix-relative packages here, but
+  first I have to implement it! **</b>
+
+<P>
+
+<H2><A NAME="SECTION000620000000000000000">&nbsp;</A>
+<BR>
+6.2 Creating RPM packages
+</H2>
+
+<P>
+The RPM format is used by many of popular Linux distributions, including
+Red Hat, SuSE, and Mandrake.  If one of these (or any of the other
+RPM-based Linux distributions) is your usual environment, creating RPM
+packages for other users of that same distribution is trivial.
+Depending on the complexity of your module distribution and differences
+between Linux distributions, you may also be able to create RPMs that
+work on different RPM-based distributions.
+
+<P>
+The usual way to create an RPM of your module distribution is to run the 
+<code>bdist_rpm</code> command:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py bdist_rpm
+</pre></dl>
+
+<P>
+or the <code>bdist</code> command with the <b class="programopt">--format</b> option:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py bdist --formats=rpm
+</pre></dl>
+
+<P>
+The former allows you to specify RPM-specific options; the latter allows 
+you to easily specify multiple formats in one run.  If you need to do
+both, you can explicitly specify multiple <code>bdist_*</code> commands
+and their options:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py bdist_rpm --packager="John Doe &lt;jdoe@python.net&gt;" \
+                bdist_wininst --target_version="2.0"
+</pre></dl>
+
+<P>
+Creating RPM packages is driven by a <span class="file">.spec</span> file, much as using
+the Distutils is driven by the setup script.  To make your life easier,
+the <code>bdist_rpm</code> command normally creates a <span class="file">.spec</span> file
+based on the information you supply in the setup script, on the command
+line, and in any Distutils configuration files.  Various options and
+sections in the <span class="file">.spec</span> file are derived from options in the setup
+script as follows:
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>RPM <span class="file">.spec</span> file option or section</b>&nbsp;</th>
+      <th align="left"><b>Distutils setup script option</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline">Name</td>
+        <td align="left"><font face="sans-serif">name</font></td>
+    <tr><td align="left" valign="baseline">Summary (in preamble)</td>
+        <td align="left"><font face="sans-serif">description</font></td>
+    <tr><td align="left" valign="baseline">Version</td>
+        <td align="left"><font face="sans-serif">version</font></td>
+    <tr><td align="left" valign="baseline">Vendor</td>
+        <td align="left"><font face="sans-serif">author</font> and <font face="sans-serif">author_email</font>, or 
+<BR>&amp;
+                  <font face="sans-serif">maintainer</font> and <font face="sans-serif">maintainer_email</font></td>
+    <tr><td align="left" valign="baseline">Copyright</td>
+        <td align="left"><font face="sans-serif">licence</font></td>
+    <tr><td align="left" valign="baseline">Url</td>
+        <td align="left"><font face="sans-serif">url</font></td>
+    <tr><td align="left" valign="baseline">%description (section)</td>
+        <td align="left"><font face="sans-serif">long_description</font></td></tbody>
+</table>
+
+<P>
+Additionally, there many options in <span class="file">.spec</span> files that don't have
+corresponding options in the setup script.  Most of these are handled
+through options to the <code>bdist_rpm</code> command as follows:
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>RPM <span class="file">.spec</span> file option or section</b>&nbsp;</th>
+      <th align="left"><b><code>bdist_rpm</code> option</b>&nbsp;</th>
+      <th align="left"><b>default value</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline">Release</td>
+        <td align="left"><font face="sans-serif">release</font></td>
+        <td align="left">``1''</td>
+    <tr><td align="left" valign="baseline">Group</td>
+        <td align="left"><font face="sans-serif">group</font></td>
+        <td align="left">``Development/Libraries''</td>
+    <tr><td align="left" valign="baseline">Vendor</td>
+        <td align="left"><font face="sans-serif">vendor</font></td>
+        <td align="left">(see above)</td>
+    <tr><td align="left" valign="baseline">Packager</td>
+        <td align="left"><font face="sans-serif">packager</font></td>
+        <td align="left">(none)</td>
+    <tr><td align="left" valign="baseline">Provides</td>
+        <td align="left"><font face="sans-serif">provides</font></td>
+        <td align="left">(none)</td>
+    <tr><td align="left" valign="baseline">Requires</td>
+        <td align="left"><font face="sans-serif">requires</font></td>
+        <td align="left">(none)</td>
+    <tr><td align="left" valign="baseline">Conflicts</td>
+        <td align="left"><font face="sans-serif">conflicts</font></td>
+        <td align="left">(none)</td>
+    <tr><td align="left" valign="baseline">Obsoletes</td>
+        <td align="left"><font face="sans-serif">obsoletes</font></td>
+        <td align="left">(none)</td>
+    <tr><td align="left" valign="baseline">Distribution</td>
+        <td align="left"><font face="sans-serif">distribution_name</font></td>
+        <td align="left">(none)</td>
+    <tr><td align="left" valign="baseline">BuildRequires</td>
+        <td align="left"><font face="sans-serif">build_requires</font></td>
+        <td align="left">(none)</td>
+    <tr><td align="left" valign="baseline">Icon</td>
+        <td align="left"><font face="sans-serif">icon</font></td>
+        <td align="left">(none)</td></tbody>
+</table>
+Obviously, supplying even a few of these options on the command-line
+would be tedious and error-prone, so it's usually best to put them in
+the setup configuration file, <span class="file">setup.cfg</span>--see
+section&nbsp;<A href="setup-config.html#setup-config">4</A>.  If you distribute or package many Python
+module distributions, you might want to put options that apply to all of
+them in your personal Distutils configuration file
+(<span class="file">&nbsp;/.pydistutils.cfg</span>).
+
+<P>
+There are three steps to building a binary RPM package, all of which are 
+handled automatically by the Distutils:
+
+<OL>
+<LI>create a <span class="file">.spec</span> file, which describes the package (analogous 
+  to the Distutils setup script; in fact, much of the information in the 
+  setup script winds up in the <span class="file">.spec</span> file)
+</LI>
+<LI>create the source RPM
+</LI>
+<LI>create the ``binary'' RPM (which may or may not contain binary
+  code, depending on whether your module distribution contains Python
+  extensions)
+</LI>
+</OL>
+Normally, RPM bundles the last two steps together; when you use the
+Distutils, all three steps are typically bundled together.
+
+<P>
+If you wish, you can separate these three steps.  You can use the
+<b class="programopt">--spec-only</b> option to make <code>bdist_rpm</code> just
+create the <span class="file">.spec</span> file and exit; in this case, the <span class="file">.spec</span>
+file will be written to the ``distribution directory''--normally
+<span class="file">dist/</span>, but customizable with the <b class="programopt">--dist-dir</b>
+option.  (Normally, the <span class="file">.spec</span> file winds up deep in the ``build
+tree,'' in a temporary directory created by <code>bdist_rpm</code>.)
+
+<P>
+<b>** this isn't implemented yet--is it needed?! **</b>
+You can also specify a custom <span class="file">.spec</span> file with the
+<b class="programopt">--spec-file</b> option; used in conjunction with
+<b class="programopt">--spec-only</b>, this gives you an opportunity to customize
+the <span class="file">.spec</span> file manually:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt; python setup.py bdist_rpm --spec-only
+# ...edit dist/FooBar-1.0.spec
+&gt; python setup.py bdist_rpm --spec-file=dist/FooBar-1.0.spec
+</pre></dl>
+
+<P>
+(Although a better way to do this is probably to override the standard
+<code>bdist_rpm</code> command with one that writes whatever else you want
+to the <span class="file">.spec</span> file; see section&nbsp;<A HREF="#extending"><tex2html_cross_ref_visible_mark></A> for information on
+extending the Distutils.)
+
+<P>
+
+<H2><A NAME="SECTION000630000000000000000">&nbsp;</A>
+<BR>
+6.3 Creating Windows installers
+</H2>
+
+<P>
+Executable Windows installers are the natural format for binary
+distributions on Windows.  They display a nice graphical user interface,
+display some information of the module distribution to be installed, taken
+from the meta-data in the setup script, let the user select a few
+(currently maybe too few) options, and start or cancel the installation.
+
+<P>
+Since the meta-data is taken from the setup script, creating
+Windows installers is usually as easy as running:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py bdist_wininst
+</pre></dl>
+
+<P>
+or the <code>bdist</code> command with the <b class="programopt">--format</b> option:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py bdist --formats=wininst
+</pre></dl>
+
+<P>
+If you have a pure module distribution (only containing pure
+Python modules and packages), the resulting installer will be
+version independent and have a name like <span class="file">Foo-1.0.win32.exe</span>.
+These installers can even be created on Unix or MacOS platforms.
+
+<P>
+If you have a non-pure distribution, the extensions can only be
+created on a Windows platform, and will be Python version dependend.
+The installer filename will reflect this and now has the form
+<span class="file">Foo-1.0.win32-py2.0.exe</span>. You have to create a separate installer
+for every Python version you want to support.
+
+<P>
+The installer will try to compile pure modules into bytecode after
+installation on the target system in normal and optimizing mode.
+If you don't want this to happen for some reason, you can run
+the bdist_wininst command with the <b class="programopt">--no-target-compile</b> and/or
+the <b class="programopt">--no-target-optimize</b> option.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="source-dist.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="dist.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="sdist-cmd.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Distributing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="source-dist.html">5 Creating a Source</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="dist.html">Distributing Python Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="sdist-cmd.html">7 Reference</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

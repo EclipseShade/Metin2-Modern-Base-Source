@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.3.3 Slicings</title>
+<META NAME="description" CONTENT="5.3.3 Slicings">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="calls.html">
+<LINK REL="previous" href="subscriptions.html">
+<LINK REL="up" href="primaries.html">
+<LINK REL="next" href="calls.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="subscriptions.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="primaries.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="calls.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="subscriptions.html">5.3.2 Subscriptions</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="primaries.html">5.3 Primaries</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="calls.html">5.3.4 Calls</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007330000000000000000">&nbsp;</A>
+<a name="l2h-253">&nbsp;</a>
+<BR>
+5.3.3 Slicings
+</H2>
+
+<P>
+A slicing selects a range of items in a sequence object (e.g., a
+string, tuple or list).  Slicings may be used as expressions or as
+targets in assignment or del statements.  The syntax for a slicing:
+<a name="l2h-256">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-slicing">slicing</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="slicings.html#tok-simple_slicing">simple_slicing</a> | <a href="slicings.html#tok-extended_slicing">extended_slicing</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-simple_slicing">simple_slicing</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="node50.html#tok-primary">primary</a> "[" <a href="slicings.html#tok-short_slice">short_slice</a> "]"</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-extended_slicing">extended_slicing</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="node50.html#tok-primary">primary</a> "[" <a href="slicings.html#tok-slice_list">slice_list</a> "]" </code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-slice_list">slice_list</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="slicings.html#tok-slice_item">slice_item</a> ("," <a href="slicings.html#tok-slice_item">slice_item</a>)* [","]</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-slice_item">slice_item</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="node61.html#tok-expression">expression</a> | <a href="slicings.html#tok-proper_slice">proper_slice</a> | <a href="slicings.html#tok-ellipsis">ellipsis</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-proper_slice">proper_slice</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="slicings.html#tok-short_slice">short_slice</a> | <a href="slicings.html#tok-long_slice">long_slice</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-short_slice">short_slice</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>[<a href="slicings.html#tok-lower_bound">lower_bound</a>] ":" [<a href="slicings.html#tok-upper_bound">upper_bound</a>]</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-long_slice">long_slice</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="slicings.html#tok-short_slice">short_slice</a> ":" [<a href="slicings.html#tok-stride">stride</a>]</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-lower_bound">lower_bound</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="lambda.html#tok-expression">expression</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-upper_bound">upper_bound</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="lambda.html#tok-expression">expression</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-stride">stride</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="lambda.html#tok-expression">expression</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-ellipsis">ellipsis</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"..."</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+There is ambiguity in the formal syntax here: anything that looks like
+an expression list also looks like a slice list, so any subscription
+can be interpreted as a slicing.  Rather than further complicating the
+syntax, this is disambiguated by defining that in this case the
+interpretation as a subscription takes priority over the
+interpretation as a slicing (this is the case if the slice list
+contains no proper slice nor ellipses).  Similarly, when the slice
+list has exactly one short slice and no trailing comma, the
+interpretation as a simple slicing takes priority over that as an
+extended slicing.<a name="l2h-257">&nbsp;</a>
+<P>
+The semantics for a simple slicing are as follows.  The primary must
+evaluate to a sequence object.  The lower and upper bound expressions,
+if present, must evaluate to plain integers; defaults are zero and the
+<code>sys.maxint</code>, respectively.  If either bound is negative, the
+sequence's length is added to it.  The slicing now selects all items
+with index <var>k</var> such that
+<code><var>i</var> &lt;= <var>k</var> &lt; <var>j</var></code> where <var>i</var>
+and <var>j</var> are the specified lower and upper bounds.  This may be an
+empty sequence.  It is not an error if <var>i</var> or <var>j</var> lie outside the
+range of valid indexes (such items don't exist so they aren't
+selected).
+
+<P>
+The semantics for an extended slicing are as follows.  The primary
+must evaluate to a mapping object, and it is indexed with a key that
+is constructed from the slice list, as follows.  If the slice list
+contains at least one comma, the key is a tuple containing the
+conversion of the slice items; otherwise, the conversion of the lone
+slice item is the key.  The conversion of a slice item that is an
+expression is that expression.  The conversion of an ellipsis slice
+item is the built-in <code>Ellipsis</code> object.  The conversion of a
+proper slice is a slice object (see section <A href="types.html#types">3.2</A>) whose
+<tt class="member">start</tt>, <tt class="member">stop</tt> and <tt class="member">step</tt> attributes are the
+values of the expressions given as lower bound, upper bound and
+stride, respectively, substituting <code>None</code> for missing
+expressions.
+<a name="l2h-255">&nbsp;</a>
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="subscriptions.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="primaries.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="calls.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="subscriptions.html">5.3.2 Subscriptions</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="primaries.html">5.3 Primaries</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="calls.html">5.3.4 Calls</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.4 fpectl -- Floating point exception control</title>
+<META NAME="description" CONTENT="3.4 fpectl -- Floating point exception control">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-atexit.html">
+<LINK REL="previous" href="module-weakref.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="fpectl-example.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="weakref-extension.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="fpectl-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="weakref-extension.html">3.3.3 Weak References in</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="fpectl-example.html">3.4.1 Example</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005400000000000000000">
+3.4 <tt class="module">fpectl</tt> --
+         Floating point exception control</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Unix</span>.</p>
+
+<P>
+Most computers carry out floating point operations<a name="l2h-332">&nbsp;</a>in conformance with the so-called IEEE-754 standard.
+On any real computer,
+some floating point operations produce results that cannot
+be expressed as a normal floating point value.
+For example, try
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import math
+&gt;&gt;&gt; math.exp(1000)
+inf
+&gt;&gt;&gt; math.exp(1000) / math.exp(1000)
+nan
+</pre></dl>
+
+<P>
+(The example above will work on many platforms.
+DEC Alpha may be one exception.)
+"Inf" is a special, non-numeric value in IEEE-754 that
+stands for "infinity", and "nan" means "not a number."
+Note that,
+other than the non-numeric results,
+nothing special happened when you asked Python
+to carry out those calculations.
+That is in fact the default behaviour prescribed in the IEEE-754 standard,
+and if it works for you,
+stop reading now.
+
+<P>
+In some circumstances,
+it would be better to raise an exception and stop processing
+at the point where the faulty operation was attempted.
+The <tt class="module">fpectl</tt> module
+is for use in that situation.
+It provides control over floating point
+units from several hardware manufacturers,
+allowing the user to turn on the generation
+of <tt class="constant">SIGFPE</tt> whenever any of the
+IEEE-754 exceptions Division by Zero, Overflow, or
+Invalid Operation occurs.
+In tandem with a pair of wrapper macros that are inserted
+into the C code comprising your python system,
+<tt class="constant">SIGFPE</tt> is trapped and converted into the Python
+<tt class="exception">FloatingPointError</tt> exception.
+
+<P>
+The <tt class="module">fpectl</tt> module defines the following functions and
+may raise the given exception:
+
+<P>
+<dl><dt><b><a name="l2h-329"><tt class="function">turnon_sigfpe</tt></a></b>()
+<dd>
+Turn on the generation of <tt class="constant">SIGFPE</tt>,
+and set up an appropriate signal handler.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-330"><tt class="function">turnoff_sigfpe</tt></a></b>()
+<dd>
+Reset default handling of floating point exceptions.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-331"><tt class="exception">FloatingPointError</tt></a></b>
+<dd>
+After <tt class="function">turnon_sigfpe()</tt> has been executed,
+a floating point operation that raises one of the
+IEEE-754 exceptions
+Division by Zero, Overflow, or Invalid operation
+will in turn raise this standard Python exception.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="fpectl-example.html">3.4.1 Example</a>
+<LI><A href="node41.html">3.4.2 Limitations and other considerations</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="weakref-extension.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="fpectl-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="weakref-extension.html">3.3.3 Weak References in</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="fpectl-example.html">3.4.1 Example</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

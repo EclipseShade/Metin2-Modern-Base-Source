@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.3 dircache -- Cached directory listings</title>
+<META NAME="description" CONTENT="6.3 dircache -- Cached directory listings">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-stat.html">
+<LINK REL="previous" href="module-os.path.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" href="module-stat.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-os.path.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-stat.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-os.path.html">6.2 os.path  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-stat.html">6.4 stat  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008300000000000000000">
+6.3 <tt class="module">dircache</tt> --
+         Cached directory listings</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">dircache</tt> module defines a function for reading directory listing
+using a cache, and cache invalidation using the <var>mtime</var> of the directory.
+Additionally, it defines a function to annotate directories by appending
+a slash.
+
+<P>
+The <tt class="module">dircache</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-1295"><tt class="function">listdir</tt></a></b>(<var>path</var>)
+<dd>
+Return a directory listing of <var>path</var>, as gotten from
+<tt class="function">os.listdir()</tt>. Note that unless <var>path</var> changes, further call
+to <tt class="function">listdir()</tt> will not re-read the directory structure.
+
+<P>
+Note that the list returned should be regarded as read-only. (Perhaps
+a future version should change it to return a tuple?)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1296"><tt class="function">opendir</tt></a></b>(<var>path</var>)
+<dd>
+Same as <tt class="function">listdir()</tt>. Defined for backwards compatibility.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1297"><tt class="function">annotate</tt></a></b>(<var>head, list</var>)
+<dd>
+Assume <var>list</var> is a list of paths relative to <var>head</var>, and append,
+in place, a "<tt class="character">/</tt>" to each path which points to a directory.
+</dl>
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import dircache
+&gt;&gt;&gt; a=dircache.listdir('/')
+&gt;&gt;&gt; a=a[:] # Copy the return value so we can change 'a'
+&gt;&gt;&gt; a
+['bin', 'boot', 'cdrom', 'dev', 'etc', 'floppy', 'home', 'initrd', 'lib', 'lost+
+found', 'mnt', 'proc', 'root', 'sbin', 'tmp', 'usr', 'var', 'vmlinuz']
+&gt;&gt;&gt; dircache.annotate('/', a)
+&gt;&gt;&gt; a
+['bin/', 'boot/', 'cdrom/', 'dev/', 'etc/', 'floppy/', 'home/', 'initrd/', 'lib/
+', 'lost+found/', 'mnt/', 'proc/', 'root/', 'sbin/', 'tmp/', 'usr/', 'var/', 'vm
+linuz']
+</pre></dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-os.path.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-stat.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-os.path.html">6.2 os.path  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-stat.html">6.4 stat  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

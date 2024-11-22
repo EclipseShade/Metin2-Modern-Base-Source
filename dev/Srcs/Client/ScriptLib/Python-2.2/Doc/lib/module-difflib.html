@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.4 difflib -- Helpers for computing deltas</title>
+<META NAME="description" CONTENT="4.4 difflib -- Helpers for computing deltas">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-fpformat.html">
+<LINK REL="previous" href="module-struct.html">
+<LINK REL="up" href="strings.html">
+<LINK REL="next" href="sequence-matcher.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-struct.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="strings.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="sequence-matcher.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-struct.html">4.3 struct  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="strings.html">4. String Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="sequence-matcher.html">4.4.1 SequenceMatcher Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006400000000000000000">
+4.4 <tt class="module">difflib</tt> --
+         Helpers for computing deltas</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.1.</span>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-761"><tt class="class">SequenceMatcher</tt></a></b>
+<dd>
+  This is a flexible class for comparing pairs of sequences of any
+  type, so long as the sequence elements are hashable.  The basic
+  algorithm predates, and is a little fancier than, an algorithm
+  published in the late 1980's by Ratcliff and Obershelp under the
+  hyperbolic name ``gestalt pattern matching.''  The idea is to find
+  the longest contiguous matching subsequence that contains no
+  ``junk'' elements (the Ratcliff and Obershelp algorithm doesn't
+  address junk).  The same idea is then applied recursively to the
+  pieces of the sequences to the left and to the right of the matching
+  subsequence.  This does not yield minimal edit sequences, but does
+  tend to yield matches that ``look right'' to people.
+
+<P>
+<b>Timing:</b> The basic Ratcliff-Obershelp algorithm is cubic
+  time in the worst case and quadratic time in the expected case.
+  <tt class="class">SequenceMatcher</tt> is quadratic time for the worst case and has
+  expected-case behavior dependent in a complicated way on how many
+  elements the sequences have in common; best case time is linear.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-762"><tt class="class">Differ</tt></a></b>
+<dd>
+  This is a class for comparing sequences of lines of text, and
+  producing human-readable differences or deltas.  Differ uses
+  <tt class="class">SequenceMatcher</tt> both to compare sequences of lines, and to
+  compare sequences of characters within similar (near-matching)
+  lines.
+
+<P>
+Each line of a <tt class="class">Differ</tt> delta begins with a two-letter code:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Code</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>'- '</code></td>
+        <td align="left">line unique to sequence 1</td>
+    <tr><td align="left" valign="baseline"><code>'+ '</code></td>
+        <td align="left">line unique to sequence 2</td>
+    <tr><td align="left" valign="baseline"><code>'  '</code></td>
+        <td align="left">line common to both sequences</td>
+    <tr><td align="left" valign="baseline"><code>'? '</code></td>
+        <td align="left">line not present in either input sequence</td></tbody>
+</table>
+
+<P>
+Lines beginning with `<code>?&nbsp;</code>' attempt to guide the eye to
+  intraline differences, and were not present in either input
+  sequence. These lines can be confusing if the sequences contain tab
+  characters.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-763"><tt class="function">get_close_matches</tt></a></b>(<var>word, possibilities</var><big>[</big><var>,
+                 n</var><big>[</big><var>, cutoff</var><big>]</big><big>]</big>)
+<dd>
+  Return a list of the best ``good enough'' matches.  <var>word</var> is a
+  sequence for which close matches are desired (typically a string),
+  and <var>possibilities</var> is a list of sequences against which to
+  match <var>word</var> (typically a list of strings).
+
+<P>
+Optional argument <var>n</var> (default <code>3</code>) is the maximum number
+  of close matches to return; <var>n</var> must be greater than <code>0</code>.
+
+<P>
+Optional argument <var>cutoff</var> (default <code>0.6</code>) is a float in
+  the range [0, 1].  Possibilities that don't score at least that
+  similar to <var>word</var> are ignored.
+
+<P>
+The best (no more than <var>n</var>) matches among the possibilities are
+  returned in a list, sorted by similarity score, most similar first.
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; get_close_matches('appel', ['ape', 'apple', 'peach', 'puppy'])
+['apple', 'ape']
+&gt;&gt;&gt; import keyword
+&gt;&gt;&gt; get_close_matches('wheel', keyword.kwlist)
+['while']
+&gt;&gt;&gt; get_close_matches('apple', keyword.kwlist)
+[]
+&gt;&gt;&gt; get_close_matches('accept', keyword.kwlist)
+['except']
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-764"><tt class="function">ndiff</tt></a></b>(<var>a, b</var><big>[</big><var>, linejunk</var><big>[</big><var>,
+                 charjunk</var><big>]</big><big>]</big>)
+<dd>
+  Compare <var>a</var> and <var>b</var> (lists of strings); return a
+  <tt class="class">Differ</tt>-style delta (a generator generating the delta lines).
+
+<P>
+Optional keyword parameters <var>linejunk</var> and <var>charjunk</var> are
+  for filter functions (or <code>None</code>):
+
+<P>
+<var>linejunk</var>: A function that should accept a single string
+  argument, and return true if the string is junk (or false if it is
+  not). The default is module-level function
+  <tt class="function">IS_LINE_JUNK()</tt>, which filters out lines without visible
+  characters, except for at most one pound character ("<tt class="character">#</tt>").
+
+<P>
+<var>charjunk</var>: A function that should accept a string of length 1.
+  The default is module-level function <tt class="function">IS_CHARACTER_JUNK()</tt>,
+  which filters out whitespace characters (a blank or tab; note: bad
+  idea to include newline in this!).
+
+<P>
+<span class="file">Tools/scripts/ndiff.py</span> is a command-line front-end to this
+  function.
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; diff = ndiff('one\ntwo\nthree\n'.splitlines(1),
+...              'ore\ntree\nemu\n'.splitlines(1)))
+&gt;&gt;&gt; print ''.join(diff),
+- one
+?  ^
++ ore
+?  ^
+- two
+- three
+?  -
++ tree
++ emu
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-765"><tt class="function">restore</tt></a></b>(<var>sequence, which</var>)
+<dd>
+  Return one of the two sequences that generated a delta.
+
+<P>
+Given a <var>sequence</var> produced by <tt class="method">Differ.compare()</tt> or
+  <tt class="function">ndiff()</tt>, extract lines originating from file 1 or 2
+  (parameter <var>which</var>), stripping off line prefixes.
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; diff = ndiff('one\ntwo\nthree\n'.splitlines(1),
+...              'ore\ntree\nemu\n'.splitlines(1))
+&gt;&gt;&gt; diff = list(diff) # materialize the generated delta into a list
+&gt;&gt;&gt; print ''.join(restore(diff, 1)),
+one
+two
+three
+&gt;&gt;&gt; print ''.join(restore(diff, 2)),
+ore
+tree
+emu
+</pre></dl>
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-766"><tt class="function">IS_LINE_JUNK</tt></a></b>(<var>line</var>)
+<dd>
+  Return true for ignorable lines.  The line <var>line</var> is ignorable
+  if <var>line</var> is blank or contains a single "<tt class="character">#</tt>",
+  otherwise it is not ignorable.  Used as a default for parameter
+  <var>linejunk</var> in <tt class="function">ndiff()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-767"><tt class="function">IS_CHARACTER_JUNK</tt></a></b>(<var>ch</var>)
+<dd>
+  Return true for ignorable characters.  The character <var>ch</var> is
+  ignorable if <var>ch</var> is a space or tab, otherwise it is not
+  ignorable.  Used as a default for parameter <var>charjunk</var> in
+  <tt class="function">ndiff()</tt>.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"
+        >Pattern Matching: The Gestalt Approach</em>
+    <dd>Discussion of a
+            similar algorithm by John W. Ratcliff and D. E. Metzener.
+            This was published in
+            <em class="citetitle"><a
+ href="http://www.ddj.com/"
+ title="Dr. Dobb's Journal"
+ >Dr. Dobb's Journal</a></em> in
+            July, 1988.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="sequence-matcher.html">4.4.1 SequenceMatcher Objects</a>
+<LI><A href="sequencematcher-examples.html">4.4.2 SequenceMatcher Examples</a>
+<LI><A href="differ-objects.html">4.4.3 Differ Objects</a>
+<LI><A href="differ-examples.html">4.4.4 Differ Example</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-struct.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="strings.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="sequence-matcher.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-struct.html">4.3 struct  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="strings.html">4. String Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="sequence-matcher.html">4.4.1 SequenceMatcher Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

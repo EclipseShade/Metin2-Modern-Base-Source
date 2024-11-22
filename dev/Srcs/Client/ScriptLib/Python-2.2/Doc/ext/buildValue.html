@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.9 Building Arbitrary Values
+</title>
+<META NAME="description" CONTENT="1.9 Building Arbitrary Values
+">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="refcounts.html">
+<LINK REL="previous" href="parseTupleAndKeywords.html">
+<LINK REL="up" href="intro.html">
+<LINK REL="next" href="refcounts.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="parseTupleAndKeywords.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="refcounts.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="parseTupleAndKeywords.html">1.8 Keyword Parameters for</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="refcounts.html">1.10 Reference Counts</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION003900000000000000000">&nbsp;</A>
+<BR>
+1.9 Building Arbitrary Values
+         
+</H1>
+
+<P>
+This function is the counterpart to <tt class="cfunction">PyArg_ParseTuple()</tt>.  It is
+declared as follows:
+
+<P>
+<dl><dd><pre class="verbatim">
+PyObject *Py_BuildValue(char *format, ...);
+</pre></dl>
+
+<P>
+It recognizes a set of format units similar to the ones recognized by
+<tt class="cfunction">PyArg_ParseTuple()</tt>, but the arguments (which are input to the
+function, not output) must not be pointers, just values.  It returns a
+new Python object, suitable for returning from a C function called
+from Python.
+
+<P>
+One difference with <tt class="cfunction">PyArg_ParseTuple()</tt>: while the latter
+requires its first argument to be a tuple (since Python argument lists
+are always represented as tuples internally),
+<tt class="cfunction">Py_BuildValue()</tt> does not always build a tuple.  It builds
+a tuple only if its format string contains two or more format units.
+If the format string is empty, it returns <code>None</code>; if it contains
+exactly one format unit, it returns whatever object is described by
+that format unit.  To force it to return a tuple of size 0 or one,
+parenthesize the format string.
+
+<P>
+When memory buffers are passed as parameters to supply data to build
+objects, as for the "<tt class="samp">s</tt>" and "<tt class="samp">s#</tt>" formats, the required data
+is copied.  Buffers provided by the caller are never referenced by the
+objects created by <tt class="cfunction">Py_BuildValue()</tt>.  In other words, if
+your code invokes <tt class="cfunction">malloc()</tt> and passes the allocated memory
+to <tt class="cfunction">Py_BuildValue()</tt>, your code is responsible for
+calling <tt class="cfunction">free()</tt> for that memory once
+<tt class="cfunction">Py_BuildValue()</tt> returns.
+
+<P>
+In the following description, the quoted form is the format unit; the
+entry in (round) parentheses is the Python object type that the format
+unit will return; and the entry in [square] brackets is the type of
+the C value(s) to be passed.
+
+<P>
+The characters space, tab, colon and comma are ignored in format
+strings (but not within format units such as "<tt class="samp">s#</tt>").  This can be
+used to make long format strings a tad more readable.
+
+<P>
+<DL>
+<DT><STRONG>"<tt class="samp">s</tt>" (string) [char *]</STRONG></DT>
+<DD>Convert a null-terminated C string to a Python object.  If the C
+string pointer is <tt class="constant">NULL</tt>, <code>None</code> is used.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">s#</tt>" (string) [char *, int]</STRONG></DT>
+<DD>Convert a C string and its length to a Python object.  If the C string
+pointer is <tt class="constant">NULL</tt>, the length is ignored and <code>None</code> is
+returned.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">z</tt>" (string or <code>None</code>) [char *]</STRONG></DT>
+<DD>Same as "<tt class="samp">s</tt>".
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">z#</tt>" (string or <code>None</code>) [char *, int]</STRONG></DT>
+<DD>Same as "<tt class="samp">s#</tt>".
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">u</tt>" (Unicode string) [Py_UNICODE *]</STRONG></DT>
+<DD>Convert a null-terminated buffer of Unicode (UCS-2) data to a Python
+Unicode object.  If the Unicode buffer pointer is <tt class="constant">NULL</tt>,
+<code>None</code> is returned.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">u#</tt>" (Unicode string) [Py_UNICODE *, int]</STRONG></DT>
+<DD>Convert a Unicode (UCS-2) data buffer and its length to a Python
+Unicode object.   If the Unicode buffer pointer is <tt class="constant">NULL</tt>, the length
+is ignored and <code>None</code> is returned.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">i</tt>" (integer) [int]</STRONG></DT>
+<DD>Convert a plain C <tt class="ctype">int</tt> to a Python integer object.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">b</tt>" (integer) [char]</STRONG></DT>
+<DD>Same as "<tt class="samp">i</tt>".
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">h</tt>" (integer) [short int]</STRONG></DT>
+<DD>Same as "<tt class="samp">i</tt>".
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">l</tt>" (integer) [long int]</STRONG></DT>
+<DD>Convert a C <tt class="ctype">long int</tt> to a Python integer object.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">c</tt>" (string of length 1) [char]</STRONG></DT>
+<DD>Convert a C <tt class="ctype">int</tt> representing a character to a Python string of
+length 1.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">d</tt>" (float) [double]</STRONG></DT>
+<DD>Convert a C <tt class="ctype">double</tt> to a Python floating point number.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">f</tt>" (float) [float]</STRONG></DT>
+<DD>Same as "<tt class="samp">d</tt>".
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">D</tt>" (complex) [Py_complex *]</STRONG></DT>
+<DD>Convert a C <tt class="ctype">Py_complex</tt> structure to a Python complex number.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">O</tt>" (object) [PyObject *]</STRONG></DT>
+<DD>Pass a Python object untouched (except for its reference count, which
+is incremented by one).  If the object passed in is a <tt class="constant">NULL</tt>
+pointer, it is assumed that this was caused because the call producing
+the argument found an error and set an exception.  Therefore,
+<tt class="cfunction">Py_BuildValue()</tt> will return <tt class="constant">NULL</tt> but won't raise an
+exception.  If no exception has been raised yet,
+<tt class="cdata">PyExc_SystemError</tt> is set.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">S</tt>" (object) [PyObject *]</STRONG></DT>
+<DD>Same as "<tt class="samp">O</tt>".
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">U</tt>" (object) [PyObject *]</STRONG></DT>
+<DD>Same as "<tt class="samp">O</tt>".
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">N</tt>" (object) [PyObject *]</STRONG></DT>
+<DD>Same as "<tt class="samp">O</tt>", except it doesn't increment the reference count on
+the object.  Useful when the object is created by a call to an object
+constructor in the argument list.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">O&amp;</tt>" (object) [<var>converter</var>, <var>anything</var>]</STRONG></DT>
+<DD>Convert <var>anything</var> to a Python object through a <var>converter</var>
+function.  The function is called with <var>anything</var> (which should be
+compatible with <tt class="ctype">void *</tt>) as its argument and should return a
+``new'' Python object, or <tt class="constant">NULL</tt> if an error occurred.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">(<var>items</var>)</tt>" (tuple) [<var>matching-items</var>]</STRONG></DT>
+<DD>Convert a sequence of C values to a Python tuple with the same number
+of items.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">[<var>items</var>]</tt>" (list) [<var>matching-items</var>]</STRONG></DT>
+<DD>Convert a sequence of C values to a Python list with the same number
+of items.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">{<var>items</var>}</tt>" (dictionary) [<var>matching-items</var>]</STRONG></DT>
+<DD>Convert a sequence of C values to a Python dictionary.  Each pair of
+consecutive C values adds one item to the dictionary, serving as key
+and value, respectively.
+
+<P>
+</DD>
+</DL>
+
+<P>
+If there is an error in the format string, the
+<tt class="cdata">PyExc_SystemError</tt> exception is raised and <tt class="constant">NULL</tt> returned.
+
+<P>
+Examples (to the left the call, to the right the resulting Python value):
+
+<P>
+<dl><dd><pre class="verbatim">
+    Py_BuildValue("")                        None
+    Py_BuildValue("i", 123)                  123
+    Py_BuildValue("iii", 123, 456, 789)      (123, 456, 789)
+    Py_BuildValue("s", "hello")              'hello'
+    Py_BuildValue("ss", "hello", "world")    ('hello', 'world')
+    Py_BuildValue("s#", "hello", 4)          'hell'
+    Py_BuildValue("()")                      ()
+    Py_BuildValue("(i)", 123)                (123,)
+    Py_BuildValue("(ii)", 123, 456)          (123, 456)
+    Py_BuildValue("(i,i)", 123, 456)         (123, 456)
+    Py_BuildValue("[i,i]", 123, 456)         [123, 456]
+    Py_BuildValue("{s:i,s:i}",
+                  "abc", 123, "def", 456)    {'abc': 123, 'def': 456}
+    Py_BuildValue("((ii)(ii)) (ii)",
+                  1, 2, 3, 4, 5, 6)          (((1, 2), (3, 4)), (5, 6))
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="parseTupleAndKeywords.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="refcounts.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="parseTupleAndKeywords.html">1.8 Keyword Parameters for</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="refcounts.html">1.10 Reference Counts</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

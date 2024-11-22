@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.10.1 ConfigParser Objects </title>
+<META NAME="description" CONTENT="5.10.1 ConfigParser Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-ConfigParser.html">
+<LINK REL="up" href="module-ConfigParser.html">
+<LINK REL="next" href="module-fileinput.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-ConfigParser.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-ConfigParser.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-fileinput.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-ConfigParser.html">5.10 ConfigParser  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-ConfigParser.html">5.10 ConfigParser  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-fileinput.html">5.11 fileinput  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0071010000000000000000">&nbsp;</A>
+<BR>
+5.10.1 ConfigParser Objects 
+</H2>
+
+<P>
+<tt class="class">ConfigParser</tt> instances have the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-1005"><tt class="method">defaults</tt></a></b>()
+<dd>
+Return a dictionary containing the instance-wide defaults.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1006"><tt class="method">sections</tt></a></b>()
+<dd>
+Return a list of the sections available; <code>DEFAULT</code> is not
+included in the list.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1007"><tt class="method">add_section</tt></a></b>(<var>section</var>)
+<dd>
+Add a section named <var>section</var> to the instance.  If a section by
+the given name already exists, <tt class="exception">DuplicateSectionError</tt> is
+raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1008"><tt class="method">has_section</tt></a></b>(<var>section</var>)
+<dd>
+Indicates whether the named section is present in the
+configuration. The <code>DEFAULT</code> section is not acknowledged.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1009"><tt class="method">options</tt></a></b>(<var>section</var>)
+<dd>
+Returns a list of options available in the specified <var>section</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1010"><tt class="method">has_option</tt></a></b>(<var>section, option</var>)
+<dd>
+If the given section exists, and contains the given option. return 1;
+otherwise return 0.
+
+<span class="versionnote">New in version 1.6.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1011"><tt class="method">read</tt></a></b>(<var>filenames</var>)
+<dd>
+Read and parse a list of filenames.  If <var>filenames</var> is a string or
+Unicode string, it is treated as a single filename.
+If a file named in <var>filenames</var> cannot be opened, that file will be
+ignored.  This is designed so that you can specify a list of potential
+configuration file locations (for example, the current directory, the
+user's home directory, and some system-wide directory), and all
+existing configuration files in the list will be read.  If none of the
+named files exist, the <tt class="class">ConfigParser</tt> instance will contain an
+empty dataset.  An application which requires initial values to be
+loaded from a file should load the required file or files using
+<tt class="method">readfp()</tt> before calling <tt class="method">read()</tt> for any optional
+files:
+
+<P>
+<dl><dd><pre class="verbatim">
+import ConfigParser, os
+
+config = ConfigParser.ConfigParser()
+config.readfp(open('defaults.cfg'))
+config.read(['site.cfg', os.path.expanduser('~/.myapp.cfg')])
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1012"><tt class="method">readfp</tt></a></b>(<var>fp</var><big>[</big><var>, filename</var><big>]</big>)
+<dd>
+Read and parse configuration data from the file or file-like object in
+<var>fp</var> (only the <tt class="method">readline()</tt> method is used).  If
+<var>filename</var> is omitted and <var>fp</var> has a <tt class="member">name</tt> attribute,
+that is used for <var>filename</var>; the default is "<tt class="samp">&lt;???&gt;</tt>".
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1013"><tt class="method">get</tt></a></b>(<var>section, option</var><big>[</big><var>, raw</var><big>[</big><var>, vars</var><big>]</big><big>]</big>)
+<dd>
+Get an <var>option</var> value for the provided <var>section</var>.  All the
+"<tt class="character">%</tt>" interpolations are expanded in the return values, based on
+the defaults passed into the constructor, as well as the options
+<var>vars</var> provided, unless the <var>raw</var> argument is true.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1014"><tt class="method">getint</tt></a></b>(<var>section, option</var>)
+<dd>
+A convenience method which coerces the <var>option</var> in the specified
+<var>section</var> to an integer.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1015"><tt class="method">getfloat</tt></a></b>(<var>section, option</var>)
+<dd>
+A convenience method which coerces the <var>option</var> in the specified
+<var>section</var> to a floating point number.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1016"><tt class="method">getboolean</tt></a></b>(<var>section, option</var>)
+<dd>
+A convenience method which coerces the <var>option</var> in the specified
+<var>section</var> to a Boolean value.  Note that the accepted values
+for the option are <code>1</code>, <code>yes</code>, <code>true</code>, and <code>on</code>,
+which cause this method to return true, and <code>0</code>, <code>no</code>,
+<code>false</code>, and <code>off</code>, which cause it to return false.  These
+values are checked in a case-insensitive manner.  Any other value will
+cause it to raise <tt class="exception">ValueError</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1017"><tt class="method">set</tt></a></b>(<var>section, option, value</var>)
+<dd>
+If the given section exists, set the given option to the specified value;
+otherwise raise <tt class="exception">NoSectionError</tt>.
+
+<span class="versionnote">New in version 1.6.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1018"><tt class="method">write</tt></a></b>(<var>fileobject</var>)
+<dd>
+Write a representation of the configuration to the specified file
+object.  This representation can be parsed by a future <tt class="method">read()</tt>
+call.
+
+<span class="versionnote">New in version 1.6.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1019"><tt class="method">remove_option</tt></a></b>(<var>section, option</var>)
+<dd>
+Remove the specified <var>option</var> from the specified <var>section</var>.
+If the section does not exist, raise <tt class="exception">NoSectionError</tt>. 
+If the option existed to be removed, return 1; otherwise return 0.
+
+<span class="versionnote">New in version 1.6.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1020"><tt class="method">remove_section</tt></a></b>(<var>section</var>)
+<dd>
+Remove the specified <var>section</var> from the configuration.
+If the section in fact existed, return 1.  Otherwise return 0.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1021"><tt class="method">optionxform</tt></a></b>(<var>option</var>)
+<dd>
+Transforms the option name <var>option</var> as found in an input file or
+as passed in by  client code to the form that should be used in the
+internal structures.  The default implementation returns a lower-case
+version of <var>option</var>; subclasses may override this or client code
+can set an attribute of this name on instances to affect this
+behavior.  Setting this to <tt class="function">str()</tt>, for example, would make
+option names case sensitive.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-ConfigParser.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-ConfigParser.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-fileinput.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-ConfigParser.html">5.10 ConfigParser  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-ConfigParser.html">5.10 ConfigParser  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-fileinput.html">5.11 fileinput  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

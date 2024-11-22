@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.4 Mapping Protocol </title>
+<META NAME="description" CONTENT="6.4 Mapping Protocol ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="iterator.html">
+<LINK REL="previous" href="sequence.html">
+<LINK REL="up" href="abstract.html">
+<LINK REL="next" href="iterator.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="sequence.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="abstract.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="iterator.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="sequence.html">6.3 Sequence Protocol</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="abstract.html">6. Abstract Objects Layer</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="iterator.html">6.5 Iterator Protocol</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008400000000000000000">&nbsp;</A>
+<BR>
+6.4 Mapping Protocol 
+</H1>
+
+<P>
+<dl><dt>int <b><a name="l2h-265"><tt class="cfunction">PyMapping_Check</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+  Return <code>1</code> if the object provides mapping protocol, and
+  <code>0</code> otherwise.  This function always succeeds.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-266"><tt class="cfunction">PyMapping_Length</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+  Returns the number of keys in object <var>o</var> on success, and
+  <code>-1</code> on failure.  For objects that do not provide mapping
+  protocol, this is equivalent to the Python expression
+  "<tt class="samp">len(<var>o</var>)</tt>".<a name="l2h-276">&nbsp;</a></dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-267"><tt class="cfunction">PyMapping_DelItemString</tt></a></b>(<var>PyObject *o, char *key</var>)
+<dd>
+  Remove the mapping for object <var>key</var> from the object <var>o</var>.
+  Return <code>-1</code> on failure.  This is equivalent to the Python
+  statement "<tt class="samp">del <var>o</var>[<var>key</var>]</tt>".
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-268"><tt class="cfunction">PyMapping_DelItem</tt></a></b>(<var>PyObject *o, PyObject *key</var>)
+<dd>
+  Remove the mapping for object <var>key</var> from the object <var>o</var>.
+  Return <code>-1</code> on failure.  This is equivalent to the Python
+  statement "<tt class="samp">del <var>o</var>[<var>key</var>]</tt>".
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-269"><tt class="cfunction">PyMapping_HasKeyString</tt></a></b>(<var>PyObject *o, char *key</var>)
+<dd>
+  On success, return <code>1</code> if the mapping object has the key
+  <var>key</var> and <code>0</code> otherwise.  This is equivalent to the Python
+  expression "<tt class="samp"><var>o</var>.has_key(<var>key</var>)</tt>".  This function always
+  succeeds.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-270"><tt class="cfunction">PyMapping_HasKey</tt></a></b>(<var>PyObject *o, PyObject *key</var>)
+<dd>
+  Return <code>1</code> if the mapping object has the key <var>key</var> and
+  <code>0</code> otherwise.  This is equivalent to the Python expression
+  "<tt class="samp"><var>o</var>.has_key(<var>key</var>)</tt>".  This function always succeeds.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-271"><tt class="cfunction">PyMapping_Keys</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  On success, return a list of the keys in object <var>o</var>.  On
+  failure, return <tt class="constant">NULL</tt>. This is equivalent to the Python expression
+  "<tt class="samp"><var>o</var>.keys()</tt>".
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-272"><tt class="cfunction">PyMapping_Values</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  On success, return a list of the values in object <var>o</var>.  On
+  failure, return <tt class="constant">NULL</tt>. This is equivalent to the Python expression
+  "<tt class="samp"><var>o</var>.values()</tt>".
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-273"><tt class="cfunction">PyMapping_Items</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  On success, return a list of the items in object <var>o</var>, where each
+  item is a tuple containing a key-value pair.  On failure, return
+  <tt class="constant">NULL</tt>. This is equivalent to the Python expression
+  "<tt class="samp"><var>o</var>.items()</tt>".
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-274"><tt class="cfunction">PyMapping_GetItemString</tt></a></b>(<var>PyObject *o, char *key</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Return element of <var>o</var> corresponding to the object <var>key</var> or
+  <tt class="constant">NULL</tt> on failure. This is the equivalent of the Python expression
+  "<tt class="samp"><var>o</var>[<var>key</var>]</tt>".
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-275"><tt class="cfunction">PyMapping_SetItemString</tt></a></b>(<var>PyObject *o, char *key,
+                                                PyObject *v</var>)
+<dd>
+  Map the object <var>key</var> to the value <var>v</var> in object <var>o</var>.
+  Returns <code>-1</code> on failure.  This is the equivalent of the Python
+  statement "<tt class="samp"><var>o</var>[<var>key</var>] = <var>v</var></tt>".
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="sequence.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="abstract.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="iterator.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="sequence.html">6.3 Sequence Protocol</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="abstract.html">6. Abstract Objects Layer</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="iterator.html">6.5 Iterator Protocol</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

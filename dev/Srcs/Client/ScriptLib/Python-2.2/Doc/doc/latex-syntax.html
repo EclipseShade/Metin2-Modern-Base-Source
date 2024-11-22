@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.2 Hierarchical Structure </title>
+<META NAME="description" CONTENT="4.2 Hierarchical Structure ">
+<META NAME="keywords" CONTENT="doc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="doc.css">
+<link rel="first" href="doc.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="previous" HREF="node6.html">
+<LINK REL="up" href="latex-primer.html">
+<LINK REL="next" href="classes.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node6.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="latex-primer.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="classes.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node6.html">4.1 Syntax</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="latex-primer.html">4 L<SUP>A</SUP>TEX Primer</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="classes.html">5 Document Classes</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000520000000000000000">&nbsp;</A>
+<BR>
+4.2 Hierarchical Structure 
+</H2>
+
+<P>
+<SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> expects documents to be arranged in a conventional,
+    hierarchical way, with chapters, sections, sub-sections,
+    appendixes, and the like.  These are marked using macros rather
+    than environments, probably because the end of a section can be
+    safely inferred when a section of equal or higher level starts.
+
+<P>
+There are six ``levels'' of sectioning in the document classes
+    used for Python documentation, and the deepest two
+    levels<A NAME="tex2html1"
+  HREF="#foot167"><SUP>1</SUP></A> are not used.  The levels are:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Level</b>&nbsp;</th>
+      <th align="left"><b>Macro Name</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline">1</td>
+        <td align="left"><tt class='macro'>&#92;chapter</tt></td>
+        <td align="center">(1)</td>
+    <tr><td align="center" valign="baseline">2</td>
+        <td align="left"><tt class='macro'>&#92;section</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">3</td>
+        <td align="left"><tt class='macro'>&#92;subsection</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">4</td>
+        <td align="left"><tt class='macro'>&#92;subsubsection</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline">5</td>
+        <td align="left"><tt class='macro'>&#92;paragraph</tt></td>
+        <td align="center">(2)</td>
+    <tr><td align="center" valign="baseline">6</td>
+        <td align="left"><tt class='macro'>&#92;subparagraph</tt></td>
+        <td align="center">&nbsp;</td></tbody>
+</table>
+
+<P>
+Notes:
+
+<P>
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>Only used for the <code>manual</code> documents, as described in
+      section <A href="classes.html#classes">5</A>, ``Document Classes.''
+      
+</DD>
+<DT><STRONG>(2)</STRONG></DT>
+<DD>Not the same as a paragraph of text; nobody seems to use this.
+    
+</DD>
+</DL>
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot167">... levels</A><A NAME="foot167"
+ href="latex-syntax.html#tex2html1"><SUP>1</SUP></A>
+<DD>The deepest levels have the highest numbers in the
+      table.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node6.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="latex-primer.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="classes.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node6.html">4.1 Syntax</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="latex-primer.html">4 L<SUP>A</SUP>TEX Primer</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="classes.html">5 Document Classes</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

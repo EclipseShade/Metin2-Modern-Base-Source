@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.3 Importing Modules </title>
+<META NAME="description" CONTENT="5.3 Importing Modules ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="marshalling-utils.html">
+<LINK REL="previous" href="processControl.html">
+<LINK REL="up" href="utilities.html">
+<LINK REL="next" href="marshalling-utils.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="processControl.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="utilities.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="marshalling-utils.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="processControl.html">5.2 Process Control</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="utilities.html">5. Utilities</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="marshalling-utils.html">5.4 Data marshalling support</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007300000000000000000">&nbsp;</A>
+<BR>
+5.3 Importing Modules 
+</H1>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-117"><tt class="cfunction">PyImport_ImportModule</tt></a></b>(<var>char *name</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  This is a simplified interface to
+  <tt class="cfunction">PyImport_ImportModuleEx()</tt> below, leaving the
+  <var>globals</var> and <var>locals</var> arguments set to <tt class="constant">NULL</tt>.  When the
+  <var>name</var> argument contains a dot (when it specifies a submodule of
+  a package), the <var>fromlist</var> argument is set to the list
+  <code>['*']</code> so that the return value is the named module rather
+  than the top-level package containing it as would otherwise be the
+  case.  (Unfortunately, this has an additional side effect when
+  <var>name</var> in fact specifies a subpackage instead of a submodule:
+  the submodules specified in the package's <code>__all__</code> variable
+  are <a name="l2h-140">&nbsp;</a>  <a name="l2h-119">&nbsp;</a>loaded.)  Return
+  a new reference to the imported module, or <tt class="constant">NULL</tt> with an exception
+  set on failure (the module may still be created in this case --
+  examine <code>sys.modules</code> to find out).
+  <a name="l2h-121">&nbsp;</a></dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-122"><tt class="cfunction">PyImport_ImportModuleEx</tt></a></b>(<var>char *name,
+                       PyObject *globals, PyObject *locals, PyObject *fromlist</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Import a module.  This is best described by referring to the
+  built-in Python function
+  <tt class="function">__import__()</tt><a name="l2h-141">&nbsp;</a> as the standard
+  <tt class="function">__import__()</tt> function calls this function directly.
+
+<P>
+The return value is a new reference to the imported module or
+  top-level package, or <tt class="constant">NULL</tt> with an exception set on failure (the
+  module may still be created in this case).  Like for
+  <tt class="function">__import__()</tt>, the return value when a submodule of a
+  package was requested is normally the top-level package, unless a
+  non-empty <var>fromlist</var> was given.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-123"><tt class="cfunction">PyImport_Import</tt></a></b>(<var>PyObject *name</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  This is a higher-level interface that calls the current ``import
+  hook function''.  It invokes the <tt class="function">__import__()</tt> function
+  from the <code>__builtins__</code> of the current globals.  This means
+  that the import is done using whatever import hooks are installed in
+  the current environment, e.g. by <tt class="module">rexec</tt><a name="l2h-142">&nbsp;</a>  or <tt class="module">ihooks</tt><a name="l2h-143">&nbsp;</a>
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-124"><tt class="cfunction">PyImport_ReloadModule</tt></a></b>(<var>PyObject *m</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Reload a module.  This is best described by referring to the
+  built-in Python function <tt class="function">reload()</tt><a name="l2h-144">&nbsp;</a> as
+  the standard <tt class="function">reload()</tt> function calls this function
+  directly.  Return a new reference to the reloaded module, or <tt class="constant">NULL</tt>
+  with an exception set on failure (the module still exists in this
+  case).
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-125"><tt class="cfunction">PyImport_AddModule</tt></a></b>(<var>char *name</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Return the module object corresponding to a module name.  The
+  <var>name</var> argument may be of the form <code>package.module</code>).
+  First check the modules dictionary if there's one there, and if not,
+  create a new one and insert in in the modules dictionary.
+  <span class="note"><b class="label">Note:</b>
+This function does not load or import the module; if the
+  module wasn't already loaded, you will get an empty module object.
+  Use <tt class="cfunction">PyImport_ImportModule()</tt> or one of its variants to
+  import a module.  Return <tt class="constant">NULL</tt> with an exception set on failure.</span>
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-126"><tt class="cfunction">PyImport_ExecCodeModule</tt></a></b>(<var>char *name, PyObject *co</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Given a module name (possibly of the form <code>package.module</code>) and
+  a code object read from a Python bytecode file or obtained from the
+  built-in function <tt class="function">compile()</tt><a name="l2h-145">&nbsp;</a> load
+  the module.  Return a new reference to the module object, or <tt class="constant">NULL</tt>
+  with an exception set if an error occurred (the module may still be
+  created in this case).  (This function would reload the module if it
+  was already imported.)
+</dl>
+
+<P>
+<dl><dt>long <b><a name="l2h-127"><tt class="cfunction">PyImport_GetMagicNumber</tt></a></b>()
+<dd>
+  Return the magic number for Python bytecode files
+  (a.k.a. <span class="file">.pyc</span> and <span class="file">.pyo</span> files).  The magic number should
+  be present in the first four bytes of the bytecode file, in
+  little-endian byte order.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-128"><tt class="cfunction">PyImport_GetModuleDict</tt></a></b>()
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Return the dictionary used for the module administration
+  (a.k.a. <code>sys.modules</code>).  Note that this is a per-interpreter
+  variable.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-129"><tt class="cfunction">_PyImport_Init</tt></a></b>()
+<dd>
+  Initialize the import mechanism.  For internal use only.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-130"><tt class="cfunction">PyImport_Cleanup</tt></a></b>()
+<dd>
+  Empty the module table.  For internal use only.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-131"><tt class="cfunction">_PyImport_Fini</tt></a></b>()
+<dd>
+  Finalize the import mechanism.  For internal use only.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-132"><tt class="cfunction">_PyImport_FindExtension</tt></a></b>(<var>char *, char *</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  For internal use only.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-133"><tt class="cfunction">_PyImport_FixupExtension</tt></a></b>(<var>char *, char *</var>)
+<dd>
+  For internal use only.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-134"><tt class="cfunction">PyImport_ImportFrozenModule</tt></a></b>(<var>char *name</var>)
+<dd>
+  Load a frozen module named <var>name</var>.  Return <code>1</code> for success,
+  <code>0</code> if the module is not found, and <code>-1</code> with an exception
+  set if the initialization failed.  To access the imported module on
+  a successful load, use <tt class="cfunction">PyImport_ImportModule()</tt>.  (Note
+  the misnomer -- this function would reload the module if it was
+  already imported.)
+</dl>
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-135">struct _frozen</a></tt></b>
+<dd>
+  This is the structure type definition for frozen module descriptors,
+  as generated by the <b class="program">freeze</b><a name="l2h-146">&nbsp;</a>utility
+  (see <span class="file">Tools/freeze/</span> in the Python source distribution).  Its
+  definition, found in <span class="file">Include/import.h</span>, is:
+
+<P>
+<dl><dd><pre class="verbatim">
+struct _frozen {
+    char *name;
+    unsigned char *code;
+    int size;
+};
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt>struct _frozen* <b><a name="l2h-136"><tt class="cdata">PyImport_FrozenModules</tt></a></b>
+<dd>
+  This pointer is initialized to point to an array of <tt class="ctype">struct
+  _frozen</tt> records, terminated by one whose members are all <tt class="constant">NULL</tt> or
+  zero.  When a frozen module is imported, it is searched in this
+  table.  Third-party code could play tricks with this to provide a
+  dynamically created collection of frozen modules.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-137"><tt class="cfunction">PyImport_AppendInittab</tt></a></b>(<var>char *name,
+                                               void (*initfunc)(void)</var>)
+<dd>
+  Add a single module to the existing table of built-in modules.  This
+  is a convenience wrapper around
+  <tt class="cfunction">PyImport_ExtendInittab()</tt>, returning <code>-1</code> if the
+  table could not be extended.  The new module can be imported by the
+  name <var>name</var>, and uses the function <var>initfunc</var> as the
+  initialization function called on the first attempted import.  This
+  should be called before <tt class="cfunction">Py_Initialize()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-138">struct _inittab</a></tt></b>
+<dd>
+  Structure describing a single entry in the list of built-in
+  modules.  Each of these structures gives the name and initialization
+  function for a module built into the interpreter.  Programs which
+  embed Python may use an array of these structures in conjunction
+  with <tt class="cfunction">PyImport_ExtendInittab()</tt> to provide additional
+  built-in modules.  The structure is defined in
+  <span class="file">Include/import.h</span> as:
+
+<P>
+<dl><dd><pre class="verbatim">
+struct _inittab {
+    char *name;
+    void (*initfunc)(void);
+};
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-139"><tt class="cfunction">PyImport_ExtendInittab</tt></a></b>(<var>struct _inittab *newtab</var>)
+<dd>
+  Add a collection of modules to the table of built-in modules.  The
+  <var>newtab</var> array must end with a sentinel entry which contains
+  <tt class="constant">NULL</tt> for the <tt class="member">name</tt> field; failure to provide the sentinel
+  value can result in a memory fault.  Returns <code>0</code> on success or
+  <code>-1</code> if insufficient memory could be allocated to extend the
+  internal table.  In the event of failure, no modules are added to
+  the internal table.  This should be called before
+  <tt class="cfunction">Py_Initialize()</tt>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="processControl.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="utilities.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="marshalling-utils.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="processControl.html">5.2 Process Control</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="utilities.html">5. Utilities</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="marshalling-utils.html">5.4 Data marshalling support</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.10.1 Database Objects </title>
+<META NAME="description" CONTENT="7.10.1 Database Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-dbhash.html">
+<LINK REL="up" href="module-dbhash.html">
+<LINK REL="next" href="module-whichdb.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-dbhash.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-dbhash.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-whichdb.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-dbhash.html">7.10 dbhash  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-dbhash.html">7.10 dbhash  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-whichdb.html">7.11 whichdb  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0091010000000000000000">&nbsp;</A>
+<BR>
+7.10.1 Database Objects 
+</H2>
+
+<P>
+The database objects returned by <tt class="function">open()</tt> provide the methods 
+common to all the DBM-style databases.  The following methods are
+available in addition to the standard methods.
+
+<P>
+<dl><dt><b><a name="l2h-2024"><tt class="method">first</tt></a></b>()
+<dd>
+  It's possible to loop over every key in the database using this method 
+  and the <tt class="method">next()</tt> method.  The traversal is ordered by
+  the databases internal hash values, and won't be sorted by the key
+  values.  This method returns the starting key.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2025"><tt class="method">last</tt></a></b>()
+<dd>
+  Return the last key in a database traversal.  This may be used to
+  begin a reverse-order traversal; see <tt class="method">previous()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2026"><tt class="method">next</tt></a></b>(<var>key</var>)
+<dd>
+  Returns the key that follows <var>key</var> in the traversal.  The
+  following code prints every key in the database <code>db</code>, without
+  having to create a list in memory that contains them all:
+
+<P>
+<dl><dd><pre class="verbatim">
+k = db.first()
+while k != None:
+    print k
+    k = db.next(k)
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2027"><tt class="method">previous</tt></a></b>(<var>key</var>)
+<dd>
+  Return the key that comes before <var>key</var> in a forward-traversal of 
+  the database.  In conjunction with <tt class="method">last()</tt>, this may be used 
+  to implement a reverse-order traversal.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2028"><tt class="method">sync</tt></a></b>()
+<dd>
+  This method forces any unwritten data to be written to the disk.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-dbhash.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-dbhash.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-whichdb.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-dbhash.html">7.10 dbhash  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-dbhash.html">7.10 dbhash  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-whichdb.html">7.11 whichdb  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

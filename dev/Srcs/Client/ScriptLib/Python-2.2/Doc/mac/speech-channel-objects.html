@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.9.2 Speech Channel Objects</title>
+<META NAME="description" CONTENT="2.9.2 Speech Channel Objects">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="voice-objects.html">
+<LINK REL="up" href="module-macspeech.html">
+<LINK REL="next" href="module-EasyDialogs.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="voice-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-macspeech.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-EasyDialogs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="voice-objects.html">2.9.1 Voice Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-macspeech.html">2.9 macspeech  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-EasyDialogs.html">2.10 EasyDialogs  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004920000000000000000">&nbsp;</A>
+<BR>
+2.9.2 Speech Channel Objects
+</H2>
+
+<P>
+A Speech Channel object allows you to speak strings with slightly more
+control than <tt class="function">SpeakString()</tt>, and allows you to use multiple
+speakers at the same time. Please note that channel pitch and rate are
+interrelated in some way, so that to make your Macintosh sing you will
+have to adjust both.
+
+<P>
+<dl><dt><b><a name="l2h-118"><tt class="method">SpeakText</tt></a></b>(<var>str</var>)
+<dd>
+Start uttering the given string.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-119"><tt class="method">Stop</tt></a></b>()
+<dd>
+Stop babbling.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-120"><tt class="method">GetPitch</tt></a></b>()
+<dd>
+Return the current pitch of the channel, as a floating-point number.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-121"><tt class="method">SetPitch</tt></a></b>(<var>pitch</var>)
+<dd>
+Set the pitch of the channel.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-122"><tt class="method">GetRate</tt></a></b>()
+<dd>
+Get the speech rate (utterances per minute) of the channel as a
+floating point number.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-123"><tt class="method">SetRate</tt></a></b>(<var>rate</var>)
+<dd>
+Set the speech rate of the channel.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="voice-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-macspeech.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-EasyDialogs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="voice-objects.html">2.9.1 Voice Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-macspeech.html">2.9 macspeech  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-EasyDialogs.html">2.10 EasyDialogs  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

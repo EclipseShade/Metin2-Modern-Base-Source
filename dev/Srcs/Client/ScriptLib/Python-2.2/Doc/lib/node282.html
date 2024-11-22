@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>10.2 How Is This Profiler Different From The Old Profiler?</title>
+<META NAME="description" CONTENT="10.2 How Is This Profiler Different From The Old Profiler?">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="profile-instant.html">
+<LINK REL="previous" HREF="node281.html">
+<LINK REL="up" href="profile.html">
+<LINK REL="next" href="profile-instant.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node281.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="profile.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="profile-instant.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node281.html">10.1 Introduction to the</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="profile.html">10. The Python Profiler</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="profile-instant.html">10.3 Instant Users Manual</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0012200000000000000000">
+10.2 How Is This Profiler Different From The Old Profiler?</A>
+</H1>
+
+<P>
+(This section is of historical importance only; the old profiler
+discussed here was last seen in Python 1.1.)
+
+<P>
+The big changes from old profiling module are that you get more
+information, and you pay less CPU time.  It's not a trade-off, it's a
+trade-up.
+
+<P>
+To be specific:
+
+<P>
+<DL>
+<DT><STRONG>Bugs removed:</STRONG></DT>
+<DD>Local stack frame is no longer molested, execution time is now charged
+to correct functions.
+
+<P>
+</DD>
+<DT><STRONG>Accuracy increased:</STRONG></DT>
+<DD>Profiler execution time is no longer charged to user's code,
+calibration for platform is supported, file reads are not done <i>by</i>
+profiler <i>during</i> profiling (and charged to user's code!).
+
+<P>
+</DD>
+<DT><STRONG>Speed increased:</STRONG></DT>
+<DD>Overhead CPU cost was reduced by more than a factor of two (perhaps a
+factor of five), lightweight profiler module is all that must be
+loaded, and the report generating module (<tt class="module">pstats</tt>) is not needed
+during profiling.
+
+<P>
+</DD>
+<DT><STRONG>Recursive functions support:</STRONG></DT>
+<DD>Cumulative times in recursive functions are correctly calculated;
+recursive entries are counted.
+
+<P>
+</DD>
+<DT><STRONG>Large growth in report generating UI:</STRONG></DT>
+<DD>Distinct profiles runs can be added together forming a comprehensive
+report; functions that import statistics take arbitrary lists of
+files; sorting criteria is now based on keywords (instead of 4 integer
+options); reports shows what functions were profiled as well as what
+profile file was referenced; output format has been improved.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node281.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="profile.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="profile-instant.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node281.html">10.1 Introduction to the</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="profile.html">10. The Python Profiler</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="profile-instant.html">10.3 Instant Users Manual</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

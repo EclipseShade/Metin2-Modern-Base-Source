@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.25.2.2 The GNUTranslations class</title>
+<META NAME="description" CONTENT="6.25.2.2 The GNUTranslations class">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node204.html">
+<LINK REL="previous" HREF="node202.html">
+<LINK REL="up" HREF="node201.html">
+<LINK REL="next" HREF="node204.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node202.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node201.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node204.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node202.html">6.25.2.1 The NullTranslations class</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node201.html">6.25.2 Class-based API</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node204.html">6.25.2.3 Solaris message catalog</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082522000000000000000">
+6.25.2.2 The <tt class="class">GNUTranslations</tt> class</A>
+</H3>
+
+<P>
+The <tt class="module">gettext</tt> module provides one additional class derived from
+<tt class="class">NullTranslations</tt>: <tt class="class">GNUTranslations</tt>.  This class
+overrides <tt class="method">_parse()</tt> to enable reading GNU <b class="program">gettext</b>
+format <span class="file">.mo</span> files in both big-endian and little-endian format.
+
+<P>
+It also parses optional meta-data out of the translation catalog.  It
+is convention with GNU <b class="program">gettext</b> to include meta-data as the
+translation for the empty string.  This meta-data is in <a class="rfc" name="rfcref-62368"
+href="http://www.faqs.org/rfcs/rfc822.html">RFC 822</a>-style
+<code>key: value</code> pairs.  If the key <code>Content-Type</code> is found,
+then the <code>charset</code> property is used to initialize the
+``protected'' <tt class="member">_charset</tt> instance variable.  The entire set of
+key/value pairs are placed into a dictionary and set as the
+``protected'' <tt class="member">_info</tt> instance variable.
+
+<P>
+If the <span class="file">.mo</span> file's magic number is invalid, or if other problems
+occur while reading the file, instantiating a <tt class="class">GNUTranslations</tt> class
+can raise <tt class="exception">IOError</tt>.
+
+<P>
+The other usefully overridden method is <tt class="method">ugettext()</tt>, which
+returns a Unicode string by passing both the translated message string
+and the value of the ``protected'' <tt class="member">_charset</tt> variable to the
+builtin <tt class="function">unicode()</tt> function.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node202.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node201.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node204.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node202.html">6.25.2.1 The NullTranslations class</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node201.html">6.25.2 Class-based API</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node204.html">6.25.2.3 Solaris message catalog</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

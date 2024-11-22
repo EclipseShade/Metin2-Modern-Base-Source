@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.24.1 Background, details, hints, tips and caveats</title>
+<META NAME="description" CONTENT="6.24.1 Background, details, hints, tips and caveats">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="embedding-locale.html">
+<LINK REL="previous" href="module-locale.html">
+<LINK REL="up" href="module-locale.html">
+<LINK REL="next" href="embedding-locale.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-locale.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-locale.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="embedding-locale.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-locale.html">6.24 locale  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-locale.html">6.24 locale  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="embedding-locale.html">6.24.2 For extension writers</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0082410000000000000000">
+6.24.1 Background, details, hints, tips and caveats</A>
+</H2>
+
+<P>
+The C standard defines the locale as a program-wide property that may
+be relatively expensive to change.  On top of that, some
+implementation are broken in such a way that frequent locale changes
+may cause core dumps.  This makes the locale somewhat painful to use
+correctly.
+
+<P>
+Initially, when a program is started, the locale is the "<tt class="samp">C</tt>" locale, no
+matter what the user's preferred locale is.  The program must
+explicitly say that it wants the user's preferred locale settings by
+calling <code>setlocale(LC_ALL, '')</code>.
+
+<P>
+It is generally a bad idea to call <tt class="function">setlocale()</tt> in some library
+routine, since as a side effect it affects the entire program.  Saving
+and restoring it is almost as bad: it is expensive and affects other
+threads that happen to run before the settings have been restored.
+
+<P>
+If, when coding a module for general use, you need a locale
+independent version of an operation that is affected by the locale
+(e.g. <tt class="function">string.lower()</tt>, or certain formats used with
+<tt class="function">time.strftime()</tt>)), you will have to find a way to do it
+without using the standard library routine.  Even better is convincing
+yourself that using locale settings is okay.  Only as a last resort
+should you document that your module is not compatible with
+non-"<tt class="samp">C</tt>" locale settings.
+
+<P>
+The case conversion functions in the
+<tt class="module"><a href="module-string.html">string</a></tt><a name="l2h-1812">&nbsp;</a>module are affected by the
+locale settings.  When a call to the <tt class="function">setlocale()</tt> function
+changes the <tt class="constant">LC_CTYPE</tt> settings, the variables
+<code>string.lowercase</code>, <code>string.uppercase</code> and
+<code>string.letters</code> are recalculated.  Note that this code that uses
+these variable through `<tt class="keyword">from</tt> ... <tt class="keyword">import</tt> ...',
+e.g. <code>from string import letters</code>, is not affected by subsequent
+<tt class="function">setlocale()</tt> calls.
+
+<P>
+The only way to perform numeric operations according to the locale
+is to use the special functions defined by this module:
+<tt class="function">atof()</tt>, <tt class="function">atoi()</tt>, <tt class="function">format()</tt>,
+<tt class="function">str()</tt>.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-locale.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-locale.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="embedding-locale.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-locale.html">6.24 locale  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-locale.html">6.24 locale  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="embedding-locale.html">6.24.2 For extension writers</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

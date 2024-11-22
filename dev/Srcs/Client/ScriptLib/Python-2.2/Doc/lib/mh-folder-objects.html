@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.5.2 Folder Objects </title>
+<META NAME="description" CONTENT="12.5.2 Folder Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="mh-message-objects.html">
+<LINK REL="previous" href="mh-objects.html">
+<LINK REL="up" href="module-mhlib.html">
+<LINK REL="next" href="mh-message-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="mh-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-mhlib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="mh-message-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="mh-objects.html">12.5.1 MH Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-mhlib.html">12.5 mhlib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="mh-message-objects.html">12.5.3 Message Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0014520000000000000000">&nbsp;</A>
+<BR>
+12.5.2 Folder Objects 
+</H2>
+
+<P>
+<tt class="class">Folder</tt> instances represent open folders and have the following
+methods:
+
+<P>
+<dl><dt><b><a name="l2h-2893"><tt class="method">error</tt></a></b>(<var>format</var><big>[</big><var>, ...</var><big>]</big>)
+<dd>
+Print an error message - can be overridden.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2894"><tt class="method">getfullname</tt></a></b>()
+<dd>
+Return the folder's full pathname.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2895"><tt class="method">getsequencesfilename</tt></a></b>()
+<dd>
+Return the full pathname of the folder's sequences file.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2896"><tt class="method">getmessagefilename</tt></a></b>(<var>n</var>)
+<dd>
+Return the full pathname of message <var>n</var> of the folder.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2897"><tt class="method">listmessages</tt></a></b>()
+<dd>
+Return a list of messages in the folder (as numbers).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2898"><tt class="method">getcurrent</tt></a></b>()
+<dd>
+Return the current message number.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2899"><tt class="method">setcurrent</tt></a></b>(<var>n</var>)
+<dd>
+Set the current message number to <var>n</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2900"><tt class="method">parsesequence</tt></a></b>(<var>seq</var>)
+<dd>
+Parse msgs syntax into list of messages.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2901"><tt class="method">getlast</tt></a></b>()
+<dd>
+Get last message, or <code>0</code> if no messages are in the folder.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2902"><tt class="method">setlast</tt></a></b>(<var>n</var>)
+<dd>
+Set last message (internal use only).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2903"><tt class="method">getsequences</tt></a></b>()
+<dd>
+Return dictionary of sequences in folder.  The sequence names are used 
+as keys, and the values are the lists of message numbers in the
+sequences.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2904"><tt class="method">putsequences</tt></a></b>(<var>dict</var>)
+<dd>
+Return dictionary of sequences in folder name: list.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2905"><tt class="method">removemessages</tt></a></b>(<var>list</var>)
+<dd>
+Remove messages in list from folder.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2906"><tt class="method">refilemessages</tt></a></b>(<var>list, tofolder</var>)
+<dd>
+Move messages in list to other folder.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2907"><tt class="method">movemessage</tt></a></b>(<var>n, tofolder, ton</var>)
+<dd>
+Move one message to a given destination in another folder.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2908"><tt class="method">copymessage</tt></a></b>(<var>n, tofolder, ton</var>)
+<dd>
+Copy one message to a given destination in another folder.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="mh-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-mhlib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="mh-message-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="mh-objects.html">12.5.1 MH Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-mhlib.html">12.5 mhlib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="mh-message-objects.html">12.5.3 Message Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

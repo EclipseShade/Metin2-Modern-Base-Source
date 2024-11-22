@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>19.4 Using Visitors to Walk ASTs</title>
+<META NAME="description" CONTENT="19.4 Using Visitors to Walk ASTs">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node579.html">
+<LINK REL="previous" HREF="node574.html">
+<LINK REL="up" href="compiler.html">
+<LINK REL="next" HREF="node579.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node577.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="compiler.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node579.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node577.html">19.3.3 Examples</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="compiler.html">19. Python compiler package</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node579.html">19.5 Bytecode Generation</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0021400000000000000000">
+19.4 Using Visitors to Walk ASTs</A>
+</H1>
+
+<P>
+
+<P>
+The visitor pattern is ...  The <tt class="module"><a href="module-compiler.html">compiler</a></tt> package uses a
+variant on the visitor pattern that takes advantage of Python's
+introspection features to elminiate the need for much of the visitor's
+infrastructure.
+
+<P>
+The classes being visited do not need to be programmed to accept
+visitors.  The visitor need only define visit methods for classes it
+is specifically interested in; a default visit method can handle the
+rest. 
+
+<P>
+XXX The magic <tt class="method">visit()</tt> method for visitors.
+
+<P>
+<dl><dt><b><a name="l2h-3849"><tt class="function">walk</tt></a></b>(<var>tree, visitor</var><big>[</big><var>, verbose</var><big>]</big>)
+<dd>
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3850"><tt class="class">ASTVisitor</tt></a></b>()
+<dd>
+
+<P>
+The <tt class="class">ASTVisitor</tt> is responsible for walking over the tree in the
+correct order.  A walk begins with a call to <tt class="method">preorder()</tt>.  For
+each node, it checks the <var>visitor</var> argument to <tt class="method">preorder()</tt>
+for a method named `visitNodeType,' where NodeType is the name of the
+node's class, e.g. for a <tt class="class">While</tt> node a <tt class="method">visitWhile()</tt>
+would be called.  If the method exists, it is called with the node as
+its first argument.
+
+<P>
+The visitor method for a particular node type can control how child
+nodes are visited during the walk.  The <tt class="class">ASTVisitor</tt> modifies
+the visitor argument by adding a visit method to the visitor; this
+method can be used to visit a particular child node.  If no visitor is
+found for a particular node type, the <tt class="method">default()</tt> method is
+called. 
+</dl>
+
+<P>
+<tt class="class">ASTVisitor</tt> objects have the following methods:
+
+<P>
+XXX describe extra arguments
+
+<P>
+<dl><dt><b><a name="l2h-3851"><tt class="method">default</tt></a></b>(<var>node</var><big>[</big><var>, ...</var><big>]</big>)
+<dd>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3852"><tt class="method">dispatch</tt></a></b>(<var>node</var><big>[</big><var>, ...</var><big>]</big>)
+<dd>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3853"><tt class="method">preorder</tt></a></b>(<var>tree, visitor</var>)
+<dd>
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node577.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="compiler.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node579.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node577.html">19.3.3 Examples</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="compiler.html">19. Python compiler package</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node579.html">19.5 Bytecode Generation</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

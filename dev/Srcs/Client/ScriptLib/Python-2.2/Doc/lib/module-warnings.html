@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.20 warnings -- Warning control</title>
+<META NAME="description" CONTENT="3.20 warnings -- Warning control">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-imp.html">
+<LINK REL="previous" href="module-marshal.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="warning-categories.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-marshal.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="warning-categories.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-marshal.html">3.19 marshal  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="warning-categories.html">3.20.1 Warning Categories</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0052000000000000000000">
+3.20 <tt class="module">warnings</tt> --
+         Warning control</A>
+</H1>
+
+<P>
+
+<a name="l2h-561">&nbsp;</a>
+<P>
+
+<span class="versionnote">New in version 2.1.</span>
+
+<P>
+Warning messages are typically issued in situations where it is useful
+to alert the user of some condition in a program, where that condition
+(normally) doesn't warrant raising an exception and terminating the
+program.  For example, one might want to issue a warning when a
+program uses an obsolete module.
+
+<P>
+Python programmers issue warnings by calling the <tt class="function">warn()</tt>
+function defined in this module.  (C programmers use
+<tt class="cfunction">PyErr_Warn()</tt>; see the
+<em class="citetitle"><a
+ href="../api/exceptionHandling.html"
+ title="Python/C API Reference
+Manual"
+ >Python/C API Reference
+Manual</a></em> for details).
+
+<P>
+Warning messages are normally written to <code>sys.stderr</code>, but their
+disposition can be changed flexibly, from ignoring all warnings to
+turning them into exceptions.  The disposition of warnings can vary
+based on the warning category (see below), the text of the warning
+message, and the source location where it is issued.  Repetitions of a
+particular warning for the same source location are typically
+suppressed.
+
+<P>
+There are two stages in warning control: first, each time a warning is
+issued, a determination is made whether a message should be issued or
+not; next, if a message is to be issued, it is formatted and printed
+using a user-settable hook.
+
+<P>
+The determination whether to issue a warning message is controlled by
+the warning filter, which is a sequence of matching rules and actions.
+Rules can be added to the filter by calling
+<tt class="function">filterwarnings()</tt> and reset to its default state by calling
+<tt class="function">resetwarnings()</tt>.
+
+<P>
+The printing of warning messages is done by calling
+<tt class="function">showwarning()</tt>, which may be overidden; the default
+implementation of this function formats the message by calling
+<tt class="function">formatwarning()</tt>, which is also available for use by custom
+implementations.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="warning-categories.html">3.20.1 Warning Categories</a>
+<LI><A href="warning-filter.html">3.20.2 The Warnings Filter</a>
+<LI><A href="warning-functions.html">3.20.3 Available Functions</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-marshal.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="warning-categories.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-marshal.html">3.19 marshal  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="warning-categories.html">3.20.1 Warning Categories</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

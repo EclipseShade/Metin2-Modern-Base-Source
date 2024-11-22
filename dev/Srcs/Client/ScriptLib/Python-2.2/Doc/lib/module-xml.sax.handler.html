@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.10 xml.sax.handler -- Base classes for SAX handlers</title>
+<META NAME="description" CONTENT="13.10 xml.sax.handler -- Base classes for SAX handlers">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-xml.sax.saxutils.html">
+<LINK REL="previous" href="module-xml.sax.html">
+<LINK REL="up" href="markup.html">
+<LINK REL="next" href="content-handler-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="sax-exception-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="content-handler-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="sax-exception-objects.html">13.9.1 SAXException Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="content-handler-objects.html">13.10.1 ContentHandler Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00151000000000000000000">
+13.10 <tt class="module">xml.sax.handler</tt> --
+         Base classes for SAX handlers</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.0.</span>
+
+<P>
+The SAX API defines four kinds of handlers: content handlers, DTD
+handlers, error handlers, and entity resolvers. Applications normally
+only need to implement those interfaces whose events they are
+interested in; they can implement the interfaces in a single object or
+in multiple objects. Handler implementations should inherit from the
+base classes provided in the module <tt class="module">xml.sax</tt>, so that all
+methods get default implementations.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3316"><tt class="class">ContentHandler</tt></a></b>
+<dd>
+  This is the main callback interface in SAX, and the one most
+  important to applications. The order of events in this interface
+  mirrors the order of the information in the document.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3317"><tt class="class">DTDHandler</tt></a></b>
+<dd>
+  Handle DTD events.
+
+<P>
+This interface specifies only those DTD events required for basic
+  parsing (unparsed entities and attributes).
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3318"><tt class="class">EntityResolver</tt></a></b>
+<dd>
+ Basic interface for resolving entities. If you create an object
+ implementing this interface, then register the object with your
+ Parser, the parser will call the method in your object to resolve all
+ external entities.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3319"><tt class="class">ErrorHandler</tt></a></b>
+<dd>
+  Interface used by the parser to present error and warning messages
+  to the application.  The methods of this object control whether errors
+  are immediately converted to exceptions or are handled in some other
+  way.
+</dl>
+
+<P>
+In addition to these classes, <tt class="module">xml.sax.handler</tt> provides
+symbolic constants for the feature and property names.
+
+<P>
+<dl><dt><b><a name="l2h-3320"><tt>feature_namespaces</tt></a></b>
+<dd>
+  Value: <code>"http://xml.org/sax/features/namespaces"</code>
+<BR>
+true: Perform Namespace processing.
+<BR>
+false: Optionally do not perform Namespace processing
+         (implies namespace-prefixes; default).
+<BR>
+access: (parsing) read-only; (not parsing) read/write
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3321"><tt>feature_namespace_prefixes</tt></a></b>
+<dd>
+  Value: <code>"http://xml.org/sax/features/namespace-prefixes"</code>
+<BR>
+true: Report the original prefixed names and attributes used for Namespace
+        declarations.
+<BR>
+false: Do not report attributes used for Namespace declarations, and
+         optionally do not report original prefixed names (default).
+<BR>
+access: (parsing) read-only; (not parsing) read/write  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3322"><tt>feature_string_interning</tt></a></b>
+<dd>
+  Value: <code>"http://xml.org/sax/features/string-interning"</code>
+  true: All element names, prefixes, attribute names, Namespace URIs, and
+        local names are interned using the built-in intern function.
+<BR>
+false: Names are not necessarily interned, although they may be (default).
+<BR>
+access: (parsing) read-only; (not parsing) read/write
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3323"><tt>feature_validation</tt></a></b>
+<dd>
+  Value: <code>"http://xml.org/sax/features/validation"</code>
+<BR>
+true: Report all validation errors (implies external-general-entities and
+        external-parameter-entities).
+<BR>
+false: Do not report validation errors.
+<BR>
+access: (parsing) read-only; (not parsing) read/write
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3324"><tt>feature_external_ges</tt></a></b>
+<dd>
+  Value: <code>"http://xml.org/sax/features/external-general-entities"</code>
+<BR>
+true: Include all external general (text) entities.
+<BR>
+false: Do not include external general entities.
+<BR>
+access: (parsing) read-only; (not parsing) read/write
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3325"><tt>feature_external_pes</tt></a></b>
+<dd>
+  Value: <code>"http://xml.org/sax/features/external-parameter-entities"</code>
+<BR>
+true: Include all external parameter entities, including the external
+        DTD subset.
+<BR>
+false: Do not include any external parameter entities, even the external
+         DTD subset.
+<BR>
+access: (parsing) read-only; (not parsing) read/write
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3326"><tt>all_features</tt></a></b>
+<dd>
+  List of all features.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3327"><tt>property_lexical_handler</tt></a></b>
+<dd>
+  Value: <code>"http://xml.org/sax/properties/lexical-handler"</code>
+<BR>
+data type: xml.sax.sax2lib.LexicalHandler (not supported in Python 2)
+<BR>
+description: An optional extension handler for lexical events like comments.
+<BR>
+access: read/write
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3328"><tt>property_declaration_handler</tt></a></b>
+<dd>
+  Value: <code>"http://xml.org/sax/properties/declaration-handler"</code>
+<BR>
+data type: xml.sax.sax2lib.DeclHandler (not supported in Python 2)
+<BR>
+description: An optional extension handler for DTD-related events other
+               than notations and unparsed entities.
+<BR>
+access: read/write
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3329"><tt>property_dom_node</tt></a></b>
+<dd>
+  Value: <code>"http://xml.org/sax/properties/dom-node"</code>
+<BR>
+data type: org.w3c.dom.Node (not supported in Python 2) 
+<BR>
+description: When parsing, the current DOM node being visited if this is
+               a DOM iterator; when not parsing, the root DOM node for
+               iteration.
+<BR>
+access: (parsing) read-only; (not parsing) read/write  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3330"><tt>property_xml_string</tt></a></b>
+<dd>
+  Value: <code>"http://xml.org/sax/properties/xml-string"</code>
+<BR>
+data type: String
+<BR>
+description: The literal string of characters that was the source for
+               the current event.
+<BR>
+access: read-only
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3331"><tt>all_properties</tt></a></b>
+<dd>
+  List of all known property names.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="content-handler-objects.html">13.10.1 ContentHandler Objects</a>
+<LI><A href="dtd-handler-objects.html">13.10.2 DTDHandler Objects</a>
+<LI><A href="entity-resolver-objects.html">13.10.3 EntityResolver Objects</a>
+<LI><A href="sax-error-handler.html">13.10.4 ErrorHandler Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="sax-exception-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="content-handler-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="sax-exception-objects.html">13.9.1 SAXException Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="content-handler-objects.html">13.10.1 ContentHandler Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

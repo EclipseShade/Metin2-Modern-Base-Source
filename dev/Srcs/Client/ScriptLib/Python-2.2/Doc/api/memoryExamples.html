@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>9.3 Examples </title>
+<META NAME="description" CONTENT="9.3 Examples ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="memoryInterface.html">
+<LINK REL="up" href="memory.html">
+<LINK REL="next" href="newTypes.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="memoryInterface.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="memory.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="newTypes.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="memoryInterface.html">9.2 Memory Interface</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="memory.html">9. Memory Management</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="newTypes.html">10. Defining New Object</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0011300000000000000000">&nbsp;</A>
+<BR>
+9.3 Examples 
+</H1>
+
+<P>
+Here is the example from section <A href="memoryOverview.html#memoryOverview">9.1</A>, rewritten so
+that the I/O buffer is allocated from the Python heap by using the
+first function set:
+
+<P>
+<dl><dd><pre class="verbatim">
+    PyObject *res;
+    char *buf = (char *) PyMem_Malloc(BUFSIZ); /* for I/O */
+
+    if (buf == NULL)
+        return PyErr_NoMemory();
+    /* ...Do some I/O operation involving buf... */
+    res = PyString_FromString(buf);
+    PyMem_Free(buf); /* allocated with PyMem_Malloc */
+    return res;
+</pre></dl>
+
+<P>
+The same code using the type-oriented function set:
+
+<P>
+<dl><dd><pre class="verbatim">
+    PyObject *res;
+    char *buf = PyMem_New(char, BUFSIZ); /* for I/O */
+
+    if (buf == NULL)
+        return PyErr_NoMemory();
+    /* ...Do some I/O operation involving buf... */
+    res = PyString_FromString(buf);
+    PyMem_Del(buf); /* allocated with PyMem_New */
+    return res;
+</pre></dl>
+
+<P>
+Note that in the two examples above, the buffer is always
+manipulated via functions belonging to the same set. Indeed, it
+is required to use the same memory API family for a given
+memory block, so that the risk of mixing different allocators is
+reduced to a minimum. The following code sequence contains two errors,
+one of which is labeled as <i>fatal</i> because it mixes two different
+allocators operating on different heaps.
+
+<P>
+<dl><dd><pre class="verbatim">
+char *buf1 = PyMem_New(char, BUFSIZ);
+char *buf2 = (char *) malloc(BUFSIZ);
+char *buf3 = (char *) PyMem_Malloc(BUFSIZ);
+...
+PyMem_Del(buf3);  /* Wrong -- should be PyMem_Free() */
+free(buf2);       /* Right -- allocated via malloc() */
+free(buf1);       /* Fatal -- should be PyMem_Del()  */
+</pre></dl>
+
+<P>
+In addition to the functions aimed at handling raw memory blocks from
+the Python heap, objects in Python are allocated and released with
+<tt class="cfunction">PyObject_New()</tt>, <tt class="cfunction">PyObject_NewVar()</tt> and
+<tt class="cfunction">PyObject_Del()</tt>, or with their corresponding macros
+<tt class="cfunction">PyObject_NEW()</tt>, <tt class="cfunction">PyObject_NEW_VAR()</tt> and
+<tt class="cfunction">PyObject_DEL()</tt>.
+
+<P>
+These will be explained in the next chapter on defining and
+implementing new object types in C.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="memoryInterface.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="memory.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="newTypes.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="memoryInterface.html">9.2 Memory Interface</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="memory.html">9. Memory Management</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="newTypes.html">10. Defining New Object</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

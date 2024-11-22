@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4. String Services</title>
+<META NAME="description" CONTENT="4. String Services">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="misc.html">
+<LINK REL="previous" href="python.html">
+<LINK REL="up" HREF="lib.html">
+<LINK REL="next" href="module-string.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-main.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-string.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-main.html">3.30 __main__  </A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-string.html">4.1 string  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006000000000000000000">&nbsp;</A>
+<BR>
+4. String Services
+</H1>
+
+<P>
+The modules described in this chapter provide a wide range of string
+manipulation operations.  Here's an overview:
+
+<P>
+<table class='synopsistable' valign='baseline'>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-string.html'>string</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Common string operations.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-re.html'>re</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Regular expression search and match operations with a
+                Perl-style expression syntax.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-struct.html'>struct</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interpret strings as packed binary data.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-difflib.html'>difflib</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Helpers for computing differences between objects.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-fpformat.html'>fpformat</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>General floating point formatting functions.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-StringIO.html'>StringIO</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Read and write strings as if they were files.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-cStringIO.html'>cStringIO</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Faster version of <tt class="module">StringIO</tt>, but not
+                subclassable.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-codecs.html'>codecs</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Encode and decode data and streams.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-unicodedata.html'>unicodedata</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Access the Unicode Database.</td></tr>
+</table>
+
+<BR>
+<P>
+Information on the methods of string objects can be found in
+section&nbsp;<A href="string-methods.html#string-methods">2.2.6</A>, ``String Methods.''
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-main.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-string.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-main.html">3.30 __main__  </A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-string.html">4.1 string  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

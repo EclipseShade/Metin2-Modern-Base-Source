@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.6 statvfs -- Constants used with os.statvfs()</title>
+<META NAME="description" CONTENT="6.6 statvfs -- Constants used with os.statvfs()">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-filecmp.html">
+<LINK REL="previous" href="module-statcache.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" href="module-filecmp.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-statcache.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-filecmp.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-statcache.html">6.5 statcache  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-filecmp.html">6.7 filecmp  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008600000000000000000">
+6.6 <tt class="module">statvfs</tt> --
+         Constants used with <tt class="function">os.statvfs()</tt></A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">statvfs</tt> module defines constants so interpreting the result
+if <tt class="function">os.statvfs()</tt>, which returns a tuple, can be made without
+remembering ``magic numbers.''  Each of the constants defined in this
+module is the <i>index</i> of the entry in the tuple returned by
+<tt class="function">os.statvfs()</tt> that contains the specified information.
+
+<P>
+<dl><dt><b><a name="l2h-1326"><tt>F_BSIZE</tt></a></b>
+<dd>
+Preferred file system block size.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1327"><tt>F_FRSIZE</tt></a></b>
+<dd>
+Fundamental file system block size.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1328"><tt>F_BLOCKS</tt></a></b>
+<dd>
+Total number of blocks in the filesystem.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1329"><tt>F_BFREE</tt></a></b>
+<dd>
+Total number of free blocks.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1330"><tt>F_BAVAIL</tt></a></b>
+<dd>
+Free blocks available to non-super user.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1331"><tt>F_FILES</tt></a></b>
+<dd>
+Total number of file nodes.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1332"><tt>F_FFREE</tt></a></b>
+<dd>
+Total number of free file nodes.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1333"><tt>F_FAVAIL</tt></a></b>
+<dd>
+Free nodes available to non-super user.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1334"><tt>F_FLAG</tt></a></b>
+<dd>
+Flags. System dependent: see <tt class="cfunction">statvfs()</tt> man page.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1335"><tt>F_NAMEMAX</tt></a></b>
+<dd>
+Maximum file name length.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-statcache.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-filecmp.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-statcache.html">6.5 statcache  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-filecmp.html">6.7 filecmp  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

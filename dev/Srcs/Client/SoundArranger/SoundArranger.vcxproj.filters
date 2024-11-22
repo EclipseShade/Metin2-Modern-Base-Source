@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{efb39660-7149-4b0d-bfa8-7c19e81a16a1}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="DataCtrl">
+      <UniqueIdentifier>{c9134d38-8781-4f27-990d-96766cbde863}</UniqueIdentifier>
+      <Extensions>*.h;*.cpp;</Extensions>
+    </Filter>
+    <Filter Include="UI_ToolBar">
+      <UniqueIdentifier>{49aad467-cb91-42cc-b5fa-f5f757d6f757}</UniqueIdentifier>
+      <Extensions>*.h;*.cpp;</Extensions>
+    </Filter>
+    <Filter Include="UI_DockingBar">
+      <UniqueIdentifier>{bf950f2c-21e7-4d3c-a784-bbd084ffb114}</UniqueIdentifier>
+      <Extensions>*.*</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{6bb126d8-a50e-444e-95dc-51eb4ff2c216}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{ad9ce496-eefa-4451-8d3d-1c929540f3b2}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ChildFrm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgMotionViewMode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileOpener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphViewer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelViewer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PageCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PageMotionProperty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PageSoundList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResModelList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResMotionList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResSoundData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundArranger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundArrangerDoc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundArrangerView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundDataLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ST_SplitterWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StdAfx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ActorInstanceAccessor.h">
+      <Filter>DataCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="RaceDataAccessor.h">
+      <Filter>DataCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="RaceManagerAccessor.h">
+      <Filter>DataCtrl</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_ToolBar\TrueColorToolBar.h">
+      <Filter>UI_ToolBar</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_DockingBar\scbarcf.h">
+      <Filter>UI_DockingBar</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_DockingBar\scbarg.h">
+      <Filter>UI_DockingBar</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_DockingBar\sizecbar.h">
+      <Filter>UI_DockingBar</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ActorInstanceAccessor.cpp">
+      <Filter>DataCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="RaceDataAccessor.cpp">
+      <Filter>DataCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="RaceManagerAccessor.cpp">
+      <Filter>DataCtrl</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_ToolBar\TrueColorToolBar.cpp">
+      <Filter>UI_ToolBar</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_DockingBar\scbarcf.cpp">
+      <Filter>UI_DockingBar</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_DockingBar\scbarg.cpp">
+      <Filter>UI_DockingBar</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_DockingBar\sizecbar.cpp">
+      <Filter>UI_DockingBar</Filter>
+    </ClCompile>
+    <ClCompile Include="ChildFrm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DlgMotionViewMode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileOpener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrmControl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrmFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrmResource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelViewer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PageCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PageMotionProperty.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PageSoundList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResModelList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResMotionList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResSoundData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundArranger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundArrangerDoc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundArrangerView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundDataLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ST_SplitterWnd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StdAfx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\add_soun.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\addsound.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="arrow.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\change_sound.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\cursor1.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\ModelTreeItem.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\ModeToolBar.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\New_Sound.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\PlayToolBar.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\SoundArranger.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\SoundArranger.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\SoundArrangerDoc.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\SoundTreeItem.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\Toolbar.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\toolbar1.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\viewmode.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\viewmove.cur">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\WindowToolBar.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\WindowToolBar_Small.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SoundArranger.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="res\SoundArranger.manifest" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.6 httplib -- HTTP protocol client</title>
+<META NAME="description" CONTENT="11.6 httplib -- HTTP protocol client">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-ftplib.html">
+<LINK REL="previous" href="module-urllib2.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="httpconnection-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="unknown-handler-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="httpconnection-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="unknown-handler-objects.html">11.5.19 UnknownHandler Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="httpconnection-objects.html">11.6.1 HTTPConnection Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0013600000000000000000">
+11.6 <tt class="module">httplib</tt> --
+         HTTP protocol client</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name="l2h-2421">&nbsp;</a>
+<P>
+This module defines classes which implement the client side of the
+HTTP and HTTPS protocols.  It is normally not used directly -- the
+module <tt class="module"><a href="module-urllib.html">urllib</a></tt><a name="l2h-2422">&nbsp;</a>uses it to handle URLs
+that use HTTP and HTTPS.  <span class="note"><b class="label">Note:</b>
+HTTPS support is only
+available if the <tt class="module"><a href="module-socket.html">socket</a></tt> module was compiled with SSL
+support.</span>
+
+<P>
+The constants defined in this module are:
+
+<P>
+<dl><dt><b><a name="l2h-2405"><tt>HTTP_PORT</tt></a></b>
+<dd>
+  The default port for the HTTP protocol (always <code>80</code>).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2406"><tt>HTTPS_PORT</tt></a></b>
+<dd>
+  The default port for the HTTPS protocol (always <code>443</code>).
+</dl>
+
+<P>
+The module provides the following classes:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2407"><tt class="class">HTTPConnection</tt></a></b>(<var>host</var><big>[</big><var>, port</var><big>]</big>)
+<dd>
+An <tt class="class">HTTPConnection</tt> instance represents one transaction with an HTTP
+server.  It should be instantiated passing it a host and optional port number.
+If no port number is passed, the port is extracted from the host string if it
+has the form <code><var>host</var>:<var>port</var></code>, else the default HTTP port (80) is
+used.  For example, the following calls all create instances that connect to
+the server at the same host and port:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; h1 = httplib.HTTPConnection('www.cwi.nl')
+&gt;&gt;&gt; h2 = httplib.HTTPConnection('www.cwi.nl:80')
+&gt;&gt;&gt; h3 = httplib.HTTPConnection('www.cwi.nl', 80)
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2408"><tt class="class">HTTPSConnection</tt></a></b>(<var>host</var><big>[</big><var>, port</var><big>]</big>)
+<dd>
+A subclass of <tt class="class">HTTPConnection</tt> that uses SSL for communication with
+secure servers.  Default port is <code>443</code>.
+</dl>
+
+<P>
+The following exceptions are raised as appropriate:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2409"><tt class="exception">HTTPException</tt></a></b>
+<dd>
+The base class of the other exceptions in this module.  It is a
+subclass of <tt class="exception">Exception</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2410"><tt class="exception">NotConnected</tt></a></b>
+<dd>
+A subclass of <tt class="exception">HTTPException</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2411"><tt class="exception">UnknownProtocol</tt></a></b>
+<dd>
+A subclass of <tt class="exception">HTTPException</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2412"><tt class="exception">UnknownTransferEncoding</tt></a></b>
+<dd>
+A subclass of <tt class="exception">HTTPException</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2413"><tt class="exception">IllegalKeywordArgument</tt></a></b>
+<dd>
+A subclass of <tt class="exception">HTTPException</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2414"><tt class="exception">UnimplementedFileMode</tt></a></b>
+<dd>
+A subclass of <tt class="exception">HTTPException</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2415"><tt class="exception">IncompleteRead</tt></a></b>
+<dd>
+A subclass of <tt class="exception">HTTPException</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2416"><tt class="exception">ImproperConnectionState</tt></a></b>
+<dd>
+A subclass of <tt class="exception">HTTPException</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2417"><tt class="exception">CannotSendRequest</tt></a></b>
+<dd>
+A subclass of <tt class="exception">ImproperConnectionState</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2418"><tt class="exception">CannotSendHeader</tt></a></b>
+<dd>
+A subclass of <tt class="exception">ImproperConnectionState</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2419"><tt class="exception">ResponseNotReady</tt></a></b>
+<dd>
+A subclass of <tt class="exception">ImproperConnectionState</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2420"><tt class="exception">BadStatusLine</tt></a></b>
+<dd>
+A subclass of <tt class="exception">HTTPException</tt>.  Raised if a server responds with a
+HTTP status code that we don't understand.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="httpconnection-objects.html">11.6.1 HTTPConnection Objects</a>
+<LI><A href="httpresponse-objects.html">11.6.2 HTTPResponse Objects</a>
+<LI><A href="httplib-examples.html">11.6.3 Examples</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="unknown-handler-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="httpconnection-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="unknown-handler-objects.html">11.5.19 UnknownHandler Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="httpconnection-objects.html">11.6.1 HTTPConnection Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

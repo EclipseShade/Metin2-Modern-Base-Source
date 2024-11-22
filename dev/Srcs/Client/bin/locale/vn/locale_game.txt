@@ -1,0 +1,767 @@
+AFF_LOVE_POINT	Chi?sôì ha?h phu? : %d%%
+ALIGNMENT_NAME	Chi?sôì thiêòn a? :
+ATTACK_ERROR_UNKNOWN	LôÞi tâìn c?g kh?g ro?nguy? nh? : %s
+CANNOT_ATTACK_DEST_IN_SAFE	Mu? ti? õÒ qua?xa
+CANNOT_ATTACK_SELF_IN_SAFE	Kh?g thêÒ tâìn c?g mu? ti? týÌ vi?tri?na?
+CANNOT_EQUIP_IN_EXCHANGE	Kh?g thêÒ thay ðô? trang bi?khi ?ng giao di?h
+CANNOT_EQUIP_IN_SHOP	Kh?g thêÒ thay ðô? trang bi?khi ?ng sýÒ du?g cýÒa ha?g
+CANNOT_OPEN_PRIVATE_SHOP_IN_SAFE_AREA	Kh?g thêÒ mõÒ cýÒa ha?g ca?nh? ta? qua?g trýõ?g
+CANNOT_SHOOT_DEST_IN_SAFE	Mu? ti? õÒ qua?xa
+CANNOT_SHOOT_EMPTY_ARROW	Kh?g thêÒ bãìn khi thiêìu mu? t?
+CANNOT_SHOOT_SELF_IN_SAFE	Kh?g thêÒ tâìn c?g mu? ti? týÌ vi?tri?na?
+CANNOT_SKILL_APPROACH	Kh?g thêÒ výõn tõìi vi?tri??
+CANNOT_SKILL_ATTACK	Kh?g thêÒ tâìn c?g
+CANNOT_SKILL_DEST_IN_SAFE	Mu? ti? õÒ qua?xa
+CANNOT_SKILL_EQUIP_FISHING_ROD	Pha? trang bi?câÌn c? ca
+CANNOT_SKILL_HAVE_TO_RIDE	Pha? cýõ? ngýòa mõìi co?thêÒ sýÒ du?g
+CANNOT_SKILL_NEED_EMPTY_BOTTLE	CâÌn pha? co?bi?h rôÞng
+CANNOT_SKILL_NEED_POISON_BOTTLE	CâÌn pha? co?bi?h ðô?
+CANNOT_SKILL_NEED_TARGET	Pha? xa? ??h mu? ti?
+CANNOT_SKILL_NOT_ENOUGH_HP	Kh?g ??sinh lýòc
+CANNOT_SKILL_NOT_ENOUGH_SP	Kh?g ??tri?lýòc
+CANNOT_SKILL_NOT_HORSE_SKILL	Kh?g thêÒ sýÒ du?g khi ?ng cýõ? ngýòa
+CANNOT_SKILL_NOT_MATCHABLE_WEAPON	Kh?g thêÒ sýÒ du?g ky?n?g na? bãÌng vu?khi??ng trang bi
+CANNOT_SKILL_NOT_YET_LEARN	Ba? ch? ho? ky?n?g na?
+CANNOT_SKILL_ONLY_FOR_ALLIANCE	Ky?n?g chi?co?thêÒ sýÒ du?g ðô? võìi ðô?g ðô?
+CANNOT_SKILL_ONLY_FOR_CORPSE	Ky?n?g chi?co?thêÒ sýÒ du?g ? võìi ngýõ? ??chêìt
+CANNOT_SKILL_REMOVE_FISHING_ROD	Kh?g thêÒ sýÒ du?g ky?n?g na? khi ?ng trang bi?câÌn c?
+CANNOT_SKILL_SELF_IN_SAFE	Kh?g thêÒ tâìn c?g týÌ vi?tri?na?
+CANNOT_SKILL_USE_SELF	Kh?g thêÒ sýÒ du?g ky?n?g na? cho ba? th?
+CANNOT_SKILL_WAIT_COOLTIME	Ky?n?g ch? sãÞn sa?g
+CANNOT_WHISPER_DEST_REFUSE	%s týÌ chôìi lõÌi no? thâÌm	SA
+CANNOT_WHISPER_NOT_LOGON	%s ch? ðãng nhâòp	SA
+CANNOT_WHISPER_SELF_REFUSE	Ba? kh?g thêÒ no? thâÌm khi ?ng týÌ chôìi nhâòn lõÌi no? thâÌm	SNA
+CHANNEL	K?h
+CHANNELING_CANNOT_LOGOUT	Kh?g thêÒ thoa? kho? game
+CHANNEL_EMPTY_SERVER	Ma? chu?kh?g hoa? ðô?g
+CHANNEL_NORMAL	K?h %d
+CHANNEL_NOT_FIND_INFO	Kh?g thêÒ ti? thâìy th?g tin vêÌ k?h
+CHANNEL_PVP	PvP
+CHANNEL_SELECT_CHANNEL	Ha? lýòa cho? k?h
+CHANNEL_SELECT_REGION	Ha? lýòa cho? khu výòc
+CHANNEL_SELECT_SERVER	Ha? lýòa cho? ma? chu
+CHANNEL_TEST_SERVER	Ma? chu?thýÒ nghiêòm
+CHANNEL_TEST_SERVER_ADDR	Test %s:%d
+CHAT_ALL	Tâìt ca
+CHAT_BLOCK	Chãòn
+CHAT_GUILD	Hôòi
+CHAT_INFORMATION	Th?g tin
+CHAT_INSULT_STRING	C? no? chýìa ðý?g týÌ ngýÞ kh?g phu?hõòp
+CHAT_LOG	Xem nôòi dung ta? gâÞu [L]
+CHAT_LOG_TITLE	Nôòi dung ta? gâÞu
+CHAT_NORMAL	Thýõ?g
+CHAT_NOTICE	Th?g ba?
+CHAT_PARTY	Nho?
+CHAT_SEND_CHAT	GýÒi ta? gâÞu
+CHAT_SEND_MEMO	GýÒi tin nhãìn [Shift+Enter]
+CHAT_SHOUT	He?
+CHAT_SHOUT_LIMIT	Cýì 15 gi? ba? co?thêÒ he? l? môòt lâÌn
+CHAT_WHISPER	Thi?thâÌm
+CREATE_ERROR_GM_NAME	Kh?g thêÒ du?g chýÞ 'GM' trong t? cu? nh? vâòt
+CREATE_ERROR_INSULT_NAME	T? ??cho? kh?g phu?hõòp
+CREATE_EXIST_SAME_NAME	T? na? ??ðýõòc sýÒ du?g
+CREATE_FAILURE	Kh?g thêÒ du?g ca? ky?týò ðã? biêòt ðê?ðã? t? cho nh? vâòt
+CREATE_GM_NAME	GM
+CREATE_INPUT_NAME	Ha? nhâòp t? cu? nh? vâòt
+CREATE_PLUS_STAT	?êÒm thêÒ tra?g co? d
+DAY	Nga?
+DO_YOU_DROP_MONEY	Ba? co?muôìn bo?%d lýõ?g ? kh?g?
+DROP_ITEM_FAILURE_EQUIP_ITEM	Kh?g thêÒ bo?mo? ðô??ng trang bi
+DROP_ITEM_FAILURE_PRIVATE_SHOP	Kh?g thêÒ bo?mo? ðô??ng trang bi?khi ?ng mõÒ cýÒa ha?g ca?nh?
+DROP_MONEY_FAILURE_1000_OVER	Kh?g thêÒ bo?tr? 1000 lýõ?g
+EMOTION_DANCE_1	KiêÒu nha? 1
+EMOTION_DANCE_2	KiêÒu nha? 2
+EMOTION_DANCE_3	KiêÒu nha? 3
+EMOTION_DANCE_4	KiêÒu nha? 4
+EMOTION_DANCE_5	KiêÒu nha? 5
+EMOTION_CONGRATULATION	Chu? mýÌng
+EMOTION_FORGIVE	Tha thýì
+EMOTION_ANGRY	NôÒi giâòn
+EMOTION_ATTRACTIVE	Thu hu?
+EMOTION_SAD	BuôÌn
+EMOTION_SHY	Xâìu hôÒ
+EMOTION_CHEERUP	CôÒ vu
+EMOTION_BANTER	Cho? ??
+EMOTION_JOY	Vui
+EMOTION_CHEERS_1	Hoan h?1
+EMOTION_CHEERS_2	Hoan h?2
+EMOTION_CHOOSE_ONE	Ha? lýòa cho? ðô? týõ?g
+EMOTION_CLAP	VôÞ tay
+EMOTION_CLAP_KISS	H?
+EMOTION_FRENCH_KISS	H? kiêÒu Pha?
+EMOTION_SLAP	Ta?
+EMPIRE_A	TâÌn Thu? Quôìc
+EMPIRE_B	Thi? Ta? Quôìc
+EMPIRE_C	TrâÌn LôÞ Quôìc
+EXCHANGE_CANNOT_GIVE	Mo? ðô?kh?g thêÒ trao ðô?
+EXCHANGE_CANT_EDIT_MONEY	Kh?g thêÒ thay ðô? sôì tiêÌn
+EXCHANGE_FAILURE_EQUIP_ITEM	Kh?g thêÒ trao ðô? mo? ðô??ng trang bi
+EXCHANGE_MONEY	Sôì tiêÌn
+EXCHANGE_TITLE	Trao ðô? võìi %s
+FISHING_FAILURE	Ca?ri? môÌi rôÌi b? ? thâòt nhanh
+FISHING_UNKNOWN	Kh?g biêìt ??c? ðýõòc gi
+FISHING_WRONG_PLACE	Kh?g thêÒ c? ca?n? ðây
+GAME_CANNOT_MINING	Kh?g thêÒ khai khoa?g khi ?ng cýõ? ngýòa
+GAME_CANNOT_PICK_ITEM	Kh?g thêÒ nhãòt mo? ðô?cu? ngýõ? kha?
+GAME_INIT_ERROR_CURSOR	Kh?g thêÒ khõÒi ta? con tro
+GAME_INIT_ERROR_DIRECTX	Ba? kh?g thêÒ tiêìn ha?h tro?ch? nêìu kh?g ca? ðã? DirectX phi? ba? 8.1 hoãòc mõìi h?
+GAME_INIT_ERROR_GRAPHICS_BAD_PERFORMANCE	Kh?g thêÒ ti? thâìy thiêìt bi?ðô?hoa?phu?hõòp ðê?cha? tro?ch?.\nHa? kiêÒm tra la? viêòc ca? ðã? thiêìt bi?ðô?ho?
+GAME_INIT_ERROR_GRAPHICS_NOT_EXIST	Thâìt ba? trong viêòc khõÒi ta? thiêìt bi?ðô?hoa?\nHa? kiêÒm tra la? viêòc ca? ðã? thiêìt bi?ðô?ho?
+GAME_INIT_ERROR_GRAPHICS_NOT_SUPPORT_32BIT	Thiêìt bi?ðô?ho? cu? ba? kh?g hôÞ trõò chêì ðô?cýÒa sôÒ 32 bit.\nVui lo?g cho? chêì ðô?cýÒa sôÒ 16 bit hoãòc chêì ðô?toa? ma? hi?h
+GAME_INIT_ERROR_ITEM_PROTO	Kh?g ti? thâìy dýÞ liêòu cu? vâòt phâÒm.\nHa? ca? ðã? la? tro?ch? môòt lâÌn nýÞa
+GAME_INIT_ERROR_MAIN_WINDOW	Thâìt ba? trong viêòc khõÒi ta? giao diêòn
+GAME_INIT_ERROR_MOB_PROTO	Kh?g ti? thâìy dýÞ liêòu vêÌ qua? vâòt .\nHa? ca? ðã? la? tro?ch? môòt lâÌn nýÞa
+GAME_INIT_ERROR_NETWORK	Thâìt ba? trong viêòc khõÒi ta? ra thiêìt bi?ma?g.\nHa? kiêÒm tra la? kêìt nôìi internet
+GAME_PICK_MONEY	Nhãòt ðýõòc %d lýõ?g
+GUILDMARK_UPLOADER_ERROR_128_HEIGHT	Ki?h cõÞ chiêÌu cao kh?g pha? la?128 pixels
+GUILDMARK_UPLOADER_ERROR_12_HEIGHT	Ki?h cõÞ chiêÌu cao kh?g pha? la?12 pixels
+GUILDMARK_UPLOADER_ERROR_16_WIDTH	Ki?h cõÞ chiêÌu ngang kh?g pha? la?16 pixels
+GUILDMARK_UPLOADER_ERROR_64_WIDTH	Ki?h cõÞ chiêÌu ngang kh?g pha? la?64 pixels
+GUILDMARK_UPLOADER_ERROR_FILE_FORMAT	??h da?g a?h kh?g ðýõòc hôÞ trõò trong tro?ch?
+GUILDMARK_UPLOADER_ERROR_PATH	Ha? che? ca? tâòp tin va? th?mu? metin2\upload
+GUILDMARK_UPLOADER_ERROR_SELECT	Kh?g co?file a?h na? ðýõòc cho?
+GUILDWAR_CTF_TITLE	Chiêìn hôòi theo phýõng thýìc cýõ? cõÌ
+GUILDWAR_NORMAL_TITLE	Chiêìn hôòi theo phýõng thýìc th?g thýõ?g
+GUILDWAR_QUESTION_LINE_1	Hôòi %s ??tuy? chiêìn võìi hôòi cu? ba?,
+GUILDWAR_QUESTION_LINE_2	Ba? co?ðô?g y? (%s)
+GUILDWAR_UNKNOWN_TITLE	...
+GUILDWAR_WARP_TITLE	Chiêìn hôòi theo phýõng thýìc ðâ? trýõ?g
+GUILD_BUILDING_GRADE	Bâòc
+GUILD_BUILDING_NAME	T? to? nha
+GUILD_CANNOT_HEAL_GSP_ANYMORE	Long khi???hoa? toa? hôÌi phu?
+GUILD_COMMENT	Ðãng tin
+GUILD_CREATE_ERROR_INSULT_NAME	T? hôòi kh?g phu?hõòp
+GUILD_DEFAULT_GRADE	Hôòi vi?
+GUILD_DELETE	Xo? tin
+GUILD_DEPOSIT	??g go?
+GUILD_DO_YOU_HEAL_GSP	Ba? co?muôìn du?g %d lýõ?g ðê?hôÌi phu? %d long khi?
+GUILD_DO_YOU_JOIN	Ba? co?muôìn tham gia hôòi na??
+GUILD_EMPTY_AREA	Ðâ? trôìng
+GUILD_ENEMY_GUILD_NAME	T? hôòi ðô? nghi?h
+GUILD_GEM	??qui
+GUILD_HEAL_GSP	HôÌi phu? long khi
+GUILD_INFO_ENEMY_GUILD_EMPTY	-----
+GUILD_NAME	T? hôòi
+GUILD_NOT_ENOUGH_MATERIAL	Kh?g thêÒ x? dýòng c?g tri?h vi?thiêìu vâòt liêòu
+GUILD_NOT_ENOUGH_MONEY	Kh?g thêÒ x? dýòng c?g tri?h vi?thiêìu tiêÌn
+GUILD_NO_NOTICE_PERMISSION	Kh?g co?quyêÌn gýÒi th?g ba?
+GUILD_OFFER_EXP	Hiêìn ?êÒm kinh nghiêòm
+GUILD_SHORT_EXP	Kh?g ???êÒm kinh nghiêòm
+GUILD_TILE_BASEINFO	Th?g tin c? cýì cu? hôòi
+GUILD_TILE_BOARD	Ba?g th?g ba?
+GUILD_TILE_GRADE	Qua? ly?chýìc vu
+GUILD_TILE_INFO	Th?g tin hôòi
+GUILD_TILE_MEMBER	Danh sa?h hôòi vi?
+GUILD_TILE_SKILL	Ky?n?g cu? hôòi
+GUILD_WAR_LIMIT_30MIN	ThõÌi gian trâòn ??h 30 phu?
+GUILD_WAR_REWARD_POTION	PhâÌn thýõ?g: ngýõ? chiêìn thãìng nhâòn ðýõòc thuôìc nýõ?
+GUILD_WAR_USE_BATTLE_MAP	SýÒ du?g ðâ? trýõ?g
+GUILD_WAR_USE_NORMAL_MAP	SýÒ du?g ba? ðô?th?g thýõ?g
+GUILD_WAR_WIN_CHECK_SCORE	Hôòi co??êÒm sôì cao se?chiêìn thãìng
+GUILD_WAR_WIN_TAKE_AWAY_FLAG1	Cýõ? cõÌ cu? ðô? phýõng
+GUILD_WAR_WIN_TAKE_AWAY_FLAG2	mang cõÌ vêÌ c? cýì cu? hôòi mi?h
+GUILD_WAR_WIN_WIPE_OUT_GUILD	Ha?gu? tâìt ca?hôòi vi? cu? ðô? phýõng ðê?chiêìn thãìng
+GUILD_WITHDRAW	Ru? ra
+GUILD_YOU_DO_NOT_JOIN	Ba? ch? tham gia hôòi na?
+HORSE_HEALTH0	Ngýòa ??chêìt
+HORSE_HEALTH1	Ngýòa ??
+HORSE_HEALTH2	Ngýòa thâìy ??
+HORSE_HEALTH3	Ngýòa no
+HORSE_LEVEL1	Ngýòa s?câìp
+HORSE_LEVEL2	Ngýòa trung câìp
+HORSE_LEVEL3	Ngýòa cao câìp
+HOUR	GiõÌ
+INPUT_MATRIX_CARD_NUMBER	Nhâòp sôì the?Matrix
+INPUT_MATRIX_CARD_TITLE	The?Matrix
+INPUT_PRIVATE_CODE_DIALOG_DESCRIPTION	Ha? nhâòp ma?sôì bi?mâòt
+INPUT_PRIVATE_CODE_DIALOG_TITLE	Xoa?nh? vâòt
+INVENTORY_DO_NOT_PACK_WARP_SCROLL	Kh?g thêÒ gôòp bu? vêÌ la?g
+INVENTORY_REALLY_USE_ITEM	Ba? co?chãìc la?se?sýÒ du?g mo? ðô?na??
+JOB_ASSASSIN	Thi?h kha?h
+JOB_ASSASSIN0	Thi?h kha?h ho? nghêÌ
+JOB_ASSASSIN1	Phong ?o
+JOB_ASSASSIN2	Ba?h nghêò
+JOB_SHAMAN	Phu?thuy
+JOB_SHAMAN0	Phu?thuy?ho? nghêÌ
+JOB_SHAMAN1	TiêÌm long
+JOB_SHAMAN2	CuôÌng ?êòn
+JOB_SURA	Tu la
+JOB_SURA0	Tu la ho? nghêÌ
+JOB_SURA1	A? vu
+JOB_SURA2	Hãìc ma
+JOB_WARRIOR	Vo?sy
+JOB_WARRIOR0	Vo?sy?ho? nghêÌ
+JOB_WARRIOR1	Khi?t?g
+JOB_WARRIOR2	Kiêìm t?g
+LEFT_TIME	ThõÌi gian co? la?
+LOGIN_CONNECT_FAILURE	Ðãng nhâòp ma? chu?thâìt ba?
+LOGIN_CONNECT_SUCCESS	Ðãng nhâòp ma? chu?tha?h c?g
+LOGIN_CONNETING	?ng ðãng nhâòp ma? chu
+LOGIN_FAILURE_ALREAY	Ta? khoa? ?ng ðýõòc kêìt nôìi
+LOGIN_FAILURE_BE_SAME_KEY	Co?lôÞi trong qua?tri?h ðãng nhâòp
+LOGIN_FAILURE_BLOCK_ID	Ta? khoa? ??bi?khoa
+LOGIN_FAILURE_NOBILL	Ta? khoa? ??hêìt thõÌi gian sýÒ du?g
+LOGIN_FAILURE_NOT_AVAIL	Ta? khoa? kh?g thêÒ sýÒ du?g
+LOGIN_FAILURE_NOT_EXIST_ID	Ta? khoa? kh?g tôÌn ta?
+LOGIN_FAILURE_REPAIR_ID	Ta? khoa? ?ng trong qua?tri?h phu? hi vâòt phâÒm
+LOGIN_FAILURE_SHUTDOWN	Ma? chu?kh?g hoa? ðô?g
+LOGIN_FAILURE_TOO_MANY_USER	??co?qua?nhiêÌu ngýõ? ðãng nhâòp.
+LOGIN_FAILURE_UNKNOWN	Ðãng nhâòp thâìt ba? kh?g ro?ly?do
+LOGIN_FAILURE_WRONG_MATRIX_CARD_NUMBER	Nhâòp ma?sôì sai
+LOGIN_FAILURE_WRONG_MATRIX_CARD_NUMBER_TRIPLE	Ngãìt kêìt nôìi nêìu ba? nhâòp sai ma?sôì 3 lâÌn
+LOGIN_FAILURE_WRONG_PASSWORD	Mâòt khâÒu kh?g chi?h xa?
+LOGIN_INPUT_ID	Ha? nhâòp t? ta? khoa?
+LOGIN_INPUT_PASSWORD	Ha? nhâòp mâòt khâÒu
+LOGIN_PROCESSING	?ng trong qua?tri?h ðãng nhâòp
+MALL_CANNOT_INSERT	Kh?g thêÒ ðýa mo? ðô?va? danh mu? ha?g Item mall
+MALL_PASSWORD_TITLE	Mâòt khâÒu
+MAP_A1	Âìp Vi?h An
+MAP_A2	Th?g Long côìc
+MAP_A3	Huyêòn TýÒ Dýõng
+MAP_AG	Huyêòn Trung Lang
+MAP_B1	Âìp TriêÌu An
+MAP_B2	L? Chi côìc
+MAP_B3	Huyêòn Phu? ??h
+MAP_BG	Huyêòn Ngo? Long
+MAP_C1	Âìp Bi?h Vu
+MAP_C2	Phýõng S? côìc
+MAP_C3	Huyêòn Ba? La
+MAP_CG	Huyêòn L? Ha
+MAP_DESERT	Sa ma? Doanh Bi
+MAP_FLAME	Ðô Diêòm Ho? ??
+MAP_SKELTOWER	Tha? ta?quy
+MAP_SNOW	Nu? T? Ha?
+MAP_SPIDER	Hang nhêòn
+MAP_TEMPLE	Chu? Mâòt gia?
+MAP_TREE	RýÌng Quy?Môòc
+MAP_TRENT02	Ry??gXi?hQuyO
+MAP_WL	Ty??oa?g
+MAP_NUSLUCK	Ty??oa?g
+MESSENGER_ADD_FRIEND	Th? ba?
+MESSENGER_DO_YOU_ACCEPT_ADD_FRIEND_1	%s muôìn kêìt ba?
+MESSENGER_DO_YOU_ACCEPT_ADD_FRIEND_2	Ba? co?ðô?g y?
+MESSENGER_DO_YOU_DELETE	Ba? co?muôìn xoa?kho? danh sa?h Hôòi/Ba? kh?g?
+MESSENGER_DO_YOU_DELETE_PHONE_NUMBER	Ba? se?xoa?sôì di ðô?g chýì?
+MESSENGER_DO_YOU_MOVE	Ba? co?ðô?g y?chuyêÒn?
+MESSENGER_EMPTY_LIST	Danh sa?h trôìng
+MESSENGER_FAMILY	Gia ??h
+MESSENGER_FRIEND	Ba? be
+MESSENGER_GUILD	Bang hôòi
+MESSENGER_INPUT_MOBILE_AUTHORITY_DESCRIPTION	Ha? nhâòp ma?sôì xa? nhâòn ??gýÒi ðê? ?êòn thoa? di ðô?g cu? ba?
+MESSENGER_INPUT_MOBILE_AUTHORITY_TITLE	Nhâòp ma?sôì xa? nhâòn
+MESSENGER_INPUT_MOBILE_PHONE_NUMBER_1	Nhâòp s ?êòn thoa? di ðô?g ðê?nhâòn ma?sôì xa? nhâòn
+MESSENGER_INPUT_MOBILE_PHONE_NUMBER_2	Ba? co?muôìn nhâòp sôì b? giõÌ kh?g?
+MESSENGER_INPUT_MOBILE_PHONE_NUMBER_TITLE	Nhâòp sôì ?êòn thoa? di ðô?g
+MESSENGER_SEND_MOBILE_MESSAGE_TITLE	GýÒi tin nhãìn
+MINIMAP	Ba? ðô?thu nho
+MINIMAP_CANNOT_SEE	Kh?g thêÒ mõÒ ba? ðô?thu nho
+MINIMAP_CAN_NOT_SHOW_AREAMAP	Kh?g thêÒ mõÒ ba? ðô?toa? thêÒ
+MINIMAP_DEC_SCALE	Thu nho
+MINIMAP_INC_SCALE	Pho?g lõìn
+MINIMAP_OBSERVER_COUNT	%d ngýõ? quan sa?
+MINIMAP_SHOW_AREAMAP	Xem ba? ðô?khu výòc
+MINUTE	Phu?
+MONEY_INPUT_DIALOG_SELLPRICE	Gia?ba? :
+MOVE_ITEM_FAILURE_PRIVATE_SHOP	Kh?g thêÒ di chuyêÒn vâòt phâÒm khi ?ng mõÒ cýÒa ha?g ca?nh?
+MUSIC_EMPTY_MUSIC_LIST	Kh?g co?tâòp tin nha? nêÌn
+MUSIC_METIN2_DEFAULT_THEMA	Nha? nêÌn mãòc ??h
+MUSIC_NOT_SELECT_MUSIC	Ch? cho? t? tin nha?
+NEEFD_REST	CâÌn nghi?ng?
+NOT_YET_SUPPORT	VâÞn ch? ðýõòc hôÞ trõò
+OPTION_PVPMODE_CANNOT_SET_GUILD_MODE	Kh?g thêÒ thiêìt lâòp chêì ðô?PvP bang hôòi vi?ba? ch? gia nhâòp hôòi na?
+OPTION_PVPMODE_NOT_SUPPORT	Chêì ðô?PvP kh?g ðýõòc hôÞ trõò
+OPTION_PVPMODE_PROTECT	Câìp ðô?tr? %d mõìi co?thêÒ ca? ðã? chêì ðô?PvP
+PARTY_BONUS_ATTACKER	Lýòc c?g ki?h : +%d	SA
+PARTY_BONUS_BERSERKER	Tôìc ðô?tâìn c?g : +%d	SA
+PARTY_BONUS_BUFFER	ThõÌi gian duy tri?ky?n?g : +%d	SA
+PARTY_BONUS_DEFENDER	Sýìc pho?g ngýò : +%d	SA
+PARTY_BONUS_EXP	?êÒm kinh nghiêòm thýõ?g : %d%%	SA
+PARTY_BONUS_SKILL_MASTER	Tri?lýòc tôìi ? : +%d	SA
+PARTY_BONUS_TANKER	Sinh lýòc tôìi ? : +%d	SA
+PARTY_BREAK_UP	Gia? ta? nho?
+PARTY_DO_YOU_ACCEPT	Ba? ðýõòc mõÌi tham gia nho?
+PARTY_DO_YOU_JOIN	Ba? co?ðô?g y?lõÌi mõÌi gia nhâòp nho? kh?g?
+PARTY_EXP_DISTRIBUTION_MODE	Chia ?êÒm kinh nghiêòm
+PARTY_EXP_DISTRIBUTION_MODE_LEVEL	Chia theo câìp ðô
+PARTY_EXP_DISTRIBUTION_MODE_LEVEL_TOOLTIP	Câìp ðô?cao thi?nhâòn ðýõòc nhiêÌu ?êÒm kinh nghiêòm h?
+PARTY_EXP_DISTRIBUTION_MODE_PARITY	Chia ðê?
+PARTY_EXP_DISTRIBUTION_MODE_PARITY_TOOLTIP	?êÒm kinh nghiêòm chia ðê? cho ca? tha?h vi? trong nho?
+PARTY_HEAL_ALL_MEMBER	Phu? hôÌi cho ca?nho?
+PARTY_INCREASE_AREA_150	Pha? vi a?h hýõ?g cu? nho? t?g 1,5 lâÌn	SNA
+PARTY_INCREASE_AREA_200	Pha? vi a?h hýõ?g cu? nho? t?g 2 lâÌn	SNA
+PARTY_LEAVE	RõÌi kho? nho?
+PARTY_LONGTIME_BONUS_EXP	?êÒm kinh nghiêòm thýõ?g cho thõÌi gian tham gia nho? : +%d%%	SA
+PARTY_MEMBER_OFFLINE	[Kh?g ðãng nhâòp]
+PARTY_RECALL_MEMBER	Triêòu tâòp tha?h vi? nho?
+PARTY_REGEN_BONUS	HôÌi phu? tri?lýòc va?thêÒ lýòc : +%d%%	SA
+PARTY_REQUEST_DENIED	Ba? ??týÌ chôìi gia nhâòp nho?
+PARTY_SET_ATTACKER	Chi???h ngýõ? tâìn c?g
+PARTY_SET_BERSERKER	Chi???h ngýõ? tâìn c?g chu?lýòc
+PARTY_SET_BUFFER	Chi???h ngýõ? hôÞ trõò
+PARTY_SET_DEFENDER	Chi???h ngýõ? pho?g ngýò
+PARTY_SET_NORMAL	Hu? bo?chi???h
+PARTY_SET_SKILL_MASTER	Chi???h ngýõ? la? phe?
+PARTY_SET_TANKER	Chi???h ngýõ? chi? ??
+PARTY_SKILL_ATTACKER	Lýòc c?g ki?h +%.0f
+PARTY_SKILL_BERSERKER	Tôìc ðô?tâìn c?g +%.0f
+PARTY_SKILL_BUFFER	ThõÌi gian duy tri?ky?n?g +%.0f
+PARTY_SKILL_DEFENDER	Lýòc pho?g ngýò +%.0f
+PARTY_SKILL_HP_REGEN	Tôìc ðô?hôÌi phu? sinh lýòc +%.0f%%
+PARTY_SKILL_PARTY_AREA	Pha? vi a?h hýõ?g nho? +%d%%
+PARTY_SKILL_SKILL_MASTER	Tri?lýòc tôìi ? +%.0f
+PARTY_SKILL_SP_REGEN	Tôìc ðô?hôÌi phu? tri?lýòc +%.0f%%
+PARTY_SKILL_TANKER	Sinh lýòc tôìi ? +%.0f
+PARTY_SKILL_WARP	Co?thêÒ triêòu tâòp tha?h vi? nho?
+PASSWORD_TITLE	Ma?sôì bi?mâòt kho ha?g
+PICK_ITEM_TITLE	Sôì vâòt phâÒm
+PICK_MONEY_TITLE	Sôì tiêÌn
+PRIVATE_SHOP_CANNOT_SELL_ITEM	Mo? ðô?kh?g thêÒ ba? ðýõòc õÒ cýÒa ha?g ca?nh?
+PRIVATE_SHOP_CLOSE_QUESTION	Ba? muôìn ??g cýÒa ha?g ca?nh? ?ng mõÒ?
+PRIVATE_SHOP_INPUT_NAME_DIALOG_TITLE	T? cýÒa ha?g ca?nh?
+PRIVATE_SHOP_INPUT_PRICE_DIALOG_TITLE	Gia
+PVP_LEVEL0	Chi?t?
+PVP_LEVEL1	Thi? výõng
+PVP_LEVEL2	Anh hu?g
+PVP_LEVEL3	Hiêòp kha?h
+PVP_LEVEL4	Lýõng d?
+PVP_LEVEL5	Sa? thu
+PVP_LEVEL6	Ba?výõng
+PVP_LEVEL7	Ma ðâ?
+PVP_LEVEL8	Ngu? ðê
+PVP_MODE_GUILD	??thiêìt lâòp chêì ðô?PvP bang hôòi
+PVP_MODE_KILL	??thiêìt lâòp chêì ðô?PvP týò do
+PVP_MODE_NORMAL	??thiêìt lâòp chêì ðô PvP ho? bi?h
+PVP_MODE_PROTECT	??thiêìt lâòp chêì ðô?ba? vêò PvP
+PVP_MODE_REVENGE	??thiêìt lâòp chêì ðô?PvP thu???h
+PVP_OPTION_KILL	Týò do
+PVP_OPTION_NORMAL	Ho? bi?h
+PVP_OPTION_PROTECT	Ba? vêò
+PVP_OPTION_REVENGE	Thu???h
+QUEST_APPEND	Nhiêòm vu?výÌa ðýõòc câòp nhâòt
+QUEST_MIN	Phu?
+QUEST_SEC	Gi?
+QUEST_TIMEOVER	Hêìt giõÌ
+QUEST_UNLIMITED_TIME	Kh?g giõìi ha? thõÌi gian
+QUEST_ZEROSEC	0 gi?
+QUICKSLOT_REGISTER_DISABLE_ITEM	Vâòt phâÒm kh?g thêÒ ðã? va? ba?g phi? tãìt
+RECEIVE_MESSAGE	%s gýÒi ba? môòt tin nhãìn
+REFINE_COST	Phi?n?g câìp : %d lýõ?g
+REFINE_DESTROY_WARNING	Nêìu n?g câìp thâìt ba? thi?mo? ðô?se?bi hu?
+REFINE_DESTROY_WARNING_WITH_BONUS_PERCENT_1	Vâòt na? se?la? t?g ty?lêò n?g câìp tha?h c?g
+REFINE_DESTROY_WARNING_WITH_BONUS_PERCENT_2	Nêìu n?g câìp thâìt ba? thi?mo? ðô?se?bi hu?. Ba? co?muôìn thýÒ kh?g?
+REFINE_DOWN_GRADE_WARNING	Nêìu n?g câìp thâìt ba? thi?câìp ðô?cu? mo? ðô?se?bi?gia?
+REFINE_DO_YOU_SEPARATE_METIN	Ba? co?muôìn ta?h linh tha?h kh?g?
+REFINE_FAILURE	N?g câìp thâìt ba?
+REFINE_FAILURE_EQUIP_ITEM	Kh?g thêÒ n?g câìp mo? ðô??ng trang bi
+REFINE_FAILURE_METIN_INSEPARABLE_ITEM	Kh?g co?linh tha?h ðê?ta?h
+REFINE_FAILURE_NEED_BETTER_SCROLL	CâÌn co?cuôòn giâìy n?g câìp tôìt h?
+REFINE_FAILURE_NO_MORE_SOCKET	Kh?g thêÒ ta? th? lôÞ gãìn linh tha?h
+REFINE_FAILURE_SOCKET_DISABLE_ITEM	Kh?g thêÒ ta? th? lôÞ gãìn linh tha?h tr? vâòt phâÒm na?
+REFINE_FAILURE_UPGRADE_DISABLE_ITEM	Kh?g thêÒ n?g câìp vâòt phâÒm na?
+REFINE_SUCCESS	Vâòt phâÒm ðýõòc n?g câìp tha?h c?g
+REFINE_SUCCESS_PROBALITY	Kha?n?g n?g câìp tha?h c?g : %d%%
+REFINE_WARNING2	Ba? co?muôìn thýÒ kh?g?
+SAFEBOX_ERROR	Mâòt khâÒu kh?g ??g
+SAFEBOX_SELL_DISABLE_SAFEITEM	Kh?g thêÒ bo?mo? ðô?na? va? kho
+SAFEBOX_WRONG_PASSWORD	Ba? pha? nhâòp ??g mâòt khâÒu
+SCREENSHOT_SAVE1	ðýõòc l? trong
+SCREENSHOT_SAVE2	th?mu? Screenshot
+SCREENSHOT_SAVE_FAILURE	Kh?g thêÒ l? a?h chu? ma? hi?h
+SECOND	Gi?
+SELECT_CAN_NOT_DELETE	Kh?g thêÒ xo? nh? vâòt
+SELECT_CHANGED_NAME	T? nh? vâòt ??ðýõòc thay ðô?
+SELECT_CHANGE_FAILURE_ALREADY_EXIST_NAME	T? nh? vâòt ??ðýõòc sýÒ du?g
+SELECT_CHANGE_FAILURE_STRANGE_INDEX	Ha? thýÒ la? lâÌn sau
+SELECT_CHANGE_FAILURE_STRANGE_NAME	T? nh? vâòt kh?g ??g
+SELECT_CHANGE_NAME_TITLE	Thay ðô? t? nh? vâòt
+SELECT_DELEING	?ng xo? bo?nh? vâòt
+SELECT_DELETED	Nh? vâòt ??ðýõòc xoa?bo
+SELECT_DO_YOU_DELETE_REALLY	Ba? thâòt sýò muôìn xo? nh? vâòt na??
+SELECT_EMPTY_SLOT	Co?thêÒ ta? nh? vâòt mõìi
+SELECT_GM_NAME	GM
+SELECT_INPUT_CHANGING_NAME	Ha? nhâòp t? mõìi cu? nh? vâòt
+SELECT_NOT_JOIN_GUILD	-----
+SHOP_BUY_INFO	Mua mo? ðô?bãÌng ca?h cho? no?trong cýÒa ha?g vâòt phâÒm
+SHOP_CANNOT_SELL_EQUIPMENT	Kh?g thêÒ ba? mo? ðô??ng trang bi
+SHOP_CANNOT_SELL_ITEM	Kh?g thêÒ ba? mo? ðô?na?
+SHOP_ERROR_UNKNOWN	LôÞi cýÒa ha?g kh?g xa? ??h ðýõòc : %s
+SHOP_INVALID_POS	Mo? ðô?kh?g phu?hõòp
+SHOP_INVENTORY_FULL	Kh?g ??chôÞ trong ha?h trang
+SHOP_NOT_ENOUGH_MONEY	Kh?g ??tiêÌn
+SHOP_SELL_INFO	Lýòa cho? mo? ðô?trong ha?h trang ðê?ba?
+SHOP_SOLDOUT	??ba? hêìt ha?g
+SHOT_ERROR_UNKNOWN	LôÞi tâìn c?g týÌ xa kh?g xa? ??h ðýõòc : %s
+SKILL_BOHO	Pha? hôÌi
+SKILL_BUDONG	Gai go?
+SKILL_CANNOT_LEVEL_UP_ANYMORE_BY_BOOK	CâÌn ?êÒm kinh nghiêòm ðê?luyêòn ky?n?g
+SKILL_CANNOT_LEVEL_UP_ANYMORE_BY_STAT	CâÌn sa?h ky?n?g ðê?luyêòn ky?n?g
+SKILL_CHEONGEUN	Toa? lýòc
+SKILL_CRITICAL	Tâìn c?g chi?ma?g
+SKILL_ENCHANT_POISON	Pho?g ðô?
+SKILL_EUNHYEONG	Ta?g hi?h
+SKILL_FAINT	Choa?g va?g
+SKILL_FIND_TRAP	Ti? bâÞy
+SKILL_FIRE	Pho?g ho?
+SKILL_FISHMIND	SýÒ du?g câÒm nang vêÌ ca
+SKILL_GAMJI	Do?xe?
+SKILL_GEOMGYEONG	Kiêìm khi
+SKILL_GEONGON	Thi? ?? ca? kh?
+SKILL_GICHEON	Long gia?
+SKILL_GIGONG	Khi?c?g
+SKILL_GONGPO	Sõò ha?
+SKILL_GRADE_NAME_GRAND_MASTER	Ngýõ? ?? luyêòn %s
+SKILL_GRADE_NAME_MASTER	Ngýõ? tha?h thu? %s
+SKILL_GRADE_NAME_PERFECT_MASTER	Bâòc thâÌy ?? luyêòn %s
+SKILL_GROUP_ASSASSIN_1	Phong ?o
+SKILL_GROUP_ASSASSIN_2	Ba?h nghêò
+SKILL_GROUP_HORSE	Ky?thuâòt
+SKILL_GROUP_SHAMAN_1	TiêÌm long
+SKILL_GROUP_SHAMAN_2	CuôÌng ?êòn
+SKILL_GROUP_SURA_1	A? vu
+SKILL_GROUP_SURA_2	Hãìc ma
+SKILL_GROUP_WARRIOR_1	Kiêìm t?g
+SKILL_GROUP_WARRIOR_2	Khi?t?g
+SKILL_GWIGEOM	Quy?kiêìm
+SKILL_GYEONGGONG	Khinh c?g
+SKILL_HEUKSIN	Hãìc thâÌn thu?hôò
+SKILL_HOSIN	Ma thuâÞn
+SKILL_HWAYEOM	Ho? diêÞm tra?
+SKILL_HYEOLMA	Huyêìt chýõ?g
+SKILL_INC_ATKSPD	T?g tôìc ðô???h
+SKILL_INC_MOVSPD	T?g tôìc ðô?di chuyêÒn
+SKILL_INMA	Thi? nh? hõòp nhâìt
+SKILL_JEOJU	NguyêÌn ru?
+SKILL_JEONGEOP	Týò nhi? chuyêÒn ho?
+SKILL_JEONGWI	Chiêìn hôÌn
+SKILL_JEONSINBANGEO	Thiêìt bôì sam
+SKILL_JEONSINGONGGYEOK	Týì diêòn sõÒ ca
+SKILL_JEUNGCHE	ThâÌn du?
+SKILL_JEUNGHON	Tâòp trung
+SKILL_JEUNGRYEOK	Thi? nôò
+SKILL_JEUNGSOK	ThâÌn tôìc
+SKILL_JIGAM	Long a?h
+SKILL_JIPJUNG	Tâòp trung pho?g ngýò
+SKILL_JUMAGAP	C? lãòng
+SKILL_JUMAGEOM	Quy?oa?
+SKILL_KWAEGEOM	Khoa? kiêìm
+SKILL_KWAESOK	Tâìn tiêòp thuâòt
+SKILL_LEGBOUND	Výõ?g vi?
+SKILL_MUSA	Tâìn c?g vu?ba?
+SKILL_MUYEONG	Vu linh trâòn
+SKILL_NEED_EMPTY_BOTTLE	Kh?g co?bi?h rôÞng
+SKILL_NEED_POISON_BOTTLE	Kh?g co?bi?h ðô?
+SKILL_ONLY_FOR_GUILD_WAR	Ky?n?g chi?du?g khi chiêìn hôòi
+SKILL_PABEOP	Pha?phe?
+SKILL_POWERFUL_STRIKE	TôÒng lýòc c?g ki?h
+SKILL_SEOMGWANG	Lo? mãìt
+SKILL_SINCHAK	Sõò ha?
+SKILL_SLEEP	BuôÌn ngu
+SKILL_SLOW	Châòm
+SKILL_STUN	Bâìt ðô?g
+SKILL_SUHO	Thu?hôò
+SKILL_SUMMON_DESCRIPTION	Kha?n?g triêòu tâòp : %d%%
+SKILL_TOOLTIP_INT	Tri?lýòc
+SKILL_TOOLTIP_LEVEL	Câìp ðô
+SKILL_TOXICDIE	Tru?g ðô?
+SKILL_TOXICPOWER	T?g ðô? lýòc
+SKILL_TUSOK	Výõ?g vi?
+SKILL_WONSIN	ThâÌn mu?
+SKILL_YONGSIN	Long thâÌn thuâÞn
+STAT_MINUS_CON	?êÌu chi?h thêÒ lýòc (C?hôòi co? la? %d)
+STAT_MINUS_DEX	?êÌu chi?h nhanh nhe? (C?hôòi co? la? %d)
+STAT_MINUS_INT	?êÌu chi?h tri?tuêò (C?hôòi co? la? %d)
+STAT_MINUS_STR	?êÌu chi?h sýìc ma?h (C?hôòi co? la? %d)
+STAT_TOOLTIP_CON	T?g sinh lýòc va?sýìc pho?g ngýò
+STAT_TOOLTIP_DEX	T?g lýòc c?g ki?h va?sýìc kha?g ??
+STAT_TOOLTIP_INT	T?g tri?lýòc, lýòc phe? thuâòt va?sýìc kha?g phe?
+STAT_TOOLTIP_STR	T?g lýòc c?g ki?h
+SYMBOLLIST_TITLE	Danh sa?h cõÌ hôòi
+SYSTEM_OPTION_CPU_TILING_1	Chêì ðô?CPU Tiling co?thêÒ la? t?g tôìc ðô? võìi ca? ma? ti?h câìu hi?h thâìp
+SYSTEM_OPTION_CPU_TILING_2	Trong trýõ?g hõòp pha? sinh vâìn ðê?vêÌ ðô?hoa?ha? ?êÌu chi?h õÒ mu? thiêìt lâòp hêò thôìng hoãòc cha? config.exe
+SYSTEM_OPTION_CPU_TILING_3	Thiêìt lâòp chêì ðô?CPU Tiling
+SYSTEM_OPTION_GPU_TILING_1	Chêì ðô?GPU Tiling co?thêÒ g? giâòt ma? hi?h ðô? võìi ca? ma? ti?h câìu hi?h thâìp
+SYSTEM_OPTION_GPU_TILING_2	Trong trýõ?g hõòp pha? sinh vâìn ðê?vêÌ ðô?hoa?ha? ?êÌu chi?h õÒ mu? thiêìt lâòp hêò thôìng hoãòc cha? config.exe
+SYSTEM_OPTION_GPU_TILING_3	Thiêìt lâòp chêì ðô?GPU Tiling
+SYSTEM_OPTION_TILING_EXIT	Thay ðô? thiêìt lâòp chêì ðô?Tiling câÌn pha? khõÒi ðô?g la? tro?ch?
+TARGET_BUTTON_ACCEPT_FIGHT	Ðô?g y?quyêìt ðâ?
+TARGET_BUTTON_AVENGE	Phu? thu
+TARGET_BUTTON_BUILDING_DESTROY	Pha?hu?
+TARGET_BUTTON_DISMOUNT	Xuôìng ngýòa
+TARGET_BUTTON_EMOTION_ALLOW	Ca? xu?
+TARGET_BUTTON_EXCHANGE	Giao di?h
+TARGET_BUTTON_EXCLUDE	Loa? kho? nho?
+TARGET_BUTTON_EXIT_OBSERVER	NgýÌng quan sa?
+TARGET_BUTTON_FIGHT	Quyêìt ðâ?
+TARGET_BUTTON_FRIEND	Kêìt ba?
+TARGET_BUTTON_INVITE_GUILD	MõÌi va? hôòi
+TARGET_BUTTON_INVITE_PARTY	MõÌi va? nho?
+TARGET_BUTTON_LEAVE_PARTY	RõÌi kho? nho?
+TARGET_BUTTON_REQUEST_ENTER_PARTY	Gia nhâòp nho?
+TARGET_BUTTON_VIEW_EQUIPMENT	Trang bi
+TARGET_BUTTON_WHISPER	Thi?thâÌm
+TARGET_LEVEL_BOSS	Tru?
+TARGET_LEVEL_KING	?? výõng
+TARGET_LEVEL_KNIGHT	Thu?li?h
+TARGET_LEVEL_PAWN	Li?h thýõ?g
+TARGET_LEVEL_S_KNIGHT	Thu?li?h cao câìp
+TARGET_LEVEL_S_PAWN	Li?h tinh nhuêò
+TASKBAR_ATTACK	Tâìn c?g
+TASKBAR_AUTO	Týò ðô?g tâìn c?g
+TASKBAR_CAMERA	Quan sa?
+TASKBAR_EXP	?êÒm kinh nghiêòm
+TASKBAR_HP	Sinh lýòc
+TASKBAR_MOVE	Di chuyêÒn
+TASKBAR_SKILL	Ky?n?g
+TASKBAR_SP	Tri?lýòc
+TASKBAR_ST	ThêÒ lýòc
+THING_COUNT	ca?
+TOOLTIP_APPLY_ATTBONUS_ANIMAL	T?g sýìc tâìn c?g võìi ðô?g vâòt +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_ASSASSIN	T?g sýìc tâìn c?g võìi thi?h kha?h +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_DEVIL	T?g sýìc tâìn c?g võìi a? ma +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_HUMAN	T?g sýìc tâìn c?g võìi con ngýõ? +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_MILGYO	T?g sýìc tâìn c?g võìi mâòt gia? +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_MONSTER	T?g sýìc tâìn c?g võìi qua? vâòt +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_ORC	T?g sýìc tâìn c?g võìi quy?+%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_SHAMAN	T?g sýìc tâìn c?g võìi phu?thu? +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_SURA	T?g sýìc tâìn c?g võìi tu la +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_UNDEAD	T?g sýìc tâìn c?g võìi xa? chêìt hôÌi sinh +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_WARRIOR	T?g sýìc tâìn c?g võìi vo?si?+%d%%	SA
+TOOLTIP_APPLY_BLOCK	Chãòn tâìn c?g vâòt ly?%d%%	SA
+TOOLTIP_APPLY_COMBAT_SP_RECOVER	HôÌi phu? tri?lýòc môÞi 5 gi? trong lu? chiêìn ðâ? %d	SA
+TOOLTIP_APPLY_CRITICAL_PCT	Tâìn c?g chi?ma?g %d%%	SA
+TOOLTIP_APPLY_DAMAGE_SP_RECOVER	HôÌi phu? tri?lýòc khi bi?tôÒn thýõng %d%%	SA
+TOOLTIP_APPLY_DODGE	Xa? suâìt ne?tra?h cung t? %d%%	SA
+TOOLTIP_APPLY_EXP_DOUBLE_BONUS	Xa? suâìt nhâòn ?êÒm thýõ?g kinh nghiêòm %d%%	SA
+TOOLTIP_APPLY_GOLD_DOUBLE_BONUS	Xa? suâìt nhâòn gâìp ðôi tiêÌn r? ra %d%%	SA
+TOOLTIP_APPLY_IMMUNE_FALL	Kh?g bi?hâìt nga?SNA
+TOOLTIP_APPLY_IMMUNE_SLOW	Chôìng bi?châòm 90%	SNA
+TOOLTIP_APPLY_IMMUNE_STUN	Chôìng bi?choa?g va?g	SNA
+TOOLTIP_APPLY_ITEM_DROP_BONUS	Xa? suâìt nhâòn gâìp ðôi sôì lýõ?g vâòt phâÒm r? ra %d%%	SA
+TOOLTIP_APPLY_KILL_HP_RECOVER	Xa? suâìt hôÌi phu? sinh lýòc %d%%	SA
+TOOLTIP_APPLY_KILL_SP_RECOVER	Xa? suâìt hôÌi phu? tri?lýòc %d%%	SA
+TOOLTIP_APPLY_MANA_BURN_PCT	Xa? suâìt la? ti? hao tri?lýòc ðô? phýõng %d%%	SA
+TOOLTIP_APPLY_NOAFFECT	Kh?g hiêòu ýìng
+TOOLTIP_APPLY_NO_DEATH_PENALTY	Kh?g mâìt ?êÒm kinh nghiêòm khi týÒ vong	SNA
+TOOLTIP_APPLY_PENETRATE_PCT	Xa? suâìt c?g ki?h xuy? thâìu %d%%	SA
+TOOLTIP_APPLY_POISON_PCT	Xa? suâìt tru?g ðô? %d%%	SA
+TOOLTIP_APPLY_POISON_REDUCE	Kha?g ðô? %d%%	SA
+TOOLTIP_APPLY_POTION_BONUS	T?g dýõ? ti?h cu? thuôìc nýõ? %d%%	SA
+TOOLTIP_APPLY_REFLECT_CURSE	Xa? suâìt pha? hôÌi phe? thuâòt %d%%	SA
+TOOLTIP_APPLY_REFLECT_MELEE	Xa? suâìt pha? hôÌi lýòc tâìn c?g vâòt ly?%d%%	SA
+TOOLTIP_APPLY_RESIST_BELL	Gia? sa? thýõng cu? chu?g %d%%	SA
+TOOLTIP_APPLY_RESIST_DAGGER	Gia? sa? thýõng cu? chu? thu?%d%%	SA
+TOOLTIP_APPLY_RESIST_FAN	Gia? sa? thýõng cu? qua? %d%%	SA
+TOOLTIP_APPLY_RESIST_SWORD	Gia? sa? thýõng cu? kiêìm %d%%	SA
+TOOLTIP_APPLY_RESIST_TWOHAND	Gia? sa? thýõng vu?khi?câÌm bãÌng hai tay %d%%	SA
+TOOLTIP_APPLY_RESIST_WIND	Gia? sa? thýõng cu? gio?%d%%	SA
+TOOLTIP_APPLY_SKILL_BOOK_BONUS	T?g ty?lêò tha?h c?g 2.5 lâÌn khi ho? sa?h ky?n?g	SNA
+TOOLTIP_APPLY_SKILL_BOOK_NO_DELAY	Thâìt ba? khi ho? ky?n?g kh?g bi?tâÒu ho? nhâòp ma	SNA
+TOOLTIP_APPLY_SLOW_PCT	Xa? suâìt la? châòm mu? ti? %d%%	SA
+TOOLTIP_APPLY_STEAL_HP	Hâìp thu?thiêòt ha? chuyêÒn tha?h sinh lýòc %d%%	SA
+TOOLTIP_APPLY_STEAL_SP	Hâìp thu?thiêòt ha? chuyêÒn tha?h tri?lýòc %d%%	SA
+TOOLTIP_APPLY_STUN_PCT	Xa? suâìt la? choa?g va?g mu? ti? %d%%	SA
+TOOLTIP_ANTI_SELL	Kh?g thêÒ ba? ta? cýÒa ha?g
+TOOLTIP_ARMOR	A? gia?
+TOOLTIP_ARROW	Mu? t?
+TOOLTIP_ASSASSIN	Thi?h kha?h
+TOOLTIP_ATT_GRADE	Lýòc c?g ki?h +%d	SA
+TOOLTIP_ATT_SPEED	Tôìc ðô?tâìn c?g +%d%%	SA
+TOOLTIP_BOW_DISTANCE	TâÌm bãìn +%dm	SA
+TOOLTIP_BUYPRICE	Gia?: %s
+TOOLTIP_CAST_SPEED	Tôìc ðô?la? phe? +%d%%	SA
+TOOLTIP_CON	ThêÒ lýòc +%d	SA
+TOOLTIP_DEF_GRADE	Lýòc pho?g thu?+%d	SA
+TOOLTIP_DEX	Nhanh nhe? +%d	SA
+TOOLTIP_EAR	Hoa tai
+TOOLTIP_ETC	NhýÞng thýì kha?
+TOOLTIP_PICK_EXP	Ðô?tha?h thu? : %d / %d
+TOOLTIP_PICK_LEVEL	Câìp ðô?: %d
+TOOLTIP_PICK_UPGRADE1	Ðýa cuôìc cho tiêÌu phu
+TOOLTIP_PICK_UPGRADE2	ðê?n?g câìp
+TOOLTIP_PICK_UPGRADE3	tha?h cuôìc tôìt h?
+TOOLTIP_FISHINGROD_EXP	Ðô?tha?h thu? : %d / %d
+TOOLTIP_FISHINGROD_LEVEL	Câìp ðô?: %d
+TOOLTIP_FISHINGROD_UPGRADE1	Ðýa câÌn c? cho ng?phu
+TOOLTIP_FISHINGROD_UPGRADE2	ðê?n?g câìp
+TOOLTIP_FISHINGROD_UPGRADE3	tha?h câÌn c? tôìt h?
+TOOLTIP_FISH_LEN	Ðô?da? : %.2fcm
+TOOLTIP_HELMET	Mu?gia?
+TOOLTIP_HP_REGEN	HôÌi phu? sinh lýòc +%d%%	SA
+TOOLTIP_INT	Tri?tuêò +%d	SA
+TOOLTIP_ITEM_ATT_GRADE	Lýòc c?g ki?h %d
+TOOLTIP_ITEM_ATT_POWER	Lýòc c?g ki?h %d - %d
+TOOLTIP_ITEM_ATT_POWER_ONE_ARG	Lýòc c?g ki?h %d
+TOOLTIP_ITEM_ATT_POWER_REFINE	Lýòc c?g ki?h %d - %d (+%d)
+TOOLTIP_ITEM_ATT_SPEED	Tôìc ðô?tâìn c?g %s
+TOOLTIP_ITEM_DEF_GRADE	Lýòc pho?g thu?: %d
+TOOLTIP_ITEM_FAST	Nhanh
+TOOLTIP_ITEM_LIMIT_CON	Giõìi ha? thêÒ lýòc : %d
+TOOLTIP_ITEM_LIMIT_DEX	Giõìi ha? nhanh nhe? : %d
+TOOLTIP_ITEM_LIMIT_INT	Giõìi ha? tri?tuêò : %d
+TOOLTIP_ITEM_LIMIT_LEVEL	Giõìi ha? câìp ðô?: %d
+TOOLTIP_ITEM_LIMIT_STR	Giõìi ha? sýìc ma?h : %d
+TOOLTIP_ITEM_MAGIC_ATT_POWER	Lýòc tâìn c?g ma thuâòt %d - %d
+TOOLTIP_ITEM_MAGIC_ATT_POWER_ONE_ARG	Lýòc tâìn c?g ma thuâòt %d
+TOOLTIP_ITEM_MAGIC_DEF_POWER	Sýìc kha?g ma thuâòt : %d
+TOOLTIP_ITEM_NORMAL	Bi?h thýõ?g
+TOOLTIP_ITEM_SLOW	Châòm
+TOOLTIP_ITEM_VERY_FAST	Râìt nhanh
+TOOLTIP_ITEM_VERY_SLOW	Râìt châòm
+TOOLTIP_ITEM_WEARABLE_JOB	[ Co?thêÒ trang bi?]
+TOOLTIP_LOTTERY_STEP_NUMBER	%d
+TOOLTIP_LOTTO_NUMBER	Sôì may mãìn : %d
+TOOLTIP_MAGIC_ATT_GRADE	Lýòc tâìn c?g ma thuâòt +%d	SA
+TOOLTIP_MAGIC_DEF_GRADE	Sýìc kha?g ma thuâòt : +%d	SA
+TOOLTIP_MALL_ATTBONUS	Lýòc c?g ki?h +%d%%	SA
+TOOLTIP_MALL_ATTBONUS_STATIC	Lýòc c?g ki?h +12~15%	SNA
+TOOLTIP_MALL_AUTOLOOT	Týò ðô?g nhãòt tiêÌn	SNA
+TOOLTIP_MALL_DEFBONUS	Lýòc pho?g thu?+%d%%	SA
+TOOLTIP_MALL_DEFBONUS_STATIC	Lýòc pho?g thu?+12~15%	SNA
+TOOLTIP_MALL_EXPBONUS	?êÒm kinh nghiêòm +%d%%	SA
+TOOLTIP_MALL_EXPBONUS_P_STATIC	?êÒm thýõ?g kinh nghiêòm ta? IC +%d%%	SA
+TOOLTIP_MALL_EXPBONUS_STATIC	?êÒm thýõ?g kinh nghiêòm 50%	SNA
+TOOLTIP_MALL_FISH_MIND	T?g c?hôòi bãìt ðýõòc ca?hiêìm	SNA
+TOOLTIP_MALL_GOLDBONUS	Ty?lêò rõìt tiêÌn gâìp %.1f lâÌn	SA
+TOOLTIP_MALL_GOLDBONUS_STATIC	Ty?lêò rõìt tiêÌn gâìp 2 lâÌn	SNA
+TOOLTIP_MALL_ITEMBONUS	Ty?lêò rõìt ðô?gâìp %.1f lâÌn	SA
+TOOLTIP_MALL_ITEMBONUS_P_STATIC	Ty?lêò rõìt ðô?õÒ IC t?g %.1f%%	SA
+TOOLTIP_MALL_ITEMBONUS_STATIC	Ty?lêò rõìt ðô?gâìp 2 lâÌn	SNA
+TOOLTIP_MALL_MARRIAGE_FAST	Chi?sôì ha?h phu? t?g nhanh h?	SNA
+TOOLTIP_MALL_SAFEBOX	Ta? ?chýìa thýì 3 trong kho ðô?SNA
+TOOLTIP_MAX_HP	Sinh lýòc tôìi ? +%d	SA
+TOOLTIP_MAX_HP_PCT	Sinh lýòc tôìi ? +%d%%	SA
+TOOLTIP_MAX_SP	Tri?lýòc tôìi ? +%d	SA
+TOOLTIP_MAX_SP_PCT	Tri?lýòc tôìi ? +%d%%	SA
+TOOLTIP_MAX_STAMINA	ThêÒ lýòc tôìi ? +%d	SA
+TOOLTIP_MEMORIZED_POSITION	%s(%d, %d)
+TOOLTIP_MEMORIZED_POSITION_ERROR	LôÞi GPS (%d, %d)
+TOOLTIP_MOV_SPEED	Tôìc ðô?di chuyêÒn %d%%	SA
+TOOLTIP_NECK	D? chuyêÌn
+TOOLTIP_NEED_ALL_SP	Y? câÌu tri?lýòc: tôìi ?
+TOOLTIP_NEED_GSP	Y? câÌu long khi?: %d
+TOOLTIP_NEED_HP	Y? câÌu thêÒ lýòc : %d
+TOOLTIP_NEED_HP_PER_SEC	ThêÒ lýòc : %d / Gi?
+TOOLTIP_NEED_SKILL_POINT	Y? câÌu ?êÒm ky?n?g :
+TOOLTIP_NEED_SP	Y? câÌu tri?lýòc : %d
+TOOLTIP_NEED_SP_PER_SEC	Tri?lýòc : %d / Gi?
+TOOLTIP_NEXT_SKILL_LEVEL_1	Câìp ðô?tiêìp theo : %d (Tôìi ? %d)
+TOOLTIP_NEXT_SKILL_LEVEL_2	Câìp ðô?tiêìp theo : %d (Tôìi ? %d-%d)
+TOOLTIP_NORMAL_HIT_DAMAGE_BONUS	Thiêòt ha? %d%%	SA
+TOOLTIP_NORMAL_HIT_DEFEND_BONUS	Gia? thiêòt tha? %d%%	SA
+TOOLTIP_PARTY_INFO_GRADE_UP1	H? %d tha?h vi? trong nho?
+TOOLTIP_PARTY_INFO_GRADE_UP2	Câìp tâìn c?g +%d
+TOOLTIP_PARTY_INFO_GRADE_UP3	Câìp pho?g thu?+%d
+TOOLTIP_PARTY_INFO_HEAL_18_LEVEL	HôÌi phu? thêÒ lýòc va?tri?lýòc cu? tâìt ca?ca? tha?h vi? trong nho? môòt lâÌn môÞi 60 phu?
+TOOLTIP_PARTY_INFO_HEAL_40_LEVEL	HôÌi phu? thêÒ lýòc va?tri?lýòc cu? tâìt ca?ca? tha?h vi? trong nho? môòt lâÌn môÞi 30 phu?
+TOOLTIP_PARTY_INFO_RECALL_12_LEVEL	Triêòu tâòp ca? tha?h vi? trong nho? 3 phu? sau khi týÒ vong
+TOOLTIP_PARTY_INFO_RECALL_20_LEVEL	Triêòu tâòp ca? tha?h vi? trong nho? nêìu ?ng ðãng nhâòp tr? cu?g môòt k?h
+TOOLTIP_PARTY_INFO_SET_ATTACKER	Co?thêÒ chi???h %d ngýõ? tâìn c?g
+TOOLTIP_PARTY_INFO_SET_TANKER	Co?thêÒ chi???h 1 ngýõ? chi? ??
+TOOLTIP_PARTY_SKILL_LEVEL	Câìp ðô?hiêòn ta? : %d
+TOOLTIP_PARTY_TITLE_GRADE_UP	[ T?g tâìn c?g/pho?g thu?]
+TOOLTIP_PARTY_TITLE_HEAL	[ HôÌi phu? ]
+TOOLTIP_PARTY_TITLE_INFO_BONUS_EXP	?êÒm thýõ?g kinh nghiêòm %d%% nêìu sôì tha?h vi? nho? tr? %d ngýõ?
+TOOLTIP_PARTY_TITLE_MEMBER_BONUS_EXP	[ ?êÒm thýõ?g kinh nghiêòm ]
+TOOLTIP_PARTY_TITLE_RECALL	[ Triêòu tâòp ]
+TOOLTIP_PARTY_TITLE_SET_ATTACKER	[ Chi???h ngýõ? tâìn c?g ]
+TOOLTIP_PARTY_TITLE_SET_TANKER	[ Chi???h ngýõ? chi? ?? ]
+TOOLTIP_POTION_CURE	ChýÞa tri?ca? hiêòu ýìng xâìu
+TOOLTIP_POTION_MIN	Phu?
+TOOLTIP_POTION_PLUS_ATTACK_SPEED	Tôìc ðô?tâìn c?g : +%d
+TOOLTIP_POTION_PLUS_HP_PERCENT	Sinh lýòc : +%d%%
+TOOLTIP_POTION_PLUS_HP_POINT	Sinh lýòc : +%d
+TOOLTIP_POTION_PLUS_MOVING_SPEED	Tôìc ðô?di chuyêÒn : +%d
+TOOLTIP_POTION_PLUS_SP_PERCENT	Tri?lýòc : +%d%%
+TOOLTIP_POTION_PLUS_SP_POINT	Tri?lýòc : +%d
+TOOLTIP_POTION_SEC	Gi?
+TOOLTIP_POTION_TIME	ThõÌi gian ta? du?g :
+TOOLTIP_REQUIREMENT_21_LEVEL	Y? câÌu câìp ðô?21 trõÒ l?
+TOOLTIP_REQUIREMENT_41_LEVEL	Y? câÌu câìp ðô?41 trõÒ l?
+TOOLTIP_REQUIREMENT_LEVEL	Y? câÌu câìp %d
+TOOLTIP_REQUIREMENT_SKILL_LEVEL	Y? câÌu ky?n?g %s tr? câìp %d
+TOOLTIP_REQUIREMENT_STAT_LEVEL	Y? câÌu chi?sôì %s %d
+TOOLTIP_RESIST_BOW	Kha?g cung t? %d%%	SA
+TOOLTIP_RESIST_ELEC	Kha?g ?êòn %d%%	SA
+TOOLTIP_RESIST_FIRE	Kha?g lýÒa %d%%	SA
+TOOLTIP_RESIST_MAGIC	Kha?g phe? thuâòt %d%%	SA
+TOOLTIP_REST_USABLE_COUNT	Co? la? : %d
+TOOLTIP_SELLPRICE	Gia?: %s
+TOOLTIP_SHAMAN	Phu?thu?
+TOOLTIP_SHIELD	Khi?
+TOOLTIP_SHOES	Gia?
+TOOLTIP_SKILL	Ky?n?g	SNA
+TOOLTIP_SKILLBOOK_NAME	Sa?h ky?n?g
+TOOLTIP_SKILL_AFFECT_ATT_GRADE	Lýòc c?g ki?h : +
+TOOLTIP_SKILL_AFFECT_ATT_POWER	Lýòc c?g ki?h :
+TOOLTIP_SKILL_AFFECT_ATT_SPEED	Tôìc ðô?tâìn c?g : +
+TOOLTIP_SKILL_AFFECT_DEF_GRADE	Lýòc pho?g thu?:
+TOOLTIP_SKILL_AFFECT_DODGE	Lýòc tâìn c?g cu? ðô? phýõng : -
+TOOLTIP_SKILL_AFFECT_HEAL	HôÌi phu? sinh lýòc :
+TOOLTIP_SKILL_AFFECT_MOV_SPEED	Tôìc ðô?di chuyêÒn : +
+TOOLTIP_SKILL_AFFECT_REFLECT_MELEE	Kha?n?g pha? ?? :
+TOOLTIP_SKILL_AFFECT_RESIST_NORMAL	Kha?g thiêòt ha? vâòt ly?:
+TOOLTIP_SKILL_COOL_TIME	ThõÌi gian ðõ? :
+TOOLTIP_SKILL_DAMAGE_BONUS	Thiêòt ha? phe? thuâòt %d%%	SA
+TOOLTIP_SKILL_DEFEND_BONUS	Kha?g thiêòt ha? phe? thuâòt %d%%	SA
+TOOLTIP_SKILL_DURATION	ThõÌi gian ta? du?g : %d gi?
+TOOLTIP_SKILL_FORGET_BOOK_NAME	Sa?h la?g qu?
+TOOLTIP_SKILL_LEVEL	Câìp ðô?hiêòn ta? : %d
+TOOLTIP_SKILL_LEVEL_MASTER	Câìp ðô?hiêòn ta? : %d (Tha?h thu?)
+TOOLTIP_SKILL_LEVEL_WITH_MAX	Câìp ðô?hiêòn ta? : %d (Tôìi ? %d)
+TOOLTIP_SOCKET_EMPTY	Trôìng
+TOOLTIP_SOCKET_REFINABLE_ITEM	[ Mo? ðô?co?thêÒ gãìn linh tha?h ]
+TOOLTIP_SP_REGEN	HôÌi phu? tri?lýòc +%d%%	SA
+TOOLTIP_STR	Sýìc ma?h +%d	SA
+TOOLTIP_SURA	Tu la
+TOOLTIP_UNIQUE	V?song
+TOOLTIP_WARRIOR	Vo?sy
+TOOLTIP_WEAPON	Vu?khi
+TOOLTIP_WRISTLET	Vo?g tay
+UI_ACCEPT	Châìp nhâòn
+UI_CANCEL	Hu? bo
+UI_CLOSE	??g la?
+UI_DEF_FONT	Tahoma:16
+UI_DEF_FONT_LARGE	Tahoma:14
+UI_DEF_FONT_SMALL	Tahoma:12
+UI_DENY	TýÌ chôìi
+UI_ITEM	Vâòt phâÒm
+UI_LEFT_TIME	ThõÌi gian co? la? : %d gi?
+UI_NEXT	Tiêìp tu?
+UI_NOCONTENTS	Kh?g co?nôòi dung
+UI_NONAME	Kh?g co?t?
+UI_OK	Xa? nhâòn
+UI_POS_UNKNOWN	Vi?tri?kh?g xa? ??h
+UI_UNKNOWN	Kh?g xa? ??h
+USE_ITEM_FAILURE_PRIVATE_SHOP	Kh?g thêÒ sýÒ du?g mo? ðô?khi ?ng mõÒ cýÒa ha?g ca?nh?
+USE_SKILL_ERROR_UNKNOWN	LôÞi ky?n?g kh?g ro?nguy? nh? : %s
+UPLOAD_MARK_UPLOAD_NEED_RECONNECT	CâÌn kêìt nôìi la? ðê?ta? dâìu hiêòu bang hôòi l?
+UPLOAD_MARK_CHECK_NEED_RECONNECT	CâÌn kêìt nôìi la? ðê?kiêÒm tra dâìu hiêòu bang hôòi
+TOOLTIP_APPLY_RESIST_WARRIOR	Kha?g tâìn c?g cu? vo?sy?%d%%	SA
+TOOLTIP_APPLY_RESIST_ASSASSIN	Kha?g tâìn c?g cu? thi?h kha?h %d%%	SA
+TOOLTIP_APPLY_RESIST_SURA	Kha?g tâìn c?g cu? tu la %d%%	SA
+TOOLTIP_APPLY_RESIST_SHAMAN	Kha?g tâìn c?g cu? phu?thu? %d%%	SA
+FOR_MALE	Ðô?du?g cho pha? nam
+FOR_FEMALE	Ðô?du?g cho pha? nýÞ
+LOGIN_FAILURE_WEB_BLOCK	Ta? khoa? bi?ha? chêì ðãng nhâòp tr? trang chu
+GUILD_MARK_MIN_LEVEL	3
+GUILD_MARK_NOT_ENOUGH_LEVEL	Y? câÌu câìp ðô?pha? lõìn h? 3
+DO_YOU_SELL_ITEM1	Ba? co?muôìn ba? %s võìi gia?%s?
+DO_YOU_SELL_ITEM2	Ba? co?muôìn ba? %s %s võìi gia?%s?
+DO_YOU_BUY_ITEM1	Ba? co?muôìn mua %s võìi gia?%s?
+DO_YOU_BUY_ITEM2	Ba? co?muôìn mua %s %s võìi gia?%s?
+REFINE_FAILURE_CAN_NOT_ATTACH	Kh?g thêÒ na? %s va? vâòt phâÒm na?
+REFINE_FAILURE_NO_SOCKET0	Kh?g co?chôÞ ðê?na? ?
+REFINE_FAILURE_NO_GOLD_SOCKET	Kh?g co?chôÞ ðã? biêòt ðê?na? %s
+HOW_MANY_ITEM_DO_YOU_DROP1	Ba? co?muôìn výìt bo?%s?
+HOW_MANY_ITEM_DO_YOU_DROP2	Ba? co?muôìn výìt bo?%s %s?
+MONETARY_UNIT0	Lýõ?g
+MONETARY_UNIT1	Va?
+MONETARY_UNIT2	Tr? ty
+FISHING_NOTIFY1	Hi?h nh?%s ??cãìn c?!
+FISHING_NOTIFY2	Hi?h nh???c? ðýõòc %s!
+FISHING_SUCCESS1	C? ðýõòc %s!
+FISHING_SUCCESS2	Ðýõòc %s!
+PLAY_TIME_INFO_1	Ba? ??ch? ðýõòc
+PLAY_TIME_INFO_2	%d giõÌ %d phu?
+PLAY_TIME_INFO_3	ba? se?nhâòn ðýõòc %d%%
+PLAY_TIME_INFO_4	?êÒm kinh nghiêòm va?ty?lêò r? ðô

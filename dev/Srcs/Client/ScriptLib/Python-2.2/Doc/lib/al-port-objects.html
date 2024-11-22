@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>20.1.2 Port Objects </title>
+<META NAME="description" CONTENT="20.1.2 Port Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="al-config-objects.html">
+<LINK REL="up" href="module-al.html">
+<LINK REL="next" href="module-al-constants.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="al-config-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-al.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-al-constants.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="al-config-objects.html">20.1.1 Configuration Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-al.html">20.1 al  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-al-constants.html">20.2 AL  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0022120000000000000000">&nbsp;</A>
+<BR>
+20.1.2 Port Objects 
+</H2>
+
+<P>
+Port objects, as returned by <tt class="function">openport()</tt>, have the following
+methods:
+
+<P>
+<dl><dt><b><a name="l2h-3871"><tt class="method">closeport</tt></a></b>()
+<dd>
+Close the port.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3872"><tt class="method">getfd</tt></a></b>()
+<dd>
+Return the file descriptor as an int.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3873"><tt class="method">getfilled</tt></a></b>()
+<dd>
+Return the number of filled samples.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3874"><tt class="method">getfillable</tt></a></b>()
+<dd>
+Return the number of fillable samples.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3875"><tt class="method">readsamps</tt></a></b>(<var>nsamples</var>)
+<dd>
+Read a number of samples from the queue, blocking if necessary.
+Return the data as a string containing the raw data, (e.g., 2 bytes per
+sample in big-endian byte order (high byte, low byte) if you have set
+the sample width to 2 bytes).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3876"><tt class="method">writesamps</tt></a></b>(<var>samples</var>)
+<dd>
+Write samples into the queue, blocking if necessary.  The samples are
+encoded as described for the <tt class="method">readsamps()</tt> return value.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3877"><tt class="method">getfillpoint</tt></a></b>()
+<dd>
+Return the `fill point'.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3878"><tt class="method">setfillpoint</tt></a></b>(<var>fillpoint</var>)
+<dd>
+Set the `fill point'.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3879"><tt class="method">getconfig</tt></a></b>()
+<dd>
+Return a configuration object containing the current configuration of
+the port.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3880"><tt class="method">setconfig</tt></a></b>(<var>config</var>)
+<dd>
+Set the configuration from the argument, a configuration object.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3881"><tt class="method">getstatus</tt></a></b>(<var>list</var>)
+<dd>
+Get status information on last error.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="al-config-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-al.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-al-constants.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="al-config-objects.html">20.1.1 Configuration Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-al.html">20.1 al  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-al-constants.html">20.2 AL  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

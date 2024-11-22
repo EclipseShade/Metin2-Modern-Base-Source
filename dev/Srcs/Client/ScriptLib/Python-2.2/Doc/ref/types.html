@@ -1,0 +1,792 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.2 The standard type hierarchy</title>
+<META NAME="description" CONTENT="3.2 The standard type hierarchy">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="specialnames.html">
+<LINK REL="previous" href="objects.html">
+<LINK REL="up" href="datamodel.html">
+<LINK REL="next" href="specialnames.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="datamodel.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="specialnames.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="objects.html">3.1 Objects, values and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="datamodel.html">3. Data model</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="specialnames.html">3.3 Special method names</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005200000000000000000">&nbsp;</A><a name="l2h-21">&nbsp;</a>
+<BR>
+3.2 The standard type hierarchy
+</H1>
+
+<P>
+Below is a list of the types that are built into Python.  Extension
+modules written in C can define additional types.  Future versions of
+Python may add types to the type hierarchy (e.g., rational
+numbers, efficiently stored arrays of integers, etc.).
+
+<a name="l2h-59">&nbsp;</a>
+<P>
+Some of the type descriptions below contain a paragraph listing
+`special attributes.'  These are attributes that provide access to the
+implementation and are not intended for general use.  Their definition
+may change in the future.
+
+<P>
+<DL>
+<DT><STRONG>None</STRONG></DT>
+<DD>This type has a single value.  There is a single object with this value.
+This object is accessed through the built-in name <code>None</code>.
+It is used to signify the absence of a value in many situations, e.g.,
+it is returned from functions that don't explicitly return anything.
+Its truth value is false.
+
+<P>
+</DD>
+<DT><STRONG>NotImplemented</STRONG></DT>
+<DD>This type has a single value.  There is a single object with this value.
+This object is accessed through the built-in name <code>NotImplemented</code>.
+Numeric methods and rich comparison methods may return this value if
+they do not implement the operation for the operands provided.  (The
+interpreter will then try the reflected operation, or some other
+fallback, depending on the operator.)  Its truth value is true.
+
+<P>
+</DD>
+<DT><STRONG>Ellipsis</STRONG></DT>
+<DD>This type has a single value.  There is a single object with this value.
+This object is accessed through the built-in name <code>Ellipsis</code>.
+It is used to indicate the presence of the "<tt class="samp">...</tt>" syntax in a
+slice.  Its truth value is true.
+
+<P>
+</DD>
+<DT><STRONG>Numbers</STRONG></DT>
+<DD>These are created by numeric literals and returned as results by
+arithmetic operators and arithmetic built-in functions.  Numeric
+objects are immutable; once created their value never changes.  Python
+numbers are of course strongly related to mathematical numbers, but
+subject to the limitations of numerical representation in computers.
+
+<P>
+Python distinguishes between integers, floating point numbers, and
+complex numbers:
+
+<P>
+<DL>
+<DT><STRONG>Integers</STRONG></DT>
+<DD>These represent elements from the mathematical set of whole numbers.
+
+<P>
+There are two types of integers:
+
+<P>
+<DL>
+<DT><STRONG>Plain integers</STRONG></DT>
+<DD>These represent numbers in the range -2147483648 through 2147483647.
+(The range may be larger on machines with a larger natural word
+size, but not smaller.)
+When the result of an operation would fall outside this range, the
+exception <tt class="exception">OverflowError</tt> is raised.
+For the purpose of shift and mask operations, integers are assumed to
+have a binary, 2's complement notation using 32 or more bits, and
+hiding no bits from the user (i.e., all 4294967296 different bit
+patterns correspond to different values).
+
+<a name="l2h-23">&nbsp;</a>
+<P>
+</DD>
+<DT><STRONG>Long integers</STRONG></DT>
+<DD>These represent numbers in an unlimited range, subject to available
+(virtual) memory only.  For the purpose of shift and mask operations,
+a binary representation is assumed, and negative numbers are
+represented in a variant of 2's complement which gives the illusion of
+an infinite string of sign bits extending to the left.
+
+<P>
+</DD>
+</DL> 
+<P>
+The rules for integer representation are intended to give the most
+meaningful interpretation of shift and mask operations involving
+negative integers and the least surprises when switching between the
+plain and long integer domains.  For any operation except left shift,
+if it yields a result in the plain integer domain without causing
+overflow, it will yield the same result in the long integer domain or
+when using mixed operands.
+
+<P>
+</DD>
+<DT><STRONG>Floating point numbers</STRONG></DT>
+<DD>These represent machine-level double precision floating point numbers.  
+You are at the mercy of the underlying machine architecture and
+C implementation for the accepted range and handling of overflow.
+Python does not support single-precision floating point numbers; the
+savings in processor and memory usage that are usually the reason for using
+these is dwarfed by the overhead of using objects in Python, so there
+is no reason to complicate the language with two kinds of floating
+point numbers.
+
+<P>
+</DD>
+<DT><STRONG>Complex numbers</STRONG></DT>
+<DD>These represent complex numbers as a pair of machine-level double
+precision floating point numbers.  The same caveats apply as for
+floating point numbers.  The real and imaginary value of a complex
+number <code>z</code> can be retrieved through the attributes <code>z.real</code>
+and <code>z.imag</code>.
+
+<P>
+</DD>
+</DL> 
+<P>
+</DD>
+<DT><STRONG>Sequences</STRONG></DT>
+<DD>These represent finite ordered sets indexed by non-negative numbers.
+The built-in function <tt class="function">len()</tt><a name="l2h-60">&nbsp;</a>returns the
+number of items of a sequence.
+When the length of a sequence is <var>n</var>, the
+index set contains the numbers 0, 1, ..., <var>n</var>-1.  Item
+<var>i</var> of sequence <var>a</var> is selected by <code><var>a</var>[<var>i</var>]</code>.
+
+<P>
+Sequences also support slicing: <code><var>a</var>[<var>i</var>:<var>j</var>]</code>
+selects all items with index <var>k</var> such that <var>i</var> <code>&lt;=</code>
+<var>k</var> <code>&lt;</code> <var>j</var>.  When used as an expression, a slice is a
+sequence of the same type.  This implies that the index set is
+renumbered so that it starts at 0.
+
+<P>
+Sequences are distinguished according to their mutability:
+
+<P>
+<DL>
+<DT><STRONG>Immutable sequences</STRONG></DT>
+<DD>An object of an immutable sequence type cannot change once it is
+created.  (If the object contains references to other objects,
+these other objects may be mutable and may be changed; however,
+the collection of objects directly referenced by an immutable object
+cannot change.)
+
+<P>
+The following types are immutable sequences:
+
+<P>
+<DL>
+<DT><STRONG>Strings</STRONG></DT>
+<DD>The items of a string are characters.  There is no separate
+character type; a character is represented by a string of one item.
+Characters represent (at least) 8-bit bytes.  The built-in
+functions <tt class="function">chr()</tt><a name="l2h-61">&nbsp;</a>and
+<tt class="function">ord()</tt><a name="l2h-62">&nbsp;</a>convert between characters and
+nonnegative integers representing the byte values.  Bytes with the
+values 0-127 usually represent the corresponding ASCII values, but
+the interpretation of values is up to the program.  The string
+data type is also used to represent arrays of bytes, e.g., to hold data
+read from a file.
+
+<P>
+(On systems whose native character set is not ASCII, strings may use
+EBCDIC in their internal representation, provided the functions
+<tt class="function">chr()</tt> and <tt class="function">ord()</tt> implement a mapping between ASCII and
+EBCDIC, and string comparison preserves the ASCII order.
+Or perhaps someone can propose a better rule?)
+
+<P>
+</DD>
+<DT><STRONG>Unicode</STRONG></DT>
+<DD>The items of a Unicode object are Unicode characters.  A Unicode
+character is represented by a Unicode object of one item and can hold
+a 16-bit value representing a Unicode ordinal.  The built-in functions
+<tt class="function">unichr()</tt><a name="l2h-63">&nbsp;</a>and
+<tt class="function">ord()</tt><a name="l2h-64">&nbsp;</a>convert between characters and
+nonnegative integers representing the Unicode ordinals as defined in
+the Unicode Standard 3.0. Conversion from and to other encodings are
+possible through the Unicode method <tt class="method">encode</tt> and the built-in
+function <tt class="function">unicode()</tt><a name="l2h-65">&nbsp;</a>
+
+<P>
+</DD>
+<DT><STRONG>Tuples</STRONG></DT>
+<DD>The items of a tuple are arbitrary Python objects.
+Tuples of two or more items are formed by comma-separated lists
+of expressions.  A tuple of one item (a `singleton') can be formed
+by affixing a comma to an expression (an expression by itself does
+not create a tuple, since parentheses must be usable for grouping of
+expressions).  An empty tuple can be formed by an empty pair of
+parentheses.
+
+<P>
+</DD>
+</DL> 
+<P>
+</DD>
+<DT><STRONG>Mutable sequences</STRONG></DT>
+<DD>Mutable sequences can be changed after they are created.  The
+subscription and slicing notations can be used as the target of
+assignment and <tt class="keyword">del</tt> (delete) statements.
+
+<P>
+There is currently a single mutable sequence type:
+
+<P>
+<DL>
+<DT><STRONG>Lists</STRONG></DT>
+<DD>The items of a list are arbitrary Python objects.  Lists are formed
+by placing a comma-separated list of expressions in square brackets.
+(Note that there are no special cases needed to form lists of length 0
+or 1.)
+
+<P>
+</DD>
+</DL> 
+<P>
+The extension module <tt class="module">array</tt><a name="l2h-66">&nbsp;</a>provides an
+additional example of a mutable sequence type.
+
+<P>
+</DD>
+</DL> 
+<P>
+</DD>
+<DT><STRONG>Mappings</STRONG></DT>
+<DD>These represent finite sets of objects indexed by arbitrary index sets.
+The subscript notation <code>a[k]</code> selects the item indexed
+by <code>k</code> from the mapping <code>a</code>; this can be used in
+expressions and as the target of assignments or <tt class="keyword">del</tt> statements.
+The built-in function <tt class="function">len()</tt> returns the number of items
+in a mapping.
+
+<P>
+There is currently a single intrinsic mapping type:
+
+<P>
+<DL>
+<DT><STRONG>Dictionaries</STRONG></DT>
+<DD>These<a name="l2h-67">&nbsp;</a>represent finite sets of objects indexed by
+nearly arbitrary values.  The only types of values not acceptable as
+keys are values containing lists or dictionaries or other mutable
+types that are compared by value rather than by object identity, the
+reason being that the efficient implementation of dictionaries
+requires a key's hash value to remain constant.
+Numeric types used for keys obey the normal rules for numeric
+comparison: if two numbers compare equal (e.g., <code>1</code> and
+<code>1.0</code>) then they can be used interchangeably to index the same
+dictionary entry.
+
+<P>
+Dictionaries are mutable; they are created by the
+<code>{...}</code> notation (see section <A href="dict.html#dict">5.2.5</A>, ``Dictionary
+Displays'').
+
+<P>
+The extension modules <tt class="module">dbm</tt><a name="l2h-68">&nbsp;</a>
+<tt class="module">gdbm</tt><a name="l2h-69">&nbsp;</a> <tt class="module">bsddb</tt><a name="l2h-70">&nbsp;</a>provide additional examples of mapping types.
+
+<P>
+</DD>
+</DL> 
+<P>
+</DD>
+<DT><STRONG>Callable types</STRONG></DT>
+<DD>These<a name="l2h-71">&nbsp;</a>are the types to which the function call
+operation (see section <A href="calls.html#calls">5.3.4</A>, ``Calls'') can be applied:
+
+<P>
+<DL>
+<DT><STRONG>User-defined functions</STRONG></DT>
+<DD>A user-defined function object is created by a function definition
+(see section <A href="function.html#function">7.5</A>, ``Function definitions'').  It should be
+called with an argument
+list containing the same number of items as the function's formal
+parameter list.
+
+<P>
+Special attributes: <tt class="member">func_doc</tt> or <tt class="member">__doc__</tt> is the
+function's documentation string, or None if unavailable;
+<tt class="member">func_name</tt> or <tt class="member">__name__</tt> is the function's name;
+<tt class="member">func_defaults</tt> is a tuple containing default argument values for
+those arguments that have defaults, or <code>None</code> if no arguments
+have a default value; <tt class="member">func_code</tt> is the code object representing
+the compiled function body; <tt class="member">func_globals</tt> is (a reference to)
+the dictionary that holds the function's global variables -- it
+defines the global namespace of the module in which the function was
+defined; <tt class="member">func_dict</tt> or <tt class="member">__dict__</tt> contains the
+namespace supporting arbitrary function attributes;
+<tt class="member">func_closure</tt> is <code>None</code> or a tuple of cells that contain
+binding for the function's free variables.
+
+<P>
+Of these, <tt class="member">func_code</tt>, <tt class="member">func_defaults</tt>, <tt class="member">func_closure</tt>,
+<tt class="member">func_doc</tt>/<tt class="member">__doc__</tt>, and
+<tt class="member">func_dict</tt>/<tt class="member">__dict__</tt> may be writable; the
+others can never be changed.  Additional information about a
+function's definition can be retrieved from its code object; see the
+description of internal types below.
+
+<P>
+In Python 2.1, the <tt class="member">func_closure</tt> slot is always <code>None</code>
+unless nested scopes are enabled.  (See the appendix.)
+
+<P>
+<a name="l2h-25">&nbsp;</a><a name="l2h-72">&nbsp;</a>
+<P>
+</DD>
+<DT><STRONG>User-defined methods</STRONG></DT>
+<DD>A user-defined method object combines a class, a class instance (or
+<code>None</code>) and any callable object (normally a user-defined
+function).
+
+<P>
+Special read-only attributes: <tt class="member">im_self</tt> is the class instance
+object, <tt class="member">im_func</tt> is the function object;
+<tt class="member">im_class</tt> is the class of <tt class="member">im_self</tt> for bound methods,
+or the class that asked for the method for unbound methods);
+<tt class="member">__doc__</tt> is the method's documentation (same as
+<code>im_func.__doc__</code>); <tt class="member">__name__</tt> is the method name (same as
+<code>im_func.__name__</code>).
+
+<span class="versionnote">Changed in version 2.2:
+<tt class="member">im_self</tt> used to refer to the class that
+                defined the method.</span>
+
+<a name="l2h-27">&nbsp;</a>
+<P>
+Methods also support accessing (but not setting) the arbitrary
+function attributes on the underlying function object.
+
+<P>
+User-defined method objects are created in two ways: when getting an
+attribute of a class that is a user-defined function object, or when
+getting an attribute of a class instance that is a user-defined
+function object defined by the class of the instance.  In the former
+case (class attribute), the <tt class="member">im_self</tt> attribute is <code>None</code>,
+and the method object is said to be unbound; in the latter case
+(instance attribute), <tt class="method">im_self</tt> is the instance, and the method
+object is said to be bound.  For
+instance, when <tt class="class">C</tt> is a class which has a method
+<tt class="method">f()</tt>, <code>C.f</code> does not yield the function object
+<code>f</code>; rather, it yields an unbound method object <code>m</code> where
+<code>m.im_class</code> is <tt class="class">C</tt>, <code>m.im_func</code> is <tt class="method">f()</tt>, and
+<code>m.im_self</code> is <code>None</code>.  When <code>x</code> is a <tt class="class">C</tt>
+instance, <code>x.f</code> yields a bound method object <code>m</code> where
+<code>m.im_class</code> is <code>C</code>, <code>m.im_func</code> is <tt class="method">f()</tt>, and
+<code>m.im_self</code> is <code>x</code>.
+<a name="l2h-29">&nbsp;</a>
+<P>
+When an unbound user-defined method object is called, the underlying
+function (<tt class="member">im_func</tt>) is called, with the restriction that the
+first argument must be an instance of the proper class
+(<tt class="member">im_class</tt>) or of a derived class thereof.
+
+<P>
+When a bound user-defined method object is called, the underlying
+function (<tt class="member">im_func</tt>) is called, inserting the class instance
+(<tt class="member">im_self</tt>) in front of the argument list.  For instance, when
+<tt class="class">C</tt> is a class which contains a definition for a function
+<tt class="method">f()</tt>, and <code>x</code> is an instance of <tt class="class">C</tt>, calling
+<code>x.f(1)</code> is equivalent to calling <code>C.f(x, 1)</code>.
+
+<P>
+Note that the transformation from function object to (unbound or
+bound) method object happens each time the attribute is retrieved from
+the class or instance.  In some cases, a fruitful optimization is to
+assign the attribute to a local variable and call that local variable.
+Also notice that this transformation only happens for user-defined
+functions; other callable objects (and all non-callable objects) are
+retrieved without transformation.  It is also important to note that
+user-defined functions which are attributes of a class instance are
+not converted to bound methods; this <i>only</i> happens when the
+function is an attribute of the class.
+
+<P>
+</DD>
+<DT><STRONG>Generator functions<a name="l2h-30">&nbsp;</a></STRONG></DT>
+<DD>A function or method which uses the <tt class="keyword">yield</tt> statement (see
+section&nbsp;<A href="yield.html#yield">6.8</A>, ``The <tt class="keyword">yield</tt> statement'') is called a
+<i class="dfn">generator function</i>.  Such a function, when called, always
+returns an iterator object which can be used to execute the body of
+the function:  calling the iterator's <tt class="method">next()</tt> method will
+cause the function to execute until it provides a value using the
+<tt class="keyword">yield</tt> statement.  When the function executes a
+<tt class="keyword">return</tt> statement or falls off the end, a
+<tt class="exception">StopIteration</tt> exception is raised and the iterator will
+have reached the end of the set of values to be returned.
+
+<P>
+</DD>
+<DT><STRONG>Built-in functions</STRONG></DT>
+<DD>A built-in function object is a wrapper around a C function.  Examples
+of built-in functions are <tt class="function">len()</tt> and <tt class="function">math.sin()</tt>
+(<tt class="module">math</tt> is a standard built-in module).
+The number and type of the arguments are
+determined by the C function.
+Special read-only attributes: <tt class="member">__doc__</tt> is the function's
+documentation string, or <code>None</code> if unavailable; <tt class="member">__name__</tt>
+is the function's name; <tt class="member">__self__</tt> is set to <code>None</code> (but see
+the next item).
+
+<P>
+</DD>
+<DT><STRONG>Built-in methods</STRONG></DT>
+<DD>This is really a different disguise of a built-in function, this time
+containing an object passed to the C function as an implicit extra
+argument.  An example of a built-in method is
+<code><var>list</var>.append()</code>, assuming
+<var>list</var> is a list object.
+In this case, the special read-only attribute <tt class="member">__self__</tt> is set
+to the object denoted by <var>list</var>.
+
+<P>
+</DD>
+<DT><STRONG>Classes</STRONG></DT>
+<DD>Class objects are described below.  When a class object is called,
+a new class instance (also described below) is created and
+returned.  This implies a call to the class's <tt class="method">__init__()</tt> method
+if it has one.  Any arguments are passed on to the <tt class="method">__init__()</tt>
+method.  If there is no <tt class="method">__init__()</tt> method, the class must be called
+without arguments.
+<a name="l2h-32">&nbsp;</a><a name="l2h-73">&nbsp;</a>
+
+<P>
+</DD>
+<DT><STRONG>Class instances</STRONG></DT>
+<DD>Class instances are described below.  Class instances are callable
+only when the class has a <tt class="method">__call__()</tt> method; <code>x(arguments)</code>
+is a shorthand for <code>x.__call__(arguments)</code>.
+
+<P>
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>Modules</STRONG></DT>
+<DD>Modules are imported by the <tt class="keyword">import</tt> statement (see section
+<A href="import.html#import">6.12</A>, ``The <tt class="keyword">import</tt> statement'').
+A module object has a namespace implemented by a dictionary object
+(this is the dictionary referenced by the func_globals attribute of
+functions defined in the module).  Attribute references are translated
+to lookups in this dictionary, e.g., <code>m.x</code> is equivalent to
+<code>m.__dict__["x"]</code>.
+A module object does not contain the code object used to
+initialize the module (since it isn't needed once the initialization
+is done).
+
+<P>
+Attribute assignment updates the module's namespace dictionary,
+e.g., "<tt class="samp">m.x = 1</tt>" is equivalent to "<tt class="samp">m.__dict__["x"] = 1</tt>".
+
+<P>
+Special read-only attribute: <tt class="member">__dict__</tt> is the module's
+namespace as a dictionary object.
+<a name="l2h-34">&nbsp;</a>
+<P>
+Predefined (writable) attributes: <tt class="member">__name__</tt>
+is the module's name; <tt class="member">__doc__</tt> is the
+module's documentation string, or
+<code>None</code> if unavailable; <tt class="member">__file__</tt> is the pathname of the
+file from which the module was loaded, if it was loaded from a file.
+The <tt class="member">__file__</tt> attribute is not present for C modules that are
+statically linked into the interpreter; for extension modules loaded
+dynamically from a shared library, it is the pathname of the shared
+library file.
+<a name="l2h-36">&nbsp;</a><a name="l2h-74">&nbsp;</a>
+<P>
+</DD>
+<DT><STRONG>Classes</STRONG></DT>
+<DD>Class objects are created by class definitions (see section
+<A href="class.html#class">7.6</A>, ``Class definitions'').
+A class has a namespace implemented by a dictionary object.
+Class attribute references are translated to
+lookups in this dictionary,
+e.g., "<tt class="samp">C.x</tt>" is translated to "<tt class="samp">C.__dict__["x"]</tt>".
+When the attribute name is not found
+there, the attribute search continues in the base classes.  The search
+is depth-first, left-to-right in the order of occurrence in the
+base class list.
+When a class attribute reference would yield a user-defined function
+object, it is transformed into an unbound user-defined method object
+(see above).  The <tt class="member">im_class</tt> attribute of this method object is the
+class for which the attribute reference was initiated.
+
+<P>
+Class attribute assignments update the class's dictionary, never the
+dictionary of a base class.
+
+<P>
+A class object can be called (see above) to yield a class instance (see
+below).
+
+<P>
+Special attributes: <tt class="member">__name__</tt> is the class name;
+<tt class="member">__module__</tt> is the module name in which the class was defined;
+<tt class="member">__dict__</tt> is the dictionary containing the class's namespace;
+<tt class="member">__bases__</tt> is a tuple (possibly empty or a singleton)
+containing the base classes, in the order of their occurrence in the
+base class list; <tt class="member">__doc__</tt> is the class's documentation string,
+or None if undefined.
+<a name="l2h-38">&nbsp;</a>
+<P>
+</DD>
+<DT><STRONG>Class instances</STRONG></DT>
+<DD>A class instance is created by calling a class object (see above).
+A class instance has a namespace implemented as a dictionary which
+is the first place in which
+attribute references are searched.  When an attribute is not found
+there, and the instance's class has an attribute by that name,
+the search continues with the class attributes.  If a class attribute
+is found that is a user-defined function object (and in no other
+case), it is transformed into an unbound user-defined method object
+(see above).  The <tt class="member">im_class</tt> attribute of this method object is
+the
+class of the instance for which the attribute reference was initiated.
+If no class attribute is found, and the object's class has a
+<tt class="method">__getattr__()</tt> method, that is called to satisfy the lookup.
+
+<P>
+Attribute assignments and deletions update the instance's dictionary,
+never a class's dictionary.  If the class has a <tt class="method">__setattr__()</tt> or
+<tt class="method">__delattr__()</tt> method, this is called instead of updating the
+instance dictionary directly.
+
+<P>
+Class instances can pretend to be numbers, sequences, or mappings if
+they have methods with certain special names.  See
+section <A href="specialnames.html#specialnames">3.3</A>, ``Special method names.''
+
+<P>
+Special attributes: <tt class="member">__dict__</tt> is the attribute
+dictionary; <tt class="member">__class__</tt> is the instance's class.
+<a name="l2h-40">&nbsp;</a>
+<P>
+</DD>
+<DT><STRONG>Files</STRONG></DT>
+<DD>A file<a name="l2h-75">&nbsp;</a>object represents an open file.  File objects are
+created by the <tt class="function">open()</tt><a name="l2h-76">&nbsp;</a>built-in function,
+and also by
+<a name="l2h-42">&nbsp;</a><tt class="function">os.popen()</tt>,
+<tt class="function">os.fdopen()</tt>, and the
+<tt class="method">makefile()</tt><a name="l2h-44">&nbsp;</a>method of socket objects (and perhaps by other functions or methods
+provided by extension modules).  The objects
+<code>sys.stdin</code>,
+<code>sys.stdout</code> and
+<code>sys.stderr</code> are initialized to file objects
+corresponding to the interpreter's standard<a name="l2h-77">&nbsp;</a>input, output
+and error streams.  See the <em class="citetitle"><a
+ href="../lib/lib.html"
+ title="Python Library
+Reference"
+ >Python Library
+Reference</a></em> for complete documentation of file objects.
+<a name="l2h-46">&nbsp;</a>
+<P>
+</DD>
+<DT><STRONG>Internal types</STRONG></DT>
+<DD>A few types used internally by the interpreter are exposed to the user.
+Their definitions may change with future versions of the interpreter,
+but they are mentioned here for completeness.
+
+<P>
+<DL>
+<DT><STRONG>Code objects</STRONG></DT>
+<DD>Code objects represent <i>byte-compiled</i> executable Python code, or 
+<i>bytecode</i>.
+The difference between a code
+object and a function object is that the function object contains an
+explicit reference to the function's globals (the module in which it
+was defined), while a code object contains no context; 
+also the default argument values are stored in the function object,
+not in the code object (because they represent values calculated at
+run-time).  Unlike function objects, code objects are immutable and
+contain no references (directly or indirectly) to mutable objects.
+
+<P>
+Special read-only attributes: <tt class="member">co_name</tt> gives the function
+name; <tt class="member">co_argcount</tt> is the number of positional arguments
+(including arguments with default values); <tt class="member">co_nlocals</tt> is the
+number of local variables used by the function (including arguments);
+<tt class="member">co_varnames</tt> is a tuple containing the names of the local
+variables (starting with the argument names); <tt class="member">co_cellvars</tt> is
+a tuple containing the names of local variables that are referenced by
+nested functions; <tt class="member">co_freevars</tt> is a tuple containing the names
+of local variables that are neither local nor global; <tt class="member">co_code</tt>
+is a string representing the sequence of bytecode instructions;
+<tt class="member">co_consts</tt> is a tuple containing the literals used by the
+bytecode; <tt class="member">co_names</tt> is a tuple containing the names used by
+the bytecode; <tt class="member">co_filename</tt> is the filename from which the code
+was compiled; <tt class="member">co_firstlineno</tt> is the first line number of the
+function; <tt class="member">co_lnotab</tt> is a string encoding the mapping from
+byte code offsets to line numbers (for details see the source code of
+the interpreter); <tt class="member">co_stacksize</tt> is the required stack size
+(including local variables); <tt class="member">co_flags</tt> is an integer encoding
+a number of flags for the interpreter.
+
+<P>
+The <tt class="member">co_cellvars</tt> and <tt class="member">co_freevars</tt> are present in
+Python 2.1 when nested scopes are not enabled, but the code itself
+does not use or create cells.
+
+<P>
+<a name="l2h-48">&nbsp;</a>
+<P>
+The following flag bits are defined for <tt class="member">co_flags</tt>: bit
+<code>0x04</code> is set if the function uses the "<tt class="samp">*arguments</tt>" syntax
+to accept an arbitrary number of positional arguments; bit
+<code>0x08</code> is set if the function uses the "<tt class="samp">**keywords</tt>" syntax
+to accept arbitrary keyword arguments; other bits are used internally
+or reserved for future use; bit <code>0x10</code> is set if the function was
+compiled with nested scopes enabled.  If<a name="l2h-78">&nbsp;</a>a
+code object represents a function, the first item in
+<tt class="member">co_consts</tt> is the documentation string of the function, or
+<code>None</code> if undefined.
+
+<P>
+</DD>
+<DT><STRONG>Frame objects</STRONG></DT>
+<DD>Frame objects represent execution frames.  They may occur in traceback
+objects (see below).
+
+<P>
+Special read-only attributes: <tt class="member">f_back</tt> is to the previous
+stack frame (towards the caller), or <code>None</code> if this is the bottom
+stack frame; <tt class="member">f_code</tt> is the code object being executed in this
+frame; <tt class="member">f_locals</tt> is the dictionary used to look up local
+variables; <tt class="member">f_globals</tt> is used for global variables;
+<tt class="member">f_builtins</tt> is used for built-in (intrinsic) names;
+<tt class="member">f_restricted</tt> is a flag indicating whether the function is
+executing in restricted execution mode;
+<tt class="member">f_lineno</tt> gives the line number and <tt class="member">f_lasti</tt> gives the
+precise instruction (this is an index into the bytecode string of
+the code object).
+<a name="l2h-50">&nbsp;</a>
+<P>
+Special writable attributes: <tt class="member">f_trace</tt>, if not <code>None</code>, is a
+function called at the start of each source code line (this is used by
+the debugger); <tt class="member">f_exc_type</tt>, <tt class="member">f_exc_value</tt>,
+<tt class="member">f_exc_traceback</tt> represent the most recent exception caught in
+this frame.
+<a name="l2h-52">&nbsp;</a>
+<P>
+</DD>
+<DT><STRONG>Traceback objects</STRONG></DT>
+<DD>Traceback objects represent a stack trace of an exception.  A
+traceback object is created when an exception occurs.  When the search
+for an exception handler unwinds the execution stack, at each unwound
+level a traceback object is inserted in front of the current
+traceback.  When an exception handler is entered, the stack trace is
+made available to the program.
+(See section <A href="try.html#try">7.4</A>, ``The <code>try</code> statement.'')
+It is accessible as <code>sys.exc_traceback</code>, and also as the third
+item of the tuple returned by <code>sys.exc_info()</code>.  The latter is
+the preferred interface, since it works correctly when the program is
+using multiple threads.
+When the program contains no suitable handler, the stack trace is written
+(nicely formatted) to the standard error stream; if the interpreter is
+interactive, it is also made available to the user as
+<code>sys.last_traceback</code>.
+
+<a name="l2h-54">&nbsp;</a><a name="l2h-79">&nbsp;</a>
+
+<P>
+Special read-only attributes: <tt class="member">tb_next</tt> is the next level in the
+stack trace (towards the frame where the exception occurred), or
+<code>None</code> if there is no next level; <tt class="member">tb_frame</tt> points to the
+execution frame of the current level; <tt class="member">tb_lineno</tt> gives the line
+number where the exception occurred; <tt class="member">tb_lasti</tt> indicates the
+precise instruction.  The line number and last instruction in the
+traceback may differ from the line number of its frame object if the
+exception occurred in a <tt class="keyword">try</tt> statement with no matching
+except clause or with a finally clause.
+<a name="l2h-56">&nbsp;</a><a name="l2h-80">&nbsp;</a>
+<P>
+</DD>
+<DT><STRONG>Slice objects</STRONG></DT>
+<DD>Slice objects are used to represent slices when <i>extended slice
+syntax</i> is used.  This is a slice using two colons, or multiple slices
+or ellipses separated by commas, e.g., <code>a[i:j:step]</code>, <code>a[i:j,
+k:l]</code>, or <code>a[..., i:j])</code>.  They are also created by the built-in
+<tt class="function">slice()</tt><a name="l2h-81">&nbsp;</a>function.
+
+<P>
+Special read-only attributes: <tt class="member">start</tt> is the lower bound;
+<tt class="member">stop</tt> is the upper bound; <tt class="member">step</tt> is the step value; each is
+<code>None</code> if omitted. These attributes can have any type.
+<a name="l2h-58">&nbsp;</a>
+<P>
+</DD>
+</DL> 
+<P>
+</DD>
+</DL> 
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="datamodel.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="specialnames.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="objects.html">3.1 Objects, values and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="datamodel.html">3. Data model</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="specialnames.html">3.3 Special method names</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

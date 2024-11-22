@@ -1,0 +1,523 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.7 Extracting Parameters in Extension Functions
+</title>
+<META NAME="description" CONTENT="1.7 Extracting Parameters in Extension Functions
+">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="parseTupleAndKeywords.html">
+<LINK REL="previous" href="callingPython.html">
+<LINK REL="up" href="intro.html">
+<LINK REL="next" href="parseTupleAndKeywords.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="callingPython.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="parseTupleAndKeywords.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="callingPython.html">1.6 Calling Python Functions</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="parseTupleAndKeywords.html">1.8 Keyword Parameters for</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION003700000000000000000">&nbsp;</A>
+<BR>
+1.7 Extracting Parameters in Extension Functions
+         
+</H1>
+
+<P>
+The <tt class="cfunction">PyArg_ParseTuple()</tt> function is declared as follows:
+
+<P>
+<dl><dd><pre class="verbatim">
+int PyArg_ParseTuple(PyObject *arg, char *format, ...);
+</pre></dl>
+
+<P>
+The <var>arg</var> argument must be a tuple object containing an argument
+list passed from Python to a C function.  The <var>format</var> argument
+must be a format string, whose syntax is explained below.  The
+remaining arguments must be addresses of variables whose type is
+determined by the format string.  For the conversion to succeed, the
+<var>arg</var> object must match the format and the format must be
+exhausted.  On success, <tt class="cfunction">PyArg_ParseTuple()</tt> returns true,
+otherwise it returns false and raises an appropriate exception.
+
+<P>
+Note that while <tt class="cfunction">PyArg_ParseTuple()</tt> checks that the Python
+arguments have the required types, it cannot check the validity of the
+addresses of C variables passed to the call: if you make mistakes
+there, your code will probably crash or at least overwrite random bits
+in memory.  So be careful!
+
+<P>
+A format string consists of zero or more ``format units''.  A format
+unit describes one Python object; it is usually a single character or
+a parenthesized sequence of format units.  With a few exceptions, a
+format unit that is not a parenthesized sequence normally corresponds
+to a single address argument to <tt class="cfunction">PyArg_ParseTuple()</tt>.  In the
+following description, the quoted form is the format unit; the entry
+in (round) parentheses is the Python object type that matches the
+format unit; and the entry in [square] brackets is the type of the C
+variable(s) whose address should be passed.  (Use the "<tt class="samp">&amp;</tt>"operator to pass a variable's address.)
+
+<P>
+Note that any Python object references which are provided to the
+caller are <i>borrowed</i> references; do not decrement their
+reference count!
+
+<P>
+<DL>
+<DT><STRONG>"<tt class="samp">s</tt>" (string or Unicode object) [char *]</STRONG></DT>
+<DD>Convert a Python string or Unicode object to a C pointer to a
+character string.  You must not provide storage for the string
+itself; a pointer to an existing string is stored into the character
+pointer variable whose address you pass.  The C string is
+null-terminated.  The Python string must not contain embedded null
+bytes; if it does, a <tt class="exception">TypeError</tt> exception is raised.
+Unicode objects are converted to C strings using the default
+encoding. If this conversion fails, an <tt class="exception">UnicodeError</tt> is
+raised.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">s#</tt>" (string, Unicode or any read buffer compatible object) 
+[char *, int]</STRONG></DT>
+<DD>This variant on "<tt class="samp">s</tt>" stores into two C variables, the first one a
+pointer to a character string, the second one its length.  In this
+case the Python string may contain embedded null bytes.  Unicode
+objects pass back a pointer to the default encoded string version of the
+object if such a conversion is possible. All other read buffer
+compatible objects pass back a reference to the raw internal data
+representation.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">z</tt>" (string or <code>None</code>) [char *]</STRONG></DT>
+<DD>Like "<tt class="samp">s</tt>", but the Python object may also be <code>None</code>, in which
+case the C pointer is set to <tt class="constant">NULL</tt>.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">z#</tt>" (string or <code>None</code> or any read buffer compatible object) 
+[char *, int]</STRONG></DT>
+<DD>This is to "<tt class="samp">s#</tt>" as "<tt class="samp">z</tt>" is to "<tt class="samp">s</tt>".
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">u</tt>" (Unicode object) [Py_UNICODE *]</STRONG></DT>
+<DD>Convert a Python Unicode object to a C pointer to a null-terminated
+buffer of 16-bit Unicode (UTF-16) data.  As with "<tt class="samp">s</tt>", there is no need
+to provide storage for the Unicode data buffer; a pointer to the
+existing Unicode data is stored into the Py_UNICODE pointer variable whose
+address you pass.  
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">u#</tt>" (Unicode object) [Py_UNICODE *, int]</STRONG></DT>
+<DD>This variant on "<tt class="samp">u</tt>" stores into two C variables, the first one
+a pointer to a Unicode data buffer, the second one its length.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">es</tt>" (string, Unicode object or character buffer compatible
+object) [const char *encoding, char **buffer]</STRONG></DT>
+<DD>This variant on "<tt class="samp">s</tt>" is used for encoding Unicode and objects
+convertible to Unicode into a character buffer. It only works for
+encoded data without embedded <tt class="constant">NULL</tt> bytes.
+
+<P>
+The variant reads one C variable and stores into two C variables, the
+first one a pointer to an encoding name string (<var>encoding</var>), and the
+second a pointer to a pointer to a character buffer (<var>**buffer</var>,
+the buffer used for storing the encoded data).
+
+<P>
+The encoding name must map to a registered codec. If set to <tt class="constant">NULL</tt>,
+the default encoding is used.
+
+<P>
+<tt class="cfunction">PyArg_ParseTuple()</tt> will allocate a buffer of the needed
+size using <tt class="cfunction">PyMem_NEW()</tt>, copy the encoded data into this
+buffer and adjust <var>*buffer</var> to reference the newly allocated
+storage. The caller is responsible for calling
+<tt class="cfunction">PyMem_Free()</tt> to free the allocated buffer after usage.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">et</tt>" (string, Unicode object or character buffer compatible
+object) [const char *encoding, char **buffer]</STRONG></DT>
+<DD>Same as "<tt class="samp">es</tt>" except that string objects are passed through without
+recoding them. Instead, the implementation assumes that the string
+object uses the encoding passed in as parameter.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">es#</tt>" (string, Unicode object or character buffer compatible
+object) [const char *encoding, char **buffer, int *buffer_length]</STRONG></DT>
+<DD>This variant on "<tt class="samp">s#</tt>" is used for encoding Unicode and objects
+convertible to Unicode into a character buffer. It reads one C
+variable and stores into three C variables, the first one a pointer to
+an encoding name string (<var>encoding</var>), the second a pointer to a
+pointer to a character buffer (<var>**buffer</var>, the buffer used for
+storing the encoded data) and the third one a pointer to an integer
+(<var>*buffer_length</var>, the buffer length).
+
+<P>
+The encoding name must map to a registered codec. If set to <tt class="constant">NULL</tt>,
+the default encoding is used.
+
+<P>
+There are two modes of operation: 
+
+<P>
+If <var>*buffer</var> points a <tt class="constant">NULL</tt> pointer,
+<tt class="cfunction">PyArg_ParseTuple()</tt> will allocate a buffer of the needed
+size using <tt class="cfunction">PyMem_NEW()</tt>, copy the encoded data into this
+buffer and adjust <var>*buffer</var> to reference the newly allocated
+storage. The caller is responsible for calling
+<tt class="cfunction">PyMem_Free()</tt> to free the allocated buffer after usage.
+
+<P>
+If <var>*buffer</var> points to a non-<tt class="constant">NULL</tt> pointer (an already allocated
+buffer), <tt class="cfunction">PyArg_ParseTuple()</tt> will use this location as
+buffer and interpret <var>*buffer_length</var> as buffer size. It will then
+copy the encoded data into the buffer and 0-terminate it. Buffer
+overflow is signalled with an exception.
+
+<P>
+In both cases, <var>*buffer_length</var> is set to the length of the
+encoded data without the trailing 0-byte.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">et#</tt>" (string, Unicode object or character buffer compatible
+object) [const char *encoding, char **buffer]</STRONG></DT>
+<DD>Same as "<tt class="samp">es#</tt>" except that string objects are passed through without
+recoding them. Instead, the implementation assumes that the string
+object uses the encoding passed in as parameter.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">b</tt>" (integer) [char]</STRONG></DT>
+<DD>Convert a Python integer to a tiny int, stored in a C <tt class="ctype">char</tt>.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">h</tt>" (integer) [short int]</STRONG></DT>
+<DD>Convert a Python integer to a C <tt class="ctype">short int</tt>.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">i</tt>" (integer) [int]</STRONG></DT>
+<DD>Convert a Python integer to a plain C <tt class="ctype">int</tt>.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">l</tt>" (integer) [long int]</STRONG></DT>
+<DD>Convert a Python integer to a C <tt class="ctype">long int</tt>.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">L</tt>" (integer) [LONG_LONG]</STRONG></DT>
+<DD>Convert a Python integer to a C <tt class="ctype">long long</tt>.  This format is only
+available on platforms that support <tt class="ctype">long long</tt> (or <tt class="ctype">_int64</tt>
+on Windows).
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">c</tt>" (string of length 1) [char]</STRONG></DT>
+<DD>Convert a Python character, represented as a string of length 1, to a
+C <tt class="ctype">char</tt>.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">f</tt>" (float) [float]</STRONG></DT>
+<DD>Convert a Python floating point number to a C <tt class="ctype">float</tt>.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">d</tt>" (float) [double]</STRONG></DT>
+<DD>Convert a Python floating point number to a C <tt class="ctype">double</tt>.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">D</tt>" (complex) [Py_complex]</STRONG></DT>
+<DD>Convert a Python complex number to a C <tt class="ctype">Py_complex</tt> structure.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">O</tt>" (object) [PyObject *]</STRONG></DT>
+<DD>Store a Python object (without any conversion) in a C object pointer.
+The C program thus receives the actual object that was passed.  The
+object's reference count is not increased.  The pointer stored is not
+<tt class="constant">NULL</tt>.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">O!</tt>" (object) [<var>typeobject</var>, PyObject *]</STRONG></DT>
+<DD>Store a Python object in a C object pointer.  This is similar to
+"<tt class="samp">O</tt>", but takes two C arguments: the first is the address of a
+Python type object, the second is the address of the C variable (of
+type <tt class="ctype">PyObject *</tt>) into which the object pointer is stored.
+If the Python object does not have the required type,
+<tt class="exception">TypeError</tt> is raised.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">O&amp;</tt>" (object) [<var>converter</var>, <var>anything</var>]</STRONG></DT>
+<DD>Convert a Python object to a C variable through a <var>converter</var>
+function.  This takes two arguments: the first is a function, the
+second is the address of a C variable (of arbitrary type), converted
+to <tt class="ctype">void *</tt>.  The <var>converter</var> function in turn is called as
+follows:
+
+<P>
+<var>status</var><code> = </code><var>converter</var><code>(</code><var>object</var>, <var>address</var><code>);</code>
+
+<P>
+where <var>object</var> is the Python object to be converted and
+<var>address</var> is the <tt class="ctype">void *</tt> argument that was passed to
+<tt class="cfunction">PyArg_ConvertTuple()</tt>.  The returned <var>status</var> should be
+<code>1</code> for a successful conversion and <code>0</code> if the conversion
+has failed.  When the conversion fails, the <var>converter</var> function
+should raise an exception.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">S</tt>" (string) [PyStringObject *]</STRONG></DT>
+<DD>Like "<tt class="samp">O</tt>" but requires that the Python object is a string object.
+Raises <tt class="exception">TypeError</tt> if the object is not a string object.
+The C variable may also be declared as <tt class="ctype">PyObject *</tt>.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">U</tt>" (Unicode string) [PyUnicodeObject *]</STRONG></DT>
+<DD>Like "<tt class="samp">O</tt>" but requires that the Python object is a Unicode object.
+Raises <tt class="exception">TypeError</tt> if the object is not a Unicode object.
+The C variable may also be declared as <tt class="ctype">PyObject *</tt>.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">t#</tt>" (read-only character buffer) [char *, int]</STRONG></DT>
+<DD>Like "<tt class="samp">s#</tt>", but accepts any object which implements the read-only 
+buffer interface.  The <tt class="ctype">char *</tt> variable is set to point to the
+first byte of the buffer, and the <tt class="ctype">int</tt> is set to the length of
+the buffer.  Only single-segment buffer objects are accepted;
+<tt class="exception">TypeError</tt> is raised for all others.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">w</tt>" (read-write character buffer) [char *]</STRONG></DT>
+<DD>Similar to "<tt class="samp">s</tt>", but accepts any object which implements the
+read-write buffer interface.  The caller must determine the length of
+the buffer by other means, or use "<tt class="samp">w#</tt>" instead.  Only
+single-segment buffer objects are accepted; <tt class="exception">TypeError</tt> is
+raised for all others.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">w#</tt>" (read-write character buffer) [char *, int]</STRONG></DT>
+<DD>Like "<tt class="samp">s#</tt>", but accepts any object which implements the
+read-write buffer interface.  The <tt class="ctype">char *</tt> variable is set to
+point to the first byte of the buffer, and the <tt class="ctype">int</tt> is set to
+the length of the buffer.  Only single-segment buffer objects are
+accepted; <tt class="exception">TypeError</tt> is raised for all others.
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">(<var>items</var>)</tt>" (tuple) [<var>matching-items</var>]</STRONG></DT>
+<DD>The object must be a Python sequence whose length is the number of
+format units in <var>items</var>.  The C arguments must correspond to the
+individual format units in <var>items</var>.  Format units for sequences
+may be nested.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+Prior to Python version 1.5.2, this format specifier
+only accepted a tuple containing the individual parameters, not an
+arbitrary sequence.  Code which previously caused
+<tt class="exception">TypeError</tt> to be raised here may now proceed without an
+exception.  This is not expected to be a problem for existing code.</span>
+
+<P>
+</DD>
+</DL>
+
+<P>
+It is possible to pass Python long integers where integers are
+requested; however no proper range checking is done -- the most
+significant bits are silently truncated when the receiving field is
+too small to receive the value (actually, the semantics are inherited
+from downcasts in C -- your mileage may vary).
+
+<P>
+A few other characters have a meaning in a format string.  These may
+not occur inside nested parentheses.  They are:
+
+<P>
+<DL>
+<DT><STRONG>"<tt class="samp">|</tt>"</STRONG></DT>
+<DD>Indicates that the remaining arguments in the Python argument list are
+optional.  The C variables corresponding to optional arguments should
+be initialized to their default value -- when an optional argument is
+not specified, <tt class="cfunction">PyArg_ParseTuple()</tt> does not touch the contents
+of the corresponding C variable(s).
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">:</tt>"</STRONG></DT>
+<DD>The list of format units ends here; the string after the colon is used
+as the function name in error messages (the ``associated value'' of
+the exception that <tt class="cfunction">PyArg_ParseTuple()</tt> raises).
+
+<P>
+</DD>
+<DT><STRONG>"<tt class="samp">;</tt>"</STRONG></DT>
+<DD>The list of format units ends here; the string after the semicolon is
+used as the error message <i>instead</i> of the default error message.
+Clearly, "<tt class="samp">:</tt>" and "<tt class="samp">;</tt>" mutually exclude each other.
+
+<P>
+</DD>
+</DL>
+
+<P>
+Some example calls:
+
+<P>
+<dl><dd><pre class="verbatim">
+    int ok;
+    int i, j;
+    long k, l;
+    char *s;
+    int size;
+
+    ok = PyArg_ParseTuple(args, ""); /* No arguments */
+        /* Python call: f() */
+</pre></dl>
+
+<P>
+<dl><dd><pre class="verbatim">
+    ok = PyArg_ParseTuple(args, "s", &amp;s); /* A string */
+        /* Possible Python call: f('whoops!') */
+</pre></dl>
+
+<P>
+<dl><dd><pre class="verbatim">
+    ok = PyArg_ParseTuple(args, "lls", &amp;k, &amp;l, &amp;s); /* Two longs and a string */
+        /* Possible Python call: f(1, 2, 'three') */
+</pre></dl>
+
+<P>
+<dl><dd><pre class="verbatim">
+    ok = PyArg_ParseTuple(args, "(ii)s#", &amp;i, &amp;j, &amp;s, &amp;size);
+        /* A pair of ints and a string, whose size is also returned */
+        /* Possible Python call: f((1, 2), 'three') */
+</pre></dl>
+
+<P>
+<dl><dd><pre class="verbatim">
+    {
+        char *file;
+        char *mode = "r";
+        int bufsize = 0;
+        ok = PyArg_ParseTuple(args, "s|si", &amp;file, &amp;mode, &amp;bufsize);
+        /* A string, and optionally another string and an integer */
+        /* Possible Python calls:
+           f('spam')
+           f('spam', 'w')
+           f('spam', 'wb', 100000) */
+    }
+</pre></dl>
+
+<P>
+<dl><dd><pre class="verbatim">
+    {
+        int left, top, right, bottom, h, v;
+        ok = PyArg_ParseTuple(args, "((ii)(ii))(ii)",
+                 &amp;left, &amp;top, &amp;right, &amp;bottom, &amp;h, &amp;v);
+        /* A rectangle and a point */
+        /* Possible Python call:
+           f(((0, 0), (400, 300)), (10, 10)) */
+    }
+</pre></dl>
+
+<P>
+<dl><dd><pre class="verbatim">
+    {
+        Py_complex c;
+        ok = PyArg_ParseTuple(args, "D:myfunction", &amp;c);
+        /* a complex, also providing a function name for errors */
+        /* Possible Python call: myfunction(1+2j) */
+    }
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="callingPython.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="parseTupleAndKeywords.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="callingPython.html">1.6 Calling Python Functions</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="parseTupleAndKeywords.html">1.8 Keyword Parameters for</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>10.8 Supporting Cyclic Garbarge Collection </title>
+<META NAME="description" CONTENT="10.8 Supporting Cyclic Garbarge Collection ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="supporting-iteration.html">
+<LINK REL="up" href="newTypes.html">
+<LINK REL="next" href="example-cycle-support.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="supporting-iteration.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="newTypes.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="example-cycle-support.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="supporting-iteration.html">10.7 Supporting the Iterator</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="newTypes.html">10. Defining New Object</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="example-cycle-support.html">10.8.1 Example Cycle Collector</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0012800000000000000000">&nbsp;</A>
+<BR>
+10.8 Supporting Cyclic Garbarge Collection
+         
+</H1>
+
+<P>
+Python's support for detecting and collecting garbage which involves
+circular references requires support from object types which are
+``containers'' for other objects which may also be containers.  Types
+which do not store references to other objects, or which only store
+references to atomic types (such as numbers or strings), do not need
+to provide any explicit support for garbage collection.
+
+<P>
+To create a container type, the <tt class="member">tp_flags</tt> field of the type
+object must include the <tt class="constant">Py_TPFLAGS_HAVE_GC</tt> and provide an
+implementation of the <tt class="member">tp_traverse</tt> handler.  If instances of the
+type are mutable, a <tt class="member">tp_clear</tt> implementation must also be
+provided.
+
+<P>
+<dl><dt><b><a name="l2h-802"><tt>Py_TPFLAGS_HAVE_GC</tt></a></b>
+<dd>
+  Objects with a type with this flag set must conform with the rules
+  documented here.  For convenience these objects will be referred to
+  as container objects.
+</dl>
+
+<P>
+Constructors for container types must conform to two rules:
+
+<P>
+
+<OL>
+<LI>The memory for the object must be allocated using
+       <tt class="cfunction">PyObject_GC_New()</tt> or <tt class="cfunction">PyObject_GC_VarNew()</tt>.
+
+<P>
+</LI>
+<LI>Once all the fields which may contain references to other
+       containers are initialized, it must call
+       <tt class="cfunction">PyObject_GC_Track()</tt>.
+</LI>
+</OL>
+
+<P>
+<dl><dt><var>TYPE</var>* <b><a name="l2h-803"><tt class="cfunction">PyObject_GC_New</tt></a></b>(<var>TYPE, PyTypeObject *type</var>)
+<dd>
+  Analogous to <tt class="cfunction">PyObject_New()</tt> but for container objects with
+  the <tt class="constant">Py_TPFLAGS_HAVE_GC</tt> flag set.
+</dl>
+
+<P>
+<dl><dt><var>TYPE</var>* <b><a name="l2h-804"><tt class="cfunction">PyObject_GC_NewVar</tt></a></b>(<var>TYPE, PyTypeObject *type,
+                                                   int size</var>)
+<dd>
+  Analogous to <tt class="cfunction">PyObject_NewVar()</tt> but for container objects
+  with the <tt class="constant">Py_TPFLAGS_HAVE_GC</tt> flag set.
+</dl>
+
+<P>
+<dl><dt>PyVarObject * <b><a name="l2h-805"><tt class="cfunction">PyObject_GC_Resize</tt></a></b>(<var>PyVarObject *op, int</var>)
+<dd>
+  Resize an object allocated by <tt class="cfunction">PyObject_NewVar()</tt>.  Returns
+  the resized object or <tt class="constant">NULL</tt> on failure.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-806"><tt class="cfunction">PyObject_GC_Track</tt></a></b>(<var>PyObject *op</var>)
+<dd>
+  Adds the object <var>op</var> to the set of container objects tracked by
+  the collector.  The collector can run at unexpected times so objects
+  must be valid while being tracked.  This should be called once all
+  the fields followed by the <tt class="member">tp_traverse</tt> handler become valid,
+  usually near the end of the constructor.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-807"><tt class="cfunction">_PyObject_GC_TRACK</tt></a></b>(<var>PyObject *op</var>)
+<dd>
+  A macro version of <tt class="cfunction">PyObject_GC_Track()</tt>.  It should not be
+  used for extension modules.
+</dl>
+
+<P>
+Similarly, the deallocator for the object must conform to a similar
+pair of rules:
+
+<P>
+
+<OL>
+<LI>Before fields which refer to other containers are invalidated,
+       <tt class="cfunction">PyObject_GC_UnTrack()</tt> must be called.
+
+<P>
+</LI>
+<LI>The object's memory must be deallocated using
+       <tt class="cfunction">PyObject_GC_Del()</tt>.
+</LI>
+</OL>
+
+<P>
+<dl><dt>void <b><a name="l2h-808"><tt class="cfunction">PyObject_GC_Del</tt></a></b>(<var>PyObject *op</var>)
+<dd>
+  Releases memory allocated to an object using
+  <tt class="cfunction">PyObject_GC_New()</tt> or <tt class="cfunction">PyObject_GC_NewVar()</tt>.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-809"><tt class="cfunction">PyObject_GC_UnTrack</tt></a></b>(<var>PyObject *op</var>)
+<dd>
+  Remove the object <var>op</var> from the set of container objects tracked
+  by the collector.  Note that <tt class="cfunction">PyObject_GC_Track()</tt> can be
+  called again on this object to add it back to the set of tracked
+  objects.  The deallocator (<tt class="member">tp_dealloc</tt> handler) should call
+  this for the object before any of the fields used by the
+  <tt class="member">tp_traverse</tt> handler become invalid.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-810"><tt class="cfunction">_PyObject_GC_UNTRACK</tt></a></b>(<var>PyObject *op</var>)
+<dd>
+  A macro version of <tt class="cfunction">PyObject_GC_UnTrack()</tt>.  It should not be
+  used for extension modules.
+</dl>
+
+<P>
+The <tt class="member">tp_traverse</tt> handler accepts a function parameter of this
+type:
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-811">int (*visitproc)(PyObject *object, void *arg)</a></tt></b>
+<dd>
+  Type of the visitor function passed to the <tt class="member">tp_traverse</tt>
+  handler.  The function should be called with an object to traverse
+  as <var>object</var> and the third parameter to the <tt class="member">tp_traverse</tt>
+  handler as <var>arg</var>.
+</dl>
+
+<P>
+The <tt class="member">tp_traverse</tt> handler must have the following type:
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-812">int (*traverseproc)(PyObject *self,
+                                visitproc visit, void *arg)</a></tt></b>
+<dd>
+  Traversal function for a container object.  Implementations must
+  call the <var>visit</var> function for each object directly contained by
+  <var>self</var>, with the parameters to <var>visit</var> being the contained
+  object and the <var>arg</var> value passed to the handler.  If
+  <var>visit</var> returns a non-zero value then an error has occurred and
+  that value should be returned immediately.
+</dl>
+
+<P>
+The <tt class="member">tp_clear</tt> handler must be of the <tt class="ctype">inquiry</tt> type, or
+<tt class="constant">NULL</tt> if the object is immutable.
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-813">int (*inquiry)(PyObject *self)</a></tt></b>
+<dd>
+  Drop references that may have created reference cycles.  Immutable
+  objects do not have to define this method since they can never
+  directly create reference cycles.  Note that the object must still
+  be valid after calling this method (don't just call
+  <tt class="cfunction">Py_DECREF()</tt> on a reference).  The collector will call
+  this method if it detects that this object is involved in a
+  reference cycle.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="example-cycle-support.html">10.8.1 Example Cycle Collector Support</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="supporting-iteration.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="newTypes.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="example-cycle-support.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="supporting-iteration.html">10.7 Supporting the Iterator</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="newTypes.html">10. Defining New Object</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="example-cycle-support.html">10.8.1 Example Cycle Collector</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.2 doctest -- Test docstrings represent reality</title>
+<META NAME="description" CONTENT="5.2 doctest -- Test docstrings represent reality">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-unittest.html">
+<LINK REL="previous" href="module-pydoc.html">
+<LINK REL="up" href="misc.html">
+<LINK REL="next" HREF="node123.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-pydoc.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node123.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-pydoc.html">5.1 pydoc  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node123.html">5.2.1 Normal Usage</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007200000000000000000">
+5.2 <tt class="module">doctest</tt> --
+         Test docstrings represent reality</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<P>
+The <tt class="module">doctest</tt> module searches a module's docstrings for text that looks
+like an interactive Python session, then executes all such sessions to verify
+they still work exactly as shown.  Here's a complete but small example:
+
+<P>
+<dl><dd><pre class="verbatim">
+"""
+This is module example.
+
+Example supplies one function, factorial.  For example,
+
+&gt;&gt;&gt; factorial(5)
+120
+"""
+
+def factorial(n):
+    """Return the factorial of n, an exact integer &gt;= 0.
+
+    If the result is small enough to fit in an int, return an int.
+    Else return a long.
+
+    &gt;&gt;&gt; [factorial(n) for n in range(6)]
+    [1, 1, 2, 6, 24, 120]
+    &gt;&gt;&gt; [factorial(long(n)) for n in range(6)]
+    [1, 1, 2, 6, 24, 120]
+    &gt;&gt;&gt; factorial(30)
+    265252859812191058636308480000000L
+    &gt;&gt;&gt; factorial(30L)
+    265252859812191058636308480000000L
+    &gt;&gt;&gt; factorial(-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: n must be &gt;= 0
+
+    Factorials of floats are OK, but the float must be an exact integer:
+    &gt;&gt;&gt; factorial(30.1)
+    Traceback (most recent call last):
+        ...
+    ValueError: n must be exact integer
+    &gt;&gt;&gt; factorial(30.0)
+    265252859812191058636308480000000L
+
+    It must also not be ridiculously large:
+    &gt;&gt;&gt; factorial(1e100)
+    Traceback (most recent call last):
+        ...
+    OverflowError: n too large
+    """
+</pre></dl>
+<dl><dd><pre class="verbatim">
+    import math
+    if not n &gt;= 0:
+        raise ValueError("n must be &gt;= 0")
+    if math.floor(n) != n:
+        raise ValueError("n must be exact integer")
+    if n+1 == n:  # e.g., 1e300
+        raise OverflowError("n too large")
+    result = 1
+    factor = 2
+    while factor &lt;= n:
+        try:
+            result *= factor
+        except OverflowError:
+            result *= long(factor)
+        factor += 1
+    return result
+
+def _test():
+    import doctest, example
+    return doctest.testmod(example)
+
+if __name__ == "__main__":
+    _test()
+</pre></dl>
+
+<P>
+If you run <span class="file">example.py</span> directly from the command line, doctest works
+its magic:
+
+<P>
+<dl><dd><pre class="verbatim">
+$ python example.py
+$
+</pre></dl>
+
+<P>
+There's no output!  That's normal, and it means all the examples worked.
+Pass <b class="programopt">-v</b> to the script, and doctest prints a detailed log
+of what it's trying, and prints a summary at the end:
+
+<P>
+<dl><dd><pre class="verbatim">
+$ python example.py -v
+Running example.__doc__
+Trying: factorial(5)
+Expecting: 120
+ok
+0 of 1 examples failed in example.__doc__
+Running example.factorial.__doc__
+Trying: [factorial(n) for n in range(6)]
+Expecting: [1, 1, 2, 6, 24, 120]
+ok
+Trying: [factorial(long(n)) for n in range(6)]
+Expecting: [1, 1, 2, 6, 24, 120]
+ok
+Trying: factorial(30)
+Expecting: 265252859812191058636308480000000L
+ok
+</pre></dl>
+
+<P>
+And so on, eventually ending with:
+
+<P>
+<dl><dd><pre class="verbatim">
+Trying: factorial(1e100)
+Expecting:
+Traceback (most recent call last):
+    ...
+OverflowError: n too large
+ok
+0 of 8 examples failed in example.factorial.__doc__
+2 items passed all tests:
+   1 tests in example
+   8 tests in example.factorial
+9 tests in 2 items.
+9 passed and 0 failed.
+Test passed.
+$
+</pre></dl>
+
+<P>
+That's all you need to know to start making productive use of doctest!  Jump
+in.  The docstrings in doctest.py contain detailed information about all
+aspects of doctest, and we'll just cover the more important points here.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node123.html">5.2.1 Normal Usage</a>
+<LI><A href="node124.html">5.2.2 Which Docstrings Are Examined?</a>
+<LI><A href="node125.html">5.2.3 What's the Execution Context?</a>
+<LI><A href="node126.html">5.2.4 What About Exceptions?</a>
+<LI><A href="node127.html">5.2.5 Advanced Usage</a>
+<LI><A href="node128.html">5.2.6 How are Docstring Examples Recognized?</a>
+<LI><A href="node129.html">5.2.7 Warnings</a>
+<LI><A href="node130.html">5.2.8 Soapbox</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-pydoc.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node123.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-pydoc.html">5.1 pydoc  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node123.html">5.2.1 Normal Usage</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

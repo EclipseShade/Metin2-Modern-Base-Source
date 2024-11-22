@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.8 findertools -- The finder's Apple Events interface</title>
+<META NAME="description" CONTENT="2.8 findertools -- The finder's Apple Events interface">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-macspeech.html">
+<LINK REL="previous" href="module-macostools.html">
+<LINK REL="up" href="macpython-modules.html">
+<LINK REL="next" href="module-macspeech.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-macostools.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-macspeech.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-macostools.html">2.7 macostools  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-macspeech.html">2.9 macspeech  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION004800000000000000000">
+2.8 <tt class="module">findertools</tt> --
+         The <b class="program">finder</b>'s Apple Events interface</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Macintosh</span>.</p>
+
+<P>
+This module contains routines that give Python programs access to some
+functionality provided by the finder. They are implemented as wrappers
+around the AppleEvent<a name="l2h-107">&nbsp;</a>interface to the finder.
+
+<P>
+All file and folder parameters can be specified either as full
+pathnames or as FSSpec objects.
+
+<P>
+The <tt class="module">findertools</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-100"><tt class="function">launch</tt></a></b>(<var>file</var>)
+<dd>
+Tell the finder to launch <var>file</var>. What launching means depends on the file:
+applications are started, folders are opened and documents are opened
+in the correct application.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-101"><tt class="function">Print</tt></a></b>(<var>file</var>)
+<dd>
+Tell the finder to print a file (again specified by full pathname or
+FSSpec). The behaviour is identical to selecting the file and using
+the print command in the finder's file menu.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-102"><tt class="function">copy</tt></a></b>(<var>file, destdir</var>)
+<dd>
+Tell the finder to copy a file or folder <var>file</var> to folder
+<var>destdir</var>. The function returns an Alias object pointing to
+the new file.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-103"><tt class="function">move</tt></a></b>(<var>file, destdir</var>)
+<dd>
+Tell the finder to move a file or folder <var>file</var> to folder
+<var>destdir</var>. The function returns an Alias object pointing to
+the new file.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-104"><tt class="function">sleep</tt></a></b>()
+<dd>
+Tell the finder to put the Macintosh to sleep, if your machine
+supports it.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-105"><tt class="function">restart</tt></a></b>()
+<dd>
+Tell the finder to perform an orderly restart of the machine.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-106"><tt class="function">shutdown</tt></a></b>()
+<dd>
+Tell the finder to perform an orderly shutdown of the machine.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-macostools.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-macspeech.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-macostools.html">2.7 macostools  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-macspeech.html">2.9 macspeech  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

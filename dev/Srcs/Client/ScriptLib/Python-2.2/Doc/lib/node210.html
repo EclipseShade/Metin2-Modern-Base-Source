@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.25.3.4 Deferred translations</title>
+<META NAME="description" CONTENT="6.25.3.4 Deferred translations">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" HREF="node209.html">
+<LINK REL="up" HREF="node206.html">
+<LINK REL="next" HREF="node211.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node209.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node206.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node211.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node209.html">6.25.3.3 Changing languages on</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node206.html">6.25.3 Internationalizing your programs</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node211.html">6.25.4 Acknowledgements</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082534000000000000000">
+6.25.3.4 Deferred translations</A>
+</H3>
+
+<P>
+In most coding situations, strings are translated were they are coded.
+Occasionally however, you need to mark strings for translation, but
+defer actual translation until later.  A classic example is:
+
+<P>
+<dl><dd><pre class="verbatim">
+animals = ['mollusk',
+           'albatross',
+	   'rat',
+	   'penguin',
+	   'python',
+	   ]
+# ...
+for a in animals:
+    print a
+</pre></dl>
+
+<P>
+Here, you want to mark the strings in the <code>animals</code> list as being
+translatable, but you don't actually want to translate them until they
+are printed.
+
+<P>
+Here is one way you can handle this situation:
+
+<P>
+<dl><dd><pre class="verbatim">
+def _(message): return message
+
+animals = [_('mollusk'),
+           _('albatross'),
+	   _('rat'),
+	   _('penguin'),
+	   _('python'),
+	   ]
+
+del _
+
+# ...
+for a in animals:
+    print _(a)
+</pre></dl>
+
+<P>
+This works because the dummy definition of <tt class="function">_()</tt> simply returns
+the string unchanged.  And this dummy definition will temporarily
+override any definition of <tt class="function">_()</tt> in the built-in namespace
+(until the <tt class="keyword">del</tt> command).
+Take care, though if you have a previous definition of <tt class="function">_</tt> in
+the local namespace.
+
+<P>
+Note that the second use of <tt class="function">_()</tt> will not identify ``a'' as
+being translatable to the <b class="program">pygettext</b> program, since it is not
+a string.
+
+<P>
+Another way to handle this is with the following example:
+
+<P>
+<dl><dd><pre class="verbatim">
+def N_(message): return message
+
+animals = [N_('mollusk'),
+           N_('albatross'),
+	   N_('rat'),
+	   N_('penguin'),
+	   N_('python'),
+	   ]
+
+# ...
+for a in animals:
+    print _(a)
+</pre></dl>
+
+<P>
+In this case, you are marking translatable strings with the function
+<tt class="function">N_()</tt>,<A NAME="tex2html41"
+  HREF="#foot22677"><SUP>6.6</SUP></A> which won't conflict with any definition of
+<tt class="function">_()</tt>.  However, you will need to teach your message extraction
+program to look for translatable strings marked with <tt class="function">N_()</tt>.
+<b class="program">pygettext</b> and <b class="program">xpot</b> both support this through the
+use of command line switches.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot22677">...N_(),</A><A NAME="foot22677"
+ HREF="node210.html#tex2html41"><SUP>6.6</SUP></A>
+<DD>The choice of <tt class="function">N_()</tt> here is totally
+arbitrary; it could have just as easily been
+<tt class="function">MarkThisStringForTranslation()</tt>.
+
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node209.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node206.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node211.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node209.html">6.25.3.3 Changing languages on</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node206.html">6.25.3 Internationalizing your programs</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node211.html">6.25.4 Acknowledgements</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

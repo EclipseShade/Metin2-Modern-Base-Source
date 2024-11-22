@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.3.1 Attribute references</title>
+<META NAME="description" CONTENT="5.3.1 Attribute references">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="subscriptions.html">
+<LINK REL="previous" href="primaries.html">
+<LINK REL="up" href="primaries.html">
+<LINK REL="next" href="subscriptions.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="primaries.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="primaries.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="subscriptions.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="primaries.html">5.3 Primaries</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="primaries.html">5.3 Primaries</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="subscriptions.html">5.3.2 Subscriptions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007310000000000000000">&nbsp;</A>
+<BR>
+5.3.1 Attribute references
+</H2>
+<a name="l2h-247">&nbsp;</a>
+<P>
+An attribute reference is a primary followed by a period and a name:
+
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-attributeref">attributeref</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="node50.html#tok-primary">primary</a> "." <a href="identifiers.html#tok-identifier">identifier</a></code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+The primary must evaluate to an object of a type that supports
+attribute references, e.g., a module, list, or an instance.  This
+object is then asked to produce the attribute whose name is the
+identifier.  If this attribute is not available, the exception
+<tt class="exception">AttributeError</tt><a name="l2h-248">&nbsp;</a>is raised.
+Otherwise, the type and value of the object produced is determined by
+the object.  Multiple evaluations of the same attribute reference may
+yield different objects.
+<a name="l2h-249">&nbsp;</a>
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="primaries.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="primaries.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="subscriptions.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="primaries.html">5.3 Primaries</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="primaries.html">5.3 Primaries</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="subscriptions.html">5.3.2 Subscriptions</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.10 ConfigParser -- Configuration file parser</title>
+<META NAME="description" CONTENT="5.10 ConfigParser -- Configuration file parser">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-fileinput.html">
+<LINK REL="previous" href="module-array.html">
+<LINK REL="up" href="misc.html">
+<LINK REL="next" href="ConfigParser-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-array.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="ConfigParser-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-array.html">5.9 array  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="ConfigParser-objects.html">5.10.1 ConfigParser Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0071000000000000000000">
+5.10 <tt class="module">ConfigParser</tt> --
+         Configuration file parser</A>
+</H1>
+
+<P>
+
+
+<P>
+This module defines the class <tt class="class">ConfigParser</tt>.
+<a name="l2h-1004">&nbsp;</a>The <tt class="class">ConfigParser</tt> class implements a basic configuration file
+parser language which provides a structure similar to what you would
+find on Microsoft Windows INI files.  You can use this to write Python
+programs which can be customized by end users easily.
+
+<P>
+The configuration file consists of sections, lead by a
+"<tt class="samp">[section]</tt>" header and followed by "<tt class="samp">name: value</tt>" entries,
+with continuations in the style of <a class="rfc" name="rfcref-61420"
+href="http://www.faqs.org/rfcs/rfc822.html">RFC 822</a>; "<tt class="samp">name=value</tt>" is
+also accepted.  Note that leading whitespace is removed from values.
+The optional values can contain format strings which refer to other
+values in the same section, or values in a special
+<code>DEFAULT</code> section.  Additional defaults can be provided upon
+initialization and retrieval.  Lines beginning with "<tt class="character">#</tt>" or
+"<tt class="character">;</tt>" are ignored and may be used to provide comments.
+
+<P>
+For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+foodir: %(dir)s/whatever
+dir=frob
+</pre></dl>
+
+<P>
+would resolve the "<tt class="samp">%(dir)s</tt>" to the value of
+"<tt class="samp">dir</tt>" ("<tt class="samp">frob</tt>" in this case).  All reference expansions are
+done on demand.
+
+<P>
+Default values can be specified by passing them into the
+<tt class="class">ConfigParser</tt> constructor as a dictionary.  Additional defaults 
+may be passed into the <tt class="method">get()</tt> method which will override all
+others.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-995"><tt class="class">ConfigParser</tt></a></b>(<big>[</big><var>defaults</var><big>]</big>)
+<dd>
+Return a new instance of the <tt class="class">ConfigParser</tt> class.  When
+<var>defaults</var> is given, it is initialized into the dictionary of
+intrinsic defaults.  The keys must be strings, and the values must be 
+appropriate for the "<tt class="samp">%()s</tt>" string interpolation.  Note that
+<var>__name__</var> is an intrinsic default; its value is the section name,
+and will override any value provided in <var>defaults</var>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-996"><tt class="exception">NoSectionError</tt></a></b>
+<dd>
+Exception raised when a specified section is not found.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-997"><tt class="exception">DuplicateSectionError</tt></a></b>
+<dd>
+Exception raised when multiple sections with the same name are found,
+or if <tt class="method">add_section()</tt> is called with the name of a section that 
+is already present.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-998"><tt class="exception">NoOptionError</tt></a></b>
+<dd>
+Exception raised when a specified option is not found in the specified 
+section.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-999"><tt class="exception">InterpolationError</tt></a></b>
+<dd>
+Exception raised when problems occur performing string interpolation.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-1000"><tt class="exception">InterpolationDepthError</tt></a></b>
+<dd>
+Exception raised when string interpolation cannot be completed because
+the number of iterations exceeds <tt class="constant">MAX_INTERPOLATION_DEPTH</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-1001"><tt class="exception">MissingSectionHeaderError</tt></a></b>
+<dd>
+Exception raised when attempting to parse a file which has no section
+headers.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-1002"><tt class="exception">ParsingError</tt></a></b>
+<dd>
+Exception raised when errors occur attempting to parse a file.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1003"><tt>MAX_INTERPOLATION_DEPTH</tt></a></b>
+<dd>
+The maximum depth for recursive interpolation for <tt class="method">get()</tt> when
+the <var>raw</var> parameter is false.  Setting this does not change the
+allowed recursion depth.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-shlex.html">shlex</a></tt>:</b>
+    <dd>Support for a creating Unix shell-like
+                    minilanguages which can be used as an alternate format
+                    for application configuration files.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="ConfigParser-objects.html">5.10.1 ConfigParser Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-array.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="ConfigParser-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-array.html">5.9 array  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="ConfigParser-objects.html">5.10.1 ConfigParser Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

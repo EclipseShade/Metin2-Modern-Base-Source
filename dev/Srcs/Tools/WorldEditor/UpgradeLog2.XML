@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="WorldEditor_VC90">
+</Property><Property Name="Projektmappendatei" Value="D:\tt (1)\dev\Srcs\Tools\WorldEditor\WorldEditor_VC90.sln">
+</Property><Property Name="Date" Value="Freitag, 27. September 2013">
+</Property><Property Name="Time" Value="19:30:20">
+</Property><Property Name="Protokollnummer" Value="2">
+</Property></Properties><Event ErrorLevel="0" Project="SphereLib_VC90" Source="..\..\Client\SphereLib\SphereLib_VC90.vcproj" Description="Converting project file 'D:\tt (1)\dev\Srcs\Client\SphereLib\SphereLib_VC90.vcproj'.">
+</Event><Event ErrorLevel="2" Project="SphereLib_VC90" Source="..\..\Client\SphereLib\SphereLib_VC90.vcproj" Description="File 'D:\tt (1)\dev\Srcs\Client\SphereLib\SphereLib_VC90.vcproj' was not found.">
+</Event><Event ErrorLevel="2" Project="SphereLib_VC90" Source="..\..\Client\SphereLib\SphereLib_VC90.vcproj" Description="Fehler beim Aktualisieren des Projekts.">
+</Event><Event ErrorLevel="3" Project="SphereLib_VC90" Source="..\..\Client\SphereLib\SphereLib_VC90.vcproj" Description="Nicht konvertiert">
+</Event></UpgradeLog>

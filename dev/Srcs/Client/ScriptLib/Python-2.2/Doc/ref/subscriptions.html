@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.3.2 Subscriptions</title>
+<META NAME="description" CONTENT="5.3.2 Subscriptions">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="slicings.html">
+<LINK REL="previous" href="attribute-references.html">
+<LINK REL="up" href="primaries.html">
+<LINK REL="next" href="slicings.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="attribute-references.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="primaries.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="slicings.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="attribute-references.html">5.3.1 Attribute references</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="primaries.html">5.3 Primaries</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="slicings.html">5.3.3 Slicings</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007320000000000000000">&nbsp;</A>
+<a name="l2h-250">&nbsp;</a>
+<BR>
+5.3.2 Subscriptions
+</H2>
+
+<P>
+A subscription selects an item of a sequence (string, tuple or list)
+or mapping (dictionary) object:
+<a name="l2h-251">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-subscription">subscription</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="node50.html#tok-primary">primary</a> "[" <a href="exprlists.html#tok-expression_list">expression_list</a> "]"</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+The primary must evaluate to an object of a sequence or mapping type.
+
+<P>
+If the primary is a mapping, the expression list must evaluate to an
+object whose value is one of the keys of the mapping, and the
+subscription selects the value in the mapping that corresponds to that
+key.  (The expression list is a tuple except if it has exactly one
+item.)
+
+<P>
+If the primary is a sequence, the expression (list) must evaluate to a
+plain integer.  If this value is negative, the length of the sequence
+is added to it (so that, e.g., <code>x[-1]</code> selects the last item of
+<code>x</code>.)  The resulting value must be a nonnegative integer less
+than the number of items in the sequence, and the subscription selects
+the item whose index is that value (counting from zero).
+
+<P>
+A string's items are characters.  A character is not a separate data
+type but a string of exactly one character.
+<a name="l2h-252">&nbsp;</a>
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="attribute-references.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="primaries.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="slicings.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="attribute-references.html">5.3.1 Attribute references</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="primaries.html">5.3 Primaries</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="slicings.html">5.3.3 Slicings</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

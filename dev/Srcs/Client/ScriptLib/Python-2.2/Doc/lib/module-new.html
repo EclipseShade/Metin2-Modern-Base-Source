@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.26 new -- Creation of runtime internal objects</title>
+<META NAME="description" CONTENT="3.26 new -- Creation of runtime internal objects">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-site.html">
+<LINK REL="previous" href="module-repr.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="module-site.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="subclassing-reprs.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-site.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="subclassing-reprs.html">3.25.2 Subclassing Repr Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-site.html">3.27 site  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0052600000000000000000">
+3.26 <tt class="module">new</tt> --
+         Creation of runtime internal objects</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">new</tt> module allows an interface to the interpreter object
+creation functions. This is for use primarily in marshal-type functions,
+when a new object needs to be created ``magically'' and not by using the
+regular creation functions. This module provides a low-level interface
+to the interpreter, so care must be exercised when using this module.
+
+<P>
+The <tt class="module">new</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-641"><tt class="function">instance</tt></a></b>(<var>class</var><big>[</big><var>, dict</var><big>]</big>)
+<dd>
+This function creates an instance of <var>class</var> with dictionary
+<var>dict</var> without calling the <tt class="method">__init__()</tt> constructor.  If
+<var>dict</var> is omitted or <code>None</code>, a new, empty dictionary is
+created for the new instance.  Note that there are no guarantees that
+the object will be in a consistent state.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-642"><tt class="function">instancemethod</tt></a></b>(<var>function, instance, class</var>)
+<dd>
+This function will return a method object, bound to <var>instance</var>, or
+unbound if <var>instance</var> is <code>None</code>.  <var>function</var> must be
+callable, and <var>instance</var> must be an instance object or
+<code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-643"><tt class="function">function</tt></a></b>(<var>code, globals</var><big>[</big><var>, name</var><big>[</big><var>, argdefs</var><big>]</big><big>]</big>)
+<dd>
+Returns a (Python) function with the given code and globals. If
+<var>name</var> is given, it must be a string or <code>None</code>.  If it is a
+string, the function will have the given name, otherwise the function
+name will be taken from <code><var>code</var>.co_name</code>.  If
+<var>argdefs</var> is given, it must be a tuple and will be used to
+determine the default values of parameters.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-644"><tt class="function">code</tt></a></b>(<var>argcount, nlocals, stacksize, flags, codestring,
+                       constants, names, varnames, filename, name, firstlineno,
+                       lnotab</var>)
+<dd>
+This function is an interface to the <tt class="cfunction">PyCode_New()</tt> C
+function.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-645"><tt class="function">module</tt></a></b>(<var>name</var>)
+<dd>
+This function returns a new module object with name <var>name</var>.
+<var>name</var> must be a string.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-646"><tt class="function">classobj</tt></a></b>(<var>name, baseclasses, dict</var>)
+<dd>
+This function returns a new class object, with name <var>name</var>, derived
+from <var>baseclasses</var> (which should be a tuple of classes) and with
+namespace <var>dict</var>.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="subclassing-reprs.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-site.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="subclassing-reprs.html">3.25.2 Subclassing Repr Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-site.html">3.27 site  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>14.5.1 Wave_read Objects </title>
+<META NAME="description" CONTENT="14.5.1 Wave_read Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="Wave-write-objects.html">
+<LINK REL="previous" href="module-wave.html">
+<LINK REL="up" href="module-wave.html">
+<LINK REL="next" href="Wave-write-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-wave.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-wave.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="Wave-write-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-wave.html">14.5 wave  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-wave.html">14.5 wave  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="Wave-write-objects.html">14.5.2 Wave_write Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0016510000000000000000">&nbsp;</A>
+<BR>
+14.5.1 Wave_read Objects 
+</H2>
+
+<P>
+Wave_read objects, as returned by <tt class="function">open()</tt>, have the
+following methods:
+
+<P>
+<dl><dt><b><a name="l2h-3552"><tt class="method">close</tt></a></b>()
+<dd>
+Close the stream, and make the instance unusable. This is
+called automatically on object collection.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3553"><tt class="method">getnchannels</tt></a></b>()
+<dd>
+Returns number of audio channels (<code>1</code> for mono, <code>2</code> for
+stereo).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3554"><tt class="method">getsampwidth</tt></a></b>()
+<dd>
+Returns sample width in bytes.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3555"><tt class="method">getframerate</tt></a></b>()
+<dd>
+Returns sampling frequency.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3556"><tt class="method">getnframes</tt></a></b>()
+<dd>
+Returns number of audio frames.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3557"><tt class="method">getcomptype</tt></a></b>()
+<dd>
+Returns compression type (<code>'NONE'</code> is the only supported type).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3558"><tt class="method">getcompname</tt></a></b>()
+<dd>
+Human-readable version of <tt class="method">getcomptype()</tt>.
+Usually <code>'not compressed'</code> parallels <code>'NONE'</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3559"><tt class="method">getparams</tt></a></b>()
+<dd>
+Returns a tuple
+<code>(<var>nchannels</var>, <var>sampwidth</var>, <var>framerate</var>,
+<var>nframes</var>, <var>comptype</var>, <var>compname</var>)</code>, equivalent to output
+of the <tt class="method">get*()</tt> methods.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3560"><tt class="method">readframes</tt></a></b>(<var>n</var>)
+<dd>
+Reads and returns at most <var>n</var> frames of audio, as a string of bytes.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3561"><tt class="method">rewind</tt></a></b>()
+<dd>
+Rewind the file pointer to the beginning of the audio stream.
+</dl>
+
+<P>
+The following two methods are defined for compatibility with the
+<tt class="module"><a href="module-aifc.html">aifc</a></tt> module, and don't do anything interesting.
+
+<P>
+<dl><dt><b><a name="l2h-3562"><tt class="method">getmarkers</tt></a></b>()
+<dd>
+Returns <code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3563"><tt class="method">getmark</tt></a></b>(<var>id</var>)
+<dd>
+Raise an error.
+</dl>
+
+<P>
+The following two methods define a term ``position'' which is compatible
+between them, and is otherwise implementation dependent.
+
+<P>
+<dl><dt><b><a name="l2h-3564"><tt class="method">setpos</tt></a></b>(<var>pos</var>)
+<dd>
+Set the file pointer to the specified position.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3565"><tt class="method">tell</tt></a></b>()
+<dd>
+Return current file pointer position.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-wave.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-wave.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="Wave-write-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-wave.html">14.5 wave  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-wave.html">14.5 wave  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="Wave-write-objects.html">14.5.2 Wave_write Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

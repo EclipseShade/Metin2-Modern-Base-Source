@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.3 Information Units </title>
+<META NAME="description" CONTENT="6.3 Information Units ">
+<META NAME="keywords" CONTENT="doc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="doc.css">
+<link rel="first" href="doc.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="showing-examples.html">
+<LINK REL="previous" href="meta-info.html">
+<LINK REL="up" href="special-constructs.html">
+<LINK REL="next" href="showing-examples.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="meta-info.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="special-constructs.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="showing-examples.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="meta-info.html">6.2 Meta-information Markup</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="special-constructs.html">6 Special Markup Constructs</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="showing-examples.html">6.4 Showing Code Examples</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000730000000000000000">&nbsp;</A>
+<BR>
+6.3 Information Units 
+</H2>
+
+<P>
+XXX Explain terminology, or come up with something more ``lay.''
+
+<P>
+There are a number of environments used to describe specific
+    features provided by modules.  Each environment requires
+    parameters needed to provide basic information about what is being
+    described, and the environment content should be the description.
+    Most of these environments make entries in the general index (if
+    one is being produced for the document); if no index entry is
+    desired, non-indexing variants are available for many of these
+    environments.  The environments have names of the form
+    <code><var>feature</var>desc</code>, and the non-indexing variants are named
+    <code><var>feature</var>descni</code>.  The available variants are explicitly
+    included in the list below.
+
+<P>
+For each of these environments, the first parameter, <var>name</var>,
+    provides the name by which the feature is accessed.
+
+<P>
+Environments which describe features of objects within a module,
+    such as object methods or data attributes, allow an optional
+    <var>type name</var> parameter.  When the feature is an attribute of
+    class instances, <var>type name</var> only needs to be given if the
+    class was not the most recently described class in the module; the
+    <var>name</var> value from the most recent <tt class='environment'>&#92;classdesc</tt> is implied.
+    For features of built-in or extension types, the <var>type name</var>
+    value should always be provided.  Another special case includes
+    methods and members of general ``protocols,'' such as the
+    formatter and writer protocols described for the
+    <tt class="module">formatter</tt> module: these may be documented without any
+    specific implementation classes, and will always require the
+    <var>type name</var> parameter to be provided.
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>cfuncdesc</b>}</tt>
+    <tt>{</tt><var>type</var><tt>}</tt><tt>{</tt><var>name</var><tt>}</tt><tt>{</tt><var>args</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>cfuncdesc</b>}</tt>
+<dd>
+      Environment used to described a C function.  The <var>type</var>
+      should be specified as a <tt class="keyword">typedef</tt> name, <code>struct
+      <var>tag</var></code>, or the name of a primitive type.  If it is a pointer
+      type, the trailing asterisk should not be preceded by a space.
+      <var>name</var> should be the name of the function (or function-like
+      pre-processor macro), and <var>args</var> should give the types and
+      names of the parameters.  The names need to be given so they may
+      be used in the description.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>ctypedesc</b>}</tt>
+    <tt>[</tt><var>tag</var><tt>]</tt><tt>{</tt><var>name</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>ctypedesc</b>}</tt>
+<dd>
+      Environment used to described a C type.  The <var>name</var>
+      parameter should be the <tt class="keyword">typedef</tt> name.  If the type is
+      defined as a <tt class="keyword">struct</tt> without a <tt class="keyword">typedef</tt>,
+      <var>name</var> should have the form <code>struct <var>tag</var></code>.
+      <var>name</var> will be added to the index unless <var>tag</var> is
+      provided, in which case <var>tag</var> will be used instead.
+      <var>tag</var> should not be used for a <tt class="keyword">typedef</tt> name.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>cvardesc</b>}</tt>
+    <tt>{</tt><var>type</var><tt>}</tt><tt>{</tt><var>name</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>cvardesc</b>}</tt>
+<dd>
+      Description of a global C variable.  <var>type</var> should be the
+      <tt class="keyword">typedef</tt> name, <code>struct <var>tag</var></code>, or the name of
+      a primitive type.  If variable has a pointer type, the trailing
+      asterisk should <i>not</i> be preceded by a space.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>datadesc</b>}</tt>
+    <tt>{</tt><var>name</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>datadesc</b>}</tt>
+<dd>
+      This environment is used to document global data in a module,
+      including both variables and values used as ``defined
+      constants.''  Class and object attributes are not documented
+      using this environment.
+    </dl>
+    
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>datadescni</b>}</tt>
+    <tt>{</tt><var>name</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>datadescni</b>}</tt>
+<dd>
+      Like <tt class='environment'>&#92;datadesc</tt>, but without creating any index entries.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>excclassdesc</b>}</tt>
+    <tt>{</tt><var>name</var><tt>}</tt><tt>{</tt><var>constructor parameters</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>excclassdesc</b>}</tt>
+<dd>
+      Descibe an exception defined by a class.  <var>constructor
+      parameters</var> should not include the <var>self</var> parameter or
+      the parentheses used in the call syntax.  To describe an
+      exception class without describing the parameters to its
+      constructor, use the <tt class='environment'>&#92;excdesc</tt> environment.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>excdesc</b>}</tt>
+    <tt>{</tt><var>name</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>excdesc</b>}</tt>
+<dd>
+      Describe an exception.  This may be either a string exception or
+      a class exception.  In the case of class exceptions, the
+      constructor parameters are not described; use <tt class='environment'>&#92;excclassdesc</tt>
+      to describe an exception class and its constructor.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>funcdesc</b>}</tt>
+    <tt>{</tt><var>name</var><tt>}</tt><tt>{</tt><var>parameters</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>funcdesc</b>}</tt>
+<dd>
+      Describe a module-level function.  <var>parameters</var> should
+      not include the parentheses used in the call syntax.  Object
+      methods are not documented using this environment.  Bound object
+      methods placed in the module namespace as part of the public
+      interface of the module are documented using this, as they are
+      equivalent to normal functions for most purposes.
+
+<P>
+The description should include information about the parameters
+      required and how they are used (especially whether mutable
+      objects passed as parameters are modified), side effects, and
+      possible exceptions.  A small example may be provided.
+    </dl>
+    
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>funcdescni</b>}</tt>
+    <tt>{</tt><var>name</var><tt>}</tt><tt>{</tt><var>parameters</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>funcdescni</b>}</tt>
+<dd>
+      Like <tt class='environment'>&#92;funcdesc</tt>, but without creating any index entries.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>classdesc</b>}</tt>
+    <tt>{</tt><var>name</var><tt>}</tt><tt>{</tt><var>constructor parameters</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>classdesc</b>}</tt>
+<dd>
+      Describe a class and its constructor.  <var>constructor
+      parameters</var> should not include the <var>self</var> parameter or
+      the parentheses used in the call syntax.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>classdesc*</b>}</tt>
+    <tt>{</tt><var>name</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>classdesc*</b>}</tt>
+<dd>
+      Describe a class without describing the constructor.  This can
+      be used to describe classes that are merely containers for
+      attributes or which should never be instantiated or subclassed
+      by user code.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>memberdesc</b>}</tt>
+    <tt>[</tt><var>type name</var><tt>]</tt><tt>{</tt><var>name</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>memberdesc</b>}</tt>
+<dd>
+      Describe an object data attribute.  The description should
+      include information about the type of the data to be expected
+      and whether it may be changed directly.
+    </dl>
+    
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>memberdescni</b>}</tt>
+    <tt>[</tt><var>type name</var><tt>]</tt><tt>{</tt><var>name</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>memberdescni</b>}</tt>
+<dd>
+      Like <tt class='environment'>&#92;memberdesc</tt>, but without creating any index entries.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>methoddesc</b>}</tt>
+    <tt>[</tt><var>type name</var><tt>]</tt><tt>{</tt><var>name</var><tt>}</tt><tt>{</tt><var>parameters</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>methoddesc</b>}</tt>
+<dd>
+      Describe an object method.  <var>parameters</var> should not include
+      the <var>self</var> parameter or the parentheses used in the call
+      syntax.  The description should include similar information to
+      that described for <tt class='environment'>&#92;funcdesc</tt>.
+    </dl>
+    
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>methoddescni</b>}</tt>
+    <tt>[</tt><var>type name</var><tt>]</tt><tt>{</tt><var>name</var><tt>}</tt><tt>{</tt><var>parameters</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>methoddescni</b>}</tt>
+<dd>
+      Like <tt class='environment'>&#92;methoddesc</tt>, but without creating any index entries.
+    </dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="meta-info.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="special-constructs.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="showing-examples.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="meta-info.html">6.2 Meta-information Markup</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="special-constructs.html">6 Special Markup Constructs</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="showing-examples.html">6.4 Showing Code Examples</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

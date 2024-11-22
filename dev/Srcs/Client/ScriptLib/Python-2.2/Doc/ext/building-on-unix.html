@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3. Building C and C++ Extensions on Unix </title>
+<META NAME="description" CONTENT="3. Building C and C++ Extensions on Unix ">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="building-on-windows.html">
+<LINK REL="previous" href="defining-new-types.html">
+<LINK REL="up" HREF="ext.html">
+<LINK REL="next" href="custom-interps.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node28.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="ext.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="custom-interps.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node28.html">2.2.6 More Suggestions</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="ext.html">Extending and Embedding the</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="custom-interps.html">3.1 Building Custom Interpreters</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005000000000000000000">&nbsp;</A>
+<BR>
+3. Building C and C++ Extensions on Unix
+     
+</H1>
+
+<P>
+
+<P>
+Starting in Python 1.4, Python provides a special make file for
+building make files for building dynamically-linked extensions and
+custom interpreters.  The make file make file builds a make file
+that reflects various system variables determined by configure when
+the Python interpreter was built, so people building module's don't
+have to resupply these settings.  This vastly simplifies the process
+of building extensions and custom interpreters on Unix systems.
+
+<P>
+The make file make file is distributed as the file
+<span class="file">Misc/Makefile.pre.in</span> in the Python source distribution.  The
+first step in building extensions or custom interpreters is to copy
+this make file to a development directory containing extension module
+source.
+
+<P>
+The make file make file, <span class="file">Makefile.pre.in</span> uses metadata
+provided in a file named <span class="file">Setup</span>.  The format of the <span class="file">Setup</span>
+file is the same as the <span class="file">Setup</span> (or <span class="file">Setup.dist</span>) file
+provided in the <span class="file">Modules/</span> directory of the Python source
+distribution.  The <span class="file">Setup</span> file contains variable definitions:
+
+<P>
+<dl><dd><pre class="verbatim">
+EC=/projects/ExtensionClass
+</pre></dl>
+
+<P>
+and module description lines.  It can also contain blank lines and
+comment lines that start with "<tt class="character">#</tt>".
+
+<P>
+A module description line includes a module name, source files,
+options, variable references, and other input files, such
+as libraries or object files.  Consider a simple example:
+
+<P>
+<dl><dd><pre class="verbatim">
+ExtensionClass ExtensionClass.c
+</pre></dl>
+
+<P>
+This is the simplest form of a module definition line.  It defines a
+module, <tt class="module">ExtensionClass</tt>, which has a single source file,
+<span class="file">ExtensionClass.c</span>.
+
+<P>
+This slightly more complex example uses an <b>-I</b> option to
+specify an include directory:
+
+<P>
+<dl><dd><pre class="verbatim">
+EC=/projects/ExtensionClass
+cPersistence cPersistence.c -I$(EC)
+</pre></dl> 
+<P>
+This example also illustrates the format for variable references.
+
+<P>
+For systems that support dynamic linking, the <span class="file">Setup</span> file should 
+begin:
+
+<P>
+<dl><dd><pre class="verbatim">
+*shared*
+</pre></dl>
+
+<P>
+to indicate that the modules defined in <span class="file">Setup</span> are to be built
+as dynamically linked modules.  A line containing only "<tt class="samp">*static*</tt>"can be used to indicate the subsequently listed modules should be
+statically linked.
+
+<P>
+Here is a complete <span class="file">Setup</span> file for building a
+<tt class="module">cPersistent</tt> module:
+
+<P>
+<dl><dd><pre class="verbatim">
+# Set-up file to build the cPersistence module. 
+# Note that the text should begin in the first column.
+*shared*
+
+# We need the path to the directory containing the ExtensionClass
+# include file.
+EC=/projects/ExtensionClass
+cPersistence cPersistence.c -I$(EC)
+</pre></dl> 
+<P>
+After the <span class="file">Setup</span> file has been created, <span class="file">Makefile.pre.in</span>
+is run with the "<tt class="samp">boot</tt>" target to create a make file:
+
+<P>
+<dl><dd><pre class="verbatim">
+make -f Makefile.pre.in boot
+</pre></dl>
+
+<P>
+This creates the file, Makefile.  To build the extensions, simply
+run the created make file:
+
+<P>
+<dl><dd><pre class="verbatim">
+make
+</pre></dl>
+
+<P>
+It's not necessary to re-run <span class="file">Makefile.pre.in</span> if the
+<span class="file">Setup</span> file is changed.  The make file automatically rebuilds
+itself if the <span class="file">Setup</span> file changes.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="custom-interps.html">3.1 Building Custom Interpreters</a>
+<LI><A href="module-defn-options.html">3.2 Module Definition Options</a>
+<LI><A href="module-defn-example.html">3.3 Example</a>
+<LI><A href="distributing.html">3.4 Distributing your extension modules</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node28.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="ext.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="custom-interps.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node28.html">2.2.6 More Suggestions</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="ext.html">Extending and Embedding the</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="custom-interps.html">3.1 Building Custom Interpreters</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

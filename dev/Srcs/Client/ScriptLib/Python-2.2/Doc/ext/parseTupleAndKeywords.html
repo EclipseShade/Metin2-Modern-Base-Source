@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.8 Keyword Parameters for Extension Functions
+</title>
+<META NAME="description" CONTENT="1.8 Keyword Parameters for Extension Functions
+">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="buildValue.html">
+<LINK REL="previous" href="parseTuple.html">
+<LINK REL="up" href="intro.html">
+<LINK REL="next" href="buildValue.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="parseTuple.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="buildValue.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="parseTuple.html">1.7 Extracting Parameters in</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="buildValue.html">1.9 Building Arbitrary Values</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION003800000000000000000">&nbsp;</A><a name="l2h-2">&nbsp;</a>
+<BR>
+1.8 Keyword Parameters for Extension Functions
+         
+</H1>
+
+<P>
+The <tt class="cfunction">PyArg_ParseTupleAndKeywords()</tt> function is declared as
+follows:
+
+<P>
+<dl><dd><pre class="verbatim">
+int PyArg_ParseTupleAndKeywords(PyObject *arg, PyObject *kwdict,
+                                char *format, char **kwlist, ...);
+</pre></dl>
+
+<P>
+The <var>arg</var> and <var>format</var> parameters are identical to those of the
+<tt class="cfunction">PyArg_ParseTuple()</tt> function.  The <var>kwdict</var> parameter
+is the dictionary of keywords received as the third parameter from the
+Python runtime.  The <var>kwlist</var> parameter is a <tt class="constant">NULL</tt>-terminated
+list of strings which identify the parameters; the names are matched
+with the type information from <var>format</var> from left to right.  On
+success, <tt class="cfunction">PyArg_ParseTupleAndKeywords()</tt> returns true,
+otherwise it returns false and raises an appropriate exception.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+Nested tuples cannot be parsed when using keyword
+arguments!  Keyword parameters passed in which are not present in the
+<var>kwlist</var> will cause <tt class="exception">TypeError</tt> to be raised.</span>
+
+<P>
+Here is an example module which uses keywords, based on an example by
+Geoff Philbrick (<span class="email">philbrick@hks.com</span>):
+<P>
+<dl><dd><pre class="verbatim">
+#include "Python.h"
+
+static PyObject *
+keywdarg_parrot(self, args, keywds)
+    PyObject *self;
+    PyObject *args;
+    PyObject *keywds;
+{  
+    int voltage;
+    char *state = "a stiff";
+    char *action = "voom";
+    char *type = "Norwegian Blue";
+
+    static char *kwlist[] = {"voltage", "state", "action", "type", NULL};
+
+    if (!PyArg_ParseTupleAndKeywords(args, keywds, "i|sss", kwlist, 
+                                     &amp;voltage, &amp;state, &amp;action, &amp;type))
+        return NULL; 
+  
+    printf("-- This parrot wouldn't %s if you put %i Volts through it.\n", 
+           action, voltage);
+    printf("-- Lovely plumage, the %s -- It's %s!\n", type, state);
+
+    Py_INCREF(Py_None);
+
+    return Py_None;
+}
+
+static PyMethodDef keywdarg_methods[] = {
+    /* The cast of the function is necessary since PyCFunction values
+     * only take two PyObject* parameters, and keywdarg_parrot() takes
+     * three.
+     */
+    {"parrot", (PyCFunction)keywdarg_parrot, METH_VARARGS|METH_KEYWORDS,
+     "Print a lovely skit to standard output."},
+    {NULL, NULL, 0, NULL}   /* sentinel */
+};
+
+void
+initkeywdarg(void)
+{
+  /* Create the module and add the functions */
+  Py_InitModule("keywdarg", keywdarg_methods);
+}
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="parseTuple.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="buildValue.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="parseTuple.html">1.7 Extracting Parameters in</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="buildValue.html">1.9 Building Arbitrary Values</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3. MacOS Toolbox Modules </title>
+<META NAME="description" CONTENT="3. MacOS Toolbox Modules ">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="undocumented-modules.html">
+<LINK REL="previous" href="macpython-modules.html">
+<LINK REL="up" HREF="mac.html">
+<LINK REL="next" href="module-Carbon.AE.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-aetypes.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="mac.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-Carbon.AE.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-aetypes.html">2.14 aetypes  </A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="mac.html">Macintosh Library Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-Carbon.AE.html">3.1 Carbon.AE  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005000000000000000000">&nbsp;</A>
+<BR>
+3. MacOS Toolbox Modules 
+</H1>
+
+<P>
+There are a set of modules that provide interfaces to various MacOS
+toolboxes.  If applicable the module will define a number of Python
+objects for the various structures declared by the toolbox, and
+operations will be implemented as methods of the object.  Other
+operations will be implemented as functions in the module.  Not all
+operations possible in C will also be possible in Python (callbacks
+are often a problem), and parameters will occasionally be different in
+Python (input and output buffers, especially).  All methods and
+functions have a <tt class="member">__doc__</tt> string describing their arguments
+and return values, and for additional description you are referred to
+<em class="citetitle"><a
+ href="http://developer.apple.com/techpubs/macos8/mac8.html"
+ title="Inside
+Macintosh"
+ >Inside
+Macintosh</a></em> or similar works.
+
+<P>
+These modules all live in a package called <tt class="module">Carbon</tt>. Despite the
+name Carbon they are also available under classic PPC MacPython.
+The normal use pattern is
+
+<P>
+<dl><dd><pre class="verbatim">
+from Carbon import AE
+</pre></dl>
+
+<P>
+<b>Warning!</b>  These modules are not yet documented.  If you
+wish to contribute documentation of any of these modules, please get
+in touch with <span class="email">python-docs@python.org</span>.
+
+<P>
+<table class='synopsistable' valign='baseline'>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-Carbon.AE.html'>Carbon.AE</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the Apple Events toolbox</td></tr>
+  <tr><td><b><tt class='module'><a href='module-Carbon.App.html'>Carbon.App</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the Appearance Manager</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-Carbon.CF.html'>Carbon.CF</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the Core Foundation</td></tr>
+  <tr><td><b><tt class='module'><a href='module-Carbon.Cm.html'>Carbon.Cm</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the Component Manager</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-Carbon.Ctl.html'>Carbon.Ctl</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the Control Manager</td></tr>
+  <tr><td><b><tt class='module'><a href='module-Carbon.Dlg.html'>Carbon.Dlg</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the Dialog Manager</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-Carbon.Evt.html'>Carbon.Evt</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the Event Manager</td></tr>
+  <tr><td><b><tt class='module'><a href='module-Carbon.Fm.html'>Carbon.Fm</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the Font Manager</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-Carbon.Help.html'>Carbon.Help</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the Balloon Help Manager</td></tr>
+  <tr><td><b><tt class='module'><a href='module-Carbon.List.html'>Carbon.List</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the List Manager</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-Carbon.Menu.html'>Carbon.Menu</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the Menu Manager</td></tr>
+  <tr><td><b><tt class='module'><a href='module-Carbon.Mlte.html'>Carbon.Mlte</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the MultiLingual Text Editor</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-Carbon.Qd.html'>Carbon.Qd</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the QuickDraw toolbox</td></tr>
+  <tr><td><b><tt class='module'><a href='module-Carbon.Qdoffs.html'>Carbon.Qdoffs</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the QuickDraw Offscreen APIs</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-Carbon.Qt.html'>Carbon.Qt</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the QuickTime toolbox</td></tr>
+  <tr><td><b><tt class='module'><a href='module-Carbon.Res.html'>Carbon.Res</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the Resource Manager and Handles</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-Carbon.Scrap.html'>Carbon.Scrap</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>The Scrap Manager provides basic services for
+                implementing cut &amp; paste and clipboard operations.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-Carbon.Snd.html'>Carbon.Snd</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the Sound Manager </td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-Carbon.TE.html'>Carbon.TE</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to TextEdit</td></tr>
+  <tr><td><b><tt class='module'><a href='module-Carbon.Win.html'>Carbon.Win</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the Window Manager</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-ColorPicker.html'>ColorPicker</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the standard color selection dialog.</td></tr>
+</table>
+
+<BR>
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-aetypes.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="mac.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-Carbon.AE.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-aetypes.html">2.14 aetypes  </A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="mac.html">Macintosh Library Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-Carbon.AE.html">3.1 Carbon.AE  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

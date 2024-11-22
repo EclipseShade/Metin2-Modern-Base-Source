@@ -1,0 +1,356 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.2.6.1 String Methods </title>
+<META NAME="description" CONTENT="2.2.6.1 String Methods ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="typesseq-strings.html">
+<LINK REL="previous" href="typesseq.html">
+<LINK REL="up" href="typesseq.html">
+<LINK REL="next" href="typesseq-strings.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="typesseq.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="typesseq.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="typesseq-strings.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="typesseq.html">2.2.6 Sequence Types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="typesseq.html">2.2.6 Sequence Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="typesseq-strings.html">2.2.6.2 String Formatting Operations</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION004261000000000000000">&nbsp;</A>
+<BR>
+2.2.6.1 String Methods 
+</H3>
+
+<P>
+These are the string methods which both 8-bit strings and Unicode
+objects support:
+
+<P>
+<dl><dt><b><a name="l2h-112"><tt class="method">capitalize</tt></a></b>()
+<dd>
+Return a copy of the string with only its first character capitalized.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-113"><tt class="method">center</tt></a></b>(<var>width</var>)
+<dd>
+Return centered in a string of length <var>width</var>. Padding is done
+using spaces.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-114"><tt class="method">count</tt></a></b>(<var>sub</var><big>[</big><var>, start</var><big>[</big><var>, end</var><big>]</big><big>]</big>)
+<dd>
+Return the number of occurrences of substring <var>sub</var> in string
+S<code>[<var>start</var>:<var>end</var>]</code>.  Optional arguments <var>start</var> and
+<var>end</var> are interpreted as in slice notation.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-115"><tt class="method">decode</tt></a></b>(<big>[</big><var>encoding</var><big>[</big><var>, errors</var><big>]</big><big>]</big>)
+<dd>
+Decodes the string using the codec registered for <var>encoding</var>.
+<var>encoding</var> defaults to the default string encoding.  <var>errors</var>
+may be given to set a different error handling scheme.  The default is
+<code>'strict'</code>, meaning that encoding errors raise
+<tt class="exception">ValueError</tt>.  Other possible values are <code>'ignore'</code> and
+<code>replace'</code>.
+
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-116"><tt class="method">encode</tt></a></b>(<big>[</big><var>encoding</var><big>[</big><var>,errors</var><big>]</big><big>]</big>)
+<dd>
+Return an encoded version of the string.  Default encoding is the current
+default string encoding.  <var>errors</var> may be given to set a different
+error handling scheme.  The default for <var>errors</var> is
+<code>'strict'</code>, meaning that encoding errors raise a
+<tt class="exception">ValueError</tt>.  Other possible values are <code>'ignore'</code> and
+<code>'replace'</code>.
+
+<span class="versionnote">New in version 2.0.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-117"><tt class="method">endswith</tt></a></b>(<var>suffix</var><big>[</big><var>, start</var><big>[</big><var>, end</var><big>]</big><big>]</big>)
+<dd>
+Return true if the string ends with the specified <var>suffix</var>,
+otherwise return false.  With optional <var>start</var>, test beginning at
+that position.  With optional <var>end</var>, stop comparing at that position.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-118"><tt class="method">expandtabs</tt></a></b>(<big>[</big><var>tabsize</var><big>]</big>)
+<dd>
+Return a copy of the string where all tab characters are expanded
+using spaces.  If <var>tabsize</var> is not given, a tab size of <code>8</code>
+characters is assumed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-119"><tt class="method">find</tt></a></b>(<var>sub</var><big>[</big><var>, start</var><big>[</big><var>, end</var><big>]</big><big>]</big>)
+<dd>
+Return the lowest index in the string where substring <var>sub</var> is
+found, such that <var>sub</var> is contained in the range [<var>start</var>,
+<var>end</var>).  Optional arguments <var>start</var> and <var>end</var> are
+interpreted as in slice notation.  Return <code>-1</code> if <var>sub</var> is
+not found.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-120"><tt class="method">index</tt></a></b>(<var>sub</var><big>[</big><var>, start</var><big>[</big><var>, end</var><big>]</big><big>]</big>)
+<dd>
+Like <tt class="method">find()</tt>, but raise <tt class="exception">ValueError</tt> when the
+substring is not found.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-121"><tt class="method">isalnum</tt></a></b>()
+<dd>
+Return true if all characters in the string are alphanumeric and there
+is at least one character, false otherwise.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-122"><tt class="method">isalpha</tt></a></b>()
+<dd>
+Return true if all characters in the string are alphabetic and there
+is at least one character, false otherwise.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-123"><tt class="method">isdigit</tt></a></b>()
+<dd>
+Return true if there are only digit characters, false otherwise.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-124"><tt class="method">islower</tt></a></b>()
+<dd>
+Return true if all cased characters in the string are lowercase and
+there is at least one cased character, false otherwise.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-125"><tt class="method">isspace</tt></a></b>()
+<dd>
+Return true if there are only whitespace characters in the string and
+the string is not empty, false otherwise.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-126"><tt class="method">istitle</tt></a></b>()
+<dd>
+Return true if the string is a titlecased string: uppercase
+characters may only follow uncased characters and lowercase characters
+only cased ones.  Return false otherwise.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-127"><tt class="method">isupper</tt></a></b>()
+<dd>
+Return true if all cased characters in the string are uppercase and
+there is at least one cased character, false otherwise.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-128"><tt class="method">join</tt></a></b>(<var>seq</var>)
+<dd>
+Return a string which is the concatenation of the strings in the
+sequence <var>seq</var>.  The separator between elements is the string
+providing this method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-129"><tt class="method">ljust</tt></a></b>(<var>width</var>)
+<dd>
+Return the string left justified in a string of length <var>width</var>.
+Padding is done using spaces.  The original string is returned if
+<var>width</var> is less than <code>len(<var>s</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-130"><tt class="method">lower</tt></a></b>()
+<dd>
+Return a copy of the string converted to lowercase.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-131"><tt class="method">lstrip</tt></a></b>()
+<dd>
+Return a copy of the string with leading whitespace removed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-132"><tt class="method">replace</tt></a></b>(<var>old, new</var><big>[</big><var>, maxsplit</var><big>]</big>)
+<dd>
+Return a copy of the string with all occurrences of substring
+<var>old</var> replaced by <var>new</var>.  If the optional argument
+<var>maxsplit</var> is given, only the first <var>maxsplit</var> occurrences are
+replaced.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-133"><tt class="method">rfind</tt></a></b>(<var>sub </var><big>[</big><var>,start </var><big>[</big><var>,end</var><big>]</big><big>]</big>)
+<dd>
+Return the highest index in the string where substring <var>sub</var> is
+found, such that <var>sub</var> is contained within s[start,end].  Optional
+arguments <var>start</var> and <var>end</var> are interpreted as in slice
+notation.  Return <code>-1</code> on failure.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-134"><tt class="method">rindex</tt></a></b>(<var>sub</var><big>[</big><var>, start</var><big>[</big><var>, end</var><big>]</big><big>]</big>)
+<dd>
+Like <tt class="method">rfind()</tt> but raises <tt class="exception">ValueError</tt> when the
+substring <var>sub</var> is not found.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-135"><tt class="method">rjust</tt></a></b>(<var>width</var>)
+<dd>
+Return the string right justified in a string of length <var>width</var>.
+Padding is done using spaces.  The original string is returned if
+<var>width</var> is less than <code>len(<var>s</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-136"><tt class="method">rstrip</tt></a></b>()
+<dd>
+Return a copy of the string with trailing whitespace removed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-137"><tt class="method">split</tt></a></b>(<big>[</big><var>sep </var><big>[</big><var>,maxsplit</var><big>]</big><big>]</big>)
+<dd>
+Return a list of the words in the string, using <var>sep</var> as the
+delimiter string.  If <var>maxsplit</var> is given, at most <var>maxsplit</var>
+splits are done.  If <var>sep</var> is not specified or <code>None</code>, any
+whitespace string is a separator.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-138"><tt class="method">splitlines</tt></a></b>(<big>[</big><var>keepends</var><big>]</big>)
+<dd>
+Return a list of the lines in the string, breaking at line
+boundaries.  Line breaks are not included in the resulting list unless
+<var>keepends</var> is given and true.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-139"><tt class="method">startswith</tt></a></b>(<var>prefix</var><big>[</big><var>, start</var><big>[</big><var>, end</var><big>]</big><big>]</big>)
+<dd>
+Return true if string starts with the <var>prefix</var>, otherwise
+return false.  With optional <var>start</var>, test string beginning at
+that position.  With optional <var>end</var>, stop comparing string at that
+position.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-140"><tt class="method">strip</tt></a></b>()
+<dd>
+Return a copy of the string with leading and trailing whitespace
+removed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-141"><tt class="method">swapcase</tt></a></b>()
+<dd>
+Return a copy of the string with uppercase characters converted to
+lowercase and vice versa.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-142"><tt class="method">title</tt></a></b>()
+<dd>
+Return a titlecased version of the string: words start with uppercase
+characters, all remaining cased characters are lowercase.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-143"><tt class="method">translate</tt></a></b>(<var>table</var><big>[</big><var>, deletechars</var><big>]</big>)
+<dd>
+Return a copy of the string where all characters occurring in the
+optional argument <var>deletechars</var> are removed, and the remaining
+characters have been mapped through the given translation table, which
+must be a string of length 256.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-144"><tt class="method">upper</tt></a></b>()
+<dd>
+Return a copy of the string converted to uppercase.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="typesseq.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="typesseq.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="typesseq-strings.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="typesseq.html">2.2.6 Sequence Types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="typesseq.html">2.2.6 Sequence Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="typesseq-strings.html">2.2.6.2 String Formatting Operations</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

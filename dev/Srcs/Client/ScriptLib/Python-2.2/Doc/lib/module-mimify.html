@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.9 mimify -- MIME processing of mail messages</title>
+<META NAME="description" CONTENT="12.9 mimify -- MIME processing of mail messages">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-multifile.html">
+<LINK REL="previous" href="module-MimeWriter.html">
+<LINK REL="up" href="netdata.html">
+<LINK REL="next" href="module-multifile.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="MimeWriter-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-multifile.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="MimeWriter-objects.html">12.8.1 MimeWriter Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-multifile.html">12.10 multifile  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0014900000000000000000">
+12.9 <tt class="module">mimify</tt> --
+         MIME processing of mail messages</A>
+</H1>
+
+<P>
+
+
+<P>
+The mimify module defines two functions to convert mail messages to
+and from MIME format.  The mail message can be either a simple message
+or a so-called multipart message.  Each part is treated separately.
+Mimifying (a part of) a message entails encoding the message as
+quoted-printable if it contains any characters that cannot be
+represented using 7-bit ASCII.  Unmimifying (a part of) a message
+entails undoing the quoted-printable encoding.  Mimify and unmimify
+are especially useful when a message has to be edited before being
+sent.  Typical use would be:
+
+<P>
+<dl><dd><pre class="verbatim">
+unmimify message
+edit message
+mimify message
+send message
+</pre></dl>
+
+<P>
+The modules defines the following user-callable functions and
+user-settable variables:
+
+<P>
+<dl><dt><b><a name="l2h-2956"><tt class="function">mimify</tt></a></b>(<var>infile, outfile</var>)
+<dd>
+Copy the message in <var>infile</var> to <var>outfile</var>, converting parts to
+quoted-printable and adding MIME mail headers when necessary.
+<var>infile</var> and <var>outfile</var> can be file objects (actually, any
+object that has a <tt class="method">readline()</tt> method (for <var>infile</var>) or a
+<tt class="method">write()</tt> method (for <var>outfile</var>)) or strings naming the files.
+If <var>infile</var> and <var>outfile</var> are both strings, they may have the
+same value.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2957"><tt class="function">unmimify</tt></a></b>(<var>infile, outfile</var><big>[</big><var>, decode_base64</var><big>]</big>)
+<dd>
+Copy the message in <var>infile</var> to <var>outfile</var>, decoding all
+quoted-printable parts.  <var>infile</var> and <var>outfile</var> can be file
+objects (actually, any object that has a <tt class="method">readline()</tt> method (for
+<var>infile</var>) or a <tt class="method">write()</tt> method (for <var>outfile</var>)) or strings
+naming the files.  If <var>infile</var> and <var>outfile</var> are both strings,
+they may have the same value.
+If the <var>decode_base64</var> argument is provided and tests true, any
+parts that are coded in the base64 encoding are decoded as well.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2958"><tt class="function">mime_decode_header</tt></a></b>(<var>line</var>)
+<dd>
+Return a decoded version of the encoded header line in <var>line</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2959"><tt class="function">mime_encode_header</tt></a></b>(<var>line</var>)
+<dd>
+Return a MIME-encoded version of the header line in <var>line</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2960"><tt>MAXLEN</tt></a></b>
+<dd>
+By default, a part will be encoded as quoted-printable when it
+contains any non-ASCII characters (characters with the 8th bit
+set), or if there are any lines longer than <tt class="constant">MAXLEN</tt> characters
+(default value 200).  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2961"><tt>CHARSET</tt></a></b>
+<dd>
+When not specified in the mail headers, a character set must be filled
+in.  The string used is stored in <tt class="constant">CHARSET</tt>, and the default
+value is ISO-8859-1 (also known as Latin1 (latin-one)).
+</dl>
+
+<P>
+This module can also be used from the command line.  Usage is as
+follows:
+<dl><dd><pre class="verbatim">
+mimify.py -e [-l length] [infile [outfile]]
+mimify.py -d [-b] [infile [outfile]]
+</pre></dl>
+to encode (mimify) and decode (unmimify) respectively.  <var>infile</var>
+defaults to standard input, <var>outfile</var> defaults to standard output.
+The same file can be specified for input and output.
+
+<P>
+If the <b>-l</b> option is given when encoding, if there are any lines
+longer than the specified <var>length</var>, the containing part will be
+encoded.
+
+<P>
+If the <b>-b</b> option is given when decoding, any base64 parts will
+be decoded as well.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-quopri.html">quopri</a></tt>:</b>
+    <dd>Encode and decode MIME quoted-printable files.
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="MimeWriter-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-multifile.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="MimeWriter-objects.html">12.8.1 MimeWriter Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-multifile.html">12.10 multifile  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

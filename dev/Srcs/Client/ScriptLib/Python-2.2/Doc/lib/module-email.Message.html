@@ -1,0 +1,596 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.2.1 Representing an email message</title>
+<META NAME="description" CONTENT="12.2.1 Representing an email message">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-email.Parser.html">
+<LINK REL="previous" href="module-email.html">
+<LINK REL="up" href="module-email.html">
+<LINK REL="next" href="module-email.Parser.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-email.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-email.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-email.Parser.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-email.html">12.2 email  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-email.html">12.2 email  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-email.Parser.html">12.2.2 Parsing email messages</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0014210000000000000000">
+12.2.1 Representing an email message</A>
+</H2>
+
+
+<P>
+The central class in the <tt class="module">email</tt> package is the
+<tt class="class">Message</tt> class; it is the base class for the <tt class="module">email</tt>
+object model.  <tt class="class">Message</tt> provides the core functionality for
+setting and querying header fields, and for accessing message bodies.
+
+<P>
+Conceptually, a <tt class="class">Message</tt> object consists of <i>headers</i> and
+<i>payloads</i>.  Headers are <a class="rfc" name="rfcref-63731"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a> style field names and
+values where the field name and value are separated by a colon.  The
+colon is not part of either the field name or the field value.
+
+<P>
+Headers are stored and returned in case-preserving form but are
+matched case-insensitively.  There may also be a single
+<i>Unix-From</i> header, also known as the envelope header or the
+<code>From_</code> header.  The payload is either a string in the case of
+simple message objects, a list of <tt class="class">Message</tt> objects for
+multipart MIME documents, or a single <tt class="class">Message</tt> instance for
+<span class="mimetype">message/rfc822</span> type objects.
+
+<P>
+<tt class="class">Message</tt> objects provide a mapping style interface for
+accessing the message headers, and an explicit interface for accessing
+both the headers and the payload.  It provides convenience methods for
+generating a flat text representation of the message object tree, for
+accessing commonly used header parameters, and for recursively walking
+over the object tree.
+
+<P>
+Here are the methods of the <tt class="class">Message</tt> class:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2791"><tt class="class">Message</tt></a></b>()
+<dd>
+The constructor takes no arguments.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2792"><tt class="method">as_string</tt></a></b>(<big>[</big><var>unixfrom</var><big>]</big>)
+<dd>
+Return the entire formatted message as a string.  Optional
+<var>unixfrom</var>, when true, specifies to include the <i>Unix-From</i>
+envelope header; it defaults to 0.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2793"><tt class="method">__str__()</tt></a></b>()
+<dd>
+Equivalent to <tt class="method">aMessage.as_string(unixfrom=1)</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2794"><tt class="method">is_multipart</tt></a></b>()
+<dd>
+Return 1 if the message's payload is a list of sub-<tt class="class">Message</tt>
+objects, otherwise return 0.  When <tt class="method">is_multipart()</tt> returns 0,
+the payload should either be a string object, or a single
+<tt class="class">Message</tt> instance.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2795"><tt class="method">set_unixfrom</tt></a></b>(<var>unixfrom</var>)
+<dd>
+Set the <i>Unix-From</i> (a.k.a envelope header or <code>From_</code>
+header) to <var>unixfrom</var>, which should be a string.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2796"><tt class="method">get_unixfrom</tt></a></b>()
+<dd>
+Return the <i>Unix-From</i> header.  Defaults to <code>None</code> if the
+<i>Unix-From</i> header was never set.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2797"><tt class="method">add_payload</tt></a></b>(<var>payload</var>)
+<dd>
+Add <var>payload</var> to the message object's existing payload.  If, prior
+to calling this method, the object's payload was <code>None</code>
+(i.e. never before set), then after this method is called, the payload
+will be the argument <var>payload</var>.
+
+<P>
+If the object's payload was already a list
+(i.e. <tt class="method">is_multipart()</tt> returns 1), then <var>payload</var> is
+appended to the end of the existing payload list.
+
+<P>
+For any other type of existing payload, <tt class="method">add_payload()</tt> will
+transform the new payload into a list consisting of the old payload
+and <var>payload</var>, but only if the document is already a MIME
+multipart document.  This condition is satisfied if the message's
+<span class="mailheader">Content-Type:</span> header's main type is either
+<span class="mimetype">multipart</span>, or there is no <span class="mailheader">Content-Type:</span>
+header.  In any other situation,
+<tt class="exception">MultipartConversionError</tt> is raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2798"><tt class="method">attach</tt></a></b>(<var>payload</var>)
+<dd>
+Synonymous with <tt class="method">add_payload()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2799"><tt class="method">get_payload</tt></a></b>(<big>[</big><var>i</var><big>[</big><var>, decode</var><big>]</big><big>]</big>)
+<dd>
+Return the current payload, which will be a list of <tt class="class">Message</tt>
+objects when <tt class="method">is_multipart()</tt> returns 1, or a scalar (either a
+string or a single <tt class="class">Message</tt> instance) when
+<tt class="method">is_multipart()</tt> returns 0.
+
+<P>
+With optional <var>i</var>, <tt class="method">get_payload()</tt> will return the
+<var>i</var>-th element of the payload, counting from zero, if
+<tt class="method">is_multipart()</tt> returns 1.  An <tt class="exception">IndexError</tt> will be raised
+if <var>i</var> is less than 0 or greater than or equal to the number of
+items in the payload.  If the payload is scalar
+(i.e. <tt class="method">is_multipart()</tt> returns 0) and <var>i</var> is given, a
+<tt class="exception">TypeError</tt> is raised.
+
+<P>
+Optional <var>decode</var> is a flag indicating whether the payload should be
+decoded or not, according to the <span class="mailheader">Content-Transfer-Encoding:</span> header.
+When true and the message is not a multipart, the payload will be
+decoded if this header's value is "<tt class="samp">quoted-printable</tt>" or
+"<tt class="samp">base64</tt>".  If some other encoding is used, or
+<span class="mailheader">Content-Transfer-Encoding:</span> header is
+missing, the payload is returned as-is (undecoded).  If the message is
+a multipart and the <var>decode</var> flag is true, then <code>None</code> is
+returned.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2800"><tt class="method">set_payload</tt></a></b>(<var>payload</var>)
+<dd>
+Set the entire message object's payload to <var>payload</var>.  It is the
+client's responsibility to ensure the payload invariants.
+</dl>
+
+<P>
+The following methods implement a mapping-like interface for accessing
+the message object's <a class="rfc" name="rfcref-63733"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a> headers.  Note that there are some
+semantic differences between these methods and a normal mapping
+(i.e. dictionary) interface.  For example, in a dictionary there are
+no duplicate keys, but here there may be duplicate message headers.  Also,
+in dictionaries there is no guaranteed order to the keys returned by
+<tt class="method">keys()</tt>, but in a <tt class="class">Message</tt> object, there is an explicit
+order.  These semantic differences are intentional and are biased
+toward maximal convenience.
+
+<P>
+Note that in all cases, any optional <i>Unix-From</i> header the message
+may have is not included in the mapping interface.
+
+<P>
+<dl><dt><b><a name="l2h-2801"><tt class="method">__len__</tt></a></b>()
+<dd>
+Return the total number of headers, including duplicates.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2802"><tt class="method">__contains__</tt></a></b>(<var>name</var>)
+<dd>
+Return true if the message object has a field named <var>name</var>.
+Matching is done case-insensitively and <var>name</var> should not include the
+trailing colon.  Used for the <code>in</code> operator,
+e.g.:
+
+<P>
+<dl><dd><pre class="verbatim">
+if 'message-id' in myMessage:
+    print 'Message-ID:', myMessage['message-id']
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2803"><tt class="method">__getitem__</tt></a></b>(<var>name</var>)
+<dd>
+Return the value of the named header field.  <var>name</var> should not
+include the colon field separator.  If the header is missing,
+<code>None</code> is returned; a <tt class="exception">KeyError</tt> is never raised.
+
+<P>
+Note that if the named field appears more than once in the message's
+headers, exactly which of those field values will be returned is
+undefined.  Use the <tt class="method">get_all()</tt> method to get the values of all
+the extant named headers.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2804"><tt class="method">__setitem__</tt></a></b>(<var>name, val</var>)
+<dd>
+Add a header to the message with field name <var>name</var> and value
+<var>val</var>.  The field is appended to the end of the message's existing
+fields.
+
+<P>
+Note that this does <i>not</i> overwrite or delete any existing header
+with the same name.  If you want to ensure that the new header is the
+only one present in the message with field name
+<var>name</var>, first use <tt class="method">__delitem__()</tt> to delete all named
+fields, e.g.:
+
+<P>
+<dl><dd><pre class="verbatim">
+del msg['subject']
+msg['subject'] = 'Python roolz!'
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2805"><tt class="method">__delitem__</tt></a></b>(<var>name</var>)
+<dd>
+Delete all occurrences of the field with name <var>name</var> from the
+message's headers.  No exception is raised if the named field isn't
+present in the headers.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2806"><tt class="method">has_key</tt></a></b>(<var>name</var>)
+<dd>
+Return 1 if the message contains a header field named <var>name</var>,
+otherwise return 0.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2807"><tt class="method">keys</tt></a></b>()
+<dd>
+Return a list of all the message's header field names.  These keys
+will be sorted in the order in which they were added to the message
+via <tt class="method">__setitem__()</tt>, and may contain duplicates.  Any fields
+deleted and then subsequently re-added are always appended to the end
+of the header list.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2808"><tt class="method">values</tt></a></b>()
+<dd>
+Return a list of all the message's field values.  These will be sorted
+in the order in which they were added to the message via
+<tt class="method">__setitem__()</tt>, and may contain duplicates.  Any fields
+deleted and then subsequently re-added are always appended to the end
+of the header list.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2809"><tt class="method">items</tt></a></b>()
+<dd>
+Return a list of 2-tuples containing all the message's field headers and
+values.  These will be sorted in the order in which they were added to
+the message via <tt class="method">__setitem__()</tt>, and may contain duplicates.
+Any fields deleted and then subsequently re-added are always appended
+to the end of the header list.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2810"><tt class="method">get</tt></a></b>(<var>name</var><big>[</big><var>, failobj</var><big>]</big>)
+<dd>
+Return the value of the named header field.  This is identical to
+<tt class="method">__getitem__()</tt> except that optional <var>failobj</var> is returned
+if the named header is missing (defaults to <code>None</code>).
+</dl>
+
+<P>
+Here are some additional useful methods:
+
+<P>
+<dl><dt><b><a name="l2h-2811"><tt class="method">get_all</tt></a></b>(<var>name</var><big>[</big><var>, failobj</var><big>]</big>)
+<dd>
+Return a list of all the values for the field named <var>name</var>.  These
+will be sorted in the order in which they were added to the message
+via <tt class="method">__setitem__()</tt>.  Any fields
+deleted and then subsequently re-added are always appended to the end
+of the list.
+
+<P>
+If there are no such named headers in the message, <var>failobj</var> is
+returned (defaults to <code>None</code>).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2812"><tt class="method">add_header</tt></a></b>(<var>_name, _value, **_params</var>)
+<dd>
+Extended header setting.  This method is similar to
+<tt class="method">__setitem__()</tt> except that additional header parameters can be
+provided as keyword arguments.  <var>_name</var> is the header to set and
+<var>_value</var> is the <i>primary</i> value for the header.
+
+<P>
+For each item in the keyword argument dictionary <var>_params</var>, the
+key is taken as the parameter name, with underscores converted to
+dashes (since dashes are illegal in Python identifiers).  Normally,
+the parameter will be added as <code>key="value"</code> unless the value is
+<code>None</code>, in which case only the key will be added.
+
+<P>
+Here's an example:
+
+<P>
+<dl><dd><pre class="verbatim">
+msg.add_header('Content-Disposition', 'attachment', filename='bud.gif')
+</pre></dl>
+
+<P>
+This will add a header that looks like
+
+<P>
+<dl><dd><pre class="verbatim">
+Content-Disposition: attachment; filename="bud.gif"
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2813"><tt class="method">get_type</tt></a></b>(<big>[</big><var>failobj</var><big>]</big>)
+<dd>
+Return the message's content type, as a string of the form
+<span class="mimetype">maintype/subtype</span> as taken from the
+<span class="mailheader">Content-Type:</span> header.
+The returned string is coerced to lowercase.
+
+<P>
+If there is no <span class="mailheader">Content-Type:</span> header in the message,
+<var>failobj</var> is returned (defaults to <code>None</code>).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2814"><tt class="method">get_main_type</tt></a></b>(<big>[</big><var>failobj</var><big>]</big>)
+<dd>
+Return the message's <i>main</i> content type.  This essentially returns the
+<var>maintype</var> part of the string returned by <tt class="method">get_type()</tt>, with the
+same semantics for <var>failobj</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2815"><tt class="method">get_subtype</tt></a></b>(<big>[</big><var>failobj</var><big>]</big>)
+<dd>
+Return the message's sub-content type.  This essentially returns the
+<var>subtype</var> part of the string returned by <tt class="method">get_type()</tt>, with the
+same semantics for <var>failobj</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2816"><tt class="method">get_params</tt></a></b>(<big>[</big><var>failobj</var><big>[</big><var>, header</var><big>]</big><big>]</big>)
+<dd>
+Return the message's <span class="mailheader">Content-Type:</span> parameters, as a list.  The
+elements of the returned list are 2-tuples of key/value pairs, as
+split on the "<tt class="character">=</tt>" sign.  The left hand side of the
+"<tt class="character">=</tt>" is the key, while the right hand side is the value.  If
+there is no "<tt class="character">=</tt>" sign in the parameter the value is the empty
+string.  The value is always unquoted with <tt class="method">Utils.unquote()</tt>.
+
+<P>
+Optional <var>failobj</var> is the object to return if there is no
+<span class="mailheader">Content-Type:</span> header.  Optional <var>header</var> is the header to
+search instead of <span class="mailheader">Content-Type:</span>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2817"><tt class="method">get_param</tt></a></b>(<var>param</var><big>[</big><var>,
+    failobj</var><big>[</big><var>, header</var><big>]</big><big>]</big>)
+<dd>
+Return the value of the <span class="mailheader">Content-Type:</span> header's parameter
+<var>param</var> as a string.  If the message has no <span class="mailheader">Content-Type:</span>
+header or if there is no such parameter, then <var>failobj</var> is
+returned (defaults to <code>None</code>).
+
+<P>
+Optional <var>header</var> if given, specifies the message header to use
+instead of <span class="mailheader">Content-Type:</span>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2818"><tt class="method">get_charsets</tt></a></b>(<big>[</big><var>failobj</var><big>]</big>)
+<dd>
+Return a list containing the character set names in the message.  If
+the message is a <span class="mimetype">multipart</span>, then the list will contain one
+element for each subpart in the payload, otherwise, it will be a list
+of length 1.
+
+<P>
+Each item in the list will be a string which is the value of the
+<code>charset</code> parameter in the <span class="mailheader">Content-Type:</span> header for the
+represented subpart.  However, if the subpart has no
+<span class="mailheader">Content-Type:</span> header, no <code>charset</code> parameter, or is not of
+the <span class="mimetype">text</span> main MIME type, then that item in the returned list
+will be <var>failobj</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2819"><tt class="method">get_filename</tt></a></b>(<big>[</big><var>failobj</var><big>]</big>)
+<dd>
+Return the value of the <code>filename</code> parameter of the
+<span class="mailheader">Content-Disposition:</span> header of the message, or <var>failobj</var> if
+either the header is missing, or has no <code>filename</code> parameter.
+The returned string will always be unquoted as per
+<tt class="method">Utils.unquote()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2820"><tt class="method">get_boundary</tt></a></b>(<big>[</big><var>failobj</var><big>]</big>)
+<dd>
+Return the value of the <code>boundary</code> parameter of the
+<span class="mailheader">Content-Type:</span> header of the message, or <var>failobj</var> if either
+the header is missing, or has no <code>boundary</code> parameter.  The
+returned string will always be unquoted as per
+<tt class="method">Utils.unquote()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2821"><tt class="method">set_boundary</tt></a></b>(<var>boundary</var>)
+<dd>
+Set the <code>boundary</code> parameter of the <span class="mailheader">Content-Type:</span> header
+to <var>boundary</var>.  <tt class="method">set_boundary()</tt> will always quote
+<var>boundary</var> so you should not quote it yourself.  A
+<tt class="exception">HeaderParseError</tt> is raised if the message object has no
+<span class="mailheader">Content-Type:</span> header.
+
+<P>
+Note that using this method is subtly different than deleting the old
+<span class="mailheader">Content-Type:</span> header and adding a new one with the new boundary
+via <tt class="method">add_header()</tt>, because <tt class="method">set_boundary()</tt> preserves the
+order of the <span class="mailheader">Content-Type:</span> header in the list of headers.
+However, it does <i>not</i> preserve any continuation lines which may
+have been present in the original <span class="mailheader">Content-Type:</span> header.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2822"><tt class="method">walk</tt></a></b>()
+<dd>
+The <tt class="method">walk()</tt> method is an all-purpose generator which can be
+used to iterate over all the parts and subparts of a message object
+tree, in depth-first traversal order.  You will typically use
+<tt class="method">walk()</tt> as the iterator in a <code>for ... in</code> loop; each
+iteration returns the next subpart.
+
+<P>
+Here's an example that prints the MIME type of every part of a message
+object tree:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; for part in msg.walk():
+&gt;&gt;&gt;     print part.get_type('text/plain')
+multipart/report
+text/plain
+message/delivery-status
+text/plain
+text/plain
+message/rfc822
+</pre></dl>
+</dl>
+
+<P>
+<tt class="class">Message</tt> objects can also optionally contain two instance
+attributes, which can be used when generating the plain text of a MIME
+message.
+
+<P>
+<dl><dt><b><a name="l2h-2823"><tt>preamble</tt></a></b>
+<dd>
+The format of a MIME document allows for some text between the blank
+line following the headers, and the first multipart boundary string.
+Normally, this text is never visible in a MIME-aware mail reader
+because it falls outside the standard MIME armor.  However, when
+viewing the raw text of the message, or when viewing the message in a
+non-MIME aware reader, this text can become visible.
+
+<P>
+The <var>preamble</var> attribute contains this leading extra-armor text
+for MIME documents.  When the <tt class="class">Parser</tt> discovers some text after
+the headers but before the first boundary string, it assigns this text
+to the message's <var>preamble</var> attribute.  When the <tt class="class">Generator</tt>
+is writing out the plain text representation of a MIME message, and it
+finds the message has a <var>preamble</var> attribute, it will write this
+text in the area between the headers and the first boundary.
+
+<P>
+Note that if the message object has no preamble, the
+<var>preamble</var> attribute will be <code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2824"><tt>epilogue</tt></a></b>
+<dd>
+The <var>epilogue</var> attribute acts the same way as the <var>preamble</var>
+attribute, except that it contains text that appears between the last
+boundary and the end of the message.
+
+<P>
+One note: when generating the flat text for a <span class="mimetype">multipart</span>
+message that has no <var>epilogue</var> (using the standard
+<tt class="class">Generator</tt> class), no newline is added after the closing
+boundary line.  If the message object has an <var>epilogue</var> and its
+value does not start with a newline, a newline is printed after the
+closing boundary.  This seems a little clumsy, but it makes the most
+practical sense.  The upshot is that if you want to ensure that a
+newline get printed after your closing <span class="mimetype">multipart</span> boundary,
+set the <var>epilogue</var> to the empty string.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-email.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-email.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-email.Parser.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-email.html">12.2 email  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-email.html">12.2 email  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-email.Parser.html">12.2.2 Parsing email messages</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

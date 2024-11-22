@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.10.2 Ownership Rules
+</title>
+<META NAME="description" CONTENT="1.10.2 Ownership Rules
+">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="thinIce.html">
+<LINK REL="previous" href="refcountsInPython.html">
+<LINK REL="up" href="refcounts.html">
+<LINK REL="next" href="thinIce.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="refcountsInPython.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="refcounts.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="thinIce.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="refcountsInPython.html">1.10.1 Reference Counting in</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="refcounts.html">1.10 Reference Counts</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="thinIce.html">1.10.3 Thin Ice</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0031020000000000000000">&nbsp;</A>
+<BR>
+1.10.2 Ownership Rules
+            
+</H2>
+
+<P>
+Whenever an object reference is passed into or out of a function, it
+is part of the function's interface specification whether ownership is
+transferred with the reference or not.
+
+<P>
+Most functions that return a reference to an object pass on ownership
+with the reference.  In particular, all functions whose function it is
+to create a new object, such as <tt class="cfunction">PyInt_FromLong()</tt> and
+<tt class="cfunction">Py_BuildValue()</tt>, pass ownership to the receiver.  Even if
+the object is not actually new, you still receive ownership of a new
+reference to that object.  For instance, <tt class="cfunction">PyInt_FromLong()</tt>
+maintains a cache of popular values and can return a reference to a
+cached item.
+
+<P>
+Many functions that extract objects from other objects also transfer
+ownership with the reference, for instance
+<tt class="cfunction">PyObject_GetAttrString()</tt>.  The picture is less clear, here,
+however, since a few common routines are exceptions:
+<tt class="cfunction">PyTuple_GetItem()</tt>, <tt class="cfunction">PyList_GetItem()</tt>,
+<tt class="cfunction">PyDict_GetItem()</tt>, and <tt class="cfunction">PyDict_GetItemString()</tt>
+all return references that you borrow from the tuple, list or
+dictionary.
+
+<P>
+The function <tt class="cfunction">PyImport_AddModule()</tt> also returns a borrowed
+reference, even though it may actually create the object it returns:
+this is possible because an owned reference to the object is stored in
+<code>sys.modules</code>.
+
+<P>
+When you pass an object reference into another function, in general,
+the function borrows the reference from you -- if it needs to store
+it, it will use <tt class="cfunction">Py_INCREF()</tt> to become an independent
+owner.  There are exactly two important exceptions to this rule:
+<tt class="cfunction">PyTuple_SetItem()</tt> and <tt class="cfunction">PyList_SetItem()</tt>.  These
+functions take over ownership of the item passed to them -- even if
+they fail!  (Note that <tt class="cfunction">PyDict_SetItem()</tt> and friends don't
+take over ownership -- they are ``normal.'')
+
+<P>
+When a C function is called from Python, it borrows references to its
+arguments from the caller.  The caller owns a reference to the object,
+so the borrowed reference's lifetime is guaranteed until the function
+returns.  Only when such a borrowed reference must be stored or passed
+on, it must be turned into an owned reference by calling
+<tt class="cfunction">Py_INCREF()</tt>.
+
+<P>
+The object reference returned from a C function that is called from
+Python must be an owned reference -- ownership is tranferred from the
+function to its caller.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="refcountsInPython.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="refcounts.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="thinIce.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="refcountsInPython.html">1.10.1 Reference Counting in</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="refcounts.html">1.10 Reference Counts</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="thinIce.html">1.10.3 Thin Ice</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

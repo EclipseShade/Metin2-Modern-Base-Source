@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.2.5 Iterator Types </title>
+<META NAME="description" CONTENT="2.2.5 Iterator Types ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="typesseq.html">
+<LINK REL="previous" href="typesnumeric.html">
+<LINK REL="up" href="types.html">
+<LINK REL="next" href="typesseq.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="bitstring-ops.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="typesseq.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="bitstring-ops.html">2.2.4.1 Bit-string Operations on</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="types.html">2.2 Built-in Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="typesseq.html">2.2.6 Sequence Types</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004250000000000000000">&nbsp;</A>
+<BR>
+2.2.5 Iterator Types 
+</H2>
+
+<P>
+
+<span class="versionnote">New in version 2.2.</span>
+
+<a name="l2h-105">&nbsp;</a>
+<P>
+Python supports a concept of iteration over containers.  This is
+implemented using two distinct methods; these are used to allow
+user-defined classes to support iteration.  Sequences, described below
+in more detail, always support the iteration methods.
+
+<P>
+One method needs to be defined for container objects to provide
+iteration support:
+
+<P>
+<dl><dt><b><a name="l2h-102"><tt class="method">__iter__</tt></a></b>()
+<dd>
+  Return an iterator object.  The object is required to support the
+  iterator protocol described below.  If a container supports
+  different types of iteration, additional methods can be provided to
+  specifically request iterators for those iteration types.  (An
+  example of an object supporting multiple forms of iteration would be
+  a tree structure which supports both breadth-first and depth-first
+  traversal.)  This method corresponds to the <tt class="member">tp_iter</tt> slot of
+  the type structure for Python objects in the Python/C API.
+</dl>
+
+<P>
+The iterator objects themselves are required to support the following
+two methods, which together form the <i class="dfn">iterator protocol</i>:
+
+<P>
+<dl><dt><b><a name="l2h-103"><tt class="method">__iter__</tt></a></b>()
+<dd>
+  Return the iterator object itself.  This is required to allow both
+  containers and iterators to be used with the <tt class="keyword">for</tt> and
+  <tt class="keyword">in</tt> statements.  This method corresponds to the
+  <tt class="member">tp_iter</tt> slot of the type structure for Python objects in
+  the Python/C API.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-104"><tt class="method">next</tt></a></b>()
+<dd>
+  Return the next item from the container.  If there are no further
+  items, raise the <tt class="exception">StopIteration</tt> exception.  This method
+  corresponds to the <tt class="member">tp_iternext</tt> slot of the type structure
+  for Python objects in the Python/C API.
+</dl>
+
+<P>
+Python defines several iterator objects to support iteration over
+general and specific sequence types, dictionaries, and other more
+specialized forms.  The specific types are not important beyond their
+implementation of the iterator protocol.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="bitstring-ops.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="typesseq.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="bitstring-ops.html">2.2.4.1 Bit-string Operations on</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="types.html">2.2 Built-in Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="typesseq.html">2.2.6 Sequence Types</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

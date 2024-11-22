@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>9.2 How It Works </title>
+<META NAME="description" CONTENT="9.2 How It Works ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="debugger-commands.html">
+<LINK REL="up" href="module-pdb.html">
+<LINK REL="next" href="profile.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="debugger-commands.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-pdb.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="profile.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="debugger-commands.html">9.1 Debugger Commands</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-pdb.html">9. The Python Debugger</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="profile.html">10. The Python Profiler</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0011200000000000000000">&nbsp;</A>
+<BR>
+9.2 How It Works 
+</H1>
+
+<P>
+Some changes were made to the interpreter:
+
+<P>
+
+<UL>
+<LI><code>sys.settrace(<var>func</var>)</code> sets the global trace function
+</LI>
+<LI>there can also a local trace function (see later)
+</LI>
+</UL>
+
+<P>
+Trace functions have three arguments: <var>frame</var>, <var>event</var>, and
+<var>arg</var>. <var>frame</var> is the current stack frame.  <var>event</var> is a
+string: <code>'call'</code>, <code>'line'</code>, <code>'return'</code> or
+<code>'exception'</code>.  <var>arg</var> depends on the event type.
+
+<P>
+The global trace function is invoked (with <var>event</var> set to
+<code>'call'</code>) whenever a new local scope is entered; it should return
+a reference to the local trace function to be used that scope, or
+<code>None</code> if the scope shouldn't be traced.
+
+<P>
+The local trace function should return a reference to itself (or to
+another function for further tracing in that scope), or <code>None</code> to
+turn off tracing in that scope.
+
+<P>
+Instance methods are accepted (and very useful!) as trace functions.
+
+<P>
+The events have the following meaning:
+
+<P>
+<DL>
+<DT><STRONG><code>'call'</code></STRONG></DT>
+<DD>A function is called (or some other code block entered).  The global
+trace function is called; <var>arg</var> is <code>None</code>;
+the return value specifies the local trace function.
+
+<P>
+</DD>
+<DT><STRONG><code>'line'</code></STRONG></DT>
+<DD>The interpreter is about to execute a new line of code (sometimes
+multiple line events on one line exist).  The local trace function is
+called; <var>arg</var> is <code>None</code>; the return value specifies the new
+local trace function.
+
+<P>
+</DD>
+<DT><STRONG><code>'return'</code></STRONG></DT>
+<DD>A function (or other code block) is about to return.  The local trace
+function is called; <var>arg</var> is the value that will be returned.  The
+trace function's return value is ignored.
+
+<P>
+</DD>
+<DT><STRONG><code>'exception'</code></STRONG></DT>
+<DD>An exception has occurred.  The local trace function is called;
+<var>arg</var> is a triple <code>(<var>exception</var>, <var>value</var>,
+<var>traceback</var>)</code>; the return value specifies the new local trace
+function.
+
+<P>
+</DD>
+</DL>
+
+<P>
+Note that as an exception is propagated down the chain of callers, an
+<code>'exception'</code> event is generated at each level.
+
+<P>
+For more information on code and frame objects, refer to the
+<em class="citetitle"><a
+ href="../ref/ref.html"
+ title="Python Reference Manual"
+ >Python Reference Manual</a></em>.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="debugger-commands.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-pdb.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="profile.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="debugger-commands.html">9.1 Debugger Commands</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-pdb.html">9. The Python Debugger</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="profile.html">10. The Python Profiler</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

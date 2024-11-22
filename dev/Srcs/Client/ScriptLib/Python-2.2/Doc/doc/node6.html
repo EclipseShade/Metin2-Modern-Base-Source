@@ -1,0 +1,279 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.1 Syntax </title>
+<META NAME="description" CONTENT="4.1 Syntax ">
+<META NAME="keywords" CONTENT="doc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="doc.css">
+<link rel="first" href="doc.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="latex-syntax.html">
+<LINK REL="previous" href="latex-primer.html">
+<LINK REL="up" href="latex-primer.html">
+<LINK REL="next" href="latex-syntax.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="latex-primer.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="latex-primer.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="latex-syntax.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="latex-primer.html">4 L<SUP>A</SUP>TEX Primer</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="latex-primer.html">4 L<SUP>A</SUP>TEX Primer</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="latex-syntax.html">4.2 Hierarchical Structure</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000510000000000000000">&nbsp;</A>
+<BR>
+4.1 Syntax 
+</H2>
+
+<P>
+There are some things that an author of Python documentation needs
+    to know about <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> syntax.
+
+<P>
+A <i class="dfn">comment</i> is started by the ``percent'' character
+    ("<tt class="character">%</tt>") and continues through the end of the line and all
+    leading whitespace on the following line.  This is a little
+    different from any programming language I know of, so an example
+    is in order:
+
+<P>
+<dl><dd><pre class="verbatim">
+This is text.% comment
+    This is more text.  % another comment
+Still more text.
+</pre></dl>
+
+<P>
+The first non-comment character following the first comment is the
+    letter "<tt class="character">T</tt>" on the second line; the leading whitespace on
+    that line is consumed as part of the first comment.  This means
+    that there is no space between the first and second sentences, so
+    the period and letter "<tt class="character">T</tt>" will be directly adjacent in
+    the typeset document.
+
+<P>
+Note also that though the first non-comment character after the
+    second comment is the letter "<tt class="character">S</tt>", there is whitespace
+    preceding the comment, so the two sentences are separated as
+    expected.
+
+<P>
+A <i class="dfn">group</i> is an enclosure for a collection of text and
+    commands which encloses the formatting context and constrains the
+    scope of any changes to that context made by commands within the
+    group.  Groups can be nested hierarchically.  The formatting
+    context includes the font and the definition of additional macros
+    (or overrides of macros defined in outer groups).  Syntactically,
+    groups are enclosed in braces:
+
+<P>
+<dl><dd><pre class="verbatim">
+{text in a group}
+</pre></dl>
+
+<P>
+An alternate syntax for a group using brackets, <code>[...]</code>, is
+    used by macros and environment constructors which take optional
+    parameters; brackets do not normally hold syntactic significance.
+    A degenerate group, containing only one atomic bit of content,
+    does not need to have an explicit group, unless it is required to
+    avoid ambiguity.  Since Python tends toward the explicit, groups
+    are also made explicit in the documentation markup.
+
+<P>
+Groups are used only sparingly in the Python documentation, except
+    for their use in marking parameters to macros and environments.
+
+<P>
+A <i class="dfn">macro</i> is usually a simple construct which is identified by
+    name and can take some number of parameters.  In normal <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN>
+    usage, one of these can be optional.  The markup is introduced
+    using the backslash character ("<tt class="character">&#92;</tt>"), and the name is
+    given by alphabetic characters (no digits, hyphens, or
+    underscores).  Required parameters should be marked as a group,
+    and optional parameters should be marked using the alternate
+    syntax for a group.
+
+<P>
+For example, a macro named ``foo'' which takes a single parameter
+    would appear like this:
+
+<P>
+<dl><dd><pre class="verbatim">
+\name{parameter}
+</pre></dl>
+
+<P>
+A macro which takes an optional parameter would be typed like this
+    when the optional paramter is given:
+
+<P>
+<dl><dd><pre class="verbatim">
+\name[optional]
+</pre></dl>
+
+<P>
+If both optional and required parameters are to be required, it
+    looks like this:
+
+<P>
+<dl><dd><pre class="verbatim">
+\name[optional]{required}
+</pre></dl>
+
+<P>
+A macro name may be followed by a space or newline; a space
+    between the macro name and any parameters will be consumed, but
+    this usage is not practiced in the Python documentation.  Such a
+    space is still consumed if there are no parameters to the macro,
+    in which case inserting an empty group (<code>{}</code>) or explicit
+    word space ("<tt class="samp">&#92; </tt>") immediately after the macro name helps to
+    avoid running the expansion of the macro into the following text.
+    Macros which take no parameters but which should not be followed
+    by a word space do not need special treatment if the following
+    character in the document source if not a name character (such as
+    punctuation).
+
+<P>
+Each line of this example shows an appropriate way to write text
+    which includes a macro which takes no parameters:
+
+<P>
+<dl><dd><pre class="verbatim">
+This \UNIX{} is followed by a space.
+This \UNIX\ is also followed by a space.
+\UNIX, followed by a comma, needs no additional markup.
+</pre></dl>
+
+<P>
+An <i class="dfn">environment</i> is a larger construct than a macro, and can
+    be used for things with more content than would conveniently fit
+    in a macro parameter.  They are primarily used when formatting
+    parameters need to be changed before and after a large chunk of
+    content, but the content itself needs to be highly flexible.  Code
+    samples are presented using an environment, and descriptions of
+    functions, methods, and classes are also marked using environments.
+
+<P>
+Since the content of an environment is free-form and can consist
+    of several paragraphs, they are actually marked using a pair of
+    macros: <tt class='macro'>&#92;begin</tt> and <tt class='macro'>&#92;end</tt>.  These macros both take the
+    name of the environment as a parameter.  An example is the
+    environment used to mark the abstract of a document:
+
+<P>
+<dl><dd><pre class="verbatim">
+\begin{abstract}
+  This is the text of the abstract.  It concisely explains what
+  information is found in the document.
+
+  It can consist of multiple paragraphs.
+\end{abstract}
+</pre></dl>
+
+<P>
+An environment can also have required and optional parameters of
+    its own.  These follow the parameter of the <tt class='macro'>&#92;begin</tt> macro.
+    This example shows an environment which takes a single required
+    parameter:
+
+<P>
+<dl><dd><pre class="verbatim">
+\begin{datadesc}{controlnames}
+  A 33-element string array that contains the \ASCII{} mnemonics for
+  the thirty-two \ASCII{} control characters from 0 (NUL) to 0x1f
+  (US), in order, plus the mnemonic \samp{SP} for the space character.
+\end{datadesc}
+</pre></dl>
+
+<P>
+There are a number of less-used marks in <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> which are used
+    to enter non-ASCII characters, especially those used in
+    European names.  Given that these are often used adjacent to other
+    characters, the markup required to produce the proper character
+    may need to be followed by a space or an empty group, or the
+    markup can be enclosed in a group.  Some which are found in Python
+    documentation are:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Character</b>&nbsp;</th>
+      <th align="left"><b>Markup</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline">&#231;</td>
+        <td align="left"><code>&#92;c c</code></td>
+    <tr><td align="center" valign="baseline">&#246;</td>
+        <td align="left"><code>&#92;"o</code></td>
+    <tr><td align="center" valign="baseline">&#248;</td>
+        <td align="left"><code>&#92;o</code></td></tbody>
+</table>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="latex-primer.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="latex-primer.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="latex-syntax.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="latex-primer.html">4 L<SUP>A</SUP>TEX Primer</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="latex-primer.html">4 L<SUP>A</SUP>TEX Primer</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="latex-syntax.html">4.2 Hierarchical Structure</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

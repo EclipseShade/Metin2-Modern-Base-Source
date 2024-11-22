@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.14.6 Security </title>
+<META NAME="description" CONTENT="3.14.6 Security ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="pickle-example.html">
+<LINK REL="previous" href="pickle-protocol.html">
+<LINK REL="up" href="module-pickle.html">
+<LINK REL="next" href="pickle-example.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node66.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-pickle.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pickle-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node66.html">3.14.5.3 Pickling and unpickling</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-pickle.html">3.14 pickle  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pickle-example.html">3.14.7 Example</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0051460000000000000000">&nbsp;</A>
+<BR>
+3.14.6 Security 
+</H2>
+
+<P>
+Most of the security issues surrounding the <tt class="module">pickle</tt> and
+<tt class="module">cPickle</tt> module involve unpickling.  There are no known
+security vulnerabilities
+related to pickling because you (the programmer) control the objects
+that <tt class="module">pickle</tt> will interact with, and all it produces is a
+string.
+
+<P>
+However, for unpickling, it is <b>never</b> a good idea to unpickle
+an untrusted string whose origins are dubious, for example, strings
+read from a socket.  This is because unpickling can create unexpected
+objects and even potentially run methods of those objects, such as
+their class constructor or destructor<A NAME="tex2html23"
+  HREF="#foot6931"><SUP>3.11</SUP></A>.
+
+<P>
+You can defend against this by customizing your unpickler so that you
+can control exactly what gets unpickled and what gets called.
+Unfortunately, exactly how you do this is different depending on
+whether you're using <tt class="module">pickle</tt> or <tt class="module">cPickle</tt>.
+
+<P>
+One common feature that both modules implement is the
+<tt class="member">__safe_for_unpickling__</tt> attribute.  Before calling a callable
+which is not a class, the unpickler will check to make sure that the
+callable has either been registered as a safe callable via the
+<tt class="module"><a href="module-copyreg.html">copy_reg</a></tt> module, or that it has an
+attribute <tt class="member">__safe_for_unpickling__</tt> with a true value.  This
+prevents the unpickling environment from being tricked into doing
+evil things like call <code>os.unlink()</code> with an arbitrary file name.
+See section&nbsp;<A href="pickle-protocol.html#pickle-protocol">3.14.5</A> for more details.
+
+<P>
+For safely unpickling class instances, you need to control exactly
+which classes will get created.  Be aware that a class's constructor
+could be called (if the pickler found a <tt class="method">__getinitargs__()</tt>
+method) and the the class's destructor (i.e. its <tt class="method">__del__()</tt> method)
+might get called when the object is garbage collected.  Depending on
+the class, it isn't very heard to trick either method into doing bad
+things, such as removing a file.  The way to
+control the classes that are safe to instantiate differs in
+<tt class="module">pickle</tt> and <tt class="module">cPickle</tt><A NAME="tex2html24"
+  HREF="#foot6932"><SUP>3.12</SUP></A>.
+
+<P>
+In the <tt class="module">pickle</tt> module, you need to derive a subclass from
+<tt class="class">Unpickler</tt>, overriding the <tt class="method">load_global()</tt>
+method.  <tt class="method">load_global()</tt> should read two lines from the pickle
+data stream where the first line will the the name of the module
+containing the class and the second line will be the name of the
+instance's class.  It then look up the class, possibly importing the
+module and digging out the attribute, then it appends what it finds to
+the unpickler's stack.  Later on, this class will be assigned to the
+<tt class="member">__class__</tt> attribute of an empty class, as a way of magically
+creating an instance without calling its class's <tt class="method">__init__()</tt>.
+You job (should you choose to accept it), would be to have
+<tt class="method">load_global()</tt> push onto the unpickler's stack, a known safe
+version of any class you deem safe to unpickle.  It is up to you to
+produce such a class.  Or you could raise an error if you want to
+disallow all unpickling of instances.  If this sounds like a hack,
+you're right.  UTSL.
+
+<P>
+Things are a little cleaner with <tt class="module">cPickle</tt>, but not by much.
+To control what gets unpickled, you can set the unpickler's
+<tt class="member">find_global</tt> attribute to a function or <code>None</code>.  If it is
+<code>None</code> then any attempts to unpickle instances will raise an
+<tt class="exception">UnpicklingError</tt>.  If it is a function,
+then it should accept a module name and a class name, and return the
+corresponding class object.  It is responsible for looking up the
+class, again performing any necessary imports, and it may raise an
+error to prevent instances of the class from being unpickled.
+
+<P>
+The moral of the story is that you should be really careful about the
+source of the strings your application unpickles.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot6931">... destructor</A><A NAME="foot6931"
+ href="pickle-sec.html#tex2html23"><SUP>3.11</SUP></A>
+<DD>A special note of
+caution is worth raising about the <tt class="module"><a href="module-Cookie.html">Cookie</a></tt>
+module.  By default, the <tt class="class">Cookie.Cookie</tt> class is an alias for
+the <tt class="class">Cookie.SmartCookie</tt> class, which ``helpfully'' attempts to
+unpickle any cookie data string it is passed.  This is a huge security
+hole because cookie data typically comes from an untrusted source.
+You should either explicitly use the <tt class="class">Cookie.SimpleCookie</tt> class
+-- which doesn't attempt to unpickle its string -- or you should
+implement the defensive programming steps described later on in this
+section.
+
+<DT><A NAME="foot6932">...cPickle</A><A NAME="foot6932"
+ href="pickle-sec.html#tex2html24"><SUP>3.12</SUP></A>
+<DD>A word of caution: the
+mechanisms described here use internal attributes and methods, which
+are subject to change in future versions of Python.  We intend to
+someday provide a common interface for controlling this behavior,
+which will work in either <tt class="module">pickle</tt> or <tt class="module">cPickle</tt>.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node66.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-pickle.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pickle-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node66.html">3.14.5.3 Pickling and unpickling</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-pickle.html">3.14 pickle  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pickle-example.html">3.14.7 Example</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

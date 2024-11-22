@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.17.2 Unpacker Objects </title>
+<META NAME="description" CONTENT="12.17.2 Unpacker Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="xdr-exceptions.html">
+<LINK REL="previous" href="xdr-packer-objects.html">
+<LINK REL="up" href="module-xdrlib.html">
+<LINK REL="next" href="xdr-exceptions.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="xdr-packer-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xdrlib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="xdr-exceptions.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="xdr-packer-objects.html">12.17.1 Packer Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xdrlib.html">12.17 xdrlib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="xdr-exceptions.html">12.17.3 Exceptions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00141720000000000000000">&nbsp;</A>
+<BR>
+12.17.2 Unpacker Objects 
+</H2>
+
+<P>
+The <tt class="class">Unpacker</tt> class offers the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-3068"><tt class="method">reset</tt></a></b>(<var>data</var>)
+<dd>
+Resets the string buffer with the given <var>data</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3069"><tt class="method">get_position</tt></a></b>()
+<dd>
+Returns the current unpack position in the data buffer.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3070"><tt class="method">set_position</tt></a></b>(<var>position</var>)
+<dd>
+Sets the data buffer unpack position to <var>position</var>.  You should be
+careful about using <tt class="method">get_position()</tt> and <tt class="method">set_position()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3071"><tt class="method">get_buffer</tt></a></b>()
+<dd>
+Returns the current unpack data buffer as a string.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3072"><tt class="method">done</tt></a></b>()
+<dd>
+Indicates unpack completion.  Raises an <tt class="exception">Error</tt> exception
+if all of the data has not been unpacked.
+</dl>
+
+<P>
+In addition, every data type that can be packed with a <tt class="class">Packer</tt>,
+can be unpacked with an <tt class="class">Unpacker</tt>.  Unpacking methods are of the
+form <code>unpack_<var>type</var>()</code>, and take no arguments.  They return the
+unpacked object.
+
+<P>
+<dl><dt><b><a name="l2h-3073"><tt class="method">unpack_float</tt></a></b>()
+<dd>
+Unpacks a single-precision floating point number.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3074"><tt class="method">unpack_double</tt></a></b>()
+<dd>
+Unpacks a double-precision floating point number, similarly to
+<tt class="method">unpack_float()</tt>.
+</dl>
+
+<P>
+In addition, the following methods unpack strings, bytes, and opaque
+data:
+
+<P>
+<dl><dt><b><a name="l2h-3075"><tt class="method">unpack_fstring</tt></a></b>(<var>n</var>)
+<dd>
+Unpacks and returns a fixed length string.  <var>n</var> is the number of
+characters expected.  Padding with null bytes to guaranteed 4 byte
+alignment is assumed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3076"><tt class="method">unpack_fopaque</tt></a></b>(<var>n</var>)
+<dd>
+Unpacks and returns a fixed length opaque data stream, similarly to
+<tt class="method">unpack_fstring()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3077"><tt class="method">unpack_string</tt></a></b>()
+<dd>
+Unpacks and returns a variable length string.  The length of the
+string is first unpacked as an unsigned integer, then the string data
+is unpacked with <tt class="method">unpack_fstring()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3078"><tt class="method">unpack_opaque</tt></a></b>()
+<dd>
+Unpacks and returns a variable length opaque data string, similarly to
+<tt class="method">unpack_string()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3079"><tt class="method">unpack_bytes</tt></a></b>()
+<dd>
+Unpacks and returns a variable length byte stream, similarly to
+<tt class="method">unpack_string()</tt>.
+</dl>
+
+<P>
+The following methods support unpacking arrays and lists:
+
+<P>
+<dl><dt><b><a name="l2h-3080"><tt class="method">unpack_list</tt></a></b>(<var>unpack_item</var>)
+<dd>
+Unpacks and returns a list of homogeneous items.  The list is unpacked
+one element at a time
+by first unpacking an unsigned integer flag.  If the flag is <code>1</code>,
+then the item is unpacked and appended to the list.  A flag of
+<code>0</code> indicates the end of the list.  <var>unpack_item</var> is the
+function that is called to unpack the items.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3081"><tt class="method">unpack_farray</tt></a></b>(<var>n, unpack_item</var>)
+<dd>
+Unpacks and returns (as a list) a fixed length array of homogeneous
+items.  <var>n</var> is number of list elements to expect in the buffer.
+As above, <var>unpack_item</var> is the function used to unpack each element.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3082"><tt class="method">unpack_array</tt></a></b>(<var>unpack_item</var>)
+<dd>
+Unpacks and returns a variable length <var>list</var> of homogeneous items.
+First, the length of the list is unpacked as an unsigned integer, then
+each element is unpacked as in <tt class="method">unpack_farray()</tt> above.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="xdr-packer-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xdrlib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="xdr-exceptions.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="xdr-packer-objects.html">12.17.1 Packer Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xdrlib.html">12.17 xdrlib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="xdr-exceptions.html">12.17.3 Exceptions</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

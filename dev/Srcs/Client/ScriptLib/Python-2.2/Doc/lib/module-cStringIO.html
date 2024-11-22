@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.7 cStringIO -- Faster version of StringIO</title>
+<META NAME="description" CONTENT="4.7 cStringIO -- Faster version of StringIO">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-codecs.html">
+<LINK REL="previous" href="module-StringIO.html">
+<LINK REL="up" href="strings.html">
+<LINK REL="next" href="module-codecs.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-StringIO.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="strings.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-codecs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-StringIO.html">4.6 StringIO  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="strings.html">4. String Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-codecs.html">4.8 codecs  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006700000000000000000">
+4.7 <tt class="module">cStringIO</tt> --
+         Faster version of <tt class="module">StringIO</tt></A>
+</H1>
+
+<P>
+
+
+<P>
+The module <tt class="module">cStringIO</tt> provides an interface similar to that of
+the <tt class="module"><a href="module-StringIO.html">StringIO</a></tt> module.  Heavy use of <tt class="class">StringIO.StringIO</tt>
+objects can be made more efficient by using the function
+<tt class="function">StringIO()</tt> from this module instead.
+
+<P>
+Since this module provides a factory function which returns objects of
+built-in types, there's no way to build your own version using
+subclassing.  Use the original <tt class="module"><a href="module-StringIO.html">StringIO</a></tt> module in that case.
+
+<P>
+Unlike the memory files implemented by the <tt class="module"><a href="module-StringIO.html">StringIO</a></tt>
+module, those provided by this module are not able to accept Unicode
+strings that cannot be encoded as plain ASCII strings.
+
+<P>
+The following data objects are provided as well:
+
+<P>
+<dl><dt><b><a name="l2h-789"><tt>InputType</tt></a></b>
+<dd>
+  The type object of the objects created by calling
+  <tt class="function">StringIO</tt> with a string parameter.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-790"><tt>OutputType</tt></a></b>
+<dd>
+  The type object of the objects returned by calling
+  <tt class="function">StringIO</tt> with no parameters.
+</dl>
+
+<P>
+There is a C API to the module as well; refer to the module source for 
+more information.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-StringIO.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="strings.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-codecs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-StringIO.html">4.6 StringIO  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="strings.html">4. String Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-codecs.html">4.8 codecs  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.14.1 Relationship to other Python modules</title>
+<META NAME="description" CONTENT="3.14.1 Relationship to other Python modules">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node60.html">
+<LINK REL="previous" href="module-pickle.html">
+<LINK REL="up" href="module-pickle.html">
+<LINK REL="next" HREF="node60.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-pickle.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-pickle.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node60.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-pickle.html">3.14 pickle  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-pickle.html">3.14 pickle  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node60.html">3.14.2 Data stream format</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0051410000000000000000">
+3.14.1 Relationship to other Python modules</A>
+</H2>
+
+<P>
+The <tt class="module">pickle</tt> module has an optimized cousin called the
+<tt class="module">cPickle</tt> module.  As its name implies, <tt class="module">cPickle</tt> is
+written in C, so it can be up to 1000 times faster than
+<tt class="module">pickle</tt>.  However it does not support subclassing of the
+<tt class="function">Pickler()</tt> and <tt class="function">Unpickler()</tt> classes, because in
+<tt class="module">cPickle</tt> these are functions, not classes.  Most applications
+have no need for this functionality, and can benefit from the improved
+performance of <tt class="module">cPickle</tt>.  Other than that, the interfaces of
+the two modules are nearly identical; the common interface is
+described in this manual and differences are pointed out where
+necessary.  In the following discussions, we use the term ``pickle''
+to collectively describe the <tt class="module">pickle</tt> and
+<tt class="module">cPickle</tt> modules.
+
+<P>
+The data streams the two modules produce are guaranteed to be
+interchangeable.
+
+<P>
+Python has a more primitive serialization module called
+<tt class="module"><a href="module-marshal.html">marshal</a></tt>, but in general
+<tt class="module">pickle</tt> should always be the preferred way to serialize Python
+objects.  <tt class="module">marshal</tt> exists primarily to support Python's
+<span class="file">.pyc</span> files.
+
+<P>
+The <tt class="module">pickle</tt> module differs from <tt class="module"><a href="module-marshal.html">marshal</a></tt> several
+significant ways:
+
+<P>
+
+<UL>
+<LI>The <tt class="module">pickle</tt> module keeps track of the objects it has
+      already serialized, so that later references to the same object
+      won't be serialized again.  <tt class="module">marshal</tt> doesn't do this.
+
+<P>
+This has implications both for recursive objects and object
+      sharing.  Recursive objects are objects that contain references
+      to themselves.  These are not handled by marshal, and in fact,
+      attempting to marshal recursive objects will crash your Python
+      interpreter.  Object sharing happens when there are multiple
+      references to the same object in different places in the object
+      hierarchy being serialized.  <tt class="module">pickle</tt> stores such objects
+      only once, and ensures that all other references point to the
+      master copy.  Shared objects remain shared, which can be very
+      important for mutable objects.
+
+<P>
+</LI>
+<LI><tt class="module">marshal</tt> cannot be used to serialize user-defined
+      classes and their instances.  <tt class="module">pickle</tt> can save and
+      restore class instances transparently, however the class
+      definition must be importable and live in the same module as
+      when the object was stored.
+
+<P>
+</LI>
+<LI>The <tt class="module">marshal</tt> serialization format is not guaranteed to
+      be portable across Python versions.  Because its primary job in
+      life is to support <span class="file">.pyc</span> files, the Python implementers
+      reserve the right to change the serialization format in
+      non-backwards compatible ways should the need arise.  The
+      <tt class="module">pickle</tt> serialization format is guaranteed to be
+      backwards compatible across Python releases.
+
+<P>
+</LI>
+<LI>The <tt class="module">pickle</tt> module doesn't handle code objects, which
+      the <tt class="module">marshal</tt> module does.  This avoids the possibility
+      of smuggling Trojan horses into a program through the
+      <tt class="module">pickle</tt> module<A NAME="tex2html15"
+  HREF="#foot6913"><SUP>3.3</SUP></A>.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Note that serialization is a more primitive notion than persistence;
+although
+<tt class="module">pickle</tt> reads and writes file objects, it does not handle the
+issue of naming persistent objects, nor the (even more complicated)
+issue of concurrent access to persistent objects.  The <tt class="module">pickle</tt>
+module can transform a complex object into a byte stream and it can
+transform the byte stream into an object with the same internal
+structure.  Perhaps the most obvious thing to do with these byte
+streams is to write them onto a file, but it is also conceivable to
+send them across a network or store them in a database.  The module
+<tt class="module"><a href="module-shelve.html">shelve</a></tt> provides a simple interface
+to pickle and unpickle objects on DBM-style database files.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot6913">... module</A><A NAME="foot6913"
+ HREF="node59.html#tex2html15"><SUP>3.3</SUP></A>
+<DD>This doesn't necessarily imply
+      that <tt class="module">pickle</tt> is inherently secure.  See
+      section&nbsp;<A href="pickle-sec.html#pickle-sec">3.14.6</A> for a more detailed discussion on
+      <tt class="module">pickle</tt> module security.  Besides, it's possible that
+      <tt class="module">pickle</tt> will eventually support serializing code
+      objects.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-pickle.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-pickle.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node60.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-pickle.html">3.14 pickle  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-pickle.html">3.14 pickle  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node60.html">3.14.2 Data stream format</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

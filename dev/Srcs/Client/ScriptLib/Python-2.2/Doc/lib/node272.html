@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.15.1 Resource Limits</title>
+<META NAME="description" CONTENT="8.15.1 Resource Limits">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node273.html">
+<LINK REL="previous" href="module-resource.html">
+<LINK REL="up" href="module-resource.html">
+<LINK REL="next" HREF="node273.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-resource.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-resource.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node273.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-resource.html">8.15 resource  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-resource.html">8.15 resource  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node273.html">8.15.2 Resource Usage</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00101510000000000000000">
+8.15.1 Resource Limits</A>
+</H2>
+
+<P>
+Resources usage can be limited using the <tt class="function">setrlimit()</tt> function
+described below. Each resource is controlled by a pair of limits: a
+soft limit and a hard limit. The soft limit is the current limit, and
+may be lowered or raised by a process over time. The soft limit can
+never exceed the hard limit. The hard limit can be lowered to any
+value greater than the soft limit, but not raised. (Only processes with
+the effective UID of the super-user can raise a hard limit.)
+
+<P>
+The specific resources that can be limited are system dependent. They
+are described in the <span class="manpage"><i>getrlimit</i>(2)</span> man page.  The resources
+listed below are supported when the underlying operating system
+supports them; resources which cannot be checked or controlled by the
+operating system are not defined in this module for those platforms.
+
+<P>
+<dl><dt><b><a name="l2h-2209"><tt class="function">getrlimit</tt></a></b>(<var>resource</var>)
+<dd>
+  Returns a tuple <code>(<var>soft</var>, <var>hard</var>)</code> with the current
+  soft and hard limits of <var>resource</var>. Raises <tt class="exception">ValueError</tt> if
+  an invalid resource is specified, or <tt class="exception">error</tt> if the
+  underyling system call fails unexpectedly.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2210"><tt class="function">setrlimit</tt></a></b>(<var>resource, limits</var>)
+<dd>
+  Sets new limits of consumption of <var>resource</var>. The <var>limits</var>
+  argument must be a tuple <code>(<var>soft</var>, <var>hard</var>)</code> of two
+  integers describing the new limits. A value of <code>-1</code> can be used to
+  specify the maximum possible upper limit.
+
+<P>
+Raises <tt class="exception">ValueError</tt> if an invalid resource is specified,
+  if the new soft limit exceeds the hard limit, or if a process tries
+  to raise its hard limit (unless the process has an effective UID of
+  super-user).  Can also raise <tt class="exception">error</tt> if the underyling
+  system call fails.
+</dl>
+
+<P>
+These symbols define resources whose consumption can be controlled
+using the <tt class="function">setrlimit()</tt> and <tt class="function">getrlimit()</tt> functions
+described below. The values of these symbols are exactly the constants
+used by C programs.
+
+<P>
+The Unix man page for <span class="manpage"><i>getrlimit</i>(2)</span> lists the available
+resources.  Note that not all systems use the same symbol or same
+value to denote the same resource.  This module does not attempt to
+mask platform differences -- symbols not defined for a platform will
+not be available from this module on that platform.
+
+<P>
+<dl><dt><b><a name="l2h-2211"><tt>RLIMIT_CORE</tt></a></b>
+<dd>
+  The maximum size (in bytes) of a core file that the current process
+  can create.  This may result in the creation of a partial core file
+  if a larger core would be required to contain the entire process
+  image.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2212"><tt>RLIMIT_CPU</tt></a></b>
+<dd>
+  The maximum amount of processor time (in seconds) that a process can
+  use. If this limit is exceeded, a <tt class="constant">SIGXCPU</tt> signal is sent to
+  the process. (See the <tt class="module"><a href="module-signal.html">signal</a></tt> module documentation for
+  information about how to catch this signal and do something useful,
+  e.g. flush open files to disk.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2213"><tt>RLIMIT_FSIZE</tt></a></b>
+<dd>
+  The maximum size of a file which the process may create.  This only
+  affects the stack of the main thread in a multi-threaded process.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2214"><tt>RLIMIT_DATA</tt></a></b>
+<dd>
+  The maximum size (in bytes) of the process's heap.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2215"><tt>RLIMIT_STACK</tt></a></b>
+<dd>
+  The maximum size (in bytes) of the call stack for the current
+  process.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2216"><tt>RLIMIT_RSS</tt></a></b>
+<dd>
+  The maximum resident set size that should be made available to the
+  process.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2217"><tt>RLIMIT_NPROC</tt></a></b>
+<dd>
+  The maximum number of processes the current process may create.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2218"><tt>RLIMIT_NOFILE</tt></a></b>
+<dd>
+  The maximum number of open file descriptors for the current
+  process.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2219"><tt>RLIMIT_OFILE</tt></a></b>
+<dd>
+  The BSD name for <tt class="constant">RLIMIT_NOFILE</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2220"><tt>RLIMIT_MEMLOC</tt></a></b>
+<dd>
+  The maximm address space which may be locked in memory.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2221"><tt>RLIMIT_VMEM</tt></a></b>
+<dd>
+  The largest area of mapped memory which the process may occupy.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2222"><tt>RLIMIT_AS</tt></a></b>
+<dd>
+  The maximum area (in bytes) of address space which may be taken by
+  the process.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-resource.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-resource.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node273.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-resource.html">8.15 resource  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-resource.html">8.15 resource  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node273.html">8.15.2 Resource Usage</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

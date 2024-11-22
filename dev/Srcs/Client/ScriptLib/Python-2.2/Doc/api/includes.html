@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.1 Include Files </title>
+<META NAME="description" CONTENT="1.1 Include Files ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="objects.html">
+<LINK REL="previous" href="intro.html">
+<LINK REL="up" href="intro.html">
+<LINK REL="next" href="objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="intro.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="intro.html">1. Introduction</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Introduction</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="objects.html">1.2 Objects, Types and</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION003100000000000000000">&nbsp;</A>
+<BR>
+1.1 Include Files 
+</H1>
+
+<P>
+All function, type and macro definitions needed to use the Python/C
+API are included in your code by the following line:
+
+<P>
+<dl><dd><pre class="verbatim">
+#include "Python.h"
+</pre></dl>
+
+<P>
+This implies inclusion of the following standard headers:
+<code>&lt;stdio.h&gt;</code>, <code>&lt;string.h&gt;</code>, <code>&lt;errno.h&gt;</code>,
+<code>&lt;limits.h&gt;</code>, and <code>&lt;stdlib.h&gt;</code> (if available).
+Since Python may define some pre-processor definitions which affect
+the standard headers on some systems, you must include <span class="file">Python.h</span>
+before any standard headers are included.
+
+<P>
+All user visible names defined by Python.h (except those defined by
+the included standard headers) have one of the prefixes "<tt class="samp">Py</tt>" or
+"<tt class="samp">_Py</tt>".  Names beginning with "<tt class="samp">_Py</tt>" are for internal use by
+the Python implementation and should not be used by extension writers.
+Structure member names do not have a reserved prefix.
+
+<P>
+<b>Important:</b> user code should never define names that begin
+with "<tt class="samp">Py</tt>" or "<tt class="samp">_Py</tt>".  This confuses the reader, and
+jeopardizes the portability of the user code to future Python
+versions, which may define additional names beginning with one of
+these prefixes.
+
+<P>
+The header files are typically installed with Python.  On Unix, these 
+are located in the directories
+<span class="file"><a class="envvar" name="l2h-1">prefix</a>/include/python<var>version</var>/</span> and
+<span class="file"><a class="envvar" name="l2h-2">exec_prefix</a>/include/python<var>version</var>/</span>, where
+<a class="envvar" name="l2h-4">prefix</a> and <a class="envvar" name="l2h-5">exec_prefix</a> are defined by the
+corresponding parameters to Python's <b class="program">configure</b> script and
+<var>version</var> is <code>sys.version[:3]</code>.  On Windows, the headers are
+installed in <span class="file"><a class="envvar" name="l2h-3">prefix</a>/include</span>, where <a class="envvar" name="l2h-6">prefix</a> is
+the installation directory specified to the installer.
+
+<P>
+To include the headers, place both directories (if different) on your
+compiler's search path for includes.  Do <i>not</i> place the parent
+directories on the search path and then use
+"<tt class="samp">#include &lt;python2.2/Python.h&gt;</tt>"; this will break on
+multi-platform builds since the platform independent headers under
+<a class="envvar" name="l2h-7">prefix</a> include the platform specific headers from
+<a class="envvar" name="l2h-8">exec_prefix</a>.
+
+<P>
+C++ users should note that though the API is defined entirely using
+C, the header files do properly declare the entry points to be
+<code>extern "C"</code>, so there is no need to do anything special to use
+the API from C++.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="intro.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="intro.html">1. Introduction</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Introduction</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="objects.html">1.2 Objects, Types and</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

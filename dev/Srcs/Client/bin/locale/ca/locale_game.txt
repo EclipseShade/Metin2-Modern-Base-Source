@@ -1,0 +1,773 @@
+AFF_LOVE_POINT	Love Point : %d%%
+ALIGNMENT_NAME	Hostile Killer Points :
+ATTACK_ERROR_UNKNOWN	Unknown Attack Error : %s
+CANNOT_ATTACK_DEST_IN_SAFE	The target is too far away
+CANNOT_ATTACK_SELF_IN_SAFE	Can't attack the target from here
+CANNOT_EQUIP_IN_EXCHANGE	Can not switch your equipment when you are trading
+CANNOT_EQUIP_IN_SHOP	Can not switch your equipment when you are using shop
+CANNOT_OPEN_PRIVATE_SHOP_IN_SAFE_AREA	Can not open a private shop in public place
+CANNOT_SHOOT_DEST_IN_SAFE	The target is too far away
+CANNOT_SHOOT_EMPTY_ARROW	Need more arrows to shoot
+CANNOT_SHOOT_SELF_IN_SAFE	Can not attack the target from here
+CANNOT_SKILL_APPROACH	Can not approach that spot
+CANNOT_SKILL_ATTACK	Can not attack it
+CANNOT_SKILL_DEST_IN_SAFE	The target is too far away
+CANNOT_SKILL_EQUIP_FISHING_ROD	Need a Fishing Pole
+CANNOT_SKILL_HAVE_TO_RIDE	Need to be mounted to use it
+CANNOT_SKILL_NEED_EMPTY_BOTTLE	Do not have a empty bottle
+CANNOT_SKILL_NEED_POISON_BOTTLE	Do not have a poison bottle
+CANNOT_SKILL_NEED_TARGET	Please choose a target
+CANNOT_SKILL_NOT_ENOUGH_HP	Do not have enough HP!
+CANNOT_SKILL_NOT_ENOUGH_SP	Do not have enough MP!
+CANNOT_SKILL_NOT_HORSE_SKILL	Can not use that while riding a horse
+CANNOT_SKILL_NOT_MATCHABLE_WEAPON	Can not use this skill with this weapon
+CANNOT_SKILL_NOT_YET_LEARN	You can not use this skill yet
+CANNOT_SKILL_ONLY_FOR_ALLIANCE	This can be only used on allies
+CANNOT_SKILL_ONLY_FOR_CORPSE	This can be only used on dead players
+CANNOT_SKILL_REMOVE_FISHING_ROD	Can not use this skill with Fishing Pole
+CANNOT_SKILL_SELF_IN_SAFE	Can not attack from this location
+CANNOT_SKILL_USE_SELF	Can not use this on myself
+CANNOT_SKILL_WAIT_COOLTIME	Can not use this yet
+CANNOT_WHISPER_DEST_REFUSE	%s has blocked all whispers	SA
+CANNOT_WHISPER_NOT_LOGON	%s is offline	SA
+CANNOT_WHISPER_SELF_REFUSE	You can't whisper someone while you are blocking all whispers	SNA
+CHANNEL	Channel
+CHANNELING_CANNOT_LOGOUT	Can not go to Login page
+CHANNEL_EMPTY_SERVER	Server Down
+CHANNEL_NORMAL	Channel %d
+CHANNEL_NOT_FIND_INFO	Can not find channel Information
+CHANNEL_PVP	PVP
+CHANNEL_SELECT_CHANNEL	Please select the channel
+CHANNEL_SELECT_REGION	Please select billing location
+CHANNEL_SELECT_SERVER	Please select Server
+CHANNEL_TEST_SERVER	Test Server
+CHANNEL_TEST_SERVER_ADDR	Test %s:%d
+CHAT_ALL	All
+CHAT_BLOCK	Block
+CHAT_GUILD	Guild
+CHAT_INFORMATION	Info
+CHAT_INSULT_STRING	This sentence contains inappropriate words
+CHAT_LOG	View chat history [L]
+CHAT_LOG_TITLE	View chat history
+CHAT_NORMAL	Normal
+CHAT_NOTICE	Notice
+CHAT_PARTY	Party
+CHAT_SEND_CHAT	Send Chat
+CHAT_SEND_MEMO	Send Whisper [Shift+Enter]
+CHAT_SHOUT	Shout
+CHAT_SHOUT_LIMIT	Can shout once every 15 seconds
+CHAT_WHISPER	Whisper
+CREATE_ERROR_GM_NAME	You can't use 'GM' in your character name
+CREATE_ERROR_INSULT_NAME	This name is inappropriate
+CREATE_EXIST_SAME_NAME	This name has been taken by another player
+CREATE_FAILURE	Invalid characters used in name.
+CREATE_GM_NAME	GM
+CREATE_INPUT_NAME	Please type characters name
+CREATE_PLUS_STAT	Remaining status points
+DAY	Day
+DO_YOU_DROP_MONEY	Do you want to drop %d Gold?
+DROP_ITEM_FAILURE_EQUIP_ITEM	Can not drop an equipped item
+DROP_ITEM_FAILURE_PRIVATE_SHOP	Can not drop an equipped item when opening the private shop
+DROP_MONEY_FAILURE_1000_OVER	Can not drop more than 1000 Gold
+EMOTION_DANCE_1	Dance1
+EMOTION_DANCE_2	Dance2
+EMOTION_DANCE_3	Dance3
+EMOTION_DANCE_4	Dance4
+EMOTION_DANCE_5	Dance5
+EMOTION_CONGRATULATION	Blessing
+EMOTION_FORGIVE	Forgiveness
+EMOTION_ANGRY	Anger(rage)
+EMOTION_ATTRACTIVE	Seduction	
+EMOTION_SAD	Sadness	
+EMOTION_SHY	Shyness
+EMOTION_CHEERUP	Cheer
+EMOTION_BANTER	Taunting	
+EMOTION_JOY	Joy	
+EMOTION_CHEERS_1	Cheer 1
+EMOTION_CHEERS_2	Cheer 2
+EMOTION_CHOOSE_ONE	Choose the target
+EMOTION_CLAP	Claps
+EMOTION_CLAP_KISS	Kiss
+EMOTION_FRENCH_KISS	French Kiss
+EMOTION_SLAP	Slap
+EMPIRE_A	Milgaard
+EMPIRE_B	Listhmos
+EMPIRE_C	Dendera
+EXCHANGE_CANNOT_GIVE	Can not trade this item
+EXCHANGE_CANT_EDIT_MONEY	Can not change the amount
+EXCHANGE_FAILURE_EQUIP_ITEM	Can not trade equipped items
+EXCHANGE_MONEY	Amount
+EXCHANGE_TITLE	Trade with %s
+FISHING_FAILURE	The Fish has eaten your bait
+FISHING_UNKNOWN	I don't know what I caught
+FISHING_WRONG_PLACE	Can not fish at this spot
+GAME_CANNOT_MINING	Can not mine while riding a horse
+GAME_CANNOT_PICK_ITEM	You can not pick up this item because it is not your loot
+GAME_INIT_ERROR_CURSOR	Failed to create cursor
+GAME_INIT_ERROR_DIRECTX	DirectX 8.1 must be installed to run the game.\nPlease install DirectX 8.1 or higher
+GAME_INIT_ERROR_GRAPHICS_BAD_PERFORMANCE	Unable to find a graphic device to run the game.\nPlease check if your VGA card is installed properly
+GAME_INIT_ERROR_GRAPHICS_NOT_EXIST	Failed to create a graphic device.\nPlease check if you have required VGA card.\nOr turn on Hardware Acceleration.\n(Set the Hardware Acceleration to Max \nfrom Control Panel->Display->Property->Advance->Trouble Shooting Tab)
+GAME_INIT_ERROR_GRAPHICS_NOT_SUPPORT_32BIT	Your PC's VGA card doesn't support window mode in 32 bit mode.\nChange to 16 bit mode or use full screen mode
+GAME_INIT_ERROR_ITEM_PROTO	There is no item data.\nPlease reinstall the game
+GAME_INIT_ERROR_MAIN_WINDOW	Failed to create interface
+GAME_INIT_ERROR_MOB_PROTO	There is no monster data.\nPlease reinstall the game
+GAME_INIT_ERROR_NETWORK	Failed to create a network device.\nPlease check your internet connection
+GAME_PICK_MONEY	Gained Gold %d
+GUILDMARK_UPLOADER_ERROR_128_HEIGHT	Height is not 128 pixel
+GUILDMARK_UPLOADER_ERROR_12_HEIGHT	Height is not 12 pixel
+GUILDMARK_UPLOADER_ERROR_16_WIDTH	Width is not 16 pixel
+GUILDMARK_UPLOADER_ERROR_64_WIDTH	Width is not 64 pixel
+GUILDMARK_UPLOADER_ERROR_FILE_FORMAT	This image file is not supported in game
+GUILDMARK_UPLOADER_ERROR_PATH	Please place the files in metin2/upload folder
+GUILDMARK_UPLOADER_ERROR_SELECT	There is no selected image file
+GUILDWAR_CTF_TITLE	Capture Battle
+GUILDWAR_NORMAL_TITLE	Field Battle
+GUILDWAR_QUESTION_LINE_1	%s Guild has declared a war to your guild,
+GUILDWAR_QUESTION_LINE_2	Do you agree? (%s)
+GUILDWAR_UNKNOWN_TITLE	...
+GUILDWAR_WARP_TITLE	Guild War Arena
+GUILD_BUILDING_GRADE	Grade
+GUILD_BUILDING_NAME	Building Name
+GUILD_CANNOT_HEAL_GSP_ANYMORE	Dragon spirit is already full
+GUILD_COMMENT	Write
+GUILD_CREATE_ERROR_INSULT_NAME	Guild Name is inappropriate
+GUILD_DEFAULT_GRADE	Guild Members
+GUILD_DELETE	Delete
+GUILD_DEPOSIT	Deposit
+GUILD_DO_YOU_HEAL_GSP	Do you want to use %d Gold to restore %d Dragon Spirits?
+GUILD_DO_YOU_JOIN	Do you want to join this guild?
+GUILD_EMPTY_AREA	Empty Land
+GUILD_ENEMY_GUILD_NAME	Opponent Guild Name
+GUILD_GEM	Gem
+GUILD_HEAL_GSP	Recover Dragon Spirit
+GUILD_INFO_ENEMY_GUILD_EMPTY	None
+GUILD_NAME	Guild Name
+GUILD_NOT_ENOUGH_MATERIAL	Do not have enough material to construct the building
+GUILD_NOT_ENOUGH_MONEY	Do not have enough gold to construct the building
+GUILD_NO_NOTICE_PERMISSION	Do not have power to make an announcement
+GUILD_OFFER_EXP	EXP to invest
+GUILD_SHORT_EXP	Not enough EXP
+GUILD_TILE_BASEINFO	Guild base Information
+GUILD_TILE_BOARD	Board
+GUILD_TILE_GRADE	Position Management
+GUILD_TILE_INFO	Guild Information
+GUILD_TILE_MEMBER	Guild Members
+GUILD_TILE_SKILL	Guild Skill
+GUILD_WAR_LIMIT_30MIN	Time 30 Minutes
+GUILD_WAR_REWARD_POTION	Rewards: Winner gets Potions
+GUILD_WAR_USE_BATTLE_MAP	Use Guild War Arena
+GUILD_WAR_USE_NORMAL_MAP	Use Normal Map
+GUILD_WAR_WIN_CHECK_SCORE	High score wins the war
+GUILD_WAR_WIN_TAKE_AWAY_FLAG1	Capture the opponent's flag
+GUILD_WAR_WIN_TAKE_AWAY_FLAG2	bring the flag to your guild base
+GUILD_WAR_WIN_WIPE_OUT_GUILD	Defeat all opponents to win
+GUILD_WITHDRAW	Withdrawal
+GUILD_YOU_DO_NOT_JOIN	Not in any guild
+HORSE_HEALTH0	Dead
+HORSE_HEALTH1	Hungry
+HORSE_HEALTH2	Starving
+HORSE_HEALTH3	Full
+HORSE_LEVEL1	Pony
+HORSE_LEVEL2	Armed Horse
+HORSE_LEVEL3	Military Horse
+HOUR	Hour
+INPUT_MATRIX_CARD_NUMBER	Input Matrix Card No.
+INPUT_MATRIX_CARD_TITLE	Matrix Card
+INPUT_PRIVATE_CODE_DIALOG_DESCRIPTION	Please input the Chr Password
+INPUT_PRIVATE_CODE_DIALOG_TITLE	Delete Character
+INVENTORY_DO_NOT_PACK_WARP_SCROLL	You can't merge Scroll of Return
+INVENTORY_REALLY_USE_ITEM	Do you want to use this item?
+JOB_ASSASSIN	Assassin
+JOB_ASSASSIN0	Amateur Assassin
+JOB_ASSASSIN1	Assassin Force
+JOB_ASSASSIN2	Archery Force
+JOB_SHAMAN	Mage
+JOB_SHAMAN0	Amateur Mage
+JOB_SHAMAN1	Dragon Force
+JOB_SHAMAN2	Lightning Force
+JOB_SURA	Sura
+JOB_SURA0	Amateur Sura
+JOB_SURA1	Mirage Force
+JOB_SURA2	Black Magic Force
+JOB_WARRIOR	Warrior
+JOB_WARRIOR0	Amateur Warrior
+JOB_WARRIOR1	Arahan Force
+JOB_WARRIOR2	Partisan Force
+LEFT_TIME	Remaining Time
+LOGIN_CONNECT_FAILURE	Failed to connect the server
+LOGIN_CONNECT_SUCCESS	Succeed to connect the server
+LOGIN_CONNETING	Connecting to the server
+LOGIN_FAILURE_ALREAY	This account is already connected
+LOGIN_FAILURE_BE_SAME_KEY	Login has a error
+LOGIN_FAILURE_BLOCK_ID	Your account is blocked from server
+LOGIN_FAILURE_NOBILL	This account does not have playing time
+LOGIN_FAILURE_NOT_AVAIL	This account is not available
+LOGIN_FAILURE_NOT_EXIST_ID	The information is not correct.
+LOGIN_FAILURE_REPAIR_ID	This account is undergoing item restoration
+LOGIN_FAILURE_SHUTDOWN	Server is updating, please refer to www.metin2.us and login later
+LOGIN_FAILURE_TOO_MANY_USER	Failed to connect because there are too many players connecting
+LOGIN_FAILURE_UNKNOWN	Failed to login, unknown error
+LOGIN_FAILURE_WRONG_MATRIX_CARD_NUMBER	Typed incorrect No.
+LOGIN_FAILURE_WRONG_MATRIX_CARD_NUMBER_TRIPLE	Typed incorrect No. 3 times. Your connection will be terminated
+LOGIN_FAILURE_WRONG_PASSWORD	The information is not correct.
+LOGIN_INPUT_ID	Please input the ID
+LOGIN_INPUT_PASSWORD	Please input the password
+LOGIN_PROCESSING	Logging in
+MALL_CANNOT_INSERT	Can not put item in Item mall
+MALL_PASSWORD_TITLE	Password
+MAP_A1	Argos
+MAP_A2	Nula Valley
+MAP_A3	Maadi
+MAP_AG	Fargo Village
+MAP_B1	Netha
+MAP_B2	Fugus Valley
+MAP_B3	Aswan
+MAP_BG	Exiom Village
+MAP_C1	Longdon
+MAP_C2	Cenran Moutain
+MAP_C3	Corinth
+MAP_CG	Greenriver Village
+MAP_DESERT	Waste Land
+MAP_FLAME	Valkus
+MAP_SKELTOWER	Demon Tower
+MAP_SNOW	Tangra Mountain
+MAP_SPIDER	Valcon Dungeon
+MAP_TEMPLE	Forbidden Temple
+MAP_TREE	Wild Leaf Forest
+MAP_TRENT02	DarkWildLeafFT
+MAP_WL	SandWasteLand
+MAP_NUSLUCK	SandValley
+MESSENGER_ADD_FRIEND	Add Friend
+MESSENGER_DO_YOU_ACCEPT_ADD_FRIEND_1	%s has registered you as a friend
+MESSENGER_DO_YOU_ACCEPT_ADD_FRIEND_2	Do you accept the invitation?
+MESSENGER_DO_YOU_DELETE	Remove from Guild/Friend list?	
+MESSENGER_DO_YOU_DELETE_PHONE_NUMBER	Do you want to delete the mobile number?
+MESSENGER_DO_YOU_MOVE	Do you want to move?
+MESSENGER_EMPTY_LIST	Empty
+MESSENGER_FAMILY	Family
+MESSENGER_FRIEND	Friend
+MESSENGER_GUILD	Guild
+MESSENGER_INPUT_MOBILE_AUTHORITY_DESCRIPTION	Please input validation number sent to your mobile phone
+MESSENGER_INPUT_MOBILE_AUTHORITY_TITLE	Input validation number
+MESSENGER_INPUT_MOBILE_PHONE_NUMBER_1	Input the mobile number to send validation number by SM
+MESSENGER_INPUT_MOBILE_PHONE_NUMBER_2	Do you want to input the number now?
+MESSENGER_INPUT_MOBILE_PHONE_NUMBER_TITLE	Enter cell phone number
+MESSENGER_SEND_MOBILE_MESSAGE_TITLE	Send Message
+MINIMAP	Mini-Map
+MINIMAP_CANNOT_SEE	Can not display Mini-Map
+MINIMAP_CAN_NOT_SHOW_AREAMAP	Can not display Map
+MINIMAP_DEC_SCALE	Zoom Out
+MINIMAP_INC_SCALE	Zoom In
+MINIMAP_OBSERVER_COUNT	%d Spectators
+MINIMAP_SHOW_AREAMAP	View Map
+MINUTE	Minute
+MONEY_INPUT_DIALOG_SELLPRICE	Sell Price :
+MOVE_ITEM_FAILURE_PRIVATE_SHOP	Can not move the item when you are opening a private shop
+MUSIC_EMPTY_MUSIC_LIST	There is no BGM file
+MUSIC_METIN2_DEFAULT_THEMA	Metin 2 Default background music
+MUSIC_NOT_SELECT_MUSIC	No Music file selected
+NEEFD_REST	Rest is required
+NOT_YET_SUPPORT	This is not supported
+OPTION_PVPMODE_CANNOT_SET_GUILD_MODE	Can not set the guild mode when you are not in any guilds
+OPTION_PVPMODE_NOT_SUPPORT	You can not use PvP mode configuration
+OPTION_PVPMODE_PROTECT	Need to have at least level %d to be able to use the PVP Mode
+PARTY_BONUS_ATTACKER	Attack Power : +%d	SA
+PARTY_BONUS_BERSERKER	Attack Speed : +%d	SA
+PARTY_BONUS_BUFFER	Skill Duration : +%d	SA
+PARTY_BONUS_DEFENDER	AC: +%d	SA
+PARTY_BONUS_EXP	Bonus EXP : %d%%	SA
+PARTY_BONUS_SKILL_MASTER	Max MP: +%d	SA
+PARTY_BONUS_TANKER	Max HP : +%d	SA
+PARTY_BREAK_UP	Party Dismiss
+PARTY_DO_YOU_ACCEPT	has invited you into a party
+PARTY_DO_YOU_JOIN	Do you want to accept the party invitation?
+PARTY_EXP_DISTRIBUTION_MODE	EXP Distribution
+PARTY_EXP_DISTRIBUTION_MODE_LEVEL	Level Distribution
+PARTY_EXP_DISTRIBUTION_MODE_LEVEL_TOOLTIP	Higher level gets more EXP
+PARTY_EXP_DISTRIBUTION_MODE_PARITY	Even Distribution
+PARTY_EXP_DISTRIBUTION_MODE_PARITY_TOOLTIP	All party members get equal amounts of EXP
+PARTY_HEAL_ALL_MEMBER	Recover All
+PARTY_INCREASE_AREA_150	Party range increases by 1.5 times	SNA
+PARTY_INCREASE_AREA_200	Party range increases by 2 times	SNA
+PARTY_LEAVE	Leave the party
+PARTY_LONGTIME_BONUS_EXP	Bonus EXP for Long Party Play : +%d%%	SA
+PARTY_MEMBER_OFFLINE	[Offline]
+PARTY_RECALL_MEMBER	Summon a party member
+PARTY_REGEN_BONUS	HP & MP Regeneration Bonus : +%d%%	SA
+PARTY_REQUEST_DENIED	You have rejected a party invitation
+PARTY_SET_ATTACKER	Set as an Attacker
+PARTY_SET_BERSERKER	Set as a Berserker
+PARTY_SET_BUFFER	Set as a Buffer
+PARTY_SET_DEFENDER	Set as a Defender
+PARTY_SET_NORMAL	Cancel the set
+PARTY_SET_SKILL_MASTER	Set as a Skill Master
+PARTY_SET_TANKER	Set as a Tanker
+PARTY_SKILL_ATTACKER	Attacker Basic Attack Power +%.0f
+PARTY_SKILL_BERSERKER	Berserker Attack Speed +%.0f
+PARTY_SKILL_BUFFER	Buffer Skill Duration +%.0f
+PARTY_SKILL_DEFENDER	Defender Resistance +%.0f
+PARTY_SKILL_HP_REGEN	HP Regeneration +%.0f%%
+PARTY_SKILL_PARTY_AREA	Party Range +%d%%
+PARTY_SKILL_SKILL_MASTER	Skill Master Max MP +%.0f
+PARTY_SKILL_SP_REGEN	MP Regeneration +%.0f%%
+PARTY_SKILL_TANKER	Tanker Max HP +%.0f
+PARTY_SKILL_WARP	Able to summon a party member
+PASSWORD_TITLE	Bank Password
+PICK_ITEM_TITLE	Item No.
+PICK_MONEY_TITLE	Amount
+PRIVATE_SHOP_CANNOT_SELL_ITEM	Can not sell this item in the private shop
+PRIVATE_SHOP_CLOSE_QUESTION	Want to close the private shop?
+PRIVATE_SHOP_INPUT_NAME_DIALOG_TITLE	Private Shop Name
+PRIVATE_SHOP_INPUT_PRICE_DIALOG_TITLE	Price
+PVP_LEVEL0	Admirable
+PVP_LEVEL1	Noble
+PVP_LEVEL2	Righteous
+PVP_LEVEL3	Worthy
+PVP_LEVEL4	Civilian
+PVP_LEVEL5	Villain			
+PVP_LEVEL6	Criminal
+PVP_LEVEL7	Desperado
+PVP_LEVEL8	Felon
+PVP_MODE_GUILD	PvP Guild Mode has been set
+PVP_MODE_KILL	PvP Free has been set
+PVP_MODE_NORMAL	PvP Peace has been set
+PVP_MODE_PROTECT	PvP Protect has been set
+PVP_MODE_REVENGE	PvP Hostile has been set
+PVP_OPTION_KILL	Free
+PVP_OPTION_NORMAL	Peace
+PVP_OPTION_PROTECT	Protect
+PVP_OPTION_REVENGE	Hostile
+QUEST_APPEND	New quest has been registered
+QUEST_MIN	Min
+QUEST_SEC	Sec
+QUEST_TIMEOVER	Time Over
+QUEST_UNLIMITED_TIME	No Time Limit
+QUEST_ZEROSEC	0 Sec
+QUICKSLOT_REGISTER_DISABLE_ITEM	This item can not be added in the quick slot
+RECEIVE_MESSAGE	%s has sent you a message
+REFINE_COST	Upgrade Cost : %d Gold
+REFINE_DESTROY_WARNING	If fail to upgrade, the item will be destroyed
+REFINE_DESTROY_WARNING_WITH_BONUS_PERCENT_1	This will increase chance to upgrade
+REFINE_DESTROY_WARNING_WITH_BONUS_PERCENT_2	Item will be destroyed if it fails. Do you want to continue?
+REFINE_DOWN_GRADE_WARNING	If fail to upgrade, the item will be degraded
+REFINE_DO_YOU_SEPARATE_METIN	Do you want to remove the Gem?
+REFINE_FAILURE	Failed to upgrade
+REFINE_FAILURE_EQUIP_ITEM	Can not upgrade equipped item
+REFINE_FAILURE_METIN_INSEPARABLE_ITEM	Do not have gem to detach
+REFINE_FAILURE_NEED_BETTER_SCROLL	Need better Upgrade Scroll
+REFINE_FAILURE_NO_MORE_SOCKET	Can not create any more sockets
+REFINE_FAILURE_SOCKET_DISABLE_ITEM	Can not create any more sockets on this item
+REFINE_FAILURE_UPGRADE_DISABLE_ITEM	Can not upgrade this item
+REFINE_SUCCESS	The item upgrade was successful
+REFINE_SUCCESS_PROBALITY	Upgrade Chance : %d%%
+REFINE_WARNING2	Do you want to continue?
+SAFEBOX_ERROR	Wrong password entered
+SAFEBOX_SELL_DISABLE_SAFEITEM	Can not put this item in the bank
+SAFEBOX_WRONG_PASSWORD	The passwords must be identical
+SCREENSHOT_SAVE1	is saved in
+SCREENSHOT_SAVE2	Screenshot folder
+SCREENSHOT_SAVE_FAILURE	Failed to save the screenshot
+SECOND	Sec
+SELECT_CAN_NOT_DELETE	Can not delete Character
+SELECT_CHANGED_NAME	Character name changed
+SELECT_CHANGE_FAILURE_ALREADY_EXIST_NAME	This Character name already exists
+SELECT_CHANGE_FAILURE_STRANGE_INDEX	Please try again later
+SELECT_CHANGE_FAILURE_STRANGE_NAME	This is the wrong Character name
+SELECT_CHANGE_NAME_TITLE	Change Character's Name
+SELECT_DELEING	Deleting Character...
+SELECT_DELETED	Character has been deleted
+SELECT_DO_YOU_DELETE_REALLY	Do you want to continue?
+SELECT_EMPTY_SLOT	Able to create new Character
+SELECT_GM_NAME	GM
+SELECT_INPUT_CHANGING_NAME	Please enter new Character name
+SELECT_NOT_JOIN_GUILD	----------
+SHOP_BUY_INFO	Buy item by selecting it from the item shop
+SHOP_CANNOT_SELL_EQUIPMENT	Can not sell the equipped item
+SHOP_CANNOT_SELL_ITEM	Can not sell this item
+SHOP_ERROR_UNKNOWN	Unknown Shop Error : %s
+SHOP_INVALID_POS	This is not an appropriate item
+SHOP_INVENTORY_FULL	There is no room in inventory
+SHOP_NOT_ENOUGH_MONEY	Not enough Gold
+SHOP_SELL_INFO	Select the item from your Inventory to sell it
+SHOP_SOLDOUT	Sold out
+SHOT_ERROR_UNKNOWN	Unknown long range attack error : %s
+SKILL_BOHO	Reflection
+SKILL_BUDONG	Thorn
+SKILL_CANNOT_LEVEL_UP_ANYMORE_BY_BOOK	Need EXP to train skill
+SKILL_CANNOT_LEVEL_UP_ANYMORE_BY_STAT	Need a skill book to train skill
+SKILL_CHEONGEUN	Might
+SKILL_CRITICAL	Critical Attack
+SKILL_ENCHANT_POISON	Poison
+SKILL_EUNHYEONG	Stealth
+SKILL_FAINT	Faint
+SKILL_FIND_TRAP	Find Trap
+SKILL_FIRE	Lasting Fire
+SKILL_FISHMIND	Using Fishing Manual
+SKILL_GAMJI	Detect
+SKILL_GEOMGYEONG	Heroic Strike
+SKILL_GEONGON	Dark and Light
+SKILL_GICHEON	Dragon Armor
+SKILL_GIGONG	Chi Cycling
+SKILL_GONGPO	Fear
+SKILL_GRADE_NAME_GRAND_MASTER	%s Grand Master
+SKILL_GRADE_NAME_MASTER	%s Master
+SKILL_GRADE_NAME_PERFECT_MASTER	%s Perfect Master
+SKILL_GROUP_ASSASSIN_1	Assassin
+SKILL_GROUP_ASSASSIN_2	Archery
+SKILL_GROUP_HORSE	Riding Skill
+SKILL_GROUP_SHAMAN_1	Dragon 
+SKILL_GROUP_SHAMAN_2	Lightning
+SKILL_GROUP_SURA_1	Mirage
+SKILL_GROUP_SURA_2	Black Magic
+SKILL_GROUP_WARRIOR_1	Arahan
+SKILL_GROUP_WARRIOR_2	Partisan
+SKILL_GWIGEOM	Dark Blade
+SKILL_GYEONGGONG	Dance with Wind
+SKILL_HEUKSIN	Dark Protection
+SKILL_HOSIN	Dragon Shield
+SKILL_HWAYEOM	Whirlwind
+SKILL_HYEOLMA	Rupture
+SKILL_INC_ATKSPD	Attack Speed Increases
+SKILL_INC_MOVSPD	Movement Speed Increases
+SKILL_INMA	Desolate Strike
+SKILL_JEOJU	Curse
+SKILL_JEONGEOP	Nature Grace
+SKILL_JEONGWI	Berserk
+SKILL_JEONSINBANGEO	Warlords Might
+SKILL_JEONSINGONGGYEOK	Full Attack
+SKILL_JEUNGCHE	Overgrowth
+SKILL_JEUNGHON	Leap
+SKILL_JEUNGRYEOK	Gift of the Wild
+SKILL_JEUNGSOK	Speed Up
+SKILL_JIGAM	Dragon Shadow
+SKILL_JIPJUNG	Focus AC
+SKILL_JUMAGAP	Aphonic
+SKILL_JUMAGEOM	Demonrage
+SKILL_KWAEGEOM	Devine Frenzy
+SKILL_KWAESOK	Call of the Wind
+SKILL_LEGBOUND	Entangle
+SKILL_MUSA	Charging
+SKILL_MUYEONG	Ritual of Doom
+SKILL_NEED_EMPTY_BOTTLE	Do not have an empty bottle
+SKILL_NEED_POISON_BOTTLE	Do not have a poison bottle
+SKILL_ONLY_FOR_GUILD_WAR	Can use this skill only in Guild War
+SKILL_PABEOP	Purge
+SKILL_POWERFUL_STRIKE	Stun Attack
+SKILL_SEOMGWANG	Flash Bomb
+SKILL_SINCHAK	Fear
+SKILL_SLEEP	Sleep
+SKILL_SLOW	Slow
+SKILL_STUN	Stun
+SKILL_SUHO	Guardian
+SKILL_SUMMON_DESCRIPTION	Chance to summon : %d%%
+SKILL_TOOLTIP_INT	INT
+SKILL_TOOLTIP_LEVEL	Level
+SKILL_TOXICDIE	Poison
+SKILL_TOXICPOWER	Poison Attack Power Increases
+SKILL_TUSOK	Entangle
+SKILL_WONSIN	Dragon Bless
+SKILL_YONGSIN	Dragon Spirit Shield
+STAT_MINUS_CON	CON Adjustment (Remaining Chance %d)
+STAT_MINUS_DEX	DEX Adjustment (Remaining Chance %d)
+STAT_MINUS_INT	INT Adjustment (Remaining Chance %d)
+STAT_MINUS_STR	STR Adjustment (Remaining Chance %d)
+STAT_TOOLTIP_CON	HP and AC Increase
+STAT_TOOLTIP_DEX	AP and DR Increase
+STAT_TOOLTIP_INT	MP and MR Increase
+STAT_TOOLTIP_STR	AP Increases
+SYMBOLLIST_TITLE	Register Guild Flag
+SYSTEM_OPTION_CPU_TILING_1	CPU Tiling Mode can boost the speed in slower PCs
+SYSTEM_OPTION_CPU_TILING_2	If you have graphics problems, use 'System Option' or 'CONFIG.exe'
+SYSTEM_OPTION_CPU_TILING_3	to select GPU Tiling Mode
+SYSTEM_OPTION_GPU_TILING_1	GPU Tiling Mode can cause sluggishness in slower PCs
+SYSTEM_OPTION_GPU_TILING_2	If you have graphics problems, use 'System Option' or 'CONFIG.exe'
+SYSTEM_OPTION_GPU_TILING_3	to select CPU Tiling Mode
+SYSTEM_OPTION_TILING_EXIT	Changing Tiling Mode requires shutting down the game
+TARGET_BUTTON_ACCEPT_FIGHT	Agree
+TARGET_BUTTON_AVENGE	Revenge
+TARGET_BUTTON_BUILDING_DESTROY	Destroy
+TARGET_BUTTON_DISMOUNT	Dismount
+TARGET_BUTTON_EMOTION_ALLOW	Emotion
+TARGET_BUTTON_EXCHANGE	Trade
+TARGET_BUTTON_EXCLUDE	Exclude
+TARGET_BUTTON_EXIT_OBSERVER	End Spectator
+TARGET_BUTTON_FIGHT	Duel
+TARGET_BUTTON_FRIEND	Friend
+TARGET_BUTTON_INVITE_GUILD	Guild Invitation
+TARGET_BUTTON_INVITE_PARTY	Party Invit
+TARGET_BUTTON_LEAVE_PARTY	Leave Party
+TARGET_BUTTON_REQUEST_ENTER_PARTY	Join Party
+TARGET_BUTTON_VIEW_EQUIPMENT	Equipment
+TARGET_BUTTON_WHISPER	Whisper
+TARGET_LEVEL_BOSS	Commander
+TARGET_LEVEL_KING	King
+TARGET_LEVEL_KNIGHT	Knight
+TARGET_LEVEL_PAWN	Pawn
+TARGET_LEVEL_S_KNIGHT	High Knight
+TARGET_LEVEL_S_PAWN	High Pawn
+TASKBAR_ATTACK	Attack
+TASKBAR_AUTO	Auto
+TASKBAR_CAMERA	Camera
+TASKBAR_EXP	EXP
+TASKBAR_HP	HP
+TASKBAR_MOVE	Move
+TASKBAR_SKILL	Skill
+TASKBAR_SP	MP
+TASKBAR_ST	Stamina
+THING_COUNT	each
+TOOLTIP_APPLY_ATTBONUS_ANIMAL	Strong against Animal +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_ASSASSIN	Strong against Assassin +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_DEVIL	Strong against Devil +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_HUMAN	Strong against Demi-Human +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_MILGYO	Strong against Esoteric +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_MONSTER	Strong against Monster +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_ORC	Strong against Giant Goblin +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_SHAMAN	Strong against Mage +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_SURA	Strong against Sura +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_UNDEAD	Strong against Undead +%d%%	SA
+TOOLTIP_APPLY_ATTBONUS_WARRIOR	Strong against Warrior +%d%%	SA
+TOOLTIP_APPLY_BLOCK	%d%% chance to block physical attack	SA
+TOOLTIP_APPLY_COMBAT_SP_RECOVER	Restore MP every 5 sec during battle %d	SA
+TOOLTIP_APPLY_CRITICAL_PCT	%d%% Chance to Critical Attack	SA
+TOOLTIP_APPLY_DAMAGE_SP_RECOVER	%d%% chance to recover MP when hit	SA
+TOOLTIP_APPLY_DODGE	%d%% chance to flee archery attack	SA
+TOOLTIP_APPLY_EXP_DOUBLE_BONUS	%d%% chance to receive EXP Bonus	SA
+TOOLTIP_APPLY_GOLD_DOUBLE_BONUS	%d%% chance of getting double the amount of dropped gold	SA
+TOOLTIP_APPLY_IMMUNE_FALL	Immune to Falling Down	SNA
+TOOLTIP_APPLY_IMMUNE_SLOW	Slow Resistance 90%	SNA
+TOOLTIP_APPLY_IMMUNE_STUN	Increases Faint Resistance	SNA
+TOOLTIP_APPLY_ITEM_DROP_BONUS	%d%% chance of getting double the amount of items per drop	SA
+TOOLTIP_APPLY_KILL_HP_RECOVER	%d%% chance to restore HP	SA
+TOOLTIP_APPLY_KILL_SP_RECOVER	%d%% chance to restore MP	SA
+TOOLTIP_APPLY_MANA_BURN_PCT	%d%% chance to consume opponent's MP	SA
+TOOLTIP_APPLY_NOAFFECT	No Effect
+TOOLTIP_APPLY_NO_DEATH_PENALTY	Immune lost EXP once when death	SNA
+TOOLTIP_APPLY_PENETRATE_PCT	Chance to Pierce Attack %d%%	SA
+TOOLTIP_APPLY_POISON_PCT	Chance to Poison Target %d%%	SA
+TOOLTIP_APPLY_POISON_REDUCE	Poison Resistance %d%%	SA
+TOOLTIP_APPLY_POTION_BONUS	Potion's %d%% Effect Increases	SA
+TOOLTIP_APPLY_REFLECT_CURSE	Chance to Reflect Curse %d%%	SA
+TOOLTIP_APPLY_REFLECT_MELEE	Chance to Reflect Physical Attack %d%%	SA
+TOOLTIP_APPLY_RESIST_BELL	Decrease Bell Damage %d%%	SA
+TOOLTIP_APPLY_RESIST_DAGGER	Decrease Dagger Damage %d%%	SA
+TOOLTIP_APPLY_RESIST_FAN	Decrease Fan Damage %d%%	SA
+TOOLTIP_APPLY_RESIST_SWORD	Decrease Sword Damage %d%%	SA
+TOOLTIP_APPLY_RESIST_TWOHAND	Decrease Two Hand Sword Damage %d%%	SA
+TOOLTIP_APPLY_RESIST_WIND	Decrease Wind Damage %d%%	SA
+TOOLTIP_APPLY_SKILL_BOOK_BONUS	Increase chance of learning from skill book by 2.5 times	SNA
+TOOLTIP_APPLY_SKILL_BOOK_NO_DELAY	When learning skills fails, you can be released from Evil Spirit's Curse	SNA
+TOOLTIP_APPLY_SLOW_PCT	Chance to Slow Target %d%%	SA
+TOOLTIP_APPLY_STEAL_HP	%d%% Damage absorbed to HP	SA
+TOOLTIP_APPLY_STEAL_SP	%d%% Damage absorbed to MP	SA
+TOOLTIP_APPLY_STUN_PCT	Chance to faint target %d%%	SA
+TOOLTIP_ANTI_SELL	Can not be sold in the Shop
+TOOLTIP_ARMOR	Armor
+TOOLTIP_ARROW	Arrow
+TOOLTIP_ASSASSIN	Assassin
+TOOLTIP_ATT_GRADE	Attack Power +%d	SA
+TOOLTIP_ATT_SPEED	Attack Speed +%d%%	SA
+TOOLTIP_BOW_DISTANCE	Bow Range +%dm	SA
+TOOLTIP_BUYPRICE	Price : %s
+TOOLTIP_CAST_SPEED	Skill Speed +%d%%	SA
+TOOLTIP_CON	CON +%d	SA
+TOOLTIP_DEF_GRADE	AC +%d	SA
+TOOLTIP_DEX	DEX +%d	SA
+TOOLTIP_EAR	Earring
+TOOLTIP_ETC	Etc
+TOOLTIP_PICK_EXP	Points : %d / %d
+TOOLTIP_PICK_LEVEL	Level : %d
+TOOLTIP_PICK_UPGRADE1	Give Pickax to lumberman
+TOOLTIP_PICK_UPGRADE2	to upgrade
+TOOLTIP_PICK_UPGRADE3	to better item
+TOOLTIP_FISHINGROD_EXP	Points : %d / %d
+TOOLTIP_FISHINGROD_LEVEL	Level : %d
+TOOLTIP_FISHINGROD_UPGRADE1	Give item to fisherman
+TOOLTIP_FISHINGROD_UPGRADE2	to upgrade
+TOOLTIP_FISHINGROD_UPGRADE3	to better fishing pole
+TOOLTIP_FISH_LEN	Length : %.2fcm
+TOOLTIP_HELMET	Helmet
+TOOLTIP_HP_REGEN	HP regeneration +%d%%	SA
+TOOLTIP_INT	INT +%d	SA
+TOOLTIP_ITEM_ATT_GRADE	Attack Power %d
+TOOLTIP_ITEM_ATT_POWER	Attack Power %d - %d
+TOOLTIP_ITEM_ATT_POWER_ONE_ARG	Attack Power %d
+TOOLTIP_ITEM_ATT_POWER_REFINE	Attack Power %d - %d (+%d)
+TOOLTIP_ITEM_ATT_SPEED	Attack Speed %s
+TOOLTIP_ITEM_DEF_GRADE	AC : %d
+TOOLTIP_ITEM_FAST	Fast
+TOOLTIP_ITEM_LIMIT_CON	CON limit : %d
+TOOLTIP_ITEM_LIMIT_DEX	DEX limit : %d
+TOOLTIP_ITEM_LIMIT_INT	INT limit : %d
+TOOLTIP_ITEM_LIMIT_LEVEL	Level limit : %d
+TOOLTIP_ITEM_LIMIT_STR	STR Limit : %d
+TOOLTIP_ITEM_MAGIC_ATT_POWER	Magic Attack Power %d - %d
+TOOLTIP_ITEM_MAGIC_ATT_POWER_ONE_ARG	Magic Attack Power %d
+TOOLTIP_ITEM_MAGIC_DEF_POWER	Magic Resistance : %d
+TOOLTIP_ITEM_NORMAL	Normal
+TOOLTIP_ITEM_SLOW	Slow
+TOOLTIP_ITEM_VERY_FAST	Very Fast
+TOOLTIP_ITEM_VERY_SLOW	Very Slow
+TOOLTIP_ITEM_WEARABLE_JOB	[ Equipable ]
+TOOLTIP_LOTTERY_STEP_NUMBER	%d
+TOOLTIP_LOTTO_NUMBER	Lucky Number : %d
+TOOLTIP_MAGIC_ATT_GRADE	Magic Attack Power +%d	SA
+TOOLTIP_MAGIC_DEF_GRADE	Magic Resistance : +%d	SA
+TOOLTIP_MALL_ATTBONUS	Attack Power +%d%%	SA
+TOOLTIP_MALL_ATTBONUS_STATIC	Attack Power +12~15%	SNA
+TOOLTIP_MALL_AUTOLOOT	Auto look for dropped gold pouch	SNA
+TOOLTIP_MALL_DEFBONUS	AC +%d%%	SA
+TOOLTIP_MALL_DEFBONUS_STATIC	AC +12~15%	SNA
+TOOLTIP_MALL_EXPBONUS	EXP +%d%%	SA
+TOOLTIP_MALL_EXPBONUS_P_STATIC	iCafe EXP Bonus +%d%%	SA
+TOOLTIP_MALL_EXPBONUS_STATIC	EXP Bonus 50%	SNA
+TOOLTIP_MALL_FISH_MIND	Increases the chance of catching rare fish	SNA
+TOOLTIP_MALL_GOLDBONUS	Gold Drop Rate %.1f times	SA
+TOOLTIP_MALL_GOLDBONUS_STATIC	Gold Drop Rate 2 times	SNA
+TOOLTIP_MALL_ITEMBONUS	Item Drop Rate %.1f times	SA
+TOOLTIP_MALL_ITEMBONUS_P_STATIC	iCafe Item Drop Chance %.1f%% Increased	SA
+TOOLTIP_MALL_ITEMBONUS_STATIC	Item Drop Chance 2 times	SNA
+TOOLTIP_MALL_MARRIAGE_FAST	Love Points are increasing faster!	SNA
+TOOLTIP_MALL_SAFEBOX	Make a third room in bank	SNA
+TOOLTIP_MAX_HP	Max HP +%d	SA
+TOOLTIP_MAX_HP_PCT	Max HP +%d%%	SA
+TOOLTIP_MAX_SP	Max MP +%d	SA
+TOOLTIP_MAX_SP_PCT	Max MP +%d%%	SA
+TOOLTIP_MAX_STAMINA	Max Stamina +%d	SA
+TOOLTIP_MEMORIZED_POSITION	%s(%d, %d)
+TOOLTIP_MEMORIZED_POSITION_ERROR	GPS ERROR(%d, %d)
+TOOLTIP_MOV_SPEED	Movement speed %d%%	SA
+TOOLTIP_NECK	Necklace
+TOOLTIP_NEED_ALL_SP	Required MP : Max
+TOOLTIP_NEED_GSP	Required Dragon Spirit : %d
+TOOLTIP_NEED_HP	Required CON : %d
+TOOLTIP_NEED_HP_PER_SEC	CON : %d / Sec
+TOOLTIP_NEED_SKILL_POINT	Required Skill Points :
+TOOLTIP_NEED_SP	Required MP : %d
+TOOLTIP_NEED_SP_PER_SEC	MP : %d / Sec
+TOOLTIP_NEXT_SKILL_LEVEL_1	Next level : %d (Max %d)
+TOOLTIP_NEXT_SKILL_LEVEL_2	Next level : %d (Max %d-%d)
+TOOLTIP_NORMAL_HIT_DAMAGE_BONUS	Damage %d%%	SA
+TOOLTIP_NORMAL_HIT_DEFEND_BONUS	Damage Resistance %d%%	SA
+TOOLTIP_PARTY_INFO_GRADE_UP1	More than %d party members,
+TOOLTIP_PARTY_INFO_GRADE_UP2	Attack Grade +%d
+TOOLTIP_PARTY_INFO_GRADE_UP3	Defence Grade +%d
+TOOLTIP_PARTY_INFO_HEAL_18_LEVEL	Restore all party members HP/MP once in 60 minutes
+TOOLTIP_PARTY_INFO_HEAL_40_LEVEL	Restore all party members HP/MP once in 30 minutes
+TOOLTIP_PARTY_INFO_RECALL_12_LEVEL	Can summon party members 3 minutes after they have died
+TOOLTIP_PARTY_INFO_RECALL_20_LEVEL	Can summon party members if they are on the same server
+TOOLTIP_PARTY_INFO_SET_ATTACKER	Attack Grade +(Number of Party Members/2) of Attacker %d can be selected
+TOOLTIP_PARTY_INFO_SET_TANKER	Defence Grade +(Number of Party Members) of Tanker 1 can be selected
+TOOLTIP_PARTY_SKILL_LEVEL	Current level : %d
+TOOLTIP_PARTY_TITLE_GRADE_UP	[Attack/Defence Increased]
+TOOLTIP_PARTY_TITLE_HEAL	[Restore]
+TOOLTIP_PARTY_TITLE_INFO_BONUS_EXP	More than %d party members gives bonus EXP %d%%
+TOOLTIP_PARTY_TITLE_MEMBER_BONUS_EXP	[Bonus EXP]
+TOOLTIP_PARTY_TITLE_RECALL	[Summon]
+TOOLTIP_PARTY_TITLE_SET_ATTACKER	[Set Attacker]
+TOOLTIP_PARTY_TITLE_SET_TANKER	[Set Tanker]
+TOOLTIP_POTION_CURE	Recover negative effects
+TOOLTIP_POTION_MIN	Min
+TOOLTIP_POTION_PLUS_ATTACK_SPEED	Attack Speed : +%d
+TOOLTIP_POTION_PLUS_HP_PERCENT	HP : +%d%%
+TOOLTIP_POTION_PLUS_HP_POINT	HP : +%d
+TOOLTIP_POTION_PLUS_MOVING_SPEED	Movement speed : +%d
+TOOLTIP_POTION_PLUS_SP_PERCENT	MP : +%d%%
+TOOLTIP_POTION_PLUS_SP_POINT	MP : +%d
+TOOLTIP_POTION_SEC	Sec
+TOOLTIP_POTION_TIME	Duration :
+TOOLTIP_REQUIREMENT_21_LEVEL	Must be Level 21 or higher
+TOOLTIP_REQUIREMENT_41_LEVEL	Must be Level 41 or higher
+TOOLTIP_REQUIREMENT_LEVEL	Must be Level %d
+TOOLTIP_REQUIREMENT_SKILL_LEVEL	%s Level %d  is required
+TOOLTIP_REQUIREMENT_STAT_LEVEL	%s %d required
+TOOLTIP_RESIST_BOW	Increase Arrow Resistance %d%%	SA
+TOOLTIP_RESIST_ELEC	Increase Lightning Resistance %d%%	SA
+TOOLTIP_RESIST_FIRE	Increase Fire Resistance %d%%	SA
+TOOLTIP_RESIST_MAGIC	Magic Resistance %d%%	SA
+TOOLTIP_REST_USABLE_COUNT	Remaining : %d
+TOOLTIP_SELLPRICE	Price : %s
+TOOLTIP_SHAMAN	Mage
+TOOLTIP_SHIELD	Shield
+TOOLTIP_SHOES	Shoes
+TOOLTIP_SKILL	Skill	SNA
+TOOLTIP_SKILLBOOK_NAME	Skill Book
+TOOLTIP_SKILL_AFFECT_ATT_GRADE	Attack Power : +
+TOOLTIP_SKILL_AFFECT_ATT_POWER	Attack Power :
+TOOLTIP_SKILL_AFFECT_ATT_SPEED	Attack Speed : +
+TOOLTIP_SKILL_AFFECT_DEF_GRADE	AC :
+TOOLTIP_SKILL_AFFECT_DODGE	Opponent's Attack Power : -
+TOOLTIP_SKILL_AFFECT_HEAL	Restore HP :
+TOOLTIP_SKILL_AFFECT_MOV_SPEED	Moving Speed : +
+TOOLTIP_SKILL_AFFECT_REFLECT_MELEE	Chance to reflect attack :
+TOOLTIP_SKILL_AFFECT_RESIST_NORMAL	Physical Damage Resistance :
+TOOLTIP_SKILL_COOL_TIME	Cool down time :
+TOOLTIP_SKILL_DAMAGE_BONUS	Skill Damage %d%%	SA
+TOOLTIP_SKILL_DEFEND_BONUS	Skill Damage Resistance %d%%	SA
+TOOLTIP_SKILL_DURATION	Duration : %d Sec
+TOOLTIP_SKILL_FORGET_BOOK_NAME	Tome of Forgetfulness
+TOOLTIP_SKILL_LEVEL	Current level : %d
+TOOLTIP_SKILL_LEVEL_MASTER	Current Level : %d (Master)
+TOOLTIP_SKILL_LEVEL_WITH_MAX	Current Level : %d (Max %d)
+TOOLTIP_SOCKET_EMPTY	Empty
+TOOLTIP_SOCKET_REFINABLE_ITEM	[ Item with a socket ]
+TOOLTIP_SP_REGEN	MP regeneration +%d%%	SA
+TOOLTIP_STR	STR +%d	SA
+TOOLTIP_SURA	Sura
+TOOLTIP_UNIQUE	Unique
+TOOLTIP_WARRIOR	Warrior
+TOOLTIP_WEAPON	Weapon
+TOOLTIP_WRISTLET	Bracelet
+UI_ACCEPT	Accept
+UI_CANCEL	Cancel
+UI_CLOSE	Close
+UI_DEF_FONT	Tahoma:14
+UI_DEF_FONT_LARGE	Tahoma:14	
+UI_DEF_FONT_SMALL	Tahoma:10
+UI_DENY	Deny
+UI_ITEM	Item
+UI_LEFT_TIME	Remaining Time : %d Sec
+UI_NEXT	Next
+UI_NOCONTENTS	No content
+UI_NONAME	No Name
+UI_OK	OK
+UI_POS_UNKNOWN	Unknown Location
+UI_UNKNOWN	Unknown
+USE_ITEM_FAILURE_PRIVATE_SHOP	Can not use the item when opening a private shop
+USE_SKILL_ERROR_UNKNOWN	Unknown Skill Error : %s
+UPLOAD_MARK_UPLOAD_NEED_RECONNECT	Please re-log to upload the guild logo.
+UPLOAD_MARK_CHECK_NEED_RECONNECT	Please re-log to upload the guild logo.
+DO_YOU_SELL_ITEM1	Do you want sell %s as %s?
+DO_YOU_SELL_ITEM2	Do you want sell %s %s as %s?
+DO_YOU_BUY_ITEM1	Do you want buy %s for %s?
+DO_YOU_BUY_ITEM2	Do you want buy %s %s for %s?
+REFINE_FAILURE_CAN_NOT_ATTACH	%s can't attach in this item
+REFINE_FAILURE_NO_SOCKET0	There is no Socket to attach
+REFINE_FAILURE_NO_GOLD_SOCKET	There is no Goldsocket to attach %s
+HOW_MANY_ITEM_DO_YOU_DROP1	Do you want to drop %s?
+HOW_MANY_ITEM_DO_YOU_DROP2	Do you want to drop %s %s?
+MONETARY_UNIT0	Gold
+MONETARY_UNIT1	Ten Thousand
+MONETARY_UNIT2	Hundred Billion
+FISHING_NOTIFY1	It looks like %s is hooked!
+FISHING_NOTIFY2	It looks like %s got captured!
+FISHING_SUCCESS1	Captured %s!
+FISHING_SUCCESS2	Got %s!
+TOOLTIP_APPLY_RESIST_WARRIOR	WARRIOR Resistance %s%%	SA
+TOOLTIP_APPLY_RESIST_ASSASSIN	ASSASSIN Resistance %s%%	SA
+TOOLTIP_APPLY_RESIST_SURA	SURA Resistance %s%%	SA
+TOOLTIP_APPLY_RESIST_SHAMAN	Mage Resistance %s%%	SA
+FOR_MALE	Male
+FOR_FEMALE	Female
+LOGIN_FAILURE_WEB_BLOCK	test
+GUILD_MARK_MIN_LEVEL	3
+GUILD_MARK_NOT_ENOUGH_LEVEL	higher level3 required
+TOOLTIP_AUTO_POTION_USING	In use...
+TOOLTIP_AUTO_POTION_REST	Remaining:%.2f%%
+TOOLTIP_AUTO_POTION_HP	Auto Red Potion
+TOOLTIP_AUTO_POTION_SP	Auto Blue Potion
+TOOLTIP_APPLY_MAX_SP_PCT	Max MP+%d%%	SA
+TOOLTIP_APPLY_MAX_HP_PCT	Max HP+%d%%	SA
+TOOLTIP_ENERGY	energy %d	SA
+UI_NEXTPAGE	>>
+UI_PREVPAGE	<<
+TOOLTIP_COSTUME_ATTR_BONUS	increased costume bonus %d	SA

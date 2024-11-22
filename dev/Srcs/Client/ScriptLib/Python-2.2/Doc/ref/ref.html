@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Python Reference Manual</title>
+<META NAME="description" CONTENT="Python Reference Manual">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="front.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A HREF="../index.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="front.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="../index.html">Python Documentation Index</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="front.html">Front Matter</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<P>
+
+<div class="titlepage">
+<center>
+<h1>Python Reference Manual</h1>
+<p><b><font size="+2">Guido van Rossum
+<BR>
+Fred L. Drake, Jr., editor</font></b></p>
+<p>
+	<b>PythonLabs</b>
+<BR>
+Email: <span class="email">python-docs@python.org</span>
+</p>
+<p><strong>Release 2.2</strong><br>
+<strong>December 21, 2001</strong></p>
+<p>
+</center>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="front.html">Front Matter</a>
+<LI><A href="contents.html">Contents</a>
+<LI><A href="introduction.html">1. Introduction</a>
+<UL>
+<LI><A href="notation.html">1.1 Notation</a>
+</ul>
+<LI><A href="lexical.html">2. Lexical analysis</a>
+<UL>
+<LI><A href="line-structure.html">2.1 Line structure</a>
+<UL>
+<LI><A href="logical.html">2.1.1 Logical lines</a>
+<LI><A href="physical.html">2.1.2 Physical lines</a>
+<LI><A href="comments.html">2.1.3 Comments</a>
+<LI><A href="explicit-joining.html">2.1.4 Explicit line joining</a>
+<LI><A href="implicit-joining.html">2.1.5 Implicit line joining</a>
+<LI><A href="blank-lines.html">2.1.6 Blank lines <a name="l2h-7">&nbsp;</a></a>
+<LI><A href="indentation.html">2.1.7 Indentation</a>
+<LI><A href="whitespace.html">2.1.8 Whitespace between tokens</a>
+</ul>
+<LI><A href="other-tokens.html">2.2 Other tokens</a>
+<LI><A href="identifiers.html">2.3 Identifiers and keywords</a>
+<UL>
+<LI><A href="keywords.html">2.3.1 Keywords</a>
+<LI><A href="id-classes.html">2.3.2 Reserved classes of identifiers</a>
+</ul>
+<LI><A href="literals.html">2.4 Literals</a>
+<UL>
+<LI><A href="strings.html">2.4.1 String literals</a>
+<LI><A href="string-catenation.html">2.4.2 String literal concatenation</a>
+<LI><A href="numbers.html">2.4.3 Numeric literals</a>
+<LI><A href="integers.html">2.4.4 Integer and long integer literals</a>
+<LI><A href="floating.html">2.4.5 Floating point literals</a>
+<LI><A href="imaginary.html">2.4.6 Imaginary literals</a>
+</ul>
+<LI><A href="operators.html">2.5 Operators</a>
+<LI><A href="delimiters.html">2.6 Delimiters</a>
+</ul>
+<LI><A href="datamodel.html">3. Data model</a>
+<UL>
+<LI><A href="objects.html">3.1 Objects, values and types</a>
+<LI><A href="types.html">3.2 The standard type hierarchy</a>
+<LI><A href="specialnames.html">3.3 Special method names</a>
+<UL>
+<LI><A href="customization.html">3.3.1 Basic customization</a>
+<LI><A href="attribute-access.html">3.3.2 Customizing attribute access</a>
+<LI><A href="callable-types.html">3.3.3 Emulating callable objects</a>
+<LI><A href="sequence-types.html">3.3.4 Emulating container types</a>
+<LI><A href="sequence-methods.html">3.3.5 Additional methods for emulation of sequence types</a>
+<LI><A href="numeric-types.html">3.3.6 Emulating numeric types</a>
+</ul>
+</ul>
+<LI><A href="execmodel.html">4. Execution model</a>
+<UL>
+<LI><A href="execframes.html">4.1 Code blocks, execution frames, and namespaces</a>
+<LI><A href="exceptions.html">4.2 Exceptions</a>
+</ul>
+<LI><A href="expressions.html">5. Expressions</a>
+<UL>
+<LI><A href="conversions.html">5.1 Arithmetic conversions</a>
+<LI><A href="atoms.html">5.2 Atoms</a>
+<UL>
+<LI><A href="atom-identifiers.html">5.2.1 Identifiers (Names)</a>
+<LI><A href="atom-literals.html">5.2.2 Literals</a>
+<LI><A href="parenthesized.html">5.2.3 Parenthesized forms</a>
+<LI><A href="lists.html">5.2.4 List displays</a>
+<LI><A href="dict.html">5.2.5 Dictionary displays</a>
+<LI><A href="string-conversions.html">5.2.6 String conversions</a>
+</ul>
+<LI><A href="primaries.html">5.3 Primaries</a>
+<UL>
+<LI><A href="attribute-references.html">5.3.1 Attribute references</a>
+<LI><A href="subscriptions.html">5.3.2 Subscriptions</a>
+<LI><A href="slicings.html">5.3.3 Slicings</a>
+<LI><A href="calls.html">5.3.4 Calls</a>
+</ul>
+<LI><A href="power.html">5.4 The power operator</a>
+<LI><A href="unary.html">5.5 Unary arithmetic operations</a>
+<LI><A href="binary.html">5.6 Binary arithmetic operations</a>
+<LI><A href="shifting.html">5.7 Shifting operations</a>
+<LI><A href="bitwise.html">5.8 Binary bit-wise operations</a>
+<LI><A href="comparisons.html">5.9 Comparisons</a>
+<LI><A href="lambda.html">5.10 Boolean operations</a>
+<LI><A href="exprlists.html">5.11 Expression lists</a>
+<LI><A href="summary.html">5.12 Summary</a>
+</ul>
+<LI><A href="simple.html">6. Simple statements</a>
+<UL>
+<LI><A href="exprstmts.html">6.1 Expression statements</a>
+<LI><A href="assert.html">6.2 Assert statements</a>
+<LI><A href="assignment.html">6.3 Assignment statements</a>
+<UL>
+<LI><A href="augassign.html">6.3.1 Augmented Assignment statements</a>
+</ul>
+<LI><A href="pass.html">6.4 The <tt class="keyword">pass</tt> statement</a>
+<LI><A href="del.html">6.5 The <tt class="keyword">del</tt> statement</a>
+<LI><A href="print.html">6.6 The <tt class="keyword">print</tt> statement</a>
+<LI><A href="return.html">6.7 The <tt class="keyword">return</tt> statement</a>
+<LI><A href="yield.html">6.8 The <tt class="keyword">yield</tt> statement</a>
+<LI><A href="raise.html">6.9 The <tt class="keyword">raise</tt> statement</a>
+<LI><A href="break.html">6.10 The <tt class="keyword">break</tt> statement</a>
+<LI><A href="continue.html">6.11 The <tt class="keyword">continue</tt> statement</a>
+<LI><A href="import.html">6.12 The <tt class="keyword">import</tt> statement</a>
+<LI><A href="global.html">6.13 The <tt class="keyword">global</tt> statement</a>
+<LI><A href="exec.html">6.14 The <tt class="keyword">exec</tt> statement</a>
+</ul>
+<LI><A href="compound.html">7. Compound statements</a>
+<UL>
+<LI><A href="if.html">7.1 The <tt class="keyword">if</tt> statement</a>
+<LI><A href="while.html">7.2 The <tt class="keyword">while</tt> statement</a>
+<LI><A href="for.html">7.3 The <tt class="keyword">for</tt> statement</a>
+<LI><A href="try.html">7.4 The <tt class="keyword">try</tt> statement</a>
+<LI><A href="function.html">7.5 Function definitions</a>
+<LI><A href="class.html">7.6 Class definitions</a>
+</ul>
+<LI><A href="top-level.html">8. Top-level components</a>
+<UL>
+<LI><A href="programs.html">8.1 Complete Python programs</a>
+<LI><A href="file-input.html">8.2 File input</a>
+<LI><A href="interactive.html">8.3 Interactive input</a>
+<LI><A href="expression-input.html">8.4 Expression input</a>
+</ul>
+<LI><A href="futures.html">A. Future statements and nested scopes</a>
+<UL>
+<LI><A href="future-statements.html">A.1 Future statements</a>
+<LI><A href="module-future.html">A.2 <tt class="module">__future__</tt> --
+         Future statement definitions</a>
+<LI><A href="nested-scopes.html">A.3 Nested scopes</a>
+<UL>
+<LI><A href="definitions.html">A.3.1 Definitions and rules</a>
+<LI><A href="dynamic-features.html">A.3.2 Interaction with dynamic features</a>
+</ul>
+</ul>
+<LI><A href="node98.html">B. History and License</a>
+<UL>
+<LI><A href="node99.html">B.1 History of the software</a>
+<LI><A href="node100.html">B.2 Terms and conditions for accessing or otherwise using Python</a>
+</ul>
+<LI><A href="genindex.html">Index</a>
+<LI><A href="about.html">About this document ...</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A HREF="../index.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="front.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="../index.html">Python Documentation Index</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="front.html">Front Matter</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

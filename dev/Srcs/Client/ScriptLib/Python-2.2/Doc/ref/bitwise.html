@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.8 Binary bit-wise operations</title>
+<META NAME="description" CONTENT="5.8 Binary bit-wise operations">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="comparisons.html">
+<LINK REL="previous" href="shifting.html">
+<LINK REL="up" href="expressions.html">
+<LINK REL="next" href="comparisons.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="shifting.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="expressions.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="comparisons.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="shifting.html">5.7 Shifting operations</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="expressions.html">5. Expressions</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="comparisons.html">5.9 Comparisons</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007800000000000000000">&nbsp;</A>
+<BR>
+5.8 Binary bit-wise operations
+</H1>
+<a name="l2h-280">&nbsp;</a>
+<P>
+Each of the three bitwise operations has a different priority level:
+
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-and_expr">and_expr</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="shifting.html#tok-shift_expr">shift_expr</a> | <a href="node59.html#tok-and_expr">and_expr</a> &quot&amp;" <a href="shifting.html#tok-shift_expr">shift_expr</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-xor_expr">xor_expr</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="bitwise.html#tok-and_expr">and_expr</a> | <a href="bitwise.html#tok-xor_expr">xor_expr</a> "^" <a href="bitwise.html#tok-and_expr">and_expr</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-or_expr">or_expr</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="bitwise.html#tok-xor_expr">xor_expr</a> | <a href="bitwise.html#tok-or_expr">or_expr</a> "|" <a href="bitwise.html#tok-xor_expr">xor_expr</a></code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+The <code>&amp;</code> operator yields the bitwise AND of its arguments, which
+must be plain or long integers.  The arguments are converted to a
+common type.
+<a name="l2h-281">&nbsp;</a>
+<P>
+The <code>^</code> operator yields the bitwise XOR (exclusive OR) of its
+arguments, which must be plain or long integers.  The arguments are
+converted to a common type.
+<a name="l2h-282">&nbsp;</a>
+<P>
+The <code>|</code> operator yields the bitwise (inclusive) OR of its
+arguments, which must be plain or long integers.  The arguments are
+converted to a common type.
+<a name="l2h-283">&nbsp;</a>
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="shifting.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="expressions.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="comparisons.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="shifting.html">5.7 Shifting operations</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="expressions.html">5. Expressions</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="comparisons.html">5.9 Comparisons</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

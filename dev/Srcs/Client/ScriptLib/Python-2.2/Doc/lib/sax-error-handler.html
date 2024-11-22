@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.10.4 ErrorHandler Objects </title>
+<META NAME="description" CONTENT="13.10.4 ErrorHandler Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="entity-resolver-objects.html">
+<LINK REL="up" href="module-xml.sax.handler.html">
+<LINK REL="next" href="module-xml.sax.saxutils.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="entity-resolver-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.sax.handler.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-xml.sax.saxutils.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="entity-resolver-objects.html">13.10.3 EntityResolver Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.sax.handler.html">13.10 xml.sax.handler  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-xml.sax.saxutils.html">13.11 xml.sax.saxutils  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00151040000000000000000">&nbsp;</A>
+<BR>
+13.10.4 ErrorHandler Objects 
+</H2>
+
+<P>
+Objects with this interface are used to receive error and warning
+information from the <tt class="class">XMLReader</tt>.  If you create an object that
+implements this interface, then register the object with your
+<tt class="class">XMLReader</tt>, the parser will call the methods in your object to
+report all warnings and errors. There are three levels of errors
+available: warnings, (possibly) recoverable errors, and unrecoverable
+errors.  All methods take a <tt class="exception">SAXParseException</tt> as the only
+parameter.  Errors and warnings may be converted to an exception by
+raising the passed-in exception object.
+
+<P>
+<dl><dt><b><a name="l2h-3348"><tt class="method">error</tt></a></b>(<var>exception</var>)
+<dd>
+  Called when the parser encounters a recoverable error.  If this method
+  does not raise an exception, parsing may continue, but further document
+  information should not be expected by the application.  Allowing the
+  parser to continue may allow additional errors to be discovered in the
+  input document.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3349"><tt class="method">fatalError</tt></a></b>(<var>exception</var>)
+<dd>
+  Called when the parser encounters an error it cannot recover from;
+  parsing is expected to terminate when this method returns.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3350"><tt class="method">warning</tt></a></b>(<var>exception</var>)
+<dd>
+  Called when the parser presents minor warning information to the
+  application.  Parsing is expected to continue when this method returns,
+  and document information will continue to be passed to the application.
+  Raising an exception in this method will cause parsing to end.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="entity-resolver-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.sax.handler.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-xml.sax.saxutils.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="entity-resolver-objects.html">13.10.3 EntityResolver Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.sax.handler.html">13.10 xml.sax.handler  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-xml.sax.saxutils.html">13.11 xml.sax.saxutils  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

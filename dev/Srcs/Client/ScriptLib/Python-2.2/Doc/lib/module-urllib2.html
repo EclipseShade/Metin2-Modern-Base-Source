@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.5 urllib2 -- extensible library for opening URLs</title>
+<META NAME="description" CONTENT="11.5 urllib2 -- extensible library for opening URLs">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-httplib.html">
+<LINK REL="previous" href="module-urllib.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="request-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node307.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="request-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node307.html">11.4.2 Examples</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="request-objects.html">11.5.1 Request Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0013500000000000000000">
+11.5 <tt class="module">urllib2</tt> --
+         extensible library for opening URLs</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<P>
+The <tt class="module">urllib2</tt> module defines functions and classes which help
+in opening URLs (mostly HTTP) in a complex world -- basic and digest
+authentication, redirections and more.
+
+<P>
+The <tt class="module">urllib2</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-2339"><tt class="function">urlopen</tt></a></b>(<var>url</var><big>[</big><var>, data</var><big>]</big>)
+<dd>
+Open the URL <var>url</var>, which can be either a string or a <tt class="class">Request</tt>
+object (currently the code checks that it really is a <tt class="class">Request</tt>
+instance, or an instance of a subclass of <tt class="class">Request</tt>).
+
+<P>
+<var>data</var> should be a string, which specifies additional data to
+send to the server. In HTTP requests, which are the only ones that
+support <var>data</var>, it should be a buffer in the format of
+<span class="mimetype">application/x-www-form-urlencoded</span>, for example one returned
+from <tt class="function">urllib.urlencode()</tt>.
+
+<P>
+This function returns a file-like object with two additional methods:
+
+<P>
+
+<UL>
+<LI><tt class="method">geturl()</tt> -- return the URL of the resource retrieved
+</LI>
+<LI><tt class="method">info()</tt> -- return the meta-information of the page, as
+                            a dictionary-like object
+</LI>
+</UL>
+
+<P>
+Raises <tt class="exception">URLError</tt> on errors.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2340"><tt class="function">install_opener</tt></a></b>(<var>opener</var>)
+<dd>
+Install an <tt class="class">OpenerDirector</tt> instance as the default opener.
+The code does not check for a real <tt class="class">OpenerDirector</tt>, and any
+class with the appropriate interface will work.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2341"><tt class="function">build_opener</tt></a></b>(<big>[</big><var>handler, ...</var><big>]</big>)
+<dd>
+Return an <tt class="class">OpenerDirector</tt> instance, which chains the
+handlers in the order given. <var>handler</var>s can be either instances
+of <tt class="class">BaseHandler</tt>, or subclasses of <tt class="class">BaseHandler</tt> (in
+which case it must be possible to call the constructor without
+any parameters).  Instances of the following classes will be in
+front of the <var>handler</var>s, unless the <var>handler</var>s contain
+them, instances of them or subclasses of them:
+
+<P>
+<code>ProxyHandler, UnknownHandler, HTTPHandler, HTTPDefaultErrorHandler, 
+      HTTPRedirectHandler, FTPHandler, FileHandler</code>
+
+<P>
+If the Python installation has SSL support (<tt class="function">socket.ssl()</tt>
+exists), <tt class="class">HTTPSHandler</tt> will also be added.
+</dl>
+
+<P>
+The following exceptions are raised as appropriate:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2342"><tt class="exception">URLError</tt></a></b>
+<dd>
+The handlers raise this exception (or derived exceptions) when they
+run into a problem.  It is a subclass of <tt class="exception">IOError</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2343"><tt class="exception">HTTPError</tt></a></b>
+<dd>
+A subclass of <tt class="exception">URLError</tt>, it can also function as a 
+non-exceptional file-like return value (the same thing that
+<tt class="function">urlopen()</tt> returns).  This is useful when handling exotic
+HTTP errors, such as requests for authentication.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2344"><tt class="exception">GopherError</tt></a></b>
+<dd>
+A subclass of <tt class="exception">URLError</tt>, this is the error raised by the
+Gopher handler.
+</dl>
+
+<P>
+The following classes are provided:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2345"><tt class="class">Request</tt></a></b>(<var>url</var><big>[</big><var>, data</var><big>[</big><var>, headers</var><big>]</big><big>]</big>)
+<dd>
+This class is an abstraction of a URL request.
+
+<P>
+<var>url</var> should be a string which is a valid URL.  For a description
+of <var>data</var> see the <tt class="method">add_data()</tt> description.
+<var>headers</var> should be a dictionary, and will be treated as if
+<tt class="method">add_header()</tt> was called with each key and value as arguments.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2346"><tt class="class">OpenerDirector</tt></a></b>()
+<dd>
+The <tt class="class">OpenerDirector</tt> class opens URLs via <tt class="class">BaseHandler</tt>s
+chained together. It manages the chaining of handlers, and recovery
+from errors.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2347"><tt class="class">BaseHandler</tt></a></b>()
+<dd>
+This is the base class for all registered handlers -- and handles only
+the simple mechanics of registration.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2348"><tt class="class">HTTPDefaultErrorHandler</tt></a></b>()
+<dd>
+A class which defines a default handler for HTTP error responses; all
+responses are turned into <tt class="exception">HTTPError</tt> exceptions.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2349"><tt class="class">HTTPRedirectHandler</tt></a></b>()
+<dd>
+A class to handle redirections.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2350"><tt class="class">ProxyHandler</tt></a></b>(<big>[</big><var>proxies</var><big>]</big>)
+<dd>
+Cause requests to go through a proxy.
+If <var>proxies</var> is given, it must be a dictionary mapping
+protocol names to URLs of proxies.
+The default is to read the list of proxies from the environment
+variables <var>protocol</var>_proxy.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2351"><tt class="class">HTTPPasswordMgr</tt></a></b>()
+<dd>
+Keep a database of 
+<code>(<var>realm</var>, <var>uri</var>) -&gt; (<var>user</var>, <var>password</var>)</code>
+mappings.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2352"><tt class="class">HTTPPasswordMgrWithDefaultRealm</tt></a></b>()
+<dd>
+Keep a database of 
+<code>(<var>realm</var>, <var>uri</var>) -&gt; (<var>user</var>, <var>password</var>)</code> mappings.
+A realm of <code>None</code> is considered a catch-all realm, which is searched
+if no other realm fits.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2353"><tt class="class">AbstractBasicAuthHandler</tt></a></b>(<big>[</big><var>password_mgr</var><big>]</big>)
+<dd>
+This is a mixin class that helps with HTTP authentication, both
+to the remote host and to a proxy.
+<var>password_mgr</var>, if given, should be something that is compatible
+with <tt class="class">HTTPPasswordMgr</tt>; refer to section&nbsp;<A href="http-password-mgr.html#http-password-mgr">11.5.6</A>
+for information on the interface that must be supported.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2354"><tt class="class">HTTPBasicAuthHandler</tt></a></b>(<big>[</big><var>password_mgr</var><big>]</big>)
+<dd>
+Handle authentication with the remote host.
+<var>password_mgr</var>, if given, should be something that is compatible
+with <tt class="class">HTTPPasswordMgr</tt>; refer to section&nbsp;<A href="http-password-mgr.html#http-password-mgr">11.5.6</A>
+for information on the interface that must be supported.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2355"><tt class="class">ProxyBasicAuthHandler</tt></a></b>(<big>[</big><var>password_mgr</var><big>]</big>)
+<dd>
+Handle authentication with the proxy.
+<var>password_mgr</var>, if given, should be something that is compatible
+with <tt class="class">HTTPPasswordMgr</tt>; refer to section&nbsp;<A href="http-password-mgr.html#http-password-mgr">11.5.6</A>
+for information on the interface that must be supported.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2356"><tt class="class">AbstractDigestAuthHandler</tt></a></b>(<big>[</big><var>password_mgr</var><big>]</big>)
+<dd>
+This is a mixin class that helps with HTTP authentication, both
+to the remote host and to a proxy.
+<var>password_mgr</var>, if given, should be something that is compatible
+with <tt class="class">HTTPPasswordMgr</tt>; refer to section&nbsp;<A href="http-password-mgr.html#http-password-mgr">11.5.6</A>
+for information on the interface that must be supported.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2357"><tt class="class">HTTPDigestAuthHandler</tt></a></b>(<big>[</big><var>password_mgr</var><big>]</big>)
+<dd>
+Handle authentication with the remote host.
+<var>password_mgr</var>, if given, should be something that is compatible
+with <tt class="class">HTTPPasswordMgr</tt>; refer to section&nbsp;<A href="http-password-mgr.html#http-password-mgr">11.5.6</A>
+for information on the interface that must be supported.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2358"><tt class="class">ProxyDigestAuthHandler</tt></a></b>(<big>[</big><var>password_mgr</var><big>]</big>)
+<dd>
+Handle authentication with the proxy.
+<var>password_mgr</var>, if given, should be something that is compatible
+with <tt class="class">HTTPPasswordMgr</tt>; refer to section&nbsp;<A href="http-password-mgr.html#http-password-mgr">11.5.6</A>
+for information on the interface that must be supported.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2359"><tt class="class">HTTPHandler</tt></a></b>()
+<dd>
+A class to handle opening of HTTP URLs.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2360"><tt class="class">HTTPSHandler</tt></a></b>()
+<dd>
+A class to handle opening of HTTPS URLs.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2361"><tt class="class">FileHandler</tt></a></b>()
+<dd>
+Open local files.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2362"><tt class="class">FTPHandler</tt></a></b>()
+<dd>
+Open FTP URLs.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2363"><tt class="class">CacheFTPHandler</tt></a></b>()
+<dd>
+Open FTP URLs, keeping a cache of open FTP connections to minimize
+delays.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2364"><tt class="class">GopherHandler</tt></a></b>()
+<dd>
+Open gopher URLs.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2365"><tt class="class">UnknownHandler</tt></a></b>()
+<dd>
+A catch-all class to handle unknown URLs.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="request-objects.html">11.5.1 Request Objects</a>
+<LI><A href="opener-director-objects.html">11.5.2 OpenerDirector Objects</a>
+<LI><A href="base-handler-objects.html">11.5.3 BaseHandler Objects</a>
+<LI><A href="http-redirect-handler.html">11.5.4 HTTPRedirectHandler Objects</a>
+<LI><A href="proxy-handler.html">11.5.5 ProxyHandler Objects</a>
+<LI><A href="http-password-mgr.html">11.5.6 HTTPPasswordMgr Objects</a>
+<LI><A href="abstract-basic-auth-handler.html">11.5.7 AbstractBasicAuthHandler Objects</a>
+<LI><A href="http-basic-auth-handler.html">11.5.8 HTTPBasicAuthHandler Objects</a>
+<LI><A href="proxy-basic-auth-handler.html">11.5.9 ProxyBasicAuthHandler Objects</a>
+<LI><A href="abstract-digest-auth-handler.html">11.5.10 AbstractDigestAuthHandler Objects</a>
+<LI><A href="http-digest-auth-handler.html">11.5.11 HTTPDigestAuthHandler Objects</a>
+<LI><A href="proxy-digest-auth-handler.html">11.5.12 ProxyDigestAuthHandler Objects</a>
+<LI><A href="http-handler-objects.html">11.5.13 HTTPHandler Objects</a>
+<LI><A href="https-handler-objects.html">11.5.14 HTTPSHandler Objects</a>
+<LI><A href="file-handler-objects.html">11.5.15 FileHandler Objects</a>
+<LI><A href="ftp-handler-objects.html">11.5.16 FTPHandler Objects</a>
+<LI><A href="cacheftp-handler-objects.html">11.5.17 CacheFTPHandler Objects</a>
+<LI><A href="gopher-handler.html">11.5.18 GopherHandler Objects</a>
+<LI><A href="unknown-handler-objects.html">11.5.19 UnknownHandler Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node307.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="request-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node307.html">11.4.2 Examples</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="request-objects.html">11.5.1 Request Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

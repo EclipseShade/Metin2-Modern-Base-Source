@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.1 External Tools </title>
+<META NAME="description" CONTENT="8.1 External Tools ">
+<META NAME="keywords" CONTENT="doc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="doc.css">
+<link rel="first" href="doc.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="tools-internal.html">
+<LINK REL="previous" href="tools.html">
+<LINK REL="up" href="tools.html">
+<LINK REL="next" href="tools-internal.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="tools.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="tools.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="tools-internal.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="tools.html">8 Processing Tools</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="tools.html">8 Processing Tools</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="tools-internal.html">8.2 Internal Tools</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000910000000000000000">&nbsp;</A>
+<BR>
+8.1 External Tools 
+</H2>
+
+<P>
+Many tools are needed to be able to process the Python
+    documentation if all supported formats are required.  This
+    section lists the tools used and when each is required.  Consult
+    the <span class="file">Doc/README</span> file to see if there are specific version
+    requirements for any of these.
+
+<P>
+<DL>
+<DT><STRONG><b class="program">dvips</b></STRONG></DT>
+<DD>This program is a typical part of <SPAN CLASS="logo-TeX">T<SMALL>E</SMALL>X</SPAN> installations.  It is
+        used to generate PostScript from the ``device independent''
+        <span class="file">.dvi</span> files.  It is needed for the conversion to
+        PostScript.
+
+<P>
+</DD>
+<DT><STRONG><b class="program">emacs</b></STRONG></DT>
+<DD>Emacs is the kitchen sink of programmers' editors, and a damn
+        fine kitchen sink it is.  It also comes with some of the
+        processing needed to support the proper menu structures for
+        Texinfo documents when an info conversion is desired.  This is
+        needed for the info conversion.  Using <b class="program">xemacs</b>
+        instead of FSF <b class="program">emacs</b> may lead to instability in the
+        conversion, but that's because nobody seems to maintain the
+        Emacs Texinfo code in a portable manner.
+
+<P>
+</DD>
+<DT><STRONG><b class="program">latex</b></STRONG></DT>
+<DD><SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> is a large and extensible macro package by Leslie
+        Lamport, based on <SPAN CLASS="logo-TeX">T<SMALL>E</SMALL>X</SPAN>, a world-class typesetter by Donald
+        Knuth.  It is used for the conversion to PostScript, and is
+        needed for the HTML conversion as well (<SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN>2HTML requires
+        one of the intermediate files it creates).
+
+<P>
+</DD>
+<DT><STRONG><b class="program">latex2html</b></STRONG></DT>
+<DD>Probably the longest Perl script anyone ever attempted to
+        maintain.  This converts <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> documents to HTML documents,
+        and does a pretty reasonable job.  It is required for the
+        conversions to HTML and GNU info.
+
+<P>
+</DD>
+<DT><STRONG><b class="program">lynx</b></STRONG></DT>
+<DD>This is a text-mode Web browser which includes an
+        HTML-to-plain text conversion.  This is used to convert
+        <code>howto</code> documents to text.
+
+<P>
+</DD>
+<DT><STRONG><b class="program">make</b></STRONG></DT>
+<DD>Just about any version should work for the standard documents,
+        but GNU <b class="program">make</b> is required for the experimental
+        processes in <span class="file">Doc/tools/sgmlconv/</span>, at least while
+        they're experimental.  This is not required for running the
+        <b class="program">mkhowto</b> script.
+
+<P>
+</DD>
+<DT><STRONG><b class="program">makeindex</b></STRONG></DT>
+<DD>This is a standard program for converting <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> index data
+        to a formatted index; it should be included with all <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN>
+        installations.  It is needed for the PDF and PostScript
+        conversions.
+
+<P>
+</DD>
+<DT><STRONG><b class="program">makeinfo</b></STRONG></DT>
+<DD>GNU <b class="program">makeinfo</b> is used to convert Texinfo documents to
+        GNU info files.  Since Texinfo is used as an intermediate
+        format in the info conversion, this program is needed in that
+        conversion.
+
+<P>
+</DD>
+<DT><STRONG><b class="program">pdflatex</b></STRONG></DT>
+<DD>pdf<SPAN CLASS="logo-TeX">T<SMALL>E</SMALL>X</SPAN> is a relatively new variant of <SPAN CLASS="logo-TeX">T<SMALL>E</SMALL>X</SPAN>, and is used to
+        generate the PDF version of the manuals.  It is typically
+        installed as part of most of the large <SPAN CLASS="logo-TeX">T<SMALL>E</SMALL>X</SPAN> distributions.
+        <b class="program">pdflatex</b> is pdf<SPAN CLASS="logo-TeX">T<SMALL>E</SMALL>X</SPAN> using the <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> format.
+
+<P>
+</DD>
+<DT><STRONG><b class="program">perl</b></STRONG></DT>
+<DD>Perl is required for <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN>2HTML and one of the scripts used
+        to post-process <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN>2HTML output, as well as the
+        HTML-to-Texinfo conversion.  This is required for
+        the HTML and GNU info conversions.
+
+<P>
+</DD>
+<DT><STRONG><b class="program">python</b></STRONG></DT>
+<DD>Python is used for many of the scripts in the
+        <span class="file">Doc/tools/</span> directory; it is required for all
+        conversions.  This shouldn't be a problem if you're interested
+        in writing documentation for Python!
+    
+</DD>
+</DL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="tools.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="tools.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="tools-internal.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="tools.html">8 Processing Tools</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="tools.html">8 Processing Tools</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="tools-internal.html">8.2 Internal Tools</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

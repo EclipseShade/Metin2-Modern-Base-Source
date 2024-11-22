@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.4.2 String literal concatenation</title>
+<META NAME="description" CONTENT="2.4.2 String literal concatenation">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="numbers.html">
+<LINK REL="previous" href="strings.html">
+<LINK REL="up" href="literals.html">
+<LINK REL="next" href="numbers.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="strings.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="literals.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="numbers.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="strings.html">2.4.1 String literals</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="literals.html">2.4 Literals</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="numbers.html">2.4.3 Numeric literals</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004420000000000000000">&nbsp;</A>
+<BR>
+2.4.2 String literal concatenation
+</H2>
+
+<P>
+Multiple adjacent string literals (delimited by whitespace), possibly
+using different quoting conventions, are allowed, and their meaning is
+the same as their concatenation.  Thus, <code>"hello" 'world'</code> is
+equivalent to <code>"helloworld"</code>.  This feature can be used to reduce
+the number of backslashes needed, to split long strings conveniently
+across long lines, or even to add comments to parts of strings, for
+example:
+
+<P>
+<dl><dd><pre class="verbatim">
+re.compile("[A-Za-z_]"       # letter or underscore
+           "[A-Za-z0-9_]*"   # letter, digit or underscore
+          )
+</pre></dl>
+
+<P>
+Note that this feature is defined at the syntactical level, but
+implemented at compile time.  The `+' operator must be used to
+concatenate string expressions at run time.  Also note that literal
+concatenation can use different quoting styles for each component
+(even mixing raw strings and triple quoted strings).
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="strings.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="literals.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="numbers.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="strings.html">2.4.1 String literals</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="literals.html">2.4 Literals</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="numbers.html">2.4.3 Numeric literals</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.14.1 Textbox objects </title>
+<META NAME="description" CONTENT="6.14.1 Textbox objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-curses.textpad.html">
+<LINK REL="up" href="module-curses.textpad.html">
+<LINK REL="next" href="module-curses.wrapper.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-curses.textpad.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-curses.textpad.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-curses.wrapper.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-curses.textpad.html">6.14 curses.textpad  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-curses.textpad.html">6.14 curses.textpad  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-curses.wrapper.html">6.15 curses.wrapper  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0081410000000000000000">&nbsp;</A>
+<BR>
+6.14.1 Textbox objects 
+</H2>
+
+<P>
+You can instantiate a <tt class="class">Textbox</tt> object as follows:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-1562"><tt class="class">Textbox</tt></a></b>(<var>win</var>)
+<dd>
+Return a textbox widget object.  The <var>win</var> argument should be a
+curses <tt class="class">WindowObject</tt> in which the textbox is to be contained.
+The edit cursor of the textbox is initially located at the upper left
+hand corner of the containin window, with coordinates <code>(0, 0)</code>.
+The instance's <tt class="member">stripspaces</tt> flag is initially on.
+</dl>
+
+<P>
+<tt class="class">Textbox</tt> objects have the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-1563"><tt class="method">edit</tt></a></b>(<big>[</big><var>validator</var><big>]</big>)
+<dd>
+This is the entry point you will normally use.  It accepts editing
+keystrokes until one of the termination keystrokes is entered.  If
+<var>validator</var> is supplied, it must be a function.  It will be called
+for each keystroke entered with the keystroke as a parameter; command
+dispatch is done on the result. This method returns the window
+contents as a string; whether blanks in the window are included is
+affected by the <tt class="member">stripspaces</tt> member.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1564"><tt class="method">do_command</tt></a></b>(<var>ch</var>)
+<dd>
+Process a single command keystroke.  Here are the supported special
+keystrokes: 
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Keystroke</b>&nbsp;</th>
+      <th align="left"><b>Action</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><tt class="constant">Control-A</tt></td>
+        <td align="left">Go to left edge of window.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">Control-B</tt></td>
+        <td align="left">Cursor left, wrapping to previous line if appropriate.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">Control-D</tt></td>
+        <td align="left">Delete character under cursor.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">Control-E</tt></td>
+        <td align="left">Go to right edge (stripspaces off) or end of line
+                  (stripspaces on).</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">Control-F</tt></td>
+        <td align="left">Cursor right, wrapping to next line when appropriate.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">Control-G</tt></td>
+        <td align="left">Terminate, returning the window contents.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">Control-H</tt></td>
+        <td align="left">Delete character backward.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">Control-J</tt></td>
+        <td align="left">Terminate if the window is 1 line, otherwise
+                     insert newline.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">Control-K</tt></td>
+        <td align="left">If line is blank, delete it, otherwise clear to
+                     end of line.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">Control-L</tt></td>
+        <td align="left">Refresh screen.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">Control-N</tt></td>
+        <td align="left">Cursor down; move down one line.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">Control-O</tt></td>
+        <td align="left">Insert a blank line at cursor location.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">Control-P</tt></td>
+        <td align="left">Cursor up; move up one line.</td></tbody>
+</table>
+
+<P>
+Move operations do nothing if the cursor is at an edge where the
+movement is not possible.  The following synonyms are supported where
+possible:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Constant</b>&nbsp;</th>
+      <th align="left"><b>Keystroke</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><tt class="constant">KEY_LEFT</tt></td>
+        <td align="left"><kbd>Control-B</kbd></td>
+    <tr><td align="left" valign="baseline"><tt class="constant">KEY_RIGHT</tt></td>
+        <td align="left"><kbd>Control-F</kbd></td>
+    <tr><td align="left" valign="baseline"><tt class="constant">KEY_UP</tt></td>
+        <td align="left"><kbd>Control-P</kbd></td>
+    <tr><td align="left" valign="baseline"><tt class="constant">KEY_DOWN</tt></td>
+        <td align="left"><kbd>Control-N</kbd></td>
+    <tr><td align="left" valign="baseline"><tt class="constant">KEY_BACKSPACE</tt></td>
+        <td align="left"><kbd>Control-h</kbd></td></tbody>
+</table>
+
+<P>
+All other keystrokes are treated as a command to insert the given
+character and move right (with line wrapping).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1565"><tt class="method">gather</tt></a></b>()
+<dd>
+This method returns the window contents as a string; whether blanks in
+the window are included is affected by the <tt class="member">stripspaces</tt>
+member.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1566"><tt class="member">stripspaces</tt></a></b>
+<dd>
+This data member is a flag which controls the interpretation of blanks in
+the window.  When it is on, trailing blanks on each line are ignored;
+any cursor motion that would land the cursor on a trailing blank goes
+to the end of that line instead, and trailing blanks are stripped when
+the window contents is gathered.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-curses.textpad.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-curses.textpad.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-curses.wrapper.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-curses.textpad.html">6.14 curses.textpad  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-curses.textpad.html">6.14 curses.textpad  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-curses.wrapper.html">6.15 curses.wrapper  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.1.1 Process Parameters </title>
+<META NAME="description" CONTENT="6.1.1 Process Parameters ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="os-newstreams.html">
+<LINK REL="previous" href="module-os.html">
+<LINK REL="up" href="module-os.html">
+<LINK REL="next" href="os-newstreams.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-os.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-os.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="os-newstreams.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-os.html">6.1 os  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-os.html">6.1 os  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="os-newstreams.html">6.1.2 File Object Creation</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008110000000000000000">&nbsp;</A>
+<BR>
+6.1.1 Process Parameters 
+</H2>
+
+<P>
+These functions and data items provide information and operate on the
+current process and user.
+
+<P>
+<dl><dt><b><a name="l2h-1091"><tt>environ</tt></a></b>
+<dd>
+A mapping object representing the string environment. For example,
+<code>environ['HOME']</code> is the pathname of your home directory (on some
+platforms), and is equivalent to <code>getenv("HOME")</code> in C.
+
+<P>
+If the platform supports the <tt class="function">putenv()</tt> function, this
+mapping may be used to modify the environment as well as query the
+environment.  <tt class="function">putenv()</tt> will be called automatically when
+the mapping is modified.
+
+<P>
+If <tt class="function">putenv()</tt> is not provided, this mapping may be passed to
+the appropriate process-creation functions to cause child processes to 
+use a modified environment.
+</dl>
+
+<P>
+<dl><dt><b><tt class="function">chdir</tt></b>(<var>path</var>)
+<dd>
+<dt><b><tt class="function">getcwd</tt></b>()
+<dd>
+These functions are described in ``Files and Directories'' (section
+<A href="os-file-dir.html#os-file-dir">6.1.4</A>).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1092"><tt class="function">ctermid</tt></a></b>()
+<dd>
+Return the filename corresponding to the controlling terminal of the
+process.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1093"><tt class="function">getegid</tt></a></b>()
+<dd>
+Return the current process' effective group id.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1094"><tt class="function">geteuid</tt></a></b>()
+<dd>
+<a name="l2h-1121">&nbsp;</a>Return the current process' effective user id.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1095"><tt class="function">getgid</tt></a></b>()
+<dd>
+<a name="l2h-1122">&nbsp;</a>Return the current process' group id.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1096"><tt class="function">getgroups</tt></a></b>()
+<dd>
+Return list of supplemental group ids associated with the current
+process.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1097"><tt class="function">getlogin</tt></a></b>()
+<dd>
+Return the actual login name for the current process, even if there
+are multiple login names which map to the same user id.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1098"><tt class="function">getpgrp</tt></a></b>()
+<dd>
+<a name="l2h-1123">&nbsp;</a>Return the current process group id.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1099"><tt class="function">getpid</tt></a></b>()
+<dd>
+<a name="l2h-1124">&nbsp;</a>Return the current process id.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1100"><tt class="function">getppid</tt></a></b>()
+<dd>
+<a name="l2h-1125">&nbsp;</a>Return the parent's process id.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1101"><tt class="function">getuid</tt></a></b>()
+<dd>
+<a name="l2h-1126">&nbsp;</a>Return the current process' user id.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1102"><tt class="function">getenv</tt></a></b>(<var>varname</var><big>[</big><var>, value</var><big>]</big>)
+<dd>
+Return the value of the environment variable <var>varname</var> if it
+exists, or <var>value</var> if it doesn't.  <var>value</var> defaults to
+<code>None</code>.
+Availability: most flavors of Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1103"><tt class="function">putenv</tt></a></b>(<var>varname, value</var>)
+<dd>
+<a name="l2h-1127">&nbsp;</a>Set the environment variable named <var>varname</var> to the string
+<var>value</var>.  Such changes to the environment affect subprocesses
+started with <tt class="function">os.system()</tt>, <tt class="function">popen()</tt> or
+<tt class="function">fork()</tt> and <tt class="function">execv()</tt>.
+Availability: most flavors of Unix, Windows.
+
+<P>
+When <tt class="function">putenv()</tt> is
+supported, assignments to items in <code>os.environ</code> are automatically
+translated into corresponding calls to <tt class="function">putenv()</tt>; however,
+calls to <tt class="function">putenv()</tt> don't update <code>os.environ</code>, so it is
+actually preferable to assign to items of <code>os.environ</code>.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1104"><tt class="function">setegid</tt></a></b>(<var>egid</var>)
+<dd>
+Set the current process's effective group id.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1105"><tt class="function">seteuid</tt></a></b>(<var>euid</var>)
+<dd>
+Set the current process's effective user id.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1106"><tt class="function">setgid</tt></a></b>(<var>gid</var>)
+<dd>
+Set the current process' group id.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1107"><tt class="function">setgroups</tt></a></b>(<var>groups</var>)
+<dd>
+Set the list of supplemental group ids associated with the current
+process to <var>groups</var>. <var>groups</var> must be a sequence, and each
+element must be an integer identifying a group. This operation is
+typical available only to the superuser.
+Availability: Unix.
+
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1108"><tt class="function">setpgrp</tt></a></b>()
+<dd>
+Calls the system call <tt class="cfunction">setpgrp()</tt> or <tt class="cfunction">setpgrp(0,
+0)</tt> depending on which version is implemented (if any).  See the
+Unix manual for the semantics.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1109"><tt class="function">setpgid</tt></a></b>(<var>pid, pgrp</var>)
+<dd>
+Calls the system call <tt class="cfunction">setpgid()</tt>.  See the Unix manual
+for the semantics.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1110"><tt class="function">setreuid</tt></a></b>(<var>ruid, euid</var>)
+<dd>
+Set the current process's real and effective user ids.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1111"><tt class="function">setregid</tt></a></b>(<var>rgid, egid</var>)
+<dd>
+Set the current process's real and effective group ids.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1112"><tt class="function">setsid</tt></a></b>()
+<dd>
+Calls the system call <tt class="cfunction">setsid()</tt>.  See the Unix manual
+for the semantics.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1113"><tt class="function">setuid</tt></a></b>(<var>uid</var>)
+<dd>
+<a name="l2h-1128">&nbsp;</a>Set the current process' user id.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1114"><tt class="function">strerror</tt></a></b>(<var>code</var>)
+<dd>
+Return the error message corresponding to the error code in
+<var>code</var>.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1115"><tt class="function">umask</tt></a></b>(<var>mask</var>)
+<dd>
+Set the current numeric umask and returns the previous umask.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1116"><tt class="function">uname</tt></a></b>()
+<dd>
+Return a 5-tuple containing information identifying the current
+operating system.  The tuple contains 5 strings:
+<code>(<var>sysname</var>, <var>nodename</var>, <var>release</var>, <var>version</var>,
+<var>machine</var>)</code>.  Some systems truncate the nodename to 8
+characters or to the leading component; a better way to get the
+hostname is <tt class="function">socket.gethostname()</tt>
+<a name="l2h-1118">&nbsp;</a>or even
+<a name="l2h-1120">&nbsp;</a><code>socket.gethostbyaddr(socket.gethostname())</code>.
+Availability: recent flavors of Unix.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-os.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-os.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="os-newstreams.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-os.html">6.1 os  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-os.html">6.1 os  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="os-newstreams.html">6.1.2 File Object Creation</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

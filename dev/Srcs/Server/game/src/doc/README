@@ -1,0 +1,1610 @@
+문서화 가이드 라인
+----------------------------------------------------------------------------
+1. 본 문서는 소스를 검색하기 편하게 하기 위해 존재한다.
+2. 문서를 작성할때는 키워드나 로그를 중심으로 작성을한다
+
+	키워드: 헤더이름, 함수나 클래스 이름
+
+
+# 길드 생성
+-------------------------------------------------------------------------------
+1. server/game_request_make_guild
+
+2. server/HEADER_GC_REQUEST_MAKE_GUILD        = 82
+
+3. client/gameWindow.AskGuildName
+
+4. client/gameWindow.ConfirmGuildName
+
+5. client/net.SendAnswerMakeGuildPacket
+
+6. client/HEADER_CG_ANSWER_MAKE_GUILD = 81
+
+7. server/CInputMain::AnswerMakeGuild
+
+8. server/CGuildManager::CreateGuild
+
+
+
+
+# 20051204 REFINE_ROD_HACK_BUG_FIX
+
+낚시대 개량 버그
+-------------------------------------------------------------------------------
+메틴2 개량 방식이 아이템 vnum 을 1씩 증가시키는걸 이용한 버그입니다.
+낚시대 개량시 최종 체크 과정에 문제가 있어 낚시대가 아닐 경우에도 개량이 
+되었습니다. 정상적인 클라이트의 경우에는 중간에 아이템을 교체할 수 없기때문에 
+문제가 발생하지 않습니다.
+
+버그 플레이어 확인 방법
+-------------------------------------------------------------------------------
+refinelog:
+
+		mysql> SELECT pid, item_id FROM refinelog WHERE step = "ROD";
+
+log:
+		mysql> SELECT who, what FROM log WHERE type = 'ITEM' and how = "REFINE FISH_ROD SUCCESS";
+
+
+위의 로그에서 item_id/what 이 낚시대가 아닌 경우는 모두 버그를 사용해서 만들어진 
+아이템이며 player_id/who 는 버그를 사용한 캐릭터 입니다.
+
+
+버그 수정 내용
+--------------------------------------------------------------------------------
+낚시대 개량시 만약 낚시대가 아니라면 개량 처리를 중단 하며 아래와 같은 로그를 
+남깁니다.
+
+refine_log:
+
+		mysql> SELECT pid, item_id FROM refinelog WHERE step = "ROD_HACK";
+
+syserr:
+		$ grep REFINE_ROD_HACK syserr
+
+			REFINE_ROD_HACK pid(플레이어_아이디) item(아이템_이름:아이템_아이디)
+
+
+버그 확인 방법
+--------------------------------------------------------------------------------
+IMPLEMENTOR 권한을 가진 운영자가 게임에서 아래와 같이 입력합니다.
+
+        /refine_rod 인벤토리상_아이템_위치
+
+만약 인벤토리상 제일 처음에 아이템이 있다면 아래와 같습니다.
+
+        /refine_rod 0
+
+syserr 나 refine_log 를 통해 로그 내용을 확인합니다.
+
+
+# BUILD_WALL
+---------------------------------------------------------------------------
+길드 부지에 담장을 치는 루틴을 추가
+TODO:: GM 전용 명령이기 때문에 나중에 유저에게 오픈하였을 경우
+	재료를 소모하는 루틴과, 테크 트리를 검사하는 루틴을 추가 하여야 한다. 
+
+# SUB_SKILL_CLEAR_FIX
+---------------------------------------------------------------------------
+노파 캐릭터가 스킬을 초기화 시켜줄 떄 보조 스킬을 그대로 유지시키도록 한다
+level 명령어로 레벨 조정시 보조스킬 부분이 변하지 않는다. 차후 수정할것
+
+# AFFECT_DURATION_BUG_FIX
+---------------------------------------------------------------------------
+Affect의 lDuration 값이 0xffff 일 경우 무한으로 처리하게 되어 있는것을 수정
+무한 처리를 지워 버리고, 무한 처리가 필요한 아이템의 경우
+AFFECT_INFINITE_DURATION 을 지정하면 됨.
+값은 0x1fffffff 을 사용함.
+
+# LAND_CLEAR
+---------------------------------------------------------------------------
+길드를 해산시 길드 소유의 땅이 있다면,
+그 땅의 건물들을 모두 지우고, 토지관원을 세우도록 한다.
+그 땅의 모든 건물이 지워지므로, 추후 건물을 지우고 되팔고 등의 기능 추가시
+신경 써야함.
+
+# ATTACK_HACK_CHECK
+---------------------------------------------------------------------------
+100ms 이하의 공격 패킷은 무시한다.  
+
+sys_err "%{ATTACKER_NAME}s attack hack! time delta: %{시간차}lu type %{공격타입}lu"
+
+TODO:
+	기본 공격 속도 이하의 공격은 위력을 감소시킨다
+
+# LOGIN_MAX_LEN_EXTEND
+---------------------------------------------------------------------------
+TAccountTable
+TConnectTable
+TLoginPacket
+TPlayerCreatePacket
+TPlayerDeletePacket
+TLogoutPacket
+TSafeboxLoadPacket
+TPacketGDDirectEnter
+TPacketDGLoginAlready
+TPacketGDAuthLogin
+TPacketGDLoginByKey
+TPacketBillingRepair
+TPacketBillingExpire
+TPacketLoginOnSetup
+TPacketGDVCard
+
+# SERVER_ATTR_LOAD_ERROR
+---------------------------------------------------------------------------
+server_attr 속성 파일 크기가 맞지 않을 경우 SECTREE를 찾을 수 없다는 에러가
+발생! 문제 찾기가 힘들어 자세한 로그 보강
+
+FATAL ERROR! LoadAttribute(파일이름) - cannot find sectree(package=검색키, coord=(검색좌표), map_index=맵인덱스, map_base=(맵시작위치))
+ERROR_ATTR_POS(에러난위치) attr_size(속성파일크기)
+CHECK! 'Setting.txt' and 'server_attr' MAP_SIZE!
+
+SECTREE 검색키1(검색좌표)
+SECTREE 검색키2(검색좌표)
+SECTREE 검색키3(검색좌표)
+SECTREE 검색키4(검색좌표) 
+
+server_attr 과 Setting.txt 파일을 조사한다.
+
+# 채널링 패치
+---------------------------------------------------------------------------
+선언부
+/common/length.h:8
+	LOGIN_MAX_LEN = 16 // 채널링 패치로 인해 16을 30으로 교체함
+
+STRNCPY 함수와 trim_and_lower 함수를 사용하여 주로 조작함.
+길이를 LOGIN_MAX_LEN 으로 사용하였음
+
+문제 될만한 부분
+	-> LOGIN_MAX_LEN 을 사용하지 않고 하드코딩했을 경우
+
+---------------------------------------------------------------------------
+
+# GUILD_SKILL_COOLTIME_BUG_FIX
+---------------------------------------------------------------------------
+db/src/README 참고
+
+# TIMED_EVENT_INFO
+---------------------------------------------------------------------------
+* 사용예제:
+TimedEventInfo * info;                                        
+DWORD dwEI = AllocEventInfo(sizeof(TimedEventInfo), &info);   
+														   
+if (ch->IsPosition(POS_FIGHTING))                             
+	info->left_second = 10;                                   
+else                                                          
+	info->left_second = 3;                                    
+														   
+info->ch                = ch;                                 
+info->subcmd            = subcmd;                             
+														   
+ch->m_pkTimedEvent      = event_create(timed_event, dwEI, 1); 
+
+* 함수설명:
+#define AllocEventInfo(size, ptr) 	__AllocEventInfo(size, (void **) ptr)
+#define event_create(func, id, when) event_create_ex(func, id, when, __FILE__, __LINE__)
+
+
+
+# CHANNEL_SERVICE_LOGIN
+---------------------------------------------------------------------------
+채널로 로그인할때 비밀번호는 PASSWORD 함수를 거치지 않는다.
+구분은 로그인 아이디 '[' 로 시작하는지로 체크한다.
+
+---------------------------------------------------------------------------
+# 20050915 MONKEY_ROD_ATTACK_BUG_FIX
+---------------------------------------------------------------------------
+현재 스탯을 그대로 사용하는 변신일때는 몬스터의 능력치를 사용하지 않고
+현재 가지고 있는 무기의 데미지를 그대로 사용하는데, 낚시대의 경우 공격력이
+엄청 크기 때문에 상당히 강한 공격력을 내게 됩니다.
+
+Item_HasDamage 라는 함수를 추가해 낚시대나 곡괭이일때는 공격력을 적용하지
+않습니다.
+
+	버그 테스트:
+		1. 낚시대 장착
+		2. /poly 5003
+		3. 몬스터를 공격하면 테스트서버에서 WP 값이 엄청 큰걸로 나온다.
+		(0 이나 1로 나오면 버그 수정 완료)
+
+--------------------------------------------------------------------------
+# 20050915 DISABLE_SELL_GOLD_BAR
+---------------------------------------------------------------------------
+금괴 판매는 warehourse.quest 에서 담당합니다.
+
+	local s = select(locale.stash.open_stash, locale.stash.buy_silver_and_gold_bar, locale.stash.nomatter)
+
+	if s == 1 then
+		game.open_safebox()
+	elseif s==2 then
+		if pc.getqf("gold_bar_say_count") < 3 then
+			say(locale.stash.gold_bar_beginner_info)
+			pc.setqf("gold_bar_say_count",pc.getqf("gold_bar_say_count")+1)
+			wait()
+		end
+		npc.open_shop()
+	end
+
+판매 리스트는 SQL:shop_item 테이블에 있습니다.
+
+---------------------------------------------------------------------------
+# 20050908 PARTY_ROLE_LIMIT_LEVEL_BUG_FIX
+---------------------------------------------------------------------------
+파티 역할 등장 통솔력 레벨 조정
+기획과 다르게 들어가 있었지만 클라이언트 제한 수치보다 낮아 게임에 영향은 
+없음
+
+---------------------------------------------------------------------------
+# 20050906 CHINA_GUILD_WAR_BUG_FIX 
+---------------------------------------------------------------------------
+* CHN_aGuildWarInfo 내 값이 한국 수치로 들어가 있었음
+* 로그 보강 WaitStartSendToDB 에 map_index 출력함
+
+---------------------------------------------------------------------------
+# 20050903 CHINA_BINARY_PATCH 
+---------------------------------------------------------------------------
+
+* ADD_MELEE_SKILL_CRITICAL:
+!!중요체크!! 무사 밀리스킬에도 낮은 확률로 크리티컬과 관통이 터짐
+
+* TRENT_MONSTER
+귀목림 몬스터 추가
+나무 몬스터이므로 움직이지 않도록한다. AIFLAG_NOMOVE
+나무에게 강함 보너스 POINT_ATTBONUS_TREE
+
+* ADD_MOB_GROUP_GROUP_PROB:
+!!중요체크!! 몬스터 그룹그룹 확률 추가
+
+* SKILL_ATTACK_LOG_NO_TARGET_NAME_FIX
+스킬 공격 로그에 타겟 이름이 없음
+
+* BUILD_BUILDING
+
+* ADD_SUPPLY_BUILDING
+BUILDING_INCREASE_GUILD_MEMBER_COUNT_SMALL : 6명 추가
+BUILDING_INCREASE_GUILD_MEMBER_COUNT_MEDIUM : 12명 추가
+BUILDING_INCREASE_GUILD_MEMBER_COUNT_LARGE : 18명 추가
+
+* BUILDING_NPC
+건물 NPC - 오브젝트 프로토에 NPCVnum 이 존재하고 땅 주인이 있을때 등장
+건물 다시 짓기 - NPC 교체
+NPC 에 연결된 건물 찾기
+게임시작시 로그
+	ObjectProto ... NPC 연결된NPC 번호 
+
+건물 로딩시 부팅중이 아닐때만 NPC 리젠 및 건물 효과 적용
+
+* ADD_BUILDING_ROTATION
+건물 회전 추가
+
+* ADD_REFINE_BUILDING
+
+* LAND_MASTER_LOG
+
+* PCBANG_IP_LIST
+한국 PC방 이벤트용 루틴: 특정 PC방의 플레이 시간 체크\
+
+* MINING
+채광
+캐릭터 이벤트 생성
+캐릭터 제거시 이벤트 제거
+광물(ORE) 대역 20047 ~ 20059
+이동시 채광 취소
+ITEM_PICK
+ITEM_MINING_SKILL_TRAIN_BOOK
+HEADER_CG_DIG_MOTION
+
+* REMOVE_REAL_SKILL_LEVELS
+실제 스킬레벨과 보여지는 스킬레벨 구분 없엠
+
+* REGEN_NPC
+
+* EQUIP_LAST_SKILL_DELAY:
+마지막 스킬 사용후 장비 교체 1.5초 딜레이
+
+* MOB_SKILL_COOLTIME
+
+* MYSHOP_PRICE_LIST
+개인 상점 가격 리스트 기능
+비단 보따리(71049) 사용시 가능
+
+* DEPEND_BONUS_ATTRIBUTES
+
+	POINT_SKILL_DEFEND_BONUS
+	POINT_NORMAL_HIT_DEFEND_BONUS
+
+* SKILL_DAMAGE_BONUS
+
+* PARTY_JOIN_BUG_FIX
+* GUILD_JOIN_BUG_FIX
+
+* ADD_GRANDMASTER_SKILL:
+퀘스트로만 가능
+PointPoly3 공식 사용
+GetSkillMasterType -> GetUsedSkillMasterType
+GetThreeSkillLevelAdjust 에 따라 드롭 확률 조정됨
+"three_skill_item" 플래그 필요
+
+* NO_GRANDMASTER:
+	EventFlag: no_grand_master -> bUseGrandMaster = false;
+
+* GUILDSKILL_BUG_FIX
+길드스킬 사용시 스킬핵으로 나오는 버그 수정
+
+* SKILL_BOOK_BONUS:
+선인의 교훈 스킬 수련 보너스 (스킬 수련 성공 확률이 두배 증가한다)
+
+* STATE_IDLE_REFACTORING
+* REFACTORING_CHARACTER_GotoNearTarget
+
+* ADD_COMMAND_SLOW_STUN:
+/slow
+/stun
+
+* ADD_MONSTER_REFINE
+
+* CHECK_UNIQUE_GROUP:
+같은 유니크 그룹에 들어있는 아이템은 같이 착용할 수 없다.
+
+3000 이하 일때만 m_ItemToSpecialGroup 등록
+
+* ADD_ITEM_ATTRIBUTE:
+아이템 속성을 추가한다
+
+* CHANGE_ITEM_ATTRIBUTES:
+아이템 속성을 교체한다.
+
+* CHAT_BLOCK
+
+* AFFECT_BUG_FIX
+
+* ADD_PREMIUM:
+	PREMIUM_AUTOLOOT: 제 3의 손 역할을 하는 시간제 아이템 추가
+	UNIQUE_GROUP_LUCKY_GOLD: 행운의 금화
+	UNIQUE_GROUP_RING_OF_EXP: 경험의 반지
+	UNIQUE_GROUP_FISH_MIND: 월간 어심 (어심환 기능 추가)
+	UNIQUE_GROUP_LARGE_SAFE_BOX: 창고확장권
+	UNIQUE_GROUP_DOUBLE_ITEM: 드롭율 두배
+
+* DUNGEON_MONSTER_REBIRH_BUG_FIX:
+사귀타워 몬스터중 부활시 서버 에러 발생 버그 수정
+
+* BOSS_KILL_LOG
+CharLog 에 보스나 운석 격파한 캐릭터가 로그를 남긴다,
+
+	BOSS_KILL
+	STONE_SKILL	
+		
+* ACCESSORY_REFINE
+악세사리 개량	
+ModifyPoints if (!IsAccessoryForSokcet()); <- 되어있었음
+
+* DETAIL_REFINE_LOG
+개량 로그 자세하게 수정	
+
+	GUILD
+	POWER
+	SCROLL
+	HYUNIRON
+	GOD_SCROLL
+	MUSIN_SCROLL
+
+* REFINE_COST
+ComputeRefineFee
+돈으로만 개량 옵션 추가	(성공 확률 10% 감소)
+	REFINE_TYPE_MONEY_ONLY
+	deviltower_zone.can_refine 플래그 설정시 작동
+	번역문구:
+		사귀 타워 완료보상은 한번까지 사용가능합니다.
+
+* DEVILTOWER_NPC
+사귀타워 클리어시 돈으로 아이템 개량해주는 NPC 등장
+
+	DEVILTOWER_BLACKSMITH_WEAPON_MOB
+	DEVILTOWER_BLACKSMITH_ARMOR_MOB
+	DEVILTOWER_BLACKSMITH_ACCESSORY_MOB
+
+
+* MUSIN_SCROLL
++4 까지 개량 100% 성공
+
+* TOO_LONG_DISTANCE_EXCHANGE_BUG_FIX:
+장거리(20m 이상) 교환 금지
+
+* TAKE_ITEM_BUG_FIX
+대상에게 아이템 드롭시 대상 NPC가 등록안되는 버그 수정
+
+	sys_log:
+		TakeItem fromNPC이름 NPCVnum 아이템이름
+
+* SPAWN_BLOCK_LOG:
+spawn 실패 로그를 보이거나 감춘다.
+spawn_blog_log 플래그가 켜져있을때만 출력됨 (10초 마다 갱신된다)	
+
+* SKILL_FOMULA_REFACTORING:
+스킬 공식 부분을 리팩토링함. 스킬 전체적인 사용체크 필요
+
+* REMOVE_BAD_AFFECT_BUG_FIX
+
+* PLAYER_MAX_LEVEL
+
+* PLAYER_MAX_LEVEL_CONST
+
+* TRAFFIC_PROFILER:
+	CONFIG:
+			TRAFFIC_PROFILE -> g_bTrafficProfileOn
+
+* LOG_KEEP_DAYS_EXTEND
+
+* UPGRADE_PARTY_BONUS
+
+* GUILDWAR_INFO
+
+* DUNGEON_KILL_ALL_BUG_FIX
+
+* DUNGEON_NOTICE
+
+* NOTIFY_GUILD_EXP_CHANGE:
+길드 경험치 변경을 알려줌
+
+* GUILD_MEMBER_COUNT_BONUS
+
+* GUILD_SYMBOL
+
+* SCRIPT_SELECT_ITEM
+
+* ADD_EMPIRE_PRIV_TIME
+* ADD_GUILD_PRIV_TIME
+* CHECK_HACK_PROGRAM
+* ARROW_IS_NOT_WEAPON
+* SAFEBOX_TIME_LIMIT_ITEM_BUG_FIX:
+시간제 아이템이 상점에 있을 경우 시간만료시 서버가 다운된다.
+
+* MOB_DROP_ITEM_BUG_FIX:
+20050805.myevan.MobDropItem 에 아이템이 없을 경우 CMobItemGroup::GetOne() 접근시 문제 발생 수정
+
+
+----------------------------------------------------------------------------
+# GUILD_WAR_MAP_LOCALIZE
+----------------------------------------------------------------------------
+중국 버전은 길드 전쟁맵을 업데이트하지 않아 옛날 맵 좌표를 사용한다.
+추후 외부로 분리를 해놓는것이 좋을듯 하다.
+
+	
+----------------------------------------------------------------------------
+# LOG_KEEP_DAYS_EXTEND
+----------------------------------------------------------------------------
+로그 저장기간을 3일에서 7일로 확장
+
+	* 로그 저장 기간은 log_keep_days 에 저장된다. 
+		libthecore 기본값: 3
+		game 기본값: 10 -> 7로 변경
+
+	* libthecore/src/log.c:
+		void log_file_rotate(LPLOGFILE logfile):
+			하루가 지날때마다 log_file_rotate 가 실행되는데, 이부분에서 
+			log_keep_days 변수를 사용하지 않고 -3(3일전) 으로 하드코딩되어 있었음
+			-> libthecore 재컴파일
+
+----------------------------------------------------------------------------
+# POTION_RECOVERY_SPEEDUP
+----------------------------------------------------------------------------
+물약 회복 속도를 향상 시켜서 PK시 한방에 죽지 않게 하기위해 7 -> 9 로 상승
+
+
+----------------------------------------------------------------------------
+# GUILDISFULL_BUG_CHECK
+----------------------------------------------------------------------------
+길드최대인원이 남아있는데도 길드에 더 이상 가입 못함
+
+* GERR_GUILDISFULL 시 로그 기록 
+
+	"GuildName = 길드이름, GetMemberCount() = 현재가입인원, GetMaxMemberCount() = 최대가입인원 (32 + MAX(level(길드레벨)-10, 0) * 2 + bonus(가입인원보너스)", 
+
+----------------------------------------------------------------------------
+# CHARACTER_DELETE
+----------------------------------------------------------------------------
+캐릭터 삭제처리 구조
+
+* HEADER_CG_PLAYER_DESTROY(클라이언트상명칭) 
+* HEADER_CG_CHARACTER_DELETE(서버상명칭)
+	CInputLogin::CharacterDelete
+
+* HEADER_GD_PLAYER_DELETE
+	CClientManager::__QUERY_PLAYER_DELETE():
+		PLAYER_DELETE TRY: 로그인 플레이어아이디 pid계정내인덱스
+		
+* QID_PLAYER_DELETE
+	CClientManager::__RESULT_PLAYER_DELETE
+		PLAYER_DELETE SUCCESS 플레이어아이디
+
+
+----------------------------------------------------------------------------
+# PCBANG_IP_LIST
+----------------------------------------------------------------------------
+가장 플레이를 많이한 PC방을 찾기 위해 로그 테이블을 구축한다.
+
+* PC방 IP의 경우 AccountDB 에 저장되므로 DB캐쉬로 보내야한다.
+
+	1. 로그인시 업데이트 주기단위로 pcbang_ip 테이블 업데이트 여부를 체크한다
+		QID_PCBANG_IP_LIST_CHECK
+
+	2. 만약 갱신되었을 경우 DB 서버로 pcbang_ip 테이블을 갱신한다.
+		QID_PCBANG_IP_LIST_SELECT
+
+	3. 각 서버 로그인시 DB캐쉬에서 pcbang_ip 테이블을 가져온다
+
+* PC방 IPLIST 관련 명령어
+
+/pcbang_info	PC방 IPLIST 정보보기
+
+	"len(ip_list) = IP리스트개수, update_cycle = 업데이트주기, min_play_time = 최소저장플레이타임" 
+
+/pcbang_env		PC방 IPLIST 환경설정
+
+	/pcbang_env update_cycle	업데이트주기(분)		= 기본값 10분
+	/pcbang_env min_play_time	최소저장플레이시간(분)	= 기본값 10분
+	
+	
+/pcbang_update	PC방 IPLIST 강제로 갱신하기
+
+	
+
+* PC방 IP 별 LOGIN/LOGOUT 저장 - 코드 위치
+
+	void LogManager::LoginLog:
+		INSERT DELAYED INTO loginlog%s (type = {"LOGIN", "LOGOUT"}, time, channel, account_id, pid, level, job, playtime) VALUES(...);
+
+	void CCHARACTER::Disconnect:
+		LoginLog(false, ...);
+
+	void CInputDB::PlayerLoad:
+		LoginLog(true, ....);
+		
+	
+* PC방 IP 리스트 테이블
+
+CREATE TABLE `pcbang_ip` (
+		`id` int(11) NOT NULL auto_increment,
+		`pcbang_id` int(11) NOT NULL default '0',
+		`ip` varchar(15) NOT NULL default '000.000.000.000',
+		PRIMARY KEY  (`id`),
+		UNIQUE KEY `ip` (`ip`),
+		KEY `pcbang_id` (`pcbang_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=euckr 
+
+	
+mysql> desc pcbang_ip;
++-----------+-------------+------+-----+-----------------+----------------+
+| Field     | Type        | Null | Key | Default         | Extra          |
++-----------+-------------+------+-----+-----------------+----------------+
+| id        | int(11)     |      | PRI | NULL            | auto_increment |
+| pcbang_id | int(11)     |      | MUL | 0               |                |
+| ip        | varchar(15) |      | UNI | 000.000.000.000 |                |
++-----------+-------------+------+-----+-----------------+----------------+
+
+INSERT INTO pcbang_ip (pcbang_id, ip) VALUES(1, "210.123.10.204");
+INSERT INTO pcbang_ip (pcbang_id, ip) VALUES(1, "210.123.10.206");
+INSERT INTO pcbang_ip (pcbang_id, ip) VALUES(1, "210.123.10.250");
+
+
+* 처리 방법
+
+	로그인시 IP가 PC방 IP리스트에 있는지 확인한다.
+	PC방 IP리스트에 없다면 일정시간마다 PC방 리스트를 갱신한다			
+
+
+* PC방 플레이 시간 기록 테이블
+
+CREATE TABLE `pcbang_loginlog` (
+	id	int(11)	NOT NULL auto_increment,
+	`time` datetime default NULL,
+	`pcbang_id` int(11) NOT NULL default '0',
+	`ip`	varchar(15) NOT NULL default '000.000.000.000',
+	`pid` int(10) unsigned default NULL,
+	`play_time` int(10) unsigned default NULL,
+	PRIMARY KEY (`id`),
+	KEY `pid` (`pid`),
+	KEY `pcbang_id` (`pcbang_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=euckr;
+
+
+INSERT INTO pcbang_loginlog (time, pcbang_id, ip, pid, play_time) VALUES (NOW(), 1, "210.123.10.206", 1000, 10);
+
+----------------------------------------------------------------------------
+
+# 속성 저항 제한
+
+# 20050805 ModifyPoints cannot find table by vnum
+
+SYSERR: Aug  5 14:23:02 :: ModifyPoints: cannot find table by vnum 3
+SYSERR: Aug  5 14:23:02 :: ModifyPoints: cannot find table by vnum 3
+SYSERR: Aug  5 14:23:02 :: ModifyPoints: cannot find table by vnum 58593
+SYSERR: Aug  5 14:23:02 :: ModifyPoints: cannot find table by vnum 3
+SYSERR: Aug  5 14:23:02 :: ModifyPoints: cannot find table by vnum 3
+SYSERR: Aug  5 14:23:02 :: ModifyPoints: cannot find table by vnum 20056
+SYSERR: Aug  5 14:23:02 :: ModifyPoints: cannot find table by vnum 3
+SYSERR: Aug  5 14:23:02 :: ModifyPoints: cannot find table by vnum 6169
+SYSERR: Aug  5 14:23:02 :: ModifyPoints: cannot find table by vnum 3
+SYSERR: Aug  5 14:23:02 :: ModifyPoints: cannot find table by vnum 34884
+SYSERR: Aug  5 14:23:02 :: ModifyPoints: cannot find table by vnum 3
+SYSERR: Aug  5 14:23:02 :: ModifyPoints: cannot find table by vnum 35811
+SYSERR: Aug  5 14:23:02 :: ModifyPoints: cannot find table by vnum 3
+SYSERR: Aug  5 14:23:02 :: ModifyPoints: cannot find table by vnum 35948
+SYSERR: Aug  5 14:23:04 :: ModifyPoints: cannot find table by vnum 3
+SYSERR: Aug  5 14:23:04 :: ModifyPoints: cannot find table by vnum 6167
+SYSERR: Aug  5 14:23:04 :: ModifyPoints: cannot find table by vnum 3
+SYSERR: Aug  5 14:23:04 :: ModifyPoints: cannot find table by vnum 3
+SYSERR: Aug  5 14:23:04 :: ModifyPoints: cannot find table by vnum 20054
+SYSERR: Aug  5 14:23:04 :: ModifyPoints: cannot find table by vnum 3
+SYSERR: Aug  5 14:23:04 :: ModifyPoints: cannot find table by vnum 58591
+
+
+# 20050803 보스 몬스터 스킬
+
+
+# 20050803 재경비서 속성 
+
+CItem::ChangeAttribute:
+	CItem::PutAttribute:
+		ITEM_ATTRIBUTE_MAX_LEVEL:
+			CItem::PutAttributeWithLevel
+				CItem::GetAttributeSetIndex()
+
+				적용 가능한 속성 배열 얻기 
+					g_map_itemAttr 에서 아이템의 속성 확률(bMaxLevelBySet) 이 
+					있는것만 추려서 붙인다.
+
+			
+# 20050802 중국 금괴 복사 버그
+
+하북서버 2채널 신수국에서만 발생 - 재현불가
+
+채널1 61.182.161.109/110
+채널2 61.182.161.111/112
+채널3 61.182.161.113/114
+채널4 61.182.161.115/116
+
+금괴 80005, 80006, 80007
+
+game: (Tue Aug  2 17:07:17 CST 2005)
+Aug  2 06:12:37 :: SAVE: 버그플레이어 476870x957137
+SYSERR: Aug  2 06:12:37 :: UpdateSectree: null sectree name: 버그플레이어 476870 957137
+Aug  2 06:12:37 :: DISCONNECT: 버그플레이어
+Aug  2 06:12:37 :: SAVE: 버그플레이어 476870x957137
+
+Aug  2 06:13:16 :: 버그플레이어 PREMIUM 0 0, LOGGOFF_INTERVAL 39
+Aug  2 06:13:16 :: InputDB: player_load 버그플레이어 476870x957137x0 LEVEL 15 MOV_SPEED 100 JOB 0 ATG 130 DFG 18 GMLv 0
+Aug  2 06:21:17 :: SHOP: BUY: name 버그플레이어 금괴 (200万?)(x 1) price 2020000
+Aug  2 06:21:17 :: SAVE: 버그플레이어 477299x957146
+Aug  2 06:21:18 :: ITEM_SAVE 금괴 (200万?):109994794 in 버그플레이어 window 1
+Aug  2 06:22:09 :: INPUT: 버그플레이어 SHOP: SELL2
+Aug  2 06:22:09 :: ITEM_DESTROY 금괴 (200万?):109994794
+Aug  2 06:22:33 :: SHOP: END: 버그플레이어
+Aug  2 06:22:35 :: 버그플레이어: USE_ITEM 귀환부 (cell: 9)
+Aug  2 06:22:35 :: WarpSet 버그플레이어 476870 957137 current map 1 target map 1
+SYSERR: Aug  2 06:22:35 :: UpdateSectree: null sectree name: 버그플레이어 477299 957146
+Aug  2 06:22:35 :: SAVE: 버그플레이어 476870x957137
+Aug  2 06:22:36 :: ITEM_SAVE 귀환부:109992434 in 버그플레이어 window 1
+Aug  2 06:22:36 :: DISCONNECT: 버그플레이어
+
+Aug  2 06:22:36 :: SAVE: 버그플레이어 476870x957137
+
+Aug  2 06:23:19 :: 버그플레이어 PREMIUM 0 0, LOGGOFF_INTERVAL 43
+Aug  2 06:23:19 :: InputDB: player_load 버그플레이어 476870x957137x0 LEVEL 15 MOV_SPEED 100 JOB 0 ATG 130 DFG 18 GMLv 0
+Aug  2 06:23:19 :: ITEM_LOAD: 버그플레이어 금괴 (200万?):109994794 1 (!!!)
+Aug  2 06:30:34 :: ITEM_DESTROY 금괴 (200万?):109994794
+
+
+db: (Tue Aug  2 17:14:35 CST 2005) +00:07:18
+Aug  2 06:20:00(06:12:42) :: PLAYER_SAVE: 버그플레이어
+Aug  2 06:20:09(06:12:51) :: 버그플레이어 476870 957137 hair 0
+Aug  2 06:20:39(06:13:21) :: ITEM_CACHE: new cache 368392
+Aug  2 06:20:39(06:13:21) :: QUEST_LOAD: count 12 PID 368392
+Aug  2 06:22:08(06:14:50) :: PlayerTableCache::Flush : 버그플레이어
+Aug  2 06:28:41(06:21:23) :: ItemCache::Flush : id, owner_id, window, pos, count, vnum) VALUES(109994794, 368392, 1, 24, 1, 80007)
+Aug  2 06:29:32(06:22:14) :: ItemCache::Delete : DELETE 109994794
+
+
+
+Aug  2 06:29:59(06:22:41) :: PLAYER_SAVE: 버그플레이어
+Aug  2 06:30:42(06:23:24) :: ItemCache::Flush : DELETE 109994794
+Aug  2 06:30:42(06:23:24) :: ITEM_CACHE: new cache 368392
+Aug  2 06:30:42(06:23:24) :: QUEST_LOAD: count 12 PID 368392
+Aug  2 06:32:14(06:24:56) :: PlayerTableCache::Flush : 버그플레이어
+Aug  2 06:37:57(06:30:39) :: HEADER_GD_ITEM_DESTROY: PID 368392 ID 109994794
+
+Aug  2 06:42:58(06:35:40) :: PlayerTableCache::Flush : 버그플레이어
+Aug  2 06:52:52(06:45:34) :: PlayerTableCache::Flush : 버그플레이어
+
+sql: +00:10:08
+| ITEM | 2005-08-02 06:31:25(06:21:17) | 368392 | 477299 | 957146 | 109994794 | BUY  | 금괴 (200만냥) |
+| ITEM | 2005-08-02 06:32:16(06:22:08) | 368392 | 477299 | 957146 | 109994794 | SELL | 금괴 (200만냥) |
+| ITEM | 2005-08-02 06:40:40(06:30:32) | 368392 | 476870 | 957137 | 109994794 | SELL | 금괴 (200만냥) |
+
+
+금괴 구입 -> 판매 -> 로그아웃 -> 로그인 -> 금괴가 남아있음 -> 다시 판매
+
+구입/판매 로그 추가
+
+가능한 시나리오:
+
+1. Delete 쿼리가 동작하지 않았다.
+2. 플레이어가 캐쉬되지 않았다.
+
+----------------------------------------------------------------
+
+ITEM_MANAGER::SaveSingleItem:
+	"ITEM_SAVE %s:%d in %s window %d"
+
+ITEM_MANAGER::GracefulShutdown:
+	ITEM_MANAGER::SaveSingleItem
+
+ITEM_MANAGER::FlushDelayedSave:
+	아이템 중복처리 체크:
+		중복시 리턴
+
+	ITEM_MANAGER::SaveSingleItem
+
+CShop::Buy:
+	개인상점일 경우:
+		ItemLog SHOP_BUY	- 판매자
+		ItemLog SHOP_SELL	- 구입자
+
+	일반상점일 경우:
+		ItemLog BUY
+
+	ITEM_MANAGER::FlushDelayedSave
+
+CShopManager::Sell:
+	syslog SHOP: SELL: 	
+
+	ITEM_MANAGER::RemoveItem:
+		아이템 소유자가 있을 경우:
+			ItemLog SELL(default REMOVE)
+
+			상점아이템일 경우:
+				CSafeBox::Remove
+
+			아닐경우:
+				CItem::RemoveFromCharacter
+
+		ITEM_MANAGER::DestroyItem:
+			syslog ITEM_DESTROY 아이템이름:아이템아이디
+
+			if NOT CItem::GetSkipSave && 아이템아이디 존재:
+				HEADER_GD_ITEM_DESTORY
+			else: // !!! 이 경우 로그를 남기자
+				syslog ITEM_DESTROY_SKIP 아이템이름:아이템번호 (skip=스킵여부)
+				
+			게임서버내 아이템 삭제
+
+db/src/ClientManager:
+	
+	CClientManager::QUERY_ITEM_DESTORY:
+		CClientManager::DeleteItemCache:
+			캐쉬에 있다면:
+				CItemCache::Delete:
+					syslog ItemCache::Delete : DELETE 아이템아이디
+
+			캐쉬에 없다면:
+				syslog HEADER_GD_ITEM_DESTROY: PID 플레이어아이디 ID 아이템아이디 
+
+heartheat:
+	ITEM_MANAGER::Update:
+		ITEM_MANAGER::SaveSingleItem
+
+
+CItem::SetSkipSave(true) 가 되는 경우:
+	CHARACTER::LoadSafeBox:	
+		CSafeBox::Add 실패시:
+			CItem::SetSkipSave(true)
+			ITEM_MANAGER::DestroyItem
+
+	CHARACTER::Loadmall:
+		CSafeBox::Add 실패시:
+			CItem::SetSkipSave(true)
+			ITEM_MANAGER::DestroyItem
+
+	CHARACTER::ClearItem:
+		인벤토리/장착 아이템들:
+			CItem::SetSkipSave(true)
+			ITEM_MANAGER::FlushDelayedSave
+			CItem::RemoveFromCharacter
+			ITEM_MANAGER::DestroyItem
+
+	db/src/CClientManager:
+		CClientManager::QUERY_PLAYER_LOAD:
+			캐쉬된 캐릭터라면:
+				ITEM_CACHE: HIT! 캐릭터이름 count: 아이템개수
+					HEADER_DG_ITEM_LOAD 
+
+			캐쉬가 안된캐릭터라면:
+				CClientManager::ReturnQuery -> QID_ITEM
+
+				CClientManager::AnalyzeQueryResult:
+					CClientManager::RESULT_COMPOSITE_PLAYER:
+						syslog QID_ITEM 핸들번호
+						RESULT_ITEM_LOAD:
+							db/src/CClientManager::CreateItemCacheSet:
+								syslog: ITEM_CACHE: new cache 플레이어아이디	
+
+						sys_log ITEM_LOAD: count 아이템개수
+
+						HEADER_DG_ITEM_LOAD
+							CClientManager::PutItemCache:
+								캐쉬내검색해 없으면 새로생성:
+								있으면 소유자 체크해 다를경우:
+									syslog ITEM_CACHE: delete owner 기존주인 id 아이디 new onwer 새주인
+
+								CItemCache::Put
+
+								소유자가 있을 경우:
+									syslog ITEM_CACHE: save 기존주인 id 아이디
+
+								소유자가 없을 경우:
+									CItemCache::OnFlush
+
+
+	HEADER_DG_ITEM_LOAD:
+		CInputDB::ItemLoad
+			syslog ITEM_LOAD COUNT 캐릭터이름 아이템개수
+			syserr cannot create item by vnum 아이템종류 (name 아이템이름 id 아이템아이디)
+			syslog ITEM_LOAD: 캐릭터이름 아이템이름:아이템아이디 아이템개수
+
+			CItem::SetSkipSave(true)
+
+			인벤토리/장착아이템이고 제대로된 위치에 있을때:
+				syslog ITEM_RESTORE: 캐릭터이름 아이템이름
+			아니라면:
+				인벤토리내아이템일경우:
+					CItem::AddToCharacter
+
+				장착아이템일경우:
+					CItem::EquipTo
+					장착 실패시:
+						syserr cannot equip 아이템이름 to 캐릭터이름
+						ITEM_MANAGER::DestroyItem
+
+			CItem::SetSkipSave(false)
+
+	ITEM_MANAGER::CreateItem:
+		돈일경우:
+			CItem::SetSkipSave(true)
+		아이디가 인자로 주어진 경우:
+			CItem::SetSkipSave(true)
+		
+		CItem::SetCount:
+			count == 0 이고 소유자가 있을 경우:
+				CItem::RemoveFromCharacter
+				ITEM_MANAGER::DestroyItem
+				false 리턴
+				
+		CItem::SetCount 실패시 그냥 NULL 리턴 // !!! 문제 발생 가능성
+			
+		CItem::SetSkipSave(false)		
+
+	CSafeBox::~CSafeBox:
+		CSafeBox::Destroy:
+			창고내 아이템:
+				CItem::SetSkipSave(true)
+				ITEM_MANAGER::FlushDelayedSave
+				CItem::RemoveFromCharacter
+				ITEM_MANAGER::DestroyItem
+
+
+플레이어 캐쉬가 사라지는 경우:
+	db/src/CPlayerTableCache::OnFlush:
+		syslog PlayerTableCache::Flush 플레이어이름
+
+	db/src/CClientManager::UpdatePlayerCache:
+		CPlayerTableCache::CheckTimeout:
+			CPlayerTableCache::Flush
+			CClientManager::FlushITemCacheSet
+			플레이어 캐쉬 제거
+
+	db/src/CClientManager::QUERY_FLUSH_CACHE:
+		syslog FLUSH_CACHE 플레이어아이디
+		플레이어캐쉬제거
+			
+	db/src/CClientManager::__RESULT_PLAYER_DELETE:
+		syslog PLAYER_DELETE SUCCESS 플레이어아이디
+
+
+# 20050801 - 귀목림 AIFLAG_NOMOVE 속성 적용 안됨 Goto 가 실행되므로 Goto 실행 시점 체크
+
+dungeon.spawn_move_group:
+	CDungeon::SpawnMoveGroup:
+		CHARACTER::SpawnMoveGroup:
+			CHARACTER::Goto
+
+dungeon.spawn_move_unique:
+	CHARACTER::SpawnMoveUnique:
+		CHARACTER::Goto
+
+CHARACTER::StateIdle:
+	CHARACTER::__StateIdle_NPC:
+		if NOT AIFLAG_NOMOVE:
+			CHARACTER::Follow
+
+	CHARACTER::__StateIdle_Monster:
+		리더나 보호대상에서 너무 멀리떨어질경우:
+			CHARACTER::Follow 보호대상
+
+CHARACTER::StateMove:
+	if NOT IsPC:
+		__CHARACTER_GotoNearTarget:
+			CHARACTER::Follow
+		
+CHARACTER::StateBattle:
+	CHARACTER::IsGuardNPC:
+		CHARACTER::Return:
+
+	공격대상을 시야에서 놓치면:
+		CHARACTER::Follow 보호대상
+
+CHARACTER::StateHorse:
+	대상으로부터 너무 멀리떨어지면:
+		CHARACTER::Follow:
+
+CHARACTER::Follow:
+	if AIFLAG_NOMOVE:
+		따라가는 대상이 플레이어라면:
+			마지막 공격받은지 어느정도 지났다면:
+				CHARACTER::Return // ?? 안움직이는 캐릭터면 계속 고정되어야
+
+	따라가는 대상이 플레이어라면:
+		마지막 공격받은지 어느정도 지났다면:
+			마지막으로 공격받은곳에서 너무 멀리 떨어져있다면:
+				CHARACTER::Return
+
+	CHARACTER::Goto
+	
+CHARACTER::Return:
+	CHARACTER::Goto 마지막 공격했던곳
+
+CHARACTER::CowardEscape:
+	왜구 처리
+
+cmd_gm.cpp: "pull_monster" -> do_pull_monster:
+	CHARACTER::PullMonster:
+		FuncPullMonster:
+			CHARACTER::Goto
+
+
+EVENTFUNC(mob_skill_hit_event):
+	CHARACTER::ComputeSkillAtPosition:
+		FuncSplashDamage:
+			CHARACTER::Goto
+
+CHARACTER::StateBattle:
+	CHARACTER::UserMobSkill:
+		CHARACTER::ComputeSkillAtPosition:
+			FuncSplashDamage:
+				CHARACTER::Goto
+
+# 20050623_1330 사귀 타워 에러나는 이유
+
+	1. 사귀타워
+	2. 돌이 남아있는 상태
+	3. 돌에서 나온 부활속성을 가진 몬스터가 있음
+	4. 유저가 전부 사귀타워에서 나감
+	5. 사귀타워 인스턴스 던젼이 사라지면서 돌을 없엠
+	6. 돌을 없엘때 애들을 모두 죽임. 
+	7. 부활속성이 있어서 부활함.
+	8. 맵이 없어서 서버가 segmentation fault 발생
+
+
+# 창고 처리 구조
+
+/safebox_password
+
+cmd_general.cpp:
+	ACMD(do_safebox_password)
+		이미 창고가 열려있는지 체크 ch->GetSafebox()!=NULL
+		창고 반복 열기 딜레이 체크 ch->GetSafeboxLoadTime() 10s내 불가 
+		창고 열기 거리 체크 ch->GetDistanceFromSafeboxOpen() 10m내 가능
+		창고 연 시간 기록 ch->SetSafeBoxLoadTime()
+		
+		SendPacketToDB	HEADER_GD_SAFEBOX_LOAD
+
+db/src/ClientManager.cpp:
+	CClietnManager::ProcessPackets
+		
+	CClietnManager::QUERY_SAFEBOX_LOAD:
+		SELECT account_id, size, password FROM safebox%s WHERE account_id=%lu
+
+		HEADER_GD_SAFEBOX_LOAD (handle: %d, account.id %lud is_mall %d)
+
+	ClientManager::AnalyzeQueryResult:
+		QID_SAFEBOX_LOAD:
+			QUERY_RESULT: HEADER_GD_SAFEBOX_LOAD
+
+			ReturnQuery QID_SAFEBOX_LOAD
+
+	ClientManager::RESULT_SAFEBOX_LOAD:
+		if pi->account_index == 0:
+			비밀번호 체크
+				실패시 HEADER_DG_SAFEBOX_WRONG_PASSWORD
+
+	SELECT id, window+0, pos, count, vnum, socket0, socket1, socket2,
+            attrtype0, attrvalue0, attrtype1, attrvalue1, 
+            attrtype2, attrvalue2, attrtype3, attrvalue3, 
+            attrtype4, attrvalue4, 
+            attrtype5, attrvalue5, 
+            attrtype6, attrvalue6 
+            FROM item%s WHERE owner_id=%ld AND window='%s'
+
+			pi->account_index = 1
+
+			ReturnQuery QID_SAFEBOX_LOAD
+
+		elif pi->account_index == 1:
+			
+			아이템 보상 처리
+
+			HEADER_DG_SAFEBOX_LOAD
+			HEADER_DG_MALL_LOAD
+
+game/src/input_db.cpp:
+	CInputDB::Analyze
+		HEADER_DG_SAFEBOX_LOAD
+
+	CInputDB::SafeboxLoad:
+		
+
+# 로그인/로그아웃 돈 로그 
+
+mysql> select * from log_05 where how = 'LOGIN' and time > 20050611 limit 1;
++-----------+---------------------+---------+--------+--------+------+-------+---------------------------------+
+| type      | time                | who     | x      | y      | what | how   | hint                            |
++-----------+---------------------+---------+--------+--------+------+-------+---------------------------------+
+| CHARACTER | 2005-06-11 00:00:02 | 1534207 | 321300 | 808000 |    0 | LOGIN | 59.40.14.140 256550 4 64 200000 |
+
+input_db.cpp:
+
+void CInputDB::PlayerLoad(LPDESC d, const char * data)
+
+	char buf[51];
+	snprintf(buf, 51, "%s %ld %d %ld %d", 
+			inet_ntoa(ch->GetDesc()->GetAddr().sin_addr), 
+			ch->GetGold(), g_bChannel, ch->GetMapIndex(), 
+			ch->GetAlignment());
+
+	LogManager::instance().CharLog(ch->GetPlayerID(), ch->GetX(), ch->GetY(), 0, "LOGIN", buf);
+
+
+----------------------------------------------------------------------------
+# 개인상점 열어놓고 있는 동안 아이템 이동 금지
+- 서버에서 처리
+
+# 애팩트 효과 주기
+
+battle.h:
+	SkillAttackAffect
+
+		AFFECT_ 애팩트 인덱스
+
+		AFF_ 애팩트 플래그 (클라이언트에 전송하기 위한 비트 정보)
+
+cmd_gm.cpp:
+	do_stun
+	do_slow 
+
+----------------------------------------------------------------------------
+# 명령어 추가하기
+
+cmd.cpp:
+ACMD(do_명령어)
+
+cmd.cpp:
+struct command_info cmd_info[] =                                            
+{
+	    { "명령어",           do_명령어,                0,                      POS_DEAD,       GM_LOW_WIZARD   },  
+}
+
+운영자 명령어는 cmd_gm.cpp 쪽에 작성한다
+
+----------------------------------------------------------------------------
+
+# 중급 무기 속성 (노말 보너스 or 스킬 보너스)
+
+db/src/ClientManagerBoot.cpp:
+
+bool CClientManager::InitializeItemTable()
+
+        "SELECT vnum, type, subtype, name, %s, gold, shop_buy_price, weight, siz
+e, flag, wearflag, antiflag, immuneflag+0, refined_vnum, refine_set, magic_pct,
+socket_pct, addon_type, "
+        "limittype0, limitvalue0, "
+        "limittype1, limitvalue1, "
+        "applytype0, applyvalue0, "
+        "applytype1, applyvalue1, "
+        "applytype2, applyvalue2, "
+        "value0, value1, value2, value3, value4, value5 "
+        "FROM item_proto%s ORDER BY vnum";
+
+	item_table->sAddonType = atoi(data[col++]);
+
+	m_map_itemTableByVnum.insert
+
+
+game/src/item.cpp:
+
+LPITEM ITEM_MANAGER::CreateItem(DWORD vnum, DWORD count, DWORD id, bool bTryMagi
+c, int iRarePct)
+
+	
+    if (id == 0) // 새로 만드는 아이템일 때만 처리
+    {
+        if (table->sAddonType)
+        {
+            item->ApplyAddon(table->sAddonType);
+        }
+
+
+void CItem::ChangeAttribute()
+
+    if (pProto && pProto->sAddonType)
+    {
+        ApplyAddon(pProto->sAddonType);
+    }
+
+
+void CItem::ApplyAddon(int iAddonType)
+
+    CItemAddonManager::instance().ApplyAddonTo(iAddonType, this);
+
+
+void CItemAddonManager::ApplyAddonTo(int iAddonType, LPITEM pItem)
+
+	노말/스킬 속성 붙이기
+
+
+----------------------------------------------------------------------------
+
+# 못나오는 지점 리젠 로그 보기
+
+	spawn_block_log 를 1로 해주면 된다
+	10초마다 갱신됨
+
+
+----------------------------------------------------------------------------
+
+# 로그인 프로토콜
+
+Game/RecvFromClient HEADER_CG_LOGIN2:
+	CInputLogin::LoginByKey:
+		LOGIN_BY_KEY $[login] key $[key]
+
+		Game/SendToClient HEADER_GD_LOGIN_BY_KEY
+
+DB/RecvFromGame HEADER_GD_LOGIN_BY_KEY:
+	QUERY_LOGIN_BY_KEY
+
+		LOGIN_BY_KEY success $[login] $[key] $[ip]
+		LOGIN_BY_KEY key not exist $[login] $[key]
+		LOGIN_BY_KEY already login $[login] $[key]
+		LOGIN_BY_KEY login differ $[src_login] $[key] $[cur_login]
+		LOGIN_BY_KEY client key differ 
+
+	QID_LOGIN_BY_KEY -> 	
+	RESULT_LOGIN_BY_KEY ->
+	QID_LOGIN ->
+	RESULT_LOGIN
+
+		RESULT_LOGIN: login sucess $[login] rows:$[rows]
+		RESULT_LOGIN: no account
+		SendToGameServer HEADER_DG_LOGIN_WRONG_PASSWD 
+		QID_LOGIN
+		RESULT_LOGIN: already logon $[login]
+
+	SendToGameServer HEADER_DG_LOGIN_SUCCESS
+
+Game/RecvFromDB HEADER_DG_LOGIN_SUCCESS:
+
+----------------------------------------------------------------------------
+
+# 스킬 크리티컬 계산
+
+	크리티컬 확률이 10% 이하라면:
+		절반 확률로 적용
+	크리티컬 확률이 10% 이상이라면:
+		5+(크리티컬확률-10)/4 로 적용
+		
+----------------------------------------------------------------------------
+
+# 레벨 제한
+
+	../common/length.h:
+		PLAYER_MAX_LEVEL
+
+	exp_table_euckr
+	exp_table_gb2312
+	party_exp_distribute_table
+	aiExpLossPercents
+
+	party_exp_distribute_table:
+		PARTY_EXP_DISTRIBUTION_NON_PARITY 일때 적용:
+			중국 버전일때:
+				자기경험치=얻은경험치*자기레벨/파티원레벨총합
+
+			한국 버전일때
+				자기경험치=얻은경험치*party_exp_distribute_table[자기레벨]/파티원레벨party_exp_distribute_table총합
+			
+----------------------------------------------------------------------------
+
+# 경험치 보너스 표시
+	exp_bonus_log 가 1일때 볼수 있다
+
+----------------------------------------------------------------------------
+
+# item.remove
+	공통 인스턴스를 쓰는 이유로
+	선택 버튼등으로 대기 시간이 있을때 
+	다른 유저와 꼬이는 문제 발생
+	(그동안은 use 후 바로 제거를 해서 이상이 없었음)
+
+----------------------------------------------------------------------------
+
+# 길드 참여 인원수 표시
+
+	WarUC 팀1.길드 팀1.길드원수 팀2.길드 팀2.길드원수 구경꾼수
+
+----------------------------------------------------------------------------
+
+# 빌링 시간 안 줄어드는 문제
+
+	대소문자 조합식으로 아이디가 있을 경우
+	strcmp로 비교하기때문에 제대로 체크가 안된다
+
+# Billing ON - OFF 짝이 안 맞는 문제 2005.05.03.ipkn
+
+        1. 유저가 접속한 상태
+        2. DB가 셧다운 된다. ( 이 경우에도 유저는 정상적인 플레이 가능 )
+        3. 이 상황에서 유저가 접속을 종료한다. (DB가 끊겼서 패킷 전송 실패)
+        4. DB가 다시 켜지면 해당 유저의 빌링 정보가 복구되지 않는다.
+        5. 이 유저는 Billing ON 상태로 유지되어 계속 시간이 감소된다.
+
+        - DB-AUTH 접속이 각각 끊기면:
+                AUTH 에서 빌링 처리 테이블을 전부 지운다. 
+			CLIENT_DESC::Destroy에서 DBManager::StopAllBilling() 호출 (db.cpp:StopAllBilling)
+
+                DB 가 다시 접속하면 생성한다.
+
+        -> 접속이 끊겨있는 동안은 유저는 무료 플레이가 가능하다
+
+----------------------------------------------------------------------------
+
+# 이벤트용 아이템 드롭
+
+		기본 RandRange 400만 (1/400만)
+		기본 iDeltaPercent 레벨차에 의해 결정
+
+		iDeltaPercent
+		iRandRange
+		사실상 상수 (프로그램 로직에 의해 결정됨)
+
+
+		fFactor*(iDeltaPercent/iRandRange)
+
+		item_manager.cpp:ITEM_MANAGER::CreateQuestDropItem()
+
+		
+		GetDropPerKillPct에 의해 결정됨
+
+		이벤트 플래그가 1일 경우는 디폴트 값 발동
+		값을 정해줄 경우에는 해당값으로 작동(최소값 체크가 있음)	
+
+# 빌링
+	
+PushBilling
+
+FlushBilling:
+	bForce:
+		셧다운시 true
+
+	셧다운중이라면:
+		빌링중인 로그인데이터 PushBilling
+
+	1000개 단위로 GameTimeLog.Insert
+	
+	남은데이터가 10240 개 이하라면:
+		포인트 남은 시간이 10분 이하라면:
+			접속된 시간이 1분이상일때:
+				BILLING 1 $[account] $[remain_time] $[connected_time]
+		포인트 남은 시간이 10분 초과시:
+			접속된 시간 >= 10분 or
+			접속된 시간 > 남은시간-10분:
+				빌링 처리
+
+----------------------------------------------------------------------------
+
+# reload
+
+	상점은 영향을 받지 않는다
+
+# 다국어 버전
+
+	나라가 다르면 테이블 언어 세팅때문에 불가능해진다
+	SET NAMES
+
+# 초기 데이터 세팅
+
+	CInputDB::Boot(binData)
+		DB서버 에서 바이너리 스트림으로 DB테이블 정보가 온다
+
+# 건물 데이터
+
+	object_proto_$[postfix]
+
+	import_object_proto 로 입력
+
+# 결혼 처리
+
+	marriage.cpp : 결혼 관련 작동
+	wedding.cpp : 결혼식
+	questlua_marriage.cpp : 결혼 관련 퀘스트
+
+	서로 다른 서버간 DB캐쉬 공유는 하지 않으므로,
+	다른 서버에서 결혼을 한걸 테스트하기 위해서는 완전히
+	DB를 리붓하고 테스트 해야한다.
+
+# 이벤트 발동
+
+	/eventflag $[event_name] $[event_value]
+
+	cmd_gm.cpp:do_event_flag()
+
+	CQuestManager::RequestSetEventFlag() -> send to DB 
+
+	input_db.cpp:recv form DB(HEADER_DG_SET_EVENT_FLAG) -> 
+		CQuestManager::SetEventFlag()
+
+	이벤트 이름이 없을 경우에는 새로 생성된다. 
+
+
+# 건물 짓기
+
+	명령어 GM_PLAYER
+
+		/build c vnum x y x_rot y_rot z_rot
+
+	cmd_gm.cpp:do_building
+
+	작성 사항:
+		에러는 sys_err 에 표시된다.
+		운영자 권한일때:
+			자기땅인지 확인 안함.
+			길드 마스터인지 확인 안함.
+
+		건물비용 최대 1억으로 제한
+		건물회전 각도 일시 제한
+
+	문제 사항:
+		건물 건설 비용 없음 -> 수정 완료
+		현재 위치에 건물을 지으면 마을로 워프됨. -> 현재 위치에 건설 못하게 제한
+		건물 회전시 속성 채우기 제대로 안됨. -> 추후 개발
+		건설 실패시 건설 비용과 재료만 사라짐. -> 건물 세우진후 비용 처리
+		건설시와 파괴시 로그 없음
+		오브젝트를 구분안하기 때문에 오브젝트 건설만 막을 수 없음 
+		(db에 추가해야함)
+
+# NPC 상점 처리
+
+	CInputDB::Boot():
+		CShopManager::Initialize(shopTable, shopCount):
+			npc 상점을 모두 만든다
+
+
+	npc_open_shop(shop_vnum)
+		CShopManager::StartShopping(pc, npc, shop_vnum):
+
+	CShopManager::StartShopping(pc, npc, shop_vnum):
+		상점을 이용할 수 있는 거리인지 체크한 후
+		npc 상점을 연다.
+			CShop::AddGuest(pc)
+
+	CShop::AddGuest(pc):
+		상점 목록을 pc에게 모아서 전달한다.
+
+
+# 돈관련 처리
+
+	돈양 체크 
+		CCHARACTER::GetGold()
+
+	돈양 조절
+		CCHARACTER::PointChange(POINT_GOLD, amount, bAmount, bBroadCast)
+
+		amount: 
+			돈 변화량
+
+		bAmount:
+			기본값 false
+			true: 
+				돈 변화량을 보낸다.
+				amount>0:
+					클라이언트가 돈 습득 메시지를 출력한다.
+
+		bBroadCast:
+			기본값 false
+			true:
+				주변 사람들에게 포인트 변경 정보를 보낸다.
+				쓰이는 경우 없음 
+			
+# 생명력 및 정신력 얻기
+
+	GetPoint(POINT_SP)!=GetSP()
+
+# 생명력 및 정신력 계산
+
+	GetRealPoint(POINT_MAX_HP):
+		기본 생명력 
+
+	GetPoint(POINT_HP):
+		추가 생명력 (장비등에 의해 추가적으로 상승되는 능력치)
+
+	GetRealPoint(POINT_MAX_HP)*GetPoint(POINT_MAX_HP_PCT)/100+GetPoint(POINT_HP):
+		표시되는 생명력	
+
+	PointChange(POINT_MAX_HP, 0):
+		POINT_MAX_HP 수치 갱신
+		탱커 보너스 등이 있을 경우 포함된다.		
+
+# ComputePoints
+
+	장비 착용시, 파티 역할 설정시 적용됨	
+
+
+# 스페셜 데미지 DAMAGE_TYPE_SPECIAL	
+
+	반사등에 영향을 받지 않는다
+
+# 물약 사용시
+
+	던젼이나 길드전맵에서 숫자를 카운트 한다
+
+	CDungeon::UsePotion(pc)
+	CWarMap::UsePotion(pc)
+
+# 명령어 오타 방지
+
+	{ "mall_passwor", do_inputall, ...},
+	{ "mall_password", do_mall_password, ...},
+
+	이런식으로 작성하면 명령어를 다 입력했을때만 do_mall_password 가 실행되고
+	다 입력하지 않으면 do_inputall (명령어를 전부 입력하시오) 라는 메시지가 뜬다
+
+# 이벤트 명령어
+
+	priv_empire GOD
+
+# DB 쿼리
+
+	ReturnQuery(qid, ...)
+	qid 를 통해 값을 리턴해준다.
+
+	AsyncQuery(...)
+	Non-Block Query
+
+# 결혼하기
+
+	결혼식 관련 패킷
+		REQUEST : 결혼이 이루어진 서버에서 요청
+		READY : 맵이 있는 서버에서 맵이 완성되면 응답
+		START : DB에서 일정시간 대기후 모든서버에 보냄
+
+			결혼 당사자 워프됨
+			각 유저들도 관련 NPC에 클릭할 경우 입장가능하게됨	
+
+		END : 결혼식이 끝나서 모든 서버에 끝났음을 보냄
+
+			결혼식 시작 후 한시간 후에 전송됨
+			결혼식장에 있던 모든 사람이 빠져나옴
+
+
+#보따리 아이템 사용
+
+	Client 로 부터 HEADER_CG_ITEM_USE 전송
+
+	1. input_main.cpp - CInputMain::ItemUse
+	2. char_item.cpp - CHARACTER::UseItem
+		유효성 검사
+		아이템 사용 로그가 필요한 아이템이면 LogManager::ItemLog 를 이용하여 로그 기록(DB)
+
+	3. char_item.cpp - CHARACTER::UseItemEx
+	4. char_item.cpp - CHARACTER::UseSilkBotary
+		처음 개인상점을 이번 접속 후 처음 연다면 DB 캐시에 가격정보 리스트 요청 패킷(HEADER_GD_MYSHOP_PRICELIST_REQ) 전송
+
+    5. input_db.cpp - CInputDB::MyshopPricelistRes
+		DB 캐시로 부터 받은 가격정보 리스트 요정에 대한 응답 패킷(HEADER_GD_MYSHOP_PRICELIST_RES) 처리
+
+	5. char_item.cpp - CHARACTER::UseSilkBotaryReal
+		가격정보 리스트 커맨드(MyShopPriceList)을 만들어 전송
+		개인상점을 열라는 패킷을 전송
+
+			OpenPrivateShop COMMAND 채팅패킷으로 보냄
+
+
+
+#개인상점 열기
+
+	Client 로 부터 HEADER_CG_MYSHOP 전송
+
+	1. input_main.cpp - CInputMain::MyShop
+		유효성 검사
+			기절중인가, 죽었나
+
+	2. char.cpp - CHARACTER::OpenMyShop
+		유효성 검사
+			이미 상점이 열려 있는가
+			상점에 게시하는 아이템이 하나도 없는가
+			상점이름이 있고 필터링 되지 않는가
+			게시하는 아이템 중에 유료 아이템이 있는가
+
+		아이템 가격 정보 저장
+			DB 캐시에 가격정보 리스트 갱신 패킷(HEADER_GD_MYSHOP_PRICELIST_UPDATE) 전송
+
+		CHARACTER::CountSpecifyItem 를 이용해 사용한 보따리 처리
+		Client 에게 HEADER_GC_SHOP_SIGN 전송
+		샵 매니저에 상점 생성(CShopManager::CreatePCShop)
+	 
+
+#가격정보 리스트 기능 구현 전략
+	가격정보의 저장
+		Client 로 부터 개인상점을 여는 패킷(HEADER_CG_MYSHOP)을 받아 처리할 때
+		가격정보의 저장을 DB 캐시에 요청(HEADER_GD_MYSHOP_PRICELIST_UPDATE)한다.
+
+	가격정보의 로드
+		유저가 접속 후 처음으로 개인상점 Item(비단보따리)을 사용 했을 때
+		가격정보 리스트 요청 패킷(HEADER_GD_MYSHOP_PRICELIST_REQ)를 DB 캐시에 전송한다.
+		DB 캐시 서버로 부터 응답 패킷(HEADER_DG_MYSHOP_PRICELIST_RES)이 오면 요청한 플레이어에게
+		가격정보 리스트 커맨드를 전송한다.(CHAT_TYPE_COMMAND 채팅패킷)
+		클라이언트는 이 내용을 받아 저장해 두고 이후에 개인상점을 열 때 업데이트
+		(클라이언트와 서버 양쪽에서) 해준다.
+
+	가격정보 리스트 커맨드 구조
+		MyShopPriceList <아이템1 vnum> <가격1>
+		MyShopPriceList <아이템2 vnum> <가격2>
+		MyShopPriceList <아이템3 vnum> <가격3>
+		...
+
+		개개의 아이템에 대한 가격정보를 하나씩 따로 전송한다.
+
+	가격정보 리스트 DB scheme
+		CREATE TABLE `myshop_pricelist_tor` (
+				  `owner_id` int(11) unsigned NOT NULL default '0',
+				  `item_vnum` int(11) unsigned NOT NULL default '0',
+				  `price` int(10) unsigned NOT NULL default '0',
+				) ENGINE=MyISAM DEFAULT CHARSET=euckr
+	
+#길드보너스 설정
+
+	경비병에게 길드보너스 퀘스트 시작 요청
+
+	1. quest/priv_guild.quest
+	  설정할 보너스 내역 선택
+
+	2. questlua.cpp - _give_guild_privilege
+      Privilege 매니저(CPrivManager) 에 길드 보너스 설정 요청(RequestGiveGuildPriv)
+
+	3. priv_manager.cpp - CPrivManager::RequestGiveGuildPriv
+	  DB 캐시 서버에 길드 보너스 설정 요청 패킷(HEADER_GD_REQUEST_GUILD_PRIV) 전송
+
+	4. ClientManager.cpp - CClientManager::ProcessPackets
+	  HEADER_GD_REQUEST_GUILD_PRIV 처리
+	   -> CClientManager::AddGuildPriv 에서 Privilege 매니저(CPrivManager)에 설정 요청(AddGuildPriv)
+
+	5. PrivManager.cpp - CPrivManager::AddGuildPriv
+	  길드 보너스 설정.(DB 캐시서버)
+	  설정된 내용을 게임서버들에게 cast
+	  (CPrivManager::SendChangeGuildPriv 에서 함수자 FSendChangeGuildPriv를 이용하여 HEADER_DG_CHANGE_GUILD_PRIV 패킷 전송)
+
+	6. input_db.cpp - CInputDB::Analyze
+	  HEADER_DG_CHANGE_GUILD_PRIV 처리
+	   -> CInputDB::ChangeGuildPriv 에서 Privilege 매니저(CPrivManager)에 설정 요청(GiveGuildPriv)
+
+	7. priv_manager.cpp - CPrivManager::GiveGuildPriv
+	  길드 보너스 설정.(게임서버)
+	  설정된 내용을 공지.

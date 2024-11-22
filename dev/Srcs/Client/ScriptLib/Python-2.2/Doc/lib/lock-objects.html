@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.5.1 Lock Objects </title>
+<META NAME="description" CONTENT="7.5.1 Lock Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="rlock-objects.html">
+<LINK REL="previous" href="module-threading.html">
+<LINK REL="up" href="module-threading.html">
+<LINK REL="next" href="rlock-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-threading.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-threading.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="rlock-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-threading.html">7.5 threading  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-threading.html">7.5 threading  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="rlock-objects.html">7.5.2 RLock Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009510000000000000000">&nbsp;</A>
+<BR>
+7.5.1 Lock Objects 
+</H2>
+
+<P>
+A primitive lock is a synchronization primitive that is not owned
+by a particular thread when locked.  In Python, it is currently
+the lowest level synchronization primitive available, implemented
+directly by the <tt class="module"><a href="module-thread.html">thread</a></tt> extension module.
+
+<P>
+A primitive lock is in one of two states, ``locked'' or ``unlocked''.
+It is created in the unlocked state.  It has two basic methods,
+<tt class="method">acquire()</tt> and <tt class="method">release()</tt>.  When the state is
+unlocked, <tt class="method">acquire()</tt> changes the state to locked and returns
+immediately.  When the state is locked, <tt class="method">acquire()</tt> blocks
+until a call to <tt class="method">release()</tt> in another thread changes it to
+unlocked, then the <tt class="method">acquire()</tt> call resets it to locked and
+returns.  The <tt class="method">release()</tt> method should only be called in the
+locked state; it changes the state to unlocked and returns
+immediately.  When more than one thread is blocked in
+<tt class="method">acquire()</tt> waiting for the state to turn to unlocked, only one
+thread proceeds when a <tt class="method">release()</tt> call resets the state to
+unlocked; which one of the waiting threads proceeds is not defined,
+and may vary across implementations.
+
+<P>
+All methods are executed atomically.
+
+<P>
+<dl><dt><b><a name="l2h-1954"><tt class="method">acquire</tt></a></b>(<big>[</big><var>blocking<code> = 1</code></var><big>]</big>)
+<dd>
+Acquire a lock, blocking or non-blocking.
+
+<P>
+When invoked without arguments, block until the lock is
+unlocked, then set it to locked, and return.  There is no
+return value in this case.
+
+<P>
+When invoked with the <var>blocking</var> argument set to true, do the
+same thing as when called without arguments, and return true.
+
+<P>
+When invoked with the <var>blocking</var> argument set to false, do not
+block.  If a call without an argument would block, return false
+immediately; otherwise, do the same thing as when called
+without arguments, and return true.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1955"><tt class="method">release</tt></a></b>()
+<dd>
+Release a lock.
+
+<P>
+When the lock is locked, reset it to unlocked, and return.  If
+any other threads are blocked waiting for the lock to become
+unlocked, allow exactly one of them to proceed.
+
+<P>
+Do not call this method when the lock is unlocked.
+
+<P>
+There is no return value.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-threading.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-threading.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="rlock-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-threading.html">7.5 threading  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-threading.html">7.5 threading  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="rlock-objects.html">7.5.2 RLock Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

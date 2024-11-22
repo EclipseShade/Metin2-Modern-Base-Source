@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.10 EasyDialogs -- Basic Macintosh dialogs</title>
+<META NAME="description" CONTENT="2.10 EasyDialogs -- Basic Macintosh dialogs">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-FrameWork.html">
+<LINK REL="previous" href="module-macspeech.html">
+<LINK REL="up" href="macpython-modules.html">
+<LINK REL="next" href="module-FrameWork.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="speech-channel-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-FrameWork.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="speech-channel-objects.html">2.9.2 Speech Channel Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-FrameWork.html">2.11 FrameWork  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0041000000000000000000">
+2.10 <tt class="module">EasyDialogs</tt> --
+         Basic Macintosh dialogs</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Macintosh</span>.</p>
+
+<P>
+The <tt class="module">EasyDialogs</tt> module contains some simple dialogs for
+the Macintosh.  All routines have an optional parameter <var>id</var> with
+which you can override the DLOG resource used for the dialog, as long
+as the item numbers correspond. See the source for details.
+
+<P>
+The <tt class="module">EasyDialogs</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-125"><tt class="function">Message</tt></a></b>(<var>str</var>)
+<dd>
+A modal dialog with the message text <var>str</var>, which should be at
+most 255 characters long, is displayed. Control is returned when the
+user clicks ``OK''.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-126"><tt class="function">AskString</tt></a></b>(<var>prompt</var><big>[</big><var>, default</var><big>]</big>)
+<dd>
+Ask the user to input a string value, in a modal dialog. <var>prompt</var>
+is the prompt message, the optional <var>default</var> arg is the initial
+value for the string. All strings can be at most 255 bytes
+long. <tt class="function">AskString()</tt> returns the string entered or <code>None</code>
+in case the user cancelled.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-127"><tt class="function">AskPassword</tt></a></b>(<var>prompt</var><big>[</big><var>, default</var><big>]</big>)
+<dd>
+Ask the user to input a string value, in a modal dialog. Like
+<tt class="method">AskString</tt>, but with the text shown as bullets. <var>prompt</var>
+is the prompt message, the optional <var>default</var> arg is the initial
+value for the string. All strings can be at most 255 bytes
+long. <tt class="function">AskString()</tt> returns the string entered or <code>None</code>
+in case the user cancelled.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-128"><tt class="function">AskYesNoCancel</tt></a></b>(<var>question</var><big>[</big><var>, default</var><big>]</big>)
+<dd>
+Present a dialog with text <var>question</var> and three buttons labelled
+``yes'', ``no'' and ``cancel''. Return <code>1</code> for yes, <code>0</code> for
+no and <code>-1</code> for cancel. The default return value chosen by
+hitting return is <code>0</code>. This can be changed with the optional
+<var>default</var> argument.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-129"><tt class="function">ProgressBar</tt></a></b>(<big>[</big><var>title </var><big>[</big><var>, maxval</var><big>[</big><var>,label</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+Display a modeless progress dialog with a thermometer bar. <var>title</var>
+is the text string displayed (default ``Working...''), <var>maxval</var> is
+the value at which progress is complete (default
+<code>100</code>). <var>label</var> is the text that is displayed over the progress
+bar itself.  The returned object has two methods,
+<code>set(<var>value</var>)</code>, which sets the value of the progress bar, and
+<code>label(<var>text</var>)</code>, which sets the text of the label. The bar
+remains visible until the object returned is discarded.
+
+<P>
+The progress bar has a ``cancel'' button. [NOTE: how does the cancel
+button behave?]
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="speech-channel-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-FrameWork.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="speech-channel-objects.html">2.9.2 Speech Channel Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-FrameWork.html">2.11 FrameWork  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

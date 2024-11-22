@@ -1,0 +1,216 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.6 MacOS -- Access to Mac OS interpreter features</title>
+<META NAME="description" CONTENT="2.6 MacOS -- Access to Mac OS interpreter features">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-macostools.html">
+<LINK REL="previous" href="module-ic.html">
+<LINK REL="up" href="macpython-modules.html">
+<LINK REL="next" href="module-macostools.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node34.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-macostools.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node34.html">2.5.1 IC Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-macostools.html">2.7 macostools  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION004600000000000000000">
+2.6 <tt class="module">MacOS</tt> --
+         Access to Mac OS interpreter features</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Macintosh</span>.</p>
+
+<P>
+This module provides access to MacOS specific functionality in the
+Python interpreter, such as how the interpreter eventloop functions
+and the like. Use with care.
+
+<P>
+Note the capitalization of the module name; this is a historical
+artifact.
+
+<P>
+<dl><dt><b><a name="l2h-83"><tt>runtimemodel</tt></a></b>
+<dd>
+Either <code>'ppc'</code>, <code>'carbon'</code> or <code>'macho'</code>.  This
+signifies whether this Python uses the classic (InterfaceLib style)
+runtime model, the Mac OS X compatible CarbonLib style or the Mac OS
+X-only Mach-O style.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-84"><tt class="exception">Error</tt></a></b>
+<dd>
+This exception is raised on MacOS generated errors, either from
+functions in this module or from other mac-specific modules like the
+toolbox interfaces. The arguments are the integer error code (the
+<tt class="cdata">OSErr</tt> value) and a textual description of the error code.
+Symbolic names for all known error codes are defined in the standard
+module <tt class="module"><a href="module-macerrors.html">macerrors</a></tt>.<a name="l2h-92">&nbsp;</a></dl>
+
+<P>
+<dl><dt><b><a name="l2h-85"><tt class="function">SetEventHandler</tt></a></b>(<var>handler</var>)
+<dd>
+In the inner interpreter loop Python will occasionally check for events,
+unless disabled with <tt class="function">ScheduleParams()</tt>. With this function you
+can pass a Python event-handler function that will be called if an event
+is available. The event is passed as parameter and the function should return
+non-zero if the event has been fully processed, otherwise event processing
+continues (by passing the event to the console window package, for instance).
+
+<P>
+Call <tt class="function">SetEventHandler()</tt> without a parameter to clear the
+event handler. Setting an event handler while one is already set is an
+error.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-86"><tt class="function">SchedParams</tt></a></b>(<big>[</big><var>doint</var><big>[</big><var>, evtmask</var><big>[</big><var>,
+                              besocial</var><big>[</big><var>, interval</var><big>[</big><var>,
+                              bgyield</var><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big>)
+<dd>
+Influence the interpreter inner loop event handling. <var>Interval</var>
+specifies how often (in seconds, floating point) the interpreter
+should enter the event processing code. When true, <var>doint</var> causes
+interrupt (command-dot) checking to be done. <var>evtmask</var> tells the
+interpreter to do event processing for events in the mask (redraws,
+mouseclicks to switch to other applications, etc). The <var>besocial</var>
+flag gives other processes a chance to run. They are granted minimal
+runtime when Python is in the foreground and <var>bgyield</var> seconds per
+<var>interval</var> when Python runs in the background.
+
+<P>
+All parameters are optional, and default to the current value. The return
+value of this function is a tuple with the old values of these options.
+Initial defaults are that all processing is enabled, checking is done every
+quarter second and the processor is given up for a quarter second when in the
+background.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-87"><tt class="function">HandleEvent</tt></a></b>(<var>ev</var>)
+<dd>
+Pass the event record <var>ev</var> back to the Python event loop, or
+possibly to the handler for the <code>sys.stdout</code> window (based on the
+compiler used to build Python). This allows Python programs that do
+their own event handling to still have some command-period and
+window-switching capability.
+
+<P>
+If you attempt to call this function from an event handler set through
+<tt class="function">SetEventHandler()</tt> you will get an exception.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-88"><tt class="function">GetErrorString</tt></a></b>(<var>errno</var>)
+<dd>
+Return the textual description of MacOS error code <var>errno</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-89"><tt class="function">splash</tt></a></b>(<var>resid</var>)
+<dd>
+This function will put a splash window
+on-screen, with the contents of the DLOG resource specified by
+<var>resid</var>. Calling with a zero argument will remove the splash
+screen. This function is useful if you want an applet to post a splash screen
+early in initialization without first having to load numerous
+extension modules.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-90"><tt class="function">DebugStr</tt></a></b>(<var>message </var><big>[</big><var>, object</var><big>]</big>)
+<dd>
+Drop to the low-level debugger with message <var>message</var>. The
+optional <var>object</var> argument is not used, but can easily be
+inspected from the debugger.
+
+<P>
+Note that you should use this function with extreme care: if no
+low-level debugger like MacsBug is installed this call will crash your
+system. It is intended mainly for developers of Python extension
+modules.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-91"><tt class="function">openrf</tt></a></b>(<var>name </var><big>[</big><var>, mode</var><big>]</big>)
+<dd>
+Open the resource fork of a file. Arguments are the same as for the
+built-in function <tt class="function">open()</tt>. The object returned has file-like
+semantics, but it is not a Python file object, so there may be subtle
+differences.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node34.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-macostools.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node34.html">2.5.1 IC Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-macostools.html">2.7 macostools  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

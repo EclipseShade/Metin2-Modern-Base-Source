@@ -1,0 +1,476 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.5.1 XMLParser Objects </title>
+<META NAME="description" CONTENT="13.5.1 XMLParser Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="expaterror-objects.html">
+<LINK REL="previous" href="module-xml.parsers.expat.html">
+<LINK REL="up" href="module-xml.parsers.expat.html">
+<LINK REL="next" href="expaterror-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-xml.parsers.expat.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.parsers.expat.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="expaterror-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-xml.parsers.expat.html">13.5 xml.parsers.expat  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.parsers.expat.html">13.5 xml.parsers.expat  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="expaterror-objects.html">13.5.2 ExpatError Exceptions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0015510000000000000000">&nbsp;</A>
+<BR>
+13.5.1 XMLParser Objects 
+</H2>
+
+<P>
+<tt class="class">xmlparser</tt> objects have the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-3163"><tt class="method">Parse</tt></a></b>(<var>data</var><big>[</big><var>, isfinal</var><big>]</big>)
+<dd>
+Parses the contents of the string <var>data</var>, calling the appropriate
+handler functions to process the parsed data.  <var>isfinal</var> must be
+true on the final call to this method.  <var>data</var> can be the empty
+string at any time.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3164"><tt class="method">ParseFile</tt></a></b>(<var>file</var>)
+<dd>
+Parse XML data reading from the object <var>file</var>.  <var>file</var> only
+needs to provide the <tt class="method">read(<var>nbytes</var>)</tt> method, returning the
+empty string when there's no more data.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3165"><tt class="method">SetBase</tt></a></b>(<var>base</var>)
+<dd>
+Sets the base to be used for resolving relative URIs in system
+identifiers in declarations.  Resolving relative identifiers is left
+to the application: this value will be passed through as the
+<var>base</var> argument to the <tt class="function">ExternalEntityRefHandler</tt>,
+<tt class="function">NotationDeclHandler</tt>, and
+<tt class="function">UnparsedEntityDeclHandler</tt> functions.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3166"><tt class="method">GetBase</tt></a></b>()
+<dd>
+Returns a string containing the base set by a previous call to
+<tt class="method">SetBase()</tt>, or <code>None</code> if 
+<tt class="method">SetBase()</tt> hasn't been called.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3167"><tt class="method">GetInputContext</tt></a></b>()
+<dd>
+Returns the input data that generated the current event as a string.
+The data is in the encoding of the entity which contains the text.
+When called while an event handler is not active, the return value is
+<code>None</code>.
+
+<span class="versionnote">New in version 2.1.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3168"><tt class="method">ExternalEntityParserCreate</tt></a></b>(<var>context</var><big>[</big><var>,
+                                                          encoding</var><big>]</big>)
+<dd>
+Create a ``child'' parser which can be used to parse an external
+parsed entity referred to by content parsed by the parent parser.  The
+<var>context</var> parameter should be the string passed to the
+<tt class="method">ExternalEntityRefHandler()</tt> handler function, described below.
+The child parser is created with the <tt class="member">ordered_attributes</tt>,
+<tt class="member">returns_unicode</tt> and <tt class="member">specified_attributes</tt> set to the
+values of this parser.
+</dl>
+
+<P>
+<tt class="class">xmlparser</tt> objects have the following attributes:
+
+<P>
+<dl><dt><b><a name="l2h-3169"><tt class="member">ordered_attributes</tt></a></b>
+<dd>
+Setting this attribute to a non-zero integer causes the attributes to
+be reported as a list rather than a dictionary.  The attributes are
+presented in the order found in the document text.  For each
+attribute, two list entries are presented: the attribute name and the
+attribute value.  (Older versions of this module also used this
+format.)  By default, this attribute is false; it may be changed at
+any time.
+
+<span class="versionnote">New in version 2.1.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3170"><tt class="member">returns_unicode</tt></a></b>
+<dd> 
+If this attribute is set to a non-zero integer, the handler functions
+will be passed Unicode strings.  If <tt class="member">returns_unicode</tt> is 0,
+8-bit strings containing UTF-8 encoded data will be passed to the
+handlers.
+
+<span class="versionnote">Changed in version 1.6:
+Can be changed at any time to affect the result
+  type.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3171"><tt class="member">specified_attributes</tt></a></b>
+<dd>
+If set to a non-zero integer, the parser will report only those
+attributes which were specified in the document instance and not those
+which were derived from attribute declarations.  Applications which
+set this need to be especially careful to use what additional
+information is available from the declarations as needed to comply
+with the standards for the behavior of XML processors.  By default,
+this attribute is false; it may be changed at any time.
+
+<span class="versionnote">New in version 2.1.</span>
+
+</dl>
+
+<P>
+The following attributes contain values relating to the most recent
+error encountered by an <tt class="class">xmlparser</tt> object, and will only have
+correct values once a call to <tt class="method">Parse()</tt> or <tt class="method">ParseFile()</tt>
+has raised a <tt class="exception">xml.parsers.expat.ExpatError</tt> exception.
+
+<P>
+<dl><dt><b><a name="l2h-3172"><tt class="member">ErrorByteIndex</tt></a></b>
+<dd> 
+Byte index at which an error occurred.
+</dl> 
+
+<P>
+<dl><dt><b><a name="l2h-3173"><tt class="member">ErrorCode</tt></a></b>
+<dd> 
+Numeric code specifying the problem.  This value can be passed to the
+<tt class="function">ErrorString()</tt> function, or compared to one of the constants
+defined in the <code>errors</code> object.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3174"><tt class="member">ErrorColumnNumber</tt></a></b>
+<dd> 
+Column number at which an error occurred.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3175"><tt class="member">ErrorLineNumber</tt></a></b>
+<dd>
+Line number at which an error occurred.
+</dl>
+
+<P>
+Here is the list of handlers that can be set.  To set a handler on an
+<tt class="class">xmlparser</tt> object <var>o</var>, use
+<code><var>o</var>.<var>handlername</var> = <var>func</var></code>.  <var>handlername</var> must
+be taken from the following list, and <var>func</var> must be a callable
+object accepting the correct number of arguments.  The arguments are
+all strings, unless otherwise stated.
+
+<P>
+<dl><dt><b><a name="l2h-3176"><tt class="method">XmlDeclHandler</tt></a></b>(<var>version, encoding, standalone</var>)
+<dd>
+Called when the XML declaration is parsed.  The XML declaration is the
+(optional) declaration of the applicable version of the XML
+recommendation, the encoding of the document text, and an optional
+``standalone'' declaration.  <var>version</var> and <var>encoding</var> will be
+strings of the type dictated by the <tt class="member">returns_unicode</tt>
+attribute, and <var>standalone</var> will be <code>1</code> if the document is
+declared standalone, <code>0</code> if it is declared not to be standalone,
+or <code>-1</code> if the standalone clause was omitted.
+This is only available with Expat version 1.95.0 or newer.
+
+<span class="versionnote">New in version 2.1.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3177"><tt class="method">StartDoctypeDeclHandler</tt></a></b>(<var>doctypeName,
+                                                       systemId, publicId,
+                                                       has_internal_subset</var>)
+<dd>
+Called when Expat begins parsing the document type declaration
+(<code>&lt;!DOCTYPE ...</code>).  The <var>doctypeName</var> is provided exactly
+as presented.  The <var>systemId</var> and <var>publicId</var> parameters give
+the system and public identifiers if specified, or <code>None</code> if
+omitted.  <var>has_internal_subset</var> will be true if the document
+contains and internal document declaration subset.
+This requires Expat version 1.2 or newer.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3178"><tt class="method">EndDoctypeDeclHandler</tt></a></b>()
+<dd>
+Called when Expat is done parsing the document type delaration.
+This requires Expat version 1.2 or newer.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3179"><tt class="method">ElementDeclHandler</tt></a></b>(<var>name, model</var>)
+<dd>
+Called once for each element type declaration.  <var>name</var> is the name
+of the element type, and <var>model</var> is a representation of the
+content model.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3180"><tt class="method">AttlistDeclHandler</tt></a></b>(<var>elname, attname,
+                                                  type, default, required</var>)
+<dd>
+Called for each declared attribute for an element type.  If an
+attribute list declaration declares three attributes, this handler is
+called three times, once for each attribute.  <var>elname</var> is the name
+of the element to which the declaration applies and <var>attname</var> is
+the name of the attribute declared.  The attribute type is a string
+passed as <var>type</var>; the possible values are <code>'CDATA'</code>,
+<code>'ID'</code>, <code>'IDREF'</code>, ...
+<var>default</var> gives the default value for the attribute used when the
+attribute is not specified by the document instance, or <code>None</code> if
+there is no default value (<code>#IMPLIED</code> values).  If the attribute
+is required to be given in the document instance, <var>required</var> will
+be true.
+This requires Expat version 1.95.0 or newer.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3181"><tt class="method">StartElementHandler</tt></a></b>(<var>name, attributes</var>)
+<dd>
+Called for the start of every element.  <var>name</var> is a string
+containing the element name, and <var>attributes</var> is a dictionary
+mapping attribute names to their values.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3182"><tt class="method">EndElementHandler</tt></a></b>(<var>name</var>)
+<dd>
+Called for the end of every element.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3183"><tt class="method">ProcessingInstructionHandler</tt></a></b>(<var>target, data</var>)
+<dd>
+Called for every processing instruction.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3184"><tt class="method">CharacterDataHandler</tt></a></b>(<var>data</var>)
+<dd>
+Called for character data.  This will be called for normal character
+data, CDATA marked content, and ignorable whitespace.  Applications
+which must distinguish these cases can use the
+<tt class="member">StartCdataSectionHandler</tt>, <tt class="member">EndCdataSectionHandler</tt>,
+and <tt class="member">ElementDeclHandler</tt> callbacks to collect the required
+information.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3185"><tt class="method">UnparsedEntityDeclHandler</tt></a></b>(<var>entityName, base,
+                                                         systemId, publicId,
+                                                         notationName</var>)
+<dd>
+Called for unparsed (NDATA) entity declarations.  This is only present
+for version 1.2 of the Expat library; for more recent versions, use
+<tt class="member">EntityDeclHandler</tt> instead.  (The underlying function in the
+Expat library has been declared obsolete.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3186"><tt class="method">EntityDeclHandler</tt></a></b>(<var>entityName,
+                                                 is_parameter_entity, value,
+                                                 base, systemId,
+                                                 publicId,
+                                                 notationName</var>)
+<dd>
+Called for all entity declarations.  For parameter and internal
+entities, <var>value</var> will be a string giving the declared contents
+of the entity; this will be <code>None</code> for external entities.  The
+<var>notationName</var> parameter will be <code>None</code> for parsed entities,
+and the name of the notation for unparsed entities.
+<var>is_parameter_entity</var> will be true if the entity is a paremeter
+entity or false for general entities (most applications only need to
+be concerned with general entities).
+This is only available starting with version 1.95.0 of the Expat
+library.
+
+<span class="versionnote">New in version 2.1.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3187"><tt class="method">NotationDeclHandler</tt></a></b>(<var>notationName, base,
+                                                   systemId, publicId</var>)
+<dd>
+Called for notation declarations.  <var>notationName</var>, <var>base</var>, and
+<var>systemId</var>, and <var>publicId</var> are strings if given.  If the
+public identifier is omitted, <var>publicId</var> will be <code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3188"><tt class="method">StartNamespaceDeclHandler</tt></a></b>(<var>prefix, uri</var>)
+<dd>
+Called when an element contains a namespace declaration.  Namespace
+declarations are processed before the <tt class="member">StartElementHandler</tt> is
+called for the element on which declarations are placed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3189"><tt class="method">EndNamespaceDeclHandler</tt></a></b>(<var>prefix</var>)
+<dd>
+Called when the closing tag is reached for an element 
+that contained a namespace declaration.  This is called once for each
+namespace declaration on the element in the reverse of the order for
+which the <tt class="member">StartNamespaceDeclHandler</tt> was called to indicate
+the start of each namespace declaration's scope.  Calls to this
+handler are made after the corresponding <tt class="member">EndElementHandler</tt>
+for the end of the element.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3190"><tt class="method">CommentHandler</tt></a></b>(<var>data</var>)
+<dd>
+Called for comments.  <var>data</var> is the text of the comment, excluding
+the leading `<code>&lt;!-</code><code>-</code>' and trailing `<code>-</code><code>-&gt;</code>'.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3191"><tt class="method">StartCdataSectionHandler</tt></a></b>()
+<dd>
+Called at the start of a CDATA section.  This and
+<tt class="member">StartCdataSectionHandler</tt> are needed to be able to identify
+the syntactical start and end for CDATA sections.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3192"><tt class="method">EndCdataSectionHandler</tt></a></b>()
+<dd>
+Called at the end of a CDATA section.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3193"><tt class="method">DefaultHandler</tt></a></b>(<var>data</var>)
+<dd>
+Called for any characters in the XML document for
+which no applicable handler has been specified.  This means
+characters that are part of a construct which could be reported, but
+for which no handler has been supplied. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3194"><tt class="method">DefaultHandlerExpand</tt></a></b>(<var>data</var>)
+<dd>
+This is the same as the <tt class="function">DefaultHandler</tt>, 
+but doesn't inhibit expansion of internal entities.
+The entity reference will not be passed to the default handler.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3195"><tt class="method">NotStandaloneHandler</tt></a></b>()
+<dd> Called if the
+XML document hasn't been declared as being a standalone document.
+This happens when there is an external subset or a reference to a
+parameter entity, but the XML declaration does not set standalone to
+<code>yes</code> in an XML declaration.  If this handler returns <code>0</code>,
+then the parser will throw an <tt class="constant">XML_ERROR_NOT_STANDALONE</tt>
+error.  If this handler is not set, no exception is raised by the
+parser for this condition.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3196"><tt class="method">ExternalEntityRefHandler</tt></a></b>(<var>context, base,
+                                                        systemId, publicId</var>)
+<dd>
+Called for references to external entities.  <var>base</var> is the current
+base, as set by a previous call to <tt class="method">SetBase()</tt>.  The public and
+system identifiers, <var>systemId</var> and <var>publicId</var>, are strings if
+given; if the public identifier is not given, <var>publicId</var> will be
+<code>None</code>.  The <var>context</var> value is opaque and should only be
+used as described below.
+
+<P>
+For external entities to be parsed, this handler must be implemented.
+It is responsible for creating the sub-parser using
+<code>ExternalEntityParserCreate(<var>context</var>)</code>, initializing it with
+the appropriate callbacks, and parsing the entity.  This handler
+should return an integer; if it returns <code>0</code>, the parser will
+throw an <tt class="constant">XML_ERROR_EXTERNAL_ENTITY_HANDLING</tt> error,
+otherwise parsing will continue.
+
+<P>
+If this handler is not provided, external entities are reported by the
+<tt class="member">DefaultHandler</tt> callback, if provided.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-xml.parsers.expat.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.parsers.expat.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="expaterror-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-xml.parsers.expat.html">13.5 xml.parsers.expat  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.parsers.expat.html">13.5 xml.parsers.expat  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="expaterror-objects.html">13.5.2 ExpatError Exceptions</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.16 copy_reg -- Register pickle support functions</title>
+<META NAME="description" CONTENT="3.16 copy_reg -- Register pickle support functions">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-shelve.html">
+<LINK REL="previous" href="module-cPickle.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="module-shelve.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-cPickle.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-shelve.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-cPickle.html">3.15 cPickle  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-shelve.html">3.17 shelve  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0051600000000000000000">
+3.16 <tt class="module">copy_reg</tt> --
+         Register <tt class="module">pickle</tt> support functions</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">copy_reg</tt> module provides support for the
+<tt class="module"><a href="module-pickle.html">pickle</a></tt><a name="l2h-540">&nbsp;</a>and
+<tt class="module"><a href="module-cPickle.html">cPickle</a></tt><a name="l2h-541">&nbsp;</a>modules.  The
+<tt class="module"><a href="module-copy.html">copy</a></tt><a name="l2h-542">&nbsp;</a>module is likely to use this in the
+future as well.  It provides configuration information about object
+constructors which are not classes.  Such constructors may be factory
+functions or class instances.
+
+<P>
+<dl><dt><b><a name="l2h-538"><tt class="function">constructor</tt></a></b>(<var>object</var>)
+<dd>
+  Declares <var>object</var> to be a valid constructor.  If <var>object</var> is
+  not callable (and hence not valid as a constructor), raises
+  <tt class="exception">TypeError</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-539"><tt class="function">pickle</tt></a></b>(<var>type, function</var><big>[</big><var>, constructor</var><big>]</big>)
+<dd>
+  Declares that <var>function</var> should be used as a ``reduction''
+  function for objects of type <var>type</var>; <var>type</var> should not a
+  class object.  <var>function</var> should return either a string or a
+  tuple containing two or three elements.
+
+<P>
+The optional <var>constructor</var> parameter, if provided, is a
+  callable object which can be used to reconstruct the object when
+  called with the tuple of arguments returned by <var>function</var> at
+  pickling time.  <tt class="exception">TypeError</tt> will be raised if
+  <var>object</var> is a class or <var>constructor</var> is not callable.
+
+<P>
+See the <tt class="module"><a href="module-pickle.html">pickle</a></tt> module for more
+  details on the interface expected of <var>function</var> and
+  <var>constructor</var>.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-cPickle.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-shelve.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-cPickle.html">3.15 cPickle  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-shelve.html">3.17 shelve  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

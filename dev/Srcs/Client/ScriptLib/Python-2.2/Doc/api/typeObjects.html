@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.1.1 Type Objects </title>
+<META NAME="description" CONTENT="7.1.1 Type Objects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="noneObject.html">
+<LINK REL="previous" href="fundamental.html">
+<LINK REL="up" href="fundamental.html">
+<LINK REL="next" href="noneObject.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="fundamental.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="fundamental.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="noneObject.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="fundamental.html">7.1 Fundamental Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="fundamental.html">7.1 Fundamental Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="noneObject.html">7.1.2 The None Object</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009110000000000000000">&nbsp;</A>
+<BR>
+7.1.1 Type Objects 
+</H2>
+
+<P>
+<a name="l2h-289">&nbsp;</a><dl><dt><b><tt class="ctype"><a name="l2h-279">PyTypeObject</a></tt></b>
+<dd>
+  The C structure of the objects used to describe built-in types.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-280"><tt class="cdata">PyType_Type</tt></a></b>
+<dd>
+  This is the type object for type objects; it is the same object as
+  <code>types.TypeType</code> in the Python layer.
+  <a name="l2h-282">&nbsp;</a></dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-283"><tt class="cfunction">PyType_Check</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+  Returns true is the object <var>o</var> is a type object.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-284"><tt class="cfunction">PyType_HasFeature</tt></a></b>(<var>PyObject *o, int feature</var>)
+<dd>
+  Returns true if the type object <var>o</var> sets the feature
+  <var>feature</var>.  Type features are denoted by single bit flags.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-285"><tt class="cfunction">PyType_IsSubtype</tt></a></b>(<var>PyTypeObject *a, PyTypeObject *b</var>)
+<dd>
+  Returns true if <var>a</var> is a subtype of <var>b</var>.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-286"><tt class="cfunction">PyType_GenericAlloc</tt></a></b>(<var>PyTypeObject *type,
+                                                  int nitems</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-287"><tt class="cfunction">PyType_GenericNew</tt></a></b>(<var>PyTypeObject *type,
+                                            PyObject *args, PyObject *kwds</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-288"><tt class="cfunction">PyType_Ready</tt></a></b>(<var>PyTypeObject *type</var>)
+<dd>
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="fundamental.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="fundamental.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="noneObject.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="fundamental.html">7.1 Fundamental Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="fundamental.html">7.1 Fundamental Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="noneObject.html">7.1.2 The None Object</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

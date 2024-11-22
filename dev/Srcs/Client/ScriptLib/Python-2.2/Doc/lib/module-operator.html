@@ -1,0 +1,508 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.10 operator -- Standard operators as functions.</title>
+<META NAME="description" CONTENT="3.10 operator -- Standard operators as functions.">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-inspect.html">
+<LINK REL="previous" href="module-UserString.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="operator-map.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-UserString.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="operator-map.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-UserString.html">3.9 UserString  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="operator-map.html">3.10.1 Mapping Operators to</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0051000000000000000000">
+3.10 <tt class="module">operator</tt> --
+         Standard operators as functions.</A>
+</H1>
+
+
+<P>
+
+<P>
+The <tt class="module">operator</tt> module exports a set of functions implemented in C
+corresponding to the intrinsic operators of Python.  For example,
+<code>operator.add(x, y)</code> is equivalent to the expression <code>x+y</code>.  The
+function names are those used for special class methods; variants without
+leading and trailing "<tt class="samp">__</tt>" are also provided for convenience.
+
+<P>
+The functions fall into categories that perform object comparisons,
+logical operations, mathematical operations, sequence operations, and
+abstract type tests.
+
+<P>
+The object comparison functions are useful for all objects, and are
+named after the rich comparison operators they support:
+
+<P>
+<dl><dt><b><a name="l2h-385"><tt class="function">lt</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">le</tt></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">eq</tt></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">ne</tt></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">ge</tt></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">gt</tt></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__lt__</tt></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__le__</tt></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__eq__</tt></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__ne__</tt></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__ge__</tt></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__gt__</tt></b>(<var>a, b</var>)
+<dd>
+Perform ``rich comparisons'' between <var>a</var> and <var>b</var>. Specifically,
+<code>lt(<var>a</var>, <var>b</var>)</code> is equivalent to <code><var>a</var> &lt; <var>b</var></code>,
+<code>le(<var>a</var>, <var>b</var>)</code> is equivalent to <code><var>a</var> &lt;= <var>b</var></code>,
+<code>eq(<var>a</var>, <var>b</var>)</code> is equivalent to <code><var>a</var> == <var>b</var></code>,
+<code>ne(<var>a</var>, <var>b</var>)</code> is equivalent to <code><var>a</var> != <var>b</var></code>,
+<code>gt(<var>a</var>, <var>b</var>)</code> is equivalent to <code><var>a</var> &gt; <var>b</var></code>
+and
+<code>ge(<var>a</var>, <var>b</var>)</code> is equivalent to <code><var>a</var> &gt;= <var>b</var></code>.
+Note that unlike the built-in <tt class="function">cmp()</tt>, these functions can
+return any value, which may or may not be interpretable as a Boolean
+value.  See the <em class="citetitle"><a
+ href="../ref/ref.html"
+ title="Python Reference Manual"
+ >Python Reference Manual</a></em>
+for more informations about rich comparisons.
+
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+The logical operations are also generally applicable to all objects,
+and support truth tests and Boolean operations:
+
+<P>
+<dl><dt><b><a name="l2h-386"><tt class="function">not_</tt></a></b>(<var>o</var>)
+<dd>
+<dt><b><tt class="function">__not__</tt></b>(<var>o</var>)
+<dd>
+Return the outcome of <tt class="keyword">not</tt> <var>o</var>.  (Note that there is no
+<tt class="method">__not__()</tt> method for object instances; only the interpreter
+core defines this operation.  The result is affected by the
+<tt class="method">__nonzero__()</tt> and <tt class="method">__len__()</tt> methods.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-387"><tt class="function">truth</tt></a></b>(<var>o</var>)
+<dd>
+Return <code>1</code> if <var>o</var> is true, and 0 otherwise.
+</dl>
+
+<P>
+The mathematical and bitwise operations are the most numerous:
+
+<P>
+<dl><dt><b><a name="l2h-388"><tt class="function">abs</tt></a></b>(<var>o</var>)
+<dd>
+<dt><b><tt class="function">__abs__</tt></b>(<var>o</var>)
+<dd>
+Return the absolute value of <var>o</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-389"><tt class="function">add</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__add__</tt></b>(<var>a, b</var>)
+<dd>
+Return <var>a</var> <code>+</code> <var>b</var>, for <var>a</var> and <var>b</var> numbers.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-390"><tt class="function">and_</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__and__</tt></b>(<var>a, b</var>)
+<dd>
+Return the bitwise and of <var>a</var> and <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-391"><tt class="function">div</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__div__</tt></b>(<var>a, b</var>)
+<dd>
+Return <var>a</var> <code>/</code> <var>b</var> when <code>__future__.division</code> is not
+in effect.  This is also known as ``classic'' division.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-392"><tt class="function">floordiv</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__floordiv__</tt></b>(<var>a, b</var>)
+<dd>
+Return <var>a</var> <code>//</code> <var>b</var>.
+
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-393"><tt class="function">inv</tt></a></b>(<var>o</var>)
+<dd>
+<dt><b><tt class="function">invert</tt></b>(<var>o</var>)
+<dd>
+<dt><b><tt class="function">__inv__</tt></b>(<var>o</var>)
+<dd>
+<dt><b><tt class="function">__invert__</tt></b>(<var>o</var>)
+<dd>
+Return the bitwise inverse of the number <var>o</var>.  This is equivalent
+to <code>&nbsp;</code><var>o</var>.  The names <tt class="function">invert()</tt> and
+<tt class="function">__invert__()</tt> were added in Python 2.0.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-394"><tt class="function">lshift</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__lshift__</tt></b>(<var>a, b</var>)
+<dd>
+Return <var>a</var> shifted left by <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-395"><tt class="function">mod</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__mod__</tt></b>(<var>a, b</var>)
+<dd>
+Return <var>a</var> <code>%</code> <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-396"><tt class="function">mul</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__mul__</tt></b>(<var>a, b</var>)
+<dd>
+Return <var>a</var> <code>*</code> <var>b</var>, for <var>a</var> and <var>b</var> numbers.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-397"><tt class="function">neg</tt></a></b>(<var>o</var>)
+<dd>
+<dt><b><tt class="function">__neg__</tt></b>(<var>o</var>)
+<dd>
+Return <var>o</var> negated.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-398"><tt class="function">or_</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__or__</tt></b>(<var>a, b</var>)
+<dd>
+Return the bitwise or of <var>a</var> and <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-399"><tt class="function">pos</tt></a></b>(<var>o</var>)
+<dd>
+<dt><b><tt class="function">__pos__</tt></b>(<var>o</var>)
+<dd>
+Return <var>o</var> positive.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-400"><tt class="function">rshift</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__rshift__</tt></b>(<var>a, b</var>)
+<dd>
+Return <var>a</var> shifted right by <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-401"><tt class="function">sub</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__sub__</tt></b>(<var>a, b</var>)
+<dd>
+Return <var>a</var> <code>-</code> <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-402"><tt class="function">truediv</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__truediv__</tt></b>(<var>a, b</var>)
+<dd>
+Return <var>a</var> <code>/</code> <var>b</var> when <code>__future__.division</code> is in
+effect.  This is also known as division.
+
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-403"><tt class="function">xor</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__xor__</tt></b>(<var>a, b</var>)
+<dd>
+Return the bitwise exclusive or of <var>a</var> and <var>b</var>.
+</dl>
+
+<P>
+Operations which work with sequences include:
+
+<P>
+<dl><dt><b><a name="l2h-404"><tt class="function">concat</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__concat__</tt></b>(<var>a, b</var>)
+<dd>
+Return <var>a</var> <code>+</code> <var>b</var> for <var>a</var> and <var>b</var> sequences.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-405"><tt class="function">contains</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__contains__</tt></b>(<var>a, b</var>)
+<dd>
+Return the outcome of the test <var>b</var> <code>in</code> <var>a</var>.
+Note the reversed operands.  The name <tt class="function">__contains__()</tt> was
+added in Python 2.0.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-406"><tt class="function">countOf</tt></a></b>(<var>a, b</var>)
+<dd>
+Return the number of occurrences of <var>b</var> in <var>a</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-407"><tt class="function">delitem</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__delitem__</tt></b>(<var>a, b</var>)
+<dd>
+Remove the value of <var>a</var> at index <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-408"><tt class="function">delslice</tt></a></b>(<var>a, b, c</var>)
+<dd>
+<dt><b><tt class="function">__delslice__</tt></b>(<var>a, b, c</var>)
+<dd>
+Delete the slice of <var>a</var> from index <var>b</var> to index <var>c</var><code>-1</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-409"><tt class="function">getitem</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__getitem__</tt></b>(<var>a, b</var>)
+<dd>
+Return the value of <var>a</var> at index <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-410"><tt class="function">getslice</tt></a></b>(<var>a, b, c</var>)
+<dd>
+<dt><b><tt class="function">__getslice__</tt></b>(<var>a, b, c</var>)
+<dd>
+Return the slice of <var>a</var> from index <var>b</var> to index <var>c</var><code>-1</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-411"><tt class="function">indexOf</tt></a></b>(<var>a, b</var>)
+<dd>
+Return the index of the first of occurrence of <var>b</var> in <var>a</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-412"><tt class="function">repeat</tt></a></b>(<var>a, b</var>)
+<dd>
+<dt><b><tt class="function">__repeat__</tt></b>(<var>a, b</var>)
+<dd>
+Return <var>a</var> <code>*</code> <var>b</var> where <var>a</var> is a sequence and
+<var>b</var> is an integer.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-413"><tt class="function">sequenceIncludes</tt></a></b>(<var>...</var>)
+<dd>
+<div class="versionnote"><b>Deprecated since release 2.0.</b>
+Use <tt class="function">contains()</tt> instead.</div><p>
+Alias for <tt class="function">contains()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-414"><tt class="function">setitem</tt></a></b>(<var>a, b, c</var>)
+<dd>
+<dt><b><tt class="function">__setitem__</tt></b>(<var>a, b, c</var>)
+<dd>
+Set the value of <var>a</var> at index <var>b</var> to <var>c</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-415"><tt class="function">setslice</tt></a></b>(<var>a, b, c, v</var>)
+<dd>
+<dt><b><tt class="function">__setslice__</tt></b>(<var>a, b, c, v</var>)
+<dd>
+Set the slice of <var>a</var> from index <var>b</var> to index <var>c</var><code>-1</code> to the
+sequence <var>v</var>.
+</dl>
+
+<P>
+The <tt class="module">operator</tt> module also defines a few predicates to test the
+type of objects.  <span class="note"><b class="label">Note:</b>
+Be careful not to misinterpret the
+results of these functions; only <tt class="function">isCallable()</tt> has any
+measure of reliability with instance objects.  For example:</span>
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; class C:
+...     pass
+... 
+&gt;&gt;&gt; import operator
+&gt;&gt;&gt; o = C()
+&gt;&gt;&gt; operator.isMappingType(o)
+1
+</pre></dl>
+
+<P>
+<dl><dt><b><a name="l2h-416"><tt class="function">isCallable</tt></a></b>(<var>o</var>)
+<dd>
+<div class="versionnote"><b>Deprecated since release 2.0.</b>
+Use the <tt class="function">callable()</tt> built-in function instead.</div><p>
+Returns true if the object <var>o</var> can be called like a function,
+otherwise it returns false.  True is returned for functions, bound and
+unbound methods, class objects, and instance objects which support the
+<tt class="method">__call__()</tt> method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-417"><tt class="function">isMappingType</tt></a></b>(<var>o</var>)
+<dd>
+Returns true if the object <var>o</var> supports the mapping interface.
+This is true for dictionaries and all instance objects.
+<span class="warning"><b class="label">Warning:</b>
+There is no reliable way to test if an instance
+supports the complete mapping protocol since the interface itself is
+ill-defined.  This makes this test less useful than it otherwise might
+be.</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-418"><tt class="function">isNumberType</tt></a></b>(<var>o</var>)
+<dd>
+Returns true if the object <var>o</var> represents a number.  This is true
+for all numeric types implemented in C, and for all instance objects.
+<span class="warning"><b class="label">Warning:</b>
+There is no reliable way to test if an instance
+supports the complete numeric interface since the interface itself is
+ill-defined.  This makes this test less useful than it otherwise might
+be.</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-419"><tt class="function">isSequenceType</tt></a></b>(<var>o</var>)
+<dd>
+Returns true if the object <var>o</var> supports the sequence protocol.
+This returns true for all objects which define sequence methods in C,
+and for all instance objects.  <span class="warning"><b class="label">Warning:</b>
+There is no reliable
+way to test if an instance supports the complete sequence interface
+since the interface itself is ill-defined.  This makes this test less
+useful than it otherwise might be.</span>
+</dl>
+
+<P>
+Example: Build a dictionary that maps the ordinals from <code>0</code> to
+<code>256</code> to their character equivalents.
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import operator
+&gt;&gt;&gt; d = {}
+&gt;&gt;&gt; keys = range(256)
+&gt;&gt;&gt; vals = map(chr, keys)
+&gt;&gt;&gt; map(operator.setitem, [d]*len(keys), keys, vals)
+</pre></dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="operator-map.html">3.10.1 Mapping Operators to Functions</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-UserString.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="operator-map.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-UserString.html">3.9 UserString  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="operator-map.html">3.10.1 Mapping Operators to</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

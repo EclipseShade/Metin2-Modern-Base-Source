@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.2.4.1 Complex Numbers as C Structures</title>
+<META NAME="description" CONTENT="7.2.4.1 Complex Numbers as C Structures">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node38.html">
+<LINK REL="previous" href="complexObjects.html">
+<LINK REL="up" href="complexObjects.html">
+<LINK REL="next" HREF="node38.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="complexObjects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="complexObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node38.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="complexObjects.html">7.2.4 Complex Number Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="complexObjects.html">7.2.4 Complex Number Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node38.html">7.2.4.2 Complex Numbers as</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION009241000000000000000">
+7.2.4.1 Complex Numbers as C Structures</A>
+</H3>
+
+<P>
+Note that the functions which accept these structures as parameters
+and return them as results do so <i>by value</i> rather than
+dereferencing them through pointers.  This is consistent throughout
+the API.
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-343">Py_complex</a></tt></b>
+<dd>
+  The C structure which corresponds to the value portion of a Python
+  complex number object.  Most of the functions for dealing with
+  complex number objects use structures of this type as input or
+  output values, as appropriate.  It is defined as:
+
+<P>
+<dl><dd><pre class="verbatim">
+typedef struct {
+   double real;
+   double imag;
+} Py_complex;
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt>Py_complex <b><a name="l2h-344"><tt class="cfunction">_Py_c_sum</tt></a></b>(<var>Py_complex left, Py_complex right</var>)
+<dd>
+  Return the sum of two complex numbers, using the C
+  <tt class="ctype">Py_complex</tt> representation.
+</dl>
+
+<P>
+<dl><dt>Py_complex <b><a name="l2h-345"><tt class="cfunction">_Py_c_diff</tt></a></b>(<var>Py_complex left, Py_complex right</var>)
+<dd>
+  Return the difference between two complex numbers, using the C
+  <tt class="ctype">Py_complex</tt> representation.
+</dl>
+
+<P>
+<dl><dt>Py_complex <b><a name="l2h-346"><tt class="cfunction">_Py_c_neg</tt></a></b>(<var>Py_complex complex</var>)
+<dd>
+  Return the negation of the complex number <var>complex</var>, using the C
+  <tt class="ctype">Py_complex</tt> representation.
+</dl>
+
+<P>
+<dl><dt>Py_complex <b><a name="l2h-347"><tt class="cfunction">_Py_c_prod</tt></a></b>(<var>Py_complex left, Py_complex right</var>)
+<dd>
+  Return the product of two complex numbers, using the C
+  <tt class="ctype">Py_complex</tt> representation.
+</dl>
+
+<P>
+<dl><dt>Py_complex <b><a name="l2h-348"><tt class="cfunction">_Py_c_quot</tt></a></b>(<var>Py_complex dividend,
+                                          Py_complex divisor</var>)
+<dd>
+  Return the quotient of two complex numbers, using the C
+  <tt class="ctype">Py_complex</tt> representation.
+</dl>
+
+<P>
+<dl><dt>Py_complex <b><a name="l2h-349"><tt class="cfunction">_Py_c_pow</tt></a></b>(<var>Py_complex num, Py_complex exp</var>)
+<dd>
+  Return the exponentiation of <var>num</var> by <var>exp</var>, using the C
+  <tt class="ctype">Py_complex</tt> representation.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="complexObjects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="complexObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node38.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="complexObjects.html">7.2.4 Complex Number Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="complexObjects.html">7.2.4 Complex Number Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node38.html">7.2.4.2 Complex Numbers as</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

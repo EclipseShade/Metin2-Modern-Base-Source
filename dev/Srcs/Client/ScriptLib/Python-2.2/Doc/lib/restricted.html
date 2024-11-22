@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>17. Restricted Execution </title>
+<META NAME="description" CONTENT="17. Restricted Execution ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="language.html">
+<LINK REL="previous" href="tkinter.html">
+<LINK REL="up" HREF="lib.html">
+<LINK REL="next" href="module-rexec.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="other-gui-packages.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-rexec.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="other-gui-packages.html">16.6 Other Graphical User</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-rexec.html">17.1 rexec  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0019000000000000000000">&nbsp;</A>
+<BR>
+17. Restricted Execution 
+</H1>
+
+<P>
+In general, Python programs have complete access to the underlying
+operating system throug the various functions and classes, For
+example, a Python program can open any file for reading and writing by
+using the <tt class="function">open()</tt> built-in function (provided the underlying
+operating system gives you permission!).  This is exactly what you want
+for most applications.
+
+<P>
+There exists a class of applications for which this ``openness'' is
+inappropriate.  Take Grail: a Web browser that accepts ``applets,''
+snippets of Python code, from anywhere on the Internet for execution
+on the local system.  This can be used to improve the user interface
+of forms, for instance.  Since the originator of the code is unknown,
+it is obvious that it cannot be trusted with the full resources of the
+local machine.
+
+<P>
+<i>Restricted execution</i> is the basic framework in Python that allows
+for the segregation of trusted and untrusted code.  It is based on the
+notion that trusted Python code (a <i>supervisor</i>) can create a
+``padded cell' (or environment) with limited permissions, and run the
+untrusted code within this cell.  The untrusted code cannot break out
+of its cell, and can only interact with sensitive system resources
+through interfaces defined and managed by the trusted code.  The term
+``restricted execution'' is favored over ``safe-Python''
+since true safety is hard to define, and is determined by the way the
+restricted environment is created.  Note that the restricted
+environments can be nested, with inner cells creating subcells of
+lesser, but never greater, privilege.
+
+<P>
+An interesting aspect of Python's restricted execution model is that
+the interfaces presented to untrusted code usually have the same names
+as those presented to trusted code.  Therefore no special interfaces
+need to be learned to write code designed to run in a restricted
+environment.  And because the exact nature of the padded cell is
+determined by the supervisor, different restrictions can be imposed,
+depending on the application.  For example, it might be deemed
+``safe'' for untrusted code to read any file within a specified
+directory, but never to write a file.  In this case, the supervisor
+may redefine the built-in <tt class="function">open()</tt> function so that it raises
+an exception whenever the <var>mode</var> parameter is <code>'w'</code>.  It
+might also perform a <tt class="cfunction">chroot()</tt>-like operation on the
+<var>filename</var> parameter, such that root is always relative to some
+safe ``sandbox'' area of the filesystem.  In this case, the untrusted
+code would still see an built-in <tt class="function">open()</tt> function in its
+environment, with the same calling interface.  The semantics would be
+identical too, with <tt class="exception">IOError</tt>s being raised when the
+supervisor determined that an unallowable parameter is being used.
+
+<P>
+The Python run-time determines whether a particular code block is
+executing in restricted execution mode based on the identity of the
+<code>__builtins__</code> object in its global variables: if this is (the
+dictionary of) the standard <tt class="module"><a href="module-builtin.html">__builtin__</a></tt> module,
+the code is deemed to be unrestricted, else it is deemed to be
+restricted.
+
+<P>
+Python code executing in restricted mode faces a number of limitations
+that are designed to prevent it from escaping from the padded cell.
+For instance, the function object attribute <tt class="member">func_globals</tt> and
+the class and instance object attribute <tt class="member">__dict__</tt> are
+unavailable.
+
+<P>
+Two modules provide the framework for setting up restricted execution
+environments:
+
+<P>
+<table class='synopsistable' valign='baseline'>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-rexec.html'>rexec</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Basic restricted execution framework.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-Bastion.html'>Bastion</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Providing restricted access to objects.</td></tr>
+</table>
+
+<BR>
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.python.org/doc/howto/rexec/"
+        >Restricted Execution HOWTO</a></em>
+    <dd>Andrew Kuchling's tutorial on the use of the restricted
+            execution facilities in Python.
+  </dl>
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://grail.sourceforge.net/"
+        >Grail Home Page</a></em>
+    <dd>Grail, an Internet browser written in Python, uses these
+            modules to support Python applets.  More
+            information on the use of Python's restricted execution
+            mode in Grail is available on the Web site.
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="other-gui-packages.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-rexec.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="other-gui-packages.html">16.6 Other Graphical User</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-rexec.html">17.1 rexec  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

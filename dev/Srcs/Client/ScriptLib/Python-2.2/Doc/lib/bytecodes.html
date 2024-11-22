@@ -1,0 +1,818 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>18.10.1 Python Byte Code Instructions</title>
+<META NAME="description" CONTENT="18.10.1 Python Byte Code Instructions">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-dis.html">
+<LINK REL="up" href="module-dis.html">
+<LINK REL="next" href="module-distutils.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-dis.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-dis.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-distutils.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-dis.html">18.10 dis  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-dis.html">18.10 dis  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-distutils.html">18.11 distutils  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00201010000000000000000">&nbsp;</A>
+<BR>
+18.10.1 Python Byte Code Instructions
+</H2>
+
+<P>
+The Python compiler currently generates the following byte code
+instructions.
+
+<P>
+
+<P>
+<dl><dt><b><tt class="opcode">STOP_CODE</tt></b>
+<dd>
+Indicates end-of-code to the compiler, not used by the interpreter.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">POP_TOP</tt></b>
+<dd>
+Removes the top-of-stack (TOS) item.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">ROT_TWO</tt></b>
+<dd>
+Swaps the two top-most stack items.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">ROT_THREE</tt></b>
+<dd>
+Lifts second and third stack item one position up, moves top down
+to position three.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">ROT_FOUR</tt></b>
+<dd>
+Lifts second, third and forth stack item one position up, moves top down to
+position four.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">DUP_TOP</tt></b>
+<dd>
+Duplicates the reference on top of the stack.
+</dl>
+
+<P>
+Unary Operations take the top of the stack, apply the operation, and
+push the result back on the stack.
+
+<P>
+<dl><dt><b><tt class="opcode">UNARY_POSITIVE</tt></b>
+<dd>
+Implements <code>TOS = +TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">UNARY_NEGATIVE</tt></b>
+<dd>
+Implements <code>TOS = -TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">UNARY_NOT</tt></b>
+<dd>
+Implements <code>TOS = not TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">UNARY_CONVERT</tt></b>
+<dd>
+Implements <code>TOS = `TOS`</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">UNARY_INVERT</tt></b>
+<dd>
+Implements <code>TOS = ~TOS</code>.
+</dl>
+
+<P>
+Binary operations remove the top of the stack (TOS) and the second top-most
+stack item (TOS1) from the stack.  They perform the operation, and put the
+result back on the stack.
+
+<P>
+<dl><dt><b><tt class="opcode">BINARY_POWER</tt></b>
+<dd>
+Implements <code>TOS = TOS1 ** TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BINARY_MULTIPLY</tt></b>
+<dd>
+Implements <code>TOS = TOS1 * TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BINARY_DIVIDE</tt></b>
+<dd>
+Implements <code>TOS = TOS1 / TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BINARY_MODULO</tt></b>
+<dd>
+Implements <code>TOS = TOS1 % TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BINARY_ADD</tt></b>
+<dd>
+Implements <code>TOS = TOS1 + TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BINARY_SUBTRACT</tt></b>
+<dd>
+Implements <code>TOS = TOS1 - TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BINARY_SUBSCR</tt></b>
+<dd>
+Implements <code>TOS = TOS1[TOS]</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BINARY_LSHIFT</tt></b>
+<dd>
+Implements <code>TOS = TOS1 &lt;&lt; TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BINARY_RSHIFT</tt></b>
+<dd>
+Implements <code>TOS = TOS1 &gt;&gt; TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BINARY_AND</tt></b>
+<dd>
+Implements <code>TOS = TOS1 &amp; TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BINARY_XOR</tt></b>
+<dd>
+Implements <code>TOS = TOS1 ^ TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BINARY_OR</tt></b>
+<dd>
+Implements <code>TOS = TOS1 | TOS</code>.
+</dl>
+
+<P>
+In-place operations are like binary operations, in that they remove TOS and
+TOS1, and push the result back on the stack, but the operation is done
+in-place when TOS1 supports it, and the resulting TOS may be (but does not
+have to be) the original TOS1.
+
+<P>
+<dl><dt><b><tt class="opcode">INPLACE_POWER</tt></b>
+<dd>
+Implements in-place <code>TOS = TOS1 ** TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">INPLACE_MULTIPLY</tt></b>
+<dd>
+Implements in-place <code>TOS = TOS1 * TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">INPLACE_DIVIDE</tt></b>
+<dd>
+Implements in-place <code>TOS = TOS1 / TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">INPLACE_MODULO</tt></b>
+<dd>
+Implements in-place <code>TOS = TOS1 % TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">INPLACE_ADD</tt></b>
+<dd>
+Implements in-place <code>TOS = TOS1 + TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">INPLACE_SUBTRACT</tt></b>
+<dd>
+Implements in-place <code>TOS = TOS1 - TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">INPLACE_LSHIFT</tt></b>
+<dd>
+Implements in-place <code>TOS = TOS1 &lt;&lt; TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">INPLACE_RSHIFT</tt></b>
+<dd>
+Implements in-place <code>TOS = TOS1 &gt;&gt; TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">INPLACE_AND</tt></b>
+<dd>
+Implements in-place <code>TOS = TOS1 &amp; TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">INPLACE_XOR</tt></b>
+<dd>
+Implements in-place <code>TOS = TOS1 ^ TOS</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">INPLACE_OR</tt></b>
+<dd>
+Implements in-place <code>TOS = TOS1 | TOS</code>.
+</dl>
+
+<P>
+The slice opcodes take up to three parameters.
+
+<P>
+<dl><dt><b><tt class="opcode">SLICE+0</tt></b>
+<dd>
+Implements <code>TOS = TOS[:]</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">SLICE+1</tt></b>
+<dd>
+Implements <code>TOS = TOS1[TOS:]</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">SLICE+2</tt></b>
+<dd>
+Implements <code>TOS = TOS1[:TOS1]</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">SLICE+3</tt></b>
+<dd>
+Implements <code>TOS = TOS2[TOS1:TOS]</code>.
+</dl>
+
+<P>
+Slice assignment needs even an additional parameter.  As any statement,
+they put nothing on the stack.
+
+<P>
+<dl><dt><b><tt class="opcode">STORE_SLICE+0</tt></b>
+<dd>
+Implements <code>TOS[:] = TOS1</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">STORE_SLICE+1</tt></b>
+<dd>
+Implements <code>TOS1[TOS:] = TOS2</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">STORE_SLICE+2</tt></b>
+<dd>
+Implements <code>TOS1[:TOS] = TOS2</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">STORE_SLICE+3</tt></b>
+<dd>
+Implements <code>TOS2[TOS1:TOS] = TOS3</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">DELETE_SLICE+0</tt></b>
+<dd>
+Implements <code>del TOS[:]</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">DELETE_SLICE+1</tt></b>
+<dd>
+Implements <code>del TOS1[TOS:]</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">DELETE_SLICE+2</tt></b>
+<dd>
+Implements <code>del TOS1[:TOS]</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">DELETE_SLICE+3</tt></b>
+<dd>
+Implements <code>del TOS2[TOS1:TOS]</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">STORE_SUBSCR</tt></b>
+<dd>
+Implements <code>TOS1[TOS] = TOS2</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">DELETE_SUBSCR</tt></b>
+<dd>
+Implements <code>del TOS1[TOS]</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">PRINT_EXPR</tt></b>
+<dd>
+Implements the expression statement for the interactive mode.  TOS is
+removed from the stack and printed.  In non-interactive mode, an
+expression statement is terminated with <code>POP_STACK</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">PRINT_ITEM</tt></b>
+<dd>
+Prints TOS to the file-like object bound to <code>sys.stdout</code>.  There
+is one such instruction for each item in the <tt class="keyword">print</tt> statement.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">PRINT_ITEM_TO</tt></b>
+<dd>
+Like <code>PRINT_ITEM</code>, but prints the item second from TOS to the
+file-like object at TOS.  This is used by the extended print statement.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">PRINT_NEWLINE</tt></b>
+<dd>
+Prints a new line on <code>sys.stdout</code>.  This is generated as the
+last operation of a <tt class="keyword">print</tt> statement, unless the statement
+ends with a comma.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">PRINT_NEWLINE_TO</tt></b>
+<dd>
+Like <code>PRINT_NEWLINE</code>, but prints the new line on the file-like
+object on the TOS.  This is used by the extended print statement.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BREAK_LOOP</tt></b>
+<dd>
+Terminates a loop due to a <tt class="keyword">break</tt> statement.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">LOAD_LOCALS</tt></b>
+<dd>
+Pushes a reference to the locals of the current scope on the stack.
+This is used in the code for a class definition: After the class body
+is evaluated, the locals are passed to the class definition.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">RETURN_VALUE</tt></b>
+<dd>
+Returns with TOS to the caller of the function.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">IMPORT_STAR</tt></b>
+<dd>
+Loads all symbols not starting with "<tt class="character">_</tt>" directly from the module TOS
+to the local namespace. The module is popped after loading all names.
+This opcode implements <code>from module import *</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">EXEC_STMT</tt></b>
+<dd>
+Implements <code>exec TOS2,TOS1,TOS</code>.  The compiler fills
+missing optional parameters with <code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">POP_BLOCK</tt></b>
+<dd>
+Removes one block from the block stack.  Per frame, there is a 
+stack of blocks, denoting nested loops, try statements, and such.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">END_FINALLY</tt></b>
+<dd>
+Terminates a <tt class="keyword">finally</tt> clause.  The interpreter recalls
+whether the exception has to be re-raised, or whether the function
+returns, and continues with the outer-next block.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BUILD_CLASS</tt></b>
+<dd>
+Creates a new class object.  TOS is the methods dictionary, TOS1
+the tuple of the names of the base classes, and TOS2 the class name.
+</dl>
+
+<P>
+All of the following opcodes expect arguments.  An argument is two
+bytes, with the more significant byte last.
+
+<P>
+<dl><dt><b><tt class="opcode">STORE_NAME</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>namei</var>
+<dd>
+Implements <code>name = TOS</code>. <var>namei</var> is the index of <var>name</var>
+in the attribute <tt class="member">co_names</tt> of the code object.
+The compiler tries to use <code>STORE_LOCAL</code> or <code>STORE_GLOBAL</code>
+if possible.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">DELETE_NAME</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>namei</var>
+<dd>
+Implements <code>del name</code>, where <var>namei</var> is the index into
+<tt class="member">co_names</tt> attribute of the code object.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">UNPACK_SEQUENCE</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>count</var>
+<dd>
+Unpacks TOS into <var>count</var> individual values, which are put onto
+the stack right-to-left.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">DUP_TOPX</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>count</var>
+<dd>
+Duplicate <var>count</var> items, keeping them in the same order. Due to
+implementation limits, <var>count</var> should be between 1 and 5 inclusive.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">STORE_ATTR</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>namei</var>
+<dd>
+Implements <code>TOS.name = TOS1</code>, where <var>namei</var> is the index
+of name in <tt class="member">co_names</tt>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">DELETE_ATTR</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>namei</var>
+<dd>
+Implements <code>del TOS.name</code>, using <var>namei</var> as index into
+<tt class="member">co_names</tt>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">STORE_GLOBAL</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>namei</var>
+<dd>
+Works as <code>STORE_NAME</code>, but stores the name as a global.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">DELETE_GLOBAL</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>namei</var>
+<dd>
+Works as <code>DELETE_NAME</code>, but deletes a global name.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">LOAD_CONST</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>consti</var>
+<dd>
+Pushes "<tt class="samp">co_consts[<var>consti</var>]</tt>" onto the stack.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">LOAD_NAME</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>namei</var>
+<dd>
+Pushes the value associated with "<tt class="samp">co_names[<var>namei</var>]</tt>" onto the stack.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BUILD_TUPLE</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>count</var>
+<dd>
+Creates a tuple consuming <var>count</var> items from the stack, and pushes
+the resulting tuple onto the stack.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BUILD_LIST</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>count</var>
+<dd>
+Works as <code>BUILD_TUPLE</code>, but creates a list.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BUILD_MAP</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>zero</var>
+<dd>
+Pushes a new empty dictionary object onto the stack.  The argument is
+ignored and set to zero by the compiler.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">LOAD_ATTR</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>namei</var>
+<dd>
+Replaces TOS with <code>getattr(TOS, co_names[<var>namei</var>]</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">COMPARE_OP</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>opname</var>
+<dd>
+Performs a Boolean operation.  The operation name can be found
+in <code>cmp_op[<var>opname</var>]</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">IMPORT_NAME</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>namei</var>
+<dd>
+Imports the module <code>co_names[<var>namei</var>]</code>.  The module object is
+pushed onto the stack.  The current namespace is not affected: for a
+proper import statement, a subsequent <code>STORE_FAST</code> instruction
+modifies the namespace.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">IMPORT_FROM</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>namei</var>
+<dd>
+Loads the attribute <code>co_names[<var>namei</var>]</code> from the module found in
+TOS. The resulting object is pushed onto the stack, to be subsequently
+stored by a <code>STORE_FAST</code> instruction.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">JUMP_FORWARD</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>delta</var>
+<dd>
+Increments byte code counter by <var>delta</var>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">JUMP_IF_TRUE</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>delta</var>
+<dd>
+If TOS is true, increment the byte code counter by <var>delta</var>.  TOS is
+left on the stack.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">JUMP_IF_FALSE</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>delta</var>
+<dd>
+If TOS is false, increment the byte code counter by <var>delta</var>.  TOS
+is not changed. 
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">JUMP_ABSOLUTE</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>target</var>
+<dd>
+Set byte code counter to <var>target</var>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">FOR_LOOP</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>delta</var>
+<dd>
+Iterate over a sequence.  TOS is the current index, TOS1 the sequence.
+First, the next element is computed.  If the sequence is exhausted,
+increment byte code counter by <var>delta</var>.  Otherwise, push the
+sequence, the incremented counter, and the current item onto the stack.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">LOAD_GLOBAL</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>namei</var>
+<dd>
+Loads the global named <code>co_names[<var>namei</var>]</code> onto the stack.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">SETUP_LOOP</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>delta</var>
+<dd>
+Pushes a block for a loop onto the block stack.  The block spans
+from the current instruction with a size of <var>delta</var> bytes.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">SETUP_EXCEPT</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>delta</var>
+<dd>
+Pushes a try block from a try-except clause onto the block stack.
+<var>delta</var> points to the first except block.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">SETUP_FINALLY</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>delta</var>
+<dd>
+Pushes a try block from a try-except clause onto the block stack.
+<var>delta</var> points to the finally block.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">LOAD_FAST</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>var_num</var>
+<dd>
+Pushes a reference to the local <code>co_varnames[<var>var_num</var>]</code> onto
+the stack.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">STORE_FAST</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>var_num</var>
+<dd>
+Stores TOS into the local <code>co_varnames[<var>var_num</var>]</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">DELETE_FAST</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>var_num</var>
+<dd>
+Deletes local <code>co_varnames[<var>var_num</var>]</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">LOAD_CLOSURE</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>i</var>
+<dd>
+Pushes a reference to the cell contained in slot <var>i</var> of the
+cell and free variable storage.  The name of the variable is 
+<code>co_cellvars[<var>i</var>]</code> if <var>i</var> is less than the length of
+<var>co_cellvars</var>.  Otherwise it is 
+<code>co_freevars[<var>i</var> - len(co_cellvars)]</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">LOAD_DEREF</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>i</var>
+<dd>
+Loads the cell contained in slot <var>i</var> of the cell and free variable
+storage.  Pushes a reference to the object the cell contains on the
+stack. 
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">STORE_DEREF</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>i</var>
+<dd>
+Stores TOS into the cell contained in slot <var>i</var> of the cell and
+free variable storage.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">SET_LINENO</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>lineno</var>
+<dd>
+Sets the current line number to <var>lineno</var>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">RAISE_VARARGS</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>argc</var>
+<dd>
+Raises an exception. <var>argc</var> indicates the number of parameters
+to the raise statement, ranging from 0 to 3.  The handler will find
+the traceback as TOS2, the parameter as TOS1, and the exception
+as TOS.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">CALL_FUNCTION</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>argc</var>
+<dd>
+Calls a function.  The low byte of <var>argc</var> indicates the number of
+positional parameters, the high byte the number of keyword parameters.
+On the stack, the opcode finds the keyword parameters first.  For each
+keyword argument, the value is on top of the key.  Below the keyword
+parameters, the positional parameters are on the stack, with the
+right-most parameter on top.  Below the parameters, the function object
+to call is on the stack.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">MAKE_FUNCTION</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>argc</var>
+<dd>
+Pushes a new function object on the stack.  TOS is the code associated
+with the function.  The function object is defined to have <var>argc</var>
+default parameters, which are found below TOS.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">MAKE_CLOSURE</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>argc</var>
+<dd>
+Creates a new function object, sets its <var>func_closure</var> slot, and
+pushes it on the stack.  TOS is the code associated with the function.
+If the code object has N free variables, the next N items on the stack
+are the cells for these variables.  The function also has <var>argc</var>
+default parameters, where are found before the cells.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">BUILD_SLICE</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>argc</var>
+<dd>
+Pushes a slice object on the stack.  <var>argc</var> must be 2 or 3.  If it
+is 2, <code>slice(TOS1, TOS)</code> is pushed; if it is 3,
+<code>slice(TOS2, TOS1, TOS)</code> is pushed.
+See the <code>slice()</code><a name="l2h-3834">&nbsp;</a>built-in function for more
+information.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">EXTENDED_ARG</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>ext</var>
+<dd>
+Prefixes any opcode which has an argument too big to fit into the
+default two bytes.  <var>ext</var> holds two additional bytes which, taken
+together with the subsequent opcode's argument, comprise a four-byte
+argument, <var>ext</var> being the two most-significant bytes.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">CALL_FUNCTION_VAR</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>argc</var>
+<dd>
+Calls a function. <var>argc</var> is interpreted as in <code>CALL_FUNCTION</code>.
+The top element on the stack contains the variable argument list, followed
+by keyword and positional arguments.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">CALL_FUNCTION_KW</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>argc</var>
+<dd>
+Calls a function. <var>argc</var> is interpreted as in <code>CALL_FUNCTION</code>.
+The top element on the stack contains the keyword arguments dictionary, 
+followed by explicit keyword and positional arguments.
+</dl>
+
+<P>
+<dl><dt><b><tt class="opcode">CALL_FUNCTION_VAR_KW</tt></b>&nbsp;&nbsp;&nbsp;&nbsp;<var>argc</var>
+<dd>
+Calls a function. <var>argc</var> is interpreted as in
+<code>CALL_FUNCTION</code>.  The top element on the stack contains the
+keyword arguments dictionary, followed by the variable-arguments
+tuple, followed by explicit keyword and positional arguments.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-dis.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-dis.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-distutils.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-dis.html">18.10 dis  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-dis.html">18.10 dis  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-distutils.html">18.11 distutils  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

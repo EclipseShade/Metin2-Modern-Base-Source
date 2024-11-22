@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1 Introduction</title>
+<META NAME="description" CONTENT="1 Introduction">
+<META NAME="keywords" CONTENT="inst">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="inst.css">
+<link rel="first" href="inst.html">
+
+<LINK REL="next" href="standard-install.html">
+<LINK REL="previous" HREF="inst.html">
+<LINK REL="up" HREF="inst.html">
+<LINK REL="next" href="standard-install.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="inst.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="inst.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="standard-install.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Installing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="inst.html">Installing Python Modules</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="inst.html">Installing Python Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="standard-install.html">2 Standard Build and</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="#SECTION000110000000000000000">1.1 Best case: trivial installation</a>
+<LI><A href="#SECTION000120000000000000000">1.2 The new standard: Distutils</a>
+<LI><A href="#SECTION000130000000000000000">1.3 The old way: no standards</a>
+</ul>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION000100000000000000000">&nbsp;</A>
+<BR>
+1 Introduction
+</H1>
+
+<P>
+Although Python's extensive standard library covers many programming
+needs, there often comes a time when you need to add some new
+functionality to your Python installation in the form of third-party
+modules.  This might be necessary to support your own programming, or to
+support an application that you want to use and that happens to be
+written in Python.
+
+<P>
+In the past, there has been little support for adding third-party
+modules to an existing Python installation.  With the introduction of
+the Python Distribution Utilities (Distutils for short) in Python 2.0,
+this is starting to change.  Not everything will change overnight,
+though, so while this document concentrates on installing module
+distributions that use the Distutils, we will also spend some time
+dealing with the old ways.
+
+<P>
+This document is aimed primarily at the people who need to install
+third-party Python modules: end-users and system administrators who just
+need to get some Python application running, and existing Python
+programmers who want to add some new goodies to their toolbox.  You
+don't need to know Python to read this document; there will be some
+brief forays into using Python's interactive mode to explore your
+installation, but that's it.  If you're looking for information on how
+to distribute your own Python modules so that others may use them, see
+the <em class="citetitle"><a
+ href="../dist/dist.html"
+ title="Distributing Python Modules"
+ >Distributing Python Modules</a></em> manual.
+
+<P>
+
+<H2><A NAME="SECTION000110000000000000000">&nbsp;</A>
+<BR>
+1.1 Best case: trivial installation
+</H2>
+
+<P>
+In the best case, someone will have prepared a special version of the
+module distribution you want to install that is targeted specifically at
+your platform and is installed just like any other software on your
+platform.  For example, the module developer might make an executable
+installer available for Windows users, an RPM package for users of
+RPM-based Linux systems (Red Hat, SuSE, Mandrake, and many others), a
+Debian package for users of Debian-based Linux systems (Debian proper,
+Caldera, Corel, etc.), and so forth.
+
+<P>
+In that case, you would download the installer appropriate to your
+platform and do the obvious thing with it: run it if it's an executable
+installer, <code>rpm -install</code> it if it's an RPM, etc.  You don't need
+to run Python or a setup script, you don't need to compile
+anything--you might not even need to read any instructions (although
+it's always a good idea to do so anyways).
+
+<P>
+Of course, things will not always be that easy.  You might be interested
+in a module distribution that doesn't have an easy-to-use installer for
+your platform.  In that case, you'll have to start with the source
+distribution released by the module's author/maintainer.  Installing
+from a source distribution is not too hard, as long as the modules are
+packaged in the standard way.  The bulk of this document is about
+building and installing modules from standard source distributions.
+
+<P>
+
+<H2><A NAME="SECTION000120000000000000000">&nbsp;</A>
+<BR>
+1.2 The new standard: Distutils
+</H2>
+
+<P>
+If you download a module source distribution, you can tell pretty
+quickly if it was packaged and distributed in the standard way, i.e.
+using the Distutils.  First, the distribution's name and version number
+will be featured prominently in the name of the downloaded archive, e.g.
+<span class="file">foo-1.0.tar.gz</span> or <span class="file">widget-0.9.7.zip</span>.  Next, the archive
+will unpack into a similarly-named directory: <span class="file">foo-1.0</span> or
+<span class="file">widget-0.9.7</span>.  Additionally, the distribution will contain a
+setup script <span class="file">setup.py</span>, and a <span class="file">README.txt</span> (or possibly
+<span class="file">README</span>), which should explain that building and installing the
+module distribution is a simple matter of running
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py install
+</pre></dl>
+
+<P>
+If all these things are true, then you already know how to build and
+install the modules you've just downloaded: run the command above.
+Unless you need to install things in a non-standard way or customize the
+build process, you don't really need this manual.  Or rather, the above
+command is everything you need to get out of this manual.
+
+<P>
+
+<H2><A NAME="SECTION000130000000000000000">&nbsp;</A>
+<BR>
+1.3 The old way: no standards
+</H2>
+
+<P>
+Before the Distutils, there was no infrastructure to support installing
+third-party modules in a consistent, standardized way.  Thus, it's not
+really possible to write a general manual for installing Python modules
+that don't use the Distutils; the only truly general statement that can
+be made is, ``Read the module's own installation instructions.''
+
+<P>
+However, if such instructions exist at all, they are often woefully
+inadequate and targeted at experienced Python developers.  Such users
+are already familiar with how the Python library is laid out on their
+platform, and know where to copy various files in order for Python to
+find them.  This document makes no such assumptions, and explains how
+the Python library is laid out on three major platforms (Unix, Windows,
+and Mac OS), so that you can understand what happens when the Distutils
+do their job <i>and</i> know how to install modules manually when the
+module author fails to provide a setup script.
+
+<P>
+Additionally, while there has not previously been a standard
+installation mechanism, Python has had some standard machinery for
+building extensions on Unix since Python 1.4.  This
+machinery (the <span class="file">Makefile.pre.in</span> file) is superseded by the
+Distutils, but it will no doubt live on in older module distributions
+for a while.  This <span class="file">Makefile.pre.in</span> mechanism is documented in
+the <em class="citetitle"><a
+ href="../ext/ext.html"
+ title="Extending &amp; Embedding Python"
+ >Extending &amp; Embedding Python</a></em> manual,
+but that manual is aimed at module developers--hence, we include
+documentation for builders/installers here.
+
+<P>
+All of the pre-Distutils material is tucked away in
+section&nbsp;<A HREF="#pre-distutils"><tex2html_cross_ref_visible_mark></A>.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="inst.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="inst.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="standard-install.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Installing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="inst.html">Installing Python Modules</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="inst.html">Installing Python Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="standard-install.html">2 Standard Build and</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

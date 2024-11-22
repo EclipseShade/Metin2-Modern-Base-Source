@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.8 gopherlib -- Gopher protocol client</title>
+<META NAME="description" CONTENT="11.8 gopherlib -- Gopher protocol client">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-poplib.html">
+<LINK REL="previous" href="module-ftplib.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="module-poplib.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="ftp-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-poplib.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="ftp-objects.html">11.7.1 FTP Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-poplib.html">11.9 poplib  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0013800000000000000000">
+11.8 <tt class="module">gopherlib</tt> --
+         Gopher protocol client</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name="l2h-2477">&nbsp;</a>
+<P>
+This module provides a minimal implementation of client side of the
+the Gopher protocol.  It is used by the module <tt class="module"><a href="module-urllib.html">urllib</a></tt> to
+handle URLs that use the Gopher protocol.
+
+<P>
+The module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-2475"><tt class="function">send_selector</tt></a></b>(<var>selector, host</var><big>[</big><var>, port</var><big>]</big>)
+<dd>
+Send a <var>selector</var> string to the gopher server at <var>host</var> and
+<var>port</var> (default <code>70</code>).  Returns an open file object from
+which the returned document can be read.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2476"><tt class="function">send_query</tt></a></b>(<var>selector, query, host</var><big>[</big><var>, port</var><big>]</big>)
+<dd>
+Send a <var>selector</var> string and a <var>query</var> string to a gopher
+server at <var>host</var> and <var>port</var> (default <code>70</code>).  Returns an
+open file object from which the returned document can be read.
+</dl>
+
+<P>
+Note that the data returned by the Gopher server can be of any type,
+depending on the first character of the selector string.  If the data
+is text (first character of the selector is "<tt class="samp">0</tt>"), lines are
+terminated by CRLF, and the data is terminated by a line consisting of
+a single "<tt class="samp">.</tt>", and a leading "<tt class="samp">.</tt>" should be stripped from
+lines that begin with "<tt class="samp">..</tt>".  Directory listings (first character
+of the selector is "<tt class="samp">1</tt>") are transferred using the same protocol.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="ftp-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-poplib.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="ftp-objects.html">11.7.1 FTP Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-poplib.html">11.9 poplib  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

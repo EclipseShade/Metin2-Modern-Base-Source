@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.6.2 Objects in the DOM </title>
+<META NAME="description" CONTENT="13.6.2 Objects in the DOM ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="dom-conformance.html">
+<LINK REL="previous" HREF="node437.html">
+<LINK REL="up" href="module-xml.dom.html">
+<LINK REL="next" href="dom-implementation-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node437.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.dom.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dom-implementation-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node437.html">13.6.1 Module Contents</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.dom.html">13.6 xml.dom  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dom-implementation-objects.html">13.6.2.1 DOMImplementation Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0015620000000000000000">&nbsp;</A>
+<BR>
+13.6.2 Objects in the DOM 
+</H2>
+
+<P>
+The definitive documentation for the DOM is the DOM specification from
+the W3C.
+
+<P>
+Note that DOM attributes may also be manipulated as nodes instead of
+as simple strings.  It is fairly rare that you must do this, however,
+so this usage is not yet documented.
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Interface</b>&nbsp;</th>
+      <th align="left"><b>Section</b>&nbsp;</th>
+      <th align="left"><b>Purpose</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><tt class="class">DOMImplementation</tt></td>
+        <td align="left"><A href="dom-implementation-objects.html#dom-implementation-objects">13.6.2</A></td>
+        <td align="left">Interface to the underlying implementation.</td>
+    <tr><td align="left" valign="baseline"><tt class="class">Node</tt></td>
+        <td align="left"><A href="dom-node-objects.html#dom-node-objects">13.6.2</A></td>
+        <td align="left">Base interface for most objects in a document.</td>
+    <tr><td align="left" valign="baseline"><tt class="class">NodeList</tt></td>
+        <td align="left"><A href="dom-nodelist-objects.html#dom-nodelist-objects">13.6.2</A></td>
+        <td align="left">Interface for a sequence of nodes.</td>
+    <tr><td align="left" valign="baseline"><tt class="class">DocumentType</tt></td>
+        <td align="left"><A href="dom-documenttype-objects.html#dom-documenttype-objects">13.6.2</A></td>
+        <td align="left">Information about the declarations needed to process a document.</td>
+    <tr><td align="left" valign="baseline"><tt class="class">Document</tt></td>
+        <td align="left"><A href="dom-document-objects.html#dom-document-objects">13.6.2</A></td>
+        <td align="left">Object which represents an entire document.</td>
+    <tr><td align="left" valign="baseline"><tt class="class">Element</tt></td>
+        <td align="left"><A href="dom-element-objects.html#dom-element-objects">13.6.2</A></td>
+        <td align="left">Element nodes in the document hierarchy.</td>
+    <tr><td align="left" valign="baseline"><tt class="class">Attr</tt></td>
+        <td align="left"><A href="dom-attr-objects.html#dom-attr-objects">13.6.2</A></td>
+        <td align="left">Attribute value nodes on element nodes.</td>
+    <tr><td align="left" valign="baseline"><tt class="class">Comment</tt></td>
+        <td align="left"><A href="dom-comment-objects.html#dom-comment-objects">13.6.2</A></td>
+        <td align="left">Representation of comments in the source document.</td>
+    <tr><td align="left" valign="baseline"><tt class="class">Text</tt></td>
+        <td align="left"><A href="dom-text-objects.html#dom-text-objects">13.6.2</A></td>
+        <td align="left">Nodes containing textual content from the document.</td>
+    <tr><td align="left" valign="baseline"><tt class="class">ProcessingInstruction</tt></td>
+        <td align="left"><A href="dom-pi-objects.html#dom-pi-objects">13.6.2</A></td>
+        <td align="left">Processing instruction representation.</td></tbody>
+</table>
+
+<P>
+An additional section describes the exceptions defined for working
+with the DOM in Python.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="dom-implementation-objects.html">13.6.2.1 DOMImplementation Objects</a>
+<LI><A href="dom-node-objects.html">13.6.2.2 Node Objects</a>
+<LI><A href="dom-nodelist-objects.html">13.6.2.3 NodeList Objects</a>
+<LI><A href="dom-documenttype-objects.html">13.6.2.4 DocumentType Objects</a>
+<LI><A href="dom-document-objects.html">13.6.2.5 Document Objects</a>
+<LI><A href="dom-element-objects.html">13.6.2.6 Element Objects</a>
+<LI><A href="dom-attr-objects.html">13.6.2.7 Attr Objects</a>
+<LI><A href="dom-attributelist-objects.html">13.6.2.8 NamedNodeMap Objects</a>
+<LI><A href="dom-comment-objects.html">13.6.2.9 Comment Objects</a>
+<LI><A href="dom-text-objects.html">13.6.2.10 Text and CDATASection Objects</a>
+<LI><A href="dom-pi-objects.html">13.6.2.11 ProcessingInstruction Objects</a>
+<LI><A href="dom-exceptions.html">13.6.2.12 Exceptions</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node437.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.dom.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dom-implementation-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node437.html">13.6.1 Module Contents</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.dom.html">13.6 xml.dom  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dom-implementation-objects.html">13.6.2.1 DOMImplementation Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

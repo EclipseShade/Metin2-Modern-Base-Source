@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>16.6 Other Graphical User Interface Packages </title>
+<META NAME="description" CONTENT="16.6 Other Graphical User Interface Packages ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="idle.html">
+<LINK REL="up" href="tkinter.html">
+<LINK REL="next" href="restricted.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node541.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="tkinter.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="restricted.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node541.html">16.5.3.1 Command line usage</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="tkinter.html">16. Graphical User Interfaces</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="restricted.html">17. Restricted Execution</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0018600000000000000000">&nbsp;</A>
+<BR>
+16.6 Other Graphical User Interface Packages
+         
+</H1>
+
+<P>
+There are an number of extension widget sets to <tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt>.
+
+<P>
+<div class="seealso-simple">
+  
+<dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://pmw.sourceforge.net/"
+        >Python megawidgets</a></em>
+    <dd>is a
+toolkit for building high-level compound widgets in Python using the
+<tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt> module.  It consists of a set of base classes and
+a library of flexible and extensible megawidgets built on this
+foundation. These megawidgets include notebooks, comboboxes, selection
+widgets, paned widgets, scrolled widgets, dialog windows, etc.  Also,
+with the Pmw.Blt interface to BLT, the busy, graph, stripchart, tabset
+and vector commands are be available.
+
+<P>
+The initial ideas for Pmw were taken from the Tk <code>itcl</code>
+extensions <code>[incr Tk]</code> by Michael McLennan and <code>[incr
+Widgets]</code> by Mark Ulferts. Several of the megawidgets are direct
+translations from the itcl to Python. It offers most of the range of
+widgets that <code>[incr Widgets]</code> does, and is almost as complete as
+Tix, lacking however Tix's fast <tt class="class">HList</tt> widget for drawing trees.
+
+  </dl>
+<dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://tkinter.effbot.org"
+        >Tkinter3000</a></em>
+    <dd>
+is a Widget Construction Kit that allows you to write new Tkinter
+widgets in Python using Mixins. It is built on top of Tkinter,
+and does not offer the extended range of widgets that <tt class="module"><a href="module-Tix.html">Tix</a></tt> does,
+but does allow a form of  building mega-widgets. The project is
+still in the early stages.
+
+  </dl>
+</div>
+
+<P>
+Tk is not the only GUI for Python, but is however the
+most commonly used one.
+
+<P>
+<div class="seealso-simple">
+  
+<dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.wxwindows.org"
+        >wxWindows</a></em>
+    <dd>
+is a GUI toolkit that combines the most attractive attributes of Qt,
+Tk, Motif, and GTK+ in one powerful and efficient package. It is
+implemented in C++. wxWindows supports two flavors of Unix
+implementation: GTK+ and Motif, and under Windows, it has a standard
+Microsoft Foundation Classes (MFC) appearance, because it uses Win32
+widgets.  There is a Python class wrapper, independent of Tkinter.
+
+<P>
+wxWindows is much richer in widgets than <tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt>, with its
+help system, sophisticated HTML and image viewers, and other
+specialized widgets, extensive documentation, and printing capabilities.
+
+  </dl>
+<dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.thekompany.com"
+        >PyKDE</a></em>
+    <dd>
+PyKDE is a SIP wrapped interface to the Qt toolkit.
+The Qt C++ toolkit lies at the heart of the KDE desktop, and the
+Qt toolkit allows very tight integration with KDE, and also Windows
+portability. SIP is a tool for generating bindings for C++ libraries
+as Python classes, and is specifically designed for Python.
+
+  </dl>
+<dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://fxpy.sourceforge.net/"
+        >FXPy</a></em>
+    <dd>
+is a Python extension module which provides an interface to the 
+<em class="citetitle"><a
+ href="http://www.cfdrc.com/FOX/fox.html"
+ title="FOX"
+ >FOX</a></em> GUI.
+FOX is a C++ based Toolkit for developing Graphical User Interfaces
+easily and effectively. It offers a wide, and growing, collection of
+Controls, and provides state of the art facilities such as drag and
+drop, selection, as well as OpenGL widgets for 3D graphical
+manipulation.  FOX also implements icons, images, and user-convenience
+features such as status line help, and tooltips.  
+
+<P>
+Even though FOX offers a large collection of controls already, FOX
+leverages C++ to allow programmers to easily build additional Controls
+and GUI elements, simply by taking existing controls, and creating a
+derived class which simply adds or redefines the desired behavior.
+
+  </dl>
+<dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.daa.com.au/james/pygtk/"
+        >PyGTK</a></em>
+    <dd>
+is a set of bindings for the <a class="ulink" href="http://www.gtk.org/"
+  >GTK</a> widget set.
+It provides an object oriented interface that is slightly higher
+level than the C one. It automatically does all the type casting and
+reference counting that you would have to do normally with the C
+API. There are also <a class="ulink" href="http://www.daa.com.au/james/gnome/"
+  >bindings</a>
+to  <a class="ulink" href="http://www.gnome.org"
+  >GNOME</a>, and a 
+<a class="ulink" href="http://laguna.fmedic.unam.mx/daniel/pygtutorial/pygtutorial/index.html"
+  >tutorial</a>
+is available.
+
+  </dl>
+</div>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node541.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="tkinter.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="restricted.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node541.html">16.5.3.1 Command line usage</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="tkinter.html">16. Graphical User Interfaces</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="restricted.html">17. Restricted Execution</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

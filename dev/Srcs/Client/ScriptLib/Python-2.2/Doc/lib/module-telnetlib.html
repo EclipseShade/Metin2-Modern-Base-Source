@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.13 telnetlib -- Telnet client</title>
+<META NAME="description" CONTENT="11.13 telnetlib -- Telnet client">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-urlparse.html">
+<LINK REL="previous" href="module-smtplib.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="telnet-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="SMTP-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="telnet-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="SMTP-example.html">11.12.2 SMTP Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="telnet-objects.html">11.13.1 Telnet Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00131300000000000000000">
+11.13 <tt class="module">telnetlib</tt> --
+         Telnet client</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name="l2h-2598">&nbsp;</a>
+<P>
+The <tt class="module">telnetlib</tt> module provides a <tt class="class">Telnet</tt> class that
+implements the Telnet protocol.  See <a class="rfc" name="rfcref-63439"
+href="http://www.faqs.org/rfcs/rfc854.html">RFC 854</a> for details about the
+protocol. In addition, it provides symbolic constants for the protocol
+characters (IAC/DONT/DO/WONT/WILL), and for the telnet options. The
+symbolic names of the telnet options follow the definitions in
+<code>arpa/telnet.h</code>, with the leading <code>TELOPT_</code> removed. For
+symbolic names of options which are traditionally not included in
+<code>arpa/telnet.h</code>, see the module source itself.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2597"><tt class="class">Telnet</tt></a></b>(<big>[</big><var>host</var><big>[</big><var>, port</var><big>]</big><big>]</big>)
+<dd>
+<tt class="class">Telnet</tt> represents a connection to a Telnet server. The
+instance is initially not connected by default; the <tt class="method">open()</tt>
+method must be used to establish a connection.  Alternatively, the
+host name and optional port number can be passed to the constructor,
+to, in which case the connection to the server will be established
+before the constructor returns.
+
+<P>
+Do not reopen an already connected instance.
+
+<P>
+This class has many <tt class="method">read_*()</tt> methods.  Note that some of them 
+raise <tt class="exception">EOFError</tt> when the end of the connection is read,
+because they can return an empty string for other reasons.  See the
+individual descriptions below.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seerfc">
+    <dt><a href="http://www.faqs.org/rfcs/rfc854.html"
+        title="Telnet Protocol Specification"
+        >RFC 854, <em>Telnet Protocol Specification</em></a>
+    <dd>
+          Definition of the Telnet protocol.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="telnet-objects.html">11.13.1 Telnet Objects</a>
+<LI><A href="telnet-example.html">11.13.2 Telnet Example</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="SMTP-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="telnet-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="SMTP-example.html">11.12.2 SMTP Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="telnet-objects.html">11.13.1 Telnet Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.14 posixfile -- File-like objects with locking support</title>
+<META NAME="description" CONTENT="8.14 posixfile -- File-like objects with locking support">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-resource.html">
+<LINK REL="previous" href="module-pipes.html">
+<LINK REL="up" href="unix.html">
+<LINK REL="next" href="module-resource.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="template-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-resource.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="template-objects.html">8.13.1 Template Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-resource.html">8.15 resource  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00101400000000000000000">
+8.14 <tt class="module">posixfile</tt> --
+         File-like objects with locking support</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Unix</span>.</p>
+
+<P>
+<a name="l2h-2206">&nbsp;</a>
+<P>
+<div class="versionnote"><b>Deprecated since release 1.5.</b>
+The locking operation that this module provides is
+done better and more portably by the
+<tt class="function"><tt class="module"><a href="module-fcntl.html">fcntl</a></tt>.lockf()</tt> call.
+<a name="l2h-2193">&nbsp;</a></div><p>
+
+<P>
+This module implements some additional functionality over the built-in
+file objects.  In particular, it implements file locking, control over
+the file flags, and an easy interface to duplicate the file object.
+The module defines a new file object, the posixfile object.  It
+has all the standard file object methods and adds the methods
+described below.  This module only works for certain flavors of
+Unix, since it uses <tt class="function">fcntl.fcntl()</tt> for file locking.<a name="l2h-2195">&nbsp;</a>
+<P>
+To instantiate a posixfile object, use the <tt class="function">open()</tt> function
+in the <tt class="module">posixfile</tt> module.  The resulting object looks and
+feels roughly the same as a standard file object.
+
+<P>
+The <tt class="module">posixfile</tt> module defines the following constants:
+
+<P>
+<dl><dt><b><a name="l2h-2196"><tt>SEEK_SET</tt></a></b>
+<dd>
+Offset is calculated from the start of the file.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2197"><tt>SEEK_CUR</tt></a></b>
+<dd>
+Offset is calculated from the current position in the file.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2198"><tt>SEEK_END</tt></a></b>
+<dd>
+Offset is calculated from the end of the file.
+</dl>
+
+<P>
+The <tt class="module">posixfile</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-2199"><tt class="function">open</tt></a></b>(<var>filename</var><big>[</big><var>, mode</var><big>[</big><var>, bufsize</var><big>]</big><big>]</big>)
+<dd>
+ Create a new posixfile object with the given filename and mode.  The
+ <var>filename</var>, <var>mode</var> and <var>bufsize</var> arguments are
+ interpreted the same way as by the built-in <tt class="function">open()</tt>
+ function.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2200"><tt class="function">fileopen</tt></a></b>(<var>fileobject</var>)
+<dd>
+ Create a new posixfile object with the given standard file object.
+ The resulting object has the same filename and mode as the original
+ file object.
+</dl>
+
+<P>
+The posixfile object defines the following additional methods:
+
+<P>
+
+<dl><dt><b><a name="l2h-2201"><tt class="function">lock</tt></a></b>(<var>fmt, </var><big>[</big><var>len</var><big>[</big><var>, start</var><big>[</big><var>, whence</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+ Lock the specified section of the file that the file object is
+ referring to.  The format is explained
+ below in a table.  The <var>len</var> argument specifies the length of the
+ section that should be locked. The default is <code>0</code>. <var>start</var>
+ specifies the starting offset of the section, where the default is
+ <code>0</code>.  The <var>whence</var> argument specifies where the offset is
+ relative to. It accepts one of the constants <tt class="constant">SEEK_SET</tt>,
+ <tt class="constant">SEEK_CUR</tt> or <tt class="constant">SEEK_END</tt>.  The default is
+ <tt class="constant">SEEK_SET</tt>.  For more information about the arguments refer
+ to the <span class="manpage"><i>fcntl</i>(2)</span> manual page on your system.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2202"><tt class="function">flags</tt></a></b>(<big>[</big><var>flags</var><big>]</big>)
+<dd>
+ Set the specified flags for the file that the file object is referring
+ to.  The new flags are ORed with the old flags, unless specified
+ otherwise.  The format is explained below in a table.  Without
+ the <var>flags</var> argument
+ a string indicating the current flags is returned (this is
+ the same as the "<tt class="samp">?</tt>" modifier).  For more information about the
+ flags refer to the <span class="manpage"><i>fcntl</i>(2)</span> manual page on your system.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2203"><tt class="function">dup</tt></a></b>()
+<dd>
+ Duplicate the file object and the underlying file pointer and file
+ descriptor.  The resulting object behaves as if it were newly
+ opened.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2204"><tt class="function">dup2</tt></a></b>(<var>fd</var>)
+<dd>
+ Duplicate the file object and the underlying file pointer and file
+ descriptor.  The new object will have the given file descriptor.
+ Otherwise the resulting object behaves as if it were newly opened.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2205"><tt class="function">file</tt></a></b>()
+<dd>
+ Return the standard file object that the posixfile object is based
+ on.  This is sometimes necessary for functions that insist on a
+ standard file object.
+</dl>
+
+<P>
+All methods raise <tt class="exception">IOError</tt> when the request fails.
+
+<P>
+Format characters for the <tt class="method">lock()</tt> method have the following
+meaning:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Format</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><samp>u</samp></td>
+        <td align="left">unlock the specified region</td>
+    <tr><td align="center" valign="baseline"><samp>r</samp></td>
+        <td align="left">request a read lock for the specified section</td>
+    <tr><td align="center" valign="baseline"><samp>w</samp></td>
+        <td align="left">request a write lock for the specified section</td></tbody>
+</table>
+
+<P>
+In addition the following modifiers can be added to the format:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Modifier</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><samp>|</samp></td>
+        <td align="left">wait until the lock has been granted</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><samp>?</samp></td>
+        <td align="left">return the first lock conflicting with the requested lock, or
+              <code>None</code> if there is no conflict.</td>
+        <td align="center">(1)</td></tbody>
+</table>
+
+<P>
+Note:
+
+<P>
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>The lock returned is in the format <code>(<var>mode</var>, <var>len</var>,
+<var>start</var>, <var>whence</var>, <var>pid</var>)</code> where <var>mode</var> is a character
+representing the type of lock ('r' or 'w').  This modifier prevents a
+request from being granted; it is for query purposes only.
+</DD>
+</DL>
+
+<P>
+Format characters for the <tt class="method">flags()</tt> method have the following
+meanings:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Format</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><samp>a</samp></td>
+        <td align="left">append only flag</td>
+    <tr><td align="center" valign="baseline"><samp>c</samp></td>
+        <td align="left">close on exec flag</td>
+    <tr><td align="center" valign="baseline"><samp>n</samp></td>
+        <td align="left">no delay flag (also called non-blocking flag)</td>
+    <tr><td align="center" valign="baseline"><samp>s</samp></td>
+        <td align="left">synchronization flag</td></tbody>
+</table>
+
+<P>
+In addition the following modifiers can be added to the format:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Modifier</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><samp>!</samp></td>
+        <td align="left">turn the specified flags 'off', instead of the default 'on'</td>
+        <td align="center">(1)</td>
+    <tr><td align="center" valign="baseline"><samp>=</samp></td>
+        <td align="left">replace the flags, instead of the default 'OR' operation</td>
+        <td align="center">(1)</td>
+    <tr><td align="center" valign="baseline"><samp>?</samp></td>
+        <td align="left">return a string in which the characters represent the flags that
+  are set.</td>
+        <td align="center">(2)</td></tbody>
+</table>
+
+<P>
+Notes:
+
+<P>
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>The "<tt class="samp">!</tt>" and "<tt class="samp">=</tt>" modifiers are mutually exclusive.
+
+<P>
+</DD>
+<DT><STRONG>(2)</STRONG></DT>
+<DD>This string represents the flags after they may have been altered
+by the same call.
+</DD>
+</DL>
+
+<P>
+Examples:
+
+<P>
+<dl><dd><pre class="verbatim">
+import posixfile
+
+file = posixfile.open('/tmp/test', 'w')
+file.lock('w|')
+...
+file.lock('u')
+file.close()
+</pre></dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="template-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-resource.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="template-objects.html">8.13.1 Template Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-resource.html">8.15 resource  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6. Generic Operating System Services </title>
+<META NAME="description" CONTENT="6. Generic Operating System Services ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="someos.html">
+<LINK REL="previous" href="misc.html">
+<LINK REL="up" HREF="lib.html">
+<LINK REL="next" href="module-os.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="shlex-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-os.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="shlex-objects.html">5.15.1 shlex Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-os.html">6.1 os  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008000000000000000000">&nbsp;</A>
+<BR>
+6. Generic Operating System Services 
+</H1>
+
+<P>
+The modules described in this chapter provide interfaces to operating
+system features that are available on (almost) all operating systems,
+such as files and a clock.  The interfaces are generally modeled
+after the Unix or C interfaces, but they are available on most
+other systems as well.  Here's an overview:
+
+<P>
+<table class='synopsistable' valign='baseline'>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-os.html'>os</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Miscellaneous operating system interfaces.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-os.path.html'>os.path</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Common pathname manipulations.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-dircache.html'>dircache</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Return directory listing, with cache mechanism.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-stat.html'>stat</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Utilities for interpreting the results of
+  <tt class="function">os.stat()</tt>, <tt class="function">os.lstat()</tt> and <tt class="function">os.fstat()</tt>.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-statcache.html'>statcache</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Stat files, and remember results.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-statvfs.html'>statvfs</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Constants for interpreting the result of
+                <tt class="function">os.statvfs()</tt>.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-filecmp.html'>filecmp</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Compare files efficiently.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-popen2.html'>popen2</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Subprocesses with accessible standard I/O streams.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-time.html'>time</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Time access and conversions.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-sched.html'>sched</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>General purpose event scheduler.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-mutex.html'>mutex</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Lock and queue for mutual exclusion.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-getpass.html'>getpass</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Portable reading of passwords and retrieval of the userid.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-curses.html'>curses</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>An interface to the curses library, providing portable
+                terminal handling.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-curses.textpad.html'>curses.textpad</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Emacs-like input editing in a curses window.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-curses.wrapper.html'>curses.wrapper</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Terminal configuration wrapper for curses programs.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-curses.ascii.html'>curses.ascii</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Constants and set-membership functions for
+                ASCII characters.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-curses.panel.html'>curses.panel</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>A panel stack extension that adds depth to 
+                curses windows.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-getopt.html'>getopt</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Portable parser for command line options; support both
+                short and long option names.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-tempfile.html'>tempfile</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Generate temporary file names.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-errno.html'>errno</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Standard errno system symbols.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-glob.html'>glob</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Unix shell style pathname pattern expansion.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-fnmatch.html'>fnmatch</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Unix shell style filename pattern matching.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-shutil.html'>shutil</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>High-level file operations, including copying.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-locale.html'>locale</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Internationalization services.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-gettext.html'>gettext</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Multilingual internationalization services.</td></tr>
+</table>
+
+<BR>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="shlex-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-os.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="shlex-objects.html">5.15.1 shlex Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-os.html">6.1 os  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

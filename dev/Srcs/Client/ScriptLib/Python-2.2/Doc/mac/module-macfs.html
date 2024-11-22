@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.4 macfs -- Various file system services</title>
+<META NAME="description" CONTENT="2.4 macfs -- Various file system services">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-ic.html">
+<LINK REL="previous" href="module-ctb.html">
+<LINK REL="up" href="macpython-modules.html">
+<LINK REL="next" href="fsspec-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="connection-object.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="fsspec-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="connection-object.html">2.3.1 Connection Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="fsspec-objects.html">2.4.1 FSSpec objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION004400000000000000000">
+2.4 <tt class="module">macfs</tt> --
+         Various file system services</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Macintosh</span>.</p>
+
+<P>
+This module provides access to Macintosh FSSpec handling, the Alias
+Manager, <b class="program">finder</b> aliases and the Standard File package.
+<a name="l2h-46">&nbsp;</a>
+<P>
+Whenever a function or method expects a <var>file</var> argument, this
+argument can be one of three things: (1) a full or partial Macintosh
+pathname, (2) an FSSpec object or (3) a 3-tuple
+<code>(<var>wdRefNum</var>, <var>parID</var>, <var>name</var>)</code> as described in
+<em class="citetitle"
+ >Inside Macintosh: Files</em>. A description of aliases and the
+Standard File package can also be found there.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+A module, <tt class="module"><a href="module-macfsn.html">macfsn</a></tt>, is auto-imported to replace
+StandardFile calls in <tt class="module">macfs</tt> with NavServices calls.</span>
+
+<P>
+<dl><dt><b><a name="l2h-33"><tt class="function">FSSpec</tt></a></b>(<var>file</var>)
+<dd>
+Create an FSSpec object for the specified file.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-34"><tt class="function">RawFSSpec</tt></a></b>(<var>data</var>)
+<dd>
+Create an FSSpec object given the raw data for the C
+structure for the FSSpec as a string.  This is mainly useful
+if you have obtained an FSSpec structure over a network.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-35"><tt class="function">RawAlias</tt></a></b>(<var>data</var>)
+<dd>
+Create an Alias object given the raw data for the C
+structure for the alias as a string.  This is mainly useful if you
+have obtained an FSSpec structure over a network.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-36"><tt class="function">FInfo</tt></a></b>()
+<dd>
+Create a zero-filled FInfo object.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-37"><tt class="function">ResolveAliasFile</tt></a></b>(<var>file</var>)
+<dd>
+Resolve an alias file. Returns a 3-tuple <code>(<var>fsspec</var>,
+<var>isfolder</var>, <var>aliased</var>)</code> where <var>fsspec</var> is the resulting
+FSSpec object, <var>isfolder</var> is true if <var>fsspec</var> points
+to a folder and <var>aliased</var> is true if the file was an alias in the
+first place (otherwise the FSSpec object for the file itself
+is returned).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-38"><tt class="function">StandardGetFile</tt></a></b>(<big>[</big><var>type, ...</var><big>]</big>)
+<dd>
+Present the user with a standard ``open input file''
+dialog. Optionally, you can pass up to four 4-character file types to limit
+the files the user can choose from. The function returns an FSSpec
+object and a flag indicating that the user completed the dialog
+without cancelling.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-39"><tt class="function">PromptGetFile</tt></a></b>(<var>prompt</var><big>[</big><var>, type, ...</var><big>]</big>)
+<dd>
+Similar to <tt class="function">StandardGetFile()</tt> but allows you to specify a
+prompt which will be displayed at the top of the dialog.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-40"><tt class="function">StandardPutFile</tt></a></b>(<var>prompt</var><big>[</big><var>, default</var><big>]</big>)
+<dd>
+Present the user with a standard ``open output file''
+dialog. <var>prompt</var> is the prompt string, and the optional
+<var>default</var> argument initializes the output file name. The function
+returns an FSSpec object and a flag indicating that the user
+completed the dialog without cancelling.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-41"><tt class="function">GetDirectory</tt></a></b>(<big>[</big><var>prompt</var><big>]</big>)
+<dd>
+Present the user with a non-standard ``select a directory'' dialog.  You
+have to first open the directory before clicking on the ``select current
+directory'' button. <var>prompt</var> is the prompt string which will be
+displayed at the top of the dialog. Return an FSSpec object and
+a success-indicator.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-42"><tt class="function">SetFolder</tt></a></b>(<big>[</big><var>fsspec</var><big>]</big>)
+<dd>
+Set the folder that is initially presented to the user when one of
+the file selection dialogs is presented. <var>fsspec</var> should point to
+a file in the folder, not the folder itself (the file need not exist,
+though). If no argument is passed the folder will be set to the
+current directory, i.e. what <tt class="function">os.getcwd()</tt> returns.
+
+<P>
+Note that starting with system 7.5 the user can change Standard File
+behaviour with the ``general controls'' control panel, thereby making
+this call inoperative.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-43"><tt class="function">FindFolder</tt></a></b>(<var>where, which, create</var>)
+<dd>
+Locates one of the ``special'' folders that MacOS knows about, such as
+the trash or the Preferences folder. <var>where</var> is the disk to
+search, <var>which</var> is the 4-character string specifying which folder to
+locate. Setting <var>create</var> causes the folder to be created if it
+does not exist. Returns a <code>(<var>vrefnum</var>, <var>dirid</var>)</code> tuple.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-44"><tt class="function">NewAliasMinimalFromFullPath</tt></a></b>(<var>pathname</var>)
+<dd>
+Return a minimal alias object that points to the given file, which
+must be specified as a full pathname. This is the only way to create an
+Alias pointing to a non-existing file.
+
+<P>
+The constants for <var>where</var> and <var>which</var> can be obtained from the
+standard module <var>MACFS</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-45"><tt class="function">FindApplication</tt></a></b>(<var>creator</var>)
+<dd>
+Locate the application with 4-character creator code <var>creator</var>. The
+function returns an FSSpec object pointing to the application.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="fsspec-objects.html">2.4.1 FSSpec objects</a>
+<LI><A href="alias-objects.html">2.4.2 Alias Objects</a>
+<LI><A href="finfo-objects.html">2.4.3 FInfo Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="connection-object.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="fsspec-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="connection-object.html">2.3.1 Connection Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="fsspec-objects.html">2.4.1 FSSpec objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

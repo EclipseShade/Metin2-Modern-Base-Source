@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.6.1 Module Contents</title>
+<META NAME="description" CONTENT="13.6.1 Module Contents">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node438.html">
+<LINK REL="previous" href="module-xml.dom.html">
+<LINK REL="up" href="module-xml.dom.html">
+<LINK REL="next" HREF="node438.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-xml.dom.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.dom.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node438.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-xml.dom.html">13.6 xml.dom  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.dom.html">13.6 xml.dom  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node438.html">13.6.2 Objects in the</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0015610000000000000000">
+13.6.1 Module Contents</A>
+</H2>
+
+<P>
+The <tt class="module">xml.dom</tt> contains the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-3201"><tt class="function">registerDOMImplementation</tt></a></b>(<var>name, factory</var>)
+<dd>
+Register the <var>factory</var> function with the name <var>name</var>.  The
+factory function should return an object which implements the
+<tt class="class">DOMImplementation</tt> interface.  The factory function can return
+the same object every time, or a new one for each call, as appropriate
+for the specific implementation (e.g. if that implementation supports
+some customization).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3202"><tt class="function">getDOMImplementation</tt></a></b>(<big>[</big><var>name</var><big>[</big><var>, features</var><big>]</big><big>]</big>)
+<dd>
+Return a suitable DOM implementation. The <var>name</var> is either
+well-known, the module name of a DOM implementation, or
+<code>None</code>. If it is not <code>None</code>, imports the corresponding
+module and returns a <tt class="class">DOMImplementation</tt> object if the import
+succeeds.  If no name is given, and if the environment variable
+<a class="envvar" name="l2h-3207">PYTHON_DOM</a> is set, this variable is used to find the
+implementation.
+
+<P>
+If name is not given, this examines the available implementations to
+find one with the required feature set.  If no implementation can be
+found, raise an <tt class="exception">ImportError</tt>.  The features list must be a
+sequence of <code>(<var>feature</var>, <var>version</var>)</code> pairs which are
+passed to the <tt class="method">hasFeature()</tt> method on available
+<tt class="class">DOMImplementation</tt> objects.
+</dl>
+
+<P>
+Some convenience constants are also provided:
+
+<P>
+<dl><dt><b><a name="l2h-3203"><tt>EMPTY_NAMESPACE</tt></a></b>
+<dd>
+  The value used to indicate that no namespace is associated with a
+  node in the DOM.  This is typically found as the
+  <tt class="member">namespaceURI</tt> of a node, or used as the <var>namespaceURI</var>
+  parameter to a namespaces-specific method.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3204"><tt>XML_NAMESPACE</tt></a></b>
+<dd>
+  The namespace URI associated with the reserved prefix <code>xml</code>, as
+  defined by
+  <em class="citetitle"><a
+ href="http://www.w3.org/TR/REC-xml-names/"
+ title="Namespaces in XML"
+ >Namespaces in XML</a></em>
+  (section&nbsp;4).
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3205"><tt>XMLNS_NAMESPACE</tt></a></b>
+<dd>
+  The namespace URI for namespace declarations, as defined by
+  <em class="citetitle"><a
+ href="http://www.w3.org/TR/DOM-Level-2-Core/core.html"
+ title="Document
+  Object Model (DOM) Level 2 Core Specification"
+ >Document
+  Object Model (DOM) Level 2 Core Specification</a></em> (section&nbsp;1.1.8).
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3206"><tt>XHTML_NAMESPACE</tt></a></b>
+<dd>
+  The URI of the XHTML namespace as defined by
+  <em class="citetitle"><a
+ href="http://www.w3.org/TR/xhtml1/"
+ title="XHTML 1.0: The Extensible
+  HyperText Markup Language"
+ >XHTML 1.0: The Extensible
+  HyperText Markup Language</a></em> (section&nbsp;3.1.1).
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+In addition, <tt class="module">xml.dom</tt> contains a base <tt class="class">Node</tt> class and
+the DOM exception classes.  The <tt class="class">Node</tt> class provided by this
+module does not implement any of the methods or attributes defined by
+the DOM specification; concrete DOM implementations must provide
+those.  The <tt class="class">Node</tt> class provided as part of this module does
+provide the constants used for the <tt class="member">nodeType</tt> attribute on
+concrete <tt class="class">Node</tt> objects; they are located within the class
+rather than at the module level to conform with the DOM
+specifications.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-xml.dom.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.dom.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node438.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-xml.dom.html">13.6 xml.dom  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.dom.html">13.6 xml.dom  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node438.html">13.6.2 Objects in the</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

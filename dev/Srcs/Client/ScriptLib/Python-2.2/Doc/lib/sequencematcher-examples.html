@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.4.2 SequenceMatcher Examples </title>
+<META NAME="description" CONTENT="4.4.2 SequenceMatcher Examples ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="differ-objects.html">
+<LINK REL="previous" href="sequence-matcher.html">
+<LINK REL="up" href="module-difflib.html">
+<LINK REL="next" href="differ-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="sequence-matcher.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-difflib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="differ-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="sequence-matcher.html">4.4.1 SequenceMatcher Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-difflib.html">4.4 difflib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="differ-objects.html">4.4.3 Differ Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION006420000000000000000">&nbsp;</A>
+<BR>
+4.4.2 SequenceMatcher Examples 
+</H2>
+
+<P>
+This example compares two strings, considering blanks to be ``junk:''
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; s = SequenceMatcher(lambda x: x == " ",
+...                     "private Thread currentThread;",
+...                     "private volatile Thread currentThread;")
+</pre></dl>
+
+<P>
+<tt class="method">ratio()</tt> returns a float in [0, 1], measuring the similarity
+of the sequences.  As a rule of thumb, a <tt class="method">ratio()</tt> value over
+0.6 means the sequences are close matches:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; print round(s.ratio(), 3)
+0.866
+</pre></dl>
+
+<P>
+If you're only interested in where the sequences match,
+<tt class="method">get_matching_blocks()</tt> is handy:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; for block in s.get_matching_blocks():
+...     print "a[%d] and b[%d] match for %d elements" % block
+a[0] and b[0] match for 8 elements
+a[8] and b[17] match for 6 elements
+a[14] and b[23] match for 15 elements
+a[29] and b[38] match for 0 elements
+</pre></dl>
+
+<P>
+Note that the last tuple returned by <tt class="method">get_matching_blocks()</tt> is
+always a dummy, <code>(len(<var>a</var>), len(<var>b</var>), 0)</code>, and this is
+the only case in which the last tuple element (number of elements
+matched) is <code>0</code>.
+
+<P>
+If you want to know how to change the first sequence into the second,
+use <tt class="method">get_opcodes()</tt>:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; for opcode in s.get_opcodes():
+...     print "%6s a[%d:%d] b[%d:%d]" % opcode
+ equal a[0:8] b[0:8]
+insert a[8:8] b[8:17]
+ equal a[8:14] b[17:23]
+ equal a[14:29] b[23:38]
+</pre></dl>
+
+<P>
+See also the function <tt class="function">get_close_matches()</tt> in this module,
+which shows how simple code building on <tt class="class">SequenceMatcher</tt> can be
+used to do useful work.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="sequence-matcher.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-difflib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="differ-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="sequence-matcher.html">4.4.1 SequenceMatcher Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-difflib.html">4.4 difflib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="differ-objects.html">4.4.3 Differ Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

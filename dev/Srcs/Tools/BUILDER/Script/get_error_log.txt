@@ -1,0 +1,4 @@
+option batch on
+option confirm off
+get ERROR_LOG.txt
+exit

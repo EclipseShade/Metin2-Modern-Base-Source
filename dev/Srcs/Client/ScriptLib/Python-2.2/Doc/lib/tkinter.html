@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>16. Graphical User Interfaces with Tk </title>
+<META NAME="description" CONTENT="16. Graphical User Interfaces with Tk ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="restricted.html">
+<LINK REL="previous" href="crypto.html">
+<LINK REL="up" HREF="lib.html">
+<LINK REL="next" href="module-Tkinter.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-rotor.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-Tkinter.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-rotor.html">15.5 rotor  </A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-Tkinter.html">16.1 Tkinter  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0018000000000000000000">&nbsp;</A>
+<BR>
+16. Graphical User Interfaces with Tk 
+</H1>
+
+<P>
+<a name="l2h-3664">&nbsp;</a>
+<P>
+Tk/Tcl has long been an integral part of Python.  It provides a robust
+and platform independent windowing toolkit, that is available to
+Python programmers using the <tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt> module, and its
+extension, the <tt class="module"><a href="module-Tix.html">Tix</a></tt> module.
+
+<P>
+The <tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt> module is a thin object-oriented layer on top of
+Tcl/Tk. To use <tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt>, you don't need to write Tcl code,
+but you will need to consult the Tk documentation, and occasionally
+the Tcl documentation.  <tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt> is a set of wrappers that
+implement the Tk widgets as Python classes.  In addition, the internal
+module <tt class="module">_tkinter</tt> provides a threadsafe mechanism which allows
+Python and Tcl to interact.
+
+<P>
+Tk is not the only GUI for Python, but is however the most commonly
+used one; see section&nbsp;<A HREF="#other-gui-modules"><tex2html_cross_ref_visible_mark></A>, ``Other User Interface
+Modules and Packages,'' for more information on other GUI toolkits for
+Python.
+
+<P>
+<table class='synopsistable' valign='baseline'>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-Tkinter.html'>Tkinter</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to Tcl/Tk for graphical user interfaces</td></tr>
+  <tr><td><b><tt class='module'><a href='module-Tix.html'>Tix</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Tk Extension Widgets for Tkinter</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-ScrolledText.html'>ScrolledText</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Text widget with a vertical scroll bar.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-turtle.html'>turtle</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>An environment for turtle graphics.</td></tr>
+</table>
+
+<BR>
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-rotor.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-Tkinter.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-rotor.html">15.5 rotor  </A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-Tkinter.html">16.1 Tkinter  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

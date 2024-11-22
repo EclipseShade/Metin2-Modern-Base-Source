@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.14.1 Cmd Objects</title>
+<META NAME="description" CONTENT="5.14.1 Cmd Objects">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-cmd.html">
+<LINK REL="up" href="module-cmd.html">
+<LINK REL="next" href="module-shlex.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-cmd.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-cmd.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-shlex.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-cmd.html">5.14 cmd  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-cmd.html">5.14 cmd  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-shlex.html">5.15 shlex  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0071410000000000000000">&nbsp;</A>
+<BR>
+5.14.1 Cmd Objects
+</H2>
+
+<P>
+A <tt class="class">Cmd</tt> instance has the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-1049"><tt class="method">cmdloop</tt></a></b>(<big>[</big><var>intro</var><big>]</big>)
+<dd>
+Repeatedly issue a prompt, accept input, parse an initial prefix off
+the received input, and dispatch to action methods, passing them the
+remainder of the line as argument.
+
+<P>
+The optional argument is a banner or intro string to be issued before the
+first prompt (this overrides the <tt class="member">intro</tt> class member).
+
+<P>
+If the <tt class="module">readline</tt> module is loaded, input will automatically
+inherit <b class="program">bash</b>-like history-list editing (e.g. <kbd>Control-P</kbd>
+scrolls back to the last command, <kbd>Control-N</kbd> forward to the next
+one, <kbd>Control-F</kbd> moves the cursor to the right non-destructively,
+<kbd>Control-B</kbd> moves the cursor to the left non-destructively, etc.).
+
+<P>
+An end-of-file on input is passed back as the string <code>'EOF'</code>.
+
+<P>
+An interpreter instance will recognize a command name "<tt class="samp">foo</tt>" if
+and only if it has a method <tt class="method">do_foo()</tt>.  As a special case,
+a line beginning with the character "<tt class="character">?</tt>" is dispatched to
+the method <tt class="method">do_help()</tt>.  As another special case, a line
+beginning with the character "<tt class="character">!</tt>" is dispatched to the
+method <tt class="method">do_shell()</tt> (if such a method is defined).
+
+<P>
+If completion is enabled, completing commands will be done
+automatically, and completing of commands args is done by calling
+<tt class="method">complete_foo()</tt> with arguments <var>text</var>, <var>line</var>,
+<var>begidx</var>, and <var>endidx</var>.  <var>text</var> is the string prefix we
+are attempting to match: all returned matches must begin with it.
+<var>line</var> is the current input line with leading whitespace removed,
+<var>begidx</var> and <var>endidx</var> are the beginning and ending indexes
+of the prefix text, which could be used to provide different
+completion depending upon which position the argument is in.
+
+<P>
+All subclasses of <tt class="class">Cmd</tt> inherit a predefined <tt class="method">do_help()</tt>.
+This method, called with an argument <code>'bar'</code>, invokes the
+corresponding method <tt class="method">help_bar()</tt>.  With no argument,
+<tt class="method">do_help()</tt> lists all available help topics (that is, all
+commands with corresponding <tt class="method">help_*()</tt> methods), and also lists
+any undocumented commands.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1050"><tt class="method">onecmd</tt></a></b>(<var>str</var>)
+<dd>
+Interpret the argument as though it had been typed in in
+response to the prompt.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1051"><tt class="method">emptyline</tt></a></b>()
+<dd>
+Method called when an empty line is entered in response to the prompt.
+If this method is not overridden, it repeats the last nonempty command
+entered.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1052"><tt class="method">default</tt></a></b>(<var>line</var>)
+<dd>
+Method called on an input line when the command prefix is not
+recognized. If this method is not overridden, it prints an
+error message and returns.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1053"><tt class="method">completedefault</tt></a></b>(<var>text, line, begidx, endidx</var>)
+<dd>
+Method called to complete an input line when no command-specific
+<tt class="method">complete_*()</tt> method is available.  By default, it returns an
+empty list.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1054"><tt class="method">precmd</tt></a></b>()
+<dd>
+Hook method executed just before the command line is interpreted, but
+after the input prompt is generated and issued.  This
+method is a stub in <tt class="class">Cmd</tt>; it exists to be overridden by
+subclasses.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1055"><tt class="method">postcmd</tt></a></b>()
+<dd>
+Hook method executed just after a command dispatch is finished.  This
+method is a stub in <tt class="class">Cmd</tt>; it exists to be overridden by
+subclasses.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1056"><tt class="method">preloop</tt></a></b>()
+<dd>
+Hook method executed once when <tt class="method">cmdloop()</tt> is called.  This
+method is a stub in <tt class="class">Cmd</tt>; it exists to be overridden by
+subclasses.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1057"><tt class="method">postloop</tt></a></b>()
+<dd>
+Hook method executed once when <tt class="method">cmdloop()</tt> is about to return.
+This method is a stub in <tt class="class">Cmd</tt>; it exists to be overridden by
+subclasses.
+</dl>
+
+<P>
+Instances of <tt class="class">Cmd</tt> subclasses have some public instance variables:
+
+<P>
+<dl><dt><b><a name="l2h-1058"><tt class="member">prompt</tt></a></b>
+<dd>
+The prompt issued to solicit input.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1059"><tt class="member">identchars</tt></a></b>
+<dd>
+The string of characters accepted for the command prefix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1060"><tt class="member">lastcmd</tt></a></b>
+<dd>
+The last nonempty command prefix seen. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1061"><tt class="member">intro</tt></a></b>
+<dd>
+A string to issue as an intro or banner.  May be overridden by giving
+the <tt class="method">cmdloop()</tt> method an argument.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1062"><tt class="member">doc_header</tt></a></b>
+<dd>
+The header to issue if the help output has a section for documented
+commands.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1063"><tt class="member">misc_header</tt></a></b>
+<dd>
+The header to issue if the help output has a section for miscellaneous 
+help topics (that is, there are <tt class="method">help_*()</tt> methods without
+corresponding <tt class="method">do_*()</tt> methods).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1064"><tt class="member">undoc_header</tt></a></b>
+<dd>
+The header to issue if the help output has a section for undocumented 
+commands (that is, there are <tt class="method">do_*()</tt> methods without
+corresponding <tt class="method">help_*()</tt> methods).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1065"><tt class="member">ruler</tt></a></b>
+<dd>
+The character used to draw separator lines under the help-message
+headers.  If empty, no ruler line is drawn.  It defaults to
+"<tt class="character">=</tt>".
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1066"><tt class="member">use_rawinput</tt></a></b>
+<dd>
+A flag, defaulting to true.  If true, <tt class="method">cmdloop()</tt> uses
+<tt class="function">raw_input()</tt> to display a prompt and read the next command;
+if false, <tt class="method">sys.stdout.write()</tt> and
+<tt class="method">sys.stdin.readline()</tt> are used. (This means that by
+importing <tt class="module">readline</tt>, on systems that support it, the
+interpreter will automatically support Emacs-like line editing 
+and command-history keystrokes.)
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-cmd.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-cmd.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-shlex.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-cmd.html">5.14 cmd  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-cmd.html">5.14 cmd  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-shlex.html">5.15 shlex  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

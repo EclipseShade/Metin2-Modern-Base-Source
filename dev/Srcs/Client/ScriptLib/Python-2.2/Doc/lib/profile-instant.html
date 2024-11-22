@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>10.3 Instant Users Manual </title>
+<META NAME="description" CONTENT="10.3 Instant Users Manual ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node284.html">
+<LINK REL="previous" HREF="node282.html">
+<LINK REL="up" href="profile.html">
+<LINK REL="next" HREF="node284.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node282.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="profile.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node284.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node282.html">10.2 How Is This</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="profile.html">10. The Python Profiler</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node284.html">10.4 What Is Deterministic</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0012300000000000000000">&nbsp;</A>
+<BR>
+10.3 Instant Users Manual 
+</H1>
+
+<P>
+This section is provided for users that ``don't want to read the
+manual.'' It provides a very brief overview, and allows a user to
+rapidly perform profiling on an existing application.
+
+<P>
+To profile an application with a main entry point of "<tt class="samp">foo()</tt>", you
+would add the following to your module:
+
+<P>
+<dl><dd><pre class="verbatim">
+import profile
+profile.run('foo()')
+</pre></dl>
+
+<P>
+The above action would cause "<tt class="samp">foo()</tt>" to be run, and a series of
+informative lines (the profile) to be printed.  The above approach is
+most useful when working with the interpreter.  If you would like to
+save the results of a profile into a file for later examination, you
+can supply a file name as the second argument to the <tt class="function">run()</tt>
+function:
+
+<P>
+<dl><dd><pre class="verbatim">
+import profile
+profile.run('foo()', 'fooprof')
+</pre></dl>
+
+<P>
+The file <span class="file">profile.py</span> can also be invoked as
+a script to profile another script.  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+python /usr/local/lib/python1.5/profile.py myscript.py
+</pre></dl>
+
+<P>
+When you wish to review the profile, you should use the methods in the
+<tt class="module">pstats</tt> module.  Typically you would load the statistics data as
+follows:
+
+<P>
+<dl><dd><pre class="verbatim">
+import pstats
+p = pstats.Stats('fooprof')
+</pre></dl>
+
+<P>
+The class <tt class="class">Stats</tt> (the above code just created an instance of
+this class) has a variety of methods for manipulating and printing the
+data that was just read into "<tt class="samp">p</tt>".  When you ran
+<tt class="function">profile.run()</tt> above, what was printed was the result of three
+method calls:
+
+<P>
+<dl><dd><pre class="verbatim">
+p.strip_dirs().sort_stats(-1).print_stats()
+</pre></dl>
+
+<P>
+The first method removed the extraneous path from all the module
+names. The second method sorted all the entries according to the
+standard module/line/name string that is printed (this is to comply
+with the semantics of the old profiler).  The third method printed out
+all the statistics.  You might try the following sort calls:
+
+<P>
+<dl><dd><pre class="verbatim">
+p.sort_stats('name')
+p.print_stats()
+</pre></dl>
+
+<P>
+The first call will actually sort the list by function name, and the
+second call will print out the statistics.  The following are some
+interesting calls to experiment with:
+
+<P>
+<dl><dd><pre class="verbatim">
+p.sort_stats('cumulative').print_stats(10)
+</pre></dl>
+
+<P>
+This sorts the profile by cumulative time in a function, and then only
+prints the ten most significant lines.  If you want to understand what
+algorithms are taking time, the above line is what you would use.
+
+<P>
+If you were looking to see what functions were looping a lot, and
+taking a lot of time, you would do:
+
+<P>
+<dl><dd><pre class="verbatim">
+p.sort_stats('time').print_stats(10)
+</pre></dl>
+
+<P>
+to sort according to time spent within each function, and then print
+the statistics for the top ten functions.
+
+<P>
+You might also try:
+
+<P>
+<dl><dd><pre class="verbatim">
+p.sort_stats('file').print_stats('__init__')
+</pre></dl>
+
+<P>
+This will sort all the statistics by file name, and then print out
+statistics for only the class init methods ('cause they are spelled
+with "<tt class="samp">__init__</tt>" in them).  As one final example, you could try:
+
+<P>
+<dl><dd><pre class="verbatim">
+p.sort_stats('time', 'cum').print_stats(.5, 'init')
+</pre></dl>
+
+<P>
+This line sorts statistics with a primary key of time, and a secondary
+key of cumulative time, and then prints out some of the statistics.
+To be specific, the list is first culled down to 50% (re: "<tt class="samp">.5</tt>")
+of its original size, then only lines containing <code>init</code> are
+maintained, and that sub-sub-list is printed.
+
+<P>
+If you wondered what functions called the above functions, you could
+now ("<tt class="samp">p</tt>" is still sorted according to the last criteria) do:
+
+<P>
+<dl><dd><pre class="verbatim">
+p.print_callers(.5, 'init')
+</pre></dl>
+
+<P>
+and you would get a list of callers for each of the listed functions.
+
+<P>
+If you want more functionality, you're going to have to read the
+manual, or guess what the following functions do:
+
+<P>
+<dl><dd><pre class="verbatim">
+p.print_callees()
+p.add('fooprof')
+</pre></dl>
+
+<P>
+Invoked as a script, the <tt class="module">pstats</tt> module is a statistics
+browser for reading and examining profile dumps.  It has a simple
+line-oriented interface (implemented using <tt class="module"><a href="module-cmd.html">cmd</a></tt>) and
+interactive help.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node282.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="profile.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node284.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node282.html">10.2 How Is This</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="profile.html">10. The Python Profiler</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node284.html">10.4 What Is Deterministic</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

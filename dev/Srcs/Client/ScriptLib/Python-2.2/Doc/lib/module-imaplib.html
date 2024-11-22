@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.10 imaplib -- IMAP4 protocol client</title>
+<META NAME="description" CONTENT="11.10 imaplib -- IMAP4 protocol client">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-nntplib.html">
+<LINK REL="previous" href="module-poplib.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="imap4-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pop3-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="imap4-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pop3-example.html">11.9.2 POP3 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="imap4-objects.html">11.10.1 IMAP4 Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00131000000000000000000">
+11.10 <tt class="module">imaplib</tt> --
+         IMAP4 protocol client</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name="l2h-2506">&nbsp;</a>
+<P>
+This module defines a class, <tt class="class">IMAP4</tt>, which encapsulates a
+connection to an IMAP4 server and implements a large subset of the
+IMAP4rev1 client protocol as defined in <a class="rfc" name="rfcref-63310"
+href="http://www.faqs.org/rfcs/rfc2060.html">RFC 2060</a>. It is backward
+compatible with IMAP4 (<a class="rfc" name="rfcref-63312"
+href="http://www.faqs.org/rfcs/rfc1730.html">RFC 1730</a>) servers, but note that the
+"<tt class="samp">STATUS</tt>" command is not supported in IMAP4.
+
+<P>
+A single class is provided by the <tt class="module">imaplib</tt> module:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2498"><tt class="class">IMAP4</tt></a></b>(<big>[</big><var>host</var><big>[</big><var>, port</var><big>]</big><big>]</big>)
+<dd>
+This class implements the actual IMAP4 protocol.  The connection is
+created and protocol version (IMAP4 or IMAP4rev1) is determined when
+the instance is initialized.
+If <var>host</var> is not specified, <code>''</code> (the local host) is used.
+If <var>port</var> is omitted, the standard IMAP4 port (143) is used.
+</dl>
+
+<P>
+Two exceptions are defined as attributes of the <tt class="class">IMAP4</tt> class:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2499"><tt class="exception">IMAP4.error</tt></a></b>
+<dd>
+Exception raised on any errors.  The reason for the exception is
+passed to the constructor as a string.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2500"><tt class="exception">IMAP4.abort</tt></a></b>
+<dd>
+IMAP4 server errors cause this exception to be raised.  This is a
+sub-class of <tt class="exception">IMAP4.error</tt>.  Note that closing the instance
+and instantiating a new one will usually allow recovery from this
+exception.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2501"><tt class="exception">IMAP4.readonly</tt></a></b>
+<dd>
+This exception is raised when a writable mailbox has its status changed by the server.  This is a
+sub-class of <tt class="exception">IMAP4.error</tt>.  Some other client now has write permission,
+and the mailbox will need to be re-opened to re-obtain write permission.
+</dl>
+
+<P>
+The following utility functions are defined:
+
+<P>
+<dl><dt><b><a name="l2h-2502"><tt class="function">Internaldate2tuple</tt></a></b>(<var>datestr</var>)
+<dd>
+  Converts an IMAP4 INTERNALDATE string to Coordinated Universal
+  Time. Returns a <tt class="module"><a href="module-time.html">time</a></tt> module tuple.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2503"><tt class="function">Int2AP</tt></a></b>(<var>num</var>)
+<dd>
+  Converts an integer into a string representation using characters
+  from the set [<code>A</code> .. <code>P</code>].
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2504"><tt class="function">ParseFlags</tt></a></b>(<var>flagstr</var>)
+<dd>
+  Converts an IMAP4 "<tt class="samp">FLAGS</tt>" response to a tuple of individual
+  flags.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2505"><tt class="function">Time2Internaldate</tt></a></b>(<var>date_time</var>)
+<dd>
+  Converts a <tt class="module"><a href="module-time.html">time</a></tt> module tuple to an IMAP4
+  "<tt class="samp">INTERNALDATE</tt>" representation.  Returns a string in the form:
+  <code>"DD-Mmm-YYYY HH:MM:SS +HHMM"</code> (including double-quotes).
+</dl>
+
+<P>
+Note that IMAP4 message numbers change as the mailbox changes; in
+particular, after an "<tt class="samp">EXPUNGE</tt>" command performs deletions the
+remaining messages are renumbered. So it is highly advisable to use
+UIDs instead, with the UID command.
+
+<P>
+At the end of the module, there is a test section that contains a more
+extensive example of usage.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <div class="seetext"><p>Documents describing the protocol, and sources and binaries 
+           for servers implementing it, can all be found at the
+           University of Washington's <i>IMAP Information Center</i>
+           (<a class="url" href="http://www.cac.washington.edu/imap/">http://www.cac.washington.edu/imap/</a>).</div>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="imap4-objects.html">11.10.1 IMAP4 Objects</a>
+<LI><A href="imap4-example.html">11.10.2 IMAP4 Example</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pop3-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="imap4-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pop3-example.html">11.9.2 POP3 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="imap4-objects.html">11.10.1 IMAP4 Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

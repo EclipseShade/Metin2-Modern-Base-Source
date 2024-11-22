@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.14 pickle -- Python object serialization</title>
+<META NAME="description" CONTENT="3.14 pickle -- Python object serialization">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-cPickle.html">
+<LINK REL="previous" href="module-linecache.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" HREF="node59.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-linecache.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node59.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-linecache.html">3.13 linecache  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node59.html">3.14.1 Relationship to other</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0051400000000000000000">
+3.14 <tt class="module">pickle</tt> -- Python object serialization</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name="l2h-512">&nbsp;</a>
+<P>
+The <tt class="module">pickle</tt> module implements a fundamental, but powerful
+algorithm for serializing and de-serializing a Python object
+structure.  ``Pickling'' is the process whereby a Python object
+hierarchy is converted into a byte stream, and ``unpickling'' is the
+inverse operation, whereby a byte stream is converted back into an
+object hierarchy.  Pickling (and unpickling) is alternatively known as
+``serialization'', ``marshalling,''<A NAME="tex2html14"
+  HREF="#foot6912"><SUP>3.2</SUP></A> or ``flattening'',
+however the preferred term used here is ``pickling'' and
+``unpickling'' to avoid confusing.
+
+<P>
+This documentation describes both the <tt class="module">pickle</tt> module and the 
+<tt class="module"><a href="module-cPickle.html">cPickle</a></tt> module.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot6912">... ``marshalling,''</A><A NAME="foot6912"
+ href="module-pickle.html#tex2html14"><SUP>3.2</SUP></A>
+<DD>Don't confuse this with
+the <tt class="module"><a href="module-marshal.html">marshal</a></tt> module
+
+</DL>
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node59.html">3.14.1 Relationship to other Python modules</a>
+<LI><A href="node60.html">3.14.2 Data stream format</a>
+<LI><A href="node61.html">3.14.3 Usage</a>
+<LI><A href="node62.html">3.14.4 What can be pickled and unpickled?</a>
+<LI><A href="pickle-protocol.html">3.14.5 The pickle protocol</a>
+<UL>
+<LI><A href="pickle-inst.html">3.14.5.1 Pickling and unpickling normal class
+    instances</a>
+<LI><A href="node65.html">3.14.5.2 Pickling and unpickling extension types</a>
+<LI><A href="node66.html">3.14.5.3 Pickling and unpickling external objects</a>
+</ul>
+<LI><A href="pickle-sec.html">3.14.6 Security</a>
+<LI><A href="pickle-example.html">3.14.7 Example</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-linecache.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node59.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-linecache.html">3.13 linecache  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node59.html">3.14.1 Relationship to other</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

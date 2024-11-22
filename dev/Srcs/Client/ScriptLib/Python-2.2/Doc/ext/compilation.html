@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.5 Compilation and Linkage
+</title>
+<META NAME="description" CONTENT="1.5 Compilation and Linkage
+">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="callingPython.html">
+<LINK REL="previous" href="methodTable.html">
+<LINK REL="up" href="intro.html">
+<LINK REL="next" href="callingPython.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="methodTable.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="callingPython.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="methodTable.html">1.4 The Module's Method</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="callingPython.html">1.6 Calling Python Functions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION003500000000000000000">&nbsp;</A>
+<BR>
+1.5 Compilation and Linkage
+         
+</H1>
+
+<P>
+There are two more things to do before you can use your new extension:
+compiling and linking it with the Python system.  If you use dynamic
+loading, the details depend on the style of dynamic loading your
+system uses; see the chapters about building extension modules on
+Unix (chapter <A href="building-on-unix.html#building-on-unix">3</A>) and Windows (chapter
+<A href="building-on-windows.html#building-on-windows">4</A>) for more information about this.
+
+<P>
+If you can't use dynamic loading, or if you want to make your module a
+permanent part of the Python interpreter, you will have to change the
+configuration setup and rebuild the interpreter.  Luckily, this is
+very simple: just place your file (<span class="file">spammodule.c</span> for example) in
+the <span class="file">Modules/</span> directory of an unpacked source distribution, add
+a line to the file <span class="file">Modules/Setup.local</span> describing your file:
+
+<P>
+<dl><dd><pre class="verbatim">
+spam spammodule.o
+</pre></dl>
+
+<P>
+and rebuild the interpreter by running <b class="program">make</b> in the toplevel
+directory.  You can also run <b class="program">make</b> in the <span class="file">Modules/</span>
+subdirectory, but then you must first rebuild <span class="file">Makefile</span>
+there by running `<b class="program">make</b> Makefile'.  (This is necessary each
+time you change the <span class="file">Setup</span> file.)
+
+<P>
+If your module requires additional libraries to link with, these can
+be listed on the line in the configuration file as well, for instance:
+
+<P>
+<dl><dd><pre class="verbatim">
+spam spammodule.o -lX11
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="methodTable.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="callingPython.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="methodTable.html">1.4 The Module's Method</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="callingPython.html">1.6 Calling Python Functions</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

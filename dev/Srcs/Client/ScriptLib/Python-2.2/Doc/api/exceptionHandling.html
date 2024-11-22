@@ -1,0 +1,483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4. Exception Handling </title>
+<META NAME="description" CONTENT="4. Exception Handling ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="utilities.html">
+<LINK REL="previous" href="countingRefs.html">
+<LINK REL="up" HREF="api.html">
+<LINK REL="next" href="standardExceptions.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="countingRefs.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="api.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="standardExceptions.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="countingRefs.html">3. Reference Counting</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="api.html">Python/C API Reference Manual</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="standardExceptions.html">4.1 Standard Exceptions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006000000000000000000">&nbsp;</A>
+<BR>
+4. Exception Handling 
+</H1>
+
+<P>
+The functions described in this chapter will let you handle and raise Python
+exceptions.  It is important to understand some of the basics of
+Python exception handling.  It works somewhat like the
+Unix <tt class="cdata">errno</tt> variable: there is a global indicator (per
+thread) of the last error that occurred.  Most functions don't clear
+this on success, but will set it to indicate the cause of the error on
+failure.  Most functions also return an error indicator, usually
+<tt class="constant">NULL</tt> if they are supposed to return a pointer, or <code>-1</code> if they
+return an integer (exception: the <tt class="cfunction">PyArg_*()</tt> functions
+return <code>1</code> for success and <code>0</code> for failure).
+
+<P>
+When a function must fail because some function it called failed, it
+generally doesn't set the error indicator; the function it called
+already set it.  It is responsible for either handling the error and
+clearing the exception or returning after cleaning up any resources it
+holds (such as object references or memory allocations); it should
+<i>not</i> continue normally if it is not prepared to handle the
+error.  If returning due to an error, it is important to indicate to
+the caller that an error has been set.  If the error is not handled or
+carefully propogated, additional calls into the Python/C API may not
+behave as intended and may fail in mysterious ways.
+
+<P>
+The error indicator consists of three Python objects corresponding to
+<a name="l2h-69">&nbsp;</a>the Python variables <code>sys.exc_type</code>, <code>sys.exc_value</code> and
+<code>sys.exc_traceback</code>.  API functions exist to interact with the
+error indicator in various ways.  There is a separate error indicator
+for each thread.
+
+<P>
+<dl><dt>void <b><a name="l2h-70"><tt class="cfunction">PyErr_Print</tt></a></b>()
+<dd>
+  Print a standard traceback to <code>sys.stderr</code> and clear the error
+  indicator.  Call this function only when the error indicator is
+  set.  (Otherwise it will cause a fatal error!)
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-71"><tt class="cfunction">PyErr_Occurred</tt></a></b>()
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Test whether the error indicator is set.  If set, return the
+  exception <i>type</i> (the first argument to the last call to one of
+  the <tt class="cfunction">PyErr_Set*()</tt> functions or to
+  <tt class="cfunction">PyErr_Restore()</tt>).  If not set, return <tt class="constant">NULL</tt>.  You do
+  not own a reference to the return value, so you do not need to
+  <tt class="cfunction">Py_DECREF()</tt> it.  <span class="note"><b class="label">Note:</b>
+Do not compare the return value
+    to a specific exception; use <tt class="cfunction">PyErr_ExceptionMatches()</tt>
+    instead, shown below.  (The comparison could easily fail since the
+    exception may be an instance instead of a class, in the case of a
+    class exception, or it may the a subclass of the expected
+    exception.)</span>
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-72"><tt class="cfunction">PyErr_ExceptionMatches</tt></a></b>(<var>PyObject *exc</var>)
+<dd>
+  Equivalent to "<tt class="samp">PyErr_GivenExceptionMatches(PyErr_Occurred(),
+  <var>exc</var>)</tt>".  This should only be called when an exception is
+  actually set; a memory access violation will occur if no exception
+  has been raised.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-73"><tt class="cfunction">PyErr_GivenExceptionMatches</tt></a></b>(<var>PyObject *given, PyObject *exc</var>)
+<dd>
+  Return true if the <var>given</var> exception matches the exception in
+  <var>exc</var>.  If <var>exc</var> is a class object, this also returns true
+  when <var>given</var> is an instance of a subclass.  If <var>exc</var> is a
+  tuple, all exceptions in the tuple (and recursively in subtuples)
+  are searched for a match.  If <var>given</var> is <tt class="constant">NULL</tt>, a memory access
+  violation will occur.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-74"><tt class="cfunction">PyErr_NormalizeException</tt></a></b>(<var>PyObject**exc, PyObject**val, PyObject**tb</var>)
+<dd>
+  Under certain circumstances, the values returned by
+  <tt class="cfunction">PyErr_Fetch()</tt> below can be ``unnormalized'', meaning
+  that <code>*<var>exc</var></code> is a class object but <code>*<var>val</var></code> is
+  not an instance of the  same class.  This function can be used to
+  instantiate the class in that case.  If the values are already
+  normalized, nothing happens.  The delayed normalization is
+  implemented to improve performance.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-75"><tt class="cfunction">PyErr_Clear</tt></a></b>()
+<dd>
+  Clear the error indicator.  If the error indicator is not set, there
+  is no effect.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-76"><tt class="cfunction">PyErr_Fetch</tt></a></b>(<var>PyObject **ptype, PyObject **pvalue,
+                                     PyObject **ptraceback</var>)
+<dd>
+  Retrieve the error indicator into three variables whose addresses
+  are passed.  If the error indicator is not set, set all three
+  variables to <tt class="constant">NULL</tt>.  If it is set, it will be cleared and you own a
+  reference to each object retrieved.  The value and traceback object
+  may be <tt class="constant">NULL</tt> even when the type object is not.  <span class="note"><b class="label">Note:</b>
+This
+  function is normally only used by code that needs to handle
+  exceptions or by code that needs to save and restore the error
+  indicator temporarily.</span>
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-77"><tt class="cfunction">PyErr_Restore</tt></a></b>(<var>PyObject *type, PyObject *value,
+                                       PyObject *traceback</var>)
+<dd>
+  Set  the error indicator from the three objects.  If the error
+  indicator is already set, it is cleared first.  If the objects are
+  <tt class="constant">NULL</tt>, the error indicator is cleared.  Do not pass a <tt class="constant">NULL</tt> type
+  and non-<tt class="constant">NULL</tt> value or traceback.  The exception type should be a
+  string or class; if it is a class, the value should be an instance
+  of that class.  Do not pass an invalid exception type or value.
+  (Violating these rules will cause subtle problems later.)  This call
+  takes away a reference to each object: you must own a reference to
+  each object before the call and after the call you no longer own
+  these references.  (If you don't understand this, don't use this
+  function.  I warned you.)  <span class="note"><b class="label">Note:</b>
+This function is normally only used
+  by code that needs to save and restore the error indicator
+  temporarily.</span>
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-78"><tt class="cfunction">PyErr_SetString</tt></a></b>(<var>PyObject *type, char *message</var>)
+<dd>
+  This is the most common way to set the error indicator.  The first
+  argument specifies the exception type; it is normally one of the
+  standard exceptions, e.g. <tt class="cdata">PyExc_RuntimeError</tt>.  You need not
+  increment its reference count.  The second argument is an error
+  message; it is converted to a string object.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-79"><tt class="cfunction">PyErr_SetObject</tt></a></b>(<var>PyObject *type, PyObject *value</var>)
+<dd>
+  This function is similar to <tt class="cfunction">PyErr_SetString()</tt> but lets
+  you specify an arbitrary Python object for the ``value'' of the
+  exception.  You need not increment its reference count.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-80"><tt class="cfunction">PyErr_Format</tt></a></b>(<var>PyObject *exception,
+                                           const char *format, ...</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Always <tt class="constant">NULL</tt>.</span>
+</div>
+  This function sets the error indicator and returns <tt class="constant">NULL</tt>..
+  <var>exception</var> should be a Python exception (string or class, not
+  an instance).  <var>format</var> should be a string, containing format
+  codes, similar to <tt class="cfunction">printf()</tt>. The <code>width.precision</code>
+  before a format code is parsed, but the width part is ignored.
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Character</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><tt class="character">c</tt></td>
+        <td align="left">Character, as an <tt class="ctype">int</tt> parameter</td>
+    <tr><td align="center" valign="baseline"><tt class="character">d</tt></td>
+        <td align="left">Number in decimal, as an <tt class="ctype">int</tt> parameter</td>
+    <tr><td align="center" valign="baseline"><tt class="character">x</tt></td>
+        <td align="left">Number in hexadecimal, as an <tt class="ctype">int</tt> parameter</td>
+    <tr><td align="center" valign="baseline"><tt class="character">x</tt></td>
+        <td align="left">A string, as a <tt class="ctype">char *</tt> parameter</td></tbody>
+</table>
+
+<P>
+An unrecognized format character causes all the rest of the format
+  string to be copied as-is to the result string, and any extra
+  arguments discarded.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-81"><tt class="cfunction">PyErr_SetNone</tt></a></b>(<var>PyObject *type</var>)
+<dd>
+  This is a shorthand for "<tt class="samp">PyErr_SetObject(<var>type</var>,
+  Py_None)</tt>".
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-82"><tt class="cfunction">PyErr_BadArgument</tt></a></b>()
+<dd>
+  This is a shorthand for "<tt class="samp">PyErr_SetString(PyExc_TypeError,
+  <var>message</var>)</tt>", where <var>message</var> indicates that a built-in
+  operation was invoked with an illegal argument.  It is mostly for
+  internal use.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-83"><tt class="cfunction">PyErr_NoMemory</tt></a></b>()
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Always <tt class="constant">NULL</tt>.</span>
+</div>
+  This is a shorthand for "<tt class="samp">PyErr_SetNone(PyExc_MemoryError)</tt>"; it
+  returns <tt class="constant">NULL</tt> so an object allocation function can write
+  "<tt class="samp">return PyErr_NoMemory();</tt>" when it runs out of memory.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-84"><tt class="cfunction">PyErr_SetFromErrno</tt></a></b>(<var>PyObject *type</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Always <tt class="constant">NULL</tt>.</span>
+</div>
+  This is a convenience function to raise an exception when a C
+  library function has returned an error and set the C variable
+  <tt class="cdata">errno</tt>.  It constructs a tuple object whose first item is the
+  integer <tt class="cdata">errno</tt> value and whose second item is the
+  corresponding error message (gotten from
+  <tt class="cfunction">strerror()</tt><a name="l2h-97">&nbsp;</a>, and then calls
+  "<tt class="samp">PyErr_SetObject(<var>type</var>, <var>object</var>)</tt>".  On Unix, when
+  the <tt class="cdata">errno</tt> value is <tt class="constant">EINTR</tt>, indicating an
+  interrupted system call, this calls
+  <tt class="cfunction">PyErr_CheckSignals()</tt>, and if that set the error
+  indicator, leaves it set to that.  The function always returns
+  <tt class="constant">NULL</tt>, so a wrapper function around a system call can write
+  "<tt class="samp">return PyErr_SetFromErrno();</tt>" when  the system call returns an
+  error.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-85"><tt class="cfunction">PyErr_SetFromErrnoWithFilename</tt></a></b>(<var>PyObject *type,
+                                                             char *filename</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Always <tt class="constant">NULL</tt>.</span>
+</div>
+  Similar to <tt class="cfunction">PyErr_SetFromErrno()</tt>, with the additional
+  behavior that if <var>filename</var> is not <tt class="constant">NULL</tt>, it is passed to the
+  constructor of <var>type</var> as a third parameter.  In the case of
+  exceptions such as <tt class="exception">IOError</tt> and <tt class="exception">OSError</tt>, this
+  is used to define the <tt class="member">filename</tt> attribute of the exception
+  instance.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-86"><tt class="cfunction">PyErr_BadInternalCall</tt></a></b>()
+<dd>
+  This is a shorthand for "<tt class="samp">PyErr_SetString(PyExc_TypeError,
+  <var>message</var>)</tt>", where <var>message</var> indicates that an internal
+  operation (e.g. a Python/C API function) was invoked with an illegal
+  argument.  It is mostly for internal use.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-87"><tt class="cfunction">PyErr_Warn</tt></a></b>(<var>PyObject *category, char *message</var>)
+<dd>
+  Issue a warning message.  The <var>category</var> argument is a warning
+  category (see below) or <tt class="constant">NULL</tt>; the <var>message</var> argument is a
+  message string.
+
+<P>
+This function normally prints a warning message to <var>sys.stderr</var>;
+  however, it is also possible that the user has specified that
+  warnings are to be turned into errors, and in that case this will
+  raise an exception.  It is also possible that the function raises an
+  exception because of a problem with the warning machinery (the
+  implementation imports the <tt class="module">warnings</tt> module to do the heavy
+  lifting).  The return value is <code>0</code> if no exception is raised,
+  or <code>-1</code> if an exception is raised.  (It is not possible to
+  determine whether a warning message is actually printed, nor what
+  the reason is for the exception; this is intentional.)  If an
+  exception is raised, the caller should do its normal exception
+  handling (for example, <tt class="cfunction">Py_DECREF()</tt> owned references and
+  return an error value).
+
+<P>
+Warning categories must be subclasses of <tt class="cdata">Warning</tt>; the
+  default warning category is <tt class="cdata">RuntimeWarning</tt>.  The standard
+  Python warning categories are available as global variables whose
+  names are "<tt class="samp">PyExc_</tt>" followed by the Python exception name.
+  These have the type <tt class="ctype">PyObject*</tt>; they are all class objects.
+  Their names are <tt class="cdata">PyExc_Warning</tt>, <tt class="cdata">PyExc_UserWarning</tt>,
+  <tt class="cdata">PyExc_DeprecationWarning</tt>, <tt class="cdata">PyExc_SyntaxWarning</tt>, and
+  <tt class="cdata">PyExc_RuntimeWarning</tt>.  <tt class="cdata">PyExc_Warning</tt> is a subclass
+  of <tt class="cdata">PyExc_Exception</tt>; the other warning categories are
+  subclasses of <tt class="cdata">PyExc_Warning</tt>.
+
+<P>
+For information about warning control, see the documentation for the
+  <tt class="module">warnings</tt> module and the <b class="programopt">-W</b> option in the
+  command line documentation.  There is no C API for warning control.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-88"><tt class="cfunction">PyErr_WarnExplicit</tt></a></b>(<var>PyObject *category, char *message,
+                char *filename, int lineno, char *module, PyObject *registry</var>)
+<dd>
+  Issue a warning message with explicit control over all warning
+  attributes.  This is a straightforward wrapper around the Python
+  function <tt class="function">warnings.warn_explicit()</tt>, see there for more
+  information.  The <var>module</var> and <var>registry</var> arguments may be
+  set to <tt class="constant">NULL</tt> to get the default effect described there.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-89"><tt class="cfunction">PyErr_CheckSignals</tt></a></b>()
+<dd>
+  This function interacts with Python's signal handling.  It checks
+  whether a signal has been sent to the processes and if so, invokes
+  the corresponding signal handler.  If the
+  <tt class="module">signal</tt><a name="l2h-98">&nbsp;</a>module is supported, this can
+  invoke a signal handler written in Python.  In all cases, the
+  default effect for <tt class="constant">SIGINT</tt><a name="l2h-99">&nbsp;</a>is to raise the
+  <a name="l2h-91">&nbsp;</a>  <tt class="exception">KeyboardInterrupt</tt> exception.  If an exception is raised
+  the error indicator is set and the function returns <code>1</code>;
+  otherwise the function returns <code>0</code>.  The error indicator may or
+  may not be cleared if it was previously set.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-92"><tt class="cfunction">PyErr_SetInterrupt</tt></a></b>()
+<dd>
+  This function is obsolete.  It simulates the effect of a
+  <tt class="constant">SIGINT</tt><a name="l2h-100">&nbsp;</a>signal arriving -- the next time
+  <tt class="cfunction">PyErr_CheckSignals()</tt> is called,
+  <a name="l2h-94">&nbsp;</a>  <tt class="exception">KeyboardInterrupt</tt> will be raised.  It may be called
+  without holding the interpreter lock.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-95"><tt class="cfunction">PyErr_NewException</tt></a></b>(<var>char *name,
+                                                 PyObject *base,
+                                                 PyObject *dict</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  This utility function creates and returns a new exception object.
+  The <var>name</var> argument must be the name of the new exception, a C
+  string of the form <code>module.class</code>.  The <var>base</var> and
+  <var>dict</var> arguments are normally <tt class="constant">NULL</tt>.  This creates a class
+  object derived from the root for all exceptions, the built-in name
+  <tt class="exception">Exception</tt> (accessible in C as <tt class="cdata">PyExc_Exception</tt>).
+  The <tt class="member">__module__</tt> attribute of the new class is set to the
+  first part (up to the last dot) of the <var>name</var> argument, and the
+  class name is set to the last part (after the last dot).  The
+  <var>base</var> argument can be used to specify an alternate base class.
+  The <var>dict</var> argument can be used to specify a dictionary of class
+  variables and methods.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-96"><tt class="cfunction">PyErr_WriteUnraisable</tt></a></b>(<var>PyObject *obj</var>)
+<dd>
+  This utility function prints a warning message to <code>sys.stderr</code>
+  when an exception has been set but it is impossible for the
+  interpreter to actually raise the exception.  It is used, for
+  example, when an exception occurs in an <tt class="method">__del__()</tt> method.
+
+<P>
+The function is called with a single argument <var>obj</var> that
+  identifies where the context in which the unraisable exception
+  occurred.  The repr of <var>obj</var> will be printed in the warning
+  message.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="standardExceptions.html">4.1 Standard Exceptions</a>
+<LI><A href="node15.html">4.2 Deprecation of String Exceptions</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="countingRefs.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="api.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="standardExceptions.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="countingRefs.html">3. Reference Counting</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="api.html">Python/C API Reference Manual</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="standardExceptions.html">4.1 Standard Exceptions</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

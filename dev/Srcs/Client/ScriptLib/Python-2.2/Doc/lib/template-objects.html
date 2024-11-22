@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.13.1 Template Objects </title>
+<META NAME="description" CONTENT="8.13.1 Template Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-pipes.html">
+<LINK REL="up" href="module-pipes.html">
+<LINK REL="next" href="module-posixfile.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-pipes.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-pipes.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-posixfile.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-pipes.html">8.13 pipes  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-pipes.html">8.13 pipes  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-posixfile.html">8.14 posixfile  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00101310000000000000000">&nbsp;</A>
+<BR>
+8.13.1 Template Objects 
+</H2>
+
+<P>
+Template objects following methods:
+
+<P>
+<dl><dt><b><a name="l2h-2184"><tt class="method">reset</tt></a></b>()
+<dd>
+Restore a pipeline template to its initial state.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2185"><tt class="method">clone</tt></a></b>()
+<dd>
+Return a new, equivalent, pipeline template.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2186"><tt class="method">debug</tt></a></b>(<var>flag</var>)
+<dd>
+If <var>flag</var> is true, turn debugging on. Otherwise, turn debugging
+off. When debugging is on, commands to be executed are printed, and
+the shell is given <code>set -x</code> command to be more verbose.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2187"><tt class="method">append</tt></a></b>(<var>cmd, kind</var>)
+<dd>
+Append a new action at the end. The <var>cmd</var> variable must be a valid
+bourne shell command. The <var>kind</var> variable consists of two letters.
+
+<P>
+The first letter can be either of <code>'-'</code> (which means the command
+reads its standard input), <code>'f'</code> (which means the commands reads
+a given file on the command line) or <code>'.'</code> (which means the commands
+reads no input, and hence must be first.)
+
+<P>
+Similarly, the second letter can be either of <code>'-'</code> (which means 
+the command writes to standard output), <code>'f'</code> (which means the 
+command writes a file on the command line) or <code>'.'</code> (which means
+the command does not write anything, and hence must be last.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2188"><tt class="method">prepend</tt></a></b>(<var>cmd, kind</var>)
+<dd>
+Add a new action at the beginning. See <tt class="method">append()</tt> for explanations
+of the arguments.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2189"><tt class="method">open</tt></a></b>(<var>file, mode</var>)
+<dd>
+Return a file-like object, open to <var>file</var>, but read from or
+written to by the pipeline.  Note that only one of <code>'r'</code>,
+<code>'w'</code> may be given.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2190"><tt class="method">copy</tt></a></b>(<var>infile, outfile</var>)
+<dd>
+Copy <var>infile</var> to <var>outfile</var> through the pipe.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-pipes.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-pipes.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-posixfile.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-pipes.html">8.13 pipes  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-pipes.html">8.13 pipes  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-posixfile.html">8.14 posixfile  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

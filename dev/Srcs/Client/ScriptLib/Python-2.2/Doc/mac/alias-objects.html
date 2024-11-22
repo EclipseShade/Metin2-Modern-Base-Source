@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.4.2 Alias Objects </title>
+<META NAME="description" CONTENT="2.4.2 Alias Objects ">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="finfo-objects.html">
+<LINK REL="previous" href="fsspec-objects.html">
+<LINK REL="up" href="module-macfs.html">
+<LINK REL="next" href="finfo-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="fsspec-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-macfs.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="finfo-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="fsspec-objects.html">2.4.1 FSSpec objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-macfs.html">2.4 macfs  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="finfo-objects.html">2.4.3 FInfo Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004420000000000000000">&nbsp;</A>
+<BR>
+2.4.2 Alias Objects 
+</H2>
+
+<P>
+<dl><dt><b><a name="l2h-58"><tt class="member">data</tt></a></b>
+<dd>
+The raw data for the Alias record, suitable for storing in a resource
+or transmitting to other programs.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-59"><tt class="method">Resolve</tt></a></b>(<big>[</big><var>file</var><big>]</big>)
+<dd>
+Resolve the alias. If the alias was created as a relative alias you
+should pass the file relative to which it is. Return the FSSpec for
+the file pointed to and a flag indicating whether the Alias object
+itself was modified during the search process. If the file does
+not exist but the path leading up to it does exist a valid fsspec
+is returned.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-60"><tt class="method">GetInfo</tt></a></b>(<var>num</var>)
+<dd>
+An interface to the C routine <tt class="cfunction">GetAliasInfo()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-61"><tt class="method">Update</tt></a></b>(<var>file</var><big>[</big><var>, file2</var><big>]</big>)
+<dd>
+Update the alias to point to the <var>file</var> given. If <var>file2</var> is
+present a relative alias will be created.
+</dl>
+
+<P>
+Note that it is currently not possible to directly manipulate a
+resource as an Alias object. Hence, after calling
+<tt class="method">Update()</tt> or after <tt class="method">Resolve()</tt> indicates that the alias
+has changed the Python program is responsible for getting the
+<tt class="member">data</tt> value from the Alias object and modifying the
+resource.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="fsspec-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-macfs.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="finfo-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="fsspec-objects.html">2.4.1 FSSpec objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-macfs.html">2.4 macfs  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="finfo-objects.html">2.4.3 FInfo Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

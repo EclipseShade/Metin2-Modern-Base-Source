@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5 Custom Installation</title>
+<META NAME="description" CONTENT="5 Custom Installation">
+<META NAME="keywords" CONTENT="inst">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="inst.css">
+<link rel="first" href="inst.html">
+
+<LINK REL="next" href="config-syntax.html">
+<LINK REL="previous" href="alt-install-windows.html">
+<LINK REL="up" HREF="inst.html">
+<LINK REL="next" href="config-syntax.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="alt-install-windows.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="inst.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="config-syntax.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Installing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="alt-install-windows.html">4 Alternate Installation</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="inst.html">Installing Python Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="config-syntax.html">6 Distutils Configuration Files</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION000500000000000000000">&nbsp;</A>
+<BR>
+5 Custom Installation
+</H1>
+
+<P>
+Sometimes, the alternate installation schemes described in
+section&nbsp;<A href="alt-install-windows.html#alt-install">4</A> just don't do what you want.  You might
+want to tweak just one or two directories while keeping everything under
+the same base directory, or you might want to completely redefine the
+installation scheme.  In either case, you're creating a <i>custom
+  installation scheme</i>.
+
+<P>
+You probably noticed the column of ``override options'' in the tables
+describing the alternate installation schemes above.  Those options are
+how you define a custom installation scheme.  These override options can
+be relative, absolute, or explicitly defined in terms of one of the
+installation base directories.  (There are two installation base
+directories, and they are normally the same--they only differ when you
+use the Unix ``prefix scheme'' and supply different
+<b class="programopt">--prefix</b> and <b class="programopt">--exec-prefix</b> options.)
+
+<P>
+For example, say you're installing a module distribution to your home
+directory under Unix--but you want scripts to go in
+<span class="file">&nbsp;/scripts</span> rather than <span class="file">&nbsp;/bin</span>.
+As you might expect, you can override this directory with the
+<b class="programopt">--install-scripts</b> option; in this case, it makes most
+sense to supply a relative path, which will be interpreted relative to
+the installation base directory (your home directory, in this case):
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py install --home=~ --install-scripts=scripts
+</pre></dl>
+
+<P>
+Another Unix example: suppose your Python installation was built and
+installed with a prefix of <span class="file">/usr/local/python</span>, so under a standard 
+installation scripts will wind up in <span class="file">/usr/local/python/bin</span>.  If
+you want them in <span class="file">/usr/local/bin</span> instead, you would supply this
+absolute directory for the <b class="programopt">--install-scripts</b> option:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py install --install-scripts=/usr/local/bin
+</pre></dl>
+
+<P>
+(This performs an installation using the ``prefix scheme,'' where the
+prefix is whatever your Python interpreter was installed with--
+<span class="file">/usr/local/python</span> in this case.)
+
+<P>
+If you maintain Python on Windows, you might want third-party modules to
+live in a subdirectory of <font face="sans-serif"></i>prefix</i></font>, rather than right in
+<font face="sans-serif"></i>prefix</i></font> itself.  This is almost as easy as customizing the
+script installation directory--you just have to remember that there are
+two types of modules to worry about, pure modules and non-pure modules
+(i.e., modules from a non-pure distribution).  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py install --install-purelib=Site --install-platlib=Site
+</pre></dl>
+
+<P>
+The specified installation directories are relative to <font face="sans-serif"></i>prefix</i></font>.
+Of course, you also have to ensure that these directories are in
+Python's module search path, e.g. by putting a <span class="file">.pth</span> file in
+<font face="sans-serif"></i>prefix</i></font> (<b>** should have a section describing <span class="file">.pth</span> files and
+  cross-ref it here **</b>).
+
+<P>
+If you want to define an entire installation scheme, you just have to
+supply all of the installation directory options.  The recommended way
+to do this is to supply relative paths; for example, if you want to
+maintain all Python module-related files under <span class="file">python</span> in your
+home directory, and you want a separate directory for each platform that
+you use your home directory from, you might define the following
+installation scheme:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py install --home=~ \
+                        --install-purelib=python/lib \
+                        --install-platlib=python/lib.$PLAT \
+                        --install-scripts=python/scripts
+                        --install-data=python/data
+</pre></dl>
+
+<P>
+or, equivalently,
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py install --home=~/python \
+                        --install-purelib=lib \
+                        --install-platlib='lib.$PLAT' \
+                        --install-scripts=scripts
+                        --install-data=data
+</pre></dl>
+
+<P>
+<code>$PLAT</code> is not (necessarily) an environment variable--it will be
+expanded by the Distutils as it parses your command line options (just
+as it does when parsing your configuration file(s)).
+
+<P>
+Obviously, specifying the entire installation scheme every time you
+install a new module distribution would be very tedious.  Thus, you can
+put these options into your Distutils config file (see
+section&nbsp;<A href="config-syntax.html#config-files">6</A>):
+
+<P>
+<dl><dd><pre class="verbatim">
+[install]
+install-base=$HOME
+install-purelib=python/lib
+install-platlib=python/lib.$PLAT
+install-scripts=python/scripts
+install-data=python/data
+</pre></dl>
+
+<P>
+or, equivalently,
+
+<P>
+<dl><dd><pre class="verbatim">
+[install]
+install-base=$HOME/python
+install-purelib=lib
+install-platlib=lib.$PLAT
+install-scripts=scripts
+install-data=data
+</pre></dl>
+
+<P>
+Note that these two are <i>not</i> equivalent if you supply a different
+installation base directory when you run the setup script.  For example,
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py --install-base=/tmp
+</pre></dl>
+
+<P>
+would install pure modules to <font face="sans-serif"></i>/tmp/python/lib</i></font> in the first
+case, and to <font face="sans-serif"></i>/tmp/lib</i></font> in the second case.  (For the second
+case, you probably want to supply an installation base of
+<span class="file">/tmp/python</span>.)
+
+<P>
+You probably noticed the use of <code>$HOME</code> and <code>$PLAT</code> in the
+sample configuration file input.  These are Distutils configuration
+variables, which bear a strong resemblance to environment variables.  In
+fact, you can use environment variables in config files--on platforms
+that have such a notion--but the Distutils additionally define a few
+extra variables that may not be in your environment, such as
+<code>$PLAT</code>.  (And of course, you can only use the configuration
+variables supplied by the Distutils on systems that don't have
+environment variables, such as Mac OS (<b>** true? **</b>).)  See
+section&nbsp;<A href="config-syntax.html#config-files">6</A> for details.
+
+<P>
+<b>** need some Windows and Mac OS examples--when would custom
+  installation schemes be needed on those platforms? **</b>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="alt-install-windows.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="inst.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="config-syntax.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Installing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="alt-install-windows.html">4 Alternate Installation</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="inst.html">Installing Python Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="config-syntax.html">6 Distutils Configuration Files</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

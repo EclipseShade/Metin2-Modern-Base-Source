@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.8 codecs -- Codec registry and base classes</title>
+<META NAME="description" CONTENT="4.8 codecs -- Codec registry and base classes">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-unicodedata.html">
+<LINK REL="previous" href="module-cStringIO.html">
+<LINK REL="up" href="strings.html">
+<LINK REL="next" HREF="node113.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-cStringIO.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="strings.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node113.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-cStringIO.html">4.7 cStringIO  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="strings.html">4. String Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node113.html">4.8.1 Codec Base Classes</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006800000000000000000">
+4.8 <tt class="module">codecs</tt> --
+         Codec registry and base classes</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name="l2h-801">&nbsp;</a>
+<P>
+This module defines base classes for standard Python codecs (encoders
+and decoders) and provides access to the internal Python codec
+registry which manages the codec lookup process.
+
+<P>
+It defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-792"><tt class="function">register</tt></a></b>(<var>search_function</var>)
+<dd>
+Register a codec search function. Search functions are expected to
+take one argument, the encoding name in all lower case letters, and
+return a tuple of functions <code>(<var>encoder</var>, <var>decoder</var>, <var>stream_reader</var>,
+<var>stream_writer</var>)</code> taking the following arguments:
+
+<P>
+<var>encoder</var> and <var>decoder</var>: These must be functions or methods
+  which have the same interface as the
+  <tt class="method">encode()</tt>/<tt class="method">decode()</tt> methods of Codec instances (see
+  Codec Interface). The functions/methods are expected to work in a
+  stateless mode.
+
+<P>
+<var>stream_reader</var> and <var>stream_writer</var>: These have to be
+  factory functions providing the following interface:
+
+<P>
+<code>factory(<var>stream</var>, <var>errors</var>='strict')</code>
+
+<P>
+The factory functions must return objects providing the interfaces
+  defined by the base classes <tt class="class">StreamWriter</tt> and
+  <tt class="class">StreamReader</tt>, respectively. Stream codecs can maintain
+  state.
+
+<P>
+Possible values for errors are <code>'strict'</code> (raise an exception
+  in case of an encoding error), <code>'replace'</code> (replace malformed
+  data with a suitable replacement marker, such as "<tt class="character">?</tt>") and
+  <code>'ignore'</code> (ignore malformed data and continue without further
+  notice).
+
+<P>
+In case a search function cannot find a given encoding, it should
+return <code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-793"><tt class="function">lookup</tt></a></b>(<var>encoding</var>)
+<dd>
+Looks up a codec tuple in the Python codec registry and returns the
+function tuple as defined above.
+
+<P>
+Encodings are first looked up in the registry's cache. If not found,
+the list of registered search functions is scanned. If no codecs tuple
+is found, a <tt class="exception">LookupError</tt> is raised. Otherwise, the codecs
+tuple is stored in the cache and returned to the caller.
+</dl>
+
+<P>
+To simply access to the various codecs, the module provides these
+additional functions which use <tt class="function">lookup()</tt> for the codec
+lookup:
+
+<P>
+<dl><dt><b><a name="l2h-794"><tt class="function">getencoder</tt></a></b>(<var>encoding</var>)
+<dd>
+Lookup up the codec for the given encoding and return its encoder
+function.
+
+<P>
+Raises a <tt class="exception">LookupError</tt> in case the encoding cannot be found.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-795"><tt class="function">getdecoder</tt></a></b>(<var>encoding</var>)
+<dd>
+Lookup up the codec for the given encoding and return its decoder
+function.
+
+<P>
+Raises a <tt class="exception">LookupError</tt> in case the encoding cannot be found.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-796"><tt class="function">getreader</tt></a></b>(<var>encoding</var>)
+<dd>
+Lookup up the codec for the given encoding and return its StreamReader
+class or factory function.
+
+<P>
+Raises a <tt class="exception">LookupError</tt> in case the encoding cannot be found.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-797"><tt class="function">getwriter</tt></a></b>(<var>encoding</var>)
+<dd>
+Lookup up the codec for the given encoding and return its StreamWriter
+class or factory function.
+
+<P>
+Raises a <tt class="exception">LookupError</tt> in case the encoding cannot be found.
+</dl>
+
+<P>
+To simplify working with encoded files or stream, the module
+also defines these utility functions:
+
+<P>
+<dl><dt><b><a name="l2h-798"><tt class="function">open</tt></a></b>(<var>filename, mode</var><big>[</big><var>, encoding</var><big>[</big><var>,
+                       errors</var><big>[</big><var>, buffering</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+Open an encoded file using the given <var>mode</var> and return
+a wrapped version providing transparent encoding/decoding.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+The wrapped version will only accept the object format
+defined by the codecs, i.e. Unicode objects for most built-in
+codecs.  Output is also codec-dependent and will usually be Unicode as
+well.</span>
+
+<P>
+<var>encoding</var> specifies the encoding which is to be used for the
+the file.
+
+<P>
+<var>errors</var> may be given to define the error handling. It defaults
+to <code>'strict'</code> which causes a <tt class="exception">ValueError</tt> to be raised
+in case an encoding error occurs.
+
+<P>
+<var>buffering</var> has the same meaning as for the built-in
+<tt class="function">open()</tt> function.  It defaults to line buffered.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-799"><tt class="function">EncodedFile</tt></a></b>(<var>file, input</var><big>[</big><var>,
+                              output</var><big>[</big><var>, errors</var><big>]</big><big>]</big>)
+<dd>
+Return a wrapped version of file which provides transparent
+encoding translation.
+
+<P>
+Strings written to the wrapped file are interpreted according to the
+given <var>input</var> encoding and then written to the original file as
+strings using the <var>output</var> encoding. The intermediate encoding will
+usually be Unicode but depends on the specified codecs.
+
+<P>
+If <var>output</var> is not given, it defaults to <var>input</var>.
+
+<P>
+<var>errors</var> may be given to define the error handling. It defaults to
+<code>'strict'</code>, which causes <tt class="exception">ValueError</tt> to be raised in case
+an encoding error occurs.
+</dl>
+
+<P>
+The module also provides the following constants which are useful
+for reading and writing to platform dependent files:
+
+<P>
+<dl><dt><b><a name="l2h-800"><tt>BOM</tt></a></b>
+<dd>
+<dt><b><a name="l2h-802"><tt>BOM_BE</tt></a></b><dd>
+<dt><b><a name="l2h-803"><tt>BOM_LE</tt></a></b><dd>
+<dt><b><a name="l2h-804"><tt>BOM32_BE</tt></a></b><dd>
+<dt><b><a name="l2h-805"><tt>BOM32_LE</tt></a></b><dd>
+<dt><b><a name="l2h-806"><tt>BOM64_BE</tt></a></b><dd>
+<dt><b><a name="l2h-807"><tt>BOM64_LE</tt></a></b><dd>
+These constants define the byte order marks (BOM) used in data
+streams to indicate the byte order used in the stream or file.
+<tt class="constant">BOM</tt> is either <tt class="constant">BOM_BE</tt> or <tt class="constant">BOM_LE</tt>
+depending on the platform's native byte order, while the others
+represent big endian ("<tt class="samp">_BE</tt>" suffix) and little endian
+("<tt class="samp">_LE</tt>" suffix) byte order using 32-bit and 64-bit encodings.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seeurl">
+    <dt><a href="http://sourceforge.net/projects/python-codecs/"
+        class="url">http://sourceforge.net/projects/python-codecs/</a>
+    <dd>A
+          SourceForge project working on additional support for Asian
+          codecs for use with Python.  They are in the early stages of
+          development at the time of this writing -- look in their
+          FTP area for downloadable files.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node113.html">4.8.1 Codec Base Classes</a>
+<UL>
+<LI><A href="codec-objects.html">4.8.1.1 Codec Objects</a>
+<LI><A href="stream-writer-objects.html">4.8.1.2 StreamWriter Objects</a>
+<LI><A href="stream-reader-objects.html">4.8.1.3 StreamReader Objects</a>
+<LI><A href="stream-reader-writer.html">4.8.1.4 StreamReaderWriter Objects</a>
+<LI><A href="stream-recoder-objects.html">4.8.1.5 StreamRecoder Objects</a>
+</ul></ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-cStringIO.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="strings.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node113.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-cStringIO.html">4.7 cStringIO  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="strings.html">4. String Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node113.html">4.8.1 Codec Base Classes</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

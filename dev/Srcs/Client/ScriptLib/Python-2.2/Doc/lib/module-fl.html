@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>20.4 fl -- FORMS library for graphical user interfaces</title>
+<META NAME="description" CONTENT="20.4 fl -- FORMS library for graphical user interfaces">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-fl-constants.html">
+<LINK REL="previous" href="module-cd.html">
+<LINK REL="up" href="sgi.html">
+<LINK REL="next" HREF="node589.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="cd-parser-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="sgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node589.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="cd-parser-objects.html">20.3.2 Parser Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="sgi.html">20. SGI IRIX Specific</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node589.html">20.4.1 Functions Defined in</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0022400000000000000000">
+20.4 <tt class="module">fl</tt> --
+         FORMS library for graphical user interfaces</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">IRIX</span>.</p>
+
+<P>
+This module provides an interface to the FORMS Library<a name="l2h-3929">&nbsp;</a>by Mark Overmars<a name="l2h-3930">&nbsp;</a>.  The source for the
+library can be retrieved by anonymous ftp from host
+"<tt class="samp">ftp.cs.ruu.nl</tt>", directory <span class="file">SGI/FORMS</span>.  It was last tested
+with version 2.0b.
+
+<P>
+Most functions are literal translations of their C equivalents,
+dropping the initial "<tt class="samp">fl_</tt>" from their name.  Constants used by
+the library are defined in module <tt class="module"><a href="module-fl-constants.html">FL</a></tt>
+described below.
+
+<P>
+The creation of objects is a little different in Python than in C:
+instead of the `current form' maintained by the library to which new
+FORMS objects are added, all functions that add a FORMS object to a
+form are methods of the Python object representing the form.
+Consequently, there are no Python equivalents for the C functions
+<tt class="cfunction">fl_addto_form()</tt> and <tt class="cfunction">fl_end_form()</tt>, and the
+equivalent of <tt class="cfunction">fl_bgn_form()</tt> is called
+<tt class="function">fl.make_form()</tt>.
+
+<P>
+Watch out for the somewhat confusing terminology: FORMS uses the word
+<i class="dfn">object</i> for the buttons, sliders etc. that you can place in a form.
+In Python, `object' means any value.  The Python interface to FORMS
+introduces two new Python object types: form objects (representing an
+entire form) and FORMS objects (representing one button, slider etc.).
+Hopefully this isn't too confusing.
+
+<P>
+There are no `free objects' in the Python interface to FORMS, nor is
+there an easy way to add object classes written in Python.  The FORMS
+interface to GL event handling is available, though, so you can mix
+FORMS with pure GL windows.
+
+<P>
+<b>Please note:</b> importing <tt class="module">fl</tt> implies a call to the GL
+function <tt class="cfunction">foreground()</tt> and to the FORMS routine
+<tt class="cfunction">fl_init()</tt>.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node589.html">20.4.1 Functions Defined in Module <tt class="module">fl</tt></a>
+<LI><A href="form-objects.html">20.4.2 Form Objects</a>
+<LI><A href="forms-objects.html">20.4.3 FORMS Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="cd-parser-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="sgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node589.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="cd-parser-objects.html">20.3.2 Parser Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="sgi.html">20. SGI IRIX Specific</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node589.html">20.4.1 Functions Defined in</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

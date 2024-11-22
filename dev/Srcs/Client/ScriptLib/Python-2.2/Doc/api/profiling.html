@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.2 Profiling and Tracing </title>
+<META NAME="description" CONTENT="8.2 Profiling and Tracing ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="advanced-debugging.html">
+<LINK REL="previous" href="threads.html">
+<LINK REL="up" href="initialization.html">
+<LINK REL="next" href="advanced-debugging.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="threads.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="initialization.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="advanced-debugging.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="threads.html">8.1 Thread State and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="initialization.html">8. Initialization, Finalization, and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="advanced-debugging.html">8.3 Advanced Debugger Support</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0010200000000000000000">&nbsp;</A>
+<BR>
+8.2 Profiling and Tracing 
+</H1>
+
+<P>
+
+<P>
+The Python interpreter provides some low-level support for attaching
+profiling and execution tracing facilities.  These are used for
+profiling, debugging, and coverage analysis tools.
+
+<P>
+Starting with Python 2.2, the implementation of this facility was
+substantially revised, and an interface from C was added.  This C
+interface allows the profiling or tracing code to avoid the overhead
+of calling through Python-level callable objects, making a direct C
+function call instead.  The essential attributes of the facility have
+not changed; the interface allows trace functions to be installed
+per-thread, and the basic events reported to the trace function are
+the same as had been reported to the Python-level trace functions in
+previous versions.
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-748">int (*Py_tracefunc)(PyObject *obj,
+                                PyFrameObject *frame, int what,
+                                PyObject *arg)</a></tt></b>
+<dd>
+  The type of the trace function registered using
+  <tt class="cfunction">PyEval_SetProfile()</tt> and <tt class="cfunction">PyEval_SetTrace()</tt>.
+  The first parameter is the object passed to the registration
+  function as <var>obj</var>, <var>frame</var> is the frame object to which the
+  event pertains, <var>what</var> is one of the constants
+  <tt class="constant">PyTrace_CALL</tt>, <tt class="constant">PyTrace_EXCEPT</tt>,
+  <tt class="constant">PyTrace_LINE</tt> or <tt class="constant">PyTrace_RETURN</tt>, and <var>arg</var>
+  depends on the value of <var>what</var>:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Value of <var>what</var></b>&nbsp;</th>
+      <th align="left"><b>Meaning of <var>arg</var></b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><tt class="constant">PyTrace_CALL</tt></td>
+        <td align="left">Always <tt class="constant">NULL</tt>.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">PyTrace_EXCEPT</tt></td>
+        <td align="left">Exception information as returned by
+                            <tt class="function">sys.exc_info()</tt>.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">PyTrace_LINE</tt></td>
+        <td align="left">Always <tt class="constant">NULL</tt>.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">PyTrace_RETURN</tt></td>
+        <td align="left">Value being returned to the caller.</td></tbody>
+</table>
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-749"><tt class="cdata">PyTrace_CALL</tt></a></b>
+<dd>
+  The value of the <var>what</var> parameter to a <tt class="ctype">Py_tracefunc</tt>
+  function when a new call to a function or method is being reported,
+  or a new entry into a generator.  Note that the creation of the
+  iterator for a generator function is not reported as there is no
+  control transfer to the Python bytecode in the corresponding frame.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-750"><tt class="cdata">PyTrace_EXCEPT</tt></a></b>
+<dd>
+  The value of the <var>what</var> parameter to a <tt class="ctype">Py_tracefunc</tt>
+  function when an exception has been raised.  The callback function
+  is called with this value for <var>what</var> when after any bytecode is
+  processed after which the exception becomes set within the frame
+  being executed.  The effect of this is that as exception propogation
+  causes the Python stack to unwind, the callback is called upon
+  return to each frame as the exception propogates.  Only trace
+  functions receives these events; they are not needed by the
+  profiler.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-751"><tt class="cdata">PyTrace_LINE</tt></a></b>
+<dd>
+  The value passed as the <var>what</var> parameter to a trace function
+  (but not a profiling function) when a line-number event is being
+  reported.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-752"><tt class="cdata">PyTrace_RETURN</tt></a></b>
+<dd>
+  The value for the <var>what</var> parameter to <tt class="ctype">Py_tracefunc</tt>
+  functions when a call is returning without propogating an exception.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-753"><tt class="cfunction">PyEval_SetProfile</tt></a></b>(<var>Py_tracefunc func, PyObject *obj</var>)
+<dd>
+  Set the profiler function to <var>func</var>.  The <var>obj</var> parameter is
+  passed to the function as its first parameter, and may be any Python
+  object, or <tt class="constant">NULL</tt>.  If the profile function needs to maintain state,
+  using a different value for <var>obj</var> for each thread provides a
+  convenient and thread-safe place to store it.  The profile function
+  is called for all monitored events except the line-number events.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-754"><tt class="cfunction">PyEval_SetTrace</tt></a></b>(<var>Py_tracefunc func, PyObject *obj</var>)
+<dd>
+  Set the the tracing function to <var>func</var>.  This is similar to
+  <tt class="cfunction">PyEval_SetProfile()</tt>, except the tracing function does
+  receive line-number events.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="threads.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="initialization.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="advanced-debugging.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="threads.html">8.1 Thread State and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="initialization.html">8. Initialization, Finalization, and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="advanced-debugging.html">8.3 Advanced Debugger Support</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

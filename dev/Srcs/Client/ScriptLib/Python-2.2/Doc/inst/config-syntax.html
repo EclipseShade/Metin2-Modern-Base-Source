@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6 Distutils Configuration Files</title>
+<META NAME="description" CONTENT="6 Distutils Configuration Files">
+<META NAME="keywords" CONTENT="inst">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="inst.css">
+<link rel="first" href="inst.html">
+
+<LINK REL="next" href="about.html">
+<LINK REL="previous" href="custom-install.html">
+<LINK REL="up" HREF="inst.html">
+<LINK REL="next" href="about.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="custom-install.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="inst.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="about.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Installing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="custom-install.html">5 Custom Installation</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="inst.html">Installing Python Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="about.html">About this document ...</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="#SECTION000610000000000000000">6.1 Location and names of config files</a>
+<LI><A href="#SECTION000620000000000000000">6.2 Syntax of config files</a>
+</ul>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION000600000000000000000">&nbsp;</A>
+<BR>
+6 Distutils Configuration Files
+</H1>
+
+<P>
+As mentioned above, you can use Distutils configuration files to record
+personal or site preferences for any Distutils options.  That is, any
+option to any command can be stored in one of two or three (depending on
+your platform) configuration files, which will be consulted before the
+command-line is parsed.  This means that configuration files will
+override default values, and the command-line will in turn override
+configuration files.  Furthermore, if multiple configuration files
+apply, values from ``earlier'' files are overridden by ``later'' files.
+
+<P>
+
+<H2><A NAME="SECTION000610000000000000000">&nbsp;</A>
+<BR>
+6.1 Location and names of config files
+</H2>
+
+<P>
+The names and locations of the configuration files vary slightly across
+platforms.  On Unix, the three configuration files (in the order they
+are processed) are:
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Type of file</b>&nbsp;</th>
+      <th align="left"><b>Location and filename</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline">system</td>
+        <td align="left"><span class="file"><font face="sans-serif"></i>prefix</i></font>/lib/python<font face="sans-serif"></i>ver</i></font>/distutils/distutils.cfg</span></td>
+        <td align="center">(1)</td>
+    <tr><td align="left" valign="baseline">personal</td>
+        <td align="left"><span class="file">$HOME/.pydistutils.cfg</span></td>
+        <td align="center">(2)</td>
+    <tr><td align="left" valign="baseline">local</td>
+        <td align="left"><span class="file">setup.cfg</span></td>
+        <td align="center">(3)</td></tbody>
+</table>
+
+<P>
+On Windows, the configuration files are:
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Type of file</b>&nbsp;</th>
+      <th align="left"><b>Location and filename</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline">system</td>
+        <td align="left"><span class="file"><font face="sans-serif"></i>prefix</i></font>&#92;Lib&#92;distutils&#92;distutils.cfg</span></td>
+        <td align="center">(4)</td>
+    <tr><td align="left" valign="baseline">personal</td>
+        <td align="left"><span class="file">%HOME&#92;pydistutils.cfg</span></td>
+        <td align="center">(5)</td>
+    <tr><td align="left" valign="baseline">local</td>
+        <td align="left"><span class="file">setup.cfg</span></td>
+        <td align="center">(3)</td></tbody>
+</table>
+
+<P>
+And on Mac OS, they are:
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Type of file</b>&nbsp;</th>
+      <th align="left"><b>Location and filename</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline">system</td>
+        <td align="left"><span class="file"><font face="sans-serif"></i>prefix</i></font>:Lib:distutils:distutils.cfg</span></td>
+        <td align="center">(6)</td>
+    <tr><td align="left" valign="baseline">personal</td>
+        <td align="left">N/A</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline">local</td>
+        <td align="left"><span class="file">setup.cfg</span></td>
+        <td align="center">(3)</td></tbody>
+</table>
+
+<P>
+Notes:
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>Strictly speaking, the system-wide configuration file lives
+  in the directory where the Distutils are installed; under Python 1.6
+  and later on Unix, this is as shown. For Python 1.5.2, the Distutils
+  will normally be installed to
+  <span class="file"><font face="sans-serif"></i>prefix</i></font>/lib/site-packages/python1.5/distutils</span>,
+  so the system configuration file should be put there under Python
+  1.5.2.
+</DD>
+<DT><STRONG>(2)</STRONG></DT>
+<DD>On Unix, if the <a class="envvar" name="l2h-1">HOME</a> environment variable is not
+  defined, the user's home directory will be determined with the
+  <tt class="function">getpwuid()</tt> function from the standard <tt class="module">pwd</tt> module.
+</DD>
+<DT><STRONG>(3)</STRONG></DT>
+<DD>I.e., in the current directory (usually the location of the
+  setup script).
+</DD>
+<DT><STRONG>(4)</STRONG></DT>
+<DD>(See also note (1).)  Under Python 1.6 and later, Python's
+  default ``installation prefix'' is <span class="file">C:&#92;Python</span>, so
+  the system configuration file is normally
+  <span class="file">C:&#92;Python&#92;Lib&#92;distutils&#92;distutils.cfg</span>.
+  Under Python 1.5.2, the default prefix was
+  <span class="file">C:&#92;Program&nbsp;Files&#92;Python</span>, and the
+  Distutils were not part of the standard library--so the system
+  configuration file would be
+  <span class="file">C:&#92;Program&nbsp;Files&#92;Python&#92;distutils&#92;distutils.cfg</span>
+  in a standard Python 1.5.2 installation under Windows.
+</DD>
+<DT><STRONG>(5)</STRONG></DT>
+<DD>On Windows, if the <a class="envvar" name="l2h-2">HOME</a> environment variable is not
+  defined, no personal configuration file will be found or used.  (In
+  other words, the Distutils make no attempt to guess your home
+  directory on Windows.)
+</DD>
+<DT><STRONG>(6)</STRONG></DT>
+<DD>(See also notes (1) and (4).)  The default installation
+  prefix is just <span class="file">Python:</span>, so under Python 1.6 and later this is
+  normally<span class="file">Python:Lib:distutils:distutils.cfg</span>.  (The Distutils
+  don't work very well with Python 1.5.2 under Mac OS.  <b>** true? **</b>)
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION000620000000000000000">&nbsp;</A>
+<BR>
+6.2 Syntax of config files
+</H2>
+
+<P>
+The Distutils configuration files all have the same syntax.  The config
+files are grouped into sections; there is one section for each Distutils
+command, plus a <code>global</code> section for global options that affect
+every command.  Each section consists of one option per line, specified
+like <code>option=value</code>.
+
+<P>
+For example, the following is a complete config file that just forces
+all commands to run quietly by default:
+
+<P>
+<dl><dd><pre class="verbatim">
+[global]
+verbose=0
+</pre></dl>
+
+<P>
+If this is installed as the system config file, it will affect all
+processing of any Python module distribution by any user on the current
+system.  If it is installed as your personal config file (on systems
+that support them), it will affect only module distributions processed
+by you.  And if it is used as the <span class="file">setup.cfg</span> for a particular
+module distribution, it affects only that distribution.
+
+<P>
+You could override the default ``build base'' directory and make the
+<code>build*</code> commands always forcibly rebuild all files with the
+following:
+
+<P>
+<dl><dd><pre class="verbatim">
+[build]
+build-base=blib
+force=1
+</pre></dl>
+
+<P>
+which corresponds to the command-line arguments
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py build --build-base=blib --force
+</pre></dl>
+
+<P>
+except that including the <code>build</code> command on the command-line
+means that command will be run.  Including a particular command in
+config files has no such implication; it only means that if the command
+is run, the options in the config file will apply.  (Or if other
+commands that derive values from it are run, they will use the values in
+the config file.)
+
+<P>
+You can find out the complete list of options for any command using the
+<b class="programopt">--help</b> option, e.g.:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py build --help
+</pre></dl>
+
+<P>
+and you can find out the complete list of global options by using
+<b class="programopt">--help</b> without a command:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py --help
+</pre></dl>
+
+<P>
+See also the ``Reference'' section of the ``Distributing Python
+Modules'' manual.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="custom-install.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="inst.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="about.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Installing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="custom-install.html">5 Custom Installation</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="inst.html">Installing Python Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="about.html">About this document ...</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>
