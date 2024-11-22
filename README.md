@@ -1,5 +1,5 @@
 **Compiling Client**
-- https://github.com/EclipseShade/Metin2-Source.wiki.git
+- [https://github.com/EclipseShade/Metin2-Source.wiki.git](https://github.com/EclipseShade/Metin2-Source/wiki/Compiling-Client-Binary)
 
 **Compiling Server**
 - FreeBSD 9.2
