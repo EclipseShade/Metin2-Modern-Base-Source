@@ -8,7 +8,7 @@ OBJDIR = .obj
 
 GCC_VERSION = $(shell $(CC) --version 2>&1 | grep "(GCC)" | cut -d' ' -f3  | cut -d'.' -f1)
 BSD_VERSION = $(shell uname -v 2>&1 | cut -d' ' -f2 | cut -d'.' -f1)
-P4_VERSION = $(shell p4 changes -m1 $(PWD)/...\#have | cut -d' ' -f2)
+P4_VERSION = $(shell svnversion -n .)
 $(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
 
 TARGET = $(BINDIR)/db_r$(P4_VERSION)
@@ -27,7 +27,7 @@ INCDIR += -I../../boost
 LIBDIR += -L../../libthecore/lib -L../../libsql -L../../libpoly -L../../libgame/lib
 
 # MySQL | MariaDB
-INCDIR += -L/usr/local/lib/mysql
+LIBDIR += -L /usr/local/lib/mysql
 
 LIBS = -lthecore -lmysqlclient -lsql -lpoly -lgame -lm -lz
 
@@ -63,6 +63,6 @@ clean:
 
 dep:
 	@touch Depend
-	makedepend -fDepend $(INCDIR) -I/usr/include/c++/3.3 -I/usr/include/c++/4.2 -p$(OBJDIR)/ $(SRCS) 2> /dev/null
+	makedepend -fDepend $(INCDIR) -I/usr/include/c++/4.2 -p $(OBJDIR)/ $(SRCS) 2> /dev/null
 
 sinclude Depend
