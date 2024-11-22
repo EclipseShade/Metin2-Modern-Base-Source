@@ -4,7 +4,8 @@
    it would have to take circular links and sharing into account. */
 
 #include "Stdafx.h"
-#include <Python-2.2/longintrepr.h>
+
+#include <Python-2.7/longintrepr.h>
 
 /* High water mark to determine when the marshalled object is dangerously deep
  * and risks coring the interpreter.  When the object stack gets this deep,
