@@ -2,17 +2,19 @@
 extern "C" {
 #endif
 
-#include "../../ExternGame/liblua/include/lua.h"
-#include "../../ExternGame/liblua/include/lauxlib.h"
-#include "../../ExternGame/liblua/include/lualib.h"
+#include "../../../ExternGame/liblua/include/lua.h"
+#include "../../../ExternGame/liblua/include/lauxlib.h"
+#include "../../../ExternGame/liblua/include/lualib.h"
 
-#include "../../liblua/src/lzio.h"
-#include "../../liblua/src/llex.h"
-#include "../../liblua/src/lstring.h"
+#include "../../../ExternGame/liblua/src/lzio.h"
+#include "../../../ExternGame/liblua/src/llex.h"
+#include "../../../ExternGame/liblua/src/lstring.h"
+
 #if !defined(_MSC_VER) && defined(__cplusplus)
 }
 #endif
 
+#include <cstring> // Necessary for strcmp
 #include <algorithm>
 #include <iostream>
 #include <set>

@@ -4,7 +4,7 @@ CXX=g++
 PLATFORM = $(shell file /bin/ls | cut -d' ' -f3 | cut -d'-' -f1)
 BSD_VERSION = $(shell uname -v 2>&1 | cut -d' ' -f2 | cut -d'.' -f1)
 
-default: libthecore libpoly libgame liblua libsql libserverkey game db
+default: libthecore libpoly libgame liblua libsql libserverkey game db quest
 	@echo "--------------------------------------"
 	@echo "Build Done"
 	@echo "--------------------------------------"
@@ -54,6 +54,12 @@ db: .
 	$(MAKE) -C db dep
 	$(MAKE) -C db clean
 	$(MAKE) -C db
+	
+quest: .
+	@touch game/quest/Depend
+	$(MAKE) -C game/quest dep
+	$(MAKE) -C game/quest clean
+	$(MAKE) -C game/quest
 
 clean:
 	$(MAKE) -C ../ExternGame/liblua clean
@@ -102,6 +108,11 @@ all:
 	$(MAKE) -C db dep
 	$(MAKE) -C db clean
 	$(MAKE) -C db
+	
+	@touch game/quest/Depend
+	$(MAKE) -C game/quest dep
+	$(MAKE) -C game/quest clean
+	$(MAKE) -C game/quest
 
 	@echo "--------------------------------------"
 	@echo "Full Build End"
