@@ -14,8 +14,10 @@ $(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
 
 # Standard Setting
 LIBS = -pthread -lm -lmd
-# Removed -fno-rtti 
-CFLAGS = -g -Wall -O2 -m32 -pipe -fexceptions -D_THREAD_SAFE -DNDEBUG # -D_USE_SERVER_KEY_
+
+# -Wunused: This flag enables all the warnings about unused declarations. This includes unused variables, functions, parameters, and more. It is a general flag that encompasses many specific warnings.
+# -Wunused-function: This is a more specific flag that only warns about functions that are declared but not used. If you use this flag, you'll receive warnings only for unused functions, while turning off other unused-related warnings.
+CFLAGS = -g -Wall -O2 -m32 -pipe -fexceptions -D_THREAD_SAFE -DNDEBUG -Wunused-local-typedefs -Wunused -Wunused-function
 
 ifeq ($(GCC_VERSION), 4)
 CFLAGS += -mtune=i686 -fstack-protector-all
@@ -29,7 +31,9 @@ INCDIR += -I../../../Extern/include/boost
 # DevIL
 INCDIR += -I../../libdevil
 LIBDIR += -L../../libdevil
-LIBS += -lIL -lpng -ltiff -lmng -llcms -ljpeg
+LIBS += -lIL 
+
+# unused LIBS+= -lpng -ltiff -lmng -llcms -ljpeg
 
 # MySQL | MariaDB
 LIBDIR += -L /usr/local/lib/mysql
@@ -39,7 +43,7 @@ LIBS += -lmysqlclient -lz
 # Miscellaneous external libraries
 INCDIR += -I../../../Extern/include
 LIBDIR += -L../../../Extern/lib
-LIBS += -lcryptopp -lgtest
+LIBS += -lcryptopp
 
 # HackShield
 INCDIR += -I../../libhackshield/include
@@ -60,7 +64,7 @@ INCDIR += -I/usr/local/include
 INCDIR += -I../../libserverkey
 LIBDIR += -L../../libthecore/lib -L../../libpoly -L../../libsql -L../../libgame/lib -L../../liblua/lib -L../../libserverkey
 LIBDIR += -L/usr/local/lib
-LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame -lserverkey
+LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame -lc++ -lIL -lboost_system
 USE_STACKTRACE = 0
 ifeq ($(USE_STACKTRACE), 1)
 LIBS += /usr/local/lib/libexecinfo.a
@@ -106,11 +110,7 @@ CPPOBJS	= $(CPPFILE:%.cpp=$(OBJDIR)/%.o)
 MAINOBJ = $(OBJDIR)/main.o
 MAINCPP = main.cpp
 
-TESTOBJ = $(OBJDIR)/test.o
-TESTCPP = test.cpp
-TEST_TARGET = $(BINDIR)/test
-
-default: $(TARGET) $(TEST_TARGET)
+default: $(TARGET)
 
 $(OBJDIR)/minilzo.o: minilzo.c
 	@$(CC) $(CFLAGS) $(INCDIR) -c $< -o $@
@@ -132,10 +132,6 @@ $(TARGET): $(CPPOBJS) $(COBJS) $(MAINOBJ)
 	@echo linking $(TARGET)....
 	@$(CC) $(CFLAGS) $(LIBDIR) $(COBJS) $(CPPOBJS) $(MAINOBJ) $(LIBS) -o $(TARGET)
 
-$(TEST_TARGET): $(TESTCPP) $(CPPOBJS) $(COBJS) $(TESTOBJ)
-	@echo linking $(TEST_TARGET)
-	@$(CC) $(CFLAGS) $(LIBDIR) $(COBJS) $(CPPOBJS) $(TESTOBJ) $(LIBS) -o ../test
-
 clean:
 	@rm -f $(COBJS) $(CPPOBJS)
 	@rm -f $(BINDIR)/game_r* $(BINDIR)/conv
@@ -144,6 +140,6 @@ tag:
 	ctags *.cpp *.h *.c
 
 dep:
-	makedepend -f Depend $(INCDIR) -I/usr/include/c++/3.3 -I/usr/include/c++/4.2 -p$(OBJDIR)/ $(CPPFILE) $(CFILE) $(MAINCPP) $(TESTCPP) 2> /dev/null > Depend
+	makedepend -f Depend $(INCDIR) -I/usr/include/c++/4.2 -p $(OBJDIR)/ $(CPPFILE) $(CFILE) $(MAINCPP) 2> /dev/null > Depend
 
 sinclude Depend
