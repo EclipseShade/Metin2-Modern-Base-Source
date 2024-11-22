@@ -1,5 +1,5 @@
 **Compiling Client**
-- Visual Studio 2008
+- https://github.com/EclipseShade/Metin2-Source.wiki.git
 
 **Compiling Server**
 - FreeBSD 9.2
