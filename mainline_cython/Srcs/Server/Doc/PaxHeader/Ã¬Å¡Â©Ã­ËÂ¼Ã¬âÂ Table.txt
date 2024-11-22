@@ -1,0 +1,6 @@
+69 path=mainline_cython/Srcs/Server/Doc/ì©í¼ì Table.txt
+20 ctime=1365736072
+20 atime=1365736071
+17 SCHILY.dev=89
+22 SCHILY.ino=1586386
+18 SCHILY.nlink=1

@@ -1,0 +1,28 @@
+모든 서버 공통 
+외부접근 차단
+
+ipfw delete 10000
+
+
+천마 오픈
+root: Ekwlwlak   (한글로 따지지마)
+
+ipfw add 10000 allow tcp from any to me dst-port 50000-60000 setup
+ipfw add 10000 allow udp from any to me dst-port 50000-60000
+ipfw add 10000 allow udp from me 50000-60000 to any
+
+
+쾌도 오픈
+root: webzen@2
+
+ipfw add 10000 allow tcp from any to me dst-port 50000-60000 setup
+ipfw add 10000 allow udp from any to me dst-port 50000-60000
+ipfw add 10000 allow udp from me 50000-60000 to any
+ipfw add 10000 allow udp from me 10000-20000 to any
+
+
+
+웹서버 오픈
+ipfw add 10000 allow tcp from any to me 80 setup
+ipfw add 10000 allow tcp from any to me 444 setup
+ipfw add 10000 allow tcp from any to me 443 setup
