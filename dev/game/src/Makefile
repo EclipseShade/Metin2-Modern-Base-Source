@@ -2,7 +2,7 @@ PLATFORM = $(shell file /bin/ls | cut -d' ' -f3 | cut -d'-' -f1)
 
 GCC_VERSION = $(shell $(CC) --version 2>&1 | grep "(GCC)" | cut -d' ' -f3  | cut -d'.' -f1)
 BSD_VERSION = $(shell uname -v 2>&1 | cut -d' ' -f2 | cut -d'.' -f1)
-SVN_VERSION = $(shell svnversion -n .)
+SVN_VERSION = 40250
 
 CC = g++
 
@@ -36,7 +36,6 @@ LIBS += -lIL
 
 # MySQL | MariaDB
 LIBDIR += -L /usr/local/lib/mysql
-
 LIBS += -lmysqlclient -lz
 
 # Miscellaneous external libraries
@@ -116,7 +115,7 @@ $(OBJDIR)/minilzo.o: minilzo.c
 	@echo compile $<
 
 $(OBJDIR)/version.o: version.cpp
-	@$(CC) $(CFLAGS) -D__USER__=\"$(USER)\" -D__HOSTNAME__=\"$(HOSTNAME)\" -D__PWD__=\"$(PWD)\" -D__P4_VERSION__=\"$(P4_VERSION)\" -c $< -o $@
+	@$(CC) $(CFLAGS) -D__USER__=\"$(USER)\" -D__HOSTNAME__=\"$(HOSTNAME)\" -D__PWD__=\"$(PWD)\" -D__P4_VERSION__=\"$(SVN_VERSION)\" -c $< -o $@
 	@echo compile $<
 
 $(OBJDIR)/%.o: %.cpp
