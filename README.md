@@ -1,6 +1,6 @@
 **Requirements Programs**
 - Visual Studio 2008
-- FreeBSD 9.2
+- FreeBSD 9.2 | FreeBSD 10.3
 - WinSCP
 - Putty
 
