@@ -5,7 +5,7 @@
 - Putty
 
 **FreeBSD 10.3 - Instalation Guide**
-- 
+- [FreeBSD 10.3 Instalation Guide](https://github.com/EclipseShade/Metin2-Source/wiki/FreeBSD-10.3-Instalation-Guide)
 
 **Compiling Client**
 - [Metin2 Client Compilation Guide](https://github.com/EclipseShade/Metin2-Source/wiki/Compiling-Client-Binary)
