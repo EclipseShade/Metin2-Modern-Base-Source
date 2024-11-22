@@ -1,7 +1,13 @@
 #pragma once
 
-#include <string.h>
-#include <string>
+#include <cstdio>  // For printf and snprintf
+#include <cstdlib> // For atoi and strtol
+#include <iostream> // Optional if you are using cout
+#include <string> // Include for std::string
+#include <cstddef> // For std::size_t
+#include <cstring>  // For C-style string functions
+
+
 #include <ctype.h>
 #include <map>
 #include <assert.h>
