@@ -61,6 +61,12 @@ db: .
 	$(MAKE) -C $@/src clean
 	$(MAKE) -C $@/src
 
+clean:
+	$(MAKE) -C ../ExternGame/libsql clean
+	$(MAKE) -C ../ExternGame/libthecore/src clean
+	$(MAKE) -C db/src clean
+	$(MAKE) -C game/src clean
+
 all: 
 	@echo "--------------------------------------"
 	@echo "Full Build Start"
