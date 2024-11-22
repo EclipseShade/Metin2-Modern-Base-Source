@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8. Unix Specific Services</title>
+<META NAME="description" CONTENT="8. Unix Specific Services">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-pdb.html">
+<LINK REL="previous" href="someos.html">
+<LINK REL="up" HREF="lib.html">
+<LINK REL="next" href="module-posix.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="completer-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-posix.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="completer-objects.html">7.17.1 Completer Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-posix.html">8.1 posix  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0010000000000000000000">&nbsp;</A>
+<BR>
+8. Unix Specific Services
+</H1>
+
+<P>
+The modules described in this chapter provide interfaces to features
+that are unique to the Unix operating system, or in some cases to
+some or many variants of it.  Here's an overview:
+
+<P>
+<table class='synopsistable' valign='baseline'>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-posix.html'>posix</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>The most common POSIX system calls (normally used
+                via module <tt class="module"><a href="module-os.html">os</a></tt>).</td></tr>
+  <tr><td><b><tt class='module'><a href='module-pwd.html'>pwd</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>The password database (<tt class="function">getpwnam()</tt> and friends).</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-grp.html'>grp</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>The group database (<tt class="function">getgrnam()</tt> and friends).</td></tr>
+  <tr><td><b><tt class='module'><a href='module-crypt.html'>crypt</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>The <tt class="cfunction">crypt()</tt> function used to check
+  Unix passwords.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-dl.html'>dl</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Call C functions in shared objects.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-dbm.html'>dbm</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>The standard ``database'' interface, based on ndbm.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-gdbm.html'>gdbm</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>GNU's reinterpretation of dbm.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-termios.html'>termios</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>POSIX style tty control.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-TERMIOSuppercase.html'>TERMIOS</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Symbolic constants required to use the
+  <tt class="module">termios</tt> module.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-tty.html'>tty</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Utility functions that perform common terminal control
+                operations.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-pty.html'>pty</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Pseudo-Terminal Handling for SGI and Linux.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-fcntl.html'>fcntl</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>The <tt class="function">fcntl()</tt> and <tt class="function">ioctl()</tt> system calls.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-pipes.html'>pipes</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>A Python interface to Unix shell pipelines.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-posixfile.html'>posixfile</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>A file-like object with support for locking.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-resource.html'>resource</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>An interface to provide resource usage information on
+  the current process.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-nis.html'>nis</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to Sun's NIS (Yellow Pages) library.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-syslog.html'>syslog</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>An interface to the Unix syslog library routines.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-commands.html'>commands</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Utility functions for running external commands.</td></tr>
+</table>
+
+<BR>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="completer-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-posix.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="completer-objects.html">7.17.1 Completer Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-posix.html">8.1 posix  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

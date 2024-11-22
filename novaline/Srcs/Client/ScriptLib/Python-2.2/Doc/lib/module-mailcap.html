@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.3 mailcap -- Mailcap file handling.</title>
+<META NAME="description" CONTENT="12.3 mailcap -- Mailcap file handling.">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-mailbox.html">
+<LINK REL="previous" href="module-email.html">
+<LINK REL="up" href="netdata.html">
+<LINK REL="next" href="module-mailbox.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node389.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-mailbox.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node389.html">12.2.10 Examples</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-mailbox.html">12.4 mailbox  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0014300000000000000000">
+12.3 <tt class="module">mailcap</tt> --
+         Mailcap file handling.</A>
+</H1>
+
+<P>
+
+<P>
+Mailcap files are used to configure how MIME-aware applications such
+as mail readers and Web browsers react to files with different MIME
+types. (The name ``mailcap'' is derived from the phrase ``mail
+capability''.)  For example, a mailcap file might contain a line like
+"<tt class="samp">video/mpeg; xmpeg %s</tt>".  Then, if the user encounters an email
+message or Web document with the MIME type <span class="mimetype">video/mpeg</span>,
+"<tt class="samp">%s</tt>" will be replaced by a filename (usually one belonging to a
+temporary file) and the <b class="program">xmpeg</b> program can be automatically
+started to view the file.
+
+<P>
+The mailcap format is documented in <a class="rfc" name="rfcref-63833"
+href="http://www.faqs.org/rfcs/rfc1524.html">RFC 1524</a>, ``A User Agent
+Configuration Mechanism For Multimedia Mail Format Information,'' but
+is not an Internet standard.  However, mailcap files are supported on
+most Unix systems.
+
+<P>
+<dl><dt><b><a name="l2h-2867"><tt class="function">findmatch</tt></a></b>(<var>caps, MIMEtype</var><big>[</big><var>, key</var><big>[</big><var>,
+                            filename</var><big>[</big><var>, plist</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+Return a 2-tuple; the first element is a string containing the command
+line to be executed
+(which can be passed to <tt class="function">os.system()</tt>), and the second element is
+the mailcap entry for a given MIME type.  If no matching MIME
+type can be found, <code>(None, None)</code> is returned.
+
+<P>
+<var>key</var> is the name of the field desired, which represents the type
+of activity to be performed; the default value is 'view', since in the 
+most common case you simply want to view the body of the MIME-typed
+data.  Other possible values might be 'compose' and 'edit', if you
+wanted to create a new body of the given MIME type or alter the
+existing body data.  See <a class="rfc" name="rfcref-63835"
+href="http://www.faqs.org/rfcs/rfc1524.html">RFC 1524</a> for a complete list of these
+fields.
+
+<P>
+<var>filename</var> is the filename to be substituted for "<tt class="samp">%s</tt>" in the
+command line; the default value is
+<code>'/dev/null'</code> which is almost certainly not what you want, so
+usually you'll override it by specifying a filename.
+
+<P>
+<var>plist</var> can be a list containing named parameters; the default
+value is simply an empty list.  Each entry in the list must be a
+string containing the parameter name, an equals sign ("<tt class="character">=</tt>"),
+and the parameter's value.  Mailcap entries can contain 
+named parameters like <code>%{foo}</code>, which will be replaced by the
+value of the parameter named 'foo'.  For example, if the command line
+"<tt class="samp">showpartial %{id} %{number} %{total}</tt>"was in a mailcap file, and <var>plist</var> was set to <code>['id=1',
+'number=2', 'total=3']</code>, the resulting command line would be 
+<code>'showpartial 1 2 3'</code>.  
+
+<P>
+In a mailcap file, the ``test'' field can optionally be specified to
+test some external condition (such as the machine architecture, or the
+window system in use) to determine whether or not the mailcap line
+applies.  <tt class="function">findmatch()</tt> will automatically check such
+conditions and skip the entry if the check fails.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2868"><tt class="function">getcaps</tt></a></b>()
+<dd>
+Returns a dictionary mapping MIME types to a list of mailcap file
+entries. This dictionary must be passed to the <tt class="function">findmatch()</tt>
+function.  An entry is stored as a list of dictionaries, but it
+shouldn't be necessary to know the details of this representation.
+
+<P>
+The information is derived from all of the mailcap files found on the
+system. Settings in the user's mailcap file <span class="file">$HOME/.mailcap</span>
+will override settings in the system mailcap files
+<span class="file">/etc/mailcap</span>, <span class="file">/usr/etc/mailcap</span>, and
+<span class="file">/usr/local/etc/mailcap</span>.
+</dl>
+
+<P>
+An example usage:
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import mailcap
+&gt;&gt;&gt; d=mailcap.getcaps()
+&gt;&gt;&gt; mailcap.findmatch(d, 'video/mpeg', filename='/tmp/tmp1223')
+('xmpeg /tmp/tmp1223', {'view': 'xmpeg %s'})
+</pre></dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node389.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-mailbox.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node389.html">12.2.10 Examples</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-mailbox.html">12.4 mailbox  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

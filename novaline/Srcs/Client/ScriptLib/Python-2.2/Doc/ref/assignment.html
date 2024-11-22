@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.3 Assignment statements </title>
+<META NAME="description" CONTENT="6.3 Assignment statements ">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="pass.html">
+<LINK REL="previous" href="assert.html">
+<LINK REL="up" href="simple.html">
+<LINK REL="next" href="augassign.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="assert.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="simple.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="augassign.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="assert.html">6.2 Assert statements</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="simple.html">6. Simple statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="augassign.html">6.3.1 Augmented Assignment statements</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008300000000000000000">&nbsp;</A>
+<BR>
+6.3 Assignment statements 
+</H1>
+
+<P>
+Assignment statements<a name="l2h-307">&nbsp;</a>are used to
+(re)bind names to values and to modify attributes or items of mutable
+objects:
+<a name="l2h-308">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-assignment_stmt">assignment_stmt</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>(<a href="node67.html#tok-target_list">target_list</a> "=")+ <a href="exprlists.html#tok-expression_list">expression_list</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-target_list">target_list</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="augassign.html#tok-target">target</a> ("," <a href="augassign.html#tok-target">target</a>)* [","]</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-target">target</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="identifiers.html#tok-identifier">identifier</a>
+              | "(" <a href="assignment.html#tok-target_list">target_list</a> ")"
+              | "[" <a href="assignment.html#tok-target_list">target_list</a> "]"
+              | <a href="attribute-references.html#tok-attributeref">attributeref</a>
+              | <a href="subscriptions.html#tok-subscription">subscription</a>
+              | <a href="slicings.html#tok-slicing">slicing</a></code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+(See section&nbsp;<A href="primaries.html#primaries">5.3</A> for the syntax definitions for the last
+three symbols.)
+
+<P>
+An assignment statement evaluates the expression list (remember that
+this can be a single expression or a comma-separated list, the latter
+yielding a tuple) and assigns the single resulting object to each of
+the target lists, from left to right.
+<a name="l2h-309">&nbsp;</a>
+<P>
+Assignment is defined recursively depending on the form of the target
+(list).  When a target is part of a mutable object (an attribute
+reference, subscription or slicing), the mutable object must
+ultimately perform the assignment and decide about its validity, and
+may raise an exception if the assignment is unacceptable.  The rules
+observed by various types and the exceptions raised are given with the
+definition of the object types (see section&nbsp;<A href="types.html#types">3.2</A>).
+<a name="l2h-310">&nbsp;</a>
+<P>
+Assignment of an object to a target list is recursively defined as
+follows.
+<a name="l2h-311">&nbsp;</a>
+<P>
+
+<UL>
+<LI>If the target list is a single target: The object is assigned to that
+target.
+
+<P>
+</LI>
+<LI>If the target list is a comma-separated list of targets: The object
+must be a sequence with the same number of items as the there are
+targets in the target list, and the items are assigned, from left to
+right, to the corresponding targets.  (This rule is relaxed as of
+Python 1.5; in earlier versions, the object had to be a tuple.  Since
+strings are sequences, an assignment like "<tt class="samp">a, b = "xy"</tt>" is
+now legal as long as the string has the right length.)
+
+<P>
+</LI>
+</UL>
+
+<P>
+Assignment of an object to a single target is recursively defined as
+follows.
+
+<P>
+
+ 
+<UL>
+<LI>If the target is an identifier (name):
+
+<P>
+
+<UL>
+<LI>If the name does not occur in a <tt class="keyword">global</tt> statement in the current
+code block: the name is bound to the object in the current local
+namespace.
+<a name="l2h-312">&nbsp;</a>
+<P>
+</LI>
+<LI>Otherwise: the name is bound to the object in the current global
+namespace.
+
+<P>
+</LI>
+</UL> 
+<P>
+The name is rebound if it was already bound.  This may cause the
+reference count for the object previously bound to the name to reach
+zero, causing the object to be deallocated and its
+destructor<a name="l2h-313">&nbsp;</a>(if it has one) to be called.
+
+<P>
+</LI>
+<LI>If the target is a target list enclosed in parentheses or in square
+brackets: The object must be a sequence with the same number of items
+as there are targets in the target list, and its items are assigned,
+from left to right, to the corresponding targets.
+
+<P>
+</LI>
+<LI>If the target is an attribute reference: The primary expression in the
+reference is evaluated.  It should yield an object with assignable
+attributes; if this is not the case, <tt class="exception">TypeError</tt> is raised.  That
+object is then asked to assign the assigned object to the given
+attribute; if it cannot perform the assignment, it raises an exception
+(usually but not necessarily <tt class="exception">AttributeError</tt>).
+<a name="l2h-314">&nbsp;</a>
+<P>
+</LI>
+<LI>If the target is a subscription: The primary expression in the
+reference is evaluated.  It should yield either a mutable sequence
+object (e.g., a list) or a mapping object (e.g., a dictionary).  Next,
+the subscript expression is evaluated.
+<a name="l2h-315">&nbsp;</a>
+<P>
+If the primary is a mutable sequence object (e.g., a list), the subscript
+must yield a plain integer.  If it is negative, the sequence's length
+is added to it.  The resulting value must be a nonnegative integer
+less than the sequence's length, and the sequence is asked to assign
+the assigned object to its item with that index.  If the index is out
+of range, <tt class="exception">IndexError</tt> is raised (assignment to a subscripted
+sequence cannot add new items to a list).
+<a name="l2h-316">&nbsp;</a>
+<P>
+If the primary is a mapping object (e.g., a dictionary), the subscript must
+have a type compatible with the mapping's key type, and the mapping is
+then asked to create a key/datum pair which maps the subscript to
+the assigned object.  This can either replace an existing key/value
+pair with the same key value, or insert a new key/value pair (if no
+key with the same value existed).
+<a name="l2h-317">&nbsp;</a>
+<P>
+</LI>
+<LI>If the target is a slicing: The primary expression in the reference is
+evaluated.  It should yield a mutable sequence object (e.g., a list).  The
+assigned object should be a sequence object of the same type.  Next,
+the lower and upper bound expressions are evaluated, insofar they are
+present; defaults are zero and the sequence's length.  The bounds
+should evaluate to (small) integers.  If either bound is negative, the
+sequence's length is added to it.  The resulting bounds are clipped to
+lie between zero and the sequence's length, inclusive.  Finally, the
+sequence object is asked to replace the slice with the items of the
+assigned sequence.  The length of the slice may be different from the
+length of the assigned sequence, thus changing the length of the
+target sequence, if the object allows it.
+<a name="l2h-318">&nbsp;</a>
+<P>
+</LI>
+</UL>
+
+<P>
+(In the current implementation, the syntax for targets is taken
+to be the same as for expressions, and invalid syntax is rejected
+during the code generation phase, causing less detailed error
+messages.)
+
+<P>
+WARNING: Although the definition of assignment implies that overlaps
+between the left-hand side and the right-hand side are `safe' (e.g.,
+"<tt class="samp">a, b = b, a</tt>" swaps two variables), overlaps <i>within</i> the
+collection of assigned-to variables are not safe!  For instance, the
+following program prints "<tt class="samp">[0, 2]</tt>":
+
+<P>
+<dl><dd><pre class="verbatim">
+x = [0, 1]
+i = 0
+i, x[i] = 1, 2
+print x
+</pre></dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="augassign.html">6.3.1 Augmented Assignment statements</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="assert.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="simple.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="augassign.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="assert.html">6.2 Assert statements</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="simple.html">6. Simple statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="augassign.html">6.3.1 Augmented Assignment statements</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

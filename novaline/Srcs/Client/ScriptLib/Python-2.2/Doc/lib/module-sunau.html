@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>14.4 sunau -- Read and write Sun AU files</title>
+<META NAME="description" CONTENT="14.4 sunau -- Read and write Sun AU files">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-wave.html">
+<LINK REL="previous" href="module-aifc.html">
+<LINK REL="up" href="mmedia.html">
+<LINK REL="next" href="au-read-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-aifc.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="mmedia.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="au-read-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-aifc.html">14.3 aifc  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="au-read-objects.html">14.4.1 AU_read Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0016400000000000000000">
+14.4 <tt class="module">sunau</tt> --
+         Read and write Sun AU files</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">sunau</tt> module provides a convenient interface to the Sun
+AU sound format.  Note that this module is interface-compatible with
+the modules <tt class="module"><a href="module-aifc.html">aifc</a></tt> and <tt class="module"><a href="module-wave.html">wave</a></tt>.
+
+<P>
+An audio file consists of a header followed by the data.  The fields
+of the header are:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Field</b>&nbsp;</th>
+      <th align="left"><b>Contents</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline">magic word</td>
+        <td align="left">The four bytes "<tt class="samp">.snd</tt>".</td>
+    <tr><td align="left" valign="baseline">header size</td>
+        <td align="left">Size of the header, including info, in bytes.</td>
+    <tr><td align="left" valign="baseline">data size</td>
+        <td align="left">Physical size of the data, in bytes.</td>
+    <tr><td align="left" valign="baseline">encoding</td>
+        <td align="left">Indicates how the audio samples are encoded.</td>
+    <tr><td align="left" valign="baseline">sample rate</td>
+        <td align="left">The sampling rate.</td>
+    <tr><td align="left" valign="baseline"># of channels</td>
+        <td align="left">The number of channels in the samples.</td>
+    <tr><td align="left" valign="baseline">info</td>
+        <td align="left">ASCII string giving a description of the audio
+                file (padded with null bytes).</td></tbody>
+</table>
+
+<P>
+Apart from the info field, all header fields are 4 bytes in size.
+They are all 32-bit unsigned integers encoded in big-endian byte
+order.
+
+<P>
+The <tt class="module">sunau</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-3508"><tt class="function">open</tt></a></b>(<var>file, mode</var>)
+<dd>
+If <var>file</var> is a string, open the file by that name, otherwise treat it
+as a seekable file-like object. <var>mode</var> can be any of
+<DL>
+<DT><STRONG><code>'r'</code></STRONG></DT>
+<DD>Read only mode.
+	
+</DD>
+<DT><STRONG><code>'w'</code></STRONG></DT>
+<DD>Write only mode.
+</DD>
+</DL>
+Note that it does not allow read/write files.
+
+<P>
+A <var>mode</var> of <code>'r'</code> returns a <tt class="class">AU_read</tt>
+object, while a <var>mode</var> of <code>'w'</code> or <code>'wb'</code> returns
+a <tt class="class">AU_write</tt> object.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3509"><tt class="function">openfp</tt></a></b>(<var>file, mode</var>)
+<dd>
+A synonym for <tt class="function">open</tt>, maintained for backwards compatibility.
+</dl>
+
+<P>
+The <tt class="module">sunau</tt> module defines the following exception:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-3510"><tt class="exception">Error</tt></a></b>
+<dd>
+An error raised when something is impossible because of Sun AU specs or 
+implementation deficiency.
+</dl>
+
+<P>
+The <tt class="module">sunau</tt> module defines the following data items:
+
+<P>
+<dl><dt><b><a name="l2h-3511"><tt>AUDIO_FILE_MAGIC</tt></a></b>
+<dd>
+An integer every valid Sun AU file begins with, stored in big-endian
+form.  This is the string "<tt class="samp">.snd</tt>" interpreted as an integer.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3512"><tt>AUDIO_FILE_ENCODING_MULAW_8</tt></a></b>
+<dd>
+<dt><b><a name="l2h-3514"><tt>AUDIO_FILE_ENCODING_LINEAR_8</tt></a></b><dd>
+<dt><b><a name="l2h-3515"><tt>AUDIO_FILE_ENCODING_LINEAR_16</tt></a></b><dd>
+<dt><b><a name="l2h-3516"><tt>AUDIO_FILE_ENCODING_LINEAR_24</tt></a></b><dd>
+<dt><b><a name="l2h-3517"><tt>AUDIO_FILE_ENCODING_LINEAR_32</tt></a></b><dd>
+<dt><b><a name="l2h-3518"><tt>AUDIO_FILE_ENCODING_ALAW_8</tt></a></b><dd>
+Values of the encoding field from the AU header which are supported by
+this module.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3513"><tt>AUDIO_FILE_ENCODING_FLOAT</tt></a></b>
+<dd>
+<dt><b><a name="l2h-3519"><tt>AUDIO_FILE_ENCODING_DOUBLE</tt></a></b><dd>
+<dt><b><a name="l2h-3520"><tt>AUDIO_FILE_ENCODING_ADPCM_G721</tt></a></b><dd>
+<dt><b><a name="l2h-3521"><tt>AUDIO_FILE_ENCODING_ADPCM_G722</tt></a></b><dd>
+<dt><b><a name="l2h-3522"><tt>AUDIO_FILE_ENCODING_ADPCM_G723_3</tt></a></b><dd>
+<dt><b><a name="l2h-3523"><tt>AUDIO_FILE_ENCODING_ADPCM_G723_5</tt></a></b><dd>
+Additional known values of the encoding field from the AU header, but
+which are not supported by this module.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="au-read-objects.html">14.4.1 AU_read Objects</a>
+<LI><A href="au-write-objects.html">14.4.2 AU_write Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-aifc.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="mmedia.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="au-read-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-aifc.html">14.3 aifc  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="au-read-objects.html">14.4.1 AU_read Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>17.1.3 An example</title>
+<META NAME="description" CONTENT="17.1.3 An example">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="rexec-extension.html">
+<LINK REL="up" href="module-rexec.html">
+<LINK REL="next" href="module-Bastion.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="rexec-extension.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-rexec.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-Bastion.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="rexec-extension.html">17.1.2 Defining restricted environments</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-rexec.html">17.1 rexec  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-Bastion.html">17.2 Bastion  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0019130000000000000000">
+17.1.3 An example</A>
+</H2>
+
+<P>
+Let us say that we want a slightly more relaxed policy than the
+standard <tt class="class">RExec</tt> class.  For example, if we're willing to allow
+files in <span class="file">/tmp</span> to be written, we can subclass the <tt class="class">RExec</tt>
+class:
+
+<P>
+<dl><dd><pre class="verbatim">
+class TmpWriterRExec(rexec.RExec):
+    def r_open(self, file, mode='r', buf=-1):
+        if mode in ('r', 'rb'):
+            pass
+        elif mode in ('w', 'wb', 'a', 'ab'):
+            # check filename : must begin with /tmp/
+            if file[:5]!='/tmp/': 
+                raise IOError, "can't write outside /tmp"
+            elif (string.find(file, '/../') &gt;= 0 or
+                 file[:3] == '../' or file[-3:] == '/..'):
+                raise IOError, "'..' in filename forbidden"
+        else: raise IOError, "Illegal open() mode"
+        return open(file, mode, buf)
+</pre></dl>
+Notice that the above code will occasionally forbid a perfectly valid
+filename; for example, code in the restricted environment won't be
+able to open a file called <span class="file">/tmp/foo/../bar</span>.  To fix this, the
+<tt class="method">r_open()</tt> method would have to simplify the filename to
+<span class="file">/tmp/bar</span>, which would require splitting apart the filename and
+performing various operations on it.  In cases where security is at
+stake, it may be preferable to write simple code which is sometimes
+overly restrictive, instead of more general code that is also more
+complex and may harbor a subtle security hole.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="rexec-extension.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-rexec.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-Bastion.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="rexec-extension.html">17.1.2 Defining restricted environments</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-rexec.html">17.1 rexec  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-Bastion.html">17.2 Bastion  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

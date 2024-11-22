@@ -1,0 +1,84 @@
+
+
+1. 암호화 키 생성
+
+ServerKeyGenerator.exe -k
+
+위와 같이 실행하면, PublicKey.Gen.h와 ServerKey.Gen.h 파일이 생성됨
+PublicKey.Gen.h에는 게임서버가 서버키를 복호화 할 때 사용할 public key가 들어있고,
+ServerKey.Gen.h에는 서버키 생성시 암호화에 사용할 private key가 들어있음.
+
+이미 두 파일이 생성되어 있다면, 패스.
+단, 키를 다시 생성하고 싶다면 다시 실행하면 다른 키가 생성됨.
+다른 키를 생성하면 기존에 생성된 서버키는 폐기하고, 새로운 암호화 키로 서버키를 생성해서 배포해야 함.
+
+
+
+2. 서버 키 생성
+
+서버 키란? 서버의 ip나 mac 정보를 RSA private key로 암호화한 값으로,
+게임서버가 구동시에 이 서버키를 RSA public key로 복호화해서 자신의 ip가 유효한 ip인지 체크할 수 있다.
+
+생성:
+
+ServerKeyGenerator.exe -d [sim file path]
+
+(단, 이미 암호화 키를 생성해서 PublicKey.Gen.h와 ServerKey.Gen.h 파일이 생성된 후여야 함.)
+
+실행하면 다음과 같이 화면이 나옴.
+
+
+D:\metin2\metin2_giveme98\metin2\mainline\Srcs\Tools\ServerKeyGenerator\Bin>Serv
+erKeyGenerator -d ..\SIM\jp_live.txt
+IP RANGE type added - begin[2055335498] end[2055335503]
+SIM(30) = 122.129.238.74~122.129.238.79
+IP RANGE type added - begin[2055335509] end[2055335518]
+SIM(30) = 122.129.238.85~122.129.238.94
+single IP type added - ip(2055334386)
+SIM(16) = 122.129.233.242
+single IP type added - ip(2055334280)
+SIM(16) = 122.129.233.136
+
+<SERVER KEY>
+RP1fEmG2cSql3s1ydXQlSOFQ5CxTJ0xfbC3cgE0M0u1XOfztvHrFSo81r6Slu5EP0LJ503wZdJyquxEg
+trNv3Qz1uQJrcKxR7uxfubnGzNp2S4MInX6F78XR12huaED9tAXGUcQlLl9mZgotocKEpiyVH7mzOwHa
+L1s6oKYY7g4*
+
+
+여기서 <SERVER KEY> 아래에 있는 세줄을 한 줄로 붙여서 게임서버가 읽을 수 있도록
+설정파일에 추가한다.
+게임서버는 위의 서버키를 읽어서 CheckServerKey() 함수를 호출해서 본인의 ip 혹은 mac이
+유효한 값인지 검사할 수 있다.
+
+
+
+3. sim file 작성
+
+SIM 파일이란? 구동할 서버의 ip나 mac 정보를 담는 text 파일.
+
+예) jp_live.txt (일본 서비스를 위한 sim file)
+
+// japan live
+// update: 2011.11.29 - LIVE PVP 서버 구축
+//
+// right format:
+//
+// [IP]\t[MAC]\n	-- check ip and mac(format: aa-bb-cc-dd-ee-ff)
+// [IP]\n		-- check ip only
+// \t[MAC]\n		-- check mac only
+// [IP]~[IP]\n		-- check ip range
+//
+// wrong format:
+//
+// [IP]~[IP]\t[MAC]\n	-- wrong. cannot check ip range with mac
+//
+// game server ip
+// single ip: ip1
+// range: ip1~ip2
+122.129.238.74~122.129.238.79
+122.129.238.85~122.129.238.94
+122.129.233.242
+122.129.233.136
+
+
+위와 같이 jp_live.txt 파일을 만들어서 2. 서버 키 생성을 참고하여 서버키를 만들면 됨.

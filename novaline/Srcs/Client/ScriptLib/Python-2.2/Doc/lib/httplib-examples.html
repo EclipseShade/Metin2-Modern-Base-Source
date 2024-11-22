@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.6.3 Examples </title>
+<META NAME="description" CONTENT="11.6.3 Examples ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="httpresponse-objects.html">
+<LINK REL="up" href="module-httplib.html">
+<LINK REL="next" href="module-ftplib.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="httpresponse-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-httplib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-ftplib.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="httpresponse-objects.html">11.6.2 HTTPResponse Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-httplib.html">11.6 httplib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-ftplib.html">11.7 ftplib  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013630000000000000000">&nbsp;</A>
+<BR>
+11.6.3 Examples 
+</H2>
+
+<P>
+Here is an example session that uses the "<tt class="samp">GET</tt>" method:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import httplib
+&gt;&gt;&gt; conn = httplib.HTTPConnection("www.python.org")
+&gt;&gt;&gt; conn.request("GET", "/index.html")
+&gt;&gt;&gt; r1 = conn.getresponse()
+&gt;&gt;&gt; print r1.status, r1.reason
+200 OK
+&gt;&gt;&gt; data1 = r1.read()
+&gt;&gt;&gt; conn.request("GET", "/parrot.spam")
+&gt;&gt;&gt; r2 = conn.getresponse()
+&gt;&gt;&gt; print r2.status, r2.reason
+404 Not Found
+&gt;&gt;&gt; data2 = r2.read()
+&gt;&gt;&gt; conn.close()
+</pre></dl>
+
+<P>
+Here is an example session that shows how to "<tt class="samp">POST</tt>" requests:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import httplib, urllib
+&gt;&gt;&gt; params = urllib.urlencode({'spam': 1, 'eggs': 2, 'bacon': 0})
+&gt;&gt;&gt; headers = {"Content-type": "application/x-www-form-urlencoded",
+...            "Accept": "text/plain"}
+&gt;&gt;&gt; conn = httplib.HTTPConnection("musi-cal.mojam.com:80")
+&gt;&gt;&gt; conn.request("POST", "/cgi-bin/query", params, headers)
+&gt;&gt;&gt; response = conn.getresponse()
+&gt;&gt;&gt; print response.status, response.reason
+200 OK
+&gt;&gt;&gt; data = response.read()
+&gt;&gt;&gt; conn.close()
+</pre></dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="httpresponse-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-httplib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-ftplib.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="httpresponse-objects.html">11.6.2 HTTPResponse Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-httplib.html">11.6 httplib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-ftplib.html">11.7 ftplib  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

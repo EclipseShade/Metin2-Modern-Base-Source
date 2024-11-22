@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.11.2 Retrieving source code </title>
+<META NAME="description" CONTENT="3.11.2 Retrieving source code ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="inspect-classes-functions.html">
+<LINK REL="previous" href="inspect-types.html">
+<LINK REL="up" href="module-inspect.html">
+<LINK REL="next" href="inspect-classes-functions.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="inspect-types.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-inspect.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="inspect-classes-functions.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="inspect-types.html">3.11.1 Types and members</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-inspect.html">3.11 inspect  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="inspect-classes-functions.html">3.11.3 Classes and functions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0051120000000000000000">&nbsp;</A>
+<BR>
+3.11.2 Retrieving source code
+            
+</H2>
+
+<P>
+<dl><dt><b><a name="l2h-472"><tt class="function">getdoc</tt></a></b>(<var>object</var>)
+<dd>
+  Get the documentation string for an object.
+  All tabs are expanded to spaces.  To clean up docstrings that are
+  indented to line up with blocks of code, any whitespace than can be
+  uniformly removed from the second line onwards is removed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-473"><tt class="function">getcomments</tt></a></b>(<var>object</var>)
+<dd>
+  Return in a single string any lines of comments immediately preceding
+  the object's source code (for a class, function, or method), or at the
+  top of the Python source file (if the object is a module).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-474"><tt class="function">getfile</tt></a></b>(<var>object</var>)
+<dd>
+  Return the name of the (text or binary) file in which an object was
+  defined.  This will fail with a <tt class="exception">TypeError</tt> if the object
+  is a built-in module, class, or function.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-475"><tt class="function">getmodule</tt></a></b>(<var>object</var>)
+<dd>
+  Try to guess which module an object was defined in.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-476"><tt class="function">getsourcefile</tt></a></b>(<var>object</var>)
+<dd>
+  Return the name of the Python source file in which an object was
+  defined.  This will fail with a <tt class="exception">TypeError</tt> if the object
+  is a built-in module, class, or function.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-477"><tt class="function">getsourcelines</tt></a></b>(<var>object</var>)
+<dd>
+  Return a list of source lines and starting line number for an object.
+  The argument may be a module, class, method, function, traceback, frame,
+  or code object.  The source code is returned as a list of the lines
+  corresponding to the object and the line number indicates where in the
+  original source file the first line of code was found.  An
+  <tt class="exception">IOError</tt> is raised if the source code cannot be retrieved.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-478"><tt class="function">getsource</tt></a></b>(<var>object</var>)
+<dd>
+  Return the text of the source code for an object.
+  The argument may be a module, class, method, function, traceback, frame,
+  or code object.  The source code is returned as a single string.  An
+  <tt class="exception">IOError</tt> is raised if the source code cannot be retrieved.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="inspect-types.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-inspect.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="inspect-classes-functions.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="inspect-types.html">3.11.1 Types and members</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-inspect.html">3.11 inspect  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="inspect-classes-functions.html">3.11.3 Classes and functions</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

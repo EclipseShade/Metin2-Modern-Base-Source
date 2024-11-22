@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.13 calendar -- General calendar-related functions</title>
+<META NAME="description" CONTENT="5.13 calendar -- General calendar-related functions">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-cmd.html">
+<LINK REL="previous" href="module-xreadlines.html">
+<LINK REL="up" href="misc.html">
+<LINK REL="next" href="module-cmd.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-xreadlines.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-cmd.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-xreadlines.html">5.12 xreadlines  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-cmd.html">5.14 cmd  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0071300000000000000000">
+5.13 <tt class="module">calendar</tt> --
+         General calendar-related functions</A>
+</H1>
+
+<P>
+
+
+<P>
+This module allows you to output calendars like the Unix
+<b class="program">cal</b> program, and provides additional useful functions
+related to the calendar. By default, these calendars have Monday as
+the first day of the week, and Sunday as the last (the European
+convention). Use <tt class="function">setfirstweekday()</tt> to set the first day of the
+week to Sunday (6) or to any other weekday.  Parameters that specify
+dates are given as integers.
+
+<P>
+<dl><dt><b><a name="l2h-1035"><tt class="function">setfirstweekday</tt></a></b>(<var>weekday</var>)
+<dd>
+Sets the weekday (<code>0</code> is Monday, <code>6</code> is Sunday) to start
+each week. The values <tt class="constant">MONDAY</tt>, <tt class="constant">TUESDAY</tt>,
+<tt class="constant">WEDNESDAY</tt>, <tt class="constant">THURSDAY</tt>, <tt class="constant">FRIDAY</tt>,
+<tt class="constant">SATURDAY</tt>, and <tt class="constant">SUNDAY</tt> are provided for
+convenience. For example, to set the first weekday to Sunday:
+
+<P>
+<dl><dd><pre class="verbatim">
+import calendar
+calendar.setfirstweekday(calendar.SUNDAY)
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1036"><tt class="function">firstweekday</tt></a></b>()
+<dd>
+Returns the current setting for the weekday to start each week.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1037"><tt class="function">isleap</tt></a></b>(<var>year</var>)
+<dd>
+Returns <code>1</code> if <var>year</var> is a leap year, otherwise <code>0</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1038"><tt class="function">leapdays</tt></a></b>(<var>y1, y2</var>)
+<dd>
+Returns the number of leap years in the range
+[<var>y1</var>...<var>y2</var>), where <var>y1</var> and <var>y2</var> are years.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1039"><tt class="function">weekday</tt></a></b>(<var>year, month, day</var>)
+<dd>
+Returns the day of the week (<code>0</code> is Monday) for <var>year</var>
+(<code>1970</code>-...), <var>month</var> (<code>1</code>-<code>12</code>), <var>day</var>
+(<code>1</code>-<code>31</code>).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1040"><tt class="function">monthrange</tt></a></b>(<var>year, month</var>)
+<dd>
+Returns weekday of first day of the month and number of days in month, 
+for the specified <var>year</var> and <var>month</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1041"><tt class="function">monthcalendar</tt></a></b>(<var>year, month</var>)
+<dd>
+Returns a matrix representing a month's calendar.  Each row represents
+a week; days outside of the month a represented by zeros.
+Each week begins with Monday unless set by <tt class="function">setfirstweekday()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1042"><tt class="function">prmonth</tt></a></b>(<var>theyear, themonth</var><big>[</big><var>, w</var><big>[</big><var>, l</var><big>]</big><big>]</big>)
+<dd>
+Prints a month's calendar as returned by <tt class="function">month()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1043"><tt class="function">month</tt></a></b>(<var>theyear, themonth</var><big>[</big><var>, w</var><big>[</big><var>, l</var><big>]</big><big>]</big>)
+<dd>
+Returns a month's calendar in a multi-line string. If <var>w</var> is
+provided, it specifies the width of the date columns, which are
+centered. If <var>l</var> is given, it specifies the number of lines that
+each week will use. Depends on the first weekday as set by
+<tt class="function">setfirstweekday()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1044"><tt class="function">prcal</tt></a></b>(<var>year</var><big>[</big><var>, w</var><big>[</big><var>, l</var><big>[</big><var>c</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+Prints the calendar for an entire year as returned by 
+<tt class="function">calendar()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1045"><tt class="function">calendar</tt></a></b>(<var>year</var><big>[</big><var>, w</var><big>[</big><var>, l</var><big>[</big><var>c</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+Returns a 3-column calendar for an entire year as a multi-line string.
+Optional parameters <var>w</var>, <var>l</var>, and <var>c</var> are for date column
+width, lines per week, and number of spaces between month columns,
+respectively. Depends on the first weekday as set by
+<tt class="function">setfirstweekday()</tt>.  The earliest year for which a calendar can
+be generated is platform-dependent.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1046"><tt class="function">timegm</tt></a></b>(<var>tuple</var>)
+<dd>
+An unrelated but handy function that takes a time tuple such as
+returned by the <tt class="function">gmtime()</tt> function in the <tt class="module"><a href="module-time.html">time</a></tt>
+module, and returns the corresponding Unix timestamp value, assuming
+an epoch of 1970, and the POSIX encoding.  In fact,
+<tt class="function">time.gmtime()</tt> and <tt class="function">timegm()</tt> are each others' inverse.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-time.html">time</a></tt>:</b>
+    <dd>Low-level time related functions.
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-xreadlines.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-cmd.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-xreadlines.html">5.12 xreadlines  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-cmd.html">5.14 cmd  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

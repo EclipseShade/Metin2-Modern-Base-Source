@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.5.4 Module Objects </title>
+<META NAME="description" CONTENT="7.5.4 Module Objects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="iterator-objects.html">
+<LINK REL="previous" href="method-objects.html">
+<LINK REL="up" href="otherObjects.html">
+<LINK REL="next" href="iterator-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="method-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="otherObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="iterator-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="method-objects.html">7.5.3 Method Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="otherObjects.html">7.5 Other Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="iterator-objects.html">7.5.5 Iterator Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009540000000000000000">&nbsp;</A>
+<BR>
+7.5.4 Module Objects 
+</H2>
+
+<P>
+<a name="l2h-601">&nbsp;</a>There are only a few functions special to module objects.
+
+<P>
+<dl><dt>PyTypeObject <b><a name="l2h-577"><tt class="cdata">PyModule_Type</tt></a></b>
+<dd>
+  This instance of <tt class="ctype">PyTypeObject</tt> represents the Python module
+  type.  This is exposed to Python programs as
+  <code>types.ModuleType</code>.
+  <a name="l2h-579">&nbsp;</a></dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-580"><tt class="cfunction">PyModule_Check</tt></a></b>(<var>PyObject *p</var>)
+<dd>
+  Returns true if <var>p</var> is a module object, or a subtype of a module
+  object.
+  
+<span class="versionnote">Changed in version 2.2:
+Allowed subtypes to be accepted.</span>
+
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-581"><tt class="cfunction">PyModule_CheckExact</tt></a></b>(<var>PyObject *p</var>)
+<dd>
+  Returns true if <var>p</var> is a module object, but not a subtype of
+  <tt class="cdata">PyModule_Type</tt>.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-582"><tt class="cfunction">PyModule_New</tt></a></b>(<var>char *name</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Return a new module object with the <tt class="member">__name__</tt> attribute set
+  to <var>name</var>.  Only the module's <tt class="member">__doc__</tt> and
+  <tt class="member">__name__</tt> attributes are filled in; the caller is
+  responsible for providing a <tt class="member">__file__</tt> attribute.
+  <a name="l2h-584">&nbsp;</a></dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-585"><tt class="cfunction">PyModule_GetDict</tt></a></b>(<var>PyObject *module</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Return the dictionary object that implements <var>module</var>'s
+  namespace; this object is the same as the <tt class="member">__dict__</tt>
+  attribute of the module object.  This function never fails.
+  <a name="l2h-587">&nbsp;</a></dl>
+
+<P>
+<dl><dt>char* <b><a name="l2h-588"><tt class="cfunction">PyModule_GetName</tt></a></b>(<var>PyObject *module</var>)
+<dd>
+  Return <var>module</var>'s <tt class="member">__name__</tt> value.  If the module does
+  not provide one, or if it is not a string, <tt class="exception">SystemError</tt>
+  is raised and <tt class="constant">NULL</tt> is returned.
+  <a name="l2h-590">&nbsp;</a>  <a name="l2h-592">&nbsp;</a></dl>
+
+<P>
+<dl><dt>char* <b><a name="l2h-593"><tt class="cfunction">PyModule_GetFilename</tt></a></b>(<var>PyObject *module</var>)
+<dd>
+  Return the name of the file from which <var>module</var> was loaded using
+  <var>module</var>'s <tt class="member">__file__</tt> attribute.  If this is not defined,
+  or if it is not a string, raise <tt class="exception">SystemError</tt> and return
+  <tt class="constant">NULL</tt>.
+  <a name="l2h-595">&nbsp;</a>  <a name="l2h-597">&nbsp;</a></dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-598"><tt class="cfunction">PyModule_AddObject</tt></a></b>(<var>PyObject *module,
+                                           char *name, PyObject *value</var>)
+<dd>
+  Add an object to <var>module</var> as <var>name</var>.  This is a convenience
+  function which can be used from the module's initialization
+  function.  This steals a reference to <var>value</var>.  Returns
+  <code>-1</code> on error, <code>0</code> on success.
+  
+<span class="versionnote">New in version 2.0.</span>
+
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-599"><tt class="cfunction">PyModule_AddIntConstant</tt></a></b>(<var>PyObject *module,
+                                                char *name, int value</var>)
+<dd>
+  Add an integer constant to <var>module</var> as <var>name</var>.  This
+  convenience function can be used from the module's initialization
+  function. Returns <code>-1</code> on error, <code>0</code> on success.
+  
+<span class="versionnote">New in version 2.0.</span>
+
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-600"><tt class="cfunction">PyModule_AddStringConstant</tt></a></b>(<var>PyObject *module,
+                                                   char *name, char *value</var>)
+<dd>
+  Add a string constant to <var>module</var> as <var>name</var>.  This
+  convenience function can be used from the module's initialization
+  function.  The string <var>value</var> must be null-terminated.  Returns
+  <code>-1</code> on error, <code>0</code> on success.
+  
+<span class="versionnote">New in version 2.0.</span>
+
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="method-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="otherObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="iterator-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="method-objects.html">7.5.3 Method Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="otherObjects.html">7.5 Other Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="iterator-objects.html">7.5.5 Iterator Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

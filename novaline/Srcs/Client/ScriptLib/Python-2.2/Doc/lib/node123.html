@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.2.1 Normal Usage</title>
+<META NAME="description" CONTENT="5.2.1 Normal Usage">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node124.html">
+<LINK REL="previous" href="module-doctest.html">
+<LINK REL="up" href="module-doctest.html">
+<LINK REL="next" HREF="node124.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-doctest.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-doctest.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node124.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-doctest.html">5.2 doctest  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-doctest.html">5.2 doctest  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node124.html">5.2.2 Which Docstrings Are</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007210000000000000000">
+5.2.1 Normal Usage</A>
+</H2>
+
+<P>
+In normal use, end each module <tt class="module">M</tt> with:
+
+<P>
+<dl><dd><pre class="verbatim">
+def _test():
+    import doctest, M           # replace M with your module's name
+    return doctest.testmod(M)   # ditto
+
+if __name__ == "__main__":
+    _test()
+</pre></dl>
+
+<P>
+Then running the module as a script causes the examples in the docstrings
+to get executed and verified:
+
+<P>
+<dl><dd><pre class="verbatim">
+python M.py
+</pre></dl>
+
+<P>
+This won't display anything unless an example fails, in which case the
+failing example(s) and the cause(s) of the failure(s) are printed to stdout,
+and the final line of output is <code>'Test failed.'</code>.
+
+<P>
+Run it with the <b class="programopt">-v</b> switch instead:
+
+<P>
+<dl><dd><pre class="verbatim">
+python M.py -v
+</pre></dl>
+
+<P>
+and a detailed report of all examples tried is printed to <code>stdout</code>,
+along with assorted summaries at the end.
+
+<P>
+You can force verbose mode by passing <code>verbose=1</code> to testmod, or
+prohibit it by passing <code>verbose=0</code>.  In either of those cases,
+<code>sys.argv</code> is not examined by testmod.
+
+<P>
+In any case, testmod returns a 2-tuple of ints <code>(<var>f</var>,
+<var>t</var>)</code>, where <var>f</var> is the number of docstring examples that
+failed and <var>t</var> is the total number of docstring examples
+attempted.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-doctest.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-doctest.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node124.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-doctest.html">5.2 doctest  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-doctest.html">5.2 doctest  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node124.html">5.2.2 Which Docstrings Are</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.3.4 Calls</title>
+<META NAME="description" CONTENT="5.3.4 Calls">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="slicings.html">
+<LINK REL="up" href="primaries.html">
+<LINK REL="next" href="power.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="slicings.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="primaries.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="power.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="slicings.html">5.3.3 Slicings</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="primaries.html">5.3 Primaries</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="power.html">5.4 The power operator</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007340000000000000000">&nbsp;</A>
+<a name="l2h-258">&nbsp;</a>
+<BR>
+5.3.4 Calls
+</H2>
+
+<P>
+A call calls a callable object (e.g., a function) with a possibly empty
+series of arguments:
+<a name="l2h-261">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-call">call</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="node50.html#tok-primary">primary</a> "(" [<a href="calls.html#tok-argument_list">argument_list</a> [","]] ")"</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-argument_list">argument_list</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="calls.html#tok-positional_arguments">positional_arguments</a> ["," <a href="calls.html#tok-keyword_arguments">keyword_arguments</a> 
+		 ["," "*" <a href="lambda.html#tok-expression">expression</a> ["," "**" <a href="lambda.html#tok-expression">expression</a>]]]
+              | <a href="node54.html#tok-keyword_arguments">keyword_arguments</a> ["," "*" <a href="lambda.html#tok-expression">expression</a> 
+		["," "**" <a href="lambda.html#tok-expression">expression</a>]]
+	      | "*" <a href="lambda.html#tok-expression">expression</a> ["," "**" <a href="lambda.html#tok-expression">expression</a>]
+	      | "**" <a href="lambda.html#tok-expression">expression</a>
+	     </code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-positional_arguments">positional_arguments</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="lambda.html#tok-expression">expression</a> ("," <a href="lambda.html#tok-expression">expression</a>)*</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-keyword_arguments">keyword_arguments</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="calls.html#tok-keyword_item">keyword_item</a> ("," <a href="calls.html#tok-keyword_item">keyword_item</a>)*</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-keyword_item">keyword_item</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="node16.html#tok-identifier">identifier</a> "=" <a href="lambda.html#tok-expression">expression</a></code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+A trailing comma may be present after an argument list but does not
+affect the semantics.
+
+<P>
+The primary must evaluate to a callable object (user-defined
+functions, built-in functions, methods of built-in objects, class
+objects, methods of class instances, and certain class instances
+themselves are callable; extensions may define additional callable
+object types).  All argument expressions are evaluated before the call
+is attempted.  Please refer to section <A href="function.html#function">7.5</A> for the syntax
+of formal parameter lists.
+
+<P>
+If keyword arguments are present, they are first converted to
+positional arguments, as follows.  First, a list of unfilled slots is
+created for the formal parameters.  If there are N positional
+arguments, they are placed in the first N slots.  Next, for each
+keyword argument, the identifier is used to determine the
+corresponding slot (if the identifier is the same as the first formal
+parameter name, the first slot is used, and so on).  If the slot is
+already filled, a <tt class="exception">TypeError</tt> exception is raised.
+Otherwise, the value of the argument is placed in the slot, filling it
+(even if the expression is <code>None</code>, it fills the slot).  When all
+arguments have been processed, the slots that are still unfilled are
+filled with the corresponding default value from the function
+definition.  (Default values are calculated, once, when the function
+is defined; thus, a mutable object such as a list or dictionary used
+as default value will be shared by all calls that don't specify an
+argument value for the corresponding slot; this should usually be
+avoided.)  If there are any unfilled slots for which no default value
+is specified, a <tt class="exception">TypeError</tt> exception is raised.  Otherwise,
+the list of filled slots is used as the argument list for the call.
+
+<P>
+If there are more positional arguments than there are formal parameter
+slots, a <tt class="exception">TypeError</tt> exception is raised, unless a formal
+parameter using the syntax "<tt class="samp">*identifier</tt>" is present; in this
+case, that formal parameter receives a tuple containing the excess
+positional arguments (or an empty tuple if there were no excess
+positional arguments).
+
+<P>
+If any keyword argument does not correspond to a formal parameter
+name, a <tt class="exception">TypeError</tt> exception is raised, unless a formal
+parameter using the syntax "<tt class="samp">**identifier</tt>" is present; in this
+case, that formal parameter receives a dictionary containing the
+excess keyword arguments (using the keywords as keys and the argument
+values as corresponding values), or a (new) empty dictionary if there
+were no excess keyword arguments.
+
+<P>
+If the syntax "<tt class="samp">*expression</tt>" appears in the function call,
+"<tt class="samp">expression</tt>" must evaluate to a sequence.  Elements from this
+sequence are treated as if they were additional positional arguments;
+if there are postional arguments <var>x1</var>,...,<var>xN</var> , and
+"<tt class="samp">expression</tt>" evaluates to a sequence <var>y1</var>,...,<var>yM</var>, this
+is equivalent to a call with M+N positional arguments
+<var>x1</var>,...,<var>xN</var>,<var>y1</var>,...,<var>yM</var>.
+
+<P>
+A consequence of this is that although the "<tt class="samp">*expression</tt>" syntax
+appears <i>after</i> any keyword arguments, it is processed
+<i>before</i> the keyword arguments (and the
+"<tt class="samp">**expression</tt>" argument, if any - see below).  So:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; def f(a, b):
+...  print a, b
+...
+&gt;&gt;&gt; f(b=1, *(2,))
+2 1
+&gt;&gt;&gt; f(a=1, *(2,))
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+TypeError: f() got multiple values for keyword argument 'a'
+&gt;&gt;&gt; f(1, *(2,))
+1 2
+</pre></dl>
+
+<P>
+It is unusual for both keyword arguments and the
+"<tt class="samp">*expression</tt>" syntax to be used in the same call, so in practice
+this confusion does not arise.
+
+<P>
+If the syntax "<tt class="samp">**expression</tt>" appears in the function call,
+"<tt class="samp">expression</tt>" must evaluate to a (subclass of) dictionary, the
+contents of which are treated as additional keyword arguments.  In the
+case of a keyword appearing in both "<tt class="samp">expression</tt>" and as an
+explicit keyword argument, a <tt class="exception">TypeError</tt> exception is
+raised.
+
+<P>
+Formal parameters using the syntax "<tt class="samp">*identifier</tt>" or
+"<tt class="samp">**identifier</tt>" cannot be used as positional argument slots or
+as keyword argument names.  Formal parameters using the syntax
+"<tt class="samp">(sublist)</tt>" cannot be used as keyword argument names; the
+outermost sublist corresponds to a single unnamed argument slot, and
+the argument value is assigned to the sublist using the usual tuple
+assignment rules after all other parameter processing is done.
+
+<P>
+A call always returns some value, possibly <code>None</code>, unless it
+raises an exception.  How this value is computed depends on the type
+of the callable object.
+
+<P>
+If it is--
+
+<P>
+<DL>
+<DT><STRONG>a user-defined function:</STRONG></DT>
+<DD>The code block for the function is
+executed, passing it the argument list.  The first thing the code
+block will do is bind the formal parameters to the arguments; this is
+described in section <A href="function.html#function">7.5</A>.  When the code block executes a
+<tt class="keyword">return</tt> statement, this specifies the return value of the
+function call.
+<a name="l2h-262">&nbsp;</a>
+<P>
+</DD>
+<DT><STRONG>a built-in function or method:</STRONG></DT>
+<DD>The result is up to the
+interpreter; see the <em class="citetitle"><a
+ href="../lib/built-in-funcs.html"
+ title="Python
+Library Reference"
+ >Python
+Library Reference</a></em> for the descriptions of built-in functions and
+methods.
+<a name="l2h-263">&nbsp;</a>
+<P>
+</DD>
+<DT><STRONG>a class object:</STRONG></DT>
+<DD>A new instance of that class is returned.
+<a name="l2h-264">&nbsp;</a>
+<P>
+</DD>
+<DT><STRONG>a class instance method:</STRONG></DT>
+<DD>The corresponding user-defined
+function is called, with an argument list that is one longer than the
+argument list of the call: the instance becomes the first argument.
+<a name="l2h-265">&nbsp;</a>
+<P>
+</DD>
+<DT><STRONG>a class instance:</STRONG></DT>
+<DD>The class must define a <tt class="method">__call__()</tt>
+method; the effect is then the same as if that method was called.
+<a name="l2h-266">&nbsp;</a><a name="l2h-260">&nbsp;</a>
+<P>
+</DD>
+</DL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="slicings.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="primaries.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="power.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="slicings.html">5.3.3 Slicings</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="primaries.html">5.3 Primaries</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="power.html">5.4 The power operator</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

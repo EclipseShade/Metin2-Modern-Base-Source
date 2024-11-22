@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.7 Module-specific Markup </title>
+<META NAME="description" CONTENT="6.7 Module-specific Markup ">
+<META NAME="keywords" CONTENT="doc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="doc.css">
+<link rel="first" href="doc.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="library-markup.html">
+<LINK REL="previous" href="misc-text-markup.html">
+<LINK REL="up" href="special-constructs.html">
+<LINK REL="next" href="library-markup.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="misc-text-markup.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="special-constructs.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="library-markup.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="misc-text-markup.html">6.6 Miscellaneous Text Markup</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="special-constructs.html">6 Special Markup Constructs</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="library-markup.html">6.8 Library-level Markup</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000770000000000000000">&nbsp;</A>
+<BR>
+6.7 Module-specific Markup 
+</H2>
+
+<P>
+The markup described in this section is used to provide information
+  about a module being documented.  A typical use of this markup
+  appears at the top of the section used to document a module.  A
+  typical example might look like this:
+
+<P>
+<dl><dd><pre class="verbatim">
+\section{\module{spam} ---
+         Access to the SPAM facility}
+
+\declaremodule{extension}{spam}
+  \platform{Unix}
+\modulesynopsis{Access to the SPAM facility of \UNIX.}
+\moduleauthor{Jane Doe}{jane.doe@frobnitz.org}
+</pre></dl>
+
+<P>
+Python packages<a name="l2h-4">&nbsp;</a>-- collections of modules that can
+  be described as a unit -- are documented using the same markup as
+  modules.  The name for a module in a package should be typed in
+  ``fully qualified'' form (it should include the package name).
+  For example, a module ``foo'' in package ``bar'' should be marked as
+  <code>&#92;module{bar.foo}</code>, and the beginning of the reference
+  section would appear as:
+
+<P>
+<dl><dd><pre class="verbatim">
+\section{\module{bar.foo} ---
+         Module from the \module{bar} package}
+
+\declaremodule{extension}{bar.foo}
+\modulesynopsis{Nifty module from the \module{bar} package.}
+\moduleauthor{Jane Doe}{jane.doe@frobnitz.org}
+</pre></dl>
+
+<P>
+Note that the name of a package is also marked using
+  <tt class='macro'>&#92;module</tt>.
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;declaremodule</tt></b>
+    <tt>[</tt><var>key</var><tt>]</tt><tt>{</tt><var>type</var><tt>}</tt><tt>{</tt><var>name</var><tt>}</tt>
+<dd>
+    Requires two parameters: module type ("<tt class="samp">standard</tt>",
+    "<tt class="samp">builtin</tt>", "<tt class="samp">extension</tt>", or ""), and the module
+    name.  An optional parameter should be given as the basis for the
+    module's ``key'' used for linking to or referencing the section.
+    The ``key'' should only be given if the module's name contains any
+    underscores, and should be the name with the underscores stripped.
+    Note that the <var>type</var> parameter must be one of the values
+    listed above or an error will be printed.  For modules which are
+    contained in packages, the fully-qualified name should be given as
+    <var>name</var> parameter.  This should be the first thing after the
+    <tt class='macro'>&#92;section</tt> used to introduce the module.
+  </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;platform</tt></b>
+    <tt>{</tt><var>specifier</var><tt>}</tt>
+<dd>
+    Specifies the portability of the module.  <var>specifier</var> is a
+    comma-separated list of keys that specify what platforms the
+    module is available on.  The keys are short identifiers;
+    examples that are in use include "<tt class="samp">IRIX</tt>", "<tt class="samp">Mac</tt>",
+    "<tt class="samp">Windows</tt>", and "<tt class="samp">Unix</tt>".  It is important to use a key
+    which has already been used when applicable.  This is used to
+    provide annotations in the Module Index and the HTML and GNU info
+    output.
+  </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;modulesynopsis</tt></b>
+    <tt>{</tt><var>text</var><tt>}</tt>
+<dd>
+    The <var>text</var> is a short, ``one line'' description of the
+    module that can be used as part of the chapter introduction.
+    This is must be placed after <tt class='macro'>&#92;declaremodule</tt>.
+    The synopsis is used in building the contents of the table
+    inserted as the <tt class='macro'>&#92;localmoduletable</tt>.  No text is
+    produced at the point of the markup.
+  </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;moduleauthor</tt></b>
+    <tt>{</tt><var>name</var><tt>}</tt><tt>{</tt><var>email</var><tt>}</tt>
+<dd>
+    This macro is used to encode information about who authored a
+    module.  This is currently not used to generate output, but can be
+    used to help determine the origin of the module.
+  </dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="misc-text-markup.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="special-constructs.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="library-markup.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="misc-text-markup.html">6.6 Miscellaneous Text Markup</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="special-constructs.html">6 Special Markup Constructs</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="library-markup.html">6.8 Library-level Markup</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

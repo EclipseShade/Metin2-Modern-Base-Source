@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.8.1.5 StreamRecoder Objects </title>
+<META NAME="description" CONTENT="4.8.1.5 StreamRecoder Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="stream-reader-writer.html">
+<LINK REL="up" HREF="node113.html">
+<LINK REL="next" href="module-unicodedata.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="stream-reader-writer.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node113.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-unicodedata.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="stream-reader-writer.html">4.8.1.4 StreamReaderWriter Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node113.html">4.8.1 Codec Base Classes</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-unicodedata.html">4.9 unicodedata  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION006815000000000000000">&nbsp;</A>
+<BR>
+4.8.1.5 StreamRecoder Objects 
+</H3>
+
+<P>
+The <tt class="class">StreamRecoder</tt> provide a frontend - backend view of
+encoding data which is sometimes useful when dealing with different
+encoding environments.
+
+<P>
+The design is such that one can use the factory functions returned by
+the <tt class="function">lookup()</tt> function to construct the instance.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-820"><tt class="class">StreamRecoder</tt></a></b>(<var>stream, encode, decode,
+                                 Reader, Writer, errors</var>)
+<dd>
+  Creates a <tt class="class">StreamRecoder</tt> instance which implements a two-way
+  conversion: <var>encode</var> and <var>decode</var> work on the frontend (the
+  input to <tt class="method">read()</tt> and output of <tt class="method">write()</tt>) while
+  <var>Reader</var> and <var>Writer</var> work on the backend (reading and
+  writing to the stream).
+
+<P>
+You can use these objects to do transparent direct recodings from
+  e.g. Latin-1 to UTF-8 and back.
+
+<P>
+<var>stream</var> must be a file-like object.
+
+<P>
+<var>encode</var>, <var>decode</var> must adhere to the <tt class="class">Codec</tt>
+  interface, <var>Reader</var>, <var>Writer</var> must be factory functions or
+  classes providing objects of the the <tt class="class">StreamReader</tt> and
+  <tt class="class">StreamWriter</tt> interface respectively.
+
+<P>
+<var>encode</var> and <var>decode</var> are needed for the frontend
+  translation, <var>Reader</var> and <var>Writer</var> for the backend
+  translation.  The intermediate format used is determined by the two
+  sets of codecs, e.g. the Unicode codecs will use Unicode as
+  intermediate encoding.
+
+<P>
+Error handling is done in the same way as defined for the
+  stream readers and writers.
+</dl>
+
+<P>
+<tt class="class">StreamRecoder</tt> instances define the combined interfaces of
+<tt class="class">StreamReader</tt> and <tt class="class">StreamWriter</tt> classes. They inherit
+all other methods and attribute from the underlying stream.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="stream-reader-writer.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node113.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-unicodedata.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="stream-reader-writer.html">4.8.1.4 StreamReaderWriter Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node113.html">4.8.1 Codec Base Classes</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-unicodedata.html">4.9 unicodedata  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

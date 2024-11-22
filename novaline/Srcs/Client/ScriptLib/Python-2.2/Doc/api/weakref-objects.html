@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.5.8 Weak Reference Objects </title>
+<META NAME="description" CONTENT="7.5.8 Weak Reference Objects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="cObjects.html">
+<LINK REL="previous" href="slice-objects.html">
+<LINK REL="up" href="otherObjects.html">
+<LINK REL="next" href="cObjects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="slice-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="otherObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="cObjects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="slice-objects.html">7.5.7 Slice Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="otherObjects.html">7.5 Other Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="cObjects.html">7.5.9 CObjects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009580000000000000000">&nbsp;</A>
+<BR>
+7.5.8 Weak Reference Objects 
+</H2>
+
+<P>
+Python supports <i>weak references</i> as first-class objects.  There
+are two specific object types which directly implement weak
+references.  The first is a simple reference object, and the second
+acts as a proxy for the original object as much as it can.
+
+<P>
+<dl><dt>int <b><a name="l2h-621"><tt class="cfunction">PyWeakref_Check</tt></a></b>(<var>ob</var>)
+<dd>
+  Return true if <var>ob</var> is either a reference or proxy object.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-622"><tt class="cfunction">PyWeakref_CheckRef</tt></a></b>(<var>ob</var>)
+<dd>
+  Return true if <var>ob</var> is a reference object.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-623"><tt class="cfunction">PyWeakref_CheckProxy</tt></a></b>(<var>ob</var>)
+<dd>
+  Return true if <var>ob</var> is a proxy object.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-624"><tt class="cfunction">PyWeakref_NewRef</tt></a></b>(<var>PyObject *ob,
+                                               PyObject *callback</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Return a weak reference object for the object <var>ob</var>.  This will
+  always return a new reference, but is not guaranteed to create a new
+  object; an existing reference object may be returned.  The second
+  parameter, <var>callback</var>, can be a callable object that receives
+  notification when <var>ob</var> is garbage collected; it should accept a
+  single paramter, which will be the weak reference object itself.
+  <var>callback</var> may also be <code>None</code> or <tt class="constant">NULL</tt>.  If <var>ob</var>
+  is not a weakly-referencable object, or if <var>callback</var> is not
+  callable, <code>None</code>, or <tt class="constant">NULL</tt>, this will return <tt class="constant">NULL</tt> and
+  raise <tt class="exception">TypeError</tt>.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-625"><tt class="cfunction">PyWeakref_NewProxy</tt></a></b>(<var>PyObject *ob,
+                                                 PyObject *callback</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Return a weak reference proxy object for the object <var>ob</var>.  This
+  will always return a new reference, but is not guaranteed to create
+  a new object; an existing proxy object may be returned.  The second
+  parameter, <var>callback</var>, can be a callable object that receives
+  notification when <var>ob</var> is garbage collected; it should accept a
+  single paramter, which will be the weak reference object itself.
+  <var>callback</var> may also be <code>None</code> or <tt class="constant">NULL</tt>.  If <var>ob</var> is not
+  a weakly-referencable object, or if <var>callback</var> is not callable,
+  <code>None</code>, or <tt class="constant">NULL</tt>, this will return <tt class="constant">NULL</tt> and raise
+  <tt class="exception">TypeError</tt>.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-626"><tt class="cfunction">PyWeakref_GetObject</tt></a></b>(<var>PyObject *ref</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Returns the referenced object from a weak reference, <var>ref</var>.  If
+  the referent is no longer live, returns <tt class="constant">NULL</tt>.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-627"><tt class="cfunction">PyWeakref_GET_OBJECT</tt></a></b>(<var>PyObject *ref</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Similar to <tt class="cfunction">PyWeakref_GetObject()</tt>, but implemented as a
+  macro that does no error checking.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="slice-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="otherObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="cObjects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="slice-objects.html">7.5.7 Slice Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="otherObjects.html">7.5 Other Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="cObjects.html">7.5.9 CObjects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5. Embedding Python in Another Application </title>
+<META NAME="description" CONTENT="5. Embedding Python in Another Application ">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="reporting-bugs.html">
+<LINK REL="previous" href="building-on-windows.html">
+<LINK REL="up" HREF="ext.html">
+<LINK REL="next" href="high-level-embedding.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="win-dlls.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="ext.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="high-level-embedding.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="win-dlls.html">4.3 Using DLLs in</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="ext.html">Extending and Embedding the</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="high-level-embedding.html">5.1 Very High Level</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007000000000000000000">&nbsp;</A>
+<BR>
+5. Embedding Python in Another Application
+     
+</H1>
+
+<P>
+The previous chapters discussed how to extend Python, that is, how to
+extend the functionality of Python by attaching a library of C
+functions to it.  It is also possible to do it the other way around:
+enrich your C/C++ application by embedding Python in it.  Embedding
+provides your application with the ability to implement some of the
+functionality of your application in Python rather than C or C++.
+This can be used for many purposes; one example would be to allow
+users to tailor the application to their needs by writing some scripts
+in Python.  You can also use it yourself if some of the functionality
+can be written in Python more easily.
+
+<P>
+Embedding Python is similar to extending it, but not quite.  The
+difference is that when you extend Python, the main program of the
+application is still the Python interpreter, while if you embed
+Python, the main program may have nothing to do with Python --
+instead, some parts of the application occasionally call the Python
+interpreter to run some Python code.
+
+<P>
+So if you are embedding Python, you are providing your own main
+program.  One of the things this main program has to do is initialize
+the Python interpreter.  At the very least, you have to call the
+function <tt class="cfunction">Py_Initialize()</tt> (on Mac OS, call
+<tt class="cfunction">PyMac_Initialize()</tt> instead).  There are optional calls to
+pass command line arguments to Python.  Then later you can call the
+interpreter from any part of the application.
+
+<P>
+There are several different ways to call the interpreter: you can pass
+a string containing Python statements to
+<tt class="cfunction">PyRun_SimpleString()</tt>, or you can pass a stdio file pointer
+and a file name (for identification in error messages only) to
+<tt class="cfunction">PyRun_SimpleFile()</tt>.  You can also call the lower-level
+operations described in the previous chapters to construct and use
+Python objects.
+
+<P>
+A simple demo of embedding Python can be found in the directory
+<span class="file">Demo/embed/</span> of the source distribution.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="../api/api.html"
+        >Python/C API Reference Manual</a></em>
+    <dd>The
+            details of Python's C interface are given in this manual.
+            A great deal of necessary information can be found here.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="high-level-embedding.html">5.1 Very High Level Embedding</a>
+<LI><A href="lower-level-embedding.html">5.2 Beyond Very High Level Embedding: An overview</a>
+<LI><A href="pure-embedding.html">5.3 Pure Embedding</a>
+<LI><A href="extending-with-embedding.html">5.4 Extending Embedded Python</a>
+<LI><A href="embeddingInCplusplus.html">5.5 Embedding Python in C++</a>
+<LI><A href="link-reqs.html">5.6 Linking Requirements</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="win-dlls.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="ext.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="high-level-embedding.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="win-dlls.html">4.3 Using DLLs in</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="ext.html">Extending and Embedding the</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="high-level-embedding.html">5.1 Very High Level</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

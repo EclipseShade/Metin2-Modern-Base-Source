@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.25.3.3 Changing languages on the fly</title>
+<META NAME="description" CONTENT="6.25.3.3 Changing languages on the fly">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node210.html">
+<LINK REL="previous" HREF="node208.html">
+<LINK REL="up" HREF="node206.html">
+<LINK REL="next" HREF="node210.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node208.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node206.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node210.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node208.html">6.25.3.2 Localizing your application</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node206.html">6.25.3 Internationalizing your programs</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node210.html">6.25.3.4 Deferred translations</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0082533000000000000000">
+6.25.3.3 Changing languages on the fly</A>
+</H3>
+
+<P>
+If your program needs to support many languages at the same time, you
+may want to create multiple translation instances and then switch
+between them explicitly, like so:
+
+<P>
+<dl><dd><pre class="verbatim">
+import gettext
+
+lang1 = gettext.translation(languages=['en'])
+lang2 = gettext.translation(languages=['fr'])
+lang3 = gettext.translation(languages=['de'])
+
+# start by using language1
+lang1.install()
+
+# ... time goes by, user selects language 2
+lang2.install()
+
+# ... more time goes by, user selects language 3
+lang3.install()
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node208.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node206.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node210.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node208.html">6.25.3.2 Localizing your application</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node206.html">6.25.3 Internationalizing your programs</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node210.html">6.25.3.4 Deferred translations</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

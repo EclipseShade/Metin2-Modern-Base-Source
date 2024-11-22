@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.2 Module Definition Options </title>
+<META NAME="description" CONTENT="3.2 Module Definition Options ">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="module-defn-example.html">
+<LINK REL="previous" href="custom-interps.html">
+<LINK REL="up" href="building-on-unix.html">
+<LINK REL="next" href="module-defn-example.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="custom-interps.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="building-on-unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-defn-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="custom-interps.html">3.1 Building Custom Interpreters</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="building-on-unix.html">3. Building C and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-defn-example.html">3.3 Example</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005200000000000000000">&nbsp;</A>
+<BR>
+3.2 Module Definition Options 
+</H1>
+
+<P>
+Several compiler options are supported:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Option</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><b>-C</b></td>
+        <td align="left">Tell the C pre-processor not to discard comments</td>
+    <tr><td align="left" valign="baseline"><b>-D<var>name</var>=<var>value</var></b></td>
+        <td align="left">Define a macro</td>
+    <tr><td align="left" valign="baseline"><b>-I<var>dir</var></b></td>
+        <td align="left">Specify an include directory, <var>dir</var></td>
+    <tr><td align="left" valign="baseline"><b>-L<var>dir</var></b></td>
+        <td align="left">Specify a link-time library directory, <var>dir</var></td>
+    <tr><td align="left" valign="baseline"><b>-R<var>dir</var></b></td>
+        <td align="left">Specify a run-time library directory, <var>dir</var></td>
+    <tr><td align="left" valign="baseline"><b>-l<var>lib</var></b></td>
+        <td align="left">Link a library, <var>lib</var></td>
+    <tr><td align="left" valign="baseline"><b>-U<var>name</var></b></td>
+        <td align="left">Undefine a macro</td></tbody>
+</table>
+
+<P>
+Other compiler options can be included (snuck in) by putting them
+in variables.
+
+<P>
+Source files can include files with <span class="file">.c</span>, <span class="file">.C</span>, <span class="file">.cc</span>,
+<span class="file">.cpp</span>, <span class="file">.cxx</span>, and <span class="file">.c++</span> extensions. 
+
+<P>
+Other input files include files with <span class="file">.a</span>, <span class="file">.o</span>, <span class="file">.sl</span>, 
+and <span class="file">.so</span> extensions.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="custom-interps.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="building-on-unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-defn-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="custom-interps.html">3.1 Building Custom Interpreters</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="building-on-unix.html">3. Building C and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-defn-example.html">3.3 Example</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.6.2.6 Element Objects </title>
+<META NAME="description" CONTENT="13.6.2.6 Element Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="dom-attr-objects.html">
+<LINK REL="previous" href="dom-document-objects.html">
+<LINK REL="up" HREF="node438.html">
+<LINK REL="next" href="dom-attr-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dom-document-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node438.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dom-attr-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dom-document-objects.html">13.6.2.5 Document Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node438.html">13.6.2 Objects in the</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dom-attr-objects.html">13.6.2.7 Attr Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0015626000000000000000">&nbsp;</A>
+<BR>
+13.6.2.6 Element Objects 
+</H3>
+
+<P>
+<tt class="class">Element</tt> is a subclass of <tt class="class">Node</tt>, so inherits all the
+attributes of that class.
+
+<P>
+<dl><dt><b><a name="l2h-3249"><tt class="member">tagName</tt></a></b>
+<dd>
+The element type name.  In a namespace-using document it may have
+colons in it.  The value is a string.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3250"><tt class="method">getElementsByTagName</tt></a></b>(<var>tagName</var>)
+<dd>
+Same as equivalent method in the <tt class="class">Document</tt> class.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3251"><tt class="method">getElementsByTagNameNS</tt></a></b>(<var>tagName</var>)
+<dd>
+Same as equivalent method in the <tt class="class">Document</tt> class.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3252"><tt class="method">getAttribute</tt></a></b>(<var>attname</var>)
+<dd>
+Return an attribute value as a string.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3253"><tt class="method">getAttributeNode</tt></a></b>(<var>attrname</var>)
+<dd>
+Return the <tt class="class">Attr</tt> node for the attribute named by
+<var>attrname</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3254"><tt class="method">getAttributeNS</tt></a></b>(<var>namespaceURI, localName</var>)
+<dd>
+Return an attribute value as a string, given a <var>namespaceURI</var> and
+<var>localName</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3255"><tt class="method">getAttributeNodeNS</tt></a></b>(<var>namespaceURI, localName</var>)
+<dd>
+Return an attribute value as a node, given a <var>namespaceURI</var> and
+<var>localName</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3256"><tt class="method">removeAttribute</tt></a></b>(<var>attname</var>)
+<dd>
+Remove an attribute by name.  No exception is raised if there is no
+matching attribute.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3257"><tt class="method">removeAttributeNode</tt></a></b>(<var>oldAttr</var>)
+<dd>
+Remove and return <var>oldAttr</var> from the attribute list, if present.
+If <var>oldAttr</var> is not present, <tt class="exception">NotFoundErr</tt> is raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3258"><tt class="method">removeAttributeNS</tt></a></b>(<var>namespaceURI, localName</var>)
+<dd>
+Remove an attribute by name.  Note that it uses a localName, not a
+qname.  No exception is raised if there is no matching attribute.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3259"><tt class="method">setAttribute</tt></a></b>(<var>attname, value</var>)
+<dd>
+Set an attribute value from a string.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3260"><tt class="method">setAttributeNode</tt></a></b>(<var>newAttr</var>)
+<dd>
+Add a new attibute node to the element, replacing an existing
+attribute if necessary if the <tt class="member">name</tt> attribute matches.  If a
+replacement occurs, the old attribute node will be returned.  If
+<var>newAttr</var> is already in use, <tt class="exception">InuseAttributeErr</tt> will be
+raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3261"><tt class="method">setAttributeNodeNS</tt></a></b>(<var>newAttr</var>)
+<dd>
+Add a new attibute node to the element, replacing an existing
+attribute if necessary if the <tt class="member">namespaceURI</tt> and
+<tt class="member">localName</tt> attributes match.  If a replacement occurs, the old
+attribute node will be returned.  If <var>newAttr</var> is already in use,
+<tt class="exception">InuseAttributeErr</tt> will be raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3262"><tt class="method">setAttributeNS</tt></a></b>(<var>namespaceURI, qname, value</var>)
+<dd>
+Set an attribute value from a string, given a <var>namespaceURI</var> and a
+<var>qname</var>.  Note that a qname is the whole attribute name.  This is
+different than above.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dom-document-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node438.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dom-attr-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dom-document-objects.html">13.6.2.5 Document Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node438.html">13.6.2 Objects in the</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dom-attr-objects.html">13.6.2.7 Attr Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

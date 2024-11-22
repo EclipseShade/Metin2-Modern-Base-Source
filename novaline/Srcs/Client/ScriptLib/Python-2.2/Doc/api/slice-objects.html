@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.5.7 Slice Objects </title>
+<META NAME="description" CONTENT="7.5.7 Slice Objects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="weakref-objects.html">
+<LINK REL="previous" href="descriptor-objects.html">
+<LINK REL="up" href="otherObjects.html">
+<LINK REL="next" href="weakref-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="descriptor-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="otherObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="weakref-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="descriptor-objects.html">7.5.6 Descriptor Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="otherObjects.html">7.5 Other Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="weakref-objects.html">7.5.8 Weak Reference Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009570000000000000000">&nbsp;</A>
+<BR>
+7.5.7 Slice Objects 
+</H2>
+
+<P>
+<dl><dt>PyTypeObject <b><a name="l2h-615"><tt class="cdata">PySlice_Type</tt></a></b>
+<dd>
+  The type object for slice objects.  This is the same as
+  <code>types.SliceType</code>.
+  <a name="l2h-617">&nbsp;</a></dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-618"><tt class="cfunction">PySlice_Check</tt></a></b>(<var>PyObject *ob</var>)
+<dd>
+  Returns true if <var>ob</var> is a slice object; <var>ob</var> must not be
+  <tt class="constant">NULL</tt>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-619"><tt class="cfunction">PySlice_New</tt></a></b>(<var>PyObject *start, PyObject *stop,
+                                          PyObject *step</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Return a new slice object with the given values.  The <var>start</var>,
+  <var>stop</var>, and <var>step</var> parameters are used as the values of the
+  slice object attributes of the same names.  Any of the values may be
+  <tt class="constant">NULL</tt>, in which case the <code>None</code> will be used for the
+  corresponding attribute.  Returns <tt class="constant">NULL</tt> if the new object could
+  not be allocated.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-620"><tt class="cfunction">PySlice_GetIndices</tt></a></b>(<var>PySliceObject *slice, int length,
+                                           int *start, int *stop, int *step</var>)
+<dd>
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="descriptor-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="otherObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="weakref-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="descriptor-objects.html">7.5.6 Descriptor Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="otherObjects.html">7.5 Other Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="weakref-objects.html">7.5.8 Weak Reference Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

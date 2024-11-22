@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>14.5 wave -- Read and write WAV files</title>
+<META NAME="description" CONTENT="14.5 wave -- Read and write WAV files">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-chunk.html">
+<LINK REL="previous" href="module-sunau.html">
+<LINK REL="up" href="mmedia.html">
+<LINK REL="next" href="Wave-read-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="au-write-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="mmedia.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="Wave-read-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="au-write-objects.html">14.4.2 AU_write Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="Wave-read-objects.html">14.5.1 Wave_read Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0016500000000000000000">
+14.5 <tt class="module">wave</tt> --
+         Read and write WAV files</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">wave</tt> module provides a convenient interface to the WAV sound
+format. It does not support compression/decompression, but it does support
+mono/stereo.
+
+<P>
+The <tt class="module">wave</tt> module defines the following function and exception:
+
+<P>
+<dl><dt><b><a name="l2h-3549"><tt class="function">open</tt></a></b>(<var>file</var><big>[</big><var>, mode</var><big>]</big>)
+<dd>
+If <var>file</var> is a string, open the file by that name, other treat it
+as a seekable file-like object. <var>mode</var> can be any of
+<DL>
+<DT><STRONG><code>'r'</code>, <code>'rb'</code></STRONG></DT>
+<DD>Read only mode.
+        
+</DD>
+<DT><STRONG><code>'w'</code>, <code>'wb'</code></STRONG></DT>
+<DD>Write only mode.
+</DD>
+</DL>
+Note that it does not allow read/write WAV files.
+
+<P>
+A <var>mode</var> of <code>'r'</code> or <code>'rb'</code> returns a <tt class="class">Wave_read</tt>
+object, while a <var>mode</var> of <code>'w'</code> or <code>'wb'</code> returns
+a <tt class="class">Wave_write</tt> object.  If <var>mode</var> is omitted and a file-like 
+object is passed as <var>file</var>, <code><var>file</var>.mode</code> is used as the
+default value for <var>mode</var> (the "<tt class="character">b</tt>" flag is still added if 
+necessary).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3550"><tt class="function">openfp</tt></a></b>(<var>file, mode</var>)
+<dd>
+A synonym for <tt class="function">open()</tt>, maintained for backwards compatibility.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-3551"><tt class="exception">Error</tt></a></b>
+<dd>
+An error raised when something is impossible because it violates the
+WAV specification or hits an implementation deficiency.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="Wave-read-objects.html">14.5.1 Wave_read Objects</a>
+<LI><A href="Wave-write-objects.html">14.5.2 Wave_write Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="au-write-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="mmedia.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="Wave-read-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="au-write-objects.html">14.4.2 AU_write Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="Wave-read-objects.html">14.5.1 Wave_read Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

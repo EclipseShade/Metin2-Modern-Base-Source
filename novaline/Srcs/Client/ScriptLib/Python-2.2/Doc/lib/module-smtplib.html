@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.12 smtplib -- SMTP protocol client</title>
+<META NAME="description" CONTENT="11.12 smtplib -- SMTP protocol client">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-telnetlib.html">
+<LINK REL="previous" href="module-nntplib.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="SMTP-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="nntp-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="SMTP-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="nntp-objects.html">11.11.1 NNTP Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="SMTP-objects.html">11.12.1 SMTP Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00131200000000000000000">
+11.12 <tt class="module">smtplib</tt> --
+         SMTP protocol client</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name="l2h-2584">&nbsp;</a>
+<P>
+The <tt class="module">smtplib</tt> module defines an SMTP client session object that
+can be used to send mail to any Internet machine with an SMTP or ESMTP
+listener daemon.  For details of SMTP and ESMTP operation, consult
+<a class="rfc" name="rfcref-63403"
+href="http://www.faqs.org/rfcs/rfc821.html">RFC 821</a> (<em class="citetitle"
+ >Simple Mail Transfer Protocol</em>) and <a class="rfc" name="rfcref-63405"
+href="http://www.faqs.org/rfcs/rfc1869.html">RFC 1869</a>
+(<em class="citetitle"
+ >SMTP Service Extensions</em>).
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2575"><tt class="class">SMTP</tt></a></b>(<big>[</big><var>host</var><big>[</big><var>, port</var><big>]</big><big>]</big>)
+<dd>
+A <tt class="class">SMTP</tt> instance encapsulates an SMTP connection.  It has
+methods that support a full repertoire of SMTP and ESMTP
+operations. If the optional host and port parameters are given, the
+SMTP <tt class="method">connect()</tt> method is called with those parameters during
+initialization.  An <tt class="exception">SMTPConnectError</tt> is raised if the
+specified host doesn't respond correctly.
+
+<P>
+For normal use, you should only require the initialization/connect,
+<tt class="method">sendmail()</tt>, and <tt class="method">quit()</tt> methods.  An example is
+included below.
+</dl>
+
+<P>
+A nice selection of exceptions is defined as well:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2576"><tt class="exception">SMTPException</tt></a></b>
+<dd>
+  Base exception class for all exceptions raised by this module.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2577"><tt class="exception">SMTPServerDisconnected</tt></a></b>
+<dd>
+  This exception is raised when the server unexpectedly disconnects,
+  or when an attempt is made to use the <tt class="class">SMTP</tt> instance before
+  connecting it to a server.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2578"><tt class="exception">SMTPResponseException</tt></a></b>
+<dd>
+  Base class for all exceptions that include an SMTP error code.
+  These exceptions are generated in some instances when the SMTP
+  server returns an error code.  The error code is stored in the
+  <tt class="member">smtp_code</tt> attribute of the error, and the
+  <tt class="member">smtp_error</tt> attribute is set to the error message.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2579"><tt class="exception">SMTPSenderRefused</tt></a></b>
+<dd>
+  Sender address refused.  In addition to the attributes set by on all 
+  <tt class="exception">SMTPResponseException</tt> exceptions, this sets `sender' to
+  the string that the SMTP server refused.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2580"><tt class="exception">SMTPRecipientsRefused</tt></a></b>
+<dd>
+  All recipient addresses refused.  The errors for each recipient are
+  accessible through the attribute <tt class="member">recipients</tt>, which is a
+  dictionary of exactly the same sort as <tt class="method">SMTP.sendmail()</tt>
+  returns.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2581"><tt class="exception">SMTPDataError</tt></a></b>
+<dd>
+  The SMTP server refused to accept the message data.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2582"><tt class="exception">SMTPConnectError</tt></a></b>
+<dd>
+  Error occurred during establishment of a connection  with the server.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2583"><tt class="exception">SMTPHeloError</tt></a></b>
+<dd>
+  The server refused our "<tt class="samp">HELO</tt>" message.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seerfc">
+    <dt><a href="http://www.faqs.org/rfcs/rfc821.html"
+        title="Simple Mail Transfer Protocol"
+        >RFC 821, <em>Simple Mail Transfer Protocol</em></a>
+    <dd>Protocol definition for
+          SMTP.  This document covers the model, operating procedure,
+          and protocol details for SMTP.
+  </dl>
+  <dl compact class="seerfc">
+    <dt><a href="http://www.faqs.org/rfcs/rfc1869.html"
+        title="SMTP Service Extensions"
+        >RFC 1869, <em>SMTP Service Extensions</em></a>
+    <dd>Definition of the ESMTP
+          extensions for SMTP.  This describes a framework for
+          extending SMTP with new commands, supporting dynamic
+          discovery of the commands provided by the server, and
+          defines a few additional commands.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="SMTP-objects.html">11.12.1 SMTP Objects</a>
+<LI><A href="SMTP-example.html">11.12.2 SMTP Example</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="nntp-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="SMTP-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="nntp-objects.html">11.11.1 NNTP Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="SMTP-objects.html">11.12.1 SMTP Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

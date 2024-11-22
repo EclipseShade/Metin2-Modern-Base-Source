@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.8 xml.dom.pulldom -- Support for building partial DOM trees</title>
+<META NAME="description" CONTENT="13.8 xml.dom.pulldom -- Support for building partial DOM trees">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-xml.sax.html">
+<LINK REL="previous" href="module-xml.dom.minidom.html">
+<LINK REL="up" href="markup.html">
+<LINK REL="next" href="domeventstream-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="minidom-and-dom.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="domeventstream-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="minidom-and-dom.html">13.7.3 minidom and the</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="domeventstream-objects.html">13.8.1 DOMEventStream Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0015800000000000000000">
+13.8 <tt class="module">xml.dom.pulldom</tt> --
+         Support for building partial DOM trees</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.0.</span>
+
+<P>
+<tt class="module">xml.dom.pulldom</tt> allows building only selected portions of a
+Document Object Model representation of a document from SAX events.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3296"><tt class="class">PullDOM</tt></a></b>(<big>[</big><var>documentFactory</var><big>]</big>)
+<dd>
+  <tt class="class">xml.sax.handler.ContentHandler</tt> implementation that ...
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3297"><tt class="class">DOMEventStream</tt></a></b>(<var>stream, parser, bufsize</var>)
+<dd>
+  ...
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3298"><tt class="class">SAX2DOM</tt></a></b>(<big>[</big><var>documentFactory</var><big>]</big>)
+<dd>
+  <tt class="class">xml.sax.handler.ContentHandler</tt> implementation that ...
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3299"><tt class="function">parse</tt></a></b>(<var>stream_or_string</var><big>[</big><var>,
+                        parser</var><big>[</big><var>, bufsize</var><big>]</big><big>]</big>)
+<dd>
+  ...
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3300"><tt class="function">parseString</tt></a></b>(<var>string</var><big>[</big><var>, parser</var><big>]</big>)
+<dd>
+  ...
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3301"><tt>default_bufsize</tt></a></b>
+<dd>
+  Default value for the <var>busize</var> parameter to <tt class="function">parse()</tt>.
+  
+<span class="versionnote">Changed in version 2.1:
+The value of this variable can be changed before
+                  calling <tt class="function">parse()</tt> and the new value will
+                  take effect.</span>
+
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="domeventstream-objects.html">13.8.1 DOMEventStream Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="minidom-and-dom.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="domeventstream-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="minidom-and-dom.html">13.7.3 minidom and the</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="domeventstream-objects.html">13.8.1 DOMEventStream Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

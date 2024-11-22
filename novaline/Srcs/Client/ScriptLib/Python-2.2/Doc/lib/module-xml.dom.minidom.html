@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.7 xml.dom.minidom -- Lightweight DOM implementation</title>
+<META NAME="description" CONTENT="13.7 xml.dom.minidom -- Lightweight DOM implementation">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-xml.dom.pulldom.html">
+<LINK REL="previous" href="module-xml.dom.html">
+<LINK REL="up" href="markup.html">
+<LINK REL="next" href="dom-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dom-accessor-methods.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dom-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dom-accessor-methods.html">13.6.3.2 Accessor Methods</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dom-objects.html">13.7.1 DOM objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0015700000000000000000">
+13.7 <tt class="module">xml.dom.minidom</tt> --
+         Lightweight DOM implementation</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.0.</span>
+
+<P>
+<tt class="module">xml.dom.minidom</tt> is a light-weight implementation of the
+Document Object Model interface.  It is intended to be
+simpler than the full DOM and also significantly smaller.
+
+<P>
+DOM applications typically start by parsing some XML into a DOM.  With
+<tt class="module">xml.dom.minidom</tt>, this is done through the parse functions:
+
+<P>
+<dl><dd><pre class="verbatim">
+from xml.dom.minidom import parse, parseString
+
+dom1 = parse('c:\\temp\\mydata.xml') # parse an XML file by name
+
+datasource = open('c:\\temp\\mydata.xml')
+dom2 = parse(datasource)   # parse an open file
+
+dom3 = parseString('&lt;myxml&gt;Some data&lt;empty/&gt; some more data&lt;/myxml&gt;')
+</pre></dl>
+
+<P>
+The parse function can take either a filename or an open file object. 
+
+<P>
+<dl><dt><b><a name="l2h-3289"><tt class="function">parse</tt></a></b>(<var>filename_or_file, parser</var>)
+<dd>
+  Return a <tt class="class">Document</tt> from the given input. <var>filename_or_file</var>
+  may be either a file name, or a file-like object. <var>parser</var>, if
+  given, must be a SAX2 parser object. This function will change the
+  document handler of the parser and activate namespace support; other
+  parser configuration (like setting an entity resolver) must have been
+  done in advance.
+</dl>
+
+<P>
+If you have XML in a string, you can use the
+<tt class="function">parseString()</tt> function instead:
+
+<P>
+<dl><dt><b><a name="l2h-3290"><tt class="function">parseString</tt></a></b>(<var>string</var><big>[</big><var>, parser</var><big>]</big>)
+<dd>
+  Return a <tt class="class">Document</tt> that represents the <var>string</var>. This
+  method creates a <tt class="class">StringIO</tt> object for the string and passes
+  that on to <tt class="function">parse</tt>.
+</dl>
+
+<P>
+Both functions return a <tt class="class">Document</tt> object representing the
+content of the document.
+
+<P>
+You can also create a <tt class="class">Document</tt> node merely by instantiating a 
+document object.  Then you could add child nodes to it to populate
+the DOM:
+
+<P>
+<dl><dd><pre class="verbatim">
+from xml.dom.minidom import Document
+
+newdoc = Document()
+newel = newdoc.createElement("some_tag")
+newdoc.appendChild(newel)
+</pre></dl>
+
+<P>
+Once you have a DOM document object, you can access the parts of your
+XML document through its properties and methods.  These properties are
+defined in the DOM specification.  The main property of the document
+object is the <tt class="member">documentElement</tt> property.  It gives you the
+main element in the XML document: the one that holds all others.  Here
+is an example program:
+
+<P>
+<dl><dd><pre class="verbatim">
+dom3 = parseString("&lt;myxml&gt;Some data&lt;/myxml&gt;")
+assert dom3.documentElement.tagName == "myxml"
+</pre></dl>
+
+<P>
+When you are finished with a DOM, you should clean it up.  This is
+necessary because some versions of Python do not support garbage
+collection of objects that refer to each other in a cycle.  Until this
+restriction is removed from all versions of Python, it is safest to
+write your code as if cycles would not be cleaned up.
+
+<P>
+The way to clean up a DOM is to call its <tt class="method">unlink()</tt> method:
+
+<P>
+<dl><dd><pre class="verbatim">
+dom1.unlink()
+dom2.unlink()
+dom3.unlink()
+</pre></dl>
+
+<P>
+<tt class="method">unlink()</tt> is a <tt class="module">xml.dom.minidom</tt>-specific extension to
+the DOM API.  After calling <tt class="method">unlink()</tt> on a node, the node and
+its descendents are essentially useless.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.w3.org/TR/REC-DOM-Level-1/"
+        >Document Object
+            Model (DOM) Level 1 Specification</a></em>
+    <dd>The W3C recommendation for the
+            DOM supported by <tt class="module">xml.dom.minidom</tt>.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="dom-objects.html">13.7.1 DOM objects</a>
+<LI><A href="dom-example.html">13.7.2 DOM Example</a>
+<LI><A href="minidom-and-dom.html">13.7.3 minidom and the DOM standard</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dom-accessor-methods.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dom-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dom-accessor-methods.html">13.6.3.2 Accessor Methods</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dom-objects.html">13.7.1 DOM objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

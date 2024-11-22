@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.11.4 ScrolledWindow Object </title>
+<META NAME="description" CONTENT="2.11.4 ScrolledWindow Object ">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="dialogwindow-objects.html">
+<LINK REL="previous" href="controlswindow-object.html">
+<LINK REL="up" href="module-FrameWork.html">
+<LINK REL="next" href="dialogwindow-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="controlswindow-object.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-FrameWork.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dialogwindow-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="controlswindow-object.html">2.11.3 ControlsWindow Object</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-FrameWork.html">2.11 FrameWork  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dialogwindow-objects.html">2.11.5 DialogWindow Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0041140000000000000000">&nbsp;</A>
+<BR>
+2.11.4 ScrolledWindow Object 
+</H2>
+
+<P>
+ScrolledWindow objects are ControlsWindow objects with the following
+extra methods:
+
+<P>
+<dl><dt><b><a name="l2h-157"><tt class="method">scrollbars</tt></a></b>(<big>[</big><var>wantx</var><big>[</big><var>,
+                                               wanty</var><big>]</big><big>]</big>)
+<dd>
+Create (or destroy) horizontal and vertical scrollbars. The arguments
+specify which you want (default: both). The scrollbars always have
+minimum <code>0</code> and maximum <code>32767</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-158"><tt class="method">getscrollbarvalues</tt></a></b>()
+<dd>
+You must supply this method. It should return a tuple <code>(<var>x</var>,
+<var>y</var>)</code> giving the current position of the scrollbars (between
+<code>0</code> and <code>32767</code>). You can return <code>None</code> for either to
+indicate the whole document is visible in that direction.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-159"><tt class="method">updatescrollbars</tt></a></b>()
+<dd>
+Call this method when the document has changed. It will call
+<tt class="method">getscrollbarvalues()</tt> and update the scrollbars.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-160"><tt class="method">scrollbar_callback</tt></a></b>(<var>which, what, value</var>)
+<dd>
+Supplied by you and called after user interaction. <var>which</var> will
+be <code>'x'</code> or <code>'y'</code>, <var>what</var> will be <code>'-'</code>,
+<code>'-'</code>, <code>'set'</code>, <code>'++'</code> or <code>'+'</code>. For
+<code>'set'</code>, <var>value</var> will contain the new scrollbar position.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-161"><tt class="method">scalebarvalues</tt></a></b>(<var>absmin, absmax,
+                                                   curmin, curmax</var>)
+<dd>
+Auxiliary method to help you calculate values to return from
+<tt class="method">getscrollbarvalues()</tt>. You pass document minimum and maximum value
+and topmost (leftmost) and bottommost (rightmost) visible values and
+it returns the correct number or <code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-162"><tt class="method">do_activate</tt></a></b>(<var>onoff, event</var>)
+<dd>
+Takes care of dimming/highlighting scrollbars when a window becomes
+frontmost. If you override this method, call this one at the end of
+your method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-163"><tt class="method">do_postresize</tt></a></b>(<var>width, height, window</var>)
+<dd>
+Moves scrollbars to the correct position. Call this method initially
+if you override it.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-164"><tt class="method">do_controlhit</tt></a></b>(<var>window, control,
+                                                  pcode, event</var>)
+<dd>
+Handles scrollbar interaction. If you override it call this method
+first, a nonzero return value indicates the hit was in the scrollbars
+and has been handled.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="controlswindow-object.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-FrameWork.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dialogwindow-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="controlswindow-object.html">2.11.3 ControlsWindow Object</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-FrameWork.html">2.11 FrameWork  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dialogwindow-objects.html">2.11.5 DialogWindow Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

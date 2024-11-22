@@ -1,0 +1,381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.9 Table Markup </title>
+<META NAME="description" CONTENT="6.9 Table Markup ">
+<META NAME="keywords" CONTENT="doc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="doc.css">
+<link rel="first" href="doc.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="references.html">
+<LINK REL="previous" href="library-markup.html">
+<LINK REL="up" href="special-constructs.html">
+<LINK REL="next" href="references.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="library-markup.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="special-constructs.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="references.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="library-markup.html">6.8 Library-level Markup</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="special-constructs.html">6 Special Markup Constructs</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="references.html">6.10 Reference List Markup</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000790000000000000000">&nbsp;</A>
+<BR>
+6.9 Table Markup 
+</H2>
+
+<P>
+There are three general-purpose table environments defined which
+    should be used whenever possible.  These environments are defined
+    to provide tables of specific widths and some convenience for
+    formatting.  These environments are not meant to be general
+    replacements for the standard <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> table environments, but can
+    be used for an advantage when the documents are processed using
+    the tools for Python documentation processing.  In particular, the
+    generated HTML looks good!  There is also an advantage for the
+    eventual conversion of the documentation to XML (see section
+    <A href="futures.html#futures">9</A>, ``Future Directions'').
+
+<P>
+Each environment is named <tt class='environment'>&#92;table<var>cols</var></tt>, where <var>cols</var>
+    is the number of columns in the table specified in lower-case
+    Roman numerals.  Within each of these environments, an additional
+    macro, <tt class='macro'>&#92;line<var>cols</var></tt>, is defined, where <var>cols</var>
+    matches the <var>cols</var> value of the corresponding table
+    environment.  These are supported for <var>cols</var> values of
+    <code>ii</code>, <code>iii</code>, and <code>iv</code>.  These environments are all
+    built on top of the <tt class='environment'>&#92;tabular</tt> environment.  Variants based on
+    the <tt class='environment'>&#92;longtable</tt> environment are also provided.
+
+<P>
+Note that all tables in the standard Python documentation use
+    vertical lines between columns, and this must be specified in the
+    markup for each table.  A general border around the outside of the
+    table is not used, but would be the responsibility of the
+    processor; the document markup should not include an exterior
+    border.
+
+<P>
+The <tt class='environment'>&#92;longtable</tt>-based variants of the table environments are
+    formatted with extra space before and after, so should only be
+    used on tables which are long enough that splitting over multiple
+    pages is reasonable; tables with fewer than twenty rows should
+    never by marked using the long flavors of the table environments.
+    The header row is repeated across the top of each part of the
+    table.
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>tableii</b>}</tt>
+    <tt>{</tt><var>colspec</var><tt>}</tt><tt>{</tt><var>col1font</var><tt>}</tt><tt>{</tt><var>heading1</var><tt>}</tt><tt>{</tt><var>heading2</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>tableii</b>}</tt>
+<dd>
+      Create a two-column table using the <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> column specifier
+      <var>colspec</var>.  The column specifier should indicate vertical
+      bars between columns as appropriate for the specific table, but
+      should not specify vertical bars on the outside of the table
+      (that is considered a stylesheet issue).  The <var>col1font</var>
+      parameter is used as a stylistic treatment of the first column
+      of the table: the first column is presented as
+      <code>&#92;<var>col1font</var>{column1}</code>.  To avoid treating the first
+      column specially, <var>col1font</var> may be "<tt class="samp">textrm</tt>".  The
+      column headings are taken from the values <var>heading1</var> and
+      <var>heading2</var>.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>longtableii</b>}</tt>
+    ...
+<br /><tt>&#92;end{<b class='environment'>longtableii</b>}</tt>
+<dd>
+      Like <tt class='environment'>&#92;tableii</tt>, but produces a table which may be broken
+      across page boundaries.  The parameters are the same as for
+      <tt class='environment'>&#92;tableii</tt>.
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;lineii</tt></b>
+    <tt>{</tt><var>column1</var><tt>}</tt><tt>{</tt><var>column2</var><tt>}</tt>
+<dd>
+      Create a single table row within a <tt class='environment'>&#92;tableii</tt> or
+      <tt class='environment'>&#92;longtableii</tt> environment.
+      The text for the first column will be generated by applying the
+      macro named by the <var>col1font</var> value when the <tt class='environment'>&#92;tableii</tt>
+      was opened.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>tableiii</b>}</tt>
+    <tt>{</tt><var>colspec</var><tt>}</tt><tt>{</tt><var>col1font</var><tt>}</tt><tt>{</tt><var>heading1</var><tt>}</tt><tt>{</tt><var>heading2</var><tt>}</tt><tt>{</tt><var>heading3</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>tableiii</b>}</tt>
+<dd>
+      Like the <tt class='environment'>&#92;tableii</tt> environment, but with a third column.
+      The heading for the third column is given by <var>heading3</var>.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>longtableiii</b>}</tt>
+    ...
+<br /><tt>&#92;end{<b class='environment'>longtableiii</b>}</tt>
+<dd>
+      Like <tt class='environment'>&#92;tableiii</tt>, but produces a table which may be broken
+      across page boundaries.  The parameters are the same as for
+      <tt class='environment'>&#92;tableiii</tt>.
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;lineiii</tt></b>
+    <tt>{</tt><var>column1</var><tt>}</tt><tt>{</tt><var>column2</var><tt>}</tt><tt>{</tt><var>column3</var><tt>}</tt>
+<dd>
+      Like the <tt class='macro'>&#92;lineii</tt> macro, but with a third column.  The
+      text for the third column is given by <var>column3</var>.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>tableiv</b>}</tt>
+    <tt>{</tt><var>colspec</var><tt>}</tt><tt>{</tt><var>col1font</var><tt>}</tt><tt>{</tt><var>heading1</var><tt>}</tt><tt>{</tt><var>heading2</var><tt>}</tt><tt>{</tt><var>heading3</var><tt>}</tt><tt>{</tt><var>heading4</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>tableiv</b>}</tt>
+<dd>
+      Like the <tt class='environment'>&#92;tableiii</tt> environment, but with a fourth column.
+      The heading for the fourth column is given by <var>heading4</var>.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>longtableiv</b>}</tt>
+    ...
+<br /><tt>&#92;end{<b class='environment'>longtableiv</b>}</tt>
+<dd>
+      Like <tt class='environment'>&#92;tableiv</tt>, but produces a table which may be broken
+      across page boundaries.  The parameters are the same as for
+      <tt class='environment'>&#92;tableiv</tt>.
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;lineiv</tt></b>
+    <tt>{</tt><var>column1</var><tt>}</tt><tt>{</tt><var>column2</var><tt>}</tt><tt>{</tt><var>column3</var><tt>}</tt><tt>{</tt><var>column4</var><tt>}</tt>
+<dd>
+      Like the <tt class='macro'>&#92;lineiii</tt> macro, but with a fourth column.  The
+      text for the fourth column is given by <var>column4</var>.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>tablev</b>}</tt>
+    <tt>{</tt><var>colspec</var><tt>}</tt><tt>{</tt><var>col1font</var><tt>}</tt><tt>{</tt><var>heading1</var><tt>}</tt><tt>{</tt><var>heading2</var><tt>}</tt><tt>{</tt><var>heading3</var><tt>}</tt><tt>{</tt><var>heading4</var><tt>}</tt><tt>{</tt><var>heading5</var><tt>}</tt>
+<br /><tt>&#92;end{<b class='environment'>tablev</b>}</tt>
+<dd>
+      Like the <tt class='environment'>&#92;tableiv</tt> environment, but with a fifth column.
+      The heading for the fifth column is given by <var>heading5</var>.
+    </dl>
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>longtablev</b>}</tt>
+    ...
+<br /><tt>&#92;end{<b class='environment'>longtablev</b>}</tt>
+<dd>
+      Like <tt class='environment'>&#92;tablev</tt>, but produces a table which may be broken
+      across page boundaries.  The parameters are the same as for
+      <tt class='environment'>&#92;tablev</tt>.
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;linev</tt></b>
+    <tt>{</tt><var>column1</var><tt>}</tt><tt>{</tt><var>column2</var><tt>}</tt><tt>{</tt><var>column3</var><tt>}</tt><tt>{</tt><var>column4</var><tt>}</tt><tt>{</tt><var>column5</var><tt>}</tt>
+<dd>
+      Like the <tt class='macro'>&#92;lineiv</tt> macro, but with a fifth column.  The
+      text for the fifth column is given by <var>column5</var>.
+    </dl>
+
+<P>
+An additional table-like environment is <tt class='environment'>&#92;synopsistable</tt>.  The
+    table generated by this environment contains two columns, and each
+    row is defined by an alternate definition of
+    <tt class='macro'>&#92;modulesynopsis</tt>.  This environment is not normally used by
+    authors, but is created by the <tt class='macro'>&#92;localmoduletable</tt> macro.
+
+<P>
+Here is a small example of a table given in the documentation for
+    the <tt class="module">warnings</tt> module; markup inside the table cells is
+    minimal so the markup for the table itself is readily discernable.
+    Here is the markup for the table:
+
+<P>
+<dl><dd><pre class="verbatim">
+\begin{tableii}{l|l}{exception}{Class}{Description}
+  \lineii{Warning}
+         {This is the base class of all warning category classes.  It
+          is a subclass of \exception{Exception}.}
+  \lineii{UserWarning}
+         {The default category for \function{warn()}.}
+  \lineii{DeprecationWarning}
+         {Base category for warnings about deprecated features.}
+  \lineii{SyntaxWarning}
+         {Base category for warnings about dubious syntactic
+          features.}
+  \lineii{RuntimeWarning}
+         {Base category for warnings about dubious runtime features.}
+\end{tableii}
+</pre></dl>
+
+<P>
+Here is the resulting table:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Class</b>&nbsp;</th>
+      <th align="left"><b>Description</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><tt class="constant">Warning</tt></td>
+        <td align="left">This is the base class of all warning category classes.  It
+          is a subclass of <tt class="exception">Exception</tt>.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">UserWarning</tt></td>
+        <td align="left">The default category for <tt class="function">warn()</tt>.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">DeprecationWarning</tt></td>
+        <td align="left">Base category for warnings about deprecated features.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">SyntaxWarning</tt></td>
+        <td align="left">Base category for warnings about dubious syntactic
+          features.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">RuntimeWarning</tt></td>
+        <td align="left">Base category for warnings about dubious runtime features.</td></tbody>
+</table>
+
+<P>
+Note that the class names are implicitly marked using the
+    <tt class='macro'>&#92;exception</tt> macro, since that is given as the <var>col1font</var>
+    value for the <tt class='environment'>&#92;tableii</tt> environment.  To create a table using
+    different markup for the first column, use <code>textrm</code> for the
+    <var>col1font</var> value and mark each entry individually.
+
+<P>
+To add a horizontal line between vertical sections of a table, use
+    the standard <tt class='macro'>&#92;hline</tt> macro between the rows which should be
+    separated:
+
+<P>
+<dl><dd><pre class="verbatim">
+\begin{tableii}{l|l}{constant}{Language}{Audience}
+  \lineii{APL}{Masochists.}
+  \lineii{BASIC}{First-time programmers on PC hardware.}
+  \lineii{C}{\UNIX{} \&\ Linux kernel developers.}
+    \hline
+  \lineii{Python}{Everyone!}
+\end{tableii}
+</pre></dl>
+
+<P>
+Note that not all presentation formats are capable of displaying a
+    horizontal rule in this position.  This is how the table looks in
+    the format you're reading now:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Language</b>&nbsp;</th>
+      <th align="left"><b>Audience</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><tt class="constant">APL</tt></td>
+        <td align="left">Masochists.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">C</tt></td>
+        <td align="left">Unix &amp; Linux kernel developers.</td>
+    <tr><td align="left" valign="baseline"><tt class="constant">JavaScript</tt></td>
+        <td align="left">Web developers.</td>
+  
+    <tr><td align="left" valign="baseline"><tt class="constant">Python</tt></td>
+        <td align="left">Everyone!</td></tbody>
+</table>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="library-markup.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="special-constructs.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="references.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="library-markup.html">6.8 Library-level Markup</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="special-constructs.html">6 Special Markup Constructs</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="references.html">6.10 Reference List Markup</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

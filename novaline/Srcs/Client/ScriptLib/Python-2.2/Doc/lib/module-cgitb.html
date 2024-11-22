@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.3 cgitb -- Traceback manager for CGI scripts</title>
+<META NAME="description" CONTENT="11.3 cgitb -- Traceback manager for CGI scripts">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-urllib.html">
+<LINK REL="previous" href="module-cgi.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="module-urllib.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node303.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-urllib.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node303.html">11.2.10 Common problems and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-urllib.html">11.4 urllib  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0013300000000000000000">
+11.3 <tt class="module">cgitb</tt> --
+         Traceback manager for CGI scripts</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.2.</span>
+
+<a name="l2h-2309">&nbsp;</a>
+<P>
+The <tt class="module">cgitb</tt> module provides a special exception handler for CGI
+scripts.  After this module is activated, if an uncaught exception occurs,
+a detailed, formatted report will be sent to the Web browser.  The report
+includes a traceback showing excerpts of the source code for each level,
+as well as the values of the arguments and local variables to currently
+running functions, to help you debug the problem.  Optionally, you can
+save this information to a file instead of sending it to the browser.
+
+<P>
+To enable this feature, simply add one line to the top of your CGI script:
+
+<P>
+<dl><dd><pre class="verbatim">
+import cgitb; cgitb.enable()
+</pre></dl>
+
+<P>
+The options to the <tt class="function">enable()</tt> function control whether the
+report is displayed in the browser and whether the report is logged
+to a file for later analysis.
+
+<P>
+<dl><dt><b><a name="l2h-2305"><tt class="function">enable</tt></a></b>(<big>[</big><var>display</var><big>[</big><var>, logdir</var><big>[</big><var>,
+                         context</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+  This function causes the <tt class="module">cgitb</tt> module to take over the
+  interpreter's default handling for exceptions by setting the
+  value of <code><tt class="module"><a href="module-sys.html">sys</a></tt>.excepthook</code>.
+  <a name="l2h-2307">&nbsp;</a>
+<P>
+The optional argument <var>display</var> defaults to <code>1</code> and can be set
+  to <code>0</code> to suppress sending the traceback to the browser.
+  If the argument <var>logdir</var> is present, the traceback reports are
+  written to files.  The value of <var>logdir</var> should be a directory
+  where these files will be placed.
+  The optional argument <var>context</var> is the number of lines of
+  context to display around the current line of source code in the
+  traceback; this defaults to <code>5</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2308"><tt class="function">handler</tt></a></b>(<big>[</big><var>info</var><big>]</big>)
+<dd>
+  This function handles an exception using the default settings
+  (that is, show a report in the browser, but don't log to a file).
+  This can be used when you've caught an exception and want to
+  report it using <tt class="module">cgitb</tt>.  The optional <var>info</var> argument
+  should be a 3-tuple containing an exception type, exception
+  value, and traceback object, exactly like the tuple returned by
+  <code><tt class="module"><a href="module-sys.html">sys</a></tt>.exc_info()</code>.  If the <var>info</var> argument
+  is not supplied, the current exception is obtained from
+  <code><tt class="module"><a href="module-sys.html">sys</a></tt>.exc_info()</code>.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node303.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-urllib.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node303.html">11.2.10 Common problems and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-urllib.html">11.4 urllib  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

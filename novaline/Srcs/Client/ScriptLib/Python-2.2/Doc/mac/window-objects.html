@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.11.2 Window Objects </title>
+<META NAME="description" CONTENT="2.11.2 Window Objects ">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="controlswindow-object.html">
+<LINK REL="previous" href="application-objects.html">
+<LINK REL="up" href="module-FrameWork.html">
+<LINK REL="next" href="controlswindow-object.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="application-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-FrameWork.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="controlswindow-object.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="application-objects.html">2.11.1 Application Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-FrameWork.html">2.11 FrameWork  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="controlswindow-object.html">2.11.3 ControlsWindow Object</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0041120000000000000000">&nbsp;</A>
+<BR>
+2.11.2 Window Objects 
+</H2>
+
+<P>
+Window objects have the following methods, among others:
+
+<P>
+
+<P>
+<dl><dt><b><a name="l2h-150"><tt class="method">open</tt></a></b>()
+<dd>
+Override this method to open a window. Store the MacOS window-id in
+<tt class="member">self.wid</tt> and call the <tt class="method">do_postopen()</tt> method to
+register the window with the parent application.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-151"><tt class="method">close</tt></a></b>()
+<dd>
+Override this method to do any special processing on window
+close. Call the <tt class="method">do_postclose()</tt> method to cleanup the parent
+state.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-152"><tt class="method">do_postresize</tt></a></b>(<var>width, height, macoswindowid</var>)
+<dd>
+Called after the window is resized. Override if more needs to be done
+than calling <code>InvalRect</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-153"><tt class="method">do_contentclick</tt></a></b>(<var>local, modifiers, event</var>)
+<dd>
+The user clicked in the content part of a window. The arguments are
+the coordinates (window-relative), the key modifiers and the raw
+event.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-154"><tt class="method">do_update</tt></a></b>(<var>macoswindowid, event</var>)
+<dd>
+An update event for the window was received. Redraw the window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-155"><tt class="method">do_activate</tt></a></b>(<var>activate, event</var>)
+<dd>
+The window was activated (<code><var>activate</var> == 1</code>) or deactivated
+(<code><var>activate</var> == 0</code>). Handle things like focus highlighting,
+etc.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="application-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-FrameWork.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="controlswindow-object.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="application-objects.html">2.11.1 Application Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-FrameWork.html">2.11 FrameWork  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="controlswindow-object.html">2.11.3 ControlsWindow Object</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

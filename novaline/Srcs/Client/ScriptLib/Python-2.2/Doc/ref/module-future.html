@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>A.2 __future__ -- Future statement definitions</title>
+<META NAME="description" CONTENT="A.2 __future__ -- Future statement definitions">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="nested-scopes.html">
+<LINK REL="previous" href="future-statements.html">
+<LINK REL="up" href="futures.html">
+<LINK REL="next" href="nested-scopes.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="future-statements.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="futures.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="nested-scopes.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="future-statements.html">A.1 Future statements</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="futures.html">A. Future statements and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="nested-scopes.html">A.3 Nested scopes</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0011200000000000000000">
+A.2 <tt class="module">__future__</tt> --
+         Future statement definitions</A>
+</H1>
+
+<P>
+
+
+<P>
+<tt class="module">__future__</tt> is a real module, and serves three purposes:
+
+<P>
+
+<UL>
+<LI>To avoid confusing existing tools that analyze import statements
+      and expect to find the modules they're importing.
+
+<P>
+</LI>
+<LI>To ensure that future_statements run under releases prior to 2.1
+      at least yield runtime exceptions (the import of
+      <tt class="module">__future__</tt> will fail, because there was no module of
+      that name prior to 2.1). 
+
+<P>
+</LI>
+<LI>To document when incompatible changes were introduced, and when they
+      will be -- or were -- made mandatory.  This is a form of executable
+      documentation, and can be inspected programatically via importing
+      <tt class="module">__future__</tt> and examining its contents.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Each statment in <span class="file">__future__.py</span> is of the form:
+
+<P>
+<dl><dd><pre class="verbatim">
+FeatureName = "_Feature(" OptionalRelease "," MandatoryRelease ","
+                        CompilerFlag ")"
+</pre></dl>
+
+<P>
+where, normally, OptionalRelease is less then MandatoryRelease, and
+both are 5-tuples of the same form as <code>sys.version_info</code>:
+
+<P>
+<dl><dd><pre class="verbatim">
+    (PY_MAJOR_VERSION, # the 2 in 2.1.0a3; an int
+     PY_MINOR_VERSION, # the 1; an int
+     PY_MICRO_VERSION, # the 0; an int
+     PY_RELEASE_LEVEL, # "alpha", "beta", "candidate" or "final"; string
+     PY_RELEASE_SERIAL # the 3; an int
+    )
+</pre></dl>
+
+<P>
+OptionalRelease records the first release in which the feature was
+accepted. 
+
+<P>
+In the case of MandatoryReleases that have not yet occurred,
+MandatoryRelease predicts the release in which the feature will become
+part of the language.
+
+<P>
+Else MandatoryRelease records when the feature became part of the
+language; in releases at or after that, modules no longer need a
+future statement to use the feature in question, but may continue to
+use such imports. 
+
+<P>
+MandatoryRelease may also be <code>None</code>, meaning that a planned
+feature got dropped.
+
+<P>
+Instances of class <tt class="class">_Feature</tt> have two corresponding methods,
+<tt class="method">getOptionalRelease()</tt> and <tt class="method">getMandatoryRelease()</tt>.
+
+<P>
+CompilerFlag is the (bitfield) flag that should be passed in the
+fourth argument to the builtin function <tt class="function">compile()</tt> to enable
+the feature in dynamically compiled code.  This flag is stored in the
+<tt class="member">compiler_flag</tt> attribute on <tt class="class">_Future</tt> instances.
+
+<P>
+No feature description will ever be deleted from <tt class="module">__future__</tt>.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="future-statements.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="futures.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="nested-scopes.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="future-statements.html">A.1 Future statements</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="futures.html">A. Future statements and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="nested-scopes.html">A.3 Nested scopes</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

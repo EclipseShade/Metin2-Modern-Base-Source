@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.13.1 Telnet Objects </title>
+<META NAME="description" CONTENT="11.13.1 Telnet Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="telnet-example.html">
+<LINK REL="previous" href="module-telnetlib.html">
+<LINK REL="up" href="module-telnetlib.html">
+<LINK REL="next" href="telnet-example.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-telnetlib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-telnetlib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="telnet-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-telnetlib.html">11.13 telnetlib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-telnetlib.html">11.13 telnetlib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="telnet-example.html">11.13.2 Telnet Example</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00131310000000000000000">&nbsp;</A>
+<BR>
+11.13.1 Telnet Objects 
+</H2>
+
+<P>
+<tt class="class">Telnet</tt> instances have the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-2599"><tt class="method">read_until</tt></a></b>(<var>expected</var><big>[</big><var>, timeout</var><big>]</big>)
+<dd>
+Read until a given string is encountered or until timeout.
+
+<P>
+When no match is found, return whatever is available instead,
+possibly the empty string.  Raise <tt class="exception">EOFError</tt> if the connection
+is closed and no cooked data is available.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2600"><tt class="method">read_all</tt></a></b>()
+<dd>
+Read all data until EOF; block until connection closed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2601"><tt class="method">read_some</tt></a></b>()
+<dd>
+Read at least one byte of cooked data unless EOF is hit.
+Return <code>''</code> if EOF is hit.  Block if no data is immediately
+available.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2602"><tt class="method">read_very_eager</tt></a></b>()
+<dd>
+Read everything that can be without blocking in I/O (eager).
+
+<P>
+Raise <tt class="exception">EOFError</tt> if connection closed and no cooked data
+available.  Return <code>''</code> if no cooked data available otherwise.
+Do not block unless in the midst of an IAC sequence.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2603"><tt class="method">read_eager</tt></a></b>()
+<dd>
+Read readily available data.
+
+<P>
+Raise <tt class="exception">EOFError</tt> if connection closed and no cooked data
+available.  Return <code>''</code> if no cooked data available otherwise.
+Do not block unless in the midst of an IAC sequence.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2604"><tt class="method">read_lazy</tt></a></b>()
+<dd>
+Process and return data already in the queues (lazy).
+
+<P>
+Raise <tt class="exception">EOFError</tt> if connection closed and no data available.
+Return <code>''</code> if no cooked data available otherwise.  Do not block
+unless in the midst of an IAC sequence.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2605"><tt class="method">read_very_lazy</tt></a></b>()
+<dd>
+Return any data available in the cooked queue (very lazy).
+
+<P>
+Raise <tt class="exception">EOFError</tt> if connection closed and no data available.
+Return <code>''</code> if no cooked data available otherwise.  This method
+never blocks.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2606"><tt class="method">open</tt></a></b>(<var>host</var><big>[</big><var>, port</var><big>]</big>)
+<dd>
+Connect to a host.
+The optional second argument is the port number, which
+defaults to the standard Telnet port (23).
+
+<P>
+Do not try to reopen an already connected instance.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2607"><tt class="method">msg</tt></a></b>(<var>msg</var><big>[</big><var>, *args</var><big>]</big>)
+<dd>
+Print a debug message when the debug level is <code>&gt;</code> 0.
+If extra arguments are present, they are substituted in the
+message using the standard string formatting operator.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2608"><tt class="method">set_debuglevel</tt></a></b>(<var>debuglevel</var>)
+<dd>
+Set the debug level.  The higher the value of <var>debuglevel</var>, the
+more debug output you get (on <code>sys.stdout</code>).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2609"><tt class="method">close</tt></a></b>()
+<dd>
+Close the connection.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2610"><tt class="method">get_socket</tt></a></b>()
+<dd>
+Return the socket object used internally.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2611"><tt class="method">fileno</tt></a></b>()
+<dd>
+Return the file descriptor of the socket object used internally.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2612"><tt class="method">write</tt></a></b>(<var>buffer</var>)
+<dd>
+Write a string to the socket, doubling any IAC characters.
+This can block if the connection is blocked.  May raise
+<tt class="exception">socket.error</tt> if the connection is closed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2613"><tt class="method">interact</tt></a></b>()
+<dd>
+Interaction function, emulates a very dumb Telnet client.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2614"><tt class="method">mt_interact</tt></a></b>()
+<dd>
+Multithreaded version of <tt class="method">interact()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2615"><tt class="method">expect</tt></a></b>(<var>list</var><big>[</big><var>, timeout</var><big>]</big>)
+<dd>
+Read until one from a list of a regular expressions matches.
+
+<P>
+The first argument is a list of regular expressions, either
+compiled (<tt class="class">re.RegexObject</tt> instances) or uncompiled (strings).
+The optional second argument is a timeout, in seconds; the default
+is to block indefinitely.
+
+<P>
+Return a tuple of three items: the index in the list of the
+first regular expression that matches; the match object
+returned; and the text read up till and including the match.
+
+<P>
+If end of file is found and no text was read, raise
+<tt class="exception">EOFError</tt>.  Otherwise, when nothing matches, return
+<code>(-1, None, <var>text</var>)</code> where <var>text</var> is the text received so
+far (may be the empty string if a timeout happened).
+
+<P>
+If a regular expression ends with a greedy match (such as <tt class="regexp">.*</tt>)
+or if more than one expression can match the same input, the
+results are indeterministic, and may depend on the I/O timing.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2616"><tt class="method">set_option_negotiation_callback</tt></a></b>(<var>callback</var>)
+<dd>
+Each time a telnet option is read on the input flow, this
+<var>callback</var> (if set) is called with the following parameters :
+callback(telnet socket, command (DO/DONT/WILL/WONT), option).  No other
+action is done afterwards by telnetlib.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-telnetlib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-telnetlib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="telnet-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-telnetlib.html">11.13 telnetlib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-telnetlib.html">11.13 telnetlib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="telnet-example.html">11.13.2 Telnet Example</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

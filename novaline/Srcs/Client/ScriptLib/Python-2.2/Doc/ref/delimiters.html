@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.6 Delimiters</title>
+<META NAME="description" CONTENT="2.6 Delimiters">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="operators.html">
+<LINK REL="up" href="lexical.html">
+<LINK REL="next" href="datamodel.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="operators.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="lexical.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="datamodel.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="operators.html">2.5 Operators</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="lexical.html">2. Lexical analysis</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="datamodel.html">3. Data model</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION004600000000000000000">&nbsp;</A><a name="l2h-17">&nbsp;</a>
+<BR>
+2.6 Delimiters
+</H1>
+
+<P>
+The following tokens serve as delimiters in the grammar:
+
+<P>
+<dl><dd><pre class="verbatim">
+(       )       [       ]       {       }
+,       :       .       `       =       ;
++=      -=      *=      /=      //=     %=
+&amp;=      |=      ^=      &gt;&gt;=     &lt;&lt;=     **=
+</pre></dl>
+
+<P>
+The period can also occur in floating-point and imaginary literals.  A
+sequence of three periods has a special meaning as an ellipsis in slices.
+The second half of the list, the augmented assignment operators, serve
+lexically as delimiters, but also perform an operation.
+
+<P>
+The following printing ASCII characters have special meaning as part
+of other tokens or are otherwise significant to the lexical analyzer:
+
+<P>
+<dl><dd><pre class="verbatim">
+'       "       #       \
+</pre></dl>
+
+<P>
+The following printing ASCII characters are not used in Python.  Their
+occurrence outside string literals and comments is an unconditional
+error:
+
+<P>
+<dl><dd><pre class="verbatim">
+@       $       ?
+</pre></dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="operators.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="lexical.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="datamodel.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="operators.html">2.5 Operators</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="lexical.html">2. Lexical analysis</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="datamodel.html">3. Data model</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

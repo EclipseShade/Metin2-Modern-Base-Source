@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.4 stat -- Interpreting stat() results</title>
+<META NAME="description" CONTENT="6.4 stat -- Interpreting stat() results">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-statcache.html">
+<LINK REL="previous" href="module-dircache.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" href="module-statcache.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-dircache.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-statcache.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-dircache.html">6.3 dircache  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-statcache.html">6.5 statcache  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008400000000000000000">
+6.4 <tt class="module">stat</tt> --
+         Interpreting <tt class="function">stat()</tt> results</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">stat</tt> module defines constants and functions for
+interpreting the results of <tt class="function">os.stat()</tt>,
+<tt class="function">os.fstat()</tt> and <tt class="function">os.lstat()</tt> (if they exist).  For
+complete details about the <tt class="cfunction">stat()</tt>, <tt class="cfunction">fstat()</tt> and
+<tt class="cfunction">lstat()</tt> calls, consult the documentation for your system.
+
+<P>
+The <tt class="module">stat</tt> module defines the following functions to test for
+specific file types:
+
+<P>
+<dl><dt><b><a name="l2h-1299"><tt class="function">S_ISDIR</tt></a></b>(<var>mode</var>)
+<dd>
+Return non-zero if the mode is from a directory.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1300"><tt class="function">S_ISCHR</tt></a></b>(<var>mode</var>)
+<dd>
+Return non-zero if the mode is from a character special device file.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1301"><tt class="function">S_ISBLK</tt></a></b>(<var>mode</var>)
+<dd>
+Return non-zero if the mode is from a block special device file.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1302"><tt class="function">S_ISREG</tt></a></b>(<var>mode</var>)
+<dd>
+Return non-zero if the mode is from a regular file.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1303"><tt class="function">S_ISFIFO</tt></a></b>(<var>mode</var>)
+<dd>
+Return non-zero if the mode is from a FIFO (named pipe).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1304"><tt class="function">S_ISLNK</tt></a></b>(<var>mode</var>)
+<dd>
+Return non-zero if the mode is from a symbolic link.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1305"><tt class="function">S_ISSOCK</tt></a></b>(<var>mode</var>)
+<dd>
+Return non-zero if the mode is from a socket.
+</dl>
+
+<P>
+Two additional functions are defined for more general manipulation of
+the file's mode:
+
+<P>
+<dl><dt><b><a name="l2h-1306"><tt class="function">S_IMODE</tt></a></b>(<var>mode</var>)
+<dd>
+Return the portion of the file's mode that can be set by
+<tt class="function">os.chmod()</tt>--that is, the file's permission bits, plus the
+sticky bit, set-group-id, and set-user-id bits (on systems that support
+them).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1307"><tt class="function">S_IFMT</tt></a></b>(<var>mode</var>)
+<dd>
+Return the portion of the file's mode that describes the file type (used
+by the <tt class="function">S_IS*()</tt> functions above).
+</dl>
+
+<P>
+Normally, you would use the <tt class="function">os.path.is*()</tt> functions for
+testing the type of a file; the functions here are useful when you are
+doing multiple tests of the same file and wish to avoid the overhead of
+the <tt class="cfunction">stat()</tt> system call for each test.  These are also
+useful when checking for information about a file that isn't handled
+by <tt class="module"><a href="module-os.path.html">os.path</a></tt>, like the tests for block and character
+devices.
+
+<P>
+All the variables below are simply symbolic indexes into the 10-tuple
+returned by <tt class="function">os.stat()</tt>, <tt class="function">os.fstat()</tt> or
+<tt class="function">os.lstat()</tt>.
+
+<P>
+<dl><dt><b><a name="l2h-1308"><tt>ST_MODE</tt></a></b>
+<dd>
+Inode protection mode.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1309"><tt>ST_INO</tt></a></b>
+<dd>
+Inode number.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1310"><tt>ST_DEV</tt></a></b>
+<dd>
+Device inode resides on.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1311"><tt>ST_NLINK</tt></a></b>
+<dd>
+Number of links to the inode.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1312"><tt>ST_UID</tt></a></b>
+<dd>
+User id of the owner.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1313"><tt>ST_GID</tt></a></b>
+<dd>
+Group id of the owner.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1314"><tt>ST_SIZE</tt></a></b>
+<dd>
+Size in bytes of a plain file; amount of data waiting on some special
+files.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1315"><tt>ST_ATIME</tt></a></b>
+<dd>
+Time of last access.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1316"><tt>ST_MTIME</tt></a></b>
+<dd>
+Time of last modification.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1317"><tt>ST_CTIME</tt></a></b>
+<dd>
+Time of last status change (see manual pages for details).
+</dl>
+
+<P>
+The interpretation of ``file size'' changes according to the file
+type.  For plain files this is the size of the file in bytes.  For
+FIFOs and sockets under most flavors of Unix (including Linux in
+particular), the ``size'' is the number of bytes waiting to be read at
+the time of the call to <tt class="function">os.stat()</tt>, <tt class="function">os.fstat()</tt>,
+or <tt class="function">os.lstat()</tt>; this can sometimes be useful, especially for
+polling one of these special files after a non-blocking open.  The
+meaning of the size field for other character and block devices varies
+more, depending on the implementation of the underlying system call.
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+import os, sys
+from stat import *
+
+def walktree(dir, callback):
+    '''recursively descend the directory rooted at dir,
+       calling the callback function for each regular file'''
+
+    for f in os.listdir(dir):
+        pathname = '%s/%s' % (dir, f)
+        mode = os.stat(pathname)[ST_MODE]
+        if S_ISDIR(mode):
+            # It's a directory, recurse into it
+            walktree(pathname, callback)
+        elif S_ISREG(mode):
+            # It's a file, call the callback function
+            callback(pathname)
+        else:
+            # Unknown file type, print a message
+            print 'Skipping %s' % pathname
+
+def visitfile(file):
+    print 'visiting', file
+
+if __name__ == '__main__':
+    walktree(sys.argv[1], visitfile)
+</pre></dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-dircache.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-statcache.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-dircache.html">6.3 dircache  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-statcache.html">6.5 statcache  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

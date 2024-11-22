@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.4 Extending Embedded Python </title>
+<META NAME="description" CONTENT="5.4 Extending Embedded Python ">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="embeddingInCplusplus.html">
+<LINK REL="previous" href="pure-embedding.html">
+<LINK REL="up" href="embedding.html">
+<LINK REL="next" href="embeddingInCplusplus.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pure-embedding.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="embedding.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="embeddingInCplusplus.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pure-embedding.html">5.3 Pure Embedding</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="embedding.html">5. Embedding Python in</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="embeddingInCplusplus.html">5.5 Embedding Python in</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007400000000000000000">&nbsp;</A>
+<BR>
+5.4 Extending Embedded Python
+         
+</H1>
+
+<P>
+Until now, the embedded Python interpreter had no access to
+functionality from the application itself.  The Python API allows this
+by extending the embedded interpreter.  That is, the embedded
+interpreter gets extended with routines provided by the application.
+While it sounds complex, it is not so bad.  Simply forget for a while
+that the application starts the Python interpreter.  Instead, consider
+the application to be a set of subroutines, and write some glue code
+that gives Python access to those routines, just like you would write
+a normal Python extension.  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+static int numargs=0;
+
+/* Return the number of arguments of the application command line */
+static PyObject*
+emb_numargs(PyObject *self, PyObject *args)
+{
+    if(!PyArg_ParseTuple(args, ":numargs"))
+        return NULL;
+    return Py_BuildValue("i", numargs);
+}
+
+static PyMethodDef EmbMethods[] = {
+    {"numargs", emb_numargs, METH_VARARGS,
+     "Return the number of arguments received by the process."},
+    {NULL, NULL, 0, NULL}
+};
+</pre></dl>
+
+<P>
+Insert the above code just above the <tt class="cfunction">main()</tt> function.
+Also, insert the following two statements directly after
+<tt class="cfunction">Py_Initialize()</tt>:
+
+<P>
+<dl><dd><pre class="verbatim">
+    numargs = argc;
+    Py_InitModule("emb", EmbMethods);
+</pre></dl>
+
+<P>
+These two lines initialize the <code>numargs</code> variable, and make the
+<tt class="function">emb.numargs()</tt> function accessible to the embedded Python
+interpreter.  With these extensions, the Python script can do things
+like
+
+<P>
+<dl><dd><pre class="verbatim">
+import emb
+print "Number of arguments", emb.numargs()
+</pre></dl>
+
+<P>
+In a real application, the methods will expose an API of the
+application to Python.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pure-embedding.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="embedding.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="embeddingInCplusplus.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pure-embedding.html">5.3 Pure Embedding</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="embedding.html">5. Embedding Python in</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="embeddingInCplusplus.html">5.5 Embedding Python in</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

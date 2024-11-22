@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>17.1 rexec -- Restricted execution framework</title>
+<META NAME="description" CONTENT="17.1 rexec -- Restricted execution framework">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-Bastion.html">
+<LINK REL="previous" href="restricted.html">
+<LINK REL="up" href="restricted.html">
+<LINK REL="next" href="rexec-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="restricted.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="restricted.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="rexec-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="restricted.html">17. Restricted Execution</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="restricted.html">17. Restricted Execution</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="rexec-objects.html">17.1.1 RExec Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0019100000000000000000">
+17.1 <tt class="module">rexec</tt> --
+         Restricted execution framework</A>
+</H1>
+
+<P>
+
+
+<P>
+This module contains the <tt class="class">RExec</tt> class, which supports
+<tt class="method">r_eval()</tt>, <tt class="method">r_execfile()</tt>, <tt class="method">r_exec()</tt>, and
+<tt class="method">r_import()</tt> methods, which are restricted versions of the standard
+Python functions <tt class="method">eval()</tt>, <tt class="method">execfile()</tt> and
+the <tt class="keyword">exec</tt> and <tt class="keyword">import</tt> statements.
+Code executed in this restricted environment will
+only have access to modules and functions that are deemed safe; you
+can subclass <tt class="class">RExec</tt> to add or remove capabilities as desired.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+The <tt class="class">RExec</tt> class can prevent code from performing
+unsafe operations like reading or writing disk files, or using TCP/IP
+sockets.  However, it does not protect against code using extremely
+large amounts of memory or processor time.</span>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3743"><tt class="class">RExec</tt></a></b>(<big>[</big><var>hooks</var><big>[</big><var>, verbose</var><big>]</big><big>]</big>)
+<dd>
+Returns an instance of the <tt class="class">RExec</tt> class.  
+
+<P>
+<var>hooks</var> is an instance of the <tt class="class">RHooks</tt> class or a subclass of it.
+If it is omitted or <code>None</code>, the default <tt class="class">RHooks</tt> class is
+instantiated.
+Whenever the <tt class="module">rexec</tt> module searches for a module (even a
+built-in one) or reads a module's code, it doesn't actually go out to
+the file system itself.  Rather, it calls methods of an <tt class="class">RHooks</tt>
+instance that was passed to or created by its constructor.  (Actually,
+the <tt class="class">RExec</tt> object doesn't make these calls -- they are made by
+a module loader object that's part of the <tt class="class">RExec</tt> object.  This
+allows another level of flexibility, which can be useful when changing
+the mechanics of <tt class="keyword">import</tt> within the restricted environment.)
+
+<P>
+By providing an alternate <tt class="class">RHooks</tt> object, we can control the
+file system accesses made to import a module, without changing the
+actual algorithm that controls the order in which those accesses are
+made.  For instance, we could substitute an <tt class="class">RHooks</tt> object that
+passes all filesystem requests to a file server elsewhere, via some
+RPC mechanism such as ILU.  Grail's applet loader uses this to support
+importing applets from a URL for a directory.
+
+<P>
+If <var>verbose</var> is true, additional debugging output may be sent to
+standard output.
+</dl>
+
+<P>
+It is important to be aware that code running in a restricted
+environment can still call the <tt class="function">sys.exit()</tt> function.  To
+disallow restricted code from exiting the interpreter, always protect
+calls that cause restricted code to run with a
+<tt class="keyword">try</tt>/<tt class="keyword">except</tt> statement that catches the
+<tt class="exception">SystemExit</tt> exception.  Removing the <tt class="function">sys.exit()</tt>
+function from the restricted environment is not sufficient -- the
+restricted code could still use <code>raise SystemExit</code>.  Removing
+<tt class="exception">SystemExit</tt> is not a reasonable option; some library code
+makes use of this and would break were it not available.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://grail.sourceforge.net/"
+        >Grail Home Page</a></em>
+    <dd>Grail is a
+            Web browser written entirely in Python.  It uses the
+            <tt class="module">rexec</tt> module as a foundation for supporting
+            Python applets, and can be used as an example usage of
+            this module.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="rexec-objects.html">17.1.1 RExec Objects</a>
+<LI><A href="rexec-extension.html">17.1.2 Defining restricted environments</a>
+<LI><A href="node547.html">17.1.3 An example</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="restricted.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="restricted.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="rexec-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="restricted.html">17. Restricted Execution</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="restricted.html">17. Restricted Execution</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="rexec-objects.html">17.1.1 RExec Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

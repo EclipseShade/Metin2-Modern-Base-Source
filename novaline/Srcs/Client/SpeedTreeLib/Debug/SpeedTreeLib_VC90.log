@@ -1,0 +1,49 @@
+﻿Der Buildvorgang wurde am 27.09.2013 20:04:03 gestartet.
+     1>Projekt "D:\tt (1)\dev\Srcs\Client\SpeedTreeLib\SpeedTreeLib_VC90.vcxproj" auf Knoten "6", build Ziel(e).
+     1>InitializeBuildStatus:
+         ".\Debug\SpeedTreeLib.unsuccessfulbuild" wird erstellt, da "AlwaysCreate" angegeben wurde.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I../../extern/include /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc100.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt BoundaryShapeManager.cpp SpeedGrassRT.cpp SpeedGrassWrapper.cpp SpeedTreeForest.cpp SpeedTreeForestDirectX8.cpp SpeedTreeWrapper.cpp StdAfx.cpp
+         BoundaryShapeManager.cpp
+     1>BoundaryShapeManager.cpp(55): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(234): Siehe Deklaration von 'fopen'
+         SpeedGrassRT.cpp
+         SpeedGrassWrapper.cpp
+         SpeedTreeForest.cpp
+     1>d:\tt (1)\dev\srcs\client\speedtreelib\../eterBase/Filename.h(236): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(105): Siehe Deklaration von 'strcpy'
+         SpeedTreeForestDirectX8.cpp
+     1>d:\tt (1)\dev\srcs\client\speedtreelib\VertexShaders.h(164): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371): Siehe Deklaration von 'sprintf'
+     1>d:\tt (1)\dev\srcs\client\speedtreelib\VertexShaders.h(171): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371): Siehe Deklaration von 'sprintf'
+         SpeedTreeWrapper.cpp
+     1>d:\tt (1)\dev\srcs\client\speedtreelib\../eterBase/Filename.h(236): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(105): Siehe Deklaration von 'strcpy'
+     1>d:\tt (1)\dev\srcs\client\speedtreelib\VertexShaders.h(164): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371): Siehe Deklaration von 'sprintf'
+     1>d:\tt (1)\dev\srcs\client\speedtreelib\VertexShaders.h(171): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(371): Siehe Deklaration von 'sprintf'
+         StdAfx.cpp
+         Code wird generiert...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:".\Debug\SpeedTreeLib.lib" /NOLOGO .\Debug/BoundaryShapeManager.obj
+         .\Debug/SpeedGrassRT.obj
+         .\Debug/SpeedGrassWrapper.obj
+         .\Debug/SpeedTreeForest.obj
+         .\Debug/SpeedTreeForestDirectX8.obj
+         .\Debug/SpeedTreeWrapper.obj
+         .\Debug/StdAfx.obj
+     1>SpeedGrassWrapper.obj : warning LNK4221: Die Objektdatei definiert keine zuvor undefinierten ÷ffentlichen Symbole. Sie wird daher von keinem Verkn³pfungsvorgang verwendet, der diese Bibliothek benutzt.
+     1>SpeedGrassRT.obj : warning LNK4221: Die Objektdatei definiert keine zuvor undefinierten ÷ffentlichen Symbole. Sie wird daher von keinem Verkn³pfungsvorgang verwendet, der diese Bibliothek benutzt.
+         SpeedTreeLib_VC90.vcxproj -> D:\tt (1)\dev\Srcs\Client\SpeedTreeLib\.\Debug\SpeedTreeLib.lib
+       BscMake:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\bscmake.exe /nologo /o".\Debug\SpeedTreeLib.bsc" .\Debug\BoundaryShapeManager.sbr .\Debug\SpeedGrassRT.sbr .\Debug\SpeedGrassWrapper.sbr .\Debug\SpeedTreeForest.sbr .\Debug\SpeedTreeForestDirectX8.sbr .\Debug\SpeedTreeWrapper.sbr .\Debug\StdAfx.sbr
+       FinalizeBuildStatus:
+         Die Datei ".\Debug\SpeedTreeLib.unsuccessfulbuild" wird gelöscht.
+         Aktualisieren des Timestamps von ".\Debug\SpeedTreeLib.lastbuildstate".
+     1>Die Erstellung des Projekts "D:\tt (1)\dev\Srcs\Client\SpeedTreeLib\SpeedTreeLib_VC90.vcxproj" ist abgeschlossen, build Ziel(e).
+
+Das Erstellen war erfolgreich.
+
+Verstrichene Zeit 00:00:13.18

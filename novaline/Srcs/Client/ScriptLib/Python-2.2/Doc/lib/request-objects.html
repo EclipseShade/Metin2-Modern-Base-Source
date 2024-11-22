@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.5.1 Request Objects </title>
+<META NAME="description" CONTENT="11.5.1 Request Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="opener-director-objects.html">
+<LINK REL="previous" href="module-urllib2.html">
+<LINK REL="up" href="module-urllib2.html">
+<LINK REL="next" href="opener-director-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-urllib2.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-urllib2.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="opener-director-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-urllib2.html">11.5 urllib2  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-urllib2.html">11.5 urllib2  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="opener-director-objects.html">11.5.2 OpenerDirector Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013510000000000000000">&nbsp;</A>
+<BR>
+11.5.1 Request Objects 
+</H2>
+
+<P>
+The following methods describe all of <tt class="class">Request</tt>'s public interface,
+and so all must be overridden in subclasses.
+
+<P>
+<dl><dt><b><a name="l2h-2366"><tt class="method">add_data</tt></a></b>(<var>data</var>)
+<dd>
+Set the <tt class="class">Request</tt> data to <var>data</var>.  This is ignored
+by all handlers except HTTP handlers -- and there it should be an
+<span class="mimetype">application/x-www-form-encoded</span> buffer, and will change the
+request to be <code>POST</code> rather than <code>GET</code>. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2367"><tt class="method">has_data</tt></a></b>()
+<dd>
+Return whether the instance has a non-<code>None</code> data.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2368"><tt class="method">get_data</tt></a></b>()
+<dd>
+Return the instance's data.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2369"><tt class="method">add_header</tt></a></b>(<var>key, val</var>)
+<dd>
+Add another header to the request.  Headers are currently ignored by
+all handlers except HTTP handlers, where they are added to the list
+of headers sent to the server.  Note that there cannot be more than
+one header with the same name, and later calls will overwrite
+previous calls in case the <var>key</var> collides.  Currently, this is
+no loss of HTTP functionality, since all headers which have meaning
+when used more than once have a (header-specific) way of gaining the
+same functionality using only one header.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2370"><tt class="method">get_full_url</tt></a></b>()
+<dd>
+Return the URL given in the constructor.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2371"><tt class="method">get_type</tt></a></b>()
+<dd>
+Return the type of the URL -- also known as the scheme.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2372"><tt class="method">get_host</tt></a></b>()
+<dd>
+Return the host to which a connection will be made.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2373"><tt class="method">get_selector</tt></a></b>()
+<dd>
+Return the selector -- the part of the URL that is sent to
+the server.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2374"><tt class="method">set_proxy</tt></a></b>(<var>host, type</var>)
+<dd>
+Prepare the request by connecting to a proxy server. The <var>host</var>
+and <var>type</var> will replace those of the instance, and the instance's
+selector will be the original URL given in the constructor.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-urllib2.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-urllib2.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="opener-director-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-urllib2.html">11.5 urllib2  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-urllib2.html">11.5 urllib2  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="opener-director-objects.html">11.5.2 OpenerDirector Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

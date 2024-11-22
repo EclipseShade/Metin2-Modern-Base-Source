@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.9 xml.sax -- Support for SAX2 parsers</title>
+<META NAME="description" CONTENT="13.9 xml.sax -- Support for SAX2 parsers">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-xml.sax.handler.html">
+<LINK REL="previous" href="module-xml.dom.pulldom.html">
+<LINK REL="up" href="markup.html">
+<LINK REL="next" href="sax-exception-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="domeventstream-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="sax-exception-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="domeventstream-objects.html">13.8.1 DOMEventStream Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="sax-exception-objects.html">13.9.1 SAXException Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0015900000000000000000">
+13.9 <tt class="module">xml.sax</tt> --
+         Support for SAX2 parsers</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.0.</span>
+
+<P>
+The <tt class="module">xml.sax</tt> package provides a number of modules which
+implement the Simple API for XML (SAX) interface for Python.  The
+package itself provides the SAX exceptions and the convenience
+functions which will be most used by users of the SAX API.
+
+<P>
+The convenience functions are:
+
+<P>
+<dl><dt><b><a name="l2h-3306"><tt class="function">make_parser</tt></a></b>(<big>[</big><var>parser_list</var><big>]</big>)
+<dd>
+  Create and return a SAX <tt class="class">XMLReader</tt> object.  The first parser
+  found will be used.  If <var>parser_list</var> is provided, it must be a
+  sequence of strings which name modules that have a function named
+  <tt class="function">create_parser()</tt>.  Modules listed in <var>parser_list</var>
+  will be used before modules in the default list of parsers.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3307"><tt class="function">parse</tt></a></b>(<var>filename_or_stream, handler</var><big>[</big><var>, error_handler</var><big>]</big>)
+<dd>
+  Create a SAX parser and use it to parse a document.  The document,
+  passed in as <var>filename_or_stream</var>, can be a filename or a file
+  object.  The <var>handler</var> parameter needs to be a SAX
+  <tt class="class">ContentHandler</tt> instance.  If <var>error_handler</var> is given,
+  it must be a SAX <tt class="class">ErrorHandler</tt> instance; if omitted, 
+  <tt class="exception">SAXParseException</tt> will be raised on all errors.  There
+  is no return value; all work must be done by the <var>handler</var>
+  passed in.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3308"><tt class="function">parseString</tt></a></b>(<var>string, handler</var><big>[</big><var>, error_handler</var><big>]</big>)
+<dd>
+  Similar to <tt class="function">parse()</tt>, but parses from a buffer <var>string</var>
+  received as a parameter.
+</dl>
+
+<P>
+A typical SAX application uses three kinds of objects: readers,
+handlers and input sources.  ``Reader'' in this context is another
+term for parser, i.e. some piece of code that reads the bytes or
+characters from the input source, and produces a sequence of events.
+The events then get distributed to the handler objects, i.e. the
+reader invokes a method on the handler.  A SAX application must
+therefore obtain a reader object, create or open the input sources,
+create the handlers, and connect these objects all together.  As the
+final step of preparation, the reader is called to parse the input.
+During parsing, methods on the handler objects are called based on
+structural and syntactic events from the input data.
+
+<P>
+For these objects, only the interfaces are relevant; they are normally
+not instantiated by the application itself.  Since Python does not have
+an explicit notion of interface, they are formally introduced as
+classes, but applications may use implementations which do not inherit
+from the provided classes.  The <tt class="class">InputSource</tt>, <tt class="class">Locator</tt>,
+<tt class="class">AttributesImpl</tt>, <tt class="class">AttributesNSImpl</tt>, and
+<tt class="class">XMLReader</tt> interfaces are defined in the module
+<tt class="module"><a href="module-xml.sax.xmlreader.html">xml.sax.xmlreader</a></tt>.  The handler interfaces are defined in
+<tt class="module"><a href="module-xml.sax.handler.html">xml.sax.handler</a></tt>.  For convenience, <tt class="class">InputSource</tt>
+(which is often instantiated directly) and the handler classes are
+also available from <tt class="module">xml.sax</tt>.  These interfaces are described
+below.
+
+<P>
+In addition to these classes, <tt class="module">xml.sax</tt> provides the following
+exception classes.
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-3309"><tt class="exception">SAXException</tt></a></b>(<var>msg</var><big>[</big><var>, exception</var><big>]</big>)
+<dd>
+  Encapsulate an XML error or warning.  This class can contain basic
+  error or warning information from either the XML parser or the
+  application: it can be subclassed to provide additional
+  functionality or to add localization.  Note that although the
+  handlers defined in the <tt class="class">ErrorHandler</tt> interface receive
+  instances of this exception, it is not required to actually raise
+  the exception -- it is also useful as a container for information.
+
+<P>
+When instantiated, <var>msg</var> should be a human-readable description
+  of the error.  The optional <var>exception</var> parameter, if given,
+  should be <code>None</code> or an exception that was caught by the parsing
+  code and is being passed along as information.
+
+<P>
+This is the base class for the other SAX exception classes.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-3310"><tt class="exception">SAXParseException</tt></a></b>(<var>msg, exception, locator</var>)
+<dd>
+  Subclass of <tt class="exception">SAXException</tt> raised on parse errors.
+  Instances of this class are passed to the methods of the SAX
+  <tt class="class">ErrorHandler</tt> interface to provide information about the
+  parse error.  This class supports the SAX <tt class="class">Locator</tt> interface
+  as well as the <tt class="class">SAXException</tt> interface.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-3311"><tt class="exception">SAXNotRecognizedException</tt></a></b>(<var>msg</var><big>[</big><var>, exception</var><big>]</big>)
+<dd>
+  Subclass of <tt class="exception">SAXException</tt> raised when a SAX
+  <tt class="class">XMLReader</tt> is confronted with an unrecognized feature or
+  property.  SAX applications and extensions may use this class for
+  similar purposes.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-3312"><tt class="exception">SAXNotSupportedException</tt></a></b>(<var>msg</var><big>[</big><var>, exception</var><big>]</big>)
+<dd>
+  Subclass of <tt class="exception">SAXException</tt> raised when a SAX
+  <tt class="class">XMLReader</tt> is asked to enable a feature that is not
+  supported, or to set a property to a value that the implementation
+  does not support.  SAX applications and extensions may use this
+  class for similar purposes.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.saxproject.org/"
+        >SAX: The Simple API for
+            XML</a></em>
+    <dd>This site is the focal point for the definition of
+            the SAX API.  It provides a Java implementation and online
+            documentation.  Links to implementations and historical
+            information are also available.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="sax-exception-objects.html">13.9.1 SAXException Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="domeventstream-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="sax-exception-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="domeventstream-objects.html">13.8.1 DOMEventStream Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="sax-exception-objects.html">13.9.1 SAXException Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

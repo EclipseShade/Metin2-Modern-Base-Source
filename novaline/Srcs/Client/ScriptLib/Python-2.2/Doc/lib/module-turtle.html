@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>16.4 turtle -- Turtle graphics for Tk</title>
+<META NAME="description" CONTENT="16.4 turtle -- Turtle graphics for Tk">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="idle.html">
+<LINK REL="previous" href="module-ScrolledText.html">
+<LINK REL="up" href="tkinter.html">
+<LINK REL="next" href="pen-rawpen-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-ScrolledText.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="tkinter.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pen-rawpen-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-ScrolledText.html">16.3 ScrolledText  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="tkinter.html">16. Graphical User Interfaces</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pen-rawpen-objects.html">16.4.1 Pen and RawPen</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0018400000000000000000">
+16.4 <tt class="module">turtle</tt> --
+         Turtle graphics for Tk</A>
+</H1>
+
+<P>
+   
+<p class="availability">Availability: <span
+ class="platform">Tk</span>.</p>
+
+<P>
+
+<P>
+The <tt class="module">turtle</tt> module provides turtle graphics primitives, in both an
+object-oriented and procedure-oriented ways. Because it uses <tt class="module">Tkinter</tt>
+for the underlying graphics, it needs a version of python installed with
+Tk support.
+
+<P>
+The procedural interface uses a pen and a canvas which are automagically
+created when any of the functions are called.
+
+<P>
+The <tt class="module">turtle</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-3715"><tt class="function">degrees</tt></a></b>()
+<dd>
+Set angle measurement units to degrees.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3716"><tt class="function">radians</tt></a></b>()
+<dd>
+Set angle measurement units to radians.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3717"><tt class="function">reset</tt></a></b>()
+<dd>
+Clear the screen, re-center the pen, and set variables to the default
+values.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3718"><tt class="function">clear</tt></a></b>()
+<dd>
+Clear the screen.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3719"><tt class="function">tracer</tt></a></b>(<var>flag</var>)
+<dd>
+Set tracing on/off (according to whether flag is true or not). Tracing
+means line are drawn more slowly, with an animation of an arrow along the 
+line.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3720"><tt class="function">forward</tt></a></b>(<var>distance</var>)
+<dd>
+Go forward <var>distance</var> steps.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3721"><tt class="function">backward</tt></a></b>(<var>distance</var>)
+<dd>
+Go backward <var>distance</var> steps.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3722"><tt class="function">left</tt></a></b>(<var>angle</var>)
+<dd>
+Turn left <var>angle</var> units. Units are by default degrees, but can be
+set via the <tt class="function">degrees()</tt> and <tt class="function">radians()</tt> functions.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3723"><tt class="function">right</tt></a></b>(<var>angle</var>)
+<dd>
+Turn right <var>angle</var> units. Units are by default degrees, but can be
+set via the <tt class="function">degrees()</tt> and <tt class="function">radians()</tt> functions.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3724"><tt class="function">up</tt></a></b>()
+<dd>
+Move the pen up -- stop drawing.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3725"><tt class="function">down</tt></a></b>()
+<dd>
+Move the pen up -- draw when moving.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3726"><tt class="function">width</tt></a></b>(<var>width</var>)
+<dd>
+Set the line width to <var>width</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3727"><tt class="function">color</tt></a></b>(<var>s</var>)
+<dd>
+<dt><b><tt class="function">color</tt></b>(<var>(r, g, b)</var>)
+<dd>
+<dt><b><tt class="function">color</tt></b>(<var>r, g, b</var>)
+<dd>
+Set the pen color.  In the first form, the color is specified as a
+Tk color specification as a string.  The second form specifies the
+color as a tuple of the RGB values, each in the range [0..1].  For the
+third form, the color is specified giving the RGB values as three
+separate parameters (each in the range [0..1]).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3728"><tt class="function">write</tt></a></b>(<var>text</var><big>[</big><var>, move</var><big>]</big>)
+<dd>
+Write <var>text</var> at the current pen position. If <var>move</var> is true,
+the pen is moved to the bottom-right corner of the text. By default,
+<var>move</var> is false.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3729"><tt class="function">fill</tt></a></b>(<var>flag</var>)
+<dd>
+The complete specifications are rather complex, but the recommended 
+usage is: call <code>fill(1)</code> before drawing a path you want to fill,
+and call <code>fill(0)</code> when you finish to draw the path.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3730"><tt class="function">circle</tt></a></b>(<var>radius</var><big>[</big><var>, extent</var><big>]</big>)
+<dd>
+Draw a circle with radius <var>radius</var> whose center-point is where the 
+pen would be if a <code>forward(<var>radius</var>)</code> were
+called. <var>extent</var> determines which part of a circle is drawn: if
+not given it defaults to a full circle.
+
+<P>
+If <var>extent</var> is not a full circle, one endpoint of the arc is the
+current pen position. The arc is drawn in a counter clockwise
+direction if <var>radius</var> is positive, otherwise in a clockwise
+direction.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3731"><tt class="function">goto</tt></a></b>(<var>x, y</var>)
+<dd>
+<dt><b><tt class="function">goto</tt></b>(<var>(x, y)</var>)
+<dd>
+Go to co-ordinates <var>x</var>, <var>y</var>.  The co-ordinates may be
+specified either as two separate arguments or as a 2-tuple.
+</dl>
+
+<P>
+This module also does <code>from math import *</code>, so see the
+documentation for the <tt class="module"><a href="module-math.html">math</a></tt> module for additional constants
+and functions useful for turtle graphics.
+
+<P>
+<dl><dt><b><a name="l2h-3732"><tt class="function">demo</tt></a></b>()
+<dd>
+Exercise the module a bit.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-3733"><tt class="exception">Error</tt></a></b>
+<dd>
+Exception raised on any error caught by this module.
+</dl>
+
+<P>
+For examples, see the code of the <tt class="function">demo()</tt> function.
+
+<P>
+This module defines the following classes:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3734"><tt class="class">Pen</tt></a></b>()
+<dd>
+Define a pen. All above functions can be called as a methods on the given
+pen. The constructor automatically creates a canvas do be drawn on.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3735"><tt class="class">RawPen</tt></a></b>(<var>canvas</var>)
+<dd>
+Define a pen which draws on a canvas <var>canvas</var>. This is useful if 
+you want to use the module to create graphics in a ``real'' program.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="pen-rawpen-objects.html">16.4.1 Pen and RawPen Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-ScrolledText.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="tkinter.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pen-rawpen-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-ScrolledText.html">16.3 ScrolledText  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="tkinter.html">16. Graphical User Interfaces</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pen-rawpen-objects.html">16.4.1 Pen and RawPen</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

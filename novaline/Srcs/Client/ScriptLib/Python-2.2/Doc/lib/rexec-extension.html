@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>17.1.2 Defining restricted environments </title>
+<META NAME="description" CONTENT="17.1.2 Defining restricted environments ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node547.html">
+<LINK REL="previous" href="rexec-objects.html">
+<LINK REL="up" href="module-rexec.html">
+<LINK REL="next" HREF="node547.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="rexec-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-rexec.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node547.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="rexec-objects.html">17.1.1 RExec Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-rexec.html">17.1 rexec  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node547.html">17.1.3 An example</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0019120000000000000000">&nbsp;</A>
+<BR>
+17.1.2 Defining restricted environments 
+</H2>
+
+<P>
+The <tt class="class">RExec</tt> class has the following class attributes, which are
+used by the <tt class="method">__init__()</tt> method.  Changing them on an existing
+instance won't have any effect; instead, create a subclass of
+<tt class="class">RExec</tt> and assign them new values in the class definition.
+Instances of the new class will then use those new values.  All these
+attributes are tuples of strings.
+
+<P>
+<dl><dt><b><a name="l2h-3757"><tt class="member">nok_builtin_names</tt></a></b>
+<dd>
+Contains the names of built-in functions which will <i>not</i> be
+available to programs running in the restricted environment.  The
+value for <tt class="class">RExec</tt> is <code>('open', 'reload', '__import__')</code>.
+(This gives the exceptions, because by far the majority of built-in
+functions are harmless.  A subclass that wants to override this
+variable should probably start with the value from the base class and
+concatenate additional forbidden functions -- when new dangerous
+built-in functions are added to Python, they will also be added to
+this module.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3758"><tt class="member">ok_builtin_modules</tt></a></b>
+<dd>
+Contains the names of built-in modules which can be safely imported.
+The value for <tt class="class">RExec</tt> is <code>('audioop', 'array', 'binascii',
+'cmath', 'errno', 'imageop', 'marshal', 'math', 'md5', 'operator',
+'parser', 'regex', 'rotor', 'select', 'sha', '_sre', 'strop',
+'struct', 'time')</code>.  A similar remark about overriding this variable
+applies -- use the value from the base class as a starting point.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3759"><tt class="member">ok_path</tt></a></b>
+<dd>
+Contains the directories which will be searched when an <tt class="keyword">import</tt>
+is performed in the restricted environment.  
+The value for <tt class="class">RExec</tt> is the same as <code>sys.path</code> (at the time
+the module is loaded) for unrestricted code.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3760"><tt class="member">ok_posix_names</tt></a></b>
+<dd>
+Contains the names of the functions in the <tt class="module"><a href="module-os.html">os</a></tt> module which will be
+available to programs running in the restricted environment.  The
+value for <tt class="class">RExec</tt> is <code>('error', 'fstat', 'listdir',
+'lstat', 'readlink', 'stat', 'times', 'uname', 'getpid', 'getppid',
+'getcwd', 'getuid', 'getgid', 'geteuid', 'getegid')</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3761"><tt class="member">ok_sys_names</tt></a></b>
+<dd>
+Contains the names of the functions and variables in the <tt class="module"><a href="module-sys.html">sys</a></tt>
+module which will be available to programs running in the restricted
+environment.  The value for <tt class="class">RExec</tt> is <code>('ps1', 'ps2',
+'copyright', 'version', 'platform', 'exit', 'maxint')</code>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="rexec-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-rexec.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node547.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="rexec-objects.html">17.1.1 RExec Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-rexec.html">17.1 rexec  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node547.html">17.1.3 An example</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

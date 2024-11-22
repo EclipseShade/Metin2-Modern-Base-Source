@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1. Whetting Your Appetite </title>
+<META NAME="description" CONTENT="1. Whetting Your Appetite ">
+<META NAME="keywords" CONTENT="tut">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="tut.css">
+<link rel="first" href="tut.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node4.html">
+<LINK REL="previous" HREF="node2.html">
+<LINK REL="up" HREF="tut.html">
+<LINK REL="next" HREF="node4.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node2.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="tut.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node4.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Tutorial</td>
+<td><A HREF="node2.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node2.html">Contents</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="tut.html">Python Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node4.html">2. Using the Python</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="#SECTION003100000000000000000">1.1 Where From Here</a>
+</ul>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION003000000000000000000">&nbsp;</A>
+<BR>
+1. Whetting Your Appetite 
+</H1>
+
+<P>
+If you ever wrote a large shell script, you probably know this
+feeling: you'd love to add yet another feature, but it's already so
+slow, and so big, and so complicated; or the feature involves a system
+call or other function that is only accessible from C ...Usually
+the problem at hand isn't serious enough to warrant rewriting the
+script in C; perhaps the problem requires variable-length strings or
+other data types (like sorted lists of file names) that are easy in
+the shell but lots of work to implement in C, or perhaps you're not
+sufficiently familiar with C.
+
+<P>
+Another situation: perhaps you have to work with several C libraries,
+and the usual C write/compile/test/re-compile cycle is too slow.  You
+need to develop software more quickly.  Possibly perhaps you've
+written a program that could use an extension language, and you don't
+want to design a language, write and debug an interpreter for it, then
+tie it into your application.
+
+<P>
+In such cases, Python may be just the language for you.  Python is
+simple to use, but it is a real programming language, offering much
+more structure and support for large programs than the shell has.  On
+the other hand, it also offers much more error checking than C, and,
+being a <i>very-high-level language</i>, it has high-level data types
+built in, such as flexible arrays and dictionaries that would cost you
+days to implement efficiently in C.  Because of its more general data
+types Python is applicable to a much larger problem domain than
+<i>Awk</i> or even <i>Perl</i>, yet many things are at least as easy
+in Python as in those languages.
+
+<P>
+Python allows you to split up your program in modules that can be
+reused in other Python programs.  It comes with a large collection of
+standard modules that you can use as the basis of your programs -- or
+as examples to start learning to program in Python.  There are also
+built-in modules that provide things like file I/O, system calls,
+sockets, and even interfaces to graphical user interface toolkits like Tk.  
+
+<P>
+Python is an interpreted language, which can save you considerable time
+during program development because no compilation and linking is
+necessary.  The interpreter can be used interactively, which makes it
+easy to experiment with features of the language, to write throw-away
+programs, or to test functions during bottom-up program development.
+It is also a handy desk calculator.
+
+<P>
+Python allows writing very compact and readable programs.  Programs
+written in Python are typically much shorter than equivalent C or
+C++ programs, for several reasons:
+
+<UL>
+<LI>the high-level data types allow you to express complex operations in a
+single statement;
+</LI>
+<LI>statement grouping is done by indentation instead of begin/end
+brackets;
+</LI>
+<LI>no variable or argument declarations are necessary.
+</LI>
+</UL>
+
+<P>
+Python is <i>extensible</i>: if you know how to program in C it is easy
+to add a new built-in function or module to the interpreter, either to
+perform critical operations at maximum speed, or to link Python
+programs to libraries that may only be available in binary form (such
+as a vendor-specific graphics library).  Once you are really hooked,
+you can link the Python interpreter into an application written in C
+and use it as an extension or command language for that application.
+
+<P>
+By the way, the language is named after the BBC show ``Monty Python's
+Flying Circus'' and has nothing to do with nasty reptiles.  Making
+references to Monty Python skits in documentation is not only allowed,
+it is encouraged!
+
+<P>
+
+<H1><A NAME="SECTION003100000000000000000">&nbsp;</A>
+<BR>
+1.1 Where From Here 
+</H1>
+
+<P>
+Now that you are all excited about Python, you'll want to examine it
+in some more detail.  Since the best way to learn a language is
+using it, you are invited here to do so.
+
+<P>
+In the next chapter, the mechanics of using the interpreter are
+explained.  This is rather mundane information, but essential for
+trying out the examples shown later.
+
+<P>
+The rest of the tutorial introduces various features of the Python
+language and system through examples, beginning with simple
+expressions, statements and data types, through functions and modules,
+and finally touching upon advanced concepts like exceptions
+and user-defined classes.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node2.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="tut.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node4.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Tutorial</td>
+<td><A HREF="node2.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node2.html">Contents</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="tut.html">Python Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node4.html">2. Using the Python</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

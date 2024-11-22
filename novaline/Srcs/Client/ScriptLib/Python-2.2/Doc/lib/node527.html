@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>16.2.3 Tix Commands</title>
+<META NAME="description" CONTENT="16.2.3 Tix Commands">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" HREF="node518.html">
+<LINK REL="up" href="module-Tix.html">
+<LINK REL="next" href="module-ScrolledText.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node526.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-Tix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-ScrolledText.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node526.html">16.2.2.8 Form Geometry Manager</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-Tix.html">16.2 Tix  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-ScrolledText.html">16.3 ScrolledText  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0018230000000000000000">
+16.2.3 Tix Commands</A>
+</H2>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3702"><tt class="class">tixCommand</tt></a></b>()
+<dd>
+The <a class="ulink" href="http://tix.sourceforge.net/dist/current/man/html/TixCmd/tix.htm"
+  >tix commands</a>
+provide access to miscellaneous elements of <tt class="module"><a href="module-Tix.html">Tix</a></tt>'s internal
+state and the  <tt class="module"><a href="module-Tix.html">Tix</a></tt> application context.  Most of the information
+manipulated by these methods pertains to the application as a whole,
+or to a screen or display, rather than to a particular window.
+
+<P>
+To view the current settings, the common usage is:
+<dl><dd><pre class="verbatim">
+import Tix
+root = Tix.Tk()
+print root.tix_configure()
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3703"><tt class="method">tix_configure</tt></a></b>(<big>[</big><var>cnf,</var><big>]</big><var> **kw</var>)
+<dd>
+Query or modify the configuration options of the Tix application
+context. If no option is specified, returns a dictionary all of the
+available options.  If option is specified with no value, then the
+method returns a list describing the one named option (this list will
+be identical to the corresponding sublist of the value returned if no
+option is specified).  If one or more option-value pairs are
+specified, then the method modifies the given option(s) to have the
+given value(s); in this case the method returns an empty string.
+Option may be any of the configuration options.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3704"><tt class="method">tix_cget</tt></a></b>(<var>option</var>)
+<dd>
+Returns the current value of the configuration option given by
+<var>option</var>. Option may be any of the configuration options.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3705"><tt class="method">tix_getbitmap</tt></a></b>(<var>name</var>)
+<dd>
+Locates a bitmap file of the name <code>name.xpm</code> or <code>name</code> in
+one of the bitmap directories (see the <tt class="method">tix_addbitmapdir()</tt>
+method).  By using <tt class="method">tix_getbitmap()</tt>, you can avoid hard
+coding the pathnames of the bitmap files in your application. When
+successful, it returns the complete pathname of the bitmap file,
+prefixed with the character "<tt class="samp">@</tt>".  The returned value can be used to
+configure the <code>bitmap</code> option of the Tk and Tix widgets.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3706"><tt class="method">tix_addbitmapdir</tt></a></b>(<var>directory</var>)
+<dd>
+Tix maintains a list of directories under which the
+<tt class="method">tix_getimage()</tt> and <tt class="method">tix_getbitmap()</tt> methods will
+search for image files.  The standard bitmap directory is
+<span class="file">$TIX_LIBRARY/bitmaps</span>. The <tt class="method">tix_addbitmapdir()</tt> method
+adds <var>directory</var> into this list. By using this method, the image
+files of an applications can also be located using the
+<tt class="method">tix_getimage()</tt> or <tt class="method">tix_getbitmap()</tt> method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3707"><tt class="method">tix_filedialog</tt></a></b>(<big>[</big><var>dlgclass</var><big>]</big>)
+<dd>
+Returns the file selection dialog that may be shared among different
+calls from this application.  This method will create a file selection
+dialog widget when it is called the first time. This dialog will be
+returned by all subsequent calls to <tt class="method">tix_filedialog()</tt>.  An
+optional dlgclass parameter can be passed as a string to specified
+what type of file selection dialog widget is desired.  Possible
+options are <code>tix</code>, <code>FileSelectDialog</code> or
+<code>tixExFileSelectDialog</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3708"><tt class="method">tix_getimage</tt></a></b>(<var>self, name</var>)
+<dd>
+Locates an image file of the name <span class="file">name.xpm</span>, <span class="file">name.xbm</span> or
+<span class="file">name.ppm</span> in one of the bitmap directories (see the
+<tt class="method">tix_addbitmapdir()</tt> method above). If more than one file with
+the same name (but different extensions) exist, then the image type is
+chosen according to the depth of the X display: xbm images are chosen
+on monochrome displays and color images are chosen on color
+displays. By using <tt class="method">tix_getimage()</tt>, you can avoid hard coding
+the pathnames of the image files in your application. When successful,
+this method returns the name of the newly created image, which can be
+used to configure the <code>image</code> option of the Tk and Tix widgets.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3709"><tt class="method">tix_option_get</tt></a></b>(<var>name</var>)
+<dd>
+Gets the options manitained by the Tix scheme mechanism.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3710"><tt class="method">tix_resetoptions</tt></a></b>(<var>newScheme, newFontSet</var><big>[</big><var>,
+                                     newScmPrio</var><big>]</big>)
+<dd>
+Resets the scheme and fontset of the Tix application to
+<var>newScheme</var> and <var>newFontSet</var>, respectively.  This affects only
+those widgets created after this call.  Therefore, it is best to call
+the resetoptions method before the creation of any widgets in a Tix
+application.
+
+<P>
+The optional parameter <var>newScmPrio</var> can be given to reset the
+priority level of the Tk options set by the Tix schemes.
+
+<P>
+Because of the way Tk handles the X option database, after Tix has
+been has imported and inited, it is not possible to reset the color
+schemes and font sets using the <tt class="method">tix_config()</tt> method.
+Instead, the <tt class="method">tix_resetoptions()</tt> method must be used.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node526.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-Tix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-ScrolledText.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node526.html">16.2.2.8 Form Geometry Manager</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-Tix.html">16.2 Tix  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-ScrolledText.html">16.3 ScrolledText  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

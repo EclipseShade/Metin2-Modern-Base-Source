@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.4.1 String literals</title>
+<META NAME="description" CONTENT="2.4.1 String literals">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="string-catenation.html">
+<LINK REL="previous" href="literals.html">
+<LINK REL="up" href="literals.html">
+<LINK REL="next" href="string-catenation.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="literals.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="literals.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="string-catenation.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="literals.html">2.4 Literals</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="literals.html">2.4 Literals</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="string-catenation.html">2.4.2 String literal concatenation</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004410000000000000000">&nbsp;</A><a name="l2h-12">&nbsp;</a>
+<BR>
+2.4.1 String literals
+</H2>
+
+<P>
+String literals are described by the following lexical definitions:
+
+<P>
+
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-stringliteral">stringliteral</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>[<a href="strings.html#tok-stringprefix">stringprefix</a>](<a href="strings.html#tok-shortstring">shortstring</a> | <a href="strings.html#tok-longstring">longstring</a>)</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-stringprefix">stringprefix</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"r" | "u" | "ur" | "R" | "U" | "UR" | "Ur" | "uR"</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-shortstring">shortstring</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"'" <a href="strings.html#tok-shortstringitem">shortstringitem</a>* "'"
+              | '"' <a href="strings.html#tok-shortstringitem">shortstringitem</a>* '"'</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-longstring">longstring</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"'''" <a href="strings.html#tok-longstringitem">longstringitem</a>* "'''"
+              | '"""' <a href="strings.html#tok-longstringitem">longstringitem</a>* '"""'</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-shortstringitem">shortstringitem</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="strings.html#tok-shortstringchar">shortstringchar</a> | <a href="strings.html#tok-escapeseq">escapeseq</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-longstringitem">longstringitem</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="strings.html#tok-longstringchar">longstringchar</a> | <a href="strings.html#tok-escapeseq">escapeseq</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-shortstringchar">shortstringchar</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>&lt;any ASCII character except "&#92;" or newline or the quote&gt;</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-longstringchar">longstringchar</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>&lt;any ASCII character except "&#92;"&gt;</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-escapeseq">escapeseq</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"&#92;" &lt;any ASCII character&gt;</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+One syntactic restriction not indicated by these productions is that
+whitespace is not allowed between the <a href="strings.html#tok-stringprefix">stringprefix</a> and
+the rest of the string literal.
+
+<P>
+In plain English: String literals can be enclosed in matching single
+quotes (<code>'</code>) or double quotes (<code>"</code>).  They can also be
+enclosed in matching groups of three single or double quotes (these
+are generally referred to as <i>triple-quoted strings</i>).  The
+backslash (<code>&#92;</code>) character is used to escape characters that
+otherwise have a special meaning, such as newline, backslash itself,
+or the quote character.  String literals may optionally be prefixed
+with a letter `r' or `R'; such strings are called <i class="dfn">raw
+strings</i><a name="l2h-13">&nbsp;</a>and use different rules for interpreting
+backslash escape sequences.  A prefix of 'u' or 'U' makes the string
+a Unicode string.  Unicode strings use the Unicode character set as
+defined by the Unicode Consortium and ISO&nbsp;10646.  Some additional
+escape sequences, described below, are available in Unicode strings.
+The two prefix characters may be combined; in this case, `u' must
+appear before `r'.
+
+<P>
+In triple-quoted strings,
+unescaped newlines and quotes are allowed (and are retained), except
+that three unescaped quotes in a row terminate the string.  (A
+``quote'' is the character used to open the string, i.e. either
+<code>'</code> or <code>"</code>.)
+
+<P>
+Unless an `r' or `R' prefix is present, escape sequences in strings
+are interpreted according to rules similar
+to those used by Standard C.  The recognized escape sequences are:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Escape Sequence</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>&#92;<var>newline</var></code></td>
+        <td align="left">Ignored</td>
+    <tr><td align="left" valign="baseline"><code>&#92;&#92;</code></td>
+        <td align="left">Backslash (<code>&#92;</code>)</td>
+    <tr><td align="left" valign="baseline"><code>&#92;'</code></td>
+        <td align="left">Single quote (<code>'</code>)</td>
+    <tr><td align="left" valign="baseline"><code>&#92;"</code></td>
+        <td align="left">Double quote (<code>"</code>)</td>
+    <tr><td align="left" valign="baseline"><code>&#92;a</code></td>
+        <td align="left">ASCII Bell (BEL)</td>
+    <tr><td align="left" valign="baseline"><code>&#92;b</code></td>
+        <td align="left">ASCII Backspace (BS)</td>
+    <tr><td align="left" valign="baseline"><code>&#92;f</code></td>
+        <td align="left">ASCII Formfeed (FF)</td>
+    <tr><td align="left" valign="baseline"><code>&#92;n</code></td>
+        <td align="left">ASCII Linefeed (LF)</td>
+    <tr><td align="left" valign="baseline"><code>&#92;N{<var>name</var>}</code></td>
+        <td align="left">Character named <var>name</var> in the Unicode database (Unicode only)</td>
+    <tr><td align="left" valign="baseline"><code>&#92;r</code></td>
+        <td align="left">ASCII Carriage Return (CR)</td>
+    <tr><td align="left" valign="baseline"><code>&#92;t</code></td>
+        <td align="left">ASCII Horizontal Tab (TAB)</td>
+    <tr><td align="left" valign="baseline"><code>&#92;u<var>xxxx</var></code></td>
+        <td align="left">Character with 16-bit hex value <var>xxxx</var> (Unicode only)</td>
+    <tr><td align="left" valign="baseline"><code>&#92;U<var>xxxxxxxx</var></code></td>
+        <td align="left">Character with 32-bit hex value <var>xxxxxxxx</var> (Unicode only)</td>
+    <tr><td align="left" valign="baseline"><code>&#92;v</code></td>
+        <td align="left">ASCII Vertical Tab (VT)</td>
+    <tr><td align="left" valign="baseline"><code>&#92;<var>ooo</var></code></td>
+        <td align="left">ASCII character with octal value <var>ooo</var></td>
+    <tr><td align="left" valign="baseline"><code>&#92;x<var>hh</var></code></td>
+        <td align="left">ASCII character with hex value <var>hh</var></td></tbody>
+</table>
+
+<P>
+As in Standard C, up to three octal digits are accepted.  However,
+exactly two hex digits are taken in hex escapes.
+
+<P>
+Unlike Standard <a name="l2h-14">&nbsp;</a>,
+all unrecognized escape sequences are left in the string unchanged,
+i.e., <i>the backslash is left in the string</i>.  (This behavior is
+useful when debugging: if an escape sequence is mistyped, the
+resulting output is more easily recognized as broken.)  It is also
+important to note that the escape sequences marked as ``(Unicode
+only)'' in the table above fall into the category of unrecognized
+escapes for non-Unicode string literals.
+
+<P>
+When an `r' or `R' prefix is present, a character following a
+backslash is included in the string without change, and <i>all
+backslashes are left in the string</i>.  For example, the string literal
+<code>r"&#92;n"</code> consists of two characters: a backslash and a lowercase
+`n'.  String quotes can be escaped with a backslash, but the backslash
+remains in the string; for example, <code>r"&#92;""</code> is a valid string
+literal consisting of two characters: a backslash and a double quote;
+<code>r"&#92;"</code> is not a valid string literal (even a raw string cannot
+end in an odd number of backslashes).  Specifically, <i>a raw
+string cannot end in a single backslash</i> (since the backslash would
+escape the following quote character).  Note also that a single
+backslash followed by a newline is interpreted as those two characters
+as part of the string, <i>not</i> as a line continuation.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="literals.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="literals.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="string-catenation.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="literals.html">2.4 Literals</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="literals.html">2.4 Literals</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="string-catenation.html">2.4.2 String literal concatenation</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

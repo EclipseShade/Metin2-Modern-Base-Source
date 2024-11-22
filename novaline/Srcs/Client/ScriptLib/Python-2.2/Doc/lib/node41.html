@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.4.2 Limitations and other considerations</title>
+<META NAME="description" CONTENT="3.4.2 Limitations and other considerations">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="fpectl-example.html">
+<LINK REL="up" href="module-fpectl.html">
+<LINK REL="next" href="module-atexit.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="fpectl-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-fpectl.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-atexit.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="fpectl-example.html">3.4.1 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-fpectl.html">3.4 fpectl  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-atexit.html">3.5 atexit  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION005420000000000000000">
+3.4.2 Limitations and other considerations</A>
+</H2>
+
+<P>
+Setting up a given processor to trap IEEE-754 floating point
+errors currently requires custom code on a per-architecture basis.
+You may have to modify <tt class="module">fpectl</tt> to control your particular hardware.
+
+<P>
+Conversion of an IEEE-754 exception to a Python exception requires
+that the wrapper macros <code>PyFPE_START_PROTECT</code> and
+<code>PyFPE_END_PROTECT</code> be inserted into your code in an appropriate
+fashion.  Python itself has been modified to support the
+<tt class="module">fpectl</tt> module, but many other codes of interest to numerical
+analysts have not.
+
+<P>
+The <tt class="module">fpectl</tt> module is not thread-safe.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <div class="seetext"><p>Some files in the source distribution may be interesting in
+           learning more about how this module operates.
+           The include file <span class="file">Include/pyfpe.h</span> discusses the
+           implementation of this module at some length.
+           <span class="file">Modules/fpetestmodule.c</span> gives several examples of
+           use.
+           Many additional examples can be found in
+           <span class="file">Objects/floatobject.c</span>.</div>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="fpectl-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-fpectl.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-atexit.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="fpectl-example.html">3.4.1 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-fpectl.html">3.4 fpectl  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-atexit.html">3.5 atexit  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

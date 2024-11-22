@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>19.3.3 Examples</title>
+<META NAME="description" CONTENT="19.3.3 Examples">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" HREF="node576.html">
+<LINK REL="up" HREF="node574.html">
+<LINK REL="next" href="module-compiler.visitor.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node576.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node574.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-compiler.visitor.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node576.html">19.3.2 Assignment nodes</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node574.html">19.3 Python Abstract Syntax</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-compiler.visitor.html">19.4 Using Visitors to</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0021330000000000000000">
+19.3.3 Examples</A>
+</H2>
+
+<P>
+This section shows several simple examples of ASTs for Python source
+code.  The examples demonstrate how to use the <tt class="function">parse()</tt>
+function, what the repr of an AST looks like, and how to access
+attributes of an AST node.
+
+<P>
+The first module defines a single function.  Assume it is stored in
+<span class="file">/tmp/doublelib.py</span>. 
+
+<P>
+<dl><dd><pre class="verbatim">
+"""This is an example module.
+
+This is the docstring.
+"""
+
+def double(x):
+    "Return twice the argument"
+    return x * 2
+</pre></dl>
+
+<P>
+In the interactive interpreter session below, I have reformatted the
+long AST reprs for readability.  The AST reprs use unqualified class
+names.  If you want to create an instance from a repr, you must import
+the class names from the <tt class="module">compiler.ast</tt> module.
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import compiler
+&gt;&gt;&gt; mod = compiler.parseFile("/tmp/doublelib.py")
+&gt;&gt;&gt; mod
+Module('This is an example module.\n\nThis is the docstring.\n', 
+       Stmt([Function('double', ['x'], [], 0, 'Return twice the argument', 
+       Stmt([Return(Mul((Name('x'), Const(2))))]))]))
+&gt;&gt;&gt; from compiler.ast import *
+&gt;&gt;&gt; Module('This is an example module.\n\nThis is the docstring.\n', 
+...    Stmt([Function('double', ['x'], [], 0, 'Return twice the argument', 
+...    Stmt([Return(Mul((Name('x'), Const(2))))]))]))
+Module('This is an example module.\n\nThis is the docstring.\n', 
+       Stmt([Function('double', ['x'], [], 0, 'Return twice the argument', 
+       Stmt([Return(Mul((Name('x'), Const(2))))]))]))
+&gt;&gt;&gt; mod.doc
+'This is an example module.\n\nThis is the docstring.\n'
+&gt;&gt;&gt; for node in mod.node.nodes:
+...     print node
+... 
+Function('double', ['x'], [], 0, 'Return twice the argument',
+         Stmt([Return(Mul((Name('x'), Const(2))))]))
+&gt;&gt;&gt; func = mod.node.nodes[0]
+&gt;&gt;&gt; func.code
+Stmt([Return(Mul((Name('x'), Const(2))))])
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node576.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node574.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-compiler.visitor.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node576.html">19.3.2 Assignment nodes</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node574.html">19.3 Python Abstract Syntax</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-compiler.visitor.html">19.4 Using Visitors to</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

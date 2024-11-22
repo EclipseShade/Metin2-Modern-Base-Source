@@ -1,0 +1,7 @@
+title subImage
+version 2.0
+image "matrix.tga"
+left	0
+top	200
+right	120
+bottom	218

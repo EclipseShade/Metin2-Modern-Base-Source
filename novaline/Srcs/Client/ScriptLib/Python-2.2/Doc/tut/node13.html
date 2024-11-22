@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>A. Interactive Input Editing and History Substitution </title>
+<META NAME="description" CONTENT="A. Interactive Input Editing and History Substitution ">
+<META NAME="keywords" CONTENT="tut">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="tut.css">
+<link rel="first" href="tut.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node14.html">
+<LINK REL="previous" HREF="node12.html">
+<LINK REL="up" HREF="tut.html">
+<LINK REL="next" HREF="node14.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node12.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="tut.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node14.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Tutorial</td>
+<td><A HREF="node2.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node12.html">10. What Now?</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="tut.html">Python Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node14.html">B. Floating Point Arithmetic:</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="#SECTION0013100000000000000000">A.1 Line Editing</a>
+<LI><A href="#SECTION0013200000000000000000">A.2 History Substitution</a>
+<LI><A href="#SECTION0013300000000000000000">A.3 Key Bindings</a>
+<LI><A href="#SECTION0013400000000000000000">A.4 Commentary</a>
+</ul>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0013000000000000000000">&nbsp;</A>
+<BR>
+A. Interactive Input Editing and History Substitution
+         
+</H1>
+
+<P>
+Some versions of the Python interpreter support editing of the current
+input line and history substitution, similar to facilities found in
+the Korn shell and the GNU Bash shell.  This is implemented using the
+<i>GNU Readline</i> library, which supports Emacs-style and vi-style
+editing.  This library has its own documentation which I won't
+duplicate here; however, the basics are easily explained.  The
+interactive editing and history described here are optionally
+available in the Unix and CygWin versions of the interpreter.
+
+<P>
+This chapter does <i>not</i> document the editing facilities of Mark
+Hammond's PythonWin package or the Tk-based environment, IDLE,
+distributed with Python.  The command line history recall which
+operates within DOS boxes on NT and some other DOS and Windows flavors 
+is yet another beast.
+
+<P>
+
+<H1><A NAME="SECTION0013100000000000000000">&nbsp;</A>
+<BR>
+A.1 Line Editing 
+</H1>
+
+<P>
+If supported, input line editing is active whenever the interpreter
+prints a primary or secondary prompt.  The current line can be edited
+using the conventional Emacs control characters.  The most important
+of these are: <kbd>C-A</kbd> (Control-A) moves the cursor to the beginning
+of the line, <kbd>C-E</kbd> to the end, <kbd>C-B</kbd> moves it one position to
+the left, <kbd>C-F</kbd> to the right.  Backspace erases the character to
+the left of the cursor, <kbd>C-D</kbd> the character to its right.
+<kbd>C-K</kbd> kills (erases) the rest of the line to the right of the
+cursor, <kbd>C-Y</kbd> yanks back the last killed string.
+<kbd>C-underscore</kbd> undoes the last change you made; it can be repeated
+for cumulative effect.
+
+<P>
+
+<H1><A NAME="SECTION0013200000000000000000">&nbsp;</A>
+<BR>
+A.2 History Substitution 
+</H1>
+
+<P>
+History substitution works as follows.  All non-empty input lines
+issued are saved in a history buffer, and when a new prompt is given
+you are positioned on a new line at the bottom of this buffer.
+<kbd>C-P</kbd> moves one line up (back) in the history buffer,
+<kbd>C-N</kbd> moves one down.  Any line in the history buffer can be
+edited; an asterisk appears in front of the prompt to mark a line as
+modified.  Pressing the <kbd>Return</kbd> key passes the current line to
+the interpreter.  <kbd>C-R</kbd> starts an incremental reverse search;
+<kbd>C-S</kbd> starts a forward search.
+
+<P>
+
+<H1><A NAME="SECTION0013300000000000000000">&nbsp;</A>
+<BR>
+A.3 Key Bindings 
+</H1>
+
+<P>
+The key bindings and some other parameters of the Readline library can
+be customized by placing commands in an initialization file called
+<span class="file">~/.inputrc</span>.  Key bindings have the form
+
+<P>
+<dl><dd><pre class="verbatim">
+key-name: function-name
+</pre></dl>
+
+<P>
+or
+
+<P>
+<dl><dd><pre class="verbatim">
+"string": function-name
+</pre></dl>
+
+<P>
+and options can be set with
+
+<P>
+<dl><dd><pre class="verbatim">
+set option-name value
+</pre></dl>
+
+<P>
+For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+# I prefer vi-style editing:
+set editing-mode vi
+
+# Edit using a single line:
+set horizontal-scroll-mode On
+
+# Rebind some keys:
+Meta-h: backward-kill-word
+"\C-u": universal-argument
+"\C-x\C-r": re-read-init-file
+</pre></dl>
+
+<P>
+Note that the default binding for <kbd>Tab</kbd> in Python is to insert a
+<kbd>Tab</kbd> character instead of Readline's default filename completion
+function.  If you insist, you can override this by putting
+
+<P>
+<dl><dd><pre class="verbatim">
+Tab: complete
+</pre></dl>
+
+<P>
+in your <span class="file">~/.inputrc</span>.  (Of course, this makes it harder to
+type indented continuation lines.)
+
+<P>
+Automatic completion of variable and module names is optionally
+available.  To enable it in the interpreter's interactive mode, add
+the following to your startup file:<A NAME="tex2html6"
+  HREF="#foot1426"><SUP>A.1</SUP></A><a name="l2h-25">&nbsp;</a>
+<P>
+<dl><dd><pre class="verbatim">
+import rlcompleter, readline
+readline.parse_and_bind('tab: complete')
+</pre></dl>
+
+<P>
+This binds the <kbd>Tab</kbd> key to the completion function, so hitting
+the <kbd>Tab</kbd> key twice suggests completions; it looks at Python
+statement names, the current local variables, and the available module
+names.  For dotted expressions such as <code>string.a</code>, it will
+evaluate the the expression up to the final "<tt class="character">.</tt>" and then
+suggest completions from the attributes of the resulting object.  Note
+that this may execute application-defined code if an object with a
+<tt class="method">__getattr__()</tt> method is part of the expression.
+
+<P>
+A more capable startup file might look like this example.  Note that
+this deletes the names it creates once they are no longer needed; this
+is done since the startup file is executed in the same namespace as
+the interactive commands, and removing the names avoids creating side
+effects in the interactive environments.  You may find it convenient
+to keep some of the imported modules, such as <tt class="module">os</tt>, which turn
+out to be needed in most sessions with the interpreter.
+
+<P>
+<dl><dd><pre class="verbatim">
+# Add auto-completion and a stored history file of commands to your Python
+# interactive interpreter. Requires Python 2.0+, readline. Autocomplete is
+# bound to the Esc key by default (you can change it - see readline docs).
+#
+# Store the file in ~/.pystartup, and set an environment variable to point
+# to it, e.g. "export PYTHONSTARTUP=/max/home/itamar/.pystartup" in bash.
+#
+# Note that PYTHONSTARTUP does *not* expand "~", so you have to put in the
+# full path to your home directory.
+
+import atexit
+import os
+import readline
+import rlcompleter
+
+historyPath = os.path.expanduser("~/.pyhistory")
+
+def save_history(historyPath=historyPath):
+    import readline
+    readline.write_history_file(historyPath)
+
+if os.path.exists(historyPath):
+    readline.read_history_file(historyPath)
+
+atexit.register(save_history)
+del os, atexit, readline, rlcompleter, save_history, historyPath
+</pre></dl>
+
+<P>
+
+<H1><A NAME="SECTION0013400000000000000000">&nbsp;</A>
+<BR>
+A.4 Commentary 
+</H1>
+
+<P>
+This facility is an enormous step forward compared to earlier versions
+of the interpreter; however, some wishes are left: It would be nice if
+the proper indentation were suggested on continuation lines (the
+parser knows if an indent token is required next).  The completion
+mechanism might use the interpreter's symbol table.  A command to
+check (or even suggest) matching parentheses, quotes, etc., would also
+be useful.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot1426">... file:</A><A NAME="foot1426"
+ HREF="node13.html#tex2html6"><SUP>A.1</SUP></A>
+<DD>
+  Python will execute the contents of a file identified by the
+  <a class="envvar" name="l2h-24">PYTHONSTARTUP</a> environment variable when you start an
+  interactive interpreter.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node12.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="tut.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node14.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Tutorial</td>
+<td><A HREF="node2.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node12.html">10. What Now?</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="tut.html">Python Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node14.html">B. Floating Point Arithmetic:</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

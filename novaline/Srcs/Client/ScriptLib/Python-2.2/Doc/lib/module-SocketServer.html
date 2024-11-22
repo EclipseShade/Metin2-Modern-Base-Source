@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.15 SocketServer -- A framework for network servers</title>
+<META NAME="description" CONTENT="11.15 SocketServer -- A framework for network servers">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-BaseHTTPServer.html">
+<LINK REL="previous" href="module-urlparse.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="module-BaseHTTPServer.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-urlparse.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-BaseHTTPServer.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-urlparse.html">11.14 urlparse  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-BaseHTTPServer.html">11.16 BaseHTTPServer  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00131500000000000000000">
+11.15 <tt class="module">SocketServer</tt> --
+         A framework for network servers</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">SocketServer</tt> module simplifies the task of writing network
+servers.
+
+<P>
+There are four basic server classes: <tt class="class">TCPServer</tt> uses the
+Internet TCP protocol, which provides for continuous streams of data
+between the client and server.  <tt class="class">UDPServer</tt> uses datagrams, which
+are discrete packets of information that may arrive out of order or be
+lost while in transit.  The more infrequently used
+<tt class="class">UnixStreamServer</tt> and <tt class="class">UnixDatagramServer</tt> classes are
+similar, but use Unix domain sockets; they're not available on
+non-Unix platforms.  For more details on network programming, consult
+a book such as W. Richard Steven's <em class="citetitle"
+ >UNIX Network Programming</em>
+or Ralph Davis's <em class="citetitle"
+ >Win32 Network Programming</em>.
+
+<P>
+These four classes process requests <i class="dfn">synchronously</i>; each request
+must be completed before the next request can be started.  This isn't
+suitable if each request takes a long time to complete, because it
+requires a lot of computation, or because it returns a lot of data
+which the client is slow to process.  The solution is to create a
+separate process or thread to handle each request; the
+<tt class="class">ForkingMixIn</tt> and <tt class="class">ThreadingMixIn</tt> mix-in classes can be
+used to support asynchronous behaviour.
+
+<P>
+Creating a server requires several steps.  First, you must create a
+request handler class by subclassing the <tt class="class">BaseRequestHandler</tt>
+class and overriding its <tt class="method">handle()</tt> method; this method will
+process incoming requests.  Second, you must instantiate one of the
+server classes, passing it the server's address and the request
+handler class.  Finally, call the <tt class="method">handle_request()</tt> or
+<tt class="method">serve_forever()</tt> method of the server object to process one or
+many requests.
+
+<P>
+Server classes have the same external methods and attributes, no
+matter what network protocol they use:
+
+<P>
+
+<P>
+<dl><dt><b><a name="l2h-2625"><tt class="function">fileno</tt></a></b>()
+<dd>
+Return an integer file descriptor for the socket on which the server
+is listening.  This function is most commonly passed to
+<tt class="function">select.select()</tt>, to allow monitoring multiple servers in the
+same process.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2626"><tt class="function">handle_request</tt></a></b>()
+<dd>
+Process a single request.  This function calls the following methods
+in order: <tt class="method">get_request()</tt>, <tt class="method">verify_request()</tt>, and
+<tt class="method">process_request()</tt>.  If the user-provided <tt class="method">handle()</tt>
+method of the handler class raises an exception, the server's
+<tt class="method">handle_error()</tt> method will be called.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2627"><tt class="function">serve_forever</tt></a></b>()
+<dd>
+Handle an infinite number of requests.  This simply calls
+<tt class="method">handle_request()</tt> inside an infinite loop.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2628"><tt>address_family</tt></a></b>
+<dd>
+The family of protocols to which the server's socket belongs.
+<tt class="constant">socket.AF_INET</tt> and <tt class="constant">socket.AF_UNIX</tt> are two
+possible values.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2629"><tt>RequestHandlerClass</tt></a></b>
+<dd>
+The user-provided request handler class; an instance of this class is
+created for each request.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2630"><tt>server_address</tt></a></b>
+<dd>
+The address on which the server is listening.  The format of addresses
+varies depending on the protocol family; see the documentation for the
+socket module for details.  For Internet protocols, this is a tuple
+containing a string giving the address, and an integer port number:
+<code>('127.0.0.1', 80)</code>, for example.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2631"><tt>socket</tt></a></b>
+<dd>
+The socket object on which the server will listen for incoming requests.
+</dl>
+
+<P>
+The server classes support the following class variables:
+
+<P>
+<dl><dt><b><a name="l2h-2632"><tt>allow_reuse_address</tt></a></b>
+<dd>
+Whether the server will allow the reuse of an address. This defaults
+to true, and can be set in subclasses to change the policy.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2633"><tt>request_queue_size</tt></a></b>
+<dd>
+The size of the request queue.  If it takes a long time to process a
+single request, any requests that arrive while the server is busy are
+placed into a queue, up to <tt class="member">request_queue_size</tt> requests.  Once
+the queue is full, further requests from clients will get a
+``Connection denied'' error.  The default value is usually 5, but this
+can be overridden by subclasses.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2634"><tt>socket_type</tt></a></b>
+<dd>
+The type of socket used by the server; <tt class="constant">socket.SOCK_STREAM</tt>
+and <tt class="constant">socket.SOCK_DGRAM</tt> are two possible values.
+</dl>
+
+<P>
+There are various server methods that can be overridden by subclasses
+of base server classes like <tt class="class">TCPServer</tt>; these methods aren't
+useful to external users of the server object.
+
+<P>
+<dl><dt><b><a name="l2h-2635"><tt class="function">finish_request</tt></a></b>()
+<dd>
+Actually processes the request by instantiating
+<tt class="member">RequestHandlerClass</tt> and calling its <tt class="method">handle()</tt> method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2636"><tt class="function">get_request</tt></a></b>()
+<dd>
+Must accept a request from the socket, and return a 2-tuple containing
+the <i>new</i> socket object to be used to communicate with the
+client, and the client's address.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2637"><tt class="function">handle_error</tt></a></b>(<var>request, client_address</var>)
+<dd>
+This function is called if the <tt class="member">RequestHandlerClass</tt>'s
+<tt class="method">handle()</tt> method raises an exception.  The default action is
+to print the traceback to standard output and continue handling
+further requests.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2638"><tt class="function">process_request</tt></a></b>(<var>request, client_address</var>)
+<dd>
+Calls <tt class="method">finish_request()</tt> to create an instance of the
+<tt class="member">RequestHandlerClass</tt>.  If desired, this function can create a
+new process or thread to handle the request; the <tt class="class">ForkingMixIn</tt>
+and <tt class="class">ThreadingMixIn</tt> classes do this.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2639"><tt class="function">server_activate</tt></a></b>()
+<dd>
+Called by the server's constructor to activate the server.
+May be overridden.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2640"><tt class="function">server_bind</tt></a></b>()
+<dd>
+Called by the server's constructor to bind the socket to the desired
+address.  May be overridden.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2641"><tt class="function">verify_request</tt></a></b>(<var>request, client_address</var>)
+<dd>
+Must return a Boolean value; if the value is true, the request will be
+processed, and if it's false, the request will be denied.
+This function can be overridden to implement access controls for a server.
+The default implementation always return true.
+</dl>
+
+<P>
+The request handler class must define a new <tt class="method">handle()</tt> method,
+and can override any of the following methods.  A new instance is
+created for each request.
+
+<P>
+<dl><dt><b><a name="l2h-2642"><tt class="function">finish</tt></a></b>()
+<dd>
+Called after the <tt class="method">handle()</tt> method to perform any clean-up
+actions required.  The default implementation does nothing.  If
+<tt class="method">setup()</tt> or <tt class="method">handle()</tt> raise an exception, this
+function will not be called.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2643"><tt class="function">handle</tt></a></b>()
+<dd>
+This function must do all the work required to service a request.
+Several instance attributes are available to it; the request is
+available as <tt class="member">self.request</tt>; the client address as
+<tt class="member">self.client_address</tt>; and the server instance as
+<tt class="member">self.server</tt>, in case it needs access to per-server
+information.
+
+<P>
+The type of <tt class="member">self.request</tt> is different for datagram or stream
+services.  For stream services, <tt class="member">self.request</tt> is a socket
+object; for datagram services, <tt class="member">self.request</tt> is a string.
+However, this can be hidden by using the mix-in request handler
+classes
+<tt class="class">StreamRequestHandler</tt> or <tt class="class">DatagramRequestHandler</tt>, which
+override the <tt class="method">setup()</tt> and <tt class="method">finish()</tt> methods, and
+provides <tt class="member">self.rfile</tt> and <tt class="member">self.wfile</tt> attributes.
+<tt class="member">self.rfile</tt> and <tt class="member">self.wfile</tt> can be read or written,
+respectively, to get the request data or return data to the client.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2644"><tt class="function">setup</tt></a></b>()
+<dd>
+Called before the <tt class="method">handle()</tt> method to perform any
+initialization actions required.  The default implementation does
+nothing.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-urlparse.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-BaseHTTPServer.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-urlparse.html">11.14 urlparse  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-BaseHTTPServer.html">11.16 BaseHTTPServer  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

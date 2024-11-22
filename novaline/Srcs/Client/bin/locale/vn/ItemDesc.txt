@@ -1,0 +1,953 @@
+11901	LêŞ phuòc	Trang phuòc cıõìi cuÒa nam.	
+11902	LêŞ phuòc	Trang phuòc cıõìi cuÒa nam.	
+11903	Vaìy cıõìi	Trang phuòc cıõìi cuÒa nıŞ	
+11904	Vaìy cıõìi	Trang phuòc cıõìi cuÒa nıŞ	
+			
+22000	Quy hoaÌn phuÌ	Coì thêÒ ği vaÌo laÌng môòt laìt rôÌi trõÒ laòi viò triì hiêòn taòi. 	
+22010	Quy hoaÌn kiì ıìc phuÌ	TrõÒ vêÌ viò triì ğaŞ ğıõòc ghi nhõì.	
+			
+25040	Thı chuìc phuìc	SıÒ duòng cho trang biò thı caÒi thiêòn ğıõòc chuìc phuìc, nêìu caÒi thiêòn thiÌ nêìu coì thâìt baòi thiÌ cuŞng chiÒ biò haò ğãÒng câìp xuôìng 1 bâòc. 	Aìp duòng trıòc tiêìp vaÌo trang biò vãn thı | Không biò mâìt item khi caÒi thiêòn thâìt baòi  
+25041	Hiêòn thiêìt	Kim loaòi ğıõòc sıÒ duòng ğêÒ chêì taòo ğao kiêìm tôìi tân. SıÒ duòng cho trang biò hiêòn thiêìt, nêìu caÒi thiêòn thiÌ seŞ ğıõòc caÒi thiêòn võìi tiÒ lêò cao, nêìu thâòt baòi seŞ biò mâìt item	
+			
+25100	Hâìp lêònh thı	Coì thêÒ lâìy linh thaòch ra khoÒi vuŞ khiì vaÌ aìo giaìp. Nhıng coÌn ğêÒ laòi dâìu vêìt õÒ chôŞ lâìy ra.	
+			
+27600	LıÒa mıÌng	Coì thêÒ ğôìt lıÒa.	
+27610	Ngı tâm hoaÌn	Haòt ngoòc coì pheìp thuâòt cho biêìt caì ğaŞ mãìc câu.	
+27620	Nguyêòt san ngı tâm	Saìch noìi vêÌ caì.	
+			
+27799	Xıõng caì	PhâÌn xıõng cıìng cuÒa caì l item câÌn caÒi thiêòn.	
+27800	Cõm nêìp	MôÌi câu reÒ tiêÌn nhâìt.	
+27801	Giun ğâìt	MôÌi câu kiìch thiìch caì ãn.	
+27802	Caì tuêì	MôÌi câu hâìp dâŞn caì nhâìt.	
+			
+27803	Caì giêìc	LoaÌi caì thıõÌng thâìy õÒ ao.	
+27804	Quyêìt ngı	LoaÌi caì coÌn coì tên goòi laÌ caì cheìp ngon	
+27805	Caì cheìp trãìng	LoaÌi caì cheìp to, mâòp, nhiêÌu thiòt.	
+27806	Caì cheìp vaÌng	ThaÒ hay không thaÒ? Biêìt ğâu ğây laÌ con trai cuÒa long vıõng 	
+27807	Caì hôÌi	LoaÌi caì cıì ğêìn muÌa sinh saÒn thiÌ trõÒ vêÌ quê hıõng cuÒa chuìng.	
+27808	Hıõng ngı	Không biêìt hıõng ngı coì toÒa ra muÌi hıõng không?	
+27809	TuÌng ngı	LoaÌi caì thuôòc giôìng caì hôÌi | LoaÌi caì sôìng õÒ thıõòng lıu caìc con sông..	
+27810	Lıõn nıõìc ngoòt	LoaÌi caì râìt thıõÌng ğıõòc chêì biêìn moìn ãn ğem laòi sıìc deÒo dai.  | Thiìch hõòp võìi ğaÌn ông.	
+27811	TuÌng ngı baÒy maÌu 	LoaÌi caì coì aình baÒy maÌu vaÌo thõÌi kyÌ sinh saÒn.	
+27812	TuÌng ngı sông 	LoaÌi tuÌng ngı chiÒ sôìng õÒ sông.	
+27813	Caì chaÌy 		
+27814	Caì pecca 	LoaÌi caì ãn râìt ngon, coÌn goòi laÌ tıõòng ngı sôìng õÒ hôÌ.	
+27815	Caì thu ğao 	LoaÌi caì thuôòc hoò tuÌng ngı chiÒ sôìng õÒ vuÌng nıõìc trong.	
+27816	Caì trê 	LoaÌi caì duÌng laÌm nguyên liêòu chêì biêìn moìn lâÒu cay râìt phôÒ biêìn | Coì ğãòc ğiêÒm laÌ miêòng rôòng vaÌ coì râu.	
+27817	Caì chaòch 	LoaÌi caì da trõn nên khoì bãìt | Thiìch hõòp võìi ğaÌn ông.	
+27818	Caì hôÌi trãìng 	LoaÌi caì to ãn taòp, sôìng õÒ nıõìc ngoòt. 	
+27819	Ngân ngı 	LoaÌi caì thuôòc ho caì ôt me. CoÌn goòi laÌ caì ôt me baòc.	
+27820	Caì ôìt me 	LoaÌi caì nôÒi tiêìng laÌ câu bãÌng nıõìc ğaì vaÌo muÌa ğông.	
+27821	Caì tuêì 	LoaÌi caì coì thân hiÌnh ğeòp vaÌ maÌu sãìc sãòc sõŞ.	
+27822	Caì cheìp hoa 	LoaÌi caì cheìp iìt vaÒy, nhiêÌu thiòt, duÌng laÌm thıìc ãn.	
+27823	Caì giêìc vaÌng 	LoaÌi caì giêìc coì aình vaÌng.	
+			
+27833	Caì giêìc chêìt 	Caì giêìc ğaŞ chêìt  | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27834	Quyêìt ngı chêìt 	Quyêìt ngı ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27835	Caì cheìp trãìng chêìt 	Caì cheìp trãìng ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27836	Caì cheìp vaÌng chêìt 	Caì cheìp vaÌng ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27837	Caì hôÌi chêìt 	Caì hôÌi ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27838	Hıõng ngı chêìt 	Hıõng ngı ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27839	TuÌng ngı chêìt 	TuÌng ngı ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27840	Lıõn nıõìc ngoòt chêìt 	Lıõn nıõìc ngoòt ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27841	TuÌng ngı baÒy maÌu chêìt 	TuÌng ngı baÒy maÌu ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27842	TuÌng ngı sông chêìt 	TuÌng ngı sông ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27843	Caì chaÌy chêìt 	Caì chaÌy ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27844	Caì pecca chêìt 	Caì pecca ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27845	Caì pecca chêìt 	Caì pecca ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27846	Caì trê chêìt 	Caì trê ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27847	Caì chaòch chêìt 	Caì chaòch ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27848	Caì hôÌi trãìng chêìt 	Caì hôÌi trãìng chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27849	Ngân ngı chêìt 	Ngân ngı ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27850	Caì ôt me chêìt 	Caì ôt me ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27851	Caì tuêì chêìt 	Caì tuêì ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27852	Caì cheìp hoa chêìt 	Caì cheìp hoa ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+27853	Caì giêìc vaÌng chêìt 	Caì giêìc vaÌng ğaŞ chêìt | Coì thêÒ nıõìng trên lıÒa mıÌng.	
+			
+27863	Caì giêìc nıõìng 	HôÌi phuòc sinh lıòc.	
+27864	Quyêìt ngı nıõìng 	HôÌi phuòc triì lıòc.	
+27865	Caì cheìp trãìng nıõìng 	HôÌi phuòc sinh lıòc.	
+27866	Caì cheìp vaÌng nıõìng 	LaÌm tãng tôìc ğôò di chuyêÒn taòm thõÌi.	
+27867	Caì hôÌi nıõìng 	HôÌi phuòc triì lıòc.	
+27868	Hıõng ngı nıõìng 	LaÌm tãng tôìc ğôò tâìn công taòm thõÌi.	
+27869	TuÌng ngı nıõìng 	HôÌi phuòc sinh lıòc nhiêÌu.	
+27870	Lıõn nıõìc ngoòt nıõìng 	LaÌm tãng sıìc maònh taòm thõÌi.	
+27871	TuÌng ngı baÒy maÌu nıõìng 	HôÌi phuòc triì lıòc nhiêÌu.	
+27872	TuÌng ngı sông nıõìng 	HôÌi phuòc triì lıòc tıìc thiÌ.	
+27873	Caì chaÌy nıõìng 	LaÌm tãng ğôò nhanh nheòn taòm thõÌi.	
+27874	Caì pecca nıõìng 	LaÌm mâìt taìc duòng xâìu.	
+27875	Caì thu ğao nıõìng 	HôÌi phuòc sinh lıòc tıìc thiÌ.	
+27876	Caì trê nıõìng 	HôÌi phuòc triì lıòc tıìc thiÌ.	
+27877	Caì chaòch nıõìng 	LaÌm cho trong suôìt.	
+27878	Caì hôÌi trãìng nıõìng 	HôÌi phuòc sinh lıòc tıìc thiÌ.	
+27879	Ngân ngı nıõìng 		
+27880	Bãng ngı nıõìc 		
+27881	Caì tuêì nıõìng 		
+27882	Caì cheìp hoa nıõìng 		
+27883	Caì giêìc vaÌng nıõìng 		
+			
+27987	SoÌ 	LoaÌi ôìc coì hiÌnh daìng ğeòp. | Coì khi bên trong coì ngoòc trai. | item câÌn caÒi thiêòn	
+27988	BaÒn ğôÌ baÒo vâòt 	BaÒn ğôÌ cho biêìt nõi chôn baÒo vâòt thõÌi côÒ ğaòi.	
+27989	Maìy doÌ linh thaòch 	Maìy thãm doÌ cho biêìt viò triì cuÒa linh thaòch.	
+27990	MaÒnh ğaì 		
+27991	Thaòch cıõÌng 		
+27992	Ngoòc trai trãìng 	Ngoòc trai maÌu trãìng | Thiìch hõòp võìi phuò nıŞ | item câÌn caÒi thiêòn	
+27993	Ngoòc trai xanh 	Ngoòc trai coì maÌu xanh lâìp laình |Thiìch hõòp võìi phuò n | item câÌn caÒi thiêòn	
+27994	Ngoòc trai ğoÒ 	Ngoòc trai coì maÌu ğoÒ nhı maìu |Thiìch hõòp võìi phuò nıŞ | item câÌn caÒi thiêòn	
+27995	Chai rôŞng 	Chai không ğıòng thıì giÌ.	
+27996	Chai ğôòc 	Chai ğıòng châìt ğôòc | Nêìu uôìng seŞ chêìt.	
+27997	Thiêòp hôÌn cıÒu 	Ngoòc laÌm ğâÌy sinh lıòc.	
+27998	Tuìi thuâòt giaÒ kim 	Tuìi ğıòng thuâòt giaÒ kim. Không biêìt bên trong coì ğıòng biì quyêìt vêÌ thuâòt giaÒ kim hay không?	
+27999	Tuìi linh thaòch  	Tuì ğıòng linh thaòch.	
+			
+			
+29001	SoÌ ğiêòp 		
+29002	SoÌ ğiêòp xanh 		
+29003	SoÌ ğiêòp vaÌng 		
+29004	SoÌ ğiêòp ğoÒ 		
+29005	SoÌ ğiêòp xanh laì 		
+29006	HoaÌng chu thaòch 		
+29007	Thanh chu thaòch'		
+29006	Chinh hoaÌng chu thaòch		
+29007	Chinh thanh chu thaòch		
+29008	ThâÌn thuÒy xanh 		
+29009	ThâÌn thuÒy vaÌng 		
+29010	ThâÌn thuÒy hôÌng 		
+29011	ThâÌn thuÒy xanh laì 		
+29012	ThâÌn thuÒy xanh nhaòt 		
+29013	ThâÌn thuÒy vaÌng nhaòt 		
+29014	ThâÌn thuÒy hôÌng nhaòt 		
+29015	ThâÌn thuÒy xanh laì nhaòt 		
+29012	Chinh thâÌn thuÒy xanh		
+29013	Chinh thâÌn thuÒy vaÌng 		
+29014	Chinh thâÌn thuÒy hôÌng		
+29015	Chinh thâÌn thuÒy xanh laì		
+			
+30000	Luìa maòch 	LaÌ môòt loaòi cây trôÌng nông nghiêòp duÌng laÌm lıõng thıòc vaÌ nâìu rıõòu.	
+30001	Thı 	Thı gıÒi cho ai ğoì.	
+30002	LoÌng xaÌo 	Moìn xaÌo loÌng heo vaÌ rau coì viò cay.	
+30003	MuŞi heo 	NgıõÌi ta noìi rãÌng phâÌn muŞi heo mang lôòc ğêìn. | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm trung câìp, ğôòc thuÒ kiêìm, lıõŞng thuÒ kiêìm, quaòt, aìo giaìp, dây chuyêÌn, hoa tai, voÌng ğeo tay sõ câìp.
+30004	Rãng haÌm heo rıÌng 	Rãng haÌm heo rıÌng râìt cıìng. | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn giaÌy, dây chuyêÌn trung câìp, ğôòc thuÒ kiêìm, lıõŞng thuÒ kiêìm, cung, chuông, quaòt, aìo giaìp, phıõng baÌi sõ câìp. 
+30005	MaÒnh giaìp võŞ 	MaÒnh aìo giaìp biò võŞ rõi ra õÒ ğâu ğoì | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêònaìo giaìp, phıõng baÌi  trung câìp, giaÌy sõ câìp.
+30006	Rãng haÌm huÌng quyÒ 	Rãng haÌm cuÒa huÌng quyÒ. Coì muÌi hôi khoì chiòu. | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, lıõŞng thuÒ kiêìm, lıõŞng thuÒ kiêìm, cung trung câìp chuông cao câìp.
+30007	BuÌa mê cuÒa huÌng quyÒ 	Laì buÌa maÌ huÌng quyÒ sıÒ duòng ğêÒ ğôìt chaìy chiêìn y | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, aìo giaìp, giaÌy, phıõng baÌi, noìn baÒo hiêÒm trung câìp quaòt, noìn baÒo hiêÒm cao câìp.
+30008	Thı vaÌo côÒng Mâòt giaìo 	Thı vaÌo côÒng sõ câìp coì chıìa ğıòng giaìo lyì cuÒa Mâòt giaìo | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn chuông, trung câìp dây chuyêÌn cao câìp.
+30009	Thuôìc không biêìt tên 	Loaòi thuôìc không roŞ thaÌnh phâÌn baÌo chêì | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, cung cao câìp.
+30010	Mâòt gâìu 	Mâòt gâìu coì thêÒ lâìy laòi viò giaìc cho ngıõÌi biò mâìt viò giaìc. | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn aìo giaìp, sõ câìp cung, phıõng baÌi, hoa tai, voÌng ğeo tay, noìn baÒo hiêÒm lıõŞng thuÒ kiêìm, lıõŞng thuÒ kiêìm, quaòt, dây chuyêÌn  trung câìp.
+30011	Ôìng chiÒ 	Ôìng ğıòng chiÒ  | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, lıõŞng thuÒ kiêìm, cung, chuông, giaÌy, phıõng baÌi, voÌng ğeo tay, noìn baÒo hiêÒm trung câìp.
+30012	Chai rıõòu 	Chai ğıòng rıõòu thõm 	
+30013	BiÌnh rıõòu 	BiÌnh ngâm rıõòu	
+30014	Lông cuÒa ngıõÌi tuyêìt 	Theo truyêÌn thuyêìt, lông cuÒa ngıõÌi tuyêìt coì thêÒ chôìng laòi caìi laònh. | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, giaÌy, voÌng ğeo tay cao câìp.
+30015	Diò phâÒm cuÒa taÌ quyÒ 	Diò phâÒm cuÒa ngıõÌi chêìt mang laòi ğiêÌm xâìu | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, quaòt cao câìp.
+30016	Ğaì quyì cuÒa taÌ quyÒ 	LaÌ loaòi ğaì quyì chıìa ğıòng linh hôÌn cuÒa ngıõÌi chêìt | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn dây chuyêÌn, hoa tai cao câìp.
+30017	Lıõòc caÌi toìc	ĞôÌ trang sıìc trên toìc cuÒa phuò nıŞ | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, chuông, dây chuyêÌn, hoa tai trung câìp.
+30018	Nõ buôòc toìc maÌu ğoÒ 	Nõ buôòc toìc cao câìp duÌng khi thãìt biìm toìc | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, lıõŞng thuÒ kiêìm, cung, chuông, quaòt, hoa tai, voÌng ğeo tay trung câìp.
+30019	Cây sâòy lıÒa 	Nêìu may aìo bãÌng châìt liêòu naÌy thiÌ muÌa ğông mãòc seŞ âìm | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğ caÒi thiêòn hoa tai cao câìp.
+30020	Haòt giôìng ğaÌo tiên 	Haòt ğaÌo tiên, tôìt cho viêòc thâÒm myŞ.	
+30021	MaÒnh ğaì quyì võŞ 	MaÒnh ğaì biò võŞ do ğâòp vaÌo caìi giÌ ğoì | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, hoa tai, voÌng ğeo tay, noìn baÒo hiêÒm trung câìp.
+30022	Ğuôi rãìn 	Ğuôi rãìn phaìt ra âm thanh khi lãìc noì | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, quaòt, phıõng baÌi, dây chuyêÌn, voÌng ğeo tay cao câìp.
+30023	Da baòch hôÒ 	Loaòi da ğôòng vâòt maÌ ngıõÌi ta thıõÌng hay tiÌm kiêìm | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, lıõŞng thuÒ kiêìm, cung, quaòt, aìo giaìp, giaÌy, noìn baÒo hiêÒm trung câìp, cung sõ câìp.
+30024	Ğuôi ngıòa 	Ğuôi ngıòa thıõÌng duÌng ğêÒ laÌm buìt, noìn.	
+30025	Tuìi ğôòc cuÒa nhêòn 	Tuìi ğıògn ğôòc cuÒa nhêòn | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, lıõŞng thuÒ kiêìm, cung, phıõng baÌi, dây chuyêÌn, hoa tai, voÌng ğeo tay, noìn baÒo hiêÒm cao câìp.
+30026	Ruôòt choì soìi 	Nguyên liêòu duÌng ğêÒ laÌm thıòc phâÒm râìt ğıõòc ıa chuôòng õÒ TêÌ Quôìc | item câÌn caÒi thiêòn	
+30027	Lông choì soìi 	Lông cıìng cuÒa choì soìi duÌng ğêÒ laÌm lıõòc | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, cung, chuông, quaòt, aìo giaìp, giaÌy, phıõng baÌi sõ câìp.
+30028	Moìng choì soìi 	Moìng sãìc cuÒa choì soìi duÌng laÌm ğôÌ trang sıìc.| item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, lıõŞng thuÒ kiêìm, chuông, dây chuyêÌn hoa tai, noìn baÒo hiêÒm, lıõŞng thuÒ kiêìm sõ câìp.
+30029	Gan choì soìi 	DuÌng laÌm nguyên liêòu chêì biêìn moìn ãn phôÒ biêìn õÒ TêÌ Quôìc	
+30030	MaÒnh kiêìm ngãìn biò giÒ 	MaÒnh kiêìm giÒ ğâm vaÌo caìi giÌ ğoì | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, lıõŞng thuÒ kiêìm, cung, chuông trung câìp.
+30031	NıŞ trang 	ĞôÌ trang sıìc maÌ caìc beì gaìi thıõÌng duÌng | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn cung, chuông, quaòt, giaÌy, phıõng baÌi, voÌng ğeo tay, noìn baÒo hiêÒm trung câìp, cung sõ câìp.
+30032	Ğaòo phuòc maÌu ğâìt cuŞ kyŞ 	Bôò quâÌn aìo maÌu ğâìt maÌ Hãìc phong ğaÌn hay mãòc. Noì ğaŞ biò sõÌn.| item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn phıõng baÌi, voÌng ğeo tay trung câìp.
+30033	Cheìn saÌnh võŞ 	MaÒnh cheìn võŞ maÌ ai ğoì ğaŞ boÒ ği | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn aìo giaìp, trung câìp phıõng baÌi dây chuyêÌn, hoa tai, voÌng ğeo tay, noìn baÒo hiêÒm cao câìp.
+30034	Nõ buôòc toìc maÌu trãìng 	Nõ buôòc toìc duÌng khi thãìt biìm toìc | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, lıõŞng thuÒ kiêìm, cung, quaòt, giaÌy, phıõng baÌi, voÌng ğeo tay  trung câìp.
+30035	MyŞ phâÒm 	Phuò nıŞ duÌng ğêÒ laÌm ğeòp | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, lıõŞng thuÒ kiêìm, cung, hoa tai trung câìp.
+30036	Hoa baìt thaÒo 	Dıõòc thaÒo truyêÌn thuyêìt coì công duòng thâÌn kyÌ | item câÌn caÒi thiêòn	
+30037	Moìng hôÒ 	Ğıõòc sıÒ duòng laÌm ğôÒ trang sıìc ğêÒ thêÒ hiêòn sıìc maònh cuÒa baÒn thân. | item câÌn caÒi thiêòn	
+30038	Da hôÒ 	Loaòi da ğôòng vâòt maÌ ngıõÌi ta thıõÌng hay tiÌm kiêìm| item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn aìo giaìp, giaÌy trung câìp, ğôòc thuÒ kiêìm, cung, quaòt, aìo giaìp, giaÌy, noìn baÒo hiêÒm sõ câìp.
+30039	Miêìng gieÒ lau 	MaÒnh vaÒi duÌng ğêÒ bãng vêìt thıõng cuÒa ai ğoì | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, chuông, quaòt, phıõng baÌi cao câìp.
+30040	Laì coÒ 	Môòt loaòi laì cây không biêìt tên | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn noìn baÒo hiêÒm cao câìp.
+30041	BaÒo thıõng 	Loaòi vuŞ khiì duÌng aìm khiì | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, dây chuyêÌn, hoa tai, noìn baÒo hiêÒm, lıõŞng thuÒ kiêìm, cung, giaÌy.
+30042	Rãng hôÒ ğâÌu triì 	Rãng cıìng chãìc | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn voÌng ğeo tay cao câìp.
+30043	QuaÒ ğâòu tıõng 	DuÌng laÌm nguyên liêòu chêì biêìn caìc moìn ãn, giaÌu ğaòm.	
+30044	Ğâìt buÌn 	Loaòi ğâìt coì thêÒ laÌm ğôÌ sıì	
+30045	VoÌi ğôòc boò caòp 	Kim chıìa ğôòc cuÒa boò caòp | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, lıõŞng thuÒ kiêìm, quaòt, phıõng baÌi, dây chuyêÌn, hoa tai, noìn baÒo hiêÒm cao câìp.
+30046	Ğuôi boò caòp 	Ğuôi chıìa ğôòc cuÒa boò caòp | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn aìo giaìp, trung câìp ğôòc thuÒ kiêìm cao câìp.
+30047	Saìch nguyêÌn ruÒa 	Saìch ğıõòc sıÒ duòng khi nguyêÌn ruÒa ğôìi phıõng | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, aìo giaìp, hoa tai cao câìp.
+30048	MaÒnh nıõìc ğaì 	MaÒnh vaòn niên tuyêìt. VaÌo muÌa heÌ cuŞng ğoìng bãng.| item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, chuông, quaòt, phıõng baÌi, dây chuyêÌn cao câìp.
+30049	SıÌng gâìu 	DuÌng trong nhiêÌu taìc phâÒm ğiêu khãìc.| item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn aìo giaìp, hoa tai cao câìp.
+30050	ChuôŞi haòt nıõìc ğaì 	ChuôŞi haòt ğıõòc laÌm tıÌ nıõìc ğaì. Không biò tan khi trõÌi noìng.| item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn noìn baÒo hiêÒm cao câìp.
+30051	Laì buÌa không biêìt tên 	Laì buÌa coì ghi ğiêÌu giÌ ğoì maÌ chiÒ coì ngıõÌi trong Mâòt giaìo mõìi bit.| item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, chuông, quaòt, dây chuyêÌn, hoa tai, voÌng ğeo tay cao câìp.
+30052	Laì cõÌ 	Laì cõÌ duÌng ğêÒ biêÒu hiêòn tiêu thıìc cuÒa giãòc | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn aìo giaìp, giaÌy cao câìp.
+30053	BaÌn chân gâìu 	LaÌ nguyên liêòu chêìt biêìn moìn moìn ãn ğem laòi sıìc deÒo dai maÌ nhiêÌu ngıõÌi tiìm kiêìm | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi câìp lıõŞng thuÒ kiêìm, giaÌy, dây chuyêÌn thiêòn trung, giaÌy, phıõng baÌi, voÌng ğeo tay,noìn baÒo hiêÒm sõ câìp.
+30054	NhâŞn cıõìi 	NhâŞn duÌng ğêÒ trao tãòng trong lêŞ cıõìi	
+30055	CaÌng boò caòp 	CaÌng boò caòp râìt khoÒe | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, chuông, quaòt, giaÌy, dây chuyêÌn, voÌng ğeo tay cao câìp.
+30056	Maòng nhêòn 	Ğôi khi duÌng ğêÒ laÌm nhaÌ | item câÌn caÒi thiêòn	Ğõòc sıÒ duòng ğêÒ caÒi thiêòn cung, phıõng baÌi, noìn baÒo hiêÒm cao câìp.
+30057	Mãìt nhêòn 	NhiêÌu ngıõÌi tiÌm kiêìm mãìt nhêòn | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn chuông, hoa tai cao câìp.
+30058	Boòc trıìng nhêòn 	Nêìu coì boòc trıìng nhêòn thiÌ seŞ dêŞ sinh nõÒ | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, chuông,aìo giaìp, phıõng baÌi cao câìp.
+30059	Chân nhêòn 	Chân nhiêÌu lông cuÒa nhêòn ğıõòc duÌn laÌm môòt loaòi buÌa.| item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn giaÌy cao câìp.
+30060	LıõŞi êìch 	LıõŞi êìch coì ğôò diình | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn cung cao câìp.
+30061	Chân êìch 	DuÌng laÌm nguyên liêòu nâìu ãn nôÒi tiêìng cuÒa nhıŞng ngıõÌi saÌnh ãn | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn chuông, aìo giaìp, giaÌy cao câìp.
+30062	Cheìn ğıòng thuôìc nıõìc 	Cheìn tıÌng sıÒ duòng õÒ cuÒa haÌng thuôìc nıõìc | item câÌn caÒi thiêòn	
+30063	Thuôìc ngoaÌi da 	Thuôìc triò bêònh ngoaÌi da | item câÌn caÒi thiêòn	
+30064	Ğaì duÌng ğêÒ chêì taòo muŞi tên 	Loaòi ğaì duÌng laÌm nguyên liêòu chêì taòo muŞi tên	
+30065	Chuông 	Loaòi chuông nhoÒ phaìt ra âm thanh thaình thoìt	
+30066	Õìt xanh 	Môòt loaòi õìt râìt cay | item câÌn caÒi thiêòn	
+30067	Da rãìn 	Bãìt rãìn lôòt lâìy da | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, giaÌy cao câìp.
+30068	Ğâòu huŞ nıõìng 	Moìn ãn laÌm tıÌ ğâòu huŞ	
+30069	Moìng choì soìi+ 	Moìng sãìc cuÒa choì soìi, thıõÌng duÌng laÌm ğôÌ trang sıìc | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn dây chuyêÌn, noìn baÒo hiêÒm trung câìp, lıõŞng thuÒ kiêìm, giaÌy, dây chuyêÌn, voÌng ğeo tay, noìn baÒo hiêÒm sõ câìp.
+30070	Lông choì soìi+ 	Lông cıìng cuÒa cho soìi, duÌng laÌm lıõòc | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, quaòt, aìo giaìp, giaÌy trung câìp, lıõŞng thuÒ kiêìm, dây chuyêÌn sõ câìp.
+30071	Mâòt gâìu+ 	Mâòt gâìu coì thêÒ lâìy laòi viò giaìc cho ngıõÌi biò mâìt viò giaìc. | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm trung câìp, lıõŞng thuÒ kiêìm, chuông, aìo giaìp, giaÌy, phıõng baÌi, dây chuyêÌn, hoa tai sõ câìp.
+30072	BaÌn chân gâìu+ 	LaÌ nguyên liêòu chêìt biêìn moìn moìn ãn ğem laòi sıìc deÒo dai maÌ nhiêÌu ngıõÌi tiìm kiêìm | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn ğôòc thuÒ kiêìm, chuông, quaòt, hoa tai, noìn baÒo hiêÒm trung câìp, lıõŞng thuÒ kiêìm, voÌng ğeo tay sõ câìp.
+30073	Nõ buôòc toìc maÌu trãìng+ 	Nõ duÌng khi thãìt biìm toìc | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn cung, aìo giaìp trung câìp, lıõŞng thuÒ kiêìm, aìo giaìp sõ câìp.
+30074	Ğaòo phuòc maÌu âìt cuŞ kyŞ+ 	Bôò quâÌn aìo maÌu ğâìt maÌ Hãìc phong ğaÌn hay mãòc. Noì ğaŞ biò sõÌn.| item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn quaòt, giaÌy, dây chuyêÌn trung câìp.
+30075	BaÒo thıõng+ 	Loaòi vuŞ khiì duÌng aìm khiì | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, aìo giaìp, phıõng baÌi trung câìp.
+30076	Laì buÌa cuÒa huÌng quyÒ+ 	Laì buÌa maÌ huÌng quyÒ sıÒ duòng ğêÒ ğôìt chaìy chiêìn y | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn aìo giaìp, lıõŞng thuÒ kiêìm, chuông cao câìp.
+30077	Rãng haÌm cuÒa huÌng quyÒ+ 	Rãng haÌm cuÒa huÌng quyÒ. Coì muÌi hôi khoì chiòu. | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, quaòt cao câìp.
+30078	Thı vaÌo côÒng Mâòt giaìo+ 	Thı vaÌo côÒng sõ câìp coì chıìa ğıòng giaìo lyì cuÒa Mâòt giaìo | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn phıõng baÌi trung câìp.
+30079	BuÌa không biêìt tên+ 	Laì buÌa coì ghi ğiêÌu giÌ ğoì maÌ chiÒ coì ngıõÌi trong Mâòt giaìo mõìi biêìt.| item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn chuông cao câìp.
+30080	Saìch nguyêÌn ruÒa+ 	Saìch ğıõòc sıÒ duòng khi nguyêÌn ruÒa ğôìi phıõng | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn hoa tai, cung, dây chuyêÌn cao câìp.
+30081	Ğuôi boò caòp+ 	Ğuôi chıìa ğôòc cuÒa boò caòp | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, cung, voÌng ğeo tay cao câìp.
+30082	Ğuôi rãìn+ 	Ğuôi rãìn phaìt ra âm thanh khi lãìc noì | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn cung, quaòt, noìn baÒo hiêÒm cao câìp.
+30083	Thuôìc không biêìt tên+ 	Loaòi thuôìc không roŞ thaÌnh phâÌn baÌo chêì | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, phıõng baÌi, noìn baÒo hiêÒm cap câìp.
+30084	BuÌa không biêìt tên+ 	Laì buÌa coì ghi ğiêÌu giÌ ğoì maÌ chiÒ coì ngıõÌi trong Mâòt giaìo mõìi biêìt.| item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn chuông cao câìp 
+30085	MaÒnh gieÒ lau+ 	MaÒnh vaÒi duÌng ğêÒ bãng vêìt thıõng cuÒa ai ğoì | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, cung, giaÌy cao câìp.
+30086	Diò phâÒm cuÒa taÌ quyÒ+ 	Diò phâÒm cuÒa ngıõÌi chêìt mang laòi ğiêÌm xâìu | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, giaÌy voÌng ğeo tay cao câìp.
+30087	Ğaì quyì cuÒa taÌ quyÒ+ 	LaÌ loaòi ğaì quyì chıìa ğıòng linh hôÌn cuÒa ngıõÌi chêìt | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, giaÌy, voÌng ğeo tay cao câìp.
+30088	MaÒnh nıõìc ğaì+ 	MaÒnh vaòn niên tuyêìt. VaÌo muÌa heÌ cuŞng ğoìng bãng.| item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm cao câìp.
+30089	Lông cuÒa tuyêìt nhân+ 	Theo truyêÌn thuyêìt, lông cuÒa ngıõÌi tuyêìt coì thêÒ chôìng laòi caìi laònh. | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn noìn baÒo hiêÒm cao câìp.
+30090	ChuôŞi haòt nıõìc ğaì+ 	ChuôŞi haòt ğıõòc laÌm tıÌ nıõìc ğaì. Không biò tan khi trõÌi noìng.| item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn dây chuyêÌn cao câìp.
+30091	Chıìng phiêìu voŞ nhân 	Theo truyêÌn thuyêìt ğây laÌ loaòi chıìng phiêìu chiÒ coì caìc voŞ nhân coì ğıõòc | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn voÌng ğeo tay cao câìp.
+30092	Vâòt kyÒ niêòm chiêìn công chiêìn thãìng giãòc ngoaòi xâm 	Chiêìn lõòi phâÒm cuÒa quân giãòc. CâÌm theo ğêÒ laÌm kyÒ niêòm cho chiêìn thãìng trên chiêìn trıõÌng | item câÌn caÒi thiêòn	Ğıõòc sıÒ duòng ğêÒ caÒi thiêòn lıõŞng thuÒ kiêìm, chuông, phıõng baÌi, hoa tai trung câìp.
+			
+30129	Thı truyêÌn lêònh 	Vãn baÒn coì ghi mêònh lêònh duÌng trong quân ğôòi	
+30130	BiÌnh rôŞng 	BiÌnh ğêÒ ğıòng nhiêÌu loaòi dung diòch	
+30131	Thı cuÒa thõò reÌn 	Thı cuÒa thõò reÌn gıÒi cho ngıõÌi baòn tên laÌ Ğıìc Bôìi	
+30132	Saìch cuÒa Âìt ĞâÌu Triì 	LaÌ quyêÒn saìch maÌ hoòc giaÒ Âìt ĞâÌu Triì yêu thiìch, quyêÒn saìch coì tıòa ğêÌ laÌ "Tôi biêìt viêòc maÌ anh ğaŞ laÌm õÒ Mâòt giaìo".	
+30133	Hoa thâÌn cuÒa ngıõÌi baìn taòp hoìa 	LaÌ hoa thâÌn maÌ ngıõÌi baìn taòp hoìa mõìi tiÌm ğıõòc. 	
+30134	Tuìi ğıòng cuÒa Âìt ĞâÌu Triì 	Tuìi ğıòng maÌ hoòc giaÒ Âìt ĞâÌu Triì mang theo, trong ğoì ğıòng râìt nhiêÌu saìch.	
+30135	Thı cuÒa Aìi Lyì Anh 	Thı cuÒa Aìi Lyì Anh gıÒi cho A HıŞu	
+			
+30136	HoaÌng kim giaìc cung 	HoaÌng kim giaìc cung cuÒa thõÌi ğaòi trıõìc maÌ caìc tay suìng tıÌng noìi tõìi. LaÌ vâòt coì hiÌnh cong xinh ğeòp ğıõòc laÌm tıÌ sıÌng ğôòng vâòt.	
+30137	Maìu khiÒ 	LaÌ maìu cuÒa khiÒ, coì muÌi tanh.	
+30138	Ğâìt buÌn tt 	LaÌ loaòi buÌn duÌng laÌm thuôìc triò bêònh cuÒa nhıŞng keÒ liêÌu maòng õÒ sa maòc, noì coÌn coì nhiêÌu công duòng khaìc.	
+30139	Rãng haÌm nhoÒ cuÒa huÌng quyÒ 	Rãng haÌm nhoÒ cuÒa huÌng quyÒ thıõÌng ğıõòc duÌng laÌm ğôÌ trang sıìc, coì muÌi hôi.	
+30140	ChiÒ 	ChiÒ duÌng ğêÒ may aìo hoãòc xoÒ dây chuyêÌn.	
+30141	Ğaì quyì gia công 	Ğaì quyì duÌng ğêÒ gia công aìo hoãòc ğôÌ trang sıìc.	
+30142	Thı 	Coì ghi nôòi dung giÌ ğoì.  LaÌm cho ngıõÌi khaìc toÌ moÌ muôìn xem nôòi dung.	
+30143	Dıõòc thaÒo 	LoÌa loaòi thuôìc triò bêònh cõ baÒn ğıõòc dung ğêÒ baÌo chêì nhiêÌu loaòi thuôìc khaìc.	
+30144	Gan hôÒ 	Gan hôÒ laÌ nguyên liêòu ğıõòc ğôÌn laÌ râìt bôÒ, duÌng ğêÒ chêì biêìn moìn moìn ãn ğem laòi sıìc deÒo dai râìt ngon.	
+30145	Thuôìc cuÒa Phaìt Xô 	Loaòi thuôìc maÌ Phaìt Xô ğaŞ nhõÌ.	
+30146	TaÒng bãng 	LaÌ taÒng bãng hiÌnh thaÌnh tıÌ nıõìc ğaì. Râìt laònh.	
+30147	Giaìo lyì Mâòt giaìo 	LaÌ quyn saìch ghi chi tiêìt vêÌ giaìo lyì cuÒa Mâòt giaìo.	
+30148	Mâòt giaìo thuâòn ıìng phuÌ 	LaÌ môòt loaòi buÌa ğıõòc sıÒ duòng trong Mâòt giaìo.	
+30149	Bãng thuÒy 	Nıõìc ğaì baÌo nhuyêŞn cho vaÌo thıìc ãn laÌm cho caìc moìn ãn muÌa heÌ coì viò maìt.	
+30150	MaÒnh giâìy nhâòt kyì 	Giâìy ghi nhâòt kyì thõÌi TêÌ Quôìc côÒ ngaÌy xıa.	
+30151	Lông mêÌm cuÒa soìi 	Lông cuÒa choì soìi ğıõòc ngıõÌi TêÌ Quôc sıÒ duòng ğêÒ queìt buòi. 	
+30152	Thuôìc triò bêònh 	LaÌ loaòi thuôìc hiêòu nghiêòm trong viêòc ğiêÌu triò caìc quaìi tâòt do baìc siŞ Biìch Cao baÌo chêì.  Nhıng thıòc têì noì coì hiêòu nghiêòm hay không coÌn chıa biêìt.	
+30153	Hoa 	LoÌa hoa không biêìt tên, coì muÌi thõm giuìp phuòc hôÌi triì nhõì.	
+30154	Kinh ğiêÒn Mâòt giaìo 	Phân tiìch vêÌ giaìo lyì Mâòt giaìo vaÌ ghi cheìp con ğıõÌng maÌ Mâòt giaìo ğaŞ ği qua cho ğêìn ngaÌy nay.	
+30155	Mãòt dây chuyêÌn cuÒa MyŞ Lyì Xuyên 	Mãòt dây chuyêÌn ğaŞ tıÌng sıÒ duòng. Mãòt sau coì ghi tên Lyì MyŞ Xuyên.	
+30156	Kinh ğiêÒn Mâòt giaìo 	Phân tiìch vêÌ giaìo lyì Mâòt giaìo vaÌ ghi cheìp con ğıõÌng maÌ Mâòt giaìo ğaŞ ği qua cho ğêìn ngaÌy nay.	
+			
+30093	Tuìi lôòc	Tuìi vaÒi ğıòng ğôÌ quyì	
+30094	Tuìi lôòc	Tuìi vaÒi ğıòng ğôÌ quyì	
+30095	Tuìi lôòc	Tuìi vaÒi ğıòng ğôÌ quyì	
+30096	Tuìi lôòc	Tuìi vaÒi ğıòng ğôÌ quyì	
+			
+30210	Thanh minh thaòch	MâÒu ğaì nhoÒ chiêìu saìng maÌu xanh dıõng	Coì khãìc chıŞ sôì 2
+30211	Thanh minh thaòch	MâÒu ğaì nhoÒ chiêìu saìng maÌu xanh dıõng	Coì khãìc chıŞ A
+30212	Thanh minh thaòch	MâÒu ğaì nhoÒ chiêìu saìng maÌu xanh dıõng	Coì khãìc chıŞ B
+30213	Thanh minh thaòch	MâÒu ğaì nhoÒ chiêìu saìng maÌu xanh dıõng	Coì khãìc chıŞ E
+30214	Thanh minh thaòch	MâÒu ğaì nhoÒ chiêìu saìng maÌu xanh dıõng	Coì khãìc chıŞ I
+30215	Thanh minh thaòch	MâÒu ğaì nhoÒ chiêìu saìng maÌu xanh dıõng	Coì khãìc chıŞ L
+30216	Thanh minh thaòch	MâÒu ğaì nhoÒ chiêìu saìng maÌu xanh dıõng	Coì khãìc chıŞ M
+30217	Thanh minh thaòch	MâÒu ğaì nhoÒ chiêìu saìng maÌu xanh dıõng	Coì khãìc chıŞ N
+30218	Thanh minh thaòch	MâÒu ğaì nhoÒ chiêìu saìng maÌu xanh dıõng	Coì khãìc chıŞ R
+30219	Thanh minh thaòch	MâÒu ğaì nhoÒ chiêìu saìng maÌu xanh dıõng	Coì khãìc chıŞ T
+			
+30220	Linh hôÌn thaòch chinh huÌng quyÒ	TaÒng ğaì chıìa ğıòng linh hôÌn cuÒa chinh huÌng quyÒ tôòc	
+30221	Mâòt giaìo linh hôÌn thaòch	TaÒng ğaì chıìa ğıòng linh hôÌn cuÒa Mâòt giaìo tôòc	
+30222	TaÌ quyÒ linh hôÌn thaòch	TaÒng ğaì chıìa ğıòng linh hôÌn cuÒa taÌ quyÒ tôòc	
+30223	Linh hôÌn thaòch bãng 	TaÒng ğaì chıìa ğıòng linh hôÌn cuÒa nıõìc ğaì	
+30224	Linh hôÌn thaòch quyÒ muòc 	TaÒng ğaì chıìa ğıòng linh hôÌn cuÒa quyÒ môòc tôòc	
+30225	Linh hôÌn thaòch ğâÌu quyÒ 	TaÒng ğaì chıìa ğıòng linh hôÌn cuÒa ğâÌu quyÒ tôòc	
+			
+50001	Thı may mãìn 	Vãn baÒn coì ghi sôì bôìc thãm truìng thıõÒng do nhaÌ nıõìc tôÒ chıìc.	
+50002	NhâŞn vaÌng 	Chiêìc nhâŞn vaÌng cuÒa ai ğoì ğaình rõi. | Ğıõòc ğem baìn cho cuÒa haÌng võìi giaì cao.	
+50003	TaÌi liêòu sõ khai hoìa chiêu thıìc 		
+50004	Maìy thãm doÌ sıò kiêòn 		
+50005	Thãng maŞ quyêÌn	Nêìu caÒnh vêò binh õÒ chuôÌng ngıòa cho xem thiÌ coì thêÒ cıõŞi ngıòa miêŞn phiì.	Coì thêÒ sıÒ duòng cho level 40 trõÒ lên.
+			
+50006	Hôòp baÒo vâòt vaÌng	Hôòp chaòm khãìc vaÌng sãòc sõŞ  | Coì thêÒ mõÒ ra bãÌng môòt caìi giÌ ğoì.	Coì thêÒ mõÒ bãÌng chiÌa khoìa vaÌng .
+50007	Hôòp baÒo vâòt baòc	Hôòp chaòm khaìc baòc xinh xãìn | Coì thêÒ mõÒ ra bãÌng môòt caìi giÌ ğoì.	Coì thêÒ mõÒ bãÌng chiÌa khoìa baòc.
+50008	ChiÌa khoìa vaÌng	ChiÌa khoìa ğıõòc laÌm bãÌng vaÌng | Coì thêÒ mõÒ caìi giÌ ğoì ra.	Coì thêÒ mõÒ hôòp baÒo vâòt vaÌng vaÌ hôòp baÒo vâòt vaÌng + 
+50009	ChiÌa khoìa baòc	ChiÌa khoìa ğıõòc laÌm bãÌng baòc | Coì thêÒ mõÒ caìi giÌ ğoì ra.	Coì thêÒ mõÒ hôòp baÒo vâòt baòc vaÌ hôòp baÒo vâòt baòc + 
+			
+50010	Võì	Nêìu treo lên cây thông noel seŞ nhâòn ğıõòc quaÌ.	
+			
+50011	Nguyêòt quang baÒo hõòp	LaÌ hôòp ğıòng trang sıìc sãòc sõŞ bãìt mãìt ngıõÌi xem. Ğôi khi nêìu ğıõòc aình trãng chiêìu vaÌo thiÌ coì hiêòn tıõòng siêu nhiên xaÒy ra.	
+			
+50012	Hôòp baÒo vâòt vaÌng+	Hôòp chaòm khãìc vaÌng sãòc sõŞ | Coì thêÒ mõÒ ra bãÌng môòt caìi giÌ ğoì.	Coì thêÒ mõÒ bãÌng chiÌa khoìa vaÌng.
+50013	Hôòp baÒo vâòt baòc+	Hôòp chaòm khaìc baòc xinh xãìn  | Coì thêÒ mõÒ ra bãÌng môòt caìi giÌ ğoì.	Coì thêÒ mõÒ bãÌng chiÌa khoìa baòc.
+			
+50016	Haòt ğâòu tıõng	Duòng cuò laÌm bãÌng haòt ğâòu tıõng laÌm nguyên liêòu chêì taòo biÌnh ğıòng haòt ğâòu tıõng ãn vaÌo rãÌm thaìng giêng thõÌi côÒ ğaòi	
+50017	Haòt ğıõÌng	Duòng cuò laÌm bãÌng haòt ğıõÌng laÌm nguyên liêòu chêì taòo biÌnh ğıòng haòt ğıõÌng ãn vaÌo rãÌm thaìng giêng thõÌi côÒ ğaòi	
+50018	Haòt hoa quaÒ	Duòng cuò laÌm bãÌng haòt hoa quaÒ laÌm nguyên liêòu chêì taòo biÌnh ğıòng haòt hoa quaÒ ãn vaÌo rãÌm thaìng giêng thõÌi côÒ ğaòi	
+50019	VoÒ luìa nêìp	VoÒ luìa nêìp sıÒ duòng khi laÌm biÌnh ğıòng haòt.	
+50020	BiÌnh ğıòng haòt ğâòu tıõng 	BiÌnh ğıòng haòt ğâòu tıõng ãn vaÌo rãÌm thaìng giêng thõÌi côÒ ğaòi.	HôÌi phuòc toaÌn bôò thêÒ lıòc.
+50021	BiÌnh ğıòng haòt ğıõÌng 	BiÌnh ğıòng haòt ğıõÌng ãn vaÌo rãÌm thaìng giêng thõÌi côÒ ğaòi.	HôÌi phuòc toaÌn bôò triì lıòc.
+50022	BiÌnh ğıòng haòt hoa quaÒ 	BiÌnh ğıòng haòt hoa quaÒ ãn vaÌo rãÌm thaìng giêng thõÌi côÒ ğaòi.	HôÌi phuòc toaÌn bôò moìn ãn ğem laòi sıìc deÒo dai
+			
+50023	Tuìi tiêÌn liÌ xiÌ	Tuìi tiêÌn liÌ xiÌ ngıõÌi lõìn liÌ xiÌ cho ngıõÌi nhoÒ vaÌo diòp têìt khi ngıõÌi nhoÒ chaÌo vâìn an ngıõÌi lõìn môòt caìch cung kiình.	
+			
+50024	Hoa hôÌng	LoaÌi hoa cuÒa aìi tiÌnh, tiÌnh yêu, haònh phuìc.	DuÌng cho nıŞ
+50025	Sô cô la	LaÌ loaòi baình laÌm tıÌ ca cao, sıŞa, bõ, ğıõÌng, hıõng liêòu ğông ğãòc. ThıõÌng ğıõòc duÌng ğêÒ biêÒu lôò tiÌnh yêu. 	DuÌng cho nam
+			
+50027	Phiêìu trao ğôÒi	QuyêÌn trao ğôÒi biò huÒy boÒ. | Item vô iìch.	
+50031	Hoa hôÌng	LoaÌi hoa cuÒa aìi tiÌnh, tiÌnh yêu, haònh phuìc.	DuÌng cho nam
+50032	Keòo	LoÌa loaòi keòo laÌm tıÌ ğıõÌng vaÌ nhiêÌu nguyên liêòu khaìc, coì nhiêÌu hiÌnh daòng khaìc nhau. ThıõÌng duÌng ğêÒ biêÒu lôò tiÌnh yêu.	DuÌng cho nıŞ
+50033	Hôòp không biêìt tên	Hôòp chaòm khãìc chıŞ laò. Nêìu mõÒ hôòp ra seŞ coì vâòt giÌ ğoì xuâìt hêòn.	
+			
+50034	Hôòp câu ğôì	Khi mõÒ hôòp, nêìu không ğoaìn ğıõòc vâìn ğêÌ ğıa ra thiÌ seŞ biò nguyêÌn ruÒa, giôìng nhı trong truyêòn côÒ tiìch.	
+50035	Hôòp quaÌ ngaÌy thiêìu nhi	LaÌ hôòp thêÒ hiêòn tiÌnh caÒm, vâòt kiÒ niêòm hay lõÌi chaÌo, trong hôòp ğıòng quaÌ chıìa ğâÌy tiÌnh caÒm cuÒa ngıõÌi tãòng.	
+50036	Hôòp quaÌ ngaÌy thiêìu nhi	LaÌ hôòp thêÒ hiêòn tiÌnh caÒm, vâòt kiÒ niêòm hay lõÌi chaÌo, trong hôòp ğıòng quaÌ chıìa ğâÌy tiÌnh caÒm cuÒa ngıõÌi tãòng.	
+50037	Hôòp hiÌnh luòc giaìc	LaÌ hôòp baÒo vâòt laÌm bãÌng giâìy, trong hôòp ğıòng quaÌ chıìa ğâÌy tiÌnh caÒm cuÒa ngıõÌi tãòng.	
+			
+50070	Hôòp cuÒa huÌng quyÒ tôòc trıõÒng	Hôòp cuÒa huÌng quyÒ tôòc . Nêìu mõÒ ra seŞ coì vâòt quan troòng xuâìt hiêòn.	
+50071	Hôòp cuÒa giaìo chuÒ Mâòt giaìo	Hôòp cuÒa giaìo chuÒ Mâòt giaìo . Nêìu mõÒ ra seŞ coì vâòt quan troòng xuâìt hiêòn.	
+50072	Hôòp cuÒa giaìo chuÒ mâòt giaìo ğaŞ hoaÌn sinh	Hôòp cuÒa giaìo chuÒ Mâòt giaìo hoaÌn sinh. Nêìu mõÒ ra seŞ coì vâòt quan troòng xuâìt hiêòn.	
+50073	Hôòp cuÒa nıŞ vıõng nhêòn	Hôòp cuÒa nıŞ vıõng nhêòn. Nêìu mõÒ ra seŞ coì vâòt quan troòng xuâìt hiêòn.	
+50074	Hôòp cuÒa ğaòi vıõng nhêòn	Hôòp cuÒa ğaòi vıõng nhêòn. Nêìu mõÒ ra seŞ coì vâòt quan troòng xuâìt hiêòn.	
+50075	Hôòp môi giõìi caÒm nhiêŞm cõŞ lõìn	Hôòp môi giõìi caÒm nhiêŞm cõŞ lõìn. Nêìu mõÒ ra seŞ coì vâòt quan troòng xuâìt hiêòn.	
+50076	Hôòp ruÌa sa maòc khôÒng lôÌ	Hôòp cuÒa ruÌa sa maòc khôÒng lôÌ. Nêìu mõÒ ra seŞ coì vâòt quan troòng xuâìt hiêòn.	
+50077	Hôòp cuÒa caìo giaÌ	Hôòp cuÒa caìo giaÌ. Nêìu mõÒ ra seŞ coì vâòt quan troòng xuâìt hiêòn.	
+50078	Hôòp cuÒa quyÒ hôÒ vaÌng	Hôòp cuÒa quyÒ hôÒ vaÌng. Nêìu mõÒ ra seŞ coì vâòt quan troòng xuâìt hiêòn.	
+50079	Hôòp cuÒa hoÒa diêòm vıõng	Hôòp cuÒa hoÒa diêòm vıõng. Nêìu mõÒ ra seŞ coì vâòt quan troòng xuâìt hiêòn.	
+50080	Hôòp cuÒa hoÒa long	Hôòp cuÒa hoÒa long. Nêìu mõÒ ra seŞ coì vâòt quan troòng xuâìt hiêòn.	
+50081	Hôòp cuÒa taÌ quyÒ vıõng	Hôòp cuÒa taÌ quyÒ vıõng. Nêìu mõÒ ra seŞ coì vâòt quan troòng xuâìt hiêòn.	
+50082	Hôòp cuÒa sıì thâÌn	Hôòp cuÒa sıì thâÌn. Nêìu mõÒ ra seŞ coì vâòt quan troòng xuâìt hiêòn.	
+			
+50050	MaŞ baÌi	LaÌ tm baÌi ğıõòc quan laòi sıÒ duòng khi ği công vuò xuôìng ğiòa phıõng dıÌng chân õÒ caìc traòm ngıòa. 	Coì thêÒ sıÒ duòng cho nhiêòm vuò ngıòa
+50051	Thãng maŞ ğao	LaÌ môòt loaòi chıìng phiêìu coì thêÒ cıõŞi ngıòa trong nıõìc.	Tiêu hoaÌn ngıòa sõ câìp
+50052	Thı tuâìn maŞ	LaÌ chıìng tıÌ thãng maŞ cho nhaÌ nıõìc câìp cho ngıõÌi cıõŞi ngıò thaÌnh thuòc. Coì thêÒ vıÌa cıõŞi ngıòa vıÌa tâìn công. 	Tiêu hoaÌn ngıòa trung câìp
+50053	Baòch tuâìn thı	LaÌ thı tıÌ ghi yêu câÌu ğaòt ğıõòc maŞ giaìp bãÌng chiêu thãng maŞ maÌ tiên nhân thõÌi côÒ ğaòi ğêÒ laòi  | Coì thêÒ sıÒ duòng chiêu maŞ thıõòng	Tiêu hoaÌn ngıòa cao câìp
+50054	CoÒ khô	CoÒ phõi khô duÌng cho ngıòa ãn.	Tı liêòu ngıòa sõ câìp
+50055	CaÌ rôìt	CoÌn goòi laÌ cuÒ caÒi ğıõÌng, rêŞ to vaÌ cıìng, coì maÌu vaÌng, cam, ğoÒ, duÌng laÌm ğôÌ ãn.	Tı liêòu ngıòa trung câìp
+50056	HôÌng sâm	LaÌ sâm khô maÌu ğoÒ, ngıòa cao câìp chiÒ ãn hôÌng sâm. 	Tı liêòu ngıòa cao câìp
+50057	Haò sõn ğôŞng sõn thaÒo	Coì thêÒ cıìu sôìng ngıòa sõ câìp  | Dıõòc thaÒo truyêÌn thuyêìt| KhiÒ vuÌng haò sõn ğôŞng ğang canh giıŞ.	Phuòc hôÌi ngıòa sõ câìp
+50058	Trung sõn ğôŞng sõn thaÒo	Coì thêÒ cıìu sôìng ngıòa trung câìp | Dıõòc thaÒo truyêÌn thuyêìt| KhiÒ vuÌng trung sõn ğôŞng ğang canh giıŞ.	Phuòc hôÌi ngıòa trung câìp
+50059	Thıõòng sõn ğôŞng sõn thaÒo	Coì thêÒ cıìu sôìng ngıòa cao câìp | Dıõòc thaÒo truyêÌn thuyêìt| KhiÒ vuÌng thıõòng sõn ğôŞng ğang canh giıŞ.	Phuòc hôÌi ngıòa cao câìp
+50060	Thı huâìn luyêòn kyŞ thuâòt maŞ thıõòng	LaÌ thı huâìn luyêòn ghi chiêu thıìc maŞ thıõòng, nêìu huâìn luyêòn thaÌnh công seŞ ğıõòc 1 ğiêÒm chiêu maŞ thıõòng |  Saìch ğoòc môòt lâÌn seŞ biêìn mâìt..	Coì thêÒ sıÒ duòng cho level 50 trõÒ lên
+			
+50083	Thãng maŞ quyêÌn	Nêìu caÒnh vêò binh õÒ chuôÌng ngıòa cho xem thiÌ coì thêÒ cıõŞi ngıòa miêŞn phiì.	Coì thêÒ sıÒ duòng cho level 10 trõÒ lên
+			
+50084	Ğaì phaì thaÌnh	Item câÌn thiêìt khi giaÒi phoìng sıò baÒo vêò cuÒa ğaì nhaÌ giam bãÌng sıìc maònh thõÌi côÒ ğaòi.	
+			
+50091	Cõm caì giêìc	Cõm ğãòc biêòt laÌm tıÌ caì giêìc | Coì muÌi ğãòc biêòt vaÌ khoì ãn	
+50092	Cõm caì cheìp vaÌng	Cõm ğãòc biêòt laÌm tıÌ caì cheìp | Coì muÌi ğãòc biêòt vaÌ khoì ãn	
+50093	Cõm caì hôÌi	Cõm laÌm tıÌ caì hôÌi tıõi, ãn mâìt seŞ tiêìc  | MaÌu ğoÒ bãìt mãìt	Tãng 10 ğiêÒm chiÒ sôì tuyêòt ğôìi vêÌ sıìc tâìn công.
+50094	Cõm caì trê	Cõm laÌm tıÌ caì trê, mõìi ğâÌu trông không ğeòp | SıÒ duòng nhiêÌu hıõng liêòu ğêÒ khıÒ muÌi ğâìt	Tãng 10 ğiêÒm chiÒ sôì tuyêòt ğôìi vêÌ sıìc phoÌng ngıò.
+			
+50100	Phaìo tre duÌng cho lêŞ hôòi	ĞôÌ duÌng trang triì lêŞ hôòi l Phaìo tre duÌng laÌm phaìo hoa  (maÌu tiìm)	
+50101	Phaìo tre duÌng cho lêŞ hôòi	ĞôÌ duÌng trang triì lêŞ hôòi l Phaìo tre duÌng laÌm phaìo hoa  (maÌu vaÌng)	
+50102	Phaìo tre duÌng cho lêŞ hôòi	ĞôÌ duÌng trang triì lêŞ hôòi l Phaìo tre duÌng laÌm phaìo hoa  (maÌu xanh da trõÌi)	
+50103	Phaìo tre duÌng cho lêŞ hôòi	ĞôÌ duÌng trang triì lêŞ hôòi l Phaìo tre duÌng laÌm phaìo hoa  (maÌu ğoÒ hiÌnh con quay)	
+50104	Phaìo tre duÌng cho lêŞ hôòi	ĞôÌ duÌng trang triì lêŞ hôòi l Phaìo tre duÌng laÌm phaìo hoa  (maÌu xanh laì hiÌnh con quay)	
+50105	Phaìo tre duÌng cho lêŞ hôòi	ĞôÌ duÌng trang triì lêŞ hôòi l Phaìo tre duÌng laÌm phaìo hoa  (maÌu trãìng hiÌnh con quay)	
+			
+50106	Phaìo tre duÌng cho lêŞ Giaìng sinh	Phaìo tre duÌng cho lêŞ Giaìng sinh  | Rıòc rõŞ hõn loaòi phaìp hoa biÌnh thıõÌng	
+50108	Con quay	ĞôÌ chõi quay quay cuÒa treÒ em laÌm bãÌng gôŞ.	Tâìn công võìi tiÒ lêòn nhâìt ğiònh 
+			
+50200	Tuìi ğıòng	Coì thêÒ mõÒ cıÒa haÌng riêng.	
+50300	Thı huâìn luyêòn kyŞ thuâòt	Tãng level master chiêu thıìc.	
+			
+50301	Binh phaìp thı tôn giaÒ	LaÌ môòt quyêÒn Binh phaìp th ğaòi diêòn cho bôò Vô kinh thâìt thı | LaÌm tãng ğôò thaÌnh thaòo vêÌ kyŞ thuâòt | Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50302	Binh phaìp thı nguŞ giaÒ	LaÌ môòt quyêÒn Binh phaìp thı ğaòi diêòn cho bôò Vô kinh thâìt thı | LaÌm tãng ğôò thaÌnh thaòo vêÌ kyŞ thuâòt | Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50303	NgıõÌi ğôòng viên	LaÌ môòt quyêÒn Binh phaìp thı ğaòi diêòn cho bôò Vô kinh thâìt thı | LaÌm tãng ğôò thaÌnh thaòo vêÌ kyŞ thuâòt | Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+			
+50304	KiÒ hiêòu tân thı	Binh phaìp thı ghi phıõng phaìp chiêìn ğâìu vaÌ bôì triì quân sıò cõ baÒn | Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn liên giõìi kiÌ. | Saìch ğoòc môòt lâÌn seŞ biêìn mâìt..	
+50305	Luyêìn binh thıòc kyì	Binh phaìp thı ghi phıõng phaìp chiêìn ğâìu vaÌ bôì triì quân sıò ğa daòng | Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn liên giõìi kiÌ. | Saìch ğoòc môòt lâÌn seŞ biêìn mâìt..	
+50306	VoŞ biì chiÒ	Binh phaìp thı ğıõòc biên soaòn bãÌng caìch tham khaÒo tâìt caÒ binh phaìp thı cuÒa liòch ğaòi | Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn liên giõìi kiÌ | Saìch ğoòc môòt lâÌn seŞ biêìn mâìt..	
+			
+50311	TâÌn ThuÒy ngıŞ phaìp	Coì thêÒ hoòc tiêìng noìi TâÌn ThuÒy Quôìc	
+50312	Thiên Taìo ngıŞ phaìp	Coì thêÒ hoòc tiêìng noìi Thiên Taìo Quôìc	
+50313	TrâÌn LôŞ ngıŞ phaìp	Coì thêÒ hoòc tiêìng noìi TrâÌn LôŞ Quôìc	
+			
+50307	Thı nhâòn nhiêòm vuò (sõ câìp)	Phaìt sinh nhiêòm vuò sõ câìp	
+50308	Thı nhâòn nhiêòm vuò (trung câìp)	Phaìt sinh nhiêòm vuò trung câìp	
+50309	Thı nhâòn nhiêòm vuò (cao câìp)	Phaìt sinh nhiêòm vuò cao câìp	
+50310	Thı nhâòn nhiêòm vuò (ğãòc câìp)	Phaìt sinh nhiêòm vuò ğãòc câìp	
+			
+50314	Ğôòn giaìp thuâòt thı	SıÒ duòng ğôòn giaìp câÌu coì thêÒ biêìn thaÌnh quaìi vâòt | LaÌm tãng ğôò thaÌnh thaòo vêÌ kyŞ thuâòt | Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	Coì thêÒ s duòng cho level 15 trõÒ lên
+50315	Ğôòn giaìp kyŞ thuâòt thı	SıÒ duòng ğôòn giaìp câÌu coì thêÒ biêìn thaÌnh quaìi vâòt | LaÌm tãng ğôò thaÌnh thaòo vêÌ kyŞ thuâòt | Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	Coì thêÒ sıÒ duòng cho level 25 trõÒ lên
+50316	Kiì vãn ğôòn giaìp thuâòt thı	SıÒ duòng ğôòn giaìp câÌu coì thêÒ biêìn thaÌnh quaìi vâòt | LaÌm tãng ğôò thaÌnh thaòo vêÌ kyŞ thuâòt | Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	Coì thêÒ sıÒ duòng cho level 35 trõÒ lên
+			
+50401	Thı huâìn luyêòn tam liên traÒm	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu tam liên traÒm cuÒa La Haìn quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50402	Thı huâìn luyêòn baìt phıõng phong vuŞ	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu baìt phıõng phong vuŞ cuÒa La Haìn quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50403	Thı huâìn luyêòn chiêìn quyÒ hôÌn	Ğıõòc sıÒ duòng êÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu chiêìn quyÒ hôÌn cuÒa La Haìn quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50404	Thı huâìn luyêòn kiêìm kinh	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu kiêìm kinh cuÒa La Haìn quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50405	Thı huâìn luyêòn ğaòn hoaÌn kiìch	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu ğaòn hoaÌn kiìch cuÒa La Haìn quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50416	Thı huâìn luyêòn khiì công traÒm	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu khiì công traÒm cuÒa Biêòt KyŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50417	Thı huâìn luyêòn kiìch sõn ğaÒ ngıu	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu kiìch sõn ğaÒ ngıu cuÒa Biêòt KyŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50418	Thı huâìn luyêòn ğaòi chinh giaìc	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu ğaòi chinh giaìc cuÒa Biêòt KyŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50419	Thı huâìn luyêòn thiên câòn thu	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu liên câòn thu cuÒa Biêòt KyŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50420	Thı huâìn luyêòn kiêìm phong	Ğıõòc sıÒ dujgn ğêÒ huâìn luyêòn chiêu kiêìm phong cuÒa Biêòt KyŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+			
+50431	Thı huâìn luyêòn aìm tâòp	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu aìm tâòp cuÒa Biì Saìt quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50432	Thı huâìn luyêòn cung thân ğaòn aÒnh	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu cung thâÌn ğaòn aÒnh cuÒa Biì Saìt quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50433	Thı huâìn luyêòn xa luân saìt	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu xa luân saìt cuÒa Biì Saìt quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50434	Thı huâìn luyêòn âÒn hiÌnh phaìp	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu âÒn hiÌnh phaìp cuÒa Biì Saìt quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50435	Thı huâìn luyêòn taìn công phâìn	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu taìn công phâìn cuÒa Biì Saìt quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50446	Thı huâìn luyêòn liên xaò	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu liên xaò cuÒa Trang LaŞo quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50447	Thı huâìn luyêòn quaìn kiìch thuâòt	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu quaìn kiìch thuâòt cuÒa Trang LaŞo quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50448	Thı huâìn luyêòn hoÒa taìo baì	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu hoÒa taìo baì cuÒa Trang LaŞo quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50449	Thı huâìn luyêòn thuâòt khinh công	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ thuâòt khinh công cuÒa Trang LaŞo quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50450	Thı huâìn luyêòn ğôòc khiì công	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu ğôòc khiì công cuÒa Trang LaŞo quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+			
+50461	Thı huâìn luyêòn sõÒ linh chiÒ	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu sõÒ linh chiÒ cuÒa HoaÌn VoŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50462	Thı huâìn luyêòn long quyêÌn baì	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu long quyêÌn baì cuÒa HoaÌn VoŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50463	Thı huâìn luyêòn quyÒ kiêìm	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu quyÒ kiêìm cuÒa HoaÌn VoŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50464	Thı huâìn luyêòn công baìo	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu công baìo cuÒa HoaÌn VoŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50465	Thı huâìn luyêòn chu maŞ giaìp	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu chu maŞ giaìp cuÒa HoaÌn VoŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50466	Thı huâìn luyêòn phaì phaìp thuâòt	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu phaì phaìp thuâòt cuÒa HoaÌn VoŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50476	Thı huâìn luyêòn ma linh	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu ma linh cuÒa Haìc MaŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50477	Thı huâìn luyêòn hoÒa diêòm bôìc	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu hoÒa diêòm bôìc cuÒa Haìc MaŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50478	Thı huâìn luyêòn vô aÒnh chinh	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu vô aÒnh chinh cuÒa Haìc MaŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50479	Thı huâìn luyêòn hãìc thâÌn thuÒy hôÒ	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu hãìc thâÌn thuÒy hôÒ cuÒa Haìc MaŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50480	Thı huâìn luyêòn ğâÌu tuòc ma linh	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu ğâÌu tuòc ma linh cuÒa Haìc MaŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50481	Thı huâìn luyêòn maŞ hoaÌn kiìch	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu maŞ hoaÌn kiìch cuÒa Haìc MaŞ quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+			
+50491	Thı huâìn luyêòn phi baì phuÌ	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu phi baì phuÌ cuÒa Thiên Long quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50492	Thı huâìn luyêòn long baì sõn	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu long baì sõn cuÒa Thiên Long quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50493	Thı huâìn luyêòn baì long bôìc	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu baì long bôìc cuÒa Thiên Long quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50494	Thı huâìn luyêòn hôÒ thân	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu hôÒ thân cuÒa Thiên Long quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50495	Thı huâìn luyêòn phaÒn công	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu phaÒn công cuÒa Thiên Long quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50496	Thı huâìn luyêòn khiì thiên ğaòi công	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu khiì thiên ğaòi công cuÒa Thiên Long quân |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50506	Thı huâìn luyêòn lôi chiêìn linh	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu lôi chiêìn linh cuÒa Tia Chõìp quân  |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50507	Thı huâìn luyêòn sâìm chõìp	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu sâìm chõìp cuÒa Tia Chõìp quân  |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50508	Thı huâìn luyêòn bôìc lôi kiìch	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu bôìc lôi kiìch cuÒa Tia Chõìp quân  |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50509	Thı huâìn luyêòn chinh nghiêòp nhân	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu chinh nghiêòp nhân cuÒa Tia Chõìp quân  |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+50510	Thı huâìn luyêòn khoaìi tôìc	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ chiêu lôi chiêìn khoaìi tôìc Tia Chõìp quân  |Saìch ğoòc mt lâÌn seŞ biêìn mâìt.	
+50511	Thı huâìn luyêòn thuâòt tãng lıòc	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn triÌnh ğôò master vêÌ thuâòt tãng lıòc cuÒa Tia Chõìp quân  |Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+			
+50512	NguŞ traìi thaòch	Loaòi ğaì cho thâìy môòt thêì giõìi mõìi vêÌ tâìt caÒ caìc chiêu thıìc maÌ baòn coì bãÌng caìch mõÒ rôòng tâm nhaŞn.	Coì thêÒ ğaòt triÌnh ğôò grand-master
+50513	HôÌn thaòch	Loaòi ğaì duÌng laÌm châìt xuìc taìc ğêÒ coì ğıõòc caìc chiêu cao hõn môòt chuìt nıŞa sau khi ğaŞ mõÒ rôòng tâm nhaŞn.	Coì thêÒ ğaòt huâìn luyêòn khoìa triÌnh ğôò grand-master
+			
+50600	Thı huâìn luyêòn khai thaìc moÒ	Ğıõòc sıÒ duòng ğêÒ huâìn luyêòn khai thaìc moÒ | Saìch ğoòc môòt lâÌn seŞ biêìn mâìt.	
+			
+50601	Kim cıõng thô	LaÌ loaòi khoaìng saÒn coì thêÒ tinh chêì thaÌnh kim cıõng qua quaì triÌnh nâìu chaÒy kim cıõng.	
+50602	Biì ğoÒ thô	_	
+50603	Hoìa thaòch môòc thô	LaÌ loaòi khoaìng saÒn coì thêÒ tinh chêì thaÌnh kim cıõng qua quaì triÌnh nâìu chaÒy hoìa thaòch môòc.	
+50604	ĞôÌng ğoÒ thô	LaÌ loaòi khoaìng saÒn coì thêÒ tinh chêì thaÌnh kim cıõng qua quaì triÌnh nâìu chaÒy ğôÌng ğoÒ.	
+50605	Baòc thô	LaÌ loaòi khoaìng saÒn coì thêÒ tinh chêì thaÌnh kim cıõng qua quaì triÌnh nâìu chaÒy baòc.	
+50606	VaÌng thô	LaÌ loaòi khoaìng saÒn coì thêÒ tinh chêì thaÌnh kim cıõng qua quaì triÌnh nâìu chaÒy vaÌng.	
+50607	CâÒm thaòch thô	LaÌ loaòi khoaìng saÒn coì thêÒ tinh chêì thaÌnh kim cıõng qua quaì triÌnh nâìu chaÒy câÒm thaòch.	
+50608	GôŞ mun	LaÌ loaòi khoaìng saÒn coì thêÒ tinh chêì thaÌnh kim cıõng qua quaì triÌnh nâìu chaÒy gôŞ mun.	
+50609	MaÒnh ngoòc trai	LaÌ loaòi khoaìng saÒn coì thêÒ tinh chêì thaÌnh kim cıõng qua quaì triÌnh nâìu chaÒy ngoòc trai.	
+50610	Baòch kim thô	LaÌ loaòi khoaìng saÒn coì thêÒ tinh chêì thaÌnh kim cıõng qua quaì triÌnh nâìu chaÒy baòch kim.	
+50611	ThuÒy tinh thô	LaÌ loaòi khoaìng saÒn coì thêÒ tinh chêì thaÌnh kim cıõng qua quaì triÌnh nâìu chaÒy thuÒy tinh.	
+50612	ThuÒy tinh tiìm thô	LaÌ loaòi khoaìng saÒn coì thêÒ tinh chêì thaÌnh kim cıõng qua quaì triÌnh nâìu chaÒy thuÒy tinh tiìm.	
+50613	Thiên lam thaòch thô	LaÌ loaòi khoaìng saÒn coì thêÒ tinh chêì thaÌnh kim cıõng qua quaì triÌnh nâìu chaÒy thiên lam thaòch.	
+			
+50621	Kim cıõng	LaÌ môòt laòi ğaì quyì ğıìng ğâÌu trong caìc loaòi ğaì quyì, tãng thêm item ğôÌ trang sıìc.	
+50622	Biì ğoÒ	_	
+50623	Hoìa thaòch môòc	LaÌ loaòi gôŞ quyì biò chôn trong loÌng ğâìt lâu nãm vaÌ hoìa thaòch | Coì thêÒ duÌng laÌm ğôÌ trang sıìc bãÌng gôŞ	
+50624	ĞôÌng ğoÒ	CoÌn goòi laÌ ğôÌng, laÌ kim loaòi duÌng laÌm tiêÌn xu | Coì thêÒ duÌng laÌm ğôÌ trang sıìc bãÌng ğôÌng	
+50625	Baòc	LaÌ kim loaòi quyì coì aình baòc | Coì thêÒ duÌng laÌm ğôÌ trang sıìc bãÌng baòc	
+50626	VaÌng	LaÌ kim loaòi quyì coì aình vaÌng | Coì thêÒ duÌng laÌm ğôÌ trang sıìc bãÌng vaÌng	
+50627	CâÒm thaòch	LaÌ môòt loaòi khoaìng saÒn thuôòc ğan taÌ tinh hêò, coÌn goòi laÌ phiÒ thuìy | Coì thêÒ duÌng laÌm ğôÌ trang sıìc bãÌng câÒm thaòch	
+50628	GôŞ mun	LaÌ loaòi gôŞ chãìc vaÌ nheò ğıõòc duÌng tıÌ ğõÌi xıa | Coì thêÒ duÌng laÌm ğôÌ trang sıìc bãÌng gôŞ mun	
+50629	MaÒnh ngoòc trai	LaÌ loaòi ğaì quyì coì thaÌnh phâÌn chuÒ yêìu laÌ can xi thaìn toan lâìy tıÌ ngoòc trai | Coì thêÒ duÌng laÌm ğôÌ trang sıìc bãÌng ngoòc trai	
+50630	Baòch kim	LaÌ kim loaòi quyì coì aình baòc, cıìng hõn vaÌng, deÒo vaÌ dêŞ daìt moÒng | Coì thêÒ duÌng laÌm ğôÌ trang sıìc bãÌng baòch kim	
+50631	ThuÒy tinh	CoÌn goòi laÌ  tinh thêÒ coì hiÌnh daòng kêìt tinh roŞ raÌng | Coì thêÒ duÌng laÌm ğôÌ trang sıìc bãÌng thuÒy tinh	
+50632	ThuÒy tinh tiìm	LaÌ thuÒy tinh coì maÌu tiìm | Coì thêÒ duÌng laÌm ğôÌ trang sıìc bãÌng thuÒy tinh tiìm	
+50633	Thiên lam thaòch	LaÌ loaòi ğaì quyì ğıõòc kêìt tinh tıÌ nhıŞng gioòt mıa không phaÒi rõi xuôìng tıÌ mây | Coì thêÒ duÌng laÌm ğôÌ trang sıìc bãÌng thiên lam thaòch	
+			
+50701	Hoa ğaÌo tiên	Hoa cuÒa cây ğaÌo tiên maÌ ngıõÌi xıa trôÌng thaÌnh rıÌng | Dıõòc liêòu tôìt laÌm ğeòp da	DuÌng cho nghiên cıìu cuÒa Thêì KyÌ Lâòp
+50702	Hoa chuông	LaÌ loaòi coÒ sôìng lâu nãm, loaÌi hoa naÌy coÌn coì yì nghiŞa laÌ 'tiÌnh yêu viŞnh cıÒu', ğıõòc duÌng nhiêÌu trong ğông y. | Dıõòc liêòu triò bêònh ho, caÒm cuìm, hen xuyêŞn	DuÌng cho nghiên cıìu cuÒa Thêì KyÌ Lâòp
+50703	Hoa cuÒa cây hôÌng	Tuòc truyêÌn rãÌng phuò nıŞ lâìy hoa cuÒa cây hôÌng laÌm xây chuyêÌn ğeo vaÌo thiÌ seŞ sinh con trai | Dıõòc liêòu triò caìc chıìng viêm nhiêŞm câìp tiình, maŞn tiình.	DuÌng cho nghiên cıìu cuÒa Thêì KyÌ Lâòp
+50704	Thaòch xıõng bôÌ	LaÌ môòt loaòi thıòc vâòt thân buòi sôìng dai coì hiÌnh daòng giôìng cây sâm nuìi thuôòc hoò nhân sâm | Dıõòc liêòu coì công duòng triò bêònh tiêÒu ğıõÌng	DuÌng cho nghiên cıìu cuÒa Thêì KyÌ Lâòp
+50705	Thaòch xıõng bôÌ	LaÌ loaòi coÒ thuôòc nhoìm cây môòt laì mâÌm sôìng lâu nãm | Dıõòc liêòu coì iìch trong viêòc kiìch thiìch naŞo bôò	DuÌng cho nghiên cıìu cuÒa Thêì KyÌ Lâòp
+50706	Nâìm linh chi	LaÌ ğıõòc liêòu quyì duÌng trong ğông y, coÌn ğıõòc duÌng laÌm ğôÌ trang sıìc, coÌn goòi laÌ bâìt laŞo thaÒo | Dıõòc liêòu coì công duòng triò chıìng mâìt nguÒ	DuÌng cho nghiên cıìu cuÒa Thêì KyÌ Lâòp
+50707	Vaòn bêònh thaÒo	LaÌ loaòi thıòc vâòt thuôòc nhoìm cây hai laì mâÌm, thuôòc hoò ğôŞ quyên. | Dıõòc liêòu coì công duòng triò bêònh suy nhıõòc thâÌn kinh	DuÌng cho nghiên cıìu cuÒa Thêì KyÌ Lâòp
+50708	Dâu tãÌm nuìi	Thıìc ãn cuÒa tãÌm duÌng laÌm nguyên liêòu chêì taòo ğôÌ duÌng - ğiêu khãìc - lãìp raìp, voÒ cây duÌng laÌm thuôìc | Dıõòc liêòu triò bêònh beìo phiÌ	DuÌng cho nghiên cıìu cuÒa Thêì KyÌ Lâòp
+50709	BôÌ công anh	BôÌ công anh thuôòc hoò hoa cuìc, coÌn goòi laÌ hoa maÌo gaÌ | Dıõòc liêòu coì hiêòu quaÒ ğiêÌu triò bêònh viêm hoòng	DuÌng cho nghiên cıìu cuÒa Thêì KyÌ Lâòp
+50710	Haòt hoa rum	Haòt hoa rum thuôòc hoò hoa hôÌng | Dıõòc liêòu coì hiêòu quaÒ trong viêòc ğiêÌu triò chıìng loaŞng xıõng 	DuÌng cho nghiên cıìu cuÒa Thêì KyÌ Lâòp
+50711	Taìo taÌu	QuaÒ taìo taÌu. | Dıõòc liêòu coì hiêòu quaÒ trong viêòc ğiêÌu triò chıìng loaŞng xıõng	DuÌng cho nghiên cıìu cuÒa Thêì KyÌ Lâòp
+50712	Tam chi cıÒu diêòp thaÒo	Thuôòc hoò cây hoaÌng liên gai, coÌn coì tên laÌ âm dıõng hoãìc | Dıõòc liêòu coì công duòng triò bêònh tiêÒu ğıõÌng	DuÌng cho nghiên cıìu cuÒa Thêì KyÌ Lâòp
+			
+50721	Hoa ğaÌo tiên	Hoa cuÒa cây ğaÌo tiên maÌ ngıõÌi xıa trôÌng thaÌnh rıÌng | Dıõòc liêòu tôìt laÌm ğeòp da	DuÌng ğêÒ baÌo chêì thuôìc
+50722	Hoa chuông	LaÌ loaòi coÒ sôìng lâu nãm, loaÌi hoa naÌy coÌn coì yì nghiŞa laÌ 'tiÌnh yêu viŞnh cıÒu', ğıõòc duÌng nhiêÌu trong ğông y. | Dıõòc liêòu triò bêònh ho, caÒm cuìm, hen xuyêŞn	DuÌng ğêÒ baÌo chêì thuôìc
+50723	Hoa cuÒa cây hôÌng	Tuòc truyêÌn rãÌng phuò nıŞ lâìy hoa cuÒa cây hôÌng laÌm xây chuyêÌn ğeo vaÌo thiÌ seŞ sinh con trai | Dıõòc liêòu triò caìc chıìng viêm nhiêŞm câìp tiình, maŞn tiình.	DuÌng ğêÒ baÌo chêì thuôìc
+50724	Thaòch xıõng bôÌ gai	LaÌ môòt loaòi thıòc vâòt thân buòi sôìng dai coì hiÌnh daòng giôìng cây sâm nuìi thuôòc hoò nhân sâm | Dıõòc liêòu coì công duòng triò bêònh tiêÒu ğıõÌng	DuÌng ğêÒ baÌo chêì thuôìc
+50725	Thaòch xıõng bôÌ	LaÌ loaòi coÒ thuôòc nhoìm cây môòt laì mâÌm sôìng lâu nãm | Dıõòc liêòu coì iìch trong viêòc kiìch thiìch naŞo bôò	DuÌng ğêÒ baÌo chêì thuôìc
+50726	Nâìm linh chi	LaÌ ğıõòc liêòu quyì duÌng trong ğông y, coÌn ğıõòc duÌng laÌm ğôÌ trang sıìc, coÌn goòi laÌ bâìt laŞo thaÒo | Dıõòc liêòu coì công duòng triò chıìng mâìt nguÒ	DuÌng ğêÒ baÌo chêì thuôìc
+50727	Vaòn bêònh thaÒo	LaÌ loaòi thıòc vâòt thuôòc nhoìm cây hai laì mâÌm, thuôòc hoò ğôŞ quyên. | Dıõòc liêòu coì công duòng triò bêònh suy nhıõòc thâÌn kinh	DuÌng ğêÒ baÌo chêì thuôìc
+50728	Dâu tãÌm nuìi	Thıìc ãn cuÒa tãÌm duÌng laÌm nguyên liêòu chêì taòo ğôÌ duÌng - ğiêu khãìc - lãìp raìp, voÒ cây duÌng laÌm thuôìc | Dıõòc liêòu triò bêònh beìo phiÌ	DuÌng ğêÒ baÌo chêì thuôìc
+50729	BôÌ công anh	BôÌ công anh thuôòc hoò hoa cuìc, coÌn goòi laÌ hoa maÌo gaÌ | Dıõòc liêòu coì hiêòu quaÒ ğiêÌu triò bêònh viêm hoòng	DuÌng ğêÒ baÌo chêì thuôìc
+50730	Haòt hoa rum	Haòt hoa rum thuôòc hoò hoa hôÌng | Dıõòc liêòu coì hiêòu quaÒ trong viêòc ğiêÌu triò chıìng loaŞng xıõng 	DuÌng ğêÒ baÌo chêì thuôìc
+50731	Taìo taÌu	QuaÒ taìo taÌu. | Dıõòc liêòu coì hiêòu quaÒ trong viêòc ğiêÌu triò chıìng loaŞng xıõng	DuÌng ğêÒ baÌo chêì thuôìc
+50732	Tam chi cıÒu diêòp thaÒo	Thuôòc hoò cây hoaÌng liên gai, coÌn coì tên laÌ âm dıõng hoãìc | Dıõòc liêòu coì công duòng triò bêònh tiêÒu ğıõÌng	DuÌng ğêÒ baÌo chêì thuôìc
+			
+50801	Nıõìc hoÌa ğaÌo tiên	Nıõìc eìp hoa ğaÌo tiên	
+50802	Nıõìc hoa chuông	Nıõìc eìp hoa chuông	STR +5 
+50803	Nıõìc hoa cây hôÌng	Nıõìc eìp hoa cây hôÌng	
+50804	Nıõìc thaòch xıõng bôÌ gai	Nıõìc eìp thaòch xıõng bôÌ	
+50805	Nıõìc thaòch xıõng bôÌ 	Nıõìc eìp thaòch xıõng bôÌ	
+50806	Nıõìc nâìm linh chi 	Nıõìc eìp nâìm linh chi	
+50807	Vaòn bêònh thaÒo nıõìc 	Nıõìc eìp vaòn bêònh thaÒo	
+50808	Nıõìc dâu tãÌm nuìi 	Nıõìc eìp dâu tãÌm nuìi	
+50809	Nıõìc bôÌ công anh 	Nıõìc eìp bôÌ công anh	
+50810	Nıõìc haòt hoa rum 	Nıõìc eìp haòt hoa rum	
+50811	Nıõìc taìo taÌu 	Nıõìc eìp taìo taÌu	
+50812	Nıõìc tam chi cıÒu diêòp thaÒo 	Nıõìc eìp tam chi cıÒu diêòp thaÒo	
+50813	HoaÌn tâm diòch 	Thuôìc baÌo chêì tıÌ thaòch xıõng bôÌ cho vaÌo nıõìc hoa ğaÌo tiên	TiÒ l thông quan +10%  ( 3 phuìt)
+50814	TrıÌ ğôòc diòch 	Thuôìc baÌo chêì tıÌ thaòch xıõng bôÌ cho vaÌo nıõìc hoa chuông	TiÒ lêò tâìn công chiì maòng +10%  ( 3 phuìt)
+50815	Nıõìc bôÒ hoaÌn 	Thuôìc baÌo chêì tıÌ nâìm linh chi cho vaÌo nıõìc hoa cây hôÌng	
+50816	Nıõìc liŞnh baìo 	Thuôìc baÌo chêì tıÌ nâìm linh chi cho vaÌo nıõìc thaòch xıõng bôÌ gai	
+50817	Chinh hoaòt tâm diòch 	Thuôìc baÌo chêì tıÌ vaòn bêònh thaÒo cho vaÌo nıõìc hoaòt tâm diòch	Sıìc tâìn công +50
+50818	Chinh trıÌ ğôòc diòch 	Thuôìc baÌo chêì tıÌ vaòn bêònh thaÒo cho vaÌo nıõìc thaòch xıõng bôÌ gai	Sıìc phoÌng ngıò +70
+50819	Chinh baìo hoaÌn diòch 	Thuôìc baÌo chêì tıÌ dâu tãÌm nuìi cho vaÌo nıõìc bôÒ hoaÌn	Chôìng laòi pheìp thuâòt +10%
+50820	Chinh linh baÒo diòch 	Thuôìc baÌo chêì tıÌ dâu tãÌm nuìi cho vaÌo nıõìc liŞnh baìo	
+			
+50821	Nıõìc maÌu ğoÒ  	LaÌm chiìn ğôòc dıõòc maìu ğêÒ laÌm thuôìc bôÒ khi chiêìn ğâìu | ViÌ ğıc laÌm chiìn nên môŞi loaòi thuôìc coì công duòng khaìc nhau	
+50822	Nıõìc maÌu hôÌng  	LaÌm chiìn hoaòt tâm dıõòc ğêÒ laÌm thuôìc bôÒ chiêìn ğâìu |  ViÌ ğıõòc laÌm chiìn nên môŞi loaòi thuôìc coì công duòng khaìc nhau	
+50823	Nıõìc maÌu vaÌng  	LaÌm chiìn chinh linh baÒo dıõòc ğêÒ laÌm thuôìc bôÒ chiêìn ğâìu |  ViÌ ğıõòc laÌm chiìn nên môŞi loaòi thuôìc coì công duòng khaìc nhau	
+50824	Nıõìc maÌu xanh laì  	LaÌm chiìn chinh bôÒ hoaÌn dıõòc ğêÒ laÌm thuôìc bôÒ chiêìn ğâìu |  ViÌ ğıõòc laÌm chiìn nên môŞi loaòi thuôìc coì công duòng khaìc nhau	
+50825	Nıõìc maÌu xanh dıõng  	LaÌm chiìn chinh hoaòt tâm dıõòc ğêÒ laÌm thuôìc bôÒ chiêìn ğâìu |  ViÌ ğıõòc laÌm chiìn nên môŞi loaòi thuôìc coì công duòng khaìc nhau	
+50826	Nıõìc maÌu trãìng  	LaÌm chiìn chinh ğôòc dıõòc maìu ğêÒ laÌm thuôìc bôÒ chiêìn ğâìu |  ViÌ ğıõòc laÌm chiìn nên môŞi loaòi thuôìc coì công duòng khaìc nhau	
+			
+50901	BiÌnh thuôìc rôŞng	BiÌnh thuôìc rôŞng duÌng khi baÌo chêì thuôìc	
+			
+50902	Thı nhâòp môn thuâòt chêì taòo 		
+50903	Thı sıÒ duòng thuâòt chêì taòo 		
+50904	Thı sıÒ duòng thuâòt chêì taòo câìp cao 		
+			
+50905	HoaÌn tâm diòch chêì taòo phaìp 		
+50906	TrıÌ ğôòc diòch chêì taòo phaìp 		
+50907	Baìo hoaÌn diòch chêì taòo phaìp 		
+50908	Linh baÒo diòch chêì taòo phaìp 		
+50909	Chinh trıÌ ğôòc chêì taòo phaìp 		
+50910	Hoaòt tâm diòch chêì taòo phaìp 		
+			
+60001	HuÌng ğaÒm 		
+60002	Thı tiêìn cıÒ ngıõÌi giıŞ kho 		
+60003	Chıìng phiêìu anh huÌng 		
+			
+70001	NıŞ thâÌn nhân hiÌnh 		
+70002	BaÌn tay thıì ba 		
+70003	Luòc ğao 	LaÌ môòt quyêÒn Binh phaìp thı ğaòi diêòn cho bôò Vô kinh thâìt thı | LaÌ môòt trong nhıŞng cuôìn saìch vêÌ binh hoòc cuÒa Trang Thaìi Công | 	Sau khi sıÒ duòng, khi trõÒ thaÌnh thuÒ liŞnh bãng ğaÒng, baÒn thân vaÌ thaÌnh viên bãng ğaÒng seŞ ğıõòc thang thêm 30% chiÒ  sôì kinh nghiêòm.
+70004	Huân chıõng câÌn cuÌ 	LaÌ phâÌn thıõÒng daÌnh cho ngıõÌi thâòt siêng nãng vaÌ thaÌnh thâòt	Khi sıÒ duòng coì thêÒ lâìy thêm nhiêÌu chiÒ sôì kinh nghiêòm. |Sau khi ğeo vaÌo không thêÒ thaìo ra.
+70005	NhâŞn kinh nghiêòm 	LaÌ chiêìc nhâŞn trang sıìc thô sõ maÌ caìc anh huÌng thõÌi côÒ ğaòi tıÌng duÌng ğıõòc truyêÌn laòi ğêìn bây giõÌ. 	Khi sıÒ duòng coì thêÒ lâìy thêm nhiêÌu chiÒ sôì kinh nghiêòm. |Sau khi ğeo vaÌo không thêÒ thaìo ra.
+70006	NhâŞn ngôn ngıŞ 	LaÌ chiêìc nhâŞn ğıõòc laÌm tıÌ luìc TêÌ Quôìc mõìi biò phân chia thaÌnh ba nıõìc Thiên Taìo, TrâÌn LôŞ, TâÌn ThuÒy nhãÌm thôìng nhâìt ngôn ngıŞ ba nıõìc. ThıõÌng duÌng trong ngoaòi giao, nhıng hiêòn nay nhâŞn naÌy không coÌn nhiêÌu. 	Coì thêÒ noìi chuyêòn võìi ngıõÌi thuôòc TêÌ Quôìc khaìc.
+70007	NhâŞn di ğôòng 		
+70008	Baòch kyÌ 	Laì cõÌ maÌu trãìng coì yì nghiŞa laÌ ğâÌu haÌng. Ğôi khi coì vêìt maÌu ğoÒ õÒ giıŞa laì cõÌ ğ biêÒu thiò coì ngıõÌi biò thıõng nãòng. 	Ngãn chãòn sıò tâìn công cuÒa quaìi vâòt õÒ xung quanh.
+70009	Hôòp baÒo vâòt 		
+70010	Phiêìu sıÒ duòng kho 		
+70011	Thuôìc nıõìc tãng ğãÒng câìp 		
+70012	Nıõìc mãìt nıŞ thâÌn 	Nıõìc mãìt cuÒa vuŞ nıŞ Thaìi HoÌa thõÌi côÒ ğaòi an uÒi linh hôÌn cuÒa caìc chiêìn siŞ gãòp nguy hiêÒm. 	Khi ğang sıÒ duòng seŞ giaÒm tiÒ lêò tôÒn thâìt chiÒ sôì kinh nghiêòm khi chêìt.
+70013	Nıõìc mãìt nıŞ thâÌn khôÒng lôÌ 		
+70014	Ğan dıõòc maìu 	LaÌ viên hoaÌn dıõòc ğıõòc cô ğãòc tıÌ maìu ğoÒ cuÒa loaÌi hıu quyì, tin ğôÌn rãÌng thuôìc naÌy coì taìc duòng taòo ra aÒo giaìc. 	Coì thêÒ chuyêÒn 1 ğiêÒm chiêu thıìc
+70015	Buìt tıò chêìt 		
+70020	ĞaÌo hoa tıÒu	Rıõòu laÌm tıÌ hoa ğaÌo tiên 	Uôìng vaÌo seŞ hôÌi phuòc thêÒ lıòc tıìc thiÌ 
+70024	ChuôŞi haòt chuìc phuìc	TruyêÌn thuyêìt kêÒ rãÌng ğây laÌ chuôŞi haòt chuìc phuìc do thâÌn ban tãòng	Khi thuôòc tiình cuÒa item coì 4 loaòi thiÌ ğıõòc tãng thêm 1 loaòi nıŞa. 
+70027	Giâìy ghi chuì vêÌ vuŞ khiì	TruyêÌn thuyêìt kêÒ rãÌng ğây laÌ tõÌ giâìy ghi cheìp vêÌ vuŞ khiì do ngıõÌi buôn baìn vuŞ khiì ğêÒ laòi | Tuòc truyêÌn rãÌng trên giâìy coì ghi biì quyêìt caÒi thiêòn vuŞ khiì. 	Khi caÒi thiêòn item ğãÒng câìp 4 lên ğãÒng câìp 5 seŞ thaÌnh công 100%.
+70035	Vaòn niên haÌn thiêìt	LaÌ loaòi thiêìt tôìt nhâìt trong caìc loaòi thiêìt ğıõòc tiÌm thâìy õÒ vuÌng cao nguyên râìt cao | SıÒ duòng thı chuìc phuìc ğêÒ taòo ra thı chuìc phuìc cuÒa voŞ thâÌn. 	
+70037	Mang giaìc thı	Bôò saìch gôÌm 2 cuôìn, ngıõÌi ğaŞ ğoòc saìch naÌy seŞ biò quên hêìt caìc chiêu thıìc	Coì thêÒ chuyêÒn 1 ğiêÒm chiêu thıìc chiêìn dâìu.
+70038	Aìo khoaìc duŞng khiì 	Caìc chiêìn siŞ anh huÌng thõÌi côÒ ğaòi mãc aìo khoaìc maÌu ğêÒ gây sıò chuì yì tâìn công cuÒa ğiòch ğêÒ ğoò sıìc võìi miÌnh. 	Goòi quaìi vâòt xung quanh miÌnh ğêìn. SıÒ duòng 1 lâÌn.
+70039	Biì chiêìn thı nha công 	LaÌ biì chiêìn thı coì linh hôÌng cuÒa thõò reÌn, laÌm tãng tiÒ lêò caÒi thiêòn khi caÒi thiêòn item	
+70040	Sıò côì châìp cuÒa huÌng quyÒ 	GiaÒm môòt nıÒa lıõòng moìn ãn mang laòi sıìc deÒo dai	
+70043	Gãng tay cuÒa tên cıõìp 	Gãng tay cuÒa tên cıõìp lıÌng danh trõÌi côÒ ğaòi	Khi sıÒ duòng, tiÒ lêò drop item seŞ tãng lên.
+70047	NhâŞn ngôn ngıŞ (mâŞu)	Coì thêÒ noìi chuyêòn võìi ngıõÌi õÒ nıõìc TêÌ Quôìc khaìc	
+70048	Aìo khoaìc cuÒa nhaÌ tu khôÒ haònh 	Aìo choaÌng ğıõòc nhıŞng ngıõÌi chaòy trôìn thıõÌng sıÒ duòng, giaì triò cuÒa noì không thêÒ tiình ğıõòc	Khi sıÒ duòng, seŞ dâìu ğıõòc chiÒ sôì thiêòn aìc cuÒa miÌnh.
+70049	NhâŞn may mãìn 	NhâŞn coì khaìc chıŞ ğıõòc thâÌn rôÌng hôò maòng	Khi sıÒ duòng, seŞ ngãn chãòn ğıõòc sıò drop item khi biò chêìt.
+70050	Chıìng phiêìu cuÒa tiên vıõng 	Ai coì chıìng phiêìu cuÒa tiên vıõng thõÌi côÒ ğaòi seŞ coì quyêÌn lıòc to lõìn trong tay	Khi sıÒ duòng sıò hôÌi phuòc chiÒ sôì thiêòn aìc seŞ nhah gâìp ğôi.
+70051	Gãng tay cuÒa tiên vıõng 	Ai coì môòt trong caìc di vâòt cuÒa tiên vıõng thõÌi côÒ ğaòi seŞ coì sıìc maònh vô biên	Sau khi sıÒ duòng, sıò hôÌi phuòc chiÒ sôì thiêòn aìc khi bãìn seŞ nhanh gâìp ğôi.
+70052	Siêu tai phuÌ	Laì buÌa cuÒa nhaÌ Phâòt, nêìu uìp xuôìng thiÌ seŞ ngãn chãòn ğıõòc ğiêÌm dıŞ.	
+70053	Taòi vãn ğaòi kêìt phuÌ 	Laì buÌa cuÒa nhaÌ Phâòt, nêìu uìp xuôìng thiÌ seŞ ngãn chãòn ğıõòc ğiêÌm dıŞ.	
+70054	Tam tai dıò phoÌng phuÌ 	Laì buÌa cuÒa nhaÌ Phâòt, nêìu uìp xuôìng thiÌ seŞ ngãn chãòn ğıõòc ğiêÌm dıŞ.	
+			
+70102	Tiên phong	Khi sıÒ duòng seŞ giaÒm chiÒ sôì aìc | tãng chiÒ sôì thiêòn 	
+			
+70104	Ğôòn giaìp cıÒu	Coì thêÒ biêìn thaÌnh quaìi vâòt giôìng nhı hiÌnh khãìc trên haòt ngoòc 	
+70105	Ğôòn giaìp cıÒu	Coì thêÒ biêìn thaÌnh quaìi vâòt giôìng nhı hiÌnh khãìc trên haòt ngoòc 	
+70106	Ğôòn giaìp cıÒu	Coì thêÒ biêìn thaÌnh quaìi vâòt giôìng nhı hiÌnh khãìc trên haòt ngoòc 	
+70107	Ğôòn giaìp cıÒu	Coì thêÒ biêìn thaÌnh quaìi vâòt giôìng nhı hiÌnh khãìc trên haòt ngoòc 	
+			
+70201	Thuôìc phai maÌu	LaÌm maÌu toìc trõÒ laòi nhı maÌu toìc nguyên thuÒy. Toìc ğaŞ phai maÌu coì thêÒ nhuôòm laòi ngay	
+70202	Thuôìc nhuôòm toìc (trãìng)	Nhuôòm toìc maÌu trãìng |Coì thêÒ nhuôòm toìc võìi chu kiÌ laÌ 3 level 	
+70203	Thuôìc nhuôòm toìc (vaÌng)	Nhuôòm toìc maÌu vaÌng |Coì thêÒ nhuôòm toìc võìi chu kiÌ laÌ 3 level 	
+70204	Thuôìc nhuôòm toìc (ğoÒ)	Nhuôòm toìc maÌu ğoÒ |Coì thêÒ nhuôòm toìc võìi chu kiÌ laÌ 3 level 	
+70205	Thuôìc nhuôòm toìc (nâu)	Nhuôòm toìc maÌu nâu |Coì thêÒ nhuôòm toìc võìi chu kiÌ laÌ 3 level 	
+70206	Thuôìc nhuôòm toìc (ğen)	Nhuôòm toìc maÌu ğen |Coì thêÒ nhuôòm toìc võìi chu kiÌ laÌ 3 level 	
+			
+70301	NhâŞn ğôi	LaÌ nhâŞn duÌng cho hai ngıõÌi ğang yêu nhau ğêÒ chıìng minh tiÌnh yêu daÌnh cho nhau	Item câÌn cho ğaìm cıõìi
+70302	NhâŞn cıõìi	NhâŞn cıõìi ğıõòc sıÒ duòng nhı laÌ giâìy hôn thuì	khi sıÒ duòng seŞ ğıõòc võò / chôÌng warp
+			
+			
+71001	Chuìa nhaŞn thuâòt thı 	Khi huâìn luyêòn chiêu thıìc thâìt baòi coì thêÒ giaÒi hêìt tâÒu hoÒa nhâòp ma	
+71002	Biì chiêìn thı mang giaìc 	LaÌm quên triì nhõì vaÌ caìc chiêu thıìc cuÒa miÌnh	Coì thêÒ lıòa choòn laòi quân ğôòi
+71003	TaÌi liêòu sõ khai hoìa chiêu thıìc 	Sõ khai hoìa ğiêÒm chiêu thıìc	
+71004	ThâÌn rôÌng phuÌ hôò 	Khi sıÒ duòng seŞ ngãn chãòn ğıõòc 100% sıò giaÒm chiÒ sôì kinh nghiêòm 	
+71005	NhâŞn ngôn ngıŞ 	Coì thêÒ sıÒ duòng ngôn ngıŞ cuÒa toaÌn TêÌ Quôìc.	
+71006	NhâŞn ngôn ngıŞ 	Coì thêÒ sıÒ duòng ngôn ngıŞ cuÒa toaÌn TêÌ Quôìc.	
+71007	NhâŞn ngôn ngıŞ 	Coì thêÒ sıÒ duòng ngôn ngıŞ cuÒa toaÌn TêÌ Quôìc.	
+71008	Nguyêòt san ngı tâm 	TiÒ lêò bãìt ğıõòc caì cao câìp tãng gâìp ğôi.	
+71009	QuyêÌn mõÒ rôòng nhaÌ kho 	Tãng nhaÌ kho 1 gian lên thaÌnh 3 gian	
+71010	BaÌn tay thıì 3 	Khi bãìn quaìi vâòt seŞ tıò ğôòng nhãòt ğıõòc tiêÌn rõi xuôìng	
+71011	Mãòt naò nhiêòt tiÌnh 	Khi sıÒ duòng coì thêÒ biêÒu lôò tiÌnh caÒm.	
+71012	Luòc ğao 	Khi trõÒ thaÌnh thuÒ liŞnh bãng ğaÒng thiÌ baÒn thân vaÌ caìc thaÌnh viên bãng ğaÒng ğıõòc tãng 30% chiÒ sôì kinh nghiêòm.	
+71013	Phaìo tre duÌng cho lêŞ hôòi 	ĞôÌ duÌng trang triì lêŞ hôòi l Phaìo tre duÌng laÌm phaìo hoa 	
+71014	Khoaìi tôìc tıÒu 	Tôìc ğôò tâìn công nhanh hõn 10% | ThõÌi gian liên tuòc 30 phuìt	
+71015	NhâŞn kinh nghiêòm 	Tãng 20% chiÒ sôì kinh nghiêòm khi bãìn| ThõÌi gian liên tuòc 30 phuìt	
+71016	Gãng tay cuÒa tên cıõìp 	Tãng 1,5 lâÌn tiÒ lêò mâìt item khi bãìn| ThõÌi gian liên tuòc 30 phuìt	
+71017	ĞôÌng tiêÌn vaÌng may mãìn 	Tãng 2 lâÌn tiÒ lêò mâìt tiêÌn khi bãìn| ThõÌi gian liên tuòc 30 phuìt	
+71018	Sinh lıòc hoaÌn 	HôÌi phuòc tıìc thiÌ 100% sinh lıòc.	
+71019	Triì lıòc hoaÌn 	HôÌi phuòc tıìc thiÌ 100% triì lıòc.	
+71020	Long thâÌn hoaÌn 	HôÌi phuòc 100% sinh lıòc vaÌ triì lıòc tıìc thiÌ.	
+71021	Thı chuìc phuìc cuÒa vô thâÌn 	Thı chuìc phuìc cuÒa vô thân giuìp baòn thaÌnh công 100% trong viêòc caÒi thiêòn item tıÌ +0~+3	
+71022	Mang giaìc thı nãng lıòc 	Coì thêÒ sõ khai hoìa triì nãng.	
+71023	Mang giaìc thı thêÒ lıòc 	Coì thêÒ sõ khai hoìa thêÒ lıòc.	
+71024	Mang giaìc thı sıìc lıòc 	Coì thêÒ sõ khai hoìa sıìc lıòc.	
+71025	Nha công thaòch 	LaÌ khoaìng thaòch ğıõòc taòo bõÒi môÌ hôi vaÌ maìu cuÒa nhıŞng ngıõÌi thõò reÌn õÒ loÌ reÌn	
+71026	Hiêòn thiêìt 	Khi sıÒ duòng cuÌng võìi thı chuìc phuìc coì thêÒ caÒi thiêòn thaÌnh thı chuìc phuìc cuÒa long thâÌn 	
+71027	Sinh maòng cuÒa long thâÌn 	Sinh lıòc tôìi ğa +20% | ThõÌi gian liên tuòc 30 phuìt	
+71028	Tâìn công cuÒa long thâÌn 	Khi tâìn công, mıìc thiêòt haòi tãng lên 12~15% | ThõÌi gian liên tuòc 30 phuìt	
+71029	Triì nãng cuÒa long thâÌn 	Triì lıòc tôìi ğa +20% | ThõÌi gian liên tuòc 30 phuìt	
+71030	PhoÌng ngıò cuÒa long thâÌn 	Khi phoÌng ngıò, mıìc thiêòt haòi giaÒm xuôìng 12~15% | ThõÌi gian liên tuòc 30 phuìt	
+71031	Trõò giuìp cuÒa long thâÌn 	Tãng thêÒ lıòc, sıìc lıòc, triì lıòc, ğôò nhanh nheòn cuÒa nhân vâòt lên 5 ğiêÒm cho môŞi loaòi.	
+71032	Thı chuìc phuìc cuÒa long thâÌn 	Khi caÒi thiêòn item, tãng 10% tiÒ lêò caÒi thiêòn item, nêìu caÒi thiêòn item thâìt baòi thiÌ item không biò mâìt ği.	
+71033	Mãòt naò nhiêòt tiÌnh 	Khi sıÒ duòng coì thêÒ biêÒu lôò tiÌnh caÒm.	
+71034	Khoaìi tôìc tıÒu+ 	Tôìc ğôò tâìn công nhanh hõn 15% | ThõÌi gian liên tuòc 30 phuìt	
+71035	Thuôìc nıõìc huyêŞn hoãòc 	TiÒ lêò ğãng kyì item thu thâòp cao hõn 80%.	
+71036	Tiêu hoaÌn thı cuÒa huÌng quyÒ tôòc trıõÒng 	Coì thêÒ goòi huÌng quyÒ tôòc trıõÒng ğêìn xung quanh nhân vâòt.	
+71037	Tiêu hoaÌn thı cuÒa giaìo chuÒ mâòt giaìo 	Coì thêÒ goòi giaìo chuÒ Mâòt giaìo ğêìn xung quanh nhân vâòt.	
+71038	Tiêu hoaÌn thı cuÒa nıŞ vıõng nhêòn 	Coì thêÒ goòi nıŞ vıõng nhêòn ğêìn xung quanh nhân vâòt.	
+71039	Tiêu hoaÌn thı cuÒa ruÌa sa maòc khôÒng lôÌ 	Coì thêÒ goòi ruÌa sa maòc khôÒng lôÌ ğêìn xung quanh nhân vâòt.	
+71040	Tiêu hoaÌn thı cuÒa hoÒa diêòm vıõng 	Coì thêÒ goòi hoÒa diêòm vıõng ğêìn xung quanh nhân vâòt.	
+71041	Tiêu hoaÌn thı cuÒa caìo giaÌ 	Coì thêÒ goòi caìo giaÌ ğêìn xung quanh nhân vâòt.	
+71042	TaÌ quyÒ vıõng tiêu hoaÌn thı 	Coì thêÒ goòi taÌ quyÒ vıõng ğêìn xung quanh nhân vâòt.	
+71043	Tiêu hoaÌn thı quyÒ hôÒ vaÌng 	Coì thêÒ goòi quyÒ hôÒ vaÌng ğêìn xung quanh nhân vâòt.	
+71044	TiÌnh hiÌnh gây câìn 	TiÒ lêò nguy câìp +10% | ThõÌi gian liên tuòc 10 phuìt	
+71045	Giâìy pheìp thông haÌnh 	TiÒ lêò tâìn công quan thông +10% | ThõÌi gian liên tuòc 10 phuìt	
+71047	ĞôÌng nghiêòp vaÌ hoaÌi baŞo 	Lâìy linh thaòch nãÌm trong ngãn ğıòng item ra	
+71048	Biì kiìp hoan thanh 	LaÌ câu thâÌn chuì tıÌ thõÌi côÒ ğaòi | Coì thêÒ thay ğôÒi giõìi tiình cuÒa nhân vâòt	
+71049	Tuìi ğıòng bãÌng vaÒi 	Coì thêÒ sıÒ duòng cıÒa haÌng riêng thoaÒi maìi trong thõÌi gian nhâìt ğiònh	
+71050	Ly tôìc tıÒu 	Tôìc ğôò di chuyêÒn nhanh lên 60%.	
+71051	Chân biì thı taòi gia 	Tãng thêm 2 thuôòc tiình vaÌo nhıŞng thuôòc tiình ğaŞ coì sãŞn.	
+71052	Chân biì thı taòi kinh 	Khi sıÒ duòng chân biì thı taòi gia coì thêÒ thay ğôÒi thuôòc tiình ğaŞ ğıõòc thêm vaÌo	
+71053		Khi sıÒ duòng seŞ tãng 2 lâÌn sıò phuòc hôÌi chiÒ sôì thiêòn aìc	
+71054	Mang mêònh thı TêÌ Quôìc 	Coì thêÒ thay ğôÒi sang TêÌ Quôìc khaìc 1 lâÌn 	
+71055	Khai minh thı 	ĞôÒi tên cho nhân vâòt	
+71056	Hõi thõÒ cuÒa thanh long 	Tãng 2 lâÌn tiÒ lêò thaÌnh công khi caÒi thiêòn linh thaòch +4 thaÌnh linh thaòch +5 	
+71057	Tiêu hoaÌn thı hoìa thaòch môòc khoaìng maòch 	Coì thêÒ goòi moÒ hoìa thaòch môòc ğêìn xung quanh nhân vâòt.	
+71058	Tiêu hoaÌn thı ğôÌng ğoÒ khoaìng maòch 	Coì thêÒ goòi moÒ ğôÌng ğoÒ ğêìn xung quanh nhân vâòt.	
+71059	Tiêu hoaÌn thı ngân maòch 	Coì thêÒ goòi mõÒ baòc ğêìn xung quanh nhân vâòt.	
+71060	Tiêu hoaÌn thı kim maòch 	Coì thêÒ goòi moÒ vaÌng ğêìn xung quanh nhân vâòt.	
+71061	Tiêu hoaÌn thı ngoòc thaòch maòch 	Coì thêÒ goòi moÒ câÒm thaòch ğêìn xung quanh nhân vâòt.	
+71062	Tiêu hoaÌn thı gôŞ mun thaòch maòch 	Coì thêÒ goòi moÒ ğaì gôŞ mun ğêìn xung quanh nhân vâòt.	
+71063	Tiêu hoaÌn thı ğôìng ngoòc trai 	Coì thêÒ goòi moÒ ngoòc trai ğêìn xung quanh nhân vâòt.	
+71064	Tiêu hoaÌn thı baòch kim maòch 	Coì thêÒ goòi moÒ baòch kim ğêìn xung quanh nhân vâòt.	
+71065	Têu hoaÌn thı thuÒy tinh thaòch maòch 	Coì thêÒ goòi moÒ thuÒy tinh thaòch ğêìn xung quanh nhân vâòt.	
+71066	Tiêu hoaÌn thı thuÒy tinh thch tiìm 	Coì thêÒ goòi moÒ thuÒy tinh thaòch tiìm ğêìn xung quanh nhân vâòt.	
+71067	Tiêu hoaÌn thı thiên lam thaòch khoaìng maòch 	Coì thêÒ goòi mõÒ thiên lam thaòch ğêìn xung quanh nhân vâòt.	
+71068	Lông uyên ıõng 	Khi ğeo vaÌo, chiÒ sôì kim thuâòt seŞ tãng nhanh.	
+71069	Hoa tai hoÌa thuâòn 	LaÌm tãng tiÒ lêò quan thông cuÌng võìi võò / chôÌng 	
+71070	NhâŞn tiÌnh yêu 	LaÌm tãng chiÒ sôì kinh nghiêòm lâìy ğıõòc cuÌng võìi võò / chôÌng	
+71071	Hoa tai tiÌnh yêu 	LaÌm tãng tiÒ lêò tâìn công chiì maòng cuÌng võìi võò / chôÌng 	
+71072	NhâŞn hoÌa thuâòn 	GiaÒm sıìc tâìn công cuÒa quaìi vâòt	
+71073	Dây chuyêÌn tiÌnh yêu 	Tãng sıìc tâìn công cuÌng võìi võò / chôÌng	
+71074	Dây chuyêÌn hoÌa thuâòn 	Tãng sıìc phoÌng ngıò cuÌng võìi võò / chôÌng	
+71075	Thuôìc nhuôòm (trãìng)	Nhuôòm toìc maÌu trãìng.	
+71076	Thuôìc nhuôòm (vaÌng)	Nhuôòm toìc maÌu vaÌng.	
+71077	Thuôìc nhuôòm (ğoÒ)	Nhuôòm toìc maÌu ğoÒ.	
+71078	Thuôìc nhuôòm (nâu)	Nhuôòm toìc maÌu nâu.	
+71079	Thuôìc nhuôòm (ğen)	Nhuôòm toìc maÌu ğen.	
+71080	Tiêu hoaÌn thı Metin thaòch sõ câìp 	Coì thêÒ goòi Metin thaòch sõ câìp ğêìn xung quanh nhân vâòt.	
+71081	Tiêu hoaÌn thı Metin thaòch trung câìp 	Coì thêÒ goòi Metin thaòch trung câìp ğêìn xung quanh nhân vâòt.	
+71082	Tiêu hoaÌn thı Metin thaòch cao câìp 	Coì thêÒ goòi Metin thaòch cao câìp ğêìn xung quanh nhân vâòt.	
+71083	Công thiìch biì thı 	Loaòi boÒ ğaì nãÌm trong ngãn ğıòng item vaÌ coì thêÒ sıÒ duòng laòi ngãn ğıòng item	
+71084	Taòi kinh biì thı 	Sõ khai hoìa thuôòc tiình cuÒa item vaÌ cho thuôòc tiình mõìi	
+71085	Taòi gia biì thı 	Cho thuôòc tiình nhıŞng item chıa coì thuôòc tiình	
+71086	Nhiêòm vuò tãng level (20 ~ 29)		
+71087	Nhiêòm vuò tãng level (30 ~ 39)		
+71088	Thı nhâòn nhiêòm vuò (sõ câìp)		
+71089	Thı nhâòn nhiêòm vuò (trung câìp)		
+71090	Thı nhâòn nhiêòm vuò (cao câìp)		
+71091	Tuìi iêòn quang baÒn 	Coì thêÒ thay ğôÌi maÌu chıŞ trên baÒng tên cuÒa cıÒa hiêòu	
+71092	Ğôòn giaìp thuâòt thı 	SıÒ duòng ğôòn giaìp câÌu ğêÒ biêìn thaÌnh quaìi vâòt	
+71093	Ğôòn giaìp cıÒu 	Coì thêÒ biêìn thaÌnh quaìi vâòt veŞ trên haòt ngoòc	
+71094	Giaìo huâìn cuÒa tiên nhân 	Tãng 2,5 lâÌn tiÒ lêò thaÌnh công huâìn luyêòn theo saìch (1 lâÌn)	
+71097	Tâìn công cuÒa long thâÌn+ 	Khi tâìn công, mıìc thiêòt haòi tãng lên 45~50% | ThõÌi gian liên tuòc 30 phuìt	
+71098	PhoÌng ngıò cuÒa long thâÌn+ 	Khi phoÌng ngıò, mıìc thiêòt haòi giaÒm xuôìng 45~50% | ThõÌi gian liên tuòc 30 phuìt	
+71101	Tôìc anh tıÒu 	Tôìc ğôò ğãòt haÌng tãng nhanh 20%.	ThõÌi gian liên tuòc 30 phuìt
+71102	Tôìc anh tıÒu+ 	Tôìc ğôò ğãòt haÌng tãng nhanh 30%.	ThõÌi gian liên tuòc 30 phuìt
+71103	Vãn baÒn sõ khai hoìa thêÒ lıòc 	Sõ khai hoìa thêÒ lıòc	
+71104	Vãn baÒn sõ khai hoìa triì lıòc 	Sõ khai hoìa triì lıòc	
+71105	Vãn baÒn sõ khai hoìa sıìc lıòc 	Sõ khai hoìa sıìc lıòc	
+71106	Vãn baÒn sõ khai hoìa ğôò nhanh nheòn 	Sõ khai hoìa ğôò nhanh nheòn	
+71107	ĞaÌo tiên 	Tãng 3000 ğiêÒm chiÒ sôì thiêòn aìc.	
+71108	ĞaÌo hoa tıÒu+ 	Hoa ğaÌo tiên duÌng ğêÒ ngâm rıõòu cao câìp 	Uôìng vaÌo seŞ hôÌi phuòc thêÒ lıòc tıìc thiÌ 
+71109	Thoaìt thaòch thı 	Lâìy linh thaòch cuôìi cuÌng ra. 	
+71110	Khôìi ğıõÌng luòc giaìc 	Ğãòt tên cho ngıòa cuÒa miÌnh |Sıìc phoÌng ngıò +20!	
+71111	Võì thuÒng 	Võì biò thuÒng do duÌng lâu ngaÌy | nhıng nêìu treo lên cây thông noel thiÌ ?	
+71112	Thoaìt thaòch thı+ 	Choòn lâìy linh thaòch maÌ baòn muôìn	
+71113	Kinh kim cıõng 	Thông qua cıÒa côÒ chat biêÒu thiò chi tiêìt item, baòn coì thêÒ tiêu diêòt	
+			
+72001	NhâŞn kinh nghiêòm 	Tãng 20% chiÒ sôì kinh nghiêòm khi bãìn	
+72002	NhâŞn kinh nghiêòm 	Tãng 20% chiÒ sôì kinh nghiêòm khi bãìn	
+72003	NhâŞn kinh nghiêòm 	Tãng 20% chiÒ sôì kinh nghiêòm khi bãìn	
+72004	Gãng tay cuÒa tên cıõìp 	Tãng 1,5 lâÌn tiÒ lêò mâìt item khi bãìn	
+72005	Gãng tay cuÒa tên cıõìp 	Tãng 1,5 lâÌn tiÒ lêò mâìt item khi bãìn	
+72006	Gãng tay cuÒa tên cıõìp 	Tãng 1,5 lâÌn tiÒ lêò mâìt item khi bãìn	
+72007	Tuìi ğıòng bãÌng vaÒi 	Coì thêÒ sıÒ duòng cıÒa haÌng riêng thoaÒi maìi trong thõÌi gian nhâìt ğiònh	
+72008	Tuìi ğıòng bãÌng vaÒi 	Coì thêÒ sıÒ duòng cıÒa haÌng riêng thoaÒi maìi trong thõÌi gian nhâìt ğiònh	
+72009	Tuìi ğıòng bãÌng vaÒi 	Coì thêÒ sıÒ duòng cıÒa haÌng riêng thoaÒi maìi trong thõÌi gian nhâìt ğiònh	
+72010	Lông uyên ıõng 	Khi sıÒ duòng, chiÒ sôì kim thuâòt seŞ tãng nhanh.	
+72011	Lông uyên ıõng 	Khi sıÒ duòng, chiÒ sôì kim thuâòt seŞ tãng nhanh.	
+72012	Lông uyên ıõng 	Khi sıÒ duòng, chiÒ sôì kim thuâòt seŞ tãng nhanh.	
+72013	Nguyêòt san ngı tâm 	TiÒ lêò bãìt ğıõòc caì cao câìp tãng 2 lâÌn	
+72014	Nguyêòt san ngı tâm 	TiÒ lêò bãìt ğıõòc caì cao cp tãng 2 lâÌn	
+72015	Nguyêòt san ngı tâm 	TiÒ lêò bãìt ğıõòc caì cao câìp tãng 2 lâÌn	
+72016	BaÌn tay thıì 3 	Khi bãìn quaìi vâòt seŞ tıò ğôòng nhãòt ğıõòc tiêÌn rõi xuôìng	
+72017	BaÌn tay thıì 3 	Khi bãìn quaìi vâòt seŞ tıò ğôòng nhãòt ğıõòc tiêÌn rõi xuôìng	
+72018	BaÌn tay thıì 3 	Khi bãìn quaìi vâòt seŞ tıò ğôòng nhãòt ğıõòc tiêÌn rõi xuôìng	
+72019	QuyêÌn mõÒ rôòng nhaÌ kho 	Trong thõÌi gian cho pheìp, baòn coì thêÒ mõÒ rôòng nhaÌ kho thaÌnh 3 gian	
+72020	QuyêÌn mõÒ rôòng nhaÌ kho 	Trong thõÌi gian cho pheìp, baòn coì thêÒ mõÒ rôòng nhaÌ kho thaÌnh 3 gian	
+72021	QuyêÌn mõÒ rôòng nhaÌ kho 	Trong thõÌi gian cho pheìp, baòn coì thêÒ mõÒ rôòng nhaÌ kho thaÌnh 3 gian	
+72022	ĞôÌng tiêÌn vaÌng may mãìn 	Tãng 2 lâÌn tiÒ lêò mâìt tiêÌn khi bãìn	
+72023	ĞôÌng tiêÌn vaÌng may mãìn 	Tãng 2 lâÌn tiÒ lêò mâìt tiêÌn khi bãìn	
+72024	ĞôÌng tiêÌn vaÌng may mãìn 	Tãng 2 lâÌn tiÒ lêò mâìt tiêÌn khi bãìn	
+72025	Giâìy pheìp thông haÌnh 	TiÒ lêò quan thông tâìn công +10% 	
+72026	Giâìy pheìp thông haÌnh 	TiÒ lêò quan thông tâìn công +10% 	
+72027	Giâìy pheìp thông haÌnh 	TiÒ lêò quan thông tâìn công +10% 	
+72028	Mãòt naò nhiêòt tiÌnh 	Khi sıÒ duòng coì thêÒ biêÒu lôò tiÌnh caÒm.	
+72029	Mãòt naò nhiêòt tiÌnh 	Khi sıÒ duòng coì thêÒ biêÒu lôò tiÌnh caÒm.	
+72030	Mãòt naò nhiêòt tiÌnh 	Khi sıÒ duòng coì thêÒ biêÒu lôò tiÌnh caÒm.	
+72031	Tâìn công cuÒa long thâÌn 	Khi tâìn công, mıìc thiêòt haòi tãng lên 12 ~ 15%	
+72032	Tâìn công cuÒa long thâÌn 	Khi tâìn công, mıìc thiêòt haòi tãng lên 12 ~ 15%	
+72033	Tâìn công cuÒa long thâÌn 	Khi tâìn công, mıìc thiêòt haòi tãng lên 12 ~ 15%	
+72034	PhoÌng ngıò cuÒa long thâÌn 	Khi phoÌng ngıò, mıìc thiêòt haòi giaÒm xuôìng 12 ~ 15%	
+72035	PhoÌng ngıò cuÒa long thâÌn 	Khi phoÌng ngıò, mıìc thiêòt haòi giaÒm xuôìng 12 ~ 15%	
+72036	PhoÌng ngıò cuÒa long thâÌn 	Khi phoÌng ngıò, mıìc thiêòt haòi giaÒm xuôìng 12 ~ 15%	
+72037	Sinh maòng cuÒa long thâÌn 	Sinh lıòc tôìi ğa +20% 	
+72038	Sinh maòng cuÒa long thâÌn 	Sinh lıòc tôìi ğa +20% 	
+72039	Sinh maòng cuÒa long thâÌn 	Sinh lıòc tôìi ğa +20% 	
+72040	Triì nãng cuÒa long thâÌn 	Triì lıòc tôìi ğa +20%	
+72041	Triì nãng cuÒa long thâÌn 	Triì lıòc tôìi ğa +20%	
+72042	Triì nãng cuÒa long thâÌn 	Triì lıòc tôìi ğa +20%	
+72043	Luòc ğao 	Khi trõÒ thaÌnh thuÒ liŞnh bãng ğaÒng thiÌ baÒn thân vaÌ caìc thaÌnh viên bãng ğaÒng ğıõòc tãng 30% chiÒ sôì kinh nghiêòm.	
+72044	Luòc ğao 	Khi trõÒ thaÌnh thuÒ liŞnh bãng ğaÒng thiÌ baÒn thân vaÌ caìc thaÌnh viên bãng ğaÒng ğıõòc tãng 30% chiÒ sôì kinh nghiêòm.	
+72045	Luòc ğao 	Khi trõÒ thaÌnh thuÒ liŞnh bãng ğaÒng thiÌ baÒn thân vaÌ caìc thaÌnh viên bãng ğaÒng ğıõòc tãng 30% chiÒ sôì kinh nghiêòm.	
+72046	TiÌnh hiÌnh gây câìn 	TiÒ lêò nguy câìp +10%	
+72047	TiÌnh hiÌnh gây câìn 	TiÒ lêò nguy câìp +10% 	
+72048	TiÌnh hiÌnh gây câìn 	TiÒ lêò nguy câìp +10% 	
+			
+72301	Thı chuìc phuìc	SıÒ duòng cho trang biò thı caÒi thiêòn ğıõòc chuìc phuìc, nêìu caÒi thiêòn thiÌ nêìu coì thâìt baòi thiÌ cuŞng chiÒ biò haò ğãÒng câìp xuôìng 1 bâòc. 	Aìp duòng trıòc tiêìp vaÌo trang biò vãn thı |Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72302	Luòc ğao 	LaÌ môòt quyêÒn Binh phaìp thı ğaòi diêòn cho bôò Vô kinh thâìt thı | LaÌ môòt trong nhıŞng quyêÒn binh hoòc cuÒa Trang Thaìi Công | 	Sau khi sıÒ duòng, khi trõÒ thaÌnh thuÒ liŞnh bãng ğaÒng thiÌ baÒn thân vaÌ thaÌnh viên bãng ğaÒng seŞ ğıõòc tãng thêm 30% chiÒ sôì kinh nghiêòm | Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72303	NhâŞn kinh nghiêòm 	LaÌ chiêìc nhâŞn trang sıìc thô sõ maÌ caìc anh huÌng thõÌi côÒ ğaòi tıÌng duÌng ğıõòc truyêÌn laòi ğêìn bây giõÌ. 	Khi ğeo nhâŞn kinh nghiêòm seŞ ğıõòc thêm chiÒ sôì kinh nghiêòm | Sau khi ğeo vaÌo thiÌ không thêÒ thaìo ra | Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72304	ChuôŞi haòt chuìc phuìc 	TruyêÌn thuyêìt kêÒ rãÌng ğây laÌ chuôŞi haòt chuìc phuìc do thâÌn ban tãòng	Khi thuôòc tiình cuÒa item coì 4 loaòi thiÌ ğıõòc tãng thêm 1 loaòi nıŞa. | Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72305	Gıõng soi biêìn mâìt 		Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72306	Giâìy ghi chuì vêÌ vuŞ khiì 	TruyêÌn thuyêìt kêÒ rãÌng ğây laÌ tõÌ giâìy ghi cheìp vêÌ vuŞ khiì do ngıõÌi buôn baìn vuŞ khiì ğêÒ laòi | Tuòc truyêÌn rãÌng trên giâìy coì ghi biì quyêìt caÒi thiêòn vuŞ khiì. 	Khi caÒi thiêòn item ğãÒng câìp 4 lên ğãÒng câìp 5 seŞ thaÌnh công 100%. | Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72307	Biì chiêìn thı vuŞ khiì 		Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72308	Vaòn niên haÌn thiêìt 	LaÌ loaòi thiêìt tôìt nhâìt trong caìc loaòi thiêìt ğıõòc tiÌm thâìy õÒ vuÌng cao nguyên râìt cao | SıÒ duòng thı chuìc phuìc ğêÒ taòo ra thı chuìc phuìc cuÒa voŞ thâÌn. 	Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72309	Biì chiêìn thı cuÒa thõò reÌn 	Nêìu sıÒ duòng biì chiêìn thı coì linh hôÌn cuÒa thõò reÌn, khi caÒi thiêòn seŞ tãng tiÒ lêò thaÌnh công	Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72310	Chuìa nhaŞn thuâòt thı 	GiaÒi tâÒu hoÒa nhâòp ma khi huâìn luyêòn thâìt baòi	Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72311	HoaÌn cuÒa long thâÌn 	HôÌi phuòc 100% sinh lıòc vaÌ triì lıòc	Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72312	Tâìn công cuÒa long thâÌn 	Khi tâìn công, mıìc thiêòt haòi tãng lên 12 ~ 15% | ThõÌi gian liên tuòc 30 phuìt	Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72313	PhoÌng ngıò cuÒa long thâÌn 	Khi phoÌng ngıò, mıìc thiêòt haòi giaÒm xuôìng 12 ~ 15% | ThõÌi gian liên tuòc 30 phuìt	Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72314	Thı chuìc phuìc cuÒa long thâÌn 	Khi caÒi thiêòn item, tiÒ lêò caÒi thiêòn tãng 10%, khi thâìt baòi không biò mâìt item	Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72315	Lyì tôìc tıÒu 	Tôìc ğôò di chuyêÒn tãng 60%	Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72316	Công thiìch biì thı 	Loaòi boÒ ğaì nãÌm trong ngãn ğıòng item vaÌ coì thêÒ sıÒ duòng laòi ngãn ğıòng item	Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72317	Taòi kinh biì thı 	Sõ khai hoìa thuôòc tiình cuÒa item vaÌ cho thuôòc tiình mõìi	Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+72318	Taòi gia biì thı 	Cho thuôòc tiình nhıŞng item chıa coì thuôòc tiình	Item bôÌi thıõÌng nhiêòm vuò | Không ğıõòc trao ğôÒi, mua baìn hoãòc boÒ ği
+			
+72501	NhâŞn kinh nghiêòm (duÌng cho phoÌng maìy tiình ğêÒ baÌn)	Tãng 20% chiÒ sôì kinh nghiêòm khi bãìn trong phoÌng maìy tiình ğôÌng minh	
+72502	Gãng tay cuÒa tên cıõìp (duÌng cho phoÌng maìy tiình ğêÒ baÌn)	Tãng 1,5 lâÌn tiÒ lêò mâìt item khi bãìn trong phoÌng maìy tiình ğôÌng minh	
+			
+72701	GiaÌy gioì	Lâìy sıìc gioì cho giaÌy ğêÒn di chuyêÒn ğıõòc nhanh hõn 	Tôìc ğôò di chuyêÒn+30
+			
+72703	Hoa tai khãìc hiÌnh hôÒ 	Hoa tai khãìc hiÌnh hôÒ seŞ tãng 300 ğiêÒm chiÒ sôì tuyêòt ğôìi sıìc tâìn công.	50 giõÌ
+72704	Hoa tai khãìc hiÌnh rôÌng 	Hoa tai khãìc hiÌnh rôÌng seŞ tãng 300 ğiêÒm chiÒ sôì tuyêòt ğôìi sıìc phoÌng ngıò.	50 giõÌ
+72705	VoÌng ğeo tay khãìc hiÌnh hôÒ 	VoÌng ğeo tay khãìc hiÌnh hôÒ seŞ tãng 30% sıìc tâìn công.	50 giõÌ
+72706	VoÌng ğeo tay khãìc hiÌnh rôÌng 	VoÌng ğeo tay khãìc hiÌnh rôÌng seŞ tãng 30% sıìc phoÌng ngıò.	50 giõÌ
+			
+72709	Hoa tai khãìc hiÌnh hôÒ 	Hoa tai khãìc hiÌnh hôÒ seŞ tãng 300 ğiêÒm chiÒ sôì tuyêòt ğôìi sıìc tâìn công.	20 giõÌ
+72710	Hoa tai khãìc hiÌnh rôÌng 	Hoa tai khãìc hiÌnh rôÌng seŞ tãng 300 ğiêÒm chiÒ sôì tuyêòt ğôìi sıìc phoÌng ngıò.	20 giõÌ
+72711	VoÌng ğeo tay khãìc hiÌnh hôÒ 	VoÌng ğeo tay khãìc hiÌnh hôÒ seŞ tãng 30% sıìc tâìn công.	20 giõÌ
+72712	VoÌng ğeo tay khãìc hiÌnh rôÌng 	VoÌng ğeo tay khãìc hiÌnh rôÌng seŞ tãng 30% sıìc phoÌng ngıò.	20 giõÌ
+			
+73001	Toìc cãìt ngãìn kiêÒu biêÒu hiêòn sıò lo lãìng (maÌu ğoÒ)	KiêÒu toìc cãìt ngãìn maÌu ğoÒ daÌnh cho voŞ siŞ thiìch cô ğôòc	
+73002	Toìc cãìt ngãìn kiêÒu biêÒu hiêòn sıò lo lãìng (maÌu nâu nhaòt)	KiêÒu toìc cãìt ngãìn maÌu nâu nhaòt daÌnh cho voŞ siŞ thiìch cô ğôòc	
+73003	Toìc cãìt ngãìn kiêÒu biêÒu hiêòn sıò lo lãìng (maÌu xanh da trõÌi)	KiêÒu toìc cãìt ngãìn maÌu xanh da trõÌi daÌnh cho voŞ siŞ thiìch cô ğôòc	
+73004	Toìc cãìt ngãìn kiêÒu biêÒu hiêòn sıò lo lãìng (maÌu nâu)	KiêÒu toìc cãìt ngãìn maÌu nâu daÌnh cho voŞ siŞ thiìch cô ğôòc	
+73005	Dây buôòc toìc (maÌu ğoÒ)	Buôòc toìc bãÌng dây maÌu ğoÒ ğêÒ giıŞ cho toìc goòn gaÌng	
+73006	Dây buôòc toìc (hoa vãn chıŞ v)	Buôòc toìc bãÌng dây coì hoa vãn chıŞ v ğêÒ giıŞ cho toìc goòn gaÌng	
+73007	Dây buôòc toìc (maÌu xanh dıõng)	Buôòc toìc bãÌng dây maÌu xanh dıõng ğêÒ giıŞ cho toìc goòn gaÌng	
+73008	Dây buôòc toìc (hoa vãn maÌu xanh laì)	Buôòc toìc bãÌng dây coì hoa vãn maÌu xanh laì ğêÒ giıŞ cho toìc goòn gaÌng	
+73009	Toìc daÌi côòt (maÌu ğen)	KiêÒu toìc daÌi côòt maÌu ğen, caìc ğâìu siŞ côÒ ğaòi ıa duÌng	
+73010	Toìc daÌi côòt (maÌu ğoÒ)	KiêÒu toìc daÌi côòt maÌu ğoÒ, caìc ğâìu siŞ côÒ ğaòi ıa duÌng	
+73011	Toìc daÌi côòt (maÌu nâu nhaòt)	KiêÒu toìc daÌi côòt maÌu nâu nhaòt, caìc ğâìu siŞ côÒ ğaòi ıa duÌng	
+73012	Toìc daÌi côòt (maÌu xanh laì nhaòt)	KiêÒu toìc daÌi côòt maÌu xanh laì nhaòt, caìc ğâìu siŞ côÒ ğaòi ıa duÌng	
+			
+73251	Toìc ğuôi ngıòa côòt cao (maÌu nâu)	KiêÒu toìc ğuôi ngıòa ğıõòc nhiêÌu baòn gaìi yêu thiìch, maÌu nâu	
+73252	Toìc ğuôi ngıòa côòt cao (maÌu xanh laì)	KiêÒu toìc ğuôi ngıòa ğıõòc nhiêÌu baòn gaìi yêu thiìch, maÌu xanh laì	
+73253	Toìc ğuôi ngıòa côòt cao (maÌu xanh dıõng)	KiêÒu toìc ğuôi ngıòa ğıõòc nhiêÌu baòn gaìi yêu thiìch, maÌu xanh dıõng	
+73254	Toìc ğuôi ngıòa côòt cao (maÌu kem)	KiêÒu toìc ğuôi ngıòa ğıõòc nhiêÌu baòn gaìi yêu thiìch, maÌu kem	
+73255	Cãìt ngãìn vıÌa (maÌu ğoÒ)	KiêÒu toìc cuÒa thiìch khaìch ğıõòc cãìt ngãìn vıÌa phaÒi taòo caÒm giaìc khoÒe khoãìn, maÌu ğoÒ	
+73256	Cãìt ngãìn vıÌa (maÌu nâu)	KiêÒu toìc cuÒa thiìch khaìch ğıõòc cãìt ngãìn vıÌa phaÒi taòo caÒm giaìc khoÒe khoãìn, maÌu nâu	
+73257	Cãìt ngãìn vıÌa (maÌu nâu nhaòt)	KiêÒu toìc cuÒa thiìch khaìch ğıõòc cãìt ngãìn vıÌa phaÒi taòo caÒm giaìc khoÒe khoãìn, maÌu nâu nhaòt	
+73258	Cãìt ngãìn vıÌa (maÌu tiìm)	KiêÒu toìc cuÒa thiìch khaìch ğıõòc cãìt ngãìn vıÌa phaÒi taòo caÒm giaìc khoÒe khoãìn, maÌu tiìm	
+73259	Cãìt ngãìn (maÌu ğoÒ)	KiêÒu toìc cãìt ngãìn tâòp trung vaÌo sıò vaajnt ğôòng cuÒa thiìch khaìch, thuâòt lõòi cho viêòc tâìn công nhanh, maÌu ğen	
+73260	Cãìt ngãìn (maÌu xanh da trõÌi)	KiêÒu toìc cãìt ngãìn tâòp trung vaÌo sıò vaajnt ğôòng cuÒa thiìch khaìch, thuâòt lõòi cho viêòc tâìn công nhanh, maÌu xanh da trõÌi	
+73261	Cãìt ngãìn (maÌu ğen)	KiêÒu toìc cãìt ngãìn tâòp trung vaÌo sıò vaajnt ğôòng cuÒa thiìch khaìch, thuâòt lõòi cho viêòc tâìn công nhanh, maÌu ğen	
+73262	Cãìt ngãìn (maÌu vaÌng)	KiêÒu toìc cãìt ngãìn tâòp trung vaÌo sıò vaajnt ğôòng cuÒa thiìch khaìch, thuâòt lõòi cho viêòc tâìn công nhanh, maÌu vaÌng	
+			
+73501	Toìc cãìt kiêÒu khoÒe khoãìn (maÌu trãìng)	KiêÒu toìc daÌi cuÒa tu la ğıõòc cãìt ngãìn taòo caÒm giaìc nãng ğôòng, maÌu trãìng	
+73502	Toìc cãìt kiêÒu khoÒe khoãìn (maÌu nâu)	KiêÒu toìc daÌi cuÒa tu la ğıõòc cãìt ngãìn taòo caÒm giaìc nãng ğôòng, maÌu nâu	
+73503	Toìc cãìt kiêÒu khoÒe khoãìn (maÌu vaÌng)	KiêÒu toìc daÌi cuÒa tu la ğıõòc cãìt ngãìn taòo caÒm giaìc nãng ğôòng, maÌu vaÌng	
+73504	Toìc cãìt kiêÒu khoÒe khoãìn (maÌu xanh laì)	KiêÒu toìc daÌi cuÒa tu la ğıõòc cãìt ngãìn taòo caÒm giaìc nãng ğôòng, maÌu xanh laì	
+73505	Uy tiìn (maÌu trãìng)	KiêÒu toìc xoŞa tıÌ ğiÒnh ğâÌu xuôìng taòo nên sıò uy tiìn, maÌu trãìng	
+73506	Uy tiìn (maÌu ğoÒ)	KiêÒu toìc xoŞa tıÌ ğiÒnh ğâÌu xuôìng taòo nên sıò uy tiìn, maÌu ğoÒ	
+73507	Uy tiìn (maÌu ğen)	KiêÒu toìc xoŞa tıÌ ğiÒnh ğâÌu xuôìng taòo nên sıò uy tiìn, maÌu ğen	
+73508	Uy tiìn (maÌu tiìm)	KiêÒu toìc xoŞa tıÌ ğiÒnh ğâÌu xuôìng taòo nên sıò uy tiìn, maÌu tiìm	
+73509	Toìc ğinh (maÌu trãìng)	KiêÒu toìc nhiÌn hõi xâìu xiì nhıng maÌu trãìng ğiêÒm trên toìc ğinh maÌu trãìng trông baÒnh bao hõn, trông âìn tıõòng 	
+73510	Toìc ğinh (maÌu xanh da trõÌi)	KiêÒu toìc nhiÌn hõi xâìu xiì nhıng maÌu trãìng ğiêÒm trên toìc ğinh maÌu xanh da trõÌi trông baÒnh bao hõn, trông âìn tıõòng 	
+73511	Toìc ğinh (maÌu ğen)	KiêÒu toìc nhiÌn hõi xâìu xiì nhıng maÌu trãìng ğiêÒm trên toìc ğinh maÌu ğen trông baÒnh bao hõn, trông âìn tıõòng 	
+73512	Toìc ğinh (maÌu nâu)	KiêÒu toìc nhiÌn hõi xâìu xiì nhıng maÌu trãìng ğiêÒm trên toìc ğinh maÌu nâu trông baÒnh bao hõn, trông âìn tıõòng 	
+			
+73751	Keòp toìc hiÌnh bıõìm (nâu)	KiêÒu toìc keòp goòn gaÌng, maÌu nâu	
+73752	Keòp toìc hiÌnh bım (ğen)	KiêÒu toìc keòp goòn gaÌng, maÌu ğen	
+73753	Keòp toìc hiÌnh bıõìm (xanh da trõÌi)	KiêÒu toìc keòp goòn gaÌng, maÌu xanh da trõÌi	
+73754	Keòp toìc hiÌnh bıõìm (trãìng)	KiêÒu toìc keòp goòn gaÌng, maÌu trãìng	
+73755	Toìc ngãìn (nâu)	KiêÒu toìc daÌi cuÒa phuÌ thuÒy ğıõòc cãìt ngãìn taòo caÒm giaìc khoÒe khoãìn, maÌu nâu	
+73756	Toìc ngãìn (ğen)	KiêÒu toìc daÌi cuÒa phuÌ thuÒy ğıõòc cãìt ngãìn taòo caÒm giaìc khoÒe khoãìn, maÌu ğen	
+73757	Toìc ngãìn  (vaÌng)	KiêÒu toìc daÌi cuÒa phuÌ thuÒy ğıõòc cãìt ngãìn taòo caÒm giaìc khoÒe khoãìn, maÌu vaÌng	
+73758	Toìc ngãìn (tiìm)	KiêÒu toìc daÌi cuÒa phuÌ thuÒy ğıõòc cãìt ngãìn taòo caÒm giaìc khoÒe khoãìn, maÌu tiìm	
+73759	Toìc daÌi ngang lıng (nâu nhaòt)	KiêÒu toìc daÌi cuÒa phuÌ thuÒy ğıõòc tô ğiêÒm thêm môòt chuìt taòo neìt nıŞ tiình, maÌu nâu nhaòt	
+73760	Toìc daÌi ngang lıng (vaÌng)	KiêÒu toìc daÌi cuÒa phuÌ thuÒy ğıõòc tô ğiêÒm thêm môòt chuìt taòo neìt nıŞ tiình, maÌu vaÌng	
+73761	Toìc daÌi ngang lıng (tiìm)	KiêÒu toìc daÌi cuÒa phuÌ thuÒy ğıõòc tô ğiêÒm thêm môòt chuìt taòo neìt nıŞ tiình, maÌu tiìm	
+73762	Toìc daÌi ngang lıng (nâu)	KiêÒu toìc daÌi cuÒa phuÌ thuÒy ğıõòc tô ğiêÒm thêm môòt chuìt taòo neìt nıŞ tiình, maÌu nâu	
+			
+			
+			
+			
+74001	KiêÒu toìc cãìt ngãìn biêÒu hiêòn sıò lo lãìng (ğoÒ)	KiêÒu toìc cãìt ngãìn daÌnh cho nhıŞng voŞ siŞ thiìch cô ğôòc, maÌu ğoÒ	SıÒ duòng trong 30 ngaÌy
+74002	KiêÒu toìc cãìt ngãìn biêÒu hiêòn sıò lo lãìng (nâu nhaòt)	KiêÒu toìc cãìt ngãìn daÌnh cho nhıŞng voŞ siŞ thiìch cô ğôòc, maÌu nâu nhaòt	SıÒ duòng trong 30 ngaÌy
+74003	KiêÒu toìc cãìt ngãìn biêÒu hiêòn sıò lo lãìng (xanh da trõÌi)	KiêÒu toìc cãìt ngãìn daÌnh cho nhıŞng voŞ siŞ thiìch cô ğôòc, maÌu xanh da trõÌi	SıÒ duòng trong 30 ngaÌy
+74004	KiêÒu toìc cãìt ngãìn biêÒu hiêòn sıò lo lãìng (nâu)	KiêÒu toìc cãìt ngãìn daÌnh cho nhıŞng voŞ siŞ thiìch cô ğôòc, maÌu nâu	SıÒ duòng trong 30 ngaÌy
+74005	Dây buôòc toìc (ğoÒ)	Buôòc toìc bãÌng dây maÌu ğoÒ ğêÒ giıŞ cho toìc goòn gaÌng 	SıÒ duòng trong 30 ngaÌy
+74006	Dây buôòc toìc (hoa vãn hiÌnh chıŞ v)	Buôòc toìc bãÌng dây coì hoa vãn hiÌnh chıŞ v ğêÒ giıŞ cho toìc goòn gaÌng 	SıÒ duòng trong 30 ngaÌy
+74007	Dây buôòc toìc (xanh dıõng)	Buôòc toìc bãÌng dây maÌu xanh dıõng ğêÒ giıŞ cho toìc goòn gaÌng 	SıÒ duòng trong 30 ngaÌy
+74008	Dây buôòc toìc (xanh laì)	Buôòc toìc bãÌng dây maÌu xanh laì ğêÒ giıŞ cho toìc goòn gaÌng 	SıÒ duòng trong 30 ngaÌy
+74009	Toìc daÌi côòt (ğen)	KiêÒu toìc daÌi côòt, maÌu ğen, ğây laÌ kiêÒu toìc maÌ caìc ğâìu siŞ thõÌi côÒ ğaòi ıa thiìch	SıÒ duòng trong 30 ngaÌy
+74010	Toìc daÌi côòt (ğoÒ)	KiêÒu toìc daÌi côòt, maÌu ğoÒ, ğây laÌ kiêÒu toìc maÌ caìc ğâìu siŞ thõÌi côÒ ğaòi ıa thiìch	SıÒ duòng trong 30 ngaÌy
+74011	Toìc daÌi côòt (nâu nhaòt)	KiêÒu toìc daÌi côòt, maÌu nâu nht, ğây laÌ kiêÒu toìc maÌ caìc ğâìu siŞ thõÌi côÒ ğaòi ıa thiìch	SıÒ duòng trong 30 ngaÌy
+74012	Toìc daÌi côòt (xanh laì non)	KiêÒu toìc daÌi côòt, maÌu xanh laì non, ğây laÌ kiêÒu toìc maÌ caìc ğâìu siŞ thõÌi côÒ ğaòi ıa thiìch	SıÒ duòng trong 30 ngaÌy
+			
+74251	Toìc ğuôi ngıòa côòt cao (nâu)	KiêÒu toìc ğuôi ngıòa ğıõòc nhiêÌu baòn gaìi yêu thiìch, maÌu nâu	SıÒ duòng trong 30 ngaÌy
+74252	Toìc ğuôi ngıòa côòt cao (xanh laì)	KiêÒu toìc ğuôi ngıòa ğıõòc nhiêÌu baòn gaìi yêu thiìch, maÌu xanh laì	SıÒ duòng trong 30 ngaÌy
+74253	Toìc ğuôi ngıòa côòt cao (xanh dıõng)	KiêÒu toìc ğuôi ngıòa ğıõòc nhiêÌu baòn gaìi yêu thiìch, maÌu xanh dıõng	SıÒ duòng trong 30 ngaÌy
+74254	Toìc ğuôi ngıòa côòt cao (kem)	KiêÒu toìc ğuôi ngıòa ğıõòc nhiêÌu baòn gaìi yêu thiìch, maÌu kem	SıÒ duòng trong 30 ngaÌy
+74255	Cãìt ngãìn vıÌa (ğoÒ)	KiêÒu toìc cuÒa thiìch khaìch ğıõòc cãìt ngãìn vıÌa phaÒi taòo caÒm giaìc khoÒe khoãìn, maÌu ğoÒ	SıÒ duòng trong 30 ngaÌy
+74256	Cãìt ngãìn vıÌa (nâu)	KiêÒu toìc cuÒa thiìch khaìch ğıõòc cãìt ngãìn vıÌa phaÒi taòo caÒm giaìc khoÒe khoãìn, maÌu nâu	SıÒ duòng trong 30 ngaÌy
+74257	Cãìt ngãìn vıÌa (nâu nhaòt)	KiêÒu toìc cuÒa thiìch khaìch ğıõòc cãìt ngãìn vıÌa phaÒi taòo caÒm giaìc khoÒe khoãìn, maÌu nâu nhaòt	SıÒ duòng trong 30 ngaÌy
+74258	Cãìt ngãìn vıÌa (tiìm)	KiêÒu toìc cuÒa thiìch khaìch ğıõòc cãìt ngãìn vıÌa phaÒi taòo caÒm giaìc khoÒe khoãìn, maÌu tiìm	SıÒ duòng trong 30 ngaÌy
+74259	Cãìt ngãìn (ğoÒ)	KiêÒu toìc cãìt ngãìn tâòp trung vaÌo sıò vaajnt ğôòng cuÒa thiìch khaìch, thuâòt lõòi cho viêòc tâìn công nhanh, maÌu ğen	SıÒ duòng trong 30 ngaÌy
+74260	Cãìt ngãìn (xanh da trõÌi)	KiêÒu toìc cãìt ngãìn tâòp trung vaÌo sıò vaajnt ğôòng cuÒa thiìch khaìch, thuâòt lõòi cho viêòc tâìn công nhanh, maÌu xanh da trõÌi	SıÒ duòng trong 30 ngaÌy
+74261	Cãìt ngãìn (ğen)	KiêÒu toìc cãìt ngãìn tâòp trung vaÌo sıò vaajnt ğôòng cuÒa thiìch khaìch, thuâòt lõòi cho viêòc tâìn công nhanh, maÌu ğen	SıÒ duòng trong 30 ngaÌy
+74262	Cãìt ngãìn (vaÌng)	KiêÒu toìc cãìt ngãìn tâòp trung vaÌo sıò vaajnt ğôòng cuÒa thiìch khaìch, thuâòt lõòi cho viêòc tâìn công nhanh, maÌu vaÌng	SıÒ duòng trong 30 ngaÌy
+			
+74501	Toìc cãìt kiêÒu khoÒe khoãìn (trãìng)	KiêÒu toìc daÌi cua tu la ğıõòc cãìt ngãìn taòo neìt nãng ğôòng, maÌu trãìng	SıÒ duòng trong 30 ngaÌy
+74502	Toìc cãìt kiêÒu khoÒe khoãìn (nâu)	KiêÒu toìc daÌi cua tu la ğıõòc cãìt ngãìn taòo neìt nãng ğôòng, maÌu nâu	SıÒ duòng trong 30 ngaÌy
+74503	Toìc cãìt kiêÒu khoÒe khoãìn (vaÌng)	KiêÒu toìc daÌi cua tu la ğıõòc cãìt ngãìn taòo neìt nãng ğôòng, maÌu vaÌng	SıÒ duòng trong 30 ngaÌy
+74504	Toìc cãìt kiêÒu khoÒe khoãìn (xanh laì)	KiêÒu toìc daÌi cua tu la ğıõòc cãìt ngãìn taòo neìt nãng ğôòng, maÌu xanh laì	SıÒ duòng trong 30 ngaÌy
+74505	Uy tiìn (trãìng)	Kiu toìc xoŞa tıÌ ğiÒnh ğâÌu xuôìng taòo nên sıò uy tiìn, maÌu trãìng	SıÒ duòng trong 30 ngaÌy
+74506	Uy tiìn (ğoÒ)	KiêÒu toìc xoŞa tıÌ ğiÒnh ğâÌu xuôìng taòo nên sıò uy tiìn, maÌu ğoÒ	SıÒ duòng trong 30 ngaÌy
+74507	Uy tiìn (ğen)	KiêÒu toìc xoŞa tıÌ ğiÒnh ğâÌu xuôìng taòo nên sıò uy tiìn, maÌu ğen	SıÒ duòng trong 30 ngaÌy
+74508	Uy tiìn (tiìm)	KiêÒu toìc xoŞa tıÌ ğiÒnh ğâÌu xuôìng taòo nên sıò uy tiìn, maÌu tiìm	SıÒ duòng trong 30 ngaÌy
+74509	Toìc ğinh (trãìng)	KiêÒu toìc nhiÌn hõi xâìu xiì nhıng maÌu trãìng ğiêÒm trên toìc ğinh maÌu trãìng trông baÒnh bao hõn, trông âìn tıõòng 	SıÒ duòng trong 30 ngaÌy
+74510	Toìc ğinh (xanh da trõÌi)	KiêÒu toìc nhiÌn hõi xâìu xiì nhıng maÌu trãìng ğiêÒm trên toìc ğinh maÌu xanh da trõÌi trông baÒnh bao hõn, trông âìn tıõòng 	SıÒ duòng trong 30 ngaÌy
+74511	Toìc ğinh (ğen)	KiêÒu toìc nhiÌn hõi xâìu xiì nhıng maÌu trãìng ğiêÒm trên toìc ğinh maÌu ğen trông baÒnh bao hõn, trông âìn tıõòng 	SıÒ duòng trong 30 ngaÌy
+74512	Toìc ğinh (nâu)	KiêÒu toìc nhiÌn hõi xâìu xiì nhıng maÌu trãìng ğiêÒm trên toìc ğinh maÌu nâu trông baÒnh bao hõn, trông âìn tıõòng 	SıÒ duòng trong 30 ngaÌy
+			
+74751	Keòp toìc hiÌnh bıõìm (nâu)	KiêÒu toìc keòp goòn gaÌng, maÌu nâu	SıÒ duòng trong 30 ngaÌy
+74752	Keòp toìc hiÌnh bıõìm (ğen)	KiêÒu toìc keòp goòn gaÌng, maÌu ğen	SıÒ duòng trong 30 ngaÌy
+74753	Keòp toìc hiÌnh bıõìm (xanh da trõÌi)	KiêÒu toìc keòp goòn gaÌng, maÌu xanh da trõÌi	SıÒ duòng trong 30 ngaÌy
+74754	Keòp toìc hiÌnh bıõìm (trãìng)	KiêÒu toìc keòp goòn gaÌng, maÌu trãìng	SıÒ duòng trong 30 ngaÌy
+74755	Toìc ngãìn (nâu)	KiêÒu toìc daÌi cuÒa phuÌ thuÒy ğıõòc cãìt ngãìn taòo caÒm giaìc khoÒe khoãìn, maÌu nâu	SıÒ duòng trong 30 ngaÌy
+74756	Toìc ngãìn (ğen)	KiêÒu toìc daÌi cuÒa phuÌ thuÒy ğıõòc cãìt ngãìn taòo caÒm giaìc khoÒe khoãìn, maÌu ğen	SıÒ duòng trong 30 ngaÌy
+74757	Toìc ngn (vaÌng)	KiêÒu toìc daÌi cuÒa phuÌ thuÒy ğıõòc cãìt ngãìn taòo caÒm giaìc khoÒe khoãìn, maÌu vaÌng	SıÒ duòng trong 30 ngaÌy
+74758	Toìc ngãìn  (tiìm)	KiêÒu toìc daÌi cuÒa phuÌ thuÒy ğıõòc cãìt ngãìn taòo caÒm giaìc khoÒe khoãìn, maÌu tiìm	SıÒ duòng trong 30 ngaÌy
+74759	Toìc daÌi ngang lıng (nâu nhaòt)	KiêÒu toìc daÌi cuÒa phuÌ thuÒy ğıõòc tô ğiêÒm thêm môòt chuìt taòo neìt nıŞ tiình, maÌu nâu nhaòt	SıÒ duòng trong 30 ngaÌy
+74760	Toìc daÌi ngang lıng (vaÌng)	KiêÒu toìc daÌi cuÒa phuÌ thuÒy ğıõòc tô ğiêÒm thêm môòt chuìt taòo neìt nıŞ tiình, maÌu vaÌng	SıÒ duòng trong 30 ngaÌy
+74761	Toìc daÌi ngang lıng (tiìm)	KiêÒu toìc daÌi cuÒa phuÌ thuÒy ğıõòc tô ğiêÒm thêm môòt chuìt taòo neìt nıŞ tiình, maÌu tiìm	SıÒ duòng trong 30 ngaÌy
+74762	Toìc daÌi ngang lıng (nâu)	KiêÒu toìc daÌi cuÒa phuÌ thuÒy ğıõòc tô ğiêÒm thêm môòt chuìt taòo neìt nıŞ tiình, maÌu nâu	SıÒ duòng trong 30 ngaÌy
+			
+			
+			
+			
+75001	Toìc buìi dêŞ thıõng (ğoÒ)	KiêÒu toìc buìi hai bên nhâìn maònh neìt duyên daìng cuÒa nıŞ phuÌ thuÒy, maÌu ğoÒ	SıÒ duòng trong 30 ngaÌy
+75002	Toìc buìi dêŞ thıõng (hôÌng nhaòt)	KiêÒu toìc buìi hai bên nhâìn maònh neìt duyên daìng cuÒa nıŞ phuÌ thuÒy, hôÌng nhaòt	SıÒ duòng trong 30 ngaÌy
+75003	Toìc buìi dêŞ thıõng (xanh dıõng nhaòt)	KiêÒu toìc buìi hai bên nhâìn maònh neìt duyên daìng cuÒa nıŞ phuÌ thuÒy, maÌu xanh dıõng nhaòt	SıÒ duòng trong 30 ngaÌy
+75004	Toìc buìi dêŞ thıõng (nâu nhaòt)	KiêÒu toìc buìi hai bên nhâìn maònh neìt duyên daìng cuÒa nıŞ phuÌ thuÒy, maÌu nâu nhaòt	SıÒ duòng trong 30 ngaÌy
+75005	Toìc cãìt ngãìn (nâu)	KiêÒu toìc cãìt ngãìn nãng ğôòng, maÌu nâu, ğiêÒm thêm dây buôòc toìc	SıÒ duòng trong 30 ngaÌy
+75006	Toìc cãìt ngãìn (kem)	KiêÒu toìc cãìt ngãìn nãng ğôòng, maÌu kem, ğiêÒm thêm dây buôòc toìc	SıÒ duòng trong 30 ngaÌy
+75007	Toìc cãìt ngãìn (xanh dıõng nhaòt)	KiêÒu toìc cãìt ngãìn nãng ğôòng, maÌu xanh dıõng nhaòt, ğiêÒm thêm dây buôòc toìc	SıÒ duòng trong 30 ngaÌy
+75008	Toìc cãìt ngãìn (xanh laì)	KiêÒu toìc cãìt ngãìn nãng ğôòng, maÌu xanh laì, ğiêÒm thêm dây buôòc toìc	SıÒ duòng trong 30 ngaÌy
+75009	Toìc chiÒ buôòc phiìa sau (ğen)	KiêÒu toìc buìi phiìa sau ğêÒ nhâìn maònh phiìa sau gaìy, maÌu ğen	SıÒ duòng trong 30 ngaÌy
+75010	Toìc chiÒ buôòc phiìa sau (hôÌng nhaòt)	KiêÒu toìc buìi phiìa sau ğêÒ nhâìn maònh phiìa sau gaìy, maÌu hôÌng nhaòt	SıÒ duòng trong 30 ngaÌy
+75011	Toìc chiÒ buôòc phiìa sau (nâu nhaòt)	KiêÒu toìc buìi phiìa sau ğêÒ nhâìn maònh phiìa sau gaìy, maÌu nâu nhaòt	SıÒ duòng trong 30 ngaÌy
+75012	Toìc chiÒ buôòc phiìa sau (xanh laì)	KiêÒu toìc buìi phiìa sau ğêÒ nhâìn maònh phiìa sau gaìy, maÌu xanh laì	SıÒ duòng trong 30 ngaÌy
+			
+75201	Toìc daÌi côòt (nâu)	KiêÒu toìc ğuôi ngıòa ğıõòc nhiêÌu baòn gaìi ıa thiìch, maÌu nâu	SıÒ duòng trong 30 ngaÌy
+75202	Toìc daÌi côòt (xanh laì)	KiêÒu toìc ğuôi ngıòa ğıõòc nhiêÌu baòn gaìi ıa thiìch, maÌu xanh laì	SıÒ duòng trong 30 ngaÌy
+75203	Toìc daÌi côòt (xanh dıõng)	KiêÒu toìc ğuôi ngıòa ğıõòc nhiêÌu baòn gaìi ıa thiìch, maÌu xanh dıõng	SıÒ duòng trong 30 ngaÌy
+75204	Toìc daÌi côòt (kem)	KiêÒu toìc ğuôi ngıòa ğıõòc nhiêÌu baòn gaìi ıa thiìch, maÌu kem	SıÒ duòng trong 30 ngaÌy
+75205	Khãn ğôòi ğâÌu (trãìng)	Ğôòi khãn maÌu trãìng ğêÒ giıŞ nêìp toìc. 	SıÒ duòng trong 30 ngaÌy
+75206	Khãn ğôòi ğâÌu (xanh laì ğen)	Ğôòi khãn maÌu xanh laì ğen ğêÒ giıŞ nêìp toìc. 	SıÒ duòng trong 30 ngaÌy
+75207	Khãn ğôòi ğâÌu (maÌu ğâìt son)	Ğôòi khãn maÌu son ğâìt ğêÒ giıŞ nêìp toìc. 	SıÒ duòng trong 30 ngaÌy
+75208	Khãn ğôòi ğâÌu (ğoÒ)	Ğôòi khãn maÌu ğoÒ ğêÒ giıŞ nêìp toìc. 	SıÒ duòng trong 30 ngaÌy
+75209	Toìc cãìt kiêÒu shaggy (ğoÒ)	KiêÒu toìc chuì troòng ğêìn sıò di chuyêÒn cuÒa thiìch khaìch, trông coì veÒ nhanh nheòn hõn, maÌu ğoÒ	SıÒ duòng trong 30 ngaÌy
+75210	Toìc cãìt kiêÒu shaggy (xanh dıõng)	KiêÒu toìc chuì troòng ğêìn sıò di chuyêÒn cuÒa thiìch khaìch, trông coì veÒ nhanh nheòn hõn, maÌu xanh dıõng	SıÒ duòng trong 30 ngaÌy
+75211	Toìc cãìt kiêÒu shaggy (ğen)	KiêÒu toìc chuì troòng ğêìn sıò di chuyêÒn cuÒa thiìch khaìch, trông coì veÒ nhanh nheòn hõn, maÌu ğen	SıÒ duòng trong 30 ngaÌy
+75212	Toìc cãìt kiêÒu shaggy (vaÌng)	KiêÒu toìc chuì troòng ğêìn sıò di chuyêÒn cuÒa thiìch khaìch, trông coì veÒ nhanh nheòn hõn, maÌu vaÌng	SıÒ duòng trong 30 ngaÌy
+			
+75401	Toìc buôòc kiêÒu boysh (xaìm)	KiêÒu toìc côòt tôn lên veÒ nıŞ tiình vaÌ nhiì nhaÒnh, maÌu xaìm	SıÒ duòng trong 30 ngaÌy
+75402	Toìc buôòc kiêÒu boysh (nâu nhaòt)	KiêÒu toìc côòt tôn lên veÒ nıŞ tiình vaÌ nhiì nhaÒnh, maÌu nâu nhaòt	SıÒ duòng trong 30 ngaÌy
+75403	Toìc buôòc kiêÒu boysh (vaÌng)	KiêÒu toìc côòt tôn lên veÒ nıŞ tiình vaÌ nhiì nhaÒnh, maÌu vaÌng	SıÒ duòng trong 30 ngy
+75404	Toìc buôòc kiêÒu boysh (xanh laì)	KiêÒu toìc côòt tôn lên veÒ nıŞ tiình vaÌ nhiì nhaÒnh, maÌu xanh laì	SıÒ duòng trong 30 ngaÌy
+75405	Toìc duôŞi thãÒng (trãìng)	KiêÒu toìc duôŞi thãÒng, hai bên ğiêÒm maÌu oìng aình, maÌu trãìng	SıÒ duòng trong 30 ngaÌy
+75406	Toìc duôŞi thãÒng (ğoÒ)	KiêÒu toìc duôŞi thãÒng, hai bên ğiêÒm maÌu oìng aình, maÌu ğoÒ	SıÒ duòng trong 30 ngaÌy
+75407	Toìc duôŞi thãÒng (ğen)	KiêÒu toìc duôŞi thãÒng, hai bên ğiêÒm maÌu oìng aình, maÌu ğen	SıÒ duòng trong 30 ngaÌy
+75408	Toìc duôŞi thãÒng (tiìm)	KiêÒu toìc duôŞi thãÒng, hai bên ğiêÒm maÌu oìng aình, maÌu tiìm	SıÒ duòng trong 30 ngaÌy
+75409	Toìc buôòc kiêÒu Vienna (trãìng)	KiêÒu toìc côòt cao taòo veÒ quyì phaìi, phâÌn toìc côòt ğıõòc chia laÌm mâìy tâÌng, maÌu trãìng	SıÒ duòng trong 30 ngaÌy
+75410	Toìc buôòc kiêÒu Vienna (tiìm)	KiêÒu toìc côòt cao taòo veÒ quyì phaìi, phâÌn toìc côòt ğıõòc chia laÌm mâìy tâÌng, maÌu tiìm	SıÒ duòng trong 30 ngaÌy
+75411	Toìc buôòc kiêÒu Vienna (ğen)	KiêÒu toìc côòt cao taòo veÒ quyì phaìi, phâÌn toìc côòt ğıõòc chia laÌm mâìy tâÌng, maÌu ğen	SıÒ duòng trong 30 ngaÌy
+75412	Toìc buôòc kiêÒu Vienna (nâu)	KiêÒu toìc côòt cao taòo veÒ quyì phaìi, phâÌn toìc côòt ğıõòc chia laÌm mâìy tâÌng, maÌu nâu	SıÒ duòng trong 30 ngaÌy
+			
+75601	Toìc kiêÒu môòt phâÌn caòo troòc, môòt phâÌn ğêÒ daÌi (maÌu ğâìt son)	KiêÒu toìc ğinh maÌu ğâìt son khoÒe khoãìn ğiêÒm thêm maÌu trãìng trông baÒnh bao hõn.	SıÒ duòng trong 30 ngaÌy
+75602	Toìc kiêÒu môòt phâÌn caòo troòc, môòt phâÌn ğêÒ daÌi (xanh ğen)	KiêÒu toìc ğinh maÌu xanh ğen khoÒe khoãìn ğiêÒm thêm maÌu trãìng trông baÒnh bao hõn.	SıÒ duòng trong 30 ngaÌy
+75603	Toìc kiêÒu môòt phâÌn caòo troòc, môòt phâÌn ğêÒ daÌi (xanh dıõng)	KiêÒu toìc ğinh maÌu xanh dıõng khoÒe khoãìn ğiêÒm thêm maÌu trãìng trông baÒnh bao hõn.	SıÒ duòng trong 30 ngaÌy
+75604	Toìc kiêÒu môòt phâÌn caòo troòc, môòt phâÌn ğêÒ daÌi (xaìm)	KiêÒu toìc ğinh maÌu xaìm khoãìn ğiêÒm thêm maÌu trãìng trông baÒnh bao hõn.	SıÒ duòng trong 30 ngaÌy
+75605	Toìc daÌi duôŞi thãÒng (nâu)	KiêÒu toìc daÌi chia hai bên ğêÒ gây âìn tıõòng, maÌu nâu.	SıÒ duòng trong 30 ngaÌy
+75606	Toìc daÌi duôŞi thãÒng (xanh ğen)	KiêÒu toìc daÌi chia hai bên ğêÒ gây âìn tıõòng, maÌu xanh ğen.	SıÒ duòng trong 30 ngaÌy
+75607	Toìc daÌi duôŞi thãÒng (vaÌng)	KiêÒu toìc daÌi chia hai bên ğêÒ gây âìn tıõòng, maÌu vaÌng.	SıÒ duòng trong 30 ngaÌy
+75608	Toìc daÌi duôŞi thãÒng (tiìm)	KiêÒu toìc daÌi chia hai bên ğêÒ gây âìn tıõòng, maÌu tiìm.	SıÒ duòng trong 30 ngaÌy
+75609	Toìc kiêÒu voŞ hiêòp truyêÌn thôìng (nâu)	KiêÒu toìc voŞ hiêòp truyêÌn thôìng Trung Quôìc maÌu nâu.	SıÒ duòng trong 30 ngaÌy
+75610	Toìc kiêÒu voŞ hiêòp truyêÌn thôìng (xaìm nâu)	KiêÒu toìc voŞ hiêòp truyêÌn thôìng Trung Quôìc maÌu xaìm nâu.	SıÒ duòng trong 30 ngaÌy
+75611	Toìc kiêÒu voŞ hiêòp truyêÌn thôìng (tiìm)	KiêÒu toìc voŞ hiêòp truyêÌn thôìng Trung Quôìc maÌu tiìm.	SıÒ duòng trong 30 ngaÌy
+75612	Toìc kiêÒu voŞ hiêòp truyêÌn thôìng (ğoÒ)	KiêÒu toìc voŞ hiêòp truyêÌn thôìng Trung Quôìc maÌu ğoÒ.	SıÒ duòng trong 30 ngaÌy
+			
+			
+			
+80001	Tuìi tiêÌn		
+80002	Giâìy trãìng		
+80008	Khôìi vaÌng	Khôìi vaÌng chıa hêÌ ğıõòc gia công | Coì thêÒ mua võìi giaì cao õÒ cıÒa haÌng.	
+80009	NhâŞn di chuyêÒn	LaÌ nhâŞn coì nãng lıòc di chuyêÒn. Nêìu sıÒ duòng nhâŞn naÌy khi õÒ nhıŞng nõi không thêÒ di chuyêÒn ğıõòc, baòn seŞ ğıõòc di chuyêÒn vêÌ ğâìt nıõìc cuÒa miÌnh. 	
+			
+90001	BiÌnh nıõìc rôŞng		
+90002	BiÌnh nıõìc		
+90003	ThuÒy tinh		
+90004	Ğaì quyì		
+90005	Tuì thaòch		
+90006	Linh thaòch		
+90007	Khoaìng thaòch		

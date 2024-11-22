@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.5.1 Dl Objects </title>
+<META NAME="description" CONTENT="8.5.1 Dl Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-dl.html">
+<LINK REL="up" href="module-dl.html">
+<LINK REL="next" href="module-dbm.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-dl.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-dl.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-dbm.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-dl.html">8.5 dl  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-dl.html">8.5 dl  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-dbm.html">8.6 dbm  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0010510000000000000000">&nbsp;</A>
+<BR>
+8.5.1 Dl Objects 
+</H2>
+
+<P>
+Dl objects, as returned by <tt class="function">open()</tt> above, have the
+following methods:
+
+<P>
+<dl><dt><b><a name="l2h-2143"><tt class="method">close</tt></a></b>()
+<dd>
+Free all resources, except the memory.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2144"><tt class="method">sym</tt></a></b>(<var>name</var>)
+<dd>
+Return the pointer for the function named <var>name</var>, as a number, if
+it exists in the referenced shared object, otherwise <code>None</code>. This
+is useful in code like:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; if a.sym('time'): 
+...     a.call('time')
+... else: 
+...     time.time()
+</pre></dl>
+
+<P>
+(Note that this function will return a non-zero number, as zero is the
+<tt class="constant">NULL</tt> pointer)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2145"><tt class="method">call</tt></a></b>(<var>name</var><big>[</big><var>, arg1</var><big>[</big><var>, arg2...</var><big>]</big><big>]</big>)
+<dd>
+Call the function named <var>name</var> in the referenced shared object.
+The arguments must be either Python integers, which will be 
+passed as is, Python strings, to which a pointer will be passed, 
+or <code>None</code>, which will be passed as <tt class="constant">NULL</tt>.  Note that 
+strings should only be passed to functions as <tt class="ctype">const char*</tt>, as
+Python will not like its string mutated.
+
+<P>
+There must be at most 10 arguments, and arguments not given will be
+treated as <code>None</code>. The function's return value must be a C
+<tt class="ctype">long</tt>, which is a Python integer.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-dl.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-dl.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-dbm.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-dl.html">8.5 dl  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-dl.html">8.5 dl  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-dbm.html">8.6 dbm  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

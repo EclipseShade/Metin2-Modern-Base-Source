@@ -1,0 +1,209 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "EffectLib"=..\eter2\EffectLib\EffectLib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "EterPack"=..\eter2\EterPack\EterPack.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "PRTerrainLib"=..\eter2\PRTerrainLib\PRTerrainLib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "SpeedTreeLib"=..\eter2\SpeedTreeLib\SpeedTreeLib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "SphereLib"=..\eter2\SphereLib\SphereLib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "WorldEditor"=.\WorldEditor.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name EffectLib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name eterBase
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name eterGrnLib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name eterImageLib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name eterlib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name EterPack
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name gamelib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name mileslib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name PRTerrainLib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name scriptLib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name SpeedTreeLib
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name SphereLib
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "eterBase"=..\eter2\EterBase\eterBase.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "eterGrnLib"=..\eter2\EterGrnLib\eterGrnLib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "eterImageLib"=..\eter2\EterImageLib\eterImageLib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "eterlib"=..\eter2\EterLib\eterlib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "gamelib"=..\eter2\GameLib\gamelib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "mileslib"=..\eter2\MilesLib\mileslib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "scriptLib"=..\eter2\ScriptLib\scriptLib.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

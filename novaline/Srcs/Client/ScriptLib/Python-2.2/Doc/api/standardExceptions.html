@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.1 Standard Exceptions </title>
+<META NAME="description" CONTENT="4.1 Standard Exceptions ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node15.html">
+<LINK REL="previous" href="exceptionHandling.html">
+<LINK REL="up" href="exceptionHandling.html">
+<LINK REL="next" HREF="node15.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="exceptionHandling.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="exceptionHandling.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node15.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="exceptionHandling.html">4. Exception Handling</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="exceptionHandling.html">4. Exception Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node15.html">4.2 Deprecation of String</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006100000000000000000">&nbsp;</A>
+<BR>
+4.1 Standard Exceptions 
+</H1>
+
+<P>
+All standard Python exceptions are available as global variables whose
+names are "<tt class="samp">PyExc_</tt>" followed by the Python exception name.  These
+have the type <tt class="ctype">PyObject*</tt>; they are all class objects.  For
+completeness, here are all the variables:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>C Name</b>&nbsp;</th>
+      <th align="left"><b>Python Name</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_Exception</tt></td>
+        <td align="left"><tt class="exception">Exception</tt></td>
+        <td align="center">(1)</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_StandardError</tt></td>
+        <td align="left"><tt class="exception">StandardError</tt></td>
+        <td align="center">(1)</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_ArithmeticError</tt></td>
+        <td align="left"><tt class="exception">ArithmeticError</tt></td>
+        <td align="center">(1)</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_LookupError</tt></td>
+        <td align="left"><tt class="exception">LookupError</tt></td>
+        <td align="center">(1)</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_AssertionError</tt></td>
+        <td align="left"><tt class="exception">AssertionError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_AttributeError</tt></td>
+        <td align="left"><tt class="exception">AttributeError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_EOFError</tt></td>
+        <td align="left"><tt class="exception">EOFError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_EnvironmentError</tt></td>
+        <td align="left"><tt class="exception">EnvironmentError</tt></td>
+        <td align="center">(1)</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_FloatingPointError</tt></td>
+        <td align="left"><tt class="exception">FloatingPointError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_IOError</tt></td>
+        <td align="left"><tt class="exception">IOError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_ImportError</tt></td>
+        <td align="left"><tt class="exception">ImportError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_IndexError</tt></td>
+        <td align="left"><tt class="exception">IndexError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_KeyError</tt></td>
+        <td align="left"><tt class="exception">KeyError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_KeyboardInterrupt</tt></td>
+        <td align="left"><tt class="exception">KeyboardInterrupt</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_MemoryError</tt></td>
+        <td align="left"><tt class="exception">MemoryError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_NameError</tt></td>
+        <td align="left"><tt class="exception">NameError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_NotImplementedError</tt></td>
+        <td align="left"><tt class="exception">NotImplementedError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_OSError</tt></td>
+        <td align="left"><tt class="exception">OSError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_OverflowError</tt></td>
+        <td align="left"><tt class="exception">OverflowError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_ReferenceError</tt></td>
+        <td align="left"><tt class="exception">ReferenceError</tt></td>
+        <td align="center">(2)</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_RuntimeError</tt></td>
+        <td align="left"><tt class="exception">RuntimeError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_SyntaxError</tt></td>
+        <td align="left"><tt class="exception">SyntaxError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_SystemError</tt></td>
+        <td align="left"><tt class="exception">SystemError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_SystemExit</tt></td>
+        <td align="left"><tt class="exception">SystemExit</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_TypeError</tt></td>
+        <td align="left"><tt class="exception">TypeError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_ValueError</tt></td>
+        <td align="left"><tt class="exception">ValueError</tt></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_WindowsError</tt></td>
+        <td align="left"><tt class="exception">WindowsError</tt></td>
+        <td align="center">(3)</td>
+    <tr><td align="left" valign="baseline"><tt class="cdata">PyExc_ZeroDivisionError</tt></td>
+        <td align="left"><tt class="exception">ZeroDivisionError</tt></td>
+        <td align="center">&nbsp;</td></tbody>
+</table>
+
+<P>
+Notes:
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>This is a base class for other standard exceptions.
+
+<P>
+</DD>
+<DT><STRONG>(2)</STRONG></DT>
+<DD>This is the same as <tt class="exception">weakref.ReferenceError</tt>.
+
+<P>
+</DD>
+<DT><STRONG>(3)</STRONG></DT>
+<DD>Only defined on Windows; protect code that uses this by testing that
+  the preprocessor macro <code>MS_WINDOWS</code> is defined.
+</DD>
+</DL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="exceptionHandling.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="exceptionHandling.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node15.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="exceptionHandling.html">4. Exception Handling</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="exceptionHandling.html">4. Exception Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node15.html">4.2 Deprecation of String</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

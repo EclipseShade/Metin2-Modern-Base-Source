@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11. Internet Protocols and Support </title>
+<META NAME="description" CONTENT="11. Internet Protocols and Support ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="netdata.html">
+<LINK REL="previous" href="profile.html">
+<LINK REL="up" HREF="lib.html">
+<LINK REL="next" href="module-webbrowser.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node289.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-webbrowser.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node289.html">10.8 Extensions  </A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-webbrowser.html">11.1 webbrowser  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0013000000000000000000">&nbsp;</A>
+<BR>
+11. Internet Protocols and Support 
+</H1>
+
+<P>
+<a name="l2h-2270">&nbsp;</a>
+<P>
+The modules described in this chapter implement Internet protocols and 
+support for related technology.  They are all implemented in Python.
+Most of these modules require the presence of the system-dependent
+module <tt class="module"><a href="module-socket.html">socket</a></tt><a name="l2h-2271">&nbsp;</a>, which is currently
+supported on most popular platforms.  Here is an overview:
+
+<P>
+<table class='synopsistable' valign='baseline'>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-webbrowser.html'>webbrowser</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Easy-to-use controller for Web browsers.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-cgi.html'>cgi</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Common Gateway Interface support, used to interpret
+forms in server-side scripts.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-cgitb.html'>cgitb</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Configurable traceback handler for CGI scripts.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-urllib.html'>urllib</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Open an arbitrary network resource by URL (requires sockets).</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-urllib2.html'>urllib2</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>An extensible library for opening URLs using a variety of 
+                protocols</td></tr>
+  <tr><td><b><tt class='module'><a href='module-httplib.html'>httplib</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>HTTP and HTTPS protocol client (requires sockets).</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-ftplib.html'>ftplib</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>FTP protocol client (requires sockets).</td></tr>
+  <tr><td><b><tt class='module'><a href='module-gopherlib.html'>gopherlib</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Gopher protocol client (requires sockets).</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-poplib.html'>poplib</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>POP3 protocol client (requires sockets).</td></tr>
+  <tr><td><b><tt class='module'><a href='module-imaplib.html'>imaplib</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>IMAP4 protocol client (requires sockets).</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-nntplib.html'>nntplib</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>NNTP protocol client (requires sockets).</td></tr>
+  <tr><td><b><tt class='module'><a href='module-smtplib.html'>smtplib</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>SMTP protocol client (requires sockets).</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-telnetlib.html'>telnetlib</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Telnet client class.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-urlparse.html'>urlparse</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Parse URLs into components.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-SocketServer.html'>SocketServer</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>A framework for network servers.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-BaseHTTPServer.html'>BaseHTTPServer</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Basic HTTP server (base class for
+                <tt class="class">SimpleHTTPServer</tt> and <tt class="class">CGIHTTPServer</tt>).</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-SimpleHTTPServer.html'>SimpleHTTPServer</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>This module provides a basic request handler for HTTP
+                servers.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-CGIHTTPServer.html'>CGIHTTPServer</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>This module provides a request handler for HTTP servers
+                which can run CGI scripts.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-Cookie.html'>Cookie</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Support for HTTP state management (cookies).</td></tr>
+  <tr><td><b><tt class='module'><a href='module-xmlrpclib.html'>xmlrpclib</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>XML-RPC client access.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-SimpleXMLRPCServer.html'>SimpleXMLRPCServer</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Basic XML-RPC server implementation.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-asyncore.html'>asyncore</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>A base class for developing asynchronous socket 
+                handling services.</td></tr>
+</table>
+
+<BR>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node289.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-webbrowser.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node289.html">10.8 Extensions  </A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-webbrowser.html">11.1 webbrowser  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

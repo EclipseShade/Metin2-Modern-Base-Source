@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.6.3.1 Type Mapping </title>
+<META NAME="description" CONTENT="13.6.3.1 Type Mapping ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="dom-accessor-methods.html">
+<LINK REL="previous" href="dom-conformance.html">
+<LINK REL="up" href="dom-conformance.html">
+<LINK REL="next" href="dom-accessor-methods.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dom-conformance.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dom-conformance.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dom-accessor-methods.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dom-conformance.html">13.6.3 Conformance</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dom-conformance.html">13.6.3 Conformance</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dom-accessor-methods.html">13.6.3.2 Accessor Methods</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0015631000000000000000">&nbsp;</A>
+<BR>
+13.6.3.1 Type Mapping 
+</H3>
+
+<P>
+The primitive IDL types used in the DOM specification are mapped to
+Python types according to the following table.
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>IDL Type</b>&nbsp;</th>
+      <th align="left"><b>Python Type</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>boolean</code></td>
+        <td align="left"><code>IntegerType</code> (with a value of <code>0</code> or <code>1</code>)</td>
+    <tr><td align="left" valign="baseline"><code>int</code></td>
+        <td align="left"><code>IntegerType</code></td>
+    <tr><td align="left" valign="baseline"><code>long int</code></td>
+        <td align="left"><code>IntegerType</code></td>
+    <tr><td align="left" valign="baseline"><code>unsigned int</code></td>
+        <td align="left"><code>IntegerType</code></td></tbody>
+</table>
+
+<P>
+Additionally, the <tt class="class">DOMString</tt> defined in the recommendation is
+mapped to a Python string or Unicode string.  Applications should
+be able to handle Unicode whenever a string is returned from the DOM.
+
+<P>
+The IDL <tt class="keyword">null</tt> value is mapped to <code>None</code>, which may be
+accepted or provided by the implementation whenever <tt class="keyword">null</tt> is
+allowed by the API.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dom-conformance.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dom-conformance.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dom-accessor-methods.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dom-conformance.html">13.6.3 Conformance</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dom-conformance.html">13.6.3 Conformance</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dom-accessor-methods.html">13.6.3.2 Accessor Methods</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

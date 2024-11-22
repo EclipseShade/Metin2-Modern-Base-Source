@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.8.1 Popen3 and Popen4 Objects </title>
+<META NAME="description" CONTENT="6.8.1 Popen3 and Popen4 Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-popen2.html">
+<LINK REL="up" href="module-popen2.html">
+<LINK REL="next" href="module-time.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-popen2.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-popen2.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-time.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-popen2.html">6.8 popen2  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-popen2.html">6.8 popen2  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-time.html">6.9 time  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008810000000000000000">&nbsp;</A>
+<BR>
+6.8.1 Popen3 and Popen4 Objects 
+</H2>
+
+<P>
+Instances of the <tt class="class">Popen3</tt> and <tt class="class">Popen4</tt> classes have the
+following methods:
+
+<P>
+<dl><dt><b><a name="l2h-1361"><tt class="method">poll</tt></a></b>()
+<dd>
+Returns <code>-1</code> if child process hasn't completed yet, or its return 
+code otherwise.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1362"><tt class="method">wait</tt></a></b>()
+<dd>
+Waits for and returns the status code of the child process.  The
+status code encodes both the return code of the process and
+information about whether it exited using the <tt class="cfunction">exit()</tt>
+system call or died due to a signal.  Functions to help interpret the
+status code are defined in the <tt class="module"><a href="module-os.html">os</a></tt> module; see section
+<A href="os-process.html#os-process">6.1.5</A> for the <tt class="function">W<var>*</var>()</tt> family of functions.
+</dl>
+
+<P>
+The following attributes are also available: 
+
+<P>
+<dl><dt><b><a name="l2h-1363"><tt class="member">fromchild</tt></a></b>
+<dd>
+A file object that provides output from the child process.  For
+<tt class="class">Popen4</tt> instances, this will provide both the standard output
+and standard error streams.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1364"><tt class="member">tochild</tt></a></b>
+<dd>
+A file object that provides input to the child process.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1365"><tt class="member">childerr</tt></a></b>
+<dd>
+Where the standard error from the child process goes is
+<var>capturestderr</var> was true for the constructor, or <code>None</code>.
+This will always be <code>None</code> for <tt class="class">Popen4</tt> instances.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1366"><tt class="member">pid</tt></a></b>
+<dd>
+The process ID of the child process.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-popen2.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-popen2.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-time.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-popen2.html">6.8 popen2  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-popen2.html">6.8 popen2  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-time.html">6.9 time  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.3 Advanced Debugger Support </title>
+<META NAME="description" CONTENT="8.3 Advanced Debugger Support ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="profiling.html">
+<LINK REL="up" href="initialization.html">
+<LINK REL="next" href="memory.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="profiling.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="initialization.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="memory.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="profiling.html">8.2 Profiling and Tracing</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="initialization.html">8. Initialization, Finalization, and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="memory.html">9. Memory Management</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0010300000000000000000">&nbsp;</A>
+<BR>
+8.3 Advanced Debugger Support 
+</H1>
+
+<P>
+These functions are only intended to be used by advanced debugging
+tools.
+
+<P>
+<dl><dt>PyInterpreterState* <b><a name="l2h-755"><tt class="cfunction">PyInterpreterState_Head</tt></a></b>()
+<dd>
+  Return the interpreter state object at the head of the list of all
+  such objects.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>PyInterpreterState* <b><a name="l2h-756"><tt class="cfunction">PyInterpreterState_Next</tt></a></b>(<var>PyInterpreterState *interp</var>)
+<dd>
+  Return the next interpreter state object after <var>interp</var> from the
+  list of all such objects.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>PyThreadState * <b><a name="l2h-757"><tt class="cfunction">PyInterpreterState_ThreadHead</tt></a></b>(<var>PyInterpreterState *interp</var>)
+<dd>
+  Return the a pointer to the first <tt class="ctype">PyThreadState</tt> object in
+  the list of threads associated with the interpreter <var>interp</var>.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>PyThreadState* <b><a name="l2h-758"><tt class="cfunction">PyThreadState_Next</tt></a></b>(<var>PyThreadState *tstate</var>)
+<dd>
+  Return the next thread state object after <var>tstate</var> from the list
+  of all such objects belonging to the same <tt class="ctype">PyInterpreterState</tt>
+  object.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="profiling.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="initialization.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="memory.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="profiling.html">8.2 Profiling and Tracing</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="initialization.html">8. Initialization, Finalization, and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="memory.html">9. Memory Management</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

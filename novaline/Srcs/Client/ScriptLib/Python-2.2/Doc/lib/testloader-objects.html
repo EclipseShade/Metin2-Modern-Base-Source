@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.3.7 TestLoader Objects </title>
+<META NAME="description" CONTENT="5.3.7 TestLoader Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="testresult-objects.html">
+<LINK REL="up" href="module-unittest.html">
+<LINK REL="next" href="module-math.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="testresult-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-unittest.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-math.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="testresult-objects.html">5.3.6 TestResult Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-unittest.html">5.3 unittest  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-math.html">5.4 math  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007370000000000000000">&nbsp;</A>
+<BR>
+5.3.7 TestLoader Objects
+            
+</H2>
+
+<P>
+The <tt class="class">TestLoader</tt> class is used to create test suites from
+classes and modules.  Normally, there is no need to create an instance
+of this class; the <tt class="module"><a href="module-unittest.html">unittest</a></tt> module provides an instance
+that can be shared as the <code>defaultTestLoader</code> module attribute.
+Using a subclass or instance would allow customization of some
+configurable properties.
+
+<P>
+<tt class="class">TestLoader</tt> objects have the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-880"><tt class="method">loadTestsFromTestCase</tt></a></b>(<var>testCaseClass</var>)
+<dd>
+  Return a suite of all tests cases contained in the
+  <tt class="class">TestCase</tt>-derived class <tt class="class">testCaseClass</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-881"><tt class="method">loadTestsFromModule</tt></a></b>(<var>module</var>)
+<dd>
+  Return a suite of all tests cases contained in the given module.
+  This method searches <var>module</var> for classes derived from
+  <tt class="class">TestCase</tt> and creates an instance of the class for each test
+  method defined for the class.
+
+<P>
+<span class="warning"><b class="label">Warning:</b>
+While using a hierarchy of
+  <tt class="class">Testcase</tt>-derived classes can be convenient in sharing
+  fixtures and helper functions, defining test methods on base classes
+  that are not intended to be instantiated directly does not play well
+  with this method.  Doing so, however, can be useful when the
+  fixtures are different and defined in subclasses.</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-882"><tt class="method">loadTestsFromName</tt></a></b>(<var>name</var><big>[</big><var>, module</var><big>]</big>)
+<dd>
+  Return a suite of all tests cases given a string specifier.
+
+<P>
+The specifier <var>name</var> is a ``dotted name'' that may resolve
+  either to a module, a test case class, a test method within a test
+  case class, or a callable object which returns a <tt class="class">TestCase</tt> or
+  <tt class="class">TestSuite</tt> instance.  For example, if you have a module
+  <tt class="module">SampleTests</tt> containing a <tt class="class">TestCase</tt>-derived class
+  <tt class="class">SampleTestCase</tt> with three test methods (<tt class="method">test_one()</tt>,
+  <tt class="method">test_two()</tt>, and <tt class="method">test_three()</tt>), the specifier
+  <code>'SampleTests.SampleTestCase'</code> would cause this method to
+  return a suite which will run all three test methods.  Using the
+  specifier <code>'SampleTests.SampleTestCase.test_two'</code> would cause
+  it to return a test suite which will run only the
+  <tt class="method">test_two()</tt> test method.  The specifier can refer to modules
+  and packages which have not been imported; they will be imported as
+  a side-effect.
+
+<P>
+The method optionally resolves <var>name</var> relative to a given module.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-883"><tt class="method">loadTestsFromNames</tt></a></b>(<var>names</var><big>[</big><var>, module</var><big>]</big>)
+<dd>
+  Similar to <tt class="method">loadTestsFromName()</tt>, but takes a sequence of
+  names rather than a single name.  The return value is a test suite
+  which supports all the tests defined for each name.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-884"><tt class="method">getTestCaseNames</tt></a></b>(<var>testCaseClass</var>)
+<dd>
+  Return a sorted sequence of method names found within
+  <var>testCaseClass</var>.
+</dl>
+
+<P>
+The following attributes of a <tt class="class">TestLoader</tt> can be configured
+either by subclassing or assignment on an instance:
+
+<P>
+<dl><dt><b><a name="l2h-885"><tt class="member">testMethodPrefix</tt></a></b>
+<dd>
+  String giving the prefix of method names which will be interpreted
+  as test methods.  The default value is <code>'test'</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-886"><tt class="member">sortTestMethodsUsing</tt></a></b>
+<dd>
+  Function to be used to compare method names when sorting them in
+  <tt class="method">getTestCaseNames()</tt>.  The default value is the built-in
+  <tt class="function">cmp()</tt> function; it can be set to <code>None</code> to disable
+  the sort.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-887"><tt class="member">suiteClass</tt></a></b>
+<dd>
+  Callable object that constructs a test suite from a list of tests.
+  No methods on the resulting object are needed.  The default value is
+  the <tt class="class">TestSuite</tt> class.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="testresult-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-unittest.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-math.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="testresult-objects.html">5.3.6 TestResult Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-unittest.html">5.3 unittest  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-math.html">5.4 math  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

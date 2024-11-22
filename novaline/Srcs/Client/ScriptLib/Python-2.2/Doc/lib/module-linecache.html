@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.13 linecache -- Random access to text lines</title>
+<META NAME="description" CONTENT="3.13 linecache -- Random access to text lines">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-pickle.html">
+<LINK REL="previous" href="module-traceback.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="module-pickle.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="traceback-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-pickle.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="traceback-example.html">3.12.1 Traceback Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-pickle.html">3.14 pickle  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0051300000000000000000">
+3.13 <tt class="module">linecache</tt> --
+         Random access to text lines</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">linecache</tt> module allows one to get any line from any file,
+while attempting to optimize internally, using a cache, the common case
+where many lines are read from a single file.  This is used by the
+<tt class="module"><a href="module-traceback.html">traceback</a></tt> module to retrieve source lines for inclusion in 
+the formatted traceback.
+
+<P>
+The <tt class="module">linecache</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-507"><tt class="function">getline</tt></a></b>(<var>filename, lineno</var>)
+<dd>
+Get line <var>lineno</var> from file named <var>filename</var>. This function
+will never throw an exception -- it will return <code>''</code> on errors
+(the terminating newline character will be included for lines that are
+found).
+
+<P>
+If a file named <var>filename</var> is not found, the function will look
+for it in the module<a name="l2h-510">&nbsp;</a>search path,
+<code>sys.path</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-508"><tt class="function">clearcache</tt></a></b>()
+<dd>
+Clear the cache.  Use this function if you no longer need lines from
+files previously read using <tt class="function">getline()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-509"><tt class="function">checkcache</tt></a></b>()
+<dd>
+Check the cache for validity.  Use this function if files in the cache 
+may have changed on disk, and you require the updated version.
+</dl>
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import linecache
+&gt;&gt;&gt; linecache.getline('/etc/passwd', 4)
+'sys:x:3:3:sys:/dev:/bin/sh\n'
+</pre></dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="traceback-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-pickle.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="traceback-example.html">3.12.1 Traceback Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-pickle.html">3.14 pickle  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,421 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.4 urllib -- Open arbitrary resources by URL</title>
+<META NAME="description" CONTENT="11.4 urllib -- Open arbitrary resources by URL">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-urllib2.html">
+<LINK REL="previous" href="module-cgitb.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="urlopener-objs.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-cgitb.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="urlopener-objs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-cgitb.html">11.3 cgitb  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="urlopener-objs.html">11.4.1 URLopener Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0013400000000000000000">
+11.4 <tt class="module">urllib</tt> --
+         Open arbitrary resources by URL</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name="l2h-2321">&nbsp;</a>
+<P>
+This module provides a high-level interface for fetching data across
+the World Wide Web.  In particular, the <tt class="function">urlopen()</tt> function
+is similar to the built-in function <tt class="function">open()</tt>, but accepts
+Universal Resource Locators (URLs) instead of filenames.  Some
+restrictions apply -- it can only open URLs for reading, and no seek
+operations are available.
+
+<P>
+It defines the following public functions:
+
+<P>
+<dl><dt><b><a name="l2h-2311"><tt class="function">urlopen</tt></a></b>(<var>url</var><big>[</big><var>, data</var><big>]</big>)
+<dd>
+Open a network object denoted by a URL for reading.  If the URL does
+not have a scheme identifier, or if it has <span class="file">file:</span> as its scheme
+identifier, this opens a local file; otherwise it opens a socket to a
+server somewhere on the network.  If the connection cannot be made, or
+if the server returns an error code, the <tt class="exception">IOError</tt> exception
+is raised.  If all went well, a file-like object is returned.  This
+supports the following methods: <tt class="method">read()</tt>, <tt class="method">readline()</tt>,
+<tt class="method">readlines()</tt>, <tt class="method">fileno()</tt>, <tt class="method">close()</tt>,
+<tt class="method">info()</tt> and <tt class="method">geturl()</tt>.
+
+<P>
+Except for the <tt class="method">info()</tt> and <tt class="method">geturl()</tt> methods,
+these methods have the same interface as for
+file objects -- see section <A href="bltin-file-objects.html#bltin-file-objects">2.2.8</A> in this
+manual.  (It is not a built-in file object, however, so it can't be
+used at those few places where a true built-in file object is
+required.)
+
+<P>
+The <tt class="method">info()</tt> method returns an instance of the class
+<tt class="class">mimetools.Message</tt> containing meta-information associated
+with the URL.  When the method is HTTP, these headers are those
+returned by the server at the head of the retrieved HTML page
+(including Content-Length and Content-Type).  When the method is FTP,
+a Content-Length header will be present if (as is now usual) the
+server passed back a file length in response to the FTP retrieval
+request. A Content-Type header will be present if the MIME type can
+be guessed.  When the method is local-file, returned headers will include
+a Date representing the file's last-modified time, a Content-Length
+giving file size, and a Content-Type containing a guess at the file's
+type. See also the description of the
+<tt class="module"><a href="module-mimetools.html">mimetools</a></tt><a name="l2h-2322">&nbsp;</a>module.
+
+<P>
+The <tt class="method">geturl()</tt> method returns the real URL of the page.  In
+some cases, the HTTP server redirects a client to another URL.  The
+<tt class="function">urlopen()</tt> function handles this transparently, but in some
+cases the caller needs to know which URL the client was redirected
+to.  The <tt class="method">geturl()</tt> method can be used to get at this
+redirected URL.
+
+<P>
+If the <var>url</var> uses the <span class="file">http:</span> scheme identifier, the optional
+<var>data</var> argument may be given to specify a <code>POST</code> request
+(normally the request type is <code>GET</code>).  The <var>data</var> argument
+must in standard <span class="mimetype">application/x-www-form-urlencoded</span> format;
+see the <tt class="function">urlencode()</tt> function below.
+
+<P>
+The <tt class="function">urlopen()</tt> function works transparently with proxies
+which do not require authentication.  In a Unix or Windows
+environment, set the <a class="envvar" name="l2h-2323">http_proxy</a>, <a class="envvar" name="l2h-2324">ftp_proxy</a> or
+<a class="envvar" name="l2h-2325">gopher_proxy</a> environment variables to a URL that identifies
+the proxy server before starting the Python interpreter.  For example
+(the "<tt class="character">%</tt>" is the command prompt):
+
+<P>
+<dl><dd><pre class="verbatim">
+% http_proxy="http://www.someproxy.com:3128"
+% export http_proxy
+% python
+...
+</pre></dl>
+
+<P>
+In a Macintosh environment, <tt class="function">urlopen()</tt> will retrieve proxy
+information from Internet<a name="l2h-2326">&nbsp;</a>Config.
+
+<P>
+Proxies which require authentication for use are not currently
+supported; this is considered an implementation limitation.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2312"><tt class="function">urlretrieve</tt></a></b>(<var>url</var><big>[</big><var>, filename</var><big>[</big><var>,
+                              reporthook</var><big>[</big><var>, data</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+Copy a network object denoted by a URL to a local file, if necessary.
+If the URL points to a local file, or a valid cached copy of the
+object exists, the object is not copied.  Return a tuple
+<code>(<var>filename</var>, <var>headers</var>)</code> where <var>filename</var> is the
+local file name under which the object can be found, and <var>headers</var>
+is either <code>None</code> (for a local object) or whatever the
+<tt class="method">info()</tt> method of the object returned by <tt class="function">urlopen()</tt>
+returned (for a remote object, possibly cached).  Exceptions are the
+same as for <tt class="function">urlopen()</tt>.
+
+<P>
+The second argument, if present, specifies the file location to copy
+to (if absent, the location will be a tempfile with a generated name).
+The third argument, if present, is a hook function that will be called
+once on establishment of the network connection and once after each
+block read thereafter.  The hook will be passed three arguments; a
+count of blocks transferred so far, a block size in bytes, and the
+total size of the file.  The third argument may be <code>-1</code> on older
+FTP servers which do not return a file size in response to a retrieval 
+request.
+
+<P>
+If the <var>url</var> uses the <span class="file">http:</span> scheme identifier, the optional
+<var>data</var> argument may be given to specify a <code>POST</code> request
+(normally the request type is <code>GET</code>).  The <var>data</var> argument
+must in standard <span class="mimetype">application/x-www-form-urlencoded</span> format;
+see the <tt class="function">urlencode()</tt> function below.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2313"><tt class="function">urlcleanup</tt></a></b>()
+<dd>
+Clear the cache that may have been built up by previous calls to
+<tt class="function">urlretrieve()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2314"><tt class="function">quote</tt></a></b>(<var>string</var><big>[</big><var>, safe</var><big>]</big>)
+<dd>
+Replace special characters in <var>string</var> using the "<tt class="samp">%xx</tt>" escape.
+Letters, digits, and the characters "<tt class="character">_,.-</tt>" are never quoted.
+The optional <var>safe</var> parameter specifies additional characters
+that should not be quoted -- its default value is <code>'/'</code>.
+
+<P>
+Example: <code>quote('/~connolly/')</code> yields <code>'/%7econnolly/'</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2315"><tt class="function">quote_plus</tt></a></b>(<var>string</var><big>[</big><var>, safe</var><big>]</big>)
+<dd>
+Like <tt class="function">quote()</tt>, but also replaces spaces by plus signs, as
+required for quoting HTML form values.  Plus signs in the original
+string are escaped unless they are included in <var>safe</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2316"><tt class="function">unquote</tt></a></b>(<var>string</var>)
+<dd>
+Replace "<tt class="samp">%xx</tt>" escapes by their single-character equivalent.
+
+<P>
+Example: <code>unquote('/%7Econnolly/')</code> yields <code>'/~connolly/'</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2317"><tt class="function">unquote_plus</tt></a></b>(<var>string</var>)
+<dd>
+Like <tt class="function">unquote()</tt>, but also replaces plus signs by spaces, as
+required for unquoting HTML form values.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2318"><tt class="function">urlencode</tt></a></b>(<var>query</var><big>[</big><var>, doseq</var><big>]</big>)
+<dd>
+Convert a mapping object or a sequence of two-element tuples  to a
+``url-encoded'' string, suitable to pass to 
+<tt class="function">urlopen()</tt> above as the optional <var>data</var> argument.  This
+is useful to pass a dictionary of form fields to a <code>POST</code>
+request.  The resulting string is a series of
+<code><var>key</var>=<var>value</var></code> pairs separated by "<tt class="character">&amp;</tt>"
+characters, where both <var>key</var> and <var>value</var> are quoted using
+<tt class="function">quote_plus()</tt> above.  If the optional parameter <var>doseq</var> is
+present and evaluates to true, individual <code><var>key</var>=<var>value</var></code> pairs
+are generated for each element of the sequence.
+When a sequence of two-element tuples is used as the <var>query</var> argument,
+the first element of each tuple is a key and the second is a value.  The
+order of parameters in the encoded string will match the order of parameter
+tuples in the sequence.
+</dl>
+
+<P>
+The public functions <tt class="function">urlopen()</tt> and
+<tt class="function">urlretrieve()</tt> create an instance of the
+<tt class="class">FancyURLopener</tt> class and use it to perform their requested
+actions.  To override this functionality, programmers can create a
+subclass of <tt class="class">URLopener</tt> or <tt class="class">FancyURLopener</tt>, then assign
+that an instance of that class to the
+<code>urllib._urlopener</code> variable before calling the desired function.
+For example, applications may want to specify a different
+<span class="mailheader">User-Agent:</span> header than <tt class="class">URLopener</tt> defines.  This
+can be accomplished with the following code:
+
+<P>
+<dl><dd><pre class="verbatim">
+class AppURLopener(urllib.FancyURLopener):
+    def __init__(self, *args):
+        self.version = "App/1.7"
+        urllib.FancyURLopener.__init__(self, *args)
+
+urllib._urlopener = AppURLopener()
+</pre></dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2319"><tt class="class">URLopener</tt></a></b>(<big>[</big><var>proxies</var><big>[</big><var>, **x509</var><big>]</big><big>]</big>)
+<dd>
+Base class for opening and reading URLs.  Unless you need to support
+opening objects using schemes other than <span class="file">http:</span>, <span class="file">ftp:</span>,
+<span class="file">gopher:</span> or <span class="file">file:</span>, you probably want to use
+<tt class="class">FancyURLopener</tt>.
+
+<P>
+By default, the <tt class="class">URLopener</tt> class sends a
+<span class="mailheader">User-Agent:</span> header of "<tt class="samp">urllib/<var>VVV</var></tt>", where
+<var>VVV</var> is the <tt class="module">urllib</tt> version number.  Applications can
+define their own <span class="mailheader">User-Agent:</span> header by subclassing
+<tt class="class">URLopener</tt> or <tt class="class">FancyURLopener</tt> and setting the instance
+attribute <tt class="member">version</tt> to an appropriate string value before the
+<tt class="method">open()</tt> method is called.
+
+<P>
+Additional keyword parameters, collected in <var>x509</var>, are used for
+authentication with the <span class="file">https:</span> scheme.  The keywords
+<var>key_file</var> and <var>cert_file</var> are supported; both are needed to
+actually retrieve a resource at an <span class="file">https:</span> URL.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2320"><tt class="class">FancyURLopener</tt></a></b>(<var>...</var>)
+<dd>
+<tt class="class">FancyURLopener</tt> subclasses <tt class="class">URLopener</tt> providing default
+handling for the following HTTP response codes: 301, 302 or 401.  For
+301 and 302 response codes, the <span class="mailheader">Location:</span> header is used to
+fetch the actual URL.  For 401 response codes (authentication
+required), basic HTTP authentication is performed.  For 301 and 302 response
+codes, recursion is bounded by the value of the <var>maxtries</var> attribute,
+which defaults 10.
+
+<P>
+The parameters to the constructor are the same as those for
+<tt class="class">URLopener</tt>.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+When performing basic authentication, a
+<tt class="class">FancyURLopener</tt> instance calls its
+<tt class="method">prompt_user_passwd()</tt> method.  The default implementation asks
+the users for the required information on the controlling terminal.  A
+subclass may override this method to support more appropriate behavior
+if needed.</span>
+</dl>
+
+<P>
+Restrictions:
+
+<P>
+
+<UL>
+<LI>Currently, only the following protocols are supported: HTTP, (versions
+0.9 and 1.0), Gopher (but not Gopher-+), FTP, and local files.
+<a name="l2h-2327">&nbsp;</a>
+<P>
+</LI>
+<LI>The caching feature of <tt class="function">urlretrieve()</tt> has been disabled
+until I find the time to hack proper processing of Expiration time
+headers.
+
+<P>
+</LI>
+<LI>There should be a function to query whether a particular URL is in
+the cache.
+
+<P>
+</LI>
+<LI>For backward compatibility, if a URL appears to point to a local file
+but the file can't be opened, the URL is re-interpreted using the FTP
+protocol.  This can sometimes cause confusing error messages.
+
+<P>
+</LI>
+<LI>The <tt class="function">urlopen()</tt> and <tt class="function">urlretrieve()</tt> functions can
+cause arbitrarily long delays while waiting for a network connection
+to be set up.  This means that it is difficult to build an interactive
+Web client using these functions without using threads.
+
+<P>
+</LI>
+<LI>The data returned by <tt class="function">urlopen()</tt> or <tt class="function">urlretrieve()</tt>
+is the raw data returned by the server.  This may be binary data
+(e.g. an image), plain text or (for example) HTML<a name="l2h-2328">&nbsp;</a>.  The
+HTTP<a name="l2h-2329">&nbsp;</a>protocol provides type information in the
+reply header, which can be inspected by looking at the
+<span class="mailheader">Content-Type:</span> header.  For the
+Gopher<a name="l2h-2330">&nbsp;</a>protocol, type information is encoded
+in the URL; there is currently no easy way to extract it.  If the
+returned data is HTML, you can use the module
+<tt class="module"><a href="module-htmllib.html">htmllib</a></tt><a name="l2h-2331">&nbsp;</a>to parse it.
+
+<P>
+</LI>
+<LI>This module does not support the use of proxies which require
+authentication.  This may be implemented in the future.
+
+<P>
+</LI>
+<LI>Although the <tt class="module">urllib</tt> module contains (undocumented) routines
+to parse and unparse URL strings, the recommended interface for URL
+manipulation is in module <tt class="module"><a href="module-urlparse.html">urlparse</a></tt><a name="l2h-2332">&nbsp;</a>.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="urlopener-objs.html">11.4.1 URLopener Objects</a>
+<LI><A href="node307.html">11.4.2 Examples</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-cgitb.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="urlopener-objs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-cgitb.html">11.3 cgitb  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="urlopener-objs.html">11.4.1 URLopener Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

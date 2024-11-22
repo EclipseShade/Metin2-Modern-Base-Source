@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.2.7 Installing your CGI script on a Unix system</title>
+<META NAME="description" CONTENT="11.2.7 Installing your CGI script on a Unix system">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node301.html">
+<LINK REL="previous" href="cgi-security.html">
+<LINK REL="up" href="module-cgi.html">
+<LINK REL="next" HREF="node301.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="cgi-security.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-cgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node301.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="cgi-security.html">11.2.6 Caring about security</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-cgi.html">11.2 cgi  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node301.html">11.2.8 Testing your CGI</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013270000000000000000">
+11.2.7 Installing your CGI script on a Unix system</A>
+</H2>
+
+<P>
+Read the documentation for your HTTP server and check with your local
+system administrator to find the directory where CGI scripts should be
+installed; usually this is in a directory <span class="file">cgi-bin</span> in the server tree.
+
+<P>
+Make sure that your script is readable and executable by ``others''; the
+Unix file mode should be <code>0755</code> octal (use "<tt class="samp">chmod 0755
+<var>filename</var></tt>").  Make sure that the first line of the script contains
+<code>#!</code> starting in column 1 followed by the pathname of the Python
+interpreter, for instance:
+
+<P>
+<dl><dd><pre class="verbatim">
+#!/usr/local/bin/python
+</pre></dl>
+
+<P>
+Make sure the Python interpreter exists and is executable by ``others''.
+
+<P>
+Make sure that any files your script needs to read or write are
+readable or writable, respectively, by ``others'' -- their mode
+should be <code>0644</code> for readable and <code>0666</code> for writable.  This
+is because, for security reasons, the HTTP server executes your script
+as user ``nobody'', without any special privileges.  It can only read
+(write, execute) files that everybody can read (write, execute).  The
+current directory at execution time is also different (it is usually
+the server's cgi-bin directory) and the set of environment variables
+is also different from what you get when you log in.  In particular, don't
+count on the shell's search path for executables (<a class="envvar" name="l2h-2300">PATH</a>) or
+the Python module search path (<a class="envvar" name="l2h-2301">PYTHONPATH</a>) to be set to
+anything interesting.
+
+<P>
+If you need to load modules from a directory which is not on Python's
+default module search path, you can change the path in your script,
+before importing other modules.  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+import sys
+sys.path.insert(0, "/usr/home/joe/lib/python")
+sys.path.insert(0, "/usr/local/lib/python")
+</pre></dl>
+
+<P>
+(This way, the directory inserted last will be searched first!)
+
+<P>
+Instructions for non-Unix systems will vary; check your HTTP server's
+documentation (it will usually have a section on CGI scripts).
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="cgi-security.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-cgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node301.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="cgi-security.html">11.2.6 Caring about security</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-cgi.html">11.2 cgi  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node301.html">11.2.8 Testing your CGI</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>16.2.2.1 Basic Widgets</title>
+<META NAME="description" CONTENT="16.2.2.1 Basic Widgets">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node520.html">
+<LINK REL="previous" HREF="node518.html">
+<LINK REL="up" HREF="node518.html">
+<LINK REL="next" HREF="node520.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node518.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node518.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node520.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node518.html">16.2.2 Tix Widgets</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node518.html">16.2.2 Tix Widgets</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node520.html">16.2.2.2 File Selectors</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0018221000000000000000">
+16.2.2.1 Basic Widgets</A>
+</H3>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3675"><tt class="class">Balloon</tt></a></b>()
+<dd>
+A <a class="ulink" href="http://tix.sourceforge.net/dist/current/man/html/TixCmd/tixBalloon.htm"
+  >Balloon</a>
+that pops up over a widget to provide help.  When the user moves the
+cursor inside a widget to which a Balloon widget has been bound, a
+small pop-up window with a descriptive message will be shown on the
+screen.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3676"><tt class="class">ButtonBox</tt></a></b>()
+<dd>
+The <a class="ulink" href="http://tix.sourceforge.net/dist/current/man/html/TixCmd/tixButtonBox.htm"
+  >ButtonBox</a>
+widget creates a box of buttons, such as is commonly used for <code>Ok
+Cancel</code>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3677"><tt class="class">ComboBox</tt></a></b>()
+<dd>
+The <a class="ulink" href="http://tix.sourceforge.net/dist/current/man/html/TixCmd/tixComboBox.htm"
+  >ComboBox</a>
+widget is similar to the combo box control in MS Windows. The user can
+select a choice by either typing in the entry subwdget or selecting
+from the listbox subwidget.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3678"><tt class="class">Control</tt></a></b>()
+<dd>
+The <a class="ulink" href="http://tix.sourceforge.net/dist/current/man/html/TixCmd/tixControl.htm"
+  >Control</a>
+widget is also known as the <tt class="class">SpinBox</tt> widget. The user can
+adjust the value by pressing the two arrow buttons or by entering the
+value directly into the entry. The new value will be checked against
+the user-defined upper and lower limits.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3679"><tt class="class">LabelEntry</tt></a></b>()
+<dd>
+The <a class="ulink" href="http://tix.sourceforge.net/dist/current/man/html/TixCmd/tixLabelEntry.htm"
+  >LabelEntry</a>
+widget packages an entry widget and a label into one mega widget. It
+can be used be used to simplify the creation of ``entry-form'' type of
+interface.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3680"><tt class="class">LabelFrame</tt></a></b>()
+<dd>
+The <a class="ulink" href="http://tix.sourceforge.net/dist/current/man/html/TixCmd/tixLabelFrame.htm"
+  >LabelFrame</a>
+widget packages a frame widget and a label into one mega widget.  To
+create widgets inside a LabelFrame widget, one creates the new widgets
+relative to the <tt class="member">frame</tt> subwidget and manage them inside the
+<tt class="member">frame</tt> subwidget.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3681"><tt class="class">Meter</tt></a></b>()
+<dd>
+The <a class="ulink" href="http://tix.sourceforge.net/dist/current/man/html/TixCmd/tixMeter.htm"
+  >Meter</a>
+widget can be used to show the progress of a background job which may
+take a long time to execute.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3682"><tt class="class">OptionMenu</tt></a></b>()
+<dd>
+The <a class="ulink" href="http://tix.sourceforge.net/dist/current/man/html/TixCmd/tixOptionMenu.htm"
+  >OptionMenu</a>
+creates a menu button of options.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3683"><tt class="class">PopupMenu</tt></a></b>()
+<dd>
+The <a class="ulink" href="http://tix.sourceforge.net/dist/current/man/html/TixCmd/tixPopupMenu.htm"
+  >PopupMenu</a>
+widget can be used as a replacement of the <code>tk_popup</code>
+command. The advantage of the <tt class="module"><a href="module-Tix.html">Tix</a></tt> <tt class="class">PopupMenu</tt> widget
+is it requires less application code to manipulate.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3684"><tt class="class">Select</tt></a></b>()
+<dd>
+The <a class="ulink" href="http://tix.sourceforge.net/dist/current/man/html/TixCmd/tixSelect.htm"
+  >Select</a>
+widget is a container of button subwidgets. It can be used to provide
+radio-box or check-box style of selection options for the user.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3685"><tt class="class">StdButtonBox</tt></a></b>()
+<dd>
+The <a class="ulink" href="http://tix.sourceforge.net/dist/current/man/html/TixCmd/tixStdButtonBox.htm"
+  >StdButtonBox</a>
+widget is a group of standard buttons for Motif-like dialog boxes.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node518.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node518.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node520.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node518.html">16.2.2 Tix Widgets</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node518.html">16.2.2 Tix Widgets</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node520.html">16.2.2.2 File Selectors</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

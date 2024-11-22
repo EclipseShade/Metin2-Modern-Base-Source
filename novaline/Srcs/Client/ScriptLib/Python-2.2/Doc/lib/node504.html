@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>16.1.3 A (Very) Quick Look at Tcl/Tk</title>
+<META NAME="description" CONTENT="16.1.3 A (Very) Quick Look at Tcl/Tk">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="tkinter-basic-mapping.html">
+<LINK REL="previous" HREF="node501.html">
+<LINK REL="up" href="module-Tkinter.html">
+<LINK REL="next" href="tkinter-basic-mapping.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node503.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-Tkinter.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="tkinter-basic-mapping.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node503.html">16.1.2.2 A Simple Hello</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-Tkinter.html">16.1 Tkinter  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="tkinter-basic-mapping.html">16.1.4 Mapping Basic Tk</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0018130000000000000000">
+16.1.3 A (Very) Quick Look at Tcl/Tk</A>
+</H2> 
+<P>
+The class hierarchy looks complicated, but in actual practice,
+application programmers almost always refer to the classes at the very
+bottom of the hierarchy. 
+
+<P>
+Notes:
+
+<UL>
+<LI>These classes are provided for the purposes of
+organizing certain functions under one namespace. They aren't meant to
+be instantiated independently.
+
+<P>
+</LI>
+<LI>The <tt class="class">Tk</tt> class is meant to be instantiated only once in
+an application. Application programmers need not instantiate one
+explicitly, the system creates one whenever any of the other classes
+are instantiated.
+
+<P>
+</LI>
+<LI>The <tt class="class">Widget</tt> class is not meant to be instantiated, it
+is meant only for subclassing to make ``real'' widgets (in C++, this
+is called an `abstract class').
+</LI>
+</UL>
+
+<P>
+To make use of this reference material, there will be times when you
+will need to know how to read short passages of Tk and how to identify
+the various parts of a Tk command.  
+(See section&nbsp;<A href="tkinter-basic-mapping.html#tkinter-basic-mapping">16.1.4</A> for the
+<tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt> equivalents of what's below.)
+
+<P>
+Tk scripts are Tcl programs.  Like all Tcl programs, Tk scripts are
+just lists of tokens separated by spaces.  A Tk widget is just its
+<i>class</i>, the <i>options</i> that help configure it, and the
+<i>actions</i> that make it do useful things. 
+
+<P>
+To make a widget in Tk, the command is always of the form: 
+
+<P>
+<dl><dd><pre class="verbatim">
+                classCommand newPathname options
+</pre></dl>
+
+<P>
+<DL>
+<DT><STRONG><var>classCommand</var></STRONG></DT>
+<DD>denotes which kind of widget to make (a button, a label, a menu...)
+
+<P>
+</DD>
+<DT><STRONG><var>newPathname</var></STRONG></DT>
+<DD>is the new name for this widget.  All names in Tk must be unique.  To
+help enforce this, widgets in Tk are named with <i>pathnames</i>, just
+like files in a file system.  The top level widget, the <i>root</i>,
+is called <code>.</code> (period) and children are delimited by more
+periods.  For example, <code>.myApp.controlPanel.okButton</code> might be
+the name of a widget.
+
+<P>
+</DD>
+<DT><STRONG><var>options</var> </STRONG></DT>
+<DD>configure the widget's appearance and in some cases, its
+behavior.  The options come in the form of a list of flags and values.
+Flags are proceeded by a `-', like unix shell command flags, and
+values are put in quotes if they are more than one word.
+</DD>
+</DL>
+
+<P>
+For example: 
+
+<P>
+<dl><dd><pre class="verbatim">
+    button   .fred   -fg red -text "hi there"
+       ^       ^     \_____________________/
+       |       |                |
+     class    new            options
+    command  widget  (-opt val -opt val ...)
+</pre></dl> 
+
+<P>
+Once created, the pathname to the widget becomes a new command.  This
+new <var>widget command</var> is the programmer's handle for getting the new
+widget to perform some <var>action</var>.  In C, you'd express this as
+someAction(fred, someOptions), in C++, you would express this as
+fred.someAction(someOptions), and in Tk, you say: 
+
+<P>
+<dl><dd><pre class="verbatim">
+    .fred someAction someOptions
+</pre></dl> 
+
+<P>
+Note that the object name, <code>.fred</code>, starts with a dot.
+
+<P>
+As you'd expect, the legal values for <var>someAction</var> will depend on
+the widget's class: <code>.fred disable</code> works if fred is a
+button (fred gets greyed out), but does not work if fred is a label
+(disabling of labels is not supported in Tk). 
+
+<P>
+The legal values of <var>someOptions</var> is action dependent.  Some
+actions, like <code>disable</code>, require no arguments, others, like
+a text-entry box's <code>delete</code> command, would need arguments
+to specify what range of text to delete.  
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node503.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-Tkinter.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="tkinter-basic-mapping.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node503.html">16.1.2.2 A Simple Hello</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-Tkinter.html">16.1 Tkinter  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="tkinter-basic-mapping.html">16.1.4 Mapping Basic Tk</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

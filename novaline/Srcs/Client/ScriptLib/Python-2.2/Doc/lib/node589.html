@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>20.4.1 Functions Defined in Module fl</title>
+<META NAME="description" CONTENT="20.4.1 Functions Defined in Module fl">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="form-objects.html">
+<LINK REL="previous" href="module-fl.html">
+<LINK REL="up" href="module-fl.html">
+<LINK REL="next" href="form-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-fl.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-fl.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="form-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-fl.html">20.4 fl  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-fl.html">20.4 fl  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="form-objects.html">20.4.2 Form Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0022410000000000000000">
+20.4.1 Functions Defined in Module <tt class="module">fl</tt></A>
+</H2>
+
+<P>
+Module <tt class="module">fl</tt> defines the following functions.  For more
+information about what they do, see the description of the equivalent
+C function in the FORMS documentation:
+
+<P>
+<dl><dt><b><a name="l2h-3931"><tt class="function">make_form</tt></a></b>(<var>type, width, height</var>)
+<dd>
+Create a form with given type, width and height.  This returns a
+<i class="dfn">form</i> object, whose methods are described below.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3932"><tt class="function">do_forms</tt></a></b>()
+<dd>
+The standard FORMS main loop.  Returns a Python object representing
+the FORMS object needing interaction, or the special value
+<tt class="constant">FL.EVENT</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3933"><tt class="function">check_forms</tt></a></b>()
+<dd>
+Check for FORMS events.  Returns what <tt class="function">do_forms()</tt> above
+returns, or <code>None</code> if there is no event that immediately needs
+interaction.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3934"><tt class="function">set_event_call_back</tt></a></b>(<var>function</var>)
+<dd>
+Set the event callback function.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3935"><tt class="function">set_graphics_mode</tt></a></b>(<var>rgbmode, doublebuffering</var>)
+<dd>
+Set the graphics modes.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3936"><tt class="function">get_rgbmode</tt></a></b>()
+<dd>
+Return the current rgb mode.  This is the value of the C global
+variable <tt class="cdata">fl_rgbmode</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3937"><tt class="function">show_message</tt></a></b>(<var>str1, str2, str3</var>)
+<dd>
+Show a dialog box with a three-line message and an OK button.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3938"><tt class="function">show_question</tt></a></b>(<var>str1, str2, str3</var>)
+<dd>
+Show a dialog box with a three-line message and YES and NO buttons.
+It returns <code>1</code> if the user pressed YES, <code>0</code> if NO.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3939"><tt class="function">show_choice</tt></a></b>(<var>str1, str2, str3, but1</var><big>[</big><var>,
+                              but2</var><big>[</big><var>, but3</var><big>]</big><big>]</big>)
+<dd>
+Show a dialog box with a three-line message and up to three buttons.
+It returns the number of the button clicked by the user
+(<code>1</code>, <code>2</code> or <code>3</code>).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3940"><tt class="function">show_input</tt></a></b>(<var>prompt, default</var>)
+<dd>
+Show a dialog box with a one-line prompt message and text field in
+which the user can enter a string.  The second argument is the default
+input string.  It returns the string value as edited by the user.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3941"><tt class="function">show_file_selector</tt></a></b>(<var>message, directory, pattern, default</var>)
+<dd>
+Show a dialog box in which the user can select a file.  It returns
+the absolute filename selected by the user, or <code>None</code> if the user
+presses Cancel.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3942"><tt class="function">get_directory</tt></a></b>()
+<dd>
+<dt><b><tt class="function">get_pattern</tt></b>()
+<dd>
+<dt><b><tt class="function">get_filename</tt></b>()
+<dd>
+These functions return the directory, pattern and filename (the tail
+part only) selected by the user in the last
+<tt class="function">show_file_selector()</tt> call.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3943"><tt class="function">qdevice</tt></a></b>(<var>dev</var>)
+<dd>
+<dt><b><tt class="function">unqdevice</tt></b>(<var>dev</var>)
+<dd>
+<dt><b><tt class="function">isqueued</tt></b>(<var>dev</var>)
+<dd>
+<dt><b><tt class="function">qtest</tt></b>()
+<dd>
+<dt><b><tt class="function">qread</tt></b>()
+<dd>
+<dt><b><tt class="function">qreset</tt></b>()
+<dd>
+<dt><b><tt class="function">qenter</tt></b>(<var>dev, val</var>)
+<dd>
+<dt><b><tt class="function">get_mouse</tt></b>()
+<dd>
+<dt><b><tt class="function">tie</tt></b>(<var>button, valuator1, valuator2</var>)
+<dd>
+These functions are the FORMS interfaces to the corresponding GL
+functions.  Use these if you want to handle some GL events yourself
+when using <tt class="function">fl.do_events()</tt>.  When a GL event is detected that
+FORMS cannot handle, <tt class="function">fl.do_forms()</tt> returns the special value
+<tt class="constant">FL.EVENT</tt> and you should call <tt class="function">fl.qread()</tt> to read
+the event from the queue.  Don't use the equivalent GL functions!
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3944"><tt class="function">color</tt></a></b>()
+<dd>
+<dt><b><tt class="function">mapcolor</tt></b>()
+<dd>
+<dt><b><tt class="function">getmcolor</tt></b>()
+<dd>
+See the description in the FORMS documentation of
+<tt class="cfunction">fl_color()</tt>, <tt class="cfunction">fl_mapcolor()</tt> and
+<tt class="cfunction">fl_getmcolor()</tt>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-fl.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-fl.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="form-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-fl.html">20.4 fl  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-fl.html">20.4 fl  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="form-objects.html">20.4.2 Form Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

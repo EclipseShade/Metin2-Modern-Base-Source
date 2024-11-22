@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.2.9 Debugging CGI scripts</title>
+<META NAME="description" CONTENT="11.2.9 Debugging CGI scripts">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node303.html">
+<LINK REL="previous" HREF="node301.html">
+<LINK REL="up" href="module-cgi.html">
+<LINK REL="next" HREF="node303.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node301.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-cgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node303.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node301.html">11.2.8 Testing your CGI</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-cgi.html">11.2 cgi  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node303.html">11.2.10 Common problems and</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013290000000000000000">
+11.2.9 Debugging CGI scripts</A>
+</H2> <a name="l2h-2302">&nbsp;</a>
+<P>
+First of all, check for trivial installation errors -- reading the
+section above on installing your CGI script carefully can save you a
+lot of time.  If you wonder whether you have understood the
+installation procedure correctly, try installing a copy of this module
+file (<span class="file">cgi.py</span>) as a CGI script.  When invoked as a script, the file
+will dump its environment and the contents of the form in HTML form.
+Give it the right mode etc, and send it a request.  If it's installed
+in the standard <span class="file">cgi-bin</span> directory, it should be possible to send it a
+request by entering a URL into your browser of the form:
+
+<P>
+<dl><dd><pre class="verbatim">
+http://yourhostname/cgi-bin/cgi.py?name=Joe+Blow&amp;addr=At+Home
+</pre></dl>
+
+<P>
+If this gives an error of type 404, the server cannot find the script
+- perhaps you need to install it in a different directory.  If it
+gives another error, there's an installation problem that
+you should fix before trying to go any further.  If you get a nicely
+formatted listing of the environment and form content (in this
+example, the fields should be listed as ``addr'' with value ``At Home''
+and ``name'' with value ``Joe Blow''), the <span class="file">cgi.py</span> script has been
+installed correctly.  If you follow the same procedure for your own
+script, you should now be able to debug it.
+
+<P>
+The next step could be to call the <tt class="module">cgi</tt> module's
+<tt class="function">test()</tt> function from your script: replace its main code
+with the single statement
+
+<P>
+<dl><dd><pre class="verbatim">
+cgi.test()
+</pre></dl>
+
+<P>
+This should produce the same results as those gotten from installing
+the <span class="file">cgi.py</span> file itself.
+
+<P>
+When an ordinary Python script raises an unhandled exception (for
+whatever reason: of a typo in a module name, a file that can't be
+opened, etc.), the Python interpreter prints a nice traceback and
+exits.  While the Python interpreter will still do this when your CGI
+script raises an exception, most likely the traceback will end up in
+one of the HTTP server's log files, or be discarded altogether.
+
+<P>
+Fortunately, once you have managed to get your script to execute
+<i>some</i> code, you can easily send tracebacks to the Web browser
+using the <tt class="module"><a href="module-cgitb.html">cgitb</a></tt> module.  If you haven't done so already,
+just add the line:
+
+<P>
+<dl><dd><pre class="verbatim">
+import cgitb; cgitb.enable()
+</pre></dl>
+
+<P>
+to the top of your script.  Then try running it again; when a
+problem occurs, you should see a detailed report that will
+likely make apparent the cause of the crash.
+
+<P>
+If you suspect that there may be a problem in importing the
+<tt class="module"><a href="module-cgitb.html">cgitb</a></tt> module, you can use an even more robust approach
+(which only uses built-in modules):
+
+<P>
+<dl><dd><pre class="verbatim">
+import sys
+sys.stderr = sys.stdout
+print "Content-Type: text/plain"
+print
+...your code here...
+</pre></dl>
+
+<P>
+This relies on the Python interpreter to print the traceback.  The
+content type of the output is set to plain text, which disables all
+HTML processing.  If your script works, the raw HTML will be displayed
+by your client.  If it raises an exception, most likely after the
+first two lines have been printed, a traceback will be displayed.
+Because no HTML interpretation is going on, the traceback will be
+readable.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node301.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-cgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node303.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node301.html">11.2.8 Testing your CGI</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-cgi.html">11.2 cgi  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node303.html">11.2.10 Common problems and</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

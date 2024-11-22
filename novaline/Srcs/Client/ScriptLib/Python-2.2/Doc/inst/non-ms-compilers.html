@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3 Building Extensions: Tips and Tricks</title>
+<META NAME="description" CONTENT="3 Building Extensions: Tips and Tricks">
+<META NAME="keywords" CONTENT="inst">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="inst.css">
+<link rel="first" href="inst.html">
+
+<LINK REL="next" href="alt-install-windows.html">
+<LINK REL="previous" href="standard-install.html">
+<LINK REL="up" HREF="inst.html">
+<LINK REL="next" href="alt-install-windows.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="standard-install.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="inst.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="alt-install-windows.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Installing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="standard-install.html">2 Standard Build and</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="inst.html">Installing Python Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="alt-install-windows.html">4 Alternate Installation</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="#SECTION000310000000000000000">3.1 Using non-Microsoft compilers on Windows</a>
+<UL>
+<LI><A href="#SECTION000311000000000000000">3.1.1 Borland C++</a>
+<LI><A href="#SECTION000312000000000000000">3.1.2 GNU C / Cygwin / MinGW32</a>
+</ul></ul>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION000300000000000000000">&nbsp;</A>
+<BR>
+3 Building Extensions: Tips and Tricks
+</H1>
+
+<P>
+(This is the section to read for people doing any sort of interesting
+build.  Things to talk about:
+
+<UL>
+<LI>the <span class="file">Setup</span> file (any platform now, but Unix-biased)
+</LI>
+<LI>CFLAGS and LDFLAGS (must implement them first!)
+</LI>
+<LI>using non-MS compilers on Windows (how to convert
+  Python's library, ...)  
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION000310000000000000000">&nbsp;</A>
+<BR>
+3.1 Using non-Microsoft compilers on Windows 
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION000311000000000000000">
+3.1.1 Borland C++</A>
+</H3>
+
+<P>
+This subsection describes the necessary steps to use Distutils with the 
+Borland C++ compiler version 5.5.
+
+<P>
+First you have to know that the Borland's object file format(OMF) is
+different from what is used by the Python version you can download
+from the Python Web site.  (Python is built with Microsoft Visual C++,
+which uses COFF as object file format.)  For this reason you have to
+convert Python's library <span class="file">python20.lib</span> into the Borland format.
+You can do this as follows:
+
+<P>
+<dl><dd><pre class="verbatim">
+coff2omf python20.lib python20_bcpp.lib
+</pre></dl>
+
+<P>
+The <span class="file">coff2omf</span> program comes with the Borland compiler.  The file
+<span class="file">python20.lib</span> is in the <span class="file">Libs</span> directory of your Python
+installation.  If your extension uses other libraries (zlib,...) you
+have to convert them too.
+
+<P>
+The converted files have to reside in the same directories as the
+normal libraries.
+
+<P>
+How does Distutils manage to use these libraries with their changed
+names?  If the extension needs a library (eg. <span class="file">foo</span>) Distutils
+checks first if it finds a library with suffix <span class="file">_bcpp</span>
+(eg. <span class="file">foo_bcpp.lib</span>) and then uses this library.  In the case it
+doesn't find such a special library it uses the default name
+(<span class="file">foo.lib</span>.)<A NAME="tex2html1"
+  HREF="#foot188"><SUP>1</SUP></A>
+<P>
+To let Distutils compile your extension with Borland C++ you now have
+to type:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py build --compiler=bcpp
+</pre></dl>
+
+<P>
+If you want to use the Borland C++ compiler as default, you should
+consider to write it in your personal or system-wide configuration
+file for Distutils (see section&nbsp;<A href="config-syntax.html#config-files">6</A>.)
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.borland.com/bcppbuilder/freecompiler/"
+        >C++Builder Compiler</a></em>
+    <dd>Information about the free C++ compiler from Borland,
+     including links to the download pages.
+  </dl>
+
+<P>
+<dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.cyberus.ca/&nbsp;g_will/pyExtenDL.shtml"
+        >Creating Python Extensions Using Borland's Free Compiler</a></em>
+    <dd>Document describing how to use Borland's free command-line C++
+     compiler to build Python.
+  </dl>
+</div>
+
+<P>
+
+<H3><A NAME="SECTION000312000000000000000">
+3.1.2 GNU C / Cygwin / MinGW32</A>
+</H3>
+
+<P>
+This section describes the necessary steps to use Distutils with the
+GNU C/C++ compilers in their Cygwin and MinGW32
+distributions.<A NAME="tex2html2"
+  HREF="#foot494"><SUP>2</SUP></A>
+<P>
+<b>** For a Python which was built with Cygwin, all should work without 
+any of these following steps. **</b>
+
+<P>
+For these compilers we have to create some special libraries too.
+This task is more complex as for Borland's C++, because there is no
+program to convert the library (inclusive the references on data
+structures.)
+
+<P>
+First you have to create a list of symbols which the Python DLL exports.
+(You can find a good program for this task at 
+<a class="url" href="http://starship.python.net/crew/kernr/mingw32/Notes.html">http://starship.python.net/crew/kernr/mingw32/Notes.html</a>, see at 
+PExports 0.42h there.)
+
+<P>
+<dl><dd><pre class="verbatim">
+pexports python20.dll &gt;python20.def
+</pre></dl>
+
+<P>
+Then you can create from these information an import library for gcc.
+
+<P>
+<dl><dd><pre class="verbatim">
+dlltool --dllname python20.dll --def python20.def --output-lib libpython20.a
+</pre></dl>
+
+<P>
+The resulting library has to be placed in the same directory as 
+<span class="file">python20.lib</span>. (Should be the <span class="file">libs</span> directory under your
+Python installation directory.)
+
+<P>
+If your extension uses other libraries (zlib,...) you might 
+have to convert them too.
+The converted files have to reside in the same directories as the normal
+libraries do.
+
+<P>
+To let Distutils compile your extension with Cygwin you now have to type
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py build --compiler=cygwin
+</pre></dl>
+
+<P>
+and for Cygwin in no-cygwin mode<A NAME="tex2html3"
+  HREF="#foot495"><SUP>3</SUP></A> or for MinGW32 type:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py build --compiler=mingw32
+</pre></dl>
+
+<P>
+If you want to use any of these options/compilers as default, you should
+consider to write it in your personal or system-wide configuration file
+for Distutils (see section&nbsp;<A href="config-syntax.html#config-files">6</A>.)
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.zope.org/Members/als/tips/win32_mingw_modules"
+        >Building Python modules on MS Windows platform with MinGW32</a></em>
+    <dd>Information about building the required libraries for the MinGW32
+     environment.
+  </dl>
+
+<P>
+<dl compact class="seeurl">
+    <dt><a href="http://pyopengl.sourceforge.net/ftp/win32-stuff/"
+        class="url">http://pyopengl.sourceforge.net/ftp/win32-stuff/</a>
+    <dd>Converted import libraries in Cygwin/MinGW32 and Borland format,
+     and a script to create the registry entries needed for Distutils
+     to locate the built Python.
+  </dl>
+</div>
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot188">...foo.lib.)</A><A NAME="foot188"
+ href="non-ms-compilers.html#tex2html1"><SUP>1</SUP></A>
+<DD>This also means you could replace all
+existing COFF-libraries with OMF-libraries of the same name.
+
+<DT><A NAME="foot494">...
+distributions.</A><A NAME="foot494"
+ href="non-ms-compilers.html#tex2html2"><SUP>2</SUP></A>
+<DD>Check
+<a class="url" href="http://sources.redhat.com/cygwin/">http://sources.redhat.com/cygwin/</a> and
+<a class="url" href="http://www.mingw.org/">http://www.mingw.org/</a> for more information
+
+<DT><A NAME="foot495">... mode</A><A NAME="foot495"
+ href="non-ms-compilers.html#tex2html3"><SUP>3</SUP></A>
+<DD>Then you have no
+POSIX emulation available, but you also don't need
+<span class="file">cygwin1.dll</span>.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="standard-install.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="inst.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="alt-install-windows.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Installing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="standard-install.html">2 Standard Build and</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="inst.html">Installing Python Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="alt-install-windows.html">4 Alternate Installation</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

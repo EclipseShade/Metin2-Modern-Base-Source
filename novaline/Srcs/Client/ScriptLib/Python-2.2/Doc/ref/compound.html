@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7. Compound statements</title>
+<META NAME="description" CONTENT="7. Compound statements">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="top-level.html">
+<LINK REL="previous" href="simple.html">
+<LINK REL="up" HREF="ref.html">
+<LINK REL="next" href="if.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="exec.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="ref.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="if.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="exec.html">6.14 The exec statement</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="ref.html">Python Reference Manual</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="if.html">7.1 The if statement</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION009000000000000000000">&nbsp;</A>
+<BR>
+7. Compound statements
+</H1>
+<a name="l2h-369">&nbsp;</a>
+<P>
+Compound statements contain (groups of) other statements; they affect
+or control the execution of those other statements in some way.  In
+general, compound statements span multiple lines, although in simple
+incarnations a whole compound statement may be contained in one line.
+
+<P>
+The <tt class="keyword">if</tt>, <tt class="keyword">while</tt> and <tt class="keyword">for</tt> statements implement
+traditional control flow constructs.  <tt class="keyword">try</tt> specifies exception
+handlers and/or cleanup code for a group of statements.  Function and
+class definitions are also syntactically compound statements.
+
+<P>
+Compound statements consist of one or more `clauses.'  A clause
+consists of a header and a `suite.'  The clause headers of a
+particular compound statement are all at the same indentation level.
+Each clause header begins with a uniquely identifying keyword and ends
+with a colon.  A suite is a group of statements controlled by a
+clause.  A suite can be one or more semicolon-separated simple
+statements on the same line as the header, following the header's
+colon, or it can be one or more indented statements on subsequent
+lines.  Only the latter form of suite can contain nested compound
+statements; the following is illegal, mostly because it wouldn't be
+clear to which <tt class="keyword">if</tt> clause a following <tt class="keyword">else</tt> clause would
+belong:
+<a name="l2h-370">&nbsp;</a>
+<P>
+<dl><dd><pre class="verbatim">
+if test1: if test2: print x
+</pre></dl>
+
+<P>
+Also note that the semicolon binds tighter than the colon in this
+context, so that in the following example, either all or none of the
+<tt class="keyword">print</tt> statements are executed:
+
+<P>
+<dl><dd><pre class="verbatim">
+if x &lt; y &lt; z: print x; print y; print z
+</pre></dl>
+
+<P>
+Summarizing:
+
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-compound_stmt">compound_stmt</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="node81.html#tok-if_stmt">if_stmt</a> | <a href="node82.html#tok-while_stmt">while_stmt</a> | <a href="for.html#tok-for_stmt">for_stmt</a>
+              | <a href="node84.html#tok-try_stmt">try_stmt</a> | <a href="node85.html#tok-funcdef">funcdef</a> | <a href="class.html#tok-classdef">classdef</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-suite">suite</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="compound.html#tok-stmt_list">stmt_list</a> NEWLINE
+              | NEWLINE INDENT <a href="compound.html#tok-statement">statement</a>+ DEDENT</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-statement">statement</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="compound.html#tok-stmt_list">stmt_list</a> NEWLINE | <a href="compound.html#tok-compound_stmt">compound_stmt</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-stmt_list">stmt_list</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="simple.html#tok-simple_stmt">simple_stmt</a> (";" <a href="simple.html#tok-simple_stmt">simple_stmt</a>)* [";"]</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+Note that statements always end in a
+<code>NEWLINE</code><a name="l2h-371">&nbsp;</a>possibly followed by a
+<code>DEDENT</code>.<a name="l2h-372">&nbsp;</a>Also note that optional
+continuation clauses always begin with a keyword that cannot start a
+statement, thus there are no ambiguities (the `dangling
+<tt class="keyword">else</tt>' problem is solved in Python by requiring nested
+<tt class="keyword">if</tt> statements to be indented).
+<a name="l2h-373">&nbsp;</a>
+<P>
+The formatting of the grammar rules in the following sections places
+each clause on a separate line for clarity.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="if.html">7.1 The <tt class="keyword">if</tt> statement</a>
+<LI><A href="while.html">7.2 The <tt class="keyword">while</tt> statement</a>
+<LI><A href="for.html">7.3 The <tt class="keyword">for</tt> statement</a>
+<LI><A href="try.html">7.4 The <tt class="keyword">try</tt> statement</a>
+<LI><A href="function.html">7.5 Function definitions</a>
+<LI><A href="class.html">7.6 Class definitions</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="exec.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="ref.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="if.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="exec.html">6.14 The exec statement</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="ref.html">Python Reference Manual</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="if.html">7.1 The if statement</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

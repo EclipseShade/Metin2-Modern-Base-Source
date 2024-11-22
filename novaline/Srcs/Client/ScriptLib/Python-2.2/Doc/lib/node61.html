@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.14.3 Usage</title>
+<META NAME="description" CONTENT="3.14.3 Usage">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node62.html">
+<LINK REL="previous" HREF="node60.html">
+<LINK REL="up" href="module-pickle.html">
+<LINK REL="next" HREF="node62.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node60.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-pickle.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node62.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node60.html">3.14.2 Data stream format</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-pickle.html">3.14 pickle  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node62.html">3.14.4 What can be</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0051430000000000000000">
+3.14.3 Usage</A>
+</H2>
+
+<P>
+To serialize an object hierarchy, you first create a pickler, then you
+call the pickler's <tt class="method">dump()</tt> method.  To de-serialize a data
+stream, you first create an unpickler, then you call the unpickler's
+<tt class="method">load()</tt> method.  The <tt class="module">pickle</tt> module provides the
+following functions to make this process more convenient:
+
+<P>
+<dl><dt><b><a name="l2h-514"><tt class="function">dump</tt></a></b>(<var>object, file</var><big>[</big><var>, bin</var><big>]</big>)
+<dd>
+Write a pickled representation of <var>object</var> to the open file object
+<var>file</var>.  This is equivalent to
+<code>Pickler(<var>file</var>, <var>bin</var>).dump(<var>object</var>)</code>.
+If the optional <var>bin</var> argument is true, the binary pickle format
+is used; otherwise the (less efficient) text pickle format is used
+(for backwards compatibility, this is the default).
+
+<P>
+<var>file</var> must have a <tt class="method">write()</tt> method that accepts a single
+string argument.  It can thus be a file object opened for writing, a
+<tt class="module"><a href="module-StringIO.html">StringIO</a></tt> object, or any other custom
+object that meets this interface.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-515"><tt class="function">load</tt></a></b>(<var>file</var>)
+<dd>
+Read a string from the open file object <var>file</var> and interpret it as
+a pickle data stream, reconstructing and returning the original object
+hierarchy.  This is equivalent to <code>Unpickler(<var>file</var>).load()</code>.
+
+<P>
+<var>file</var> must have two methods, a <tt class="method">read()</tt> method that takes
+an integer argument, and a <tt class="method">readline()</tt> method that requires no
+arguments.  Both methods should return a string.  Thus <var>file</var> can
+be a file object opened for reading, a
+<tt class="module">StringIO</tt> object, or any other custom
+object that meets this interface.
+
+<P>
+This function automatically determines whether the data stream was
+written in binary mode or not.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-516"><tt class="function">dumps</tt></a></b>(<var>object</var><big>[</big><var>, bin</var><big>]</big>)
+<dd>
+Return the pickled representation of the object as a string, instead
+of writing it to a file.  If the optional <var>bin</var> argument is
+true, the binary pickle format is used; otherwise the (less efficient)
+text pickle format is used (this is the default).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-517"><tt class="function">loads</tt></a></b>(<var>string</var>)
+<dd>
+Read a pickled object hierarchy from a string.  Characters in the
+string past the pickled object's representation are ignored.
+</dl>
+
+<P>
+The <tt class="module">pickle</tt> module also defines three exceptions:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-518"><tt class="exception">PickleError</tt></a></b>
+<dd>
+A common base class for the other exceptions defined below.  This
+inherits from <tt class="exception">Exception</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-519"><tt class="exception">PicklingError</tt></a></b>
+<dd>
+This exception is raised when an unpicklable object is passed to
+the <tt class="method">dump()</tt> method.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-520"><tt class="exception">UnpicklingError</tt></a></b>
+<dd>
+This exception is raised when there is a problem unpickling an object,
+such as a security violation.  Note that other exceptions may also be
+raised during unpickling, including (but not necessarily limited to)
+<tt class="exception">AttributeError</tt> and <tt class="exception">ImportError</tt>.
+</dl>
+
+<P>
+The <tt class="module">pickle</tt> module also exports two callables<A NAME="tex2html16"
+  HREF="#foot6918"><SUP>3.4</SUP></A>, <tt class="class">Pickler</tt> and
+<tt class="class">Unpickler</tt>:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-521"><tt class="class">Pickler</tt></a></b>(<var>file</var><big>[</big><var>, bin</var><big>]</big>)
+<dd>
+This takes a file-like object to which it will write a pickle data
+stream.  Optional <var>bin</var> if true, tells the pickler to use the more
+efficient binary pickle format, otherwise the ASCII format is used
+(this is the default).
+
+<P>
+<var>file</var> must have a <tt class="method">write()</tt> method that accepts a single
+string argument.  It can thus be an open file object, a
+<tt class="module">StringIO</tt> object, or any other custom
+object that meets this interface.
+</dl>
+
+<P>
+<tt class="class">Pickler</tt> objects define one (or two) public methods:
+
+<P>
+<dl><dt><b><a name="l2h-522"><tt class="method">dump</tt></a></b>(<var>object</var>)
+<dd>
+Write a pickled representation of <var>object</var> to the open file object
+given in the constructor.  Either the binary or ASCII format will
+be used, depending on the value of the <var>bin</var> flag passed to the
+constructor.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-523"><tt class="method">clear_memo</tt></a></b>()
+<dd>
+Clears the pickler's ``memo''.  The memo is the data structure that
+remembers which objects the pickler has already seen, so that shared
+or recursive objects pickled by reference and not by value.  This
+method is useful when re-using picklers.
+
+<P>
+<b>Note:</b> <tt class="method">clear_memo()</tt> is only available on the picklers
+created by <tt class="module">cPickle</tt>.  In the <tt class="module">pickle</tt> module, picklers
+have an instance variable called <tt class="member">memo</tt> which is a Python
+dictionary.  So to clear the memo for a <tt class="module">pickle</tt> module
+pickler, you could do the following:
+
+<P>
+<dl><dd><pre class="verbatim">
+mypickler.memo.clear()
+</pre></dl>
+</dl>
+
+<P>
+It is possible to make multiple calls to the <tt class="method">dump()</tt> method of
+the same <tt class="class">Pickler</tt> instance.  These must then be matched to the
+same number of calls to the <tt class="method">load()</tt> method of the
+corresponding <tt class="class">Unpickler</tt> instance.  If the same object is
+pickled by multiple <tt class="method">dump()</tt> calls, the <tt class="method">load()</tt> will
+all yield references to the same object<A NAME="tex2html17"
+  HREF="#foot6920"><SUP>3.5</SUP></A>.
+
+<P>
+<tt class="class">Unpickler</tt> objects are defined as:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-524"><tt class="class">Unpickler</tt></a></b>(<var>file</var>)
+<dd>
+This takes a file-like object from which it will read a pickle data
+stream.  This class automatically determines whether the data stream
+was written in binary mode or not, so it does not need a flag as in
+the <tt class="class">Pickler</tt> factory.
+
+<P>
+<var>file</var> must have two methods, a <tt class="method">read()</tt> method that takes
+an integer argument, and a <tt class="method">readline()</tt> method that requires no
+arguments.  Both methods should return a string.  Thus <var>file</var> can
+be a file object opened for reading, a
+<tt class="module">StringIO</tt> object, or any other custom
+object that meets this interface.
+</dl>
+
+<P>
+<tt class="class">Unpickler</tt> objects have one (or two) public methods:
+
+<P>
+<dl><dt><b><a name="l2h-525"><tt class="method">load</tt></a></b>()
+<dd>
+Read a pickled object representation from the open file object given
+in the constructor, and return the reconstituted object hierarchy
+specified therein.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-526"><tt class="method">noload</tt></a></b>()
+<dd>
+This is just like <tt class="method">load()</tt> except that it doesn't actually
+create any objects.  This is useful primarily for finding what's
+called ``persistent ids'' that may be referenced in a pickle data
+stream.  See section&nbsp;<A href="pickle-protocol.html#pickle-protocol">3.14.5</A> below for more details.
+
+<P>
+<b>Note:</b> the <tt class="method">noload()</tt> method is currently only
+available on <tt class="class">Unpickler</tt> objects created with the
+<tt class="module">cPickle</tt> module.  <tt class="module">pickle</tt> module <tt class="class">Unpickler</tt>s do
+not have the <tt class="method">noload()</tt> method.
+</dl>
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot6918">... callables</A><A NAME="foot6918"
+ HREF="node61.html#tex2html16"><SUP>3.4</SUP></A>
+<DD>In the
+<tt class="module">pickle</tt> module these callables are classes, which you could
+subclass to customize the behavior.  However, in the <tt class="module">cPickle</tt>
+modules these callables are factory functions and so cannot be
+subclassed.  One of the common reasons to subclass is to control what
+objects can actually be unpickled.  See section&nbsp;<A href="pickle-sec.html#pickle-sec">3.14.6</A> for
+more details on security concerns.
+
+<DT><A NAME="foot6920">... object</A><A NAME="foot6920"
+ HREF="node61.html#tex2html17"><SUP>3.5</SUP></A>
+<DD><i>Warning</i>: this
+is intended for pickling multiple objects without intervening
+modifications to the objects or their parts.  If you modify an object
+and then pickle it again using the same <tt class="class">Pickler</tt> instance, the
+object is not pickled again -- a reference to it is pickled and the
+<tt class="class">Unpickler</tt> will return the old value, not the modified one.
+There are two problems here: (1) detecting changes, and (2)
+marshalling a minimal set of changes.  Garbage Collection may also
+become a problem here.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node60.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-pickle.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node62.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node60.html">3.14.2 Data stream format</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-pickle.html">3.14 pickle  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node62.html">3.14.4 What can be</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

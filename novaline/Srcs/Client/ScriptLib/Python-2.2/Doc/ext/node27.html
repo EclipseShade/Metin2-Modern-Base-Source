@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.2.5 Abstract Protocol Support</title>
+<META NAME="description" CONTENT="2.2.5 Abstract Protocol Support">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node28.html">
+<LINK REL="previous" HREF="node26.html">
+<LINK REL="up" href="dnt-type-methods.html">
+<LINK REL="next" HREF="node28.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node26.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dnt-type-methods.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node28.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node26.html">2.2.4 Object Comparison</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dnt-type-methods.html">2.2 Type Methods</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node28.html">2.2.6 More Suggestions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004250000000000000000">
+2.2.5 Abstract Protocol Support</A>
+</H2>
+
+<P>
+<dl><dd><pre class="verbatim">
+  tp_as_number;
+  tp_as_sequence;
+  tp_as_mapping;
+</pre></dl>
+
+<P>
+If you wish your object to be able to act like a number, a sequence,
+or a mapping object, then you place the address of a structure that
+implements the C type <tt class="ctype">PyNumberMethods</tt>,
+<tt class="ctype">PySequenceMethods</tt>, or <tt class="ctype">PyMappingMethods</tt>, respectively.
+It is up to you to fill in this structure with appropriate values. You
+can find examples of the use of each of these in the <span class="file">Objects</span>
+directory of the Python source distribution.
+
+<P>
+<dl><dd><pre class="verbatim">
+    hashfunc tp_hash;
+</pre></dl>
+
+<P>
+This function, if you choose to provide it, should return a hash
+number for an instance of your datatype. Here is a moderately
+pointless example:
+
+<P>
+<dl><dd><pre class="verbatim">
+static long
+newdatatype_hash(newdatatypeobject *obj)
+{
+    long result;
+    result = obj-&gt;obj_UnderlyingDatatypePtr-&gt;size;
+    result = result * 3;
+    return result;
+}
+</pre></dl>
+
+<P>
+<dl><dd><pre class="verbatim">
+    ternaryfunc tp_call;
+</pre></dl>
+
+<P>
+This function is called when an instance of your datatype is "called",
+for example, if <code>obj1</code> is an instance of your datatype and the Python
+script contains <code>obj1('hello')</code>, the <tt class="member">tp_call</tt> handler is
+invoked.
+
+<P>
+This function takes three arguments:
+
+<P>
+
+<OL>
+<LI><var>arg1</var> is the instance of the datatype which is the subject of
+    the call. If the call is <code>obj1('hello')</code>, then <var>arg1</var> is
+    <code>obj1</code>.
+
+<P>
+</LI>
+<LI><var>arg2</var> is a tuple containing the arguments to the call.  You
+    can use <tt class="cfunction">PyArg_ParseTuple()</tt> to extract the arguments.
+
+<P>
+</LI>
+<LI><var>arg3</var> is a dictionary of keyword arguments that were passed.
+    If this is non-<tt class="constant">NULL</tt> and you support keyword arguments, use
+    <tt class="cfunction">PyArg_ParseTupleAndKeywords()</tt> to extract the
+    arguments.  If you do not want to support keyword arguments and
+    this is non-<tt class="constant">NULL</tt>, raise a <tt class="exception">TypeError</tt> with a message
+    saying that keyword arguments are not supported.
+</LI>
+</OL>
+
+<P>
+Here is a desultory example of the implementation of call function.
+
+<P>
+<dl><dd><pre class="verbatim">
+/* Implement the call function.
+ *    obj1 is the instance receiving the call.
+ *    obj2 is a tuple containing the arguments to the call, in this
+ *         case 3 strings.
+ */
+static PyObject *
+newdatatype_call(newdatatypeobject *obj, PyObject *args, PyObject *other)
+{
+    PyObject *result;
+    char *arg1;
+    char *arg2;
+    char *arg3;
+
+    if (!PyArg_ParseTuple(args, "sss:call", &amp;arg1, &amp;arg2, &amp;arg3)) {
+        return NULL;
+    }
+    result = PyString_FromFormat(
+        "Returning -- value: [\%d] arg1: [\%s] arg2: [\%s] arg3: [\%s]\n",
+        obj-&gt;obj_UnderlyingDatatypePtr-&gt;size,
+        arg1, arg2, arg3);
+    printf("\%s", PyString_AS_STRING(result));
+    return result;
+}
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node26.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dnt-type-methods.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node28.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node26.html">2.2.4 Object Comparison</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dnt-type-methods.html">2.2 Type Methods</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node28.html">2.2.6 More Suggestions</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.2.8 Iterators</title>
+<META NAME="description" CONTENT="12.2.8 Iterators">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node388.html">
+<LINK REL="previous" href="module-email.Utils.html">
+<LINK REL="up" href="module-email.html">
+<LINK REL="next" HREF="node388.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-email.Utils.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-email.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node388.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-email.Utils.html">12.2.7 Miscellaneous utilities</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-email.html">12.2 email  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node388.html">12.2.9 Differences from mimelib</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0014280000000000000000">
+12.2.8 Iterators</A>
+</H2>
+
+
+<P>
+Iterating over a message object tree is fairly easy with the
+<tt class="method">Message.walk()</tt> method.  The <tt class="module">email.Iterators</tt> module
+provides some useful higher level iterations over message object
+trees.
+
+<P>
+<dl><dt><b><a name="l2h-2864"><tt class="function">body_line_iterator</tt></a></b>(<var>msg</var>)
+<dd>
+This iterates over all the payloads in all the subparts of <var>msg</var>,
+returning the string payloads line-by-line.  It skips over all the
+subpart headers, and it skips over any subpart with a payload that
+isn't a Python string.  This is somewhat equivalent to reading the
+flat text representation of the message from a file using
+<tt class="method">readline()</tt>, skipping over all the intervening headers.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2865"><tt class="function">typed_subpart_iterator</tt></a></b>(<var>msg</var><big>[</big><var>,
+    maintype</var><big>[</big><var>, subtype</var><big>]</big><big>]</big>)
+<dd>
+This iterates over all the subparts of <var>msg</var>, returning only those
+subparts that match the MIME type specified by <var>maintype</var> and
+<var>subtype</var>.
+
+<P>
+Note that <var>subtype</var> is optional; if omitted, then subpart MIME
+type matching is done only with the main type.  <var>maintype</var> is
+optional too; it defaults to <span class="mimetype">text</span>.
+
+<P>
+Thus, by default <tt class="function">typed_subpart_iterator()</tt> returns each
+subpart that has a MIME type of <span class="mimetype">text/*</span>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-email.Utils.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-email.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node388.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-email.Utils.html">12.2.7 Miscellaneous utilities</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-email.html">12.2 email  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node388.html">12.2.9 Differences from mimelib</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.22.2 Interactive Console Objects </title>
+<META NAME="description" CONTENT="3.22.2 Interactive Console Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="interpreter-objects.html">
+<LINK REL="up" href="module-code.html">
+<LINK REL="next" href="module-codeop.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="interpreter-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-code.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-codeop.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="interpreter-objects.html">3.22.1 Interactive Interpreter Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-code.html">3.22 code  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-codeop.html">3.23 codeop  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0052220000000000000000">&nbsp;</A>
+<BR>
+3.22.2 Interactive Console Objects
+            
+</H2>
+
+<P>
+The <tt class="class">InteractiveConsole</tt> class is a subclass of
+<tt class="class">InteractiveInterpreter</tt>, and so offers all the methods of the
+interpreter objects as well as the following additions.
+
+<P>
+<dl><dt><b><a name="l2h-606"><tt class="method">interact</tt></a></b>(<big>[</big><var>banner</var><big>]</big>)
+<dd>
+Closely emulate the interactive Python console.
+The optional banner argument specify the banner to print before the
+first interaction; by default it prints a banner similar to the one
+printed by the standard Python interpreter, followed by the class
+name of the console object in parentheses (so as not to confuse this
+with the real interpreter - since it's so close!).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-607"><tt class="method">push</tt></a></b>(<var>line</var>)
+<dd>
+Push a line of source text to the interpreter.
+The line should not have a trailing newline; it may have internal
+newlines.  The line is appended to a buffer and the interpreter's
+<tt class="method">runsource()</tt> method is called with the concatenated contents
+of the buffer as source.  If this indicates that the command was
+executed or invalid, the buffer is reset; otherwise, the command is
+incomplete, and the buffer is left as it was after the line was
+appended.  The return value is <code>1</code> if more input is required,
+<code>0</code> if the line was dealt with in some way (this is the same as
+<tt class="method">runsource()</tt>).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-608"><tt class="method">resetbuffer</tt></a></b>()
+<dd>
+Remove any unhandled source text from the input buffer.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-609"><tt class="method">raw_input</tt></a></b>(<big>[</big><var>prompt</var><big>]</big>)
+<dd>
+Write a prompt and read a line.  The returned line does not include
+the trailing newline.  When the user enters the EOF key sequence,
+<tt class="exception">EOFError</tt> is raised.  The base implementation uses the
+built-in function <tt class="function">raw_input()</tt>; a subclass may replace this
+with a different implementation.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="interpreter-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-code.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-codeop.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="interpreter-objects.html">3.22.1 Interactive Interpreter Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-code.html">3.22 code  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-codeop.html">3.23 codeop  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

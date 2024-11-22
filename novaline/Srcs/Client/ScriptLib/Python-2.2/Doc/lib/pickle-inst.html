@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.14.5.1 Pickling and unpickling normal class instances</title>
+<META NAME="description" CONTENT="3.14.5.1 Pickling and unpickling normal class instances">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node65.html">
+<LINK REL="previous" href="pickle-protocol.html">
+<LINK REL="up" href="pickle-protocol.html">
+<LINK REL="next" HREF="node65.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pickle-protocol.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pickle-protocol.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node65.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pickle-protocol.html">3.14.5 The pickle protocol</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pickle-protocol.html">3.14.5 The pickle protocol</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node65.html">3.14.5.2 Pickling and unpickling</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0051451000000000000000">&nbsp;</A>
+<BR>
+3.14.5.1 Pickling and unpickling normal class
+    instances
+</H3>
+
+<P>
+When a pickled class instance is unpickled, its <tt class="method">__init__()</tt>
+method is normally <i>not</i> invoked.  If it is desirable that the
+<tt class="method">__init__()</tt> method be called on unpickling, a class can define
+a method <tt class="method">__getinitargs__()</tt>, which should return a
+<i>tuple</i> containing the arguments to be passed to the class
+constructor (i.e. <tt class="method">__init__()</tt>).  The
+<tt class="method">__getinitargs__()</tt> method is called at
+pickle time; the tuple it returns is incorporated in the pickle for
+the instance.
+<a name="l2h-528">&nbsp;</a><a name="l2h-530">&nbsp;</a>
+<P>
+<a name="l2h-532">&nbsp;</a><a name="l2h-534">&nbsp;</a>
+<P>
+Classes can further influence how their instances are pickled; if the
+class defines the method <tt class="method">__getstate__()</tt>, it is called and the
+return state is pickled as the contents for the instance, instead of
+the contents of the instance's dictionary.  If there is no
+<tt class="method">__getstate__()</tt> method, the instance's <tt class="member">__dict__</tt> is
+pickled.
+
+<P>
+Upon unpickling, if the class also defines the method
+<tt class="method">__setstate__()</tt>, it is called with the unpickled
+state<A NAME="tex2html19"
+  HREF="#foot6781"><SUP>3.7</SUP></A>.  If there is no <tt class="method">__setstate__()</tt> method, the
+pickled object must be a dictionary and its items are assigned to the
+new instance's dictionary.  If a class defines both
+<tt class="method">__getstate__()</tt> and <tt class="method">__setstate__()</tt>, the state object
+needn't be a dictionary and these methods can do what they
+want<A NAME="tex2html20"
+  HREF="#foot6928"><SUP>3.8</SUP></A>.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot6781">...
+state</A><A NAME="foot6781"
+ href="pickle-inst.html#tex2html19"><SUP>3.7</SUP></A>
+<DD>These methods can also be used to implement copying
+class instances.
+
+<DT><A NAME="foot6928">...
+want</A><A NAME="foot6928"
+ href="pickle-inst.html#tex2html20"><SUP>3.8</SUP></A>
+<DD>This protocol is also used by the shallow and deep
+copying operations defined in the
+<tt class="module"><a href="module-copy.html">copy</a></tt> module.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pickle-protocol.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pickle-protocol.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node65.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pickle-protocol.html">3.14.5 The pickle protocol</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pickle-protocol.html">3.14.5 The pickle protocol</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node65.html">3.14.5.2 Pickling and unpickling</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

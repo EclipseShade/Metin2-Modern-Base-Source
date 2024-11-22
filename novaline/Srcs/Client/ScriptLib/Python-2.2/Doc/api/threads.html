@@ -1,0 +1,486 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.1 Thread State and the Global Interpreter Lock </title>
+<META NAME="description" CONTENT="8.1 Thread State and the Global Interpreter Lock ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="profiling.html">
+<LINK REL="previous" href="initialization.html">
+<LINK REL="up" href="initialization.html">
+<LINK REL="next" href="profiling.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="initialization.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="initialization.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="profiling.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="initialization.html">8. Initialization, Finalization, and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="initialization.html">8. Initialization, Finalization, and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="profiling.html">8.2 Profiling and Tracing</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0010100000000000000000">&nbsp;</A>
+<BR>
+8.1 Thread State and the Global Interpreter Lock
+         
+</H1>
+
+<P>
+<a name="l2h-732">&nbsp;</a>
+<P>
+The Python interpreter is not fully thread safe.  In order to support
+multi-threaded Python programs, there's a global lock that must be
+held by the current thread before it can safely access Python objects.
+Without the lock, even the simplest operations could cause problems in
+a multi-threaded program: for example, when two threads simultaneously
+increment the reference count of the same object, the reference count
+could end up being incremented only once instead of twice.
+
+<P>
+Therefore, the rule exists that only the thread that has acquired the
+global interpreter lock may operate on Python objects or call Python/C
+API functions.  In order to support multi-threaded Python programs,
+the interpreter regularly releases and reacquires the lock -- by
+default, every ten bytecode instructions (this can be changed with
+<a name="l2h-707">&nbsp;</a><tt class="function">sys.setcheckinterval()</tt>).  The lock is also released and
+reacquired around potentially blocking I/O operations like reading or
+writing a file, so that other threads can run while the thread that
+requests the I/O is waiting for the I/O operation to complete.
+
+<P>
+The Python interpreter needs to keep some bookkeeping information
+separate per thread -- for this it uses a data structure called
+<tt class="ctype">PyThreadState</tt><a name="l2h-733">&nbsp;</a>.  This is new in Python
+1.5; in earlier versions, such state was stored in global variables,
+and switching threads could cause problems.  In particular, exception
+handling is now thread safe, when the application uses
+<a name="l2h-709">&nbsp;</a><tt class="function">sys.exc_info()</tt> to access the exception last raised in the
+current thread.
+
+<P>
+There's one global variable left, however: the pointer to the current
+<tt class="ctype">PyThreadState</tt><a name="l2h-734">&nbsp;</a>structure.  While most
+thread packages have a way to store ``per-thread global data,''
+Python's internal platform independent thread abstraction doesn't
+support this yet.  Therefore, the current thread state must be
+manipulated explicitly.
+
+<P>
+This is easy enough in most cases.  Most code manipulating the global
+interpreter lock has the following simple structure:
+
+<P>
+<dl><dd><pre class="verbatim">
+Save the thread state in a local variable.
+Release the interpreter lock.
+...Do some blocking I/O operation...
+Reacquire the interpreter lock.
+Restore the thread state from the local variable.
+</pre></dl>
+
+<P>
+This is so common that a pair of macros exists to simplify it:
+
+<P>
+<dl><dd><pre class="verbatim">
+Py_BEGIN_ALLOW_THREADS
+...Do some blocking I/O operation...
+Py_END_ALLOW_THREADS
+</pre></dl>
+
+<P>
+The <code>Py_BEGIN_ALLOW_THREADS</code><a name="l2h-735">&nbsp;</a>macro
+opens a new block and declares a hidden local variable; the
+<code>Py_END_ALLOW_THREADS</code><a name="l2h-736">&nbsp;</a>macro closes 
+the block.  Another advantage of using these two macros is that when
+Python is compiled without thread support, they are defined empty,
+thus saving the thread state and lock manipulations.
+
+<P>
+When thread support is enabled, the block above expands to the
+following code:
+
+<P>
+<dl><dd><pre class="verbatim">
+    PyThreadState *_save;
+
+    _save = PyEval_SaveThread();
+    ...Do some blocking I/O operation...
+    PyEval_RestoreThread(_save);
+</pre></dl>
+
+<P>
+Using even lower level primitives, we can get roughly the same effect
+as follows:
+
+<P>
+<dl><dd><pre class="verbatim">
+    PyThreadState *_save;
+
+    _save = PyThreadState_Swap(NULL);
+    PyEval_ReleaseLock();
+    ...Do some blocking I/O operation...
+    PyEval_AcquireLock();
+    PyThreadState_Swap(_save);
+</pre></dl>
+
+<P>
+There are some subtle differences; in particular,
+<tt class="cfunction">PyEval_RestoreThread()</tt><a name="l2h-737">&nbsp;</a>saves
+and restores the value of the  global variable
+<tt class="cdata">errno</tt><a name="l2h-738">&nbsp;</a>, since the lock manipulation does not
+guarantee that <tt class="cdata">errno</tt> is left alone.  Also, when thread support
+is disabled,
+<tt class="cfunction">PyEval_SaveThread()</tt><a name="l2h-739">&nbsp;</a>and
+<tt class="cfunction">PyEval_RestoreThread()</tt> don't manipulate the lock; in this
+case, <tt class="cfunction">PyEval_ReleaseLock()</tt><a name="l2h-740">&nbsp;</a>and
+<tt class="cfunction">PyEval_AcquireLock()</tt><a name="l2h-741">&nbsp;</a>are not
+available.  This is done so that dynamically loaded extensions
+compiled with thread support enabled can be loaded by an interpreter
+that was compiled with disabled thread support.
+
+<P>
+The global interpreter lock is used to protect the pointer to the
+current thread state.  When releasing the lock and saving the thread
+state, the current thread state pointer must be retrieved before the
+lock is released (since another thread could immediately acquire the
+lock and store its own thread state in the global variable).
+Conversely, when acquiring the lock and restoring the thread state,
+the lock must be acquired before storing the thread state pointer.
+
+<P>
+Why am I going on with so much detail about this?  Because when
+threads are created from C, they don't have the global interpreter
+lock, nor is there a thread state data structure for them.  Such
+threads must bootstrap themselves into existence, by first creating a
+thread state data structure, then acquiring the lock, and finally
+storing their thread state pointer, before they can start using the
+Python/C API.  When they are done, they should reset the thread state
+pointer, release the lock, and finally free their thread state data
+structure.
+
+<P>
+When creating a thread data structure, you need to provide an
+interpreter state data structure.  The interpreter state data
+structure hold global data that is shared by all threads in an
+interpreter, for example the module administration
+(<code>sys.modules</code>).  Depending on your needs, you can either create
+a new interpreter state data structure, or share the interpreter state
+data structure used by the Python main thread (to access the latter,
+you must obtain the thread state and access its <tt class="member">interp</tt> member;
+this must be done by a thread that is created by Python or by the main
+thread after Python is initialized).
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-710">PyInterpreterState</a></tt></b>
+<dd>
+  This data structure represents the state shared by a number of
+  cooperating threads.  Threads belonging to the same interpreter
+  share their module administration and a few other internal items.
+  There are no public members in this structure.
+
+<P>
+Threads belonging to different interpreters initially share nothing,
+  except process state like available memory, open file descriptors
+  and such.  The global interpreter lock is also shared by all
+  threads, regardless of to which interpreter they belong.
+</dl>
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-711">PyThreadState</a></tt></b>
+<dd>
+  This data structure represents the state of a single thread.  The
+  only public data member is <tt class="ctype">PyInterpreterState
+  *</tt><tt class="member">interp</tt>, which points to this thread's interpreter state.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-712"><tt class="cfunction">PyEval_InitThreads</tt></a></b>()
+<dd>
+  Initialize and acquire the global interpreter lock.  It should be
+  called in the main thread before creating a second thread or
+  engaging in any other thread operations such as
+  <tt class="cfunction">PyEval_ReleaseLock()</tt><a name="l2h-742">&nbsp;</a>or
+  <code>PyEval_ReleaseThread(<var>tstate</var>)</code><a name="l2h-743">&nbsp;</a>.
+  It is not needed before calling
+  <tt class="cfunction">PyEval_SaveThread()</tt><a name="l2h-744">&nbsp;</a>or
+  <tt class="cfunction">PyEval_RestoreThread()</tt><a name="l2h-745">&nbsp;</a>.
+
+<P>
+This is a no-op when called for a second time.  It is safe to call
+  this function before calling
+  <tt class="cfunction">Py_Initialize()</tt><a name="l2h-746">&nbsp;</a>.
+
+<P>
+When only the main thread exists, no lock operations are needed.
+  This is a common situation (most Python programs do not use
+  threads), and the lock operations slow the interpreter down a bit.
+  Therefore, the lock is not created initially.  This situation is
+  equivalent to having acquired the lock: when there is only a single
+  thread, all object accesses are safe.  Therefore, when this function
+  initializes the lock, it also acquires it.  Before the Python
+  <tt class="module">thread</tt><a name="l2h-747">&nbsp;</a>module creates a new thread,
+  knowing that either it has the lock or the lock hasn't been created
+  yet, it calls <tt class="cfunction">PyEval_InitThreads()</tt>.  When this call
+  returns, it is guaranteed that the lock has been created and that it
+  has acquired it.
+
+<P>
+It is <b>not</b> safe to call this function when it is unknown
+  which thread (if any) currently has the global interpreter lock.
+
+<P>
+This function is not available when thread support is disabled at
+  compile time.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-713"><tt class="cfunction">PyEval_AcquireLock</tt></a></b>()
+<dd>
+  Acquire the global interpreter lock.  The lock must have been
+  created earlier.  If this thread already has the lock, a deadlock
+  ensues.  This function is not available when thread support is
+  disabled at compile time.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-714"><tt class="cfunction">PyEval_ReleaseLock</tt></a></b>()
+<dd>
+  Release the global interpreter lock.  The lock must have been
+  created earlier.  This function is not available when thread support
+  is disabled at compile time.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-715"><tt class="cfunction">PyEval_AcquireThread</tt></a></b>(<var>PyThreadState *tstate</var>)
+<dd>
+  Acquire the global interpreter lock and then set the current thread
+  state to <var>tstate</var>, which should not be <tt class="constant">NULL</tt>.  The lock must
+  have been created earlier.  If this thread already has the lock,
+  deadlock ensues.  This function is not available when thread support
+  is disabled at compile time.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-716"><tt class="cfunction">PyEval_ReleaseThread</tt></a></b>(<var>PyThreadState *tstate</var>)
+<dd>
+  Reset the current thread state to <tt class="constant">NULL</tt> and release the global
+  interpreter lock.  The lock must have been created earlier and must
+  be held by the current thread.  The <var>tstate</var> argument, which
+  must not be <tt class="constant">NULL</tt>, is only used to check that it represents the
+  current thread state -- if it isn't, a fatal error is reported.
+  This function is not available when thread support is disabled at
+  compile time.
+</dl>
+
+<P>
+<dl><dt>PyThreadState* <b><a name="l2h-717"><tt class="cfunction">PyEval_SaveThread</tt></a></b>()
+<dd>
+  Release the interpreter lock (if it has been created and thread
+  support is enabled) and reset the thread state to <tt class="constant">NULL</tt>, returning
+  the previous thread state (which is not <tt class="constant">NULL</tt>).  If the lock has
+  been created, the current thread must have acquired it.  (This
+  function is available even when thread support is disabled at
+  compile time.)
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-718"><tt class="cfunction">PyEval_RestoreThread</tt></a></b>(<var>PyThreadState *tstate</var>)
+<dd>
+  Acquire the interpreter lock (if it has been created and thread
+  support is enabled) and set the thread state to <var>tstate</var>, which
+  must not be <tt class="constant">NULL</tt>.  If the lock has been created, the current thread
+  must not have acquired it, otherwise deadlock ensues.  (This
+  function is available even when thread support is disabled at
+  compile time.)
+</dl>
+
+<P>
+The following macros are normally used without a trailing semicolon;
+look for example usage in the Python source distribution.
+
+<P>
+<dl><dt><b><a name="l2h-719"><tt class="macro">Py_BEGIN_ALLOW_THREADS</tt></a></b>
+<dd>
+  This macro expands to
+  "<tt class="samp">{ PyThreadState *_save; _save = PyEval_SaveThread();</tt>".
+  Note that it contains an opening brace; it must be matched with a
+  following <code>Py_END_ALLOW_THREADS</code> macro.  See above for further
+  discussion of this macro.  It is a no-op when thread support is
+  disabled at compile time.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-720"><tt class="macro">Py_END_ALLOW_THREADS</tt></a></b>
+<dd>
+  This macro expands to "<tt class="samp">PyEval_RestoreThread(_save); }</tt>".
+  Note that it contains a closing brace; it must be matched with an
+  earlier <code>Py_BEGIN_ALLOW_THREADS</code> macro.  See above for further
+  discussion of this macro.  It is a no-op when thread support is
+  disabled at compile time.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-721"><tt class="macro">Py_BLOCK_THREADS</tt></a></b>
+<dd>
+  This macro expands to "<tt class="samp">PyEval_RestoreThread(_save);</tt>": it is
+  equivalent to <code>Py_END_ALLOW_THREADS</code> without the closing brace.
+  It is a no-op when thread support is disabled at compile time.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-722"><tt class="macro">Py_UNBLOCK_THREADS</tt></a></b>
+<dd>
+  This macro expands to "<tt class="samp">_save = PyEval_SaveThread();</tt>": it is
+  equivalent to <code>Py_BEGIN_ALLOW_THREADS</code> without the opening
+  brace and variable declaration.  It is a no-op when thread support
+  is disabled at compile time.
+</dl>
+
+<P>
+All of the following functions are only available when thread support
+is enabled at compile time, and must be called only when the
+interpreter lock has been created.
+
+<P>
+<dl><dt>PyInterpreterState* <b><a name="l2h-723"><tt class="cfunction">PyInterpreterState_New</tt></a></b>()
+<dd>
+  Create a new interpreter state object.  The interpreter lock need
+  not be held, but may be held if it is necessary to serialize calls
+  to this function.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-724"><tt class="cfunction">PyInterpreterState_Clear</tt></a></b>(<var>PyInterpreterState *interp</var>)
+<dd>
+  Reset all information in an interpreter state object.  The
+  interpreter lock must be held.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-725"><tt class="cfunction">PyInterpreterState_Delete</tt></a></b>(<var>PyInterpreterState *interp</var>)
+<dd>
+  Destroy an interpreter state object.  The interpreter lock need not
+  be held.  The interpreter state must have been reset with a previous
+  call to <tt class="cfunction">PyInterpreterState_Clear()</tt>.
+</dl>
+
+<P>
+<dl><dt>PyThreadState* <b><a name="l2h-726"><tt class="cfunction">PyThreadState_New</tt></a></b>(<var>PyInterpreterState *interp</var>)
+<dd>
+  Create a new thread state object belonging to the given interpreter
+  object.  The interpreter lock need not be held, but may be held if
+  it is necessary to serialize calls to this function.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-727"><tt class="cfunction">PyThreadState_Clear</tt></a></b>(<var>PyThreadState *tstate</var>)
+<dd>
+  Reset all information in a thread state object.  The interpreter lock
+  must be held.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-728"><tt class="cfunction">PyThreadState_Delete</tt></a></b>(<var>PyThreadState *tstate</var>)
+<dd>
+  Destroy a thread state object.  The interpreter lock need not be
+  held.  The thread state must have been reset with a previous call to
+  <tt class="cfunction">PyThreadState_Clear()</tt>.
+</dl>
+
+<P>
+<dl><dt>PyThreadState* <b><a name="l2h-729"><tt class="cfunction">PyThreadState_Get</tt></a></b>()
+<dd>
+  Return the current thread state.  The interpreter lock must be
+  held.  When the current thread state is <tt class="constant">NULL</tt>, this issues a fatal
+  error (so that the caller needn't check for <tt class="constant">NULL</tt>).
+</dl>
+
+<P>
+<dl><dt>PyThreadState* <b><a name="l2h-730"><tt class="cfunction">PyThreadState_Swap</tt></a></b>(<var>PyThreadState *tstate</var>)
+<dd>
+  Swap the current thread state with the thread state given by the
+  argument <var>tstate</var>, which may be <tt class="constant">NULL</tt>.  The interpreter lock
+  must be held.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-731"><tt class="cfunction">PyThreadState_GetDict</tt></a></b>()
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Return a dictionary in which extensions can store thread-specific
+  state information.  Each extension should use a unique key to use to
+  store state in the dictionary.  If this function returns <tt class="constant">NULL</tt>, an
+  exception has been raised and the caller should allow it to
+  propogate.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="initialization.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="initialization.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="profiling.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="initialization.html">8. Initialization, Finalization, and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="initialization.html">8. Initialization, Finalization, and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="profiling.html">8.2 Profiling and Tracing</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

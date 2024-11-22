@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>A.5 Obsolete </title>
+<META NAME="description" CONTENT="A.5 Obsolete ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node618.html">
+<LINK REL="previous" HREF="node616.html">
+<LINK REL="up" href="undoc.html">
+<LINK REL="next" HREF="node618.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node616.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="undoc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node618.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node616.html">A.4 Multimedia</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="undoc.html">A. Undocumented Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node618.html">A.6 SGI-specific Extension modules</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0025500000000000000000">&nbsp;</A>
+<BR>
+A.5 Obsolete 
+</H1>
+
+<P>
+These modules are not normally available for import; additional work
+must be done to make them available.
+
+<P>
+Those which are written in Python will be installed into the directory 
+<span class="file">lib-old/</span> installed as part of the standard library.  To use
+these, the directory must be added to <code>sys.path</code>, possibly using
+<a class="envvar" name="l2h-4104">PYTHONPATH</a>.
+
+<P>
+Obsolete extension modules written in C are not built by default.
+Under Unix, these must be enabled by uncommenting the appropriate
+lines in <span class="file">Modules/Setup</span> in the build tree and either rebuilding
+Python if the modules are statically linked, or building and
+installing the shared object if using dynamically-loaded extensions.
+
+<P>
+<DL>
+<DT><STRONG><tt class="module">addpack</tt></STRONG></DT>
+<DD>-- Alternate approach to packages.  Use the built-in package support
+instead.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">cmp</tt></STRONG></DT>
+<DD>-- File comparison function.  Use the newer <tt class="module"><a href="module-filecmp.html">filecmp</a></tt> instead.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">cmpcache</tt></STRONG></DT>
+<DD>-- Caching version of the obsolete <tt class="module">cmp</tt> module.  Use the
+newer <tt class="module"><a href="module-filecmp.html">filecmp</a></tt> instead.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">codehack</tt></STRONG></DT>
+<DD>-- Extract function name or line number from a function
+code object (these are now accessible as attributes:
+<tt class="member">co.co_name</tt>, <tt class="member">func.func_name</tt>,
+<tt class="member">co.co_firstlineno</tt>).
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">dircmp</tt></STRONG></DT>
+<DD>-- Class to build directory diff tools on (may become a demo or tool).
+<div class="versionnote"><b>Deprecated since release 2.0.</b>
+The <tt class="module"><a href="module-filecmp.html">filecmp</a></tt> module replaces
+<tt class="module">dircmp</tt>.</div><p>
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">dump</tt></STRONG></DT>
+<DD>-- Print python code that reconstructs a variable.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">fmt</tt></STRONG></DT>
+<DD>-- Text formatting abstractions (too slow).
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">lockfile</tt></STRONG></DT>
+<DD>-- Wrapper around FCNTL file locking (use
+<tt class="function">fcntl.lockf()</tt>/<tt class="function">flock()</tt> instead; see <tt class="module"><a href="module-fcntl.html">fcntl</a></tt>).
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">newdir</tt></STRONG></DT>
+<DD>-- New <tt class="function">dir()</tt> function (the standard <tt class="function">dir()</tt> is
+now just as good).
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">Para</tt></STRONG></DT>
+<DD>-- Helper for <tt class="module">fmt</tt>.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">poly</tt></STRONG></DT>
+<DD>-- Polynomials.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">regex</tt></STRONG></DT>
+<DD>-- Emacs-style regular expression support; may still be used in some
+old code (extension module).  Refer to the
+<em class="citetitle"><a
+ href="http://www.python.org/doc/1.6/lib/module-regex.html"
+ title="Python
+1.6 Documentation"
+ >Python
+1.6 Documentation</a></em> for documentation.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">regsub</tt></STRONG></DT>
+<DD>-- Regular expression based string replacement utilities, for use
+with <tt class="module">regex</tt> (extension module).  Refer to the
+<em class="citetitle"><a
+ href="http://www.python.org/doc/1.6/lib/module-regsub.html"
+ title="Python
+1.6 Documentation"
+ >Python
+1.6 Documentation</a></em> for documentation.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">tb</tt></STRONG></DT>
+<DD>-- Print tracebacks, with a dump of local variables (use
+<tt class="function">pdb.pm()</tt> or <tt class="module"><a href="module-traceback.html">traceback</a></tt> instead).
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">timing</tt></STRONG></DT>
+<DD>-- Measure time intervals to high resolution (use
+<tt class="function">time.clock()</tt> instead).  (This is an extension module.)
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">tzparse</tt></STRONG></DT>
+<DD>-- Parse a timezone specification (unfinished; may disappear in the
+future, and does not work when the <a class="envvar" name="l2h-4105">TZ</a> environment variable is
+not set).
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">util</tt></STRONG></DT>
+<DD>-- Useful functions that don't fit elsewhere.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">whatsound</tt></STRONG></DT>
+<DD>-- Recognize sound files; use <tt class="module"><a href="module-sndhdr.html">sndhdr</a></tt> instead.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">zmod</tt></STRONG></DT>
+<DD>-- Compute properties of mathematical ``fields.''
+</DD>
+</DL>
+
+<P>
+The following modules are obsolete, but are likely to re-surface as
+tools or scripts:
+
+<P>
+<DL>
+<DT><STRONG><tt class="module">find</tt></STRONG></DT>
+<DD>-- Find files matching pattern in directory tree.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">grep</tt></STRONG></DT>
+<DD>-- <b class="program">grep</b> implementation in Python.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">packmail</tt></STRONG></DT>
+<DD>-- Create a self-unpacking Unix shell archive.
+</DD>
+</DL>
+
+<P>
+The following modules were documented in previous versions of this
+manual, but are now considered obsolete.  The source for the
+documentation is still available as part of the documentation source
+archive.
+
+<P>
+<DL>
+<DT><STRONG><tt class="module">ni</tt></STRONG></DT>
+<DD>-- Import modules in ``packages.''  Basic package support is now
+built in.  The built-in support is very similar to what is provided in
+this module.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">rand</tt></STRONG></DT>
+<DD>-- Old interface to the random number generator.
+
+<P>
+</DD>
+<DT><STRONG><tt class="module">soundex</tt></STRONG></DT>
+<DD>-- Algorithm for collapsing names which sound similar to a shared
+key.  The specific algorithm doesn't seem to match any published
+algorithm.  (This is an extension module.)
+</DD>
+</DL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node616.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="undoc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node618.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node616.html">A.4 Multimedia</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="undoc.html">A. Undocumented Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node618.html">A.6 SGI-specific Extension modules</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

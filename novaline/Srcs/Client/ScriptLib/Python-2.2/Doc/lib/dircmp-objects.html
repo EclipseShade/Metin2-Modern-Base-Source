@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.7.1 The dircmp class </title>
+<META NAME="description" CONTENT="6.7.1 The dircmp class ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-filecmp.html">
+<LINK REL="up" href="module-filecmp.html">
+<LINK REL="next" href="module-popen2.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-filecmp.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-filecmp.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-popen2.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-filecmp.html">6.7 filecmp  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-filecmp.html">6.7 filecmp  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-popen2.html">6.8 popen2  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008710000000000000000">&nbsp;</A>
+<BR>
+6.7.1 The <tt class="class">dircmp</tt> class 
+</H2>
+
+<P>
+<tt class="class">dircmp</tt> instances are built using this constructor:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-1339"><tt class="class">dircmp</tt></a></b>(<var>a, b</var><big>[</big><var>, ignore</var><big>[</big><var>, hide</var><big>]</big><big>]</big>)
+<dd>
+Construct a new directory comparison object, to compare the
+directories <var>a</var> and <var>b</var>. <var>ignore</var> is a list of names to
+ignore, and defaults to <code>['RCS', 'CVS', 'tags']</code>. <var>hide</var> is a
+list of names to hide, and defaults to <code>[os.curdir, os.pardir]</code>.
+</dl>
+
+<P>
+The <tt class="class">dircmp</tt> class provides the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-1340"><tt class="method">report</tt></a></b>()
+<dd>
+Print (to <code>sys.stdout</code>) a comparison between <var>a</var> and <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1341"><tt class="method">report_partial_closure</tt></a></b>()
+<dd>
+Print a comparison between <var>a</var> and <var>b</var> and common immediate
+subdirctories.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1342"><tt class="method">report_full_closure</tt></a></b>()
+<dd>
+Print a comparison between <var>a</var> and <var>b</var> and common 
+subdirctories (recursively).
+</dl>
+
+<P>
+The <tt class="class">dircmp</tt> offers a number of interesting attributes that may
+be used to get various bits of information about the directory trees
+being compared.
+
+<P>
+Note that via <tt class="method">__getattr__()</tt> hooks, all attributes are
+computed lazilly, so there is no speed penalty if only those
+attributes which are lightweight to compute are used.
+
+<P>
+<dl><dt><b><a name="l2h-1343"><tt class="member">left_list</tt></a></b>
+<dd>
+Files and subdirectories in <var>a</var>, filtered by <var>hide</var> and
+<var>ignore</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1344"><tt class="member">right_list</tt></a></b>
+<dd>
+Files and subdirectories in <var>b</var>, filtered by <var>hide</var> and
+<var>ignore</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1345"><tt class="member">common</tt></a></b>
+<dd>
+Files and subdirectories in both <var>a</var> and <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1346"><tt class="member">left_only</tt></a></b>
+<dd>
+Files and subdirectories only in <var>a</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1347"><tt class="member">right_only</tt></a></b>
+<dd>
+Files and subdirectories only in <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1348"><tt class="member">common_dirs</tt></a></b>
+<dd>
+Subdirectories in both <var>a</var> and <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1349"><tt class="member">common_files</tt></a></b>
+<dd>
+Files in both <var>a</var> and <var>b</var>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1350"><tt class="member">common_funny</tt></a></b>
+<dd>
+Names in both <var>a</var> and <var>b</var>, such that the type differs between
+the directories, or names for which <tt class="function">os.stat()</tt> reports an
+error.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1351"><tt class="member">same_files</tt></a></b>
+<dd>
+Files which are identical in both <var>a</var> and <var>b</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1352"><tt class="member">diff_files</tt></a></b>
+<dd>
+Files which are in both <var>a</var> and <var>b</var>, whose contents differ.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1353"><tt class="member">funny_files</tt></a></b>
+<dd>
+Files which are in both <var>a</var> and <var>b</var>, but could not be
+compared.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1354"><tt class="member">subdirs</tt></a></b>
+<dd>
+A dictionary mapping names in <tt class="member">common_dirs</tt> to
+<tt class="class">dircmp</tt> objects.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-filecmp.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-filecmp.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-popen2.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-filecmp.html">6.7 filecmp  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-filecmp.html">6.7 filecmp  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-popen2.html">6.8 popen2  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

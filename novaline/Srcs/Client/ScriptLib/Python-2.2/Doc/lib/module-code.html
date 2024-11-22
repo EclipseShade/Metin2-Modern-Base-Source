@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.22 code -- Interpreter base classes</title>
+<META NAME="description" CONTENT="3.22 code -- Interpreter base classes">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-codeop.html">
+<LINK REL="previous" href="module-imp.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="interpreter-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="examples-imp.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="interpreter-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="examples-imp.html">3.21.1 Examples</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="interpreter-objects.html">3.22.1 Interactive Interpreter Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0052200000000000000000">
+3.22 <tt class="module">code</tt> --
+         Interpreter base classes</A>
+</H1>
+
+<P>
+
+<P>
+The <code>code</code> module provides facilities to implement
+read-eval-print loops in Python.  Two classes and convenience
+functions are included which can be used to build applications which
+provide an interactive interpreter prompt.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-597"><tt class="class">InteractiveInterpreter</tt></a></b>(<big>[</big><var>locals</var><big>]</big>)
+<dd>
+This class deals with parsing and interpreter state (the user's
+namespace); it does not deal with input buffering or prompting or
+input file naming (the filename is always passed in explicitly).
+The optional <var>locals</var> argument specifies the dictionary in
+which code will be executed; it defaults to a newly created
+dictionary with key <code>'__name__'</code> set to <code>'__console__'</code>
+and key <code>'__doc__'</code> set to <code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-598"><tt class="class">InteractiveConsole</tt></a></b>(<big>[</big><var>locals</var><big>[</big><var>, filename</var><big>]</big><big>]</big>)
+<dd>
+Closely emulate the behavior of the interactive Python interpreter.
+This class builds on <tt class="class">InteractiveInterpreter</tt> and adds
+prompting using the familiar <code>sys.ps1</code> and <code>sys.ps2</code>, and
+input buffering.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-599"><tt class="function">interact</tt></a></b>(<big>[</big><var>banner</var><big>[</big><var>,
+                           readfunc</var><big>[</big><var>, local</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+Convenience function to run a read-eval-print loop.  This creates a
+new instance of <tt class="class">InteractiveConsole</tt> and sets <var>readfunc</var>
+to be used as the <tt class="method">raw_input()</tt> method, if provided.  If
+<var>local</var> is provided, it is passed to the
+<tt class="class">InteractiveConsole</tt> constructor for use as the default
+namespace for the interpreter loop.  The <tt class="method">interact()</tt> method
+of the instance is then run with <var>banner</var> passed as the banner
+to use, if provided.  The console object is discarded after use.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-600"><tt class="function">compile_command</tt></a></b>(<var>source</var><big>[</big><var>,
+                                  filename</var><big>[</big><var>, symbol</var><big>]</big><big>]</big>)
+<dd>
+This function is useful for programs that want to emulate Python's
+interpreter main loop (a.k.a. the read-eval-print loop).  The tricky
+part is to determine when the user has entered an incomplete command
+that can be completed by entering more text (as opposed to a
+complete command or a syntax error).  This function
+<i>almost</i> always makes the same decision as the real interpreter
+main loop.
+
+<P>
+<var>source</var> is the source string; <var>filename</var> is the optional
+filename from which source was read, defaulting to <code>'&lt;input&gt;'</code>;
+and <var>symbol</var> is the optional grammar start symbol, which should
+be either <code>'single'</code> (the default) or <code>'eval'</code>.
+
+<P>
+Returns a code object (the same as <code>compile(<var>source</var>,
+<var>filename</var>, <var>symbol</var>)</code>) if the command is complete and
+valid; <code>None</code> if the command is incomplete; raises
+<tt class="exception">SyntaxError</tt> if the command is complete and contains a
+syntax error, or raises <tt class="exception">OverflowError</tt> or
+<tt class="exception">ValueError</tt> if the command cotains an invalid literal.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="interpreter-objects.html">3.22.1 Interactive Interpreter Objects</a>
+<LI><A href="console-objects.html">3.22.2 Interactive Console Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="examples-imp.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="interpreter-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="examples-imp.html">3.21.1 Examples</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="interpreter-objects.html">3.22.1 Interactive Interpreter Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

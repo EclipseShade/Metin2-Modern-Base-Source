@@ -1,0 +1,414 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.3.2 Unicode Objects </title>
+<META NAME="description" CONTENT="7.3.2 Unicode Objects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="bufferObjects.html">
+<LINK REL="previous" href="stringObjects.html">
+<LINK REL="up" href="sequenceObjects.html">
+<LINK REL="next" href="builtinCodecs.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="stringObjects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="sequenceObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="builtinCodecs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="stringObjects.html">7.3.1 String Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="sequenceObjects.html">7.3 Sequence Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="builtinCodecs.html">7.3.2.1 Built-in Codecs</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009320000000000000000">&nbsp;</A>
+<BR>
+7.3.2 Unicode Objects 
+</H2>
+
+<P>
+These are the basic Unicode object types used for the Unicode
+implementation in Python:
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-386">Py_UNICODE</a></tt></b>
+<dd>
+  This type represents a 16-bit unsigned storage type which is used by
+  Python internally as basis for holding Unicode ordinals.  On
+  platforms where <tt class="ctype">wchar_t</tt> is available and also has 16-bits,
+  <tt class="ctype">Py_UNICODE</tt> is a typedef alias for <tt class="ctype">wchar_t</tt> to enhance
+  native platform compatibility.  On all other platforms,
+  <tt class="ctype">Py_UNICODE</tt> is a typedef alias for <tt class="ctype">unsigned short</tt>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-387">PyUnicodeObject</a></tt></b>
+<dd>
+  This subtype of <tt class="ctype">PyObject</tt> represents a Python Unicode object.
+</dl>
+
+<P>
+<dl><dt>PyTypeObject <b><a name="l2h-388"><tt class="cdata">PyUnicode_Type</tt></a></b>
+<dd>
+  This instance of <tt class="ctype">PyTypeObject</tt> represents the Python Unicode
+  type.
+</dl>
+
+<P>
+The following APIs are really C macros and can be used to do fast
+checks and to access internal read-only data of Unicode objects:
+
+<P>
+<dl><dt>int <b><a name="l2h-389"><tt class="cfunction">PyUnicode_Check</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+  Returns true if the object <var>o</var> is a Unicode object or an
+  instance of a Unicode subtype.
+  
+<span class="versionnote">Changed in version 2.2:
+Allowed subtypes to be accepted.</span>
+
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-390"><tt class="cfunction">PyUnicode_CheckExact</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+  Returns true if the object <var>o</var> is a Unicode object, but not an
+  instance of a subtype.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-391"><tt class="cfunction">PyUnicode_GET_SIZE</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+  Returns the size of the object.  <var>o</var> has to be a
+  <tt class="ctype">PyUnicodeObject</tt> (not checked).
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-392"><tt class="cfunction">PyUnicode_GET_DATA_SIZE</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+  Returns the size of the object's internal buffer in bytes.  <var>o</var>
+  has to be a <tt class="ctype">PyUnicodeObject</tt> (not checked).
+</dl>
+
+<P>
+<dl><dt>Py_UNICODE* <b><a name="l2h-393"><tt class="cfunction">PyUnicode_AS_UNICODE</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+  Returns a pointer to the internal <tt class="ctype">Py_UNICODE</tt> buffer of the
+  object.  <var>o</var> has to be a <tt class="ctype">PyUnicodeObject</tt> (not checked).
+</dl>
+
+<P>
+<dl><dt>const char* <b><a name="l2h-394"><tt class="cfunction">PyUnicode_AS_DATA</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+  Returns a pointer to the internal buffer of the object.
+  <var>o</var> has to be a <tt class="ctype">PyUnicodeObject</tt> (not checked).
+</dl>
+
+<P>
+Unicode provides many different character properties. The most often
+needed ones are available through these macros which are mapped to C
+functions depending on the Python configuration.
+
+<P>
+<dl><dt>int <b><a name="l2h-395"><tt class="cfunction">Py_UNICODE_ISSPACE</tt></a></b>(<var>Py_UNICODE ch</var>)
+<dd>
+  Returns 1/0 depending on whether <var>ch</var> is a whitespace
+  character.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-396"><tt class="cfunction">Py_UNICODE_ISLOWER</tt></a></b>(<var>Py_UNICODE ch</var>)
+<dd>
+  Returns 1/0 depending on whether <var>ch</var> is a lowercase character.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-397"><tt class="cfunction">Py_UNICODE_ISUPPER</tt></a></b>(<var>Py_UNICODE ch</var>)
+<dd>
+  Returns 1/0 depending on whether <var>ch</var> is an uppercase
+  character.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-398"><tt class="cfunction">Py_UNICODE_ISTITLE</tt></a></b>(<var>Py_UNICODE ch</var>)
+<dd>
+  Returns 1/0 depending on whether <var>ch</var> is a titlecase character.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-399"><tt class="cfunction">Py_UNICODE_ISLINEBREAK</tt></a></b>(<var>Py_UNICODE ch</var>)
+<dd>
+  Returns 1/0 depending on whether <var>ch</var> is a linebreak character.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-400"><tt class="cfunction">Py_UNICODE_ISDECIMAL</tt></a></b>(<var>Py_UNICODE ch</var>)
+<dd>
+  Returns 1/0 depending on whether <var>ch</var> is a decimal character.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-401"><tt class="cfunction">Py_UNICODE_ISDIGIT</tt></a></b>(<var>Py_UNICODE ch</var>)
+<dd>
+  Returns 1/0 depending on whether <var>ch</var> is a digit character.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-402"><tt class="cfunction">Py_UNICODE_ISNUMERIC</tt></a></b>(<var>Py_UNICODE ch</var>)
+<dd>
+  Returns 1/0 depending on whether <var>ch</var> is a numeric character.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-403"><tt class="cfunction">Py_UNICODE_ISALPHA</tt></a></b>(<var>Py_UNICODE ch</var>)
+<dd>
+  Returns 1/0 depending on whether <var>ch</var> is an alphabetic
+  character.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-404"><tt class="cfunction">Py_UNICODE_ISALNUM</tt></a></b>(<var>Py_UNICODE ch</var>)
+<dd>
+  Returns 1/0 depending on whether <var>ch</var> is an alphanumeric
+  character.
+</dl>
+
+<P>
+These APIs can be used for fast direct character conversions:
+
+<P>
+<dl><dt>Py_UNICODE <b><a name="l2h-405"><tt class="cfunction">Py_UNICODE_TOLOWER</tt></a></b>(<var>Py_UNICODE ch</var>)
+<dd>
+  Returns the character <var>ch</var> converted to lower case.
+</dl>
+
+<P>
+<dl><dt>Py_UNICODE <b><a name="l2h-406"><tt class="cfunction">Py_UNICODE_TOUPPER</tt></a></b>(<var>Py_UNICODE ch</var>)
+<dd>
+  Returns the character <var>ch</var> converted to upper case.
+</dl>
+
+<P>
+<dl><dt>Py_UNICODE <b><a name="l2h-407"><tt class="cfunction">Py_UNICODE_TOTITLE</tt></a></b>(<var>Py_UNICODE ch</var>)
+<dd>
+  Returns the character <var>ch</var> converted to title case.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-408"><tt class="cfunction">Py_UNICODE_TODECIMAL</tt></a></b>(<var>Py_UNICODE ch</var>)
+<dd>
+  Returns the character <var>ch</var> converted to a decimal positive
+  integer.  Returns <code>-1</code> if this is not possible.  Does not raise
+  exceptions.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-409"><tt class="cfunction">Py_UNICODE_TODIGIT</tt></a></b>(<var>Py_UNICODE ch</var>)
+<dd>
+  Returns the character <var>ch</var> converted to a single digit integer.
+  Returns <code>-1</code> if this is not possible.  Does not raise
+  exceptions.
+</dl>
+
+<P>
+<dl><dt>double <b><a name="l2h-410"><tt class="cfunction">Py_UNICODE_TONUMERIC</tt></a></b>(<var>Py_UNICODE ch</var>)
+<dd>
+  Returns the character <var>ch</var> converted to a (positive) double.
+  Returns <code>-1.0</code> if this is not possible.  Does not raise
+  exceptions.
+</dl>
+
+<P>
+To create Unicode objects and access their basic sequence properties,
+use these APIs:
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-411"><tt class="cfunction">PyUnicode_FromUnicode</tt></a></b>(<var>const Py_UNICODE *u,
+                                                    int size</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Create a Unicode Object from the Py_UNICODE buffer <var>u</var> of the
+  given size. <var>u</var> may be <tt class="constant">NULL</tt> which causes the contents to be
+  undefined. It is the user's responsibility to fill in the needed
+  data.  The buffer is copied into the new object. If the buffer is
+  not <tt class="constant">NULL</tt>, the return value might be a shared object. Therefore,
+  modification of the resulting Unicode object is only allowed when
+  <var>u</var> is <tt class="constant">NULL</tt>.
+</dl>
+
+<P>
+<dl><dt>Py_UNICODE* <b><a name="l2h-412"><tt class="cfunction">PyUnicode_AsUnicode</tt></a></b>(<var>PyObject *unicode</var>)
+<dd>
+  Return a read-only pointer to the Unicode object's internal
+  <tt class="ctype">Py_UNICODE</tt> buffer, <tt class="constant">NULL</tt> if <var>unicode</var> is not a Unicode
+  object.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-413"><tt class="cfunction">PyUnicode_GetSize</tt></a></b>(<var>PyObject *unicode</var>)
+<dd>
+  Return the length of the Unicode object.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-414"><tt class="cfunction">PyUnicode_FromEncodedObject</tt></a></b>(<var>PyObject *obj,
+                                                      const char *encoding,
+                                                      const char *errors</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Coerce an encoded object <var>obj</var> to an Unicode object and return a
+  reference with incremented refcount.
+
+<P>
+Coercion is done in the following way:
+
+<P>
+
+<OL>
+<LI>Unicode objects are passed back as-is with incremented
+       refcount. <span class="note"><b class="label">Note:</b>
+These cannot be decoded; passing a non-<tt class="constant">NULL</tt>
+       value for encoding will result in a <tt class="exception">TypeError</tt>.</span>
+
+<P>
+</LI>
+<LI>String and other char buffer compatible objects are decoded
+      according to the given encoding and using the error handling
+      defined by errors.  Both can be <tt class="constant">NULL</tt> to have the interface
+      use the default values (see the next section for details).
+
+<P>
+</LI>
+<LI>All other objects cause an exception.
+</LI>
+</OL>
+
+<P>
+The API returns <tt class="constant">NULL</tt> if there was an error.  The caller is
+  responsible for decref'ing the returned objects.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-415"><tt class="cfunction">PyUnicode_FromObject</tt></a></b>(<var>PyObject *obj</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Shortcut for <code>PyUnicode_FromEncodedObject(obj, NULL, "strict")</code>
+  which is used throughout the interpreter whenever coercion to
+  Unicode is needed.
+</dl>
+
+<P>
+If the platform supports <tt class="ctype">wchar_t</tt> and provides a header file
+wchar.h, Python can interface directly to this type using the
+following functions. Support is optimized if Python's own
+<tt class="ctype">Py_UNICODE</tt> type is identical to the system's <tt class="ctype">wchar_t</tt>.
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-416"><tt class="cfunction">PyUnicode_FromWideChar</tt></a></b>(<var>const wchar_t *w,
+                                                     int size</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Create a Unicode object from the <tt class="ctype">whcar_t</tt> buffer <var>w</var> of
+  the given size.  Returns <tt class="constant">NULL</tt> on failure.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-417"><tt class="cfunction">PyUnicode_AsWideChar</tt></a></b>(<var>PyUnicodeObject *unicode,
+                                             wchar_t *w,
+                                             int size</var>)
+<dd>
+  Copies the Unicode object contents into the <tt class="ctype">whcar_t</tt> buffer
+  <var>w</var>.  At most <var>size</var> <tt class="ctype">whcar_t</tt> characters are copied.
+  Returns the number of <tt class="ctype">whcar_t</tt> characters copied or -1 in
+  case of an error.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="builtinCodecs.html">7.3.2.1 Built-in Codecs</a>
+<LI><A href="unicodeMethodsAndSlots.html">7.3.2.2 Methods and Slot Functions</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="stringObjects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="sequenceObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="builtinCodecs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="stringObjects.html">7.3.1 String Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="sequenceObjects.html">7.3 Sequence Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="builtinCodecs.html">7.3.2.1 Built-in Codecs</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

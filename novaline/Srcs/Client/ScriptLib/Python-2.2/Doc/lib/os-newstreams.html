@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.1.2 File Object Creation </title>
+<META NAME="description" CONTENT="6.1.2 File Object Creation ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="os-fd-ops.html">
+<LINK REL="previous" href="os-procinfo.html">
+<LINK REL="up" href="module-os.html">
+<LINK REL="next" href="os-fd-ops.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="os-procinfo.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-os.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="os-fd-ops.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="os-procinfo.html">6.1.1 Process Parameters</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-os.html">6.1 os  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="os-fd-ops.html">6.1.3 File Descriptor Operations</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008120000000000000000">&nbsp;</A>
+<BR>
+6.1.2 File Object Creation 
+</H2>
+
+<P>
+These functions create new file objects.
+
+<P>
+<dl><dt><b><a name="l2h-1129"><tt class="function">fdopen</tt></a></b>(<var>fd</var><big>[</big><var>, mode</var><big>[</big><var>, bufsize</var><big>]</big><big>]</big>)
+<dd>
+Return an open file object connected to the file descriptor <var>fd</var>.
+<a name="l2h-1135">&nbsp;</a>The <var>mode</var> and <var>bufsize</var> arguments have the same meaning as
+the corresponding arguments to the built-in <tt class="function">open()</tt>
+function.
+Availability: Macintosh, Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1130"><tt class="function">popen</tt></a></b>(<var>command</var><big>[</big><var>, mode</var><big>[</big><var>, bufsize</var><big>]</big><big>]</big>)
+<dd>
+Open a pipe to or from <var>command</var>.  The return value is an open
+file object connected to the pipe, which can be read or written
+depending on whether <var>mode</var> is <code>'r'</code> (default) or <code>'w'</code>.
+The <var>bufsize</var> argument has the same meaning as the corresponding
+argument to the built-in <tt class="function">open()</tt> function.  The exit status of
+the command (encoded in the format specified for <tt class="function">wait()</tt>) is
+available as the return value of the <tt class="method">close()</tt> method of the file
+object, except that when the exit status is zero (termination without
+errors), <code>None</code> is returned.
+Availability: Unix, Windows.
+
+<P>
+
+<span class="versionnote">Changed in version 2.0:
+This function worked unreliably under Windows in
+  earlier versions of Python.  This was due to the use of the
+  <tt class="cfunction">_popen()</tt> function from the libraries provided with
+  Windows.  Newer versions of Python do not use the broken
+  implementation from the Windows libraries.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1131"><tt class="function">tmpfile</tt></a></b>()
+<dd>
+Return a new file object opened in update mode ("<tt class="samp">w+</tt>").  The file
+has no directory entries associated with it and will be automatically
+deleted once there are no file descriptors for the file.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+For each of these <tt class="function">popen()</tt> variants, if <var>bufsize</var> is
+specified, it specifies the buffer size for the I/O pipes.
+<var>mode</var>, if provided, should be the string <code>'b'</code> or
+<code>'t'</code>; on Windows this is needed to determine whether the file
+objects should be opened in binary or text mode.  The default value
+for <var>mode</var> is <code>'t'</code>.
+
+<P>
+These methods do not make it possible to retrieve the return code from
+the child processes.  The only way to control the input and output
+streams and also retrieve the return codes is to use the
+<tt class="class">Popen3</tt> and <tt class="class">Popen4</tt> classes from the <tt class="module"><a href="module-popen2.html">popen2</a></tt>
+module; these are only available on Unix.
+
+<P>
+<dl><dt><b><a name="l2h-1132"><tt class="function">popen2</tt></a></b>(<var>cmd</var><big>[</big><var>, mode</var><big>[</big><var>, bufsize</var><big>]</big><big>]</big>)
+<dd>
+Executes <var>cmd</var> as a sub-process.  Returns the file objects
+<code>(<var>child_stdin</var>, <var>child_stdout</var>)</code>.
+Availability: Unix, Windows.
+
+<span class="versionnote">New in version 2.0.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1133"><tt class="function">popen3</tt></a></b>(<var>cmd</var><big>[</big><var>, mode</var><big>[</big><var>, bufsize</var><big>]</big><big>]</big>)
+<dd>
+Executes <var>cmd</var> as a sub-process.  Returns the file objects
+<code>(<var>child_stdin</var>, <var>child_stdout</var>, <var>child_stderr</var>)</code>.
+Availability: Unix, Windows.
+
+<span class="versionnote">New in version 2.0.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1134"><tt class="function">popen4</tt></a></b>(<var>cmd</var><big>[</big><var>, mode</var><big>[</big><var>, bufsize</var><big>]</big><big>]</big>)
+<dd>
+Executes <var>cmd</var> as a sub-process.  Returns the file objects
+<code>(<var>child_stdin</var>, <var>child_stdout_and_stderr</var>)</code>.
+Availability: Unix, Windows.
+
+<span class="versionnote">New in version 2.0.</span>
+
+</dl>
+
+<P>
+This functionality is also available in the <tt class="module"><a href="module-popen2.html">popen2</a></tt> module
+using functions of the same names, but the return values of those
+functions have a different order.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="os-procinfo.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-os.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="os-fd-ops.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="os-procinfo.html">6.1.1 Process Parameters</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-os.html">6.1 os  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="os-fd-ops.html">6.1.3 File Descriptor Operations</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

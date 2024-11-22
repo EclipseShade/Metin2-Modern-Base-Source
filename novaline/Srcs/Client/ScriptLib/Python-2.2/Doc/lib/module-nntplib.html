@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.11 nntplib -- NNTP protocol client</title>
+<META NAME="description" CONTENT="11.11 nntplib -- NNTP protocol client">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-smtplib.html">
+<LINK REL="previous" href="module-imaplib.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="nntp-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="imap4-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="nntp-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="imap4-example.html">11.10.2 IMAP4 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="nntp-objects.html">11.11.1 NNTP Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00131100000000000000000">
+11.11 <tt class="module">nntplib</tt> --
+         NNTP protocol client</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name="l2h-2551">&nbsp;</a>
+<P>
+This module defines the class <tt class="class">NNTP</tt> which implements the client
+side of the NNTP protocol.  It can be used to implement a news reader
+or poster, or automated news processors.  For more information on NNTP
+(Network News Transfer Protocol), see Internet <a class="rfc" name="rfcref-63364"
+href="http://www.faqs.org/rfcs/rfc977.html">RFC 977</a>.
+
+<P>
+Here are two small examples of how it can be used.  To list some
+statistics about a newsgroup and print the subjects of the last 10
+articles:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; s = NNTP('news.cwi.nl')
+&gt;&gt;&gt; resp, count, first, last, name = s.group('comp.lang.python')
+&gt;&gt;&gt; print 'Group', name, 'has', count, 'articles, range', first, 'to', last
+Group comp.lang.python has 59 articles, range 3742 to 3803
+&gt;&gt;&gt; resp, subs = s.xhdr('subject', first + '-' + last)
+&gt;&gt;&gt; for id, sub in subs[-10:]: print id, sub
+... 
+3792 Re: Removing elements from a list while iterating...
+3793 Re: Who likes Info files?
+3794 Emacs and doc strings
+3795 a few questions about the Mac implementation
+3796 Re: executable python scripts
+3797 Re: executable python scripts
+3798 Re: a few questions about the Mac implementation 
+3799 Re: PROPOSAL: A Generic Python Object Interface for Python C Modules
+3802 Re: executable python scripts 
+3803 Re: \POSIX{} wait and SIGCHLD
+&gt;&gt;&gt; s.quit()
+'205 news.cwi.nl closing connection.  Goodbye.'
+</pre></dl>
+
+<P>
+To post an article from a file (this assumes that the article has
+valid headers):
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; s = NNTP('news.cwi.nl')
+&gt;&gt;&gt; f = open('/tmp/article')
+&gt;&gt;&gt; s.post(f)
+'240 Article posted successfully.'
+&gt;&gt;&gt; s.quit()
+'205 news.cwi.nl closing connection.  Goodbye.'
+</pre></dl>
+
+<P>
+The module itself defines the following items:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2544"><tt class="class">NNTP</tt></a></b>(<var>host</var><big>[</big><var>, port
+                        </var><big>[</big><var>, user</var><big>[</big><var>, password
+			</var><big>[</big><var>, readermode</var><big>]</big><big>]</big><big>]</big><big>]</big>)
+<dd>
+Return a new instance of the <tt class="class">NNTP</tt> class, representing a
+connection to the NNTP server running on host <var>host</var>, listening at
+port <var>port</var>.  The default <var>port</var> is 119.  If the optional
+<var>user</var> and <var>password</var> are provided, the
+"<tt class="samp">AUTHINFO USER</tt>" and "<tt class="samp">AUTHINFO PASS</tt>" commands are used to
+identify and authenticate the user to the server.  If the optional
+flag <var>readermode</var> is true, then a "<tt class="samp">mode reader</tt>" command is
+sent before authentication is performed.  Reader mode is sometimes
+necessary if you are connecting to an NNTP server on the local machine
+and intend to call reader-specific commands, such as "<tt class="samp">group</tt>".  If
+you get unexpected <code>NNTPPermanentError</code>s, you might need to set
+<var>readermode</var>.  <var>readermode</var> defaults to <code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2545"><tt class="class">NNTPError</tt></a></b>()
+<dd>
+Derived from the standard exception <code>Exception</code>, this is the base
+class for all exceptions raised by the <code>nntplib</code> module.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2546"><tt class="class">NNTPReplyError</tt></a></b>()
+<dd>
+Exception raised when an unexpected reply is received from the
+server.  For backwards compatibility, the exception <code>error_reply</code>
+is equivalent to this class.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2547"><tt class="class">NNTPTemporaryError</tt></a></b>()
+<dd>
+Exception raised when an error code in the range 400-499 is
+received.  For backwards compatibility, the exception
+<code>error_temp</code> is equivalent to this class.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2548"><tt class="class">NNTPPermanentError</tt></a></b>()
+<dd>
+Exception raised when an error code in the range 500-599 is
+received.  For backwards compatibility, the exception
+<code>error_perm</code> is equivalent to this class.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2549"><tt class="class">NNTPProtocolError</tt></a></b>()
+<dd>
+Exception raised when a reply is received from the server that does
+not begin with a digit in the range 1-5.  For backwards
+compatibility, the exception <code>error_proto</code> is equivalent to this
+class.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2550"><tt class="class">NNTPDataError</tt></a></b>()
+<dd>
+Exception raised when there is some error in the response data.  For
+backwards compatibility, the exception <code>error_data</code> is
+equivalent to this class.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="nntp-objects.html">11.11.1 NNTP Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="imap4-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="nntp-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="imap4-example.html">11.10.2 IMAP4 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="nntp-objects.html">11.11.1 NNTP Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

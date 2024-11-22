@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.5 cmath -- Mathematical functions for complex numbers</title>
+<META NAME="description" CONTENT="5.5 cmath -- Mathematical functions for complex numbers">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-random.html">
+<LINK REL="previous" href="module-math.html">
+<LINK REL="up" href="misc.html">
+<LINK REL="next" href="module-random.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-math.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-random.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-math.html">5.4 math  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-random.html">5.6 random  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007500000000000000000">
+5.5 <tt class="module">cmath</tt> --
+         Mathematical functions for complex numbers</A>
+</H1>
+
+<P>
+
+
+<P>
+This module is always available.  It provides access to mathematical
+functions for complex numbers.  The functions are:
+
+<P>
+<dl><dt><b><a name="l2h-915"><tt class="function">acos</tt></a></b>(<var>x</var>)
+<dd>
+Return the arc cosine of <var>x</var>.
+There are two branch cuts:
+One extends right from 1 along the real axis to &infin;, continuous
+from below.
+The other extends left from -1 along the real axis to -&infin;,
+continuous from above.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-916"><tt class="function">acosh</tt></a></b>(<var>x</var>)
+<dd>
+Return the hyperbolic arc cosine of <var>x</var>.
+There is one branch cut, extending left from 1 along the real axis
+to -&infin;, continuous from above.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-917"><tt class="function">asin</tt></a></b>(<var>x</var>)
+<dd>
+Return the arc sine of <var>x</var>.
+This has the same branch cuts as <tt class="function">acos()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-918"><tt class="function">asinh</tt></a></b>(<var>x</var>)
+<dd>
+Return the hyperbolic arc sine of <var>x</var>.
+There are two branch cuts, extending left from &plusmn;<code>1j</code> to
+&plusmn;-&infin;<code>j</code>, both continuous from above.
+These branch cuts should be considered a bug to be corrected in a
+future release.
+The correct branch cuts should extend along the imaginary axis,
+one from <code>1j</code> up to &infin;<code>j</code> and continuous from the
+right, and one from -<code>1j</code> down to -&infin;<code>j</code> and
+continuous from the left.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-919"><tt class="function">atan</tt></a></b>(<var>x</var>)
+<dd>
+Return the arc tangent of <var>x</var>.
+There are two branch cuts:
+One extends from <code>1j</code> along the imaginary axis to
+&infin;<code>j</code>, continuous from the left.
+The other extends from -<code>1j</code> along the imaginary axis to
+-&infin;<code>j</code>, continuous from the left.
+(This should probably be changed so the upper cut becomes continuous
+from the other side.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-920"><tt class="function">atanh</tt></a></b>(<var>x</var>)
+<dd>
+Return the hyperbolic arc tangent of <var>x</var>.
+There are two branch cuts:
+One extends from 1 along the real axis to &infin;, continuous
+from above.
+The other extends from -1 along the real axis to -&infin;,
+continuous from above.
+(This should probably be changed so the right cut becomes continuous from
+the other side.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-921"><tt class="function">cos</tt></a></b>(<var>x</var>)
+<dd>
+Return the cosine of <var>x</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-922"><tt class="function">cosh</tt></a></b>(<var>x</var>)
+<dd>
+Return the hyperbolic cosine of <var>x</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-923"><tt class="function">exp</tt></a></b>(<var>x</var>)
+<dd>
+Return the exponential value <code>e**<var>x</var></code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-924"><tt class="function">log</tt></a></b>(<var>x</var>)
+<dd>
+Return the natural logarithm of <var>x</var>.
+There is one branch cut, from 0 along the negative real axis to
+-&infin;, continuous from above.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-925"><tt class="function">log10</tt></a></b>(<var>x</var>)
+<dd>
+Return the base-10 logarithm of <var>x</var>.
+This has the same branch cut as <tt class="function">log()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-926"><tt class="function">sin</tt></a></b>(<var>x</var>)
+<dd>
+Return the sine of <var>x</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-927"><tt class="function">sinh</tt></a></b>(<var>x</var>)
+<dd>
+Return the hyperbolic sine of <var>x</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-928"><tt class="function">sqrt</tt></a></b>(<var>x</var>)
+<dd>
+Return the square root of <var>x</var>.
+This has the same branch cut as <tt class="function">log()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-929"><tt class="function">tan</tt></a></b>(<var>x</var>)
+<dd>
+Return the tangent of <var>x</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-930"><tt class="function">tanh</tt></a></b>(<var>x</var>)
+<dd>
+Return the hyperbolic tangent of <var>x</var>.
+</dl>
+
+<P>
+The module also defines two mathematical constants:
+
+<P>
+<dl><dt><b><a name="l2h-931"><tt>pi</tt></a></b>
+<dd>
+The mathematical constant <i>pi</i>, as a real.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-932"><tt>e</tt></a></b>
+<dd>
+The mathematical constant <i>e</i>, as a real.
+</dl>
+
+<P>
+Note that the selection of functions is similar, but not identical, to
+that in module <tt class="module"><a href="module-math.html">math</a></tt><a name="l2h-933">&nbsp;</a>.  The reason for having
+two modules is that some users aren't interested in complex numbers,
+and perhaps don't even know what they are.  They would rather have
+<code>math.sqrt(-1)</code> raise an exception than return a complex number.
+Also note that the functions defined in <tt class="module">cmath</tt> always return a
+complex number, even if the answer can be expressed as a real number
+(in which case the complex number has an imaginary part of zero).
+
+<P>
+A note on branch cuts: They are curves along which the given function
+fails to be continuous.  They are a necessary feature of many complex
+functions.  It is assumed that if you need to compute with complex
+functions, you will understand about branch cuts.  Consult almost any
+(not too elementary) book on complex variables for enlightenment.  For
+information of the proper choice of branch cuts for numerical
+purposes, a good reference should be the following:
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <div class="seetext"><p>Kahan, W:  Branch cuts for complex elementary functions;
+           or, Much ado about nothings's sign bit.  In Iserles, A.,
+           and Powell, M. (eds.), <em class="citetitle"
+ >The state of the art in
+           numerical analysis</em>. Clarendon Press (1987) pp165-211.</div>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-math.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-random.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-math.html">5.4 math  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-random.html">5.6 random  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

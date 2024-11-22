@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.9 dumbdbm -- Portable DBM implementation</title>
+<META NAME="description" CONTENT="7.9 dumbdbm -- Portable DBM implementation">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-dbhash.html">
+<LINK REL="previous" href="module-anydbm.html">
+<LINK REL="up" href="someos.html">
+<LINK REL="next" href="module-dbhash.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-anydbm.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-dbhash.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-anydbm.html">7.8 anydbm  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-dbhash.html">7.10 dbhash  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION009900000000000000000">
+7.9 <tt class="module">dumbdbm</tt> --
+         Portable DBM implementation</A>
+</H1>
+
+<P>
+
+
+<P>
+A simple and slow database implemented entirely in Python.  This
+should only be used when no other DBM-style database is available.
+
+<P>
+<dl><dt><b><a name="l2h-2018"><tt class="function">open</tt></a></b>(<var>filename</var><big>[</big><var>, flag</var><big>[</big><var>, mode</var><big>]</big><big>]</big>)
+<dd>
+Open the database file <var>filename</var> and return a corresponding
+object.  The <var>flag</var> argument, used to control how the database is
+opened in the other DBM implementations, is ignored in
+<tt class="module">dumbdbm</tt>; the database is always opened for update, and will
+be created if it does not exist.
+
+<P>
+The optional <var>mode</var> argument is the Unix mode of the file, used
+only when the database has to be created.  It defaults to octal
+<code>0666</code> (and will be modified by the prevailing umask).
+
+<span class="versionnote">Changed in version 2.2:
+The <var>mode</var> argument was ignored in earlier
+                versions.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2019"><tt class="exception">error</tt></a></b>
+<dd>
+Raised for errors not reported as <tt class="exception">KeyError</tt> errors.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-anydbm.html">anydbm</a></tt>:</b>
+    <dd>Generic interface to <code>dbm</code>-style databases.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-whichdb.html">whichdb</a></tt>:</b>
+    <dd>Utility module used to determine the type of an
+                      existing database.
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-anydbm.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-dbhash.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-anydbm.html">7.8 anydbm  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-dbhash.html">7.10 dbhash  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.17 syslog -- Unix syslog library routines</title>
+<META NAME="description" CONTENT="8.17 syslog -- Unix syslog library routines">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-commands.html">
+<LINK REL="previous" href="module-nis.html">
+<LINK REL="up" href="unix.html">
+<LINK REL="next" href="module-commands.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-nis.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-commands.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-nis.html">8.16 nis  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-commands.html">8.18 commands  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00101700000000000000000">
+8.17 <tt class="module">syslog</tt> --
+         Unix syslog library routines</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Unix</span>.</p>
+
+<P>
+This module provides an interface to the Unix <code>syslog</code> library
+routines.  Refer to the Unix manual pages for a detailed description
+of the <code>syslog</code> facility.
+
+<P>
+The module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-2234"><tt class="function">syslog</tt></a></b>(<big>[</big><var>priority,</var><big>]</big><var> message</var>)
+<dd>
+Send the string <var>message</var> to the system logger.  A trailing
+newline is added if necessary.  Each message is tagged with a priority
+composed of a <var>facility</var> and a <var>level</var>.  The optional
+<var>priority</var> argument, which defaults to <tt class="constant">LOG_INFO</tt>,
+determines the message priority.  If the facility is not encoded in
+<var>priority</var> using logical-or (<code>LOG_INFO | LOG_USER</code>), the
+value given in the <tt class="function">openlog()</tt> call is used.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2235"><tt class="function">openlog</tt></a></b>(<var>ident</var><big>[</big><var>, logopt</var><big>[</big><var>, facility</var><big>]</big><big>]</big>)
+<dd>
+Logging options other than the defaults can be set by explicitly
+opening the log file with <tt class="function">openlog()</tt> prior to calling
+<tt class="function">syslog()</tt>.  The defaults are (usually) <var>ident</var> =
+<code>'syslog'</code>, <var>logopt</var> = <code>0</code>, <var>facility</var> =
+<tt class="constant">LOG_USER</tt>.  The <var>ident</var> argument is a string which is
+prepended to every message.  The optional <var>logopt</var> argument is a
+bit field - see below for possible values to combine.  The optional
+<var>facility</var> argument sets the default facility for messages which
+do not have a facility explicitly encoded.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2236"><tt class="function">closelog</tt></a></b>()
+<dd>
+Close the log file.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2237"><tt class="function">setlogmask</tt></a></b>(<var>maskpri</var>)
+<dd>
+Set the priority mask to <var>maskpri</var> and return the
+previous mask value.  Calls to <tt class="function">syslog()</tt> with a priority
+level not set in <var>maskpri</var> are ignored.  The default is to log all
+priorities.  The function <code>LOG_MASK(<var>pri</var>)</code> calculates the
+mask for the individual priority <var>pri</var>.  The function
+<code>LOG_UPTO(<var>pri</var>)</code> calculates the mask for all priorities up
+to and including <var>pri</var>.
+</dl>
+
+<P>
+The module defines the following constants:
+
+<P>
+<DL>
+<DT><STRONG>Priority levels (high to low):</STRONG></DT>
+<DD><P>
+<tt class="constant">LOG_EMERG</tt>, <tt class="constant">LOG_ALERT</tt>, <tt class="constant">LOG_CRIT</tt>,
+<tt class="constant">LOG_ERR</tt>, <tt class="constant">LOG_WARNING</tt>, <tt class="constant">LOG_NOTICE</tt>,
+<tt class="constant">LOG_INFO</tt>, <tt class="constant">LOG_DEBUG</tt>.
+
+<P>
+</DD>
+<DT><STRONG>Facilities:</STRONG></DT>
+<DD><P>
+<tt class="constant">LOG_KERN</tt>, <tt class="constant">LOG_USER</tt>, <tt class="constant">LOG_MAIL</tt>,
+<tt class="constant">LOG_DAEMON</tt>, <tt class="constant">LOG_AUTH</tt>, <tt class="constant">LOG_LPR</tt>,
+<tt class="constant">LOG_NEWS</tt>, <tt class="constant">LOG_UUCP</tt>, <tt class="constant">LOG_CRON</tt> and
+<tt class="constant">LOG_LOCAL0</tt> to <tt class="constant">LOG_LOCAL7</tt>.
+
+<P>
+</DD>
+<DT><STRONG>Log options:</STRONG></DT>
+<DD><P>
+<tt class="constant">LOG_PID</tt>, <tt class="constant">LOG_CONS</tt>, <tt class="constant">LOG_NDELAY</tt>,
+<tt class="constant">LOG_NOWAIT</tt> and <tt class="constant">LOG_PERROR</tt> if defined in
+<code>&lt;syslog.h&gt;</code>.
+
+<P>
+</DD>
+</DL>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-nis.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-commands.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-nis.html">8.16 nis  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-commands.html">8.18 commands  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

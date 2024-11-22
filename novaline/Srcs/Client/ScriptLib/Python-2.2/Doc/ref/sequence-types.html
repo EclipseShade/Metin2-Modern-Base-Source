@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.3.4 Emulating container types</title>
+<META NAME="description" CONTENT="3.3.4 Emulating container types">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="sequence-methods.html">
+<LINK REL="previous" href="callable-types.html">
+<LINK REL="up" href="specialnames.html">
+<LINK REL="next" href="sequence-methods.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="callable-types.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="specialnames.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="sequence-methods.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="callable-types.html">3.3.3 Emulating callable objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="specialnames.html">3.3 Special method names</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="sequence-methods.html">3.3.5 Additional methods for</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION005340000000000000000">&nbsp;</A>
+<BR>
+3.3.4 Emulating container types
+</H2>
+
+<P>
+The following methods can be defined to implement container
+objects.  Containers usually are sequences (such as lists or tuples)
+or mappings (like dictionaries), but can represent other containers as
+well.  The first set of methods is used either to emulate a
+sequence or to emulate a mapping; the difference is that for a
+sequence, the allowable keys should be the integers <var>k</var> for which
+<code>0 &lt;= <var>k</var> &lt; <var>N</var></code> where <var>N</var> is the length of the
+sequence, or slice objects, which define a range of items. (For backwards
+compatibility, the method <tt class="method">__getslice__()</tt> (see below) can also be
+defined to handle simple, but not extended slices.) It is also recommended
+that mappings provide the methods <tt class="method">keys()</tt>, <tt class="method">values()</tt>,
+<tt class="method">items()</tt>, <tt class="method">has_key()</tt>, <tt class="method">get()</tt>, <tt class="method">clear()</tt>,
+<tt class="method">copy()</tt>, and <tt class="method">update()</tt> behaving similar to those for
+Python's standard dictionary objects; mutable sequences should provide
+methods <tt class="method">append()</tt>, <tt class="method">count()</tt>, <tt class="method">index()</tt>,
+<tt class="method">insert()</tt>, <tt class="method">pop()</tt>, <tt class="method">remove()</tt>, <tt class="method">reverse()</tt>
+and <tt class="method">sort()</tt>, like Python standard list objects.  Finally,
+sequence types should implement addition (meaning concatenation) and
+multiplication (meaning repetition) by defining the methods
+<tt class="method">__add__()</tt>, <tt class="method">__radd__()</tt>, <tt class="method">__iadd__()</tt>,
+<tt class="method">__mul__()</tt>, <tt class="method">__rmul__()</tt> and <tt class="method">__imul__()</tt> described
+below; they should not define <tt class="method">__coerce__()</tt> or other numerical
+operators.  It is recommended that both mappings and sequences
+implement the <tt class="method">__contains__()</tt> method to allow efficient use of
+the <code>in</code> operator; for mappings, <code>in</code> should be equivalent
+of <tt class="method">has_key()</tt>; for sequences, it should search through the
+values.
+<a name="l2h-120">&nbsp;</a><a name="l2h-122">&nbsp;</a><a name="l2h-124">&nbsp;</a>
+<P>
+<dl><dt><b><a name="l2h-125"><tt class="method">__len__</tt></a></b>(<var>self</var>)
+<dd>
+Called to implement the built-in function
+<tt class="function">len()</tt><a name="l2h-133">&nbsp;</a>  Should return the length of the
+object, an integer <code>&gt;=</code> 0.  Also, an object that doesn't define a
+<tt class="method">__nonzero__()</tt> method and whose <tt class="method">__len__()</tt> method
+returns zero is considered to be false in a Boolean context.
+<a name="l2h-127">&nbsp;</a></dl>
+
+<P>
+<dl><dt><b><a name="l2h-128"><tt class="method">__getitem__</tt></a></b>(<var>self, key</var>)
+<dd>
+Called to implement evaluation of <code><var>self</var>[<var>key</var>]</code>.
+For sequence types, the accepted keys should be integers and slice
+objects.<a name="l2h-134">&nbsp;</a> Note that
+the special interpretation of negative indexes (if the class wishes to
+emulate a sequence type) is up to the <tt class="method">__getitem__()</tt> method.
+If <var>key</var> is of an inappropriate type, <tt class="exception">TypeError</tt> may be
+raised; if of a value outside the set of indexes for the sequence
+(after any special interpretation of negative values),
+<tt class="exception">IndexError</tt> should be raised.
+<span class="note"><b class="label">Note:</b>
+<tt class="keyword">for</tt> loops expect that an
+<tt class="exception">IndexError</tt> will be raised for illegal indexes to allow
+proper detection of the end of the sequence.</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-129"><tt class="method">__setitem__</tt></a></b>(<var>self, key, value</var>)
+<dd>
+Called to implement assignment to <code><var>self</var>[<var>key</var>]</code>.  Same
+note as for <tt class="method">__getitem__()</tt>.  This should only be implemented
+for mappings if the objects support changes to the values for keys, or
+if new keys can be added, or for sequences if elements can be
+replaced.  The same exceptions should be raised for improper
+<var>key</var> values as for the <tt class="method">__getitem__()</tt> method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-130"><tt class="method">__delitem__</tt></a></b>(<var>self, key</var>)
+<dd>
+Called to implement deletion of <code><var>self</var>[<var>key</var>]</code>.  Same
+note as for <tt class="method">__getitem__()</tt>.  This should only be implemented
+for mappings if the objects support removal of keys, or for sequences
+if elements can be removed from the sequence.  The same exceptions
+should be raised for improper <var>key</var> values as for the
+<tt class="method">__getitem__()</tt> method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-131"><tt class="method">__iter__</tt></a></b>(<var>self</var>)
+<dd>
+This method is called when an iterator is required for a container.
+This method should return a new iterator object that can iterate over
+all the objects in the container.  For mappings, it should iterate
+over the keys of the container, and should also be made available as
+the method <tt class="method">iterkeys()</tt>.
+
+<P>
+Iterator objects also need to implement this method; they are required
+to return themselves.  For more information on iterator objects, see
+``<a class="ulink" href="../lib/typeiter.html"
+  >Iterator Types</a>'' in the
+<em class="citetitle"><a
+ href="../lib/lib.html"
+ title="Python Library Reference"
+ >Python Library Reference</a></em>.
+</dl>
+
+<P>
+The membership test operators (<tt class="keyword">in</tt> and <tt class="keyword">not in</tt>) are
+normally implemented as an iteration through a sequence.  However,
+container objects can supply the following special method with a more
+efficient implementation, which also does not require the object be a
+sequence.
+
+<P>
+<dl><dt><b><a name="l2h-132"><tt class="method">__contains__</tt></a></b>(<var>self, item</var>)
+<dd>
+Called to implement membership test operators.  Should return true if
+<var>item</var> is in <var>self</var>, false otherwise.  For mapping objects,
+this should consider the keys of the mapping rather than the values or
+the key-item pairs.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="callable-types.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="specialnames.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="sequence-methods.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="callable-types.html">3.3.3 Emulating callable objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="specialnames.html">3.3 Special method names</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="sequence-methods.html">3.3.5 Additional methods for</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

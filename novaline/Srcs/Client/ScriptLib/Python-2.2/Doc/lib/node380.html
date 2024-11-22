@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.2.2.1 Parser class API</title>
+<META NAME="description" CONTENT="12.2.2.1 Parser class API">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node381.html">
+<LINK REL="previous" href="module-email.Parser.html">
+<LINK REL="up" href="module-email.Parser.html">
+<LINK REL="next" HREF="node381.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-email.Parser.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-email.Parser.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node381.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-email.Parser.html">12.2.2 Parsing email messages</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-email.Parser.html">12.2.2 Parsing email messages</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node381.html">12.2.2.2 Additional notes</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0014221000000000000000">
+12.2.2.1 Parser class API</A>
+</H3>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2826"><tt class="class">Parser</tt></a></b>(<big>[</big><var>_class</var><big>]</big>)
+<dd>
+The constructor for the <tt class="class">Parser</tt> class takes a single optional
+argument <var>_class</var>.  This must be a callable factory (such as a
+function or a class), and it is used whenever a sub-message object
+needs to be created.  It defaults to <tt class="class">Message</tt> (see
+<tt class="module"><a href="module-email.Message.html">email.Message</a></tt>).  The factory will be called without
+arguments.
+</dl>
+
+<P>
+The other public <tt class="class">Parser</tt> methods are:
+
+<P>
+<dl><dt><b><a name="l2h-2827"><tt class="method">parse</tt></a></b>(<var>fp</var>)
+<dd>
+Read all the data from the file-like object <var>fp</var>, parse the
+resulting text, and return the root message object.  <var>fp</var> must
+support both the <tt class="method">readline()</tt> and the <tt class="method">read()</tt> methods
+on file-like objects.
+
+<P>
+The text contained in <var>fp</var> must be formatted as a block of <a class="rfc" name="rfcref-63743"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a>
+style headers and header continuation lines, optionally preceeded by a
+<i>Unix-From</i> header.  The header block is terminated either by the
+end of the data or by a blank line.  Following the header block is the
+body of the message (which may contain MIME-encoded subparts).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2828"><tt class="method">parsestr</tt></a></b>(<var>text</var>)
+<dd>
+Similar to the <tt class="method">parse()</tt> method, except it takes a string
+object instead of a file-like object.  Calling this method on a string
+is exactly equivalent to wrapping <var>text</var> in a <tt class="class">StringIO</tt>
+instance first and calling <tt class="method">parse()</tt>.
+</dl>
+
+<P>
+Since creating a message object tree from a string or a file object is
+such a common task, two functions are provided as a convenience.  They
+are available in the top-level <tt class="module">email</tt> package namespace.
+
+<P>
+<dl><dt><b><a name="l2h-2829"><tt class="function">message_from_string</tt></a></b>(<var>s</var><big>[</big><var>, _class</var><big>]</big>)
+<dd>
+Return a message object tree from a string.  This is exactly
+equivalent to <code>Parser().parsestr(s)</code>.  Optional <var>_class</var> is
+interpreted as with the <tt class="class">Parser</tt> class constructor.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2830"><tt class="function">message_from_file</tt></a></b>(<var>fp</var><big>[</big><var>, _class</var><big>]</big>)
+<dd>
+Return a message object tree from an open file object.  This is exactly
+equivalent to <code>Parser().parse(fp)</code>.  Optional <var>_class</var> is
+interpreted as with the <tt class="class">Parser</tt> class constructor.
+</dl>
+
+<P>
+Here's an example of how you might use this at an interactive Python
+prompt:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import email
+&gt;&gt;&gt; msg = email.message_from_string(myString)
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-email.Parser.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-email.Parser.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node381.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-email.Parser.html">12.2.2 Parsing email messages</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-email.Parser.html">12.2.2 Parsing email messages</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node381.html">12.2.2.2 Additional notes</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

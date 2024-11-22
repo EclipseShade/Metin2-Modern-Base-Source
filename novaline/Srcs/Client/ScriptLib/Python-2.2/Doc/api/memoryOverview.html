@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>9.1 Overview </title>
+<META NAME="description" CONTENT="9.1 Overview ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="memoryInterface.html">
+<LINK REL="previous" href="memory.html">
+<LINK REL="up" href="memory.html">
+<LINK REL="next" href="memoryInterface.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="memory.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="memory.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="memoryInterface.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="memory.html">9. Memory Management</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="memory.html">9. Memory Management</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="memoryInterface.html">9.2 Memory Interface</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0011100000000000000000">&nbsp;</A>
+<BR>
+9.1 Overview 
+</H1>
+
+<P>
+Memory management in Python involves a private heap containing all
+Python objects and data structures. The management of this private
+heap is ensured internally by the <i>Python memory manager</i>.  The
+Python memory manager has different components which deal with various
+dynamic storage management aspects, like sharing, segmentation,
+preallocation or caching.
+
+<P>
+At the lowest level, a raw memory allocator ensures that there is
+enough room in the private heap for storing all Python-related data
+by interacting with the memory manager of the operating system. On top
+of the raw memory allocator, several object-specific allocators
+operate on the same heap and implement distinct memory management
+policies adapted to the peculiarities of every object type. For
+example, integer objects are managed differently within the heap than
+strings, tuples or dictionaries because integers imply different
+storage requirements and speed/space tradeoffs. The Python memory
+manager thus delegates some of the work to the object-specific
+allocators, but ensures that the latter operate within the bounds of
+the private heap.
+
+<P>
+It is important to understand that the management of the Python heap
+is performed by the interpreter itself and that the user has no
+control on it, even if she regularly manipulates object pointers to
+memory blocks inside that heap.  The allocation of heap space for
+Python objects and other internal buffers is performed on demand by
+the Python memory manager through the Python/C API functions listed in
+this document.
+
+<P>
+To avoid memory corruption, extension writers should never try to
+operate on Python objects with the functions exported by the C
+library: <tt class="cfunction">malloc()</tt><a name="l2h-759">&nbsp;</a>,
+<tt class="cfunction">calloc()</tt><a name="l2h-760">&nbsp;</a>,
+<tt class="cfunction">realloc()</tt><a name="l2h-761">&nbsp;</a>and
+<tt class="cfunction">free()</tt><a name="l2h-762">&nbsp;</a>.  This will result in 
+mixed calls between the C allocator and the Python memory manager
+with fatal consequences, because they implement different algorithms
+and operate on different heaps.  However, one may safely allocate and
+release memory blocks with the C library allocator for individual
+purposes, as shown in the following example:
+
+<P>
+<dl><dd><pre class="verbatim">
+    PyObject *res;
+    char *buf = (char *) malloc(BUFSIZ); /* for I/O */
+
+    if (buf == NULL)
+        return PyErr_NoMemory();
+    ...Do some I/O operation involving buf...
+    res = PyString_FromString(buf);
+    free(buf); /* malloc'ed */
+    return res;
+</pre></dl>
+
+<P>
+In this example, the memory request for the I/O buffer is handled by
+the C library allocator. The Python memory manager is involved only
+in the allocation of the string object returned as a result.
+
+<P>
+In most situations, however, it is recommended to allocate memory from
+the Python heap specifically because the latter is under control of
+the Python memory manager. For example, this is required when the
+interpreter is extended with new object types written in C. Another
+reason for using the Python heap is the desire to <i>inform</i> the
+Python memory manager about the memory needs of the extension module.
+Even when the requested memory is used exclusively for internal,
+highly-specific purposes, delegating all memory requests to the Python
+memory manager causes the interpreter to have a more accurate image of
+its memory footprint as a whole. Consequently, under certain
+circumstances, the Python memory manager may or may not trigger
+appropriate actions, like garbage collection, memory compaction or
+other preventive procedures. Note that by using the C library
+allocator as shown in the previous example, the allocated memory for
+the I/O buffer escapes completely the Python memory manager.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="memory.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="memory.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="memoryInterface.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="memory.html">9. Memory Management</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="memory.html">9. Memory Management</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="memoryInterface.html">9.2 Memory Interface</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.3 ctb -- Interface to the Communications Tool Box</title>
+<META NAME="description" CONTENT="2.3 ctb -- Interface to the Communications Tool Box">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-macfs.html">
+<LINK REL="previous" href="module-macpath.html">
+<LINK REL="up" href="macpython-modules.html">
+<LINK REL="next" href="connection-object.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-macpath.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="connection-object.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-macpath.html">2.2 macpath  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="connection-object.html">2.3.1 Connection Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION004300000000000000000">
+2.3 <tt class="module">ctb</tt> --
+         Interface to the Communications Tool Box</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Macintosh</span>.</p>
+
+<P>
+This module provides a partial interface to the Macintosh
+Communications Toolbox. Currently, only Connection Manager tools are
+supported.
+
+<P>
+This module is only available under MacOS9 or earlier, in classic PPC
+MacPython.
+<a name="l2h-14">&nbsp;</a>
+<P>
+<dl><dt><b><a name="l2h-7"><tt>error</tt></a></b>
+<dd>
+The exception raised on errors.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-8"><tt>cmData</tt></a></b>
+<dd>
+<dt><b><a name="l2h-15"><tt>cmCntl</tt></a></b><dd>
+<dt><b><a name="l2h-16"><tt>cmAttn</tt></a></b><dd>
+Flags for the <var>channel</var> argument of the <tt class="method">Read()</tt> and
+<tt class="method">Write()</tt> methods.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-9"><tt>cmFlagsEOM</tt></a></b>
+<dd>
+End-of-message flag for <tt class="method">Read()</tt> and <tt class="method">Write()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-10"><tt>choose*</tt></a></b>
+<dd>
+Values returned by <tt class="method">Choose()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-11"><tt>cmStatus*</tt></a></b>
+<dd>
+Bits in the status as returned by <tt class="method">Status()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-12"><tt class="function">available</tt></a></b>()
+<dd>
+Return <code>1</code> if the Communication Toolbox is available, zero otherwise.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-13"><tt class="function">CMNew</tt></a></b>(<var>name, sizes</var>)
+<dd>
+Create a connection object using the connection tool named
+<var>name</var>. <var>sizes</var> is a 6-tuple given buffer sizes for data in,
+data out, control in, control out, attention in and attention out.
+Alternatively, passing <code>None</code> for <var>sizes</var> will result in
+default buffer sizes.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="connection-object.html">2.3.1 Connection Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-macpath.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="connection-object.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-macpath.html">2.2 macpath  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="connection-object.html">2.3.1 Connection Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.27 site -- Site-specific configuration hook</title>
+<META NAME="description" CONTENT="3.27 site -- Site-specific configuration hook">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-user.html">
+<LINK REL="previous" href="module-new.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="module-user.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-new.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-user.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-new.html">3.26 new  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-user.html">3.28 user  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0052700000000000000000">
+3.27 <tt class="module">site</tt> --
+         Site-specific configuration hook</A>
+</H1>
+
+<P>
+
+
+<P>
+<b>This module is automatically imported during initialization.</b>
+
+<P>
+In earlier versions of Python (up to and including 1.5a3), scripts or
+modules that needed to use site-specific modules would place
+"<tt class="samp">import site</tt>" somewhere near the top of their code.  This is no
+longer necessary.
+
+<P>
+This will append site-specific paths to the module search path.
+<a name="l2h-648">&nbsp;</a>
+<P>
+It starts by constructing up to four directories from a head and a
+tail part.  For the head part, it uses <code>sys.prefix</code> and
+<code>sys.exec_prefix</code>; empty heads are skipped.  For
+the tail part, it uses the empty string (on Macintosh or Windows) or
+it uses first <span class="file">lib/python2.2/site-packages</span> and then
+<span class="file">lib/site-python</span> (on Unix).  For each of the distinct
+head-tail combinations, it sees if it refers to an existing directory,
+and if so, adds to <code>sys.path</code>, and also inspects the path for
+configuration files.
+<a name="l2h-649">&nbsp;</a>
+<P>
+A path configuration file is a file whose name has the form
+<span class="file"><var>package</var>.pth</span>; its contents are additional items (one
+per line) to be added to <code>sys.path</code>.  Non-existing items are
+never added to <code>sys.path</code>, but no check is made that the item
+refers to a directory (rather than a file).  No item is added to
+<code>sys.path</code> more than once.  Blank lines and lines beginning with
+<code>#</code> are skipped.  Lines starting with <code>import</code> are executed.
+<a name="l2h-650">&nbsp;</a>
+<P>
+For example, suppose <code>sys.prefix</code> and <code>sys.exec_prefix</code> are
+set to <span class="file">/usr/local</span>.  The Python 2.2 library is then
+installed in <span class="file">/usr/local/lib/python2.2</span> (where only the
+first three characters of <code>sys.version</code> are used to form the
+installation path name).  Suppose this has a subdirectory
+<span class="file">/usr/local/lib/python2.2/site-packages</span> with three
+subsubdirectories, <span class="file">foo</span>, <span class="file">bar</span> and <span class="file">spam</span>, and two
+path configuration files, <span class="file">foo.pth</span> and <span class="file">bar.pth</span>.  Assume
+<span class="file">foo.pth</span> contains the following:
+
+<P>
+<dl><dd><pre class="verbatim">
+# foo package configuration
+
+foo
+bar
+bletch
+</pre></dl>
+
+<P>
+and <span class="file">bar.pth</span> contains:
+
+<P>
+<dl><dd><pre class="verbatim">
+# bar package configuration
+
+bar
+</pre></dl>
+
+<P>
+Then the following directories are added to <code>sys.path</code>, in this
+order:
+
+<P>
+<dl><dd><pre class="verbatim">
+/usr/local/lib/python1.5/site-packages/bar
+/usr/local/lib/python1.5/site-packages/foo
+</pre></dl>
+
+<P>
+Note that <span class="file">bletch</span> is omitted because it doesn't exist; the
+<span class="file">bar</span> directory precedes the <span class="file">foo</span> directory because
+<span class="file">bar.pth</span> comes alphabetically before <span class="file">foo.pth</span>; and
+<span class="file">spam</span> is omitted because it is not mentioned in either path
+configuration file.
+
+<P>
+After these path manipulations, an attempt is made to import a module
+named <tt class="module">sitecustomize</tt><a name="l2h-651">&nbsp;</a>, which can
+perform arbitrary site-specific customizations.  If this import fails
+with an <tt class="exception">ImportError</tt> exception, it is silently ignored.
+
+<P>
+Note that for some non-Unix systems, <code>sys.prefix</code> and
+<code>sys.exec_prefix</code> are empty, and the path manipulations are
+skipped; however the import of
+<tt class="module">sitecustomize</tt><a name="l2h-652">&nbsp;</a>is still attempted.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-new.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-user.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-new.html">3.26 new  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-user.html">3.28 user  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.4.3 Differ Objects </title>
+<META NAME="description" CONTENT="4.4.3 Differ Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="differ-examples.html">
+<LINK REL="previous" href="sequencematcher-examples.html">
+<LINK REL="up" href="module-difflib.html">
+<LINK REL="next" href="differ-examples.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="sequencematcher-examples.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-difflib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="differ-examples.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="sequencematcher-examples.html">4.4.2 SequenceMatcher Examples</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-difflib.html">4.4 difflib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="differ-examples.html">4.4.4 Differ Example</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION006430000000000000000">&nbsp;</A>
+<BR>
+4.4.3 Differ Objects 
+</H2>
+
+<P>
+Note that <tt class="class">Differ</tt>-generated deltas make no claim to be
+<b>minimal</b> diffs. To the contrary, minimal diffs are often
+counter-intuitive, because they synch up anywhere possible, sometimes
+accidental matches 100 pages apart. Restricting synch points to
+contiguous matches preserves some notion of locality, at the
+occasional cost of producing a longer diff.
+
+<P>
+The <tt class="class">Differ</tt> class has this constructor:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-778"><tt class="class">Differ</tt></a></b>(<big>[</big><var>linejunk</var><big>[</big><var>, charjunk</var><big>]</big><big>]</big>)
+<dd>
+  Optional keyword parameters <var>linejunk</var> and <var>charjunk</var> are
+  for filter functions (or <code>None</code>):
+
+<P>
+<var>linejunk</var>: A function that should accept a single string
+  argument, and return true if the string is junk.  The default is
+  module-level function <tt class="function">IS_LINE_JUNK()</tt>, which filters out
+  lines without visible characters, except for at most one pound
+  character ("<tt class="character">#</tt>").
+
+<P>
+<var>charjunk</var>: A function that should accept a string of length 1.
+  The default is module-level function <tt class="function">IS_CHARACTER_JUNK()</tt>,
+  which filters out whitespace characters (a blank or tab; note: bad
+  idea to include newline in this!).
+</dl>
+
+<P>
+<tt class="class">Differ</tt> objects are used (deltas generated) via a single
+method:
+
+<P>
+<dl><dt><b><a name="l2h-779"><tt class="method">compare</tt></a></b>(<var>a, b</var>)
+<dd>
+  Compare two sequences of lines, and generate the delta (a sequence
+  of lines).
+
+<P>
+Each sequence must contain individual single-line strings ending
+  with newlines. Such sequences can be obtained from the
+  <tt class="method">readlines()</tt> method of file-like objects.  The delta generated
+  also consists of newline-terminated strings, ready to be printed as-is
+  via the <tt class="method">writelines()</tt> method of a file-like object.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="sequencematcher-examples.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-difflib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="differ-examples.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="sequencematcher-examples.html">4.4.2 SequenceMatcher Examples</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-difflib.html">4.4 difflib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="differ-examples.html">4.4.4 Differ Example</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

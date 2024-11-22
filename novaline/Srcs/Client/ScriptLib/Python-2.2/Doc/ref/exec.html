@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.14 The exec statement </title>
+<META NAME="description" CONTENT="6.14 The exec statement ">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="global.html">
+<LINK REL="up" href="simple.html">
+<LINK REL="next" href="compound.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="global.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="simple.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="compound.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="global.html">6.13 The global statement</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="simple.html">6. Simple statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="compound.html">7. Compound statements</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0081400000000000000000">&nbsp;</A>
+<BR>
+6.14 The <tt class="keyword">exec</tt> statement 
+</H1>
+<a name="l2h-365">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-exec_stmt">exec_stmt</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"exec" <a href="lambda.html#tok-expression">expression</a>
+              ["in" <a href="lambda.html#tok-expression">expression</a> ["," <a href="lambda.html#tok-expression">expression</a>]]</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+This statement supports dynamic execution of Python code.  The first
+expression should evaluate to either a string, an open file object, or
+a code object.  If it is a string, the string is parsed as a suite of
+Python statements which is then executed (unless a syntax error
+occurs).  If it is an open file, the file is parsed until EOF and
+executed.  If it is a code object, it is simply executed.
+
+<P>
+In all cases, if the optional parts are omitted, the code is executed
+in the current scope.  If only the first expression after <tt class="keyword">in</tt>
+is specified, it should be a dictionary, which will be used for both
+the global and the local variables.  If two expressions are given,
+both must be dictionaries and they are used for the global and local
+variables, respectively.
+
+<P>
+As a side effect, an implementation may insert additional keys into
+the dictionaries given besides those corresponding to variable names
+set by the executed code.  For example, the current implementation
+may add a reference to the dictionary of the built-in module
+<tt class="module">__builtin__</tt> under the key <code>__builtins__</code> (!).
+<a name="l2h-366">&nbsp;</a>
+<P>
+<b>Programmer's hints:</b>
+dynamic evaluation of expressions is supported by the built-in
+function <tt class="function">eval()</tt>.  The built-in functions
+<tt class="function">globals()</tt> and <tt class="function">locals()</tt> return the current global
+and local dictionary, respectively, which may be useful to pass around
+for use by <tt class="keyword">exec</tt>.
+<a name="l2h-367">&nbsp;</a>
+<P>
+Also, in the current implementation, multi-line compound statements must
+end with a newline:
+<code>exec "for v in seq:&#92;n&#92;tprint v&#92;n"</code> works, but
+<code>exec "for v in seq:&#92;n&#92;tprint v"</code> fails with
+<tt class="exception">SyntaxError</tt>.
+<a name="l2h-368">&nbsp;</a>
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="global.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="simple.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="compound.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="global.html">6.13 The global statement</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="simple.html">6. Simple statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="compound.html">7. Compound statements</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

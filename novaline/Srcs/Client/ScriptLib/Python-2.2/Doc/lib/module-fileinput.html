@@ -1,0 +1,246 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.11 fileinput -- Iterate over lines from multiple input streams</title>
+<META NAME="description" CONTENT="5.11 fileinput -- Iterate over lines from multiple input streams">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-xreadlines.html">
+<LINK REL="previous" href="module-ConfigParser.html">
+<LINK REL="up" href="misc.html">
+<LINK REL="next" href="module-xreadlines.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="ConfigParser-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-xreadlines.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="ConfigParser-objects.html">5.10.1 ConfigParser Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-xreadlines.html">5.12 xreadlines  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0071100000000000000000">
+5.11 <tt class="module">fileinput</tt> --
+         Iterate over lines from multiple input streams</A>
+</H1>
+
+
+<P>
+
+<P>
+This module implements a helper class and functions to quickly write a
+loop over standard input or a list of files.
+
+<P>
+The typical use is:
+
+<P>
+<dl><dd><pre class="verbatim">
+import fileinput
+for line in fileinput.input():
+    process(line)
+</pre></dl>
+
+<P>
+This iterates over the lines of all files listed in
+<code>sys.argv[1:]</code>, defaulting to <code>sys.stdin</code> if the list is
+empty.  If a filename is <code>'-'</code>, it is also replaced by
+<code>sys.stdin</code>.  To specify an alternative list of filenames, pass
+it as the first argument to <tt class="function">input()</tt>.  A single file name is
+also allowed.
+
+<P>
+All files are opened in text mode.  If an I/O error occurs during
+opening or reading a file, <tt class="exception">IOError</tt> is raised.
+
+<P>
+If <code>sys.stdin</code> is used more than once, the second and further use
+will return no lines, except perhaps for interactive use, or if it has
+been explicitly reset (e.g. using <code>sys.stdin.seek(0)</code>).
+
+<P>
+Empty files are opened and immediately closed; the only time their
+presence in the list of filenames is noticeable at all is when the
+last file opened is empty.
+
+<P>
+It is possible that the last line of a file does not end in a newline
+character; lines are returned including the trailing newline when it
+is present.
+
+<P>
+The following function is the primary interface of this module:
+
+<P>
+<dl><dt><b><a name="l2h-1023"><tt class="function">input</tt></a></b>(<big>[</big><var>files</var><big>[</big><var>,
+                       inplace</var><big>[</big><var>, backup</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+  Create an instance of the <tt class="class">FileInput</tt> class.  The instance
+  will be used as global state for the functions of this module, and
+  is also returned to use during iteration.  The parameters to this
+  function will be passed along to the constructor of the
+  <tt class="class">FileInput</tt> class.
+</dl>
+
+<P>
+The following functions use the global state created by
+<tt class="function">input()</tt>; if there is no active state,
+<tt class="exception">RuntimeError</tt> is raised.
+
+<P>
+<dl><dt><b><a name="l2h-1024"><tt class="function">filename</tt></a></b>()
+<dd>
+  Return the name of the file currently being read.  Before the first
+  line has been read, returns <code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1025"><tt class="function">lineno</tt></a></b>()
+<dd>
+  Return the cumulative line number of the line that has just been
+  read.  Before the first line has been read, returns <code>0</code>.  After
+  the last line of the last file has been read, returns the line
+  number of that line.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1026"><tt class="function">filelineno</tt></a></b>()
+<dd>
+  Return the line number in the current file.  Before the first line
+  has been read, returns <code>0</code>.  After the last line of the last
+  file has been read, returns the line number of that line within the
+  file.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1027"><tt class="function">isfirstline</tt></a></b>()
+<dd>
+  Returns true the line just read is the first line of its file,
+  otherwise returns false.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1028"><tt class="function">isstdin</tt></a></b>()
+<dd>
+  Returns true if the last line was read from <code>sys.stdin</code>,
+  otherwise returns false.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1029"><tt class="function">nextfile</tt></a></b>()
+<dd>
+  Close the current file so that the next iteration will read the
+  first line from the next file (if any); lines not read from the file
+  will not count towards the cumulative line count.  The filename is
+  not changed until after the first line of the next file has been
+  read.  Before the first line has been read, this function has no
+  effect; it cannot be used to skip the first file.  After the last
+  line of the last file has been read, this function has no effect.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1030"><tt class="function">close</tt></a></b>()
+<dd>
+  Close the sequence.
+</dl>
+
+<P>
+The class which implements the sequence behavior provided by the
+module is available for subclassing as well:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-1031"><tt class="class">FileInput</tt></a></b>(<big>[</big><var>files</var><big>[</big><var>,
+                             inplace</var><big>[</big><var>, backup</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+  Class <tt class="class">FileInput</tt> is the implementation; its methods
+  <tt class="method">filename()</tt>, <tt class="method">lineno()</tt>, <tt class="method">fileline()</tt>,
+  <tt class="method">isfirstline()</tt>, <tt class="method">isstdin()</tt>, <tt class="method">nextfile()</tt> and
+  <tt class="method">close()</tt> correspond to the functions of the same name in the
+  module.  In addition it has a <tt class="method">readline()</tt> method which
+  returns the next input line, and a <tt class="method">__getitem__()</tt> method
+  which implements the sequence behavior.  The sequence must be
+  accessed in strictly sequential order; random access and
+  <tt class="method">readline()</tt> cannot be mixed.
+</dl>
+
+<P>
+<b>Optional in-place filtering:</b> if the keyword argument
+<code><var>inplace</var>=1</code> is passed to <tt class="function">input()</tt> or to the
+<tt class="class">FileInput</tt> constructor, the file is moved to a backup file and
+standard output is directed to the input file (if a file of the same
+name as the backup file already exists, it will be replaced silently).
+This makes it possible to write a filter that rewrites its input file
+in place.  If the keyword argument <code><var>backup</var>='.&lt;some
+extension&gt;'</code> is also given, it specifies the extension for the backup
+file, and the backup file remains around; by default, the extension is
+<code>'.bak'</code> and it is deleted when the output file is closed.  In-place
+filtering is disabled when standard input is read.
+
+<P>
+<b>Caveat:</b> The current implementation does not work for MS-DOS
+8+3 filesystems.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="ConfigParser-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-xreadlines.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="ConfigParser-objects.html">5.10.1 ConfigParser Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-xreadlines.html">5.12 xreadlines  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

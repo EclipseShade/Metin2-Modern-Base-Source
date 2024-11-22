@@ -1,0 +1,20 @@
+<skin background_image="main">
+	<control type="button" id="MINIMIZE" image="btn_minimize" x="566" y="40" />
+	<control type="button" id="EXIT" image="btn_quit" x="593" y="40" />
+
+	<control type="iframe" id="IFRAME_MAIN" x="327" y="83" width="271" height="307" link_url="http://metin2.co.kr/launcher/load.htm" />
+
+	<control type="gauge" id="PROGRESS_SUB"  image="progress" x="156" y="410" />
+	<control type="gauge" id="PROGRESS_MAIN" image="progress" x="156" y="439" />
+
+	<control type="button" id="WEB" image="btn_web" x="120" y="480" link_url="http://www.metin2.co.kr/05_myinfo/myinfo_01.htm" />
+	<control type="button" id="OPTION" image="btn_option" x="302" y="480" exec_path="config.exe" enable_on_complete="true" />
+	<control type="button" id="START" image="btn_start" x="488" y="480" enable_on_complete="true" />
+
+	<control type="text" id="TEXT_MAIN" text="TORRENT_MAIN" x="106" y="330" color="#eeeeee" />
+	<control type="text" id="TEXT_SUB"  text="TORRENT_SUB" x="106" y="350" color="#eeeeee" />
+	<control type="text" id="TEXT_TORRENT" text="" x="106" y="370" color="#eeeeee" />
+	<control type="text" id="TEXT_DNSPEED" text="TORRENT_DOWNLOAD_SPEED" x="430" y="395" color="#c7b69b" />
+
+	<control type="text" id="TEXT_VER" text="TEXT_PATCHER_VER" x="500" y="44" color="#c7b69b" bg_color="#343434" />
+</skin>

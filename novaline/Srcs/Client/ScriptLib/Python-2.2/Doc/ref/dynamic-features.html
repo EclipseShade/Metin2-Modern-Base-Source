@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>A.3.2 Interaction with dynamic features </title>
+<META NAME="description" CONTENT="A.3.2 Interaction with dynamic features ">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="definitions.html">
+<LINK REL="up" href="nested-scopes.html">
+<LINK REL="next" HREF="node98.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="definitions.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="nested-scopes.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node98.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="definitions.html">A.3.1 Definitions and rules</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="nested-scopes.html">A.3 Nested scopes</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node98.html">B. History and License</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0011320000000000000000">&nbsp;</A>
+<BR>
+A.3.2 Interaction with dynamic features 
+</H2>
+
+<P>
+There are several cases where Python statements are illegal when
+used in conjunction with nested scopes that contain free
+variables.
+
+<P>
+If a variable is referenced in an enclosing scope, it is illegal
+to delete the name.  An error will be reported at compile time.
+
+<P>
+If the wild card form of import -- "<tt class="samp">import *</tt>" -- is used in a
+function and the function contains or is a nested block with free
+variables, the compiler will raise a SyntaxError.
+
+<P>
+If exec is used in a function and the function contains or is a nested
+block with free variables, the compiler will raise a SyntaxError
+unless the exec explicitly specifies the local namespace for the exec.
+(In other words, "exec obj" would be illegal, but "exec obj in ns"
+would be legal.)
+
+<P>
+The builtin functions <tt class="function">eval()</tt> and <tt class="function">input()</tt> can not
+access free variables unless the variables are also referenced by the
+program text of the block that contains the call to <tt class="function">eval()</tt>
+or <tt class="function">input()</tt>.
+
+<P>
+<i>Compatibility note</i>: The compiler for Python 2.1 will issue
+warnings for uses of nested functions that will behave differently
+with nested scopes.  The warnings will not be issued if nested scopes
+are enabled via a future statement.  If a name bound in a function
+scope and the function contains a nested function scope that uses the
+name, the compiler will issue a warning.  The name resolution rules
+will result in different bindings under Python 2.1 than under Python
+2.2.  The warning indicates that the program may not run correctly
+with all versions of Python.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="definitions.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="nested-scopes.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node98.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="definitions.html">A.3.1 Definitions and rules</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="nested-scopes.html">A.3 Nested scopes</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node98.html">B. History and License</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

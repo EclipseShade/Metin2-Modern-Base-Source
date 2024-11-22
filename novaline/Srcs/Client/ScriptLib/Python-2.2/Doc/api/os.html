@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.1 Operating System Utilities </title>
+<META NAME="description" CONTENT="5.1 Operating System Utilities ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="processControl.html">
+<LINK REL="previous" href="utilities.html">
+<LINK REL="up" href="utilities.html">
+<LINK REL="next" href="processControl.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="utilities.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="utilities.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="processControl.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="utilities.html">5. Utilities</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="utilities.html">5. Utilities</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="processControl.html">5.2 Process Control</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007100000000000000000">&nbsp;</A>
+<BR>
+5.1 Operating System Utilities 
+</H1>
+
+<P>
+<dl><dt>int <b><a name="l2h-103"><tt class="cfunction">Py_FdIsInteractive</tt></a></b>(<var>FILE *fp, char *filename</var>)
+<dd>
+  Return true (nonzero) if the standard I/O file <var>fp</var> with name
+  <var>filename</var> is deemed interactive.  This is the case for files
+  for which "<tt class="samp">isatty(fileno(<var>fp</var>))</tt>" is true.  If the global
+  flag <tt class="cdata">Py_InteractiveFlag</tt> is true, this function also returns
+  true if the <var>filename</var> pointer is <tt class="constant">NULL</tt> or if the name is
+  equal to one of the strings <code>'&lt;stdin&gt;'</code> or <code>'???'</code>.
+</dl>
+
+<P>
+<dl><dt>long <b><a name="l2h-104"><tt class="cfunction">PyOS_GetLastModificationTime</tt></a></b>(<var>char *filename</var>)
+<dd>
+  Return the time of last modification of the file <var>filename</var>.
+  The result is encoded in the same way as the timestamp returned by
+  the standard C library function <tt class="cfunction">time()</tt>.
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-105"><tt class="cfunction">PyOS_AfterFork</tt></a></b>()
+<dd>
+  Function to update some internal state after a process fork; this
+  should be called in the new process if the Python interpreter will
+  continue to be used.  If a new executable is loaded into the new
+  process, this function does not need to be called.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-106"><tt class="cfunction">PyOS_CheckStack</tt></a></b>()
+<dd>
+  Return true when the interpreter runs out of stack space.  This is a
+  reliable check, but is only available when <tt class="constant">USE_STACKCHECK</tt>
+  is defined (currently on Windows using the Microsoft Visual C++
+  compiler and on the Macintosh).  <tt class="constant">USE_CHECKSTACK</tt> will be
+  defined automatically; you should never change the definition in
+  your own code.
+</dl>
+
+<P>
+<dl><dt>PyOS_sighandler_t <b><a name="l2h-107"><tt class="cfunction">PyOS_getsig</tt></a></b>(<var>int i</var>)
+<dd>
+  Return the current signal handler for signal <var>i</var>.  This is a
+  thin wrapper around either <tt class="cfunction">sigaction()</tt> or
+  <tt class="cfunction">signal()</tt>.  Do not call those functions directly!
+  <tt class="ctype">PyOS_sighandler_t</tt> is a typedef alias for <tt class="ctype">void
+  (*)(int)</tt>.
+</dl>
+
+<P>
+<dl><dt>PyOS_sighandler_t <b><a name="l2h-108"><tt class="cfunction">PyOS_setsig</tt></a></b>(<var>int i, PyOS_sighandler_t h</var>)
+<dd>
+  Set the signal handler for signal <var>i</var> to be <var>h</var>; return the
+  old signal handler.  This is a thin wrapper around either
+  <tt class="cfunction">sigaction()</tt> or <tt class="cfunction">signal()</tt>.  Do not call those
+  functions directly!  <tt class="ctype">PyOS_sighandler_t</tt> is a typedef alias
+  for <tt class="ctype">void (*)(int)</tt>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="utilities.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="utilities.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="processControl.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="utilities.html">5. Utilities</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="utilities.html">5. Utilities</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="processControl.html">5.2 Process Control</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

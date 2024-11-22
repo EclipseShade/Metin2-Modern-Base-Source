@@ -1,0 +1,524 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7. Input and Output </title>
+<META NAME="description" CONTENT="7. Input and Output ">
+<META NAME="keywords" CONTENT="tut">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="tut.css">
+<link rel="first" href="tut.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node10.html">
+<LINK REL="previous" HREF="node8.html">
+<LINK REL="up" HREF="tut.html">
+<LINK REL="next" HREF="node10.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node8.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="tut.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node10.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Tutorial</td>
+<td><A HREF="node2.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node8.html">6. Modules</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="tut.html">Python Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node10.html">8. Errors and Exceptions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="#SECTION009100000000000000000">7.1 Fancier Output Formatting</a>
+<LI><A href="#SECTION009200000000000000000">7.2 Reading and Writing Files</a>
+<UL>
+<LI><A href="#SECTION009210000000000000000">7.2.1 Methods of File Objects</a>
+<LI><A href="#SECTION009220000000000000000">7.2.2 The <tt class="module">pickle</tt> Module</a>
+</ul></ul>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION009000000000000000000">&nbsp;</A>
+<BR>
+7. Input and Output 
+</H1>
+
+<P>
+There are several ways to present the output of a program; data can be
+printed in a human-readable form, or written to a file for future use.
+This chapter will discuss some of the possibilities.
+
+<P>
+
+<H1><A NAME="SECTION009100000000000000000">&nbsp;</A>
+<BR>
+7.1 Fancier Output Formatting 
+</H1>
+
+<P>
+So far we've encountered two ways of writing values: <i>expression
+statements</i> and the <tt class="keyword">print</tt> statement.  (A third way is using
+the <tt class="method">write()</tt> method of file objects; the standard output file
+can be referenced as <code>sys.stdout</code>.  See the Library Reference for
+more information on this.)
+
+<P>
+Often you'll want more control over the formatting of your output than
+simply printing space-separated values.  There are two ways to format
+your output; the first way is to do all the string handling yourself;
+using string slicing and concatenation operations you can create any
+lay-out you can imagine.  The standard module
+<tt class="module">string</tt><a name="l2h-19">&nbsp;</a>contains some useful operations
+for padding strings to a given column width; these will be discussed
+shortly.  The second way is to use the <code>%</code> operator with a
+string as the left argument.  The <code>%</code> operator interprets the
+left argument much like a <tt class="cfunction">sprintf()</tt>-style format
+string to be applied to the right argument, and returns the string
+resulting from this formatting operation.
+
+<P>
+One question remains, of course: how do you convert values to strings?
+Luckily, Python has ways to convert any value to a string: pass it to
+the <tt class="function">repr()</tt>  or <tt class="function">str()</tt> functions, or just write
+the value between reverse quotes (<code>``</code>, equivalent to
+<tt class="function">repr()</tt>).
+
+<P>
+The <tt class="function">str()</tt> function is meant to return representations of
+values which are fairly human-readable, while <tt class="function">repr()</tt> is
+meant to generate representations which can be read by the interpreter
+(or will force a <tt class="exception">SyntaxError</tt> if there is not equivalent
+syntax).  For objects which don't have a particular representation for
+human consumption, <tt class="function">str()</tt> will return the same value as
+<tt class="function">repr()</tt>.  Many values, such as numbers or structures like
+lists and dictionaries, have the same representation using either
+function.  Strings and floating point numbers, in particular, have two
+distinct representations.
+
+<P>
+Some examples:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; s = 'Hello, world.'
+&gt;&gt;&gt; str(s)
+'Hello, world.'
+&gt;&gt;&gt; `s`
+"'Hello, world.'"
+&gt;&gt;&gt; str(0.1)
+'0.1'
+&gt;&gt;&gt; `0.1`
+'0.10000000000000001'
+&gt;&gt;&gt; x = 10 * 3.25
+&gt;&gt;&gt; y = 200 * 200
+&gt;&gt;&gt; s = 'The value of x is ' + `x` + ', and y is ' + `y` + '...'
+&gt;&gt;&gt; print s
+The value of x is 32.5, and y is 40000...
+&gt;&gt;&gt; # Reverse quotes work on other types besides numbers:
+... p = [x, y]
+&gt;&gt;&gt; ps = repr(p)
+&gt;&gt;&gt; ps
+'[32.5, 40000]'
+&gt;&gt;&gt; # Converting a string adds string quotes and backslashes:
+... hello = 'hello, world\n'
+&gt;&gt;&gt; hellos = `hello`
+&gt;&gt;&gt; print hellos
+'hello, world\n'
+&gt;&gt;&gt; # The argument of reverse quotes may be a tuple:
+... `x, y, ('spam', 'eggs')`
+"(32.5, 40000, ('spam', 'eggs'))"
+</pre></dl>
+
+<P>
+Here are two ways to write a table of squares and cubes:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import string
+&gt;&gt;&gt; for x in range(1, 11):
+...     print string.rjust(`x`, 2), string.rjust(`x*x`, 3),
+...     # Note trailing comma on previous line
+...     print string.rjust(`x*x*x`, 4)
+...
+ 1   1    1
+ 2   4    8
+ 3   9   27
+ 4  16   64
+ 5  25  125
+ 6  36  216
+ 7  49  343
+ 8  64  512
+ 9  81  729
+10 100 1000
+&gt;&gt;&gt; for x in range(1,11):
+...     print '%2d %3d %4d' % (x, x*x, x*x*x)
+... 
+ 1   1    1
+ 2   4    8
+ 3   9   27
+ 4  16   64
+ 5  25  125
+ 6  36  216
+ 7  49  343
+ 8  64  512
+ 9  81  729
+10 100 1000
+</pre></dl>
+
+<P>
+(Note that one space between each column was added by the way
+<tt class="keyword">print</tt> works: it always adds spaces between its arguments.)
+
+<P>
+This example demonstrates the function <tt class="function">string.rjust()</tt>,
+which right-justifies a string in a field of a given width by padding
+it with spaces on the left.  There are similar functions
+<tt class="function">string.ljust()</tt> and <tt class="function">string.center()</tt>.  These
+functions do not write anything, they just return a new string.  If
+the input string is too long, they don't truncate it, but return it
+unchanged; this will mess up your column lay-out but that's usually
+better than the alternative, which would be lying about a value.  (If
+you really want truncation you can always add a slice operation, as in
+"<tt class="samp">string.ljust(x,&nbsp;n)[0:n]</tt>".)
+
+<P>
+There is another function, <tt class="function">string.zfill()</tt>, which pads a
+numeric string on the left with zeros.  It understands about plus and
+minus signs:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import string
+&gt;&gt;&gt; string.zfill('12', 5)
+'00012'
+&gt;&gt;&gt; string.zfill('-3.14', 7)
+'-003.14'
+&gt;&gt;&gt; string.zfill('3.14159265359', 5)
+'3.14159265359'
+</pre></dl>
+
+<P>
+Using the <code>%</code> operator looks like this:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import math
+&gt;&gt;&gt; print 'The value of PI is approximately %5.3f.' % math.pi
+The value of PI is approximately 3.142.
+</pre></dl>
+
+<P>
+If there is more than one format in the string, you need to pass a
+tuple as right operand, as in this example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 7678}
+&gt;&gt;&gt; for name, phone in table.items():
+...     print '%-10s ==&gt; %10d' % (name, phone)
+... 
+Jack       ==&gt;       4098
+Dcab       ==&gt;       7678
+Sjoerd     ==&gt;       4127
+</pre></dl>
+
+<P>
+Most formats work exactly as in C and require that you pass the proper
+type; however, if you don't you get an exception, not a core dump.
+The <code>%s</code> format is more relaxed: if the corresponding argument is
+not a string object, it is converted to string using the
+<tt class="function">str()</tt> built-in function.  Using <code>*</code> to pass the width
+or precision in as a separate (integer) argument is supported.  The
+C formats <code>%n</code> and <code>%p</code> are not supported.
+
+<P>
+If you have a really long format string that you don't want to split
+up, it would be nice if you could reference the variables to be
+formatted by name instead of by position.  This can be done by using
+form <code>%(name)format</code>, as shown here:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
+&gt;&gt;&gt; print 'Jack: %(Jack)d; Sjoerd: %(Sjoerd)d; Dcab: %(Dcab)d' % table
+Jack: 4098; Sjoerd: 4127; Dcab: 8637678
+</pre></dl>
+
+<P>
+This is particularly useful in combination with the new built-in
+<tt class="function">vars()</tt> function, which returns a dictionary containing all
+local variables.
+
+<P>
+
+<H1><A NAME="SECTION009200000000000000000">&nbsp;</A>
+<BR>
+7.2 Reading and Writing Files 
+</H1>
+
+<P>
+<tt class="function">open()</tt><a name="l2h-20">&nbsp;</a>returns a file
+object<a name="l2h-21">&nbsp;</a>, and is most commonly used with two arguments:
+"<tt class="samp">open(<var>filename</var>, <var>mode</var>)</tt>".
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; f=open('/tmp/workfile', 'w')
+&gt;&gt;&gt; print f
+&lt;open file '/tmp/workfile', mode 'w' at 80a0960&gt;
+</pre></dl>
+
+<P>
+The first argument is a string containing the filename.  The second
+argument is another string containing a few characters describing the
+way in which the file will be used.  <var>mode</var> can be <code>'r'</code> when
+the file will only be read, <code>'w'</code> for only writing (an existing
+file with the same name will be erased), and <code>'a'</code> opens the file
+for appending; any data written to the file is automatically added to
+the end.  <code>'r+'</code> opens the file for both reading and writing.
+The <var>mode</var> argument is optional; <code>'r'</code> will be assumed if
+it's omitted.
+
+<P>
+On Windows and the Macintosh, <code>'b'</code> appended to the
+mode opens the file in binary mode, so there are also modes like
+<code>'rb'</code>, <code>'wb'</code>, and <code>'r+b'</code>.  Windows makes a
+distinction between text and binary files; the end-of-line characters
+in text files are automatically altered slightly when data is read or
+written.  This behind-the-scenes modification to file data is fine for
+ASCII text files, but it'll corrupt binary data like that in JPEGs or
+<span class="file">.EXE</span> files.  Be very careful to use binary mode when reading and
+writing such files.  (Note that the precise semantics of text mode on
+the Macintosh depends on the underlying C library being used.)
+
+<P>
+
+<H2><A NAME="SECTION009210000000000000000">&nbsp;</A>
+<BR>
+7.2.1 Methods of File Objects 
+</H2>
+
+<P>
+The rest of the examples in this section will assume that a file
+object called <code>f</code> has already been created.
+
+<P>
+To read a file's contents, call <code>f.read(<var>size</var>)</code>, which reads
+some quantity of data and returns it as a string.  <var>size</var> is an
+optional numeric argument.  When <var>size</var> is omitted or negative,
+the entire contents of the file will be read and returned; it's your
+problem if the file is twice as large as your machine's memory.
+Otherwise, at most <var>size</var> bytes are read and returned.  If the end
+of the file has been reached, <code>f.read()</code> will return an empty
+string (<code>""</code>).
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; f.read()
+'This is the entire file.\n'
+&gt;&gt;&gt; f.read()
+''
+</pre></dl>
+
+<P>
+<code>f.readline()</code> reads a single line from the file; a newline
+character (<code>&#92;n</code>) is left at the end of the string, and is only
+omitted on the last line of the file if the file doesn't end in a
+newline.  This makes the return value unambiguous; if
+<code>f.readline()</code> returns an empty string, the end of the file has
+been reached, while a blank line is represented by <code>'&#92;n'</code>, a
+string containing only a single newline.  
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; f.readline()
+'This is the first line of the file.\n'
+&gt;&gt;&gt; f.readline()
+'Second line of the file\n'
+&gt;&gt;&gt; f.readline()
+''
+</pre></dl>
+
+<P>
+<code>f.readlines()</code> returns a list containing all the lines of data
+in the file.  If given an optional parameter <var>sizehint</var>, it reads
+that many bytes from the file and enough more to complete a line, and
+returns the lines from that.  This is often used to allow efficient
+reading of a large file by lines, but without having to load the
+entire file in memory.  Only complete lines will be returned.
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; f.readlines()
+['This is the first line of the file.\n', 'Second line of the file\n']
+</pre></dl>
+
+<P>
+<code>f.write(<var>string</var>)</code> writes the contents of <var>string</var> to
+the file, returning <code>None</code>.  
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; f.write('This is a test\n')
+</pre></dl>
+
+<P>
+<code>f.tell()</code> returns an integer giving the file object's current
+position in the file, measured in bytes from the beginning of the
+file.  To change the file object's position, use
+"<tt class="samp">f.seek(<var>offset</var>, <var>from_what</var>)</tt>".  The position is
+computed from adding <var>offset</var> to a reference point; the reference
+point is selected by the <var>from_what</var> argument.  A
+<var>from_what</var> value of 0 measures from the beginning of the file, 1
+uses the current file position, and 2 uses the end of the file as the
+reference point.  <var>from_what</var> can be omitted and defaults to 0,
+using the beginning of the file as the reference point.
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; f=open('/tmp/workfile', 'r+')
+&gt;&gt;&gt; f.write('0123456789abcdef')
+&gt;&gt;&gt; f.seek(5)     # Go to the 6th byte in the file
+&gt;&gt;&gt; f.read(1)        
+'5'
+&gt;&gt;&gt; f.seek(-3, 2) # Go to the 3rd byte before the end
+&gt;&gt;&gt; f.read(1)
+'d'
+</pre></dl>
+
+<P>
+When you're done with a file, call <code>f.close()</code> to close it and
+free up any system resources taken up by the open file.  After calling
+<code>f.close()</code>, attempts to use the file object will automatically fail.
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; f.close()
+&gt;&gt;&gt; f.read()
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+ValueError: I/O operation on closed file
+</pre></dl>
+
+<P>
+File objects have some additional methods, such as
+<tt class="method">isatty()</tt> and <tt class="method">truncate()</tt> which are less frequently
+used; consult the Library Reference for a complete guide to file
+objects.
+
+<P>
+
+<H2><A NAME="SECTION009220000000000000000">&nbsp;</A>
+<BR>
+7.2.2 The <tt class="module">pickle</tt> Module 
+</H2>
+<a name="l2h-22">&nbsp;</a>
+<P>
+Strings can easily be written to and read from a file. Numbers take a
+bit more effort, since the <tt class="method">read()</tt> method only returns
+strings, which will have to be passed to a function like
+<tt class="function">string.atoi()</tt>, which takes a string like <code>'123'</code> and
+returns its numeric value 123.  However, when you want to save more
+complex data types like lists, dictionaries, or class instances,
+things get a lot more complicated.
+
+<P>
+Rather than have users be constantly writing and debugging code to
+save complicated data types, Python provides a standard module called
+<tt class="module">pickle</tt>.  This is an amazing module that can take almost
+any Python object (even some forms of Python code!), and convert it to
+a string representation; this process is called <i class="dfn">pickling</i>.  
+Reconstructing the object from the string representation is called
+<i class="dfn">unpickling</i>.  Between pickling and unpickling, the string
+representing the object may have been stored in a file or data, or
+sent over a network connection to some distant machine.
+
+<P>
+If you have an object <code>x</code>, and a file object <code>f</code> that's been
+opened for writing, the simplest way to pickle the object takes only
+one line of code:
+
+<P>
+<dl><dd><pre class="verbatim">
+pickle.dump(x, f)
+</pre></dl>
+
+<P>
+To unpickle the object again, if <code>f</code> is a file object which has
+been opened for reading:
+
+<P>
+<dl><dd><pre class="verbatim">
+x = pickle.load(f)
+</pre></dl>
+
+<P>
+(There are other variants of this, used when pickling many objects or
+when you don't want to write the pickled data to a file; consult the
+complete documentation for <tt class="module">pickle</tt> in the Library Reference.)
+
+<P>
+<tt class="module">pickle</tt> is the standard way to make Python objects which can
+be stored and reused by other programs or by a future invocation of
+the same program; the technical term for this is a
+<i class="dfn">persistent</i> object.  Because <tt class="module">pickle</tt> is so widely used,
+many authors who write Python extensions take care to ensure that new
+data types such as matrices can be properly pickled and unpickled.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node8.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="tut.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node10.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Tutorial</td>
+<td><A HREF="node2.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node8.html">6. Modules</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="tut.html">Python Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node10.html">8. Errors and Exceptions</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.25.1 Repr Objects </title>
+<META NAME="description" CONTENT="3.25.1 Repr Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="subclassing-reprs.html">
+<LINK REL="previous" href="module-repr.html">
+<LINK REL="up" href="module-repr.html">
+<LINK REL="next" href="subclassing-reprs.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-repr.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-repr.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="subclassing-reprs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-repr.html">3.25 repr  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-repr.html">3.25 repr  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="subclassing-reprs.html">3.25.2 Subclassing Repr Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0052510000000000000000">&nbsp;</A>
+<BR>
+3.25.1 Repr Objects 
+</H2>
+
+<P>
+<tt class="class">Repr</tt> instances provide several members which can be used to
+provide size limits for the representations of different object types, 
+and methods which format specific object types.
+
+<P>
+<dl><dt><b><a name="l2h-631"><tt class="member">maxlevel</tt></a></b>
+<dd>
+  Depth limit on the creation of recursive representations.  The
+  default is <code>6</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-632"><tt class="member">maxdict</tt></a></b>
+<dd>
+<dt><b><a name="l2h-633"><tt class="member">maxlist</tt></a></b><dd><dt><b><a name="l2h-634"><tt class="member">maxtuple</tt></a></b><dd>  Limits on the number of entries represented for the named object
+  type.  The default for <tt class="member">maxdict</tt> is <code>4</code>, for the others, 
+  <code>6</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-635"><tt class="member">maxlong</tt></a></b>
+<dd>
+  Maximum number of characters in the representation for a long
+  integer.  Digits are dropped from the middle.  The default is
+  <code>40</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-636"><tt class="member">maxstring</tt></a></b>
+<dd>
+  Limit on the number of characters in the representation of the
+  string.  Note that the ``normal'' representation of the string is
+  used as the character source: if escape sequences are needed in the
+  representation, these may be mangled when the representation is
+  shortened.  The default is <code>30</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-637"><tt class="member">maxother</tt></a></b>
+<dd>
+  This limit is used to control the size of object types for which no
+  specific formatting method is available on the <tt class="class">Repr</tt> object.
+  It is applied in a similar manner as <tt class="member">maxstring</tt>.  The
+  default is <code>20</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-638"><tt class="method">repr</tt></a></b>(<var>obj</var>)
+<dd>
+  The equivalent to the built-in <tt class="function">repr()</tt> that uses the
+  formatting imposed by the instance.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-639"><tt class="method">repr1</tt></a></b>(<var>obj, level</var>)
+<dd>
+  Recursive implementation used by <tt class="method">repr()</tt>.  This uses the
+  type of <var>obj</var> to determine which formatting method to call,
+  passing it <var>obj</var> and <var>level</var>.  The type-specific methods
+  should call <tt class="method">repr1()</tt> to perform recursive formatting, with
+  <code><var>level</var> - 1</code> for the value of <var>level</var> in the recursive 
+  call.
+</dl>
+
+<P>
+<dl><dt><b>repr_<var>type</var></b>(<var>obj, level</var>)
+<dd>
+  Formatting methods for specific types are implemented as methods
+  with a name based on the type name.  In the method name, <var>type</var>
+  is replaced by
+  <code>string.join(string.split(type(<var>obj</var>).__name__, '_')</code>.
+  Dispatch to these methods is handled by <tt class="method">repr1()</tt>.
+  Type-specific methods which need to recursively format a value
+  should call "<tt class="samp">self.repr1(<var>subobj</var>, <var>level</var> - 1)</tt>".
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-repr.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-repr.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="subclassing-reprs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-repr.html">3.25 repr  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-repr.html">3.25 repr  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="subclassing-reprs.html">3.25.2 Subclassing Repr Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

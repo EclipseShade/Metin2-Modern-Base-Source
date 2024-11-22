@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.15.1 ZipFile Objects </title>
+<META NAME="description" CONTENT="7.15.1 ZipFile Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="pyzipfile-objects.html">
+<LINK REL="previous" href="module-zipfile.html">
+<LINK REL="up" href="module-zipfile.html">
+<LINK REL="next" href="pyzipfile-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-zipfile.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-zipfile.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyzipfile-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-zipfile.html">7.15 zipfile  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-zipfile.html">7.15 zipfile  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyzipfile-objects.html">7.15.2 PyZipFile Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0091510000000000000000">&nbsp;</A>
+<BR>
+7.15.1 ZipFile Objects 
+</H2>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2070"><tt class="class">ZipFile</tt></a></b>(<var>file</var><big>[</big><var>, mode</var><big>[</big><var>, compression</var><big>]</big><big>]</big>)
+<dd> 
+  Open a ZIP file, where <var>file</var> can be either a path to a file
+  (a string) or a file-like object.  The <var>mode</var> parameter
+  should be <code>'r'</code> to read an existing file, <code>'w'</code> to
+  truncate and write a new file, or <code>'a'</code> to append to an
+  existing file.  For <var>mode</var> is <code>'a'</code> and <var>file</var>
+  refers to an existing ZIP file, then additional files are added to
+  it.  If <var>file</var> does not refer to a ZIP file, then a new ZIP
+  archive is appended to the file.  This is meant for adding a ZIP
+  archive to another file, such as <span class="file">python.exe</span>.  Using
+
+<P>
+<dl><dd><pre class="verbatim">
+cat myzip.zip &gt;&gt; python.exe
+</pre></dl>
+
+<P>
+also works, and at least <b class="program">WinZip</b> can read such files.
+  <var>compression</var> is the ZIP compression method to use when writing
+  the archive, and should be <tt class="constant">ZIP_STORED</tt> or
+  <tt class="constant">ZIP_DEFLATED</tt>; unrecognized values will cause
+  <tt class="exception">RuntimeError</tt> to be raised.  If <tt class="constant">ZIP_DEFLATED</tt>
+  is specified but the <tt class="module"><a href="module-zlib.html">zlib</a></tt> module is not avaialble,
+  <tt class="exception">RuntimeError</tt> is also raised.  The default is
+  <tt class="constant">ZIP_STORED</tt>. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2071"><tt class="method">close</tt></a></b>()
+<dd>
+  Close the archive file.  You must call <tt class="method">close()</tt> before
+  exiting your program or essential records will not be written. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2072"><tt class="method">getinfo</tt></a></b>(<var>name</var>)
+<dd>
+  Return a <tt class="class">ZipInfo</tt> object with information about the archive
+  member <var>name</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2073"><tt class="method">infolist</tt></a></b>()
+<dd>
+  Return a list containing a <tt class="class">ZipInfo</tt> object for each member of
+  the archive.  The objects are in the same order as their entries in
+  the actual ZIP file on disk if an existing archive was opened.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2074"><tt class="method">namelist</tt></a></b>()
+<dd>
+  Return a list of archive members by name.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2075"><tt class="method">printdir</tt></a></b>()
+<dd>
+  Print a table of contents for the archive to <code>sys.stdout</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2076"><tt class="method">read</tt></a></b>(<var>name</var>)
+<dd>
+  Return the bytes of the file in the archive.  The archive must be
+  open for read or append.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2077"><tt class="method">testzip</tt></a></b>()
+<dd>
+  Read all the files in the archive and check their CRC's.  Return the
+  name of the first bad file, or else return <code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2078"><tt class="method">write</tt></a></b>(<var>filename</var><big>[</big><var>, arcname</var><big>[</big><var>,
+                          compress_type</var><big>]</big><big>]</big>)
+<dd>
+  Write the file named <var>filename</var> to the archive, giving it the
+  archive name <var>arcname</var> (by default, this will be the same as
+  <var>filename</var>).  If given, <var>compress_type</var> overrides the value
+  given for the <var>compression</var> parameter to the constructor for
+  the new entry.  The archive must be open with mode <code>'w'</code> or
+  <code>'a'</code>. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2079"><tt class="method">writestr</tt></a></b>(<var>zinfo, bytes</var>)
+<dd>
+  Write the string <var>bytes</var> to the archive; meta-information is
+  given as the <tt class="class">ZipInfo</tt> instance <var>zinfo</var>.  At least the
+  filename, date, and time must be given by <var>zinfo</var>.  The archive
+  must be opened with mode <code>'w'</code> or <code>'a'</code>.
+</dl>
+
+<P>
+The following data attribute is also available:
+
+<P>
+<dl><dt><b><a name="l2h-2080"><tt class="member">debug</tt></a></b>
+<dd>
+  The level of debug output to use.  This may be set from <code>0</code>
+  (the default, no output) to <code>3</code> (the most output).  Debugging
+  information is written to <code>sys.stdout</code>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-zipfile.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-zipfile.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pyzipfile-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-zipfile.html">7.15 zipfile  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-zipfile.html">7.15 zipfile  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pyzipfile-objects.html">7.15.2 PyZipFile Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

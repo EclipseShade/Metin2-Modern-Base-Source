@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.1 Objects, values and types</title>
+<META NAME="description" CONTENT="3.1 Objects, values and types">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="types.html">
+<LINK REL="previous" href="datamodel.html">
+<LINK REL="up" href="datamodel.html">
+<LINK REL="next" href="types.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="datamodel.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="datamodel.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="datamodel.html">3. Data model</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="datamodel.html">3. Data model</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="types.html">3.2 The standard type</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005100000000000000000">&nbsp;</A><a name="l2h-18">&nbsp;</a>
+<BR>
+3.1 Objects, values and types
+</H1>
+
+<P>
+<i class="dfn">Objects</i> are Python's abstraction for data.  All data in a Python
+program is represented by objects or by relations between objects.
+(In a sense, and in conformance to Von Neumann's model of a
+``stored program computer,'' code is also represented by objects.)
+
+<P>
+Every object has an identity, a type and a value.  An object's
+<i>identity</i> never changes once it has been created; you may think
+of it as the object's address in memory.  The `<code>is</code>' operator
+compares the identity of two objects; the
+<tt class="function">id()</tt><a name="l2h-19">&nbsp;</a>function returns an integer
+representing its identity (currently implemented as its address).
+An object's <i class="dfn">type</i> is
+also unchangeable.  It determines the operations that an object
+supports (e.g., ``does it have a length?'') and also defines the
+possible values for objects of that type.  The
+<tt class="function">type()</tt><a name="l2h-20">&nbsp;</a>function returns an object's type
+(which is an object itself).  The <i>value</i> of some
+objects can change.  Objects whose value can change are said to be
+<i>mutable</i>; objects whose value is unchangeable once they are
+created are called <i>immutable</i>.
+(The value of an immutable container object that contains a reference
+to a mutable object can change when the latter's value is changed;
+however the container is still considered immutable, because the
+collection of objects it contains cannot be changed.  So, immutability
+is not strictly the same as having an unchangeable value, it is more
+subtle.)
+An object's mutability is determined by its type; for instance,
+numbers, strings and tuples are immutable, while dictionaries and
+lists are mutable.
+
+<P>
+Objects are never explicitly destroyed; however, when they become
+unreachable they may be garbage-collected.  An implementation is
+allowed to postpone garbage collection or omit it altogether -- it is
+a matter of implementation quality how garbage collection is
+implemented, as long as no objects are collected that are still
+reachable.  (Implementation note: the current implementation uses a
+reference-counting scheme with (optional) delayed detection of
+cyclicly linked garbage, which collects most objects as soon as they
+become unreachable, but is not guaranteed to collect garbage
+containing circular references.  See the
+<em class="citetitle"><a
+ href="../lib/module-gc.html"
+ title="Python Library Reference"
+ >Python Library Reference</a></em> for
+information on controlling the collection of cyclic garbage.)
+
+<P>
+Note that the use of the implementation's tracing or debugging
+facilities may keep objects alive that would normally be collectable.
+Also note that catching an exception with a
+`<tt class="keyword">try</tt>...<tt class="keyword">except</tt>' statement may keep objects alive.
+
+<P>
+Some objects contain references to ``external'' resources such as open
+files or windows.  It is understood that these resources are freed
+when the object is garbage-collected, but since garbage collection is
+not guaranteed to happen, such objects also provide an explicit way to
+release the external resource, usually a <tt class="method">close()</tt> method.
+Programs are strongly recommended to explicitly close such
+objects.  The `<tt class="keyword">try</tt>...<tt class="keyword">finally</tt>' statement provides
+a convenient way to do this.
+
+<P>
+Some objects contain references to other objects; these are called
+<i>containers</i>.  Examples of containers are tuples, lists and
+dictionaries.  The references are part of a container's value.  In
+most cases, when we talk about the value of a container, we imply the
+values, not the identities of the contained objects; however, when we
+talk about the mutability of a container, only the identities of
+the immediately contained objects are implied.  So, if an immutable
+container (like a tuple)
+contains a reference to a mutable object, its value changes
+if that mutable object is changed.
+
+<P>
+Types affect almost all aspects of object behavior.  Even the importance
+of object identity is affected in some sense: for immutable types,
+operations that compute new values may actually return a reference to
+any existing object with the same type and value, while for mutable
+objects this is not allowed.  E.g., after
+"<tt class="samp">a = 1; b = 1</tt>",
+<code>a</code> and <code>b</code> may or may not refer to the same object with the
+value one, depending on the implementation, but after
+"<tt class="samp">c = []; d = []</tt>", <code>c</code> and <code>d</code>
+are guaranteed to refer to two different, unique, newly created empty
+lists.
+(Note that "<tt class="samp">c = d = []</tt>" assigns the same object to both
+<code>c</code> and <code>d</code>.)
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="datamodel.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="datamodel.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="datamodel.html">3. Data model</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="datamodel.html">3. Data model</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="types.html">3.2 The standard type</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

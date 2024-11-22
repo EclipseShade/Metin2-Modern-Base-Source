@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.11.1 Application Objects </title>
+<META NAME="description" CONTENT="2.11.1 Application Objects ">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="window-objects.html">
+<LINK REL="previous" href="module-FrameWork.html">
+<LINK REL="up" href="module-FrameWork.html">
+<LINK REL="next" href="window-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-FrameWork.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-FrameWork.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="window-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-FrameWork.html">2.11 FrameWork  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-FrameWork.html">2.11 FrameWork  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="window-objects.html">2.11.2 Window Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0041110000000000000000">&nbsp;</A>
+<BR>
+2.11.1 Application Objects 
+</H2>
+
+<P>
+Application objects have the following methods, among others:
+
+<P>
+<dl><dt><b><a name="l2h-142"><tt class="method">makeusermenus</tt></a></b>()
+<dd>
+Override this method if you need menus in your application. Append the
+menus to the attribute <tt class="member">menubar</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-143"><tt class="method">getabouttext</tt></a></b>()
+<dd>
+Override this method to return a text string describing your
+application.  Alternatively, override the <tt class="method">do_about()</tt> method
+for more elaborate ``about'' messages.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-144"><tt class="method">mainloop</tt></a></b>(<big>[</big><var>mask</var><big>[</big><var>, wait</var><big>]</big><big>]</big>)
+<dd>
+This routine is the main event loop, call it to set your application
+rolling. <var>Mask</var> is the mask of events you want to handle,
+<var>wait</var> is the number of ticks you want to leave to other
+concurrent application (default 0, which is probably not a good
+idea). While raising <var>self</var> to exit the mainloop is still
+supported it is not recommended: call <code>self._quit()</code> instead.
+
+<P>
+The event loop is split into many small parts, each of which can be
+overridden. The default methods take care of dispatching events to
+windows and dialogs, handling drags and resizes, Apple Events, events
+for non-FrameWork windows, etc.
+
+<P>
+In general, all event handlers should return <code>1</code> if the event is fully
+handled and <code>0</code> otherwise (because the front window was not a FrameWork
+window, for instance). This is needed so that update events and such
+can be passed on to other windows like the Sioux console window.
+Calling <tt class="function">MacOS.HandleEvent()</tt> is not allowed within
+<var>our_dispatch</var> or its callees, since this may result in an
+infinite loop if the code is called through the Python inner-loop
+event handler.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-145"><tt class="method">asyncevents</tt></a></b>(<var>onoff</var>)
+<dd>
+Call this method with a nonzero parameter to enable
+asynchronous event handling. This will tell the inner interpreter loop
+to call the application event handler <var>async_dispatch</var> whenever events
+are available. This will cause FrameWork window updates and the user
+interface to remain working during long computations, but will slow the
+interpreter down and may cause surprising results in non-reentrant code
+(such as FrameWork itself). By default <var>async_dispatch</var> will immedeately
+call <var>our_dispatch</var> but you may override this to handle only certain
+events asynchronously. Events you do not handle will be passed to Sioux
+and such.
+
+<P>
+The old on/off value is returned.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-146"><tt class="method">_quit</tt></a></b>()
+<dd>
+Terminate the running <tt class="method">mainloop()</tt> call at the next convenient
+moment.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-147"><tt class="method">do_char</tt></a></b>(<var>c, event</var>)
+<dd>
+The user typed character <var>c</var>. The complete details of the event
+can be found in the <var>event</var> structure. This method can also be
+provided in a <code>Window</code> object, which overrides the
+application-wide handler if the window is frontmost.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-148"><tt class="method">do_dialogevent</tt></a></b>(<var>event</var>)
+<dd>
+Called early in the event loop to handle modeless dialog events. The
+default method simply dispatches the event to the relevant dialog (not
+through the the <code>DialogWindow</code> object involved). Override if you
+need special handling of dialog events (keyboard shortcuts, etc).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-149"><tt class="method">idle</tt></a></b>(<var>event</var>)
+<dd>
+Called by the main event loop when no events are available. The
+null-event is passed (so you can look at mouse position, etc).
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-FrameWork.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-FrameWork.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="window-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-FrameWork.html">2.11 FrameWork  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-FrameWork.html">2.11 FrameWork  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="window-objects.html">2.11.2 Window Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

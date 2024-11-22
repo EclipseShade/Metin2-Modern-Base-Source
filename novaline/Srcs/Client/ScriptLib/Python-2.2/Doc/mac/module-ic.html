@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.5 ic -- Access to Internet Config</title>
+<META NAME="description" CONTENT="2.5 ic -- Access to Internet Config">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-MacOS.html">
+<LINK REL="previous" href="module-macfs.html">
+<LINK REL="up" href="macpython-modules.html">
+<LINK REL="next" HREF="node34.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="finfo-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node34.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="finfo-objects.html">2.4.3 FInfo Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node34.html">2.5.1 IC Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION004500000000000000000">
+2.5 <tt class="module">ic</tt> --
+         Access to Internet Config</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Macintosh</span>.</p>
+
+<P>
+This module provides access to Macintosh Internet
+Config<a name="l2h-71">&nbsp;</a>package,
+which stores preferences for Internet programs such as mail address,
+default homepage, etc. Also, Internet Config contains an elaborate set
+of mappings from Macintosh creator/type codes to foreign filename
+extensions plus information on how to transfer files (binary, ascii,
+etc.). Since MacOS 9, this module is a control panel named Internet.
+
+<P>
+There is a low-level companion module
+<tt class="module">icglue</tt><a name="l2h-72">&nbsp;</a>which provides the basic
+Internet Config access functionality.  This low-level module is not
+documented, but the docstrings of the routines document the parameters
+and the routine names are the same as for the Pascal or C API to
+Internet Config, so the standard IC programmers' documentation can be
+used if this module is needed.
+
+<P>
+The <tt class="module">ic</tt> module defines the <tt class="exception">error</tt> exception and
+symbolic names for all error codes Internet Config can produce; see
+the source for details.
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-68"><tt class="exception">error</tt></a></b>
+<dd>
+Exception raised on errors in the <tt class="module">ic</tt> module.
+</dl>
+
+<P>
+The <tt class="module">ic</tt> module defines the following class and function:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-69"><tt class="class">IC</tt></a></b>(<big>[</big><var>signature</var><big>[</big><var>, ic</var><big>]</big><big>]</big>)
+<dd>
+Create an Internet Config object. The signature is a 4-character creator
+code of the current application (default <code>'Pyth'</code>) which may
+influence some of ICs settings. The optional <var>ic</var> argument is a
+low-level <code>icglue.icinstance</code> created beforehand, this may be
+useful if you want to get preferences from a different config file,
+etc.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-70"><tt class="function">launchurl</tt></a></b>(<var>url</var><big>[</big><var>, hint</var><big>]</big>)
+<dd>
+<dt><b><tt class="function">parseurl</tt></b>(<var>data<big>[</big>, start<big>[</big>, end<big>[</big>, hint<big>]</big><big>]</big><big>]</big></var>)
+<dd>
+<dt><b><tt class="function">mapfile</tt></b>(<var>file</var>)
+<dd>
+<dt><b><tt class="function">maptypecreator</tt></b>(<var>type, creator<big>[</big>, filename<big>]</big></var>)
+<dd>
+<dt><b><tt class="function">settypecreator</tt></b>(<var>file</var>)
+<dd>
+These functions are ``shortcuts'' to the methods of the same name,
+described below.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node34.html">2.5.1 IC Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="finfo-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node34.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="finfo-objects.html">2.4.3 FInfo Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node34.html">2.5.1 IC Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

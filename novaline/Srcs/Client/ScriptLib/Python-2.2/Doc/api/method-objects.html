@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.5.3 Method Objects </title>
+<META NAME="description" CONTENT="7.5.3 Method Objects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="moduleObjects.html">
+<LINK REL="previous" href="instanceObjects.html">
+<LINK REL="up" href="otherObjects.html">
+<LINK REL="next" href="moduleObjects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="instanceObjects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="otherObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="moduleObjects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="instanceObjects.html">7.5.2 Instance Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="otherObjects.html">7.5 Other Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="moduleObjects.html">7.5.4 Module Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009530000000000000000">&nbsp;</A>
+<BR>
+7.5.3 Method Objects 
+</H2>
+
+<P>
+<a name="l2h-576">&nbsp;</a>There are some useful functions that are useful for working with
+method objects.
+
+<P>
+<dl><dt>PyTypeObject <b><a name="l2h-565"><tt class="cdata">PyMethod_Type</tt></a></b>
+<dd>
+  This instance of <tt class="ctype">PyTypeObject</tt> represents the Python method
+  type.  This is exposed to Python programs as <code>types.MethodType</code>.
+  <a name="l2h-567">&nbsp;</a></dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-568"><tt class="cfunction">PyMethod_Check</tt></a></b>(<var>PyObject *o</var>)
+<dd>
+  Return true if <var>o</var> is a method object (has type
+  <tt class="cdata">PyMethod_Type</tt>).  The parameter must not be <tt class="constant">NULL</tt>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-569"><tt class="cfunction">PyMethod_New</tt></a></b>(<var>PyObject *func.
+                                           PyObject *self, PyObject *class</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Return a new method object, with <var>func</var> being any callable
+  object; this is the function that will be called when the method is
+  called.  If this method should be bound to an instance, <var>self</var>
+  should be the instance and <var>class</var> should be the class of
+  <var>self</var>, otherwise <var>self</var> should be <tt class="constant">NULL</tt> and <var>class</var>
+  should be the class which provides the unbound method..
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-570"><tt class="cfunction">PyMethod_Class</tt></a></b>(<var>PyObject *meth</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Return the class object from which the method <var>meth</var> was
+  created; if this was created from an instance, it will be the class
+  of the instance.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-571"><tt class="cfunction">PyMethod_GET_CLASS</tt></a></b>(<var>PyObject *meth</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Macro version of <tt class="cfunction">PyMethod_Class()</tt> which avoids error
+  checking.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-572"><tt class="cfunction">PyMethod_Function</tt></a></b>(<var>PyObject *meth</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Return the function object associated with the method <var>meth</var>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-573"><tt class="cfunction">PyMethod_GET_FUNCTION</tt></a></b>(<var>PyObject *meth</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Macro version of <tt class="cfunction">PyMethod_Function()</tt> which avoids error
+  checking.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-574"><tt class="cfunction">PyMethod_Self</tt></a></b>(<var>PyObject *meth</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Return the instance associated with the method <var>meth</var> if it is
+  bound, otherwise return <tt class="constant">NULL</tt>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-575"><tt class="cfunction">PyMethod_GET_SELF</tt></a></b>(<var>PyObject *meth</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Macro version of <tt class="cfunction">PyMethod_Self()</tt> which avoids error
+  checking.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="instanceObjects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="otherObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="moduleObjects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="instanceObjects.html">7.5.2 Instance Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="otherObjects.html">7.5 Other Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="moduleObjects.html">7.5.4 Module Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

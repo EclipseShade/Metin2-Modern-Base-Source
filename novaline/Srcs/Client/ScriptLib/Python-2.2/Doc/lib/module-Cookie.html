@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.19 Cookie -- HTTP state management</title>
+<META NAME="description" CONTENT="11.19 Cookie -- HTTP state management">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-xmlrpclib.html">
+<LINK REL="previous" href="module-CGIHTTPServer.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="cookie-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-CGIHTTPServer.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="cookie-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-CGIHTTPServer.html">11.18 CGIHTTPServer  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="cookie-objects.html">11.19.1 Cookie Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00131900000000000000000">
+11.19 <tt class="module">Cookie</tt> --
+         HTTP state management</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">Cookie</tt> module defines classes for abstracting the concept of 
+cookies, an HTTP state management mechanism. It supports both simple
+string-only cookies, and provides an abstraction for having any serializable
+data-type as cookie value.
+
+<P>
+The module formerly strictly applied the parsing rules described in in
+the <a class="rfc" name="rfcref-63556"
+href="http://www.faqs.org/rfcs/rfc2109.html">RFC 2109</a> and <a class="rfc" name="rfcref-63558"
+href="http://www.faqs.org/rfcs/rfc2068.html">RFC 2068</a> specifications.  It has since been discovered
+that MSIE 3.0x doesn't follow the character rules outlined in those
+specs.  As a result, the parsing rules used are a bit less strict.
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2689"><tt class="exception">CookieError</tt></a></b>
+<dd>
+Exception failing because of <a class="rfc" name="rfcref-63560"
+href="http://www.faqs.org/rfcs/rfc2109.html">RFC 2109</a> invalidity: incorrect
+attributes, incorrect <code>Set-Cookie</code> header, etc.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2690"><tt class="class">BaseCookie</tt></a></b>(<big>[</big><var>input</var><big>]</big>)
+<dd>
+This class is a dictionary-like object whose keys are strings and
+whose values are <tt class="class">Morsel</tt>s. Note that upon setting a key to
+a value, the value is first converted to a <tt class="class">Morsel</tt> containing
+the key and the value.
+
+<P>
+If <var>input</var> is given, it is passed to the <tt class="method">load()</tt> method.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2691"><tt class="class">SimpleCookie</tt></a></b>(<big>[</big><var>input</var><big>]</big>)
+<dd>
+This class derives from <tt class="class">BaseCookie</tt> and overrides
+<tt class="method">value_decode()</tt> and <tt class="method">value_encode()</tt> to be the identity
+and <tt class="function">str()</tt> respectively.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2692"><tt class="class">SerialCookie</tt></a></b>(<big>[</big><var>input</var><big>]</big>)
+<dd>
+This class derives from <tt class="class">BaseCookie</tt> and overrides
+<tt class="method">value_decode()</tt> and <tt class="method">value_encode()</tt> to be the
+<tt class="function">pickle.loads()</tt> and  <tt class="function">pickle.dumps()</tt>.  
+
+<P>
+<b>Do not use this class!</b>  Reading pickled values from untrusted
+cookie data is a huge security hole, as pickle strings can be crafted
+to cause arbitrary code to execute on your server.  It is supported
+for backwards compatibility only, and may eventually go away.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2693"><tt class="class">SmartCookie</tt></a></b>(<big>[</big><var>input</var><big>]</big>)
+<dd>
+This class derives from <tt class="class">BaseCookie</tt>. It overrides
+<tt class="method">value_decode()</tt> to be <tt class="function">pickle.loads()</tt> if it is a
+valid pickle, and otherwise the value itself. It overrides
+<tt class="method">value_encode()</tt> to be <tt class="function">pickle.dumps()</tt> unless it is a
+string, in which case it returns the value itself.
+
+<P>
+<b>Note:</b> The same security warning from <tt class="class">SerialCookie</tt>
+applies here.
+</dl>
+
+<P>
+A further security note is warranted.  For backwards compatibility,
+the <tt class="module">Cookie</tt> module exports a class named <tt class="class">Cookie</tt> which
+is just an alias for <tt class="class">SmartCookie</tt>.  This is probably a mistake
+and will likely be removed in a future version.  You should not use
+the <tt class="class">Cookie</tt> class in your applications, for the same reason why
+you should not use the <tt class="class">SerialCookie</tt> class.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seerfc">
+    <dt><a href="http://www.faqs.org/rfcs/rfc2109.html"
+        title="HTTP State Management Mechanism"
+        >RFC 2109, <em>HTTP State Management Mechanism</em></a>
+    <dd>This is the state
+                management specification implemented by this module.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="cookie-objects.html">11.19.1 Cookie Objects</a>
+<LI><A href="morsel-objects.html">11.19.2 Morsel Objects</a>
+<LI><A href="cookie-example.html">11.19.3 Example</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-CGIHTTPServer.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="cookie-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-CGIHTTPServer.html">11.18 CGIHTTPServer  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="cookie-objects.html">11.19.1 Cookie Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.1 mac -- Implementations for the os module</title>
+<META NAME="description" CONTENT="2.1 mac -- Implementations for the os module">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-macpath.html">
+<LINK REL="previous" href="macpython-modules.html">
+<LINK REL="up" href="macpython-modules.html">
+<LINK REL="next" href="module-macpath.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="macpython-modules.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-macpath.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-macpath.html">2.2 macpath  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION004100000000000000000">
+2.1 <tt class="module">mac</tt> --
+         Implementations for the <tt class="module">os</tt> module</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Macintosh</span>.</p>
+
+<P>
+This module implements the operating system dependent functionality
+provided by the standard module <tt class="module">os</tt><a name="l2h-3">&nbsp;</a>.  It is
+best accessed through the <tt class="module">os</tt> module.
+
+<P>
+The following functions are available in this module:
+<tt class="function">chdir()</tt>,
+<tt class="function">close()</tt>,
+<tt class="function">dup()</tt>,
+<tt class="function">fdopen()</tt>,
+<tt class="function">getcwd()</tt>,
+<tt class="function">lseek()</tt>,
+<tt class="function">listdir()</tt>,
+<tt class="function">mkdir()</tt>,
+<tt class="function">open()</tt>,
+<tt class="function">read()</tt>,
+<tt class="function">rename()</tt>,
+<tt class="function">rmdir()</tt>,
+<tt class="function">stat()</tt>,
+<tt class="function">sync()</tt>,
+<tt class="function">unlink()</tt>,
+<tt class="function">write()</tt>,
+as well as the exception <tt class="exception">error</tt>. Note that the times
+returned by <tt class="function">stat()</tt> are floating-point values, like all time
+values in MacPython.
+
+<P>
+One additional function is available:
+
+<P>
+<dl><dt><b><a name="l2h-2"><tt class="function">xstat</tt></a></b>(<var>path</var>)
+<dd>
+  This function returns the same information as <tt class="function">stat()</tt>, but
+  with three additional values appended: the size of the resource fork
+  of the file and its 4-character creator and type.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="macpython-modules.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-macpath.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-macpath.html">2.2 macpath  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

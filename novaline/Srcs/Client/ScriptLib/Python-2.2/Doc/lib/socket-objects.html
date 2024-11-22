@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.2.1 Socket Objects </title>
+<META NAME="description" CONTENT="7.2.1 Socket Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="ssl-objects.html">
+<LINK REL="previous" href="module-socket.html">
+<LINK REL="up" href="module-socket.html">
+<LINK REL="next" href="ssl-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-socket.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-socket.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="ssl-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-socket.html">7.2 socket  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-socket.html">7.2 socket  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="ssl-objects.html">7.2.2 SSL Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009210000000000000000">&nbsp;</A>
+<BR>
+7.2.1 Socket Objects 
+</H2>
+
+<P>
+Socket objects have the following methods.  Except for
+<tt class="method">makefile()</tt> these correspond to Unix system calls
+applicable to sockets.
+
+<P>
+<dl><dt><b><a name="l2h-1892"><tt class="method">accept</tt></a></b>()
+<dd>
+Accept a connection.
+The socket must be bound to an address and listening for connections.
+The return value is a pair <code>(<var>conn</var>, <var>address</var>)</code>
+where <var>conn</var> is a <i>new</i> socket object usable to send and
+receive data on the connection, and <var>address</var> is the address bound
+to the socket on the other end of the connection.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1893"><tt class="method">bind</tt></a></b>(<var>address</var>)
+<dd>
+Bind the socket to <var>address</var>.  The socket must not already be bound.
+(The format of <var>address</var> depends on the address family -- see
+above.)  <span class="note"><b class="label">Note:</b>
+This method has historically accepted a pair
+of parameters for <tt class="constant">AF_INET</tt> addresses instead of only a
+tuple.  This was never intentional and is no longer be available in
+Python 2.0.</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1894"><tt class="method">close</tt></a></b>()
+<dd>
+Close the socket.  All future operations on the socket object will fail.
+The remote end will receive no more data (after queued data is flushed).
+Sockets are automatically closed when they are garbage-collected.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1895"><tt class="method">connect</tt></a></b>(<var>address</var>)
+<dd>
+Connect to a remote socket at <var>address</var>.
+(The format of <var>address</var> depends on the address family -- see
+above.)  <span class="note"><b class="label">Note:</b>
+This method has historically accepted a pair
+of parameters for <tt class="constant">AF_INET</tt> addresses instead of only a
+tuple.  This was never intentional and is no longer available in
+Python 2.0 and later.</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1896"><tt class="method">connect_ex</tt></a></b>(<var>address</var>)
+<dd>
+Like <code>connect(<var>address</var>)</code>, but return an error indicator
+instead of raising an exception for errors returned by the C-level
+<tt class="cfunction">connect()</tt> call (other problems, such as ``host not found,''
+can still raise exceptions).  The error indicator is <code>0</code> if the
+operation succeeded, otherwise the value of the <tt class="cdata">errno</tt>
+variable.  This is useful, e.g., for asynchronous connects.
+<span class="note"><b class="label">Note:</b>
+This method has historically accepted a pair of
+parameters for <tt class="constant">AF_INET</tt> addresses instead of only a tuple.
+This was never intentional and is no longer be available in Python
+2.0 and later.</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1897"><tt class="method">fileno</tt></a></b>()
+<dd>
+Return the socket's file descriptor (a small integer).  This is useful
+with <tt class="function">select.select()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1898"><tt class="method">getpeername</tt></a></b>()
+<dd>
+Return the remote address to which the socket is connected.  This is
+useful to find out the port number of a remote IPv4/v6 socket, for instance.
+(The format of the address returned depends on the address family --
+see above.)  On some systems this function is not supported.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1899"><tt class="method">getsockname</tt></a></b>()
+<dd>
+Return the socket's own address.  This is useful to find out the port
+number of an IPv4/v6 socket, for instance.
+(The format of the address returned depends on the address family --
+see above.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1900"><tt class="method">getsockopt</tt></a></b>(<var>level, optname</var><big>[</big><var>, buflen</var><big>]</big>)
+<dd>
+Return the value of the given socket option (see the Unix man page
+<span class="manpage"><i>getsockopt</i>(2)</span>).  The needed symbolic constants
+(<tt class="constant">SO_*</tt> etc.) are defined in this module.  If <var>buflen</var>
+is absent, an integer option is assumed and its integer value
+is returned by the function.  If <var>buflen</var> is present, it specifies
+the maximum length of the buffer used to receive the option in, and
+this buffer is returned as a string.  It is up to the caller to decode
+the contents of the buffer (see the optional built-in module
+<tt class="module"><a href="module-struct.html">struct</a></tt> for a way to decode C structures encoded as strings).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1901"><tt class="method">listen</tt></a></b>(<var>backlog</var>)
+<dd>
+Listen for connections made to the socket.  The <var>backlog</var> argument
+specifies the maximum number of queued connections and should be at
+least 1; the maximum value is system-dependent (usually 5).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1902"><tt class="method">makefile</tt></a></b>(<big>[</big><var>mode</var><big>[</big><var>, bufsize</var><big>]</big><big>]</big>)
+<dd>
+Return a <i class="dfn">file object</i> associated with the socket.  (File objects
+are described in <A href="bltin-file-objects.html#bltin-file-objects">2.2.8</A>, ``File Objects.'')
+The file object references a <tt class="cfunction">dup()</tt>ped version of the
+socket file descriptor, so the file object and socket object may be
+closed or garbage-collected independently.
+<a name="l2h-1911">&nbsp;</a>The optional <var>mode</var>
+and <var>bufsize</var> arguments are interpreted the same way as by the
+built-in <tt class="function">file()</tt> function; see ``Built-in Functions''
+(section <A href="built-in-funcs.html#built-in-funcs">2.1</A>) for more information.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1903"><tt class="method">recv</tt></a></b>(<var>bufsize</var><big>[</big><var>, flags</var><big>]</big>)
+<dd>
+Receive data from the socket.  The return value is a string representing
+the data received.  The maximum amount of data to be received
+at once is specified by <var>bufsize</var>.  See the Unix manual page
+<span class="manpage"><i>recv</i>(2)</span> for the meaning of the optional argument
+<var>flags</var>; it defaults to zero.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1904"><tt class="method">recvfrom</tt></a></b>(<var>bufsize</var><big>[</big><var>, flags</var><big>]</big>)
+<dd>
+Receive data from the socket.  The return value is a pair
+<code>(<var>string</var>, <var>address</var>)</code> where <var>string</var> is a string
+representing the data received and <var>address</var> is the address of the
+socket sending the data.  The optional <var>flags</var> argument has the
+same meaning as for <tt class="method">recv()</tt> above.
+(The format of <var>address</var> depends on the address family -- see above.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1905"><tt class="method">send</tt></a></b>(<var>string</var><big>[</big><var>, flags</var><big>]</big>)
+<dd>
+Send data to the socket.  The socket must be connected to a remote
+socket.  The optional <var>flags</var> argument has the same meaning as for
+<tt class="method">recv()</tt> above.  Returns the number of bytes sent.
+Applications are responsible for checking that all data has been sent;
+if only some of the data was transmitted, the application needs to
+attempt delivery of the remaining data.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1906"><tt class="method">sendall</tt></a></b>(<var>string</var><big>[</big><var>, flags</var><big>]</big>)
+<dd>
+Send data to the socket.  The socket must be connected to a remote
+socket.  The optional <var>flags</var> argument has the same meaning as for
+<tt class="method">recv()</tt> above.  Unlike <tt class="method">send()</tt>, this method continues
+to send data from <var>string</var> until either all data has been sent or
+an error occurs.  <code>None</code> is returned on success.  On error, an
+exception is raised, and there is no way to determine how much data,
+if any, was successfully sent.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1907"><tt class="method">sendto</tt></a></b>(<var>string</var><big>[</big><var>, flags</var><big>]</big><var>, address</var>)
+<dd>
+Send data to the socket.  The socket should not be connected to a
+remote socket, since the destination socket is specified by
+<var>address</var>.  The optional <var>flags</var> argument has the same
+meaning as for <tt class="method">recv()</tt> above.  Return the number of bytes sent.
+(The format of <var>address</var> depends on the address family -- see above.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1908"><tt class="method">setblocking</tt></a></b>(<var>flag</var>)
+<dd>
+Set blocking or non-blocking mode of the socket: if <var>flag</var> is 0,
+the socket is set to non-blocking, else to blocking mode.  Initially
+all sockets are in blocking mode.  In non-blocking mode, if a
+<tt class="method">recv()</tt> call doesn't find any data, or if a
+<tt class="method">send()</tt> call can't immediately dispose of the data, a
+<tt class="exception">error</tt> exception is raised; in blocking mode, the calls
+block until they can proceed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1909"><tt class="method">setsockopt</tt></a></b>(<var>level, optname, value</var>)
+<dd>
+Set the value of the given socket option (see the Unix manual page
+<span class="manpage"><i>setsockopt</i>(2)</span>).  The needed symbolic constants are defined in
+the <tt class="module">socket</tt> module (<code>SO_*</code> etc.).  The value can be an
+integer or a string representing a buffer.  In the latter case it is
+up to the caller to ensure that the string contains the proper bits
+(see the optional built-in module
+<tt class="module"><a href="module-struct.html">struct</a></tt><a name="l2h-1912">&nbsp;</a>for a way to encode C
+structures as strings). 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1910"><tt class="method">shutdown</tt></a></b>(<var>how</var>)
+<dd>
+Shut down one or both halves of the connection.  If <var>how</var> is
+<code>0</code>, further receives are disallowed.  If <var>how</var> is <code>1</code>,
+further sends are disallowed.  If <var>how</var> is <code>2</code>, further sends
+and receives are disallowed.
+</dl>
+
+<P>
+Note that there are no methods <tt class="method">read()</tt> or <tt class="method">write()</tt>;
+use <tt class="method">recv()</tt> and <tt class="method">send()</tt> without <var>flags</var> argument
+instead.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-socket.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-socket.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="ssl-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-socket.html">7.2 socket  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-socket.html">7.2 socket  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="ssl-objects.html">7.2.2 SSL Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

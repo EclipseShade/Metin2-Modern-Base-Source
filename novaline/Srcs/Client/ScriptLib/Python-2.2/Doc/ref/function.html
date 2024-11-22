@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.5 Function definitions</title>
+<META NAME="description" CONTENT="7.5 Function definitions">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="class.html">
+<LINK REL="previous" href="try.html">
+<LINK REL="up" href="compound.html">
+<LINK REL="next" href="class.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="try.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="compound.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="class.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="try.html">7.4 The try statement</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="compound.html">7. Compound statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="class.html">7.6 Class definitions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION009500000000000000000">&nbsp;</A>
+<BR>
+7.5 Function definitions
+</H1>
+<a name="l2h-394">&nbsp;</a>
+<P>
+A function definition defines a user-defined function object (see
+section <A href="types.html#types">3.2</A>):
+<a name="l2h-395">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-funcdef">funcdef</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"def" <a href="function.html#tok-funcname">funcname</a> "(" [<a href="function.html#tok-parameter_list">parameter_list</a>] ")"
+              ":" <a href="compound.html#tok-suite">suite</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-parameter_list">parameter_list</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>(<a href="function.html#tok-defparameter">defparameter</a> ",")*
+              ("*" <a href="identifiers.html#tok-identifier">identifier</a> [, "**" <a href="identifiers.html#tok-identifier">identifier</a>]
+               | "**" <a href="identifiers.html#tok-identifier">identifier</a>
+               | <a href="function.html#tok-defparameter">defparameter</a> [","])</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-defparameter">defparameter</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="node85.html#tok-parameter">parameter</a> ["=" <a href="lambda.html#tok-expression">expression</a>]</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-sublist">sublist</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="function.html#tok-parameter">parameter</a> ("," <a href="function.html#tok-parameter">parameter</a>)* [","]</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-parameter">parameter</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="node16.html#tok-identifier">identifier</a> | "(" <a href="function.html#tok-sublist">sublist</a> ")"</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-funcname">funcname</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="identifiers.html#tok-identifier">identifier</a></code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+A function definition is an executable statement.  Its execution binds
+the function name in the current local namespace to a function object
+(a wrapper around the executable code for the function).  This
+function object contains a reference to the current global namespace
+as the global namespace to be used when the function is called.
+<a name="l2h-396">&nbsp;</a>
+<P>
+The function definition does not execute the function body; this gets
+executed only when the function is called.
+
+<P>
+When one or more top-level parameters have the form <var>parameter</var>
+<code>=</code> <var>expression</var>, the function is said to have ``default
+parameter values.''  For a parameter with a
+default value, the corresponding argument may be omitted from a call,
+in which case the parameter's default value is substituted.  If a
+parameter has a default value, all following parameters must also have
+a default value -- this is a syntactic restriction that is not
+expressed by the grammar.
+<a name="l2h-397">&nbsp;</a>
+<P>
+<b>Default parameter values are evaluated when the function
+definition is executed.</b>  This means that the expression is evaluated
+once, when the function is defined, and that that same
+``pre-computed'' value is used for each call.  This is especially
+important to understand when a default parameter is a mutable object,
+such as a list or a dictionary: if the function modifies the object
+(e.g. by appending an item to a list), the default value is in effect
+modified.  This is generally not what was intended.  A way around this 
+is to use <code>None</code> as the default, and explicitly test for it in
+the body of the function, e.g.:
+
+<P>
+<dl><dd><pre class="verbatim">
+def whats_on_the_telly(penguin=None):
+    if penguin is None:
+        penguin = []
+    penguin.append("property of the zoo")
+    return penguin
+</pre></dl>
+
+<P>
+Function call semantics are described in more detail in section
+<A href="calls.html#calls">5.3.4</A>. 
+A function call always assigns values to all parameters mentioned in
+the parameter list, either from position arguments, from keyword
+arguments, or from default values.  If the form ``<code>*identifier</code>''
+is present, it is initialized to a tuple receiving any excess
+positional parameters, defaulting to the empty tuple.  If the form
+``<code>**identifier</code>'' is present, it is initialized to a new
+dictionary receiving any excess keyword arguments, defaulting to a
+new empty dictionary.
+
+<P>
+It is also possible to create anonymous functions (functions not bound
+to a name), for immediate use in expressions.  This uses lambda forms,
+described in section <A href="lambda.html#lambda">5.10</A>.  Note that the lambda form is
+merely a shorthand for a simplified function definition; a function
+defined in a ``<tt class="keyword">def</tt>'' statement can be passed around or
+assigned to another name just like a function defined by a lambda
+form.  The ``<tt class="keyword">def</tt>'' form is actually more powerful since it
+allows the execution of multiple statements.
+<a name="l2h-398">&nbsp;</a>
+<P>
+<b>Programmer's note:</b> a ``<code>def</code>'' form executed inside a
+function definition defines a local function that can be returned or
+passed around.  The semantics of name resolution in the nested
+function will change in Python 2.2.  See the appendix for a
+description of the new semantics.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="try.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="compound.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="class.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="try.html">7.4 The try statement</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="compound.html">7. Compound statements</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="class.html">7.6 Class definitions</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

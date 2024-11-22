@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.2 Intermezzo: Errors and Exceptions
+</title>
+<META NAME="description" CONTENT="1.2 Intermezzo: Errors and Exceptions
+">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="backToExample.html">
+<LINK REL="previous" href="simpleExample.html">
+<LINK REL="up" href="intro.html">
+<LINK REL="next" href="backToExample.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="simpleExample.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="backToExample.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="simpleExample.html">1.1 A Simple Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="backToExample.html">1.3 Back to the</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION003200000000000000000">&nbsp;</A>
+<BR>
+1.2 Intermezzo: Errors and Exceptions
+         
+</H1>
+
+<P>
+An important convention throughout the Python interpreter is the
+following: when a function fails, it should set an exception condition
+and return an error value (usually a <tt class="constant">NULL</tt> pointer).  Exceptions
+are stored in a static global variable inside the interpreter; if this
+variable is <tt class="constant">NULL</tt> no exception has occurred.  A second global
+variable stores the ``associated value'' of the exception (the second
+argument to <tt class="keyword">raise</tt>).  A third variable contains the stack
+traceback in case the error originated in Python code.  These three
+variables are the C equivalents of the Python variables
+<code>sys.exc_type</code>, <code>sys.exc_value</code> and <code>sys.exc_traceback</code> (see
+the section on module <tt class="module">sys</tt> in the
+<em class="citetitle"><a
+ href="../lib/lib.html"
+ title="Python Library Reference"
+ >Python Library Reference</a></em>).  It is
+important to know about them to understand how errors are passed
+around.
+
+<P>
+The Python API defines a number of functions to set various types of
+exceptions.
+
+<P>
+The most common one is <tt class="cfunction">PyErr_SetString()</tt>.  Its arguments
+are an exception object and a C string.  The exception object is
+usually a predefined object like <tt class="cdata">PyExc_ZeroDivisionError</tt>.  The
+C string indicates the cause of the error and is converted to a
+Python string object and stored as the ``associated value'' of the
+exception.
+
+<P>
+Another useful function is <tt class="cfunction">PyErr_SetFromErrno()</tt>, which only
+takes an exception argument and constructs the associated value by
+inspection of the global variable <tt class="cdata">errno</tt>.  The most
+general function is <tt class="cfunction">PyErr_SetObject()</tt>, which takes two object
+arguments, the exception and its associated value.  You don't need to
+<tt class="cfunction">Py_INCREF()</tt> the objects passed to any of these functions.
+
+<P>
+You can test non-destructively whether an exception has been set with
+<tt class="cfunction">PyErr_Occurred()</tt>.  This returns the current exception object,
+or <tt class="constant">NULL</tt> if no exception has occurred.  You normally don't need
+to call <tt class="cfunction">PyErr_Occurred()</tt> to see whether an error occurred in a
+function call, since you should be able to tell from the return value.
+
+<P>
+When a function <var>f</var> that calls another function <var>g</var> detects
+that the latter fails, <var>f</var> should itself return an error value
+(usually <tt class="constant">NULL</tt> or <code>-1</code>).  It should <i>not</i> call one of the
+<tt class="cfunction">PyErr_*()</tt> functions -- one has already been called by <var>g</var>.
+<var>f</var>'s caller is then supposed to also return an error indication
+to <i>its</i> caller, again <i>without</i> calling <tt class="cfunction">PyErr_*()</tt>,
+and so on -- the most detailed cause of the error was already
+reported by the function that first detected it.  Once the error
+reaches the Python interpreter's main loop, this aborts the currently
+executing Python code and tries to find an exception handler specified
+by the Python programmer.
+
+<P>
+(There are situations where a module can actually give a more detailed
+error message by calling another <tt class="cfunction">PyErr_*()</tt> function, and in
+such cases it is fine to do so.  As a general rule, however, this is
+not necessary, and can cause information about the cause of the error
+to be lost: most operations can fail for a variety of reasons.)
+
+<P>
+To ignore an exception set by a function call that failed, the exception
+condition must be cleared explicitly by calling <tt class="cfunction">PyErr_Clear()</tt>. 
+The only time C code should call <tt class="cfunction">PyErr_Clear()</tt> is if it doesn't
+want to pass the error on to the interpreter but wants to handle it
+completely by itself (possibly by trying something else, or pretending
+nothing went wrong).
+
+<P>
+Every failing <tt class="cfunction">malloc()</tt> call must be turned into an
+exception -- the direct caller of <tt class="cfunction">malloc()</tt> (or
+<tt class="cfunction">realloc()</tt>) must call <tt class="cfunction">PyErr_NoMemory()</tt> and
+return a failure indicator itself.  All the object-creating functions
+(for example, <tt class="cfunction">PyInt_FromLong()</tt>) already do this, so this
+note is only relevant to those who call <tt class="cfunction">malloc()</tt> directly.
+
+<P>
+Also note that, with the important exception of
+<tt class="cfunction">PyArg_ParseTuple()</tt> and friends, functions that return an
+integer status usually return a positive value or zero for success and
+<code>-1</code> for failure, like Unix system calls.
+
+<P>
+Finally, be careful to clean up garbage (by making
+<tt class="cfunction">Py_XDECREF()</tt> or <tt class="cfunction">Py_DECREF()</tt> calls for objects
+you have already created) when you return an error indicator!
+
+<P>
+The choice of which exception to raise is entirely yours.  There are
+predeclared C objects corresponding to all built-in Python exceptions,
+such as <tt class="cdata">PyExc_ZeroDivisionError</tt>, which you can use directly.
+Of course, you should choose exceptions wisely -- don't use
+<tt class="cdata">PyExc_TypeError</tt> to mean that a file couldn't be opened (that
+should probably be <tt class="cdata">PyExc_IOError</tt>).  If something's wrong with
+the argument list, the <tt class="cfunction">PyArg_ParseTuple()</tt> function usually
+raises <tt class="cdata">PyExc_TypeError</tt>.  If you have an argument whose value
+must be in a particular range or must satisfy other conditions,
+<tt class="cdata">PyExc_ValueError</tt> is appropriate.
+
+<P>
+You can also define a new exception that is unique to your module.
+For this, you usually declare a static object variable at the
+beginning of your file:
+
+<P>
+<dl><dd><pre class="verbatim">
+static PyObject *SpamError;
+</pre></dl>
+
+<P>
+and initialize it in your module's initialization function
+(<tt class="cfunction">initspam()</tt>) with an exception object (leaving out
+the error checking for now):
+
+<P>
+<dl><dd><pre class="verbatim">
+void
+initspam(void)
+{
+    PyObject *m, *d;
+
+    m = Py_InitModule("spam", SpamMethods);
+    d = PyModule_GetDict(m);
+    SpamError = PyErr_NewException("spam.error", NULL, NULL);
+    PyDict_SetItemString(d, "error", SpamError);
+}
+</pre></dl>
+
+<P>
+Note that the Python name for the exception object is
+<tt class="exception">spam.error</tt>.  The <tt class="cfunction">PyErr_NewException()</tt> function
+may create a class with the base class being <tt class="exception">Exception</tt>
+(unless another class is passed in instead of <tt class="constant">NULL</tt>), described in the
+<em class="citetitle"><a
+ href="../lib/lib.html"
+ title="Python Library Reference"
+ >Python Library Reference</a></em> under ``Built-in
+Exceptions.''
+
+<P>
+Note also that the <tt class="cdata">SpamError</tt> variable retains a reference to
+the newly created exception class; this is intentional!  Since the
+exception could be removed from the module by external code, an owned
+reference to the class is needed to ensure that it will not be
+discarded, causing <tt class="cdata">SpamError</tt> to become a dangling pointer.
+Should it become a dangling pointer, C code which raises the exception
+could cause a core dump or other unintended side effects.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="simpleExample.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="backToExample.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="simpleExample.html">1.1 A Simple Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="backToExample.html">1.3 Back to the</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

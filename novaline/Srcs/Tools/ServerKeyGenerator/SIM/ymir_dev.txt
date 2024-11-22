@@ -1,0 +1,18 @@
+// ymir dev
+// update: 2012.07.16 - ymir 사내 테스트를 위한 sim file
+//
+// right format:
+//
+// [IP]\t[MAC]\n	-- check ip and mac(format: aa-bb-cc-dd-ee-ff)
+// [IP]\n		-- check ip only
+// \t[MAC]\n		-- check mac only
+// [IP]~[IP]\n		-- check ip range
+//
+// wrong format:
+//
+// [IP]~[IP]\t[MAC]\n	-- wrong. cannot check ip range with mac
+//
+// game server ip
+// single ip: ip1
+// range: ip1~ip2
+119.192.130.1~119.192.130.255

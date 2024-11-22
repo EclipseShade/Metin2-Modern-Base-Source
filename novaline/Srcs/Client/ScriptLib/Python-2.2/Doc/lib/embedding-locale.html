@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.24.2 For extension writers and programs that embed Python </title>
+<META NAME="description" CONTENT="6.24.2 For extension writers and programs that embed Python ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" HREF="node197.html">
+<LINK REL="up" href="module-locale.html">
+<LINK REL="next" href="module-gettext.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node197.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-locale.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-gettext.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node197.html">6.24.1 Background, details, hints,</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-locale.html">6.24 locale  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-gettext.html">6.25 gettext  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0082420000000000000000">&nbsp;</A>
+<BR>
+6.24.2 For extension writers and programs that embed Python
+            
+</H2>
+
+<P>
+Extension modules should never call <tt class="function">setlocale()</tt>, except to
+find out what the current locale is.  But since the return value can
+only be used portably to restore it, that is not very useful (except
+perhaps to find out whether or not the locale is "<tt class="samp">C</tt>").
+
+<P>
+When Python is embedded in an application, if the application sets the
+locale to something specific before initializing Python, that is
+generally okay, and Python will use whatever locale is set,
+<i>except</i> that the <tt class="constant">LC_NUMERIC</tt> locale should always be
+"<tt class="samp">C</tt>".
+
+<P>
+The <tt class="function">setlocale()</tt> function in the <tt class="module">locale</tt> module
+gives the Python programmer the impression that you can manipulate the
+<tt class="constant">LC_NUMERIC</tt> locale setting, but this not the case at the C
+level: C code will always find that the <tt class="constant">LC_NUMERIC</tt> locale
+setting is "<tt class="samp">C</tt>".  This is because too much would break when the
+decimal point character is set to something else than a period
+(e.g. the Python parser would break).  Caveat: threads that run
+without holding Python's global interpreter lock may occasionally find
+that the numeric locale setting differs; this is because the only
+portable way to implement this feature is to set the numeric locale
+settings to what the user requests, extract the relevant
+characteristics, and then restore the "<tt class="samp">C</tt>" numeric locale.
+
+<P>
+When Python code uses the <tt class="module">locale</tt> module to change the locale,
+this also affects the embedding application.  If the embedding
+application doesn't want this to happen, it should remove the
+<tt class="module">_locale</tt> extension module (which does all the work) from the
+table of built-in modules in the <span class="file">config.c</span> file, and make sure
+that the <tt class="module">_locale</tt> module is not accessible as a shared library.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node197.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-locale.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-gettext.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node197.html">6.24.1 Background, details, hints,</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-locale.html">6.24 locale  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-gettext.html">6.25 gettext  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

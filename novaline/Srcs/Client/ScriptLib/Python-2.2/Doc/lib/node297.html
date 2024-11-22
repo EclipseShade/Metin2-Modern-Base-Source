@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.2.4 Old classes</title>
+<META NAME="description" CONTENT="11.2.4 Old classes">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node298.html">
+<LINK REL="previous" HREF="node296.html">
+<LINK REL="up" href="module-cgi.html">
+<LINK REL="next" HREF="node298.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node296.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-cgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node298.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node296.html">11.2.3 Higher Level Interface</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-cgi.html">11.2 cgi  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node298.html">11.2.5 Functions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013240000000000000000">
+11.2.4 Old classes</A>
+</H2>
+
+<P>
+These classes, present in earlier versions of the <tt class="module">cgi</tt> module,
+are still supported for backward compatibility.  New applications
+should use the <tt class="class">FieldStorage</tt> class.
+
+<P>
+<tt class="class">SvFormContentDict</tt> stores single value form content as
+dictionary; it assumes each field name occurs in the form only once.
+
+<P>
+<tt class="class">FormContentDict</tt> stores multiple value form content as a
+dictionary (the form items are lists of values).  Useful if your form
+contains multiple fields with the same name.
+
+<P>
+Other classes (<tt class="class">FormContent</tt>, <tt class="class">InterpFormContentDict</tt>) are
+present for backwards compatibility with really old applications only.
+If you still use these and would be inconvenienced when they
+disappeared from a next version of this module, drop me a note.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node296.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-cgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node298.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node296.html">11.2.3 Higher Level Interface</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-cgi.html">11.2 cgi  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node298.html">11.2.5 Functions</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

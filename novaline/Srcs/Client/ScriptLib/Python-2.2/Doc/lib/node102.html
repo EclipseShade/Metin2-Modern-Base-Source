@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.2.6 Examples</title>
+<META NAME="description" CONTENT="4.2.6 Examples">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="match-objects.html">
+<LINK REL="up" href="module-re.html">
+<LINK REL="next" href="module-struct.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="match-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-re.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-struct.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="match-objects.html">4.2.5 Match Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-re.html">4.2 re  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-struct.html">4.3 struct  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION006260000000000000000">
+4.2.6 Examples</A>
+</H2>
+
+<P>
+<DIV CLASS="leftline" ID="par61104" ALIGN="LEFT">
+<b>Simulating <tt class="cfunction">scanf()</tt></b></DIV>
+
+<P>
+Python does not currently have an equivalent to <tt class="cfunction">scanf()</tt>.
+<a name="l2h-753">&nbsp;</a>Regular expressions are generally more powerful, though also more
+verbose, than <tt class="cfunction">scanf()</tt> format strings.  The table below
+offers some more-or-less equivalent mappings between
+<tt class="cfunction">scanf()</tt> format tokens and regular expressions.
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b><tt class="cfunction">scanf()</tt> Token</b>&nbsp;</th>
+      <th align="left"><b>Regular Expression</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>%c</code></td>
+        <td align="left"><tt class="regexp">.</tt></td>
+    <tr><td align="left" valign="baseline"><code>%5c</code></td>
+        <td align="left"><tt class="regexp">.{5}</tt></td>
+    <tr><td align="left" valign="baseline"><code>%d</code></td>
+        <td align="left"><tt class="regexp">[-+]&#92;d+</tt></td>
+    <tr><td align="left" valign="baseline"><code>%e</code>, <code>%E</code>, <code>%f</code>, <code>%g</code></td>
+        <td align="left"><tt class="regexp">[-+](&#92;d+(&#92;.&#92;d*)?|&#92;d*&#92;.&#92;d+)([eE]&#92;d+)?</tt></td>
+    <tr><td align="left" valign="baseline"><code>%i</code></td>
+        <td align="left"><tt class="regexp">[-+](0[xX][&#92;dA-Fa-f]+|0[0-7]*|&#92;d+)</tt></td>
+    <tr><td align="left" valign="baseline"><code>%o</code></td>
+        <td align="left"><tt class="regexp">0[0-7]*</tt></td>
+    <tr><td align="left" valign="baseline"><code>%s</code></td>
+        <td align="left"><tt class="regexp">&#92;S+</tt></td>
+    <tr><td align="left" valign="baseline"><code>%u</code></td>
+        <td align="left"><tt class="regexp">&#92;d+</tt></td>
+    <tr><td align="left" valign="baseline"><code>%x</code>, <code>%X</code></td>
+        <td align="left"><tt class="regexp">0[xX][&#92;dA-Fa-f]</tt></td></tbody>
+</table>
+
+<P>
+To extract the filename and numbers from a string like
+
+<P>
+<dl><dd><pre class="verbatim">
+    /usr/sbin/sendmail - 0 errors, 4 warnings
+</pre></dl>
+
+<P>
+you would use a <tt class="cfunction">scanf()</tt> format like
+
+<P>
+<dl><dd><pre class="verbatim">
+    %s - %d errors, %d warnings
+</pre></dl>
+
+<P>
+The equivalent regular expression would be
+
+<P>
+<dl><dd><pre class="verbatim">
+    ([^\s]+) - (\d+) errors, (\d+) warnings
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="match-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-re.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-struct.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="match-objects.html">4.2.5 Match Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-re.html">4.2 re  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-struct.html">4.3 struct  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

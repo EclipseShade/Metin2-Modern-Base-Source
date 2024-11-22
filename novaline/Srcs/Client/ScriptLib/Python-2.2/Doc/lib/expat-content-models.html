@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.5.4 Content Model Descriptions </title>
+<META NAME="description" CONTENT="13.5.4 Content Model Descriptions ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="expat-errors.html">
+<LINK REL="previous" href="expat-example.html">
+<LINK REL="up" href="module-xml.parsers.expat.html">
+<LINK REL="next" href="expat-errors.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="expat-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.parsers.expat.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="expat-errors.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="expat-example.html">13.5.3 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.parsers.expat.html">13.5 xml.parsers.expat  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="expat-errors.html">13.5.5 Expat error constants</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0015540000000000000000">&nbsp;</A>
+<BR>
+13.5.4 Content Model Descriptions 
+</H2>
+
+<P>
+Content modules are described using nested tuples.  Each tuple
+contains four values: the type, the quantifier, the name, and a tuple
+of children.  Children are simply additional content module
+descriptions.
+
+<P>
+The values of the first two fields are constants defined in the
+<code>model</code> object of the <tt class="module">xml.parsers.expat</tt> module.  These
+constants can be collected in two groups: the model type group and the
+quantifier group.
+
+<P>
+The constants in the model type group are:
+
+<P>
+<dl><dt><b><tt>XML_CTYPE_ANY</tt></b>
+<dd>
+The element named by the model name was declared to have a content
+model of <code>ANY</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_CTYPE_CHOICE</tt></b>
+<dd>
+The named element allows a choice from a number of options; this is
+used for content models such as <code>(A | B | C)</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_CTYPE_EMPTY</tt></b>
+<dd>
+Elements which are declared to be <code>EMPTY</code> have this model type.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_CTYPE_MIXED</tt></b>
+<dd>
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_CTYPE_NAME</tt></b>
+<dd>
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_CTYPE_SEQ</tt></b>
+<dd>
+Models which represent a series of models which follow one after the
+other are indicated with this model type.  This is used for models
+such as <code>(A, B, C)</code>.
+</dl>
+
+<P>
+The constants in the quantifier group are:
+
+<P>
+<dl><dt><b><tt>XML_CQUANT_NONE</tt></b>
+<dd>
+No modifier is given, so it can appear exactly once, as for <code>A</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_CQUANT_OPT</tt></b>
+<dd>
+The model is optional: it can appear once or not at all, as for
+<code>A?</code>.
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_CQUANT_PLUS</tt></b>
+<dd>
+The model must occur one or more times (like <code>A+</code>).
+</dl>
+
+<P>
+<dl><dt><b><tt>XML_CQUANT_REP</tt></b>
+<dd>
+The model must occur zero or more times, as for <code>A*</code>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="expat-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.parsers.expat.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="expat-errors.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="expat-example.html">13.5.3 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.parsers.expat.html">13.5 xml.parsers.expat  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="expat-errors.html">13.5.5 Expat error constants</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

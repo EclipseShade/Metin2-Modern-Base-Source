@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.10.4 NULL Pointers
+</title>
+<META NAME="description" CONTENT="1.10.4 NULL Pointers
+">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="previous" href="thinIce.html">
+<LINK REL="up" href="refcounts.html">
+<LINK REL="next" href="cplusplus.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="thinIce.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="refcounts.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="cplusplus.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="thinIce.html">1.10.3 Thin Ice</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="refcounts.html">1.10 Reference Counts</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="cplusplus.html">1.11 Writing Extensions in</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0031040000000000000000">&nbsp;</A>
+<BR>
+1.10.4 NULL Pointers
+            
+</H2>
+
+<P>
+In general, functions that take object references as arguments do not
+expect you to pass them <tt class="constant">NULL</tt> pointers, and will dump core (or
+cause later core dumps) if you do so.  Functions that return object
+references generally return <tt class="constant">NULL</tt> only to indicate that an
+exception occurred.  The reason for not testing for <tt class="constant">NULL</tt>
+arguments is that functions often pass the objects they receive on to
+other function -- if each function were to test for <tt class="constant">NULL</tt>,
+there would be a lot of redundant tests and the code would run more
+slowly.
+
+<P>
+It is better to test for <tt class="constant">NULL</tt> only at the ``source:'' when a
+pointer that may be <tt class="constant">NULL</tt> is received, for example, from
+<tt class="cfunction">malloc()</tt> or from a function that may raise an exception.
+
+<P>
+The macros <tt class="cfunction">Py_INCREF()</tt> and <tt class="cfunction">Py_DECREF()</tt>
+do not check for <tt class="constant">NULL</tt> pointers -- however, their variants
+<tt class="cfunction">Py_XINCREF()</tt> and <tt class="cfunction">Py_XDECREF()</tt> do.
+
+<P>
+The macros for checking for a particular object type
+(<code>Py<var>type</var>_Check()</code>) don't check for <tt class="constant">NULL</tt> pointers --
+again, there is much code that calls several of these in a row to test
+an object against various different expected types, and this would
+generate redundant tests.  There are no variants with <tt class="constant">NULL</tt>
+checking.
+
+<P>
+The C function calling mechanism guarantees that the argument list
+passed to C functions (<code>args</code> in the examples) is never
+<tt class="constant">NULL</tt> -- in fact it guarantees that it is always a tuple.<A NAME="tex2html4"
+  HREF="#foot698"><SUP>1.4</SUP></A>
+<P>
+It is a severe error to ever let a <tt class="constant">NULL</tt> pointer ``escape'' to
+the Python user.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot698">... tuple.</A><A NAME="foot698"
+ href="nullPointers.html#tex2html4"><SUP>1.4</SUP></A>
+<DD>
+These guarantees don't hold when you use the ``old'' style
+calling convention -- this is still found in much existing code.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="thinIce.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="refcounts.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="cplusplus.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="thinIce.html">1.10.3 Thin Ice</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="refcounts.html">1.10 Reference Counts</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="cplusplus.html">1.11 Writing Extensions in</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

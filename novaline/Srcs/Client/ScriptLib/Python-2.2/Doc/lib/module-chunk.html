@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>14.6 chunk -- Read IFF chunked data</title>
+<META NAME="description" CONTENT="14.6 chunk -- Read IFF chunked data">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-colorsys.html">
+<LINK REL="previous" href="module-wave.html">
+<LINK REL="up" href="mmedia.html">
+<LINK REL="next" href="module-colorsys.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="Wave-write-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="mmedia.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-colorsys.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="Wave-write-objects.html">14.5.2 Wave_write Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-colorsys.html">14.7 colorsys  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0016600000000000000000">
+14.6 <tt class="module">chunk</tt> --
+	 Read IFF chunked data</A>
+</H1>
+
+<P>
+
+
+<P>
+This module provides an interface for reading files that use EA IFF 85
+chunks.<A NAME="tex2html117"
+  HREF="#foot44678"><SUP>14.1</SUP></A>  This format is used
+in at least the Audio<a name="l2h-3586">&nbsp;</a>Interchange File Format
+(AIFF/AIFF-C) and the Real<a name="l2h-3587">&nbsp;</a>Media File
+Format<a name="l2h-3588">&nbsp;</a>(RMFF).  The WAVE audio file format is closely
+related and can also be read using this module.
+
+<P>
+A chunk has the following structure:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Offset</b>&nbsp;</th>
+      <th align="center"><b>Length</b>&nbsp;</th>
+      <th align="left"><b>Contents</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline">0</td>
+        <td align="center">4</td>
+        <td align="left">Chunk ID</td>
+    <tr><td align="center" valign="baseline">4</td>
+        <td align="center">4</td>
+        <td align="left">Size of chunk in big-endian byte order, not including the 
+                 header</td>
+    <tr><td align="center" valign="baseline">8</td>
+        <td align="center"><var>n</var></td>
+        <td align="left">Data bytes, where <var>n</var> is the size given in
+                       the preceding field</td>
+    <tr><td align="center" valign="baseline">8 + <var>n</var></td>
+        <td align="center">0 or 1</td>
+        <td align="left">Pad byte needed if <var>n</var> is odd and
+                                chunk alignment is used</td></tbody>
+</table>
+
+<P>
+The ID is a 4-byte string which identifies the type of chunk.
+
+<P>
+The size field (a 32-bit value, encoded using big-endian byte order)
+gives the size of the chunk data, not including the 8-byte header.
+
+<P>
+Usually an IFF-type file consists of one or more chunks.  The proposed
+usage of the <tt class="class">Chunk</tt> class defined here is to instantiate an
+instance at the start of each chunk and read from the instance until
+it reaches the end, after which a new instance can be instantiated.
+At the end of the file, creating a new instance will fail with a
+<tt class="exception">EOFError</tt> exception.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3577"><tt class="class">Chunk</tt></a></b>(<var>file</var><big>[</big><var>, align, bigendian, inclheader</var><big>]</big>)
+<dd>
+Class which represents a chunk.  The <var>file</var> argument is expected
+to be a file-like object.  An instance of this class is specifically
+allowed.  The only method that is needed is <tt class="method">read()</tt>.  If the
+methods <tt class="method">seek()</tt> and <tt class="method">tell()</tt> are present and don't
+raise an exception, they are also used.  If these methods are present
+and raise an exception, they are expected to not have altered the
+object.  If the optional argument <var>align</var> is true, chunks are
+assumed to be aligned on 2-byte boundaries.  If <var>align</var> is
+false, no alignment is assumed.  The default value is true.  If the
+optional argument <var>bigendian</var> is false, the chunk size is assumed
+to be in little-endian order.  This is needed for WAVE audio files.
+The default value is true.  If the optional argument <var>inclheader</var>
+is true, the size given in the chunk header includes the size of the
+header.  The default value is false.
+</dl>
+
+<P>
+A <tt class="class">Chunk</tt> object supports the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-3578"><tt class="method">getname</tt></a></b>()
+<dd>
+Returns the name (ID) of the chunk.  This is the first 4 bytes of the
+chunk.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3579"><tt class="method">getsize</tt></a></b>()
+<dd>
+Returns the size of the chunk.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3580"><tt class="method">close</tt></a></b>()
+<dd>
+Close and skip to the end of the chunk.  This does not close the
+underlying file.
+</dl>
+
+<P>
+The remaining methods will raise <tt class="exception">IOError</tt> if called after
+the <tt class="method">close()</tt> method has been called.
+
+<P>
+<dl><dt><b><a name="l2h-3581"><tt class="method">isatty</tt></a></b>()
+<dd>
+Returns <code>0</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3582"><tt class="method">seek</tt></a></b>(<var>pos</var><big>[</big><var>, whence</var><big>]</big>)
+<dd>
+Set the chunk's current position.  The <var>whence</var> argument is
+optional and defaults to <code>0</code> (absolute file positioning); other
+values are <code>1</code> (seek relative to the current position) and
+<code>2</code> (seek relative to the file's end).  There is no return value.
+If the underlying file does not allow seek, only forward seeks are
+allowed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3583"><tt class="method">tell</tt></a></b>()
+<dd>
+Return the current position into the chunk.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3584"><tt class="method">read</tt></a></b>(<big>[</big><var>size</var><big>]</big>)
+<dd>
+Read at most <var>size</var> bytes from the chunk (less if the read hits
+the end of the chunk before obtaining <var>size</var> bytes).  If the
+<var>size</var> argument is negative or omitted, read all data until the
+end of the chunk.  The bytes are returned as a string object.  An
+empty string is returned when the end of the chunk is encountered
+immediately.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3585"><tt class="method">skip</tt></a></b>()
+<dd>
+Skip to the end of the chunk.  All further calls to <tt class="method">read()</tt>
+for the chunk will return <code>''</code>.  If you are not interested in the
+contents of the chunk, this method should be called so that the file
+points to the start of the next chunk.
+</dl>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot44678">...
+chunks.</A><A NAME="foot44678"
+ href="module-chunk.html#tex2html117"><SUP>14.1</SUP></A>
+<DD>``EA IFF 85'' Standard for Interchange Format Files,
+Jerry Morrison, Electronic Arts, January 1985.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="Wave-write-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="mmedia.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-colorsys.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="Wave-write-objects.html">14.5.2 Wave_write Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-colorsys.html">14.7 colorsys  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12. Internet Data Handling </title>
+<META NAME="description" CONTENT="12. Internet Data Handling ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="markup.html">
+<LINK REL="previous" href="internet.html">
+<LINK REL="up" HREF="lib.html">
+<LINK REL="next" href="module-formatter.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="asyncore-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-formatter.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="asyncore-example.html">11.22.1 Example basic HTTP</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-formatter.html">12.1 formatter  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0014000000000000000000">&nbsp;</A>
+<BR>
+12. Internet Data Handling 
+</H1>
+
+<P>
+This chapter describes modules which support handling data formats
+commonly used on the Internet.
+
+<P>
+<table class='synopsistable' valign='baseline'>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-formatter.html'>formatter</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Generic output formatter and device interface.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-email.html'>email</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Package supporting the parsing, manipulating, and
+    generating email messages, including MIME documents.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-email.Message.html'>email.Message</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>The base class representing email messages.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-email.Parser.html'>email.Parser</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Parse flat text email messages to produce a message
+	        object tree.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-email.Generator.html'>email.Generator</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Generate flat text email messages from a message object tree.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-email.Encoders.html'>email.Encoders</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Encoders for email message payloads.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-email.Errors.html'>email.Errors</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>The exception classes used by the email package.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-email.Utils.html'>email.Utils</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Miscellaneous email package utilities.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-email.Iterators.html'>email.Iterators</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Iterate over a  message object tree.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-mailcap.html'>mailcap</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Mailcap file handling.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-mailbox.html'>mailbox</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Read various mailbox formats.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-mhlib.html'>mhlib</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Manipulate MH mailboxes from Python.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-mimetools.html'>mimetools</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Tools for parsing MIME-style message bodies.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-mimetypes.html'>mimetypes</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Mapping of filename extensions to MIME types.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-MimeWriter.html'>MimeWriter</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Generic MIME file writer.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-mimify.html'>mimify</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Mimification and unmimification of mail messages.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-multifile.html'>multifile</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Support for reading files which contain distinct
+                parts, such as some MIME data.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-rfc822.html'>rfc822</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Parse <a class="rfc" name="rfcref-63965"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a> style mail messages.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-base64.html'>base64</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Encode and decode files using the MIME base64 data.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-binascii.html'>binascii</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Tools for converting between binary and various
+                ASCII-encoded binary representations.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-binhex.html'>binhex</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Encode and decode files in binhex4 format.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-quopri.html'>quopri</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Encode and decode files using the MIME
+                quoted-printable encoding.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-uu.html'>uu</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Encode and decode files in uuencode format.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-xdrlib.html'>xdrlib</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Encoders and decoders for the External Data
+                Representation (XDR).</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-netrc.html'>netrc</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Loading of <span class="file">.netrc</span> files.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-robotparser.html'>robotparser</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Loads a <span class="file">robots.txt</span> file and
+                answers questions about fetchability of other URLs.</td></tr>
+</table>
+
+<BR>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="asyncore-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-formatter.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="asyncore-example.html">11.22.1 Example basic HTTP</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-formatter.html">12.1 formatter  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

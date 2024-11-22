@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.19 tempfile -- Generate temporary file names</title>
+<META NAME="description" CONTENT="6.19 tempfile -- Generate temporary file names">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-errno.html">
+<LINK REL="previous" href="module-getopt.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" href="module-errno.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-getopt.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-errno.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-getopt.html">6.18 getopt  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-errno.html">6.20 errno  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0081900000000000000000">
+6.19 <tt class="module">tempfile</tt> --
+         Generate temporary file names</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name="l2h-1617">&nbsp;</a>
+<P>
+This module generates temporary file names.  It is not Unix specific,
+but it may require some help on non-Unix systems.
+
+<P>
+The module defines the following user-callable functions:
+
+<P>
+<dl><dt><b><a name="l2h-1612"><tt class="function">mktemp</tt></a></b>(<big>[</big><var>suffix</var><big>]</big>)
+<dd>
+Return a unique temporary filename.  This is an absolute pathname of a
+file that does not exist at the time the call is made.  No two calls
+will return the same filename.  <var>suffix</var>, if provided, is used as
+the last part of the generated file name.  This can be used to provide
+a filename extension or other identifying information that may be
+useful on some platforms.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1613"><tt class="function">TemporaryFile</tt></a></b>(<big>[</big><var>mode</var><big>[</big><var>,
+                                bufsize</var><big>[</big><var>, suffix</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+Return a file (or file-like) object that can be used as a temporary
+storage area.  The file is created in the most secure manner available
+in the appropriate temporary directory for the host platform.  Under
+Unix, the directory entry to the file is removed so that it is secure
+against attacks which involve creating symbolic links to the file or
+replacing the file with a symbolic link to some other file.  For other
+platforms, which don't allow removing the directory entry while the
+file is in use, the file is automatically deleted as soon as it is
+closed (including an implicit close when it is garbage-collected).
+
+<P>
+The <var>mode</var> parameter defaults to <code>'w+b'</code> so that the file
+created can be read and written without being closed.  Binary mode is
+used so that it behaves consistently on all platforms without regard
+for the data that is stored.  <var>bufsize</var> defaults to <code>-1</code>,
+meaning that the operating system default is used.  <var>suffix</var> is
+passed to <tt class="function">mktemp()</tt>.
+</dl>
+
+<P>
+The module uses two global variables that tell it how to construct a
+temporary name.  The caller may assign values to them; by default they
+are initialized at the first call to <tt class="function">mktemp()</tt>.
+
+<P>
+<dl><dt><b><a name="l2h-1614"><tt>tempdir</tt></a></b>
+<dd>
+When set to a value other than <code>None</code>, this variable defines the
+directory in which filenames returned by <tt class="function">mktemp()</tt> reside.
+The default is taken from the environment variable <a class="envvar" name="l2h-1618">TMPDIR</a>; if
+this is not set, either <span class="file">/usr/tmp</span> is used (on Unix), or the
+current working directory (all other systems).  No check is made to
+see whether its value is valid.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1615"><tt class="function">gettempprefix</tt></a></b>()
+<dd>
+Return the filename prefix used to create temporary files.  This does
+not contain the directory component.  Using this function is preferred
+over using the <code>template</code> variable directly.
+
+<span class="versionnote">New in version 1.5.2.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1616"><tt>template</tt></a></b>
+<dd>
+<div class="versionnote"><b>Deprecated since release 2.0.</b>
+Use <tt class="function">gettempprefix()</tt> instead.</div><p>
+When set to a value other than <code>None</code>, this variable defines the
+prefix of the final component of the filenames returned by
+<tt class="function">mktemp()</tt>.  A string of decimal digits is added to generate
+unique filenames.  The default is either <span class="file">@<var>pid</var>.</span> where
+<var>pid</var> is the current process ID (on Unix),
+<span class="file">&nbsp;<var>pid</var>-</span> on Windows NT, <span class="file">Python-Tmp-</span> on
+MacOS, or <span class="file">tmp</span> (all other systems).
+
+<P>
+Older versions of this module used to require that <code>template</code> be
+set to <code>None</code> after a call to <tt class="function">os.fork()</tt>; this has not
+been necessary since version 1.5.2.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-getopt.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-errno.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-getopt.html">6.18 getopt  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-errno.html">6.20 errno  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

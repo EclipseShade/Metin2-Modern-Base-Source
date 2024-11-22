@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>9. The Python Debugger </title>
+<META NAME="description" CONTENT="9. The Python Debugger ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="profile.html">
+<LINK REL="previous" href="unix.html">
+<LINK REL="up" HREF="lib.html">
+<LINK REL="next" href="debugger-commands.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-commands.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="debugger-commands.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-commands.html">8.18 commands  </A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="debugger-commands.html">9.1 Debugger Commands</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0011000000000000000000">&nbsp;</A>
+<BR>
+9. The Python Debugger 
+</H1>
+
+<P>
+
+
+<P>
+The module <tt class="module">pdb</tt> defines an interactive source code
+debugger<a name="l2h-2251">&nbsp;</a>for Python programs.  It supports setting
+(conditional) breakpoints and single stepping at the source line
+level, inspection of stack frames, source code listing, and evaluation
+of arbitrary Python code in the context of any stack frame.  It also
+supports post-mortem debugging and can be called under program
+control.
+
+<P>
+The debugger is extensible -- it is actually defined as the class
+<tt class="class">Pdb</tt><a name="l2h-2244">&nbsp;</a>.
+This is currently undocumented but easily understood by reading the
+source.  The extension interface uses the modules
+<tt class="module">bdb</tt><a name="l2h-2252">&nbsp;</a>(undocumented) and
+<tt class="module"><a href="module-cmd.html">cmd</a></tt><a name="l2h-2253">&nbsp;</a>.
+
+<P>
+The debugger's prompt is "<tt class="samp">(Pdb) </tt>".
+Typical usage to run a program under control of the debugger is:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import pdb
+&gt;&gt;&gt; import mymodule
+&gt;&gt;&gt; pdb.run('mymodule.test()')
+&gt; &lt;string&gt;(0)?()
+(Pdb) continue
+&gt; &lt;string&gt;(1)?()
+(Pdb) continue
+NameError: 'spam'
+&gt; &lt;string&gt;(1)?()
+(Pdb)
+</pre></dl>
+
+<P>
+<span class="file">pdb.py</span> can also be invoked as
+a script to debug other scripts.  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+python /usr/local/lib/python1.5/pdb.py myscript.py
+</pre></dl>
+
+<P>
+Typical usage to inspect a crashed program is:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import pdb
+&gt;&gt;&gt; import mymodule
+&gt;&gt;&gt; mymodule.test()
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+  File "./mymodule.py", line 4, in test
+    test2()
+  File "./mymodule.py", line 3, in test2
+    print spam
+NameError: spam
+&gt;&gt;&gt; pdb.pm()
+&gt; ./mymodule.py(3)test2()
+-&gt; print spam
+(Pdb)
+</pre></dl>
+
+<P>
+The module defines the following functions; each enters the debugger
+in a slightly different way:
+
+<P>
+<dl><dt><b><a name="l2h-2245"><tt class="function">run</tt></a></b>(<var>statement</var><big>[</big><var>, globals</var><big>[</big><var>, locals</var><big>]</big><big>]</big>)
+<dd>
+Execute the <var>statement</var> (given as a string) under debugger
+control.  The debugger prompt appears before any code is executed; you
+can set breakpoints and type "<tt class="samp">continue</tt>", or you can step through
+the statement using "<tt class="samp">step</tt>" or "<tt class="samp">next</tt>" (all these commands are
+explained below).  The optional <var>globals</var> and <var>locals</var>
+arguments specify the environment in which the code is executed; by
+default the dictionary of the module <tt class="module"><a href="module-main.html">__main__</a></tt> is
+used.  (See the explanation of the <tt class="keyword">exec</tt> statement or the
+<tt class="function">eval()</tt> built-in function.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2246"><tt class="function">runeval</tt></a></b>(<var>expression</var><big>[</big><var>, globals</var><big>[</big><var>, locals</var><big>]</big><big>]</big>)
+<dd>
+Evaluate the <var>expression</var> (given as a a string) under debugger
+control.  When <tt class="function">runeval()</tt> returns, it returns the value of the
+expression.  Otherwise this function is similar to
+<tt class="function">run()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2247"><tt class="function">runcall</tt></a></b>(<var>function</var><big>[</big><var>, argument, ...</var><big>]</big>)
+<dd>
+Call the <var>function</var> (a function or method object, not a string)
+with the given arguments.  When <tt class="function">runcall()</tt> returns, it returns
+whatever the function call returned.  The debugger prompt appears as
+soon as the function is entered.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2248"><tt class="function">set_trace</tt></a></b>()
+<dd>
+Enter the debugger at the calling stack frame.  This is useful to
+hard-code a breakpoint at a given point in a program, even if the code
+is not otherwise being debugged (e.g. when an assertion fails).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2249"><tt class="function">post_mortem</tt></a></b>(<var>traceback</var>)
+<dd>
+Enter post-mortem debugging of the given <var>traceback</var> object.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2250"><tt class="function">pm</tt></a></b>()
+<dd>
+Enter post-mortem debugging of the traceback found in
+<code>sys.last_traceback</code>.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="debugger-commands.html">9.1 Debugger Commands</a>
+<LI><A href="debugger-hooks.html">9.2 How It Works</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-commands.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="debugger-commands.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-commands.html">8.18 commands  </A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="debugger-commands.html">9.1 Debugger Commands</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

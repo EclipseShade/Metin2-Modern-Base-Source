@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.2.1 Identifiers (Names)</title>
+<META NAME="description" CONTENT="5.2.1 Identifiers (Names)">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="atom-literals.html">
+<LINK REL="previous" href="atoms.html">
+<LINK REL="up" href="atoms.html">
+<LINK REL="next" href="atom-literals.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="atoms.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="atoms.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="atom-literals.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="atoms.html">5.2 Atoms</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="atoms.html">5.2 Atoms</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="atom-literals.html">5.2.2 Literals</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007210000000000000000">&nbsp;</A>
+<a name="l2h-227">&nbsp;</a>
+<BR>
+5.2.1 Identifiers (Names)
+</H2>
+
+<P>
+An identifier occurring as an atom is a reference to a local, global
+or built-in name binding.  If a name is assigned to anywhere in a code
+block (even in unreachable code), and is not mentioned in a
+<tt class="keyword">global</tt> statement in that code block, then it refers to a local
+name throughout that code block.  When it is not assigned to anywhere
+in the block, or when it is assigned to but also explicitly listed in
+a <tt class="keyword">global</tt> statement, it refers to a global name if one exists,
+else to a built-in name (and this binding may dynamically
+change).<A NAME="tex2html3"
+  HREF="#foot3570"><SUP>5.1</SUP></A><a name="l2h-228">&nbsp;</a>
+<P>
+When the name is bound to an object, evaluation of the atom yields
+that object.  When a name is not bound, an attempt to evaluate it
+raises a <tt class="exception">NameError</tt> exception.
+<a name="l2h-229">&nbsp;</a>
+<P>
+<b>Private name mangling:</b><a name="l2h-230">&nbsp;</a>when an identifier that textually occurs in a class definition begins
+with two or more underscore characters and does not end in two or more
+underscores, it is considered a <i class="dfn">private name</i> of that class.
+Private names are transformed to a longer form before code is
+generated for them.  The transformation inserts the class name in
+front of the name, with leading underscores removed, and a single
+underscore inserted in front of the class name.  For example, the
+identifier <code>__spam</code> occurring in a class named <code>Ham</code> will be
+transformed to <code>_Ham__spam</code>.  This transformation is independent
+of the syntactical context in which the identifier is used.  If the
+transformed name is extremely long (longer than 255 characters),
+implementation defined truncation may happen.  If the class name
+consists only of underscores, no transformation is done.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot3570">...
+change).</A><A NAME="foot3570"
+ href="atom-identifiers.html#tex2html3"><SUP>5.1</SUP></A>
+<DD>The Python interpreter provides a useful set of
+  predefined built-in functions.  It is not recommended to reuse
+  (hide) these names with self defined objects.  See the
+  <em class="citetitle"><a
+ href="../lib/built-in-funcs.html"
+ title="Python Library Reference"
+ >Python Library Reference</a></em> for
+  the descriptions of built-in functions and methods.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="atoms.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="atoms.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="atom-literals.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="atoms.html">5.2 Atoms</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="atoms.html">5.2 Atoms</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="atom-literals.html">5.2.2 Literals</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.5.2 OpenerDirector Objects </title>
+<META NAME="description" CONTENT="11.5.2 OpenerDirector Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="base-handler-objects.html">
+<LINK REL="previous" href="request-objects.html">
+<LINK REL="up" href="module-urllib2.html">
+<LINK REL="next" href="base-handler-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="request-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-urllib2.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="base-handler-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="request-objects.html">11.5.1 Request Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-urllib2.html">11.5 urllib2  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="base-handler-objects.html">11.5.3 BaseHandler Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013520000000000000000">&nbsp;</A>
+<BR>
+11.5.2 OpenerDirector Objects 
+</H2>
+
+<P>
+<tt class="class">OpenerDirector</tt> instances have the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-2375"><tt class="method">add_handler</tt></a></b>(<var>handler</var>)
+<dd>
+<var>handler</var> should be an instance of <tt class="class">BaseHandler</tt>.  The
+following methods are searched, and added to the possible chains.
+
+<P>
+
+<UL>
+<LI><tt class="method"><var>protocol</var>_open()</tt> --
+    signal that the handler knows how to open <var>protocol</var> URLs.
+</LI>
+<LI><tt class="method"><var>protocol</var>_error_<var>type</var>()</tt> --
+    signal that the handler knows how to handle <var>type</var> errors from
+    <var>protocol</var>.
+</LI>
+</UL>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2376"><tt class="method">close</tt></a></b>()
+<dd>
+Explicitly break cycles, and delete all the handlers.
+Because the <tt class="class">OpenerDirector</tt> needs to know the registered handlers,
+and a handler needs to know who the <tt class="class">OpenerDirector</tt> who called
+it is, there is a reference cycle.  Even though recent versions of Python
+have cycle-collection, it is sometimes preferable to explicitly break
+the cycles.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2377"><tt class="method">open</tt></a></b>(<var>url</var><big>[</big><var>, data</var><big>]</big>)
+<dd>
+Open the given <var>url</var> (which can be a request object or a string),
+optionally passing the given <var>data</var>.
+Arguments, return values and exceptions raised are the same as those
+of <tt class="function">urlopen()</tt> (which simply calls the <tt class="method">open()</tt> method
+on the default installed <tt class="class">OpenerDirector</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2378"><tt class="method">error</tt></a></b>(<var>proto</var><big>[</big><var>,
+                                          arg</var><big>[</big><var>, ...</var><big>]</big><big>]</big>)
+<dd>
+Handle an error in a given protocol.  This will call the registered
+error handlers for the given protocol with the given arguments (which
+are protocol specific).  The HTTP protocol is a special case which
+uses the HTTP response code to determine the specific error handler;
+refer to the <tt class="method">http_error_*()</tt> methods of the handler classes.
+
+<P>
+Return values and exceptions raised are the same as those
+of <tt class="function">urlopen()</tt>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="request-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-urllib2.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="base-handler-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="request-objects.html">11.5.1 Request Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-urllib2.html">11.5 urllib2  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="base-handler-objects.html">11.5.3 BaseHandler Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

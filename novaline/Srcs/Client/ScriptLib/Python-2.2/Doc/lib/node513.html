@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>16.1.6.6 Tk Option Data Types</title>
+<META NAME="description" CONTENT="16.1.6.6 Tk Option Data Types">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node514.html">
+<LINK REL="previous" HREF="node512.html">
+<LINK REL="up" HREF="node507.html">
+<LINK REL="next" HREF="node514.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node512.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node507.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node514.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node512.html">16.1.6.5 The Window Manager</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node507.html">16.1.6 Handy Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node514.html">16.1.6.7 Bindings and Events</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0018166000000000000000">
+16.1.6.6 Tk Option Data Types</A>
+</H3> 
+<P>
+<a name="l2h-3669">&nbsp;</a>
+<P>
+<DL>
+<DT><STRONG>anchor</STRONG></DT>
+<DD>Legal values are points of the compass: <code>"n"</code>,
+<code>"ne"</code>, <code>"e"</code>, <code>"se"</code>, <code>"s"</code>,
+<code>"sw"</code>, <code>"w"</code>, <code>"nw"</code>, and also
+<code>"center"</code>.
+
+<P>
+</DD>
+<DT><STRONG>bitmap</STRONG></DT>
+<DD>There are eight built-in, named bitmaps: <code>'error'</code>, <code>'gray25'</code>,
+<code>'gray50'</code>, <code>'hourglass'</code>, <code>'info'</code>, <code>'questhead'</code>,
+<code>'question'</code>, <code>'warning'</code>.  To specify an X bitmap
+filename, give the full path to the file, preceded with an <code>@</code>,
+as in <code>"@/usr/contrib/bitmap/gumby.bit"</code>.
+
+<P>
+</DD>
+<DT><STRONG>boolean</STRONG></DT>
+<DD>You can pass integers 0 or 1 or the stings <code>"yes"</code> or <code>"no"</code> .
+
+<P>
+</DD>
+<DT><STRONG>callback</STRONG></DT>
+<DD>This is any Python function that takes no arguments.  For example: 
+<dl><dd><pre class="verbatim">
+    def print_it():
+            print "hi there"
+    fred["command"] = print_it
+</pre></dl>
+
+<P>
+</DD>
+<DT><STRONG>color</STRONG></DT>
+<DD>Colors can be given as the names of X colors in the rgb.txt file,
+or as strings representing RGB values in 4 bit: <code>"#RGB"</code>, 8
+bit: <code>"#RRGGBB"</code>, 12 bit" <code>"#RRRGGGBBB"</code>, or 16 bit
+<code>"#RRRRGGGGBBBB"</code> ranges, where R,G,B here represent any
+legal hex digit.  See page 160 of Ousterhout's book for details.  
+
+<P>
+</DD>
+<DT><STRONG>cursor</STRONG></DT>
+<DD>The standard X cursor names from <span class="file">cursorfont.h</span> can be used,
+without the <code>XC_</code> prefix.  For example to get a hand cursor
+(<tt class="constant">XC_hand2</tt>), use the string <code>"hand2"</code>.  You can also
+specify a bitmap and mask file of your own.  See page 179 of
+Ousterhout's book.
+
+<P>
+</DD>
+<DT><STRONG>distance</STRONG></DT>
+<DD>Screen distances can be specified in either pixels or absolute
+distances.  Pixels are given as numbers and absolute distances as
+strings, with the trailing character denoting units: <code>c</code>
+for centimeters, <code>i</code> for inches, <code>m</code> for millimeters,
+<code>p</code> for printer's points.  For example, 3.5 inches is expressed
+as <code>"3.5i"</code>.
+
+<P>
+</DD>
+<DT><STRONG>font</STRONG></DT>
+<DD>Tk uses a list font name format, such as <code>{courier 10 bold}</code>.
+Font sizes with positive numbers are measured in points;
+sizes with negative numbers are measured in pixels.
+
+<P>
+</DD>
+<DT><STRONG>geometry</STRONG></DT>
+<DD>This is a string of the form "<tt class="samp"><var>width</var>x<var>height</var></tt>", where
+width and height are measured in pixels for most widgets (in
+characters for widgets displaying text).  For example:
+<code>fred["geometry"] = "200x100"</code>.
+
+<P>
+</DD>
+<DT><STRONG>justify</STRONG></DT>
+<DD>Legal values are the strings: <code>"left"</code>,
+<code>"center"</code>, <code>"right"</code>, and <code>"fill"</code>.
+
+<P>
+</DD>
+<DT><STRONG>region</STRONG></DT>
+<DD>This is a string with four space-delimited elements, each of
+which is a legal distance (see above).  For example: <code>"2 3 4
+5"</code> and <code>"3i 2i 4.5i 2i"</code> and <code>"3c 2c 4c 10.43c"</code> 
+are all legal regions.
+
+<P>
+</DD>
+<DT><STRONG>relief</STRONG></DT>
+<DD>Determines what the border style of a widget will be.  Legal
+values are: <code>"raised"</code>, <code>"sunken"</code>,
+<code>"flat"</code>, <code>"groove"</code>, and <code>"ridge"</code>.
+
+<P>
+</DD>
+<DT><STRONG>scrollcommand</STRONG></DT>
+<DD>This is almost always the <tt class="method">set()</tt> method of some scrollbar
+widget, but can be any widget method that takes a single argument.  
+Refer to the file <span class="file">Demo/tkinter/matt/canvas-with-scrollbars.py</span>
+in the Python source distribution for an example.
+
+<P>
+</DD>
+<DT><STRONG>wrap:</STRONG></DT>
+<DD>Must be one of: <code>"none"</code>, <code>"char"</code>, or <code>"word"</code>.
+</DD>
+</DL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node512.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node507.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node514.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node512.html">16.1.6.5 The Window Manager</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node507.html">16.1.6 Handy Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node514.html">16.1.6.7 Bindings and Events</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

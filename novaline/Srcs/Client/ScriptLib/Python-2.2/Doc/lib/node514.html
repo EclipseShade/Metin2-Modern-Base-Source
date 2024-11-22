@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>16.1.6.7 Bindings and Events</title>
+<META NAME="description" CONTENT="16.1.6.7 Bindings and Events">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node515.html">
+<LINK REL="previous" HREF="node513.html">
+<LINK REL="up" HREF="node507.html">
+<LINK REL="next" HREF="node515.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node513.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node507.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node515.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node513.html">16.1.6.6 Tk Option Data</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node507.html">16.1.6 Handy Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node515.html">16.1.6.8 The index Parameter</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0018167000000000000000">
+16.1.6.7 Bindings and Events</A>
+</H3> 
+<P>
+<a name="l2h-3670">&nbsp;</a>
+<P>
+The bind method from the widget command allows you to watch for
+certain events and to have a callback function trigger when that event
+type occurs.  The form of the bind method is:
+
+<P>
+<dl><dd><pre class="verbatim">
+    def bind(self, sequence, func, add=''):
+</pre></dl>
+where:
+
+<P>
+<DL>
+<DT><STRONG>sequence</STRONG></DT>
+<DD>is a string that denotes the target kind of event.  (See the bind
+man page and page 201 of John Ousterhout's book for details).
+
+<P>
+</DD>
+<DT><STRONG>func</STRONG></DT>
+<DD>is a Python function, taking one argument, to be invoked when the
+event occurs.  An Event instance will be passed as the argument.
+(Functions deployed this way are commonly known as <var>callbacks</var>.)
+
+<P>
+</DD>
+<DT><STRONG>add</STRONG></DT>
+<DD>is optional, either "" or "<tt class="samp">+</tt>".  Passing an empty string
+denotes that this binding is to replace any other bindings that this
+event is associated with.  Preceeding with a "<tt class="samp">+</tt>" means that this
+function is to be added to the list of functions bound to this event type.
+</DD>
+</DL>
+
+<P>
+For example:
+<dl><dd><pre class="verbatim">
+    def turnRed(self, event):
+        event.widget["activeforeground"] = "red"
+
+    self.button.bind("&lt;Enter&gt;", self.turnRed)
+</pre></dl>
+
+<P>
+Notice how the widget field of the event is being accesed in the
+<tt class="method">turnRed()</tt> callback.  This field contains the widget that
+caught the X event.  The following table lists the other event fields
+you can access, and how they are denoted in Tk, which can be useful
+when referring to the Tk man pages.
+
+<P>
+<dl><dd><pre class="verbatim">
+Tk      Tkinter Event Field             Tk      Tkinter Event Field 
+--      -------------------             --      -------------------
+%f      focus                           %A      char
+%h      height                          %E      send_event
+%k      keycode                         %K      keysym
+%s      state                           %N      keysym_num
+%t      time                            %T      type
+%w      width                           %W      widget
+%x      x                               %X      x_root
+%y      y                               %Y      y_root
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node513.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node507.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node515.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node513.html">16.1.6.6 Tk Option Data</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node507.html">16.1.6 Handy Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node515.html">16.1.6.8 The index Parameter</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.2.5 Dictionary displays</title>
+<META NAME="description" CONTENT="5.2.5 Dictionary displays">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="string-conversions.html">
+<LINK REL="previous" href="lists.html">
+<LINK REL="up" href="atoms.html">
+<LINK REL="next" href="string-conversions.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="lists.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="atoms.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="string-conversions.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="lists.html">5.2.4 List displays</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="atoms.html">5.2 Atoms</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="string-conversions.html">5.2.6 String conversions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007250000000000000000">&nbsp;</A>
+<BR>
+5.2.5 Dictionary displays
+</H2>
+<a name="l2h-239">&nbsp;</a>
+<P>
+A dictionary display is a possibly empty series of key/datum pairs
+enclosed in curly braces:
+<a name="l2h-240">&nbsp;</a>
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-dict_display">dict_display</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"" [<a href="dict.html#tok-key_datum_list">key_datum_list</a>] ""</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-key_datum_list">key_datum_list</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="dict.html#tok-key_datum">key_datum</a> ("," <a href="dict.html#tok-key_datum">key_datum</a>)* [","]</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-key_datum">key_datum</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="lambda.html#tok-expression">expression</a> ":" <a href="lambda.html#tok-expression">expression</a></code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+A dictionary display yields a new dictionary object.
+<a name="l2h-241">&nbsp;</a>
+<P>
+The key/datum pairs are evaluated from left to right to define the
+entries of the dictionary: each key object is used as a key into the
+dictionary to store the corresponding datum.
+
+<P>
+Restrictions on the types of the key values are listed earlier in
+section <A href="types.html#types">3.2</A>.  (To summarize,the key type should be hashable,
+which excludes all mutable objects.)  Clashes between duplicate keys
+are not detected; the last datum (textually rightmost in the display)
+stored for a given key value prevails.
+<a name="l2h-242">&nbsp;</a>
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="lists.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="atoms.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="string-conversions.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="lists.html">5.2.4 List displays</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="atoms.html">5.2 Atoms</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="string-conversions.html">5.2.6 String conversions</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

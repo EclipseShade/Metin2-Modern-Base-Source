@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.4 crypt -- Function to check Unix passwords</title>
+<META NAME="description" CONTENT="8.4 crypt -- Function to check Unix passwords">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-dl.html">
+<LINK REL="previous" href="module-grp.html">
+<LINK REL="up" href="unix.html">
+<LINK REL="next" href="module-dl.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-grp.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-dl.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-grp.html">8.3 grp  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-dl.html">8.5 dl  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0010400000000000000000">
+8.4 <tt class="module">crypt</tt> --
+         Function to check Unix passwords</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Unix</span>.</p>
+
+<P>
+This module implements an interface to the
+<span class="manpage"><i>crypt</i>(3)</span><a name="l2h-2136">&nbsp;</a>routine, which is a one-way hash
+function based upon a modified DES<a name="l2h-2137">&nbsp;</a>algorithm; see
+the Unix man page for further details.  Possible uses include
+allowing Python scripts to accept typed passwords from the user, or
+attempting to crack Unix passwords with a dictionary.
+
+<P>
+<dl><dt><b><a name="l2h-2135"><tt class="function">crypt</tt></a></b>(<var>word, salt</var>)
+<dd> 
+  <var>word</var> will usually be a user's password as typed at a prompt or 
+  in a graphical interface.  <var>salt</var> is usually a random
+  two-character string which will be used to perturb the DES algorithm
+  in one of 4096 ways.  The characters in <var>salt</var> must be in the
+  set <tt class="regexp">[./a-zA-Z0-9]</tt>.  Returns the hashed password as a
+  string, which will be composed of characters from the same alphabet
+   as the salt (the first two characters represent the salt itself).
+</dl>
+
+<P>
+A simple example illustrating typical use:
+
+<P>
+<dl><dd><pre class="verbatim">
+import crypt, getpass, pwd
+
+def login():
+    username = raw_input('Python login:')
+    cryptedpasswd = pwd.getpwnam(username)[1]
+    if cryptedpasswd:
+        if cryptedpasswd == 'x' or cryptedpasswd == '*': 
+            raise "Sorry, currently no support for shadow passwords"
+        cleartext = getpass.getpass()
+        return crypt.crypt(cleartext, cryptedpasswd[:2]) == cryptedpasswd
+    else:
+        return 1
+</pre></dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-grp.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-dl.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-grp.html">8.3 grp  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-dl.html">8.5 dl  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

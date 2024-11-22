@@ -1,0 +1,288 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.15.1 shlex Objects </title>
+<META NAME="description" CONTENT="5.15.1 shlex Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-shlex.html">
+<LINK REL="up" href="module-shlex.html">
+<LINK REL="next" href="allos.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-shlex.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-shlex.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-shlex.html">5.15 shlex  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-shlex.html">5.15 shlex  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0071510000000000000000">&nbsp;</A>
+<BR>
+5.15.1 shlex Objects 
+</H2>
+
+<P>
+A <tt class="class">shlex</tt> instance has the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-1069"><tt class="method">get_token</tt></a></b>()
+<dd>
+Return a token.  If tokens have been stacked using
+<tt class="method">push_token()</tt>, pop a token off the stack.  Otherwise, read one
+from the input stream.  If reading encounters an immediate
+end-of-file, an empty string is returned. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1070"><tt class="method">push_token</tt></a></b>(<var>str</var>)
+<dd>
+Push the argument onto the token stack.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1071"><tt class="method">read_token</tt></a></b>()
+<dd>
+Read a raw token.  Ignore the pushback stack, and do not interpret source
+requests.  (This is not ordinarily a useful entry point, and is
+documented here only for the sake of completeness.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1072"><tt class="method">sourcehook</tt></a></b>(<var>filename</var>)
+<dd>
+When <tt class="class">shlex</tt> detects a source request (see
+<tt class="member">source</tt> below) this method is given the following token as
+argument, and expected to return a tuple consisting of a filename and
+an open file-like object.
+
+<P>
+Normally, this method first strips any quotes off the argument.  If
+the result is an absolute pathname, or there was no previous source
+request in effect, or the previous source was a stream
+(e.g. <code>sys.stdin</code>), the result is left alone.  Otherwise, if the
+result is a relative pathname, the directory part of the name of the
+file immediately before it on the source inclusion stack is prepended
+(this behavior is like the way the C preprocessor handles
+<code>#include "file.h"</code>).
+
+<P>
+The result of the manipulations is treated as a filename, and returned
+as the first component of the tuple, with
+<tt class="function">open()</tt> called on it to yield the second component. (Note:
+this is the reverse of the order of arguments in instance initialization!)
+
+<P>
+This hook is exposed so that you can use it to implement directory
+search paths, addition of file extensions, and other namespace hacks.
+There is no corresponding `close' hook, but a shlex instance will call
+the <tt class="method">close()</tt> method of the sourced input stream when it
+returns EOF.
+
+<P>
+For more explicit control of source stacking, use the
+<tt class="method">push_source()</tt> and <tt class="method">pop_source()</tt> methods. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1073"><tt class="method">push_source</tt></a></b>(<var>stream</var><big>[</big><var>, filename</var><big>]</big>)
+<dd>
+Push an input source stream onto the input stack.  If the filename
+argument is specified it will later be available for use in error
+messages.  This is the same method used internally by the
+<tt class="method">sourcehook</tt> method.
+
+<span class="versionnote">New in version 2.1.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1074"><tt class="method">pop_source</tt></a></b>()
+<dd>
+Pop the last-pushed input source from the input stack.
+This is the same method used internally when the lexer reaches
+EOFon a stacked input stream.
+
+<span class="versionnote">New in version 2.1.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1075"><tt class="method">error_leader</tt></a></b>(<big>[</big><var>file</var><big>[</big><var>, line</var><big>]</big><big>]</big>)
+<dd>
+This method generates an error message leader in the format of a
+Unix C compiler error label; the format is <code>'"%s", line %d: '</code>,
+where the "<tt class="samp">%s</tt>" is replaced with the name of the current source
+file and the "<tt class="samp">%d</tt>" with the current input line number (the
+optional arguments can be used to override these).
+
+<P>
+This convenience is provided to encourage <tt class="module">shlex</tt> users to
+generate error messages in the standard, parseable format understood
+by Emacs and other Unix tools.
+</dl>
+
+<P>
+Instances of <tt class="class">shlex</tt> subclasses have some public instance
+variables which either control lexical analysis or can be used for
+debugging:
+
+<P>
+<dl><dt><b><a name="l2h-1076"><tt class="member">commenters</tt></a></b>
+<dd>
+The string of characters that are recognized as comment beginners.
+All characters from the comment beginner to end of line are ignored.
+Includes just "<tt class="character">#</tt>" by default.   
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1077"><tt class="member">wordchars</tt></a></b>
+<dd>
+The string of characters that will accumulate into multi-character
+tokens.  By default, includes all ASCII alphanumerics and
+underscore.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1078"><tt class="member">whitespace</tt></a></b>
+<dd>
+Characters that will be considered whitespace and skipped.  Whitespace
+bounds tokens.  By default, includes space, tab, linefeed and
+carriage-return.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1079"><tt class="member">quotes</tt></a></b>
+<dd>
+Characters that will be considered string quotes.  The token
+accumulates until the same quote is encountered again (thus, different
+quote types protect each other as in the shell.)  By default, includes
+ASCII single and double quotes.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1080"><tt class="member">infile</tt></a></b>
+<dd>
+The name of the current input file, as initially set at class
+instantiation time or stacked by later source requests.  It may
+be useful to examine this when constructing error messages.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1081"><tt class="member">instream</tt></a></b>
+<dd>
+The input stream from which this <tt class="class">shlex</tt> instance is reading
+characters.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1082"><tt class="member">source</tt></a></b>
+<dd>
+This member is <code>None</code> by default.  If you assign a string to it,
+that string will be recognized as a lexical-level inclusion request
+similar to the "<tt class="samp">source</tt>" keyword in various shells.  That is, the
+immediately following token will opened as a filename and input taken
+from that stream until EOF, at which point the <tt class="method">close()</tt>
+method of that stream will be called and the input source will again
+become the original input stream. Source requests may be stacked any
+number of levels deep.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1083"><tt class="member">debug</tt></a></b>
+<dd>
+If this member is numeric and <code>1</code> or more, a <tt class="class">shlex</tt>
+instance will print verbose progress output on its behavior.  If you
+need to use this, you can read the module source code to learn the
+details.
+</dl>
+
+<P>
+Note that any character not declared to be a word character,
+whitespace, or a quote will be returned as a single-character token.
+
+<P>
+Quote and comment characters are not recognized within words.  Thus,
+the bare words "<tt class="samp">ain't</tt>" and "<tt class="samp">ain#t</tt>" would be returned as single
+tokens by the default parser.
+
+<P>
+<dl><dt><b><a name="l2h-1084"><tt class="member">lineno</tt></a></b>
+<dd>
+Source line number (count of newlines seen so far plus one).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1085"><tt class="member">token</tt></a></b>
+<dd>
+The token buffer.  It may be useful to examine this when catching
+exceptions.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-shlex.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-shlex.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-shlex.html">5.15 shlex  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-shlex.html">5.15 shlex  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.2.8 File Objects </title>
+<META NAME="description" CONTENT="2.2.8 File Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="typesother.html">
+<LINK REL="previous" href="typesmapping.html">
+<LINK REL="up" href="types.html">
+<LINK REL="next" href="typesother.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="typesmapping.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="typesother.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="typesmapping.html">2.2.7 Mapping Types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="types.html">2.2 Built-in Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="typesother.html">2.2.9 Other Built-in Types</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004280000000000000000">&nbsp;</A>
+<BR>
+2.2.8 File Objects
+            
+</H2>
+
+<P>
+File objects<a name="l2h-174">&nbsp;</a>are implemented using C's <code>stdio</code>
+package and can be created with the built-in constructor
+<tt class="function">file()</tt><a name="l2h-175">&nbsp;</a>described in section 
+<A href="built-in-funcs.html#built-in-funcs">2.1</A>, ``Built-in Functions.''<A NAME="tex2html11"
+  HREF="#foot2691"><SUP>2.10</SUP></A>They are also returned
+by some other built-in functions and methods, such as
+<tt class="function">os.popen()</tt> and <tt class="function">os.fdopen()</tt> and the
+<tt class="method">makefile()</tt> method of socket objects.
+<a name="l2h-176">&nbsp;</a>
+<P>
+When a file operation fails for an I/O-related reason, the exception
+<tt class="exception">IOError</tt> is raised.  This includes situations where the
+operation is not defined for some reason, like <tt class="method">seek()</tt> on a tty
+device or writing a file opened for reading.
+
+<P>
+Files have the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-157"><tt class="method">close</tt></a></b>()
+<dd>
+  Close the file.  A closed file cannot be read or written anymore.
+  Any operation which requires that the file be open will raise a
+  <tt class="exception">ValueError</tt> after the file has been closed.  Calling
+  <tt class="method">close()</tt> more than once is allowed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-158"><tt class="method">flush</tt></a></b>()
+<dd>
+  Flush the internal buffer, like <code>stdio</code>'s
+  <tt class="cfunction">fflush()</tt>.  This may be a no-op on some file-like
+  objects.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-159"><tt class="method">isatty</tt></a></b>()
+<dd>
+  Return true if the file is connected to a tty(-like) device, else
+  false.  <span class="note"><b class="label">Note:</b>
+If a file-like object is not associated
+  with a real file, this method should <i>not</i> be implemented.</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-160"><tt class="method">fileno</tt></a></b>()
+<dd>
+  <a name="l2h-177">&nbsp;</a>  Return the integer ``file descriptor'' that is used by the
+  underlying implementation to request I/O operations from the
+  operating system.  This can be useful for other, lower level
+  interfaces that use file descriptors, such as the
+  <tt class="module"><a href="module-fcntl.html">fcntl</a></tt><a name="l2h-178">&nbsp;</a>module or
+  <tt class="function">os.read()</tt> and friends.  <span class="note"><b class="label">Note:</b>
+File-like objects
+  which do not have a real file descriptor should <i>not</i> provide
+  this method!</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-161"><tt class="method">read</tt></a></b>(<big>[</big><var>size</var><big>]</big>)
+<dd>
+  Read at most <var>size</var> bytes from the file (less if the read hits
+  EOF before obtaining <var>size</var> bytes).  If the <var>size</var>
+  argument is negative or omitted, read all data until EOF is
+  reached.  The bytes are returned as a string object.  An empty
+  string is returned when EOF is encountered immediately.  (For
+  certain files, like ttys, it makes sense to continue reading after
+  an EOF is hit.)  Note that this method may call the underlying
+  C function <tt class="cfunction">fread()</tt> more than once in an effort to
+  acquire as close to <var>size</var> bytes as possible.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-162"><tt class="method">readline</tt></a></b>(<big>[</big><var>size</var><big>]</big>)
+<dd>
+  Read one entire line from the file.  A trailing newline character is
+  kept in the string<A NAME="tex2html12"
+  HREF="#foot2696"><SUP>2.11</SUP></A> (but may be absent when a file ends with an
+  incomplete line).  If the <var>size</var> argument is present and
+  non-negative, it is a maximum byte count (including the trailing
+  newline) and an incomplete line may be returned.
+  An empty string is returned when EOF is hit
+  immediately.  <span class="note"><b class="label">Note:</b>
+Unlike <code>stdio</code>'s <tt class="cfunction">fgets()</tt>, the
+  returned string contains null characters (<code>'&#92;0'</code>) if they
+  occurred in the input.</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-163"><tt class="method">readlines</tt></a></b>(<big>[</big><var>sizehint</var><big>]</big>)
+<dd>
+  Read until EOF using <tt class="method">readline()</tt> and return a list containing
+  the lines thus read.  If the optional <var>sizehint</var> argument is
+  present, instead of reading up to EOF, whole lines totalling
+  approximately <var>sizehint</var> bytes (possibly after rounding up to an
+  internal buffer size) are read.  Objects implementing a file-like
+  interface may choose to ignore <var>sizehint</var> if it cannot be
+  implemented, or cannot be implemented efficiently.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-164"><tt class="method">xreadlines</tt></a></b>()
+<dd>
+  Equivalent to
+  <tt class="function">xreadlines.xreadlines(<var>file</var>)</tt>.<a name="l2h-179">&nbsp;</a>  (See the <tt class="module"><a href="module-xreadlines.html">xreadlines</a></tt> module for more information.)
+  
+<span class="versionnote">New in version 2.1.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-165"><tt class="method">seek</tt></a></b>(<var>offset</var><big>[</big><var>, whence</var><big>]</big>)
+<dd>
+  Set the file's current position, like <code>stdio</code>'s <tt class="cfunction">fseek()</tt>.
+  The <var>whence</var> argument is optional and defaults to <code>0</code>
+  (absolute file positioning); other values are <code>1</code> (seek
+  relative to the current position) and <code>2</code> (seek relative to the
+  file's end).  There is no return value.  Note that if the file is
+  opened for appending (mode <code>'a'</code> or <code>'a+'</code>), any
+  <tt class="method">seek()</tt> operations will be undone at the next write.  If the
+  file is only opened for writing in append mode (mode <code>'a'</code>),
+  this method is essentially a no-op, but it remains useful for files
+  opened in append mode with reading enabled (mode <code>'a+'</code>).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-166"><tt class="method">tell</tt></a></b>()
+<dd>
+  Return the file's current position, like <code>stdio</code>'s
+  <tt class="cfunction">ftell()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-167"><tt class="method">truncate</tt></a></b>(<big>[</big><var>size</var><big>]</big>)
+<dd>
+  Truncate the file's size.  If the optional <var>size</var> argument
+  present, the file is truncated to (at most) that size.  The size
+  defaults to the current position.  Availability of this function
+  depends on the operating system version (for example, not all
+  Unix versions support this operation).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-168"><tt class="method">write</tt></a></b>(<var>str</var>)
+<dd>
+  Write a string to the file.  There is no return value.  Due to
+  buffering, the string may not actually show up in the file until
+  the <tt class="method">flush()</tt> or <tt class="method">close()</tt> method is called.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-169"><tt class="method">writelines</tt></a></b>(<var>sequence</var>)
+<dd>
+  Write a sequence of strings to the file.  The sequence can be any
+  iterable object producing strings, typically a list of strings.
+  There is no return value.
+  (The name is intended to match <tt class="method">readlines()</tt>;
+  <tt class="method">writelines()</tt> does not add line separators.)
+</dl>
+
+<P>
+Files support the iterator protocol.  Each iteration returns the same
+result as <code><var>file</var>.readline()</code>, and iteration ends when the
+<tt class="method">readline()</tt> method returns an empty string.
+
+<P>
+File objects also offer a number of other interesting attributes.
+These are not required for file-like objects, but should be
+implemented if they make sense for the particular object.
+
+<P>
+<dl><dt><b><a name="l2h-170"><tt class="member">closed</tt></a></b>
+<dd>
+Boolean indicating the current state of the file object.  This is a
+read-only attribute; the <tt class="method">close()</tt> method changes the value.
+It may not be available on all file-like objects.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-171"><tt class="member">mode</tt></a></b>
+<dd>
+The I/O mode for the file.  If the file was created using the
+<tt class="function">open()</tt> built-in function, this will be the value of the
+<var>mode</var> parameter.  This is a read-only attribute and may not be
+present on all file-like objects.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-172"><tt class="member">name</tt></a></b>
+<dd>
+If the file object was created using <tt class="function">open()</tt>, the name of
+the file.  Otherwise, some string that indicates the source of the
+file object, of the form "<tt class="samp">&lt;...&gt;</tt>".  This is a read-only
+attribute and may not be present on all file-like objects.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-173"><tt class="member">softspace</tt></a></b>
+<dd>
+Boolean that indicates whether a space character needs to be printed
+before another value when using the <tt class="keyword">print</tt> statement.
+Classes that are trying to simulate a file object should also have a
+writable <tt class="member">softspace</tt> attribute, which should be initialized to
+zero.  This will be automatic for most classes implemented in Python
+(care may be needed for objects that override attribute access); types
+implemented in C will have to provide a writable
+<tt class="member">softspace</tt> attribute.
+<span class="note"><b class="label">Note:</b>
+This attribute is not used to control the
+<tt class="keyword">print</tt> statement, but to allow the implementation of
+<tt class="keyword">print</tt> to keep track of its internal state.</span>
+</dl>
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot2691">... Functions.''</A><A NAME="foot2691"
+ href="bltin-file-objects.html#tex2html11"><SUP>2.10</SUP></A>
+<DD><tt class="function">file()</tt>
+is new in Python 2.2.  The older built-in <tt class="function">open()</tt> is an
+alias for <tt class="function">file()</tt>.
+
+<DT><A NAME="foot2696">... string</A><A NAME="foot2696"
+ href="bltin-file-objects.html#tex2html12"><SUP>2.11</SUP></A>
+<DD>
+	The advantage of leaving the newline on is that an empty string 
+	can be returned to mean EOF without being ambiguous.  Another 
+	advantage is that (in cases where it might matter, for example. if you 
+	want to make an exact copy of a file while scanning its lines) 
+	you can tell whether the last line of a file ended in a newline
+	or not (yes this happens!).
+  
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="typesmapping.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="typesother.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="typesmapping.html">2.2.7 Mapping Types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="types.html">2.2 Built-in Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="typesother.html">2.2.9 Other Built-in Types</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

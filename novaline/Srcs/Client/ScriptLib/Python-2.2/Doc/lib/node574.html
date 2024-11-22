@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>19.3 Python Abstract Syntax</title>
+<META NAME="description" CONTENT="19.3 Python Abstract Syntax">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-compiler.visitor.html">
+<LINK REL="previous" HREF="node573.html">
+<LINK REL="up" href="compiler.html">
+<LINK REL="next" href="module-compiler.ast.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node573.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="compiler.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-compiler.ast.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node573.html">19.2 Limitations</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="compiler.html">19. Python compiler package</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-compiler.ast.html">19.3.1 AST Nodes</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0021300000000000000000">
+19.3 Python Abstract Syntax</A>
+</H1>
+
+<P>
+The <tt class="module">compiler.ast</tt> module defines an abstract syntax for
+Python.  In the abstract syntax tree, each node represents a syntactic
+construct.  The root of the tree is <tt class="class">Module</tt> object.
+
+<P>
+The abstract syntax offers a higher level interface to parsed Python
+source code.  The <a class="ulink" href="http://www.python.org/doc/current/lib/module-parser.html"
+  ><tt class="module">parser</tt></a>
+module and the compiler written in C for the Python interpreter use a
+concrete syntax tree.  The concrete syntax is tied closely to the
+grammar description used for the Python parser.  Instead of a single
+node for a construct, there are often several levels of nested nodes
+that are introduced by Python's precedence rules.
+
+<P>
+The abstract syntax tree is created by the
+<tt class="module">compiler.transformer</tt> module.  The transformer relies on the
+builtin Python parser to generate a concrete syntax tree.  It
+generates an abstract syntax tree from the concrete tree.  
+
+<P>
+The <tt class="module">transformer</tt> module was created by Greg
+Stein<a name="l2h-3842">&nbsp;</a>and Bill Tutt<a name="l2h-3843">&nbsp;</a>for an
+experimental Python-to-C compiler.  The current version contains a
+number of modifications and improvements, but the basic form of the
+abstract syntax and of the transformer are due to Stein and Tutt.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="module-compiler.ast.html">19.3.1 AST Nodes</a>
+<LI><A href="node576.html">19.3.2 Assignment nodes</a>
+<LI><A href="node577.html">19.3.3 Examples</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node573.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="compiler.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-compiler.ast.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node573.html">19.2 Limitations</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="compiler.html">19. Python compiler package</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-compiler.ast.html">19.3.1 AST Nodes</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

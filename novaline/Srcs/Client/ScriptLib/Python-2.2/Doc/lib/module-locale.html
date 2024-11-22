@@ -1,0 +1,641 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.24 locale -- Internationalization services</title>
+<META NAME="description" CONTENT="6.24 locale -- Internationalization services">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-gettext.html">
+<LINK REL="previous" href="module-shutil.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" HREF="node197.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="shutil-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node197.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="shutil-example.html">6.23.1 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node197.html">6.24.1 Background, details, hints,</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0082400000000000000000">
+6.24 <tt class="module">locale</tt> --
+         Internationalization services</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">locale</tt> module opens access to the POSIX locale
+database and functionality. The POSIX locale mechanism allows
+programmers to deal with certain cultural issues in an application,
+without requiring the programmer to know all the specifics of each
+country where the software is executed.
+
+<P>
+The <tt class="module">locale</tt> module is implemented on top of the
+<tt class="module">_locale</tt><a name="l2h-1806">&nbsp;</a>module, which in turn uses an
+ANSI C locale implementation if available.
+
+<P>
+The <tt class="module">locale</tt> module defines the following exception and
+functions:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-1765"><tt class="exception">Error</tt></a></b>
+<dd>
+  Exception raised when <tt class="function">setlocale()</tt> fails.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1766"><tt class="function">setlocale</tt></a></b>(<var>category</var><big>[</big><var>, locale</var><big>]</big>)
+<dd>
+  If <var>locale</var> is specified, it may be a string, a tuple of the
+  form <code>(<var>language code</var>, <var>encoding</var>)</code>, or <code>None</code>.
+  If it is a tuple, it is converted to a string using the locale
+  aliasing engine.  If <var>locale</var> is given and not <code>None</code>,
+  <tt class="function">setlocale()</tt> modifies the locale setting for the
+  <var>category</var>.  The available categories are listed in the data
+  description below.  The value is the name of a locale.  An empty
+  string specifies the user's default settings. If the modification of
+  the locale fails, the exception <tt class="exception">Error</tt> is raised.  If
+  successful, the new locale setting is returned.
+
+<P>
+If <var>locale</var> is omitted or <code>None</code>, the current setting for
+  <var>category</var> is returned.
+
+<P>
+<tt class="function">setlocale()</tt> is not thread safe on most systems.
+  Applications typically start with a call of
+
+<P>
+<dl><dd><pre class="verbatim">
+import locale
+locale.setlocale(locale.LC_ALL, '')
+</pre></dl>
+
+<P>
+This sets the locale for all categories to the user's default
+  setting (typically specified in the <a class="envvar" name="l2h-1807">LANG</a> environment
+  variable).  If the locale is not changed thereafter, using
+  multithreading should not cause problems.
+
+<P>
+
+<span class="versionnote">Changed in version 2.0:
+Added support for tuple values of the <var>locale</var>
+                  parameter.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1767"><tt class="function">localeconv</tt></a></b>()
+<dd>
+  Returns the database of of the local conventions as a dictionary.
+  This dictionary has the following strings as keys:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Key</b>&nbsp;</th>
+      <th align="left"><b>Category</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>LC_NUMERIC</code></td>
+        <td align="left"><code>'decimal_point'</code></td>
+        <td align="left">Decimal point character.</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td align="left"><code>'grouping'</code></td>
+        <td align="left">Sequence of numbers specifying which relative positions
+             the <code>'thousands_sep'</code> is expected.  If the sequence is
+             terminated with <tt class="constant">CHAR_MAX</tt>, no further grouping
+             is performed. If the sequence terminates with a <code>0</code>, 
+             the last group size is repeatedly used.</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td align="left"><code>'thousands_sep'</code></td>
+        <td align="left">Character used between groups.</td>
+    <tr><td align="left" valign="baseline"><code>LC_MONETARY</code></td>
+        <td align="left"><code>'int_curr_symbol'</code></td>
+        <td align="left">International currency symbol.</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td align="left"><code>'currency_symbol'</code></td>
+        <td align="left">Local currency symbol.</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td align="left"><code>'mon_decimal_point'</code></td>
+        <td align="left">Decimal point used for monetary values.</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td align="left"><code>'mon_thousands_sep'</code></td>
+        <td align="left">Group separator used for monetary values.</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td align="left"><code>'mon_grouping'</code></td>
+        <td align="left">Equivalent to <code>'grouping'</code>, used for monetary
+             values.</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td align="left"><code>'positive_sign'</code></td>
+        <td align="left">Symbol used to annotate a positive monetary value.</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td align="left"><code>'negative_sign'</code></td>
+        <td align="left">Symbol used to annotate a nnegative monetary value.</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td align="left"><code>'frac_digits'</code></td>
+        <td align="left">Number of fractional digits used in local formatting
+             of monetary values.</td>
+    <tr><td align="left" valign="baseline">&nbsp;</td>
+        <td align="left"><code>'int_frac_digits'</code></td>
+        <td align="left">Number of fractional digits used in international
+             formatting of monetary values.</td></tbody>
+</table>
+
+<P>
+The possible values for <code>'p_sign_posn'</code> and
+  <code>'n_sign_posn'</code> are given below.
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Value</b>&nbsp;</th>
+      <th align="left"><b>Explanation</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><code>0</code></td>
+        <td align="left">Currency and value are surrounded by parentheses.</td>
+    <tr><td align="center" valign="baseline"><code>1</code></td>
+        <td align="left">The sign should precede the value and currency symbol.</td>
+    <tr><td align="center" valign="baseline"><code>2</code></td>
+        <td align="left">The sign should follow the value and currency symbol.</td>
+    <tr><td align="center" valign="baseline"><code>3</code></td>
+        <td align="left">The sign should immediately precede the value.</td>
+    <tr><td align="center" valign="baseline"><code>4</code></td>
+        <td align="left">The sign should immediately follow the value.</td>
+    <tr><td align="center" valign="baseline"><code><tt class="constant">LC_MAX</tt></code></td>
+        <td align="left">Nothing is specified in this locale.</td></tbody>
+</table>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1768"><tt class="function">nl_langinfo</tt></a></b>(<var>option</var>)
+<dd>
+
+<P>
+Return some locale-specific information as a string. This function is
+not available on all systems, and the set of possible options might
+also vary across platforms. The possible argument values are numbers,
+for which symbolic constants are available in the locale module.
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1769"><tt class="function">getdefaultlocale</tt></a></b>(<big>[</big><var>envvars</var><big>]</big>)
+<dd>
+  Tries to determine the default locale settings and returns
+  them as a tuple of the form <code>(<var>language code</var>,
+  <var>encoding</var>)</code>.
+
+<P>
+According to POSIX, a program which has not called
+  <code>setlocale(LC_ALL, '')</code> runs using the portable <code>'C'</code>
+  locale.  Calling <code>setlocale(LC_ALL, '')</code> lets it use the
+  default locale as defined by the <a class="envvar" name="l2h-1808">LANG</a> variable.  Since we
+  do not want to interfere with the current locale setting we thus
+  emulate the behavior in the way described above.
+
+<P>
+To maintain compatibility with other platforms, not only the
+  <a class="envvar" name="l2h-1809">LANG</a> variable is tested, but a list of variables given as
+  envvars parameter.  The first found to be defined will be
+  used.  <var>envvars</var> defaults to the search path used in GNU gettext;
+  it must always contain the variable name "<tt class="samp">LANG</tt>".  The GNU
+  gettext search path contains <code>'LANGUAGE'</code>, <code>'LC_ALL'</code>,
+  <code>'LC_CTYPE'</code>, and <code>'LANG'</code>, in that order.
+
+<P>
+Except for the code <code>'C'</code>, the language code corresponds to
+  <a class="rfc" name="rfcref-62317"
+href="http://www.faqs.org/rfcs/rfc1766.html">RFC 1766</a>.  <var>language code</var> and <var>encoding</var> may be
+  <code>None</code> if their values cannot be determined.
+  
+<span class="versionnote">New in version 2.0.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1770"><tt class="function">getlocale</tt></a></b>(<big>[</big><var>category</var><big>]</big>)
+<dd>
+  Returns the current setting for the given locale category as
+  tuple (language code, encoding).  <var>category</var> may be one of the
+  <tt class="constant">LC_*</tt> values except <tt class="constant">LC_ALL</tt>.  It defaults to
+  <tt class="constant">LC_CTYPE</tt>.
+
+<P>
+Except for the code <code>'C'</code>, the language code corresponds to
+  <a class="rfc" name="rfcref-62319"
+href="http://www.faqs.org/rfcs/rfc1766.html">RFC 1766</a>.  <var>language code</var> and <var>encoding</var> may be
+  <code>None</code> if their values cannot be determined.
+  
+<span class="versionnote">New in version 2.0.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1771"><tt class="function">normalize</tt></a></b>(<var>localename</var>)
+<dd>
+  Returns a normalized locale code for the given locale name.  The
+  returned locale code is formatted for use with
+  <tt class="function">setlocale()</tt>.  If normalization fails, the original name
+  is returned unchanged.
+
+<P>
+If the given encoding is not known, the function defaults to
+  the default encoding for the locale code just like
+  <tt class="function">setlocale()</tt>.
+  
+<span class="versionnote">New in version 2.0.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1772"><tt class="function">resetlocale</tt></a></b>(<big>[</big><var>category</var><big>]</big>)
+<dd>
+  Sets the locale for <var>category</var> to the default setting.
+
+<P>
+The default setting is determined by calling
+  <tt class="function">getdefaultlocale()</tt>.  <var>category</var> defaults to
+  <tt class="constant">LC_ALL</tt>.
+  
+<span class="versionnote">New in version 2.0.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1773"><tt class="function">strcoll</tt></a></b>(<var>string1, string2</var>)
+<dd>
+  Compares two strings according to the current
+  <tt class="constant">LC_COLLATE</tt> setting. As any other compare function,
+  returns a negative, or a positive value, or <code>0</code>, depending on
+  whether <var>string1</var> collates before or after <var>string2</var> or is
+  equal to it.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1774"><tt class="function">strxfrm</tt></a></b>(<var>string</var>)
+<dd>
+  Transforms a string to one that can be used for the built-in
+  function <tt class="function">cmp()</tt><a name="l2h-1810">&nbsp;</a>, and still returns
+  locale-aware results.  This function can be used when the same
+  string is compared repeatedly, e.g. when collating a sequence of
+  strings.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1775"><tt class="function">format</tt></a></b>(<var>format, val</var><big>[</big><var>, grouping</var><big>]</big>)
+<dd>
+  Formats a number <var>val</var> according to the current
+  <tt class="constant">LC_NUMERIC</tt> setting.  The format follows the conventions
+  of the <code>%</code> operator.  For floating point values, the decimal
+  point is modified if appropriate.  If <var>grouping</var> is true, also
+  takes the grouping into account.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1776"><tt class="function">str</tt></a></b>(<var>float</var>)
+<dd>
+  Formats a floating point number using the same format as the
+  built-in function <code>str(<var>float</var>)</code>, but takes the decimal
+  point into account.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1777"><tt class="function">atof</tt></a></b>(<var>string</var>)
+<dd>
+  Converts a string to a floating point number, following the
+  <tt class="constant">LC_NUMERIC</tt> settings.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1778"><tt class="function">atoi</tt></a></b>(<var>string</var>)
+<dd>
+  Converts a string to an integer, following the
+  <tt class="constant">LC_NUMERIC</tt> conventions.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1779"><tt>LC_CTYPE</tt></a></b>
+<dd>
+<a name="l2h-1811">&nbsp;</a>  Locale category for the character type functions.  Depending on the
+  settings of this category, the functions of module
+  <tt class="module"><a href="module-string.html">string</a></tt> dealing with case change their behaviour.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1780"><tt>LC_COLLATE</tt></a></b>
+<dd>
+  Locale category for sorting strings.  The functions
+  <tt class="function">strcoll()</tt> and <tt class="function">strxfrm()</tt> of the
+  <tt class="module">locale</tt> module are affected.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1781"><tt>LC_TIME</tt></a></b>
+<dd>
+  Locale category for the formatting of time.  The function
+  <tt class="function">time.strftime()</tt> follows these conventions.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1782"><tt>LC_MONETARY</tt></a></b>
+<dd>
+  Locale category for formatting of monetary values.  The available
+  options are available from the <tt class="function">localeconv()</tt> function.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1783"><tt>LC_MESSAGES</tt></a></b>
+<dd>
+  Locale category for message display. Python currently does not
+  support application specific locale-aware messages.  Messages
+  displayed by the operating system, like those returned by
+  <tt class="function">os.strerror()</tt> might be affected by this category.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1784"><tt>LC_NUMERIC</tt></a></b>
+<dd>
+  Locale category for formatting numbers.  The functions
+  <tt class="function">format()</tt>, <tt class="function">atoi()</tt>, <tt class="function">atof()</tt> and
+  <tt class="function">str()</tt> of the <tt class="module">locale</tt> module are affected by that
+  category.  All other numeric formatting operations are not
+  affected.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1785"><tt>LC_ALL</tt></a></b>
+<dd>
+  Combination of all locale settings.  If this flag is used when the
+  locale is changed, setting the locale for all categories is
+  attempted. If that fails for any category, no category is changed at
+  all.  When the locale is retrieved using this flag, a string
+  indicating the setting for all categories is returned. This string
+  can be later used to restore the settings.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1786"><tt>CHAR_MAX</tt></a></b>
+<dd>
+  This is a symbolic constant used for different values returned by
+  <tt class="function">localeconv()</tt>.
+</dl>
+
+<P>
+The <tt class="function">nl_langinfo</tt> function accepts one of the following keys.
+Most descriptions are taken from the corresponding description in the
+GNU C library.
+
+<P>
+<dl><dt><b><a name="l2h-1787"><tt>CODESET</tt></a></b>
+<dd>
+Return a string with the name of the character encoding used in the
+selected locale.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1788"><tt>D_T_FMT</tt></a></b>
+<dd>
+Return a string that can be used as a format string for strftime(3) to
+represent time and date in a locale-specific way.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1789"><tt>D_FMT</tt></a></b>
+<dd>
+Return a string that can be used as a format string for strftime(3) to
+represent a date in a locale-specific way.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1790"><tt>T_FMT</tt></a></b>
+<dd>
+Return a string that can be used as a format string for strftime(3) to
+represent a time in a locale-specific way.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1791"><tt>T_FMT_AMPM</tt></a></b>
+<dd>
+The return value can be used as a format string for `strftime' to
+represent time in the am/pm format.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1792"><tt>DAY_1 ... DAY_7</tt></a></b>
+<dd>
+Return name of the n-th day of the week. <span class="warning"><b class="label">Warning:</b>
+This
+follows the US convention of <tt class="constant">DAY_1</tt> being Sunday, not the
+international convention (ISO 8601) that Monday is the first day of
+the week.</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1793"><tt>ABDAY_1 ... ABDAY_7</tt></a></b>
+<dd>
+Return abbreviated name of the n-th day of the week.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1794"><tt>MON_1 ... MON_12</tt></a></b>
+<dd>
+Return name of the n-th month.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1795"><tt>ABMON_1 ... ABMON_12</tt></a></b>
+<dd>
+Return abbreviated name of the n-th month.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1796"><tt>RADIXCHAR</tt></a></b>
+<dd>
+Return radix character (decimal dot, decimal comma, etc.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1797"><tt>THOUSEP</tt></a></b>
+<dd>
+Return separator character for thousands (groups of three digits).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1798"><tt>YESEXPR</tt></a></b>
+<dd>
+Return a regular expression that can be used with the regex
+function to recognize a positive response to a yes/no question.
+<span class="warning"><b class="label">Warning:</b>
+The expression is in the syntax suitable for the
+<tt class="cfunction">regex()</tt> function from the C library, which might differ
+from the syntax used in <tt class="module"><a href="module-re.html">re</a></tt>.</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1799"><tt>NOEXPR</tt></a></b>
+<dd>
+Return a regular expression that can be used with the regex(3)
+function to recognize a negative response to a yes/no question.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1800"><tt>CRNCYSTR</tt></a></b>
+<dd>
+Return the currency symbol, preceded by "-" if the symbol should
+appear before the value, "+" if the symbol should appear after the
+value, or "." if the symbol should replace the radix character.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1801"><tt>ERA</tt></a></b>
+<dd>
+The return value represents the era used in the current locale.
+
+<P>
+Most locales do not define this value.  An example of a locale which
+does define this value is the Japanese one.  In Japan, the traditional
+representation of dates includes the name of the era corresponding to
+the then-emperor's reign.
+
+<P>
+Normally it should not be necessary to use this value directly.
+Specifying the <code>E</code> modifier in their format strings causes the
+<tt class="function">strftime</tt> function to use this information.  The format of the
+returned string is not specified, and therefore you should not assume
+knowledge of it on different systems.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1802"><tt>ERA_YEAR</tt></a></b>
+<dd>
+The return value gives the year in the relevant era of the locale.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1803"><tt>ERA_D_T_FMT</tt></a></b>
+<dd>
+This return value can be used as a format string for
+<tt class="function">strftime</tt> to represent dates and times in a locale-specific
+era-based way.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1804"><tt>ERA_D_FMT</tt></a></b>
+<dd>
+This return value can be used as a format string for
+<tt class="function">strftime</tt> to represent time in a locale-specific era-based
+way.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1805"><tt>ALT_DIGITS</tt></a></b>
+<dd>
+The return value is a representation of up to 100 values used to
+represent the values 0 to 99.
+</dl>
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import locale
+&gt;&gt;&gt; loc = locale.setlocale(locale.LC_ALL) # get current locale
+&gt;&gt;&gt; locale.setlocale(locale.LC_ALL, 'de') # use German locale
+&gt;&gt;&gt; locale.strcoll('f\xe4n', 'foo') # compare a string containing an umlaut 
+&gt;&gt;&gt; locale.setlocale(locale.LC_ALL, '') # use user's preferred locale
+&gt;&gt;&gt; locale.setlocale(locale.LC_ALL, 'C') # use default (C) locale
+&gt;&gt;&gt; locale.setlocale(locale.LC_ALL, loc) # restore saved locale
+</pre></dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node197.html">6.24.1 Background, details, hints, tips and caveats</a>
+<LI><A href="embedding-locale.html">6.24.2 For extension writers and programs that embed Python</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="shutil-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node197.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="shutil-example.html">6.23.1 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node197.html">6.24.1 Background, details, hints,</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

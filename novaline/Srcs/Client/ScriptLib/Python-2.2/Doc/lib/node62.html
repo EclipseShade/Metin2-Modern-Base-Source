@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.14.4 What can be pickled and unpickled?</title>
+<META NAME="description" CONTENT="3.14.4 What can be pickled and unpickled?">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="pickle-protocol.html">
+<LINK REL="previous" HREF="node61.html">
+<LINK REL="up" href="module-pickle.html">
+<LINK REL="next" href="pickle-protocol.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node61.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-pickle.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pickle-protocol.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node61.html">3.14.3 Usage</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-pickle.html">3.14 pickle  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pickle-protocol.html">3.14.5 The pickle protocol</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0051440000000000000000">
+3.14.4 What can be pickled and unpickled?</A>
+</H2>
+
+<P>
+The following types can be pickled:
+
+<P>
+
+<UL>
+<LI><code>None</code>
+
+<P>
+</LI>
+<LI>integers, long integers, floating point numbers, complex numbers
+
+<P>
+</LI>
+<LI>normal and Unicode strings
+
+<P>
+</LI>
+<LI>tuples, lists, and dictionaries containing only picklable objects
+
+<P>
+</LI>
+<LI>functions defined at the top level of a module
+
+<P>
+</LI>
+<LI>built-in functions defined at the top level of a module
+
+<P>
+</LI>
+<LI>classes that are defined at the top level of a module
+
+<P>
+</LI>
+<LI>instances of such classes whose <tt class="member">__dict__</tt> or
+<tt class="method">__setstate__()</tt> is picklable  (see
+section&nbsp;<A href="pickle-protocol.html#pickle-protocol">3.14.5</A> for details)
+
+<P>
+</LI>
+</UL>
+
+<P>
+Attempts to pickle unpicklable objects will raise the
+<tt class="exception">PicklingError</tt> exception; when this happens, an unspecified
+number of bytes may have already been written to the underlying file.
+
+<P>
+Note that functions (built-in and user-defined) are pickled by ``fully
+qualified'' name reference, not by value.  This means that only the
+function name is pickled, along with the name of module the function
+is defined in.  Neither the function's code, nor any of its function
+attributes are pickled.  Thus the defining module must be importable
+in the unpickling environment, and the module must contain the named
+object, otherwise an exception will be raised<A NAME="tex2html18"
+  HREF="#foot6921"><SUP>3.6</SUP></A>.
+
+<P>
+Similarly, classes are pickled by named reference, so the same
+restrictions in the unpickling environment apply.  Note that none of
+the class's code or data is pickled, so in the following example the
+class attribute <code>attr</code> is not restored in the unpickling
+environment:
+
+<P>
+<dl><dd><pre class="verbatim">
+class Foo:
+    attr = 'a class attr'
+
+picklestring = pickle.dumps(Foo)
+</pre></dl>
+
+<P>
+These restrictions are why picklable functions and classes must be
+defined in the top level of a module.
+
+<P>
+Similarly, when class instances are pickled, their class's code and
+data are not pickled along with them.  Only the instance data are
+pickled.  This is done on purpose, so you can fix bugs in a class or
+add methods to the class and still load objects that were created with
+an earlier version of the class.  If you plan to have long-lived
+objects that will see many versions of a class, it may be worthwhile
+to put a version number in the objects so that suitable conversions
+can be made by the class's <tt class="method">__setstate__()</tt> method.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot6921">... raised</A><A NAME="foot6921"
+ HREF="node62.html#tex2html18"><SUP>3.6</SUP></A>
+<DD>The exception
+raised will likely be an <tt class="exception">ImportError</tt> or an
+<tt class="exception">AttributeError</tt> but it could be something else.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node61.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-pickle.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pickle-protocol.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node61.html">3.14.3 Usage</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-pickle.html">3.14 pickle  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pickle-protocol.html">3.14.5 The pickle protocol</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

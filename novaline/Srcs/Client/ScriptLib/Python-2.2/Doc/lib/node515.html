@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>16.1.6.8 The index Parameter</title>
+<META NAME="description" CONTENT="16.1.6.8 The index Parameter">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" HREF="node514.html">
+<LINK REL="up" HREF="node507.html">
+<LINK REL="next" href="module-Tix.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node514.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node507.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-Tix.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node514.html">16.1.6.7 Bindings and Events</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node507.html">16.1.6 Handy Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-Tix.html">16.2 Tix  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0018168000000000000000">
+16.1.6.8 The index Parameter</A>
+</H3> 
+<P>
+A number of widgets require``index'' parameters to be passed.  These
+are used to point at a specific place in a Text widget, or to
+particular characters in an Entry widget, or to particular menu items
+in a Menu widget.
+
+<P>
+<DL>
+<DT><STRONG>Entry widget indexes (index, view index, etc.)</STRONG></DT>
+<DD>Entry widgets have options that refer to character positions in the
+text being displayed.  You can use these <tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt> functions
+to access these special points in text widgets:
+
+<P>
+<DL>
+<DT><STRONG>AtEnd()</STRONG></DT>
+<DD>refers to the last position in the text
+
+<P>
+</DD>
+<DT><STRONG>AtInsert()</STRONG></DT>
+<DD>refers to the point where the text cursor is
+
+<P>
+</DD>
+<DT><STRONG>AtSelFirst()</STRONG></DT>
+<DD>indicates the beginning point of the selected text
+
+<P>
+</DD>
+<DT><STRONG>AtSelLast()</STRONG></DT>
+<DD>denotes the last point of the selected text and finally
+
+<P>
+</DD>
+<DT><STRONG>At(x<big>[</big>, y<big>]</big>)</STRONG></DT>
+<DD>refers to the character at pixel location <var>x</var>, <var>y</var> (with
+<var>y</var> not used in the case of a text entry widget, which contains a
+single line of text).
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>Text widget indexes</STRONG></DT>
+<DD>The index notation for Text widgets is very rich and is best described
+in the Tk man pages.
+
+<P>
+</DD>
+<DT><STRONG>Menu indexes (menu.invoke(), menu.entryconfig(), etc.)</STRONG></DT>
+<DD><P>
+Some options and methods for menus manipulate specific menu entries.
+Anytime a menu index is needed for an option or a parameter, you may
+pass in: 
+
+<UL>
+<LI>an integer which refers to the numeric position of the entry in
+the widget, counted from the top, starting with 0; 
+</LI>
+<LI>the string <code>'active'</code>, which refers to the menu position that is
+currently under the cursor;
+</LI>
+<LI>the string <code>"last"</code> which refers to the last menu
+item;  
+</LI>
+<LI>An integer preceded by <code>@</code>, as in <code>@6</code>, where the integer is
+interpreted as a y pixel coordinate in the menu's coordinate system;
+</LI>
+<LI>the string <code>"none"</code>, which indicates no menu entry at all, most
+often used with menu.activate() to deactivate all entries, and
+finally,
+</LI>
+<LI>a text string that is pattern matched against the label of the
+menu entry, as scanned from the top of the menu to the bottom.  Note
+that this index type is considered after all the others, which means
+that matches for menu items labelled <code>last</code>, <code>active</code>, or
+<code>none</code> may be interpreted as the above literals, instead.
+</LI>
+</UL>
+</DD>
+</DL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node514.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node507.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-Tix.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node514.html">16.1.6.7 Bindings and Events</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node507.html">16.1.6 Handy Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-Tix.html">16.2 Tix  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

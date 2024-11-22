@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>18.1.5 AST Objects </title>
+<META NAME="description" CONTENT="18.1.5 AST Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node556.html">
+<LINK REL="previous" HREF="node554.html">
+<LINK REL="up" href="module-parser.html">
+<LINK REL="next" HREF="node556.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node554.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-parser.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node556.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node554.html">18.1.4 Exceptions and Error</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-parser.html">18.1 parser  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node556.html">18.1.6 Examples</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0020150000000000000000">&nbsp;</A>
+<BR>
+18.1.5 AST Objects 
+</H2>
+
+<P>
+Ordered and equality comparisons are supported between AST objects.
+Pickling of AST objects (using the <tt class="module"><a href="module-pickle.html">pickle</a></tt> module) is also
+supported.
+
+<P>
+<dl><dt><b><a name="l2h-3779"><tt>ASTType</tt></a></b>
+<dd>
+The type of the objects returned by <tt class="function">expr()</tt>,
+<tt class="function">suite()</tt> and <tt class="function">sequence2ast()</tt>.
+</dl>
+
+<P>
+AST objects have the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-3780"><tt class="method">compile</tt></a></b>(<big>[</big><var>filename</var><big>]</big>)
+<dd>
+Same as <code>compileast(<var>ast</var>, <var>filename</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3781"><tt class="method">isexpr</tt></a></b>()
+<dd>
+Same as <code>isexpr(<var>ast</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3782"><tt class="method">issuite</tt></a></b>()
+<dd>
+Same as <code>issuite(<var>ast</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3783"><tt class="method">tolist</tt></a></b>(<big>[</big><var>line_info</var><big>]</big>)
+<dd>
+Same as <code>ast2list(<var>ast</var>, <var>line_info</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3784"><tt class="method">totuple</tt></a></b>(<big>[</big><var>line_info</var><big>]</big>)
+<dd>
+Same as <code>ast2tuple(<var>ast</var>, <var>line_info</var>)</code>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node554.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-parser.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node556.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node554.html">18.1.4 Exceptions and Error</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-parser.html">18.1 parser  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node556.html">18.1.6 Examples</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

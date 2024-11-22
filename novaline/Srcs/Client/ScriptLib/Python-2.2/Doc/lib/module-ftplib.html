@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.7 ftplib -- FTP protocol client</title>
+<META NAME="description" CONTENT="11.7 ftplib -- FTP protocol client">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-gopherlib.html">
+<LINK REL="previous" href="module-httplib.html">
+<LINK REL="up" href="internet.html">
+<LINK REL="next" href="ftp-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="httplib-examples.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="ftp-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="httplib-examples.html">11.6.3 Examples</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="ftp-objects.html">11.7.1 FTP Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0013700000000000000000">
+11.7 <tt class="module">ftplib</tt> --
+         FTP protocol client</A>
+</H1>
+
+<P>
+
+
+<P>
+This module defines the class <tt class="class">FTP</tt> and a few related items.
+The <tt class="class">FTP</tt> class implements the client side of the FTP
+protocol.<a name="l2h-2446">&nbsp;</a> You can use this to write Python
+programs that perform a variety of automated FTP jobs, such as
+mirroring other ftp servers.  It is also used by the module
+<tt class="module"><a href="module-urllib.html">urllib</a></tt> to handle URLs that use FTP.  For more information
+on FTP (File Transfer Protocol), see Internet <a class="rfc" name="rfcref-63235"
+href="http://www.faqs.org/rfcs/rfc959.html">RFC 959</a>.
+
+<P>
+Here's a sample session using the <tt class="module">ftplib</tt> module:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; from ftplib import FTP
+&gt;&gt;&gt; ftp = FTP('ftp.cwi.nl')   # connect to host, default port
+&gt;&gt;&gt; ftp.login()               # user anonymous, passwd user@hostname
+&gt;&gt;&gt; ftp.retrlines('LIST')     # list directory contents
+total 24418
+drwxrwsr-x   5 ftp-usr  pdmaint     1536 Mar 20 09:48 .
+dr-xr-srwt 105 ftp-usr  pdmaint     1536 Mar 21 14:32 ..
+-rw-r--r--   1 ftp-usr  pdmaint     5305 Mar 20 09:48 INDEX
+ .
+ .
+ .
+&gt;&gt;&gt; ftp.retrbinary('RETR README', open('README', 'wb').write)
+'226 Transfer complete.'
+&gt;&gt;&gt; ftp.quit()
+</pre></dl>
+
+<P>
+The module defines the following items:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2439"><tt class="class">FTP</tt></a></b>(<big>[</big><var>host</var><big>[</big><var>, user</var><big>[</big><var>,
+                       passwd</var><big>[</big><var>, acct</var><big>]</big><big>]</big><big>]</big><big>]</big>)
+<dd>
+Return a new instance of the <tt class="class">FTP</tt> class.  When
+<var>host</var> is given, the method call <code>connect(<var>host</var>)</code> is
+made.  When <var>user</var> is given, additionally the method call
+<code>login(<var>user</var>, <var>passwd</var>, <var>acct</var>)</code> is made (where
+<var>passwd</var> and <var>acct</var> default to the empty string when not given).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2440"><tt>all_errors</tt></a></b>
+<dd>
+The set of all exceptions (as a tuple) that methods of <tt class="class">FTP</tt>
+instances may raise as a result of problems with the FTP connection
+(as opposed to programming errors made by the caller).  This set
+includes the four exceptions listed below as well as
+<tt class="exception">socket.error</tt> and <tt class="exception">IOError</tt>.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2441"><tt class="exception">error_reply</tt></a></b>
+<dd>
+Exception raised when an unexpected reply is received from the server.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2442"><tt class="exception">error_temp</tt></a></b>
+<dd>
+Exception raised when an error code in the range 400-499 is received.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2443"><tt class="exception">error_perm</tt></a></b>
+<dd>
+Exception raised when an error code in the range 500-599 is received.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2444"><tt class="exception">error_proto</tt></a></b>
+<dd>
+Exception raised when a reply is received from the server that does
+not begin with a digit in the range 1-5.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-netrc.html">netrc</a></tt>:</b>
+    <dd>Parser for the <span class="file">.netrc</span> file format.  The file
+                    <span class="file">.netrc</span> is typically used by FTP clients to
+                    load user authentication information before prompting
+                    the user.
+  </dl>
+  <div class="seetext"><p>The file <span class="file">Tools/scripts/ftpmirror.py</span><a name="l2h-2445">&nbsp;</a>           in the Python source distribution is a script that can mirror
+           FTP sites, or portions thereof, using the <tt class="module">ftplib</tt> module.
+           It can be used as an extended example that applies this module.</div>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="ftp-objects.html">11.7.1 FTP Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="httplib-examples.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="internet.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="ftp-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="httplib-examples.html">11.6.3 Examples</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="internet.html">11. Internet Protocols and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="ftp-objects.html">11.7.1 FTP Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

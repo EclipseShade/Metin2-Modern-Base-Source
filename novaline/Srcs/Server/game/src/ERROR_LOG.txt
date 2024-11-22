@@ -1,0 +1,285 @@
+In file included from char.cpp:25:
+shop_manager.h:40:7: warning: no newline at end of file
+In file included from char.cpp:62:
+PetSystem.h:163:31: warning: no newline at end of file
+char.cpp:7234: warning: this decimal constant is unsigned only in ISO C90
+char.cpp:7242:2: warning: no newline at end of file
+char.cpp: In member function 'void CHARACTER::PointChange(BYTE, int, bool, bool)':
+char.cpp:3079: warning: comparison between signed and unsigned integer expressions
+In file included from char_battle.cpp:27:
+shop_manager.h:40:7: warning: no newline at end of file
+In file included from char_item.cpp:47:
+belt_inventory_helper.h:108:42: warning: no newline at end of file
+In file included from char_item.cpp:47:
+belt_inventory_helper.h: In static member function 'static BYTE CBeltInventoryHelper::GetBeltGradeByRefineLevel(int)':
+belt_inventory_helper.h:28: warning: comparison between signed and unsigned integer expressions
+char_item.cpp: In member function 'bool CHARACTER::IsEmptyItemGrid(TItemPos, BYTE, int) const':
+char_item.cpp:642: warning: comparison is always false due to limited range of data type
+char_item.cpp:668: warning: comparison is always false due to limited range of data type
+char_item.cpp: In member function 'bool CHARACTER::UseItemEx(CItem*, TItemPos)':
+char_item.cpp:2389: warning: format '%d' expects type 'int', but argument 6 has type 'long int'
+char_item.cpp:2393: warning: format '%d' expects type 'int', but argument 6 has type 'long int'
+char_item.cpp:2405: warning: format '%d' expects type 'int', but argument 5 has type 'long int'
+char_item.cpp:2409: warning: format '%d' expects type 'int', but argument 5 has type 'long int'
+char_item.cpp:2436: warning: format '%d' expects type 'int', but argument 6 has type 'long int'
+char_item.cpp:2444: warning: format '%d' expects type 'int', but argument 5 has type 'long int'
+char_item.cpp: In member function 'bool CHARACTER::UseItem(TItemPos, TItemPos)':
+char_item.cpp:5156: warning: unused variable 'wDestCell'
+char_item.cpp:5157: warning: unused variable 'bDestInven'
+char_item.cpp: In member function 'bool CHARACTER::EquipItem(CItem*, int)':
+char_item.cpp:6131: warning: array subscript has type 'char'
+char_item.cpp: In member function 'void CHARACTER::BuffOnAttr_AddBuffsFromItem(CItem*)':
+char_item.cpp:6195: warning: comparison between signed and unsigned integer expressions
+char_item.cpp: In member function 'void CHARACTER::BuffOnAttr_RemoveBuffsFromItem(CItem*)':
+char_item.cpp:6207: warning: comparison between signed and unsigned integer expressions
+char_item.cpp: In member function 'bool CHARACTER::CanEquipNow(CItem*, const TItemPos&, const TItemPos&)':
+char_item.cpp:7391: warning: unused variable 'itemType'
+char_item.cpp:7392: warning: unused variable 'itemSubType'
+char_item.cpp: In member function 'bool CHARACTER::IsEmptyItemGrid(TItemPos, BYTE, int) const':
+char_item.cpp:681: warning: control reaches end of non-void function
+char_item.cpp: In member function 'void CHARACTER::BuffOnAttr_ValueChange(BYTE, BYTE, BYTE)':
+char_item.cpp:6242: warning: 'pBuff' may be used uninitialized in this function
+char_state.cpp: In member function 'virtual void CHARACTER::StateMove()':
+char_state.cpp:901: warning: unused variable 'rider'
+In file included from PetSystem.cpp:8:
+PetSystem.h:163:31: warning: no newline at end of file
+PetSystem.cpp:637:2: warning: no newline at end of file
+PetSystem.cpp: In member function 'virtual bool CPetActor::_UpdateFollowAI()':
+PetSystem.cpp:246: warning: unused variable 'bDoMoveAlone'
+PetSystem.cpp: In member function 'CPetActor* CPetSystem::Summon(DWORD, CItem*, const char*, bool, DWORD)':
+PetSystem.cpp:552: warning: unused variable 'petVID'
+cmd_gm.cpp: In function 'void do_set_stat(CHARACTER*, const char*, int, int)':
+cmd_gm.cpp:3926: warning: NULL used in arithmetic
+cmd_gm.cpp:3968: warning: 'n' may be used uninitialized in this function
+cmd_gm.cpp: In function 'void do_use_item(CHARACTER*, const char*, int, int)':
+cmd_gm.cpp:4348: warning: 'cell' may be used uninitialized in this function
+cmd_gm.cpp: In function 'void do_mob_ld(CHARACTER*, const char*, int, int)':
+cmd_gm.cpp:852: warning: 'x' may be used uninitialized in this function
+cmd_gm.cpp:852: warning: 'y' may be used uninitialized in this function
+config.cpp: In function 'void config_init(const std::string&)':
+config.cpp:453: warning: NULL used in arithmetic
+config.cpp:477: warning: NULL used in arithmetic
+config.cpp:501: warning: NULL used in arithmetic
+config.cpp:523: warning: unused variable 'line'
+constants.cpp:291: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:292: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:293: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:294: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:295: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:296: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:297: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:298: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:299: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:300: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:301: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:302: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:303: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:304: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:305: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:306: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:307: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:308: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:309: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:310: warning: this decimal constant is unsigned only in ISO C90
+constants.cpp:311: warning: this decimal constant is unsigned only in ISO C90
+cube.cpp: In function 'bool Cube_make(CHARACTER*)':
+cube.cpp:544: warning: comparison between signed and unsigned integer expressions
+cube.cpp: In function 'void Cube_MakeCubeInformationText()':
+cube.cpp:716: warning: unused variable 'npcVNUM'
+cube.cpp: In function 'void Cube_InformationInitialize()':
+cube.cpp:783: warning: comparison between signed and unsigned integer expressions
+desc_client.cpp: In member function 'void CLIENT_DESC::UpdateChannelStatus(DWORD, bool)':
+desc_client.cpp:299: warning: comparison between signed and unsigned integer expressions
+In file included from desc_manager.cpp:15:
+ClientPackageCryptInfo.h:117:41: warning: no newline at end of file
+input_auth.cpp: In member function 'int CInputAuth::auth_OpenID(const char*, const char*, char*)':
+input_auth.cpp:465: warning: unused variable 'last'
+In file included from input_db.cpp:13:
+shop_manager.h:40:7: warning: no newline at end of file
+input_db.cpp:2723:2: warning: no newline at end of file
+In file included from input_main.cpp:16:
+shop_manager.h:40:7: warning: no newline at end of file
+input_main.cpp: In member function 'int CInputMain::Chat(CHARACTER*, const char*, size_t)':
+input_main.cpp:704: warning: unused variable 'len'
+input_main.cpp:706: warning: unused variable 'len'
+input_main.cpp: In function 'int ProcessTextTag(CHARACTER*, const char*, size_t)':
+input_main.cpp:252: warning: 'nPrismCount' may be used uninitialized in this function
+input_main.cpp: In member function 'int CInputMain::Chat(CHARACTER*, const char*, size_t)':
+input_main.cpp:720: warning: 'len' is used uninitialized in this function
+In file included from item.cpp:22:
+belt_inventory_helper.h:108:42: warning: no newline at end of file
+item.cpp:2084:2: warning: no newline at end of file
+In file included from item.cpp:22:
+belt_inventory_helper.h: In static member function 'static BYTE CBeltInventoryHelper::GetBeltGradeByRefineLevel(int)':
+belt_inventory_helper.h:28: warning: comparison between signed and unsigned integer expressions
+item.h: In constructor 'CItem::CItem(DWORD)':
+item.h:286: warning: 'CItem::m_pkRealTimeExpireEvent' will be initialized after
+item.h:283: warning:   'LPEVENT CItem::m_pkExpireEvent'
+item.cpp:25: warning:   when initialized here
+item.cpp: In function 'const bool CanPutIntoRing(CItem*, CItem*)':
+item.cpp:1725: warning: unused variable 'vnum'
+item.cpp: In member function 'bool CItem::CanPutInto(CItem*)':
+item.cpp:1758: warning: comparison between signed and unsigned integer expressions
+item.cpp: In member function 'int CItem::GiveMoreTime_Per(float)':
+item.cpp:2014: warning: comparison between signed and unsigned integer expressions
+item.cpp:2016: warning: comparison between signed and unsigned integer expressions
+item.cpp: In member function 'int CItem::GiveMoreTime_Fix(DWORD)':
+item.cpp:2038: warning: comparison between signed and unsigned integer expressions
+item.cpp: In member function 'int CItem::GetDuration()':
+item.cpp:2069: warning: array subscript has type 'char'
+item_manager.cpp: In member function 'TItemTable* ITEM_MANAGER::GetTable(DWORD)':
+item_manager.cpp:612: warning: comparison between signed and unsigned integer expressions
+monarch.cpp:276:2: warning: no newline at end of file
+p2p.cpp:286:2: warning: no newline at end of file
+party.cpp:1737:2: warning: no newline at end of file
+questlua.cpp: In member function 'bool quest::FPartyCheckFlagLt::operator()(CHARACTER*)':
+questlua.cpp:78: warning: 'returnBool' may be used uninitialized in this function
+In file included from questlua_pet.cpp:11:
+PetSystem.h:163:31: warning: no newline at end of file
+questlua_pet.cpp:157:2: warning: no newline at end of file
+In file included from questlua_npc.cpp:9:
+shop_manager.h:40:7: warning: no newline at end of file
+questlua_npc.cpp: In function 'int quest::npc_get_vid_attack_mul(lua_State*)':
+questlua_npc.cpp:293: warning: unused variable 'q'
+questlua_npc.cpp: In function 'int quest::npc_set_vid_attack_mul(lua_State*)':
+questlua_npc.cpp:309: warning: unused variable 'q'
+questlua_npc.cpp: In function 'int quest::npc_get_vid_damage_mul(lua_State*)':
+questlua_npc.cpp:324: warning: unused variable 'q'
+questlua_npc.cpp: In function 'int quest::npc_set_vid_damage_mul(lua_State*)':
+questlua_npc.cpp:340: warning: unused variable 'q'
+questnpc.cpp: In member function 'bool quest::NPC::HandleEvent(quest::PC&, int)':
+questnpc.cpp:500: warning: unused variable 'pPC'
+shop.cpp:595:2: warning: no newline at end of file
+shop.cpp: In member function 'virtual bool CShop::IsSellingItem(DWORD)':
+shop.cpp:586: warning: comparison between signed and unsigned integer expressions
+In file included from trigger.cpp:8:
+shop_manager.h:40:7: warning: no newline at end of file
+utils.cpp: In function 'bool WildCaseCmp(const char*, const char*)':
+utils.cpp:244: warning: NULL used in arithmetic
+utils.cpp:256: warning: NULL used in arithmetic
+utils.cpp:270: warning: NULL used in arithmetic
+FileMonitor_FreeBSD.cpp:136:2: warning: no newline at end of file
+In file included from ClientPackageCryptInfo.cpp:2:
+ClientPackageCryptInfo.h:117:41: warning: no newline at end of file
+ClientPackageCryptInfo.h: In constructor 'CClientPackageCryptInfo::CClientPackageCryptInfo()':
+ClientPackageCryptInfo.h:50: warning: 'CClientPackageCryptInfo::m_pSerializedCryptKeyStream' will be initialized after
+ClientPackageCryptInfo.h:48: warning:   'int CClientPackageCryptInfo::m_nCryptKeyPackageCnt'
+ClientPackageCryptInfo.cpp:9: warning:   when initialized here
+../../../Extern/include/cryptopp/algparam.h: In constructor 'CryptoPP::ConstByteArrayParameter::ConstByteArrayParameter(const T&, bool) [with T = std::basic_string<char, std::char_traits<char>, std::allocator<char> >]':
+../../../Extern/include/cryptopp/filters.h:793:   instantiated from here
+../../../Extern/include/cryptopp/algparam.h:26: warning: unused variable 'cryptopp_assert_26'
+../../../Extern/include/cryptopp/algparam.h: In member function 'void CryptoPP::AlgorithmParametersTemplate<T>::MoveInto(void*) const [with T = CryptoPP::RandomNumberGenerator*]':
+cipher.cpp:397:   instantiated from here
+../../../Extern/include/cryptopp/algparam.h:322: warning: unused variable 'p'
+buff_on_attributes.cpp: In member function 'void CBuffOnAttributes::ChangeBuffValue(BYTE)':
+buff_on_attributes.cpp:112: warning: unused variable 'old_value'
+buff_on_attributes.cpp:113: warning: unused variable 'new_value'
+In file included from dragon_soul_table.cpp:4:
+dragon_soul_table.h:74:7: warning: no newline at end of file
+dragon_soul_table.cpp: In member function 'bool DragonSoulTable::ReadAdditionalApplys()':
+dragon_soul_table.cpp:223: warning: comparison between signed and unsigned integer expressions
+dragon_soul_table.cpp: In member function 'bool DragonSoulTable::CheckApplyNumSettings()':
+dragon_soul_table.cpp:283: warning: comparison between signed and unsigned integer expressions
+dragon_soul_table.cpp: In member function 'bool DragonSoulTable::CheckWeightTables()':
+dragon_soul_table.cpp:311: warning: comparison between signed and unsigned integer expressions
+dragon_soul_table.cpp: In member function 'bool DragonSoulTable::CheckRefineGradeTables()':
+dragon_soul_table.cpp:343: warning: comparison between signed and unsigned integer expressions
+dragon_soul_table.cpp:372: warning: comparison between signed and unsigned integer expressions
+dragon_soul_table.cpp: In member function 'bool DragonSoulTable::CheckRefineStepTables()':
+dragon_soul_table.cpp:397: warning: comparison between signed and unsigned integer expressions
+dragon_soul_table.cpp:427: warning: comparison between signed and unsigned integer expressions
+dragon_soul_table.cpp: In member function 'bool DragonSoulTable::CheckRefineStrengthTables()':
+dragon_soul_table.cpp:453: warning: comparison between signed and unsigned integer expressions
+dragon_soul_table.cpp: In member function 'bool DragonSoulTable::CheckDragonHeartExtTables()':
+dragon_soul_table.cpp:494: warning: comparison between signed and unsigned integer expressions
+dragon_soul_table.cpp:513: warning: comparison between signed and unsigned integer expressions
+dragon_soul_table.cpp:522: warning: comparison between signed and unsigned integer expressions
+dragon_soul_table.cpp: In member function 'bool DragonSoulTable::CheckDragonSoulExtTables()':
+dragon_soul_table.cpp:545: warning: comparison between signed and unsigned integer expressions
+group_text_parse_tree.h: In member function 'bool CGroupNode::CGroupNodeRow::GetValue(const std::string&, T&) const [with T = std::string]':
+dragon_soul_table.cpp:129:   instantiated from here
+group_text_parse_tree.h:220: warning: comparison between signed and unsigned integer expressions
+group_text_parse_tree.h: In member function 'bool CGroupNode::CGroupNodeRow::GetValue(const std::string&, T&) const [with T = BYTE]':
+dragon_soul_table.cpp:134:   instantiated from here
+group_text_parse_tree.h:220: warning: comparison between signed and unsigned integer expressions
+group_text_parse_tree.h: In member function 'bool CGroupNode::CGroupNodeRow::GetValue(const std::string&, T&) const [with T = int]':
+dragon_soul_table.cpp:201:   instantiated from here
+group_text_parse_tree.h:220: warning: comparison between signed and unsigned integer expressions
+group_text_parse_tree.h: In member function 'bool CGroupNode::CGroupNodeRow::GetValue(const std::string&, T&) const [with T = float]':
+dragon_soul_table.cpp:260:   instantiated from here
+group_text_parse_tree.h:220: warning: comparison between signed and unsigned integer expressions
+group_text_parse_tree.h: In member function 'bool CGroupNode::CGroupNodeRow::GetValue(int, T&) const [with T = float]':
+dragon_soul_table.cpp:828:   instantiated from here
+group_text_parse_tree.h:228: warning: comparison between signed and unsigned integer expressions
+group_text_parse_tree.h: In member function 'bool CGroupNode::CGroupNodeRow::GetValue(int, T&) const [with T = int]':
+group_text_parse_tree.h:159:   instantiated from 'bool CGroupNode::GetValue(const std::string&, const std::string&, T&) const [with T = int]'
+group_text_parse_tree.h:203:   instantiated from 'bool CGroupNode::GetGroupValue(const std::string&, const std::string&, const std::string&, T&) const [with T = int]'
+dragon_soul_table.cpp:612:   instantiated from here
+group_text_parse_tree.h:228: warning: comparison between signed and unsigned integer expressions
+group_text_parse_tree.h: In member function 'bool CGroupNode::CGroupNodeRow::GetValue(int, T&) const [with T = unsigned int]':
+group_text_parse_tree.h:159:   instantiated from 'bool CGroupNode::GetValue(const std::string&, const std::string&, T&) const [with T = unsigned int]'
+group_text_parse_tree.h:203:   instantiated from 'bool CGroupNode::GetGroupValue(const std::string&, const std::string&, const std::string&, T&) const [with T = unsigned int]'
+dragon_soul_table.cpp:884:   instantiated from here
+group_text_parse_tree.h:228: warning: comparison between signed and unsigned integer expressions
+In file included from DragonSoul.cpp:9:
+dragon_soul_table.h:74:7: warning: no newline at end of file
+DragonSoul.cpp: In function 'int Gamble(std::vector<float, std::allocator<float> >&)':
+DragonSoul.cpp:19: warning: comparison between signed and unsigned integer expressions
+DragonSoul.cpp:25: warning: comparison between signed and unsigned integer expressions
+DragonSoul.cpp: In member function 'bool DSManager::RefreshItemAttributes(CItem*)':
+DragonSoul.cpp:203: warning: comparison between signed and unsigned integer expressions
+DragonSoul.cpp: In member function 'bool DSManager::PutAttributes(CItem*)':
+DragonSoul.cpp:273: warning: comparison between signed and unsigned integer expressions
+DragonSoul.cpp: In member function 'bool DSManager::ExtractDragonHeart(CHARACTER*, CItem*, CItem*)':
+DragonSoul.cpp:350: warning: unused variable 'sum'
+DragonSoul.cpp: In member function 'bool DSManager::PullOut(CHARACTER*, TItemPos, CItem*&, CItem*)':
+DragonSoul.cpp:435: warning: unused variable 'dwVnum'
+DragonSoul.cpp:469: warning: format '%d' expects type 'int', but argument 3 has type 'double'
+DragonSoul.cpp:469: warning: format '%d' expects type 'int', but argument 4 has type 'double'
+DragonSoul.cpp: In member function 'bool DSManager::DoRefineGrade(CHARACTER*, TItemPos (&)[15])':
+DragonSoul.cpp:555: warning: unused variable 'prob_sum'
+DragonSoul.cpp: In member function 'bool DSManager::DoRefineStep(CHARACTER*, TItemPos (&)[15])':
+DragonSoul.cpp:763: warning: unused variable 'sum'
+group_text_parse_tree.h: In constructor 'CGroupTextParseTreeLoader::CGroupTextParseTreeLoader()':
+group_text_parse_tree.h:93: warning: 'CGroupTextParseTreeLoader::m_dwcurLineIndex' will be initialized after
+group_text_parse_tree.h:91: warning:   'CGroupNode* CGroupTextParseTreeLoader::m_pRootGroupNode'
+group_text_parse_tree.cpp:5: warning:   when initialized here
+group_text_parse_tree.cpp: In member function 'bool CGroupTextParseTreeLoader::LoadGroup(CGroupNode*)':
+group_text_parse_tree.cpp:99: warning: comparison between signed and unsigned integer expressions
+group_text_parse_tree.cpp: In member function 'bool CGroupNode::GetRow(int, const CGroupNode::CGroupNodeRow**) const':
+group_text_parse_tree.cpp:206: warning: comparison between signed and unsigned integer expressions
+../../../Extern/include/cryptopp/misc.h: At global scope:
+../../../Extern/include/cryptopp/misc.h:548: warning: 'std::string CryptoPP::StringNarrow(const wchar_t*, bool)' defined but not used
+char_dragonsoul.cpp:143:2: warning: no newline at end of file
+char_dragonsoul.cpp: In member function 'bool CHARACTER::DragonSoul_ActivateDeck(int)':
+char_dragonsoul.cpp:91: warning: control reaches end of non-void function
+In file included from shop_manager.cpp:22:
+shop_manager.h:40:7: warning: no newline at end of file
+shop_manager.cpp: In function 'bool ConvertToShopItemTable(CGroupNode*, TShopTableEx&)':
+shop_manager.cpp:473: warning: comparison between signed and unsigned integer expressions
+group_text_parse_tree.h: In member function 'bool CGroupNode::CGroupNodeRow::GetValue(int, T&) const [with T = unsigned int]':
+group_text_parse_tree.h:175:   instantiated from 'bool CGroupNode::GetValue(const std::string&, int, T&) const [with T = DWORD]'
+shop_manager.cpp:381:   instantiated from here
+group_text_parse_tree.h:228: warning: comparison between signed and unsigned integer expressions
+group_text_parse_tree.h: In member function 'bool CGroupNode::CGroupNodeRow::GetValue(int, T&) const [with T = std::basic_string<char, std::char_traits<char>, std::allocator<char> >]':
+group_text_parse_tree.h:175:   instantiated from 'bool CGroupNode::GetValue(const std::string&, int, T&) const [with T = std::string]'
+shop_manager.cpp:387:   instantiated from here
+group_text_parse_tree.h:228: warning: comparison between signed and unsigned integer expressions
+group_text_parse_tree.h: In member function 'bool CGroupNode::CGroupNodeRow::GetValue(int, T&) const [with T = unsigned char]':
+group_text_parse_tree.h:136:   instantiated from 'bool CGroupNode::GetValue(size_t, const std::string&, T&) const [with T = BYTE]'
+shop_manager.cpp:442:   instantiated from here
+group_text_parse_tree.h:228: warning: comparison between signed and unsigned integer expressions
+shopEx.cpp: In member function 'virtual int CShopEx::Buy(CHARACTER*, BYTE)':
+shopEx.cpp:159: warning: comparison between signed and unsigned integer expressions
+item_manager_read_tables.cpp: In member function 'bool ITEM_MANAGER::ReadMonsterDropItemGroup(const char*)':
+item_manager_read_tables.cpp:637: warning: unused variable 'pkGroup'
+shutdown_manager.cpp:173:2: warning: no newline at end of file
+shutdown_manager.cpp: In member function 'int CShutdownManager::SearchDesc(DESC*)':
+shutdown_manager.cpp:90: warning: comparison between signed and unsigned integer expressions
+item_manager_read_tables.cpp:627: warning: 'pkGroup' may be used uninitialized in this function
+In file included from main.cpp:14:
+shop_manager.h:40:7: warning: no newline at end of file
+main.cpp: In function 'int main(int, char**)':
+main.cpp:522: error: '__P4_VERSION__' was not declared in this scope
+gmake: *** [OBJDIR/main.o] Error 1
+gmake: *** Waiting for unfinished jobs....

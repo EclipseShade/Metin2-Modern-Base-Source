@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>19.1 The basic interface</title>
+<META NAME="description" CONTENT="19.1 The basic interface">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node573.html">
+<LINK REL="previous" href="compiler.html">
+<LINK REL="up" href="compiler.html">
+<LINK REL="next" HREF="node573.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="compiler.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="compiler.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node573.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="compiler.html">19. Python compiler package</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="compiler.html">19. Python compiler package</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node573.html">19.2 Limitations</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0021100000000000000000">
+19.1 The basic interface</A>
+</H1>
+
+<P>
+
+<P>
+The top-level of the package defines four functions.  If you import
+<tt class="module">compiler</tt>, you will get these functions and a collection of
+modules contained in the package.
+
+<P>
+<dl><dt><b><a name="l2h-3837"><tt class="function">parse</tt></a></b>(<var>buf</var>)
+<dd>
+Returns an abstract syntax tree for the Python source code in <var>buf</var>.
+The function raises SyntaxError if there is an error in the source
+code.  The return value is a <tt class="class">compiler.ast.Module</tt> instance that
+contains the tree.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3838"><tt class="function">parseFile</tt></a></b>(<var>path</var>)
+<dd>
+Return an abstract syntax tree for the Python source code in the file
+specified by <var>path</var>.  It is equivalent to
+<code>parse(open(<var>path</var>).read())</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3839"><tt class="function">walk</tt></a></b>(<var>ast, visitor</var><big>[</big><var>, verbose</var><big>]</big>)
+<dd>
+Do a pre-order walk over the abstract syntax tree <var>ast</var>.  Call the
+appropriate method on the <var>visitor</var> instance for each node
+encountered.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3840"><tt class="function">compile</tt></a></b>(<var>source, filename, mode, flags=None, 
+			dont_inherit=None</var>)
+<dd>
+Compile the string <var>source</var>, a Python module, statement or
+expression, into a code object that can be executed by the exec
+statement or <tt class="function">eval()</tt>. This function is a replacement for the
+built-in <tt class="function">compile()</tt> function.
+
+<P>
+The <var>filename</var> will be used for run-time error messages.
+
+<P>
+The <var>mode</var> must be 'exec' to compile a module, 'single' to compile a
+single (interactive) statement, or 'eval' to compile an expression.
+
+<P>
+The <var>flags</var> and <var>dont_inherit</var> arguments affect future-related
+statements, but are not supported yet.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3841"><tt class="function">compileFile</tt></a></b>(<var>source</var>)
+<dd>
+Compiles the file <var>source</var> and generates a .pyc file.
+</dl>
+
+<P>
+The <tt class="module">compiler</tt> package contains the following modules:
+<tt class="module"><a href="module-compiler.ast.html">ast</a></tt>, <tt class="module">consts</tt>, <tt class="module">future</tt>,
+<tt class="module">misc</tt>, <tt class="module">pyassem</tt>, <tt class="module">pycodegen</tt>, <tt class="module">symbols</tt>,
+<tt class="module">transformer</tt>, and <tt class="module"><a href="module-compiler.visitor.html">visitor</a></tt>.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="compiler.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="compiler.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node573.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="compiler.html">19. Python compiler package</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="compiler.html">19. Python compiler package</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node573.html">19.2 Limitations</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

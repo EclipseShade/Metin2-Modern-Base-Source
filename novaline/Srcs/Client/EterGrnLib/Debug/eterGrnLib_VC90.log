@@ -1,0 +1,58 @@
+﻿Der Buildvorgang wurde am 27.09.2013 20:03:52 gestartet.
+     1>Projekt "D:\tt (1)\dev\Srcs\Client\eterGrnLib\eterGrnLib_VC90.vcxproj" auf Knoten "6", build Ziel(e).
+     1>InitializeBuildStatus:
+         ".\Debug\eterGrnLib.unsuccessfulbuild" wird erstellt, da "AlwaysCreate" angegeben wurde.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I../../extern/include /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp".\Debug/eterGrnLib.pch" /Fo".\Debug/" /Fd".\Debug/vc100.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt StdAfx.cpp
+         StdAfx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I../../extern/include /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp".\Debug/eterGrnLib.pch" /Fo".\Debug/" /Fd".\Debug/vc100.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt LODController.cpp Material.cpp Mesh.cpp Model.cpp ModelInstance.cpp ModelInstanceCollisionDetection.cpp ModelInstanceModel.cpp ModelInstanceMotion.cpp ModelInstanceRender.cpp ModelInstanceUpdate.cpp Motion.cpp Thing.cpp ThingInstance.cpp Util.cpp
+         LODController.cpp
+         Material.cpp
+     1>d:\tt (1)\dev\srcs\client\etergrnlib\../eterbase/Filename.h(236): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(105): Siehe Deklaration von 'strcpy'
+     1>Material.cpp(209): warning C4996: '_snprintf': This function or variable may be unsafe. Consider using _snprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\stdio.h(363): Siehe Deklaration von '_snprintf'
+     1>Material.cpp(230): warning C4996: 'strnicmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _strnicmp. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(248): Siehe Deklaration von 'strnicmp'
+         Mesh.cpp
+         Model.cpp
+         ModelInstance.cpp
+         ModelInstanceCollisionDetection.cpp
+         ModelInstanceModel.cpp
+         ModelInstanceMotion.cpp
+         ModelInstanceRender.cpp
+         ModelInstanceUpdate.cpp
+         Motion.cpp
+     1>Motion.cpp(66): warning C4996: 'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _stricmp. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\include\string.h(246): Siehe Deklaration von 'stricmp'
+         Thing.cpp
+         ThingInstance.cpp
+         Util.cpp
+         Code wird generiert...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:".\Debug\eterGrnLib.lib" /NOLOGO .\Debug/LODController.obj
+         .\Debug/Material.obj
+         .\Debug/Mesh.obj
+         .\Debug/Model.obj
+         .\Debug/ModelInstance.obj
+         .\Debug/ModelInstanceCollisionDetection.obj
+         .\Debug/ModelInstanceModel.obj
+         .\Debug/ModelInstanceMotion.obj
+         .\Debug/ModelInstanceRender.obj
+         .\Debug/ModelInstanceUpdate.obj
+         .\Debug/Motion.obj
+         .\Debug/StdAfx.obj
+         .\Debug/Thing.obj
+         .\Debug/ThingInstance.obj
+         .\Debug/Util.obj
+         eterGrnLib_VC90.vcxproj -> D:\tt (1)\dev\Srcs\Client\eterGrnLib\.\Debug\eterGrnLib.lib
+       BscMake:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\bscmake.exe /nologo /o".\Debug\eterGrnLib.bsc" .\Debug\LODController.sbr .\Debug\Material.sbr .\Debug\Mesh.sbr .\Debug\Model.sbr .\Debug\ModelInstance.sbr .\Debug\ModelInstanceCollisionDetection.sbr .\Debug\ModelInstanceModel.sbr .\Debug\ModelInstanceMotion.sbr .\Debug\ModelInstanceRender.sbr .\Debug\ModelInstanceUpdate.sbr .\Debug\Motion.sbr .\Debug\StdAfx.sbr .\Debug\Thing.sbr .\Debug\ThingInstance.sbr .\Debug\Util.sbr
+       FinalizeBuildStatus:
+         Die Datei ".\Debug\eterGrnLib.unsuccessfulbuild" wird gelöscht.
+         Aktualisieren des Timestamps von ".\Debug\eterGrnLib.lastbuildstate".
+     1>Die Erstellung des Projekts "D:\tt (1)\dev\Srcs\Client\eterGrnLib\eterGrnLib_VC90.vcxproj" ist abgeschlossen, build Ziel(e).
+
+Das Erstellen war erfolgreich.
+
+Verstrichene Zeit 00:00:10.42

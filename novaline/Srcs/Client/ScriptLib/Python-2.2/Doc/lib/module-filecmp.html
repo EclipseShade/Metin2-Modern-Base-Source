@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.7 filecmp -- File and Directory Comparisons</title>
+<META NAME="description" CONTENT="6.7 filecmp -- File and Directory Comparisons">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-popen2.html">
+<LINK REL="previous" href="module-statvfs.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" href="dircmp-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-statvfs.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dircmp-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-statvfs.html">6.6 statvfs  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dircmp-objects.html">6.7.1 The dircmp class</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008700000000000000000">
+6.7 <tt class="module">filecmp</tt> --
+         File and Directory Comparisons</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">filecmp</tt> module defines functions to compare files and
+directories, with various optional time/correctness trade-offs.
+
+<P>
+The <tt class="module">filecmp</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-1337"><tt class="function">cmp</tt></a></b>(<var>f1, f2</var><big>[</big><var>, shallow</var><big>[</big><var>, use_statcache</var><big>]</big><big>]</big>)
+<dd>
+Compare the files named <var>f1</var> and <var>f2</var>, returning <code>1</code> if
+they seem equal, <code>0</code> otherwise.
+
+<P>
+Unless <var>shallow</var> is given and is false, files with identical
+<tt class="function">os.stat()</tt> signatures are taken to be equal.  If
+<var>use_statcache</var> is given and is true,
+<tt class="function">statcache.stat()</tt> will be called rather then
+<tt class="function">os.stat()</tt>; the default is to use <tt class="function">os.stat()</tt>.
+
+<P>
+Files that were compared using this function will not be compared again
+unless their <tt class="function">os.stat()</tt> signature changes. Note that using
+<var>use_statcache</var> true will cause the cache invalidation mechanism to 
+fail -- the stale stat value will be used from <tt class="module"><a href="module-statcache.html">statcache</a></tt>'s 
+cache.
+
+<P>
+Note that no external programs are called from this function, giving it
+portability and efficiency.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1338"><tt class="function">cmpfiles</tt></a></b>(<var>dir1, dir2, common</var><big>[</big><var>,
+                           shallow</var><big>[</big><var>, use_statcache</var><big>]</big><big>]</big>)
+<dd>
+Returns three lists of file names: <var>match</var>, <var>mismatch</var>,
+<var>errors</var>.  <var>match</var> contains the list of files match in both
+directories, <var>mismatch</var> includes the names of those that don't,
+and <var>errros</var> lists the names of files which could not be
+compared.  Files may be listed in <var>errors</var> because the user may
+lack permission to read them or many other reasons, but always that
+the comparison could not be done for some reason.
+
+<P>
+The <var>shallow</var> and <var>use_statcache</var> parameters have the same
+meanings and default values as for <tt class="function">filecmp.cmp()</tt>.
+</dl>
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import filecmp
+&gt;&gt;&gt; filecmp.cmp('libundoc.tex', 'libundoc.tex')
+1
+&gt;&gt;&gt; filecmp.cmp('libundoc.tex', 'lib.tex')
+0
+</pre></dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="dircmp-objects.html">6.7.1 The <tt class="class">dircmp</tt> class</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-statvfs.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dircmp-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-statvfs.html">6.6 statvfs  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dircmp-objects.html">6.7.1 The dircmp class</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

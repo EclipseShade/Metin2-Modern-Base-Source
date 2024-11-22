@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.4.1 SequenceMatcher Objects </title>
+<META NAME="description" CONTENT="4.4.1 SequenceMatcher Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="sequencematcher-examples.html">
+<LINK REL="previous" href="module-difflib.html">
+<LINK REL="up" href="module-difflib.html">
+<LINK REL="next" href="sequencematcher-examples.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-difflib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-difflib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="sequencematcher-examples.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-difflib.html">4.4 difflib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-difflib.html">4.4 difflib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="sequencematcher-examples.html">4.4.2 SequenceMatcher Examples</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION006410000000000000000">&nbsp;</A>
+<BR>
+4.4.1 SequenceMatcher Objects 
+</H2>
+
+<P>
+The <tt class="class">SequenceMatcher</tt> class has this constructor:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-768"><tt class="class">SequenceMatcher</tt></a></b>(<big>[</big><var>isjunk</var><big>[</big><var>,
+                                   a</var><big>[</big><var>, b</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+  Optional argument <var>isjunk</var> must be <code>None</code> (the default) or
+  a one-argument function that takes a sequence element and returns
+  true if and only if the element is ``junk'' and should be ignored.
+  Passing <code>None</code> for <var>b</var> is equivalent to passing
+  <code>lambda x: 0</code>; in other words, no elements are ignored.  For
+  example, pass:
+
+<P>
+<dl><dd><pre class="verbatim">
+lambda x: x in " \t"
+</pre></dl>
+
+<P>
+if you're comparing lines as sequences of characters, and don't want
+  to synch up on blanks or hard tabs.
+
+<P>
+The optional arguments <var>a</var> and <var>b</var> are sequences to be
+  compared; both default to empty strings.  The elements of both
+  sequences must be hashable.
+</dl>
+
+<P>
+<tt class="class">SequenceMatcher</tt> objects have the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-769"><tt class="method">set_seqs</tt></a></b>(<var>a, b</var>)
+<dd>
+  Set the two sequences to be compared.
+</dl>
+
+<P>
+<tt class="class">SequenceMatcher</tt> computes and caches detailed information about
+the second sequence, so if you want to compare one sequence against
+many sequences, use <tt class="method">set_seq2()</tt> to set the commonly used
+sequence once and call <tt class="method">set_seq1()</tt> repeatedly, once for each
+of the other sequences.
+
+<P>
+<dl><dt><b><a name="l2h-770"><tt class="method">set_seq1</tt></a></b>(<var>a</var>)
+<dd>
+  Set the first sequence to be compared.  The second sequence to be
+  compared is not changed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-771"><tt class="method">set_seq2</tt></a></b>(<var>b</var>)
+<dd>
+  Set the second sequence to be compared.  The first sequence to be
+  compared is not changed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-772"><tt class="method">find_longest_match</tt></a></b>(<var>alo, ahi, blo, bhi</var>)
+<dd>
+  Find longest matching block in <code><var>a</var>[<var>alo</var>:<var>ahi</var>]</code>
+  and <code><var>b</var>[<var>blo</var>:<var>bhi</var>]</code>.
+
+<P>
+If <var>isjunk</var> was omitted or <code>None</code>,
+  <tt class="method">get_longest_match()</tt> returns <code>(<var>i</var>, <var>j</var>,
+  <var>k</var>)</code> such that <code><var>a</var>[<var>i</var>:<var>i</var>+<var>k</var>]</code> is equal
+  to <code><var>b</var>[<var>j</var>:<var>j</var>+<var>k</var>]</code>, where
+      <code><var>alo</var> &lt;= <var>i</var> &lt;= <var>i</var>+<var>k</var> &lt;= <var>ahi</var></code> and
+      <code><var>blo</var> &lt;= <var>j</var> &lt;= <var>j</var>+<var>k</var> &lt;= <var>bhi</var></code>.
+  For all <code>(<var>i'</var>, <var>j'</var>, <var>k'</var>)</code> meeting those
+  conditions, the additional conditions
+      <code><var>k</var> &gt;= <var>k'</var></code>,
+      <code><var>i</var> &lt;= <var>i'</var></code>,
+      and if <code><var>i</var> == <var>i'</var></code>, <code><var>j</var> &lt;= <var>j'</var></code>
+  are also met.
+  In other words, of all maximal matching blocks, return one that
+  starts earliest in <var>a</var>, and of all those maximal matching blocks
+  that start earliest in <var>a</var>, return the one that starts earliest
+  in <var>b</var>.
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; s = SequenceMatcher(None, " abcd", "abcd abcd")
+&gt;&gt;&gt; s.find_longest_match(0, 5, 0, 9)
+(0, 4, 5)
+</pre></dl>
+
+<P>
+If <var>isjunk</var> was provided, first the longest matching block is
+  determined as above, but with the additional restriction that no
+  junk element appears in the block.  Then that block is extended as
+  far as possible by matching (only) junk elements on both sides.
+  So the resulting block never matches on junk except as identical
+  junk happens to be adjacent to an interesting match.
+
+<P>
+Here's the same example as before, but considering blanks to be junk.
+  That prevents <code>' abcd'</code> from matching the <code>' abcd'</code> at the
+  tail end of the second sequence directly.  Instead only the
+  <code>'abcd'</code> can match, and matches the leftmost <code>'abcd'</code> in
+  the second sequence:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; s = SequenceMatcher(lambda x: x==" ", " abcd", "abcd abcd")
+&gt;&gt;&gt; s.find_longest_match(0, 5, 0, 9)
+(1, 0, 4)
+</pre></dl>
+
+<P>
+If no blocks match, this returns <code>(<var>alo</var>, <var>blo</var>, 0)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-773"><tt class="method">get_matching_blocks</tt></a></b>()
+<dd>
+  Return list of triples describing matching subsequences.
+  Each triple is of the form <code>(<var>i</var>, <var>j</var>, <var>n</var>)</code>, and
+  means that <code><var>a</var>[<var>i</var>:<var>i</var>+<var>n</var>] ==
+  <var>b</var>[<var>j</var>:<var>j</var>+<var>n</var>]</code>.  The triples are monotonically
+  increasing in <var>i</var> and <var>j</var>.
+
+<P>
+The last triple is a dummy, and has the value <code>(len(<var>a</var>),
+  len(<var>b</var>), 0)</code>.  It is the only triple with <code><var>n</var> == 0</code>.
+  
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; s = SequenceMatcher(None, "abxcd", "abcd")
+&gt;&gt;&gt; s.get_matching_blocks()
+[(0, 0, 2), (3, 2, 2), (5, 4, 0)]
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-774"><tt class="method">get_opcodes</tt></a></b>()
+<dd>
+  Return list of 5-tuples describing how to turn <var>a</var> into <var>b</var>.
+  Each tuple is of the form <code>(<var>tag</var>, <var>i1</var>, <var>i2</var>,
+  <var>j1</var>, <var>j2</var>)</code>.  The first tuple has <code><var>i1</var> ==
+  <var>j1</var> == 0</code>, and remaining tuples have <var>i1</var> equal to the
+  <var>i2</var> from the preceeding tuple, and, likewise, <var>j1</var> equal to
+  the previous <var>j2</var>.
+
+<P>
+The <var>tag</var> values are strings, with these meanings:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Value</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>'replace'</code></td>
+        <td align="left"><code><var>a</var>[<var>i1</var>:<var>i2</var>]</code> should be
+                     replaced by <code><var>b</var>[<var>j1</var>:<var>j2</var>]</code>.</td>
+    <tr><td align="left" valign="baseline"><code>'delete'</code></td>
+        <td align="left"><code><var>a</var>[<var>i1</var>:<var>i2</var>]</code> should be
+                    deleted.  Note that <code><var>j1</var> == <var>j2</var></code> in
+                    this case.</td>
+    <tr><td align="left" valign="baseline"><code>'insert'</code></td>
+        <td align="left"><code><var>b</var>[<var>j1</var>:<var>j2</var>]</code> should be
+                    inserted at <code><var>a</var>[<var>i1</var>:<var>i1</var>]</code>.
+                    Note that <code><var>i1</var> == <var>i2</var></code> in this
+                    case.</td>
+    <tr><td align="left" valign="baseline"><code>'equal'</code></td>
+        <td align="left"><code><var>a</var>[<var>i1</var>:<var>i2</var>] ==
+                   <var>b</var>[<var>j1</var>:<var>j2</var>]</code> (the sub-sequences are
+                   equal).</td></tbody>
+</table>
+
+<P>
+For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; a = "qabxcd"
+&gt;&gt;&gt; b = "abycdf"
+&gt;&gt;&gt; s = SequenceMatcher(None, a, b)
+&gt;&gt;&gt; for tag, i1, i2, j1, j2 in s.get_opcodes():
+...    print ("%7s a[%d:%d] (%s) b[%d:%d] (%s)" %
+...           (tag, i1, i2, a[i1:i2], j1, j2, b[j1:j2]))
+ delete a[0:1] (q) b[0:0] ()
+  equal a[1:3] (ab) b[0:2] (ab)
+replace a[3:4] (x) b[2:3] (y)
+  equal a[4:6] (cd) b[3:5] (cd)
+ insert a[6:6] () b[5:6] (f)
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-775"><tt class="method">ratio</tt></a></b>()
+<dd>
+  Return a measure of the sequences' similarity as a float in the
+  range [0, 1].
+
+<P>
+Where T is the total number of elements in both sequences, and M is
+  the number of matches, this is 2.0*M / T. Note that this is
+  <code>1.0</code> if the sequences are identical, and <code>0.0</code> if they
+  have nothing in common.
+
+<P>
+This is expensive to compute if <tt class="method">get_matching_blocks()</tt> or
+  <tt class="method">get_opcodes()</tt> hasn't already been called, in which case you
+  may want to try <tt class="method">quick_ratio()</tt> or
+  <tt class="method">real_quick_ratio()</tt> first to get an upper bound.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-776"><tt class="method">quick_ratio</tt></a></b>()
+<dd>
+  Return an upper bound on <tt class="method">ratio()</tt> relatively quickly.
+
+<P>
+This isn't defined beyond that it is an upper bound on
+  <tt class="method">ratio()</tt>, and is faster to compute.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-777"><tt class="method">real_quick_ratio</tt></a></b>()
+<dd>
+  Return an upper bound on <tt class="method">ratio()</tt> very quickly.
+
+<P>
+This isn't defined beyond that it is an upper bound on
+  <tt class="method">ratio()</tt>, and is faster to compute than either
+  <tt class="method">ratio()</tt> or <tt class="method">quick_ratio()</tt>.
+</dl>
+
+<P>
+The three methods that return the ratio of matching to total characters
+can give different results due to differing levels of approximation,
+although <tt class="method">quick_ratio()</tt> and <tt class="method">real_quick_ratio()</tt> are always
+at least as large as <tt class="method">ratio()</tt>:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; s = SequenceMatcher(None, "abcd", "bcde")
+&gt;&gt;&gt; s.ratio()
+0.75
+&gt;&gt;&gt; s.quick_ratio()
+0.75
+&gt;&gt;&gt; s.real_quick_ratio()
+1.0
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-difflib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-difflib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="sequencematcher-examples.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-difflib.html">4.4 difflib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-difflib.html">4.4 difflib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="sequencematcher-examples.html">4.4.2 SequenceMatcher Examples</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

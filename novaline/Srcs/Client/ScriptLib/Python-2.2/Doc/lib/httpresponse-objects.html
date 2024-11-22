@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.6.2 HTTPResponse Objects </title>
+<META NAME="description" CONTENT="11.6.2 HTTPResponse Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="httplib-examples.html">
+<LINK REL="previous" href="httpconnection-objects.html">
+<LINK REL="up" href="module-httplib.html">
+<LINK REL="next" href="httplib-examples.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="httpconnection-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-httplib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="httplib-examples.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="httpconnection-objects.html">11.6.1 HTTPConnection Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-httplib.html">11.6 httplib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="httplib-examples.html">11.6.3 Examples</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013620000000000000000">&nbsp;</A>
+<BR>
+11.6.2 HTTPResponse Objects 
+</H2>
+
+<P>
+<tt class="class">HTTPResponse</tt> instances have the following methods and attributes:
+
+<P>
+<dl><dt><b><a name="l2h-2432"><tt class="method">read</tt></a></b>()
+<dd>
+Reads and returns the response body.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2433"><tt class="method">getheader</tt></a></b>(<var>name</var><big>[</big><var>, default</var><big>]</big>)
+<dd>
+Get the contents of the header <var>name</var>, or <var>default</var> if there is no
+matching header.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2434"><tt>msg</tt></a></b>
+<dd>
+  A <tt class="class">mimetools.Message</tt> instance containing the response headers.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2435"><tt>version</tt></a></b>
+<dd>
+  HTTP protocol version used by server.  10 for HTTP/1.0, 11 for HTTP/1.1.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2436"><tt>status</tt></a></b>
+<dd>
+  Status code returned by server.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2437"><tt>reason</tt></a></b>
+<dd>
+  Reason phrase returned by server.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="httpconnection-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-httplib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="httplib-examples.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="httpconnection-objects.html">11.6.1 HTTPConnection Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-httplib.html">11.6 httplib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="httplib-examples.html">11.6.3 Examples</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

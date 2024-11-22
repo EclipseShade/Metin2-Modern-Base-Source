@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.2.6.4 Mutable Sequence Types </title>
+<META NAME="description" CONTENT="2.2.6.4 Mutable Sequence Types ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="typesseq-xrange.html">
+<LINK REL="up" href="typesseq.html">
+<LINK REL="next" href="typesmapping.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="typesseq-xrange.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="typesseq.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="typesmapping.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="typesseq-xrange.html">2.2.6.3 XRange Type</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="typesseq.html">2.2.6 Sequence Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="typesmapping.html">2.2.7 Mapping Types</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION004264000000000000000">&nbsp;</A>
+<BR>
+2.2.6.4 Mutable Sequence Types 
+</H3>
+
+<P>
+List objects support additional operations that allow in-place
+modification of the object.
+These operations would be supported by other mutable sequence types
+(when added to the language) as well.
+Strings and tuples are immutable sequence types and such objects cannot
+be modified once created.
+The following operations are defined on mutable sequence types (where
+<var>x</var> is an arbitrary object):
+<a name="l2h-151">&nbsp;</a>
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Operation</b>&nbsp;</th>
+      <th align="left"><b>Result</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><code><var>s</var>[<var>i</var>] = <var>x</var></code></td>
+        <td align="left">item <var>i</var> of <var>s</var> is replaced by <var>x</var></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code><var>s</var>[<var>i</var>:<var>j</var>] = <var>t</var></code></td>
+        <td align="left">slice of <var>s</var> from <var>i</var> to <var>j</var> is replaced by <var>t</var></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>del <var>s</var>[<var>i</var>:<var>j</var>]</code></td>
+        <td align="left">same as <code><var>s</var>[<var>i</var>:<var>j</var>] = []</code></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code><var>s</var>.append(<var>x</var>)</code></td>
+        <td align="left">same as <code><var>s</var>[len(<var>s</var>):len(<var>s</var>)] = [<var>x</var>]</code></td>
+        <td align="center">(1)</td>
+    <tr><td align="center" valign="baseline"><code><var>s</var>.extend(<var>x</var>)</code></td>
+        <td align="left">same as <code><var>s</var>[len(<var>s</var>):len(<var>s</var>)] = <var>x</var></code></td>
+        <td align="center">(2)</td>
+    <tr><td align="center" valign="baseline"><code><var>s</var>.count(<var>x</var>)</code></td>
+        <td align="left">return number of <var>i</var>'s for which <code><var>s</var>[<var>i</var>] == <var>x</var></code></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code><var>s</var>.index(<var>x</var>)</code></td>
+        <td align="left">return smallest <var>i</var> such that <code><var>s</var>[<var>i</var>] == <var>x</var></code></td>
+        <td align="center">(3)</td>
+    <tr><td align="center" valign="baseline"><code><var>s</var>.insert(<var>i</var>, <var>x</var>)</code></td>
+        <td align="left">same as <code><var>s</var>[<var>i</var>:<var>i</var>] = [<var>x</var>]</code>
+	  if <code><var>i</var> &gt;= 0</code></td>
+        <td align="center">(4)</td>
+    <tr><td align="center" valign="baseline"><code><var>s</var>.pop(<big>[</big><var>i</var><big>]</big>)</code></td>
+        <td align="left">same as <code><var>x</var> = <var>s</var>[<var>i</var>]; del <var>s</var>[<var>i</var>]; return <var>x</var></code></td>
+        <td align="center">(5)</td>
+    <tr><td align="center" valign="baseline"><code><var>s</var>.remove(<var>x</var>)</code></td>
+        <td align="left">same as <code>del <var>s</var>[<var>s</var>.index(<var>x</var>)]</code></td>
+        <td align="center">(3)</td>
+    <tr><td align="center" valign="baseline"><code><var>s</var>.reverse()</code></td>
+        <td align="left">reverses the items of <var>s</var> in place</td>
+        <td align="center">(6)</td>
+    <tr><td align="center" valign="baseline"><code><var>s</var>.sort(<big>[</big><var>cmpfunc</var><big>]</big>)</code></td>
+        <td align="left">sort the items of <var>s</var> in place</td>
+        <td align="center">(6), (7)</td></tbody>
+</table>
+<a name="l2h-152">&nbsp;</a><a name="l2h-150">&nbsp;</a>
+Notes:
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>The C implementation of Python has historically accepted
+  multiple parameters and implicitly joined them into a tuple; this
+  no longer works in Python 2.0.  Use of this misfeature has been
+  deprecated since Python 1.4.
+
+<P>
+</DD>
+<DT><STRONG>(2)</STRONG></DT>
+<DD>Raises an exception when <var>x</var> is not a list object.  The 
+  <tt class="method">extend()</tt> method is experimental and not supported by
+  mutable sequence types other than lists.
+
+<P>
+</DD>
+<DT><STRONG>(3)</STRONG></DT>
+<DD>Raises <tt class="exception">ValueError</tt> when <var>x</var> is not found in
+  <var>s</var>.
+
+<P>
+</DD>
+<DT><STRONG>(4)</STRONG></DT>
+<DD>When a negative index is passed as the first parameter to
+  the <tt class="method">insert()</tt> method, the new element is prepended to the
+  sequence.
+
+<P>
+</DD>
+<DT><STRONG>(5)</STRONG></DT>
+<DD>The <tt class="method">pop()</tt> method is only supported by the list and
+  array types.  The optional argument <var>i</var> defaults to <code>-1</code>,
+  so that by default the last item is removed and returned.
+
+<P>
+</DD>
+<DT><STRONG>(6)</STRONG></DT>
+<DD>The <tt class="method">sort()</tt> and <tt class="method">reverse()</tt> methods modify the
+  list in place for economy of space when sorting or reversing a large
+  list.  To remind you that they operate by side effect, they don't return
+  the sorted or reversed list.
+
+<P>
+</DD>
+<DT><STRONG>(7)</STRONG></DT>
+<DD>The <tt class="method">sort()</tt> method takes an optional argument
+  specifying a comparison function of two arguments (list items) which
+  should return a negative, zero or positive number depending on whether
+  the first argument is considered smaller than, equal to, or larger
+  than the second argument.  Note that this slows the sorting process
+  down considerably; e.g. to sort a list in reverse order it is much
+  faster to use calls to the methods <tt class="method">sort()</tt> and
+  <tt class="method">reverse()</tt> than to use the built-in function
+  <tt class="function">sort()</tt> with a comparison function that reverses the
+  ordering of the elements.
+</DD>
+</DL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="typesseq-xrange.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="typesseq.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="typesmapping.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="typesseq-xrange.html">2.2.6.3 XRange Type</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="typesseq.html">2.2.6 Sequence Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="typesmapping.html">2.2.7 Mapping Types</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

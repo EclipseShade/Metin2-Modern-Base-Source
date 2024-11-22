@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.2.6 More Suggestions</title>
+<META NAME="description" CONTENT="2.2.6 More Suggestions">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="previous" HREF="node27.html">
+<LINK REL="up" href="dnt-type-methods.html">
+<LINK REL="next" href="building-on-unix.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node27.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dnt-type-methods.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="building-on-unix.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node27.html">2.2.5 Abstract Protocol Support</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dnt-type-methods.html">2.2 Type Methods</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="building-on-unix.html">3. Building C and</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004260000000000000000">
+2.2.6 More Suggestions</A>
+</H2>
+
+<P>
+Remember that you can omit most of these functions, in which case you
+provide <code>0</code> as a value.
+
+<P>
+In the <span class="file">Objects</span> directory of the Python source distribution,
+there is a file <span class="file">xxobject.c</span>, which is intended to be used as a
+template for the implementation of new types.  One useful strategy
+for implementing a new type is to copy and rename this file, then
+read the instructions at the top of it.
+
+<P>
+There are type definitions for each of the functions you must
+provide.  They are in <span class="file">object.h</span> in the Python include
+directory that comes with the source distribution of Python.
+
+<P>
+In order to learn how to implement any specific method for your new
+datatype, do the following: Download and unpack the Python source
+distribution.  Go the the <span class="file">Objects</span> directory, then search the
+C source files for <code>tp_</code> plus the function you want (for
+example, <code>tp_print</code> or <code>tp_compare</code>).  You will find
+examples of the function you want to implement.
+
+<P>
+When you need to verify that the type of an object is indeed the
+object you are implementing and if you use xxobject.c as an starting
+template for your implementation, then there is a macro defined for
+this purpose. The macro definition will look something like this:
+
+<P>
+<dl><dd><pre class="verbatim">
+#define is_newdatatypeobject(v)  ((v)-&gt;ob_type == &amp;Newdatatypetype)
+</pre></dl>
+
+<P>
+And, a sample of its use might be something like the following:
+
+<P>
+<dl><dd><pre class="verbatim">
+    if (!is_newdatatypeobject(objp1) {
+        PyErr_SetString(PyExc_TypeError, "arg #1 not a newdatatype");
+        return NULL;
+    }
+</pre></dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node27.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="dnt-type-methods.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="building-on-unix.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node27.html">2.2.5 Abstract Protocol Support</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="dnt-type-methods.html">2.2 Type Methods</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="building-on-unix.html">3. Building C and</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

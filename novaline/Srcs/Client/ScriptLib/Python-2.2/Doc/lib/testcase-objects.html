@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.3.4 TestCase Objects </title>
+<META NAME="description" CONTENT="5.3.4 TestCase Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="testsuite-objects.html">
+<LINK REL="previous" href="unittest-contents.html">
+<LINK REL="up" href="module-unittest.html">
+<LINK REL="next" href="testsuite-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="unittest-contents.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-unittest.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="testsuite-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="unittest-contents.html">5.3.3 Classes and functions</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-unittest.html">5.3 unittest  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="testsuite-objects.html">5.3.5 TestSuite Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007340000000000000000">&nbsp;</A>
+<BR>
+5.3.4 TestCase Objects
+            
+</H2>
+
+<P>
+Each <tt class="class">TestCase</tt> instance represents a single test, but each
+concrete subclass may be used to define multiple tests -- the
+concrete class represents a single test fixture.  The fixture is
+created and cleaned up for each test case.
+
+<P>
+<tt class="class">TestCase</tt> instances provide three groups of methods: one group
+used to run the test, another used by the test implementation to
+check conditions and report failures, and some inquiry methods
+allowing information about the test itself to be gathered.
+
+<P>
+Methods in the first group are:
+
+<P>
+<dl><dt><b><a name="l2h-848"><tt class="method">setUp</tt></a></b>()
+<dd>
+  Method called to prepare the test fixture.  This is called
+  immediately before calling the test method; any exception raised by
+  this method will be considered an error rather than a test failure.
+  The default implementation does nothing.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-849"><tt class="method">tearDown</tt></a></b>()
+<dd>
+  Method called immediately after the test method has been called and
+  the result recorded.  This is called even if the test method raised
+  an exception, so the implementation in subclasses may need to be
+  particularly careful about checking internal state.  Any exception
+  raised by this method will be considered an error rather than a test
+  failure.  This method will only be called if the <tt class="method">setUp()</tt>
+  succeeds, regardless of the outcome of the test method.
+  The default implementation does nothing.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-850"><tt class="method">run</tt></a></b>(<big>[</big><var>result</var><big>]</big>)
+<dd>
+  Run the test, collecting the result into the test result object
+  passed as <var>result</var>.  If <var>result</var> is omitted or <code>None</code>,
+  a temporary result object is created and used, but is not made
+  available to the caller.  This is equivalent to simply calling the
+  <tt class="class">TestCase</tt> instance.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-851"><tt class="method">debug</tt></a></b>()
+<dd>
+  Run the test without collecting the result.  This allows exceptions
+  raised by the test to be propogated to the caller, and can be used
+  to support running tests under a debugger.
+</dl>
+
+<P>
+The test code can use any of the following methods to check for and
+report failures.
+
+<P>
+<dl><dt><b><a name="l2h-852"><tt class="method">assert_</tt></a></b>(<var>expr</var><big>[</big><var>, msg</var><big>]</big>)
+<dd>
+<dt><b><a name="l2h-853"><tt class="method">failUnless</tt></a></b>(<var>expr</var><big>[</big><var>, msg</var><big>]</big>)
+<dd>  Signal a test failure if <var>expr</var> is false; the explanation for
+  the error will be <var>msg</var> if given, otherwise it will be
+  <code>None</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-854"><tt class="method">assertEqual</tt></a></b>(<var>first, second</var><big>[</big><var>, msg</var><big>]</big>)
+<dd>
+<dt><b><a name="l2h-855"><tt class="method">failUnlessEqual</tt></a></b>(<var>first, second</var><big>[</big><var>, msg</var><big>]</big>)
+<dd>  Test that <var>first</var> and <var>second</var> are equal.  If the values do
+  not compare equal, the test will fail with the explanation given by
+  <var>msg</var>, or <code>None</code>.  Note that using <tt class="method">failUnlessEqual()</tt>
+  improves upon doing the comparison as the first parameter to
+  <tt class="method">failUnless()</tt>:  the default value for <var>msg</var> can be
+  computed to include representations of both <var>first</var> and
+  <var>second</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-856"><tt class="method">assertNotEqual</tt></a></b>(<var>first, second</var><big>[</big><var>, msg</var><big>]</big>)
+<dd>
+<dt><b><a name="l2h-857"><tt class="method">failIfEqual</tt></a></b>(<var>first, second</var><big>[</big><var>, msg</var><big>]</big>)
+<dd>  Test that <var>first</var> and <var>second</var> are not equal.  If the values
+  do compare equal, the test will fail with the explanation given by
+  <var>msg</var>, or <code>None</code>.  Note that using <tt class="method">failIfEqual()</tt>
+  improves upon doing the comparison as the first parameter to
+  <tt class="method">failUnless()</tt> is that the default value for <var>msg</var> can be
+  computed to include representations of both <var>first</var> and
+  <var>second</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-858"><tt class="method">assertRaises</tt></a></b>(<var>exception, callable, ...</var>)
+<dd>
+<dt><b><a name="l2h-859"><tt class="method">failUnlessRaises</tt></a></b>(<var>exception, callable, ...</var>)
+<dd>  Test that an exception is raised when <var>callable</var> is called with
+  any positional or keyword arguments that are also passed to
+  <tt class="method">assertRaises()</tt>.  The test passes if <var>exception</var> is
+  raised, is an error if another exception is raised, or fails if no
+  exception is raised.  To catch any of a group of exceptions, a tuple
+  containing the exception classes may be passed as <var>exception</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-860"><tt class="method">failIf</tt></a></b>(<var>expr</var><big>[</big><var>, msg</var><big>]</big>)
+<dd>
+  The inverse of the <tt class="method">failUnless()</tt> method is the
+  <tt class="method">failIf()</tt> method.  This signals a test failure if <var>expr</var>
+  is true, with <var>msg</var> or <code>None</code> for the error message.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-861"><tt class="method">fail</tt></a></b>(<big>[</big><var>msg</var><big>]</big>)
+<dd>
+  Signals a test failure unconditionally, with <var>msg</var> or
+  <code>None</code> for the error message.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-862"><tt class="member">failureException</tt></a></b>
+<dd>
+  This class attribute gives the exception raised by the
+  <tt class="method">test()</tt> method.  If a test framework needs to use a
+  specialized exception, possibly to carry additional information, it
+  must subclass this exception in order to ``play fair'' with the
+  framework.  The initial value of this attribute is
+  <tt class="exception">AssertionError</tt>.
+</dl>
+
+<P>
+Testing frameworks can use the following methods to collect
+information on the test:
+
+<P>
+<dl><dt><b><a name="l2h-863"><tt class="method">countTestCases</tt></a></b>()
+<dd>
+  Return the number of tests represented by the this test object.  For
+  <tt class="class">TestCase</tt> instances, this will always be <code>1</code>, but this
+  method is also implemented by the <tt class="class">TestSuite</tt> class, which can
+  return larger values.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-864"><tt class="method">defaultTestResult</tt></a></b>()
+<dd>
+  Return the default type of test result object to be used to run this
+  test.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-865"><tt class="method">id</tt></a></b>()
+<dd>
+  Return a string identifying the specific test case.  This is usually
+  the full name of the test method, including the module and class
+  names.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-866"><tt class="method">shortDescription</tt></a></b>()
+<dd>
+  Returns a one-line description of the test, or <code>None</code> if no
+  description has been provided.  The default implementation of this
+  method returns the first line of the test method's docstring, if
+  available, or <code>None</code>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="unittest-contents.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-unittest.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="testsuite-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="unittest-contents.html">5.3.3 Classes and functions</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-unittest.html">5.3 unittest  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="testsuite-objects.html">5.3.5 TestSuite Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

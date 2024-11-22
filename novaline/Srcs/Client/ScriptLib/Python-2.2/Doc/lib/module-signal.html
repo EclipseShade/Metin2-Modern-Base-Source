@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.1 signal -- Set handlers for asynchronous events</title>
+<META NAME="description" CONTENT="7.1 signal -- Set handlers for asynchronous events">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-socket.html">
+<LINK REL="previous" href="someos.html">
+<LINK REL="up" href="someos.html">
+<LINK REL="next" HREF="node214.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="someos.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node214.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node214.html">7.1.1 Example</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION009100000000000000000">
+7.1 <tt class="module">signal</tt> --
+         Set handlers for asynchronous events</A>
+</H1>
+
+<P>
+
+
+<P>
+This module provides mechanisms to use signal handlers in Python.
+Some general rules for working with signals and their handlers:
+
+<P>
+
+<UL>
+<LI>A handler for a particular signal, once set, remains installed until
+it is explicitly reset (Python emulates the BSD style interface
+regardless of the underlying implementation), with the exception of
+the handler for <tt class="constant">SIGCHLD</tt>, which follows the underlying
+implementation.
+
+<P>
+</LI>
+<LI>There is no way to ``block'' signals temporarily from critical
+sections (since this is not supported by all Unix flavors).
+
+<P>
+</LI>
+<LI>Although Python signal handlers are called asynchronously as far as
+the Python user is concerned, they can only occur between the
+``atomic'' instructions of the Python interpreter.  This means that
+signals arriving during long calculations implemented purely in C
+(such as regular expression matches on large bodies of text) may be
+delayed for an arbitrary amount of time.
+
+<P>
+</LI>
+<LI>When a signal arrives during an I/O operation, it is possible that the
+I/O operation raises an exception after the signal handler returns.
+This is dependent on the underlying Unix system's semantics regarding
+interrupted system calls.
+
+<P>
+</LI>
+<LI>Because the C signal handler always returns, it makes little sense to
+catch synchronous errors like <tt class="constant">SIGFPE</tt> or <tt class="constant">SIGSEGV</tt>.
+
+<P>
+</LI>
+<LI>Python installs a small number of signal handlers by default:
+<tt class="constant">SIGPIPE</tt> is ignored (so write errors on pipes and sockets can be
+reported as ordinary Python exceptions) and <tt class="constant">SIGINT</tt> is translated
+into a <tt class="exception">KeyboardInterrupt</tt> exception.  All of these can be
+overridden.
+
+<P>
+</LI>
+<LI>Some care must be taken if both signals and threads are used in the
+same program.  The fundamental thing to remember in using signals and
+threads simultaneously is: always perform <tt class="function">signal()</tt> operations
+in the main thread of execution.  Any thread can perform an
+<tt class="function">alarm()</tt>, <tt class="function">getsignal()</tt>, or <tt class="function">pause()</tt>;
+only the main thread can set a new signal handler, and the main thread
+will be the only one to receive signals (this is enforced by the
+Python <tt class="module">signal</tt> module, even if the underlying thread
+implementation supports sending signals to individual threads).  This
+means that signals can't be used as a means of inter-thread
+communication.  Use locks instead.
+
+<P>
+</LI>
+</UL>
+
+<P>
+The variables defined in the <tt class="module">signal</tt> module are:
+
+<P>
+<dl><dt><b><a name="l2h-1838"><tt>SIG_DFL</tt></a></b>
+<dd>
+  This is one of two standard signal handling options; it will simply
+  perform the default function for the signal.  For example, on most
+  systems the default action for <tt class="constant">SIGQUIT</tt> is to dump core
+  and exit, while the default action for <tt class="constant">SIGCLD</tt> is to
+  simply ignore it.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1839"><tt>SIG_IGN</tt></a></b>
+<dd>
+  This is another standard signal handler, which will simply ignore
+  the given signal.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1840"><tt>SIG*</tt></a></b>
+<dd>
+  All the signal numbers are defined symbolically.  For example, the
+  hangup signal is defined as <tt class="constant">signal.SIGHUP</tt>; the variable names
+  are identical to the names used in C programs, as found in
+  <code>&lt;signal.h&gt;</code>.
+  The Unix man page for `<tt class="cfunction">signal()</tt>' lists the existing
+  signals (on some systems this is <span class="manpage"><i>signal</i>(2)</span>, on others the
+  list is in <span class="manpage"><i>signal</i>(7)</span>).
+  Note that not all systems define the same set of signal names; only
+  those names defined by the system are defined by this module.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1841"><tt>NSIG</tt></a></b>
+<dd>
+  One more than the number of the highest signal number.
+</dl>
+
+<P>
+The <tt class="module">signal</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-1842"><tt class="function">alarm</tt></a></b>(<var>time</var>)
+<dd>
+  If <var>time</var> is non-zero, this function requests that a
+  <tt class="constant">SIGALRM</tt> signal be sent to the process in <var>time</var> seconds.
+  Any previously scheduled alarm is canceled (only one alarm can
+  be scheduled at any time).  The returned value is then the number of
+  seconds before any previously set alarm was to have been delivered.
+  If <var>time</var> is zero, no alarm id scheduled, and any scheduled
+  alarm is canceled.  The return value is the number of seconds
+  remaining before a previously scheduled alarm.  If the return value
+  is zero, no alarm is currently scheduled.  (See the Unix man page
+  <span class="manpage"><i>alarm</i>(2)</span>.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1843"><tt class="function">getsignal</tt></a></b>(<var>signalnum</var>)
+<dd>
+  Return the current signal handler for the signal <var>signalnum</var>.
+  The returned value may be a callable Python object, or one of the
+  special values <tt class="constant">signal.SIG_IGN</tt>, <tt class="constant">signal.SIG_DFL</tt> or
+  <tt class="constant">None</tt>.  Here, <tt class="constant">signal.SIG_IGN</tt> means that the
+  signal was previously ignored, <tt class="constant">signal.SIG_DFL</tt> means that the
+  default way of handling the signal was previously in use, and
+  <code>None</code> means that the previous signal handler was not installed
+  from Python.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1844"><tt class="function">pause</tt></a></b>()
+<dd>
+  Cause the process to sleep until a signal is received; the
+  appropriate handler will then be called.  Returns nothing.  (See the
+  Unix man page <span class="manpage"><i>signal</i>(2)</span>.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1845"><tt class="function">signal</tt></a></b>(<var>signalnum, handler</var>)
+<dd>
+  Set the handler for signal <var>signalnum</var> to the function
+  <var>handler</var>.  <var>handler</var> can be a callable Python object
+  taking two arguments (see below), or
+  one of the special values <tt class="constant">signal.SIG_IGN</tt> or
+  <tt class="constant">signal.SIG_DFL</tt>.  The previous signal handler will be returned
+  (see the description of <tt class="function">getsignal()</tt> above).  (See the
+  Unix man page <span class="manpage"><i>signal</i>(2)</span>.)
+
+<P>
+When threads are enabled, this function can only be called from the
+  main thread; attempting to call it from other threads will cause a
+  <tt class="exception">ValueError</tt> exception to be raised.
+
+<P>
+The <var>handler</var> is called with two arguments: the signal number
+  and the current stack frame (<code>None</code> or a frame object; see the
+  reference manual for a description of frame objects).
+<a name="l2h-1846">&nbsp;</a></dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node214.html">7.1.1 Example</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="someos.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node214.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node214.html">7.1.1 Example</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

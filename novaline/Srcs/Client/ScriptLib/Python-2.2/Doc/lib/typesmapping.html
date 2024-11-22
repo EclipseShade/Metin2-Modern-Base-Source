@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.2.7 Mapping Types </title>
+<META NAME="description" CONTENT="2.2.7 Mapping Types ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="bltin-file-objects.html">
+<LINK REL="previous" href="typesseq.html">
+<LINK REL="up" href="types.html">
+<LINK REL="next" href="bltin-file-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="typesseq-mutable.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="bltin-file-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="typesseq-mutable.html">2.2.6.4 Mutable Sequence Types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="types.html">2.2 Built-in Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="bltin-file-objects.html">2.2.8 File Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004270000000000000000">&nbsp;</A>
+<BR>
+2.2.7 Mapping Types 
+</H2>
+<a name="l2h-155">&nbsp;</a>
+<P>
+A <i class="dfn">mapping</i> object maps values of one type (the key type) to
+arbitrary objects.  Mappings are mutable objects.  There is currently
+only one standard mapping type, the <i class="dfn">dictionary</i>.  A dictionary's keys are
+almost arbitrary values.  The only types of values not acceptable as
+keys are values containing lists or dictionaries or other mutable
+types that are compared by value rather than by object identity.
+Numeric types used for keys obey the normal rules for numeric
+comparison: if two numbers compare equal (e.g. <code>1</code> and
+<code>1.0</code>) then they can be used interchangeably to index the same
+dictionary entry.
+
+<P>
+Dictionaries are created by placing a comma-separated list of
+<code><var>key</var>: <var>value</var></code> pairs within braces, for example:
+<code>{'jack': 4098, 'sjoerd': 4127}</code> or
+<code>{4098: 'jack', 4127: 'sjoerd'}</code>.
+
+<P>
+The following operations are defined on mappings (where <var>a</var> and
+<var>b</var> are mappings, <var>k</var> is a key, and <var>v</var> and <var>x</var> are
+arbitrary objects):
+<a name="l2h-156">&nbsp;</a><a name="l2h-154">&nbsp;</a>
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Operation</b>&nbsp;</th>
+      <th align="left"><b>Result</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><code>len(<var>a</var>)</code></td>
+        <td align="left">the number of items in <var>a</var></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code><var>a</var>[<var>k</var>]</code></td>
+        <td align="left">the item of <var>a</var> with key <var>k</var></td>
+        <td align="center">(1)</td>
+    <tr><td align="center" valign="baseline"><code><var>a</var>[<var>k</var>] = <var>v</var></code></td>
+        <td align="left">set <code><var>a</var>[<var>k</var>]</code> to <var>v</var></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code>del <var>a</var>[<var>k</var>]</code></td>
+        <td align="left">remove <code><var>a</var>[<var>k</var>]</code> from <var>a</var></td>
+        <td align="center">(1)</td>
+    <tr><td align="center" valign="baseline"><code><var>a</var>.clear()</code></td>
+        <td align="left">remove all items from <code>a</code></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code><var>a</var>.copy()</code></td>
+        <td align="left">a (shallow) copy of <code>a</code></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code><var>a</var>.has_key(<var>k</var>)</code></td>
+        <td align="left"><code>1</code> if <var>a</var> has a key <var>k</var>, else <code>0</code></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code><var>k</var> <code>in</code> <var>a</var></code></td>
+        <td align="left">Equivalent to <var>a</var>.has_key(<var>k</var>)</td>
+        <td align="center">(2)</td>
+    <tr><td align="center" valign="baseline"><code><var>k</var> not in <var>a</var></code></td>
+        <td align="left">Equivalent to <code>not</code> <var>a</var>.has_key(<var>k</var>)</td>
+        <td align="center">(2)</td>
+    <tr><td align="center" valign="baseline"><code><var>a</var>.items()</code></td>
+        <td align="left">a copy of <var>a</var>'s list of (<var>key</var>, <var>value</var>) pairs</td>
+        <td align="center">(3)</td>
+    <tr><td align="center" valign="baseline"><code><var>a</var>.keys()</code></td>
+        <td align="left">a copy of <var>a</var>'s list of keys</td>
+        <td align="center">(3)</td>
+    <tr><td align="center" valign="baseline"><code><var>a</var>.update(<var>b</var>)</code></td>
+        <td align="left"><code>for k in <var>b</var>.keys(): <var>a</var>[k] = <var>b</var>[k]</code></td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><code><var>a</var>.values()</code></td>
+        <td align="left">a copy of <var>a</var>'s list of values</td>
+        <td align="center">(3)</td>
+    <tr><td align="center" valign="baseline"><code><var>a</var>.get(<var>k</var><big>[</big>, <var>x</var><big>]</big>)</code></td>
+        <td align="left"><code><var>a</var>[<var>k</var>]</code> if <code><var>k</var> in <var>a</var></code>,
+           else <var>x</var></td>
+        <td align="center">(4)</td>
+    <tr><td align="center" valign="baseline"><code><var>a</var>.setdefault(<var>k</var><big>[</big>, <var>x</var><big>]</big>)</code></td>
+        <td align="left"><code><var>a</var>[<var>k</var>]</code> if <code><var>k</var> in <var>a</var></code>,
+           else <var>x</var> (also setting it)</td>
+        <td align="center">(5)</td>
+    <tr><td align="center" valign="baseline"><code><var>a</var>.popitem()</code></td>
+        <td align="left">remove and return an arbitrary (<var>key</var>, <var>value</var>) pair</td>
+        <td align="center">(6)</td>
+    <tr><td align="center" valign="baseline"><code><var>a</var>.iteritems()</code></td>
+        <td align="left">return an iterator over (<var>key</var>, <var>value</var>) pairs</td>
+        <td align="center">(2)</td>
+    <tr><td align="center" valign="baseline"><code><var>a</var>.iterkeys()</code></td>
+        <td align="left">return an iterator over the mapping's keys</td>
+        <td align="center">(2)</td>
+    <tr><td align="center" valign="baseline"><code><var>a</var>.itervalues()</code></td>
+        <td align="left">return an iterator over the mapping's values</td>
+        <td align="center">(2)</td></tbody>
+</table>
+
+<P>
+Notes:
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>Raises a <tt class="exception">KeyError</tt> exception if <var>k</var> is not
+in the map.
+
+<P>
+</DD>
+<DT><STRONG>(2)</STRONG></DT>
+<DD>
+<span class="versionnote">New in version 2.2.</span>
+
+<P>
+</DD>
+<DT><STRONG>(3)</STRONG></DT>
+<DD>Keys and values are listed in random order.  If
+<tt class="method">keys()</tt> and <tt class="method">values()</tt> are called with no intervening
+modifications to the dictionary, the two lists will directly
+correspond.  This allows the creation of <code>(<var>value</var>,
+<var>key</var>)</code> pairs using <tt class="function">zip()</tt>: "<tt class="samp">pairs =
+zip(<var>a</var>.values(), <var>a</var>.keys())</tt>".
+
+<P>
+</DD>
+<DT><STRONG>(4)</STRONG></DT>
+<DD>Never raises an exception if <var>k</var> is not in the map,
+instead it returns <var>x</var>.  <var>x</var> is optional; when <var>x</var> is not
+provided and <var>k</var> is not in the map, <code>None</code> is returned.
+
+<P>
+</DD>
+<DT><STRONG>(5)</STRONG></DT>
+<DD><tt class="function">setdefault()</tt> is like <tt class="function">get()</tt>, except
+that if <var>k</var> is missing, <var>x</var> is both returned and inserted into
+the dictionary as the value of <var>k</var>.
+
+<P>
+</DD>
+<DT><STRONG>(6)</STRONG></DT>
+<DD><tt class="function">popitem()</tt> is useful to destructively iterate
+over a dictionary, as often used in set algorithms.
+</DD>
+</DL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="typesseq-mutable.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="bltin-file-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="typesseq-mutable.html">2.2.6.4 Mutable Sequence Types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="types.html">2.2 Built-in Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="bltin-file-objects.html">2.2.8 File Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

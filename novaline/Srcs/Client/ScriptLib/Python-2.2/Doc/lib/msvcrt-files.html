@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>22.1.1 File Operations </title>
+<META NAME="description" CONTENT="22.1.1 File Operations ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="msvcrt-console.html">
+<LINK REL="previous" href="module-msvcrt.html">
+<LINK REL="up" href="module-msvcrt.html">
+<LINK REL="next" href="msvcrt-console.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-msvcrt.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-msvcrt.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="msvcrt-console.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-msvcrt.html">22.1 msvcrt - Useful</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-msvcrt.html">22.1 msvcrt - Useful</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="msvcrt-console.html">22.1.2 Console I/O</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0024110000000000000000">&nbsp;</A>
+<BR>
+22.1.1 File Operations 
+</H2>
+
+<P>
+<dl><dt><b><a name="l2h-4057"><tt class="function">locking</tt></a></b>(<var>fd, mode, nbytes</var>)
+<dd>
+  Lock part of a file based on file descriptor <var>fd</var> from the C
+  runtime.  Raises <tt class="exception">IOError</tt> on failure.  The locked region
+  of the file extends from the current file position for <var>nbytes</var>
+  bytes, and may continue beyond the end of the file.  <var>mode</var> must
+  be one of the <tt class="constant">LK_<var>*</var></tt> constants listed below.
+  Multiple regions in a file may be locked at the same time, but may
+  not overlap.  Adjacent regions are not merged; they must be unlocked
+  individually.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4058"><tt>LK_LOCK</tt></a></b>
+<dd>
+<dt><b><a name="l2h-4064"><tt>LK_RLCK</tt></a></b><dd>
+  Locks the specified bytes. If the bytes cannot be locked, the
+  program immediately tries again after 1 second.  If, after 10
+  attempts, the bytes cannot be locked, <tt class="exception">IOError</tt> is
+  raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4059"><tt>LK_NBLCK</tt></a></b>
+<dd>
+<dt><b><a name="l2h-4065"><tt>LK_NBRLCK</tt></a></b><dd>
+  Locks the specified bytes. If the bytes cannot be locked,
+  <tt class="exception">IOError</tt> is raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4060"><tt>LK_UNLCK</tt></a></b>
+<dd>
+  Unlocks the specified bytes, which must have been previously locked. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4061"><tt class="function">setmode</tt></a></b>(<var>fd, flags</var>)
+<dd>
+  Set the line-end translation mode for the file descriptor <var>fd</var>.
+  To set it to text mode, <var>flags</var> should be <tt class="constant">os.O_TEXT</tt>;
+  for binary, it should be <tt class="constant">os.O_BINARY</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4062"><tt class="function">open_osfhandle</tt></a></b>(<var>handle, flags</var>)
+<dd>
+  Create a C runtime file descriptor from the file handle
+  <var>handle</var>.  The <var>flags</var> parameter should be a bit-wise OR of
+  <tt class="constant">os.O_APPEND</tt>, <tt class="constant">os.O_RDONLY</tt>, and
+  <tt class="constant">os.O_TEXT</tt>.  The returned file descriptor may be used as a
+  parameter to <tt class="function">os.fdopen()</tt> to create a file object.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4063"><tt class="function">get_osfhandle</tt></a></b>(<var>fd</var>)
+<dd>
+  Return the file handle for the file descriptor <var>fd</var>.  Raises
+  <tt class="exception">IOError</tt> if <var>fd</var> is not recognized.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-msvcrt.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-msvcrt.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="msvcrt-console.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-msvcrt.html">22.1 msvcrt - Useful</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-msvcrt.html">22.1 msvcrt - Useful</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="msvcrt-console.html">22.1.2 Console I/O</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

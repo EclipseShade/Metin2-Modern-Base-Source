@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.1.3 File Descriptor Operations </title>
+<META NAME="description" CONTENT="6.1.3 File Descriptor Operations ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="os-file-dir.html">
+<LINK REL="previous" href="os-newstreams.html">
+<LINK REL="up" href="module-os.html">
+<LINK REL="next" href="os-file-dir.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="os-newstreams.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-os.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="os-file-dir.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="os-newstreams.html">6.1.2 File Object Creation</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-os.html">6.1 os  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="os-file-dir.html">6.1.4 Files and Directories</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008130000000000000000">&nbsp;</A>
+<BR>
+6.1.3 File Descriptor Operations 
+</H2>
+
+<P>
+These functions operate on I/O streams referred to
+using file descriptors.
+
+<P>
+<dl><dt><b><a name="l2h-1136"><tt class="function">close</tt></a></b>(<var>fd</var>)
+<dd>
+Close file descriptor <var>fd</var>.
+Availability: Macintosh, Unix, Windows.
+
+<P>
+Note: this function is intended for low-level I/O and must be applied
+to a file descriptor as returned by <tt class="function">open()</tt> or
+<tt class="function">pipe()</tt>.  To close a ``file object'' returned by the
+built-in function <tt class="function">open()</tt> or by <tt class="function">popen()</tt> or
+<tt class="function">fdopen()</tt>, use its <tt class="method">close()</tt> method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1137"><tt class="function">dup</tt></a></b>(<var>fd</var>)
+<dd>
+Return a duplicate of file descriptor <var>fd</var>.
+Availability: Macintosh, Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1138"><tt class="function">dup2</tt></a></b>(<var>fd, fd2</var>)
+<dd>
+Duplicate file descriptor <var>fd</var> to <var>fd2</var>, closing the latter
+first if necessary.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1139"><tt class="function">fpathconf</tt></a></b>(<var>fd, name</var>)
+<dd>
+Return system configuration information relevant to an open file.
+<var>name</var> specifies the configuration value to retrieve; it may be a
+string which is the name of a defined system value; these names are
+specified in a number of standards (POSIX.1, Unix95, Unix98, and
+others).  Some platforms define additional names as well.  The names
+known to the host operating system are given in the
+<code>pathconf_names</code> dictionary.  For configuration variables not
+included in that mapping, passing an integer for <var>name</var> is also
+accepted.
+Availability: Unix.
+
+<P>
+If <var>name</var> is a string and is not known, <tt class="exception">ValueError</tt> is
+raised.  If a specific value for <var>name</var> is not supported by the
+host system, even if it is included in <code>pathconf_names</code>, an
+<tt class="exception">OSError</tt> is raised with <tt class="constant">errno.EINVAL</tt> for the
+error number.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1140"><tt class="function">fstat</tt></a></b>(<var>fd</var>)
+<dd>
+Return status for file descriptor <var>fd</var>, like <tt class="function">stat()</tt>.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1141"><tt class="function">fstatvfs</tt></a></b>(<var>fd</var>)
+<dd>
+Return information about the filesystem containing the file associated
+with file descriptor <var>fd</var>, like <tt class="function">statvfs()</tt>.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1142"><tt class="function">ftruncate</tt></a></b>(<var>fd, length</var>)
+<dd>
+Truncate the file corresponding to file descriptor <var>fd</var>, 
+so that it is at most <var>length</var> bytes in size.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1143"><tt class="function">isatty</tt></a></b>(<var>fd</var>)
+<dd>
+Return <code>1</code> if the file descriptor <var>fd</var> is open and connected to a
+tty(-like) device, else <code>0</code>.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1144"><tt class="function">lseek</tt></a></b>(<var>fd, pos, how</var>)
+<dd>
+Set the current position of file descriptor <var>fd</var> to position
+<var>pos</var>, modified by <var>how</var>: <code>0</code> to set the position
+relative to the beginning of the file; <code>1</code> to set it relative to
+the current position; <code>2</code> to set it relative to the end of the
+file.
+Availability: Macintosh, Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1145"><tt class="function">open</tt></a></b>(<var>file, flags</var><big>[</big><var>, mode</var><big>]</big>)
+<dd>
+Open the file <var>file</var> and set various flags according to
+<var>flags</var> and possibly its mode according to <var>mode</var>.
+The default <var>mode</var> is <code>0777</code> (octal), and the current umask
+value is first masked out.  Return the file descriptor for the newly
+opened file.
+Availability: Macintosh, Unix, Windows.
+
+<P>
+For a description of the flag and mode values, see the C run-time
+documentation; flag constants (like <tt class="constant">O_RDONLY</tt> and
+<tt class="constant">O_WRONLY</tt>) are defined in this module too (see below).
+
+<P>
+Note: this function is intended for low-level I/O.  For normal usage,
+use the built-in function <tt class="function">open()</tt>, which returns a ``file
+object'' with <tt class="method">read()</tt> and <tt class="method">write()</tt> methods (and many
+more).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1146"><tt class="function">openpty</tt></a></b>()
+<dd>
+Open a new pseudo-terminal pair. Return a pair of file descriptors
+<code>(<var>master</var>, <var>slave</var>)</code> for the pty and the tty,
+respectively. For a (slightly) more portable approach, use the
+<tt class="module"><a href="module-pty.html">pty</a></tt><a name="l2h-1155">&nbsp;</a>module.
+Availability: Some flavors of Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1147"><tt class="function">pipe</tt></a></b>()
+<dd>
+Create a pipe.  Return a pair of file descriptors <code>(<var>r</var>,
+<var>w</var>)</code> usable for reading and writing, respectively.
+Availability: Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1148"><tt class="function">read</tt></a></b>(<var>fd, n</var>)
+<dd>
+Read at most <var>n</var> bytes from file descriptor <var>fd</var>.
+Return a string containing the bytes read.
+Availability: Macintosh, Unix, Windows.
+
+<P>
+Note: this function is intended for low-level I/O and must be applied
+to a file descriptor as returned by <tt class="function">open()</tt> or
+<tt class="function">pipe()</tt>.  To read a ``file object'' returned by the
+built-in function <tt class="function">open()</tt> or by <tt class="function">popen()</tt> or
+<tt class="function">fdopen()</tt>, or <code>sys.stdin</code>, use its
+<tt class="method">read()</tt> or <tt class="method">readline()</tt> methods.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1149"><tt class="function">tcgetpgrp</tt></a></b>(<var>fd</var>)
+<dd>
+Return the process group associated with the terminal given by
+<var>fd</var> (an open file descriptor as returned by <tt class="function">open()</tt>).
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1150"><tt class="function">tcsetpgrp</tt></a></b>(<var>fd, pg</var>)
+<dd>
+Set the process group associated with the terminal given by
+<var>fd</var> (an open file descriptor as returned by <tt class="function">open()</tt>)
+to <var>pg</var>.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1151"><tt class="function">ttyname</tt></a></b>(<var>fd</var>)
+<dd>
+Return a string which specifies the terminal device associated with
+file-descriptor <var>fd</var>.  If <var>fd</var> is not associated with a terminal
+device, an exception is raised.
+Availability: Unix.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1152"><tt class="function">write</tt></a></b>(<var>fd, str</var>)
+<dd>
+Write the string <var>str</var> to file descriptor <var>fd</var>.
+Return the number of bytes actually written.
+Availability: Macintosh, Unix, Windows.
+
+<P>
+Note: this function is intended for low-level I/O and must be applied
+to a file descriptor as returned by <tt class="function">open()</tt> or
+<tt class="function">pipe()</tt>.  To write a ``file object'' returned by the
+built-in function <tt class="function">open()</tt> or by <tt class="function">popen()</tt> or
+<tt class="function">fdopen()</tt>, or <code>sys.stdout</code> or <code>sys.stderr</code>, use
+its <tt class="method">write()</tt> method.
+</dl>
+
+<P>
+The following data items are available for use in constructing the
+<var>flags</var> parameter to the <tt class="function">open()</tt> function.
+
+<P>
+<dl><dt><b><a name="l2h-1153"><tt>O_RDONLY</tt></a></b>
+<dd>
+<dt><b><a name="l2h-1156"><tt>O_WRONLY</tt></a></b><dd>
+<dt><b><a name="l2h-1157"><tt>O_RDWR</tt></a></b><dd>
+<dt><b><a name="l2h-1158"><tt>O_NDELAY</tt></a></b><dd>
+<dt><b><a name="l2h-1159"><tt>O_NONBLOCK</tt></a></b><dd>
+<dt><b><a name="l2h-1160"><tt>O_APPEND</tt></a></b><dd>
+<dt><b><a name="l2h-1161"><tt>O_DSYNC</tt></a></b><dd>
+<dt><b><a name="l2h-1162"><tt>O_RSYNC</tt></a></b><dd>
+<dt><b><a name="l2h-1163"><tt>O_SYNC</tt></a></b><dd>
+<dt><b><a name="l2h-1164"><tt>O_NOCTTY</tt></a></b><dd>
+<dt><b><a name="l2h-1165"><tt>O_CREAT</tt></a></b><dd>
+<dt><b><a name="l2h-1166"><tt>O_EXCL</tt></a></b><dd>
+<dt><b><a name="l2h-1167"><tt>O_TRUNC</tt></a></b><dd>
+Options for the <var>flag</var> argument to the <tt class="function">open()</tt> function.
+These can be bit-wise OR'd together.
+Availability: Macintosh, Unix, Windows.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1154"><tt>O_BINARY</tt></a></b>
+<dd>
+Option for the <var>flag</var> argument to the <tt class="function">open()</tt> function.
+This can be bit-wise OR'd together with those listed above.
+Availability: Macintosh, Windows.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="os-newstreams.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-os.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="os-file-dir.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="os-newstreams.html">6.1.2 File Object Creation</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-os.html">6.1 os  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="os-file-dir.html">6.1.4 Files and Directories</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

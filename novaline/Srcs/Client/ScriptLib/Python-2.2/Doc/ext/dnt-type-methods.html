@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.2 Type Methods
+</title>
+<META NAME="description" CONTENT="2.2 Type Methods
+">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="previous" href="dnt-basics.html">
+<LINK REL="up" href="defining-new-types.html">
+<LINK REL="next" HREF="node23.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dnt-basics.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="defining-new-types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node23.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dnt-basics.html">2.1 The Basics</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="defining-new-types.html">2. Defining New Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node23.html">2.2.1 Finalization and De-allocation</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION004200000000000000000">&nbsp;</A>
+<BR>
+2.2 Type Methods
+         
+</H1>
+
+<P>
+This section aims to give a quick fly-by on the various type methods
+you can implement and what they do.
+
+<P>
+Here is the definition of <tt class="ctype">PyTypeObject</tt>, with some fields only
+used in debug builds omitted:
+
+<P>
+<dl><dd><pre class="verbatim">
+typedef struct _typeobject {
+    PyObject_VAR_HEAD
+    char *tp_name; /* For printing */
+    int tp_basicsize, tp_itemsize; /* For allocation */
+
+    /* Methods to implement standard operations */
+
+    destructor tp_dealloc;
+    printfunc tp_print;
+    getattrfunc tp_getattr;
+    setattrfunc tp_setattr;
+    cmpfunc tp_compare;
+    reprfunc tp_repr;
+
+    /* Method suites for standard classes */
+
+    PyNumberMethods *tp_as_number;
+    PySequenceMethods *tp_as_sequence;
+    PyMappingMethods *tp_as_mapping;
+
+    /* More standard operations (here for binary compatibility) */
+
+    hashfunc tp_hash;
+    ternaryfunc tp_call;
+    reprfunc tp_str;
+    getattrofunc tp_getattro;
+    setattrofunc tp_setattro;
+
+    /* Functions to access object as input/output buffer */
+    PyBufferProcs *tp_as_buffer;
+
+    /* Flags to define presence of optional/expanded features */
+    long tp_flags;
+
+    char *tp_doc; /* Documentation string */
+
+    /* Assigned meaning in release 2.0 */
+    /* call function for all accessible objects */
+    traverseproc tp_traverse;
+
+    /* delete references to contained objects */
+    inquiry tp_clear;
+
+    /* Assigned meaning in release 2.1 */
+    /* rich comparisons */
+    richcmpfunc tp_richcompare;
+
+    /* weak reference enabler */
+    long tp_weaklistoffset;
+
+    /* Added in release 2.2 */
+    /* Iterators */
+    getiterfunc tp_iter;
+    iternextfunc tp_iternext;
+
+    /* Attribute descriptor and subclassing stuff */
+    struct PyMethodDef *tp_methods;
+    struct memberlist *tp_members;
+    struct getsetlist *tp_getset;
+    struct _typeobject *tp_base;
+    PyObject *tp_dict;
+    descrgetfunc tp_descr_get;
+    descrsetfunc tp_descr_set;
+    long tp_dictoffset;
+    initproc tp_init;
+    allocfunc tp_alloc;
+    newfunc tp_new;
+    destructor tp_free; /* Low-level free-memory routine */
+    PyObject *tp_bases;
+    PyObject *tp_mro; /* method resolution order */
+    PyObject *tp_defined;
+
+} PyTypeObject;
+</pre></dl>
+
+<P>
+Now that's a <i>lot</i> of methods.  Don't worry too much though - if
+you have a type you want to define, the chances are very good that you
+will only implement a handful of these.
+
+<P>
+As you probably expect by now, we're going to go over this and give
+more information about the various handlers.  We won't go in the order
+they are defined in the structure, because there is a lot of
+historical baggage that impacts the ordering of the fields; be sure
+your type initializaion keeps the fields in the right order!  It's
+often easiest to find an example that includes all the fields you need
+(even if they're initialized to <code>0</code>) and then change the values
+to suit your new type.
+
+<P>
+<dl><dd><pre class="verbatim">
+    char *tp_name; /* For printing */
+</pre></dl>
+
+<P>
+The name of the type - as mentioned in the last section, this will
+appear in various places, almost entirely for diagnostic purposes.
+Try to choose something that will be helpful in such a situation!
+
+<P>
+<dl><dd><pre class="verbatim">
+    int tp_basicsize, tp_itemsize; /* For allocation */
+</pre></dl>
+
+<P>
+These fields tell the runtime how much memory to allocate when new
+objects of this typed are created.  Python has some builtin support
+for variable length structures (think: strings, lists) which is where
+the <tt class="cdata">tp_itemsize</tt> field comes in.  This will be dealt with
+later.
+
+<P>
+<dl><dd><pre class="verbatim">
+    char *tp_doc;
+</pre></dl>
+
+<P>
+Here you can put a string (or its address) that you want returned when
+the Python script references <code>obj.__doc__</code> to retrieve the
+docstring.
+
+<P>
+Now we come to the basic type methods--the ones most extension types
+will implement.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node23.html">2.2.1 Finalization and De-allocation</a>
+<LI><A href="node24.html">2.2.2 Object Representation</a>
+<LI><A href="node25.html">2.2.3 Attribute Management Functions</a>
+<LI><A href="node26.html">2.2.4 Object Comparison</a>
+<LI><A href="node27.html">2.2.5 Abstract Protocol Support</a>
+<LI><A href="node28.html">2.2.6 More Suggestions</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dnt-basics.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="defining-new-types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node23.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dnt-basics.html">2.1 The Basics</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="defining-new-types.html">2. Defining New Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node23.html">2.2.1 Finalization and De-allocation</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

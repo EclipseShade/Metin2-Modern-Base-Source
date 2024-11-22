@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.7 Shifting operations</title>
+<META NAME="description" CONTENT="5.7 Shifting operations">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="bitwise.html">
+<LINK REL="previous" href="binary.html">
+<LINK REL="up" href="expressions.html">
+<LINK REL="next" href="bitwise.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="binary.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="expressions.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="bitwise.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="binary.html">5.6 Binary arithmetic operations</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="expressions.html">5. Expressions</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="bitwise.html">5.8 Binary bit-wise operations</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007700000000000000000">&nbsp;</A>
+<BR>
+5.7 Shifting operations
+</H1>
+<a name="l2h-278">&nbsp;</a>
+<P>
+The shifting operations have lower priority than the arithmetic
+operations:
+
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-shift_expr">shift_expr</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="binary.html#tok-a_expr">a_expr</a>
+              | <a href="node58.html#tok-shift_expr">shift_expr</a> ( "&#171;" | "&#187;" ) <a href="binary.html#tok-a_expr">a_expr</a></code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+These operators accept plain or long integers as arguments.  The
+arguments are converted to a common type.  They shift the first
+argument to the left or right by the number of bits given by the
+second argument.
+
+<P>
+A right shift by <var>n</var> bits is defined as division by
+<code>pow(2,<var>n</var>)</code>.  A left shift by <var>n</var> bits is defined as
+multiplication with <code>pow(2,<var>n</var>)</code>; for plain integers there is
+no overflow check so in that case the operation drops bits and flips
+the sign if the result is not less than <code>pow(2,31)</code> in absolute
+value.  Negative shift counts raise a <tt class="exception">ValueError</tt>
+exception.
+<a name="l2h-279">&nbsp;</a>
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="binary.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="expressions.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="bitwise.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="binary.html">5.6 Binary arithmetic operations</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="expressions.html">5. Expressions</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="bitwise.html">5.8 Binary bit-wise operations</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.7 gdbm -- GNU's reinterpretation of dbm</title>
+<META NAME="description" CONTENT="8.7 gdbm -- GNU's reinterpretation of dbm">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-termios.html">
+<LINK REL="previous" href="module-dbm.html">
+<LINK REL="up" href="unix.html">
+<LINK REL="next" href="module-termios.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-dbm.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-termios.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-dbm.html">8.6 dbm  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-termios.html">8.8 termios  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0010700000000000000000">
+8.7 <tt class="module">gdbm</tt> --
+         GNU's reinterpretation of dbm</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Unix</span>.</p>
+
+<P>
+This module is quite similar to the <tt class="module"><a href="module-dbm.html">dbm</a></tt><a name="l2h-2157">&nbsp;</a>module, but uses <code>gdbm</code> instead to provide some additional
+functionality.  Please note that the file formats created by
+<code>gdbm</code> and <code>dbm</code> are incompatible.
+
+<P>
+The <tt class="module">gdbm</tt> module provides an interface to the GNU DBM
+library.  <code>gdbm</code> objects behave like mappings
+(dictionaries), except that keys and values are always strings.
+Printing a <code>gdbm</code> object doesn't print the keys and values, and
+the <tt class="method">items()</tt> and <tt class="method">values()</tt> methods are not supported.
+
+<P>
+The module defines the following constant and functions:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2151"><tt class="exception">error</tt></a></b>
+<dd>
+Raised on <code>gdbm</code>-specific errors, such as I/O errors.
+<tt class="exception">KeyError</tt> is raised for general mapping errors like
+specifying an incorrect key.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2152"><tt class="function">open</tt></a></b>(<var>filename, </var><big>[</big><var>flag, </var><big>[</big><var>mode</var><big>]</big><big>]</big>)
+<dd>
+Open a <code>gdbm</code> database and return a <code>gdbm</code> object.  The
+<var>filename</var> argument is the name of the database file.
+
+<P>
+The optional <var>flag</var> argument can be
+<code>'r'</code> (to open an existing database for reading only -- default),
+<code>'w'</code> (to open an existing database for reading and writing),
+<code>'c'</code> (which creates the database if it doesn't exist), or
+<code>'n'</code> (which always creates a new empty database).
+
+<P>
+The following additional characters may be appended to the flag to
+control how the database is opened:
+
+<P>
+
+<UL>
+<LI><code>'f'</code> -- Open the database in fast mode.  Writes to the database
+                     will not be syncronized.
+</LI>
+<LI><code>'s'</code> -- Synchronized mode. This will cause changes to the database
+                     will be immediately written to the file.
+</LI>
+<LI><code>'u'</code> -- Do not lock database. 
+</LI>
+</UL>
+
+<P>
+Not all flags are valid for all versions of <code>gdbm</code>.  The
+module constant <code>open_flags</code> is a string of supported flag
+characters.  The exception <tt class="exception">error</tt> is raised if an invalid
+flag is specified.
+
+<P>
+The optional <var>mode</var> argument is the Unix mode of the file, used
+only when the database has to be created.  It defaults to octal
+<code>0666</code>.
+</dl>
+
+<P>
+In addition to the dictionary-like methods, <code>gdbm</code> objects have the
+following methods:
+
+<P>
+<dl><dt><b><a name="l2h-2153"><tt class="function">firstkey</tt></a></b>()
+<dd>
+It's possible to loop over every key in the database using this method 
+and the <tt class="method">nextkey()</tt> method.  The traversal is ordered by
+<code>gdbm</code>'s internal hash values, and won't be sorted by the key
+values.  This method returns the starting key.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2154"><tt class="function">nextkey</tt></a></b>(<var>key</var>)
+<dd>
+Returns the key that follows <var>key</var> in the traversal.  The
+following code prints every key in the database <code>db</code>, without
+having to create a list in memory that contains them all:
+
+<P>
+<dl><dd><pre class="verbatim">
+k = db.firstkey()
+while k != None:
+    print k
+    k = db.nextkey(k)
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2155"><tt class="function">reorganize</tt></a></b>()
+<dd>
+If you have carried out a lot of deletions and would like to shrink
+the space used by the <code>gdbm</code> file, this routine will reorganize
+the database.  <code>gdbm</code> will not shorten the length of a database
+file except by using this reorganization; otherwise, deleted file
+space will be kept and reused as new (key, value) pairs are added.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2156"><tt class="function">sync</tt></a></b>()
+<dd>
+When the database has been opened in fast mode, this method forces any 
+unwritten data to be written to the disk.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-anydbm.html">anydbm</a></tt>:</b>
+    <dd>Generic interface to <code>dbm</code>-style databases.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-whichdb.html">whichdb</a></tt>:</b>
+    <dd>Utility module used to determine the type of an
+                      existing database.
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-dbm.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-termios.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-dbm.html">8.6 dbm  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-termios.html">8.8 termios  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

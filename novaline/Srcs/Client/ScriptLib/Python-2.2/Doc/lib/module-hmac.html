@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>15.1 hmac -- Keyed-Hashing for Message Authentication</title>
+<META NAME="description" CONTENT="15.1 hmac -- Keyed-Hashing for Message Authentication">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-md5.html">
+<LINK REL="previous" href="crypto.html">
+<LINK REL="up" href="crypto.html">
+<LINK REL="next" href="module-md5.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="crypto.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="crypto.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-md5.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="crypto.html">15. Cryptographic Services</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="crypto.html">15. Cryptographic Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-md5.html">15.2 md5  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0017100000000000000000">
+15.1 <tt class="module">hmac</tt> --
+         Keyed-Hashing for Message Authentication</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.2.</span>
+
+<P>
+This module implements the HMAC algorithm as described by <a class="rfc" name="rfcref-64776"
+href="http://www.faqs.org/rfcs/rfc2104.html">RFC 2104</a>.
+
+<P>
+<dl><dt><b><a name="l2h-3613"><tt class="function">new</tt></a></b>(<var>key</var><big>[</big><var>, msg</var><big>[</big><var>, digestmod</var><big>]</big><big>]</big>)
+<dd>
+  Return a new hmac object.  If <var>msg</var> is present, the method call
+  <code>update(<var>msg</var>)</code> is made. <var>digestmod</var> is the digest
+  module for the HMAC object to use. It defaults to the
+  <tt class="module"><a href="module-md5.html">md5</a></tt> module.
+</dl>
+
+<P>
+An HMAC object has the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-3614"><tt class="method">update</tt></a></b>(<var>msg</var>)
+<dd>
+  Update the hmac object with the string <var>msg</var>.  Repeated calls
+  are equivalent to a single call with the concatenation of all the
+  arguments: <code>m.update(a); m.update(b)</code> is equivalent to
+  <code>m.update(a + b)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3615"><tt class="method">digest</tt></a></b>()
+<dd>
+  Return the digest of the strings passed to the <tt class="method">update()</tt>
+  method so far.  This is a 16-byte string (for <tt class="module"><a href="module-md5.html">md5</a></tt>) or a
+  20-byte string (for <tt class="module"><a href="module-sha.html">sha</a></tt>) which may contain non-ASCII
+  characters, including NUL bytes.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3616"><tt class="method">hexdigest</tt></a></b>()
+<dd>
+  Like <tt class="method">digest()</tt> except the digest is returned as a string of
+  length 32 for <tt class="module"><a href="module-md5.html">md5</a></tt> (40 for <tt class="module"><a href="module-sha.html">sha</a></tt>), containing
+  only hexadecimal digits.  This may be used to exchange the value
+  safely in email or other non-binary environments.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3617"><tt class="method">copy</tt></a></b>()
+<dd>
+  Return a copy (``clone'') of the hmac object.  This can be used to
+  efficiently compute the digests of strings that share a common
+  initial substring.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="crypto.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="crypto.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-md5.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="crypto.html">15. Cryptographic Services</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="crypto.html">15. Cryptographic Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-md5.html">15.2 md5  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

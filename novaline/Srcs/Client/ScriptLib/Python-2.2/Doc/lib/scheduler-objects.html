@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.10.1 Scheduler Objects </title>
+<META NAME="description" CONTENT="6.10.1 Scheduler Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-sched.html">
+<LINK REL="up" href="module-sched.html">
+<LINK REL="next" href="module-mutex.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-sched.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-sched.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-mutex.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-sched.html">6.10 sched  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-sched.html">6.10 sched  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-mutex.html">6.11 mutex  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0081010000000000000000">&nbsp;</A>
+<BR>
+6.10.1 Scheduler Objects 
+</H2>
+
+<P>
+<tt class="class">scheduler</tt> instances have the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-1398"><tt class="method">enterabs</tt></a></b>(<var>time, priority, action, argument</var>)
+<dd>
+Schedule a new event. The <var>time</var> argument should be a numeric type
+compatible with the return value of the <var>timefunc</var> function passed 
+to the constructor. Events scheduled for
+the same <var>time</var> will be executed in the order of their
+<var>priority</var>.
+
+<P>
+Executing the event means executing
+<code><var>action</var>(*<var>argument</var>)</code>.  <var>argument</var> must be a
+sequence holding the parameters for <var>action</var>.
+
+<P>
+Return value is an event which may be used for later cancellation of
+the event (see <tt class="method">cancel()</tt>).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1399"><tt class="method">enter</tt></a></b>(<var>delay, priority, action, argument</var>)
+<dd>
+Schedule an event for <var>delay</var> more time units. Other then the
+relative time, the other arguments, the effect and the return value
+are the same as those for <tt class="method">enterabs()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1400"><tt class="method">cancel</tt></a></b>(<var>event</var>)
+<dd>
+Remove the event from the queue. If <var>event</var> is not an event
+currently in the queue, this method will raise a
+<tt class="exception">RuntimeError</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1401"><tt class="method">empty</tt></a></b>()
+<dd>
+Return true if the event queue is empty.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1402"><tt class="method">run</tt></a></b>()
+<dd>
+Run all scheduled events. This function will wait 
+(using the <tt class="function">delayfunc</tt> function passed to the constructor)
+for the next event, then execute it and so on until there are no more
+scheduled events.
+
+<P>
+Either <var>action</var> or <var>delayfunc</var> can raise an exception.  In
+either case, the scheduler will maintain a consistent state and
+propagate the exception.  If an exception is raised by <var>action</var>,
+the event will not be attempted in future calls to <tt class="method">run()</tt>.
+
+<P>
+If a sequence of events takes longer to run than the time available
+before the next event, the scheduler will simply fall behind.  No
+events will be dropped; the calling code is responsible for canceling 
+events which are no longer pertinent.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-sched.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-sched.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-mutex.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-sched.html">6.10 sched  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-sched.html">6.10 sched  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-mutex.html">6.11 mutex  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

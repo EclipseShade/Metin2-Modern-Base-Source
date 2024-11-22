@@ -1,0 +1,2 @@
+game perforce revision: 27967
+metin2@:/home/metin2/metin2/dev/Srcs/Server/game/src

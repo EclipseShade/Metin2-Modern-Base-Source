@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.2.1 Plain Integer Objects </title>
+<META NAME="description" CONTENT="7.2.1 Plain Integer Objects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="longObjects.html">
+<LINK REL="previous" href="numericObjects.html">
+<LINK REL="up" href="numericObjects.html">
+<LINK REL="next" href="longObjects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="numericObjects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="numericObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="longObjects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="numericObjects.html">7.2 Numeric Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="numericObjects.html">7.2 Numeric Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="longObjects.html">7.2.2 Long Integer Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009210000000000000000">&nbsp;</A>
+<BR>
+7.2.1 Plain Integer Objects 
+</H2>
+
+<P>
+<a name="l2h-303">&nbsp;</a><dl><dt><b><tt class="ctype"><a name="l2h-293">PyIntObject</a></tt></b>
+<dd>
+  This subtype of <tt class="ctype">PyObject</tt> represents a Python integer
+  object.
+</dl>
+
+<P>
+<dl><dt>PyTypeObject <b><a name="l2h-294"><tt class="cdata">PyInt_Type</tt></a></b>
+<dd>
+  This instance of <tt class="ctype">PyTypeObject</tt> represents the Python plain
+  integer type.  This is the same object as <code>types.IntType</code>.
+  <a name="l2h-296">&nbsp;</a></dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-297"><tt class="cfunction">PyInt_Check</tt></a></b>(<var>PyObject* o</var>)
+<dd>
+  Returns true if <var>o</var> is of type <tt class="cdata">PyInt_Type</tt> or a subtype
+  of <tt class="cdata">PyInt_Type</tt>.
+  
+<span class="versionnote">Changed in version 2.2:
+Allowed subtypes to be accepted.</span>
+
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-298"><tt class="cfunction">PyInt_CheckExact</tt></a></b>(<var>PyObject* o</var>)
+<dd>
+  Returns true if <var>o</var> is of type <tt class="cdata">PyInt_Type</tt>, but not a
+  subtype of <tt class="cdata">PyInt_Type</tt>.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-299"><tt class="cfunction">PyInt_FromLong</tt></a></b>(<var>long ival</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Creates a new integer object with a value of <var>ival</var>.
+
+<P>
+The current implementation keeps an array of integer objects for all
+  integers between <code>-1</code> and <code>100</code>, when you create an int in
+  that range you actually just get back a reference to the existing
+  object. So it should be possible to change the value of <code>1</code>.  I
+  suspect the behaviour of Python in this case is undefined. :-)
+</dl>
+
+<P>
+<dl><dt>long <b><a name="l2h-300"><tt class="cfunction">PyInt_AsLong</tt></a></b>(<var>PyObject *io</var>)
+<dd>
+  Will first attempt to cast the object to a <tt class="ctype">PyIntObject</tt>, if
+  it is not already one, and then return its value.
+</dl>
+
+<P>
+<dl><dt>long <b><a name="l2h-301"><tt class="cfunction">PyInt_AS_LONG</tt></a></b>(<var>PyObject *io</var>)
+<dd>
+  Returns the value of the object <var>io</var>.  No error checking is
+  performed.
+</dl>
+
+<P>
+<dl><dt>long <b><a name="l2h-302"><tt class="cfunction">PyInt_GetMax</tt></a></b>()
+<dd>
+  Returns the system's idea of the largest integer it can handle
+  (<tt class="constant">LONG_MAX</tt><a name="l2h-304">&nbsp;</a> as defined in the system
+  header files).
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="numericObjects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="numericObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="longObjects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="numericObjects.html">7.2 Numeric Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="numericObjects.html">7.2 Numeric Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="longObjects.html">7.2.2 Long Integer Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

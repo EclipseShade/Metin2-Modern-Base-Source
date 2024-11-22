@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.1 A Cookbook Approach </title>
+<META NAME="description" CONTENT="4.1 A Cookbook Approach ">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="dynamic-linking.html">
+<LINK REL="previous" href="building-on-windows.html">
+<LINK REL="up" href="building-on-windows.html">
+<LINK REL="next" href="dynamic-linking.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="building-on-windows.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="building-on-windows.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dynamic-linking.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="building-on-windows.html">4. Building C and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="building-on-windows.html">4. Building C and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dynamic-linking.html">4.2 Differences Between Unix</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006100000000000000000">&nbsp;</A>
+<BR>
+4.1 A Cookbook Approach 
+</H1>
+
+<P>
+There are two approaches to building extension modules on Windows,
+just as there are on Unix: use the <tt class="module"><a href="module-distutils.html">distutils</a></tt> package to
+control the build process, or do things manually.  The distutils
+approach works well for most extensions; documentation on using
+<tt class="module"><a href="module-distutils.html">distutils</a></tt> to build and package extension modules is
+available in <em class="citetitle"><a
+ href="../dist/dist.html"
+ title="Distributing Python
+Modules"
+ >Distributing Python
+Modules</a></em>.  This section describes the manual approach to building
+Python extensions written in C or C++.
+
+<P>
+To build extensions using these instructions, you need to have a copy
+of the Python sources of the same version as your installed Python.
+You will need Microsoft Visual C++ ``Developer Studio''; project
+files are supplied for VC++ version 6, but you can use older
+versions of VC++.  The example files described here are distributed
+with the Python sources in the <span class="file">PC&#92;
+example_nt&#92;</span> directory.
+
+<P>
+
+<OL>
+<LI><b>Copy the example files</b>
+<BR>
+The <span class="file">example_nt</span> directory is a subdirectory of the <span class="file">PC</span>
+    directory, in order to keep all the PC-specific files under the
+    same directory in the source distribution.  However, the
+    <span class="file">example_nt</span> directory can't actually be used from this
+    location.  You first need to copy or move it up one level, so that
+    <span class="file">example_nt</span> is a sibling of the <span class="file">PC</span> and <span class="file">Include</span>
+    directories.  Do all your work from within this new location.
+
+<P>
+</LI>
+<LI><b>Open the project</b>
+<BR>
+From VC++, use the File  > Open Workspace
+    dialog (not File  > Open!).  Navigate to and
+    select the file <span class="file">example.dsw</span>, in the <i>copy</i> of the
+    <span class="file">example_nt</span> directory you made above.  Click Open.
+
+<P>
+</LI>
+<LI><b>Build the example DLL</b>
+<BR>
+In order to check that everything is set up right, try building:
+
+<P>
+
+<OL>
+<LI>Select a configuration.  This step is optional.  Choose
+        Build  > Select Active Configuration and
+        select either ``example - Win32 Release'' or ``example - Win32
+        Debug.''  If you skip this step, VC++ will use the Debug
+        configuration by default.
+
+<P>
+</LI>
+<LI>Build the DLL.  Choose Build  > Build
+        example_d.dll in Debug mode, or Build  > 
+        Build example.dll in Release mode.  This creates all
+        intermediate and result files in a subdirectory called either
+        <span class="file">Debug</span> or <span class="file">Release</span>, depending on which
+        configuration you selected in the preceding step.
+    
+</LI>
+</OL>
+
+<P>
+</LI>
+<LI><b>Testing the debug-mode DLL</b>
+<BR>
+Once the Debug build has succeeded, bring up a DOS box, and change
+    to the <span class="file">example_nt&#92;Debug</span> directory.  You
+    should now be able to repeat the following session (<code>C&gt;</code> is
+    the DOS prompt, <code>&gt;<code>&gt;</code>&gt;</code> is the Python prompt; note that
+    build information and various debug output from Python may not
+    match this screen dump exactly):
+
+<P>
+<dl><dd><pre class="verbatim">
+C&gt;..\..\PCbuild\python_d
+Adding parser accelerators ...
+Done.
+Python 2.2 (#28, Dec 19 2001, 23:26:37) [MSC 32 bit (Intel)] on win32
+Type "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; import example
+[4897 refs]
+&gt;&gt;&gt; example.foo()
+Hello, world
+[4903 refs]
+&gt;&gt;&gt;
+</pre></dl>
+
+<P>
+Congratulations!  You've successfully built your first Python
+    extension module.
+
+<P>
+</LI>
+<LI><b>Cretating your own project</b>
+<BR>
+Choose a name and create a directory for it.  Copy your C sources
+    into it.  Note that the module source file name does not
+    necessarily have to match the module name, but the name of the
+    initialization function should match the module name -- you can
+    only import a module <tt class="module">spam</tt> if its initialization function
+    is called <tt class="cfunction">initspam()</tt>, and it should call
+    <tt class="cfunction">Py_InitModule()</tt> with the string <code>"spam"</code> as its
+    first argument (use the minimal <span class="file">example.c</span> in this directory
+    as a guide).  By convention, it lives in a file called
+    <span class="file">spam.c</span> or <span class="file">spammodule.c</span>.  The output file should be
+    called <span class="file">spam.dll</span> or <span class="file">spam.pyd</span> (the latter is supported
+    to avoid confusion with a system library <span class="file">spam.dll</span> to which
+    your module could be a Python interface) in Release mode, or
+    <span class="file">spam_d.dll</span> or <span class="file">spam_d.pyd</span> in Debug mode.
+
+<P>
+Now your options are:
+
+<P>
+
+<OL>
+<LI>Copy <span class="file">example.dsw</span> and <span class="file">example.dsp</span>, rename
+             them to <span class="file">spam.*</span>, and edit them by hand, or
+</LI>
+<LI>Create a brand new project; instructions are below.
+    
+</LI>
+</OL>
+
+<P>
+In either case, copy <span class="file">example_nt&#92;example.def</span>
+    to <span class="file">spam&#92;spam.def</span>, and edit the new
+    <span class="file">spam.def</span> so its second line contains the string
+    `<code>initspam</code>'.  If you created a new project yourself, add the
+    file <span class="file">spam.def</span> to the project now.  (This is an annoying
+    little file with only two lines.  An alternative approach is to
+    forget about the <span class="file">.def</span> file, and add the option
+    <b class="programopt">/export:initspam</b> somewhere to the Link settings, by
+    manually editing the setting in Project Options dialog).
+
+<P>
+</LI>
+<LI><b>Creating a brand new project</b>
+<BR>
+Use the File  > New  > Projects dialog to
+    create a new Project Workspace.  Select ``Win32 Dynamic-Link
+    Library,'' enter the name ("<tt class="samp">spam</tt>"), and make sure the
+    Location is set to the <span class="file">spam</span> directory you have created
+    (which should be a direct subdirectory of the Python build tree, a
+    sibling of <span class="file">Include</span> and <span class="file">PC</span>).  Select Win32 as the
+    platform (in my version, this is the only choice).  Make sure the
+    Create new workspace radio button is selected.  Click OK.
+
+<P>
+Now open the Project  > Settings dialog.  You
+    only need to change a few settings.  Make sure All Configurations
+    is selected from the Settings for: dropdown list.  Select the
+    C/C++ tab.  Choose the Preprocessor category in the popup menu
+    at the top.  Type the following text in the entry box labeled
+    Addditional include directories:
+
+<P>
+<dl><dd><pre class="verbatim">
+..\Include,..\PC
+</pre></dl>
+
+<P>
+Then, choose the Input category in the Link tab, and enter
+
+<P>
+<dl><dd><pre class="verbatim">
+..\PCbuild
+</pre></dl>
+
+<P>
+in the text box labelled ``Additional library path.''
+
+<P>
+Now you need to add some mode-specific settings:
+
+<P>
+Select ``Win32 Release'' in the ``Settings for'' dropdown list.
+    Click the Link tab, choose the Input Category, and append
+    <code>python22.lib</code> to the list in the ``Object/library modules''
+    box.
+
+<P>
+Select ``Win32 Debug'' in the ``Settings for'' dropdown list, and
+    append <code>python22_d.lib</code> to the list in the ``Object/library
+    modules'' box.  Then click the C/C++ tab, select ``Code
+    Generation'' from the Category dropdown list, and select ``Debug
+    Multithreaded DLL'' from the ``Use run-time library'' dropdown
+    list.
+
+<P>
+Select ``Win32 Release'' again from the ``Settings for'' dropdown
+    list.  Select ``Multithreaded DLL'' from the ``Use run-time
+    library:'' dropdown list.
+
+<P>
+You should now create the file spam.def as instructed in the
+    previous section.  Then chose the Insert  > Files
+    into Project dialog.  Set the pattern to <code>*.*</code> and select
+    both <span class="file">spam.c</span> and <span class="file">spam.def</span> and click OK.  (Inserting
+    them one by one is fine too.)
+</LI>
+</OL>
+
+<P>
+If your module creates a new type, you may have trouble with this line:
+
+<P>
+<dl><dd><pre class="verbatim">
+    PyObject_HEAD_INIT(&amp;PyType_Type)
+</pre></dl>
+
+<P>
+Change it to:
+
+<P>
+<dl><dd><pre class="verbatim">
+    PyObject_HEAD_INIT(NULL)
+</pre></dl>
+
+<P>
+and add the following to the module initialization function:
+
+<P>
+<dl><dd><pre class="verbatim">
+    MyObject_Type.ob_type = &amp;PyType_Type;
+</pre></dl>
+
+<P>
+Refer to section 3 of the
+<em class="citetitle"><a
+ href="http://www.python.org/doc/FAQ.html"
+ title="Python FAQ"
+ >Python FAQ</a></em> for details
+on why you must do this.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="building-on-windows.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="building-on-windows.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dynamic-linking.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="building-on-windows.html">4. Building C and</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="building-on-windows.html">4. Building C and</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dynamic-linking.html">4.2 Differences Between Unix</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

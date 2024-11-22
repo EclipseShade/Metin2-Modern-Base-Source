@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.13.1 XML Namespaces </title>
+<META NAME="description" CONTENT="13.13.1 XML Namespaces ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-xmllib.html">
+<LINK REL="up" href="module-xmllib.html">
+<LINK REL="next" href="mmedia.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-xmllib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xmllib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="mmedia.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-xmllib.html">13.13 xmllib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xmllib.html">13.13 xmllib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00151310000000000000000">&nbsp;</A>
+<BR>
+13.13.1 XML Namespaces 
+</H2>
+
+<P>
+This module has support for XML namespaces as defined in the XML
+Namespaces proposed recommendation.
+<a name="l2h-3434">&nbsp;</a>
+<P>
+Tag and attribute names that are defined in an XML namespace are
+handled as if the name of the tag or element consisted of the
+namespace (the URL that defines the namespace) followed by a
+space and the name of the tag or attribute.  For instance, the tag
+<code>&lt;html xmlns='http://www.w3.org/TR/REC-html40'&gt;</code> is treated as if 
+the tag name was <code>'http://www.w3.org/TR/REC-html40 html'</code>, and
+the tag <code>&lt;html:a href='http://frob.com'&gt;</code> inside the above
+mentioned element is treated as if the tag name were
+<code>'http://www.w3.org/TR/REC-html40 a'</code> and the attribute name as
+if it were <code>'http://www.w3.org/TR/REC-html40 href'</code>.
+
+<P>
+An older draft of the XML Namespaces proposal is also recognized, but
+triggers a warning.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.w3.org/TR/REC-xml-names/"
+        >Namespaces in XML</a></em>
+    <dd>
+           This World Wide Web Consortium recommendation describes the
+           proper syntax and processing requirements for namespaces in
+           XML.
+  </dl>
+</div>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-xmllib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xmllib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="mmedia.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-xmllib.html">13.13 xmllib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xmllib.html">13.13 xmllib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

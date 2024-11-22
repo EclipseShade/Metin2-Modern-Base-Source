@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<url localConfigPath="metin2torrent.config.xml"
+    remoteConfigPath="http://patch.metin2.co.kr/metin2patch.config.xml"
+	languagePath="TorrentPatch.locale.xml" />

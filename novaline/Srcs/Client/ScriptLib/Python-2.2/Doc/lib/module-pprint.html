@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.24 pprint -- Data pretty printer</title>
+<META NAME="description" CONTENT="3.24 pprint -- Data pretty printer">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-repr.html">
+<LINK REL="previous" href="module-codeop.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" HREF="node85.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-codeop.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node85.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-codeop.html">3.23 codeop  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node85.html">3.24.1 PrettyPrinter Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0052400000000000000000">
+3.24 <tt class="module">pprint</tt> --
+         Data pretty printer</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">pprint</tt> module provides a capability to ``pretty-print''
+arbitrary Python data structures in a form which can be used as input
+to the interpreter.  If the formatted structures include objects which
+are not fundamental Python types, the representation may not be
+loadable.  This may be the case if objects such as files, sockets,
+classes, or instances are included, as well as many other builtin
+objects which are not representable as Python constants.
+
+<P>
+The formatted representation keeps objects on a single line if it can,
+and breaks them onto multiple lines if they don't fit within the
+allowed width.  Construct <tt class="class">PrettyPrinter</tt> objects explicitly if
+you need to adjust the width constraint.
+
+<P>
+The <tt class="module">pprint</tt> module defines one class:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-615"><tt class="class">PrettyPrinter</tt></a></b>(<var>...</var>)
+<dd>
+Construct a <tt class="class">PrettyPrinter</tt> instance.  This constructor
+understands several keyword parameters.  An output stream may be set
+using the <var>stream</var> keyword; the only method used on the stream
+object is the file protocol's <tt class="method">write()</tt> method.  If not
+specified, the <tt class="class">PrettyPrinter</tt> adopts <code>sys.stdout</code>.  Three
+additional parameters may be used to control the formatted
+representation.  The keywords are <var>indent</var>, <var>depth</var>, and
+<var>width</var>.  The amount of indentation added for each recursive level
+is specified by <var>indent</var>; the default is one.  Other values can
+cause output to look a little odd, but can make nesting easier to
+spot.  The number of levels which may be printed is controlled by
+<var>depth</var>; if the data structure being printed is too deep, the next
+contained level is replaced by "<tt class="samp">...</tt>".  By default, there is no
+constraint on the depth of the objects being formatted.  The desired
+output width is constrained using the <var>width</var> parameter; the
+default is eighty characters.  If a structure cannot be formatted
+within the constrained width, a best effort will be made.
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import pprint, sys
+&gt;&gt;&gt; stuff = sys.path[:]
+&gt;&gt;&gt; stuff.insert(0, stuff[:])
+&gt;&gt;&gt; pp = pprint.PrettyPrinter(indent=4)
+&gt;&gt;&gt; pp.pprint(stuff)
+[   [   '',
+        '/usr/local/lib/python1.5',
+        '/usr/local/lib/python1.5/test',
+        '/usr/local/lib/python1.5/sunos5',
+        '/usr/local/lib/python1.5/sharedmodules',
+        '/usr/local/lib/python1.5/tkinter'],
+    '',
+    '/usr/local/lib/python1.5',
+    '/usr/local/lib/python1.5/test',
+    '/usr/local/lib/python1.5/sunos5',
+    '/usr/local/lib/python1.5/sharedmodules',
+    '/usr/local/lib/python1.5/tkinter']
+&gt;&gt;&gt;
+&gt;&gt;&gt; import parser
+&gt;&gt;&gt; tup = parser.ast2tuple(
+...     parser.suite(open('pprint.py').read()))[1][1][1]
+&gt;&gt;&gt; pp = pprint.PrettyPrinter(depth=6)
+&gt;&gt;&gt; pp.pprint(tup)
+(266, (267, (307, (287, (288, (...))))))
+</pre></dl>
+</dl>
+
+<P>
+The <tt class="class">PrettyPrinter</tt> class supports several derivative functions:
+
+<P>
+<dl><dt><b><a name="l2h-616"><tt class="function">pformat</tt></a></b>(<var>object</var>)
+<dd>
+Return the formatted representation of <var>object</var> as a string.  The
+default parameters for formatting are used.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-617"><tt class="function">pprint</tt></a></b>(<var>object</var><big>[</big><var>, stream</var><big>]</big>)
+<dd>
+Prints the formatted representation of <var>object</var> on <var>stream</var>,
+followed by a newline.  If <var>stream</var> is omitted, <code>sys.stdout</code>
+is used.  This may be used in the interactive interpreter instead of a
+<tt class="keyword">print</tt> statement for inspecting values.  The default
+parameters for formatting are used.
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; stuff = sys.path[:]
+&gt;&gt;&gt; stuff.insert(0, stuff)
+&gt;&gt;&gt; pprint.pprint(stuff)
+[&lt;Recursion on list with id=869440&gt;,
+ '',
+ '/usr/local/lib/python1.5',
+ '/usr/local/lib/python1.5/test',
+ '/usr/local/lib/python1.5/sunos5',
+ '/usr/local/lib/python1.5/sharedmodules',
+ '/usr/local/lib/python1.5/tkinter']
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-618"><tt class="function">isreadable</tt></a></b>(<var>object</var>)
+<dd>
+Determine if the formatted representation of <var>object</var> is
+``readable,'' or can be used to reconstruct the value using
+<tt class="function">eval()</tt><a name="l2h-621">&nbsp;</a>.  This always returns false for
+recursive objects.
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; pprint.isreadable(stuff)
+0
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-619"><tt class="function">isrecursive</tt></a></b>(<var>object</var>)
+<dd>
+Determine if <var>object</var> requires a recursive representation.
+</dl>
+
+<P>
+One more support function is also defined:
+
+<P>
+<dl><dt><b><a name="l2h-620"><tt class="function">saferepr</tt></a></b>(<var>object</var>)
+<dd>
+Return a string representation of <var>object</var>, protected against
+recursive data structures.  If the representation of <var>object</var>
+exposes a recursive entry, the recursive reference will be represented
+as "<tt class="samp">&lt;Recursion on <var>typename</var> with id=<var>number</var>&gt;</tt>".  The
+representation is not otherwise formatted.
+</dl>
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; pprint.saferepr(stuff)
+"[&lt;Recursion on list with id=682968&gt;, '', '/usr/local/lib/python1.5', '/usr/loca
+l/lib/python1.5/test', '/usr/local/lib/python1.5/sunos5', '/usr/local/lib/python
+1.5/sharedmodules', '/usr/local/lib/python1.5/tkinter']"
+</pre></dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node85.html">3.24.1 PrettyPrinter Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-codeop.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node85.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-codeop.html">3.23 codeop  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node85.html">3.24.1 PrettyPrinter Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

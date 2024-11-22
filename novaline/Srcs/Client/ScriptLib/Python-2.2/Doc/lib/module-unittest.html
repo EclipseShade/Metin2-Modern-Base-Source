@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.3 unittest -- Unit testing framework</title>
+<META NAME="description" CONTENT="5.3 unittest -- Unit testing framework">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-math.html">
+<LINK REL="previous" href="module-doctest.html">
+<LINK REL="up" href="misc.html">
+<LINK REL="next" href="organizing-tests.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node130.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="organizing-tests.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node130.html">5.2.8 Soapbox</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="organizing-tests.html">5.3.1 Organizing test code</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007300000000000000000">
+5.3 <tt class="module">unittest</tt> --
+         Unit testing framework</A>
+</H1>
+
+<P>
+
+
+<P>
+The Python unit testing framework, often referred to as ``PyUnit,'' is
+a Python language version of JUnit, by Kent Beck and Erich Gamma.
+JUnit is, in turn, a Java version of Kent's Smalltalk testing
+framework.  Each is the de facto standard unit testing framework for
+its respective language.
+
+<P>
+PyUnit supports test automation, sharing of setup and shutdown code
+for tests, aggregation of tests into collections, and independence of
+the tests from the reporting framework.  The <tt class="module">unittest</tt> module
+provides classes that make it easy to support these qualities for a
+set of tests.
+
+<P>
+To achieve this, PyUnit supports some important concepts:
+
+<P>
+<dl class="definitions">
+<dt><b><a name="l2h-837">test fixture</a></b>
+<dd>
+A <i class="dfn">test fixture</i> represents the preparation needed to perform one
+or more tests, and any associate cleanup actions.  This may involve,
+for example, creating temporary or proxy databases, directories, or
+starting a server process.
+
+<P>
+<dt><b><a name="l2h-838">test case</a></b>
+<dd>
+A <i class="dfn">test case</i> is the smallest unit of testing.  It checks for a
+specific response to a particular set of inputs.  PyUnit provides a
+base class, <tt class="class">TestCase</tt>, which may be used to create new test
+cases.
+
+<P>
+<dt><b><a name="l2h-839">test suite</a></b>
+<dd>
+A <i class="dfn">test suite</i> is a collection of test cases, test suites, or
+both.  It is used to aggregate tests that should be executed
+together.
+
+<P>
+<dt><b><a name="l2h-840">test runner</a></b>
+<dd>
+A <i class="dfn">test runner</i> is a component which orchestrates the execution of
+tests and provides the outcome to the user.  The runner may use a
+graphical interface, a textual interface, or return a special value to
+indicate the results of executing the tests.
+</dl>
+
+<P>
+The test case and test fixture concepts are supported through the
+<tt class="class">TestCase</tt> and <tt class="class">FunctionTestCase</tt> classes; the former
+should be used when creating new tests, and the later can be used when
+integrating existing test code with a PyUnit-driven framework.  When
+building test fixtures using <tt class="class">TestCase</tt>, the <tt class="method">setUp()</tt>
+and <tt class="method">tearDown()</tt> methods can be overridden to provide
+initialization and cleanup for the fixture.  With
+<tt class="class">FunctionTestCase</tt>, existing functions can be passed to the
+constructor for these purposes.  When the test is run, the
+fixture initialization is run first; if it succeeds, the cleanup
+method is run after the test has been executed, regardless of the
+outcome of the test.  Each instance of the <tt class="class">TestCase</tt> will only
+be used to run a single test method, so a new fixture is created for
+each test.
+
+<P>
+Test suites are implemented by the <tt class="class">TestSuite</tt> class.  This
+class allows individual tests and test suites to be aggregated; when
+the suite is executed, all tests added directly to the suite and in
+``child'' test suites are run.
+
+<P>
+A test runner is an object that provides a single method,
+<tt class="method">run()</tt>, which accepts a <tt class="class">TestCase</tt> or <tt class="class">TestSuite</tt>
+object as a parameter, and returns a result object.  The class
+<tt class="class">TestResult</tt> is provided for use as the result object.  PyUnit
+provide the <tt class="class">TextTestRunner</tt> as an example test runner which
+reports test results on the standard error stream by default.
+Alternate runners can be implemented for other environments (such as
+graphical environments) without any need to derive from a specific
+class.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://pyunit.sourceforge.net/"
+        >PyUnit Web Site</a></em>
+    <dd>The
+            source for further information on PyUnit.
+  </dl>
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.XProgramming.com/testfram.htm"
+        >Simple Smalltalk
+            Testing: With Patterns</a></em>
+    <dd>Kent Beck's original paper on
+            testing frameworks using the pattern shared by
+            <tt class="module">unittest</tt>.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="organizing-tests.html">5.3.1 Organizing test code</a>
+<LI><A href="legacy-unit-tests.html">5.3.2 Re-using old test code</a>
+<LI><A href="unittest-contents.html">5.3.3 Classes and functions</a>
+<LI><A href="testcase-objects.html">5.3.4 TestCase Objects</a>
+<LI><A href="testsuite-objects.html">5.3.5 TestSuite Objects</a>
+<LI><A href="testresult-objects.html">5.3.6 TestResult Objects</a>
+<LI><A href="testloader-objects.html">5.3.7 TestLoader Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node130.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="organizing-tests.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node130.html">5.2.8 Soapbox</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="organizing-tests.html">5.3.1 Organizing test code</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

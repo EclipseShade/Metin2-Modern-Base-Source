@@ -1,0 +1,285 @@
+ACCEPT	Akceptuj
+ATTACH_METIN_INFO	Do³¹czyæ?
+ATTACH_METIN_TITLE	Kamieñ Metin zosta³ dodany.
+CANCEL	Anuluj
+CHANGE_PASSWORD_CONFIRM	PotwierdŸ nowe Has³o
+CHANGE_PASSWORD_NEW	Nowe Has³o
+CHANGE_PASSWORD_OLD	Stare Has³o
+CHANGE_PASSWORD_TITLE	Zmiana Has³a
+CHARACTER_ACTION	Emocje
+CHARACTER_EMOTICON	Emocje
+CHARACTER_MAIN	Postaæ
+CHARACTER_MUTUAL_ACTION	Wspólna Akcja
+CHARACTER_NORMAL_ACTION	Normalna Akcja
+CHARACTER_QUEST	Zadania
+CHARACTER_SKILL	Umiejêtnoœæ
+CLOSE	Zamknij
+CREATE_ATT_GRADE	SI£A
+CREATE_CREATE	Utwórz
+CREATE_DEX_GRADE	ZRÊ
+CREATE_HP	P¯
+CREATE_LAST_POINT	Punkty
+CREATE_MAN	Mê¿czyzna
+CREATE_NAME	Nazwa
+CREATE_NEXT	Nastêpny
+CREATE_PREV	Poprzedni
+CREATE_SEX	P³eæ
+CREATE_SHAPE	Wygl¹d
+CREATE_SP	PE
+CREATE_STAT_RESET	Reset
+CREATE_WOMAN	Kobieta
+CUBE_TITLE	Skrzynia na Zio³a
+EMPIRE_EXIT	WyjdŸ
+EMPIRE_NEXT	Dalej
+EMPIRE_PREV	Wstecz
+EMPIRE_SELECT	Wybierz
+EXCHANGE_ACCEPT	Akceptuj
+EXCHANGE_TITLE	Handel
+GAMEOPTION_TITLE	Opcje Gry
+GAME_EXIT_OBSERVER	Zakoñcz Tryb Obserwatora
+GAME_HELP	Pomoc
+GAME_QUEST	Zadania
+GAME_SKILL_UP	Podnieœ Umiejêtnoœci
+GAME_STAT_UP	Podnieœ Status
+GUILD_BASENAME	Podstawowa Nazwa
+GUILD_BOARD_ID	Nick
+GUILD_BOARD_REFRESH	Odœwie¿ (F5)
+GUILD_BOARD_TEXT	Treœæ wiadomoœci
+GUILD_BUILDING_CATEGORY_TITLE	Jednostki Budowlane
+GUILD_BUILDING_CHANGE	Zmieñ
+GUILD_BUILDING_DIRECTION	Kierunek
+GUILD_BUILDING_GRADE	Ranga
+GUILD_BUILDING_INFO	Informacje o Budynkach i Kosztach
+GUILD_BUILDING_LIST_TITLE	Lista Budowli
+GUILD_BUILDING_LOG	Pieñ
+GUILD_BUILDING_NAME	Nazwa Budowli
+GUILD_BUILDING_OPERATE	Operuj
+GUILD_BUILDING_PLY	Dykta
+GUILD_BUILDING_POSITION	Miejsce
+GUILD_BUILDING_PREVIEW	Podgl¹d
+GUILD_BUILDING_PRICE	Cena
+GUILD_BUILDING_REFRESH	Odœwie¿ (F5)
+GUILD_BUILDING_STONE	Kamieñ
+GUILD_BUILDING_TITLE	Budowa Siedziby Gildii
+GUILD_CRYSTAL	Kryszta³
+GUILD_DEPOSIT	Depozyt
+GUILD_DROP_RESOURCE1	Tutaj
+GUILD_DROP_RESOURCE2	Upuœæ Surowiec
+GUILD_GEM	Klejnot
+GUILD_GRADE_CHANGE_GRADE_NAME	Nazwa rangi do zmiany
+GUILD_GRADE_NUM	Nr
+GUILD_GRADE_PERMISSION_DELETE	Usuñ
+GUILD_GRADE_PERMISSION_JOIN	Przyjmij
+GUILD_GRADE_PERMISSION_NOTICE	Pisanie
+GUILD_GRADE_PERMISSION_SKILL	Umiejêtnoœci
+GUILD_GRADE_RANK	Nazwa
+GUILD_GRADE_WRITE	Napisz
+GUILD_INFO	Informacje o Gildii
+GUILD_INFO_CUR_EXP	Doœwiadczenie
+GUILD_INFO_DECALRE_WAR	Wypowiedz Wojnê
+GUILD_INFO_ENEMY_GUILD	Wrogie Gildie
+GUILD_INFO_ENEMY_GUILD_EMPTY	Brak
+GUILD_INFO_LEVEL	Poziom Gildii
+GUILD_INFO_MARK	Logo Gildii
+GUILD_INFO_MASTER	Lider
+GUILD_INFO_MASTER_VALUE	Lider
+GUILD_INFO_MEMBER_AVG_LEVEL	Œredni Poziom
+GUILD_INFO_MEMBER_NUM	Liczba Cz³onków
+GUILD_INFO_NAME	Nazwa Gildii
+GUILD_INFO_NAME_VALUE	To jest nazwa Gildii
+GUILD_INFO_OFFER_EXP	Inwestuj
+GUILD_INFO_REST_EXP	Wymagane PD
+GUILD_INFO_UPLOAD_MARK	Wgraj Logo
+GUILD_INFO_UPLOAD_SYMBOL	Wgraj Flagê
+GUILD_MARK	Znak Gildii
+GUILD_MEMBER_JOB	Klasa
+GUILD_MEMBER_KNIGHT	Lider
+GUILD_MEMBER_LEVEL	Poziom
+GUILD_MEMBER_NAME	Nazwa
+GUILD_MEMBER_RANK	Ranga
+GUILD_MEMBER_SPECIFIC_GRAVITY	Inwestuj
+GUILD_METIN_STONE	Kamieñ Metin
+GUILD_MINENAL	Minera³
+GUILD_MONEY	Yang
+GUILD_NAME	Gildia
+GUILD_RESOURCE_INFO	Informacja o surowcach
+GUILD_SKILL_ACTIVE	Aktywne
+GUILD_SKIlL_HEAL_GSP	Regeneracja
+GUILD_SKILL_PASSIVE	Pasywne
+GUILD_SKILL_POWER	Punkty
+GUILD_SKILL_STATE	Umiejêtnoœci Gildii
+GUILD_SYMBOL	Flaga Gildii
+GUILD_WAR_ACCEPT	Akceptuj Deklaracjê Wojny
+GUILD_WAR_BATTLE_TYPE	Rodzaj bitwy
+GUILD_WAR_CTF	Flagi
+GUILD_WAR_DECLARE	Deklaruj Wojnê Gildii
+GUILD_WAR_ENEMY	Wróg
+GUILD_WAR_NORMAL	Pole
+GUILD_WAR_WARP	Teatr
+GUILD_WATER	Woda
+GUILD_WATER_STONE	Kamieñ Wodny
+GUILD_WITHDRAW	WeŸ
+HELP_ATTACK_KEY	- Do Ataku, u¿yj Spacji lub lewego przycisku Myszy.
+HELP_CHANGE_PK_MODE	- U¿yj Ctrl + B jeœli chcesz odwo³aæ swojego Konia.
+HELP_CHARACTER_BUTTON1	(Okno Postaci, Ekwipunek
+HELP_CHARACTER_BUTTON2	i Wiadomoœci)
+HELP_CONTROL_CAMERA_BY_MIDDLEBUTTON	- Widok Kamery mo¿e byæ zoptymalizowany u¿ywaj¹c œrodkowego przycisku Myszy.
+HELP_CONTROL_CAMERA_BY_RIGHTBUTTON	- Widok Kamery mo¿e byæ zoptymalizowany u¿ywaj¹c klawisza Ctrl i prawego przycisku Myszy.
+HELP_EXP	Iloœæ Doœwiadczenia
+HELP_FURY	Sklep
+HELP_GUILD_WINDOW	- U¿yj ALT + G aby otworzyæ i zamkn¹æ Okno Gildii.
+HELP_HELP	- Aby wyœwietliæ Pomoc, po prostu wciœnij guzik H.
+HELP_HP	Punkty ¯ycia
+HELP_MESSENGER_WINDOW	- U¿yj klawiszy ALT + M aby otworzyæ i zamkn¹æ Okno Przyjació³.
+HELP_MOUSE_LEFT	Funkcja Lewego Przycisku Myszy
+HELP_MOUSE_RIGHT	Funkcja Prawego Przycisku Myszy
+HELP_MOVE_KEY	- U¿yj klawiszy W, S, A, D lub strza³ek aby poruszaæ siê w grze.
+HELP_OPEN_CHARACTER	- klawisz C otwiera Okno Postaci.
+HELP_OPEN_CHAT	- Wciœnij Enter aby otworzyæ Okno Chatu.
+HELP_OPEN_INVENTORY	- Wciœnij klawisz I aby otworzyæ Okno Ekwipunku.
+HELP_OPEN_LOG	- Wciœnij klawisz L aby otworzyæ Panel Wiadomoœci.
+HELP_OPEN_MINIMAP	- Kombinacja Shift + M otwiera i zamyka Mini Mapê.
+HELP_OPEN_QUEST	- Wciœnij klawisz N aby otworzyæ Okno Zadañ.
+HELP_OPEN_SKILL	- Wciœnij klawisz V aby otworzyæ Okno Umiejêtnoœci.
+HELP_OPEN_WHISPER	- Shift + Enter otwieraj¹ Okno Szeptania.
+HELP_OPEN_ZONEMAP	- klawisz M otwiera i zamyka Du¿¹ Mapê.
+HELP_PICK_ITEM	- Wciœnij klawisz ` (tylda) lub Z aby podnieœæ Przedmiot z ziemi.
+HELP_QUICKSLOT	Pole Szybkiego Dostêpu
+HELP_SCREEN_CAPTURE	- Wciœnij Print Screen aby zrobiæ tzw. Screenshota. Screen bêdzie zapisany w podkatalogu gry Metin2.
+HELP_SHOW_ALL_NAME	- Wciœnij klawisz Alt aby pokazaæ Nazwy Wszystkich Postaci i Przedmiotów.
+HELP_SP	Punkty Energii
+HELP_SYSTEM_BUTTON	Przycisk Systemowy
+INVENTORY_PAGE_BUTTON_TOOLTIP_1	1. Ekwipunek
+INVENTORY_PAGE_BUTTON_TOOLTIP_2	2. Ekwipunek
+INVENTORY_TITLE	Ekwipunek
+ITEM_MALL	ItemShop
+LOAD_ERROR	Plik jest uszkodzony. Proszê zainstalowaæ nowy. Wciœnij teraz ESC.
+LOGIN_CONNECT	Po³¹cz
+LOGIN_CONNECTING	Zostaniesz po³¹czony z Serwerem
+LOGIN_DEFAULT_SERVERADDR	Nazwa Serwera, Kana³ 1
+LOGIN_EXIT	WyjdŸ
+LOGIN_REGION_TITLE	Wybierz miejsce wydania faktury.
+LOGIN_SELECT_BUTTON	Wybierz
+LOGIN_SELECT_EXIT	WyjdŸ
+LOGIN_SELECT_OK	OK
+LOGIN_SELECT_TITLE	Wybierz Serwer
+MALL_PASSWORD_TITLE	Has³o
+MALL_TITLE	Przedmioty z ItemShop
+MARKET_TITLE	£aduj
+MARKLIST_REFRESH	Odœwie¿
+MARKLIST_TITLE	Zarejestruj Znak Gildii
+MESSAGE	To jest Wiadomoœæ
+MESSENGER_ADD_FRIEND	Dodaj Przyjaciela
+MESSENGER_DELETE_FRIEND	Usuñ
+MESSENGER_MOBILE	Wyœlij SMS
+MESSENGER_OPEN_GUILD	Otwórz Okno Gildii
+MESSENGER_TITLE	Przyjaciele
+MESSENGER_USE_GUILD_MOVE_SKILL	U¿yj Umiejêtnoœci Przemieszczania Gildii
+MESSENGER_WHISPER	Szept
+MINIMIZE	Minimalizuj
+MOUSEBUTTON_ATTACK	Atak
+MOUSEBUTTON_AUTO_ATTACK	Auto Atak
+MOUSEBUTTON_CAMERA	Perspektywa
+MOUSEBUTTON_SKILL	Umiejêtnoœci
+MUSICLIST_TITLE	Wybór muzyki
+NO	Nie
+OK	OK
+OPTION_ALWAYS_SHOW_NAME	Nazwa
+OPTION_ALWAYS_SHOW_NAME_OFF	Ograniczony
+OPTION_ALWAYS_SHOW_NAME_ON	Zawsze
+OPTION_BLOCK	Blokuj
+OPTION_BLOCK_EXCHANGE	Handel
+OPTION_BLOCK_FRIEND	Przyjaciel
+OPTION_BLOCK_GUILD	Gildia
+OPTION_BLOCK_PARTY	Grupa
+OPTION_BLOCK_PARTY_REQUEST	Proœba
+OPTION_BLOCK_WHISPER	Szept
+OPTION_CAMERA_DISTANCE	Kamera
+OPTION_CAMERA_DISTANCE_LONG	Dalej
+OPTION_CAMERA_DISTANCE_SHORT	Bli¿ej
+OPTION_DELETE_MOBILE_BUTTON	Usuñ Numer Telefonu Komórkowego
+OPTION_EFFECT	Info o traf.
+OPTION_FOG	Mg³a
+OPTION_FOG_DENSE	Gêsta
+OPTION_FOG_LIGHT	Œwiat³o
+OPTION_FOG_MIDDLE	Œrodek
+OPTION_INPUT_MOBILE_BUTTON	Wybierz Numer Telefonu Komórkowego
+OPTION_MOBILE	Telefon Komórkowy
+OPTION_MUSIC	Muzyka
+OPTION_MUSIC_CHANGE	Zmieñ
+OPTION_MUSIC_DEFAULT_THEMA	Standardowa Muzyka Metin2
+OPTION_NAME_COLOR	Kolor Nazw
+OPTION_NAME_COLOR_EMPIRE	Królestwa
+OPTION_NAME_COLOR_NORMAL	Normalny
+OPTION_PVPMODE	Tryb PvP
+OPTION_PVPMODE_FREE	Wolny
+OPTION_PVPMODE_FREE_TOOLTIP	Mo¿esz atakowaæ wszystkich graczy.
+OPTION_PVPMODE_GUILD	Gildia
+OPTION_PVPMODE_GUILD_TOOLTIP	Mo¿esz atakowaæ wszystkich graczy oprócz Cz³onków swojej Gildii.
+OPTION_PVPMODE_PEACE	Pokój
+OPTION_PVPMODE_PEACE_TOOLTIP	¯aden gracz nie mo¿e mnie zaatakowaæ.
+OPTION_PVPMODE_REVENGE	Wrogi
+OPTION_PVPMODE_REVENGE_TOOLTIP	Mo¿esz atakowaæ tylko tych, którzy maj¹ negatywn¹ Rangê.
+OPTION_SOUND	Efekty
+OPTION_TARGET_BOARD	Menu Celu
+OPTION_TARGET_BOARD_NO_VIEW	Zamknij
+OPTION_TARGET_BOARD_VIEW	Poka¿
+OPTION_TILING	Grafika
+OPTION_TILING_APPLY	Zastosuj
+OPTION_TILING_CPU	CPU
+OPTION_TILING_GPU	GPU
+OPTION_TITLE	Opcje
+OPTION_VIEW_CHAT	Linia Czatu
+OPTION_VIEW_CHAT_OFF	Ukryj
+OPTION_VIEW_CHAT_ON	Poka¿
+PARTY_MEMBER_INFO_NAME	Nazwa Cz³onka Grupy
+PASSWORD_TITLE	Zapamiêtywanie Has³a
+PICK_MONEY_TITLE	Podziel
+PRIVATE_SHOP_CLOSE_BUTTON	Zamknij Magazyn
+PRIVATE_SHOP_NAME	Nazwa Magazynu
+PRIVATE_SHOP_TITLE	Otwórz Prywatny Magazyn
+REFINE_COST	Ulepszanie Kosztuje: 0 Yang
+REFINE_INFO	Szansa na udane Ulepszenie: 100%
+REFINE_TTILE	Ulepszanie
+RESTART_HERE	Rozpocznij tutaj
+RESTART_TOWN	Rozpocznij w Mieœcie
+SAFE_CHANGE_PASSWORD	Zmieñ Has³o
+SAFE_TITLE	Magazyn
+SELECT_ATT_GRADE	SI£A
+SELECT_CREATE	Stwórz
+SELECT_DELETE	Usuñ
+SELECT_DEX_GRADE	ZRÊ
+SELECT_EMPIRE_NAME	Nazwa Królestwa
+SELECT_EXIT	Zamknij
+SELECT_HP	P¯
+SELECT_LEVEL	Poziom
+SELECT_METIN_STONE_TITLE	Wybierz Kamieñ Duszy
+SELECT_NAME	Nazwa
+SELECT_NO_GUILD	Brak Gildii
+SELECT_PLAYTIME	Czas gry (min.)
+SELECT_SELECT	Start
+SELECT_SP	PE
+SELECT_TITLE	Wybierz Tytu³
+SHOP_BUY	Kup
+SHOP_SELL	Sprzedaj
+SHOP_TITLE	Magazyn
+SKILL_SUPPORT_TITLE	Standardowe Umiejêtnoœci
+SYSTEMOPTION_TITLE	Opcje Systemowe
+SYSTEM_CHANGE	Zmieñ Postaæ
+SYSTEM_EXIT	WyjdŸ z Gry
+SYSTEM_HELP	Pomoc
+SYSTEM_LOGOUT	Wyloguj
+SYSTEM_MALL	Sklep z Przedmiotami
+SYSTEM_OPTION	Opcje Systemowe
+TASKBAR_CHARACTER	Postaæ [C/V/B/N]
+TASKBAR_CHAT	Okno Chatu
+TASKBAR_INVENTORY	Ekwipunek [I]
+TASKBAR_MESSENGER	Wiadomoœci
+TASKBAR_NEXT_QUICKSLOT	Nastêpne Szybkie Pole Dostêpu [Shift+Numer, Alt]
+TASKBAR_PREV_QUICKSLOT	Poprzednie Szybkie Pole Dostêpu [Shift+Numer]
+TASKBAR_SYSTEM	Opcje [ESC]
+WHISPER_BAN	Blokuj
+WHISPER_NAME	Szept
+WHISPER_SEND	Wyœlij
+YES	Tak
+ZONE_MAP	Du¿a Mapa

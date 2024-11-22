@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Python/C API Reference Manual</title>
+<META NAME="description" CONTENT="Python/C API Reference Manual">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="front.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A HREF="../index.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="front.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="../index.html">Python Documentation Index</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="front.html">Front Matter</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<P>
+
+<div class="titlepage">
+<center>
+<h1>Python/C API Reference Manual</h1>
+<p><b><font size="+2">Guido van Rossum
+<BR>
+Fred L. Drake, Jr., editor</font></b></p>
+<p>
+	<b>PythonLabs</b>
+<BR>
+Email: <span class="email">python-docs@python.org</span>
+</p>
+<p><strong>Release 2.2</strong><br>
+<strong>December 21, 2001</strong></p>
+<p>
+</center>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="front.html">Front Matter</a>
+<LI><A href="contents.html">Contents</a>
+<LI><A href="intro.html">1. Introduction</a>
+<UL>
+<LI><A href="includes.html">1.1 Include Files</a>
+<LI><A href="objects.html">1.2 Objects, Types and Reference Counts</a>
+<UL>
+<LI><A href="refcounts.html">1.2.1 Reference Counts</a>
+<LI><A href="types.html">1.2.2 Types</a>
+</ul>
+<LI><A href="exceptions.html">1.3 Exceptions</a>
+<LI><A href="embedding.html">1.4 Embedding Python</a>
+</ul>
+<LI><A href="veryhigh.html">2. The Very High Level Layer</a>
+<LI><A href="countingRefs.html">3. Reference Counting</a>
+<LI><A href="exceptionHandling.html">4. Exception Handling</a>
+<UL>
+<LI><A href="standardExceptions.html">4.1 Standard Exceptions</a>
+<LI><A href="node15.html">4.2 Deprecation of String Exceptions</a>
+</ul>
+<LI><A href="utilities.html">5. Utilities</a>
+<UL>
+<LI><A href="os.html">5.1 Operating System Utilities</a>
+<LI><A href="processControl.html">5.2 Process Control</a>
+<LI><A href="importing.html">5.3 Importing Modules</a>
+<LI><A href="marshalling-utils.html">5.4 Data marshalling support</a>
+<LI><A href="arg-parsing.html">5.5 Parsing arguments and building values</a>
+</ul>
+<LI><A href="abstract.html">6. Abstract Objects Layer</a>
+<UL>
+<LI><A href="object.html">6.1 Object Protocol</a>
+<LI><A href="number.html">6.2 Number Protocol</a>
+<LI><A href="sequence.html">6.3 Sequence Protocol</a>
+<LI><A href="mapping.html">6.4 Mapping Protocol</a>
+<LI><A href="iterator.html">6.5 Iterator Protocol</a>
+</ul>
+<LI><A href="concrete.html">7. Concrete Objects Layer</a>
+<UL>
+<LI><A href="fundamental.html">7.1 Fundamental Objects</a>
+<UL>
+<LI><A href="typeObjects.html">7.1.1 Type Objects</a>
+<LI><A href="noneObject.html">7.1.2 The None Object</a>
+</ul>
+<LI><A href="numericObjects.html">7.2 Numeric Objects</a>
+<UL>
+<LI><A href="intObjects.html">7.2.1 Plain Integer Objects</a>
+<LI><A href="longObjects.html">7.2.2 Long Integer Objects</a>
+<LI><A href="floatObjects.html">7.2.3 Floating Point Objects</a>
+<LI><A href="complexObjects.html">7.2.4 Complex Number Objects</a>
+</ul>
+<LI><A href="sequenceObjects.html">7.3 Sequence Objects</a>
+<UL>
+<LI><A href="stringObjects.html">7.3.1 String Objects</a>
+<LI><A href="unicodeObjects.html">7.3.2 Unicode Objects</a>
+<LI><A href="bufferObjects.html">7.3.3 Buffer Objects</a>
+<LI><A href="tupleObjects.html">7.3.4 Tuple Objects</a>
+<LI><A href="listObjects.html">7.3.5 List Objects</a>
+</ul>
+<LI><A href="mapObjects.html">7.4 Mapping Objects</a>
+<UL>
+<LI><A href="dictObjects.html">7.4.1 Dictionary Objects</a>
+</ul>
+<LI><A href="otherObjects.html">7.5 Other Objects</a>
+<UL>
+<LI><A href="fileObjects.html">7.5.1 File Objects</a>
+<LI><A href="instanceObjects.html">7.5.2 Instance Objects</a>
+<LI><A href="method-objects.html">7.5.3 Method Objects</a>
+<LI><A href="moduleObjects.html">7.5.4 Module Objects</a>
+<LI><A href="iterator-objects.html">7.5.5 Iterator Objects</a>
+<LI><A href="descriptor-objects.html">7.5.6 Descriptor Objects</a>
+<LI><A href="slice-objects.html">7.5.7 Slice Objects</a>
+<LI><A href="weakref-objects.html">7.5.8 Weak Reference Objects</a>
+<LI><A href="cObjects.html">7.5.9 CObjects</a>
+<LI><A href="cell-objects.html">7.5.10 Cell Objects</a>
+</ul>
+</ul>
+<LI><A href="initialization.html">8. Initialization, Finalization, and Threads</a>
+<UL>
+<LI><A href="threads.html">8.1 Thread State and the Global Interpreter Lock</a>
+<LI><A href="profiling.html">8.2 Profiling and Tracing</a>
+<LI><A href="advanced-debugging.html">8.3 Advanced Debugger Support</a>
+</ul>
+<LI><A href="memory.html">9. Memory Management</a>
+<UL>
+<LI><A href="memoryOverview.html">9.1 Overview</a>
+<LI><A href="memoryInterface.html">9.2 Memory Interface</a>
+<LI><A href="memoryExamples.html">9.3 Examples</a>
+</ul>
+<LI><A href="newTypes.html">10. Defining New Object Types</a>
+<UL>
+<LI><A href="allocating-objects.html">10.1 Allocating Objects on the Heap</a>
+<LI><A href="common-structs.html">10.2 Common Object Structures</a>
+<LI><A href="mapping-structs.html">10.3 Mapping Object Structures</a>
+<LI><A href="number-structs.html">10.4 Number Object Structures</a>
+<LI><A href="sequence-structs.html">10.5 Sequence Object Structures</a>
+<LI><A href="buffer-structs.html">10.6 Buffer Object Structures</a>
+<LI><A href="supporting-iteration.html">10.7 Supporting the Iterator Protocol</a>
+<LI><A href="supporting-cycle-detection.html">10.8 Supporting Cyclic Garbarge Collection</a>
+<UL>
+<LI><A href="example-cycle-support.html">10.8.1 Example Cycle Collector Support</a>
+</ul>
+</ul>
+<LI><A href="reporting-bugs.html">A. Reporting Bugs</a>
+<LI><A href="node79.html">B. History and License</a>
+<UL>
+<LI><A href="node80.html">B.1 History of the software</a>
+<LI><A href="node81.html">B.2 Terms and conditions for accessing or otherwise using Python</a>
+</ul>
+<LI><A href="genindex.html">Index</a>
+<LI><A href="about.html">About this document ...</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A HREF="../index.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="front.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="../index.html">Python Documentation Index</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="front.html">Front Matter</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

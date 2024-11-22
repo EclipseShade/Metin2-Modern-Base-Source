@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.1.2 Module Contents </title>
+<META NAME="description" CONTENT="8.1.2 Module Contents ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="posix-large-files.html">
+<LINK REL="up" href="module-posix.html">
+<LINK REL="next" href="module-pwd.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="posix-large-files.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-posix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-pwd.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="posix-large-files.html">8.1.1 Large File Support</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-posix.html">8.1 posix  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-pwd.html">8.2 pwd  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0010120000000000000000">&nbsp;</A>
+<BR>
+8.1.2 Module Contents 
+</H2>
+
+<P>
+Module <tt class="module">posix</tt> defines the following data item:
+
+<P>
+<dl><dt><b><a name="l2h-2124"><tt>environ</tt></a></b>
+<dd>
+A dictionary representing the string environment at the time the
+interpreter was started. For example, <code>environ['HOME']</code> is the
+pathname of your home directory, equivalent to
+<code>getenv("HOME")</code> in C.
+
+<P>
+Modifying this dictionary does not affect the string environment
+passed on by <tt class="function">execv()</tt>, <tt class="function">popen()</tt> or
+<tt class="function">system()</tt>; if you need to change the environment, pass
+<code>environ</code> to <tt class="function">execve()</tt> or add variable assignments and
+export statements to the command string for <tt class="function">system()</tt> or
+<tt class="function">popen()</tt>.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+The <tt class="module"><a href="module-os.html">os</a></tt> module provides an alternate
+implementation of <code>environ</code> which updates the environment on
+modification.  Note also that updating <code>os.environ</code> will render
+this dictionary obsolete.  Use of the <tt class="module"><a href="module-os.html">os</a></tt> module version of
+this is recommended over direct access to the <tt class="module">posix</tt> module.</span>
+</dl>
+
+<P>
+Additional contents of this module should only be accessed via the
+<tt class="module"><a href="module-os.html">os</a></tt> module; refer to the documentation for that module for
+further information.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="posix-large-files.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-posix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-pwd.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="posix-large-files.html">8.1.1 Large File Support</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-posix.html">8.1 posix  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-pwd.html">8.2 pwd  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

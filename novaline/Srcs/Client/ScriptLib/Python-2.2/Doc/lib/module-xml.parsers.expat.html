@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.5 xml.parsers.expat -- Fast XML parsing using Expat</title>
+<META NAME="description" CONTENT="13.5 xml.parsers.expat -- Fast XML parsing using Expat">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-xml.dom.html">
+<LINK REL="previous" href="module-htmlentitydefs.html">
+<LINK REL="up" href="markup.html">
+<LINK REL="next" href="xmlparser-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-htmlentitydefs.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="xmlparser-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-htmlentitydefs.html">13.4 htmlentitydefs  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="xmlparser-objects.html">13.5.1 XMLParser Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0015500000000000000000">
+13.5 <tt class="module">xml.parsers.expat</tt> --
+         Fast XML parsing using Expat</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.0.</span>
+
+<P>
+The <tt class="module">xml.parsers.expat</tt> module is a Python interface to the
+Expat<a name="l2h-3161">&nbsp;</a>non-validating XML parser.
+The module provides a single extension type, <tt class="class">xmlparser</tt>, that
+represents the current state of an XML parser.  After an
+<tt class="class">xmlparser</tt> object has been created, various attributes of the object 
+can be set to handler functions.  When an XML document is then fed to
+the parser, the handler functions are called for the character data
+and markup in the XML document.
+
+<P>
+This module uses the <tt class="module">pyexpat</tt><a name="l2h-3162">&nbsp;</a>module to
+provide access to the Expat parser.  Direct use of the
+<tt class="module">pyexpat</tt> module is deprecated.
+
+<P>
+This module provides one exception and one type object:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-3156"><tt class="exception">ExpatError</tt></a></b>
+<dd>
+  The exception raised when Expat reports an error.  See section
+  <A href="expaterror-objects.html#expaterror-objects">13.5.2</A>, ``ExpatError Exceptions,'' for more
+  information on interpreting Expat errors.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-3157"><tt class="exception">error</tt></a></b>
+<dd>
+  Alias for <tt class="exception">ExpatError</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3158"><tt>XMLParserType</tt></a></b>
+<dd>
+  The type of the return values from the <tt class="function">ParserCreate()</tt>
+  function.
+</dl>
+
+<P>
+The <tt class="module">xml.parsers.expat</tt> module contains two functions:
+
+<P>
+<dl><dt><b><a name="l2h-3159"><tt class="function">ErrorString</tt></a></b>(<var>errno</var>)
+<dd>
+Returns an explanatory string for a given error number <var>errno</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3160"><tt class="function">ParserCreate</tt></a></b>(<big>[</big><var>encoding</var><big>[</big><var>,
+                               namespace_separator</var><big>]</big><big>]</big>)
+<dd>
+Creates and returns a new <tt class="class">xmlparser</tt> object.  
+<var>encoding</var>, if specified, must be a string naming the encoding 
+used by the XML data.  Expat doesn't support as many encodings as
+Python does, and its repertoire of encodings can't be extended; it
+supports UTF-8, UTF-16, ISO-8859-1 (Latin1), and ASCII.  If
+<var>encoding</var> is given it will override the implicit or explicit
+encoding of the document.
+
+<P>
+Expat can optionally do XML namespace processing for you, enabled by
+providing a value for <var>namespace_separator</var>.  The value must be a
+one-character string; a <tt class="exception">ValueError</tt> will be raised if the
+string has an illegal length (<code>None</code> is considered the same as
+omission).  When namespace processing is enabled, element type names
+and attribute names that belong to a namespace will be expanded.  The
+element name passed to the element handlers
+<tt class="member">StartElementHandler</tt> and <tt class="member">EndElementHandler</tt>
+will be the concatenation of the namespace URI, the namespace
+separator character, and the local part of the name.  If the namespace
+separator is a zero byte (<code>chr(0)</code>) then the namespace URI and
+the local part will be concatenated without any separator.
+
+<P>
+For example, if <var>namespace_separator</var> is set to a space character
+("<tt class="character"> </tt>") and the following document is parsed:
+
+<P>
+<dl><dd><pre class="verbatim">
+&lt;?xml version="1.0"?&gt;
+&lt;root xmlns    = "http://default-namespace.org/"
+      xmlns:py = "http://www.python.org/ns/"&gt;
+  &lt;py:elem1 /&gt;
+  &lt;elem2 xmlns="" /&gt;
+&lt;/root&gt;
+</pre></dl>
+
+<P>
+<tt class="member">StartElementHandler</tt> will receive the following strings
+for each element:
+
+<P>
+<dl><dd><pre class="verbatim">
+http://default-namespace.org/ root
+http://www.python.org/ns/ elem1
+elem2
+</pre></dl>
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="xmlparser-objects.html">13.5.1 XMLParser Objects</a>
+<LI><A href="expaterror-objects.html">13.5.2 ExpatError Exceptions</a>
+<LI><A href="expat-example.html">13.5.3 Example</a>
+<LI><A href="expat-content-models.html">13.5.4 Content Model Descriptions</a>
+<LI><A href="expat-errors.html">13.5.5 Expat error constants</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-htmlentitydefs.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="xmlparser-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-htmlentitydefs.html">13.4 htmlentitydefs  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="xmlparser-objects.html">13.5.1 XMLParser Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>18.1.2 Converting AST Objects </title>
+<META NAME="description" CONTENT="18.1.2 Converting AST Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node553.html">
+<LINK REL="previous" HREF="node551.html">
+<LINK REL="up" href="module-parser.html">
+<LINK REL="next" HREF="node553.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node551.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-parser.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node553.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node551.html">18.1.1 Creating AST Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-parser.html">18.1 parser  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node553.html">18.1.3 Queries on AST</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0020120000000000000000">&nbsp;</A>
+<BR>
+18.1.2 Converting AST Objects 
+</H2>
+
+<P>
+AST objects, regardless of the input used to create them, may be
+converted to parse trees represented as list- or tuple- trees, or may
+be compiled into executable code objects.  Parse trees may be
+extracted with or without line numbering information.
+
+<P>
+<dl><dt><b><a name="l2h-3771"><tt class="function">ast2list</tt></a></b>(<var>ast</var><big>[</big><var>, line_info</var><big>]</big>)
+<dd>
+This function accepts an AST object from the caller in
+<var>ast</var> and returns a Python list representing the
+equivalent parse tree.  The resulting list representation can be used
+for inspection or the creation of a new parse tree in list form.  This
+function does not fail so long as memory is available to build the
+list representation.  If the parse tree will only be used for
+inspection, <tt class="function">ast2tuple()</tt> should be used instead to reduce memory
+consumption and fragmentation.  When the list representation is
+required, this function is significantly faster than retrieving a
+tuple representation and converting that to nested lists.
+
+<P>
+If <var>line_info</var> is true, line number information will be
+included for all terminal tokens as a third element of the list
+representing the token.  Note that the line number provided specifies
+the line on which the token <i>ends</i>.  This information is
+omitted if the flag is false or omitted.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3772"><tt class="function">ast2tuple</tt></a></b>(<var>ast</var><big>[</big><var>, line_info</var><big>]</big>)
+<dd>
+This function accepts an AST object from the caller in
+<var>ast</var> and returns a Python tuple representing the
+equivalent parse tree.  Other than returning a tuple instead of a
+list, this function is identical to <tt class="function">ast2list()</tt>.
+
+<P>
+If <var>line_info</var> is true, line number information will be
+included for all terminal tokens as a third element of the list
+representing the token.  This information is omitted if the flag is
+false or omitted.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3773"><tt class="function">compileast</tt></a></b>(<var>ast</var><big>[</big><var>, filename<code> = '&lt;ast&gt;'</code></var><big>]</big>)
+<dd>
+The Python byte compiler can be invoked on an AST object to produce
+code objects which can be used as part of an <tt class="keyword">exec</tt> statement or
+a call to the built-in <tt class="function">eval()</tt><a name="l2h-3774">&nbsp;</a>function.
+This function provides the interface to the compiler, passing the
+internal parse tree from <var>ast</var> to the parser, using the
+source file name specified by the <var>filename</var> parameter.
+The default value supplied for <var>filename</var> indicates that
+the source was an AST object.
+
+<P>
+Compiling an AST object may result in exceptions related to
+compilation; an example would be a <tt class="exception">SyntaxError</tt> caused by the
+parse tree for <code>del f(0)</code>: this statement is considered legal
+within the formal grammar for Python but is not a legal language
+construct.  The <tt class="exception">SyntaxError</tt> raised for this condition is
+actually generated by the Python byte-compiler normally, which is why
+it can be raised at this point by the <tt class="module">parser</tt> module.  Most
+causes of compilation failure can be diagnosed programmatically by
+inspection of the parse tree.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node551.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-parser.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node553.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node551.html">18.1.1 Creating AST Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-parser.html">18.1 parser  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node553.html">18.1.3 Queries on AST</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

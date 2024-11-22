@@ -1,0 +1,25 @@
+﻿Der Buildvorgang wurde am 27.09.2013 19:39:31 gestartet.
+     1>Projekt "D:\tt (1)\dev\Srcs\Tools\WorldEditor\WorldEditor_VC90.vcxproj" auf Knoten "2", build Ziel(e).
+     1>InitializeBuildStatus:
+         Aktualisieren des Timestamps von "../obj/VC90/WorldEditor_MfcDebug\WorldEditor.unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I. /I../../extern/include /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D WORLD_EDITOR /D _CRT_SECURE_NO_WARNINGS /D _CRT_SECURE_NO_DEPRECATE /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Yc"stdafx.h" /Fp"../obj/VC90/WorldEditor_MfcDebug\WorldEditor.pch" /Fo"../obj/VC90/WorldEditor_MfcDebug\\" /Fd"../obj/VC90/WorldEditor_MfcDebug\WorldEditor.pdb" /Gd /TP /analyze- /errorReport:prompt StdAfx.cpp -Zm110 
+         StdAfx.cpp
+         _WIN32_WINNT not defined. Defaulting to _WIN32_WINNT_MAXVER (see WinSDKVer.h)
+     1>d:\tt (1)\dev\srcs\tools\worldeditor\./DataCtrl/ObjectData.h(144): error C2146: Syntaxfehler: Fehlendes ';' vor Bezeichner 'strModelFileName'
+     1>d:\tt (1)\dev\srcs\tools\worldeditor\./DataCtrl/ObjectData.h(144): error C4430: Fehlender Typspezifizierer - int wird angenommen. Hinweis: "default-int" wird von C++ nicht unterstützt.
+     1>d:\tt (1)\dev\srcs\tools\worldeditor\./DataCtrl/ObjectData.h(144): error C4430: Fehlender Typspezifizierer - int wird angenommen. Hinweis: "default-int" wird von C++ nicht unterstützt.
+     1>d:\tt (1)\dev\srcs\tools\worldeditor\./DataCtrl/ObjectData.h(145): error C2146: Syntaxfehler: Fehlendes ';' vor Bezeichner 'strSourceSkinFileName'
+     1>d:\tt (1)\dev\srcs\tools\worldeditor\./DataCtrl/ObjectData.h(145): error C4430: Fehlender Typspezifizierer - int wird angenommen. Hinweis: "default-int" wird von C++ nicht unterstützt.
+     1>d:\tt (1)\dev\srcs\tools\worldeditor\./DataCtrl/ObjectData.h(145): error C4430: Fehlender Typspezifizierer - int wird angenommen. Hinweis: "default-int" wird von C++ nicht unterstützt.
+     1>d:\tt (1)\dev\srcs\tools\worldeditor\./DataCtrl/ObjectData.h(146): error C2146: Syntaxfehler: Fehlendes ';' vor Bezeichner 'strTargetSkinFileName'
+     1>d:\tt (1)\dev\srcs\tools\worldeditor\./DataCtrl/ObjectData.h(146): error C4430: Fehlender Typspezifizierer - int wird angenommen. Hinweis: "default-int" wird von C++ nicht unterstützt.
+     1>d:\tt (1)\dev\srcs\tools\worldeditor\./DataCtrl/ObjectData.h(146): error C4430: Fehlender Typspezifizierer - int wird angenommen. Hinweis: "default-int" wird von C++ nicht unterstützt.
+     1>d:\tt (1)\dev\srcs\tools\worldeditor\./DataCtrl/ObjectData.h(273): error C2146: Syntaxfehler: Fehlendes ';' vor Bezeichner 'm_strShapeDataPathName'
+     1>d:\tt (1)\dev\srcs\tools\worldeditor\./DataCtrl/ObjectData.h(273): error C4430: Fehlender Typspezifizierer - int wird angenommen. Hinweis: "default-int" wird von C++ nicht unterstützt.
+     1>d:\tt (1)\dev\srcs\tools\worldeditor\./DataCtrl/ObjectData.h(273): error C4430: Fehlender Typspezifizierer - int wird angenommen. Hinweis: "default-int" wird von C++ nicht unterstützt.
+     1>Die Erstellung des Projekts "D:\tt (1)\dev\Srcs\Tools\WorldEditor\WorldEditor_VC90.vcxproj" ist abgeschlossen, build Ziel(e) -- FEHLER.
+
+Fehler beim Erstellen
+
+Verstrichene Zeit 00:00:04.64

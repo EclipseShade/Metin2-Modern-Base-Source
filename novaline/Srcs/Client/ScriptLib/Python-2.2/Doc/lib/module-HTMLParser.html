@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.1 HTMLParser -- Simple HTML and XHTML parser</title>
+<META NAME="description" CONTENT="13.1 HTMLParser -- Simple HTML and XHTML parser">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-sgmllib.html">
+<LINK REL="previous" href="markup.html">
+<LINK REL="up" href="markup.html">
+<LINK REL="next" href="htmlparser-example.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="markup.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="htmlparser-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="htmlparser-example.html">13.1.1 Example HTML Parser</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0015100000000000000000">
+13.1 <tt class="module">HTMLParser</tt> --
+         Simple HTML and XHTML parser</A>
+</H1>
+
+<P>
+
+
+<P>
+This module defines a class <tt class="class">HTMLParser</tt> which serves as the
+basis for parsing text files formatted in HTML<a name="l2h-3116">&nbsp;</a>(HyperText
+Mark-up Language) and XHTML.<a name="l2h-3117">&nbsp;</a> Unlike the parser in
+<tt class="module"><a href="module-htmllib.html">htmllib</a></tt>, this parser is not based on the SGML parser in
+<tt class="module"><a href="module-sgmllib.html">sgmllib</a></tt>.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3102"><tt class="class">HTMLParser</tt></a></b>()
+<dd>
+The <tt class="class">HTMLParser</tt> class is instantiated without arguments.
+
+<P>
+An HTMLParser instance is fed HTML data and calls handler functions
+when tags begin and end.  The <tt class="class">HTMLParser</tt> class is meant to be
+overridden by the user to provide a desired behavior.
+
+<P>
+Unlike the parser in <tt class="module"><a href="module-htmllib.html">htmllib</a></tt>, this parser does not check
+that end tags match start tags or call the end-tag handler for
+elements which are closed implicitly by closing an outer element.
+</dl>
+
+<P>
+<tt class="class">HTMLParser</tt> instances have the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-3103"><tt class="method">reset</tt></a></b>()
+<dd>
+Reset the instance.  Loses all unprocessed data.  This is called
+implicitly at instantiation time.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3104"><tt class="method">feed</tt></a></b>(<var>data</var>)
+<dd>
+Feed some text to the parser.  It is processed insofar as it consists
+of complete elements; incomplete data is buffered until more data is
+fed or <tt class="method">close()</tt> is called.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3105"><tt class="method">close</tt></a></b>()
+<dd>
+Force processing of all buffered data as if it were followed by an
+end-of-file mark.  This method may be redefined by a derived class to
+define additional processing at the end of the input, but the
+redefined version should always call the <tt class="class">HTMLParser</tt> base class
+method <tt class="method">close()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3106"><tt class="method">getpos</tt></a></b>()
+<dd>
+Return current line number and offset.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3107"><tt class="method">get_starttag_text</tt></a></b>()
+<dd>
+Return the text of the most recently opened start tag.  This should
+not normally be needed for structured processing, but may be useful in
+dealing with HTML ``as deployed'' or for re-generating input with
+minimal changes (whitespace between attributes can be preserved,
+etc.).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3108"><tt class="method">handle_starttag</tt></a></b>(<var>tag, attrs</var>)
+<dd> 
+This method is called to handle the start of a tag.  It is intended to
+be overridden by a derived class; the base class implementation does
+nothing.  
+
+<P>
+The <var>tag</var> argument is the name of the tag converted to
+lower case.  The <var>attrs</var> argument is a list of <code>(<var>name</var>,
+<var>value</var>)</code> pairs containing the attributes found inside the tag's
+<code>&lt;&gt;</code> brackets.  The <var>name</var> will be translated to lower case
+and double quotes and backslashes in the <var>value</var> have been
+interpreted.  For instance, for the tag <code>&lt;A
+HREF="http://www.cwi.nl/"&gt;</code>, this method would be called as
+"<tt class="samp">handle_starttag('a', [('href', 'http://www.cwi.nl/')])</tt>".
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3109"><tt class="method">handle_startendtag</tt></a></b>(<var>tag, attrs</var>)
+<dd>
+Similar to <tt class="method">handle_starttag()</tt>, but called when the parser
+encounters an XHTML-style empty tag (<code>&lt;a .../&gt;</code>).  This method
+may be overridden by subclasses which require this particular lexical
+information; the default implementation simple calls
+<tt class="method">handle_starttag()</tt> and <tt class="method">handle_endtag()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3110"><tt class="method">handle_endtag</tt></a></b>(<var>tag</var>)
+<dd>
+This method is called to handle the end tag of an element.  It is
+intended to be overridden by a derived class; the base class
+implementation does nothing.  The <var>tag</var> argument is the name of
+the tag converted to lower case.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3111"><tt class="method">handle_data</tt></a></b>(<var>data</var>)
+<dd>
+This method is called to process arbitrary data.  It is intended to be
+overridden by a derived class; the base class implementation does
+nothing.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3112"><tt class="method">handle_charref</tt></a></b>(<var>name</var>)
+<dd> This method is called to
+process a character reference of the form "<tt class="samp">&amp;#<var>ref</var>;</tt>".  It
+is intended to be overridden by a derived class; the base class
+implementation does nothing.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3113"><tt class="method">handle_entityref</tt></a></b>(<var>name</var>)
+<dd> 
+This method is called to process a general entity reference of the
+form "<tt class="samp">&amp;<var>name</var>;</tt>" where <var>name</var> is an general entity
+reference.  It is intended to be overridden by a derived class; the
+base class implementation does nothing.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3114"><tt class="method">handle_comment</tt></a></b>(<var>data</var>)
+<dd>
+This method is called when a comment is encountered.  The
+<var>comment</var> argument is a string containing the text between the
+"<tt class="samp">&lt;!-</tt>" and "<tt class="samp">-&gt;</tt>" delimiters, but not the delimiters
+themselves.  For example, the comment "<tt class="samp">&lt;!-text-&gt;</tt>" will cause
+this method to be called with the argument <code>'text'</code>.  It is
+intended to be overridden by a derived class; the base class
+implementation does nothing.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3115"><tt class="method">handle_decl</tt></a></b>(<var>decl</var>)
+<dd>
+Method called when an SGML declaration is read by the parser.  The
+<var>decl</var> parameter will be the entire contents of the declaration
+inside the <code>&lt;!</code>...<code>&gt;</code> markup.It is intended to be overridden
+by a derived class; the base class implementation does nothing.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="htmlparser-example.html">13.1.1 Example HTML Parser</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="markup.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="htmlparser-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="htmlparser-example.html">13.1.1 Example HTML Parser</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

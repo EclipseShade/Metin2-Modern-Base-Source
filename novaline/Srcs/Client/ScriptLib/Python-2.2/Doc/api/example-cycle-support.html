@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>10.8.1 Example Cycle Collector Support </title>
+<META NAME="description" CONTENT="10.8.1 Example Cycle Collector Support ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="supporting-cycle-detection.html">
+<LINK REL="up" href="supporting-cycle-detection.html">
+<LINK REL="next" href="reporting-bugs.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="supporting-cycle-detection.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="supporting-cycle-detection.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="reporting-bugs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="supporting-cycle-detection.html">10.8 Supporting Cyclic Garbarge</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="supporting-cycle-detection.html">10.8 Supporting Cyclic Garbarge</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="reporting-bugs.html">A. Reporting Bugs</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0012810000000000000000">&nbsp;</A>
+<BR>
+10.8.1 Example Cycle Collector Support
+            
+</H2>
+
+<P>
+This example shows only enough of the implementation of an extension
+type to show how the garbage collector support needs to be added.  It
+shows the definition of the object structure, the
+<tt class="member">tp_traverse</tt>, <tt class="member">tp_clear</tt> and <tt class="member">tp_dealloc</tt>
+implementations, the type structure, and a constructor -- the module
+initialization needed to export the constructor to Python is not shown
+as there are no special considerations there for the collector.  To
+make this interesting, assume that the module exposes ways for the
+<tt class="member">container</tt> field of the object to be modified.  Note that
+since no checks are made on the type of the object used to initialize
+<tt class="member">container</tt>, we have to assume that it may be a container.
+
+<P>
+<dl><dd><pre class="verbatim">
+#include "Python.h"
+
+typedef struct {
+    PyObject_HEAD
+    PyObject *container;
+} MyObject;
+
+static int
+my_traverse(MyObject *self, visitproc visit, void *arg)
+{
+    if (self-&gt;container != NULL)
+        return visit(self-&gt;container, arg);
+    else
+        return 0;
+}
+
+static int
+my_clear(MyObject *self)
+{
+    Py_XDECREF(self-&gt;container);
+    self-&gt;container = NULL;
+
+    return 0;
+}
+
+static void
+my_dealloc(MyObject *self)
+{
+    PyObject_GC_UnTrack((PyObject *) self);
+    Py_XDECREF(self-&gt;container);
+    PyObject_GC_Del(self);
+}
+</pre></dl>
+
+<P>
+<dl><dd><pre class="verbatim">
+statichere PyTypeObject
+MyObject_Type = {
+    PyObject_HEAD_INIT(NULL)
+    0,
+    "MyObject",
+    sizeof(MyObject),
+    0,
+    (destructor)my_dealloc,     /* tp_dealloc */
+    0,                          /* tp_print */
+    0,                          /* tp_getattr */
+    0,                          /* tp_setattr */
+    0,                          /* tp_compare */
+    0,                          /* tp_repr */
+    0,                          /* tp_as_number */
+    0,                          /* tp_as_sequence */
+    0,                          /* tp_as_mapping */
+    0,                          /* tp_hash */
+    0,                          /* tp_call */
+    0,                          /* tp_str */
+    0,                          /* tp_getattro */
+    0,                          /* tp_setattro */
+    0,                          /* tp_as_buffer */
+    Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HAVE_GC,
+    0,                          /* tp_doc */
+    (traverseproc)my_traverse,  /* tp_traverse */
+    (inquiry)my_clear,          /* tp_clear */
+    0,                          /* tp_richcompare */
+    0,                          /* tp_weaklistoffset */
+};
+
+/* This constructor should be made accessible from Python. */
+static PyObject *
+new_object(PyObject *unused, PyObject *args)
+{
+    PyObject *container = NULL;
+    MyObject *result = NULL;
+
+    if (PyArg_ParseTuple(args, "|O:new_object", &amp;container)) {
+        result = PyObject_GC_New(MyObject, &amp;MyObject_Type);
+        if (result != NULL) {
+            result-&gt;container = container;
+            PyObject_GC_Track(result);
+        }
+    }
+    return (PyObject *) result;
+}
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="supporting-cycle-detection.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="supporting-cycle-detection.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="reporting-bugs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="supporting-cycle-detection.html">10.8 Supporting Cyclic Garbarge</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="supporting-cycle-detection.html">10.8 Supporting Cyclic Garbarge</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="reporting-bugs.html">A. Reporting Bugs</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

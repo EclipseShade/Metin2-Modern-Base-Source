@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.4.4 Integer and long integer literals</title>
+<META NAME="description" CONTENT="2.4.4 Integer and long integer literals">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="floating.html">
+<LINK REL="previous" href="numbers.html">
+<LINK REL="up" href="literals.html">
+<LINK REL="next" href="floating.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="numbers.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="literals.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="floating.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="numbers.html">2.4.3 Numeric literals</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="literals.html">2.4 Literals</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="floating.html">2.4.5 Floating point literals</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004440000000000000000">&nbsp;</A>
+<BR>
+2.4.4 Integer and long integer literals
+</H2>
+
+<P>
+Integer and long integer literals are described by the following
+lexical definitions:
+
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-longinteger">longinteger</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="integers.html#tok-integer">integer</a> ("l" | "L")</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-integer">integer</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="integers.html#tok-decimalinteger">decimalinteger</a> | <a href="integers.html#tok-octinteger">octinteger</a> | <a href="integers.html#tok-hexinteger">hexinteger</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-decimalinteger">decimalinteger</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="node23.html#tok-nonzerodigit">nonzerodigit</a> <a href="identifiers.html#tok-digit">digit</a>* | "0"</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-octinteger">octinteger</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"0" <a href="integers.html#tok-octdigit">octdigit</a>+</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-hexinteger">hexinteger</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"0" ("x" | "X") <a href="integers.html#tok-hexdigit">hexdigit</a>+</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-nonzerodigit">nonzerodigit</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"1"..."9"</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-octdigit">octdigit</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"0"..."7"</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-hexdigit">hexdigit</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="identifiers.html#tok-digit">digit</a> | "a"..."f" | "A"..."F"</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+Although both lower case `l' and upper case `L' are allowed as suffix
+for long integers, it is strongly recommended to always use `L', since
+the letter `l' looks too much like the digit `1'.
+
+<P>
+Plain integer decimal literals must be at most 2147483647 (i.e., the
+largest positive integer, using 32-bit arithmetic).  Plain octal and
+hexadecimal literals may be as large as 4294967295, but values larger
+than 2147483647 are converted to a negative value by subtracting
+4294967296.  There is no limit for long integer literals apart from
+what can be stored in available memory.
+
+<P>
+Some examples of plain and long integer literals:
+
+<P>
+<dl><dd><pre class="verbatim">
+7     2147483647                        0177    0x80000000
+3L    79228162514264337593543950336L    0377L   0x100000000L
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="numbers.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="literals.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="floating.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="numbers.html">2.4.3 Numeric literals</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="literals.html">2.4 Literals</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="floating.html">2.4.5 Floating point literals</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>14.7 colorsys -- Conversions between color systems</title>
+<META NAME="description" CONTENT="14.7 colorsys -- Conversions between color systems">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-rgbimg.html">
+<LINK REL="previous" href="module-chunk.html">
+<LINK REL="up" href="mmedia.html">
+<LINK REL="next" href="module-rgbimg.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-chunk.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="mmedia.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-rgbimg.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-chunk.html">14.6 chunk  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-rgbimg.html">14.8 rgbimg  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0016700000000000000000">
+14.7 <tt class="module">colorsys</tt> --
+         Conversions between color systems</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="module">colorsys</tt> module defines bidirectional conversions of
+color values between colors expressed in the RGB (Red Green Blue)
+color space used in computer monitors and three other coordinate
+systems: YIQ, HLS (Hue Lightness Saturation) and HSV (Hue Saturation
+Value).  Coordinates in all of these color spaces are floating point
+values.  In the YIQ space, the Y coordinate is between 0 and 1, but
+the I and Q coordinates can be positive or negative.  In all other
+spaces, the coordinates are all between 0 and 1.
+
+<P>
+More information about color spaces can be found at 
+<a class="url" href="http://www.inforamp.net/%7epoynton/ColorFAQ.html">http://www.inforamp.net/%7epoynton/ColorFAQ.html</a>.
+
+<P>
+The <tt class="module">colorsys</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-3590"><tt class="function">rgb_to_yiq</tt></a></b>(<var>r, g, b</var>)
+<dd>
+Convert the color from RGB coordinates to YIQ coordinates.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3591"><tt class="function">yiq_to_rgb</tt></a></b>(<var>y, i, q</var>)
+<dd>
+Convert the color from YIQ coordinates to RGB coordinates.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3592"><tt class="function">rgb_to_hls</tt></a></b>(<var>r, g, b</var>)
+<dd>
+Convert the color from RGB coordinates to HLS coordinates.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3593"><tt class="function">hls_to_rgb</tt></a></b>(<var>h, l, s</var>)
+<dd>
+Convert the color from HLS coordinates to RGB coordinates.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3594"><tt class="function">rgb_to_hsv</tt></a></b>(<var>r, g, b</var>)
+<dd>
+Convert the color from RGB coordinates to HSV coordinates.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3595"><tt class="function">hsv_to_rgb</tt></a></b>(<var>h, s, v</var>)
+<dd>
+Convert the color from HSV coordinates to RGB coordinates.
+</dl>
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import colorsys
+&gt;&gt;&gt; colorsys.rgb_to_hsv(.3, .4, .2)
+(0.25, 0.5, 0.4)
+&gt;&gt;&gt; colorsys.hsv_to_rgb(0.25, 0.5, 0.4)
+(0.3, 0.4, 0.2)
+</pre></dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-chunk.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="mmedia.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-rgbimg.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-chunk.html">14.6 chunk  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="mmedia.html">14. Multimedia Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-rgbimg.html">14.8 rgbimg  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

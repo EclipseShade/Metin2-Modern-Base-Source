@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.2.4 List displays</title>
+<META NAME="description" CONTENT="5.2.4 List displays">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="dict.html">
+<LINK REL="previous" href="parenthesized.html">
+<LINK REL="up" href="atoms.html">
+<LINK REL="next" href="dict.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="parenthesized.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="atoms.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dict.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="parenthesized.html">5.2.3 Parenthesized forms</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="atoms.html">5.2 Atoms</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dict.html">5.2.5 Dictionary displays</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007240000000000000000">&nbsp;</A>
+<BR>
+5.2.4 List displays
+</H2>
+<a name="l2h-236">&nbsp;</a>
+<P>
+A list display is a possibly empty series of expressions enclosed in
+square brackets:
+
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-list_display">list_display</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"[" [<a href="lists.html#tok-listmaker">listmaker</a>] "]"</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-listmaker">listmaker</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="node61.html#tok-expression">expression</a> ( <a href="lists.html#tok-list_for">list_for</a>
+              | ( "," <a href="lambda.html#tok-expression">expression</a>)* [","] )</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-list_iter">list_iter</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="lists.html#tok-list_for">list_for</a> | <a href="lists.html#tok-list_if">list_if</a></code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-list_for">list_for</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"for" <a href="node62.html#tok-expression_list">expression_list</a> "in" <a href="">testlist</a>
+              [<a href="lists.html#tok-list_iter">list_iter</a>]</code></td></tr>
+  <tr valign="baseline">
+    <td><code><a name="tok-list_if">list_if</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"if" <a href="">test</a> [<a href="lists.html#tok-list_iter">list_iter</a>]</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+A list display yields a new list object.  Its contents are specified
+by providing either a list of expressions or a list comprehension.
+<a name="l2h-237">&nbsp;</a>When a comma-separated list of expressions is supplied, its elements are
+evaluated from left to right and placed into the list object in that
+order.  When a list comprehension is supplied, it consists of a
+single expression followed by at least one <tt class="keyword">for</tt> clause and zero or
+more <tt class="keyword">for</tt> or <tt class="keyword">if</tt> clauses.  In this
+case, the elements of the new list are those that would be produced
+by considering each of the <tt class="keyword">for</tt> or <tt class="keyword">if</tt> clauses a block,
+nesting from
+left to right, and evaluating the expression to produce a list element
+each time the innermost block is reached.
+<a name="l2h-238">&nbsp;</a>
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="parenthesized.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="atoms.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dict.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="parenthesized.html">5.2.3 Parenthesized forms</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="atoms.html">5.2 Atoms</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dict.html">5.2.5 Dictionary displays</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

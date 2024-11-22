@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>16.1.6.1 Setting Options </title>
+<META NAME="description" CONTENT="16.1.6.1 Setting Options ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node509.html">
+<LINK REL="previous" HREF="node507.html">
+<LINK REL="up" HREF="node507.html">
+<LINK REL="next" HREF="node509.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node507.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node507.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node509.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node507.html">16.1.6 Handy Reference</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node507.html">16.1.6 Handy Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node509.html">16.1.6.2 The Packer</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0018161000000000000000">&nbsp;</A>
+<BR>
+16.1.6.1 Setting Options
+               
+</H3>
+
+<P>
+Options control things like the color and border width of a widget.
+Options can be set in three ways:
+
+<P>
+<DL>
+<DT><STRONG>At object creation time, using keyword arguments</STRONG></DT>
+<DD>:
+<dl><dd><pre class="verbatim">
+fred = Button(self, fg = "red", bg = "blue")
+</pre></dl>
+</DD>
+<DT><STRONG>After object creation, treating the option name like a dictionary index</STRONG></DT>
+<DD>:
+<dl><dd><pre class="verbatim">
+fred["fg"] = "red"
+fred["bg"] = "blue"
+</pre></dl>
+</DD>
+<DT><STRONG>Use the config() method to update multiple attrs subesequent to
+object creation</STRONG></DT>
+<DD>:
+<dl><dd><pre class="verbatim">
+fred.config(fg = "red", bg = "blue")
+</pre></dl>
+</DD>
+</DL>
+
+<P>
+For a complete explanation of a given option and its behavior, see the
+Tk man pages for the widget in question.
+
+<P>
+Note that the man pages list "STANDARD OPTIONS" and "WIDGET SPECIFIC
+OPTIONS" for each widget.  The former is a list of options that are
+common to many widgets, the latter are the options that are
+ideosyncratic to that particular widget.  The Standard Options are
+documented on the <span class="manpage"><i>options</i>(3)</span> man page.
+
+<P>
+No distinction between standard and widget-specific options is made in
+this document.  Some options don't apply to some kinds of widgets.
+Whether a given widget responds to a particular option depends on the
+class of the widget; buttons have a <code>command</code> option, labels do not. 
+
+<P>
+The options supported by a given widget are listed in that widget's
+man page, or can be queried at runtime by calling the
+<kbd>config()</kbd> method with arguments, or by calling the keys()
+method on that widget. The return value of these calls is a dictionary
+whose key is the name of the option (e.g. <kbd>relief</kbd>) and whose
+values are 5 tuples. 
+
+<P>
+(Some options, like <kbd>bg</kbd> are synonyms for common options with
+hard-to-type names (<kbd>bg</kbd> is shorthand for "background"). 
+Passing the <kbd>config()</kbd> method the name of a
+shorthand option will return a 2-tuple, not 5-tuple. The 2-tuple
+passed back will contain the name of the synonym ``real''
+option. (<kbd>bg</kbd>, <kbd>background</kbd>))
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Index</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      <th align="left"><b>Example</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline">0</td>
+        <td align="left">option name</td>
+        <td align="left"><code>'relief'</code></td>
+    <tr><td align="center" valign="baseline">1</td>
+        <td align="left">option name for database lookup</td>
+        <td align="left"><code>'relief'</code></td>
+    <tr><td align="center" valign="baseline">2</td>
+        <td align="left">option class for database lookup</td>
+        <td align="left"><code>'Relief'</code></td>
+    <tr><td align="center" valign="baseline">3</td>
+        <td align="left">default value</td>
+        <td align="left"><code>'raised'</code></td>
+    <tr><td align="center" valign="baseline">4</td>
+        <td align="left">current value</td>
+        <td align="left"><code>'groove'</code></td></tbody>
+</table>
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; print fred.config()
+{'relief' : ('relief', 'relief', 'Relief', 'raised', 'groove')}
+</pre></dl>
+
+<P>
+Of course, the dictionary printed will include all the options
+available and their values.  This is meant only as an example.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node507.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node507.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node509.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node507.html">16.1.6 Handy Reference</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node507.html">16.1.6 Handy Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node509.html">16.1.6.2 The Packer</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

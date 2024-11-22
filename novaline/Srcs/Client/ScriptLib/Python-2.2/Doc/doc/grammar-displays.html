@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.12 Grammar Production Displays </title>
+<META NAME="description" CONTENT="6.12 Grammar Production Displays ">
+<META NAME="keywords" CONTENT="doc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="doc.css">
+<link rel="first" href="doc.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="previous" href="indexing.html">
+<LINK REL="up" href="special-constructs.html">
+<LINK REL="next" href="gui-markup.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="indexing.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="special-constructs.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="gui-markup.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="indexing.html">6.11 Index-generating Markup</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="special-constructs.html">6 Special Markup Constructs</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="gui-markup.html">7 Graphical Interface Components</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0007120000000000000000">&nbsp;</A>
+<BR>
+6.12 Grammar Production Displays 
+</H2>
+
+<P>
+Special markup is available for displaying the productions of a
+    formal grammar.  The markup is simple and does not attempt to
+    model all aspects of BNF (or any derived forms), but provides
+    enough to allow context-free grammars to be displayed in a way
+    that causes uses of a symbol to be rendered as hyperlinks to the
+    definition of the symbol.  There is one environment and a pair of
+    macros:
+
+<P>
+
+<dl class='envdesc'>
+<dt><tt>&#92;begin{<b class='environment'>productionlist</b>}</tt>
+    <tt>[</tt><var>language</var><tt>]</tt>
+<br /><tt>&#92;end{<b class='environment'>productionlist</b>}</tt>
+<dd>
+      This environment is used to enclose a group of productions.  The
+      two macros are only defined within this environment.  If a
+      document descibes more than one language, the optional parameter
+      <var>language</var> should be used to distinguish productions between
+      languages.  The value of the parameter should be a short name
+      that can be used as part of a filename; colons or other
+      characters that can't be used in filename across platforms
+      should be included.
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;production</tt></b>
+    <tt>{</tt><var>name</var><tt>}</tt><tt>{</tt><var>definition</var><tt>}</tt>
+<dd>
+      A production rule in the grammar.  The rule defines the symbol
+      <var>name</var> to be <var>definition</var>.  <var>name</var> should not
+      contain any markup, and the use of hyphens in a document which
+      supports more than one grammar is undefined.  <var>definition</var>
+      may contain <tt class='macro'>&#92;token</tt> macros and any additional content
+      needed to describe the grammatical model of <var>symbol</var>.  Only
+      one <tt class='macro'>&#92;production</tt> may be used to define a symbol --
+      multiple definitions are not allowed.
+    </dl>
+
+<P>
+
+<dl class='macrodesc'>
+<dt><b><tt class='macro'>&#92;token</tt></b>
+    <tt>{</tt><var>name</var><tt>}</tt>
+<dd>
+      The name of a symbol defined by a <tt class='macro'>&#92;production</tt> macro, used
+      in the <var>definition</var> of a symbol.  Where possible, this will
+      be rendered as a hyperlink to the definition of the symbol
+      <var>name</var>.
+    </dl>
+
+<P>
+Note that the entire grammar does not need to be defined in a
+    single <tt class='environment'>&#92;productionlist</tt> environment; any number of
+    groupings may be used to describe the grammar.  Every use of the
+    <tt class='macro'>&#92;token</tt> must correspond to a <tt class='macro'>&#92;production</tt>.
+
+<P>
+The following is an example taken from the
+    <em class="citetitle"><a
+ href="../ref/identifiers.html"
+ title="Python Reference Manual"
+ >Python Reference Manual</a></em>:
+
+<P>
+<dl><dd><pre class="verbatim">
+\begin{productionlist}
+  \production{identifier}
+             {(\token{letter}|"_") (\token{letter} | \token{digit} | "_")*}
+  \production{letter}
+             {\token{lowercase} | \token{uppercase}}
+  \production{lowercase}
+             {"a"..."z"}
+  \production{uppercase}
+             {"A"..."Z"}
+  \production{digit}
+             {"0"..."9"}
+\end{productionlist}
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="indexing.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="special-constructs.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="gui-markup.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="indexing.html">6.11 Index-generating Markup</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="special-constructs.html">6 Special Markup Constructs</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="gui-markup.html">7 Graphical Interface Components</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

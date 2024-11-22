@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.5.5 Iterator Objects </title>
+<META NAME="description" CONTENT="7.5.5 Iterator Objects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="descriptor-objects.html">
+<LINK REL="previous" href="moduleObjects.html">
+<LINK REL="up" href="otherObjects.html">
+<LINK REL="next" href="descriptor-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="moduleObjects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="otherObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="descriptor-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="moduleObjects.html">7.5.4 Module Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="otherObjects.html">7.5 Other Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="descriptor-objects.html">7.5.6 Descriptor Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009550000000000000000">&nbsp;</A>
+<BR>
+7.5.5 Iterator Objects 
+</H2>
+
+<P>
+Python provides two general-purpose iterator objects.  The first, a
+sequence iterator, works with an arbitrary sequence supporting the
+<tt class="method">__getitem__()</tt> method.  The second works with a callable
+object and a sentinel value, calling the callable for each item in the
+sequence, and ending the iteration when the sentinel value is
+returned.
+
+<P>
+<dl><dt>PyTypeObject <b><a name="l2h-602"><tt class="cdata">PySeqIter_Type</tt></a></b>
+<dd>
+  Type object for iterator objects returned by
+  <tt class="cfunction">PySeqIter_New()</tt> and the one-argument form of the
+  <tt class="function">iter()</tt> built-in function for built-in sequence types.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-603"><tt class="cfunction">PySeqIter_Check</tt></a></b>(<var>op</var>)
+<dd>
+  Return true if the type of <var>op</var> is <tt class="cdata">PySeqIter_Type</tt>.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-604"><tt class="cfunction">PySeqIter_New</tt></a></b>(<var>PyObject *seq</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Return an iterator that works with a general sequence object,
+  <var>seq</var>.  The iteration ends when the sequence raises
+  <tt class="exception">IndexError</tt> for the subscripting operation.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>PyTypeObject <b><a name="l2h-605"><tt class="cdata">PyCallIter_Type</tt></a></b>
+<dd>
+  Type object for iterator objects returned by
+  <tt class="cfunction">PyCallIter_New()</tt> and the two-argument form of the
+  <tt class="function">iter()</tt> built-in function.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-606"><tt class="cfunction">PyCallIter_Check</tt></a></b>(<var>op</var>)
+<dd>
+  Return true if the type of <var>op</var> is <tt class="cdata">PyCallIter_Type</tt>.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-607"><tt class="cfunction">PyCallIter_New</tt></a></b>(<var>PyObject *callable,
+                                             PyObject *sentinel</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Return a new iterator.  The first parameter, <var>callable</var>, can be
+  any Python callable object that can be called with no parameters;
+  each call to it should return the next item in the iteration.  When
+  <var>callable</var> returns a value equal to <var>sentinel</var>, the
+  iteration will be terminated.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="moduleObjects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="otherObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="descriptor-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="moduleObjects.html">7.5.4 Module Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="otherObjects.html">7.5 Other Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="descriptor-objects.html">7.5.6 Descriptor Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

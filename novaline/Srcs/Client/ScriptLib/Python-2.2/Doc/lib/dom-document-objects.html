@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.6.2.5 Document Objects </title>
+<META NAME="description" CONTENT="13.6.2.5 Document Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="dom-element-objects.html">
+<LINK REL="previous" href="dom-documenttype-objects.html">
+<LINK REL="up" HREF="node438.html">
+<LINK REL="next" href="dom-element-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dom-documenttype-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node438.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dom-element-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dom-documenttype-objects.html">13.6.2.4 DocumentType Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node438.html">13.6.2 Objects in the</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dom-element-objects.html">13.6.2.6 Element Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0015625000000000000000">&nbsp;</A>
+<BR>
+13.6.2.5 Document Objects 
+</H3>
+
+<P>
+A <tt class="class">Document</tt> represents an entire XML document, including its
+constituent elements, attributes, processing instructions, comments
+etc.  Remeber that it inherits properties from <tt class="class">Node</tt>.
+
+<P>
+<dl><dt><b><a name="l2h-3239"><tt class="member">documentElement</tt></a></b>
+<dd>
+The one and only root element of the document.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3240"><tt class="method">createElement</tt></a></b>(<var>tagName</var>)
+<dd>
+Create and return a new element node.  The element is not inserted
+into the document when it is created.  You need to explicitly insert
+it with one of the other methods such as <tt class="method">insertBefore()</tt> or
+<tt class="method">appendChild()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3241"><tt class="method">createElementNS</tt></a></b>(<var>namespaceURI, tagName</var>)
+<dd>
+Create and return a new element with a namespace.  The
+<var>tagName</var> may have a prefix.  The element is not inserted into the
+document when it is created.  You need to explicitly insert it with
+one of the other methods such as <tt class="method">insertBefore()</tt> or
+<tt class="method">appendChild()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3242"><tt class="method">createTextNode</tt></a></b>(<var>data</var>)
+<dd>
+Create and return a text node containing the data passed as a
+parameter.  As with the other creation methods, this one does not
+insert the node into the tree.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3243"><tt class="method">createComment</tt></a></b>(<var>data</var>)
+<dd>
+Create and return a comment node containing the data passed as a
+parameter.  As with the other creation methods, this one does not
+insert the node into the tree.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3244"><tt class="method">createProcessingInstruction</tt></a></b>(<var>target, data</var>)
+<dd>
+Create and return a processing instruction node containing the
+<var>target</var> and <var>data</var> passed as parameters.  As with the other
+creation methods, this one does not insert the node into the tree.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3245"><tt class="method">createAttribute</tt></a></b>(<var>name</var>)
+<dd>
+Create and return an attribute node.  This method does not associate
+the attribute node with any particular element.  You must use
+<tt class="method">setAttributeNode()</tt> on the appropriate <tt class="class">Element</tt> object
+to use the newly created attribute instance.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3246"><tt class="method">createAttributeNS</tt></a></b>(<var>namespaceURI, qualifiedName</var>)
+<dd>
+Create and return an attribute node with a namespace.  The
+<var>tagName</var> may have a prefix.  This method does not associate the
+attribute node with any particular element.  You must use
+<tt class="method">setAttributeNode()</tt> on the appropriate <tt class="class">Element</tt> object
+to use the newly created attribute instance.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3247"><tt class="method">getElementsByTagName</tt></a></b>(<var>tagName</var>)
+<dd>
+Search for all descendants (direct children, children's children,
+etc.) with a particular element type name.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3248"><tt class="method">getElementsByTagNameNS</tt></a></b>(<var>namespaceURI, localName</var>)
+<dd>
+Search for all descendants (direct children, children's children,
+etc.) with a particular namespace URI and localname.  The localname is
+the part of the namespace after the prefix.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="dom-documenttype-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node438.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dom-element-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="dom-documenttype-objects.html">13.6.2.4 DocumentType Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node438.html">13.6.2 Objects in the</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dom-element-objects.html">13.6.2.6 Element Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

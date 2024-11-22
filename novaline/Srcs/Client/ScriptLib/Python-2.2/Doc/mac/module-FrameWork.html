@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.11 FrameWork -- Interactive application framework</title>
+<META NAME="description" CONTENT="2.11 FrameWork -- Interactive application framework">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-MiniAEFrame.html">
+<LINK REL="previous" href="module-EasyDialogs.html">
+<LINK REL="up" href="macpython-modules.html">
+<LINK REL="next" href="application-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-EasyDialogs.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="application-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-EasyDialogs.html">2.10 EasyDialogs  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="application-objects.html">2.11.1 Application Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0041100000000000000000">
+2.11 <tt class="module">FrameWork</tt> --
+         Interactive application framework</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Macintosh</span>.</p>
+
+<P>
+The <tt class="module">FrameWork</tt> module contains classes that together provide a
+framework for an interactive Macintosh application. The programmer
+builds an application by creating subclasses that override various
+methods of the bases classes, thereby implementing the functionality
+wanted. Overriding functionality can often be done on various
+different levels, i.e. to handle clicks in a single dialog window in a
+non-standard way it is not necessary to override the complete event
+handling.
+
+<P>
+The <tt class="module">FrameWork</tt> is still very much work-in-progress, and the
+documentation describes only the most important functionality, and not
+in the most logical manner at that. Examine the source or the examples
+for more details.  The following are some comments posted on the
+MacPython newsgroup about the strengths and limitations of
+<tt class="module">FrameWork</tt>:
+
+<P>
+<BLOCKQUOTE>
+The strong point of <tt class="module">FrameWork</tt> is that it allows you to break
+into the control-flow at many different places. <tt class="module"><a href="module-W.html">W</a></tt>, for
+instance, uses a different way to enable/disable menus and that plugs
+right in leaving the rest intact.  The weak points of
+<tt class="module">FrameWork</tt> are that it has no abstract command interface (but
+that shouldn't be difficult), that it's dialog support is minimal and
+that it's control/toolbar support is non-existent.
+
+</BLOCKQUOTE>
+
+<P>
+The <tt class="module">FrameWork</tt> module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-131"><tt class="function">Application</tt></a></b>()
+<dd>
+An object representing the complete application. See below for a
+description of the methods. The default <tt class="method">__init__()</tt> routine
+creates an empty window dictionary and a menu bar with an apple menu.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-132"><tt class="function">MenuBar</tt></a></b>()
+<dd>
+An object representing the menubar. This object is usually not created
+by the user.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-133"><tt class="function">Menu</tt></a></b>(<var>bar, title</var><big>[</big><var>, after</var><big>]</big>)
+<dd>
+An object representing a menu. Upon creation you pass the
+<code>MenuBar</code> the menu appears in, the <var>title</var> string and a
+position (1-based) <var>after</var> where the menu should appear (default:
+at the end).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-134"><tt class="function">MenuItem</tt></a></b>(<var>menu, title</var><big>[</big><var>, shortcut, callback</var><big>]</big>)
+<dd>
+Create a menu item object. The arguments are the menu to create, the
+item item title string and optionally the keyboard shortcut
+and a callback routine. The callback is called with the arguments
+menu-id, item number within menu (1-based), current front window and
+the event record.
+
+<P>
+Instead of a callable object the callback can also be a string. In
+this case menu selection causes the lookup of a method in the topmost
+window and the application. The method name is the callback string
+with <code>'domenu_'</code> prepended.
+
+<P>
+Calling the <code>MenuBar</code> <tt class="method">fixmenudimstate()</tt> method sets the
+correct dimming for all menu items based on the current front window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-135"><tt class="function">Separator</tt></a></b>(<var>menu</var>)
+<dd>
+Add a separator to the end of a menu.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-136"><tt class="function">SubMenu</tt></a></b>(<var>menu, label</var>)
+<dd>
+Create a submenu named <var>label</var> under menu <var>menu</var>. The menu
+object is returned.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-137"><tt class="function">Window</tt></a></b>(<var>parent</var>)
+<dd>
+Creates a (modeless) window. <var>Parent</var> is the application object to
+which the window belongs. The window is not displayed until later.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-138"><tt class="function">DialogWindow</tt></a></b>(<var>parent</var>)
+<dd>
+Creates a modeless dialog window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-139"><tt class="function">windowbounds</tt></a></b>(<var>width, height</var>)
+<dd>
+Return a <code>(<var>left</var>, <var>top</var>, <var>right</var>, <var>bottom</var>)</code>
+tuple suitable for creation of a window of given width and height. The
+window will be staggered with respect to previous windows, and an
+attempt is made to keep the whole window on-screen. However, the window will
+however always be the exact size given, so parts may be offscreen.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-140"><tt class="function">setwatchcursor</tt></a></b>()
+<dd>
+Set the mouse cursor to a watch.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-141"><tt class="function">setarrowcursor</tt></a></b>()
+<dd>
+Set the mouse cursor to an arrow.
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="application-objects.html">2.11.1 Application Objects</a>
+<LI><A href="window-objects.html">2.11.2 Window Objects</a>
+<LI><A href="controlswindow-object.html">2.11.3 ControlsWindow Object</a>
+<LI><A href="scrolledwindow-object.html">2.11.4 ScrolledWindow Object</a>
+<LI><A href="dialogwindow-objects.html">2.11.5 DialogWindow Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-EasyDialogs.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="application-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-EasyDialogs.html">2.10 EasyDialogs  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="application-objects.html">2.11.1 Application Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

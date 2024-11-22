@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.22 fnmatch -- Unix filename pattern matching</title>
+<META NAME="description" CONTENT="6.22 fnmatch -- Unix filename pattern matching">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-shutil.html">
+<LINK REL="previous" href="module-glob.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" href="module-shutil.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-glob.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-shutil.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-glob.html">6.21 glob  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-shutil.html">6.23 shutil  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0082200000000000000000">
+6.22 <tt class="module">fnmatch</tt> --
+         Unix filename pattern matching</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name="l2h-1750">&nbsp;</a>
+<P>
+This module provides support for Unix shell-style wildcards, which
+are <i>not</i> the same as regular expressions (which are documented
+in the <tt class="module"><a href="module-re.html">re</a></tt><a name="l2h-1751">&nbsp;</a>module).  The special
+characters used in shell-style wildcards are:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Pattern</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><code>*</code></td>
+        <td align="left">matches everything</td>
+    <tr><td align="center" valign="baseline"><code>?</code></td>
+        <td align="left">matches any single character</td>
+    <tr><td align="center" valign="baseline"><code>[<var>seq</var>]</code></td>
+        <td align="left">matches any character in <var>seq</var></td>
+    <tr><td align="center" valign="baseline"><code>[!<var>seq</var>]</code></td>
+        <td align="left">matches any character not in <var>seq</var></td></tbody>
+</table>
+
+<P>
+Note that the filename separator (<code>'/'</code> on Unix) is <i>not</i>
+special to this module.  See module
+<tt class="module"><a href="module-glob.html">glob</a></tt><a name="l2h-1752">&nbsp;</a>for pathname expansion
+(<tt class="module"><a href="module-glob.html">glob</a></tt> uses <tt class="function">fnmatch()</tt> to match pathname
+segments).  Similarly, filenames starting with a period are
+not special for this module, and are matched by the <code>*</code> and
+<code>?</code> patterns.
+
+<P>
+<dl><dt><b><a name="l2h-1747"><tt class="function">fnmatch</tt></a></b>(<var>filename, pattern</var>)
+<dd>
+Test whether the <var>filename</var> string matches the <var>pattern</var>
+string, returning true or false.  If the operating system is
+case-insensitive, then both parameters will be normalized to all
+lower- or upper-case before the comparison is performed.  If you
+require a case-sensitive comparison regardless of whether that's
+standard for your operating system, use <tt class="function">fnmatchcase()</tt>
+instead.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1748"><tt class="function">fnmatchcase</tt></a></b>(<var>filename, pattern</var>)
+<dd>
+Test whether <var>filename</var> matches <var>pattern</var>, returning true or
+false; the comparison is case-sensitive.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1749"><tt class="function">filter</tt></a></b>(<var>names, pattern</var>)
+<dd>
+Return the subset of the list of <var>names</var> that match <var>pattern</var>.
+It is the same as <code>[n for n in names if fnmatch(n, pattern)]</code>, but
+implemented more efficiently.
+
+<span class="versionnote">New in version 2.2.</span>
+
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-glob.html">glob</a></tt>:</b>
+    <dd>Unix shell-style path expansion.
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-glob.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-shutil.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-glob.html">6.21 glob  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-shutil.html">6.23 shutil  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

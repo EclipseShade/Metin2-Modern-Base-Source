@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.1 formatter -- Generic output formatting</title>
+<META NAME="description" CONTENT="12.1 formatter -- Generic output formatting">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-email.html">
+<LINK REL="previous" href="netdata.html">
+<LINK REL="up" href="netdata.html">
+<LINK REL="next" href="formatter-interface.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="netdata.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="formatter-interface.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="formatter-interface.html">12.1.1 The Formatter Interface</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0014100000000000000000">
+12.1 <tt class="module">formatter</tt> --
+         Generic output formatting</A>
+</H1>
+
+<P>
+
+
+<P>
+This module supports two interface definitions, each with multiple
+implementations.  The <i>formatter</i> interface is used by the
+<tt class="class">HTMLParser</tt> class of the <tt class="module"><a href="module-htmllib.html">htmllib</a></tt> module, and the
+<i>writer</i> interface is required by the formatter interface.
+<a name="l2h-2752">&nbsp;</a>
+<P>
+Formatter objects transform an abstract flow of formatting events into
+specific output events on writer objects.  Formatters manage several
+stack structures to allow various properties of a writer object to be
+changed and restored; writers need not be able to handle relative
+changes nor any sort of ``change back'' operation.  Specific writer
+properties which may be controlled via formatter objects are
+horizontal alignment, font, and left margin indentations.  A mechanism
+is provided which supports providing arbitrary, non-exclusive style
+settings to a writer as well.  Additional interfaces facilitate
+formatting events which are not reversible, such as paragraph
+separation.
+
+<P>
+Writer objects encapsulate device interfaces.  Abstract devices, such
+as file formats, are supported as well as physical devices.  The
+provided implementations all work with abstract devices.  The
+interface makes available mechanisms for setting the properties which
+formatter objects manage and inserting data into the output.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="formatter-interface.html">12.1.1 The Formatter Interface</a>
+<LI><A href="formatter-impls.html">12.1.2 Formatter Implementations</a>
+<LI><A href="writer-interface.html">12.1.3 The Writer Interface</a>
+<LI><A href="writer-impls.html">12.1.4 Writer Implementations</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="netdata.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="formatter-interface.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="formatter-interface.html">12.1.1 The Formatter Interface</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

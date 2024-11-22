@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.11 rfc822 -- Parse RFC 2822 mail headers</title>
+<META NAME="description" CONTENT="12.11 rfc822 -- Parse RFC 2822 mail headers">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-base64.html">
+<LINK REL="previous" href="module-multifile.html">
+<LINK REL="up" href="netdata.html">
+<LINK REL="next" href="message-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="multifile-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="message-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="multifile-example.html">12.10.2 MultiFile Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="message-objects.html">12.11.1 Message Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00141100000000000000000">
+12.11 <tt class="module">rfc822</tt> --
+         Parse RFC 2822 mail headers</A>
+</H1>
+
+<P>
+
+
+<P>
+This module defines a class, <tt class="class">Message</tt>, which represents an
+``email message'' as defined by the Internet standard
+<a class="rfc" name="rfcref-63988"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a>.<A NAME="tex2html94"
+  HREF="#foot38387"><SUP>12.6</SUP></A>  Such messages
+consist of a collection of message headers, and a message body.  This
+module also defines a helper class
+<tt class="class">AddressList</tt> for parsing <a class="rfc" name="rfcref-63990"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a> addresses.  Please refer to
+the RFC for information on the specific syntax of <a class="rfc" name="rfcref-63992"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a> messages.
+
+<P>
+The <tt class="module"><a href="module-mailbox.html">mailbox</a></tt><a name="l2h-2987">&nbsp;</a>module provides classes 
+to read mailboxes produced by various end-user mail programs.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2978"><tt class="class">Message</tt></a></b>(<var>file</var><big>[</big><var>, seekable</var><big>]</big>)
+<dd>
+A <tt class="class">Message</tt> instance is instantiated with an input object as
+parameter.  Message relies only on the input object having a
+<tt class="method">readline()</tt> method; in particular, ordinary file objects
+qualify.  Instantiation reads headers from the input object up to a
+delimiter line (normally a blank line) and stores them in the
+instance.  The message body, following the headers, is not consumed.
+
+<P>
+This class can work with any input object that supports a
+<tt class="method">readline()</tt> method.  If the input object has seek and tell
+capability, the <tt class="method">rewindbody()</tt> method will work; also, illegal
+lines will be pushed back onto the input stream.  If the input object
+lacks seek but has an <tt class="method">unread()</tt> method that can push back a
+line of input, <tt class="class">Message</tt> will use that to push back illegal
+lines.  Thus this class can be used to parse messages coming from a
+buffered stream.
+
+<P>
+The optional <var>seekable</var> argument is provided as a workaround for
+certain stdio libraries in which <tt class="cfunction">tell()</tt> discards buffered
+data before discovering that the <tt class="cfunction">lseek()</tt> system call
+doesn't work.  For maximum portability, you should set the seekable
+argument to zero to prevent that initial <tt class="method">tell()</tt> when passing
+in an unseekable object such as a a file object created from a socket
+object.
+
+<P>
+Input lines as read from the file may either be terminated by CR-LF or
+by a single linefeed; a terminating CR-LF is replaced by a single
+linefeed before the line is stored.
+
+<P>
+All header matching is done independent of upper or lower case;
+e.g. <code><var>m</var>['From']</code>, <code><var>m</var>['from']</code> and
+<code><var>m</var>['FROM']</code> all yield the same result.
+</dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2979"><tt class="class">AddressList</tt></a></b>(<var>field</var>)
+<dd>
+You may instantiate the <tt class="class">AddressList</tt> helper class using a single
+string parameter, a comma-separated list of <a class="rfc" name="rfcref-63995"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a> addresses to be
+parsed.  (The parameter <code>None</code> yields an empty list.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2980"><tt class="function">quote</tt></a></b>(<var>str</var>)
+<dd>
+Return a new string with backslashes in <var>str</var> replaced by two
+backslashes and double quotes replaced by backslash-double quote.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2981"><tt class="function">unquote</tt></a></b>(<var>str</var>)
+<dd>
+Return a new string which is an <i>unquoted</i> version of <var>str</var>.
+If <var>str</var> ends and begins with double quotes, they are stripped
+off.  Likewise if <var>str</var> ends and begins with angle brackets, they
+are stripped off.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2982"><tt class="function">parseaddr</tt></a></b>(<var>address</var>)
+<dd>
+Parse <var>address</var>, which should be the value of some
+address-containing field such as <span class="mailheader">To:</span> or <span class="mailheader">Cc:</span>,
+into its constituent ``realname'' and ``email address'' parts.
+Returns a tuple of that information, unless the parse fails, in which
+case a 2-tuple <code>(None, None)</code> is returned.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2983"><tt class="function">dump_address_pair</tt></a></b>(<var>pair</var>)
+<dd>
+The inverse of <tt class="method">parseaddr()</tt>, this takes a 2-tuple of the form
+<code>(<var>realname</var>, <var>email_address</var>)</code> and returns the string
+value suitable for a <span class="mailheader">To:</span> or <span class="mailheader">Cc:</span> header.  If
+the first element of <var>pair</var> is false, then the second element is
+returned unmodified.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2984"><tt class="function">parsedate</tt></a></b>(<var>date</var>)
+<dd>
+Attempts to parse a date according to the rules in <a class="rfc" name="rfcref-63997"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a>.
+however, some mailers don't follow that format as specified, so
+<tt class="function">parsedate()</tt> tries to guess correctly in such cases. 
+<var>date</var> is a string containing an <a class="rfc" name="rfcref-63999"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a> date, such as 
+<code>'Mon, 20 Nov 1995 19:12:08 -0500'</code>.  If it succeeds in parsing
+the date, <tt class="function">parsedate()</tt> returns a 9-tuple that can be passed
+directly to <tt class="function">time.mktime()</tt>; otherwise <code>None</code> will be
+returned.  Note that fields 6, 7, and 8 of the result tuple are not
+usable.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2985"><tt class="function">parsedate_tz</tt></a></b>(<var>date</var>)
+<dd>
+Performs the same function as <tt class="function">parsedate()</tt>, but returns
+either <code>None</code> or a 10-tuple; the first 9 elements make up a tuple
+that can be passed directly to <tt class="function">time.mktime()</tt>, and the tenth
+is the offset of the date's timezone from UTC (which is the official
+term for Greenwich Mean Time).  (Note that the sign of the timezone
+offset is the opposite of the sign of the <code>time.timezone</code>
+variable for the same timezone; the latter variable follows the
+POSIX standard while this module follows <a class="rfc" name="rfcref-64001"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a>.)  If the input
+string has no timezone, the last element of the tuple returned is
+<code>None</code>.  Note that fields 6, 7, and 8 of the result tuple are not
+usable.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2986"><tt class="function">mktime_tz</tt></a></b>(<var>tuple</var>)
+<dd>
+Turn a 10-tuple as returned by <tt class="function">parsedate_tz()</tt> into a UTC
+timestamp.  It the timezone item in the tuple is <code>None</code>, assume
+local time.  Minor deficiency: this first interprets the first 8
+elements as a local time and then compensates for the timezone
+difference; this may yield a slight error around daylight savings time
+switch dates.  Not enough to worry about for common use.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-mailbox.html">mailbox</a></tt>:</b>
+    <dd>Classes to read various mailbox formats produced 
+                      by end-user mail programs.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-mimetools.html">mimetools</a></tt>:</b>
+    <dd>Subclass of rfc.Message that handles MIME encoded
+		        messages.
+  </dl> 
+</div>
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot38387">...2822.</A><A NAME="foot38387"
+ href="module-rfc822.html#tex2html94"><SUP>12.6</SUP></A>
+<DD>This module originally conformed to <a class="rfc" name="rfcref-63969"
+href="http://www.faqs.org/rfcs/rfc822.html">RFC 822</a>,
+hence the name.  Since then, <a class="rfc" name="rfcref-63971"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a> has been released as an
+update to <a class="rfc" name="rfcref-63973"
+href="http://www.faqs.org/rfcs/rfc822.html">RFC 822</a>.  This module should be considered
+<a class="rfc" name="rfcref-63975"
+href="http://www.faqs.org/rfcs/rfc2822.html">RFC 2822</a>-conformant, especially in cases where the
+syntax or semantics have changed since <a class="rfc" name="rfcref-63977"
+href="http://www.faqs.org/rfcs/rfc822.html">RFC 822</a>.
+
+</DL>
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="message-objects.html">12.11.1 Message Objects</a>
+<LI><A href="addresslist-objects.html">12.11.2 AddressList Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="multifile-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="message-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="multifile-example.html">12.10.2 MultiFile Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="message-objects.html">12.11.1 Message Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

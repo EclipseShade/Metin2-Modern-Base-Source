@@ -1,0 +1,285 @@
+ACCEPT	דזַÝÞ
+ATTACH_METIN_INFO	ÊÚבםÞ¿
+ATTACH_METIN_TITLE	Êד ÊÚבםÞ ּֽׁ ַבדַÊםה
+CANCEL	ֵבÛֱַ
+CHANGE_PASSWORD_CONFIRM	ֳßֿ ßבדֹ ַב׃ׁ ַבּֿםֹֿ
+CHANGE_PASSWORD_NEW	ßבדֹ ׃ׁ ּֿםֹֿ
+CHANGE_PASSWORD_OLD	ßבדֹ ׃ׁ Þֿםדֹ
+CHANGE_PASSWORD_TITLE	ÊÛםםׁ ßבדֹ ַב׃ׁ
+CHARACTER_ACTION	הװַ״ַÊ
+CHARACTER_EMOTICON	Úַ״Ýֹ
+CHARACTER_MAIN	ַבװ־ױםֹ
+CHARACTER_MUTUAL_ACTION	הװַ״ דÊַָֿב
+CHARACTER_NORMAL_ACTION	הװַ״ Úַֿם
+CHARACTER_QUEST	ַבדודַÊ
+CHARACTER_SKILL	דוַַׁÊ
+CLOSE	ֵÛבַÞ
+CREATE_ATT_GRADE	ַבÞזֹ
+CREATE_CREATE	ֵהװֱַ
+CREATE_DEX_GRADE	ַבÊֽדב
+CREATE_HP	ַבֽםזםֹ
+CREATE_LAST_POINT	הÞַ״
+CREATE_MAN	ּׁב
+CREATE_NAME	ַבֵ׃ד
+CREATE_NEXT	ַבÊַבם
+CREATE_PREV	ַב׃ַָÞ
+CREATE_SEX	ַבּה׃
+CREATE_SHAPE	ַבװßב
+CREATE_SP	ַב׀ßֱַ
+CREATE_STAT_RESET	ֵÚַֹֿ ַבÊהײםֿ
+CREATE_WOMAN	ֵדֳֹׁ
+CUBE_TITLE	ױהֿזÞ ֳÚװַָ
+EMPIRE_EXIT	ֵהוֱַ
+EMPIRE_NEXT	ַבÊַבם
+EMPIRE_PREV	ַב׃ַָÞ
+EMPIRE_SELECT	ֵ־Êםַׁ
+EXCHANGE_ACCEPT	דזַÝÞֹ
+EXCHANGE_TITLE	Êַֹּׁ
+GAMEOPTION_TITLE	־םַַׁÊ ַבבÚָֹ
+GAME_EXIT_OBSERVER	ֵהוֱַ ֳ׃בזָ ַבדװַוֿ
+GAME_HELP	ד׃ַÚֹֿ
+GAME_QUEST	ַבדודַÊ
+GAME_SKILL_UP	ׂםַֹֿ ַבדוַֹׁ
+GAME_STAT_UP	ׁÝÚ ַבד׃Êזל
+GUILD_BASENAME	ֵ׃ד ַבÞַÚֹֿ
+GUILD_BOARD_ID	ַבֵ׃ד
+GUILD_BOARD_REFRESH	Êּֿםֿ (F5)
+GUILD_BOARD_TEXT	ַבדֽÊזל
+GUILD_BUILDING_CATEGORY_TITLE	זַֽֿÊ ָהֱַ
+GUILD_BUILDING_CHANGE	Êָֿםב
+GUILD_BUILDING_DIRECTION	ַבֵÊַּו
+GUILD_BUILDING_GRADE	ÊױהםÝ
+GUILD_BUILDING_INFO	דÚבזדַÊ Úה ַבדָהל זַב׃Úׁ
+GUILD_BUILDING_LIST_TITLE	בֶַֹֽ ַבדַָהם
+GUILD_BUILDING_LOG	ּ׀Ú
+GUILD_BUILDING_NAME	ֵ׃ד ַבדָהל
+GUILD_BUILDING_OPERATE	ÊװÛםב
+GUILD_BUILDING_PLY	־װָ ַבדÚַß׃
+GUILD_BUILDING_POSITION	דזÞÚ
+GUILD_BUILDING_PREVIEW	הÙֹׁ Úַדֹ
+GUILD_BUILDING_PRICE	ַב׃Úׁ
+GUILD_BUILDING_REFRESH	Êּֿםֿ (F5)
+GUILD_BUILDING_STONE	ּֽׁ
+GUILD_BUILDING_TITLE	ָהֱַ דהׂב ַבַָׁ״ֹ
+GUILD_CRYSTAL	ָבזׁ
+GUILD_DEPOSIT	ֳׁÞַד
+GUILD_DROP_RESOURCE1	והַ
+GUILD_DROP_RESOURCE2	ֵ׃Þַ״ ַבדױֿׁ
+GUILD_GEM	ּזוֹׁ
+GUILD_GRADE_CHANGE_GRADE_NAME	ֵ׃ד ַבדזÞÚ ַב׀ם םָּ Êָֿםבו
+GUILD_GRADE_NUM	ÊױהםÝ
+GUILD_GRADE_PERMISSION_DELETE	״ֿׁ
+GUILD_GRADE_PERMISSION_JOIN	Þָזב
+GUILD_GRADE_PERMISSION_NOTICE	דבַֽÙֹ
+GUILD_GRADE_PERMISSION_SKILL	Úַדב ֽׁÝם
+GUILD_GRADE_RANK	ַבדזÞÚ
+GUILD_GRADE_WRITE	ßÊַָֹ
+GUILD_INFO	דÚבזדַÊ Úה ַבַָׁ״ֹ
+GUILD_INFO_CUR_EXP	־ָֹׁ
+GUILD_INFO_DECALRE_WAR	ֵÚבַה ָֽׁ
+GUILD_INFO_ENEMY_GUILD	ַָׁ״ֹ דÚַֿםֹ
+GUILD_INFO_ENEMY_GUILD_EMPTY	בַ װםֱ
+GUILD_INFO_LEVEL	ד׃Êזל ַבַָׁ״ֹ
+GUILD_INFO_MARK	Úבַדֹ ַבַָׁ״ֹ
+GUILD_INFO_MASTER	ׂÚםד
+GUILD_INFO_MASTER_VALUE	ׂÚםד
+GUILD_INFO_MEMBER_AVG_LEVEL	ַבד׃Êזל ַבדÊז׃״
+GUILD_INFO_MEMBER_NUM	Úֿֿ ַבֳÚײֱַ
+GUILD_INFO_NAME	ֵ׃ד ַבַָׁ״ֹ
+GUILD_INFO_NAME_VALUE	ו׀ַ ֵ׃ד ַָׁ״ֹ
+GUILD_INFO_OFFER_EXP	ֵ׃Êֻדַׁ
+GUILD_INFO_REST_EXP	ַב־ָֹׁ ַבד״בזָֹ
+GUILD_INFO_UPLOAD_MARK	ֽדב Úבַדֹ
+GUILD_INFO_UPLOAD_SYMBOL	ֽדב Úבד
+GUILD_MARK	Úבַדֹ ַבַָׁ״ֹ
+GUILD_MEMBER_JOB	ÚׁÞ
+GUILD_MEMBER_KNIGHT	Þֶַֿ
+GUILD_MEMBER_LEVEL	ד׃Êזל
+GUILD_MEMBER_NAME	ַבֵ׃ד
+GUILD_MEMBER_RANK	ÊױהםÝ
+GUILD_MEMBER_SPECIFIC_GRAVITY	ֵ׃Êֻדַׁ
+GUILD_METIN_STONE	ַבּֽׁ ַבׁזֽם
+GUILD_MINENAL	דÚֿה
+GUILD_MONEY	םַהÛ
+GUILD_NAME	ַָׁ״ֹ
+GUILD_RESOURCE_INFO	דÚבזדַÊ Úה ַבדױַֿׁ
+GUILD_SKILL_ACTIVE	ÝÚרַב
+GUILD_SKIlL_HEAL_GSP	Êװׁםּ
+GUILD_SKILL_PASSIVE	Ûםׁ ÝÚרַב
+GUILD_SKILL_POWER	״ַÞֹ
+GUILD_SKILL_STATE	דוַֹׁ ַבַָׁ״ֹ
+GUILD_SYMBOL	Úבד ַבַָׁ״ֹ
+GUILD_WAR_ACCEPT	זַÝÞ Úבל ֵÚבַה ָֽׁ
+GUILD_WAR_BATTLE_TYPE	הזÚ ַבדÚׁßֹ
+GUILD_WAR_CTF	Úבףד
+GUILD_WAR_DECLARE	ֵÚבַה ָֽׁ ַבַָׁ״ֹ
+GUILD_WAR_ENEMY	־ױד
+GUILD_WAR_NORMAL	׃ַֹֽ ַבדÚׁßֹ
+GUILD_WAR_WARP	דםַֿה
+GUILD_WATER	דֱַ
+GUILD_WATER_STONE	ּֽׁ דֶַם
+GUILD_WITHDRAW	ֵ׃Êבַד
+HELP_ATTACK_KEY	ֵ׃Ê־ֿד ַבSpace bar ֳז ׁׂ ַבÝֳֹׁ בבÞםַד ַָבוּזד.
+HELP_CHANGE_PK_MODE	ֵ׃Ê־ֿד  Ctrl+ B  ֵ׀ַ ֳֿׁÊ ÊÛםםׁ ֳ׃בזָ ַבוּזד.
+HELP_CHARACTER_BUTTON1	(ֵÝÊֽ: Þֶַדֹ ַבװ־ױםֹ¡ Þֶַדֹ ַבדדÊבßַÊ
+HELP_CHARACTER_BUTTON2	ז הַÝ׀ֹ ַבֿֿׁװֹ)
+HELP_CONTROL_CAMERA_BY_MIDDLEBUTTON	םדßהß ײָ״ ִׁםֹ ַבßַדםַׁ ָזַ׃״ֹ ׁׂ ַבÝֳֹׁ ַבֳז׃״
+HELP_CONTROL_CAMERA_BY_RIGHTBUTTON	םדßהß ײָ״ ִׁםֹ ַבßַדםַׁ ָזַ׃״ֹ ַבײÛ״ Úבל Ctrl ז ׁׂ ַבÝֳֹׁ ַבֳםדה.
+HELP_EXP	־ָֹׁ
+HELP_FURY	InGame Item Shop
+HELP_GUILD_WINDOW	ַ׃Ê־ֿד Alt+G בÝÊֽ ז ֵÛבַÞ הַÝ׀ֹ ַבַָׁ״ֹ.
+HELP_HELP	ֵײÛ״ Úבל "H" ֳז ֵ׃Ê־ֿד ֳם דÝÊַֽ Ýם בֶַֹֽ ַבבÚָֹ בֵÙוַׁ ַבד׃ַÚֹֿ.
+HELP_HP	הÞַ״ ַבֽםַֹ
+HELP_MESSENGER_WINDOW	ַ׃Ê־ֿד Alt+M בÝÊֽ ז ֵÛבַÞ הַÝ׀ֹ ַבׁ׃ֶַב.
+HELP_MOUSE_LEFT	זײםÝֹ ׁׂ ַבÝַֹׁ ַבַם׃ׁ
+HELP_MOUSE_RIGHT	זײםÝֹ ׁׂ ַבÝַֹׁ ַבַםדה	
+HELP_MOVE_KEY	ֵ׃Ê־ֿד ַב W, S, A, D זדÝַÊםֽ ַבֳ׃וד בÊֽׁםß װ־ױםÊß.
+HELP_OPEN_CHARACTER	ַבדÝÊַֽ 'C' םÝÊֽ הַÝ׀ֹ ַבװ־ױםֹ.
+HELP_OPEN_CHAT	ֵײÛ״ Úבל "Enter"בÝÊֽ הַÝ׀ֹ ַבֿֿׁװֹ
+HELP_OPEN_INVENTORY	ֵײÛ״ Úבל "I" בÝÊֽ Þֶַדֹ ַבדדÊבßַÊ
+HELP_OPEN_LOG	ֵײÛ״ Úבל "L" בÝÊֽ Þֶַדֹ ַבֿֿׁװֹ
+HELP_OPEN_MINIMAP	ַײÛ״ Úבל "Shift" ז "M" בÝÊֽ ֳז ֵÛבַÞ ַב־ׁם״ֹ ַבױÛםֹׁ.
+HELP_OPEN_QUEST	ֵײÛ״ Úבל "N" בÝÊֽ הַÝ׀ֹ ַבדודַÊ
+HELP_OPEN_SKILL	ֵײÛ״ Úבל "V" בÝÊֽ הַÝ׀ֹ ַבדוַַׁÊ.
+HELP_OPEN_WHISPER	ֵײÛ״ Úבל "Shift" ז"Enter" בÝÊֽ הַÝ׀ֹ ַבוד׃.
+HELP_OPEN_ZONEMAP	ֵײÛ״ Úבל "M" בÝÊֽ ז ֵÛבַÞ ַב־ׁם״ֹ ַבßָםֹׁ.
+HELP_PICK_ITEM	ֵײÛ״ Úבל '~'  בֵבÊÞַ״ ֳװםֱַ Úבל ַבֳׁײ
+HELP_QUICKSLOT	ֽÞב ַבֿ־זב ַב׃ׁםÚ
+HELP_SCREEN_CAPTURE	ֵײÛ״ Úבל 'Print Screen' בֳ־׀ Screenshot. ַבScreenshot ׃זÝ ÊֽÝÙ Ýם Files/METIN2.
+HELP_SHOW_ALL_NAME	ֵײÛ״ Úבל "Alt" בֵÙוַׁ ּדםÚ ֳ׃דֱַ ַבװ־ױםַÊ זַבֳװםֱַ
+HELP_SP	הÞַ״ ַבֳ׃בזָ
+HELP_SYSTEM_BUTTON	דÝÊַֽ ַבהÙַד
+INVENTORY_PAGE_BUTTON_TOOLTIP_1	1. ַבדדÊבßַÊ
+INVENTORY_PAGE_BUTTON_TOOLTIP_2	2.ַבדדÊבßַÊ
+INVENTORY_TITLE	ַבדדÊבßַÊ
+ITEM_MALL	װֱַׁ ַבדÚַֿÊ
+LOAD_ERROR	בÞֿ Êײׁׁ ַבדבÝ¡ ַבֱַּׁ ַÚַֹֿ Êהױםָו. ֵײÛ״ Úבל "ESC" ַבֲה.
+LOGIN_CONNECT	ֵÊױַב
+LOGIN_CONNECTING	׃םÊד ַבֵÊױַב דÚ ַבServer.
+LOGIN_DEFAULT_SERVERADDR	ֵ׃ד ַבServer ¡ Þהַֹ 1.
+LOGIN_EXIT	ֵהוֱַ
+LOGIN_REGION_TITLE	ֽֿֿ דßַהַנ בֵױַֿׁ ַבÝַÊזֹׁ.
+LOGIN_SELECT_BUTTON	ֵ־Êׁ
+LOGIN_SELECT_EXIT	ֵהוֱַ
+LOGIN_SELECT_OK	Êד
+LOGIN_SELECT_TITLE	ֵ־Êׁ Server
+MALL_PASSWORD_TITLE	ßבדֹ ַב׃ׁ
+MALL_TITLE	ד־ׂה דÊּׁ װֱַׁ ַבדÚַֿÊ
+MARKET_TITLE	ֽדב
+MARKLIST_REFRESH	Êּֿםֿ
+MARKLIST_TITLE	׃ּב Úבַדֹ ַבַָׁ״ֹ
+MESSAGE	ו׀ו ׁ׃ַבֹ
+MESSENGER_ADD_FRIEND	ֵײַÝֹ ױֿםÞ
+MESSENGER_DELETE_FRIEND	ֽ׀Ý ױֿםÞ
+MESSENGER_MOBILE	ֵׁ׃ַב ׁ׃ַבֹ הױםֹ
+MESSENGER_OPEN_GUILD	ÝÊֽ הַÝ׀ֹ ַבַָׁ״ֹ
+MESSENGER_TITLE	ֳױֿÞֱַ
+MESSENGER_USE_GUILD_MOVE_SKILL	ֵ׃Ê־ֿד דוַֹׁ Êֽׁרץß ַבַָׁ״ֹ
+MESSENGER_WHISPER	וד׃
+MINIMIZE	ÊױÛםׁ
+MOUSEBUTTON_ATTACK	וּזד
+MOUSEBUTTON_AUTO_ATTACK	וּזד ÊבÞֶַם
+MOUSEBUTTON_CAMERA	דהÙזׁ
+MOUSEBUTTON_SKILL	דוַַׁÊ
+MUSICLIST_TITLE	־םַַׁÊ ַבדז׃םÞל
+NO	בַ
+OK	Êד
+OPTION_ALWAYS_SHOW_NAME	ַבֵ׃ד
+OPTION_ALWAYS_SHOW_NAME_OFF	דֽֿזֿ
+OPTION_ALWAYS_SHOW_NAME_ON	ֶַֿדַנ
+OPTION_BLOCK	דהÚ
+OPTION_BLOCK_EXCHANGE	Êַֹּׁ
+OPTION_BLOCK_FRIEND	ױֿםÞ
+OPTION_BLOCK_GUILD	ַָׁ״ֹ
+OPTION_BLOCK_PARTY	דּדזÚֹ
+OPTION_BLOCK_PARTY_REQUEST	ֵ׃ÊÝ׃ַׁ
+OPTION_BLOCK_WHISPER	וד׃
+OPTION_CAMERA_DISTANCE	ßַדםַׁ
+OPTION_CAMERA_DISTANCE_LONG	ָÚםֿ
+OPTION_CAMERA_DISTANCE_SHORT	Þׁםָ
+OPTION_DELETE_MOBILE_BUTTON	ד׃ֽ ׁÞד ַבוַÊÝ ַב־בזם
+OPTION_EFFECT	דÚבזדַÊ Úה ַבײָֹׁ
+OPTION_FOG	ײַָָ
+OPTION_FOG_DENSE	ßֻםÝ
+OPTION_FOG_LIGHT	־ÝםÝ
+OPTION_FOG_MIDDLE	דÚÊֿב
+OPTION_INPUT_MOBILE_BUTTON	ֳֿ־ב ׁÞד ַבוַÊÝ ַב־בזם
+OPTION_MOBILE	וַÊÝ ַב־בזם
+OPTION_MUSIC	דז׃םÞל
+OPTION_MUSIC_CHANGE	ÊÛםםׁ
+OPTION_MUSIC_DEFAULT_THEMA	דז׃םÞֹ ַבדַÊםה ַבדÚÊַֹֿ
+OPTION_NAME_COLOR	ֵ׃ד ַבבזה
+OPTION_NAME_COLOR_EMPIRE	בזה ַבֳדַָׁ״זׁםֹ
+OPTION_NAME_COLOR_NORMAL	Úַֿם
+OPTION_PVPMODE	ֳ׃בזָ בַÚָ ײֿ בַÚָ
+OPTION_PVPMODE_FREE	דÊֽׁׁ
+OPTION_PVPMODE_FREE_TOOLTIP	םץ׃דֽ בß דוַּדֹ ּדםÚ ַבבַÚָםה.
+OPTION_PVPMODE_GUILD	ַָׁ״ֹ
+OPTION_PVPMODE_GUILD_TOOLTIP	םדßהß דוַּדֹ ּדםÚ ַבבַÚָםה ֵָ׃Êֻהֱַ ֳÚײֱַ ַבַָׁ״ֹ.
+OPTION_PVPMODE_PEACE	׃בַד
+OPTION_PVPMODE_PEACE_TOOLTIP	בַ ֳ׃Ê״םÚ דוַּדֹ ּדםÚ בַÚָםה ַבֳדַָׁ״זׁםֹ ַב־ַױֹ ָם.
+OPTION_PVPMODE_REVENGE	Úֶַֿם
+OPTION_PVPMODE_REVENGE_TOOLTIP	םדßהß דוַּדֹ בַÚָםה ׀ז ÞַֿׁÊ זדזַוָ ֳ־ׁל ÝÞ״.
+OPTION_SOUND	ÊֳֻםַׁÊ ַבױזÊ
+OPTION_TARGET_BOARD	בֶַֹֽ ַבוֿÝ
+OPTION_TARGET_BOARD_NO_VIEW	ֵÛבַÞ
+OPTION_TARGET_BOARD_VIEW	Úׁײ
+OPTION_TILING	ׁ׃זדַÊ
+OPTION_TILING_APPLY	״ָרÞ
+OPTION_TILING_CPU	CPU
+OPTION_TILING_GPU	GPU
+OPTION_TITLE	־םַַׁÊ
+OPTION_VIEW_CHAT	־בםֹ ֿֿׁװֹ
+OPTION_VIEW_CHAT_OFF	ֵ־Ýֱַ
+OPTION_VIEW_CHAT_ON	ֵÙוַׁ
+PARTY_MEMBER_INFO_NAME	ֵ׃ד Úײז ַבדּדזÚֹ
+PASSWORD_TITLE	ֽÝÙ ßבדֹ ַב׃ׁ
+PICK_MONEY_TITLE	ÊÞ׃םד
+PRIVATE_SHOP_CLOSE_BUTTON	ֵÛבַÞ ַבדÊּׁ
+PRIVATE_SHOP_NAME	ֵ׃ד ַבדÊּׁ
+PRIVATE_SHOP_TITLE	Êּוםׂ ַבדÊּׁ ַב־ַױ
+REFINE_COST	ַבדױַׁםÝ ַבÊֽ׃םהםֹ: 0 םַהÛ
+REFINE_INFO	ֵֽÊדַב הַּֽ ַבÊֽ׃םה: 100%
+REFINE_TTILE	Êֽ׃םהַÊ
+RESTART_HERE	ֳֵָֿ דַּֿֿנ דה והַ
+RESTART_TOWN	ֳֵָֿ דַּֿֿנ דה ַבדֿםהֹ
+SAFE_CHANGE_PASSWORD	ÊÛםםׁ ßבדֹ ַב׃ׁ
+SAFE_TITLE	ֽÝÙ
+SELECT_ATT_GRADE	ַבÞזֹ
+SELECT_CREATE	ֵהװֱַ
+SELECT_DELETE	ד׃ֽ
+SELECT_DEX_GRADE	ַבÊֽדב
+SELECT_EMPIRE_NAME	ֵ׃ד ַבֳדַָׁ״זׁםֹ
+SELECT_EXIT	ֵהוֱַ
+SELECT_HP	ַבֽםזםֹ
+SELECT_LEVEL	ַבד׃Êזל
+SELECT_METIN_STONE_TITLE	ֵ־Êׁ ַבּֽׁ ַבׁזֽם
+SELECT_NAME	ַבֵ׃ד
+SELECT_NO_GUILD	בַ ַבַָׁ״ֹ
+SELECT_PLAYTIME	זÞÊ ַבבÚָֹ (ֿÞםÞֹ)
+SELECT_SELECT	ֳֵָֿ
+SELECT_SP	ַב׀ßֱַ
+SELECT_TITLE	ֵ־Êׁ Úהזַה
+SHOP_BUY	װֱַׁ
+SHOP_SELL	ָםÚ
+SHOP_TITLE	דÊּׁ
+SKILL_SUPPORT_TITLE	דוַַׁÊ Úַֿםֹ
+SYSTEMOPTION_TITLE	־םַַׁÊ ַבהÙַד
+SYSTEM_CHANGE	ÊÛםםׁ ַבװ־ױםֹ
+SYSTEM_EXIT	ֵהוֱַ ַבבÚָֹ
+SYSTEM_HELP	ד׃ַÚֹֿ
+SYSTEM_LOGOUT	Ê׃ּםב ַב־ׁזּ
+SYSTEM_MALL	װֱַׁ ַבדÚַֿÊ
+SYSTEM_OPTION	־םַַׁÊ ַבהÙַד
+TASKBAR_CHARACTER	ַבװ־ױםֹ [C/V/B/N]
+TASKBAR_CHAT	הַÝ׀ֹ ַבֿֿׁװֹ
+TASKBAR_INVENTORY	ַבדדÊבßַÊ[I]
+TASKBAR_MESSENGER	ׁ׃ֶַב
+TASKBAR_NEXT_QUICKSLOT	ֽÞב ַבֿ־זב ַבÊַבם [Shift+Number, Alt]
+TASKBAR_PREV_QUICKSLOT	ֽÞב ַבֿ־זב ַב׃ׁםÚ ַב׃ַָÞ [Shift+Number]
+TASKBAR_SYSTEM	־םַַׁÊ [ESC]
+WHISPER_BAN	דהÚ
+WHISPER_NAME	וד׃
+WHISPER_SEND	ֵׁ׃ַב
+YES	הÚד
+ZONE_MAP	־ׁם״ֹ ßָםֹׁ

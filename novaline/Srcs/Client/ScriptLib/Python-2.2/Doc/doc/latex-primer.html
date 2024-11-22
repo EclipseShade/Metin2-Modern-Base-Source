@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4 LATEX Primer </title>
+<META NAME="description" CONTENT="4 LATEX Primer ">
+<META NAME="keywords" CONTENT="doc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="doc.css">
+<link rel="first" href="doc.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="classes.html">
+<LINK REL="previous" href="style-guide.html">
+<LINK REL="up" HREF="doc.html">
+<LINK REL="next" HREF="node6.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="style-guide.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="doc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node6.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="style-guide.html">3 Style Guide</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="doc.html">Documenting Python</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node6.html">4.1 Syntax</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION000500000000000000000">&nbsp;</A>
+<BR>
+4 <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> Primer 
+</H1>
+
+<P>
+This section is a brief introduction to <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> concepts and
+  syntax, to provide authors enough information to author documents
+  productively without having to become ``<SPAN CLASS="logo-TeX">T<SMALL>E</SMALL>X</SPAN>nicians.''
+
+<P>
+Perhaps the most important concept to keep in mind while marking up
+  Python documentation is that while <SPAN CLASS="logo-TeX">T<SMALL>E</SMALL>X</SPAN> is unstructured, <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> was
+  designed as a layer on top of <SPAN CLASS="logo-TeX">T<SMALL>E</SMALL>X</SPAN> which specifically supports 
+  structured markup.  The Python-specific markup is intended to extend
+  the structure provided by standard <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> document classes to
+  support additional information specific to Python.
+
+<P>
+<SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> documents contain two parts: the preamble and the body.
+  The preamble is used to specify certain metadata about the document
+  itself, such as the title, the list of authors, the date, and the
+  <i>class</i> the document belongs to.  Additional information used
+  to control index generation and the use of bibliographic databases
+  can also be placed in the preamble.  For most authors, the preamble
+  can be most easily created by copying it from an existing document
+  and modifying a few key pieces of information.
+
+<P>
+The <i class="dfn">class</i> of a document is used to place a document within a
+  broad category of documents and set some fundamental formatting
+  properties.  For Python documentation, two classes are used: the
+  <code>manual</code> class and the <code>howto</code> class.  These classes also
+  define the additional markup used to document Python concepts and
+  structures.  Specific information about these classes is provided in
+  section <A href="classes.html#classes">5</A>, ``Document Classes,'' below.  The first thing
+  in the preamble is the declaration of the document's class.
+
+<P>
+After the class declaration, a number of <i>macros</i> are used to
+  provide further information about the document and setup any
+  additional markup that is needed.  No output is generated from the
+  preamble; it is an error to include free text in the preamble
+  because it would cause output.
+
+<P>
+The document body follows the preamble.  This contains all the
+  printed components of the document marked up structurally.  Generic
+  <SPAN CLASS="logo,LaTeX">L<SUP><SMALL>A</SMALL></SUP>T<SMALL>E</SMALL>X</SPAN> structures include hierarchical sections, numbered and
+  bulleted lists, and special structures for the document abstract and
+  indexes.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node6.html">4.1 Syntax</a>
+<LI><A href="latex-syntax.html">4.2 Hierarchical Structure</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="style-guide.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="doc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node6.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="style-guide.html">3 Style Guide</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="doc.html">Documenting Python</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node6.html">4.1 Syntax</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

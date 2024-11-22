@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>21.1.1 Audio Device Objects </title>
+<META NAME="description" CONTENT="21.1.1 Audio Device Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-sunaudiodev.html">
+<LINK REL="up" href="module-sunaudiodev.html">
+<LINK REL="next" href="module-sunaudiodev-constants.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-sunaudiodev.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-sunaudiodev.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-sunaudiodev-constants.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-sunaudiodev.html">21.1 sunaudiodev  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-sunaudiodev.html">21.1 sunaudiodev  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-sunaudiodev-constants.html">21.2 SUNAUDIODEV  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0023110000000000000000">&nbsp;</A>
+<BR>
+21.1.1 Audio Device Objects 
+</H2>
+
+<P>
+The audio device objects are returned by <tt class="function">open()</tt> define the
+following methods (except <code>control</code> objects which only provide
+<tt class="method">getinfo()</tt>, <tt class="method">setinfo()</tt>, <tt class="method">fileno()</tt>, and
+<tt class="method">drain()</tt>):
+
+<P>
+<dl><dt><b><a name="l2h-4044"><tt class="method">close</tt></a></b>()
+<dd>
+This method explicitly closes the device. It is useful in situations
+where deleting the object does not immediately close it since there
+are other references to it. A closed device should not be used again.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4045"><tt class="method">fileno</tt></a></b>()
+<dd>
+Returns the file descriptor associated with the device.  This can be
+used to set up <code>SIGPOLL</code> notification, as described below.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4046"><tt class="method">drain</tt></a></b>()
+<dd>
+This method waits until all pending output is processed and then returns.
+Calling this method is often not necessary: destroying the object will
+automatically close the audio device and this will do an implicit drain.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4047"><tt class="method">flush</tt></a></b>()
+<dd>
+This method discards all pending output. It can be used avoid the
+slow response to a user's stop request (due to buffering of up to one
+second of sound).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4048"><tt class="method">getinfo</tt></a></b>()
+<dd>
+This method retrieves status information like input and output volume,
+etc. and returns it in the form of
+an audio status object. This object has no methods but it contains a
+number of attributes describing the current device status. The names
+and meanings of the attributes are described in
+<code>&lt;sun/audioio.h&gt;</code> and in the <span class="manpage"><i>audio</i>(7I)</span>
+manual page.  Member names
+are slightly different from their C counterparts: a status object is
+only a single structure. Members of the <tt class="cdata">play</tt> substructure have
+"<tt class="samp">o_</tt>" prepended to their name and members of the <tt class="cdata">record</tt>
+structure have "<tt class="samp">i_</tt>". So, the C member <tt class="cdata">play.sample_rate</tt> is
+accessed as <tt class="member">o_sample_rate</tt>, <tt class="cdata">record.gain</tt> as <tt class="member">i_gain</tt>
+and <tt class="cdata">monitor_gain</tt> plainly as <tt class="member">monitor_gain</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4049"><tt class="method">ibufcount</tt></a></b>()
+<dd>
+This method returns the number of samples that are buffered on the
+recording side, i.e. the program will not block on a
+<tt class="function">read()</tt> call of so many samples.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4050"><tt class="method">obufcount</tt></a></b>()
+<dd>
+This method returns the number of samples buffered on the playback
+side. Unfortunately, this number cannot be used to determine a number
+of samples that can be written without blocking since the kernel
+output queue length seems to be variable.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4051"><tt class="method">read</tt></a></b>(<var>size</var>)
+<dd>
+This method reads <var>size</var> samples from the audio input and returns
+them as a Python string. The function blocks until enough data is available.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4052"><tt class="method">setinfo</tt></a></b>(<var>status</var>)
+<dd>
+This method sets the audio device status parameters. The <var>status</var>
+parameter is an device status object as returned by <tt class="function">getinfo()</tt> and
+possibly modified by the program.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4053"><tt class="method">write</tt></a></b>(<var>samples</var>)
+<dd>
+Write is passed a Python string containing audio samples to be played.
+If there is enough buffer space free it will immediately return,
+otherwise it will block.
+</dl>
+
+<P>
+The audio device supports asynchronous notification of various events,
+through the SIGPOLL signal.  Here's an example of how you might enable
+this in Python:
+
+<P>
+<dl><dd><pre class="verbatim">
+def handle_sigpoll(signum, frame):
+    print 'I got a SIGPOLL update'
+
+import fcntl, signal, STROPTS
+
+signal.signal(signal.SIGPOLL, handle_sigpoll)
+fcntl.ioctl(audio_obj.fileno(), STROPTS.I_SETSIG, STROPTS.S_MSG)
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-sunaudiodev.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-sunaudiodev.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-sunaudiodev-constants.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-sunaudiodev.html">21.1 sunaudiodev  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-sunaudiodev.html">21.1 sunaudiodev  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-sunaudiodev-constants.html">21.2 SUNAUDIODEV  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

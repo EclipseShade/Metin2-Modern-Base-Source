@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.15 shlex -- Simple lexical analysis</title>
+<META NAME="description" CONTENT="5.15 shlex -- Simple lexical analysis">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-cmd.html">
+<LINK REL="up" href="misc.html">
+<LINK REL="next" href="shlex-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="Cmd-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="shlex-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="Cmd-objects.html">5.14.1 Cmd Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="shlex-objects.html">5.15.1 shlex Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0071500000000000000000">
+5.15 <tt class="module">shlex</tt> --
+         Simple lexical analysis</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 1.5.2.</span>
+
+<P>
+The <tt class="class">shlex</tt> class makes it easy to write lexical analyzers for
+simple syntaxes resembling that of the Unix shell.  This will often
+be useful for writing minilanguages, e.g. in run control files for
+Python applications.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-1068"><tt class="class">shlex</tt></a></b>(<big>[</big><var>stream</var><big>[</big><var>, file</var><big>]</big><big>]</big>)
+<dd>
+A <tt class="class">shlex</tt> instance or subclass instance is a lexical analyzer
+object.  The initialization argument, if present, specifies where to
+read characters from. It must be a file- or stream-like object with
+<tt class="method">read()</tt> and <tt class="method">readline()</tt> methods.  If no argument is given,
+input will be taken from <code>sys.stdin</code>.  The second optional 
+argument is a filename string, which sets the initial value of the
+<tt class="member">infile</tt> member.  If the stream argument is omitted or
+equal to <code>sys.stdin</code>, this second argument defaults to ``stdin''.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-ConfigParser.html">ConfigParser</a></tt>:</b>
+    <dd>Parser for configuration files similar to the
+                           Windows <span class="file">.ini</span> files.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="shlex-objects.html">5.15.1 shlex Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="Cmd-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="shlex-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="Cmd-objects.html">5.14.1 Cmd Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="shlex-objects.html">5.15.1 shlex Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.3.1 Drag and drop</title>
+<META NAME="description" CONTENT="1.3.1 Drag and drop">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="creator-code.html">
+<LINK REL="previous" HREF="node6.html">
+<LINK REL="up" HREF="node6.html">
+<LINK REL="next" href="creator-code.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node6.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node6.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="creator-code.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node6.html">1.3 How to run</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node6.html">1.3 How to run</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="creator-code.html">1.3.2 Set Creator and</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION003310000000000000000">
+1.3.1 Drag and drop</A>
+</H2>
+
+<P>
+One of the easiest ways to launch a Python script is via ``Drag and
+Drop''. This is just like launching a text file in the Finder by
+``dragging'' it over your word processor's icon and ``dropping'' it
+there. Make sure that you use an icon referring to the
+<b class="program">PythonInterpreter</b>, not the <b class="program">IDE</b> or <b class="program">Idle</b>
+icons which have different behaviour which is described below.
+
+<P>
+Some things that might have gone wrong:
+
+<P>
+
+<UL>
+<LI>A window flashes after dropping the script onto the
+<b class="program">PythonInterpreter</b>, but then disappears. Most likely this is a
+configuration issue; your <b class="program">PythonInterpreter</b> is setup to exit
+immediately upon completion, but your script assumes that if it prints
+something that text will stick around for a while. To fix this, see
+section <A href="defaults.html#defaults">1.7.3</A>.
+
+<P>
+</LI>
+<LI>After dropping the script onto the <b class="program">PythonInterpreter</b>, a
+window appeared which said: ``File contains <code>&#92;r</code> characters
+(incorrect line endings?)''. That script probably originated on a
+Unix or Windows machine. You will need to change the line endings
+to the standard Mac usage.  One way to do this is to open the file in
+<b class="program">BBedit</b>
+(<a class="url" href="http://www.barebones.com/products/bbedit_lite.html">http://www.barebones.com/products/bbedit_lite.html</a>) which can
+easily change the line endings between Mac, DOS, and Unix styles.
+
+<P>
+</LI>
+<LI>When you waved the script icon over the <b class="program">PythonInterpreter</b>,
+the <b class="program">PythonInterpreter</b> icon did not hilight.  Most likely the
+Creator code and document type is unset (or set incorrectly) - this
+often happens when a file originates on a non-Mac computer.  See
+section <A href="creator-code.html#creator-code">1.3.2</A> for more details.
+</LI>
+</UL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node6.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node6.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="creator-code.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node6.html">1.3 How to run</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node6.html">1.3 How to run</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="creator-code.html">1.3.2 Set Creator and</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.2.8 Soapbox</title>
+<META NAME="description" CONTENT="5.2.8 Soapbox">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" HREF="node129.html">
+<LINK REL="up" href="module-doctest.html">
+<LINK REL="next" href="module-unittest.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node129.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-doctest.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-unittest.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node129.html">5.2.7 Warnings</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-doctest.html">5.2 doctest  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-unittest.html">5.3 unittest  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007280000000000000000">
+5.2.8 Soapbox</A>
+</H2>
+
+<P>
+The first word in doctest is "doc", and that's why the author wrote
+doctest:  to keep documentation up to date.  It so happens that doctest
+makes a pleasant unit testing environment, but that's not its primary
+purpose.
+
+<P>
+Choose docstring examples with care.  There's an art to this that needs to
+be learned -- it may not be natural at first.  Examples should add genuine
+value to the documentation.  A good example can often be worth many words.
+If possible, show just a few normal cases, show endcases, show interesting
+subtle cases, and show an example of each kind of exception that can be
+raised.  You're probably testing for endcases and subtle cases anyway in an
+interactive shell:  doctest wants to make it as easy as possible to capture
+those sessions, and will verify they continue to work as designed forever
+after.
+
+<P>
+If done with care, the examples will be invaluable for your users, and will
+pay back the time it takes to collect them many times over as the years go
+by and "things change".  I'm still amazed at how often one of my doctest
+examples stops working after a "harmless" change.
+
+<P>
+For exhaustive testing, or testing boring cases that add no value to the
+docs, define a <code>__test__</code> dict instead.  That's what it's for.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node129.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-doctest.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-unittest.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node129.html">5.2.7 Warnings</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-doctest.html">5.2 doctest  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-unittest.html">5.3 unittest  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

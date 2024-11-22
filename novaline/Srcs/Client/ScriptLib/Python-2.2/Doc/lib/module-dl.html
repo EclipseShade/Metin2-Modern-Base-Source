@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.5 dl -- Call C functions in shared objects</title>
+<META NAME="description" CONTENT="8.5 dl -- Call C functions in shared objects">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-dbm.html">
+<LINK REL="previous" href="module-crypt.html">
+<LINK REL="up" href="unix.html">
+<LINK REL="next" href="dl-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-crypt.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dl-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-crypt.html">8.4 crypt  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dl-objects.html">8.5.1 Dl Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0010500000000000000000">
+8.5 <tt class="module">dl</tt> --
+         Call C functions in shared objects</A>
+</H1>
+  
+<p class="availability">Availability: <span
+ class="platform">Unix</span>.</p>
+ 
+<P>
+The <tt class="module">dl</tt> module defines an interface to the
+<tt class="cfunction">dlopen()</tt> function, which is the most common interface on
+Unix platforms for handling dynamically linked libraries. It allows
+the program to call arbitrary functions in such a library.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+This module will not work unless
+<code>sizeof(int) == sizeof(long) == sizeof(char *)</code>
+If this is not the case, <tt class="exception">SystemError</tt> will be raised on
+import.</span>
+
+<P>
+The <tt class="module">dl</tt> module defines the following function:
+
+<P>
+<dl><dt><b><a name="l2h-2139"><tt class="function">open</tt></a></b>(<var>name</var><big>[</big><var>, mode<code> = RTLD_LAZY</code></var><big>]</big>)
+<dd>
+Open a shared object file, and return a handle. Mode
+signifies late binding (<tt class="constant">RTLD_LAZY</tt>) or immediate binding
+(<tt class="constant">RTLD_NOW</tt>). Default is <tt class="constant">RTLD_LAZY</tt>. Note that some
+systems do not support <tt class="constant">RTLD_NOW</tt>.
+
+<P>
+Return value is a dlobject.
+</dl>
+
+<P>
+The <tt class="module">dl</tt> module defines the following constants:
+
+<P>
+<dl><dt><b><a name="l2h-2140"><tt>RTLD_LAZY</tt></a></b>
+<dd>
+Useful as an argument to <tt class="function">open()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2141"><tt>RTLD_NOW</tt></a></b>
+<dd>
+Useful as an argument to <tt class="function">open()</tt>.  Note that on systems
+which do not support immediate binding, this constant will not appear
+in the module. For maximum portability, use <tt class="function">hasattr()</tt> to
+determine if the system supports immediate binding.
+</dl>
+
+<P>
+The <tt class="module">dl</tt> module defines the following exception:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-2142"><tt class="exception">error</tt></a></b>
+<dd>
+Exception raised when an error has occurred inside the dynamic loading
+and linking routines.
+</dl>
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import dl, time
+&gt;&gt;&gt; a=dl.open('/lib/libc.so.6')
+&gt;&gt;&gt; a.call('time'), time.time()
+(929723914, 929723914.498)
+</pre></dl>
+
+<P>
+This example was tried on a Debian GNU/Linux system, and is a good
+example of the fact that using this module is usually a bad alternative.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="dl-objects.html">8.5.1 Dl Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-crypt.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="dl-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-crypt.html">8.4 crypt  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="dl-objects.html">8.5.1 Dl Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

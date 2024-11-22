@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.2 Beyond Very High Level Embedding: An overview </title>
+<META NAME="description" CONTENT="5.2 Beyond Very High Level Embedding: An overview ">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="pure-embedding.html">
+<LINK REL="previous" href="high-level-embedding.html">
+<LINK REL="up" href="embedding.html">
+<LINK REL="next" href="pure-embedding.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="high-level-embedding.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="embedding.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pure-embedding.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="high-level-embedding.html">5.1 Very High Level</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="embedding.html">5. Embedding Python in</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pure-embedding.html">5.3 Pure Embedding</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007200000000000000000">&nbsp;</A>
+<BR>
+5.2 Beyond Very High Level Embedding: An overview
+         
+</H1>
+
+<P>
+The high level interface gives you the ability to execute
+arbitrary pieces of Python code from your application, but
+exchanging data values is quite cumbersome to say the least. If
+you want that, you should use lower level calls. At the cost of
+having to write more C code, you can achieve almost anything.
+
+<P>
+It should be noted that extending Python and embedding Python
+is quite the same activity, despite the different intent. Most
+topics discussed in the previous chapters are still valid. To
+show this, consider what the extension code from Python to C
+really does:
+
+<P>
+
+<OL>
+<LI>Convert data values from Python to C,
+</LI>
+<LI>Perform a function call to a C routine using the
+        converted values, and
+</LI>
+<LI>Convert the data values from the call from C to Python.
+</LI>
+</OL>
+
+<P>
+When embedding Python, the interface code does:
+
+<P>
+
+<OL>
+<LI>Convert data values from C to Python,
+</LI>
+<LI>Perform a function call to a Python interface routine
+        using the converted values, and
+</LI>
+<LI>Convert the data values from the call from Python to C.
+</LI>
+</OL>
+
+<P>
+As you can see, the data conversion steps are simply swapped to
+accomodate the different direction of the cross-language transfer.
+The only difference is the routine that you call between both
+data conversions. When extending, you call a C routine, when
+embedding, you call a Python routine.
+
+<P>
+This chapter will not discuss how to convert data from Python
+to C and vice versa.  Also, proper use of references and dealing
+with errors is assumed to be understood.  Since these aspects do not
+differ from extending the interpreter, you can refer to earlier
+chapters for the required information.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="high-level-embedding.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="embedding.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pure-embedding.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="high-level-embedding.html">5.1 Very High Level</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="embedding.html">5. Embedding Python in</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pure-embedding.html">5.3 Pure Embedding</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

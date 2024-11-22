@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3. Python Runtime Services </title>
+<META NAME="description" CONTENT="3. Python Runtime Services ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="strings.html">
+<LINK REL="previous" href="builtin.html">
+<LINK REL="up" HREF="lib.html">
+<LINK REL="next" href="module-sys.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-exceptions.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-sys.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-exceptions.html">2.3 Built-in Exceptions</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-sys.html">3.1 sys  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005000000000000000000">&nbsp;</A>
+<BR>
+3. Python Runtime Services
+         
+</H1>
+
+<P>
+The modules described in this chapter provide a wide range of services
+related to the Python interpreter and its interaction with its
+environment.  Here's an overview:
+
+<P>
+<table class='synopsistable' valign='baseline'>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-sys.html'>sys</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Access system-specific parameters and functions.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-gc.html'>gc</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the cycle-detecting garbage collector.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-weakref.html'>weakref</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Support for weak references and weak dictionaries.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-fpectl.html'>fpectl</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Provide control for floating point exception handling.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-atexit.html'>atexit</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Register and execute cleanup functions.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-types.html'>types</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Names for all built-in types.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-UserDict.html'>UserDict</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Class wrapper for dictionary objects.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-UserList.html'>UserList</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Class wrapper for list objects.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-UserString.html'>UserString</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Class wrapper for string objects.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-operator.html'>operator</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>All Python's standard operators as built-in functions.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-inspect.html'>inspect</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Extract information and source code from live objects.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-traceback.html'>traceback</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Print or retrieve a stack traceback.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-linecache.html'>linecache</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>This module provides random access to individual lines
+                from text files.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-pickle.html'>pickle</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Convert Python objects to streams of bytes and back.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-cPickle.html'>cPickle</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Faster version of <tt class="module"><a href="module-pickle.html">pickle</a></tt>, but not subclassable.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-copyreg.html'>copy_reg</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Register <tt class="module">pickle</tt> support functions.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-shelve.html'>shelve</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Python object persistence.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-copy.html'>copy</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Shallow and deep copy operations.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-marshal.html'>marshal</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Convert Python objects to streams of bytes and back
+                (with different constraints).</td></tr>
+  <tr><td><b><tt class='module'><a href='module-warnings.html'>warnings</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Issue warning messages and control their disposition.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-imp.html'>imp</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Access the implementation of the <tt class="keyword">import</tt> statement.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-code.html'>code</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Base classes for interactive Python interpreters.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-codeop.html'>codeop</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Compile (possibly incomplete) Python code.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-pprint.html'>pprint</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Data pretty printer.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-repr.html'>repr</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Alternate <tt class="function">repr()</tt> implementation with size limits.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-new.html'>new</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>Interface to the creation of runtime implementation objects.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-site.html'>site</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>A standard way to reference site-specific modules.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-user.html'>user</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>A standard way to reference user-specific modules.</td></tr>
+  <tr class='oddrow'>
+      <td><b><tt class='module'><a href='module-builtin.html'>__builtin__</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>The set of built-in functions.</td></tr>
+  <tr><td><b><tt class='module'><a href='module-main.html'>__main__</a></tt></b></td>
+      <td>&nbsp;</td>
+      <td class='synopsis'>The environment where the top-level script is run.</td></tr>
+</table>
+
+<BR>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-exceptions.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="lib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-sys.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-exceptions.html">2.3 Built-in Exceptions</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="lib.html">Python Library Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-sys.html">3.1 sys  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

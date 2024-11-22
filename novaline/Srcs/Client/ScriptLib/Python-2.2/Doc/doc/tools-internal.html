@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.2 Internal Tools </title>
+<META NAME="description" CONTENT="8.2 Internal Tools ">
+<META NAME="keywords" CONTENT="doc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="doc.css">
+<link rel="first" href="doc.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="previous" href="tools-external.html">
+<LINK REL="up" href="tools.html">
+<LINK REL="next" href="futures.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="tools-external.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="tools.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="futures.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="tools-external.html">8.1 External Tools</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="tools.html">8 Processing Tools</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="futures.html">9 Future Directions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000920000000000000000">&nbsp;</A>
+<BR>
+8.2 Internal Tools 
+</H2>
+
+<P>
+This section describes the various scripts that are used to
+    implement various stages of document processing or to orchestrate
+    entire build sequences.  Most of these tools are only useful
+    in the context of building the standard documentation, but some
+    are more general.
+
+<P>
+<DL>
+<DT><STRONG><b class="program">mkhowto</b></STRONG></DT>
+<DD>This is the primary script used to format third-party
+	documents.  It contains all the logic needed to ``get it
+	right.''  The proper way to use this script is to make a
+	symbolic link to it or run it in place; the actual script file 
+	must be stored as part of the documentation source tree,
+	though it may be used to format documents outside the
+	tree.  Use <b class="program">mkhowto</b> <b class="programopt">--help</b>
+        for a list of
+        command line options.
+
+<P>
+<b class="program">mkhowto</b> can be used for both <code>howto</code> and
+        <code>manual</code> class documents.  (For the later, be sure to get 
+	the latest version from the Python CVS repository rather than
+        the version distributed in the <span class="file">latex-1.5.2.tgz</span> source
+	archive.)
+
+<P>
+XXX  Need more here.
+    
+</DD>
+</DL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="tools-external.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="tools.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="futures.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Documenting Python</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="tools-external.html">8.1 External Tools</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="tools.html">8 Processing Tools</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="futures.html">9 Future Directions</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

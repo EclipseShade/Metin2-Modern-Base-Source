@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2. Using the Python Interpreter </title>
+<META NAME="description" CONTENT="2. Using the Python Interpreter ">
+<META NAME="keywords" CONTENT="tut">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="tut.css">
+<link rel="first" href="tut.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node5.html">
+<LINK REL="previous" HREF="node3.html">
+<LINK REL="up" HREF="tut.html">
+<LINK REL="next" HREF="node5.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node3.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="tut.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node5.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Tutorial</td>
+<td><A HREF="node2.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node3.html">1. Whetting Your Appetite</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="tut.html">Python Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node5.html">3. An Informal Introduction</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="#SECTION004100000000000000000">2.1 Invoking the Interpreter</a>
+<UL>
+<LI><A href="#SECTION004110000000000000000">2.1.1 Argument Passing</a>
+<LI><A href="#SECTION004120000000000000000">2.1.2 Interactive Mode</a>
+</ul>
+<LI><A href="#SECTION004200000000000000000">2.2 The Interpreter and Its Environment</a>
+<UL>
+<LI><A href="#SECTION004210000000000000000">2.2.1 Error Handling</a>
+<LI><A href="#SECTION004220000000000000000">2.2.2 Executable Python Scripts</a>
+<LI><A href="#SECTION004230000000000000000">2.2.3 The Interactive Startup File</a>
+</ul></ul>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION004000000000000000000">&nbsp;</A>
+<BR>
+2. Using the Python Interpreter 
+</H1>
+
+<P>
+
+<H1><A NAME="SECTION004100000000000000000">&nbsp;</A>
+<BR>
+2.1 Invoking the Interpreter 
+</H1>
+
+<P>
+The Python interpreter is usually installed as
+<span class="file">/usr/local/bin/python</span> on those machines where it is available;
+putting <span class="file">/usr/local/bin</span> in your Unix shell's search path
+makes it possible to start it by typing the command
+
+<P>
+<dl><dd><pre class="verbatim">
+python
+</pre></dl>
+
+<P>
+to the shell.  Since the choice of the directory where the interpreter
+lives is an installation option, other places are possible; check with
+your local Python guru or system administrator.  (E.g.,
+<span class="file">/usr/local/python</span> is a popular alternative location.)
+
+<P>
+Typing an end-of-file character (<kbd>Control-D</kbd> on Unix,
+<kbd>Control-Z</kbd> on DOS or Windows) at the primary prompt causes the
+interpreter to exit with a zero exit status.  If that doesn't work,
+you can exit the interpreter by typing the following commands:
+"<tt class="samp">import sys; sys.exit()</tt>".
+
+<P>
+The interpreter's line-editing features usually aren't very
+sophisticated.  On Unix, whoever installed the interpreter may have
+enabled support for the GNU readline library, which adds more
+elaborate interactive editing and history features. Perhaps the
+quickest check to see whether command line editing is supported is
+typing Control-P to the first Python prompt you get.  If it beeps, you
+have command line editing; see Appendix <A HREF="node13.html#interacting">A</A> for an
+introduction to the keys.  If nothing appears to happen, or if
+<code>P</code> is echoed, command line editing isn't available; you'll
+only be able to use backspace to remove characters from the current
+line.
+
+<P>
+The interpreter operates somewhat like the Unix shell: when called
+with standard input connected to a tty device, it reads and executes
+commands interactively; when called with a file name argument or with
+a file as standard input, it reads and executes a <i>script</i> from
+that file. 
+
+<P>
+A third way of starting the interpreter is
+"<tt class="samp"><b class="program">python</b> <b class="programopt">-c</b> <var>command</var> [arg] ...</tt>", which
+executes the statement(s) in <var>command</var>, analogous to the shell's
+<b class="programopt">-c</b> option.  Since Python statements often contain spaces
+or other characters that are special to the shell, it is best to quote 
+<var>command</var> in its entirety with double quotes.
+
+<P>
+Note that there is a difference between "<tt class="samp">python file</tt>" and
+"<tt class="samp">python &lt;file</tt>".  In the latter case, input requests from the
+program, such as calls to <code>input()</code> and <code>raw_input()</code>, are
+satisfied from <i>file</i>.  Since this file has already been read
+until the end by the parser before the program starts executing, the
+program will encounter end-of-file immediately.  In the former case
+(which is usually what you want) they are satisfied from whatever file
+or device is connected to standard input of the Python interpreter.
+
+<P>
+When a script file is used, it is sometimes useful to be able to run
+the script and enter interactive mode afterwards.  This can be done by
+passing <b class="programopt">-i</b> before the script.  (This does not work if the
+script is read from standard input, for the same reason as explained
+in the previous paragraph.)
+
+<P>
+
+<H2><A NAME="SECTION004110000000000000000">&nbsp;</A>
+<BR>
+2.1.1 Argument Passing 
+</H2>
+
+<P>
+When known to the interpreter, the script name and additional
+arguments thereafter are passed to the script in the variable
+<code>sys.argv</code>, which is a list of strings.  Its length is at least
+one; when no script and no arguments are given, <code>sys.argv[0]</code> is
+an empty string.  When the script name is given as <code>'-'</code> (meaning 
+standard input), <code>sys.argv[0]</code> is set to <code>'-'</code>.  When
+<b class="programopt">-c</b> <var>command</var> is used, <code>sys.argv[0]</code> is set to
+<code>'-c'</code>.  Options found after <b class="programopt">-c</b> <var>command</var> are
+not consumed by the Python interpreter's option processing but left in
+<code>sys.argv</code> for the command to handle.
+
+<P>
+
+<H2><A NAME="SECTION004120000000000000000">&nbsp;</A>
+<BR>
+2.1.2 Interactive Mode 
+</H2>
+
+<P>
+When commands are read from a tty, the interpreter is said to be in
+<i>interactive mode</i>.  In this mode it prompts for the next command
+with the <i>primary prompt</i>, usually three greater-than signs
+("<tt class="samp">&gt;<code>&gt;</code>&gt;&nbsp;</tt>"); for continuation lines it prompts with the
+<i>secondary prompt</i>, by default three dots ("<tt class="samp">...&nbsp;</tt>").
+The interpreter prints a welcome message stating its version number
+and a copyright notice before printing the first prompt:
+
+<P>
+<dl><dd><pre class="verbatim">
+python
+Python 1.5.2b2 (#1, Feb 28 1999, 00:02:06)  [GCC 2.8.1] on sunos5
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+&gt;&gt;&gt;
+</pre></dl>
+
+<P>
+Continuation lines are needed when entering a multi-line construct.
+As an example, take a look at this <tt class="keyword">if</tt> statement:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; the_world_is_flat = 1
+&gt;&gt;&gt; if the_world_is_flat:
+...     print "Be careful not to fall off!"
+... 
+Be careful not to fall off!
+</pre></dl>
+
+<P>
+
+<H1><A NAME="SECTION004200000000000000000">&nbsp;</A>
+<BR>
+2.2 The Interpreter and Its Environment 
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION004210000000000000000">&nbsp;</A>
+<BR>
+2.2.1 Error Handling 
+</H2>
+
+<P>
+When an error occurs, the interpreter prints an error
+message and a stack trace.  In interactive mode, it then returns to
+the primary prompt; when input came from a file, it exits with a
+nonzero exit status after printing
+the stack trace.  (Exceptions handled by an <code>except</code> clause in a
+<code>try</code> statement are not errors in this context.)  Some errors are
+unconditionally fatal and cause an exit with a nonzero exit; this
+applies to internal inconsistencies and some cases of running out of
+memory.  All error messages are written to the standard error stream;
+normal output from the executed commands is written to standard
+output.
+
+<P>
+Typing the interrupt character (usually Control-C or DEL) to the
+primary or secondary prompt cancels the input and returns to the
+primary prompt.<A NAME="tex2html1"
+  HREF="#foot108"><SUP>2.1</SUP></A>Typing an interrupt while a command is executing raises the
+<code>KeyboardInterrupt</code> exception, which may be handled by a
+<code>try</code> statement.
+
+<P>
+
+<H2><A NAME="SECTION004220000000000000000">&nbsp;</A>
+<BR>
+2.2.2 Executable Python Scripts 
+</H2>
+
+<P>
+On BSD'ish Unix systems, Python scripts can be made directly
+executable, like shell scripts, by putting the line
+
+<P>
+<dl><dd><pre class="verbatim">
+#! /usr/bin/env python
+</pre></dl>
+
+<P>
+(assuming that the interpreter is on the user's <a class="envvar" name="l2h-1">PATH</a>) at the
+beginning of the script and giving the file an executable mode.  The
+"<tt class="samp">#!</tt>" must be the first two characters of the file.  Note that
+the hash, or pound, character, "<tt class="character">#</tt>", is used to start a
+comment in Python.
+
+<P>
+
+<H2><A NAME="SECTION004230000000000000000">&nbsp;</A>
+<BR>
+2.2.3 The Interactive Startup File 
+</H2>
+
+<P>
+When you use Python interactively, it is frequently handy to have some
+standard commands executed every time the interpreter is started.  You
+can do this by setting an environment variable named
+<a class="envvar" name="l2h-2">PYTHONSTARTUP</a> to the name of a file containing your start-up
+commands.  This is similar to the <span class="file">.profile</span> feature of the
+Unix shells.
+
+<P>
+This file is only read in interactive sessions, not when Python reads
+commands from a script, and not when <span class="file">/dev/tty</span> is given as the
+explicit source of commands (which otherwise behaves like an
+interactive session).  It is executed in the same namespace where
+interactive commands are executed, so that objects that it defines or
+imports can be used without qualification in the interactive session.
+You can also change the prompts <code>sys.ps1</code> and <code>sys.ps2</code> in
+this file.
+
+<P>
+If you want to read an additional start-up file from the current
+directory, you can program this in the global start-up file using code
+like "<tt class="samp">if os.path.isfile('.pythonrc.py'):
+execfile('.pythonrc.py')</tt>".  If you want to use the startup file in a
+script, you must do this explicitly in the script:
+
+<P>
+<dl><dd><pre class="verbatim">
+import os
+filename = os.environ.get('PYTHONSTARTUP')
+if filename and os.path.isfile(filename):
+    execfile(filename)
+</pre></dl>
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot108">... prompt.</A><A NAME="foot108"
+ HREF="node4.html#tex2html1"><SUP>2.1</SUP></A>
+<DD>
+        A problem with the GNU Readline package may prevent this.
+
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node3.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="tut.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node5.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Tutorial</td>
+<td><A HREF="node2.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node3.html">1. Whetting Your Appetite</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="tut.html">Python Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node5.html">3. An Informal Introduction</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

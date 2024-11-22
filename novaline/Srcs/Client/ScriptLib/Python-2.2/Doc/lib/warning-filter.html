@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.20.2 The Warnings Filter </title>
+<META NAME="description" CONTENT="3.20.2 The Warnings Filter ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="warning-functions.html">
+<LINK REL="previous" href="warning-categories.html">
+<LINK REL="up" href="module-warnings.html">
+<LINK REL="next" href="warning-functions.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="warning-categories.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-warnings.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="warning-functions.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="warning-categories.html">3.20.1 Warning Categories</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-warnings.html">3.20 warnings  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="warning-functions.html">3.20.3 Available Functions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0052020000000000000000">&nbsp;</A>
+<BR>
+3.20.2 The Warnings Filter 
+</H2>
+
+<P>
+The warnings filter controls whether warnings are ignored, displayed,
+or turned into errors (raising an exception).
+
+<P>
+Conceptually, the warnings filter maintains an ordered list of filter
+specifications; any specific warning is matched against each filter
+specification in the list in turn until a match is found; the match
+determines the disposition of the match.  Each entry is a tuple of the
+form (<var>action</var>, <var>message</var>, <var>category</var>, <var>module</var>,
+<var>lineno</var>), where:
+
+<P>
+
+<UL>
+<LI><var>action</var> is one of the following strings:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Value</b>&nbsp;</th>
+      <th align="left"><b>Disposition</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+<P>
+
+    <tr><td align="left" valign="baseline"><code>"error"</code></td>
+        <td align="left">turn matching warnings into exceptions</td><P>
+
+    <tr><td align="left" valign="baseline"><code>"ignore"</code></td>
+        <td align="left">never print matching warnings</td><P>
+
+    <tr><td align="left" valign="baseline"><code>"always"</code></td>
+        <td align="left">always print matching warnings</td><P>
+
+    <tr><td align="left" valign="baseline"><code>"default"</code></td>
+        <td align="left">print the first occurrence of matching
+    warnings for each location where the warning is issued</td><P>
+
+    <tr><td align="left" valign="baseline"><code>"module"</code></td>
+        <td align="left">print the first occurrence of matching
+    warnings for each module where the warning is issued</td><P>
+
+    <tr><td align="left" valign="baseline"><code>"once"</code></td>
+        <td align="left">print only the first occurrence of matching
+    warnings, regardless of location</td><P>
+
+    </tbody>
+</table>
+
+<P>
+</LI>
+<LI><var>message</var> is a compiled regular expression that the warning
+message must match (the match is case-insensitive)
+
+<P>
+</LI>
+<LI><var>category</var> is a class (a subclass of <tt class="exception">Warning</tt>) of
+      which the warning category must be a subclass in order to match
+
+<P>
+</LI>
+<LI><var>module</var> is a compiled regular expression that the module
+      name must match
+
+<P>
+</LI>
+<LI><var>lineno</var> is an integer that the line number where the
+      warning occurred must match, or <code>0</code> to match all line
+      numbers
+
+<P>
+</LI>
+</UL>
+
+<P>
+Since the <tt class="exception">Warning</tt> class is derived from the built-in
+<tt class="exception">Exception</tt> class, to turn a warning into an error we simply
+raise <code>category(message)</code>.
+
+<P>
+The warnings filter is initialized by <b class="programopt">-W</b> options passed
+to the Python interpreter command line.  The interpreter saves the
+arguments for all <b class="programopt">-W</b> options without interpretation in
+<code>sys.warnoptions</code>; the <tt class="module">warnings</tt> module parses these when
+it is first imported (invalid options are ignored, after printing a
+message to <code>sys.stderr</code>).
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="warning-categories.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-warnings.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="warning-functions.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="warning-categories.html">3.20.1 Warning Categories</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-warnings.html">3.20 warnings  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="warning-functions.html">3.20.3 Available Functions</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

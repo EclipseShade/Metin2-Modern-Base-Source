@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.4 The power operator</title>
+<META NAME="description" CONTENT="5.4 The power operator">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="unary.html">
+<LINK REL="previous" href="primaries.html">
+<LINK REL="up" href="expressions.html">
+<LINK REL="next" href="unary.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="calls.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="expressions.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="unary.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="calls.html">5.3.4 Calls</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="expressions.html">5. Expressions</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="unary.html">5.5 Unary arithmetic operations</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007400000000000000000">&nbsp;</A>
+<BR>
+5.4 The power operator
+</H1>
+
+<P>
+The power operator binds more tightly than unary operators on its
+left; it binds less tightly than unary operators on its right.  The
+syntax is:
+
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-power">power</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code><a href="node50.html#tok-primary">primary</a> ["**" <a href="unary.html#tok-u_expr">u_expr</a>]</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+Thus, in an unparenthesized sequence of power and unary operators, the
+operators are evaluated from right to left (this does not constrain
+the evaluation order for the operands).
+
+<P>
+The power operator has the same semantics as the built-in
+<tt class="function">pow()</tt> function, when called with two arguments: it yields
+its left argument raised to the power of its right argument.  The
+numeric arguments are first converted to a common type.  The result
+type is that of the arguments after coercion; if the result is not
+expressible in that type (as in raising an integer to a negative
+power, or a negative floating point number to a broken power), a
+<tt class="exception">TypeError</tt> exception is raised.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="calls.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="expressions.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="unary.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="calls.html">5.3.4 Calls</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="expressions.html">5. Expressions</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="unary.html">5.5 Unary arithmetic operations</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

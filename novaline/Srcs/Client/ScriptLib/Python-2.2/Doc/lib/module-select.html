@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.3 select -- Waiting for I/O completion</title>
+<META NAME="description" CONTENT="7.3 select -- Waiting for I/O completion">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-thread.html">
+<LINK REL="previous" href="module-socket.html">
+<LINK REL="up" href="someos.html">
+<LINK REL="next" href="poll-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="socket-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="poll-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="socket-example.html">7.2.3 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="poll-objects.html">7.3.1 Polling Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION009300000000000000000">
+7.3 <tt class="module">select</tt> --
+         Waiting for I/O completion</A>
+</H1>
+
+<P>
+
+
+<P>
+This module provides access to the <tt class="cfunction">select()</tt>
+and <tt class="cfunction">poll()</tt> functions
+available in most operating systems.  Note that on Windows, it only
+works for sockets; on other operating systems, it also works for other
+file types (in particular, on Unix, it works on pipes).  It cannot
+be used on regular files to determine whether a file has grown since
+it was last read.
+
+<P>
+The module defines the following:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-1916"><tt class="exception">error</tt></a></b>
+<dd>
+The exception raised when an error occurs.  The accompanying value is
+a pair containing the numeric error code from <tt class="cdata">errno</tt> and the
+corresponding string, as would be printed by the C function
+<tt class="cfunction">perror()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1917"><tt class="function">poll</tt></a></b>()
+<dd>
+(Not supported by all operating systems.)  Returns a polling object, 
+which supports registering and unregistering file descriptors, and
+then polling them for I/O events; 
+see section&nbsp;<A href="poll-objects.html#poll-objects">7.3.1</A> below for the methods supported by 
+polling objects.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1918"><tt class="function">select</tt></a></b>(<var>iwtd, owtd, ewtd</var><big>[</big><var>, timeout</var><big>]</big>)
+<dd>
+This is a straightforward interface to the Unix <tt class="cfunction">select()</tt>
+system call.  The first three arguments are lists of `waitable
+objects': either integers representing file descriptors or
+objects with a parameterless method named <tt class="method">fileno()</tt> returning
+such an integer.  The three lists of waitable objects are for input,
+output and `exceptional conditions', respectively.  Empty lists are
+allowed, but acceptance of three empty lists is platform-dependent.
+(It is known to work on Unix but not on Windows.)  The optional
+<var>timeout</var> argument specifies a time-out as a floating point number
+in seconds.  When the <var>timeout</var> argument is omitted the function
+blocks until at least one file descriptor is ready.  A time-out value
+of zero specifies a poll and never blocks.
+
+<P>
+The return value is a triple of lists of objects that are ready:
+subsets of the first three arguments.  When the time-out is reached
+without a file descriptor becoming ready, three empty lists are
+returned.
+
+<P>
+Amongst the acceptable object types in the lists are Python file
+objects (e.g. <code>sys.stdin</code>, or objects returned by
+<tt class="function">open()</tt> or <tt class="function">os.popen()</tt>), socket objects
+returned by <tt class="function">socket.socket()</tt>,<a name="l2h-1920">&nbsp;</a><a name="l2h-1922">&nbsp;</a>.
+You may also define a <i class="dfn">wrapper</i> class yourself, as long as it has
+an appropriate <tt class="method">fileno()</tt> method (that really returns a file
+descriptor, not just a random integer).
+<span class="note"><b class="label">Note:</b>
+File objects on Windows are not acceptable, but sockets
+are.<a name="l2h-1923">&nbsp;</a> On Windows, the underlying <tt class="cfunction">select()</tt>
+function is provided by the WinSock library, and does not handle file
+desciptors that don't originate from WinSock.</span>
+</dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="poll-objects.html">7.3.1 Polling Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="socket-example.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="someos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="poll-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="socket-example.html">7.2.3 Example</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="someos.html">7. Optional Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="poll-objects.html">7.3.1 Polling Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

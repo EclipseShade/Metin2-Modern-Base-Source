@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.9 unicodedata -- Unicode Database</title>
+<META NAME="description" CONTENT="4.9 unicodedata -- Unicode Database">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-codecs.html">
+<LINK REL="up" href="strings.html">
+<LINK REL="next" href="misc.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="stream-recoder-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="strings.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="stream-recoder-objects.html">4.8.1.5 StreamRecoder Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="strings.html">4. String Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006900000000000000000">
+4.9 <tt class="module">unicodedata</tt> --
+         Unicode Database</A>
+</H1>
+
+<P>
+
+
+<P>
+<a name="l2h-832">&nbsp;</a>
+<P>
+This module provides access to the Unicode Character Database which
+defines character properties for all Unicode characters. The data in
+this database is based on the <span class="file">UnicodeData.txt</span> file version
+3.0.0 which is publically available from <a class="url" href="ftp://ftp.unicode.org/">ftp://ftp.unicode.org/</a>.
+
+<P>
+The module uses the same names and symbols as defined by the
+UnicodeData File Format 3.0.0 (see
+<a class="url" href="http://www.unicode.org/Public/UNIDATA/UnicodeData.html">http://www.unicode.org/Public/UNIDATA/UnicodeData.html</a>).  It
+defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-822"><tt class="function">lookup</tt></a></b>(<var>name</var>)
+<dd>
+  Look up character by name.  If a character with the
+  given name is found, return the corresponding Unicode
+  character.  If not found, <tt class="exception">KeyError</tt> is raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-823"><tt class="function">name</tt></a></b>(<var>unichr</var><big>[</big><var>, default</var><big>]</big>)
+<dd>
+  Returns the name assigned to the Unicode character
+  <var>unichr</var> as a string. If no name is defined,
+  <var>default</var> is returned, or, if not given,
+  <tt class="exception">ValueError</tt> is raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-824"><tt class="function">decimal</tt></a></b>(<var>unichr</var><big>[</big><var>, default</var><big>]</big>)
+<dd>
+  Returns the decimal value assigned to the Unicode character
+  <var>unichr</var> as integer. If no such value is defined,
+  <var>default</var> is returned, or, if not given,
+  <tt class="exception">ValueError</tt> is raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-825"><tt class="function">digit</tt></a></b>(<var>unichr</var><big>[</big><var>, default</var><big>]</big>)
+<dd>
+  Returns the digit value assigned to the Unicode character
+  <var>unichr</var> as integer. If no such value is defined,
+  <var>default</var> is returned, or, if not given,
+  <tt class="exception">ValueError</tt> is raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-826"><tt class="function">numeric</tt></a></b>(<var>unichr</var><big>[</big><var>, default</var><big>]</big>)
+<dd>
+  Returns the numeric value assigned to the Unicode character
+  <var>unichr</var> as float. If no such value is defined, <var>default</var> is
+  returned, or, if not given, <tt class="exception">ValueError</tt> is raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-827"><tt class="function">category</tt></a></b>(<var>unichr</var>)
+<dd>
+  Returns the general category assigned to the Unicode character
+  <var>unichr</var> as string.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-828"><tt class="function">bidirectional</tt></a></b>(<var>unichr</var>)
+<dd>
+  Returns the bidirectional category assigned to the Unicode character
+  <var>unichr</var> as string. If no such value is defined, an empty string
+  is returned.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-829"><tt class="function">combining</tt></a></b>(<var>unichr</var>)
+<dd>
+  Returns the canonical combining class assigned to the Unicode
+  character <var>unichr</var> as integer. Returns <code>0</code> if no combining
+  class is defined.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-830"><tt class="function">mirrored</tt></a></b>(<var>unichr</var>)
+<dd>
+  Returns the mirrored property of assigned to the Unicode character
+  <var>unichr</var> as integer. Returns <code>1</code> if the character has been
+  identified as a ``mirrored'' character in bidirectional text,
+  <code>0</code> otherwise.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-831"><tt class="function">decomposition</tt></a></b>(<var>unichr</var>)
+<dd>
+  Returns the character decomposition mapping assigned to the Unicode
+  character <var>unichr</var> as string. An empty string is returned in case
+  no such mapping is defined.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="stream-recoder-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="strings.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="misc.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="stream-recoder-objects.html">4.8.1.5 StreamRecoder Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="strings.html">4. String Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="misc.html">5. Miscellaneous Services</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

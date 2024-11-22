@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>10.2 Common Object Structures </title>
+<META NAME="description" CONTENT="10.2 Common Object Structures ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="mapping-structs.html">
+<LINK REL="previous" href="allocating-objects.html">
+<LINK REL="up" href="newTypes.html">
+<LINK REL="next" href="mapping-structs.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="allocating-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="newTypes.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="mapping-structs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="allocating-objects.html">10.1 Allocating Objects on</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="newTypes.html">10. Defining New Object</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="mapping-structs.html">10.3 Mapping Object Structures</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0012200000000000000000">&nbsp;</A>
+<BR>
+10.2 Common Object Structures 
+</H1>
+
+<P>
+PyObject, PyVarObject
+
+<P>
+PyObject_HEAD, PyObject_HEAD_INIT, PyObject_VAR_HEAD
+
+<P>
+Typedefs:
+unaryfunc, binaryfunc, ternaryfunc, inquiry, coercion, intargfunc,
+intintargfunc, intobjargproc, intintobjargproc, objobjargproc,
+destructor, printfunc, getattrfunc, getattrofunc, setattrfunc,
+setattrofunc, cmpfunc, reprfunc, hashfunc
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-784">PyCFunction</a></tt></b>
+<dd>
+  Type of the functions used to implement most Python callables in C.
+</dl>
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-785">PyMethodDef</a></tt></b>
+<dd>
+  Structure used to describe a method of an extension type.  This
+  structure has four fields:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Field</b>&nbsp;</th>
+      <th align="left"><b>C Type</b>&nbsp;</th>
+      <th align="left"><b>Meaning</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><tt class="member">ml_name</tt></td>
+        <td align="left">char *</td>
+        <td align="left">name of the method</td>
+    <tr><td align="left" valign="baseline"><tt class="member">ml_meth</tt></td>
+        <td align="left">PyCFunction</td>
+        <td align="left">pointer to the C implementation</td>
+    <tr><td align="left" valign="baseline"><tt class="member">ml_flags</tt></td>
+        <td align="left">int</td>
+        <td align="left">flag bits indicating how the call should be
+                            constructed</td>
+    <tr><td align="left" valign="baseline"><tt class="member">ml_doc</tt></td>
+        <td align="left">char *</td>
+        <td align="left">points to the contents of the docstring</td></tbody>
+</table>
+</dl>
+
+<P>
+The <tt class="member">ml_meth</tt> is a C function pointer.  The functions may be of
+different types, but they always return <tt class="ctype">PyObject*</tt>.  If the
+function is not of the <tt class="ctype">PyCFunction</tt>, the compiler will require
+a cast in the method table.  Even though <tt class="ctype">PyCFunction</tt> defines
+the first parameter as <tt class="ctype">PyObject*</tt>, it is common that the method
+implementation uses a the specific C type of the <var>self</var> object.
+
+<P>
+The flags can have the following values. Only <tt class="constant">METH_VARARGS</tt>
+and <tt class="constant">METH_KEYWORDS</tt> can be combined; the others can't.
+
+<P>
+<dl><dt><b><a name="l2h-786"><tt>METH_VARARGS</tt></a></b>
+<dd>
+  This is the typical calling convention, where the methods have the
+  type <tt class="ctype">PyMethodDef</tt>. The function expects two
+  <tt class="ctype">PyObject*</tt> values.  The first one is the <var>self</var> object for
+  methods; for module functions, it has the value given to
+  <tt class="cfunction">Py_InitModule4()</tt> (or <tt class="constant">NULL</tt> if
+  <tt class="cfunction">Py_InitModule()</tt> was used).  The second parameter
+  (often called <var>args</var>) is a tuple object representing all
+  arguments. This parameter is typically processed using
+  <tt class="cfunction">PyArg_ParseTuple()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-787"><tt>METH_KEYWORDS</tt></a></b>
+<dd>
+  Methods with these flags must be of type
+  <tt class="ctype">PyCFunctionWithKeywords</tt>.  The function expects three
+  parameters: <var>self</var>, <var>args</var>, and a dictionary of all the
+  keyword arguments.  The flag is typically combined with
+  <tt class="constant">METH_VARARGS</tt>, and the parameters are typically processed
+  using <tt class="cfunction">PyArg_ParseTupleAndKeywords()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-788"><tt>METH_NOARGS</tt></a></b>
+<dd>
+  Methods without parameters don't need to check whether arguments are
+  given if they are listed with the <tt class="constant">METH_NOARGS</tt> flag.  They
+  need to be of type <tt class="ctype">PyNoArgsFunction</tt>: they expect a single
+  single <tt class="ctype">PyObject*</tt> as a parameter.  When used with object
+  methods, this parameter is typically named <code>self</code> and will hold
+  a reference to the object instance.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-789"><tt>METH_O</tt></a></b>
+<dd>
+  Methods with a single object argument can be listed with the
+  <tt class="constant">METH_O</tt> flag, instead of invoking
+  <tt class="cfunction">PyArg_ParseTuple()</tt> with a <code>"O"</code> argument. They have
+  the type <tt class="ctype">PyCFunction</tt>, with the <var>self</var> parameter, and a
+  <tt class="ctype">PyObject*</tt> parameter representing the single argument.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-790"><tt>METH_OLDARGS</tt></a></b>
+<dd>
+  This calling convention is deprecated.  The method must be of type
+  <tt class="ctype">PyCFunction</tt>.  The second argument is <tt class="constant">NULL</tt> if no arguments
+  are given, a single object if exactly one argument is given, and a
+  tuple of objects if more than one argument is given.  There is no
+  way for a function using this convention to distinguish between a
+  call with multiple arguments and a call with a tuple as the only
+  argument.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-791"><tt class="cfunction">Py_FindMethod</tt></a></b>(<var>PyMethodDef table[],
+                                            PyObject *ob, char *name</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Return a bound method object for an extension type implemented in
+  C.  This can be useful in the implementation of a
+  <tt class="member">tp_getattro</tt> or <tt class="member">tp_getattr</tt> handler that does not
+  use the <tt class="cfunction">PyObject_GenericGetAttr()</tt> function.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="allocating-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="newTypes.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="mapping-structs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="allocating-objects.html">10.1 Allocating Objects on</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="newTypes.html">10. Defining New Object</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="mapping-structs.html">10.3 Mapping Object Structures</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

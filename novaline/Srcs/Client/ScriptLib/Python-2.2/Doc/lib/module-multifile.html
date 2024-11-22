@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.10 multifile -- Support for files containing distinct parts</title>
+<META NAME="description" CONTENT="12.10 multifile -- Support for files containing distinct parts">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-rfc822.html">
+<LINK REL="previous" href="module-mimify.html">
+<LINK REL="up" href="netdata.html">
+<LINK REL="next" href="MultiFile-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-mimify.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="MultiFile-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-mimify.html">12.9 mimify  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="MultiFile-objects.html">12.10.1 MultiFile Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00141000000000000000000">
+12.10 <tt class="module">multifile</tt> --
+         Support for files containing distinct parts</A>
+</H1>
+
+<P>
+
+
+<P>
+The <tt class="class">MultiFile</tt> object enables you to treat sections of a text
+file as file-like input objects, with <code>''</code> being returned by
+<tt class="method">readline()</tt> when a given delimiter pattern is encountered.  The
+defaults of this class are designed to make it useful for parsing
+MIME multipart messages, but by subclassing it and overriding methods 
+it can be easily adapted for more general use.
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2963"><tt class="class">MultiFile</tt></a></b>(<var>fp</var><big>[</big><var>, seekable</var><big>]</big>)
+<dd>
+Create a multi-file.  You must instantiate this class with an input
+object argument for the <tt class="class">MultiFile</tt> instance to get lines from,
+such as as a file object returned by <tt class="function">open()</tt>.
+
+<P>
+<tt class="class">MultiFile</tt> only ever looks at the input object's
+<tt class="method">readline()</tt>, <tt class="method">seek()</tt> and <tt class="method">tell()</tt> methods, and
+the latter two are only needed if you want random access to the
+individual MIME parts. To use <tt class="class">MultiFile</tt> on a non-seekable
+stream object, set the optional <var>seekable</var> argument to false; this
+will prevent using the input object's <tt class="method">seek()</tt> and
+<tt class="method">tell()</tt> methods.
+</dl>
+
+<P>
+It will be useful to know that in <tt class="class">MultiFile</tt>'s view of the world, text
+is composed of three kinds of lines: data, section-dividers, and
+end-markers.  MultiFile is designed to support parsing of
+messages that may have multiple nested message parts, each with its
+own pattern for section-divider and end-marker lines.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="MultiFile-objects.html">12.10.1 MultiFile Objects</a>
+<LI><A href="multifile-example.html">12.10.2 <tt class="class">MultiFile</tt> Example</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-mimify.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="MultiFile-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-mimify.html">12.9 mimify  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="MultiFile-objects.html">12.10.1 MultiFile Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

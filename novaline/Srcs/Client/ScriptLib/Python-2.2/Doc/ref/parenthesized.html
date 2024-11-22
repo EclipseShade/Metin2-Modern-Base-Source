@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.2.3 Parenthesized forms</title>
+<META NAME="description" CONTENT="5.2.3 Parenthesized forms">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="lists.html">
+<LINK REL="previous" href="atom-literals.html">
+<LINK REL="up" href="atoms.html">
+<LINK REL="next" href="lists.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="atom-literals.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="atoms.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="lists.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="atom-literals.html">5.2.2 Literals</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="atoms.html">5.2 Atoms</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="lists.html">5.2.4 List displays</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007230000000000000000">&nbsp;</A>
+<a name="l2h-233">&nbsp;</a>
+<BR>
+5.2.3 Parenthesized forms
+</H2>
+
+<P>
+A parenthesized form is an optional expression list enclosed in
+parentheses:
+
+<P>
+<dl><dd class="grammar">
+<div class="productions">
+<table cellpadding="2">
+<tr valign="baseline">
+    <td><code><a name="tok-parenth_form">parenth_form</a></code></td>
+    <td>&nbsp;::=&nbsp;</td>
+    <td><code>"(" [<a href="exprlists.html#tok-expression_list">expression_list</a>] ")"</code></td></tr>
+</table>
+</div>
+<a class="grammar-footer"
+  href="grammar.txt" type="text/plain"
+  >Download entire grammar as text.</a>
+</dd></dl>
+
+<P>
+A parenthesized expression list yields whatever that expression list
+yields: if the list contains at least one comma, it yields a tuple;
+otherwise, it yields the single expression that makes up the
+expression list.
+
+<P>
+An empty pair of parentheses yields an empty tuple object.  Since
+tuples are immutable, the rules for literals apply (i.e., two
+occurrences of the empty tuple may or may not yield the same object).
+<a name="l2h-234">&nbsp;</a>
+<P>
+Note that tuples are not formed by the parentheses, but rather by use
+of the comma operator.  The exception is the empty tuple, for which
+parentheses <i>are</i> required -- allowing unparenthesized ``nothing''
+in expressions would cause ambiguities and allow common typos to
+pass uncaught.
+<a name="l2h-235">&nbsp;</a>
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="atom-literals.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="atoms.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="lists.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="atom-literals.html">5.2.2 Literals</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="atoms.html">5.2 Atoms</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="lists.html">5.2.4 List displays</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

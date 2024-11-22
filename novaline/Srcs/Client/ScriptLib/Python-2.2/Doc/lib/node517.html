@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>16.2.1 Using Tix</title>
+<META NAME="description" CONTENT="16.2.1 Using Tix">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node518.html">
+<LINK REL="previous" href="module-Tix.html">
+<LINK REL="up" href="module-Tix.html">
+<LINK REL="next" HREF="node518.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-Tix.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-Tix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node518.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-Tix.html">16.2 Tix  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-Tix.html">16.2 Tix  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node518.html">16.2.2 Tix Widgets</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0018210000000000000000">
+16.2.1 Using Tix</A>
+</H2>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-3673"><tt class="class">Tix</tt></a></b>(<var>screenName</var><big>[</big><var>, baseName</var><big>[</big><var>, className</var><big>]</big><big>]</big>)
+<dd>
+    Toplevel widget of Tix which represents mostly the main window
+    of an application. It has an associated Tcl interpreter.
+
+<P>
+Classes in the <tt class="module"><a href="module-Tix.html">Tix</a></tt> module subclasses the classes in the
+<tt class="module"><a href="module-Tkinter.html">Tkinter</a></tt> module. The former imports the latter, so to use
+<tt class="module"><a href="module-Tix.html">Tix</a></tt> with Tkinter, all you need to do is to import one
+module. In general, you can just import <tt class="module"><a href="module-Tix.html">Tix</a></tt>, and replace
+the toplevel call to <tt class="class">Tkinter.Tk</tt> with <tt class="class">Tix.Tk</tt>:
+<dl><dd><pre class="verbatim">
+import Tix
+from Tkconstants import *
+root = Tix.Tk()
+</pre></dl>
+</dl>
+
+<P>
+To use <tt class="module"><a href="module-Tix.html">Tix</a></tt>, you must have the <tt class="module"><a href="module-Tix.html">Tix</a></tt> widgets installed,
+usually alongside your installation of the Tk widgets.
+To test your installation, try the following:
+<dl><dd><pre class="verbatim">
+import Tix
+root = Tix.Tk()
+root.tk.eval('package require Tix')
+</pre></dl>
+
+<P>
+If this fails, you have a Tk installation problem which must be
+resolved before proceeding. Use the environment variable <a class="envvar" name="l2h-3674">TIX_LIBRARY</a>
+to point to the installed <tt class="module"><a href="module-Tix.html">Tix</a></tt> library directory, and
+make sure you have the dynamic object library (<span class="file">tix8183.dll</span> or
+<span class="file">libtix8183.so</span>) in  the same directory that contains your Tk
+dynamic object library (<span class="file">tk8183.dll</span> or <span class="file">libtk8183.so</span>). The
+directory with the dynamic object library should also have a file
+called <span class="file">pkgIndex.tcl</span> (case sensitive), which contains the line:
+
+<P>
+<dl><dd><pre class="verbatim">
+package ifneeded Tix 8.1 [list load "[file join $dir tix8183.dll]" Tix]
+</pre></dl> 
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-Tix.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-Tix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node518.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-Tix.html">16.2 Tix  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-Tix.html">16.2 Tix  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node518.html">16.2.2 Tix Widgets</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

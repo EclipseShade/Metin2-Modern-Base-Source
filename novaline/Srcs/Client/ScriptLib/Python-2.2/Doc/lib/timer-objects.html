@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.5.7 Timer Objects </title>
+<META NAME="description" CONTENT="7.5.7 Timer Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="thread-objects.html">
+<LINK REL="up" href="module-threading.html">
+<LINK REL="next" href="module-Queue.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="thread-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-threading.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-Queue.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="thread-objects.html">7.5.6 Thread Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-threading.html">7.5 threading  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-Queue.html">7.6 Queue  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009570000000000000000">&nbsp;</A>
+<BR>
+7.5.7 Timer Objects 
+</H2>
+
+<P>
+This class represents an action that should be run only after a certain amount
+of time has passed -- a timer. <tt class="class">Timer</tt> is a subclass of <tt class="class">Thread</tt> and
+as such also functions as an example of creating custom threads.
+
+<P>
+Timers are started, as with threads, by calling their <tt class="method">start()</tt> method. The
+timer can be stopped (before its action has begun) by calling the
+<tt class="method">cancel()</tt> method. The interval the timer will wait before executing
+its action may not be exactly the same as the interval specified by the
+user.
+
+<P>
+For example:
+<dl><dd><pre class="verbatim">
+def hello():
+    print "hello, world"
+
+t = Timer(30.0, hello)
+t.start() # after 30 seconds, "hello, world" will be printed
+</pre></dl>
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-1981"><tt class="class">Timer</tt></a></b>(<var>interval, function, args=[], kwargs={}</var>)
+<dd>
+Create a timer that will run <var>function</var> with arguments <var>args</var> and 
+keyword arguments <var>kwargs</var>, after <var>interval</var> seconds have passed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1982"><tt class="method">cancel</tt></a></b>()
+<dd>
+Stop the timer, and cancel the execution of the timer's action. This will only
+work if the timer is still in its waiting stage.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="thread-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-threading.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-Queue.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="thread-objects.html">7.5.6 Thread Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-threading.html">7.5 threading  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-Queue.html">7.6 Queue  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

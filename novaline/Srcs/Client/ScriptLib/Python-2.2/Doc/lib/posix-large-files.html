@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.1.1 Large File Support </title>
+<META NAME="description" CONTENT="8.1.1 Large File Support ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="posix-contents.html">
+<LINK REL="previous" href="module-posix.html">
+<LINK REL="up" href="module-posix.html">
+<LINK REL="next" href="posix-contents.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-posix.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-posix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="posix-contents.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-posix.html">8.1 posix  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-posix.html">8.1 posix  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="posix-contents.html">8.1.2 Module Contents</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0010110000000000000000">&nbsp;</A>
+<BR>
+8.1.1 Large File Support 
+</H2>
+
+<a name="l2h-2123">&nbsp;</a>
+<P>
+Several operating systems (including AIX, HPUX, Irix and Solaris)
+provide support for files that are larger than 2 Gb from a C
+programming model where <tt class="ctype">int</tt> and <tt class="ctype">long</tt> are 32-bit
+values. This is typically accomplished by defining the relevant size
+and offset types as 64-bit values. Such files are sometimes referred
+to as <i class="dfn">large files</i>.
+
+<P>
+Large file support is enabled in Python when the size of an
+<tt class="ctype">off_t</tt> is larger than a <tt class="ctype">long</tt> and the <tt class="ctype">long long</tt>
+type is available and is at least as large as an <tt class="ctype">off_t</tt>. Python
+longs are then used to represent file sizes, offsets and other values
+that can exceed the range of a Python int. It may be necessary to
+configure and compile Python with certain compiler flags to enable
+this mode. For example, it is enabled by default with recent versions
+of Irix, but with Solaris 2.6 and 2.7 you need to do something like:
+
+<P>
+<dl><dd><pre class="verbatim">
+CFLAGS="`getconf LFS_CFLAGS`" OPT="-g -O2 $CFLAGS" \
+        ./configure
+</pre></dl> 
+<P>
+On large-file-capable Linux systems, this might work:
+
+<P>
+<dl><dd><pre class="verbatim">
+CFLAGS='-D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64' OPT="-g -O2 $CFLAGS" \
+        ./configure
+</pre></dl> 
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-posix.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-posix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="posix-contents.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-posix.html">8.1 posix  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-posix.html">8.1 posix  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="posix-contents.html">8.1.2 Module Contents</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>19.3.2 Assignment nodes</title>
+<META NAME="description" CONTENT="19.3.2 Assignment nodes">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node577.html">
+<LINK REL="previous" href="module-compiler.ast.html">
+<LINK REL="up" HREF="node574.html">
+<LINK REL="next" HREF="node577.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-compiler.ast.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node574.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node577.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-compiler.ast.html">19.3.1 AST Nodes</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node574.html">19.3 Python Abstract Syntax</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node577.html">19.3.3 Examples</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0021320000000000000000">
+19.3.2 Assignment nodes</A>
+</H2>
+
+<P>
+There is a collection of nodes used to represent assignments.  Each
+assignment statement in the source code becomes a single
+<tt class="class">Assign</tt> node in the AST.  The <tt class="member">nodes</tt> attribute is a
+list that contains a node for each assignment target.  This is
+necessary because assignment can be chained, e.g. <code>a = b = 2</code>.
+Each <tt class="class">Node</tt> in the list will be one of the following classes: 
+<tt class="class">AssAttr</tt>, <tt class="class">AssList</tt>, <tt class="class">AssName</tt>, or
+<tt class="class">AssTuple</tt>. 
+
+<P>
+Each target assignment node will describe the kind of object being
+assigned to:  <tt class="class">AssName</tt> for a simple name, e.g. <code>a = 1</code>.
+<tt class="class">AssAttr</tt> for an attribute assigned, e.g. <code>a.x = 1</code>.
+<tt class="class">AssList</tt> and <tt class="class">AssTuple</tt> for list and tuple expansion
+respectively, e.g. <code>a, b, c = a_tuple</code>.
+
+<P>
+The target assignment nodes also have a <tt class="member">flags</tt> attribute that
+indicates whether the node is being used for assignment or in a delete
+statement.  The <tt class="class">AssName</tt> is also used to represent a delete
+statement, e.g. <tt class="class">del x</tt>.
+
+<P>
+When an expression contains several attribute references, an
+assignment or delete statement will contain only one <tt class="class">AssAttr</tt>
+node - for the final attribute reference.  The other attribute
+references will be represented as <tt class="class">Getattr</tt> nodes in the
+<tt class="member">expr</tt> attribute of the <tt class="class">AssAttr</tt> instance.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-compiler.ast.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node574.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node577.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-compiler.ast.html">19.3.1 AST Nodes</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node574.html">19.3 Python Abstract Syntax</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node577.html">19.3.3 Examples</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

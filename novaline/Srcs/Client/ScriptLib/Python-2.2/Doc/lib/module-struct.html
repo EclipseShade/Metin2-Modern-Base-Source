@@ -1,0 +1,404 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>4.3 struct -- Interpret strings as packed binary data</title>
+<META NAME="description" CONTENT="4.3 struct -- Interpret strings as packed binary data">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-difflib.html">
+<LINK REL="previous" href="module-re.html">
+<LINK REL="up" href="strings.html">
+<LINK REL="next" href="module-difflib.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node102.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="strings.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-difflib.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node102.html">4.2.6 Examples</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="strings.html">4. String Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-difflib.html">4.4 difflib  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION006300000000000000000">
+4.3 <tt class="module">struct</tt> --
+         Interpret strings as packed binary data</A>
+</H1>
+
+<P>
+
+<P>
+<a name="l2h-759">&nbsp;</a>
+<P>
+This module performs conversions between Python values and C
+structs represented as Python strings.  It uses <i class="dfn">format strings</i>
+(explained below) as compact descriptions of the lay-out of the C
+structs and the intended conversion to/from Python values.  This can
+be used in handling binary data stored in files or from network
+connections, among other sources.
+
+<P>
+The module defines the following exception and functions:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-755"><tt class="exception">error</tt></a></b>
+<dd>
+  Exception raised on various occasions; argument is a string
+  describing what is wrong.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-756"><tt class="function">pack</tt></a></b>(<var>fmt, v1, v2,  ...</var>)
+<dd>
+  Return a string containing the values
+  <code><var>v1</var>, <var>v2</var>,  ...</code> packed according to the given
+  format.  The arguments must match the values required by the format
+  exactly.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-757"><tt class="function">unpack</tt></a></b>(<var>fmt, string</var>)
+<dd>
+  Unpack the string (presumably packed by <code>pack(<var>fmt</var>,
+   ...)</code>) according to the given format.  The result is a
+  tuple even if it contains exactly one item.  The string must contain
+  exactly the amount of data required by the format
+  (<code>len(<var>string</var>)</code> must equal <code>calcsize(<var>fmt</var>)</code>).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-758"><tt class="function">calcsize</tt></a></b>(<var>fmt</var>)
+<dd>
+  Return the size of the struct (and hence of the string)
+  corresponding to the given format.
+</dl>
+
+<P>
+Format characters have the following meaning; the conversion between
+C and Python values should be obvious given their types:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Format</b>&nbsp;</th>
+      <th align="left"><b>C Type</b>&nbsp;</th>
+      <th align="left"><b>Python</b>&nbsp;</th>
+      <th align="center"><b>Notes</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><samp>x</samp></td>
+        <td align="left">pad byte</td>
+        <td align="left">no value</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><samp>c</samp></td>
+        <td align="left"><tt class="ctype">char</tt></td>
+        <td align="left">string of length 1</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><samp>b</samp></td>
+        <td align="left"><tt class="ctype">signed char</tt></td>
+        <td align="left">integer</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><samp>B</samp></td>
+        <td align="left"><tt class="ctype">unsigned char</tt></td>
+        <td align="left">integer</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><samp>h</samp></td>
+        <td align="left"><tt class="ctype">short</tt></td>
+        <td align="left">integer</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><samp>H</samp></td>
+        <td align="left"><tt class="ctype">unsigned short</tt></td>
+        <td align="left">integer</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><samp>i</samp></td>
+        <td align="left"><tt class="ctype">int</tt></td>
+        <td align="left">integer</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><samp>I</samp></td>
+        <td align="left"><tt class="ctype">unsigned int</tt></td>
+        <td align="left">long</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><samp>l</samp></td>
+        <td align="left"><tt class="ctype">long</tt></td>
+        <td align="left">integer</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><samp>L</samp></td>
+        <td align="left"><tt class="ctype">unsigned long</tt></td>
+        <td align="left">long</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><samp>q</samp></td>
+        <td align="left"><tt class="ctype">long long</tt></td>
+        <td align="left">long</td>
+        <td align="center">(1)</td>
+    <tr><td align="center" valign="baseline"><samp>Q</samp></td>
+        <td align="left"><tt class="ctype">unsigned long long</tt></td>
+        <td align="left">long</td>
+        <td align="center">(1)</td>
+    <tr><td align="center" valign="baseline"><samp>f</samp></td>
+        <td align="left"><tt class="ctype">float</tt></td>
+        <td align="left">float</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><samp>d</samp></td>
+        <td align="left"><tt class="ctype">double</tt></td>
+        <td align="left">float</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><samp>s</samp></td>
+        <td align="left"><tt class="ctype">char[]</tt></td>
+        <td align="left">string</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><samp>p</samp></td>
+        <td align="left"><tt class="ctype">char[]</tt></td>
+        <td align="left">string</td>
+        <td align="center">&nbsp;</td>
+    <tr><td align="center" valign="baseline"><samp>P</samp></td>
+        <td align="left"><tt class="ctype">void *</tt></td>
+        <td align="left">integer</td>
+        <td align="center">&nbsp;</td></tbody>
+</table>
+
+<P>
+Notes:
+
+<P>
+<DL>
+<DT><STRONG>(1)</STRONG></DT>
+<DD>The "<tt class="character">q</tt>" and "<tt class="character">Q</tt>" conversion codes are available in
+  native mode only if the platform C compiler supports C <tt class="ctype">long long</tt>,
+  or, on Windows, <tt class="ctype">__int64</tt>.  They are always available in standard
+  modes.
+  
+<span class="versionnote">New in version 2.2.</span>
+
+</DD>
+</DL>
+
+<P>
+A format character may be preceded by an integral repeat count.  For
+example, the format string <code>'4h'</code> means exactly the same as
+<code>'hhhh'</code>.
+
+<P>
+Whitespace characters between formats are ignored; a count and its
+format must not contain whitespace though.
+
+<P>
+For the "<tt class="character">s</tt>" format character, the count is interpreted as the
+size of the string, not a repeat count like for the other format
+characters; for example, <code>'10s'</code> means a single 10-byte string, while
+<code>'10c'</code> means 10 characters.  For packing, the string is
+truncated or padded with null bytes as appropriate to make it fit.
+For unpacking, the resulting string always has exactly the specified
+number of bytes.  As a special case, <code>'0s'</code> means a single, empty
+string (while <code>'0c'</code> means 0 characters).
+
+<P>
+The "<tt class="character">p</tt>" format character encodes a "Pascal string", meaning
+a short variable-length string stored in a fixed number of bytes.
+The count is the total number of bytes stored.  The first byte stored is
+the length of the string, or 255, whichever is smaller.  The bytes
+of the string follow.  If the string passed in to <tt class="function">pack()</tt> is too
+long (longer than the count minus 1), only the leading count-1 bytes of the
+string are stored.  If the string is shorter than count-1, it is padded
+with null bytes so that exactly count bytes in all are used.  Note that
+for <tt class="function">unpack()</tt>, the "<tt class="character">p</tt>" format character consumes count
+bytes, but that the string returned can never contain more than 255
+characters.
+
+<P>
+For the "<tt class="character">I</tt>", "<tt class="character">L</tt>", "<tt class="character">q</tt>" and "<tt class="character">Q</tt>"
+format characters, the return value is a Python long integer.
+
+<P>
+For the "<tt class="character">P</tt>" format character, the return value is a Python
+integer or long integer, depending on the size needed to hold a
+pointer when it has been cast to an integer type.  A <tt class="constant">NULL</tt> pointer will
+always be returned as the Python integer <code>0</code>. When packing pointer-sized
+values, Python integer or long integer objects may be used.  For
+example, the Alpha and Merced processors use 64-bit pointer values,
+meaning a Python long integer will be used to hold the pointer; other
+platforms use 32-bit pointers and will use a Python integer.
+
+<P>
+By default, C numbers are represented in the machine's native format
+and byte order, and properly aligned by skipping pad bytes if
+necessary (according to the rules used by the C compiler).
+
+<P>
+Alternatively, the first character of the format string can be used to
+indicate the byte order, size and alignment of the packed data,
+according to the following table:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="center"><b>Character</b>&nbsp;</th>
+      <th align="left"><b>Byte order</b>&nbsp;</th>
+      <th align="left"><b>Size and alignment</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="center" valign="baseline"><samp>@</samp></td>
+        <td align="left">native</td>
+        <td align="left">native</td>
+    <tr><td align="center" valign="baseline"><samp>=</samp></td>
+        <td align="left">native</td>
+        <td align="left">standard</td>
+    <tr><td align="center" valign="baseline"><samp>&lt;</samp></td>
+        <td align="left">little-endian</td>
+        <td align="left">standard</td>
+    <tr><td align="center" valign="baseline"><samp>&gt;</samp></td>
+        <td align="left">big-endian</td>
+        <td align="left">standard</td>
+    <tr><td align="center" valign="baseline"><samp>!</samp></td>
+        <td align="left">network (= big-endian)</td>
+        <td align="left">standard</td></tbody>
+</table>
+
+<P>
+If the first character is not one of these, "<tt class="character">@</tt>" is assumed.
+
+<P>
+Native byte order is big-endian or little-endian, depending on the
+host system.  For example, Motorola and Sun processors are big-endian;
+Intel and DEC processors are little-endian.
+
+<P>
+Native size and alignment are determined using the C compiler's
+<tt class="keyword">sizeof</tt> expression.  This is always combined with native byte
+order.
+
+<P>
+Standard size and alignment are as follows: no alignment is required
+for any type (so you have to use pad bytes);
+<tt class="ctype">short</tt> is 2 bytes;
+<tt class="ctype">int</tt> and <tt class="ctype">long</tt> are 4 bytes;
+<tt class="ctype">long long</tt> (<tt class="ctype">__int64</tt> on Windows) is 8 bytes;
+<tt class="ctype">float</tt> and <tt class="ctype">double</tt> are 32-bit and 64-bit
+IEEE floating point numbers, respectively.
+
+<P>
+Note the difference between "<tt class="character">@</tt>" and "<tt class="character">=</tt>": both use
+native byte order, but the size and alignment of the latter is
+standardized.
+
+<P>
+The form "<tt class="character">!</tt>" is available for those poor souls who claim they
+can't remember whether network byte order is big-endian or
+little-endian.
+
+<P>
+There is no way to indicate non-native byte order (force
+byte-swapping); use the appropriate choice of "<tt class="character">&lt;</tt>" or
+"<tt class="character">&gt;</tt>".
+
+<P>
+The "<tt class="character">P</tt>" format character is only available for the native
+byte ordering (selected as the default or with the "<tt class="character">@</tt>" byte
+order character). The byte order character "<tt class="character">=</tt>" chooses to
+use little- or big-endian ordering based on the host system. The
+struct module does not interpret this as native ordering, so the
+"<tt class="character">P</tt>" format is not available.
+
+<P>
+Examples (all using native byte order, size and alignment, on a
+big-endian machine):
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; from struct import *
+&gt;&gt;&gt; pack('hhl', 1, 2, 3)
+'\x00\x01\x00\x02\x00\x00\x00\x03'
+&gt;&gt;&gt; unpack('hhl', '\x00\x01\x00\x02\x00\x00\x00\x03')
+(1, 2, 3)
+&gt;&gt;&gt; calcsize('hhl')
+8
+</pre></dl>
+
+<P>
+Hint: to align the end of a structure to the alignment requirement of
+a particular type, end the format with the code for that type with a
+repeat count of zero.  For example, the format <code>'llh0l'</code>
+specifies two pad bytes at the end, assuming longs are aligned on
+4-byte boundaries.  This only works when native size and alignment are
+in effect; standard size and alignment does not enforce any alignment.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-array.html">array</a></tt>:</b>
+    <dd>Packed binary storage of homogeneous data.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-xdrlib.html">xdrlib</a></tt>:</b>
+    <dd>Packing and unpacking of XDR data.
+  </dl>
+</div>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node102.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="strings.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-difflib.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node102.html">4.2.6 Examples</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="strings.html">4. String Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-difflib.html">4.4 difflib  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

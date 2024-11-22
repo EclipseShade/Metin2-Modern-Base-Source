@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>10.6 Buffer Object Structures </title>
+<META NAME="description" CONTENT="10.6 Buffer Object Structures ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="supporting-iteration.html">
+<LINK REL="previous" href="sequence-structs.html">
+<LINK REL="up" href="newTypes.html">
+<LINK REL="next" href="supporting-iteration.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="sequence-structs.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="newTypes.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="supporting-iteration.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="sequence-structs.html">10.5 Sequence Object Structures</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="newTypes.html">10. Defining New Object</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="supporting-iteration.html">10.7 Supporting the Iterator</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0012600000000000000000">&nbsp;</A>
+<BR>
+10.6 Buffer Object Structures 
+</H1>
+
+<P>
+The buffer interface exports a model where an object can expose its
+internal data as a set of chunks of data, where each chunk is
+specified as a pointer/length pair.  These chunks are called
+<i class="dfn">segments</i> and are presumed to be non-contiguous in memory.
+
+<P>
+If an object does not export the buffer interface, then its
+<tt class="member">tp_as_buffer</tt> member in the <tt class="ctype">PyTypeObject</tt> structure
+should be <tt class="constant">NULL</tt>.  Otherwise, the <tt class="member">tp_as_buffer</tt> will point to
+a <tt class="ctype">PyBufferProcs</tt> structure.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+It is very important that your <tt class="ctype">PyTypeObject</tt> structure
+uses <tt class="constant">Py_TPFLAGS_DEFAULT</tt> for the value of the
+<tt class="member">tp_flags</tt> member rather than <code>0</code>.  This tells the Python
+runtime that your <tt class="ctype">PyBufferProcs</tt> structure contains the
+<tt class="member">bf_getcharbuffer</tt> slot. Older versions of Python did not have
+this member, so a new Python interpreter using an old extension needs
+to be able to test for its presence before using it.</span>
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-795">PyBufferProcs</a></tt></b>
+<dd>
+  Structure used to hold the function pointers which define an
+  implementation of the buffer protocol.
+
+<P>
+The first slot is <tt class="member">bf_getreadbuffer</tt>, of type
+  <tt class="ctype">getreadbufferproc</tt>.  If this slot is <tt class="constant">NULL</tt>, then the object
+  does not support reading from the internal data.  This is
+  non-sensical, so implementors should fill this in, but callers
+  should test that the slot contains a non-<tt class="constant">NULL</tt> value.
+
+<P>
+The next slot is <tt class="member">bf_getwritebuffer</tt> having type
+  <tt class="ctype">getwritebufferproc</tt>.  This slot may be <tt class="constant">NULL</tt> if the object
+  does not allow writing into its returned buffers.
+
+<P>
+The third slot is <tt class="member">bf_getsegcount</tt>, with type
+  <tt class="ctype">getsegcountproc</tt>.  This slot must not be <tt class="constant">NULL</tt> and is used
+  to inform the caller how many segments the object contains.  Simple
+  objects such as <tt class="ctype">PyString_Type</tt> and <tt class="ctype">PyBuffer_Type</tt>
+  objects contain a single segment.
+
+<P>
+The last slot is <tt class="member">bf_getcharbuffer</tt>, of type
+  <tt class="ctype">getcharbufferproc</tt>.  This slot will only be present if the
+  <tt class="constant">Py_TPFLAGS_HAVE_GETCHARBUFFER</tt> flag is present in the
+  <tt class="member">tp_flags</tt> field of the object's <tt class="ctype">PyTypeObject</tt>.
+  Before using this slot, the caller should test whether it is present
+  by using the
+  <tt class="cfunction">PyType_HasFeature()</tt><a name="l2h-801">&nbsp;</a>  function.  If present, it may be <tt class="constant">NULL</tt>, indicating that the object's
+  contents cannot be used as <i>8-bit characters</i>.
+  The slot function may also raise an error if the object's contents
+  cannot be interpreted as 8-bit characters.  For example, if the
+  object is an array which is configured to hold floating point
+  values, an exception may be raised if a caller attempts to use
+  <tt class="member">bf_getcharbuffer</tt> to fetch a sequence of 8-bit characters.
+  This notion of exporting the internal buffers as ``text'' is used to
+  distinguish between objects that are binary in nature, and those
+  which have character-based content.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+The current policy seems to state that these characters
+  may be multi-byte characters. This implies that a buffer size of
+  <var>N</var> does not mean there are <var>N</var> characters present.</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-796"><tt>Py_TPFLAGS_HAVE_GETCHARBUFFER</tt></a></b>
+<dd>
+  Flag bit set in the type structure to indicate that the
+  <tt class="member">bf_getcharbuffer</tt> slot is known.  This being set does not
+  indicate that the object supports the buffer interface or that the
+  <tt class="member">bf_getcharbuffer</tt> slot is non-<tt class="constant">NULL</tt>.
+</dl>
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-797">int (*getreadbufferproc)
+                            (PyObject *self, int segment, void **ptrptr)</a></tt></b>
+<dd>
+  Return a pointer to a readable segment of the buffer.  This function
+  is allowed to raise an exception, in which case it must return
+  <code>-1</code>.  The <var>segment</var> which is passed must be zero or
+  positive, and strictly less than the number of segments returned by
+  the <tt class="member">bf_getsegcount</tt> slot function.  On success, it returns
+  the length of the buffer memory, and sets <code>*<var>ptrptr</var></code> to a
+  pointer to that memory.
+</dl>
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-798">int (*getwritebufferproc)
+                            (PyObject *self, int segment, void **ptrptr)</a></tt></b>
+<dd>
+  Return a pointer to a writable memory buffer in
+  <code>*<var>ptrptr</var></code>, and the length of that segment as the function
+  return value.  The memory buffer must correspond to buffer segment
+  <var>segment</var>.  Must return <code>-1</code> and set an exception on
+  error.  <tt class="exception">TypeError</tt> should be raised if the object only
+  supports read-only buffers, and <tt class="exception">SystemError</tt> should be
+  raised when <var>segment</var> specifies a segment that doesn't exist.
+</dl>
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-799">int (*getsegcountproc)
+                            (PyObject *self, int *lenp)</a></tt></b>
+<dd>
+  Return the number of memory segments which comprise the buffer.  If
+  <var>lenp</var> is not <tt class="constant">NULL</tt>, the implementation must report the sum of
+  the sizes (in bytes) of all segments in <code>*<var>lenp</var></code>.
+  The function cannot fail.
+</dl>
+
+<P>
+<dl><dt><b><tt class="ctype"><a name="l2h-800">int (*getcharbufferproc)
+                            (PyObject *self, int segment, const char **ptrptr)</a></tt></b>
+<dd>
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="sequence-structs.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="newTypes.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="supporting-iteration.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="sequence-structs.html">10.5 Sequence Object Structures</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="newTypes.html">10. Defining New Object</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="supporting-iteration.html">10.7 Supporting the Iterator</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

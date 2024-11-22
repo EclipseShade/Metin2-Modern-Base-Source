@@ -1,0 +1,1102 @@
+﻿Der Buildvorgang wurde am 27.09.2013 20:03:52 gestartet.
+     1>Projekt "D:\tt (1)\dev\Srcs\Client\EterBase\eterBase_VC90.vcxproj" auf Knoten "4", build Ziel(e).
+     1>InitializeBuildStatus:
+         ".\Debug\eterBase.unsuccessfulbuild" wird erstellt, da "AlwaysCreate" angegeben wurde.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I../../extern/include /Zi /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _VC80_UPGRADE=0x0710 /D _MBCS /Gm- /EHsc /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc100.pdb" /Gd /TP /analyze- /errorReport:prompt poly\Base.cpp poly\Poly.cpp poly\Symbol.cpp poly\SymTable.cpp cipher.cpp CPostIt.cpp CRC32.cpp Debug.cpp error.cpp FileBase.cpp FileDir.cpp FileLoader.cpp lzo.cpp MappedFile.cpp Random.cpp StdAfx.cpp Stl.cpp tea.cpp TempFile.cpp Timer.cpp Utils.cpp
+         Base.cpp
+         Poly.cpp
+         Symbol.cpp
+         SymTable.cpp
+         cipher.cpp
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(129): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(130): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(131): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(132): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(134): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(192): warning C4100: 'blocking': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(192): warning C4100: 'channel': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(192): warning C4100: 'target': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(194): warning C4100: 'blocking': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(194): warning C4100: 'channel': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(194): warning C4100: 'end': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(194): warning C4100: 'begin': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(194): warning C4100: 'target': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(202): warning C4100: 'parameters': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(203): warning C4100: 'blocking': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(203): warning C4100: 'messageEnd': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(203): warning C4100: 'length': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(203): warning C4100: 'begin': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(76): warning C4100: 'iterationCount': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(76): warning C4100: 'input': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(76): warning C4100: 'output': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(76): warning C4100: 'operation': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(78): warning C4100: 'length': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(78): warning C4100: 'iv': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(78): warning C4100: 'keystreamBuffer': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(80): warning C4100: 'iterationCount': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(171): warning C4100: 'iterationCount': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(171): warning C4100: 'dir': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(171): warning C4100: 'input': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(171): warning C4100: 'output': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(173): warning C4100: 'length': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(173): warning C4100: 'iv': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(299): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(300): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(301): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(302): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\strciphr.h(303): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(80): warning C4512: 'CryptoPP::CombinedNameValuePairs': Zuweisungsoperator konnte nicht generiert werden
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(70): Siehe Deklaration von 'CryptoPP::CombinedNameValuePairs'
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(329): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(330): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(331): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>D:\tt (1)\dev\Srcs\extern\include\cryptopp/modes.h(291): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>D:\tt (1)\dev\Srcs\extern\include\cryptopp/modes.h(292): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>D:\tt (1)\dev\Srcs\extern\include\cryptopp/modes.h(293): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>D:\tt (1)\dev\Srcs\extern\include\cryptopp/modes.h(325): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>D:\tt (1)\dev\Srcs\extern\include\cryptopp/modes.h(342): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>D:\tt (1)\dev\Srcs\extern\include\cryptopp/modes.h(343): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>D:\tt (1)\dev\Srcs\extern\include\cryptopp/modes.h(368): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>D:\tt (1)\dev\Srcs\extern\include\cryptopp/modes.h(385): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>D:\tt (1)\dev\Srcs\extern\include\cryptopp/modes.h(386): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>D:\tt (1)\dev\Srcs\extern\include\cryptopp/modes.h(403): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>D:\tt (1)\dev\Srcs\extern\include\cryptopp/modes.h(404): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\queue.h(93): warning C4512: 'CryptoPP::ByteQueue::Walker': Zuweisungsoperator konnte nicht generiert werden
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\queue.h(64): Siehe Deklaration von 'CryptoPP::ByteQueue::Walker'
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\queue.h(122): warning C4512: 'CryptoPP::LazyPutter': Zuweisungsoperator konnte nicht generiert werden
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\queue.h(112): Siehe Deklaration von 'CryptoPP::LazyPutter'
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\queue.h(130): warning C4512: 'CryptoPP::LazyPutterModifiable': Zuweisungsoperator konnte nicht generiert werden
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\queue.h(125): Siehe Deklaration von 'CryptoPP::LazyPutterModifiable'
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(94): warning C4100: 'parameters': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(174): warning C4100: 'lastSize': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(174): warning C4100: 'blockSize': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(174): warning C4100: 'firstSize': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(176): warning C4100: 'parameters': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(181): warning C4100: 'inString': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(205): warning C4100: 'length': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(205): warning C4100: 'inString': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(251): warning C4100: 'parameters': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(536): warning C4512: 'CryptoPP::OutputProxy': Zuweisungsoperator konnte nicht generiert werden
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(501): Siehe Deklaration von 'CryptoPP::OutputProxy'
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(614): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(700): warning C4100: 'blocking': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(700): warning C4100: 'channel': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(700): warning C4100: 'end': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(700): warning C4100: 'begin': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(700): warning C4100: 'target': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(717): warning C4100: 'parameters': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\iterhash.h(97): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\iterhash.h(98): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\iterhash.h(100): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\iterhash.h(101): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>D:\tt (1)\dev\Srcs\extern\include\cryptopp/osrng.h(143): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\modarith.h(13): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\modarith.h(14): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\modarith.h(15): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\modarith.h(101): warning C4100: 'ignore_for_now': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(71): warning C4100: 'rng': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(109): warning C4100: 'name': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(189): warning C4100: 'digestLength': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(189): warning C4100: 'hashIdentifierLength': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(191): warning C4100: 'digestLength': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(191): warning C4100: 'hashIdentifierLength': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(191): warning C4100: 'representativeBitLength': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(202): warning C4100: 'semisignatureLength': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(202): warning C4100: 'semisignature': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(202): warning C4100: 'hash': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(208): warning C4100: 'semisignature': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(207): warning C4100: 'presignatureLength': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(207): warning C4100: 'presignature': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(206): warning C4100: 'recoverableMessageLength': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(206): warning C4100: 'recoverableMessage': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(205): warning C4100: 'hash': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(226): warning C4100: 'recoveredMessage': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(225): warning C4100: 'representativeBitLength': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(225): warning C4100: 'representative': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(224): warning C4100: 'messageEmpty': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(224): warning C4100: 'hashIdentifier': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(224): warning C4100: 'hash': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(233): warning C4100: 'recoveredMessage': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(232): warning C4100: 'semisignatureLength': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(232): warning C4100: 'semisignature': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(231): warning C4100: 'presignatureLength': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(231): warning C4100: 'presignature': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(230): warning C4100: 'hashIdentifier': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(230): warning C4100: 'hash': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(937): warning C4100: 'name': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\modexppc.h(11): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\asn.h(156): warning C4512: 'CryptoPP::BERGeneralDecoder': Zuweisungsoperator konnte nicht generiert werden
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\asn.h(128): Siehe Deklaration von 'CryptoPP::BERGeneralDecoder'
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\asn.h(154): warning C4100: 'parameters': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\asn.h(174): warning C4512: 'CryptoPP::DERGeneralEncoder': Zuweisungsoperator konnte nicht generiert werden
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\asn.h(159): Siehe Deklaration von 'CryptoPP::DERGeneralEncoder'
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\asn.h(184): warning C4512: 'CryptoPP::BERSequenceDecoder': Zuweisungsoperator konnte nicht generiert werden
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\asn.h(177): Siehe Deklaration von 'CryptoPP::BERSequenceDecoder'
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\asn.h(194): warning C4512: 'CryptoPP::DERSequenceEncoder': Zuweisungsoperator konnte nicht generiert werden
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\asn.h(187): Siehe Deklaration von 'CryptoPP::DERSequenceEncoder'
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\asn.h(204): warning C4512: 'CryptoPP::BERSetDecoder': Zuweisungsoperator konnte nicht generiert werden
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\asn.h(197): Siehe Deklaration von 'CryptoPP::BERSetDecoder'
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\asn.h(214): warning C4512: 'CryptoPP::DERSetEncoder': Zuweisungsoperator konnte nicht generiert werden
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\asn.h(207): Siehe Deklaration von 'CryptoPP::DERSetEncoder'
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(20): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(53): warning C4100: 'reversible': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(55): warning C4100: 'reversible': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(116): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(180): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(414): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(415): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(416): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>D:\tt (1)\dev\Srcs\extern\include\cryptopp/dh.h(92): warning C4231: Nicht dem Standard entsprechende Erweiterung: 'extern' vor der expliziten Vorlagen-Instanziierung
+     1>D:\tt (1)\dev\Srcs\extern\include\cryptopp/dh2.h(54): warning C4512: 'CryptoPP::DH2': Zuweisungsoperator konnte nicht generiert werden
+                 D:\tt (1)\dev\Srcs\extern\include\cryptopp/dh2.h(12): Siehe Deklaration von 'CryptoPP::DH2'
+     1>D:\tt (1)\dev\Srcs\extern\include\cryptopp/tea.h(100): warning C4100: 'length': Unreferenzierter formaler Parameter
+     1>cipher.cpp(134): warning C4512: 'DH2KeyAgreement': Zuweisungsoperator konnte nicht generiert werden
+                 cipher.cpp(121): Siehe Deklaration von 'DH2KeyAgreement'
+     1>cipher.cpp(380): warning C4189: 'count': Lokale Variable ist initialisiert aber nicht referenziert
+     1>cipher.cpp(446): warning C4193: #pragma-Warnung (pop): Keine dazugehörige '#pragma-Warnung (push)'
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(88): warning C4100: 'blocking': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(89): Bei der Kompilierung der  Klassen-template der size_t CryptoPP::InputRejecting<T>::Put2(const byte *,size_t,int,bool)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::BufferedTransformation
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(153): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::InputRejecting<T>".
+                 with
+                 [
+                     T=CryptoPP::BufferedTransformation
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(168): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AutoSignaling<T>".
+                 with
+                 [
+                     T=CryptoPP::InputRejecting<CryptoPP::BufferedTransformation>
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(88): warning C4100: 'messageEnd': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(88): warning C4100: 'length': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(88): warning C4100: 'begin': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(93): warning C4100: 'blocking': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(94): Bei der Kompilierung der  Klassen-template der size_t CryptoPP::InputRejecting<T>::ChannelPut2(const std::string &,const byte *,size_t,int,bool)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::BufferedTransformation
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(93): warning C4100: 'messageEnd': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(93): warning C4100: 'length': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(93): warning C4100: 'begin': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(93): warning C4100: 'channel': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(52): warning C4100: 'blocking': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(52): Bei der Kompilierung der  Klassen-template der bool CryptoPP::Bufferless<T>::IsolatedFlush(bool,bool)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::Sink
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(199): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::Bufferless<T>".
+                 with
+                 [
+                     T=CryptoPP::Sink
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(52): warning C4100: 'hardFlush': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(322): warning C4189: 'p': Lokale Variable ist initialisiert aber nicht referenziert
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(321): Bei der Kompilierung der  Klassen-template der void CryptoPP::AlgorithmParametersTemplate<T>::MoveInto(void *) const-Memberfunktion
+                 with
+                 [
+                     T=bool
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(329): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AlgorithmParametersTemplate<T>".
+                 with
+                 [
+                     T=bool
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(322): warning C4189: 'p': Lokale Variable ist initialisiert aber nicht referenziert
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(321): Bei der Kompilierung der  Klassen-template der void CryptoPP::AlgorithmParametersTemplate<T>::MoveInto(void *) const-Memberfunktion
+                 with
+                 [
+                     T=int
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(330): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AlgorithmParametersTemplate<T>".
+                 with
+                 [
+                     T=int
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(322): warning C4189: 'p': Lokale Variable ist initialisiert aber nicht referenziert
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(321): Bei der Kompilierung der  Klassen-template der void CryptoPP::AlgorithmParametersTemplate<T>::MoveInto(void *) const-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::ConstByteArrayParameter
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(331): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AlgorithmParametersTemplate<T>".
+                 with
+                 [
+                     T=CryptoPP::ConstByteArrayParameter
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(52): warning C4100: 'blocking': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(52): Bei der Kompilierung der  Klassen-template der bool CryptoPP::Bufferless<T>::IsolatedFlush(bool,bool)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::BufferedTransformation
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\queue.h(17): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::Bufferless<T>".
+                 with
+                 [
+                     T=CryptoPP::BufferedTransformation
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(52): warning C4100: 'hardFlush': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(52): warning C4100: 'blocking': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(52): Bei der Kompilierung der  Klassen-template der bool CryptoPP::Bufferless<T>::IsolatedFlush(bool,bool)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::Filter
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(86): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::Bufferless<T>".
+                 with
+                 [
+                     T=CryptoPP::Filter
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(52): warning C4100: 'hardFlush': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(62): warning C4100: 'blocking': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(63): Bei der Kompilierung der  Klassen-template der bool CryptoPP::Unflushable<T>::IsolatedFlush(bool,bool)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::Filter
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(388): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::Unflushable<T>".
+                 with
+                 [
+                     T=CryptoPP::Filter
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(62): warning C4100: 'hardFlush': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(117): warning C4100: 'parameters': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(117): Bei der Kompilierung der  Klassen-template der void CryptoPP::CustomSignalPropagation<T>::IsolatedInitialize(const CryptoPP::NameValuePairs &)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::Sink
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(442): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::CustomSignalPropagation<T>".
+                 with
+                 [
+                     T=CryptoPP::Sink
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(106): warning C4100: 'blocking': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(106): Bei der Kompilierung der  Klassen-template der bool CryptoPP::CustomFlushPropagation<T>::IsolatedFlush(bool,bool)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::Sink
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(112): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::CustomFlushPropagation<T>".
+                 with
+                 [
+                     T=CryptoPP::Sink
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(106): warning C4100: 'hardFlush': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(597): warning C4100: 'blocking': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(598): Bei der Kompilierung der  Klassen-template der size_t CryptoPP::StringSinkTemplate<T>::Put2(const byte *,size_t,int,bool)-Memberfunktion
+                 with
+                 [
+                     T=std::string
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(614): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::StringSinkTemplate<T>".
+                 with
+                 [
+                     T=std::string
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(597): warning C4100: 'messageEnd': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(88): warning C4100: 'blocking': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(89): Bei der Kompilierung der  Klassen-template der size_t CryptoPP::InputRejecting<T>::Put2(const byte *,size_t,int,bool)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::Filter
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(728): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::InputRejecting<T>".
+                 with
+                 [
+                     T=CryptoPP::Filter
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(88): warning C4100: 'messageEnd': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(88): warning C4100: 'length': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(88): warning C4100: 'begin': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(93): warning C4100: 'blocking': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(94): Bei der Kompilierung der  Klassen-template der size_t CryptoPP::InputRejecting<T>::ChannelPut2(const std::string &,const byte *,size_t,int,bool)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::Filter
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(93): warning C4100: 'messageEnd': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(93): warning C4100: 'length': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(93): warning C4100: 'begin': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(93): warning C4100: 'channel': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(317): warning C4100: 'signatureLength': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(318): Bei der Kompilierung der  Klassen-template der size_t CryptoPP::TF_SignatureSchemeBase<INTERFACE,BASE>::MaxRecoverableLengthFromSignatureLength(size_t) const-Memberfunktion
+                 with
+                 [
+                     INTERFACE=CryptoPP::PK_Signer,
+                     BASE=CryptoPP::TF_Base<CryptoPP::RandomizedTrapdoorFunctionInverse,CryptoPP::PK_SignatureMessageEncodingMethod>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(336): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::TF_SignatureSchemeBase<INTERFACE,BASE>".
+                 with
+                 [
+                     INTERFACE=CryptoPP::PK_Signer,
+                     BASE=CryptoPP::TF_Base<CryptoPP::RandomizedTrapdoorFunctionInverse,CryptoPP::PK_SignatureMessageEncodingMethod>
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(317): warning C4100: 'signatureLength': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(318): Bei der Kompilierung der  Klassen-template der size_t CryptoPP::TF_SignatureSchemeBase<INTERFACE,BASE>::MaxRecoverableLengthFromSignatureLength(size_t) const-Memberfunktion
+                 with
+                 [
+                     INTERFACE=CryptoPP::PK_Verifier,
+                     BASE=CryptoPP::TF_Base<CryptoPP::TrapdoorFunction,CryptoPP::PK_SignatureMessageEncodingMethod>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(344): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::TF_SignatureSchemeBase<INTERFACE,BASE>".
+                 with
+                 [
+                     INTERFACE=CryptoPP::PK_Verifier,
+                     BASE=CryptoPP::TF_Base<CryptoPP::TrapdoorFunction,CryptoPP::PK_SignatureMessageEncodingMethod>
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(226): warning C4512: 'CryptoPP::AssignFromHelperClass<T,BASE>': Zuweisungsoperator konnte nicht generiert werden
+                 with
+                 [
+                     T=CryptoPP::DL_GroupParameters_IntegerBasedImpl<CryptoPP::ModExpPrecomputation>,
+                     BASE=CryptoPP::DL_GroupParameters_IntegerBased
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(96): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AssignFromHelperClass<T,BASE>".
+                 with
+                 [
+                     T=CryptoPP::DL_GroupParameters_IntegerBasedImpl<CryptoPP::ModExpPrecomputation>,
+                     BASE=CryptoPP::DL_GroupParameters_IntegerBased
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(96): Bei der Kompilierung der  Klassen-template der void CryptoPP::DL_GroupParameters_IntegerBasedImpl<GROUP_PRECOMP>::AssignFrom(const CryptoPP::NameValuePairs &)-Memberfunktion
+                 with
+                 [
+                     GROUP_PRECOMP=CryptoPP::ModExpPrecomputation
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(116): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_GroupParameters_IntegerBasedImpl<GROUP_PRECOMP>".
+                 with
+                 [
+                     GROUP_PRECOMP=CryptoPP::ModExpPrecomputation
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(905): warning C4100: 's': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(906): Bei der Kompilierung der  Klassen-template der CryptoPP::Integer CryptoPP::DL_ElgamalLikeSignatureAlgorithm<T>::RecoverPresignature(const CryptoPP::DL_GroupParameters<T> &,const CryptoPP::DL_PublicKey<T> &,const CryptoPP::Integer &,const CryptoPP::Integer &) const-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::Integer
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(153): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_ElgamalLikeSignatureAlgorithm<T>".
+                 with
+                 [
+                     T=CryptoPP::Integer
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(180): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_Algorithm_GDSA<T>".
+                 with
+                 [
+                     T=CryptoPP::Integer
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(905): warning C4100: 'r': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(905): warning C4100: 'publicKey': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(905): warning C4100: 'params': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(226): warning C4512: 'CryptoPP::AssignFromHelperClass<T,BASE>': Zuweisungsoperator konnte nicht generiert werden
+                 with
+                 [
+                     T=CryptoPP::DL_PublicKeyImpl<CryptoPP::DL_GroupParameters_DSA>,
+                     BASE=CryptoPP::DL_PublicKey<CryptoPP::Integer>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(859): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AssignFromHelperClass<T,BASE>".
+                 with
+                 [
+                     T=CryptoPP::DL_PublicKeyImpl<CryptoPP::DL_GroupParameters_DSA>,
+                     BASE=CryptoPP::DL_PublicKey<CryptoPP::Integer>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(858): Bei der Kompilierung der  Klassen-template der void CryptoPP::DL_PublicKeyImpl<GP>::AssignFrom(const CryptoPP::NameValuePairs &)-Memberfunktion
+                 with
+                 [
+                     GP=CryptoPP::DL_GroupParameters_DSA
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(212): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_PublicKeyImpl<GP>".
+                 with
+                 [
+                     GP=CryptoPP::DL_GroupParameters_DSA
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(414): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_PublicKey_GFP<GP>".
+                 with
+                 [
+                     GP=CryptoPP::DL_GroupParameters_DSA
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(226): warning C4512: 'CryptoPP::AssignFromHelperClass<T,BASE>': Zuweisungsoperator konnte nicht generiert werden
+                 with
+                 [
+                     T=CryptoPP::DL_PrivateKeyImpl<CryptoPP::DL_GroupParameters_DSA>,
+                     BASE=CryptoPP::DL_PrivateKey<CryptoPP::Integer>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(776): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AssignFromHelperClass<T,BASE>".
+                 with
+                 [
+                     T=CryptoPP::DL_PrivateKeyImpl<CryptoPP::DL_GroupParameters_DSA>,
+                     BASE=CryptoPP::DL_PrivateKey<CryptoPP::Integer>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(775): Bei der Kompilierung der  Klassen-template der void CryptoPP::DL_PrivateKeyImpl<GP>::AssignFrom(const CryptoPP::NameValuePairs &)-Memberfunktion
+                 with
+                 [
+                     GP=CryptoPP::DL_GroupParameters_DSA
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(231): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_PrivateKeyImpl<GP>".
+                 with
+                 [
+                     GP=CryptoPP::DL_GroupParameters_DSA
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(415): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_PrivateKey_GFP<GP>".
+                 with
+                 [
+                     GP=CryptoPP::DL_GroupParameters_DSA
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(1392): warning C4100: 'rng': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(1393): Bei der Kompilierung der  Klassen-template der void CryptoPP::DL_SimpleKeyAgreementDomainBase<T>::GeneratePublicKey(CryptoPP::RandomNumberGenerator &,const byte *,byte *) const-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::Integer
+                 ]
+                 D:\tt (1)\dev\Srcs\extern\include\cryptopp/dh.h(14): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_SimpleKeyAgreementDomainBase<T>".
+                 with
+                 [
+                     T=CryptoPP::Integer
+                 ]
+                 D:\tt (1)\dev\Srcs\extern\include\cryptopp/dh.h(92): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DH_Domain<GROUP_PARAMETERS>".
+                 with
+                 [
+                     GROUP_PARAMETERS=CryptoPP::DL_GroupParameters_GFP_DefaultSafePrime
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(96): warning C4127: Bedingter Ausdruck ist konstant
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(90): Bei der Kompilierung der  Klassen-template der unsigned char *CryptoPP::AllocatorWithCleanup<T>::allocate(CryptoPP::AllocatorWithCleanup<T>::size_type,const void *)-Memberfunktion
+                 with
+                 [
+                     T=byte
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(129): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AllocatorWithCleanup<T>".
+                 with
+                 [
+                     T=byte
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(108): warning C4127: Bedingter Ausdruck ist konstant
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(104): Bei der Kompilierung der  Klassen-template der void CryptoPP::AllocatorWithCleanup<T>::deallocate(void *,CryptoPP::AllocatorWithCleanup<T>::size_type)-Memberfunktion
+                 with
+                 [
+                     T=byte
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(96): warning C4127: Bedingter Ausdruck ist konstant
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(90): Bei der Kompilierung der  Klassen-template der unsigned int *CryptoPP::AllocatorWithCleanup<T,T_Align16>::allocate(CryptoPP::AllocatorWithCleanup<T,T_Align16>::size_type,const void *)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::word,
+                     T_Align16=true
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(134): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AllocatorWithCleanup<T,T_Align16>".
+                 with
+                 [
+                     T=CryptoPP::word,
+                     T_Align16=true
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(108): warning C4127: Bedingter Ausdruck ist konstant
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(104): Bei der Kompilierung der  Klassen-template der void CryptoPP::AllocatorWithCleanup<T,T_Align16>::deallocate(void *,CryptoPP::AllocatorWithCleanup<T,T_Align16>::size_type)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::word,
+                     T_Align16=true
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(96): warning C4127: Bedingter Ausdruck ist konstant
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(90): Bei der Kompilierung der  Klassen-template der unsigned char *CryptoPP::AllocatorWithCleanup<T,T_Align16>::allocate(CryptoPP::AllocatorWithCleanup<T,T_Align16>::size_type,const void *)-Memberfunktion
+                 with
+                 [
+                     T=byte,
+                     T_Align16=true
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(241): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AllocatorWithCleanup<T,T_Align16>".
+                 with
+                 [
+                     T=byte,
+                     T_Align16=true
+                 ]
+                 D:\tt (1)\dev\Srcs\extern\include\cryptopp/modes.h(76): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::SecBlock<T,A>".
+                 with
+                 [
+                     T=byte,
+                     A=CryptoPP::AllocatorWithCleanup<byte,true>
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(108): warning C4127: Bedingter Ausdruck ist konstant
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(104): Bei der Kompilierung der  Klassen-template der void CryptoPP::AllocatorWithCleanup<T,T_Align16>::deallocate(void *,CryptoPP::AllocatorWithCleanup<T,T_Align16>::size_type)-Memberfunktion
+                 with
+                 [
+                     T=byte,
+                     T_Align16=true
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(972): warning C4100: 'signatureLength': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(973): Bei der Kompilierung der  Klassen-template der size_t CryptoPP::DL_SignatureSchemeBase<INTERFACE,KEY_INTERFACE>::MaxRecoverableLengthFromSignatureLength(size_t) const-Memberfunktion
+                 with
+                 [
+                     INTERFACE=CryptoPP::PK_Signer,
+                     KEY_INTERFACE=CryptoPP::DL_PrivateKey<CryptoPP::Integer>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(995): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_SignatureSchemeBase<INTERFACE,KEY_INTERFACE>".
+                 with
+                 [
+                     INTERFACE=CryptoPP::PK_Signer,
+                     KEY_INTERFACE=CryptoPP::DL_PrivateKey<CryptoPP::Integer>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(25): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_SignerBase<T>".
+                 with
+                 [
+                     T=CryptoPP::Integer
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(1282): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AlgorithmImpl<BASE,ALGORITHM_INFO>".
+                 with
+                 [
+                     BASE=CryptoPP::DL_SignerBase<CryptoPP::Integer>,
+                     ALGORITHM_INFO=CryptoPP::DSA
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(1317): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_ObjectImplBase<BASE,SCHEME_OPTIONS,KEY>".
+                 with
+                 [
+                     BASE=CryptoPP::DL_SignerBase<CryptoPP::Integer>,
+                     SCHEME_OPTIONS=CryptoPP::DL_SignatureSchemeOptions<CryptoPP::DSA,CryptoPP::DL_Keys_DSA,CryptoPP::DL_Algorithm_GDSA<CryptoPP::Integer>,CryptoPP::DL_SignatureMessageEncodingMethod_DSA,CryptoPP::SHA>,
+                     KEY=CryptoPP::DL_PrivateKey_WithSignaturePairwiseConsistencyTest<CryptoPP::DL_PrivateKey_GFP<CryptoPP::DL_GroupParameters_DSA>,CryptoPP::DSA>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(1339): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_ObjectImpl<BASE,SCHEME_OPTIONS,KEY>".
+                 with
+                 [
+                     BASE=CryptoPP::DL_SignerBase<CryptoPP::Integer>,
+                     SCHEME_OPTIONS=CryptoPP::DL_SignatureSchemeOptions<CryptoPP::DSA,CryptoPP::DL_Keys_DSA,CryptoPP::DL_Algorithm_GDSA<CryptoPP::Integer>,CryptoPP::DL_SignatureMessageEncodingMethod_DSA,CryptoPP::SHA>,
+                     KEY=CryptoPP::DL_PrivateKey_WithSignaturePairwiseConsistencyTest<CryptoPP::DL_PrivateKey_GFP<CryptoPP::DL_GroupParameters_DSA>,CryptoPP::DSA>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(1489): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_SignerImpl<SCHEME_OPTIONS>".
+                 with
+                 [
+                     SCHEME_OPTIONS=CryptoPP::DL_SignatureSchemeOptions<CryptoPP::DSA,CryptoPP::DL_Keys_DSA,CryptoPP::DL_Algorithm_GDSA<CryptoPP::Integer>,CryptoPP::DL_SignatureMessageEncodingMethod_DSA,CryptoPP::SHA>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(830): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::PK_FinalTemplate<BASE>".
+                 with
+                 [
+                     BASE=CryptoPP::DL_SignerImpl<CryptoPP::DL_SignatureSchemeOptions<CryptoPP::DSA,CryptoPP::DL_Keys_DSA,CryptoPP::DL_Algorithm_GDSA<CryptoPP::Integer>,CryptoPP::DL_SignatureMessageEncodingMethod_DSA,CryptoPP::SHA>>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(825): Bei der Kompilierung der  Klassen-template der void CryptoPP::DL_PrivateKey_WithSignaturePairwiseConsistencyTest<BASE,SIGNATURE_SCHEME>::GenerateRandom(CryptoPP::RandomNumberGenerator &,const CryptoPP::NameValuePairs &)-Memberfunktion
+                 with
+                 [
+                     BASE=CryptoPP::DL_PrivateKey_GFP<CryptoPP::DL_GroupParameters_DSA>,
+                     SIGNATURE_SCHEME=CryptoPP::DSA
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(416): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_PrivateKey_WithSignaturePairwiseConsistencyTest<BASE,SIGNATURE_SCHEME>".
+                 with
+                 [
+                     BASE=CryptoPP::DL_PrivateKey_GFP<CryptoPP::DL_GroupParameters_DSA>,
+                     SIGNATURE_SCHEME=CryptoPP::DSA
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(1086): warning C4100: 'signatureLength': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(1087): Bei der Kompilierung der  Klassen-template der void CryptoPP::DL_VerifierBase<T>::InputSignature(CryptoPP::PK_MessageAccumulator &,const byte *,size_t) const-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::Integer
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(25): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_VerifierBase<T>".
+                 with
+                 [
+                     T=CryptoPP::Integer
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(1282): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AlgorithmImpl<BASE,ALGORITHM_INFO>".
+                 with
+                 [
+                     BASE=CryptoPP::DL_VerifierBase<CryptoPP::Integer>,
+                     ALGORITHM_INFO=CryptoPP::DSA
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(1317): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_ObjectImplBase<BASE,SCHEME_OPTIONS,KEY>".
+                 with
+                 [
+                     BASE=CryptoPP::DL_VerifierBase<CryptoPP::Integer>,
+                     SCHEME_OPTIONS=CryptoPP::DL_SignatureSchemeOptions<CryptoPP::DSA,CryptoPP::DL_Keys_DSA,CryptoPP::DL_Algorithm_GDSA<CryptoPP::Integer>,CryptoPP::DL_SignatureMessageEncodingMethod_DSA,CryptoPP::SHA>,
+                     KEY=CryptoPP::DL_PublicKey_GFP<CryptoPP::DL_GroupParameters_DSA>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(1352): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_ObjectImpl<BASE,SCHEME_OPTIONS,KEY>".
+                 with
+                 [
+                     BASE=CryptoPP::DL_VerifierBase<CryptoPP::Integer>,
+                     SCHEME_OPTIONS=CryptoPP::DL_SignatureSchemeOptions<CryptoPP::DSA,CryptoPP::DL_Keys_DSA,CryptoPP::DL_Algorithm_GDSA<CryptoPP::Integer>,CryptoPP::DL_SignatureMessageEncodingMethod_DSA,CryptoPP::SHA>,
+                     KEY=CryptoPP::DL_PublicKey_GFP<CryptoPP::DL_GroupParameters_DSA>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(1489): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_VerifierImpl<SCHEME_OPTIONS>".
+                 with
+                 [
+                     SCHEME_OPTIONS=CryptoPP::DL_SignatureSchemeOptions<CryptoPP::DSA,CryptoPP::DL_Keys_DSA,CryptoPP::DL_Algorithm_GDSA<CryptoPP::Integer>,CryptoPP::DL_SignatureMessageEncodingMethod_DSA,CryptoPP::SHA>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(831): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::PK_FinalTemplate<BASE>".
+                 with
+                 [
+                     BASE=CryptoPP::DL_VerifierImpl<CryptoPP::DL_SignatureSchemeOptions<CryptoPP::DSA,CryptoPP::DL_Keys_DSA,CryptoPP::DL_Algorithm_GDSA<CryptoPP::Integer>,CryptoPP::DL_SignatureMessageEncodingMethod_DSA,CryptoPP::SHA>>
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(972): warning C4100: 'signatureLength': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(973): Bei der Kompilierung der  Klassen-template der size_t CryptoPP::DL_SignatureSchemeBase<INTERFACE,KEY_INTERFACE>::MaxRecoverableLengthFromSignatureLength(size_t) const-Memberfunktion
+                 with
+                 [
+                     INTERFACE=CryptoPP::PK_Verifier,
+                     KEY_INTERFACE=CryptoPP::DL_PublicKey<CryptoPP::Integer>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(1084): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_SignatureSchemeBase<INTERFACE,KEY_INTERFACE>".
+                 with
+                 [
+                     INTERFACE=CryptoPP::PK_Verifier,
+                     KEY_INTERFACE=CryptoPP::DL_PublicKey<CryptoPP::Integer>
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(149): warning C4100: 'n': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(150): Bei der Kompilierung der  Klassen-template der void CryptoPP::NullAllocator<T>::deallocate(void *,CryptoPP::NullAllocator<T>::size_type)-Memberfunktion
+                 with
+                 [
+                     T=byte
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(232): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::NullAllocator<T>".
+                 with
+                 [
+                     T=byte
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(241): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::FixedSizeAllocatorWithCleanup<T,S>".
+                 with
+                 [
+                     T=byte,
+                     S=32
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(423): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::SecBlock<T,A>".
+                 with
+                 [
+                     T=byte,
+                     A=CryptoPP::FixedSizeAllocatorWithCleanup<byte,32>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\randpool.h(25): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::FixedSizeSecBlock<T,S>".
+                 with
+                 [
+                     T=byte,
+                     S=32
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(149): warning C4100: 'p': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(1065): warning C4100: 'ma': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(1066): Bei der Kompilierung der  Klassen-template der void CryptoPP::DL_SignerBase<T>::RestartMessageAccumulator(CryptoPP::RandomNumberGenerator &,CryptoPP::PK_MessageAccumulatorBase &) const-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::Integer
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(1065): warning C4100: 'rng': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(96): warning C4127: Bedingter Ausdruck ist konstant
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(90): Bei der Kompilierung der  Klassen-template der unsigned int *CryptoPP::AllocatorWithCleanup<T>::allocate(CryptoPP::AllocatorWithCleanup<T>::size_type,const void *)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::word32
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(131): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AllocatorWithCleanup<T>".
+                 with
+                 [
+                     T=CryptoPP::word32
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(108): warning C4127: Bedingter Ausdruck ist konstant
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(104): Bei der Kompilierung der  Klassen-template der void CryptoPP::AllocatorWithCleanup<T>::deallocate(void *,CryptoPP::AllocatorWithCleanup<T>::size_type)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::word32
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(143): warning C4100: 'n': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(144): Bei der Kompilierung der  Klassen-template der unsigned int *CryptoPP::NullAllocator<T>::allocate(CryptoPP::NullAllocator<T>::size_type,const void *)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::word32
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(232): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::NullAllocator<T>".
+                 with
+                 [
+                     T=CryptoPP::word32
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(241): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::FixedSizeAllocatorWithCleanup<T,S,A,T_Align16>".
+                 with
+                 [
+                     T=CryptoPP::word32,
+                     S=60,
+                     A=CryptoPP::NullAllocator<CryptoPP::word32>,
+                     T_Align16=true
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(423): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::SecBlock<T,A>".
+                 with
+                 [
+                     T=CryptoPP::word32,
+                     A=CryptoPP::FixedSizeAllocatorWithCleanup<CryptoPP::word32,60,CryptoPP::NullAllocator<CryptoPP::word32>,true>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(430): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::FixedSizeSecBlock<T,S,A>".
+                 with
+                 [
+                     T=CryptoPP::word32,
+                     S=60,
+                     A=CryptoPP::FixedSizeAllocatorWithCleanup<CryptoPP::word32,60,CryptoPP::NullAllocator<CryptoPP::word32>,true>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\rijndael.h(37): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::FixedSizeAlignedSecBlock<T,S>".
+                 with
+                 [
+                     T=CryptoPP::word32,
+                     S=60
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(149): warning C4100: 'n': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(150): Bei der Kompilierung der  Klassen-template der void CryptoPP::NullAllocator<T>::deallocate(void *,CryptoPP::NullAllocator<T>::size_type)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::word32
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(149): warning C4100: 'p': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(143): warning C4100: 'n': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(144): Bei der Kompilierung der  Klassen-template der unsigned __int64 *CryptoPP::NullAllocator<T>::allocate(CryptoPP::NullAllocator<T>::size_type,const void *)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::word64
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(232): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::NullAllocator<T>".
+                 with
+                 [
+                     T=CryptoPP::word64
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(241): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::FixedSizeAllocatorWithCleanup<T,S>".
+                 with
+                 [
+                     T=CryptoPP::word64,
+                     S=16
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(423): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::SecBlock<T,A>".
+                 with
+                 [
+                     T=CryptoPP::word64,
+                     A=CryptoPP::FixedSizeAllocatorWithCleanup<CryptoPP::word64,16>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\iterhash.h(75): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::FixedSizeSecBlock<T,S>".
+                 with
+                 [
+                     T=CryptoPP::word64,
+                     S=16
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(25): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::IteratedHash<T_HashWordType,T_Endianness,T_BlockSize>".
+                 with
+                 [
+                     T_HashWordType=CryptoPP::word64,
+                     T_Endianness=CryptoPP::BigEndian,
+                     T_BlockSize=128
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\simple.h(17): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AlgorithmImpl<BASE,ALGORITHM_INFO>".
+                 with
+                 [
+                     BASE=CryptoPP::IteratedHash<CryptoPP::word64,CryptoPP::BigEndian,128>,
+                     ALGORITHM_INFO=CryptoPP::SHA512
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\iterhash.h(82): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::ClonableImpl<DERIVED,BASE>".
+                 with
+                 [
+                     DERIVED=CryptoPP::SHA512,
+                     BASE=CryptoPP::AlgorithmImpl<CryptoPP::IteratedHash<CryptoPP::word64,CryptoPP::BigEndian,128>,CryptoPP::SHA512>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\sha.h(45): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::IteratedHashWithStaticTransform<T_HashWordType,T_Endianness,T_BlockSize,T_StateSize,T_Transform,T_DigestSize,T_StateAligned>".
+                 with
+                 [
+                     T_HashWordType=CryptoPP::word64,
+                     T_Endianness=CryptoPP::BigEndian,
+                     T_BlockSize=128,
+                     T_StateSize=64,
+                     T_Transform=CryptoPP::SHA512,
+                     T_DigestSize=64,
+                     T_StateAligned=true
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(149): warning C4100: 'n': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(150): Bei der Kompilierung der  Klassen-template der void CryptoPP::NullAllocator<T>::deallocate(void *,CryptoPP::NullAllocator<T>::size_type)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::word64
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(149): warning C4100: 'p': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(155): warning C4100: 'dummy': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(129): Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-template "CryptoPP::GetValueHelperClass<T,BASE> CryptoPP::GetValueHelper<CryptoPP::DL_GroupParameters_IntegerBased,CryptoPP::DL_GroupParameters_GFP>(const T *,const char *,const type_info &,void *,const CryptoPP::NameValuePairs *,BASE *)".
+                 with
+                 [
+                     T=CryptoPP::DL_GroupParameters_GFP,
+                     BASE=CryptoPP::DL_GroupParameters_IntegerBased
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\misc.h(366): warning C4127: Bedingter Ausdruck ist konstant
+                 D:\tt (1)\dev\Srcs\extern\include\cryptopp/skipjack.h(25): Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-template "unsigned int CryptoPP::GetAlignmentOf<CryptoPP::word16>(T *)".
+                 with
+                 [
+                     T=CryptoPP::word16
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\misc.h(363): warning C4100: 'dummy': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\misc.h(366): warning C4127: Bedingter Ausdruck ist konstant
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\iterhash.h(28): Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-template "unsigned int CryptoPP::GetAlignmentOf<T>(T *)".
+                 with
+                 [
+                     T=CryptoPP::word64
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\iterhash.h(28): Bei der Kompilierung der  Klassen-template der unsigned int CryptoPP::IteratedHashBase<T,BASE>::OptimalDataAlignment(void) const-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::word64,
+                     BASE=CryptoPP::HashTransformation
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\iterhash.h(97): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::IteratedHashBase<T,BASE>".
+                 with
+                 [
+                     T=CryptoPP::word64,
+                     BASE=CryptoPP::HashTransformation
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\misc.h(363): warning C4100: 'dummy': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\misc.h(366): warning C4127: Bedingter Ausdruck ist konstant
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\iterhash.h(28): Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-template "unsigned int CryptoPP::GetAlignmentOf<T>(T *)".
+                 with
+                 [
+                     T=CryptoPP::word32
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\iterhash.h(28): Bei der Kompilierung der  Klassen-template der unsigned int CryptoPP::IteratedHashBase<T,BASE>::OptimalDataAlignment(void) const-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::word32,
+                     BASE=CryptoPP::HashTransformation
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\iterhash.h(100): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::IteratedHashBase<T,BASE>".
+                 with
+                 [
+                     T=CryptoPP::word32,
+                     BASE=CryptoPP::HashTransformation
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\misc.h(363): warning C4100: 'dummy': Unreferenzierter formaler Parameter
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(155): warning C4100: 'dummy': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(93): Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-template "CryptoPP::GetValueHelperClass<T,BASE> CryptoPP::GetValueHelper<CryptoPP::DL_GroupParameters_IntegerBased,CryptoPP::DL_GroupParameters_IntegerBasedImpl<GROUP_PRECOMP>>(const T *,const char *,const type_info &,void *,const CryptoPP::NameValuePairs *,BASE *)".
+                 with
+                 [
+                     T=CryptoPP::DL_GroupParameters_IntegerBasedImpl<CryptoPP::ModExpPrecomputation>,
+                     BASE=CryptoPP::DL_GroupParameters_IntegerBased,
+                     GROUP_PRECOMP=CryptoPP::ModExpPrecomputation
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(93): Bei der Kompilierung der  Klassen-template der bool CryptoPP::DL_GroupParameters_IntegerBasedImpl<GROUP_PRECOMP>::GetVoidValue(const char *,const type_info &,void *) const-Memberfunktion
+                 with
+                 [
+                     GROUP_PRECOMP=CryptoPP::ModExpPrecomputation
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(229): warning C4100: 'dummy': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(96): Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-template "CryptoPP::AssignFromHelperClass<T,BASE> CryptoPP::AssignFromHelper<CryptoPP::DL_GroupParameters_IntegerBased,CryptoPP::DL_GroupParameters_IntegerBasedImpl<GROUP_PRECOMP>>(T *,const CryptoPP::NameValuePairs &,BASE *)".
+                 with
+                 [
+                     T=CryptoPP::DL_GroupParameters_IntegerBasedImpl<CryptoPP::ModExpPrecomputation>,
+                     BASE=CryptoPP::DL_GroupParameters_IntegerBased,
+                     GROUP_PRECOMP=CryptoPP::ModExpPrecomputation
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\gfpcrypt.h(96): Bei der Kompilierung der  Klassen-template der void CryptoPP::DL_GroupParameters_IntegerBasedImpl<GROUP_PRECOMP>::AssignFrom(const CryptoPP::NameValuePairs &)-Memberfunktion
+                 with
+                 [
+                     GROUP_PRECOMP=CryptoPP::ModExpPrecomputation
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(155): warning C4100: 'dummy': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(854): Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-template "CryptoPP::GetValueHelperClass<T,BASE> CryptoPP::GetValueHelper<CryptoPP::DL_PublicKey<CryptoPP::Integer>,CryptoPP::DL_PublicKeyImpl<GP>>(const T *,const char *,const type_info &,void *,const CryptoPP::NameValuePairs *,BASE *)".
+                 with
+                 [
+                     T=CryptoPP::DL_PublicKeyImpl<CryptoPP::DL_GroupParameters_DSA>,
+                     BASE=CryptoPP::DL_PublicKey<CryptoPP::Integer>,
+                     GP=CryptoPP::DL_GroupParameters_DSA
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(853): Bei der Kompilierung der  Klassen-template der bool CryptoPP::DL_PublicKeyImpl<GP>::GetVoidValue(const char *,const type_info &,void *) const-Memberfunktion
+                 with
+                 [
+                     GP=CryptoPP::DL_GroupParameters_DSA
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(229): warning C4100: 'dummy': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(859): Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-template "CryptoPP::AssignFromHelperClass<T,BASE> CryptoPP::AssignFromHelper<CryptoPP::DL_PublicKey<CryptoPP::Integer>,CryptoPP::DL_PublicKeyImpl<GP>>(T *,const CryptoPP::NameValuePairs &,BASE *)".
+                 with
+                 [
+                     T=CryptoPP::DL_PublicKeyImpl<CryptoPP::DL_GroupParameters_DSA>,
+                     BASE=CryptoPP::DL_PublicKey<CryptoPP::Integer>,
+                     GP=CryptoPP::DL_GroupParameters_DSA
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(858): Bei der Kompilierung der  Klassen-template der void CryptoPP::DL_PublicKeyImpl<GP>::AssignFrom(const CryptoPP::NameValuePairs &)-Memberfunktion
+                 with
+                 [
+                     GP=CryptoPP::DL_GroupParameters_DSA
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(155): warning C4100: 'dummy': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(771): Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-template "CryptoPP::GetValueHelperClass<T,BASE> CryptoPP::GetValueHelper<CryptoPP::DL_PrivateKey<CryptoPP::Integer>,CryptoPP::DL_PrivateKeyImpl<GP>>(const T *,const char *,const type_info &,void *,const CryptoPP::NameValuePairs *,BASE *)".
+                 with
+                 [
+                     T=CryptoPP::DL_PrivateKeyImpl<CryptoPP::DL_GroupParameters_DSA>,
+                     BASE=CryptoPP::DL_PrivateKey<CryptoPP::Integer>,
+                     GP=CryptoPP::DL_GroupParameters_DSA
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(770): Bei der Kompilierung der  Klassen-template der bool CryptoPP::DL_PrivateKeyImpl<GP>::GetVoidValue(const char *,const type_info &,void *) const-Memberfunktion
+                 with
+                 [
+                     GP=CryptoPP::DL_GroupParameters_DSA
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(229): warning C4100: 'dummy': Unreferenzierter formaler Parameter
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(776): Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-template "CryptoPP::AssignFromHelperClass<T,BASE> CryptoPP::AssignFromHelper<CryptoPP::DL_PrivateKey<CryptoPP::Integer>,CryptoPP::DL_PrivateKeyImpl<GP>>(T *,const CryptoPP::NameValuePairs &,BASE *)".
+                 with
+                 [
+                     T=CryptoPP::DL_PrivateKeyImpl<CryptoPP::DL_GroupParameters_DSA>,
+                     BASE=CryptoPP::DL_PrivateKey<CryptoPP::Integer>,
+                     GP=CryptoPP::DL_GroupParameters_DSA
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(775): Bei der Kompilierung der  Klassen-template der void CryptoPP::DL_PrivateKeyImpl<GP>::AssignFrom(const CryptoPP::NameValuePairs &)-Memberfunktion
+                 with
+                 [
+                     GP=CryptoPP::DL_GroupParameters_DSA
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\misc.h(537): warning C4127: Bedingter Ausdruck ist konstant
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(105): Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-template "void CryptoPP::SecureWipeArray<T>(T *,size_t)".
+                 with
+                 [
+                     T=byte
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(104): Bei der Kompilierung der  Klassen-template der void CryptoPP::AllocatorWithCleanup<T>::deallocate(void *,CryptoPP::AllocatorWithCleanup<T>::size_type)-Memberfunktion
+                 with
+                 [
+                     T=byte
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\misc.h(539): warning C4127: Bedingter Ausdruck ist konstant
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\misc.h(541): warning C4127: Bedingter Ausdruck ist konstant
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\misc.h(537): warning C4127: Bedingter Ausdruck ist konstant
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(105): Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-template "void CryptoPP::SecureWipeArray<T>(T *,size_t)".
+                 with
+                 [
+                     T=CryptoPP::word32
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(104): Bei der Kompilierung der  Klassen-template der void CryptoPP::AllocatorWithCleanup<T,T_Align16>::deallocate(void *,CryptoPP::AllocatorWithCleanup<T,T_Align16>::size_type)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::word,
+                     T_Align16=true
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\misc.h(539): warning C4127: Bedingter Ausdruck ist konstant
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\misc.h(541): warning C4127: Bedingter Ausdruck ist konstant
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\misc.h(537): warning C4127: Bedingter Ausdruck ist konstant
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(199): Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-template "void CryptoPP::SecureWipeArray<T>(T *,size_t)".
+                 with
+                 [
+                     T=CryptoPP::word64
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\secblock.h(193): Bei der Kompilierung der  Klassen-template der void CryptoPP::FixedSizeAllocatorWithCleanup<T,S>::deallocate(void *,CryptoPP::FixedSizeAllocatorWithCleanup<T,S>::size_type)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::word64,
+                     S=16
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\misc.h(539): warning C4127: Bedingter Ausdruck ist konstant
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\misc.h(541): warning C4127: Bedingter Ausdruck ist konstant
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(226): warning C4512: 'CryptoPP::AssignFromHelperClass<T,BASE>': Zuweisungsoperator konnte nicht generiert werden
+                 with
+                 [
+                     T=CryptoPP::DL_PrivateKey<CryptoPP::Integer>,
+                     BASE=CryptoPP::DL_PrivateKey<CryptoPP::Integer>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(697): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AssignFromHelperClass<T,BASE>".
+                 with
+                 [
+                     T=CryptoPP::DL_PrivateKey<CryptoPP::Integer>,
+                     BASE=CryptoPP::DL_PrivateKey<CryptoPP::Integer>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(695): Bei der Kompilierung der  Klassen-template der void CryptoPP::DL_PrivateKey<T>::AssignFrom(const CryptoPP::NameValuePairs &)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::Integer
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(750): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::DL_PrivateKey<T>".
+                 with
+                 [
+                     T=CryptoPP::Integer
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(226): warning C4512: 'CryptoPP::AssignFromHelperClass<T,BASE>': Zuweisungsoperator konnte nicht generiert werden
+                 with
+                 [
+                     T=CryptoPP::DL_PublicKey<CryptoPP::Integer>,
+                     BASE=CryptoPP::DL_PublicKey<CryptoPP::Integer>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(714): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AssignFromHelperClass<T,BASE>".
+                 with
+                 [
+                     T=CryptoPP::DL_PublicKey<CryptoPP::Integer>,
+                     BASE=CryptoPP::DL_PublicKey<CryptoPP::Integer>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(707): Bei der Kompilierung der  Klassen-template der void CryptoPP::DL_PublicKey<T>::AssignFrom(const CryptoPP::NameValuePairs &)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::Integer
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(86): Bei der Kompilierung der  Klassen-template der CryptoPP::GetValueHelperClass<T,BASE>::GetValueHelperClass(const T *,const char *,const type_info &,void *,const CryptoPP::NameValuePairs *)-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::DL_PublicKeyImpl<CryptoPP::DL_GroupParameters_DSA>,
+                     BASE=CryptoPP::DL_PublicKey<CryptoPP::Integer>
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\pubkey.h(854): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::GetValueHelperClass<T,BASE>".
+                 with
+                 [
+                     T=CryptoPP::DL_PublicKeyImpl<CryptoPP::DL_GroupParameters_DSA>,
+                     BASE=CryptoPP::DL_PublicKey<CryptoPP::Integer>
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(322): warning C4189: 'p': Lokale Variable ist initialisiert aber nicht referenziert
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(321): Bei der Kompilierung der  Klassen-template der void CryptoPP::AlgorithmParametersTemplate<T>::MoveInto(void *) const-Memberfunktion
+                 with
+                 [
+                     T=CryptoPP::RandomNumberGenerator *
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(354): Siehe Verweis auf die Instanziierung der gerade kompilierten Klassen-template "CryptoPP::AlgorithmParametersTemplate<T>".
+                 with
+                 [
+                     T=CryptoPP::RandomNumberGenerator *
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\algparam.h(388): Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-template "CryptoPP::AlgorithmParameters &CryptoPP::AlgorithmParameters::operator ()<T>(const char *,const T &,bool)".
+                 with
+                 [
+                     T=CryptoPP::RandomNumberGenerator *
+                 ]
+                 d:\tt (1)\dev\srcs\extern\include\cryptopp\filters.h(805): Siehe Verweis auf die Instanziierung der gerade kompilierten Funktions-template "CryptoPP::AlgorithmParameters CryptoPP::MakeParameters<CryptoPP::RandomNumberGenerator*>(const char *,const T &,bool)".
+                 with
+                 [
+                     T=CryptoPP::RandomNumberGenerator *
+                 ]
+     1>d:\tt (1)\dev\srcs\extern\include\cryptopp\misc.h(548): warning C4505: 'CryptoPP::StringNarrow': Nichtreferenzierte lokale Funktion wurde entfernt
+         CPostIt.cpp
+         CRC32.cpp
+         Debug.cpp
+         error.cpp
+         FileBase.cpp
+         FileDir.cpp
+         FileLoader.cpp
+         lzo.cpp
+         MappedFile.cpp
+         Random.cpp
+         StdAfx.cpp
+         Stl.cpp
+         tea.cpp
+         TempFile.cpp
+         Timer.cpp
+         Code wird generiert...
+         Kompilieren...
+         Utils.cpp
+     1>Utils.cpp(340): warning C4127: Bedingter Ausdruck ist konstant
+         Code wird generiert...
+     1>d:\tt (1)\dev\srcs\client\eterbase\utils.cpp(627): warning C4706: Zuweisung in bedingtem Ausdruck
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:".\Debug\eterBase.lib" /LIBPATH:../../../extern/lib /NOLOGO .\Debug/Base.obj
+         .\Debug/Poly.obj
+         .\Debug/Symbol.obj
+         .\Debug/SymTable.obj
+         .\Debug/cipher.obj
+         .\Debug/CPostIt.obj
+         .\Debug/CRC32.obj
+         .\Debug/Debug.obj
+         .\Debug/error.obj
+         .\Debug/FileBase.obj
+         .\Debug/FileDir.obj
+         .\Debug/FileLoader.obj
+         .\Debug/lzo.obj
+         .\Debug/MappedFile.obj
+         .\Debug/Random.obj
+         .\Debug/StdAfx.obj
+         .\Debug/Stl.obj
+         .\Debug/tea.obj
+         .\Debug/TempFile.obj
+         .\Debug/Timer.obj
+         .\Debug/Utils.obj
+     1>StdAfx.obj : warning LNK4221: Die Objektdatei definiert keine zuvor undefinierten ÷ffentlichen Symbole. Sie wird daher von keinem Verkn³pfungsvorgang verwendet, der diese Bibliothek benutzt.
+         eterBase_VC90.vcxproj -> D:\tt (1)\dev\Srcs\Client\EterBase\.\Debug\eterBase.lib
+       FinalizeBuildStatus:
+         Die Datei ".\Debug\eterBase.unsuccessfulbuild" wird gelöscht.
+         Aktualisieren des Timestamps von ".\Debug\eterBase.lastbuildstate".
+     1>Die Erstellung des Projekts "D:\tt (1)\dev\Srcs\Client\EterBase\eterBase_VC90.vcxproj" ist abgeschlossen, build Ziel(e).
+
+Das Erstellen war erfolgreich.
+
+Verstrichene Zeit 00:00:18.53

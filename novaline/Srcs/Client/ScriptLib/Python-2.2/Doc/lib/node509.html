@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>16.1.6.2 The Packer</title>
+<META NAME="description" CONTENT="16.1.6.2 The Packer">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node510.html">
+<LINK REL="previous" href="tkinter-setting-options.html">
+<LINK REL="up" HREF="node507.html">
+<LINK REL="next" HREF="node510.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="tkinter-setting-options.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node507.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node510.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="tkinter-setting-options.html">16.1.6.1 Setting Options</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node507.html">16.1.6 Handy Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node510.html">16.1.6.3 Packer Options</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0018162000000000000000">
+16.1.6.2 The Packer</A>
+</H3> <a name="l2h-3667">&nbsp;</a>
+<P>
+The packer is one of Tk's geometry-management mechanisms.  See also
+<em class="citetitle"><a
+ href="classes/ClassPacker.html"
+ title="the Packer class interface"
+ >the Packer class interface</a></em>.
+
+<P>
+Geometry managers are used to specify the relative positioning of the
+positioning of widgets within their container - their mutual
+<i>master</i>.  In contrast to the more cumbersome <i>placer</i>
+(which is used less commonly, and we do not cover here), the packer
+takes qualitative relationship specification - <i>above</i>, <i>to
+the left of</i>, <i>filling</i>, etc - and works everything out to
+determine the exact placement coordinates for you. 
+
+<P>
+The size of any <i>master</i> widget is determined by the size of
+the "slave widgets" inside.  The packer is used to control where slave
+widgets appear inside the master into which they are packed.  You can
+pack widgets into frames, and frames into other frames, in order to
+achieve the kind of layout you desire.  Additionally, the arrangement
+is dynamically adjusted to accomodate incremental changes to the
+configuration, once it is packed.
+
+<P>
+Note that widgets do not appear until they have had their geometry
+specified with a geometry manager.  It's a common early mistake to
+leave out the geometry specification, and then be surprised when the
+widget is created but nothing appears.  A widget will appear only
+after it has had, for example, the packer's <tt class="method">pack()</tt> method
+applied to it.
+
+<P>
+The pack() method can be called with keyword-option/value pairs that
+control where the widget is to appear within its container, and how it
+is to behave when the main application window is resized.  Here are
+some examples:
+
+<P>
+<dl><dd><pre class="verbatim">
+    fred.pack()                     # defaults to side = "top"
+    fred.pack(side = "left")
+    fred.pack(expand = 1)
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="tkinter-setting-options.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node507.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node510.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="tkinter-setting-options.html">16.1.6.1 Setting Options</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node507.html">16.1.6 Handy Reference</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node510.html">16.1.6.3 Packer Options</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

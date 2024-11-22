@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.3.1 HTMLParser Objects </title>
+<META NAME="description" CONTENT="13.3.1 HTMLParser Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-htmllib.html">
+<LINK REL="up" href="module-htmllib.html">
+<LINK REL="next" href="module-htmlentitydefs.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-htmllib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-htmllib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-htmlentitydefs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-htmllib.html">13.3 htmllib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-htmllib.html">13.3 htmllib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-htmlentitydefs.html">13.4 htmlentitydefs  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0015310000000000000000">&nbsp;</A>
+<BR>
+13.3.1 HTMLParser Objects 
+</H2>
+
+<P>
+In addition to tag methods, the <tt class="class">HTMLParser</tt> class provides some
+additional methods and instance variables for use within tag methods.
+
+<P>
+<dl><dt><b><a name="l2h-3146"><tt class="member">formatter</tt></a></b>
+<dd>
+This is the formatter instance associated with the parser.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3147"><tt class="member">nofill</tt></a></b>
+<dd>
+Boolean flag which should be true when whitespace should not be
+collapsed, or false when it should be.  In general, this should only
+be true when character data is to be treated as ``preformatted'' text,
+as within a <code>&lt;PRE&gt;</code> element.  The default value is false.  This
+affects the operation of <tt class="method">handle_data()</tt> and <tt class="method">save_end()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3148"><tt class="method">anchor_bgn</tt></a></b>(<var>href, name, type</var>)
+<dd>
+This method is called at the start of an anchor region.  The arguments
+correspond to the attributes of the <code>&lt;A&gt;</code> tag with the same
+names.  The default implementation maintains a list of hyperlinks
+(defined by the <code>HREF</code> attribute for <code>&lt;A&gt;</code> tags) within the
+document.  The list of hyperlinks is available as the data attribute
+<tt class="member">anchorlist</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3149"><tt class="method">anchor_end</tt></a></b>()
+<dd>
+This method is called at the end of an anchor region.  The default
+implementation adds a textual footnote marker using an index into the
+list of hyperlinks created by <tt class="method">anchor_bgn()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3150"><tt class="method">handle_image</tt></a></b>(<var>source, alt</var><big>[</big><var>, ismap</var><big>[</big><var>, align</var><big>[</big><var>, width</var><big>[</big><var>, height</var><big>]</big><big>]</big><big>]</big><big>]</big>)
+<dd>
+This method is called to handle images.  The default implementation
+simply passes the <var>alt</var> value to the <tt class="method">handle_data()</tt>
+method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3151"><tt class="method">save_bgn</tt></a></b>()
+<dd>
+Begins saving character data in a buffer instead of sending it to the
+formatter object.  Retrieve the stored data via <tt class="method">save_end()</tt>.
+Use of the <tt class="method">save_bgn()</tt> / <tt class="method">save_end()</tt> pair may not be
+nested.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3152"><tt class="method">save_end</tt></a></b>()
+<dd>
+Ends buffering character data and returns all data saved since the
+preceding call to <tt class="method">save_bgn()</tt>.  If the <tt class="member">nofill</tt> flag is
+false, whitespace is collapsed to single spaces.  A call to this
+method without a preceding call to <tt class="method">save_bgn()</tt> will raise a
+<tt class="exception">TypeError</tt> exception.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-htmllib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-htmllib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-htmlentitydefs.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-htmllib.html">13.3 htmllib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-htmllib.html">13.3 htmllib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-htmlentitydefs.html">13.4 htmlentitydefs  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

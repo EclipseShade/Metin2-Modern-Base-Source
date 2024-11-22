@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.14.7 Example </title>
+<META NAME="description" CONTENT="3.14.7 Example ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="pickle-sec.html">
+<LINK REL="up" href="module-pickle.html">
+<LINK REL="next" href="module-cPickle.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pickle-sec.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-pickle.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-cPickle.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pickle-sec.html">3.14.6 Security</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-pickle.html">3.14 pickle  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-cPickle.html">3.15 cPickle  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0051470000000000000000">&nbsp;</A>
+<BR>
+3.14.7 Example 
+</H2>
+
+<P>
+Here's a simple example of how to modify pickling behavior for a
+class.  The <tt class="class">TextReader</tt> class opens a text file, and returns
+the line number and line contents each time its <tt class="method">readline()</tt>
+method is called. If a <tt class="class">TextReader</tt> instance is pickled, all
+attributes <i>except</i> the file object member are saved. When the
+instance is unpickled, the file is reopened, and reading resumes from
+the last location. The <tt class="method">__setstate__()</tt> and
+<tt class="method">__getstate__()</tt> methods are used to implement this behavior.
+
+<P>
+<dl><dd><pre class="verbatim">
+class TextReader:
+    """Print and number lines in a text file."""
+    def __init__(self, file):
+        self.file = file
+        self.fh = open(file)
+        self.lineno = 0
+
+    def readline(self):
+        self.lineno = self.lineno + 1
+        line = self.fh.readline()
+        if not line:
+            return None
+        if line.endswith("\n"):
+            line = line[:-1]
+        return "%d: %s" % (self.lineno, line)
+
+    def __getstate__(self):
+        odict = self.__dict__.copy() # copy the dict since we change it
+        del odict['fh']              # remove filehandle entry
+        return odict
+
+    def __setstate__(self,dict):
+        fh = open(dict['file'])      # reopen file
+        count = dict['lineno']       # read from file...
+        while count:                 # until line count is restored
+            fh.readline()
+            count = count - 1
+        self.__dict__.update(dict)   # update attributes
+        self.fh = fh                 # save the file object
+</pre></dl>
+
+<P>
+A sample usage might be something like this:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import TextReader
+&gt;&gt;&gt; obj = TextReader.TextReader("TextReader.py")
+&gt;&gt;&gt; obj.readline()
+'1: #!/usr/local/bin/python'
+&gt;&gt;&gt; # (more invocations of obj.readline() here)
+... obj.readline()
+'7: class TextReader:'
+&gt;&gt;&gt; import pickle
+&gt;&gt;&gt; pickle.dump(obj,open('save.p','w'))
+</pre></dl>
+
+<P>
+If you want to see that <tt class="module"><a href="module-pickle.html">pickle</a></tt> works across Python
+processes, start another Python session, before continuing.  What
+follows can happen from either the same process or a new process.
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import pickle
+&gt;&gt;&gt; reader = pickle.load(open('save.p'))
+&gt;&gt;&gt; reader.readline()
+'8:     "Print and number lines in a text file."'
+</pre></dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-copyreg.html">copy_reg</a></tt>:</b>
+    <dd>Pickle interface constructor
+                                registration for extension types.
+  </dl>
+
+<P>
+<dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-shelve.html">shelve</a></tt>:</b>
+    <dd>Indexed databases of objects; uses <tt class="module">pickle</tt>.
+  </dl>
+
+<P>
+<dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-copy.html">copy</a></tt>:</b>
+    <dd>Shallow and deep object copying.
+  </dl>
+
+<P>
+<dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-marshal.html">marshal</a></tt>:</b>
+    <dd>High-performance serialization of built-in types.
+  </dl>
+</div>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="pickle-sec.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-pickle.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-cPickle.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="pickle-sec.html">3.14.6 Security</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-pickle.html">3.14 pickle  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-cPickle.html">3.15 cPickle  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

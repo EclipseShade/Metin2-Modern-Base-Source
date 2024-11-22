@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.3.5 List Objects </title>
+<META NAME="description" CONTENT="7.3.5 List Objects ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="tupleObjects.html">
+<LINK REL="up" href="sequenceObjects.html">
+<LINK REL="next" href="mapObjects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="tupleObjects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="sequenceObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="mapObjects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="tupleObjects.html">7.3.4 Tuple Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="sequenceObjects.html">7.3 Sequence Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="mapObjects.html">7.4 Mapping Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009350000000000000000">&nbsp;</A>
+<BR>
+7.3.5 List Objects 
+</H2>
+
+<P>
+<a name="l2h-507">&nbsp;</a><dl><dt><b><tt class="ctype"><a name="l2h-488">PyListObject</a></tt></b>
+<dd>
+  This subtype of <tt class="ctype">PyObject</tt> represents a Python list object.
+</dl>
+
+<P>
+<dl><dt>PyTypeObject <b><a name="l2h-489"><tt class="cdata">PyList_Type</tt></a></b>
+<dd>
+  This instance of <tt class="ctype">PyTypeObject</tt> represents the Python list
+  type.  This is the same object as <code>types.ListType</code>.
+  <a name="l2h-491">&nbsp;</a></dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-492"><tt class="cfunction">PyList_Check</tt></a></b>(<var>PyObject *p</var>)
+<dd>
+  Returns true if its argument is a <tt class="ctype">PyListObject</tt>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-493"><tt class="cfunction">PyList_New</tt></a></b>(<var>int len</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Returns a new list of length <var>len</var> on success, or <tt class="constant">NULL</tt> on
+  failure.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-494"><tt class="cfunction">PyList_Size</tt></a></b>(<var>PyObject *list</var>)
+<dd>
+  Returns the length of the list object in <var>list</var>; this is
+  equivalent to "<tt class="samp">len(<var>list</var>)</tt>" on a list object.
+  <a name="l2h-508">&nbsp;</a></dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-495"><tt class="cfunction">PyList_GET_SIZE</tt></a></b>(<var>PyObject *list</var>)
+<dd>
+  Macro form of <tt class="cfunction">PyList_Size()</tt> without error checking.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-496"><tt class="cfunction">PyList_GetItem</tt></a></b>(<var>PyObject *list, int index</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Returns the object at position <var>pos</var> in the list pointed to by
+  <var>p</var>.  If <var>pos</var> is out of bounds, returns <tt class="constant">NULL</tt> and sets an
+  <tt class="exception">IndexError</tt> exception.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-497"><tt class="cfunction">PyList_GET_ITEM</tt></a></b>(<var>PyObject *list, int i</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">Borrowed reference.</span>
+</div>
+  Macro form of <tt class="cfunction">PyList_GetItem()</tt> without error checking.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-498"><tt class="cfunction">PyList_SetItem</tt></a></b>(<var>PyObject *list, int index,
+                                       PyObject *item</var>)
+<dd>
+  Sets the item at index <var>index</var> in list to <var>item</var>.  Returns
+  <code>0</code> on success or <code>-1</code> on failure.  <span class="note"><b class="label">Note:</b>
+This function
+  ``steals'' a reference to <var>item</var> and discards a reference to an
+  item already in the list at the affected position.</span>
+</dl>
+
+<P>
+<dl><dt>void <b><a name="l2h-499"><tt class="cfunction">PyList_SET_ITEM</tt></a></b>(<var>PyObject *list, int i,
+                                              PyObject *o</var>)
+<dd>
+  Macro form of <tt class="cfunction">PyList_SetItem()</tt> without error checking.
+  This is normally only used to fill in new lists where there is no
+  previous content.
+  <span class="note"><b class="label">Note:</b>
+This function ``steals'' a reference to <var>item</var>, and,
+  unlike <tt class="cfunction">PyList_SetItem()</tt>, does <i>not</i> discard a
+  reference to any item that it being replaced; any reference in
+  <var>list</var> at position <var>i</var> will be leaked.</span>
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-500"><tt class="cfunction">PyList_Insert</tt></a></b>(<var>PyObject *list, int index,
+                                      PyObject *item</var>)
+<dd>
+  Inserts the item <var>item</var> into list <var>list</var> in front of index
+  <var>index</var>.  Returns <code>0</code> if successful; returns <code>-1</code> and
+  raises an exception if unsuccessful.  Analogous to
+  <code><var>list</var>.insert(<var>index</var>, <var>item</var>)</code>.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-501"><tt class="cfunction">PyList_Append</tt></a></b>(<var>PyObject *list, PyObject *item</var>)
+<dd>
+  Appends the object <var>item</var> at the end of list <var>list</var>.
+  Returns <code>0</code> if successful; returns <code>-1</code> and sets an
+  exception if unsuccessful.  Analogous to
+  <code><var>list</var>.append(<var>item</var>)</code>.
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-502"><tt class="cfunction">PyList_GetSlice</tt></a></b>(<var>PyObject *list,
+                                              int low, int high</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Returns a list of the objects in <var>list</var> containing the objects
+  <i>between</i> <var>low</var> and <var>high</var>.  Returns <tt class="constant">NULL</tt> and sets
+  an exception if unsuccessful.
+  Analogous to <code><var>list</var>[<var>low</var>:<var>high</var>]</code>.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-503"><tt class="cfunction">PyList_SetSlice</tt></a></b>(<var>PyObject *list,
+                                        int low, int high,
+                                        PyObject *itemlist</var>)
+<dd>
+  Sets the slice of <var>list</var> between <var>low</var> and <var>high</var> to the
+  contents of <var>itemlist</var>.  Analogous to
+  <code><var>list</var>[<var>low</var>:<var>high</var>] = <var>itemlist</var></code>.  Returns
+  <code>0</code> on success, <code>-1</code> on failure.
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-504"><tt class="cfunction">PyList_Sort</tt></a></b>(<var>PyObject *list</var>)
+<dd>
+  Sorts the items of <var>list</var> in place.  Returns <code>0</code> on
+  success, <code>-1</code> on failure.  This is equivalent to
+  "<tt class="samp"><var>list</var>.sort()</tt>".
+</dl>
+
+<P>
+<dl><dt>int <b><a name="l2h-505"><tt class="cfunction">PyList_Reverse</tt></a></b>(<var>PyObject *list</var>)
+<dd>
+  Reverses the items of <var>list</var> in place.  Returns <code>0</code> on
+  success, <code>-1</code> on failure.  This is the equivalent of
+  "<tt class="samp"><var>list</var>.reverse()</tt>".
+</dl>
+
+<P>
+<dl><dt>PyObject* <b><a name="l2h-506"><tt class="cfunction">PyList_AsTuple</tt></a></b>(<var>PyObject *list</var>)
+<dd>
+<div class="refcount-info">
+  <span class="label">Return value:</span>
+  <span class="value">New reference.</span>
+</div>
+  Returns a new tuple object containing the contents of <var>list</var>;
+  equivalent to "<tt class="samp">tuple(<var>list</var>)</tt>".<a name="l2h-509">&nbsp;</a></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="tupleObjects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="sequenceObjects.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="mapObjects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="tupleObjects.html">7.3.4 Tuple Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="sequenceObjects.html">7.3 Sequence Objects</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="mapObjects.html">7.4 Mapping Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

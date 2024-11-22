@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.15 curses.wrapper -- Terminal handler for curses programs</title>
+<META NAME="description" CONTENT="6.15 curses.wrapper -- Terminal handler for curses programs">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-curses.ascii.html">
+<LINK REL="previous" href="module-curses.textpad.html">
+<LINK REL="up" href="allos.html">
+<LINK REL="next" href="module-curses.ascii.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="curses-textpad-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-curses.ascii.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="curses-textpad-objects.html">6.14.1 Textbox objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-curses.ascii.html">6.16 curses.ascii  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0081500000000000000000">
+6.15 <tt class="module">curses.wrapper</tt> --
+         Terminal handler for curses programs</A>
+</H1>
+
+<P>
+
+
+<span class="versionnote">New in version 1.6.</span>
+
+<P>
+This module supplies one function, <tt class="function">wrapper()</tt>, which runs
+another function which should be the rest of your curses-using
+application.  If the application raises an exception,
+<tt class="function">wrapper()</tt> will restore the terminal to a sane state before
+passing it further up the stack and generating a traceback.
+
+<P>
+<dl><dt><b><a name="l2h-1568"><tt class="function">wrapper</tt></a></b>(<var>func, ...</var>)
+<dd>
+Wrapper function that initializes curses and calls another function,
+<var>func</var>, restoring normal keyboard/screen behavior on error.
+The callable object <var>func</var> is then passed the main window 'stdscr'
+as its first argument, followed by any other arguments passed to
+<tt class="function">wrapper()</tt>.
+</dl>
+
+<P>
+Before calling the hook function, <tt class="function">wrapper()</tt> turns on cbreak
+mode, turns off echo, enables the terminal keypad, and initializes
+colors if the terminal has color support.  On exit (whether normally
+or by exception) it restores cooked mode, turns on echo, and disables
+the terminal keypad.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="curses-textpad-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="allos.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-curses.ascii.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="curses-textpad-objects.html">6.14.1 Textbox objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="allos.html">6. Generic Operating System</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-curses.ascii.html">6.16 curses.ascii  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

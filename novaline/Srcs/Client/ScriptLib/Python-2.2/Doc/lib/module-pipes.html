@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.13 pipes -- Interface to shell pipelines</title>
+<META NAME="description" CONTENT="8.13 pipes -- Interface to shell pipelines">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-posixfile.html">
+<LINK REL="previous" href="module-fcntl.html">
+<LINK REL="up" href="unix.html">
+<LINK REL="next" href="template-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-fcntl.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="template-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-fcntl.html">8.12 fcntl  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="template-objects.html">8.13.1 Template Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00101300000000000000000">
+8.13 <tt class="module">pipes</tt> --
+         Interface to shell pipelines</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Unix</span>.</p>
+
+<P>
+The <tt class="module">pipes</tt> module defines a class to abstract the concept of
+a <i>pipeline</i> -- a sequence of convertors from one file to 
+another.
+
+<P>
+Because the module uses <b class="program">/bin/sh</b> command lines, a POSIX or
+compatible shell for <tt class="function">os.system()</tt> and <tt class="function">os.popen()</tt>
+is required.
+
+<P>
+The <tt class="module">pipes</tt> module defines the following class:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2183"><tt class="class">Template</tt></a></b>()
+<dd>
+An abstraction of a pipeline.
+</dl>
+
+<P>
+Example:
+
+<P>
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import pipes
+&gt;&gt;&gt; t=pipes.Template()
+&gt;&gt;&gt; t.append('tr a-z A-Z', '--')
+&gt;&gt;&gt; f=t.open('/tmp/1', 'w')
+&gt;&gt;&gt; f.write('hello world')
+&gt;&gt;&gt; f.close()
+&gt;&gt;&gt; open('/tmp/1').read()
+'HELLO WORLD'
+</pre></dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="template-objects.html">8.13.1 Template Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-fcntl.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="template-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-fcntl.html">8.12 fcntl  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="template-objects.html">8.13.1 Template Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

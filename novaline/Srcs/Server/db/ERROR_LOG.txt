@@ -1,0 +1,9 @@
+ClientManagerPlayer.cpp: In member function 'char* CClientManager::GetCommand(char*)':
+ClientManagerPlayer.cpp:433: warning: address of local variable 'command' returned
+AuctionManager.cpp:719:7: warning: no newline at end of file
+CsvReader.cpp: In member function 'const char* cCsvAlias::operator[](size_t) const':
+CsvReader.cpp:72: warning: left-hand operand of comma has no effect
+CsvReader.cpp:72: warning: right-hand operand of comma has no effect
+CsvReader.cpp: In member function 'size_t cCsvAlias::operator[](const char*) const':
+CsvReader.cpp:90: warning: left-hand operand of comma has no effect
+CsvReader.cpp:90: warning: right-hand operand of comma has no effect

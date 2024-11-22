@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.14 aetypes -- AppleEvent objects</title>
+<META NAME="description" CONTENT="2.14 aetypes -- AppleEvent objects">
+<META NAME="keywords" CONTENT="mac">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="mac.css">
+<link rel="first" href="mac.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module-aepack.html">
+<LINK REL="up" href="macpython-modules.html">
+<LINK REL="next" href="toolbox.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-aepack.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="toolbox.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-aepack.html">2.13 aepack  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="toolbox.html">3. MacOS Toolbox Modules</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0041400000000000000000">
+2.14 <tt class="module">aetypes</tt> --
+         AppleEvent objects</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Macintosh</span>.</p>
+
+<P>
+The <tt class="module">aetypes</tt> defines classes used to represent Apple Event
+object specifiers. An object specifier is essentially an address of an
+object implemented in a Apple Event server. An Apple Event specifier
+is used as the direct object for an Apple Event or as the argument of
+an optional parameter. In AppleScript an object specifier is
+represented by a phrase such as:
+<code>character 23 of document "Semprini"</code>. The classes defined in
+this module allow this specifier to be represented by a Python object
+which is initialized as follows:
+<code>res = Document(1).Character(23)</code>
+
+<P>
+The <tt class="module">AEObjects</tt> module defines the following class:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-179"><tt class="class">ObjectSpecifier</tt></a></b>(<var>want, form, seld, from</var>)
+<dd>
+  This is the base class for representing object specifiers and is
+  generally not constructed directly by the user. Its important
+  functionality is to define an <tt class="function">__aepack__()</tt> function,
+  which returns the Apple Event descriptor containing the object
+  specifier.  Its data members, set directly from the constructor
+  arguments, are:
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-180"><tt class="member">want</tt></a></b>
+<dd>
+  A four character string representing the class code of the
+  object. These class codes are specified in Apple Event Suites; for
+  example the standard code for a character object is the 4 bytes
+  "<tt class="samp">char</tt>".
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-aepack.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="macpython-modules.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="toolbox.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Macintosh Library Modules</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-aepack.html">2.13 aepack  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="macpython-modules.html">2. MacPython Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="toolbox.html">3. MacOS Toolbox Modules</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

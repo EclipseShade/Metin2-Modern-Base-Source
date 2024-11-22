@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2 Concepts &amp; Terminology</title>
+<META NAME="description" CONTENT="2 Concepts &amp; Terminology">
+<META NAME="keywords" CONTENT="dist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="dist.css">
+<link rel="first" href="dist.html">
+
+<LINK REL="next" href="setup-script.html">
+<LINK REL="previous" href="intro.html">
+<LINK REL="up" HREF="dist.html">
+<LINK REL="next" href="setup-script.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="intro.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="dist.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="setup-script.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Distributing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="intro.html">1 Introduction</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="dist.html">Distributing Python Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="setup-script.html">3 Writing the Setup</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="#SECTION000210000000000000000">2.1 A simple example</a>
+<LI><A href="#SECTION000220000000000000000">2.2 General Python terminology</a>
+<LI><A href="#SECTION000230000000000000000">2.3 Distutils-specific terminology</a>
+</ul>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION000200000000000000000">&nbsp;</A>
+<BR>
+2 Concepts &amp; Terminology
+</H1>
+
+<P>
+Using the Distutils is quite simple, both for module developers and for
+users/administrators installing third-party modules.  As a developer,
+your responsibilities (apart from writing solid, well-documented and
+well-tested code, of course!) are:
+
+<UL>
+<LI>write a setup script (<span class="file">setup.py</span> by convention)
+</LI>
+<LI>(optional) write a setup configuration file
+</LI>
+<LI>create a source distribution
+</LI>
+<LI>(optional) create one or more built (binary) distributions
+</LI>
+</UL>
+Each of these tasks is covered in this document.
+
+<P>
+Not all module developers have access to a multitude of platforms, so
+it's not always feasible to expect them to create a multitude of built
+distributions.  It is hoped that a class of intermediaries, called
+<i>packagers</i>, will arise to address this need.  Packagers will take
+source distributions released by module developers, build them on one or
+more platforms, and release the resulting built distributions.  Thus,
+users on the most popular platforms will be able to install most popular
+Python module distributions in the most natural way for their platform,
+without having to run a single setup script or compile a line of code.
+
+<P>
+
+<H2><A NAME="SECTION000210000000000000000">&nbsp;</A>
+<BR>
+2.1 A simple example
+</H2>
+
+<P>
+The setup script is usually quite simple, although since it's written in
+Python, there are no arbitrary limits to what you can do with
+it.<A NAME="tex2html1"
+  HREF="#foot684"><SUP>1</SUP></A>  If
+all you want to do is distribute a module called <tt class="module">foo</tt>, contained
+in a file <span class="file">foo.py</span>, then your setup script can be as little as
+this:
+
+<P>
+<dl><dd><pre class="verbatim">
+from distutils.core import setup
+setup(name="foo",
+      version="1.0",
+      py_modules=["foo"])
+</pre></dl>
+
+<P>
+Some observations:
+
+<UL>
+<LI>most information that you supply to the Distutils is supplied as
+  keyword arguments to the <tt class="function">setup()</tt> function
+</LI>
+<LI>those keyword arguments fall into two categories: package
+  meta-data (name, version number) and information about what's in the
+  package (a list of pure Python modules, in this case)
+</LI>
+<LI>modules are specified by module name, not filename (the same will
+  hold true for packages and extensions)
+</LI>
+<LI>it's recommended that you supply a little more meta-data, in
+  particular your name, email address and a URL for the project
+  (see section&nbsp;<A href="setup-script.html#setup-script">3</A> for an example)
+</LI>
+</UL>
+
+<P>
+To create a source distribution for this module, you would create a
+setup script, <span class="file">setup.py</span>, containing the above code, and run:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py sdist
+</pre></dl>
+
+<P>
+which will create an archive file (e.g., tarball on Unix, ZIP file on
+Windows) containing your setup script, <span class="file">setup.py</span>, and your module,
+<span class="file">foo.py</span>.  The archive file will be named <span class="file">Foo-1.0.tar.gz</span> (or
+<span class="file">.zip</span>), and will unpack into a directory <span class="file">Foo-1.0</span>.
+
+<P>
+If an end-user wishes to install your <tt class="module">foo</tt> module, all she has
+to do is download <span class="file">Foo-1.0.tar.gz</span> (or <span class="file">.zip</span>), unpack it,
+and--from the <span class="file">Foo-1.0</span> directory--run
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py install
+</pre></dl>
+
+<P>
+which will ultimately copy <span class="file">foo.py</span> to the appropriate directory
+for third-party modules in their Python installation.
+
+<P>
+This simple example demonstrates some fundamental concepts of the
+Distutils: first, both developers and installers have the same basic
+user interface, i.e. the setup script.  The difference is which
+Distutils <i>commands</i> they use: the <code>sdist</code> command is
+almost exclusively for module developers, while <code>install</code> is
+more often for installers (although most developers will want to install
+their own code occasionally).
+
+<P>
+If you want to make things really easy for your users, you can create
+one or more built distributions for them.  For instance, if you are
+running on a Windows machine, and want to make things easy for other
+Windows users, you can create an executable installer (the most
+appropriate type of built distribution for this platform) with the
+<code>bdist_wininst</code> command.  For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py bdist_wininst
+</pre></dl>
+
+<P>
+will create an executable installer, <span class="file">Foo-1.0.win32.exe</span>, in the
+current directory.
+
+<P>
+Currently (Distutils 0.9.2), the only other useful built
+distribution format is RPM, implemented by the <code>bdist_rpm</code>
+command.  For example, the following command will create an RPM file
+called <span class="file">Foo-1.0.noarch.rpm</span>:
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py bdist_rpm
+</pre></dl>
+
+<P>
+(This uses the <code>rpm</code> command, so has to be run on an RPM-based
+system such as Red Hat Linux, SuSE Linux, or Mandrake Linux.)
+
+<P>
+You can find out what distribution formats are available at any time by
+running
+
+<P>
+<dl><dd><pre class="verbatim">
+python setup.py bdist --help-formats
+</pre></dl>
+
+<P>
+
+<H2><A NAME="SECTION000220000000000000000">&nbsp;</A>
+<BR>
+2.2 General Python terminology
+</H2>
+
+<P>
+If you're reading this document, you probably have a good idea of what
+modules, extensions, and so forth are.  Nevertheless, just to be sure
+that everyone is operating from a common starting point, we offer the
+following glossary of common Python terms:
+<DL>
+<DT><STRONG>module</STRONG></DT>
+<DD>the basic unit of code reusability in Python: a block of
+  code imported by some other code.  Three types of modules concern us
+  here: pure Python modules, extension modules, and packages.
+</DD>
+<DT><STRONG>pure Python module</STRONG></DT>
+<DD>a module written in Python and contained in a
+  single <span class="file">.py</span> file (and possibly associated <span class="file">.pyc</span> and/or
+  <span class="file">.pyo</span> files).  Sometimes referred to as a ``pure module.''
+</DD>
+<DT><STRONG>extension module</STRONG></DT>
+<DD>a module written in the low-level language of
+  the Python implementation: C/C++ for Python, Java for JPython.
+  Typically contained in a single dynamically loadable pre-compiled
+  file, e.g. a shared object (<span class="file">.so</span>) file for Python extensions on
+  Unix, a DLL (given the <span class="file">.pyd</span> extension) for Python extensions
+  on Windows, or a Java class file for JPython extensions.  (Note that
+  currently, the Distutils only handles C/C++ extensions for Python.)
+</DD>
+<DT><STRONG>package</STRONG></DT>
+<DD>a module that contains other modules; typically contained
+  in a directory in the filesystem and distinguished from other
+  directories by the presence of a file <span class="file">__init__.py</span>.
+</DD>
+<DT><STRONG>root package</STRONG></DT>
+<DD>the root of the hierarchy of packages.  (This isn't
+  really a package, since it doesn't have an <span class="file">__init__.py</span>
+  file.  But we have to call it something.)  The vast majority of the
+  standard library is in the root package, as are many small, standalone
+  third-party modules that don't belong to a larger module collection.
+  Unlike regular packages, modules in the root package can be found in
+  many directories: in fact, every directory listed in <code>sys.path</code>
+  can contribute modules to the root package.
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION000230000000000000000">&nbsp;</A>
+<BR>
+2.3 Distutils-specific terminology
+</H2>
+
+<P>
+The following terms apply more specifically to the domain of
+distributing Python modules using the Distutils:
+<DL>
+<DT><STRONG>module distribution</STRONG></DT>
+<DD>a collection of Python modules distributed
+  together as a single downloadable resource and meant to be installed
+  <i>en masse</i>.  Examples of some well-known module distributions are
+  Numeric Python, PyXML, PIL (the Python Imaging Library), or
+  mxDateTime.  (This would be called a <i>package</i>, except that term
+  is already taken in the Python context: a single module distribution
+  may contain zero, one, or many Python packages.)
+</DD>
+<DT><STRONG>pure module distribution</STRONG></DT>
+<DD>a module distribution that contains only
+  pure Python modules and packages.  Sometimes referred to as a ``pure
+  distribution.''
+</DD>
+<DT><STRONG>non-pure module distribution</STRONG></DT>
+<DD>a module distribution that contains
+  at least one extension module.  Sometimes referred to as a ``non-pure
+  distribution.''
+</DD>
+<DT><STRONG>distribution root</STRONG></DT>
+<DD>the top-level directory of your source tree (or 
+  source distribution); the directory where <span class="file">setup.py</span> exists and
+  is run from
+</DD>
+</DL>
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot684">...
+it.</A><A NAME="foot684"
+ href="simple-example.html#tex2html1"><SUP>1</SUP></A>
+<DD>But be careful about putting arbitrarily expensive
+  operations in your setup script; unlike, say, Autoconf-style configure
+  scripts, the setup script may be run multiple times in the course of
+  building and installing your module distribution.  If you need to
+  insert potentially expensive processing steps into the Distutils
+  chain, see section&nbsp;<A HREF="#extending"><tex2html_cross_ref_visible_mark></A> on extending the Distutils.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="intro.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="dist.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="setup-script.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Distributing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="intro.html">1 Introduction</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="dist.html">Distributing Python Modules</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="setup-script.html">3 Writing the Setup</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

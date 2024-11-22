@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>20.7 fm -- Font Manager interface</title>
+<META NAME="description" CONTENT="20.7 fm -- Font Manager interface">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-gl.html">
+<LINK REL="previous" href="module-flp.html">
+<LINK REL="up" href="sgi.html">
+<LINK REL="next" href="module-gl.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-flp.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="sgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-gl.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-flp.html">20.6 flp  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="sgi.html">20. SGI IRIX Specific</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-gl.html">20.8 gl  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0022700000000000000000">
+20.7 <tt class="module">fm</tt> --
+         <i>Font Manager</i> interface</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">IRIX</span>.</p>
+
+<P>
+This module provides access to the IRIS <i>Font Manager</i> library.
+<a name="l2h-4007">&nbsp;</a>It is available only on Silicon Graphics machines.
+See also: <i>4Sight User's Guide</i>, section 1, chapter 5: ``Using
+the IRIS Font Manager.''
+
+<P>
+This is not yet a full interface to the IRIS Font Manager.
+Among the unsupported features are: matrix operations; cache
+operations; character operations (use string operations instead); some
+details of font info; individual glyph metrics; and printer matching.
+
+<P>
+It supports the following operations:
+
+<P>
+<dl><dt><b><a name="l2h-3995"><tt class="function">init</tt></a></b>()
+<dd>
+Initialization function.
+Calls <tt class="cfunction">fminit()</tt>.
+It is normally not necessary to call this function, since it is called
+automatically the first time the <tt class="module">fm</tt> module is imported.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3996"><tt class="function">findfont</tt></a></b>(<var>fontname</var>)
+<dd>
+Return a font handle object.
+Calls <code>fmfindfont(<var>fontname</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3997"><tt class="function">enumerate</tt></a></b>()
+<dd>
+Returns a list of available font names.
+This is an interface to <tt class="cfunction">fmenumerate()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3998"><tt class="function">prstr</tt></a></b>(<var>string</var>)
+<dd>
+Render a string using the current font (see the <tt class="function">setfont()</tt> font
+handle method below).
+Calls <code>fmprstr(<var>string</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3999"><tt class="function">setpath</tt></a></b>(<var>string</var>)
+<dd>
+Sets the font search path.
+Calls <code>fmsetpath(<var>string</var>)</code>.
+(XXX Does not work!?!)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4000"><tt class="function">fontpath</tt></a></b>()
+<dd>
+Returns the current font search path.
+</dl>
+
+<P>
+Font handle objects support the following operations:
+
+<P>
+
+<dl><dt><b><a name="l2h-4001"><tt class="function">scalefont</tt></a></b>(<var>factor</var>)
+<dd>
+Returns a handle for a scaled version of this font.
+Calls <code>fmscalefont(<var>fh</var>, <var>factor</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4002"><tt class="function">setfont</tt></a></b>()
+<dd>
+Makes this font the current font.
+Note: the effect is undone silently when the font handle object is
+deleted.
+Calls <code>fmsetfont(<var>fh</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4003"><tt class="function">getfontname</tt></a></b>()
+<dd>
+Returns this font's name.
+Calls <code>fmgetfontname(<var>fh</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4004"><tt class="function">getcomment</tt></a></b>()
+<dd>
+Returns the comment string associated with this font.
+Raises an exception if there is none.
+Calls <code>fmgetcomment(<var>fh</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4005"><tt class="function">getfontinfo</tt></a></b>()
+<dd>
+Returns a tuple giving some pertinent data about this font.
+This is an interface to <code>fmgetfontinfo()</code>.
+The returned tuple contains the following numbers:
+<code>(</code><var>printermatched</var>, <var>fixed_width</var>, <var>xorig</var>,
+<var>yorig</var>, <var>xsize</var>, <var>ysize</var>, <var>height</var>,
+<var>nglyphs</var><code>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4006"><tt class="function">getstrwidth</tt></a></b>(<var>string</var>)
+<dd>
+Returns the width, in pixels, of <var>string</var> when drawn in this font.
+Calls <code>fmgetstrwidth(<var>fh</var>, <var>string</var>)</code>.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-flp.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="sgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-gl.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-flp.html">20.6 flp  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="sgi.html">20. SGI IRIX Specific</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-gl.html">20.8 gl  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

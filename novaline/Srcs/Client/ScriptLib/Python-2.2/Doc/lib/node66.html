@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.14.5.3 Pickling and unpickling external objects</title>
+<META NAME="description" CONTENT="3.14.5.3 Pickling and unpickling external objects">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" HREF="node65.html">
+<LINK REL="up" href="pickle-protocol.html">
+<LINK REL="next" href="pickle-sec.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node65.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pickle-protocol.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pickle-sec.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node65.html">3.14.5.2 Pickling and unpickling</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pickle-protocol.html">3.14.5 The pickle protocol</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pickle-sec.html">3.14.6 Security</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION0051453000000000000000">
+3.14.5.3 Pickling and unpickling external objects</A>
+</H3>
+
+<P>
+For the benefit of object persistence, the <tt class="module">pickle</tt> module
+supports the notion of a reference to an object outside the pickled
+data stream.  Such objects are referenced by a ``persistent id'',
+which is just an arbitrary string of printable ASCII characters.
+The resolution of such names is not defined by the <tt class="module">pickle</tt>
+module; it will delegate this resolution to user defined functions on
+the pickler and unpickler<A NAME="tex2html21"
+  HREF="#foot6929"><SUP>3.9</SUP></A>.
+
+<P>
+To define external persistent id resolution, you need to set the
+<tt class="member">persistent_id</tt> attribute of the pickler object and the
+<tt class="member">persistent_load</tt> attribute of the unpickler object.
+
+<P>
+To pickle objects that have an external persistent id, the pickler
+must have a custom <tt class="function">persistent_id()</tt> method that takes an
+object as an argument and returns either <code>None</code> or the persistent
+id for that object.  When <code>None</code> is returned, the pickler simply
+pickles the object as normal.  When a persistent id string is
+returned, the pickler will pickle that string, along with a marker
+so that the unpickler will recognize the string as a persistent id.
+
+<P>
+To unpickle external objects, the unpickler must have a custom
+<tt class="function">persistent_load()</tt> function that takes a persistent id
+string and returns the referenced object.
+
+<P>
+Here's a silly example that <i>might</i> shed more light:
+
+<P>
+<dl><dd><pre class="verbatim">
+import pickle
+from cStringIO import StringIO
+
+src = StringIO()
+p = pickle.Pickler(src)
+
+def persistent_id(obj):
+    if hasattr(obj, 'x'):
+        return 'the value %d' % obj.x
+    else:
+        return None
+
+p.persistent_id = persistent_id
+
+class Integer:
+    def __init__(self, x):
+        self.x = x
+    def __str__(self):
+        return 'My name is integer %d' % self.x
+
+i = Integer(7)
+print i
+p.dump(i)
+
+datastream = src.getvalue()
+print repr(datastream)
+dst = StringIO(datastream)
+
+up = pickle.Unpickler(dst)
+
+class FancyInteger(Integer):
+    def __str__(self):
+        return 'I am the integer %d' % self.x
+
+def persistent_load(persid):
+    if persid.startswith('the value '):
+        value = int(persid.split()[2])
+        return FancyInteger(value)
+    else:
+        raise pickle.UnpicklingError, 'Invalid persistent id'
+
+up.persistent_load = persistent_load
+
+j = up.load()
+print j
+</pre></dl>
+
+<P>
+In the <tt class="module">cPickle</tt> module, the unpickler's
+<tt class="member">persistent_load</tt> attribute can also be set to a Python
+list, in which case, when the unpickler reaches a persistent id, the
+persistent id string will simply be appended to this list.  This
+functionality exists so that a pickle data stream can be ``sniffed''
+for object references without actually instantiating all the objects
+in a pickle<A NAME="tex2html22"
+  HREF="#foot6824"><SUP>3.10</SUP></A>.  Setting
+<tt class="member">persistent_load</tt> to a list is usually used in conjunction with
+the <tt class="method">noload()</tt> method on the Unpickler.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot6929">... unpickler</A><A NAME="foot6929"
+ HREF="node66.html#tex2html21"><SUP>3.9</SUP></A>
+<DD>The actual mechanism for
+associating these user defined functions is slightly different for
+<tt class="module">pickle</tt> and <tt class="module">cPickle</tt>.  The description given here
+works the same for both implementations.  Users of the <tt class="module">pickle</tt>
+module could also use subclassing to effect the same results,
+overriding the <tt class="method">persistent_id()</tt> and <tt class="method">persistent_load()</tt>
+methods in the derived classes.
+
+<DT><A NAME="foot6824">... pickle</A><A NAME="foot6824"
+ HREF="node66.html#tex2html22"><SUP>3.10</SUP></A>
+<DD>We'll leave you with the image of Guido and Jim
+sitting around sniffing pickles in their living rooms.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node65.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="pickle-protocol.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="pickle-sec.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node65.html">3.14.5.2 Pickling and unpickling</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="pickle-protocol.html">3.14.5 The pickle protocol</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="pickle-sec.html">3.14.6 Security</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

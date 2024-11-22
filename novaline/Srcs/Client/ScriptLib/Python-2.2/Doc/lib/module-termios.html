@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.8 termios -- POSIX style tty control</title>
+<META NAME="description" CONTENT="8.8 termios -- POSIX style tty control">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-TERMIOSuppercase.html">
+<LINK REL="previous" href="module-gdbm.html">
+<LINK REL="up" href="unix.html">
+<LINK REL="next" HREF="node263.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-gdbm.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node263.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-gdbm.html">8.7 gdbm  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node263.html">8.8.1 Example</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0010800000000000000000">
+8.8 <tt class="module">termios</tt> --
+         POSIX style tty control</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Unix</span>.</p>
+
+<P>
+<a name="l2h-2165">&nbsp;</a>
+<P>
+This module provides an interface to the POSIX calls for tty I/O
+control.  For a complete description of these calls, see the POSIX or
+Unix manual pages.  It is only available for those Unix versions
+that support POSIX <i>termios</i> style tty I/O control (and then
+only if configured at installation time).
+
+<P>
+All functions in this module take a file descriptor <var>fd</var> as their
+first argument.  This can be an integer file descriptor, such as
+returned by <code>sys.stdin.fileno()</code>, or a file object, such as
+<code>sys.stdin</code> itself.
+
+<P>
+This module also defines all the constants needed to work with the
+functions provided here; these have the same name as their
+counterparts in C.  Please refer to your system documentation for more
+information on using these terminal control interfaces.
+
+<P>
+The module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-2159"><tt class="function">tcgetattr</tt></a></b>(<var>fd</var>)
+<dd>
+Return a list containing the tty attributes for file descriptor
+<var>fd</var>, as follows: <code>[</code><var>iflag</var>, <var>oflag</var>, <var>cflag</var>,
+<var>lflag</var>, <var>ispeed</var>, <var>ospeed</var>, <var>cc</var><code>]</code> where
+<var>cc</var> is a list of the tty special characters (each a string of
+length 1, except the items with indices <tt class="constant">VMIN</tt> and
+<tt class="constant">VTIME</tt>, which are integers when these fields are
+defined).  The interpretation of the flags and the speeds as well as
+the indexing in the <var>cc</var> array must be done using the symbolic
+constants defined in the <tt class="module">termios</tt>
+module.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2160"><tt class="function">tcsetattr</tt></a></b>(<var>fd, when, attributes</var>)
+<dd>
+Set the tty attributes for file descriptor <var>fd</var> from the
+<var>attributes</var>, which is a list like the one returned by
+<tt class="function">tcgetattr()</tt>.  The <var>when</var> argument determines when the
+attributes are changed: <tt class="constant">TCSANOW</tt> to change immediately,
+<tt class="constant">TCSADRAIN</tt> to change after transmitting all queued output,
+or <tt class="constant">TCSAFLUSH</tt> to change after transmitting all queued
+output and discarding all queued input.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2161"><tt class="function">tcsendbreak</tt></a></b>(<var>fd, duration</var>)
+<dd>
+Send a break on file descriptor <var>fd</var>.  A zero <var>duration</var> sends
+a break for 0.25-0.5 seconds; a nonzero <var>duration</var> has a system
+dependent meaning.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2162"><tt class="function">tcdrain</tt></a></b>(<var>fd</var>)
+<dd>
+Wait until all output written to file descriptor <var>fd</var> has been
+transmitted.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2163"><tt class="function">tcflush</tt></a></b>(<var>fd, queue</var>)
+<dd>
+Discard queued data on file descriptor <var>fd</var>.  The <var>queue</var>
+selector specifies which queue: <tt class="constant">TCIFLUSH</tt> for the input
+queue, <tt class="constant">TCOFLUSH</tt> for the output queue, or
+<tt class="constant">TCIOFLUSH</tt> for both queues.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2164"><tt class="function">tcflow</tt></a></b>(<var>fd, action</var>)
+<dd>
+Suspend or resume input or output on file descriptor <var>fd</var>.  The
+<var>action</var> argument can be <tt class="constant">TCOOFF</tt> to suspend output,
+<tt class="constant">TCOON</tt> to restart output, <tt class="constant">TCIOFF</tt> to suspend
+input, or <tt class="constant">TCION</tt> to restart input.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-tty.html">tty</a></tt>:</b>
+    <dd>Convenience functions for common terminal control
+                  operations.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node263.html">8.8.1 Example</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-gdbm.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node263.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-gdbm.html">8.7 gdbm  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node263.html">8.8.1 Example</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.4.1 URLopener Objects </title>
+<META NAME="description" CONTENT="11.4.1 URLopener Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node307.html">
+<LINK REL="previous" href="module-urllib.html">
+<LINK REL="up" href="module-urllib.html">
+<LINK REL="next" HREF="node307.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-urllib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-urllib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node307.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-urllib.html">11.4 urllib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-urllib.html">11.4 urllib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node307.html">11.4.2 Examples</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013410000000000000000">&nbsp;</A>
+<BR>
+11.4.1 URLopener Objects 
+</H2>
+
+<P>
+<tt class="class">URLopener</tt> and <tt class="class">FancyURLopener</tt> objects have the
+following attributes.
+
+<P>
+<dl><dt><b><a name="l2h-2333"><tt class="method">open</tt></a></b>(<var>fullurl</var><big>[</big><var>, data</var><big>]</big>)
+<dd>
+Open <var>fullurl</var> using the appropriate protocol.  This method sets 
+up cache and proxy information, then calls the appropriate open method with
+its input arguments.  If the scheme is not recognized,
+<tt class="method">open_unknown()</tt> is called.  The <var>data</var> argument 
+has the same meaning as the <var>data</var> argument of <tt class="function">urlopen()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2334"><tt class="method">open_unknown</tt></a></b>(<var>fullurl</var><big>[</big><var>, data</var><big>]</big>)
+<dd>
+Overridable interface to open unknown URL types.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2335"><tt class="method">retrieve</tt></a></b>(<var>url</var><big>[</big><var>,
+                                        filename</var><big>[</big><var>,
+                                        reporthook</var><big>[</big><var>, data</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+Retrieves the contents of <var>url</var> and places it in <var>filename</var>.  The
+return value is a tuple consisting of a local filename and either a
+<tt class="class">mimetools.Message</tt> object containing the response headers (for remote
+URLs) or None (for local URLs).  The caller must then open and read the
+contents of <var>filename</var>.  If <var>filename</var> is not given and the URL
+refers to a local file, the input filename is returned.  If the URL is
+non-local and <var>filename</var> is not given, the filename is the output of
+<tt class="function">tempfile.mktemp()</tt> with a suffix that matches the suffix of the last
+path component of the input URL.  If <var>reporthook</var> is given, it must be
+a function accepting three numeric parameters.  It will be called after each
+chunk of data is read from the network.  <var>reporthook</var> is ignored for
+local URLs.
+
+<P>
+If the <var>url</var> uses the <span class="file">http:</span> scheme identifier, the optional
+<var>data</var> argument may be given to specify a <code>POST</code> request
+(normally the request type is <code>GET</code>).  The <var>data</var> argument
+must in standard <span class="mimetype">application/x-www-form-urlencoded</span> format;
+see the <tt class="function">urlencode()</tt> function below.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2336"><tt class="member">version</tt></a></b>
+<dd>
+Variable that specifies the user agent of the opener object.  To get
+<tt class="module"><a href="module-urllib.html">urllib</a></tt> to tell servers that it is a particular user agent,
+set this in a subclass as a class variable or in the constructor
+before calling the base constructor.
+</dl>
+
+<P>
+The <tt class="class">FancyURLopener</tt> class offers one additional method that
+should be overloaded to provide the appropriate behavior:
+
+<P>
+<dl><dt><b><a name="l2h-2337"><tt class="method">prompt_user_passwd</tt></a></b>(<var>host, realm</var>)
+<dd>
+Return information needed to authenticate the user at the given host
+in the specified security realm.  The return value should be a tuple,
+<code>(<var>user</var>, <var>password</var>)</code>, which can be used for basic
+authentication.
+
+<P>
+The implementation prompts for this information on the terminal; an
+application should override this method to use an appropriate
+interaction model in the local environment.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-urllib.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-urllib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node307.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-urllib.html">11.4 urllib  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-urllib.html">11.4 urllib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node307.html">11.4.2 Examples</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

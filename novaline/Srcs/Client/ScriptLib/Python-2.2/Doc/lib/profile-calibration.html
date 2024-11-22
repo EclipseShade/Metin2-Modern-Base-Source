@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>10.7 Calibration </title>
+<META NAME="description" CONTENT="10.7 Calibration ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node289.html">
+<LINK REL="previous" href="profile-limits.html">
+<LINK REL="up" href="profile.html">
+<LINK REL="next" HREF="node289.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="profile-limits.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="profile.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node289.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="profile-limits.html">10.6 Limitations</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="profile.html">10. The Python Profiler</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node289.html">10.8 Extensions  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0012700000000000000000">&nbsp;</A>
+<BR>
+10.7 Calibration 
+</H1>
+
+<P>
+The profiler subtracts a constant from each
+event handling time to compensate for the overhead of calling the time
+function, and socking away the results.  By default, the constant is 0.
+The following procedure can
+be used to obtain a better constant for a given platform (see discussion
+in section Limitations above).
+
+<P>
+<dl><dd><pre class="verbatim">
+import profile
+pr = profile.Profile()
+for i in range(5):
+    print pr.calibrate(10000)
+</pre></dl>
+
+<P>
+The method executes the number of Python calls given by the argument,
+directly and again under the profiler, measuring the time for both.
+It then computes the hidden overhead per profiler event, and returns
+that as a float.  For example, on an 800 MHz Pentium running
+Windows 2000, and using Python's time.clock() as the timer,
+the magical number is about 12.5e-6.
+
+<P>
+The object of this exercise is to get a fairly consistent result.
+If your computer is <i>very</i> fast, or your timer function has poor
+resolution, you might have to pass 100000, or even 1000000, to get
+consistent results.
+
+<P>
+When you have a consistent answer,
+there are three ways you can use it:<A NAME="tex2html45"
+  HREF="#foot28895"><SUP>10.3</SUP></A>
+<P>
+<dl><dd><pre class="verbatim">
+import profile
+
+# 1. Apply computed bias to all Profile instances created hereafter.
+profile.Profile.bias = your_computed_bias
+
+# 2. Apply computed bias to a specific Profile instance.
+pr = profile.Profile()
+pr.bias = your_computed_bias
+
+# 3. Specify computed bias in instance constructor.
+pr = profile.Profile(bias=your_computed_bias)
+</pre></dl>
+
+<P>
+If you have a choice, you are better off choosing a smaller constant, and
+then your results will ``less often'' show up as negative in profile
+statistics.
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot28895">... it:</A><A NAME="foot28895"
+ href="profile-calibration.html#tex2html45"><SUP>10.3</SUP></A>
+<DD>Prior to Python 2.2, it
+  was necessary to edit the profiler source code to embed the bias as
+  a literal number.  You still can, but that method is no longer
+  described, because no longer needed.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="profile-limits.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="profile.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node289.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="profile-limits.html">10.6 Limitations</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="profile.html">10. The Python Profiler</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node289.html">10.8 Extensions  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

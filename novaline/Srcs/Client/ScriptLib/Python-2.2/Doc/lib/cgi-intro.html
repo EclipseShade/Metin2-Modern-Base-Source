@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.2.1 Introduction</title>
+<META NAME="description" CONTENT="11.2.1 Introduction">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node295.html">
+<LINK REL="previous" href="module-cgi.html">
+<LINK REL="up" href="module-cgi.html">
+<LINK REL="next" HREF="node295.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-cgi.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-cgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node295.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-cgi.html">11.2 cgi  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-cgi.html">11.2 cgi  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node295.html">11.2.2 Using the cgi</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013210000000000000000">
+11.2.1 Introduction</A>
+</H2>
+
+<P>
+A CGI script is invoked by an HTTP server, usually to process user
+input submitted through an HTML <code>&lt;FORM&gt;</code> or <code>&lt;ISINDEX&gt;</code> element.
+
+<P>
+Most often, CGI scripts live in the server's special <span class="file">cgi-bin</span>
+directory.  The HTTP server places all sorts of information about the
+request (such as the client's hostname, the requested URL, the query
+string, and lots of other goodies) in the script's shell environment,
+executes the script, and sends the script's output back to the client.
+
+<P>
+The script's input is connected to the client too, and sometimes the
+form data is read this way; at other times the form data is passed via
+the ``query string'' part of the URL.  This module is intended
+to take care of the different cases and provide a simpler interface to
+the Python script.  It also provides a number of utilities that help
+in debugging scripts, and the latest addition is support for file
+uploads from a form (if your browser supports it -- Grail 0.3 and
+Netscape 2.0 do).
+
+<P>
+The output of a CGI script should consist of two sections, separated
+by a blank line.  The first section contains a number of headers,
+telling the client what kind of data is following.  Python code to
+generate a minimal header section looks like this:
+
+<P>
+<dl><dd><pre class="verbatim">
+print "Content-Type: text/html"     # HTML is following
+print                               # blank line, end of headers
+</pre></dl>
+
+<P>
+The second section is usually HTML, which allows the client software
+to display nicely formatted text with header, in-line images, etc.
+Here's Python code that prints a simple piece of HTML:
+
+<P>
+<dl><dd><pre class="verbatim">
+print "&lt;TITLE&gt;CGI script output&lt;/TITLE&gt;"
+print "&lt;H1&gt;This is my first CGI script&lt;/H1&gt;"
+print "Hello, world!"
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-cgi.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-cgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node295.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-cgi.html">11.2 cgi  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-cgi.html">11.2 cgi  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node295.html">11.2.2 Using the cgi</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

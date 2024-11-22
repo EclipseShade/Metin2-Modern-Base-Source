@@ -1,0 +1,758 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.13.2 Window Objects </title>
+<META NAME="description" CONTENT="6.13.2 Window Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" HREF="node181.html">
+<LINK REL="previous" href="curses-functions.html">
+<LINK REL="up" href="module-curses.html">
+<LINK REL="next" HREF="node181.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="curses-functions.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-curses.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node181.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="curses-functions.html">6.13.1 Functions</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-curses.html">6.13 curses  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node181.html">6.13.3 Constants</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0081320000000000000000">&nbsp;</A>
+<BR>
+6.13.2 Window Objects 
+</H2>
+
+<P>
+Window objects, as returned by <tt class="function">initscr()</tt> and
+<tt class="function">newwin()</tt> above, have the
+following methods:
+
+<P>
+<dl><dt><b><a name="l2h-1487"><tt class="method">addch</tt></a></b>(<big>[</big><var>y, x,</var><big>]</big><var> ch</var><big>[</big><var>, attr</var><big>]</big>)
+<dd>
+<span class="note"><b class="label">Note:</b>
+A <i>character</i> means a C character (an
+ASCII code), rather then a Python character (a string of length 1).
+(This note is true whenever the documentation mentions a character.)
+The builtin <tt class="function">ord()</tt> is handy for conveying strings to codes.</span>
+
+<P>
+Paint character <var>ch</var> at <code>(<var>y</var>, <var>x</var>)</code> with attributes
+<var>attr</var>, overwriting any character previously painter at that
+location.  By default, the character position and attributes are the
+current settings for the window object.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1488"><tt class="method">addnstr</tt></a></b>(<big>[</big><var>y, x,</var><big>]</big><var> str, n</var><big>[</big><var>, attr</var><big>]</big>)
+<dd>
+Paint at most <var>n</var> characters of the 
+string <var>str</var> at <code>(<var>y</var>, <var>x</var>)</code> with attributes
+<var>attr</var>, overwriting anything previously on the display.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1489"><tt class="method">addstr</tt></a></b>(<big>[</big><var>y, x,</var><big>]</big><var> str</var><big>[</big><var>, attr</var><big>]</big>)
+<dd>
+Paint the string <var>str</var> at <code>(<var>y</var>, <var>x</var>)</code> with attributes
+<var>attr</var>, overwriting anything previously on the display.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1490"><tt class="method">attroff</tt></a></b>(<var>attr</var>)
+<dd>
+Remove attribute <var>attr</var> from the ``background'' set applied to all
+writes to the current window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1491"><tt class="method">attron</tt></a></b>(<var>attr</var>)
+<dd>
+Add attribute <var>attr</var> from the ``background'' set applied to all
+writes to the current window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1492"><tt class="method">attrset</tt></a></b>(<var>attr</var>)
+<dd>
+Set the ``background'' set of attributes to <var>attr</var>.  This set is
+initially 0 (no attributes).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1493"><tt class="method">bkgd</tt></a></b>(<var>ch</var><big>[</big><var>, attr</var><big>]</big>)
+<dd>
+Sets the background property of the window to the character <var>ch</var>,
+with attributes <var>attr</var>.  The change is then applied to every
+character position in that window:
+
+<UL>
+<LI>The attribute of every character in the window  is
+changed to the new background attribute.
+</LI>
+<LI>Wherever  the  former background character appears,
+it is changed to the new background character.
+</LI>
+</UL>
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1494"><tt class="method">bkgdset</tt></a></b>(<var>ch</var><big>[</big><var>, attr</var><big>]</big>)
+<dd>
+Sets the window's background.  A window's background consists of a
+character and any combination of attributes.  The attribute part of
+the background is combined (OR'ed) with all non-blank characters that
+are written into the window.  Both the character and attribute parts
+of the background are combined with the blank characters.  The
+background becomes a property of the character and moves with the
+character through any scrolling and insert/delete line/character
+operations.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1495"><tt class="method">border</tt></a></b>(<big>[</big><var>ls</var><big>[</big><var>, rs</var><big>[</big><var>, ts</var><big>[</big><var>,
+                           bs</var><big>[</big><var>, tl</var><big>[</big><var>, tr</var><big>[</big><var>,
+                           bl</var><big>[</big><var>, br</var><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big><big>]</big>)
+<dd>
+Draw a border around the edges of the window. Each parameter specifies 
+the character to use for a specific part of the border; see the table
+below for more details.  The characters can be specified as integers
+or as one-character strings.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+A <code>0</code> value for any parameter will cause the
+default character to be used for that parameter.  Keyword parameters
+can <i>not</i> be used.  The defaults are listed in this table:</span>
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b>Parameter</b>&nbsp;</th>
+      <th align="left"><b>Description</b>&nbsp;</th>
+      <th align="left"><b>Default value</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><var>ls</var></td>
+        <td align="left">Left side</td>
+        <td align="left"><tt class="constant">ACS_VLINE</tt></td>
+    <tr><td align="left" valign="baseline"><var>rs</var></td>
+        <td align="left">Right side</td>
+        <td align="left"><tt class="constant">ACS_VLINE</tt></td>
+    <tr><td align="left" valign="baseline"><var>ts</var></td>
+        <td align="left">Top</td>
+        <td align="left"><tt class="constant">ACS_HLINE</tt></td>
+    <tr><td align="left" valign="baseline"><var>bs</var></td>
+        <td align="left">Bottom</td>
+        <td align="left"><tt class="constant">ACS_HLINE</tt></td>
+    <tr><td align="left" valign="baseline"><var>tl</var></td>
+        <td align="left">Upper-left corner</td>
+        <td align="left"><tt class="constant">ACS_ULCORNER</tt></td>
+    <tr><td align="left" valign="baseline"><var>tr</var></td>
+        <td align="left">Upper-right corner</td>
+        <td align="left"><tt class="constant">ACS_URCORNER</tt></td>
+    <tr><td align="left" valign="baseline"><var>bl</var></td>
+        <td align="left">Bottom-left corner</td>
+        <td align="left"><tt class="constant">ACS_BLCORNER</tt></td>
+    <tr><td align="left" valign="baseline"><var>br</var></td>
+        <td align="left">Bottom-right corner</td>
+        <td align="left"><tt class="constant">ACS_BRCORNER</tt></td></tbody>
+</table>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1496"><tt class="method">box</tt></a></b>(<big>[</big><var>vertch, horch</var><big>]</big>)
+<dd>
+Similar to <tt class="method">border()</tt>, but both <var>ls</var> and <var>rs</var> are
+<var>vertch</var> and both <var>ts</var> and bs are <var>horch</var>.  The default
+corner characters are always used by this function.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1497"><tt class="method">clear</tt></a></b>()
+<dd>
+Like <tt class="method">erase()</tt>, but also causes the whole window to be repainted
+upon next call to <tt class="method">refresh()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1498"><tt class="method">clearok</tt></a></b>(<var>yes</var>)
+<dd>
+If <var>yes</var> is 1, the next call to <tt class="method">refresh()</tt>
+will clear the window completely.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1499"><tt class="method">clrtobot</tt></a></b>()
+<dd>
+Erase from cursor to the end of the window: all lines below the cursor
+are deleted, and then the equivalent of <tt class="method">clrtoeol()</tt> is performed.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1500"><tt class="method">clrtoeol</tt></a></b>()
+<dd>
+Erase from cursor to the end of the line.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1501"><tt class="method">cursyncup</tt></a></b>()
+<dd>
+Updates the current cursor position of all the ancestors of the window
+to reflect the current cursor position of the window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1502"><tt class="method">delch</tt></a></b>(<big>[</big><var>x, y</var><big>]</big>)
+<dd>
+Delete any character at <code>(<var>y</var>, <var>x</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1503"><tt class="method">deleteln</tt></a></b>()
+<dd>
+Delete the line under the cursor. All following lines are moved up
+by 1 line.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1504"><tt class="method">derwin</tt></a></b>(<big>[</big><var>nlines, ncols,</var><big>]</big><var> begin_y, begin_y</var>)
+<dd>
+An abbreviation for ``derive window'', <tt class="method">derwin()</tt> is the same
+as calling <tt class="method">subwin()</tt>, except that <var>begin_y</var> and
+<var>begin_x</var> are relative to the origin of the window, rather than
+relative to the entire screen.  Returns a window object for the
+derived window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1505"><tt class="method">echochar</tt></a></b>(<var>ch</var><big>[</big><var>, attr</var><big>]</big>)
+<dd>
+Add character <var>ch</var> with attribute <var>attr</var>, and immediately 
+call <tt class="method">refresh()</tt> on the window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1506"><tt class="method">enclose</tt></a></b>(<var>y, x</var>)
+<dd>
+Tests whether the given pair of screen-relative character-cell
+coordinates are enclosed by the given window, returning true or
+false.  It is useful for determining what subset of the screen
+windows enclose the location of a mouse event.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1507"><tt class="method">erase</tt></a></b>()
+<dd>
+Clear the window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1508"><tt class="method">getbegyx</tt></a></b>()
+<dd>
+Return a tuple <code>(<var>y</var>, <var>x</var>)</code> of co-ordinates of upper-left
+corner.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1509"><tt class="method">getch</tt></a></b>(<big>[</big><var>x, y</var><big>]</big>)
+<dd>
+Get a character. Note that the integer returned does <i>not</i> have to
+be in ASCII range: function keys, keypad keys and so on return numbers
+higher than 256. In no-delay mode, an exception is raised if there is 
+no input.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1510"><tt class="method">getkey</tt></a></b>(<big>[</big><var>x, y</var><big>]</big>)
+<dd>
+Get a character, returning a string instead of an integer, as
+<tt class="method">getch()</tt> does. Function keys, keypad keys and so on return a
+multibyte string containing the key name.  In no-delay mode, an
+exception is raised if there is no input.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1511"><tt class="method">getmaxyx</tt></a></b>()
+<dd>
+Return a tuple <code>(<var>y</var>, <var>x</var>)</code> of the height and width of
+the window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1512"><tt class="method">getparyx</tt></a></b>()
+<dd>
+Returns the beginning coordinates of this window relative to its
+parent window into two integer variables y and x.  Returns
+<code>-1,-1</code> if this window has no parent.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1513"><tt class="method">getstr</tt></a></b>(<big>[</big><var>x, y</var><big>]</big>)
+<dd>
+Read a string from the user, with primitive line editing capacity.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1514"><tt class="method">getyx</tt></a></b>()
+<dd>
+Return a tuple <code>(<var>y</var>, <var>x</var>)</code> of current cursor position 
+relative to the window's upper-left corner.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1515"><tt class="method">hline</tt></a></b>(<big>[</big><var>y, x,</var><big>]</big><var> ch, n</var>)
+<dd>
+Display a horizontal line starting at <code>(<var>y</var>, <var>x</var>)</code> with
+length <var>n</var> consisting of the character <var>ch</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1516"><tt class="method">idcok</tt></a></b>(<var>flag</var>)
+<dd>
+If <var>flag</var> is false, curses no longer considers using the hardware
+insert/delete character feature of the terminal; if <var>flag</var> is
+true, use of character insertion and deletion is enabled.  When curses
+is first initialized, use of character insert/delete is enabled by
+default.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1517"><tt class="method">idlok</tt></a></b>(<var>yes</var>)
+<dd>
+If called with <var>yes</var> equal to 1, <tt class="module">curses</tt> will try and use
+hardware line editing facilities. Otherwise, line insertion/deletion
+are disabled.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1518"><tt class="method">immedok</tt></a></b>(<var>flag</var>)
+<dd>
+If <var>flag</var> is true, any change in the window image
+automatically causes the window to be refreshed; you no longer
+have to call <tt class="method">refresh()</tt> yourself.  However, it may
+degrade performance considerably, due to repeated calls to
+wrefresh.  This option is disabled by default.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1519"><tt class="method">inch</tt></a></b>(<big>[</big><var>x, y</var><big>]</big>)
+<dd>
+Return the character at the given position in the window. The bottom
+8 bits are the character proper, and upper bits are the attributes.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1520"><tt class="method">insch</tt></a></b>(<big>[</big><var>y, x,</var><big>]</big><var> ch</var><big>[</big><var>, attr</var><big>]</big>)
+<dd>
+Paint character <var>ch</var> at <code>(<var>y</var>, <var>x</var>)</code> with attributes
+<var>attr</var>, moving the line from position <var>x</var> right by one
+character.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1521"><tt class="method">insdelln</tt></a></b>(<var>nlines</var>)
+<dd>
+Inserts <var>nlines</var> lines into the specified window above the current
+line.  The <var>nlines</var> bottom lines are lost.  For negative
+<var>nlines</var>, delete <var>nlines</var> lines starting with the one under
+the cursor, and move the remaining lines up.  The bottom <var>nlines</var>
+lines are cleared.  The current cursor position remains the same.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1522"><tt class="method">insertln</tt></a></b>()
+<dd>
+Insert a blank line under the cursor. All following lines are moved
+down by 1 line.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1523"><tt class="method">insnstr</tt></a></b>(<big>[</big><var>y, x, </var><big>]</big><var> str, n </var><big>[</big><var>, attr</var><big>]</big>)
+<dd>
+Insert a character string (as many characters as will fit on the line)
+before the character under the cursor, up to <var>n</var> characters.  
+If <var>n</var> is zero or negative,
+the entire string is inserted.
+All characters to the right of
+the cursor are shifted right, with the the rightmost characters on the
+line being lost.  The cursor position does not change (after moving to
+<var>y</var>, <var>x</var>, if specified). 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1524"><tt class="method">insstr</tt></a></b>(<big>[</big><var>y, x, </var><big>]</big><var> str </var><big>[</big><var>, attr</var><big>]</big>)
+<dd>
+Insert a character string (as many characters as will fit on the line)
+before the character under the cursor.  All characters to the right of
+the cursor are shifted right, with the the rightmost characters on the
+line being lost.  The cursor position does not change (after moving to
+<var>y</var>, <var>x</var>, if specified). 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1525"><tt class="method">instr</tt></a></b>(<big>[</big><var>y, x</var><big>]</big><big>[</big><var>, n</var><big>]</big>)
+<dd>
+Returns a string of characters, extracted from the window starting at
+the current cursor position, or at <var>y</var>, <var>x</var> if specified.
+Attributes are stripped from the characters.  If <var>n</var> is specified,
+<tt class="method">instr()</tt> returns return a string at most <var>n</var> characters
+long (exclusive of the trailing NUL).
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1526"><tt class="method">is_linetouched</tt></a></b>(<var><var>line</var></var>)
+<dd>
+Returns true if the specified line was modified since the last call to
+<tt class="method">refresh()</tt>; otherwise returns false.  Raises a
+<tt class="exception">curses.error</tt> exception if <var>line</var> is not valid
+for the given window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1527"><tt class="method">is_wintouched</tt></a></b>()
+<dd>
+Returns true if the specified window was modified since the last call to
+<tt class="method">refresh()</tt>; otherwise returns false.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1528"><tt class="method">keypad</tt></a></b>(<var>yes</var>)
+<dd>
+If <var>yes</var> is 1, escape sequences generated by some keys (keypad, 
+function keys) will be interpreted by <tt class="module">curses</tt>.
+If <var>yes</var> is 0, escape sequences will be left as is in the input
+stream.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1529"><tt class="method">leaveok</tt></a></b>(<var>yes</var>)
+<dd>
+If <var>yes</var> is 1, cursor is left where it is on update, instead of
+being at ``cursor position.''  This reduces cursor movement where
+possible. If possible the cursor will be made invisible.
+
+<P>
+If <var>yes</var> is 0, cursor will always be at ``cursor position'' after
+an update.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1530"><tt class="method">move</tt></a></b>(<var>new_y, new_x</var>)
+<dd>
+Move cursor to <code>(<var>new_y</var>, <var>new_x</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1531"><tt class="method">mvderwin</tt></a></b>(<var>y, x</var>)
+<dd>
+Moves the window inside its parent window.  The screen-relative
+parameters of the window are not changed.  This routine is used to
+display different parts of the parent window at the same physical
+position on the screen.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1532"><tt class="method">mvwin</tt></a></b>(<var>new_y, new_x</var>)
+<dd>
+Move the window so its upper-left corner is at
+<code>(<var>new_y</var>, <var>new_x</var>)</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1533"><tt class="method">nodelay</tt></a></b>(<var>yes</var>)
+<dd>
+If <var>yes</var> is <code>1</code>, <tt class="method">getch()</tt> will be non-blocking.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1534"><tt class="method">notimeout</tt></a></b>(<var>yes</var>)
+<dd>
+If <var>yes</var> is <code>1</code>, escape sequences will not be timed out.
+
+<P>
+If <var>yes</var> is <code>0</code>, after a few milliseconds, an escape sequence
+will not be interpreted, and will be left in the input stream as is.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1535"><tt class="method">noutrefresh</tt></a></b>()
+<dd>
+Mark for refresh but wait.  This function updates the data structure
+representing the desired state of the window, but does not force
+an update of the physical screen.  To accomplish that, call 
+<tt class="function">doupdate()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1536"><tt class="method">overlay</tt></a></b>(<var>destwin</var><big>[</big><var>, sminrow, smincol,
+                            dminrow, dmincol, dmaxrow, dmaxcol</var><big>]</big>)
+<dd>
+Overlay the window on top of <var>destwin</var>. The windows need not be
+the same size, only the overlapping region is copied. This copy is
+non-destructive, which means that the current background character
+does not overwrite the old contents of <var>destwin</var>.
+
+<P>
+To get fine-grained control over the copied region, the second form
+of <tt class="method">overlay()</tt> can be used. <var>sminrow</var> and <var>smincol</var> are
+the upper-left coordinates of the source window, and the other variables
+mark a rectangle in the destination window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1537"><tt class="method">overwrite</tt></a></b>(<var>destwin</var><big>[</big><var>, sminrow, smincol,
+                              dminrow, dmincol, dmaxrow, dmaxcol</var><big>]</big>)
+<dd>
+Overwrite the window on top of <var>destwin</var>. The windows need not be
+the same size, in which case only the overlapping region is
+copied. This copy is destructive, which means that the current
+background character overwrites the old contents of <var>destwin</var>.
+
+<P>
+To get fine-grained control over the copied region, the second form
+of <tt class="method">overwrite()</tt> can be used. <var>sminrow</var> and <var>smincol</var> are
+the upper-left coordinates of the source window, the other variables
+mark a rectangle in the destination window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1538"><tt class="method">putwin</tt></a></b>(<var>file</var>)
+<dd>
+Writes all data associated with the window into the provided file
+object.  This information can be later retrieved using the
+<tt class="function">getwin()</tt> function.
+
+<P>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1539"><tt class="method">redrawln</tt></a></b>(<var>beg, num</var>)
+<dd>
+Indicates that the <var>num</var> screen lines, starting at line <var>beg</var>,
+are corrupted and should be completely redrawn on the next
+<tt class="method">refresh()</tt> call.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1540"><tt class="method">redrawwin</tt></a></b>()
+<dd>
+Touches the entire window, causing it to be completely redrawn on the
+next <tt class="method">refresh()</tt> call.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1541"><tt class="method">refresh</tt></a></b>(<big>[</big><var>pminrow, pmincol, sminrow,
+                                      smincol, smaxrow, smaxcol</var><big>]</big>)
+<dd>
+Update the display immediately (sync actual screen with previous
+drawing/deleting methods).
+
+<P>
+The 6 optional arguments can only be specified when the window is a
+pad created with <tt class="function">newpad()</tt>.  The additional parameters are
+needed to indicate what part of the pad and screen are involved.
+<var>pminrow</var> and <var>pmincol</var> specify the upper left-hand corner of the
+rectangle to be displayed in the pad.  <var>sminrow</var>, <var>smincol</var>,
+<var>smaxrow</var>, and <var>smaxcol</var> specify the edges of the rectangle to
+be displayed on the screen.  The lower right-hand corner of the
+rectangle to be displayed in the pad is calculated from the screen
+coordinates, since the rectangles must be the same size.  Both
+rectangles must be entirely contained within their respective
+structures.  Negative values of <var>pminrow</var>, <var>pmincol</var>,
+<var>sminrow</var>, or <var>smincol</var> are treated as if they were zero.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1542"><tt class="method">scroll</tt></a></b>(<big>[</big><var>lines<code> = 1</code></var><big>]</big>)
+<dd>
+Scroll the screen or scrolling region upward by <var>lines</var> lines.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1543"><tt class="method">scrollok</tt></a></b>(<var>flag</var>)
+<dd>
+Controls what happens when the cursor of a window is moved off the
+edge of the window or scrolling region, either as a result of a
+newline action on the bottom line, or typing the last character
+of the last line.  If <var>flag</var> is false, the cursor is left
+on the bottom line.  If <var>flag</var> is true, the window is
+scrolled up one line.  Note that in order to get the physical
+scrolling effect on the terminal, it is also necessary to call
+<tt class="method">idlok()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1544"><tt class="method">setscrreg</tt></a></b>(<var>top, bottom</var>)
+<dd>
+Set the scrolling region from line <var>top</var> to line <var>bottom</var>. All
+scrolling actions will take place in this region.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1545"><tt class="method">standend</tt></a></b>()
+<dd>
+Turn off the standout attribute.  On some terminals this has the
+side effect of turning off all attributes.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1546"><tt class="method">standout</tt></a></b>()
+<dd>
+Turn on attribute <var>A_STANDOUT</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1547"><tt class="method">subpad</tt></a></b>(<big>[</big><var>nlines, ncols,</var><big>]</big><var> begin_y, begin_y</var>)
+<dd>
+Return a sub-window, whose upper-left corner is at
+<code>(<var>begin_y</var>, <var>begin_x</var>)</code>, and whose width/height is
+<var>ncols</var>/<var>nlines</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1548"><tt class="method">subwin</tt></a></b>(<big>[</big><var>nlines, ncols,</var><big>]</big><var> begin_y, begin_y</var>)
+<dd>
+Return a sub-window, whose upper-left corner is at
+<code>(<var>begin_y</var>, <var>begin_x</var>)</code>, and whose width/height is
+<var>ncols</var>/<var>nlines</var>.
+
+<P>
+By default, the sub-window will extend from the
+specified position to the lower right corner of the window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1549"><tt class="method">syncdown</tt></a></b>()
+<dd>
+Touches each location in the window that has been touched in any of
+its ancestor windows.  This routine is called by <tt class="method">refresh()</tt>,
+so it should almost never be necessary to call it manually.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1550"><tt class="method">syncok</tt></a></b>(<var>flag</var>)
+<dd>
+If called with <var>flag</var> set to true, then <tt class="method">syncup()</tt> is
+called automatically whenever there is a change in the window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1551"><tt class="method">syncup</tt></a></b>()
+<dd>
+Touches all locations in ancestors of the window that have been changed in 
+the window.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1552"><tt class="method">timeout</tt></a></b>(<var>delay</var>)
+<dd>
+Sets blocking or non-blocking read behavior for the window.  If
+<var>delay</var> is negative, blocking read is used, which will wait
+indefinitely for input).  If <var>delay</var> is zero, then non-blocking
+read is used, and -1 will be returned by <tt class="method">getch()</tt> if no input
+is waiting.  If <var>delay</var> is positive, then <tt class="method">getch()</tt> will
+block for <var>delay</var> milliseconds, and return -1 if there is still no
+input at the end of that time.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1553"><tt class="method">touchline</tt></a></b>(<var>start, count</var>)
+<dd>
+Pretend <var>count</var> lines have been changed, starting with line
+<var>start</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1554"><tt class="method">touchwin</tt></a></b>()
+<dd>
+Pretend the whole window has been changed, for purposes of drawing
+optimizations.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1555"><tt class="method">untouchwin</tt></a></b>()
+<dd>
+Marks all lines in  the  window  as unchanged since the last call to
+<tt class="method">refresh()</tt>. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-1556"><tt class="method">vline</tt></a></b>(<big>[</big><var>y, x,</var><big>]</big><var> ch, n</var>)
+<dd>
+Display a vertical line starting at <code>(<var>y</var>, <var>x</var>)</code> with
+length <var>n</var> consisting of the character <var>ch</var>.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="curses-functions.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-curses.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node181.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="curses-functions.html">6.13.1 Functions</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-curses.html">6.13 curses  </A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node181.html">6.13.3 Constants</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.20.3 DateTime Objects </title>
+<META NAME="description" CONTENT="11.20.3 DateTime Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="binary-objects.html">
+<LINK REL="previous" href="boolean-objects.html">
+<LINK REL="up" href="module-xmlrpclib.html">
+<LINK REL="next" href="binary-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="boolean-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xmlrpclib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="binary-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="boolean-objects.html">11.20.2 Boolean Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xmlrpclib.html">11.20 xmlrpclib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="binary-objects.html">11.20.4 Binary Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00132030000000000000000">&nbsp;</A>
+<BR>
+11.20.3 DateTime Objects 
+</H2>
+
+<P>
+This class may initialized from date in seconds since the epoch, a
+time tuple, or an ISO 8601 time/date string.  It has the following
+methods, supported mainly for internal use by the
+marshalling/unmarshalling code:
+
+<P>
+<dl><dt><b><a name="l2h-2714"><tt class="method">decode</tt></a></b>(<var>string</var>)
+<dd>
+Accept a string as the instance's new time value.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2715"><tt class="method">encode</tt></a></b>(<var>out</var>)
+<dd>
+Write the XML-RPC encoding of this DateTime item to the out stream object.
+</dl>
+
+<P>
+It also supports certain of Python's built-in operators through 
+<tt class="method">_cmp__</tt> and <tt class="method">__repr__</tt> methods.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="boolean-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xmlrpclib.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="binary-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="boolean-objects.html">11.20.2 Boolean Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xmlrpclib.html">11.20 xmlrpclib  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="binary-objects.html">11.20.4 Binary Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

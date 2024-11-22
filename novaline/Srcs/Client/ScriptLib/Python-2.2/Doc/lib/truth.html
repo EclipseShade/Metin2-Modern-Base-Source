@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.2.1 Truth Value Testing </title>
+<META NAME="description" CONTENT="2.2.1 Truth Value Testing ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="boolean.html">
+<LINK REL="previous" href="types.html">
+<LINK REL="up" href="types.html">
+<LINK REL="next" href="boolean.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="types.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="boolean.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="types.html">2.2 Built-in Types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="types.html">2.2 Built-in Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="boolean.html">2.2.2 Boolean Operations</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION004210000000000000000">&nbsp;</A>
+<BR>
+2.2.1 Truth Value Testing 
+</H2>
+
+<P>
+Any object can be tested for truth value, for use in an <tt class="keyword">if</tt> or
+<tt class="keyword">while</tt> condition or as operand of the Boolean operations below.
+The following values are considered false:
+<a name="l2h-75">&nbsp;</a>
+<P>
+
+<UL>
+<LI><code>None</code>
+	<a name="l2h-74">&nbsp;</a>
+<P>
+</LI>
+<LI>zero of any numeric type, for example, <code>0</code>, <code>0L</code>,
+        <code>0.0</code>, <code>0j</code>.
+
+<P>
+</LI>
+<LI>any empty sequence, for example, <code>''</code>, <code>()</code>, <code>[]</code>.
+
+<P>
+</LI>
+<LI>any empty mapping, for example, <code>{}</code>.
+
+<P>
+</LI>
+<LI>instances of user-defined classes, if the class defines a
+	<tt class="method">__nonzero__()</tt> or <tt class="method">__len__()</tt> method, when that
+	method returns zero.<A NAME="tex2html6"
+  HREF="#foot2493"><SUP>2.5</SUP></A>
+<P>
+</LI>
+</UL>
+
+<P>
+All other values are considered true -- so objects of many types are
+always true.
+<a name="l2h-76">&nbsp;</a>
+<P>
+Operations and built-in functions that have a Boolean result always
+return <code>0</code> for false and <code>1</code> for true, unless otherwise
+stated.  (Important exception: the Boolean operations
+"<tt class="samp">or</tt>"<a name="l2h-77">&nbsp;</a>and "<tt class="samp">and</tt>"<a name="l2h-78">&nbsp;</a>always return one of
+their operands.)
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot2493">... zero.</A><A NAME="foot2493"
+ href="truth.html#tex2html6"><SUP>2.5</SUP></A>
+<DD>Additional information on these
+special methods may be found in the <em class="citetitle"><a
+ href="../ref/ref.html"
+ title="Python
+Reference Manual"
+ >Python
+Reference Manual</a></em>.
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="types.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="boolean.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="types.html">2.2 Built-in Types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="types.html">2.2 Built-in Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="boolean.html">2.2.2 Boolean Operations</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

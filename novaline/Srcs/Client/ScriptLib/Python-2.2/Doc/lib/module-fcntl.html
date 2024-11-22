@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>8.12 fcntl -- The fcntl() and ioctl() system calls</title>
+<META NAME="description" CONTENT="8.12 fcntl -- The fcntl() and ioctl() system calls">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-pipes.html">
+<LINK REL="previous" href="module-pty.html">
+<LINK REL="up" href="unix.html">
+<LINK REL="next" href="module-pipes.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-pty.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-pipes.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-pty.html">8.11 pty  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-pipes.html">8.13 pipes  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00101200000000000000000">
+8.12 <tt class="module">fcntl</tt> --
+         The <tt class="function">fcntl()</tt> and <tt class="function">ioctl()</tt> system calls</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Unix</span>.</p>
+
+<P>
+<a name="l2h-2181">&nbsp;</a>
+<P>
+This module performs file control and I/O control on file descriptors.
+It is an interface to the <tt class="cfunction">fcntl()</tt> and <tt class="cfunction">ioctl()</tt>
+Unix routines.
+
+<P>
+All functions in this module take a file descriptor <var>fd</var> as their
+first argument.  This can be an integer file descriptor, such as
+returned by <code>sys.stdin.fileno()</code>, or a file object, such as
+<code>sys.stdin</code> itself, which provides a <tt class="method">fileno()</tt> which
+returns a genuine file descriptor.
+
+<P>
+The module defines the following functions:
+
+<P>
+<dl><dt><b><a name="l2h-2177"><tt class="function">fcntl</tt></a></b>(<var>fd, op</var><big>[</big><var>, arg</var><big>]</big>)
+<dd>
+  Perform the requested operation on file descriptor <var>fd</var> (file
+  objects providing a <tt class="method">fileno()</tt> method are accepted as well).
+  The operation is defined by <var>op</var> and is operating system
+  dependent.  These codes are also found in the <tt class="module">fcntl</tt>
+  module. The argument <var>arg</var> is optional, and defaults to the
+  integer value <code>0</code>.  When present, it can either be an integer
+  value, or a string.  With the argument missing or an integer value,
+  the return value of this function is the integer return value of the
+  C <tt class="cfunction">fcntl()</tt> call.  When the argument is a string it
+  represents a binary structure, e.g. created by
+  <tt class="function">struct.pack()</tt>. The binary data is copied to a buffer
+  whose address is passed to the C <tt class="cfunction">fcntl()</tt> call.  The
+  return value after a successful call is the contents of the buffer,
+  converted to a string object.  The length of the returned string
+  will be the same as the length of the <var>arg</var> argument.  This is
+  limited to 1024 bytes.  If the information returned in the buffer by
+  the operating system is larger than 1024 bytes, this is most likely
+  to result in a segmentation violation or a more subtle data
+  corruption.
+
+<P>
+If the <tt class="cfunction">fcntl()</tt> fails, an <tt class="exception">IOError</tt> is
+  raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2178"><tt class="function">ioctl</tt></a></b>(<var>fd, op, arg</var>)
+<dd>
+  This function is identical to the <tt class="function">fcntl()</tt> function, except
+  that the operations are typically defined in the library module
+  <tt class="module">IOCTL</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2179"><tt class="function">flock</tt></a></b>(<var>fd, op</var>)
+<dd>
+Perform the lock operation <var>op</var> on file descriptor <var>fd</var> (file
+  objects providing a <tt class="method">fileno()</tt> method are accepted as well).
+See the Unix manual <span class="manpage"><i>flock</i>(3)</span> for details.  (On some
+systems, this function is emulated using <tt class="cfunction">fcntl()</tt>.)
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2180"><tt class="function">lockf</tt></a></b>(<var>fd, operation,
+    </var><big>[</big><var>len, </var><big>[</big><var>start, </var><big>[</big><var>whence</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+This is essentially a wrapper around the <tt class="function">fcntl()</tt> locking
+calls.  <var>fd</var> is the file descriptor of the file to lock or unlock,
+and <var>operation</var> is one of the following values:
+
+<P>
+
+<UL>
+<LI><tt class="constant">LOCK_UN</tt> - unlock
+</LI>
+<LI><tt class="constant">LOCK_SH</tt> - acquire a shared lock
+</LI>
+<LI><tt class="constant">LOCK_EX</tt> - acquire an exclusive lock
+</LI>
+</UL>
+
+<P>
+When <var>operation</var> is <tt class="constant">LOCK_SH</tt> or <tt class="constant">LOCK_EX</tt>, it
+can also be bit-wise OR'd with <tt class="constant">LOCK_NB</tt> to avoid blocking on
+lock acquisition.  If <tt class="constant">LOCK_NB</tt> is used and the lock cannot
+be acquired, an <tt class="exception">IOError</tt> will be raised and the exception
+will have an <var>errno</var> attribute set to <tt class="constant">EACCES</tt> or
+<tt class="constant">EAGAIN</tt> (depending on the operating system; for portability,
+check for both values).  On at least some systems, <tt class="constant">LOCK_EX</tt>
+can only be used if the file descriptor refers to a file opened for
+writing.
+
+<P>
+<var>length</var> is the number of bytes to lock, <var>start</var> is the byte
+offset at which the lock starts, relative to <var>whence</var>, and
+<var>whence</var> is as with <tt class="function">fileobj.seek()</tt>, specifically:
+
+<P>
+
+<UL>
+<LI><tt class="constant">0</tt> - relative to the start of the file
+      (<tt class="constant">SEEK_SET</tt>)
+</LI>
+<LI><tt class="constant">1</tt> - relative to the current buffer position
+      (<tt class="constant">SEEK_CUR</tt>)
+</LI>
+<LI><tt class="constant">2</tt> - relative to the end of the file
+      (<tt class="constant">SEEK_END</tt>)
+</LI>
+</UL>
+
+<P>
+The default for <var>start</var> is 0, which means to start at the
+beginning of the file.  The default for <var>length</var> is 0 which means
+to lock to the end of the file.  The default for <var>whence</var> is also
+0.
+</dl>
+
+<P>
+Examples (all on a SVR4 compliant system):
+
+<P>
+<dl><dd><pre class="verbatim">
+import struct, fcntl
+
+file = open(...)
+rv = fcntl(file, fcntl.F_SETFL, os.O_NDELAY)
+
+lockdata = struct.pack('hhllhh', fcntl.F_WRLCK, 0, 0, 0, 0, 0)
+rv = fcntl.fcntl(file, fcntl.F_SETLKW, lockdata)
+</pre></dl>
+
+<P>
+Note that in the first example the return value variable <var>rv</var> will
+hold an integer value; in the second example it will hold a string
+value.  The structure lay-out for the <var>lockdata</var> variable is
+system dependent -- therefore using the <tt class="function">flock()</tt> call may be
+better.
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-pty.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="unix.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-pipes.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-pty.html">8.11 pty  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="unix.html">8. Unix Specific Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-pipes.html">8.13 pipes  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

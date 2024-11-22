@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>20.11 imgfile -- Support for SGI imglib files</title>
+<META NAME="description" CONTENT="20.11 imgfile -- Support for SGI imglib files">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-jpeg.html">
+<LINK REL="previous" href="module-gl-constants.html">
+<LINK REL="up" href="sgi.html">
+<LINK REL="next" href="module-jpeg.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-gl-constants.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="sgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-jpeg.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-gl-constants.html">20.10 GL  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="sgi.html">20. SGI IRIX Specific</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-jpeg.html">20.12 jpeg  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00221100000000000000000">
+20.11 <tt class="module">imgfile</tt> --
+         Support for SGI imglib files</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">IRIX</span>.</p>
+
+<P>
+The <tt class="module">imgfile</tt> module allows Python programs to access SGI imglib image
+files (also known as <span class="file">.rgb</span> files).  The module is far from
+complete, but is provided anyway since the functionality that there is
+is enough in some cases.  Currently, colormap files are not supported.
+
+<P>
+The module defines the following variables and functions:
+
+<P>
+<dl><dt><b><span class="typelabel">exception</span> <a name="l2h-4024"><tt class="exception">error</tt></a></b>
+<dd>
+This exception is raised on all errors, such as unsupported file type, etc.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4025"><tt class="function">getsizes</tt></a></b>(<var>file</var>)
+<dd>
+This function returns a tuple <code>(<var>x</var>, <var>y</var>, <var>z</var>)</code> where
+<var>x</var> and <var>y</var> are the size of the image in pixels and
+<var>z</var> is the number of
+bytes per pixel. Only 3 byte RGB pixels and 1 byte greyscale pixels
+are currently supported.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4026"><tt class="function">read</tt></a></b>(<var>file</var>)
+<dd>
+This function reads and decodes the image on the specified file, and
+returns it as a Python string. The string has either 1 byte greyscale
+pixels or 4 byte RGBA pixels. The bottom left pixel is the first in
+the string. This format is suitable to pass to <tt class="function">gl.lrectwrite()</tt>,
+for instance.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4027"><tt class="function">readscaled</tt></a></b>(<var>file, x, y, filter</var><big>[</big><var>, blur</var><big>]</big>)
+<dd>
+This function is identical to read but it returns an image that is
+scaled to the given <var>x</var> and <var>y</var> sizes. If the <var>filter</var> and
+<var>blur</var> parameters are omitted scaling is done by
+simply dropping or duplicating pixels, so the result will be less than
+perfect, especially for computer-generated images.
+
+<P>
+Alternatively, you can specify a filter to use to smoothen the image
+after scaling. The filter forms supported are <code>'impulse'</code>,
+<code>'box'</code>, <code>'triangle'</code>, <code>'quadratic'</code> and
+<code>'gaussian'</code>. If a filter is specified <var>blur</var> is an optional
+parameter specifying the blurriness of the filter. It defaults to <code>1.0</code>.
+
+<P>
+<tt class="function">readscaled()</tt> makes no attempt to keep the aspect ratio
+correct, so that is the users' responsibility.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4028"><tt class="function">ttob</tt></a></b>(<var>flag</var>)
+<dd>
+This function sets a global flag which defines whether the scan lines
+of the image are read or written from bottom to top (flag is zero,
+compatible with SGI GL) or from top to bottom(flag is one,
+compatible with X).  The default is zero.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4029"><tt class="function">write</tt></a></b>(<var>file, data, x, y, z</var>)
+<dd>
+This function writes the RGB or greyscale data in <var>data</var> to image
+file <var>file</var>. <var>x</var> and <var>y</var> give the size of the image,
+<var>z</var> is 1 for 1 byte greyscale images or 3 for RGB images (which are
+stored as 4 byte values of which only the lower three bytes are used).
+These are the formats returned by <tt class="function">gl.lrectread()</tt>.
+</dl>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-gl-constants.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="sgi.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-jpeg.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-gl-constants.html">20.10 GL  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="sgi.html">20. SGI IRIX Specific</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-jpeg.html">20.12 jpeg  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

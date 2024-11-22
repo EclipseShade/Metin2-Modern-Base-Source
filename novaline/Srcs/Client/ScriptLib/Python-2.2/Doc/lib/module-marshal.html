@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.19 marshal -- Internal Python object serialization</title>
+<META NAME="description" CONTENT="3.19 marshal -- Internal Python object serialization">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-warnings.html">
+<LINK REL="previous" href="module-copy.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="module-warnings.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-copy.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-warnings.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-copy.html">3.18 copy  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-warnings.html">3.20 warnings  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0051900000000000000000">
+3.19 <tt class="module">marshal</tt> --
+         Internal Python object serialization</A>
+</H1>
+
+<P>
+
+
+<P>
+This module contains functions that can read and write Python
+values in a binary format.  The format is specific to Python, but
+independent of machine architecture issues (e.g., you can write a
+Python value to a file on a PC, transport the file to a Sun, and read
+it back there).  Details of the format are undocumented on purpose;
+it may change between Python versions (although it rarely
+does).<A NAME="tex2html26"
+  HREF="#foot7455"><SUP>3.14</SUP></A>
+<P>
+This is not a general ``persistence'' module.  For general persistence
+and transfer of Python objects through RPC calls, see the modules
+<tt class="module"><a href="module-pickle.html">pickle</a></tt> and <tt class="module"><a href="module-shelve.html">shelve</a></tt>.  The <tt class="module">marshal</tt> module exists
+mainly to support reading and writing the ``pseudo-compiled'' code for
+Python modules of <span class="file">.pyc</span> files.  Therefore, the Python
+maintainers reserve the right to modify the marshal format in backward
+incompatible ways should the need arise.  If you're serializing and
+de-serializing Python objects, use the <tt class="module">pickle</tt> module.  There
+may also be unknown security problems with
+<tt class="module">marshal</tt><A NAME="tex2html27"
+  HREF="#foot7508"><SUP>3.15</SUP></A>.
+<a name="l2h-559">&nbsp;</a>
+<P>
+Not all Python object types are supported; in general, only objects
+whose value is independent from a particular invocation of Python can
+be written and read by this module.  The following types are supported:
+<code>None</code>, integers, long integers, floating point numbers,
+strings, Unicode objects, tuples, lists, dictionaries, and code
+objects, where it should be understood that tuples, lists and
+dictionaries are only supported as long as the values contained
+therein are themselves supported; and recursive lists and dictionaries
+should not be written (they will cause infinite loops).
+
+<P>
+<b>Caveat:</b> On machines where C's <code>long int</code> type has more than
+32 bits (such as the DEC Alpha), it is possible to create plain Python
+integers that are longer than 32 bits.
+If such an integer is marshaled and read back in on a machine where
+C's <code>long int</code> type has only 32 bits, a Python long integer object
+is returned instead.  While of a different type, the numeric value is
+the same.  (This behavior is new in Python 2.2.  In earlier versions,
+all but the least-significant 32 bits of the value were lost, and a
+warning message was printed.)
+
+<P>
+There are functions that read/write files as well as functions
+operating on strings.
+
+<P>
+The module defines these functions:
+
+<P>
+<dl><dt><b><a name="l2h-555"><tt class="function">dump</tt></a></b>(<var>value, file</var>)
+<dd>
+  Write the value on the open file.  The value must be a supported
+  type.  The file must be an open file object such as
+  <code>sys.stdout</code> or returned by <tt class="function">open()</tt> or
+  <tt class="function">posix.popen()</tt>.  It must be opened in binary mode
+  (<code>'wb'</code> or <code>'w+b'</code>).
+
+<P>
+If the value has (or contains an object that has) an unsupported type,
+  a <tt class="exception">ValueError</tt> exception is raised -- but garbage data
+  will also be written to the file.  The object will not be properly
+  read back by <tt class="function">load()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-556"><tt class="function">load</tt></a></b>(<var>file</var>)
+<dd>
+  Read one value from the open file and return it.  If no valid value
+  is read, raise <tt class="exception">EOFError</tt>, <tt class="exception">ValueError</tt> or
+  <tt class="exception">TypeError</tt>.  The file must be an open file object opened
+  in binary mode (<code>'rb'</code> or <code>'r+b'</code>).
+
+<P>
+<span class="warning"><b class="label">Warning:</b>
+If an object containing an unsupported type was
+  marshalled with <tt class="function">dump()</tt>, <tt class="function">load()</tt> will substitute
+  <code>None</code> for the unmarshallable type.</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-557"><tt class="function">dumps</tt></a></b>(<var>value</var>)
+<dd>
+  Return the string that would be written to a file by
+  <code>dump(<var>value</var>, <var>file</var>)</code>.  The value must be a supported
+  type.  Raise a <tt class="exception">ValueError</tt> exception if value has (or
+  contains an object that has) an unsupported type.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-558"><tt class="function">loads</tt></a></b>(<var>string</var>)
+<dd>
+  Convert the string to a value.  If no valid value is found, raise
+  <tt class="exception">EOFError</tt>, <tt class="exception">ValueError</tt> or
+  <tt class="exception">TypeError</tt>.  Extra characters in the string are ignored.
+</dl>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot7455">...
+does).</A><A NAME="foot7455"
+ href="module-marshal.html#tex2html26"><SUP>3.14</SUP></A>
+<DD>The name of this module stems from a bit of
+  terminology used by the designers of Modula-3 (amongst others), who
+  use the term ``marshalling'' for shipping of data around in a
+  self-contained form. Strictly speaking, ``to marshal'' means to
+  convert some data from internal to external form (in an RPC buffer for
+  instance) and ``unmarshalling'' for the reverse process.
+
+<DT><A NAME="foot7508">...marshal</A><A NAME="foot7508"
+ href="module-marshal.html#tex2html27"><SUP>3.15</SUP></A>
+<DD>As opposed to the known security issues in
+the <tt class="module">pickle</tt> module!
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-copy.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-warnings.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-copy.html">3.18 copy  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-warnings.html">3.20 warnings  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

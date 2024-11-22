@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.12.4 InputSource Objects </title>
+<META NAME="description" CONTENT="13.12.4 InputSource Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="attributes-impl-objects.html">
+<LINK REL="previous" href="locator-objects.html">
+<LINK REL="up" href="module-xml.sax.xmlreader.html">
+<LINK REL="next" href="attributes-impl-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="locator-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.sax.xmlreader.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="attributes-impl-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="locator-objects.html">13.12.3 Locator Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.sax.xmlreader.html">13.12 xml.sax.xmlreader  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="attributes-impl-objects.html">13.12.5 AttributesImpl Objects</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00151240000000000000000">&nbsp;</A>
+<BR>
+13.12.4 InputSource Objects 
+</H2>
+
+<P>
+<dl><dt><b><a name="l2h-3385"><tt class="method">setPublicId</tt></a></b>(<var>id</var>)
+<dd>
+  Sets the public identifier of this <tt class="class">InputSource</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3386"><tt class="method">getPublicId</tt></a></b>()
+<dd>
+  Returns the public identifier of this <tt class="class">InputSource</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3387"><tt class="method">setSystemId</tt></a></b>(<var>id</var>)
+<dd>
+  Sets the system identifier of this <tt class="class">InputSource</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3388"><tt class="method">getSystemId</tt></a></b>()
+<dd>
+  Returns the system identifier of this <tt class="class">InputSource</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3389"><tt class="method">setEncoding</tt></a></b>(<var>encoding</var>)
+<dd>
+  Sets the character encoding of this <tt class="class">InputSource</tt>.
+
+<P>
+The encoding must be a string acceptable for an XML encoding
+  declaration (see section 4.3.3 of the XML recommendation).
+
+<P>
+The encoding attribute of the <tt class="class">InputSource</tt> is ignored if the
+  <tt class="class">InputSource</tt> also contains a character stream.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3390"><tt class="method">getEncoding</tt></a></b>()
+<dd>
+  Get the character encoding of this InputSource.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3391"><tt class="method">setByteStream</tt></a></b>(<var>bytefile</var>)
+<dd>
+  Set the byte stream (a Python file-like object which does not
+  perform byte-to-character conversion) for this input source.
+
+<P>
+The SAX parser will ignore this if there is also a character stream
+  specified, but it will use a byte stream in preference to opening a
+  URI connection itself.
+
+<P>
+If the application knows the character encoding of the byte stream,
+  it should set it with the setEncoding method.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3392"><tt class="method">getByteStream</tt></a></b>()
+<dd>
+  Get the byte stream for this input source.
+
+<P>
+The getEncoding method will return the character encoding for this
+  byte stream, or None if unknown.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3393"><tt class="method">setCharacterStream</tt></a></b>(<var>charfile</var>)
+<dd>
+  Set the character stream for this input source. (The stream must be
+  a Python 1.6 Unicode-wrapped file-like that performs conversion to
+  Unicode strings.)
+
+<P>
+If there is a character stream specified, the SAX parser will ignore
+  any byte stream and will not attempt to open a URI connection to the
+  system identifier.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3394"><tt class="method">getCharacterStream</tt></a></b>()
+<dd>
+  Get the character stream for this input source.
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="locator-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-xml.sax.xmlreader.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="attributes-impl-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="locator-objects.html">13.12.3 Locator Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-xml.sax.xmlreader.html">13.12 xml.sax.xmlreader  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="attributes-impl-objects.html">13.12.5 AttributesImpl Objects</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

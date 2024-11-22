@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<torrent_locale>
+	<!-- Configuration -->
+	<string key="CONFIG_LOADING">Loading Configuration...</string>
+	<string key="CONFIG_APPYING">Applying Configuration...</string>
+
+	<!-- Torrent -->
+	<string key="TORRENT_PATCH">METIN II PATCHER</string> <!-- Title -->
+	<string key="TORRENT_PATCH_CANCEL">Cancel</string>
+	<string key="TORRENT_PATCH_ERROR">ERROR</string>
+	<string key="TORRENT_START">시작합니다...</string>
+	<string key="TORRENT_START">Starting Patch..</string>
+	<string key="TORRENT_PATCH_INIT">Initializing...</string>
+	<string key="TORRENT_TOTAL_PROGRESS">Total Progress</string>
+	<string key="TORRENT_PATCH_SEEDING">Seeding...</string>
+	<string key="TORRENT_STATE_QUEUED_FOR_CHECKING">Queued For Checking File</string>
+	<string key="TORRENT_STATE_CHECKING">Checking Files...</string>
+	<string key="TORRENT_STATE_DOWNLOADING_METADATA">Downloading Metadata</string>
+	<string key="TORRENT_STATE_DOWNLOADING">Downloading...</string>
+	<string key="TORRENT_STATE_FINISHED">Download finished!</string>
+	<string key="TORRENT_STATE_SEEDING">Seeding...</string>
+	<string key="TORRENT_STATE_ALLOCATING">Calculating State...</string>
+	<string key="TORRENT_STATE_CHECKING_RESUME_DATA">Checking Resume Data</string>
+	<string key="TORRENT_STATE_UNKNOWN">Download State Error!</string>
+	<string key="TORRENT_STATE_CANCELING">Stopping...</string>
+	<string key="TORRENT_FOREGROUND_PATCH_RUN_GAME">Launching Game...</string>
+	<string key="TORRENT_SESSION_PAUSING">Download Paused</string>
+	<string key="TORRENT_SESSION_CLOSING">Closing Session</string>
+	<string key="TORRENT_SESSION_CLOSED">Waiting For Finish</string>
+	<string key="TORRENT_SAVING_RESUME_DATA">Saving Resume Data</string>
+	<string key="TORRENT_DOWNLOAD_SPEED">Down Speed:</string>
+	<string key="TORRENT_UPLOAD_SPEED">Up Speed:</string>
+	<string key="TORRENT_PEERS_COUNT">Peers:</string>
+	<string key="TORRENT_SEEDS_COUNT">Seeds:</string>
+	<string key="TORRENT_TRAY_SHOWHIDE">Show/Hide</string>
+	<string key="TORRENT_TRAY_EXIT">E&xit</string>
+	<string key="TORRENT_TRAY_BANDWIDTH_ALLOCATION">Bandwidth Allocation</string>
+	<string key="TORRENT_TRAY_BANDWIDTH_UNLIMITED">Unlimited</string>
+
+	<string key="NEW_PATCHER_START">Patcher has been updated. It'll be restarted.</string>
+	<string key="NEW_PATCHER_CHANGE_ERROR">Failed to update patcher. Run again.</string>
+
+	<!-- Error & Warning-->
+	<string key="SET_ICON_ERROR">Could not set icon</string>
+	<string key="LOCAL_CONFIG_OPEN_ERROR">Could not open configuraiton from local</string>
+	<string key="REMOTE_CONFIG_OPEN_ERROR">Could not open configuration from remote</string>
+	<string key="_WFOPEN_S_ERROR">File not found (path %s mode %s)</string>
+	<string key="CHECK_PROTOCOL_ERROR">Could not recognize syntax ('%s' != '%s')</string>
+	<string key="INTERNET_OPEN_ERROR">Cannot reach to internet (ErrorCode %d)</string>
+	<string key="INTERNET_CONNECT_ERROR">Could not establish connection (URL %s ErrorCode %d)</string>
+	<string key="HTTP_OPEN_REQUEST_ERROR">Could not open request (URL %s ErrorCode %d)</string>
+	<string key="HTTP_SEND_REQUEST_ERROR">Could not request for download (URL %s ErrorCode %d)</string>
+	<string key="HTTP_QUERY_STATUS_CODE_ERROR">Error while query status (URL %s ErrorCode %d)</string>
+	<string key="HTTP_QUERY_STATUS_NOT_OK">Cannot download file (URL %s ErrorCode %d Status %d)</string>
+	<string key="HTTP_QUERY_CONTENT_LENGTH_ERROR">Content length error (URL %s ErrorCode %d)</string>
+	<string key="INTERNET_READ_FILE_ERROR">Error while donwloading (URL %s ErrorCode %d Position %ld Size %ld)</string>
+	<string key="XML_PARSING_ERROR">Error while parsing XML file</string>
+	<string key="XML_FIRST_ELEMENT_ERROR">Cannot find first element in XML</string>
+
+	<string key="CREATE_PROCESS_ERROR_2">Cannot find executable file</string>
+
+	<string key="TORRENT_FILE_NOT_FOUND">Torrent file not found</string>
+	<string key="TORRENT_DOWNLOAD_ERROR">Error while downloading file(s) (Torrent: %s)</string>
+	<string key="TORRENT_SESSION_LISTEN_ERROR">Failed to listen (Port %d-%d)</string>
+	<string key="LAUNCH_ERROR_WITH_ADMIN_PRIVILEGES">Run with Administrator Privileges.</string>
+	<string key="NOT_SUPPORT_UAC">UAC(User Account Control) is not supported. Run with Administrator Privileges.</string>
+</torrent_locale>

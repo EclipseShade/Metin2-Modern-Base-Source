@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>Distributing Python Modules</title>
+<META NAME="description" CONTENT="Distributing Python Modules">
+<META NAME="keywords" CONTENT="dist">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="dist.css">
+<link rel="first" href="dist.html">
+
+<LINK REL="next" href="intro.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A HREF="../index.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Distributing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="../index.html">Python Documentation Index</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="intro.html">1 Introduction</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<P>
+
+<div class="titlepage">
+<center>
+<h1>Distributing Python Modules</h1>
+<p><b><font size="+2">Greg Ward</font></b></p>
+<p>Email: <span class="email">gward@python.net</span></p>
+<p>
+</center>
+</div>
+
+<H3>Abstract:</H3>
+<DIV CLASS="ABSTRACT">
+  
+  This document describes the Python Distribution Utilities
+  (``Distutils'') from the module developer's point-of-view, describing
+  how to use the Distutils to make Python modules and extensions easily
+  available to a wider audience with very little overhead for
+  build/release/install mechanics.
+</DIV>
+<P>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="intro.html">1 Introduction</a>
+<LI><A href="simple-example.html">2 Concepts &amp; Terminology</a>
+<UL>
+<LI><A href="simple-example.html#SECTION000210000000000000000">2.1 A simple example</a>
+<LI><A href="simple-example.html#SECTION000220000000000000000">2.2 General Python terminology</a>
+<LI><A href="simple-example.html#SECTION000230000000000000000">2.3 Distutils-specific terminology</a>
+</ul>
+<LI><A href="setup-script.html">3 Writing the Setup Script</a>
+<UL>
+<LI><A href="setup-script.html#SECTION000310000000000000000">3.1 Listing whole packages</a>
+<LI><A href="setup-script.html#SECTION000320000000000000000">3.2 Listing individual modules</a>
+<LI><A href="setup-script.html#SECTION000330000000000000000">3.3 Describing extension modules</a>
+<UL>
+<LI><A href="setup-script.html#SECTION000331000000000000000">3.3.1 Extension names and packages</a>
+<LI><A href="setup-script.html#SECTION000332000000000000000">3.3.2 Extension source files</a>
+<LI><A href="setup-script.html#SECTION000333000000000000000">3.3.3 Preprocessor options</a>
+<LI><A href="setup-script.html#SECTION000334000000000000000">3.3.4 Library options</a>
+<LI><A href="setup-script.html#SECTION000335000000000000000">3.3.5 Other options</a>
+</ul>
+<LI><A href="setup-script.html#SECTION000340000000000000000">3.4 Listing scripts</a>
+<LI><A href="setup-script.html#SECTION000350000000000000000">3.5 Listing additional files</a>
+</ul>
+<LI><A href="setup-config.html">4 Writing the Setup Configuration File</a>
+<LI><A href="source-dist.html">5 Creating a Source Distribution</a>
+<UL>
+<LI><A href="source-dist.html#SECTION000510000000000000000">5.1 Specifying the files to distribute</a>
+<LI><A href="source-dist.html#SECTION000520000000000000000">5.2 Manifest-related options</a>
+</ul>
+<LI><A href="creating-wininst.html">6 Creating Built Distributions</a>
+<UL>
+<LI><A href="creating-wininst.html#SECTION000610000000000000000">6.1 Creating dumb built distributions</a>
+<LI><A href="creating-wininst.html#SECTION000620000000000000000">6.2 Creating RPM packages</a>
+<LI><A href="creating-wininst.html#SECTION000630000000000000000">6.3 Creating Windows installers</a>
+</ul>
+<LI><A href="sdist-cmd.html">7 Reference</a>
+<UL>
+<LI><A href="sdist-cmd.html#SECTION000710000000000000000">7.1 Installing modules: the <code>install</code> command family</a>
+<UL>
+<LI><A href="sdist-cmd.html#SECTION000711000000000000000">7.1.1 <code>install_data</code></a>
+<LI><A href="sdist-cmd.html#SECTION000712000000000000000">7.1.2 <code>install_scripts</code></a>
+</ul>
+<LI><A href="sdist-cmd.html#SECTION000720000000000000000">7.2 Creating a source distribution: the
+            <code>sdist</code> command</a>
+</ul>
+<LI><A href="module-distutils.sysconfig.html">8 <tt class="module">distutils.sysconfig</tt> --
+         System configuration information</a>
+<LI><A href="about.html">About this document ...</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A HREF="../index.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Distributing Python Modules</td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="../index.html">Python Documentation Index</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="intro.html">1 Introduction</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

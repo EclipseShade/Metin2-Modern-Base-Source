@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>12.6 mimetools -- Tools for parsing MIME messages</title>
+<META NAME="description" CONTENT="12.6 mimetools -- Tools for parsing MIME messages">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-mimetypes.html">
+<LINK REL="previous" href="module-mhlib.html">
+<LINK REL="up" href="netdata.html">
+<LINK REL="next" href="mimetools-message-objects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="mh-message-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="mimetools-message-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="mh-message-objects.html">12.5.3 Message Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="mimetools-message-objects.html">12.6.1 Additional Methods of</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0014600000000000000000">
+12.6 <tt class="module">mimetools</tt> --
+         Tools for parsing MIME messages</A>
+</H1>
+
+<P>
+
+
+<P>
+This module defines a subclass of the
+<tt class="module"><a href="module-rfc822.html">rfc822</a></tt><a name="l2h-2917">&nbsp;</a>module's
+<tt class="class">Message</tt> class and a number of utility functions that are
+useful for the manipulation for MIME multipart or encoded message.
+
+<P>
+It defines the following items:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-2911"><tt class="class">Message</tt></a></b>(<var>fp</var><big>[</big><var>, seekable</var><big>]</big>)
+<dd>
+Return a new instance of the <tt class="class">Message</tt> class.  This is a
+subclass of the <tt class="class">rfc822.Message</tt> class, with some additional
+methods (see below).  The <var>seekable</var> argument has the same meaning
+as for <tt class="class">rfc822.Message</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2912"><tt class="function">choose_boundary</tt></a></b>()
+<dd>
+Return a unique string that has a high likelihood of being usable as a
+part boundary.  The string has the form
+<code>'<var>hostipaddr</var>.<var>uid</var>.<var>pid</var>.<var>timestamp</var>.<var>random</var>'</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2913"><tt class="function">decode</tt></a></b>(<var>input, output, encoding</var>)
+<dd>
+Read data encoded using the allowed MIME <var>encoding</var> from open file
+object <var>input</var> and write the decoded data to open file object
+<var>output</var>.  Valid values for <var>encoding</var> include
+<code>'base64'</code>, <code>'quoted-printable'</code> and <code>'uuencode'</code>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2914"><tt class="function">encode</tt></a></b>(<var>input, output, encoding</var>)
+<dd>
+Read data from open file object <var>input</var> and write it encoded using
+the allowed MIME <var>encoding</var> to open file object <var>output</var>.
+Valid values for <var>encoding</var> are the same as for <tt class="method">decode()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2915"><tt class="function">copyliteral</tt></a></b>(<var>input, output</var>)
+<dd>
+Read lines from open file <var>input</var> until EOF and write them to
+open file <var>output</var>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-2916"><tt class="function">copybinary</tt></a></b>(<var>input, output</var>)
+<dd>
+Read blocks until EOF from open file <var>input</var> and write them to
+open file <var>output</var>.  The block size is currently fixed at 8192.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-rfc822.html">rfc822</a></tt>:</b>
+    <dd>Provides the base class for
+                     <tt class="class">mimetools.Message</tt>.
+  </dl>
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-multifile.html">multifile</a></tt>:</b>
+    <dd>Support for reading files which contain
+                        distinct parts, such as MIME data.
+  </dl>
+  <dl compact class="seeurl">
+    <dt><a href="http://www.cs.uu.nl/wais/html/na-dir/mail/mime-faq/.html"
+        class="url">http://www.cs.uu.nl/wais/html/na-dir/mail/mime-faq/.html</a>
+    <dd>
+          The MIME Frequently Asked Questions document.  For an
+          overview of MIME, see the answer to question 1.1 in Part 1
+          of this document.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="mimetools-message-objects.html">12.6.1 Additional Methods of Message Objects</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="mh-message-objects.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="netdata.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="mimetools-message-objects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="mh-message-objects.html">12.5.3 Message Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="netdata.html">12. Internet Data Handling</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="mimetools-message-objects.html">12.6.1 Additional Methods of</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

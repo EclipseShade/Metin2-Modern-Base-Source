@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.5 atexit -- Exit handlers</title>
+<META NAME="description" CONTENT="3.5 atexit -- Exit handlers">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-types.html">
+<LINK REL="previous" href="module-fpectl.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="atexit-example.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node41.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="atexit-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node41.html">3.4.2 Limitations and other</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="atexit-example.html">3.5.1 atexit Example</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005500000000000000000">
+3.5 <tt class="module">atexit</tt> --
+         Exit handlers</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.0.</span>
+
+<P>
+The <tt class="module">atexit</tt> module defines a single function to register
+cleanup functions.  Functions thus registered are automatically
+executed upon normal interpreter termination.
+
+<P>
+Note: the functions registered via this module are not called when the program is killed by a
+signal, when a Python fatal internal error is detected, or when
+<tt class="function">os._exit()</tt> is called.
+
+<P>
+This is an alternate interface to the functionality provided by the
+<code>sys.exitfunc</code> variable.
+<a name="l2h-335">&nbsp;</a>
+<P>
+Note: This module is unlikely to work correctly when used with other code
+that sets <code>sys.exitfunc</code>.  In particular, other core Python modules are
+free to use <tt class="module">atexit</tt> without the programmer's knowledge.  Authors who
+use <code>sys.exitfunc</code> should convert their code to use
+<tt class="module">atexit</tt> instead.  The simplest way to convert code that sets
+<code>sys.exitfunc</code> is to import <tt class="module">atexit</tt> and register the function
+that had been bound to <code>sys.exitfunc</code>.
+
+<P>
+<dl><dt><b><a name="l2h-336"><tt class="function">register</tt></a></b>(<var>func</var><big>[</big><var>, *args</var><big>[</big><var>, **kargs</var><big>]</big><big>]</big>)
+<dd>
+Register <var>func</var> as a function to be executed at termination.  Any
+optional arguments that are to be passed to <var>func</var> must be passed
+as arguments to <tt class="function">register()</tt>.
+
+<P>
+At normal program termination (for instance, if
+<tt class="function">sys.exit()</tt> is called or the main module's execution
+completes), all functions registered are called in last in, first out
+order.  The assumption is that lower level modules will normally be
+imported before higher level modules and thus must be cleaned up
+later.
+</dl>
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seemodule">
+    <dt>Module <b><tt class="module"><a href="module-readline.html">readline</a></tt>:</b>
+    <dd>Useful example of <tt class="module">atexit</tt> to read and
+                       write <tt class="module"><a href="module-readline.html">readline</a></tt> history files.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="atexit-example.html">3.5.1 <tt class="module">atexit</tt> Example</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node41.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="atexit-example.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node41.html">3.4.2 Limitations and other</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="atexit-example.html">3.5.1 atexit Example</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

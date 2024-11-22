@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>2.2.9.1 Modules </title>
+<META NAME="description" CONTENT="2.2.9.1 Modules ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="typesobjects.html">
+<LINK REL="previous" href="typesother.html">
+<LINK REL="up" href="typesother.html">
+<LINK REL="next" href="typesobjects.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="typesother.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="typesother.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="typesobjects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="typesother.html">2.2.9 Other Built-in Types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="typesother.html">2.2.9 Other Built-in Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="typesobjects.html">2.2.9.2 Classes and Class</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION004291000000000000000">&nbsp;</A>
+<BR>
+2.2.9.1 Modules 
+</H3>
+
+<P>
+The only special operation on a module is attribute access:
+<code><var>m</var>.<var>name</var></code>, where <var>m</var> is a module and <var>name</var>
+accesses a name defined in <var>m</var>'s symbol table.  Module attributes
+can be assigned to.  (Note that the <tt class="keyword">import</tt> statement is not,
+strictly speaking, an operation on a module object; <code>import
+<var>foo</var></code> does not require a module object named <var>foo</var> to exist,
+rather it requires an (external) <i>definition</i> for a module named
+<var>foo</var> somewhere.)
+
+<P>
+A special member of every module is <tt class="member">__dict__</tt>.
+This is the dictionary containing the module's symbol table.
+Modifying this dictionary will actually change the module's symbol
+table, but direct assignment to the <tt class="member">__dict__</tt> attribute is not
+possible (you can write <code><var>m</var>.__dict__['a'] = 1</code>, which
+defines <code><var>m</var>.a</code> to be <code>1</code>, but you can't write
+<code><var>m</var>.__dict__ = {}</code>.
+
+<P>
+Modules built into the interpreter are written like this:
+<code>&lt;module 'sys' (built-in)&gt;</code>.  If loaded from a file, they are
+written as <code>&lt;module 'os' from
+'/usr/local/lib/python2.2/os.pyc'&gt;</code>.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="typesother.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="typesother.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="typesobjects.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="typesother.html">2.2.9 Other Built-in Types</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="typesother.html">2.2.9 Other Built-in Types</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="typesobjects.html">2.2.9.2 Classes and Class</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

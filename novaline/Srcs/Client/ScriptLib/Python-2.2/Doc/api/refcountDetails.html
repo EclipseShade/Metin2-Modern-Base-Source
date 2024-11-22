@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.2.1.1 Reference Count Details </title>
+<META NAME="description" CONTENT="1.2.1.1 Reference Count Details ">
+<META NAME="keywords" CONTENT="api">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="api.css">
+<link rel="first" href="api.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="refcounts.html">
+<LINK REL="up" href="refcounts.html">
+<LINK REL="next" href="types.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="refcounts.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="refcounts.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="refcounts.html">1.2.1 Reference Counts</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="refcounts.html">1.2.1 Reference Counts</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="types.html">1.2.2 Types</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION003211000000000000000">&nbsp;</A>
+<BR>
+1.2.1.1 Reference Count Details 
+</H3>
+
+<P>
+The reference count behavior of functions in the Python/C API is best 
+explained in terms of <i>ownership of references</i>.  Note that we 
+talk of owning references, never of owning objects; objects are always 
+shared!  When a function owns a reference, it has to dispose of it 
+properly -- either by passing ownership on (usually to its caller) or 
+by calling <tt class="cfunction">Py_DECREF()</tt> or <tt class="cfunction">Py_XDECREF()</tt>.  When
+a function passes ownership of a reference on to its caller, the
+caller is said to receive a <i>new</i> reference.  When no ownership
+is transferred, the caller is said to <i>borrow</i> the reference.
+Nothing needs to be done for a borrowed reference.
+
+<P>
+Conversely, when a calling function passes it a reference to an 
+object, there are two possibilities: the function <i>steals</i> a 
+reference to the object, or it does not.  Few functions steal 
+references; the two notable exceptions are
+<tt class="cfunction">PyList_SetItem()</tt><a name="l2h-12">&nbsp;</a>and
+<tt class="cfunction">PyTuple_SetItem()</tt><a name="l2h-13">&nbsp;</a> which 
+steal a reference to the item (but not to the tuple or list into which
+the item is put!).  These functions were designed to steal a reference
+because of a common idiom for populating a tuple or list with newly
+created objects; for example, the code to create the tuple <code>(1,
+2, "three")</code> could look like this (forgetting about error handling for
+the moment; a better way to code this is shown below):
+
+<P>
+<dl><dd><pre class="verbatim">
+PyObject *t;
+
+t = PyTuple_New(3);
+PyTuple_SetItem(t, 0, PyInt_FromLong(1L));
+PyTuple_SetItem(t, 1, PyInt_FromLong(2L));
+PyTuple_SetItem(t, 2, PyString_FromString("three"));
+</pre></dl>
+
+<P>
+Incidentally, <tt class="cfunction">PyTuple_SetItem()</tt> is the <i>only</i> way to
+set tuple items; <tt class="cfunction">PySequence_SetItem()</tt> and
+<tt class="cfunction">PyObject_SetItem()</tt> refuse to do this since tuples are an
+immutable data type.  You should only use
+<tt class="cfunction">PyTuple_SetItem()</tt> for tuples that you are creating
+yourself.
+
+<P>
+Equivalent code for populating a list can be written using 
+<tt class="cfunction">PyList_New()</tt> and <tt class="cfunction">PyList_SetItem()</tt>.  Such code
+can also use <tt class="cfunction">PySequence_SetItem()</tt>; this illustrates the
+difference between the two (the extra <tt class="cfunction">Py_DECREF()</tt> calls):
+
+<P>
+<dl><dd><pre class="verbatim">
+PyObject *l, *x;
+
+l = PyList_New(3);
+x = PyInt_FromLong(1L);
+PySequence_SetItem(l, 0, x); Py_DECREF(x);
+x = PyInt_FromLong(2L);
+PySequence_SetItem(l, 1, x); Py_DECREF(x);
+x = PyString_FromString("three");
+PySequence_SetItem(l, 2, x); Py_DECREF(x);
+</pre></dl>
+
+<P>
+You might find it strange that the ``recommended'' approach takes more
+code.  However, in practice, you will rarely use these ways of
+creating and populating a tuple or list.  There's a generic function,
+<tt class="cfunction">Py_BuildValue()</tt>, that can create most common objects from
+C values, directed by a <i class="dfn">format string</i>.  For example, the
+above two blocks of code could be replaced by the following (which
+also takes care of the error checking):
+
+<P>
+<dl><dd><pre class="verbatim">
+PyObject *t, *l;
+
+t = Py_BuildValue("(iis)", 1, 2, "three");
+l = Py_BuildValue("[iis]", 1, 2, "three");
+</pre></dl>
+
+<P>
+It is much more common to use <tt class="cfunction">PyObject_SetItem()</tt> and
+friends with items whose references you are only borrowing, like
+arguments that were passed in to the function you are writing.  In
+that case, their behaviour regarding reference counts is much saner,
+since you don't have to increment a reference count so you can give a
+reference away (``have it be stolen'').  For example, this function
+sets all items of a list (actually, any mutable sequence) to a given
+item:
+
+<P>
+<dl><dd><pre class="verbatim">
+int
+set_all(PyObject *target, PyObject *item)
+{
+    int i, n;
+
+    n = PyObject_Length(target);
+    if (n &lt; 0)
+        return -1;
+    for (i = 0; i &lt; n; i++) {
+        if (PyObject_SetItem(target, i, item) &lt; 0)
+            return -1;
+    }
+    return 0;
+}
+</pre></dl>
+
+<P>
+The situation is slightly different for function return values.  
+While passing a reference to most functions does not change your 
+ownership responsibilities for that reference, many functions that 
+return a referece to an object give you ownership of the reference.
+The reason is simple: in many cases, the returned object is created 
+on the fly, and the reference you get is the only reference to the 
+object.  Therefore, the generic functions that return object 
+references, like <tt class="cfunction">PyObject_GetItem()</tt> and 
+<tt class="cfunction">PySequence_GetItem()</tt>, always return a new reference (the
+caller becomes the owner of the reference).
+
+<P>
+It is important to realize that whether you own a reference returned 
+by a function depends on which function you call only -- <i>the
+plumage</i> (the type of the type of the object passed as an
+argument to the function) <i>doesn't enter into it!</i>  Thus, if you 
+extract an item from a list using <tt class="cfunction">PyList_GetItem()</tt>, you
+don't own the reference -- but if you obtain the same item from the
+same list using <tt class="cfunction">PySequence_GetItem()</tt> (which happens to
+take exactly the same arguments), you do own a reference to the
+returned object.
+
+<P>
+Here is an example of how you could write a function that computes the
+sum of the items in a list of integers; once using 
+<tt class="cfunction">PyList_GetItem()</tt><a name="l2h-14">&nbsp;</a> and once using
+<tt class="cfunction">PySequence_GetItem()</tt><a name="l2h-15">&nbsp;</a>
+
+<P>
+<dl><dd><pre class="verbatim">
+long
+sum_list(PyObject *list)
+{
+    int i, n;
+    long total = 0;
+    PyObject *item;
+
+    n = PyList_Size(list);
+    if (n &lt; 0)
+        return -1; /* Not a list */
+    for (i = 0; i &lt; n; i++) {
+        item = PyList_GetItem(list, i); /* Can't fail */
+        if (!PyInt_Check(item)) continue; /* Skip non-integers */
+        total += PyInt_AsLong(item);
+    }
+    return total;
+}
+</pre></dl>
+
+<P>
+<dl><dd><pre class="verbatim">
+long
+sum_sequence(PyObject *sequence)
+{
+    int i, n;
+    long total = 0;
+    PyObject *item;
+    n = PySequence_Length(sequence);
+    if (n &lt; 0)
+        return -1; /* Has no length */
+    for (i = 0; i &lt; n; i++) {
+        item = PySequence_GetItem(sequence, i);
+        if (item == NULL)
+            return -1; /* Not a sequence, or other failure */
+        if (PyInt_Check(item))
+            total += PyInt_AsLong(item);
+        Py_DECREF(item); /* Discard reference ownership */
+    }
+    return total;
+}
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="refcounts.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="refcounts.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="types.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python/C API Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="refcounts.html">1.2.1 Reference Counts</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="refcounts.html">1.2.1 Reference Counts</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="types.html">1.2.2 Types</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

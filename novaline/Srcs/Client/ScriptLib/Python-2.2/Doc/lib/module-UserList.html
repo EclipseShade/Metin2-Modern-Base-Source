@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.8 UserList -- Class wrapper for list objects</title>
+<META NAME="description" CONTENT="3.8 UserList -- Class wrapper for list objects">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-UserString.html">
+<LINK REL="previous" href="module-UserDict.html">
+<LINK REL="up" href="python.html">
+<LINK REL="next" href="module-UserString.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-UserDict.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-UserString.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-UserDict.html">3.7 UserDict  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-UserString.html">3.9 UserString  </A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005800000000000000000">
+3.8 <tt class="module">UserList</tt> --
+         Class wrapper for list objects</A>
+</H1>
+
+<P>
+
+
+<P>
+<span class="note"><b class="label">Note:</b>
+This module is available for backward compatibility only.  If
+you are writing code that does not need to work with versions of
+Python earlier than Python 2.2, please consider subclassing directly
+from the built-in <tt class="class">list</tt> type.</span>
+
+<P>
+This module defines a class that acts as a wrapper around
+list objects.  It is a useful base class for
+your own list-like classes, which can inherit from
+them and override existing methods or add new ones.  In this way one
+can add new behaviors to lists.
+
+<P>
+The <tt class="module">UserList</tt> module defines the <tt class="class">UserList</tt> class:
+
+<P>
+<dl><dt><b><span class="typelabel">class</span> <a name="l2h-378"><tt class="class">UserList</tt></a></b>(<big>[</big><var>list</var><big>]</big>)
+<dd>
+Class that simulates a list.  The instance's
+contents are kept in a regular list, which is accessible via the
+<tt class="member">data</tt> attribute of <tt class="class">UserList</tt> instances.  The instance's
+contents are initially set to a copy of <var>list</var>, defaulting to the
+empty list <code>[]</code>.  <var>list</var> can be either a regular Python list,
+or an instance of <tt class="class">UserList</tt> (or a subclass).
+</dl>
+
+<P>
+In addition to supporting the methods and operations of mutable
+sequences (see section <A href="typesseq.html#typesseq">2.2.6</A>), <tt class="class">UserList</tt> instances
+provide the following attribute:
+
+<P>
+<dl><dt><b><a name="l2h-379"><tt class="member">data</tt></a></b>
+<dd>
+A real Python list object used to store the contents of the
+<tt class="class">UserList</tt> class.
+</dl>
+
+<P>
+<b>Subclassing requirements:</b>
+Subclasses of <tt class="class">UserList</tt> are expect to offer a constructor which
+can be called with either no arguments or one argument.  List
+operations which return a new sequence attempt to create an instance
+of the actual implementation class.  To do so, it assumes that the
+constructor can be called with a single parameter, which is a sequence
+object used as a data source.
+
+<P>
+If a derived class does not wish to comply with this requirement, all
+of the special methods supported by this class will need to be
+overridden; please consult the sources for information about the
+methods which need to be provided in that case.
+
+<P>
+
+<span class="versionnote">Changed in version 2.0:
+Python versions 1.5.2 and 1.6 also required that the
+                constructor be callable with no parameters, and offer
+                a mutable <tt class="member">data</tt> attribute.  Earlier versions
+                of Python did not attempt to create instances of the
+                derived class.</span>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-UserDict.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="python.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="module-UserString.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-UserDict.html">3.7 UserDict  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="python.html">3. Python Runtime Services</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="module-UserString.html">3.9 UserString  </A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

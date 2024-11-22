@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>17.1.1 RExec Objects </title>
+<META NAME="description" CONTENT="17.1.1 RExec Objects ">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="rexec-extension.html">
+<LINK REL="previous" href="module-rexec.html">
+<LINK REL="up" href="module-rexec.html">
+<LINK REL="next" href="rexec-extension.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-rexec.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-rexec.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="rexec-extension.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-rexec.html">17.1 rexec  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-rexec.html">17.1 rexec  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="rexec-extension.html">17.1.2 Defining restricted environments</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0019110000000000000000">&nbsp;</A>
+<BR>
+17.1.1 RExec Objects 
+</H2>
+
+<P>
+<tt class="class">RExec</tt> instances support the following methods:
+
+<P>
+<dl><dt><b><a name="l2h-3744"><tt class="method">r_eval</tt></a></b>(<var>code</var>)
+<dd>
+<var>code</var> must either be a string containing a Python expression, or
+a compiled code object, which will be evaluated in the restricted
+environment's <tt class="module">__main__</tt> module.  The value of the expression or
+code object will be returned.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3745"><tt class="method">r_exec</tt></a></b>(<var>code</var>)
+<dd>
+<var>code</var> must either be a string containing one or more lines of
+Python code, or a compiled code object, which will be executed in the
+restricted environment's <tt class="module">__main__</tt> module.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3746"><tt class="method">r_execfile</tt></a></b>(<var>filename</var>)
+<dd>
+Execute the Python code contained in the file <var>filename</var> in the
+restricted environment's <tt class="module">__main__</tt> module.
+</dl>
+
+<P>
+Methods whose names begin with "<tt class="samp">s_</tt>" are similar to the functions
+beginning with "<tt class="samp">r_</tt>", but the code will be granted access to
+restricted versions of the standard I/O streams <code>sys.stdin</code>,
+<code>sys.stderr</code>, and <code>sys.stdout</code>.
+
+<P>
+<dl><dt><b><a name="l2h-3747"><tt class="method">s_eval</tt></a></b>(<var>code</var>)
+<dd>
+<var>code</var> must be a string containing a Python expression, which will
+be evaluated in the restricted environment.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3748"><tt class="method">s_exec</tt></a></b>(<var>code</var>)
+<dd>
+<var>code</var> must be a string containing one or more lines of Python code,
+which will be executed in the restricted environment.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3749"><tt class="method">s_execfile</tt></a></b>(<var>code</var>)
+<dd>
+Execute the Python code contained in the file <var>filename</var> in the
+restricted environment.
+</dl>
+
+<P>
+<tt class="class">RExec</tt> objects must also support various methods which will be
+implicitly called by code executing in the restricted environment.
+Overriding these methods in a subclass is used to change the policies
+enforced by a restricted environment.
+
+<P>
+<dl><dt><b><a name="l2h-3750"><tt class="method">r_import</tt></a></b>(<var>modulename</var><big>[</big><var>, globals</var><big>[</big><var>,
+                             locals</var><big>[</big><var>, fromlist</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+Import the module <var>modulename</var>, raising an <tt class="exception">ImportError</tt>
+exception if the module is considered unsafe.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3751"><tt class="method">r_open</tt></a></b>(<var>filename</var><big>[</big><var>, mode</var><big>[</big><var>, bufsize</var><big>]</big><big>]</big>)
+<dd>
+Method called when <tt class="function">open()</tt> is called in the restricted
+environment.  The arguments are identical to those of <tt class="function">open()</tt>,
+and a file object (or a class instance compatible with file objects)
+should be returned.  <tt class="class">RExec</tt>'s default behaviour is allow opening
+any file for reading, but forbidding any attempt to write a file.  See
+the example below for an implementation of a less restrictive
+<tt class="method">r_open()</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3752"><tt class="method">r_reload</tt></a></b>(<var>module</var>)
+<dd>
+Reload the module object <var>module</var>, re-parsing and re-initializing it.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3753"><tt class="method">r_unload</tt></a></b>(<var>module</var>)
+<dd>
+Unload the module object <var>module</var> (remove it from the
+restricted environment's <code>sys.modules</code> dictionary).
+</dl>
+
+<P>
+And their equivalents with access to restricted standard I/O streams:
+
+<P>
+<dl><dt><b><a name="l2h-3754"><tt class="method">s_import</tt></a></b>(<var>modulename</var><big>[</big><var>, globals</var><big>[</big><var>,
+                             locals</var><big>[</big><var>, fromlist</var><big>]</big><big>]</big><big>]</big>)
+<dd>
+Import the module <var>modulename</var>, raising an <tt class="exception">ImportError</tt>
+exception if the module is considered unsafe.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3755"><tt class="method">s_reload</tt></a></b>(<var>module</var>)
+<dd>
+Reload the module object <var>module</var>, re-parsing and re-initializing it.  
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-3756"><tt class="method">s_unload</tt></a></b>(<var>module</var>)
+<dd>
+Unload the module object <var>module</var>.   
+</dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="module-rexec.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="module-rexec.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="rexec-extension.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="module-rexec.html">17.1 rexec  </A>
+<b class="navlabel">Up:</b> <a class="sectref" href="module-rexec.html">17.1 rexec  </A>
+<b class="navlabel">Next:</b> <a class="sectref" href="rexec-extension.html">17.1.2 Defining restricted environments</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

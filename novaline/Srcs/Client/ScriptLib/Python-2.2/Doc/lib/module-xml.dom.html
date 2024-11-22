@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>13.6 xml.dom -- The Document Object Model API</title>
+<META NAME="description" CONTENT="13.6 xml.dom -- The Document Object Model API">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="next" href="module-xml.dom.minidom.html">
+<LINK REL="previous" href="module-xml.parsers.expat.html">
+<LINK REL="up" href="markup.html">
+<LINK REL="next" HREF="node437.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="expat-errors.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node437.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="expat-errors.html">13.5.5 Expat error constants</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node437.html">13.6.1 Module Contents</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0015600000000000000000">
+13.6 <tt class="module">xml.dom</tt> --
+         The Document Object Model API</A>
+</H1>
+
+<P>
+
+
+<P>
+
+<span class="versionnote">New in version 2.0.</span>
+
+<P>
+The Document Object Model, or ``DOM,'' is a cross-language API from
+the World Wide Web Consortium (W3C) for accessing and modifying XML
+documents.  A DOM implementation presents an XML document as a tree
+structure, or allows client code to build such a structure from
+scratch.  It then gives access to the structure through a set of
+objects which provided well-known interfaces.
+
+<P>
+The DOM is extremely useful for random-access applications.  SAX only
+allows you a view of one bit of the document at a time.  If you are
+looking at one SAX element, you have no access to another.  If you are
+looking at a text node, you have no access to a containing element.
+When you write a SAX application, you need to keep track of your
+program's position in the document somewhere in your own code.  SAX
+does not do it for you.  Also, if you need to look ahead in the XML
+document, you are just out of luck.
+
+<P>
+Some applications are simply impossible in an event driven model with
+no access to a tree.  Of course you could build some sort of tree
+yourself in SAX events, but the DOM allows you to avoid writing that
+code.  The DOM is a standard tree representation for XML data.
+
+<P>
+The Document Object Model is being defined by the W3C in stages, or
+``levels'' in their terminology.  The Python mapping of the API is
+substantially based on the DOM Level 2 recommendation.  Some aspects
+of the API will only become available in Python 2.1, or may only be
+available in particular DOM implementations.
+
+<P>
+DOM applications typically start by parsing some XML into a DOM.  How
+this is accomplished is not covered at all by DOM Level 1, and Level 2
+provides only limited improvements.  There is a
+<tt class="class">DOMImplementation</tt> object class which provides access to
+<tt class="class">Document</tt> creation methods, but these methods were only added
+in DOM Level 2 and were not implemented in time for Python 2.0.  There
+is also no well-defined way to access these methods without an
+existing <tt class="class">Document</tt> object.  For Python 2.0, consult the
+documentation for each particular DOM implementation to determine the
+bootstrap procedure needed to create and initialize <tt class="class">Document</tt>
+and <tt class="class">DocumentType</tt> instances.
+
+<P>
+Once you have a DOM document object, you can access the parts of your
+XML document through its properties and methods.  These properties are
+defined in the DOM specification; this portion of the reference manual
+describes the interpretation of the specification in Python.
+
+<P>
+The specification provided by the W3C defines the DOM API for Java,
+ECMAScript, and OMG IDL.  The Python mapping defined here is based in
+large part on the IDL version of the specification, but strict
+compliance is not required (though implementations are free to support
+the strict mapping from IDL).  See section <A href="dom-conformance.html#dom-conformance">13.6.3</A>,
+``Conformance,'' for a detailed discussion of mapping requirements.
+
+<P>
+<div class="seealso">
+  <p class="heading"><b>See Also:</b></p>
+
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.w3.org/TR/DOM-Level-2-Core/"
+        >Document Object
+            Model (DOM) Level 2 Specification</a></em>
+    <dd>The W3C recommendation upon which the Python DOM API is
+            based.
+  </dl>
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://www.w3.org/TR/REC-DOM-Level-1/"
+        >Document Object
+            Model (DOM) Level 1 Specification</a></em>
+    <dd>The W3C recommendation for the
+            DOM supported by <tt class="module">xml.dom.minidom</tt>.
+  </dl>
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://pyxml.sourceforge.net"
+        >PyXML</a></em>
+    <dd>Users that require a
+            full-featured implementation of DOM should use the PyXML
+            package.
+  </dl>
+  <dl compact class="seetitle">
+    <dt><em class="citetitle"><a href="http://cgi.omg.org/cgi-bin/doc?orbos/99-08-02.pdf"
+        >CORBA
+            Scripting with Python</a></em>
+    <dd>This specifies the mapping from OMG IDL to Python.
+  </dl>
+</div>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node437.html">13.6.1 Module Contents</a>
+<LI><A href="node438.html">13.6.2 Objects in the DOM</a>
+<UL>
+<LI><A href="dom-implementation-objects.html">13.6.2.1 DOMImplementation Objects</a>
+<LI><A href="dom-node-objects.html">13.6.2.2 Node Objects</a>
+<LI><A href="dom-nodelist-objects.html">13.6.2.3 NodeList Objects</a>
+<LI><A href="dom-documenttype-objects.html">13.6.2.4 DocumentType Objects</a>
+<LI><A href="dom-document-objects.html">13.6.2.5 Document Objects</a>
+<LI><A href="dom-element-objects.html">13.6.2.6 Element Objects</a>
+<LI><A href="dom-attr-objects.html">13.6.2.7 Attr Objects</a>
+<LI><A href="dom-attributelist-objects.html">13.6.2.8 NamedNodeMap Objects</a>
+<LI><A href="dom-comment-objects.html">13.6.2.9 Comment Objects</a>
+<LI><A href="dom-text-objects.html">13.6.2.10 Text and CDATASection Objects</a>
+<LI><A href="dom-pi-objects.html">13.6.2.11 ProcessingInstruction Objects</a>
+<LI><A href="dom-exceptions.html">13.6.2.12 Exceptions</a>
+</ul>
+<LI><A href="dom-conformance.html">13.6.3 Conformance</a>
+<UL>
+<LI><A href="dom-type-mapping.html">13.6.3.1 Type Mapping</a>
+<LI><A href="dom-accessor-methods.html">13.6.3.2 Accessor Methods</a>
+</ul></ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="expat-errors.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="markup.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node437.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="expat-errors.html">13.5.5 Expat error constants</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="markup.html">13. Structured Markup Processing</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node437.html">13.6.1 Module Contents</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

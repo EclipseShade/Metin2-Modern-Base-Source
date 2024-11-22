@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.10 Reference Counts
+</title>
+<META NAME="description" CONTENT="1.10 Reference Counts
+">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="cplusplus.html">
+<LINK REL="previous" href="buildValue.html">
+<LINK REL="up" href="intro.html">
+<LINK REL="next" href="refcountsInPython.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="buildValue.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="refcountsInPython.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="buildValue.html">1.9 Building Arbitrary Values</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="refcountsInPython.html">1.10.1 Reference Counting in</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0031000000000000000000">&nbsp;</A>
+<BR>
+1.10 Reference Counts
+         
+</H1>
+
+<P>
+In languages like C or C++, the programmer is responsible for
+dynamic allocation and deallocation of memory on the heap.  In C,
+this is done using the functions <tt class="cfunction">malloc()</tt> and
+<tt class="cfunction">free()</tt>.  In C++, the operators <tt class="keyword">new</tt> and
+<tt class="keyword">delete</tt> are used with essentially the same meaning; they are
+actually implemented using <tt class="cfunction">malloc()</tt> and
+<tt class="cfunction">free()</tt>, so we'll restrict the following discussion to the
+latter.
+
+<P>
+Every block of memory allocated with <tt class="cfunction">malloc()</tt> should
+eventually be returned to the pool of available memory by exactly one
+call to <tt class="cfunction">free()</tt>.  It is important to call
+<tt class="cfunction">free()</tt> at the right time.  If a block's address is
+forgotten but <tt class="cfunction">free()</tt> is not called for it, the memory it
+occupies cannot be reused until the program terminates.  This is
+called a <i class="dfn">memory leak</i>.  On the other hand, if a program calls
+<tt class="cfunction">free()</tt> for a block and then continues to use the block, it
+creates a conflict with re-use of the block through another
+<tt class="cfunction">malloc()</tt> call.  This is called <i class="dfn">using freed memory</i>.
+It has the same bad consequences as referencing uninitialized data --
+core dumps, wrong results, mysterious crashes.
+
+<P>
+Common causes of memory leaks are unusual paths through the code.  For
+instance, a function may allocate a block of memory, do some
+calculation, and then free the block again.  Now a change in the
+requirements for the function may add a test to the calculation that
+detects an error condition and can return prematurely from the
+function.  It's easy to forget to free the allocated memory block when
+taking this premature exit, especially when it is added later to the
+code.  Such leaks, once introduced, often go undetected for a long
+time: the error exit is taken only in a small fraction of all calls,
+and most modern machines have plenty of virtual memory, so the leak
+only becomes apparent in a long-running process that uses the leaking
+function frequently.  Therefore, it's important to prevent leaks from
+happening by having a coding convention or strategy that minimizes
+this kind of errors.
+
+<P>
+Since Python makes heavy use of <tt class="cfunction">malloc()</tt> and
+<tt class="cfunction">free()</tt>, it needs a strategy to avoid memory leaks as well
+as the use of freed memory.  The chosen method is called
+<i class="dfn">reference counting</i>.  The principle is simple: every object
+contains a counter, which is incremented when a reference to the
+object is stored somewhere, and which is decremented when a reference
+to it is deleted.  When the counter reaches zero, the last reference
+to the object has been deleted and the object is freed.
+
+<P>
+An alternative strategy is called <i class="dfn">automatic garbage collection</i>.
+(Sometimes, reference counting is also referred to as a garbage
+collection strategy, hence my use of ``automatic'' to distinguish the
+two.)  The big advantage of automatic garbage collection is that the
+user doesn't need to call <tt class="cfunction">free()</tt> explicitly.  (Another claimed
+advantage is an improvement in speed or memory usage -- this is no
+hard fact however.)  The disadvantage is that for C, there is no
+truly portable automatic garbage collector, while reference counting
+can be implemented portably (as long as the functions <tt class="cfunction">malloc()</tt>
+and <tt class="cfunction">free()</tt> are available -- which the C Standard guarantees).
+Maybe some day a sufficiently portable automatic garbage collector
+will be available for C.  Until then, we'll have to live with
+reference counts.
+
+<P>
+While Python uses the traditional reference counting implementation,
+it also offers a cycle detector that works to detect reference
+cycles.  This allows applications to not worry about creating direct
+or indirect circular references; these are the weakness of garbage
+collection implemented using only reference counting.  Reference
+cycles consist of objects which contain (possibly indirect) references
+to themselves, so that each object in the cycle has a reference count
+which is non-zero.  Typical reference counting implementations are not
+able to reclaim the memory belonging to any objects in a reference
+cycle, or referenced from the objects in the cycle, even though there
+are no further references to the cycle itself.
+
+<P>
+The cycle detector is able to detect garbage cycles and can reclaim
+them so long as there are no finalizers implemented in Python
+(<tt class="method">__del__()</tt> methods).  When there are such finalizers, the
+detector exposes the cycles through the <a class="ulink" href="../lib/module-gc.html"
+  ><tt class="module">gc</tt>
+module</a> (specifically, the <code>garbage</code>
+variable in that module).  The <tt class="module">gc</tt> module also exposes a way
+to run the detector (the <tt class="function">collect()</tt> function), as well as
+configuration interfaces and the ability to disable the detector at
+runtime.  The cycle detector is considered an optional component;
+though it is included by default, it can be disabled at build time
+using the <b class="programopt">--without-cycle-gc</b> option to the
+<b class="program">configure</b> script on Unix platforms (including Mac OS X)
+or by removing the definition of <code>WITH_CYCLE_GC</code> in the
+<span class="file">pyconfig.h</span> header on other platforms.  If the cycle detector is
+disabled in this way, the <tt class="module">gc</tt> module will not be available.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="refcountsInPython.html">1.10.1 Reference Counting in Python</a>
+<LI><A href="ownershipRules.html">1.10.2 Ownership Rules</a>
+<LI><A href="thinIce.html">1.10.3 Thin Ice</a>
+<LI><A href="nullPointers.html">1.10.4 NULL Pointers</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="buildValue.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="intro.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="refcountsInPython.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="buildValue.html">1.9 Building Arbitrary Values</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="intro.html">1. Extending Python with</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="refcountsInPython.html">1.10.1 Reference Counting in</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

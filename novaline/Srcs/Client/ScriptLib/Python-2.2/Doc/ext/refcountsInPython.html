@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>1.10.1 Reference Counting in Python
+</title>
+<META NAME="description" CONTENT="1.10.1 Reference Counting in Python
+">
+<META NAME="keywords" CONTENT="ext">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ext.css">
+<link rel="first" href="ext.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" href="ownershipRules.html">
+<LINK REL="previous" href="refcounts.html">
+<LINK REL="up" href="refcounts.html">
+<LINK REL="next" href="ownershipRules.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="refcounts.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="refcounts.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="ownershipRules.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="refcounts.html">1.10 Reference Counts</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="refcounts.html">1.10 Reference Counts</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="ownershipRules.html">1.10.2 Ownership Rules</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0031010000000000000000">&nbsp;</A>
+<BR>
+1.10.1 Reference Counting in Python
+            
+</H2>
+
+<P>
+There are two macros, <code>Py_INCREF(x)</code> and <code>Py_DECREF(x)</code>,
+which handle the incrementing and decrementing of the reference count.
+<tt class="cfunction">Py_DECREF()</tt> also frees the object when the count reaches zero.
+For flexibility, it doesn't call <tt class="cfunction">free()</tt> directly -- rather, it
+makes a call through a function pointer in the object's <i class="dfn">type
+object</i>.  For this purpose (and others), every object also contains a
+pointer to its type object.
+
+<P>
+The big question now remains: when to use <code>Py_INCREF(x)</code> and
+<code>Py_DECREF(x)</code>?  Let's first introduce some terms.  Nobody
+``owns'' an object; however, you can <i class="dfn">own a reference</i> to an
+object.  An object's reference count is now defined as the number of
+owned references to it.  The owner of a reference is responsible for
+calling <tt class="cfunction">Py_DECREF()</tt> when the reference is no longer
+needed.  Ownership of a reference can be transferred.  There are three
+ways to dispose of an owned reference: pass it on, store it, or call
+<tt class="cfunction">Py_DECREF()</tt>.  Forgetting to dispose of an owned reference
+creates a memory leak.
+
+<P>
+It is also possible to <i class="dfn">borrow</i><A NAME="tex2html2"
+  HREF="#foot637"><SUP>1.2</SUP></A> a reference to an object.  The borrower
+of a reference should not call <tt class="cfunction">Py_DECREF()</tt>.  The borrower must
+not hold on to the object longer than the owner from which it was
+borrowed.  Using a borrowed reference after the owner has disposed of
+it risks using freed memory and should be avoided
+completely.<A NAME="tex2html3"
+  HREF="#foot779"><SUP>1.3</SUP></A>
+<P>
+The advantage of borrowing over owning a reference is that you don't
+need to take care of disposing of the reference on all possible paths
+through the code -- in other words, with a borrowed reference you
+don't run the risk of leaking when a premature exit is taken.  The
+disadvantage of borrowing over leaking is that there are some subtle
+situations where in seemingly correct code a borrowed reference can be
+used after the owner from which it was borrowed has in fact disposed
+of it.
+
+<P>
+A borrowed reference can be changed into an owned reference by calling
+<tt class="cfunction">Py_INCREF()</tt>.  This does not affect the status of the owner from
+which the reference was borrowed -- it creates a new owned reference,
+and gives full owner responsibilities (the new owner must
+dispose of the reference properly, as well as the previous owner).
+
+<P>
+<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot637">...borrow</A><A NAME="foot637"
+ href="refcountsInPython.html#tex2html2"><SUP>1.2</SUP></A>
+<DD>The metaphor of
+``borrowing'' a reference is not completely correct: the owner still
+has a copy of the reference.
+
+<DT><A NAME="foot779">...
+completely.</A><A NAME="foot779"
+ href="refcountsInPython.html#tex2html3"><SUP>1.3</SUP></A>
+<DD>Checking that the reference count is at least 1
+<b>does not work</b> -- the reference count itself could be in
+freed memory and may thus be reused for another object!
+
+</DL>
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="refcounts.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="refcounts.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="ownershipRules.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Extending and Embedding the Python Interpreter</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="refcounts.html">1.10 Reference Counts</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="refcounts.html">1.10 Reference Counts</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="ownershipRules.html">1.10.2 Ownership Rules</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

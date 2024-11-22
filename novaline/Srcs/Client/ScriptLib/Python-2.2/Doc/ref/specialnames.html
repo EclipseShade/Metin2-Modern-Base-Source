@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>3.3 Special method names</title>
+<META NAME="description" CONTENT="3.3 Special method names">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="ref.css">
+<link rel="first" href="ref.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="types.html">
+<LINK REL="up" href="datamodel.html">
+<LINK REL="next" href="customization.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="types.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="datamodel.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="customization.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="types.html">3.2 The standard type</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="datamodel.html">3. Data model</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="customization.html">3.3.1 Basic customization</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION005300000000000000000">&nbsp;</A>
+<BR>
+3.3 Special method names
+</H1>
+
+<P>
+A class can implement certain operations that are invoked by special
+syntax (such as arithmetic operations or subscripting and slicing) by
+defining methods with special names.  For instance, if a class defines
+a method named <tt class="method">__getitem__()</tt>, and <code>x</code> is an instance of
+this class, then <code>x[i]</code> is equivalent to
+<code>x.__getitem__(i)</code>.  (The reverse is not true -- if <code>x</code> is
+a list object, <code>x.__getitem__(i)</code> is not equivalent to
+<code>x[i]</code>.)  Except where mentioned, attempts to execute an
+operation raise an exception when no appropriate method is defined.
+<a name="l2h-83">&nbsp;</a>
+<P>
+When implementing a class that emulates any built-in type, it is
+important that the emulation only be implemented to the degree that it
+makes sense for the object being modelled.  For example, some
+sequences may work well with retrieval of individual elements, but
+extracting a slice may not make sense.  (One example of this is the
+<tt class="class">NodeList</tt> interface in the W3C's Document Object Model.)
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="customization.html">3.3.1 Basic customization</a>
+<LI><A href="attribute-access.html">3.3.2 Customizing attribute access</a>
+<LI><A href="callable-types.html">3.3.3 Emulating callable objects</a>
+<LI><A href="sequence-types.html">3.3.4 Emulating container types</a>
+<LI><A href="sequence-methods.html">3.3.5 Additional methods for emulation of sequence types</a>
+<LI><A href="numeric-types.html">3.3.6 Emulating numeric types</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="types.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A href="datamodel.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="customization.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Reference Manual</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="../icons/blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="types.html">3.2 The standard type</A>
+<b class="navlabel">Up:</b> <a class="sectref" href="datamodel.html">3. Data model</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="customization.html">3.3.1 Basic customization</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>

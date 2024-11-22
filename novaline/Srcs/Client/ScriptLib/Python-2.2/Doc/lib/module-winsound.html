@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>22.3 winsound -- Sound-playing interface for Windows</title>
+<META NAME="description" CONTENT="22.3 winsound -- Sound-playing interface for Windows">
+<META NAME="keywords" CONTENT="lib">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=">
+<link rel="STYLESHEET" href="lib.css">
+<link rel="first" href="lib.html">
+<link rel="contents" href="contents.html" title="Contents">
+<link rel="index" href="genindex.html" title="Index">
+<LINK REL="previous" href="module--winreg.html">
+<LINK REL="up" HREF="node604.html">
+<LINK REL="next" href="undoc.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="handle-object.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node604.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="undoc.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="handle-object.html">22.2.1 Registry Handle Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node604.html">22. MS Windows Specific</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="undoc.html">A. Undocumented Modules</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION0024300000000000000000">
+22.3 <tt class="module">winsound</tt> --
+         Sound-playing interface for Windows</A>
+</H1>
+
+<P>
+  
+<p class="availability">Availability: <span
+ class="platform">Windows</span>.</p>
+
+<P>
+
+<span class="versionnote">New in version 1.5.2.</span>
+
+<P>
+The <tt class="module">winsound</tt> module provides access to the basic
+sound-playing machinery provided by Windows platforms.  It includes
+two functions and several constants.
+
+<P>
+<dl><dt><b><a name="l2h-4093"><tt class="function">Beep</tt></a></b>(<var>frequency, duration</var>)
+<dd>
+  Beep the PC's speaker.
+  The <var>frequency</var> parameter specifies frequency, in hertz, of the
+  sound, and must be in the range 37 through 32,767.
+  The <var>duration</var> parameter specifies the number of milliseconds the
+  sound should last.  If the system is not
+  able to beep the speaker, <tt class="exception">RuntimeError</tt> is raised.
+  <span class="note"><b class="label">Note:</b>
+Under Windows 95 and 98, the Windows <tt class="cfunction">Beep()</tt>
+  function exists but is useless (it ignores its arguments).  In that
+  case Python simulates it via direct port manipulation (added in version
+  2.1).  It's unknown whether that will work on all systems.</span>
+  
+<span class="versionnote">New in version 1.6.</span>
+
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4094"><tt class="function">PlaySound</tt></a></b>(<var>sound, flags</var>)
+<dd>
+  Call the underlying <tt class="cfunction">PlaySound()</tt> function from the
+  Platform API.  The <var>sound</var> parameter may be a filename, audio
+  data as a string, or <code>None</code>.  Its interpretation depends on the
+  value of <var>flags</var>, which can be a bit-wise ORed combination of
+  the constants described below.  If the system indicates an error,
+  <tt class="exception">RuntimeError</tt> is raised.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4095"><tt>SND_FILENAME</tt></a></b>
+<dd>
+  The <var>sound</var> parameter is the name of a WAV file.
+  Do not use with <tt class="constant">SND_ALIAS</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4096"><tt>SND_ALIAS</tt></a></b>
+<dd>
+  The <var>sound</var> parameter is a sound association name from the
+  registry.  If the registry contains no such name, play the system
+  default sound unless <tt class="constant">SND_NODEFAULT</tt> is also specified.
+  If no default sound is registered, raise <tt class="exception">RuntimeError</tt>.
+  Do not use with <tt class="constant">SND_FILENAME</tt>.
+
+<P>
+All Win32 systems support at least the following; most systems support
+  many more:
+
+<P>
+<table border align="center" style="border-collapse: collapse">
+  <thead>
+    <tr class="tableheader">
+      <th align="left"><b><tt class="function">PlaySound()</tt> <var>name</var></b>&nbsp;</th>
+      <th align="left"><b>Corresponding Control Panel Sound name</b>&nbsp;</th>
+      </tr>
+    </thead>
+  <tbody valign="baseline">
+    <tr><td align="left" valign="baseline"><code>'SystemAsterisk'</code></td>
+        <td align="left">Asterisk</td>
+    <tr><td align="left" valign="baseline"><code>'SystemExclamation'</code></td>
+        <td align="left">Exclamation</td>
+    <tr><td align="left" valign="baseline"><code>'SystemExit'</code></td>
+        <td align="left">Exit Windows</td>
+    <tr><td align="left" valign="baseline"><code>'SystemHand'</code></td>
+        <td align="left">Critical Stop</td>
+    <tr><td align="left" valign="baseline"><code>'SystemQuestion'</code></td>
+        <td align="left">Question</td></tbody>
+</table>
+
+<P>
+For example:
+
+<P>
+<dl><dd><pre class="verbatim">
+import winsound
+# Play Windows exit sound.
+winsound.PlaySound("SystemExit", winsound.SND_ALIAS)
+
+# Probably play Windows default sound, if any is registered (because
+# "*" probably isn't the registered name of any sound).
+winsound.PlaySound("*", winsound.SND_ALIAS)
+</pre></dl>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4097"><tt>SND_LOOP</tt></a></b>
+<dd>
+  Play the sound repeatedly.  The <tt class="constant">SND_ASYNC</tt> flag must also
+  be used to avoid blocking.  Cannot be used with <tt class="constant">SND_MEMORY</tt>.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4098"><tt>SND_MEMORY</tt></a></b>
+<dd>
+  The <var>sound</var> parameter to <tt class="function">PlaySound()</tt> is a memory
+  image of a WAV file, as a string.
+
+<P>
+<span class="note"><b class="label">Note:</b>
+This module does not support playing from a memory
+  image asynchronously, so a combination of this flag and
+  <tt class="constant">SND_ASYNC</tt> will raise <tt class="exception">RuntimeError</tt>.</span>
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4099"><tt>SND_PURGE</tt></a></b>
+<dd>
+  Stop playing all instances of the specified sound.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4100"><tt>SND_ASYNC</tt></a></b>
+<dd>
+  Return immediately, allowing sounds to play asynchronously.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4101"><tt>SND_NODEFAULT</tt></a></b>
+<dd>
+  If the specified sound cannot be found, do not play the system default
+  sound.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4102"><tt>SND_NOSTOP</tt></a></b>
+<dd>
+  Do not interrupt sounds currently playing.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-4103"><tt>SND_NOWAIT</tt></a></b>
+<dd>
+  Return immediately if the sound driver is busy.
+</dl>
+
+<P>
+
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A href="handle-object.html"><img src="../icons/previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node604.html"><img src="../icons/up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A href="undoc.html"><img src="../icons/next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%">Python Library Reference</td>
+<td><A href="contents.html"><img src="../icons/contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><a href="modindex.html" title="Module Index"><img src="../icons/modules.gif"
+  border="0" height="32"
+  alt="Module Index" width="32"></a></td>
+<td><A href="genindex.html"><img src="../icons/index.gif"
+  border="0" height="32"
+  alt="Index" width="32"></A></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" href="handle-object.html">22.2.1 Registry Handle Objects</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node604.html">22. MS Windows Specific</A>
+<b class="navlabel">Next:</b> <a class="sectref" href="undoc.html">A. Undocumented Modules</A>
+<hr>
+<span class="release-info">Release 2.2, documentation updated on December 21, 2001.</span>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</ADDRESS>
+</BODY>
+</HTML>
