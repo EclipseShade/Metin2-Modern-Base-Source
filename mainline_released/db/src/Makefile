@@ -21,10 +21,10 @@ else
 CFLAGS += -mcpu=i686
 endif
 
-# boost
-INCDIR += -I../../boost
 
-LIBDIR += -L../../libthecore/lib -L../../libpoly -L../../libgame/lib
+LIBDIR += -L../../../ExternGame/libthecore/lib 
+LIBDIR += -L../../../ExternGame/libpoly 
+LIBDIR += -L../../../ExternGame/libgame/lib
 
 # LibSQL
 LIBDIR += -L../../../ExternGame/libsql

@@ -7,8 +7,7 @@
 #include <utility>
 
 #include "../../../ExternGame/libsql/libsql.h"
-
-#include "../../libpoly/Poly.h"
+#include "../../../ExternGame/libpoly/Poly.h"
 
 enum
 {

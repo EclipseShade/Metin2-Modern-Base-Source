@@ -12,7 +12,7 @@
 #include <unistd.h>
 #endif
 
-#include <XTrap_S_Interface.h>
+#include "../../../ExternGame/libxtrap/include/XTrap_S_Interface.h"
 
 #include "char.h"
 #include "config.h"

@@ -1,7 +1,10 @@
 #include "stdafx.h"
-#include <sstream>
-#include "../../libgame/include/targa.h"
-#include "../../libgame/include/attribute.h"
+
+
+#include "../../../ExternGame/libgame/include/targa.h"
+#include "../../../ExternGame/libgame/include/attribute.h"
+
+
 #include "config.h"
 #include "utils.h"
 #include "sectree_manager.h"

@@ -1,13 +1,13 @@
-
 #include "stdafx.h"
 
 #include "../../common/billing.h"
 #include "../../common/building.h"
 #include "../../common/VnumHelper.h"
-#include "../../libgame/include/grid.h"
+
+#include "../../../ExternGame/libgame/include/grid.h"
+
 
 #include "ClientManager.h"
-
 #include "Main.h"
 #include "Config.h"
 #include "DBManager.h"
@@ -24,6 +24,8 @@
 #ifdef __AUCTION__
 #include "AuctionManager.h"
 #endif
+
+
 extern int g_iPlayerCacheFlushSeconds;
 extern int g_iItemCacheFlushSeconds;
 extern int g_test_server;

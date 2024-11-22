@@ -1,5 +1,9 @@
 #include "stdafx.h"
-#include "../../libgame/include/grid.h"
+
+
+#include "../../../ExternGame/libgame/include/grid.h"
+
+
 #include "constants.h"
 #include "safebox.h"
 #include "packet.h"

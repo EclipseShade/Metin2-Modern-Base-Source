@@ -25,9 +25,6 @@ else
 CFLAGS += -mcpu=i686
 endif
 
-# boost
-INCDIR += -I../../../Extern/include/boost
-
 # DevIL
 INCDIR += -I../../libdevil
 LIBDIR += -L../../libdevil
@@ -39,29 +36,32 @@ LIBS += -lIL
 LIBDIR += -L /usr/local/lib/mysql
 
 LIBS += -lmysqlclient -lz
-
-# Miscellaneous external libraries
-INCDIR += -I../../../Extern/include
-LIBDIR += -L../../../Extern/lib
 LIBS += -lcryptopp
 
 # HackShield
-INCDIR += -I../../libhackshield/include
-LIBDIR += -L../../libhackshield/lib
+INCDIR += -I../../../ExternGame/libhackshield/include
+LIBDIR += -L../../../ExternGame/libhackshield/lib
 LIBS += -lanticpxsvr
 
 # XTrap
-INCDIR += -I../../libxtrap/include
+INCDIR += -I../../../ExternGame/libxtrap/include
 
 # LibSQL
 LIBDIR += -L../../../ExternGame/libsql
 
 # Project Library
-INCDIR += -I../../liblua/include
 INCDIR += -I/usr/local/include
-INCDIR += -I../../libserverkey
-LIBDIR += -L../../libthecore/lib -L../../libpoly -L../../libgame/lib -L../../liblua/lib -L../../libserverkey
 LIBDIR += -L/usr/local/lib
+
+INCDIR += -I../../../ExternGame/liblua/include
+INCDIR += -I../../../ExternGame/libserverkey
+
+LIBDIR += -L../../../ExternGame/libthecore/lib 
+LIBDIR += -L../../../ExternGame/libpoly 
+LIBDIR += -L../../../ExternGame/libgame/lib 
+LIBDIR += -L../../../ExternGame/liblua/lib 
+LIBDIR += -L../../../ExternGame/libserverkey
+
 LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame 
 LIBS += -lc++ -lboost_system
 USE_STACKTRACE = 0
