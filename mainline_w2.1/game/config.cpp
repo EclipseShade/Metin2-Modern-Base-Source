@@ -264,7 +264,7 @@ bool GetIPInfo()
 
 		char * netip = inet_ntoa(sai->sin_addr);
 
-		if (!strncmp(netip, "192.168", 7)) // ignore if address is starting with 192
+		if (!strncmp(netip, "999.999", 7)) // ignore if address is starting with 192
 		{
 			strlcpy(g_szInternalIP, netip, sizeof(g_szInternalIP));
 #ifndef __WIN32__
