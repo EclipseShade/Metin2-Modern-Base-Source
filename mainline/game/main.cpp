@@ -1,6 +1,5 @@
 #include "stdafx.h"
 
-
 #include "constants.h"
 #include "config.h"
 #include "event.h"

@@ -4,6 +4,7 @@
 #define __INC_AUCTION_MANAGER_H__
 
 #include <boost/unordered_map.hpp>
+
 #include "Cache.h"
 
 #include "../common/auction_table.h"

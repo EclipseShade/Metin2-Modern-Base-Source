@@ -1,6 +1,5 @@
 #include "stdafx.h"
 
-
 #include "constants.h"
 #include "config.h"
 #include "event.h"
@@ -66,7 +65,6 @@
 #include "XTrapManager.h"
 #include "DragonSoul.h"
 #include <boost/bind.hpp>
-
 
 //#define __FILEMONITOR__
 

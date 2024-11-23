@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #ifdef __AUCTION__
 
 #include "DBManager.h"
