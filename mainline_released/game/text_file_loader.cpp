@@ -1,8 +1,6 @@
 #include "stdafx.h"
 
-
 #include "../common/stl.h"
-
 
 #include "text_file_loader.h"
 

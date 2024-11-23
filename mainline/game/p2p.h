@@ -4,6 +4,7 @@
 #include <boost/unordered_map.hpp>
 
 #include "input.h"
+
 #include "../common/stl.h"
 
 typedef struct _CCI
