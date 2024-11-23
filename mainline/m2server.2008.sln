@@ -1,21 +1,20 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
+﻿Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{89E26339-8F6A-492B-8DCC-77AE7B4643EA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servers", "Servers", "{A168341F-FAE3-4DE6-858E-1A0479986B90}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "liblua", "liblua\liblua.2008.vcproj", "{EC666345-5F4E-4A4E-8C66-C7A6326F8235}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "liblua", "..\ExternGame\liblua\liblua.2008.vcproj", "{EC666345-5F4E-4A4E-8C66-C7A6326F8235}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libsql", "libsql\libsql.2008.vcproj", "{3967853D-4E19-4548-AC3A-F6012B78E384}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libsql", "..\ExternGame\libsql\libsql.2008.vcproj", "{3967853D-4E19-4548-AC3A-F6012B78E384}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libgame", "libgame\libgame.2008.vcproj", "{2AB4A5A4-3EAA-4486-B93C-38E8D39BF218}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libgame", "..\ExternGame\libgame\libgame.2008.vcproj", "{2AB4A5A4-3EAA-4486-B93C-38E8D39BF218}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libpoly", "libpoly\libpoly.2008.vcproj", "{BD8E86DD-07BA-49B0-BF04-3282DA8377EB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libpoly", "..\ExternGame\libpoly\libpoly.2008.vcproj", "{BD8E86DD-07BA-49B0-BF04-3282DA8377EB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libthecore", "libthecore\libthecore.2008.vcproj", "{5C8620C9-5D1F-419D-8267-48D2863C3D13}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libthecore", "..\ExternGame\libthecore\libthecore.2008.vcproj", "{5C8620C9-5D1F-419D-8267-48D2863C3D13}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "game", "game\src\game.2008.vcproj", "{146DE22F-4DD4-4E6F-B2FD-98AE163BEBBA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "game", "game\game.2008.vcproj", "{146DE22F-4DD4-4E6F-B2FD-98AE163BEBBA}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3967853D-4E19-4548-AC3A-F6012B78E384} = {3967853D-4E19-4548-AC3A-F6012B78E384}
 		{EC666345-5F4E-4A4E-8C66-C7A6326F8235} = {EC666345-5F4E-4A4E-8C66-C7A6326F8235}
@@ -25,7 +24,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "game", "game\src\game.2008.
 		{BD8E86DD-07BA-49B0-BF04-3282DA8377EB} = {BD8E86DD-07BA-49B0-BF04-3282DA8377EB}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "db", "db\src\db.2008.vcproj", "{ADC2E26A-C39B-4817-A24C-A99827B74EB2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "db", "db\db.2008.vcproj", "{ADC2E26A-C39B-4817-A24C-A99827B74EB2}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3967853D-4E19-4548-AC3A-F6012B78E384} = {3967853D-4E19-4548-AC3A-F6012B78E384}
 		{EC666345-5F4E-4A4E-8C66-C7A6326F8235} = {EC666345-5F4E-4A4E-8C66-C7A6326F8235}
@@ -56,12 +55,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{FDF84D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{12B8EA69-291D-48D9-9F47-DE82A4BD47A2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qc", "game\src\quest\qc.2008.vcproj", "{3783243F-5E36-4B96-9A13-7BFF00F15B34}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qc", "quest\qc.2008.vcproj", "{3783243F-5E36-4B96-9A13-7BFF00F15B34}"
 	ProjectSection(ProjectDependencies) = postProject
 		{EC666345-5F4E-4A4E-8C66-C7A6326F8235} = {EC666345-5F4E-4A4E-8C66-C7A6326F8235}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libserverkey", "libserverkey\libserverkey.vcproj", "{991E4247-CB13-4CA9-B0F1-B662594935A7}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libserverkey", "..\ExternGame\libserverkey\libserverkey.vcproj", "{991E4247-CB13-4CA9-B0F1-B662594935A7}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ServerKeyGenerator", "..\Tools\ServerKeyGenerator\ServerKeyGenerator.vcproj", "{51DDB7FD-8CC2-4B28-9FDF-62F526D5F2FB}"
 	ProjectSection(ProjectDependencies) = postProject
