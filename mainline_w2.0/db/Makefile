@@ -24,12 +24,15 @@ endif
 # boost
 INCDIR += -I../../boost
 
-LIBDIR += -L../../libthecore/lib -L../../libsql -L../../libpoly -L../../libgame/lib
-
-# MySQL | MariaDB
+# LibDir
+LIBDIR += -L../../ExternGame/libthecore/lib 
+LIBDIR += -L../../ExternGame/libsql 
+LIBDIR += -L../../ExternGame/libpoly 
+LIBDIR += -L../../ExternGame/libgame/lib
 LIBDIR += -L /usr/local/lib/mysql
 
 LIBS = -lthecore -lmysqlclient -lsql -lpoly -lgame -lm -lz
+LIBS += -lc++
 
 SRCS =	Config.cpp NetBase.cpp Peer.cpp PeerBase.cpp Main.cpp Lock.cpp DBManager.cpp \
 		Cache.cpp LoginData.cpp ClientManager.cpp ClientManagerPlayer.cpp ClientManagerLogin.cpp \
