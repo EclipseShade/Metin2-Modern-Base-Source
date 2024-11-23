@@ -1,4 +1,3 @@
-
 const static int nBATTLE_ARENA_MAP[] = { 0, 190, 191, 192 };
 const static std::string strRegen[] =
 {
