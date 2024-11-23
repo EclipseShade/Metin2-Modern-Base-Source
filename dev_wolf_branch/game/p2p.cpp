@@ -14,6 +14,7 @@
 #include "messenger_manager.h"
 #include "marriage.h"
 #include "utils.h"
+#include "locale_service.h"
 
 P2P_MANAGER::P2P_MANAGER()
 {
