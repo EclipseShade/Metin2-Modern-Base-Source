@@ -165,13 +165,13 @@ unsigned long CDBManager::EscapeString(void *to, const void *from, unsigned long
 
 void CDBManager::SetLocale(const char * szLocale)
 {
-
+	const std::string stLocale(szLocale);
 	sys_log(0, "SetLocale start  %s",szLocale );
 	for (int n = 0; n < SQL_MAX_NUM; ++n)
 	{
-		m_mainSQL[n]->SetLocale("latin1");
-		m_directSQL[n]->SetLocale("latin1");
-		m_asyncSQL[n]->SetLocale("latin1");
+		m_mainSQL[n]->SetLocale(szLocale);
+		m_directSQL[n]->SetLocale(szLocale);
+		m_asyncSQL[n]->SetLocale(szLocale);
 	}
 	sys_log(0, "End setlocale %s", szLocale);
 }

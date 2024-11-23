@@ -21,25 +21,15 @@ else
 CFLAGS += -mcpu=i686
 endif
 
-# boost
-INCDIR += -I../../../Extern/include/boost
+# LibDir
+LIBDIR += -L../../ExternGame/libthecore/lib
+LIBDIR += -L../../ExternGame/libgame/lib
+LIBDIR += -L../../ExternGame/libpoly
+LIBDIR += -L../../ExternGame/libsql
+LIBDIR += -L /usr/local/lib/mysql
 
-LIBDIR += -L../../libthecore/lib -L../../libsql -L../../libpoly -L../../libgame/lib
-
-# Extern
-INCDIR += -I../../../Extern/include
-LIBDIR += -I../../../Extern/lib
-
-# Project Library
+# IncDir
 INCDIR += -I/usr/local/include
-
-ifeq ($(BSD_VERSION), 7)
-INCDIR += -I../../libmysql/7.x-5.1.35
-LIBDIR += -L../../libmysql/7.x-5.1.35
-else
-INCDIR += -I../../libmysql/5.x-5.1.35
-LIBDIR += -L../../libmysql/5.x-5.1.35
-endif
 
 LIBS = -lthecore -lmysqlclient -lsql -lpoly -lgame -lm -lz
 LIBS += -lc++

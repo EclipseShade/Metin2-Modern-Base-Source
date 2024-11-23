@@ -81,9 +81,9 @@ class CDBManager : public singleton<CDBManager>
 	}
 
     private:
-	CAsyncSQL *		m_mainSQL[SQL_MAX_NUM];
-	CAsyncSQL *	 	m_directSQL[SQL_MAX_NUM];
-	CAsyncSQL *		m_asyncSQL[SQL_MAX_NUM];
+	CAsyncSQL2 *		m_mainSQL[SQL_MAX_NUM];
+	CAsyncSQL2 *	 	m_directSQL[SQL_MAX_NUM];
+	CAsyncSQL2 *		m_asyncSQL[SQL_MAX_NUM];
 
 	int			m_quit;		// looping flag
 
