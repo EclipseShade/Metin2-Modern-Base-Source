@@ -6,7 +6,7 @@
 
 #include "debug_allocator.h"
 
-#include "../../../ExternGame/libthecore/include/stdafx.h"
+#include "../../ExternGame/libthecore/include/stdafx.h"
 
 #include "../common/singleton.h"
 #include "../common/utils.h"
