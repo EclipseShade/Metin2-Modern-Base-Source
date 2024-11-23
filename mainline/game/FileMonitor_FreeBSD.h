@@ -1,7 +1,7 @@
 #ifndef FILEMONITOR_FREEBSD_INCLUDED
 #define FILEMONITOR_FREEBSD_INCLUDED
 
-#include "IFileMonitor.h" 
+#include "IFileMonitor.h"
 
 #include <unistd.h>
 #include <sys/event.h>
