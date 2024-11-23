@@ -41,15 +41,17 @@
 #include "safebox.h"
 #include "shop.h"
 
-#include "../../common/VnumHelper.h"
+#include "../common/VnumHelper.h"
+
 #include "DragonSoul.h"
 #include "buff_on_attributes.h"
 #include "belt_inventory_helper.h"
 
 //auction_temp
 #ifdef __AUCTION__
-#include "auction_manager.h"
+	#include "auction_manager.h"
 #endif
+
 const int ITEM_BROKEN_METIN_VNUM = 28960;
 
 // CHANGE_ITEM_ATTRIBUTES

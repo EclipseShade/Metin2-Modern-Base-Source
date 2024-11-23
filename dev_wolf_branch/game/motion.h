@@ -1,7 +1,7 @@
 #ifndef __INC_GAME_MOTION_H__
 #define __INC_GAME_MOTION_H__
 
-#include "../../common/d3dtype.h"
+#include "../common/d3dtype.h"
 
 enum EMotionMode
 {
