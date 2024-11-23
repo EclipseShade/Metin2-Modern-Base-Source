@@ -44,6 +44,7 @@ public:
 	bool IsToken(const std::string & c_rstrKey) const;
 
 	int GetRowCount();
+	
 	template <typename T>
 	bool GetValue(const std::string & c_rstrRowKey, const std::string & c_rstrColKey, T& tValue) const;
 	template <typename T>

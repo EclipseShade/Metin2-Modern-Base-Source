@@ -20,6 +20,7 @@
 #include <queue>
 #include <string>
 #include <vector>
+#include <sstream>
 
 #ifdef __GNUC__
 	#include <float.h>
