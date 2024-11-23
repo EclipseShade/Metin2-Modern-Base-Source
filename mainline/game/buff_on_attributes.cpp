@@ -1,8 +1,6 @@
 #include "stdafx.h"
 
-
 #include "../common/tables.h"
-
 
 #include "item.h"
 #include "char.h"
