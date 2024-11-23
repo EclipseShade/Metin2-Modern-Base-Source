@@ -13,6 +13,7 @@ extern "C" {
 }
 #endif
 
+#include <cstring> // Necessary for strcmp
 #include <algorithm>
 #include <iostream>
 #include <set>
