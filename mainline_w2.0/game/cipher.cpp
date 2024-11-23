@@ -29,7 +29,6 @@
 #include <cryptopp/shacal2.h>
 #include <cryptopp/skipjack.h>
 #include <cryptopp/tea.h>
-#include <cryptopp/cryptoppLibLink.h>
 
 using namespace CryptoPP;
 
