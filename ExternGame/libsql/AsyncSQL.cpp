@@ -710,7 +710,7 @@ size_t CAsyncSQL::EscapeString(char* dst, size_t dstSize, const char *src, size_
 
 void CAsyncSQL2::SetLocale(const std::string & stLocale)
 {
-	m_stLocale = stLocale;	
+	m_stLocale = stLocale;
 	QueryLocaleSet();
 }
 
