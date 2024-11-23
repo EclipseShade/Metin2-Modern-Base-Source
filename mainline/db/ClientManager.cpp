@@ -1,10 +1,10 @@
-
 #include "stdafx.h"
 
-#include "../../common/billing.h"
-#include "../../common/building.h"
-#include "../../common/VnumHelper.h"
-#include "../../libgame/include/grid.h"
+#include "../common/billing.h"
+#include "../common/building.h"
+#include "../common/VnumHelper.h"
+
+#include "../../ExternGame/libgame/include/grid.h"
 
 #include "ClientManager.h"
 

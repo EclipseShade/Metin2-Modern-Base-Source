@@ -1,9 +1,8 @@
-// vim:ts=8 sw=4
 #ifndef __INC_DB_CACHE_H__
 #define __INC_DB_CACHE_H__
 
-#include "../../common/cache.h"
-#include "../../common/auction_table.h"
+#include "../common/cache.h"
+#include "../common/auction_table.h"
 
 class CItemCache : public cache<TPlayerItem>
 {
