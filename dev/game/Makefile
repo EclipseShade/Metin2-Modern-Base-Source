@@ -2,7 +2,7 @@ PLATFORM = $(shell file /bin/ls | cut -d' ' -f3 | cut -d'-' -f1)
 
 GCC_VERSION = $(shell $(CC) --version 2>&1 | grep "(GCC)" | cut -d' ' -f3  | cut -d'.' -f1)
 BSD_VERSION = $(shell uname -v 2>&1 | cut -d' ' -f2 | cut -d'.' -f1)
-SVN_VERSION = 40250
+SVN_VERSION = $(shell svnversion -n .)
 
 CC = g++
 
@@ -47,8 +47,9 @@ LIBDIR += -L../../libdevil
 LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame
 LIBS += -lc++ -lboost_system
 LIBS += -lmysqlclient -lz
-LIBS += -lcryptopp
+LIBS += -lcryptopp -lcrypto
 LIBS += -lanticpxsvr
+LIBS += -lserverkey
 LIBS += -lIL
 
 # LIBS unused:

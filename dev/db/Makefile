@@ -21,20 +21,15 @@ else
 CFLAGS += -mcpu=i686
 endif
 
-# boost
-INCDIR += -I../../../Extern/include/boost
-
-LIBDIR += -L../../libthecore/lib -L../../libsql -L../../libpoly -L../../libgame/lib
-
-# Extern
-INCDIR += -I../../../Extern/include
-LIBDIR += -I../../../Extern/lib
-
-# Project Library
-INCDIR += -I/usr/local/include
-
-# MySQL | MariaDB
+# LibDir
+LIBDIR += -L../../ExternGame/libthecore/lib
+LIBDIR += -L../../ExternGame/libgame/lib
+LIBDIR += -L../../ExternGame/libpoly
+LIBDIR += -L../../ExternGame/libsql
 LIBDIR += -L /usr/local/lib/mysql
+
+# IncDir
+INCDIR += -I/usr/local/include
 
 LIBS = -lthecore -lmysqlclient -lsql -lpoly -lgame -lm -lz
 LIBS += -lc++
