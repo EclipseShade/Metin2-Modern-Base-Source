@@ -37,6 +37,7 @@ INCDIR += -I/usr/local/include
 LIBDIR += -L /usr/local/lib/mysql
 
 LIBS = -lthecore -lmysqlclient -lsql -lpoly -lgame -lm -lz
+LIBS += -lc++
 
 SRCS =	Config.cpp NetBase.cpp Peer.cpp PeerBase.cpp Main.cpp Lock.cpp DBManager.cpp \
 		Cache.cpp LoginData.cpp ClientManager.cpp ClientManagerPlayer.cpp ClientManagerLogin.cpp \

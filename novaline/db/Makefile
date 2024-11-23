@@ -42,6 +42,7 @@ LIBDIR += -L../../libmysql/5.x-5.1.35
 endif
 
 LIBS = -lthecore -lmysqlclient -lsql -lpoly -lgame -lm -lz
+LIBS += -lc++
 
 SRCS =	Config.cpp NetBase.cpp Peer.cpp PeerBase.cpp Main.cpp Lock.cpp DBManager.cpp \
 		Cache.cpp LoginData.cpp ClientManager.cpp ClientManagerPlayer.cpp ClientManagerLogin.cpp \

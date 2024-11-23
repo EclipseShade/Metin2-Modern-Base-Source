@@ -64,6 +64,7 @@ LIBDIR += -L../../ExternGame/libserverkey
 
 LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame 
 LIBS += -lc++ -lboost_system
+
 USE_STACKTRACE = 0
 ifeq ($(USE_STACKTRACE), 1)
 LIBS += /usr/local/lib/libexecinfo.a

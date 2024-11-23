@@ -57,6 +57,7 @@ LIBDIR += -L../../libthecore/lib -L../../libpoly -L../../libsql -L../../libgame/
 LIBDIR += -L/usr/local/lib
 LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame
 LIBS += -lc++ -lboost_system
+
 USE_STACKTRACE = 0
 ifeq ($(USE_STACKTRACE), 1)
 LIBS += /usr/local/lib/libexecinfo.a
