@@ -5,7 +5,8 @@
 
 #include <boost/unordered_map.hpp>
 #include "Cache.h"
-#include "../../common/auction_table.h"
+
+#include "../common/auction_table.h"
 
 class CItemCache;
 class CAuctionItemInfoCache;

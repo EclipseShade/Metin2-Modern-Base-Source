@@ -1,4 +1,3 @@
-// vim:ts=8 sw=4
 #ifndef __INC_METIN2_DB_DBMANAGER_H__
 #define __INC_METIN2_DB_DBMANAGER_H__
 
@@ -7,7 +6,7 @@
 //                             코드 by 꼬붕 후로그래머 아노아~ = _=)b
 #include <mysql/mysql.h>
 
-#include "../../libsql/AsyncSQL.h"
+#include "../../ExternGame/libsql/AsyncSQL.h"
 
 #define SQL_SAFE_LENGTH(size)	(size * 2 + 1)
 #define QUERY_SAFE_LENGTH(size)	(1024 + SQL_SAFE_LENGTH(size))
