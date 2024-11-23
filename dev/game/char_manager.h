@@ -2,11 +2,11 @@
 #define __INC_METIN_II_GAME_CHARACTER_MANAGER_H__
 
 #ifdef M2_USE_POOL
-#include "pool.h"
+	#include "pool.h"
 #endif
 
-#include "../../common/stl.h"
-#include "../../common/length.h"
+#include "../common/stl.h"
+#include "../common/length.h"
 
 #include "vid.h"
 
