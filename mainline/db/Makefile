@@ -21,12 +21,14 @@ else
 CFLAGS += -mcpu=i686
 endif
 
+# LibDir
 LIBDIR += -L../../ExternGame/libthecore/lib 
 LIBDIR += -L../../ExternGame/libsql 
 LIBDIR += -L../../ExternGame/libpoly 
 LIBDIR += -L../../ExternGame/libgame/lib
 LIBDIR += -L /usr/local/lib/mysql
 
+# Libs
 LIBS = -lthecore -lmysqlclient -lsql -lpoly -lgame -lm -lz
 LIBS += -lc++
 
