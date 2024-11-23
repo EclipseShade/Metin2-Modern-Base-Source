@@ -159,7 +159,7 @@ class CSpecialItemGroup
 			return 0;
 		}
 
-		// Group?C Size¸| returnC?A?´?.
+		// Group의 Size를 return해준다.
 		int GetGroupSize() const
 		{
 			return m_vecProbs.size();
