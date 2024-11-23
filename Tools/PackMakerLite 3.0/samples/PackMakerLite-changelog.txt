@@ -1,0 +1,19 @@
+UPDATED
+v1.3 added install.bat for installing everything (must be runned as admin)
+v1.4 added "force_filename_lowercase" config field
+v1.5 fixed packing of non all-lower-named packs
+v1.6 fixed extraction of 0kb files
+v1.7 fixed extraction of 2-len packs names
+v1.8 fixed packing/unpacking files/folders with spaces in filenames (issue present only in the .bats)
+v1.9 added type6 and header mcsp decryption
+v2.0 added "ignore_full_name" config field, and allowed writing comments inside the .json setting file
+v2.1 added "eter_magic_mcoz","eter_magic_epkd","eter_magic_mcsp" fields
+v2.2 added "parallel" in .json, and --parallel as argument for multithreading packing/unpacking
+v2.3 added global .json load from %userprofile% if the local ones are missing
+v2.4 fixed type6 unpacking in parallel mode
+v2.5 improved parallel speed when packing by 20x
+v2.6 added support for unpacking type 4-5
+v2.7 added --forcetype <typeId>, and automatic create/load of .dat files if type 4-5
+v2.8 added support for packing type 6
+v2.9 added --hiddenfiles and --skiphiddenfiles for folders/files that start with . or with the invisible attribute
+v3.0 cleaned up some code and dependency

@@ -1,0 +1,70 @@
+{
+	// !!! Some options are better to be left commented! They will overwrite the command-line parameters otherwise!
+
+	// Set the name of the .log file:
+	//"log_name":"PackMakerLite",
+
+	// Set the prefix of the cs .dat file:
+	//"cs_name":"",
+
+	// ignore the following specific filenames
+	"ignore_full_name": [".git", ".svn", ".vs", "desktop.ini"],
+
+	// ignore these specific file extensions
+	"ignore_file_extension": ["bak", "db", "wdp"],
+
+	// convert every FiLeName to lower case 'filename'
+	"force_filename_lowercase": false,
+
+	// use this pack type if no rule in pack_type_by_list matches
+	"default_pack_type": 2,
+
+	// specify your pack types based on the file extensions
+	"pack_type_by_list": [
+		/*commented
+		["mss", 0],
+		["mse", 1],
+		["msf", 2],
+		["spt", 0],
+		["atr", 1],
+		["dds", 2],
+		["raw", 0],
+		["wtr", 1],
+		["mde", 2],
+		["tga", 0],
+		["txt", 1],
+		["msk", 2],
+		["msa", 0],
+		["msm", 1],
+		["py", 2]*/
+	],
+
+	// use parallel or --parallel
+	//"parallel":true,
+
+	// pack the hidden files (.XXX or invisible) files if true (--hiddenfiles is true, --skipignorefiles is false)
+	//"hidden_files":true,
+
+	// default eterpack/eterpack.cpp encryption
+	"eter_pack_index_ext":".eix",
+	"eter_pack_data_ext":".epk",
+	"eter_pack_index_key": [
+		45129401,
+		92367215,
+		681285731,
+		1710201
+	],
+	"eter_pack_data_key": [
+		78952482,
+		527348324,
+		1632942,
+		486274726
+	],
+
+	// magic unencrypted block
+	"eter_magic_epkd":"EPKD",
+	// magic encrypted block
+	"eter_magic_mcoz":"MCOZ",
+	// magic type6 encrypted block
+	"eter_magic_mcsp":"MCSP"
+}

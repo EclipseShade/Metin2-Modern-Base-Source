@@ -1,0 +1,15 @@
+### TYPE 4 with .json
+## Pack
+PackMakerLite.exe --create_cs four --pack four
+## Unpack
+PackMakerLite.exe --load_cs four --unpack four
+
+## You can also use:
+# --parallel --nolog
+
+
+### TYPE 4 without .json
+## Pack
+PackMakerLite.exe --forcetype 4 -p four
+## Unpack
+PackMakerLite.exe -u four

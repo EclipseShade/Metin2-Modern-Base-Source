@@ -1,0 +1,43 @@
+# [EterPack Archiver] PackMakerLite
+This is an archiver I've created, and it looks quite stable so far.
+
+The PackMakerLite (PML) supports type 0-1-2-3-4-5-6.
+
+
+As a summarize, the metin2 types are handled like this:
+
+Type 0 - only storage (no encryption/compression; it can be read fully from the .epk)
+Type 1 - compressed - lzo(file)
+Type 2 - compressed and encrypted - xtea(lzo(file))
+Type 3 - encrypted with Panama - you must save an .iv key server-side in the panama/ folder. (content readable only after auth phase) The official used it only for patch2.
+Type 4 - encrypted with a mix of ciphers - you must save a .dat key server-side in the package/ folder. (content readable only after auth phase) Practically all the metin2_patch files.
+Type 5 - like type 4, but a server-side map/<map_name> is also provided. (content readable only after accessing the <map_name> map as a player) The official used it only for the catacomb data.
+Type 6 - compressed and encrypted - xtea(snappy(file))
+
+And the metin2 headers are handled like this:
+EPKD - only storage
+MCOZ - xtea(lzo(header))
+MCSP - xtea(snappy(header))
+
+
+Usage:
+https://i.imgur.com/OJc4jBd.png
+
+
+Its settings (xtea keys, extensions, pack types to use) can be changed inside PackMakerLite.json:
+https://i.imgur.com/O1kFiwh.png
+
+
+You can actually integrate the tool in the menu context (running the .reg files) for packing folders and unpacking .eix files. (You need to copy .exe, .json, .bat files on "c:\windows\system32\" btw)
+https://i.imgur.com/Z588o1Q.png
+https://i.imgur.com/BxEU3fl.png
+
+Command-line options get overwritten by JSON config options.
+
+Last but not least: since the client handles all the filenames in lowercase, this tools automatically converts them as well.
+
+Thanks also to:
+	blackdragonx61 / Mali - type4-5 extract code / type 6 compress code
+	metin2team - type6 extract code
+
+By martysama0134

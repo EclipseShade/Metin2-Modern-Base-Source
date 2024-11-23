@@ -1,0 +1,15 @@
+### TYPE 5 with .json
+## Pack
+PackMakerLite.exe --create_cs five --add_cs_map metin2_map_ox --pack five
+## Unpack
+PackMakerLite.exe --load_cs five --unpack five
+
+## You can also use:
+# --parallel --nolog
+
+
+### TYPE 5 without .json
+## Pack
+PackMakerLite.exe --forcetype 5 --add_cs_map metin2_map_ox -p five
+## Unpack
+PackMakerLite.exe -u five
