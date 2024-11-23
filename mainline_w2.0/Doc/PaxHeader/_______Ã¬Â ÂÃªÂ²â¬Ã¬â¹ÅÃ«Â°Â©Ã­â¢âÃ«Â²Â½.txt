@@ -1,6 +1,0 @@
-86 path=mainline_w2.0/Srcs/Server/Doc/_______ì ê²ìë°©íë²½.txt
-20 ctime=1349860032
-20 atime=1353426900
-17 SCHILY.dev=89
-23 SCHILY.ino=36695084
-18 SCHILY.nlink=1
