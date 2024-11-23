@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "../common/VnumHelper.h"
 
 #include "utils.h"
 #include "config.h"
@@ -19,8 +20,6 @@
 #include "locale_service.h"
 #include "item.h"
 #include "item_manager.h"
-
-#include "../common/VnumHelper.h"
 #include "DragonSoul.h"
 #include "cube.h"
 

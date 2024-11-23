@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "../common/VnumHelper.h"
 
 #include "utils.h"
 #include "config.h"
@@ -22,7 +23,6 @@
 #include "DragonSoul.h"
 #include "buff_on_attributes.h"
 #include "belt_inventory_helper.h"
-#include "../common/VnumHelper.h"
 
 CItem::CItem(DWORD dwVnum)
 	: m_dwVnum(dwVnum), m_bWindow(0), m_dwID(0), m_bEquipped(false), m_dwVID(0), m_wCell(0), m_dwCount(0), m_lFlag(0), m_dwLastOwnerPID(0),
