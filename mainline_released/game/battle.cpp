@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "utils.h"
 #include "config.h"
 #include "desc.h"
@@ -698,8 +699,8 @@ DWORD GET_ATTACK_SPEED(LPCHARACTER ch)
     if (NULL == ch)
         return 1000;
 
-	LPITEM item = ch->GetWear(WEAR_WEAPON);	
-	DWORD default_bonus = SPEEDHACK_LIMIT_BONUS * 3;    // 유두리 공속(기본 80) (일반 유저가 speed hack 에 걸리는 것을 막기 위해 *3 추가. 2013.09.11 CYH)
+	LPITEM item = ch->GetWear(WEAR_WEAPON);
+	DWORD default_bonus = SPEEDHACK_LIMIT_BONUS;
 	DWORD riding_bonus = 0;
 
 	if (ch->IsRiding())
@@ -745,23 +746,6 @@ void SET_ATTACKED_TIME(LPCHARACTER ch, LPCHARACTER victim, DWORD current_time)
 
 bool IS_SPEED_HACK(LPCHARACTER ch, LPCHARACTER victim, DWORD current_time)
 {
-	// 2013 09 11 CYH debugging log
-	/*sys_log(0, "%s attack test log! time (delta, limit)=(%u, %u). ch->m_kAttackLog.dwvID(%u) victim->GetVID(%u)",
-						ch->GetName(),
-						current_time - ch->m_kAttackLog.dwTime,
-						GET_ATTACK_SPEED(ch),						
-						ch->m_kAttackLog.dwVID,
-						victim->GetVID()
-						);	
-
-	sys_log(0, "%s attack test log! time (delta, limit)=(%u, %u). victim->m_AttackedLog.dwPID(%u) ch->GetPlayerID(%u)",
-						ch->GetName(),
-						current_time - victim->m_AttackedLog.dwAttackedTime,
-						GET_ATTACK_SPEED(ch),						
-						victim->m_AttackedLog.dwPID,
-						ch->GetPlayerID()
-						);*/
-
 	if (ch->m_kAttackLog.dwVID == victim->GetVID())
 	{
 		if (current_time - ch->m_kAttackLog.dwTime < GET_ATTACK_SPEED(ch))

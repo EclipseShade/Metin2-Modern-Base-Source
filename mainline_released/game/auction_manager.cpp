@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #ifdef __AUCTION__
 
 #include "desc_client.h"
@@ -13,9 +14,12 @@
 #include <boost/bind.hpp>
 #include "item.h"
 #include "desc_client.h"
+
 #include "../common/tables.h"
+
 #include "protocol.h"
 #include "auction_manager.h"
+
 extern int auction_server;
 
 const char* auction_table_name [_AUCTION_MAX] = {"auction", "wish_auction", "my_auction", "my_wish_auction"};
