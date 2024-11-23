@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "utils.h"
 #include "vector.h"
 #include "char.h"
@@ -6,11 +7,12 @@
 #include "char_manager.h"
 #include "mob_manager.h"
 #include "PetSystem.h"
-#include "../../common/VnumHelper.h"
+
+#include "../common/VnumHelper.h"
+
 #include "packet.h"
 #include "item_manager.h"
 #include "item.h"
-
 
 extern int passes_per_sec;
 EVENTINFO(petsystem_event_info)

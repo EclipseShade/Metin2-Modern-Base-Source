@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "../../common/teen_packet.h"
-#include "../../common/VnumHelper.h"
+#include "../common/teen_packet.h"
+#include "../common/VnumHelper.h"
 
 #include "char.h"
 
@@ -59,8 +59,9 @@
 #include "buff_on_attributes.h"
 
 #ifdef __PET_SYSTEM__
-#include "PetSystem.h"
+	#include "PetSystem.h"
 #endif
+
 #include "DragonSoul.h"
 
 extern const BYTE g_aBuffOnAttrPoints;

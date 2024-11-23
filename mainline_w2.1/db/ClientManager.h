@@ -1,13 +1,12 @@
-// vim:ts=8 sw=4
 #ifndef __INC_CLIENTMANAGER_H__
 #define __INC_CLIENTMANAGER_H__
 
 #include <boost/unordered_map.hpp>
 #include <boost/unordered_set.hpp>
 
-#include "../../common/stl.h"
-#include "../../common/building.h"
-#include "../../common/auction_table.h"
+#include "../common/stl.h"
+#include "../common/building.h"
+#include "../common/auction_table.h"
 
 #include "Peer.h"
 #include "DBManager.h"

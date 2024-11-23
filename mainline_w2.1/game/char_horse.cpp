@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "config.h"
 #include "char.h"
 #include "char_manager.h"
@@ -11,7 +12,7 @@
 #include "locale_service.h"
 #include "arena.h"
 
-#include "../../common/VnumHelper.h"
+#include "../common/VnumHelper.h"
 
 bool CHARACTER::StartRiding()
 {
