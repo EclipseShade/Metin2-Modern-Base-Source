@@ -4,10 +4,10 @@
 #include "../../ExternGame/libthecore/include/stdafx.h"
 
 #ifndef __WIN32__
-#include <semaphore.h>
+	#include <semaphore.h>
 #else
-#define isdigit iswdigit
-#define isspace iswspace
+	#define isdigit iswdigit
+	#define isspace iswspace
 #endif
 
 #include "../common/length.h"
