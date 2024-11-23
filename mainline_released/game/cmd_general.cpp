@@ -2300,7 +2300,7 @@ ACMD(do_in_game_mall)
 		ch->ChatPacket(CHAT_TYPE_COMMAND, "mall http://mt2.oge.jp/itemmall/itemList.php");
 		return;
 	}
-	
+
 	if (LC_IsNewCIBN() == true && test_server)
 	{
 		ch->ChatPacket(CHAT_TYPE_COMMAND, "mall http://218.99.6.51/04_mall/mall/login.htm");
@@ -2312,7 +2312,7 @@ ACMD(do_in_game_mall)
 		ch->ChatPacket(CHAT_TYPE_COMMAND, "mall http://www.metin2.sg/ishop.php");
 		return;
 	}
-	
+
 	/*
 	if (LC_IsCanada() == true)
 	{
