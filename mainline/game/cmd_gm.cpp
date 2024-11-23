@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "utils.h"
 #include "config.h"
 #include "desc_client.h"
@@ -852,7 +853,7 @@ ACMD(do_mob_ld)
 	}
 
 	int dir = 1;
-	long x,y;
+	long x, y;
 
 	if (*arg2)
 		str_to_number(x, arg2);

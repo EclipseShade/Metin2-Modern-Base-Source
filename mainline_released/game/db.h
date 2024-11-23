@@ -2,6 +2,7 @@
 #define __INC_METIN_II_DB_MANAGER_H__
 
 #include "../../ExternGame/libsql/AsyncSQL.h"
+
 #include "any_function.h"
 
 enum

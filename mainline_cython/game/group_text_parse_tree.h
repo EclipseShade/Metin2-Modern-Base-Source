@@ -6,7 +6,6 @@
 
 #include "file_loader.h"
 
-#include <sstream>
 typedef std::map<std::string, TTokenVector>	TTokenVectorMap;
 typedef std::map<std::string, int> TMapNameToIndex;
 

@@ -1,6 +1,5 @@
 #include "stdafx.h"
 
-
 #include "../common/billing.h"
 #include "../common/length.h"
 

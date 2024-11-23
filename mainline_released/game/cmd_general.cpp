@@ -1,9 +1,9 @@
 #include "stdafx.h"
 
 #ifdef __FreeBSD__
-#include <md5.h>
+	#include <md5.h>
 #else
-#include "../../libthecore/include/xmd5.h"
+	#include "../../ExternGame/libthecore/include/xmd5.h"
 #endif
 
 #include "utils.h"
@@ -34,9 +34,11 @@
 #include "unique_item.h"
 #include "threeway_war.h"
 #include "log.h"
+
 #include "../common/VnumHelper.h"
+
 #ifdef __AUCTION__
-#include "auction_manager.h"
+	#include "auction_manager.h"
 #endif
 
 extern int g_server_id;
@@ -2309,7 +2311,7 @@ ACMD(do_in_game_mall)
 	{
 		ch->ChatPacket(CHAT_TYPE_COMMAND, "mall http://www.metin2.sg/ishop.php");
 		return;
-	}	
+	}
 	
 	/*
 	if (LC_IsCanada() == true)
