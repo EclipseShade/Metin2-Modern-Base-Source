@@ -2149,11 +2149,13 @@ bool ITEM_MANAGER::ReadEtcDropItemFile(const char * c_pszFileName)
 
 		DWORD dwItemVnum;
 
-		if (!ITEM_MANAGER::instance().GetVnumByOriginalName(szItemName, dwItemVnum))
-		{
-			sys_err("No such an item (name: %s)", szItemName);
-			fclose(fp);
-			return false;
+		if (!ITEM_MANAGER::instance().GetVnumByOriginalName(szItemName, dwItemVnum)) {
+			str_to_number(dwItemVnum, szItemName);
+			if (!ITEM_MANAGER::instance().GetTable(dwItemVnum)) {
+				sys_err("No such an item (name/vnum: %s)", szItemName);
+				fclose(fp);
+				return false;
+			}
 		}
 
 		m_map_dwEtcItemDropProb[dwItemVnum] = (DWORD) (fProb * 10000.0f);
