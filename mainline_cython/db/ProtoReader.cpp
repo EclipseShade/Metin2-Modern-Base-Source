@@ -157,6 +157,9 @@ int get_Item_SubType_Value(int type_value, string inputString)
 		arSub29,		//29
 		arSub29,	//30
 		arSub31,	//31
+		0,			//32
+		0,			//33 반지
+		0,			//34 벨트
 		};
 	int arNumberOfSubtype[32];
 	arNumberOfSubtype[0] = 0;
@@ -191,7 +194,9 @@ int get_Item_SubType_Value(int type_value, string inputString)
 	arNumberOfSubtype[29] = sizeof(arSub29)/sizeof(arSub29[0]);
 	arNumberOfSubtype[30] = sizeof(arSub29)/sizeof(arSub29[0]);
 	arNumberOfSubtype[31] = sizeof(arSub31)/sizeof(arSub31[0]);
-	
+	arNumberOfSubtype[32] = 0;
+	arNumberOfSubtype[33] = 0;
+	arNumberOfSubtype[34] = 0;	
 
 
 	//아이템 타입의 서브타입 어레이가 존재하는지 알아보고, 없으면 0 리턴
