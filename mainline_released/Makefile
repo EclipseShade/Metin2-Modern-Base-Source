@@ -4,7 +4,7 @@ CXX=g++
 PLATFORM = $(shell file /bin/ls | cut -d' ' -f3 | cut -d'-' -f1)
 BSD_VERSION = $(shell uname -v 2>&1 | cut -d' ' -f2 | cut -d'.' -f1)
 
-default: libthecore libpoly libgame liblua libsql libserverkey game db quest
+default: libthecore libpoly libgame liblua libsql libserverkey lzo game db quest
 	@echo "--------------------------------------"
 	@echo "Build Done"
 	@echo "--------------------------------------"
@@ -42,6 +42,10 @@ libthecore: .
 	$(MAKE) -C ../ExternGame/libthecore/src dep
 	$(MAKE) -C ../ExternGame/libthecore/src clean
 	$(MAKE) -C ../ExternGame/libthecore/src
+	
+lzo: .
+	$(MAKE) -C ../ExternGame/lzo clean
+	$(MAKE) -C ../ExternGame/lzo
 
 game: .
 	@touch game/Depend
@@ -56,10 +60,9 @@ db: .
 	$(MAKE) -C db
 	
 quest: .
-	@touch game/quest/Depend
-#	$(MAKE) -C game/quest dep
-	$(MAKE) -C game/quest clean
-	$(MAKE) -C game/quest
+	@touch quest/Depend
+	$(MAKE) -C quest clean
+	$(MAKE) -C quest
 
 clean:
 	$(MAKE) -C ../ExternGame/liblua clean
@@ -67,10 +70,11 @@ clean:
 	$(MAKE) -C ../ExternGame/libgame/src clean
 	$(MAKE) -C ../ExternGame/libpoly clean
 	$(MAKE) -C ../ExternGame/libthecore/src clean
+	$(MAKE) -C ../ExternGame/lzo clean
 	
 	$(MAKE) -C db clean
 	$(MAKE) -C game clean
-	$(MAKE) -C game/quest clean
+	$(MAKE) -C quest clean
 
 all: 
 	@echo "--------------------------------------"
@@ -100,6 +104,9 @@ all:
 	$(MAKE) -C ../ExternGame/libthecore/src clean
 	$(MAKE) -C ../ExternGame/libthecore/src
 
+	$(MAKE) -C ../ExternGame/lzo clean
+	$(MAKE) -C ../ExternGame/lzo
+	
 	@touch game/Depend
 	$(MAKE) -C game dep
 	$(MAKE) -C game clean
@@ -110,10 +117,9 @@ all:
 	$(MAKE) -C db clean
 	$(MAKE) -C db
 	
-	@touch game/quest/Depend
-#	$(MAKE) -C game/quest dep
-	$(MAKE) -C game/quest clean
-	$(MAKE) -C game/quest
+	@touch quest/Depend
+	$(MAKE) -C quest clean
+	$(MAKE) -C quest
 
 	@echo "--------------------------------------"
 	@echo "Full Build End"
