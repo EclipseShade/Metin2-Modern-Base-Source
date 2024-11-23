@@ -48,7 +48,7 @@ http://www.oberhumer.com/opensource/lzo/
 #endif
 
 #undef LZO_HAVE_CONFIG_H
-#include "lzo/lzoconf.h"
+#include "../../ExternGame/lzo/lzoconf.h"
 
 #if !defined(LZO_VERSION) || (LZO_VERSION != MINILZO_VERSION)
 #  error "version mismatch in header files"
