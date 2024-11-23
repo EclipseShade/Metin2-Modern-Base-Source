@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "Config.h"
 #include "Peer.h"
 #include "DBManager.h"
@@ -12,9 +13,11 @@
 #include "Monarch.h"
 #include "BlockCountry.h"
 #include "ItemIDRangeManager.h"
+
 #ifdef __AUCTION__
-#include "AuctionManager.h"
+	#include "AuctionManager.h"
 #endif
+
 #include <signal.h>
 
 void SetPlayerDBName(const char* c_pszPlayerDBName);
@@ -44,10 +47,6 @@ int g_log = 1;
 int g_iItemPriceListTableCacheFlushSeconds = 540;
 // END_OF_MYSHOP_PRICE_LIST
 
-#ifdef __FreeBSD__
-extern const char * _malloc_options;
-#endif
-
 extern void WriteVersion();
 
 void emergency_sig(int sig)
@@ -61,13 +60,8 @@ void emergency_sig(int sig)
 		abort();
 }
 
-int main()
-{
+int main() {
 	WriteVersion();
-
-#ifdef __FreeBSD__
-	_malloc_options = "A";
-#endif
 
 	CConfig Config;
 	CNetPoller poller;

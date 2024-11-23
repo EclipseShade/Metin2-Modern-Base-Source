@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "Config.h"
 #include "Peer.h"
 #include "DBManager.h"
@@ -12,9 +13,11 @@
 #include "Monarch.h"
 #include "BlockCountry.h"
 #include "ItemIDRangeManager.h"
+
 #ifdef __AUCTION__
-#include "AuctionManager.h"
+	#include "AuctionManager.h"
 #endif
+
 #include <signal.h>
 
 void SetPlayerDBName(const char* c_pszPlayerDBName);
