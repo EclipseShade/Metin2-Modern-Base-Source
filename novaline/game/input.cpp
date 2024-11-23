@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include <sstream>
 
 #include "desc.h"
 #include "desc_manager.h"
@@ -19,9 +18,6 @@
 #include "dev_log.h"
 #include "HackShield_Impl.h"
 #include "check_server.h"
-#ifndef __WIN32__
-	#include "limit_time.h"
-#endif
 
 extern time_t get_global_time();
 extern bool g_bNoPasspod;
