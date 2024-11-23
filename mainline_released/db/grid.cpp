@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "../../libthecore/include/memcpy.h"
+#include "../../ExternGame/libthecore/include/memcpy.h"
 
 #include "../common/stl.h"
 

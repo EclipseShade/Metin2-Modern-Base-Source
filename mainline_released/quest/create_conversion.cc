@@ -1,7 +1,7 @@
 extern "C" {
-	#include "../../ExternGame/liblua/include/lua.h"
-	#include "../../ExternGame/liblua/include/lauxlib.h"
-	#include "../../ExternGame/liblua/include/lualib.h"
+#include <lua.h>
+#include <lauxlib.h>
+#include <lualib.h>
 }
 
 #include <unistd.h>

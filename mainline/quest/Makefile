@@ -15,4 +15,4 @@ qc.o: qc.cc
 	$(CPP) $(CPPFLAGS) -c $< -I$(INCLUDEDIR) -L$(LIBDIR)
 
 clean:
-	rm -f ../qc qc.o
+	rm -f ../qc qc.o crc32.o
