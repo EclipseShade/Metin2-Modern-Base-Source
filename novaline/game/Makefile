@@ -23,40 +23,35 @@ else
 CFLAGS += -mcpu=i686
 endif
 
-# DevIL
-INCDIR += -I../../libdevil
-LIBDIR += -L../../libdevil
-LIBS += -lIL -lpng -ltiff -lmng -llcms -ljpeg
-
-LIBDIR += -L /usr/local/lib/mysql
-
-LIBS += -lmysqlclient -lz
-
-# Miscellaneous external libraries
-INCDIR += -I../../../Extern/include
-LIBDIR += -L../../../Extern/lib
-LIBS += -lcryptopp -lgtest
-
-# HackShield
-INCDIR += -I../../libhackshield/include
-LIBDIR += -L../../libhackshield/lib
-LIBS += -lanticpxsvr
-
-# XTrap
-INCDIR += -I../../libxtrap/include
-
-# openssl
-#INCDIR += -I/usr/include
-LIBS += -lssl
-
-# Project Library
-INCDIR += -I../../liblua/include
+# IncDir
+INCDIR += -I../../ExternGame/libhackshield/include
+INCDIR += -I../../ExternGame/libxtrap/include
+INCDIR += -I../../ExternGame/liblua/include
+INCDIR += -I../../ExternGame/libserverkey
 INCDIR += -I/usr/local/include
-INCDIR += -I../../libserverkey
-LIBDIR += -L../../libthecore/lib -L../../libpoly -L../../libsql -L../../libgame/lib -L../../liblua/lib -L../../libserverkey
-LIBDIR += -L/usr/local/lib
+INCDIR += -I../../libdevil
+
+# LibDir
+LIBDIR += -L../../ExternGame/libhackshield/lib
+LIBDIR += -L../../ExternGame/libthecore/lib
+LIBDIR += -L../../ExternGame/libserverkey
+LIBDIR += -L../../ExternGame/libgame/lib
+LIBDIR += -L../../ExternGame/liblua/lib
+LIBDIR += -L../../ExternGame/libpoly
+LIBDIR += -L../../ExternGame/libsql
+LIBDIR += -L /usr/local/lib/mysql
+LIBDIR += -L /usr/local/lib
+LIBDIR += -L../../libdevil
+
 LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame -lserverkey
 LIBS += -lc++ -lboost_system
+LIBS += -lmysqlclient -lz
+LIBS += -lanticpxsvr
+LIBS += -lcryptopp
+LIBS += -lIL
+
+# LIBS UNUSED:
+# LIBS += -lpng -ltiff -lmng -llcms -ljpeg
 
 USE_STACKTRACE = 0
 ifeq ($(USE_STACKTRACE), 1)
