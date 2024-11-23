@@ -13,7 +13,7 @@ OBJDIR = OBJDIR
 $(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
 
 # Removed -fno-rtti 
-CFLAGS = -g -Wall -O2 -m32 -pipe -fexceptions -D_THREAD_SAFE -DNDEBUG # -D_USE_SERVER_KEY_
+CFLAGS = -g -Wall -O2 -m32 -pipe -fexceptions -D_THREAD_SAFE -DNDEBUG
 
 ifeq ($(GCC_VERSION), 4)
 CFLAGS += -mtune=i686 -fstack-protector-all
@@ -22,32 +22,33 @@ CFLAGS += -mcpu=i686
 endif
 
 # IncDir
+INCDIR += -I../../ExternGame/libhackshield/include
+INCDIR += -I../../ExternGame/libxtrap/include
 INCDIR += -I../../ExternGame/liblua/include
 INCDIR += -I../../ExternGame/libserverkey
-INCDIR += -I../../ExternGame/libxtrap/include
-INCDIR += -I../../ExternGame/libhackshield/include
 INCDIR += -I../../libdevil
 INCDIR += -I/usr/local/include
 
 # LibDir
 LIBDIR += -L../../ExternGame/libhackshield/lib
-LIBDIR += -L../../ExternGame/libthecore/lib 
-LIBDIR += -L../../ExternGame/libpoly 
-LIBDIR += -L../../ExternGame/libsql 
-LIBDIR += -L../../ExternGame/libgame/lib 
-LIBDIR += -L../../ExternGame/liblua/lib 
+LIBDIR += -L../../ExternGame/libthecore/lib
 LIBDIR += -L../../ExternGame/libserverkey
-
-LIBDIR += -L /usr/local/lib
+LIBDIR += -L../../ExternGame/libgame/lib
+LIBDIR += -L../../ExternGame/liblua/lib
+LIBDIR += -L../../ExternGame/libpoly
+LIBDIR += -L../../ExternGame/libsql
 LIBDIR += -L /usr/local/lib/mysql
+LIBDIR += -L /usr/local/lib
 LIBDIR += -L../../libdevil
 
 # Libs
 LIBS = -pthread -lm -lmd
-LIBS += -lmysqlclient -L/usr/local/lib/mysql -lz
-LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame -lc++ -lIL -lboost_system
+LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame
+LIBS += -lc++ -lboost_system
+LIBS += -lmysqlclient -lz
 LIBS += -lanticpxsvr
 LIBS += -lcryptopp
+LIBS += -lIL
 
 # Libs Unused:
 # LIBS += -lpng -ltiff -lmng -llcms -ljpeg

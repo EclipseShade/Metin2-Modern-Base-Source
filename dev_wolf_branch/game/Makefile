@@ -2,7 +2,7 @@ PLATFORM = $(shell file /bin/ls | cut -d' ' -f3 | cut -d'-' -f1)
 
 GCC_VERSION = $(shell $(CC) --version 2>&1 | grep "(GCC)" | cut -d' ' -f3  | cut -d'.' -f1)
 BSD_VERSION = $(shell uname -v 2>&1 | cut -d' ' -f2 | cut -d'.' -f1)
-P4_VERSION = $(shell p4 changes -m1 $(PWD)/...\#have | cut -d' ' -f2)
+P4_VERSION = $(shell svnversion -n .)
 
 CC = g++
 
@@ -12,10 +12,8 @@ BINDIR = ..
 OBJDIR = OBJDIR
 $(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
 
-# Standard Setting
-LIBS = -pthread -lm -lmd
 # Removed -fno-rtti 
-CFLAGS = -g -Wall -O2 -m32 -pipe -fexceptions -D_THREAD_SAFE -DNDEBUG -D__P4_VERSION__=\"$(P4_VERSION)\"
+CFLAGS = -g -Wall -O2 -m32 -pipe -fexceptions -D_THREAD_SAFE -DNDEBUG
 
 ifeq ($(GCC_VERSION), 4)
 CFLAGS += -mtune=i686 -fstack-protector-all
@@ -23,19 +21,12 @@ else
 CFLAGS += -mcpu=i686
 endif
 
-# DevIL
-INCDIR += -I../../libdevil
-LIBDIR += -L../../libdevil
-
-# openssl
-#INCDIR += -I/usr/include
-LIBS += -lssl
-
 # IncDir
 INCDIR += -I../../ExternGame/libhackshield/include
 INCDIR += -I../../ExternGame/libxtrap/include
 INCDIR += -I../../ExternGame/liblua/include
 INCDIR += -I../../ExternGame/libserverkey
+INCDIR += -I../../libdevil
 INCDIR += -I/usr/local/include
 
 # LibDir
@@ -47,13 +38,15 @@ LIBDIR += -L../../ExternGame/liblua/lib
 LIBDIR += -L../../ExternGame/libpoly
 LIBDIR += -L../../ExternGame/libsql
 LIBDIR += -L /usr/local/lib/mysql
-LIBDIR += -L/usr/local/lib
+LIBDIR += -L /usr/local/lib
+LIBDIR += -L../../libdevil
 
 # LIBS
+LIBS = -pthread -lm -lmd
 LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame
 LIBS += -lc++ -lboost_system
-LIBS += -lanticpxsvr
 LIBS += -lmysqlclient -lz
+LIBS += -lanticpxsvr
 LIBS += -lcryptopp
 LIBS += -lIL
 
