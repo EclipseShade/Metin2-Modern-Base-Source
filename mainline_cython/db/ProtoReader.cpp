@@ -73,6 +73,10 @@ int get_Item_Type_Value(string inputString)
 		"ITEM_COSTUME", "ITEM_DS",					//30개
 	
 		"ITEM_SPECIAL_DS",	"ITEM_EXTRACT",			//32개
+		"ITEM_SECONDARY_COIN",						//33개
+
+		"ITEM_RING",
+		"ITEM_BELT",								//35개 (EItemTypes 값으로 치면 34)
 	};
 
 	
@@ -102,7 +106,7 @@ int get_Item_SubType_Value(int type_value, string inputString)
 				"USE_ABILITY_UP", "USE_AFFECT", "USE_CREATE_STONE", "USE_SPECIAL", "USE_POTION_NODELAY", "USE_CLEAR",
 				"USE_INVISIBILITY", "USE_DETACHMENT", "USE_BUCKET", "USE_POTION_CONTINUE", "USE_CLEAN_SOCKET",
 				"USE_CHANGE_ATTRIBUTE", "USE_ADD_ATTRIBUTE", "USE_ADD_ACCESSORY_SOCKET", "USE_PUT_INTO_ACCESSORY_SOCKET",
-				"USE_ADD_ATTRIBUTE2", "USE_RECIPE", "USE_CHANGE_ATTRIBUTE2", "USE_BIND", "USE_UNBIND", "USE_TIME_CHARGE_PER", "USE_TIME_CHARGE_FIX"};
+				"USE_ADD_ATTRIBUTE2", "USE_RECIPE", "USE_CHANGE_ATTRIBUTE2", "USE_BIND", "USE_UNBIND", "USE_TIME_CHARGE_PER", "USE_TIME_CHARGE_FIX", "USE_PUT_INTO_BELT_SOCKET", "USE_PUT_INTO_RING_SOCKET"};
 	string arSub4[] = { "AUTOUSE_POTION", "AUTOUSE_ABILITY_UP", "AUTOUSE_BOMB", "AUTOUSE_GOLD", "AUTOUSE_MONEYBAG", "AUTOUSE_TREASURE_BOX"};
 	string arSub5[] = { "MATERIAL_LEATHER", "MATERIAL_BLOOD", "MATERIAL_ROOT", "MATERIAL_NEEDLE", "MATERIAL_JEWEL", 
 		"MATERIAL_DS_REFINE_NORMAL", "MATERIAL_DS_REFINE_BLESSED", "MATERIAL_DS_REFINE_HOLLY"};
@@ -712,8 +716,15 @@ bool Set_Proto_Item_Table(TItemTable *itemTable, cCsvTable &csvTable,std::map<in
 
 		if (validCheck == -1)
 		{
+			std::ostringstream dataStream;
+
+			for (int j = 0; j < i; ++j)
+				dataStream << dataArray[j] << ",";
+
 			//fprintf(stderr, "ItemProto Reading Failed : Invalid value.\n");
-			sys_err("ItemProto Reading Failed : Invalid value.");
+			sys_err("ItemProto Reading Failed : Invalid value. (index: %d, col: %d, value: %s)", i, col, csvTable.AsStringByIndex(col));
+			sys_err("\t%d ~ %d Values: %s", 0, i, dataStream.str().c_str());
+
 			exit(0);
 		}
 		
