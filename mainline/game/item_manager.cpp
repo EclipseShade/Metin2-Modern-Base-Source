@@ -1,4 +1,6 @@
 #include "stdafx.h"
+
+
 #include "utils.h"
 #include "config.h"
 #include "char.h"
@@ -18,7 +20,8 @@
 #include "item.h"
 #include "item_manager.h"
 
-#include "../../common/VnumHelper.h"
+#include "../common/VnumHelper.h"
+
 #include "DragonSoul.h"
 #include "cube.h"
 
@@ -1257,7 +1260,7 @@ bool DropEvent_CharStone_SetValue(const std::string& name, int value)
 // fixme
 // À§ÀÇ °Í°ú ÇÔ²² quest·Î »¬°Í »©º¸ÀÚ. 
 // ÀÌ°Å ³Ê¹« ´õ·´Àİ¾Æ...
-// ”î.. ÇÏµåÄÚµù ½È´Ù ¤Ì¤Ğ
+// ”?. ÇÏµåÄÚµù ½È´Ù ¤Ì¤Ğ
 // °è·® ¾ÆÀÌÅÛ º¸»ó ½ÃÀÛ.
 // by rtsummit °íÄ¡ÀÚ ÁøÂ¥
 static struct DropEvent_RefineBox

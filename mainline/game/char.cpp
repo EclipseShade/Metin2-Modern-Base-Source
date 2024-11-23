@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "../../common/teen_packet.h"
-#include "../../common/VnumHelper.h"
+#include "../common/teen_packet.h"
+#include "../common/VnumHelper.h"
 
 #include "char.h"
 
