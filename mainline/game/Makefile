@@ -12,8 +12,6 @@ BINDIR = ..
 OBJDIR = OBJDIR
 $(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
 
-# Standard Setting
-LIBS = -pthread -lm -lmd
 # Removed -fno-rtti 
 CFLAGS = -g -Wall -O2 -m32 -pipe -fexceptions -D_THREAD_SAFE -DNDEBUG # -D_USE_SERVER_KEY_
 
@@ -23,47 +21,37 @@ else
 CFLAGS += -mcpu=i686
 endif
 
-# boost
-INCDIR += -I../../../Extern/include/boost
-
-# DevIL
+# IncDir
+INCDIR += -I../../ExternGame/liblua/include
+INCDIR += -I../../ExternGame/libserverkey
+INCDIR += -I../../ExternGame/libxtrap/include
+INCDIR += -I../../ExternGame/libhackshield/include
 INCDIR += -I../../libdevil
+INCDIR += -I/usr/local/include
+
+# LibDir
+LIBDIR += -L../../ExternGame/libhackshield/lib
+LIBDIR += -L../../ExternGame/libthecore/lib 
+LIBDIR += -L../../ExternGame/libpoly 
+LIBDIR += -L../../ExternGame/libsql 
+LIBDIR += -L../../ExternGame/libgame/lib 
+LIBDIR += -L../../ExternGame/liblua/lib 
+LIBDIR += -L../../ExternGame/libserverkey
+
+LIBDIR += -L /usr/local/lib
+LIBDIR += -L /usr/local/lib/mysql
 LIBDIR += -L../../libdevil
 
-# unused:
-# LIBS += -lpng -ltiff -lmng -llcms -ljpeg
-
-# MySQL | MariaDB
-LIBDIR += -L /usr/local/lib/mysql
-
+# Libs
+LIBS = -pthread -lm -lmd
 LIBS += -lmysqlclient -L/usr/local/lib/mysql -lz
-
-# Miscellaneous external libraries
-INCDIR += -I../../../Extern/include
-LIBDIR += -L../../../Extern/lib
+LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame -lc++ -lIL -lboost_system
+LIBS += -lanticpxsvr
 LIBS += -lcryptopp
 
-# HackShield
-INCDIR += -I../../libhackshield/include
-LIBDIR += -L../../libhackshield/lib
-LIBS += -lanticpxsvr
+# Libs Unused:
+# LIBS += -lpng -ltiff -lmng -llcms -ljpeg
 
-# XTrap
-INCDIR += -I../../libxtrap/include
-
-# openssl
-#INCDIR += -I/usr/include
-#LIBS += -lssl
-#LIBS += /usr/lib/libssl.a
-
-# Project Library
-INCDIR += -I../../liblua/include
-INCDIR += -I/usr/local/include
-INCDIR += -L/usr/local/lib/mysql
-INCDIR += -I../../libserverkey
-LIBDIR += -L../../libthecore/lib -L../../libpoly -L../../libsql -L../../libgame/lib -L../../liblua/lib -L../../libserverkey
-LIBDIR += -L/usr/local/lib
-LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame -lc++ -lIL -lboost_system
 USE_STACKTRACE = 0
 ifeq ($(USE_STACKTRACE), 1)
 LIBS += /usr/local/lib/libexecinfo.a
