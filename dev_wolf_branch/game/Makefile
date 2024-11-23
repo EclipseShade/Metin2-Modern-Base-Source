@@ -23,9 +23,6 @@ else
 CFLAGS += -mcpu=i686
 endif
 
-# boost
-INCDIR += -I../../../Extern/include/boost
-
 # DevIL
 INCDIR += -I../../libdevil
 LIBDIR += -L../../libdevil
@@ -38,9 +35,6 @@ LIBDIR += -L /usr/local/lib/mysql
 
 LIBS += -lmysqlclient -lz
 
-# Miscellaneous external libraries
-INCDIR += -I../../../Extern/include
-LIBDIR += -L../../../Extern/lib
 LIBS += -lcryptopp
 
 # HackShield
@@ -62,7 +56,7 @@ INCDIR += -I../../libserverkey
 LIBDIR += -L../../libthecore/lib -L../../libpoly -L../../libsql -L../../libgame/lib -L../../liblua/lib -L../../libserverkey
 LIBDIR += -L/usr/local/lib
 LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame
-LIBS += -lc++ -lIL -lboost_system
+LIBS += -lc++ -lboost_system
 USE_STACKTRACE = 0
 ifeq ($(USE_STACKTRACE), 1)
 LIBS += /usr/local/lib/libexecinfo.a

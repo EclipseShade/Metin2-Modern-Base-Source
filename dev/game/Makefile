@@ -23,9 +23,6 @@ else
 CFLAGS += -mcpu=i686
 endif
 
-# boost
-INCDIR += -I../../../Extern/include/boost
-
 # DevIL
 INCDIR += -I../../libdevil
 LIBDIR += -L../../libdevil
@@ -38,9 +35,6 @@ LIBS += -lIL
 LIBDIR += -L /usr/local/lib/mysql
 LIBS += -lmysqlclient -lz
 
-# Miscellaneous external libraries
-INCDIR += -I../../../Extern/include
-LIBDIR += -L../../../Extern/lib
 LIBS += -lcryptopp
 
 # HackShield

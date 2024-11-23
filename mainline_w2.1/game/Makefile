@@ -23,9 +23,6 @@ else
 CFLAGS += -mcpu=i686
 endif
 
-# boost
-INCDIR += -I../../../Extern/include/boost
-
 # DevIL
 INCDIR += -I../../libdevil
 LIBDIR += -L../../libdevil
@@ -48,11 +45,6 @@ LIBS += -lanticpxsvr
 
 # XTrap
 INCDIR += -I../../libxtrap/include
-
-# openssl
-#INCDIR += -I/usr/include
-#LIBS += -lssl
-#LIBS += /usr/lib/libssl.a
 
 # Project Library
 INCDIR += -I../../liblua/include
@@ -104,10 +96,6 @@ CPPOBJS	= $(CPPFILE:%.cpp=$(OBJDIR)/%.o)
 MAINOBJ = $(OBJDIR)/main.o
 MAINCPP = main.cpp
 
-TESTOBJ = $(OBJDIR)/test.o
-TESTCPP = test.cpp
-TEST_TARGET = $(BINDIR)/test
-
 default: $(TARGET) $(TEST_TARGET)
 
 $(OBJDIR)/minilzo.o: minilzo.c
@@ -122,17 +110,9 @@ $(OBJDIR)/%.o: %.cpp
 	@echo compile $<
 	@$(CC) $(CFLAGS) $(INCDIR) -c $< -o $@
 
-limit_time:
-	@echo update limit time
-	@python update_limit_time.py
-
 $(TARGET): $(CPPOBJS) $(COBJS) $(MAINOBJ)
 	@echo linking $(TARGET)....
 	@$(CC) $(CFLAGS) $(LIBDIR) $(COBJS) $(CPPOBJS) $(MAINOBJ) $(LIBS) -o $(TARGET)
-
-$(TEST_TARGET): $(TESTCPP) $(CPPOBJS) $(COBJS) $(TESTOBJ)
-	@echo linking $(TEST_TARGET)
-	@$(CC) $(CFLAGS) $(LIBDIR) $(COBJS) $(CPPOBJS) $(TESTOBJ) $(LIBS) -o ../test
 
 clean:
 	@rm -f $(COBJS) $(CPPOBJS)
@@ -142,6 +122,6 @@ tag:
 	ctags *.cpp *.h *.c
 
 dep:
-	makedepend -f Depend $(INCDIR) -I/usr/include/c++/3.3 -I/usr/include/c++/4.2 -p$(OBJDIR)/ $(CPPFILE) $(CFILE) $(MAINCPP) $(TESTCPP) 2> /dev/null > Depend
+	makedepend -f Depend $(INCDIR) -I/usr/include/c++/4.2 -p$(OBJDIR)/ $(CPPFILE) $(CFILE) $(MAINCPP) 2> /dev/null > Depend
 
 sinclude Depend
