@@ -1,4 +1,3 @@
-
 #include "stdafx.h"
 
 #ifndef DEBUG_ALLOC
