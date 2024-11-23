@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "DBManager.h"
 #include "ClientManager.h"
 
@@ -163,16 +164,17 @@ unsigned long CDBManager::EscapeString(void *to, const void *from, unsigned long
 	return mysql_real_escape_string(m_directSQL[iSlot]->GetSQLHandle(), (char *) to, (const char *) from, length);
 }
 
-void CDBManager::SetLocale(const char * szLocale)
-{
+void CDBManager::SetLocale(const char * szLocale) {
 	const std::string stLocale(szLocale);
-	sys_log(0, "SetLocale start  %s",szLocale );
-	for (int n = 0; n < SQL_MAX_NUM; ++n)
-	{
-		m_mainSQL[n]->SetLocale(szLocale);
-		m_directSQL[n]->SetLocale(szLocale);
-		m_asyncSQL[n]->SetLocale(szLocale);
+	
+	sys_log(0, "SetLocale start %s",szLocale);
+	
+	for (int n = 0; n < SQL_MAX_NUM; ++n){
+		m_mainSQL[n]->SetLocale(stLocale);
+		m_directSQL[n]->SetLocale(stLocale);
+		m_asyncSQL[n]->SetLocale(stLocale);
 	}
+	
 	sys_log(0, "End setlocale %s", szLocale);
 }
 
