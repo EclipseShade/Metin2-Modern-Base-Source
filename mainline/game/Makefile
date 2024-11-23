@@ -58,7 +58,7 @@ ifeq ($(USE_STACKTRACE), 1)
 LIBS += /usr/local/lib/libexecinfo.a
 endif
 
-TARGET  = $(BINDIR)/game_r$(P4_VERSION)_$(PLATFORM)
+TARGET  = $(BINDIR)/game_mainline_$(P4_VERSION)_$(PLATFORM)
 
 CFILE	= minilzo.c
 
