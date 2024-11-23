@@ -1,4 +1,3 @@
-// vim:ts=4 sw=4
 #include "stdafx.h"
 #include "ClientManager.h"
 
