@@ -500,7 +500,7 @@ int main(int argc, char **argv) {
 #ifdef _WIN32
 			fprintf(stderr, "[main] Check IP failed\n");
 #else 
-			strncpy (pszRevision,  __P4_VERSION__, sizeof(pszRevision));
+			strncpy(pszRevision,  "40250", sizeof(pszRevision));
 #endif
 			LogManager::Instance().InvalidServerLog(LC_GetLocalType(), g_szPublicIP, pszRevision);
 		}

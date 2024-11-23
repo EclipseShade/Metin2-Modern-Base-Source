@@ -47,7 +47,8 @@ LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame
 LIBS += -lc++ -lboost_system
 LIBS += -lmysqlclient -lz
 LIBS += -lanticpxsvr
-LIBS += -lcryptopp
+LIBS += -lcryptopp -lcrypto
+LIBS += -lserverkey
 LIBS += -lIL
 
 # LIBS unused:
