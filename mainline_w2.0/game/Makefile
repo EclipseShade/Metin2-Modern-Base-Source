@@ -12,8 +12,6 @@ BINDIR = ..
 OBJDIR = OBJDIR
 $(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
 
-# Standard Setting
-LIBS = -pthread -lm -lmd
 # Removed -fno-rtti 
 CFLAGS = -g -Wall -O2 -m32 -pipe -fexceptions -D_THREAD_SAFE -DNDEBUG # -D_USE_SERVER_KEY_
 
@@ -26,37 +24,36 @@ endif
 # DevIL
 INCDIR += -I../../libdevil
 LIBDIR += -L../../libdevil
-LIBS += -lIL -lpng -ltiff -lmng -llcms -ljpeg
 
-# MySQL | MariaDB
-LIBDIR += -L /usr/local/lib/mysql
-
-LIBS += -lmysqlclient -lz
-
-LIBS += -lcryptopp
-
-# HackShield
-LIBS += -lanticpxsvr
-
-# XTrap
-INCDIR += -I../../libxtrap/include
-
-# Project Library
+# IncDir
 INCDIR += -I../../ExternGame/libhackshield/include
+INCDIR += -I../../ExternGame/libxtrap/include
 INCDIR += -I../../ExternGame/liblua/include
 INCDIR += -I../../ExternGame/libserverkey
 INCDIR += -I/usr/local/include
 
-LIBDIR += -L../../ExternGame/libthecore/lib 
-LIBDIR += -L../../ExternGame/libpoly 
-LIBDIR += -L../../ExternGame/libsql 
-LIBDIR += -L../../ExternGame/libgame/lib 
-LIBDIR += -L../../ExternGame/liblua/lib 
-LIBDIR += -L../../ExternGame/libserverkey
+# LibDir
 LIBDIR += -L../../ExternGame/libhackshield/lib
+LIBDIR += -L../../ExternGame/libthecore/lib
+LIBDIR += -L../../ExternGame/libserverkey
+LIBDIR += -L../../ExternGame/libgame/lib
+LIBDIR += -L../../ExternGame/liblua/lib
+LIBDIR += -L../../ExternGame/libpoly
+LIBDIR += -L../../ExternGame/libsql
+LIBDIR += -L /usr/local/lib/mysql
 LIBDIR += -L/usr/local/lib
 
+LIBS = -pthread -lm -lmd
+LIBS += -lIL
 LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame -lserverkey
+LIBS += -lcryptopp
+LIBS += -lanticpxsvr
+LIBS += -lmysqlclient -lz
+LIBS += -lc++ -lboost_system
+
+# LIBS unused:
+# LIBS += -lpng -ltiff -lmng -llcms -ljpeg
+
 USE_STACKTRACE = 0
 ifeq ($(USE_STACKTRACE), 1)
 LIBS += /usr/local/lib/libexecinfo.a
