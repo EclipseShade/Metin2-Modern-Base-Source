@@ -1,12 +1,12 @@
-// vim:ts=8 sw=4
 #ifndef __INC_GUILD_MANAGER_H
 #define __INC_GUILD_MANAGER_H
 
 #include "Peer.h"
 #include <queue>
 #include <utility>
-#include "../../libsql/libsql.h"
-#include "../../libpoly/Poly.h"
+
+#include "../../ExternGame/libsql/libsql.h"
+#include "../../ExternGame/libpoly/Poly.h"
 
 enum
 {
