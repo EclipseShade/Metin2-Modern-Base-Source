@@ -1,4 +1,6 @@
-#include "stdafx.h" 
+#include "stdafx.h"
+
+
 #include "constants.h"
 #include "config.h"
 #include "input.h"
@@ -10,10 +12,6 @@
 #include "locale_service.h"
 #include "auth_brazil.h"
 #include "db.h"
-
-#ifndef __WIN32__
-	#include "limit_time.h"
-#endif
 
 extern time_t get_global_time();
 extern int openid_server;

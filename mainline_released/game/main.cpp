@@ -1,4 +1,6 @@
 #include "stdafx.h"
+
+
 #include "constants.h"
 #include "config.h"
 #include "event.h"
@@ -64,9 +66,7 @@
 #include "XTrapManager.h"
 #include "DragonSoul.h"
 #include <boost/bind.hpp>
-#ifndef __WIN32__
-	#include "limit_time.h"
-#endif
+
 
 //#define __FILEMONITOR__
 
