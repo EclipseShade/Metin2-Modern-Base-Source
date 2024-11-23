@@ -4,9 +4,6 @@
 
 #include "../common/stl.h"
 
-#ifndef __FreeBSD__
-	#include "../../ExternGame/libthecore/include/xdirent.h"
-#endif
 
 CClientPackageCryptInfo::CClientPackageCryptInfo() : m_pSerializedCryptKeyStream(NULL), m_nCryptKeyPackageCnt(0)
 {
