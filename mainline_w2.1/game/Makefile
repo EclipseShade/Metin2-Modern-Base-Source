@@ -12,8 +12,6 @@ BINDIR = ..
 OBJDIR = OBJDIR
 $(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
 
-# Standard Setting
-LIBS = -pthread -lm -lmd
 # Removed -fno-rtti 
 CFLAGS = -g -Wall -O2 -m32 -pipe -fexceptions -D_THREAD_SAFE -DNDEBUG # -D_USE_SERVER_KEY_
 
@@ -26,34 +24,36 @@ endif
 # DevIL
 INCDIR += -I../../libdevil
 LIBDIR += -L../../libdevil
-LIBS += -lIL -lpng -ltiff -lmng -llcms -ljpeg
 
-# MySQL | MariaDB
-LIBDIR += -L /usr/local/lib/mysql
-
-LIBS += -lmysqlclient -lz
-
-# Miscellaneous external libraries
-INCDIR += -I../../../Extern/include
-LIBDIR += -L../../../Extern/lib
-LIBS += -lcryptopp -lgtest
-
-# HackShield
-INCDIR += -I../../libhackshield/include
-LIBDIR += -L../../libhackshield/lib
-LIBS += -lanticpxsvr
-
-# XTrap
-INCDIR += -I../../libxtrap/include
-
-# Project Library
-INCDIR += -I../../liblua/include
+# IncDir
+INCDIR += -I../../ExternGame/libhackshield/include
+INCDIR += -I../../ExternGame/libxtrap/include
+INCDIR += -I../../ExternGame/liblua/include
+INCDIR += -I../../ExternGame/libserverkey
 INCDIR += -I/usr/local/include
-INCDIR += -I../../libserverkey
-LIBDIR += -L../../libthecore/lib -L../../libpoly -L../../libsql -L../../libgame/lib -L../../liblua/lib -L../../libserverkey
+
+# LibDir
+LIBDIR += -L../../ExternGame/libhackshield/lib
+LIBDIR += -L../../ExternGame/libthecore/lib
+LIBDIR += -L../../ExternGame/libserverkey
+LIBDIR += -L../../ExternGame/libgame/lib
+LIBDIR += -L../../ExternGame/liblua/lib
+LIBDIR += -L../../ExternGame/libpoly
+LIBDIR += -L../../ExternGame/libsql
+LIBDIR += -L /usr/local/lib/mysql
 LIBDIR += -L/usr/local/lib
+
+# LIBS
+LIBS = -pthread -lm -lmd
 LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame -lserverkey
+LIBS += -lmysqlclient -lz
+LIBS += -lanticpxsvr
+LIBS += -lcryptopp
 LIBS += -lc++ -lboost_system
+LIBS += -lIL
+
+# LIBS unused:
+# LIBS += -lpng -ltiff -lmng -llcms -ljpeg
 
 USE_STACKTRACE = 0
 ifeq ($(USE_STACKTRACE), 1)
@@ -98,7 +98,7 @@ CPPOBJS	= $(CPPFILE:%.cpp=$(OBJDIR)/%.o)
 MAINOBJ = $(OBJDIR)/main.o
 MAINCPP = main.cpp
 
-default: $(TARGET) $(TEST_TARGET)
+default: $(TARGET)
 
 $(OBJDIR)/minilzo.o: minilzo.c
 	@$(CC) $(CFLAGS) $(INCDIR) -c $< -o $@
