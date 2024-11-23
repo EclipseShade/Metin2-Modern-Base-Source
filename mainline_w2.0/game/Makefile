@@ -23,49 +23,39 @@ else
 CFLAGS += -mcpu=i686
 endif
 
-# boost
-INCDIR += -I../../../Extern/include/boost
-
 # DevIL
 INCDIR += -I../../libdevil
 LIBDIR += -L../../libdevil
 LIBS += -lIL -lpng -ltiff -lmng -llcms -ljpeg
 
-# MySQL
-ifeq ($(BSD_VERSION), 7)
-INCDIR += -I../../libmysql/7.x-5.1.35
-LIBDIR += -L../../libmysql/7.x-5.1.35
-else
-INCDIR += -I../../libmysql/5.x-5.1.35
-LIBDIR += -L../../libmysql/5.x-5.1.35
-endif
+# MySQL | MariaDB
+LIBDIR += -L /usr/local/lib/mysql
 
 LIBS += -lmysqlclient -lz
 
-# Miscellaneous external libraries
-INCDIR += -I../../../Extern/include
-LIBDIR += -L../../../Extern/lib
-LIBS += -lcryptopp -lgtest
+LIBS += -lcryptopp
 
 # HackShield
-INCDIR += -I../../libhackshield/include
-LIBDIR += -L../../libhackshield/lib
 LIBS += -lanticpxsvr
 
 # XTrap
 INCDIR += -I../../libxtrap/include
 
-# openssl
-#INCDIR += -I/usr/include
-#LIBS += -lssl
-#LIBS += /usr/lib/libssl.a
-
 # Project Library
-INCDIR += -I../../liblua/include
+INCDIR += -I../../ExternGame/libhackshield/include
+INCDIR += -I../../ExternGame/liblua/include
+INCDIR += -I../../ExternGame/libserverkey
 INCDIR += -I/usr/local/include
-INCDIR += -I../../libserverkey
-LIBDIR += -L../../libthecore/lib -L../../libpoly -L../../libsql -L../../libgame/lib -L../../liblua/lib -L../../libserverkey
+
+LIBDIR += -L../../ExternGame/libthecore/lib 
+LIBDIR += -L../../ExternGame/libpoly 
+LIBDIR += -L../../ExternGame/libsql 
+LIBDIR += -L../../ExternGame/libgame/lib 
+LIBDIR += -L../../ExternGame/liblua/lib 
+LIBDIR += -L../../ExternGame/libserverkey
+LIBDIR += -L../../ExternGame/libhackshield/lib
 LIBDIR += -L/usr/local/lib
+
 LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame -lserverkey
 USE_STACKTRACE = 0
 ifeq ($(USE_STACKTRACE), 1)
