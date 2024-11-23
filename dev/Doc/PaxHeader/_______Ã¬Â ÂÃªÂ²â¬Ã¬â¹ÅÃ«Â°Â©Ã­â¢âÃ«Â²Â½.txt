@@ -1,6 +1,0 @@
-76 path=dev/Srcs/Server/Doc/_______ì ê²ìë°©íë²½.txt
-20 ctime=1357501109
-20 atime=1357501109
-17 SCHILY.dev=89
-23 SCHILY.ino=38959090
-18 SCHILY.nlink=1
