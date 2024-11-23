@@ -447,8 +447,7 @@ EVENTINFO(char_event_info)
 
 typedef std::map<VID, size_t> targetMap;
 
-struct TSkillUseInfo
-{
+struct TSkillUseInfo {
 	int	    iHitCount;
 	int	    iMaxHitCount;
 	int	    iSplashCount;
