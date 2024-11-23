@@ -6,7 +6,7 @@
 #ifdef __FreeBSD__
 // Live build only
 #define UNIX
-#include "../../ExternGame/libhackshield/include/AntiCpXSvr.h"
+#include <AntiCpXSvr.h>
 #undef UNIX
 #endif
 

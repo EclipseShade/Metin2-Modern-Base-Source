@@ -4,7 +4,6 @@
 
 #include "FileMonitor_FreeBSD.h"
 
-
 #define INVALID_KERNEL_EVENT	-1
 
 FileMonitorFreeBSD::FileMonitorFreeBSD()
