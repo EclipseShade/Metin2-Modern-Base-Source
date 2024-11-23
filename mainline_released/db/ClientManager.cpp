@@ -6,7 +6,6 @@
 
 #include "../../ExternGame/libgame/include/grid.h"
 
-
 #include "ClientManager.h"
 #include "Main.h"
 #include "Config.h"
@@ -21,10 +20,10 @@
 #include "BlockCountry.h"
 #include "ItemIDRangeManager.h"
 #include "Cache.h"
-#ifdef __AUCTION__
-#include "AuctionManager.h"
-#endif
 
+#ifdef __AUCTION__
+	#include "AuctionManager.h"
+#endif
 
 extern int g_iPlayerCacheFlushSeconds;
 extern int g_iItemCacheFlushSeconds;
