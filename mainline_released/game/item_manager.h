@@ -159,6 +159,12 @@ class CSpecialItemGroup
 			return 0;
 		}
 
+		// Group?C Size¢¬| returnC?A?¢¥?.
+		int GetGroupSize() const
+		{
+			return m_vecProbs.size();
+		}
+
 		DWORD m_dwVnum;
 		BYTE	m_bType;
 		std::vector<int> m_vecProbs;

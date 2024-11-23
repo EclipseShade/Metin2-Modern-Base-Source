@@ -7,7 +7,7 @@
 
 #define _input_teen_cpp_
 
-#include "stdafx.h" 
+#include "stdafx.h"
 
 #include "../common/teen_packet.h"
 
