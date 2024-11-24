@@ -778,7 +778,7 @@ void Cube_MakeCubeInformationText()
 	} // for npc
 }
 
-void Cube_InformationInitialize()
+bool Cube_InformationInitialize()
 {
 	for (int i = 0; i < s_cube_proto.size(); ++i)
 	{
@@ -869,6 +869,7 @@ void Cube_InformationInitialize()
 	Cube_MakeCubeInformationText();
 
 	s_isInitializedCubeMaterialInformation = true;
+	return true;
 }
 
 // 클라이언트에서 서버로 : 현재 NPC가 만들 수 있는 아이템들의 정보(목록)를 요청
