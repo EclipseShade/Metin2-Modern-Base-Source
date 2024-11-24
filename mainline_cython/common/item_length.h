@@ -288,8 +288,7 @@ enum EItemFlag
 	ITEM_FLAG_APPLICABLE		= (1 << 14),
 };
 
-enum EItemAntiFlag
-{
+enum EItemAntiFlag {
 	ITEM_ANTIFLAG_FEMALE	= (1 << 0), // 여성 사용 불가
 	ITEM_ANTIFLAG_MALE		= (1 << 1), // 남성 사용 불가
 	ITEM_ANTIFLAG_WARRIOR	= (1 << 2), // 무사 사용 불가
