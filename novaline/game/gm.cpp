@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "constants.h"
 #include "gm.h"
 #include "locale_service.h"
@@ -114,4 +115,3 @@ BYTE gm_get_level(const char * name, const char * host, const char* account)
 {
 	return gm_new_get_level( name, host, account );
 }
-
