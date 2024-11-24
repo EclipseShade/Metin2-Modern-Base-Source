@@ -602,8 +602,8 @@ typedef struct SShopItemTable
 	BYTE		count;
 
     TItemPos	pos;			// PC 상점에만 이용
-	DWORD		price;	// PC 상점에만 이용
-	BYTE		display_pos; // PC 상점에만 이용, 보일 위치.
+	DWORD		price;	// PC, shop_table_ex.txt 상점에만 이용
+	BYTE		display_pos; // PC, shop_table_ex.txt 상점에만 이용, 보일 위치.
 } TShopItemTable;
 
 typedef struct SShopTable

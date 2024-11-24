@@ -84,8 +84,7 @@ enum EMetinSubTypes
 	METIN_GOLD,
 };
 
-enum EWeaponSubTypes
-{
+enum EWeaponSubTypes {
 	WEAPON_SWORD,
 	WEAPON_DAGGER,
 	WEAPON_BOW,
