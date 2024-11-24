@@ -2385,6 +2385,11 @@ void CHARACTER::ComputePoints()
 		pPetSystem->RefreshBuff();
 	}
 
+	for (TMapBuffOnAttrs::iterator it = m_map_buff_on_attrs.begin(); it != m_map_buff_on_attrs.end(); it++)
+	{
+		it->second->GiveAllAttributes();
+	}
+
 	UpdatePacket();
 }
 
@@ -3351,6 +3356,19 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 
 				SetGold(GetGold() + amount);
 				val = GetGold();
+				if (LC_IsBrazil())
+				{
+					if (0 == val)
+					{
+						static time_t last_dump_time = 0;
+						if (last_dump_time + 86400 < get_global_time())
+						{
+							last_dump_time = get_global_time();
+							core_dump();
+						}
+						LogManager::instance().CharLog(this, amount, "ZERO_GOLD", "");
+					}
+				}
 			}
 			break;
 

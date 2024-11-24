@@ -1269,6 +1269,39 @@ static const int ComboSequenceBySkillLevel[3][8] =
 
 #define COMBO_HACK_ALLOWABLE_MS	100
 
+// [2013 09 11 CYH]
+DWORD ClacValidComboInterval( LPCHARACTER ch, BYTE bArg )
+{
+	int nInterval = 300;
+	float fAdjustNum = 1.5f; // 일반 유저가 speed hack 에 걸리는 것을 막기 위해. 2013.09.10 CYH
+
+	if( !ch )
+	{
+		sys_err( "ClacValidComboInterval() ch is NULL");
+		return nInterval;
+	}	
+
+	if( bArg == 13 )
+	{
+		float normalAttackDuration = CMotionManager::instance().GetNormalAttackDuration(ch->GetRaceNum());
+		nInterval = (int) (normalAttackDuration / (((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f) + fAdjustNum );
+	}
+	else if( bArg == 14 )
+	{		
+		nInterval = (int)(ani_combo_speed(ch, 1 ) / ((ch->GetPoint(POINT_ATT_SPEED) / 100.f) + fAdjustNum) );
+	}
+	else if( bArg > 14 && bArg << 22 )
+	{
+		nInterval = (int)(ani_combo_speed(ch, bArg - 13 ) / ((ch->GetPoint(POINT_ATT_SPEED) / 100.f) + fAdjustNum) );
+	}
+	else
+	{
+		sys_err( "ClacValidComboInterval() Invalid bArg(%d) ch(%s)", bArg, ch->GetName() );		
+	}	
+
+	return nInterval;
+}
+
 bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack)
 {
 	if(!gHackCheckEnable) return false;
@@ -1284,10 +1317,18 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 		return false;
 	int ComboInterval = dwTime - ch->GetLastComboTime();
 	int HackScalar = 0; // 기본 스칼라 단위 1
-#if 0	
-	sys_log(0, "COMBO: %s arg:%u seq:%u delta:%d checkspeedhack:%d",
-			ch->GetName(), bArg, ch->GetComboSequence(), ComboInterval - ch->GetValidComboInterval(), CheckSpeedHack);
-#endif
+
+	// [2013 09 11 CYH] debugging log
+		/*sys_log(0, "COMBO_TEST_LOG: %s arg:%u interval:%d valid:%u atkspd:%u riding:%s",
+						ch->GetName(),
+						bArg,
+						ComboInterval,
+						ch->GetValidComboInterval(),
+						ch->GetPoint(POINT_ATT_SPEED),
+						ch->IsRiding() ? "yes" : "no");*/
+
+	sys_log(0, "COMBO: Name: %s bArg: %u GetComboSequence: %u delta:%d GetValidComboInterval: %d checkspeedhack: %d", ch->GetName(), bArg, ch->GetComboSequence(), ComboInterval - ch->GetValidComboInterval(), CheckSpeedHack);
+
 	// bArg 14 ~ 21번 까지 총 8콤보 가능
 	// 1. 첫 콤보(14)는 일정 시간 이후에 반복 가능
 	// 2. 15 ~ 21번은 반복 불가능
@@ -1297,7 +1338,6 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 		if (CheckSpeedHack && ComboInterval > 0 && ComboInterval < ch->GetValidComboInterval() - COMBO_HACK_ALLOWABLE_MS)
 		{
 			// FIXME 첫번째 콤보는 이상하게 빨리 올 수가 있어서 300으로 나눔 -_-;
-			
 			// 다수의 몬스터에 의해 다운되는 상황에서 공격을 하면
 			// 첫번째 콤보가 매우 적은 인터벌로 들어오는 상황 발생.
 			// 이로 인해 콤보핵으로 튕기는 경우가 있어 다음 코드 비 활성화.
@@ -1313,7 +1353,9 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 		}
 
 		ch->SetComboSequence(1);
-		ch->SetValidComboInterval((int) (ani_combo_speed(ch, 1) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+		// 2013 09 11 CYH edited
+		//ch->SetValidComboInterval((int) (ani_combo_speed(ch, 1) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+		ch->SetValidComboInterval( ClacValidComboInterval(ch, bArg) );
 		ch->SetLastComboTime(dwTime);
 	}
 	else if (bArg > 14 && bArg < 22)
@@ -1368,7 +1410,9 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 			else
 				ch->SetComboSequence(ch->GetComboSequence() + 1);
 
-			ch->SetValidComboInterval((int) (ani_combo_speed(ch, bArg - 13) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+			// 2013 09 11 CYH edited
+			//ch->SetValidComboInterval((int) (ani_combo_speed(ch, bArg - 13) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+			ch->SetValidComboInterval( ClacValidComboInterval(ch, bArg) );
 			ch->SetLastComboTime(dwTime);
 		}
 	}
@@ -1408,9 +1452,12 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 				ch->SetLastComboTime(dwTime);
 			}
 			*/
-			float normalAttackDuration = CMotionManager::instance().GetNormalAttackDuration(ch->GetRaceNum());
-			int k = (int) (normalAttackDuration / ((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f);
-			ch->SetValidComboInterval(k);
+
+			// 2013 09 11 CYH edited
+			//float normalAttackDuration = CMotionManager::instance().GetNormalAttackDuration(ch->GetRaceNum());
+			//int k = (int) (normalAttackDuration / ((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f);
+			//ch->SetValidComboInterval(k);
+			ch->SetValidComboInterval( ClacValidComboInterval(ch, bArg) );
 			ch->SetLastComboTime(dwTime);
 			// END_OF_POLYMORPH_BUG_FIX
 		}
@@ -2117,6 +2164,19 @@ void CInputMain::SafeboxCheckout(LPCHARACTER ch, const char * c_pData, bool bMal
 		}
 
 		pkSafebox->Remove(p->bSafePos);
+		if (bMall)
+		{
+			if (NULL == pkItem->GetProto())
+			{
+				sys_err ("pkItem->GetProto() == NULL (id : %d)",pkItem->GetID());
+				return ;
+			}
+			// 100% 확률로 속성이 붙어야 하는데 안 붙어있다면 새로 붙힌다. ...............
+			if (100 == pkItem->GetProto()->bAlterToMagicItemPct && 0 == pkItem->GetAttributeCount())
+			{
+				pkItem->AlterToMagicItem();
+			}
+		}
 		pkItem->AddToCharacter(ch, p->ItemPos);
 		ITEM_MANAGER::instance().FlushDelayedSave(pkItem);
 	}

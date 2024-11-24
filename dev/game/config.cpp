@@ -856,6 +856,12 @@ void config_init(const string& st_localeServiceName)
 			continue;
 		}
 
+		TOKEN("item_count_limit")
+		{
+			str_to_number(g_bItemCountLimit, value_string);
+			continue;
+		}
+		
 		TOKEN("shutdowned")
 		{
 			g_bNoMoreClient = true;
@@ -867,7 +873,49 @@ void config_init(const string& st_localeServiceName)
 			g_bNoRegen = true;
 			continue;
 		}
+		
+		TOKEN("shop_price_3x_disable")
+		{
+			g_bEmpireShopPriceTrippleDisable = true;
+			continue;
+		}
 
+		TOKEN("shout_addon")
+		{
+			g_bShoutAddonEnable = true;
+			continue;
+		}
+		
+		TOKEN("enable_all_mount_attack")
+		{
+			g_bAllMountAttack = true;
+			continue;
+		}		
+		
+		TOKEN("disable_change_attr_time")
+		{
+			g_bDisableItemBonusChangeTime = true;
+			continue;
+		}
+		
+		TOKEN("disable_prism_item")
+		{
+			g_bDisablePrismNeed = true;
+			continue;
+		}
+		
+		TOKEN("global_shout")
+		{
+			g_bGlobalShoutEnable = true;
+			continue;
+		}
+				
+		TOKEN("disable_emotion_mask")
+		{
+			g_bDisableEmotionMask = true;
+			continue;
+		}
+		
 		TOKEN("traffic_profile")
 		{
 			g_bTrafficProfileOn = true;

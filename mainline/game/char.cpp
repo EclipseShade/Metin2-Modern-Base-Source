@@ -4,7 +4,6 @@
 #include "../common/VnumHelper.h"
 
 #include "char.h"
-
 #include "config.h"
 #include "utils.h"
 #include "crc32.h"
