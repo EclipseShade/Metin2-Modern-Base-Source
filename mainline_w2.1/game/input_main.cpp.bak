@@ -13,7 +13,6 @@
 #include "item_manager.h"
 #include "cmd.h"
 #include "shop.h"
-#include "shop_manager.h"
 #include "safebox.h"
 #include "regen.h"
 #include "battle.h"
