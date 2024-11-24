@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "config.h"
 #include "utils.h"
 #include "crc32.h"
