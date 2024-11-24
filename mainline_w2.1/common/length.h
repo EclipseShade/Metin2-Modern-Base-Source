@@ -74,6 +74,9 @@ enum EMisc
 
 	OPENID_AUTHKEY_LEN = 32, 
 
+	SHOP_TAB_NAME_MAX = 32,
+	SHOP_TAB_COUNT_MAX = 3,
+
 	BELT_INVENTORY_SLOT_WIDTH = 4,
 	BELT_INVENTORY_SLOT_HEIGHT= 4,
 
@@ -782,7 +785,11 @@ typedef struct SItemPos
 
 const TItemPos NPOS (RESERVED_WINDOW, WORD_MAX);
 
-
+typedef enum
+{
+	SHOP_COIN_TYPE_GOLD, // DEFAULT VALUE
+	SHOP_COIN_TYPE_SECONDARY_COIN,
+} EShopCoinType;
 
 #pragma pack(pop)
 
