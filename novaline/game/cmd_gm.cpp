@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "utils.h"
 #include "config.h"
 #include "desc_client.h"
@@ -173,7 +174,10 @@ ACMD(do_transfer)
 			ch->ChatPacket(CHAT_TYPE_INFO, "Transfer requested.");
 		}
 		else
-			ch->ChatPacket(CHAT_TYPE_INFO, "There is no character by that name");
+		{
+			ch->ChatPacket(CHAT_TYPE_INFO, "There is no character(%s) by that name", arg1);
+			sys_log(0, "There is no character(%s) by that name", arg1);
+		}
 
 		return;
 	}
@@ -849,7 +853,7 @@ ACMD(do_mob_ld)
 	}
 
 	int dir = 1;
-	long x,y;
+	long x, y;
 
 	if (*arg2)
 		str_to_number(x, arg2);
@@ -1449,7 +1453,13 @@ ACMD(do_set)
 				int gold = 0;
 				str_to_number(gold, arg3);
 				DBManager::instance().SendMoneyLog(MONEY_LOG_MISC, 3, gold);
+				int before_gold = tch->GetGold();
 				tch->PointChange(POINT_GOLD, gold, true);
+				int after_gold = tch->GetGold();
+				if (0 == after_gold && 0 != before_gold)
+				{
+					LogManager::instance().CharLog(tch, gold, "ZERO_GOLD", "GM");
+				}
 			}
 			break;
 
