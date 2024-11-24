@@ -59,8 +59,9 @@
 #include "buff_on_attributes.h"
 
 #ifdef __PET_SYSTEM__
-#include "PetSystem.h"
+	#include "PetSystem.h"
 #endif
+
 #include "DragonSoul.h"
 
 extern const BYTE g_aBuffOnAttrPoints;
@@ -3360,6 +3361,19 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 
 				SetGold(GetGold() + amount);
 				val = GetGold();
+				if (LC_IsBrazil())
+				{
+					if (0 == val)
+					{
+						static time_t last_dump_time = 0;
+						if (last_dump_time + 86400 < get_global_time())
+						{
+							last_dump_time = get_global_time();
+							core_dump();
+						}
+						LogManager::instance().CharLog(this, amount, "ZERO_GOLD", "");
+					}
+				}
 			}
 			break;
 

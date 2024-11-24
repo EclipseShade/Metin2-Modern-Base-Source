@@ -22,6 +22,7 @@
 #include "battle.h"
 #include "affect.h"
 #include "shop.h"
+#include "shop_manager.h"
 #include "safebox.h"
 #include "regen.h"
 #include "pvp.h"
@@ -373,6 +374,9 @@ void CHARACTER::Initialize()
 	m_fDamMul = 1.0f;
 
 	m_pointsInstant.iDragonSoulActiveDeck = -1;
+
+	memset(&m_tvLastSyncTime, 0, sizeof(m_tvLastSyncTime));
+	m_iSyncHackCount = 0;
 }
 
 void CHARACTER::Create(const char * c_pszName, DWORD vid, bool isPC)
@@ -4210,6 +4214,10 @@ bool CHARACTER::SetSyncOwner(LPCHARACTER ch, bool bRemoveFromList)
 			m_pkChrSyncOwner = ch;
 			m_pkChrSyncOwner->m_kLst_pkChrSyncOwned.push_back(this);
 
+			// SyncOwner가 바뀌면 LastSyncTime을 초기화한다.
+			static const timeval zero_tv = {0, 0};
+			SetLastSyncTime(zero_tv);
+
 			sys_log(1, "SetSyncOwner set %s %p to %s", GetName(), this, ch->GetName());
 		}
 
@@ -5904,9 +5912,13 @@ void CHARACTER::ResetPoint(int iLv)
 	SetRandomHP((iLv - 1) * number(JobInitialPoints[GetJob()].hp_per_lv_begin, JobInitialPoints[GetJob()].hp_per_lv_end));
 	SetRandomSP((iLv - 1) * number(JobInitialPoints[GetJob()].sp_per_lv_begin, JobInitialPoints[GetJob()].sp_per_lv_end));
 
-	//PointChange(POINT_STAT, ((MINMAX(1, iLv, 99) - 1) * 3) + GetPoint(POINT_LEVEL_STEP) - GetPoint(POINT_STAT));
-	PointChange(POINT_STAT, ((MINMAX(1, iLv, 90) - 1) * 3) + GetPoint(POINT_LEVEL_STEP) - GetPoint(POINT_STAT));
-
+	//PointChange(POINT_STAT, ((MINMAX(1, iLv, 90) - 1) * 3) + GetPoint(POINT_LEVEL_STEP) - GetPoint(POINT_STAT));
+	
+	if(iLv <= 90)
+		PointChange(POINT_STAT, ((MINMAX(1, iLv, 90) - 1) * 3) + GetPoint(POINT_LEVEL_STEP) - GetPoint(POINT_STAT));
+	else
+		PointChange(POINT_STAT, 270 - GetPoint(POINT_STAT));
+	
 	ComputePoints();
 
 	// 회복
