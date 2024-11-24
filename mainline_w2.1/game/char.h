@@ -2048,7 +2048,7 @@ class CHARACTER : public CEntity, public CFSM, public CHorseRider
 		void			SetLastSyncTime(const timeval &tv) { memcpy(&m_tvLastSyncTime, &tv, sizeof(timeval)); }
 		const timeval&	GetLastSyncTime() { return m_tvLastSyncTime; }
 		void			SetSyncHackCount(int iCount) { m_iSyncHackCount = iCount;}
-		int		
+		int				GetSyncHackCount() { return m_iSyncHackCount; }
 };
 
 ESex GET_SEX(LPCHARACTER ch);
