@@ -159,6 +159,12 @@ class CSpecialItemGroup
 			return 0;
 		}
 
+		// Group의 Size를 return해준다.
+		int GetGroupSize() const
+		{
+			return m_vecProbs.size();
+		}
+
 		DWORD m_dwVnum;
 		BYTE	m_bType;
 		std::vector<int> m_vecProbs;
