@@ -49,8 +49,9 @@
 
 //auction_temp
 #ifdef __AUCTION__
-#include "auction_manager.h"
+	#include "auction_manager.h"
 #endif
+
 const int ITEM_BROKEN_METIN_VNUM = 28960;
 
 // CHANGE_ITEM_ATTRIBUTES

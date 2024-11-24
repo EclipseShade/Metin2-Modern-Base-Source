@@ -2040,7 +2040,7 @@ bool CHARACTER::UseItemEx(LPITEM item, TItemPos DestCell)
 					}
 				}
 
-				if( dwBoxVnum > 51500 && dwBoxVnum < 52000 )	// 용혼원석들
+				if( (dwBoxVnum > 51500 && dwBoxVnum < 52000) || (dwBoxVnum >= 50255 && dwBoxVnum <= 50260) )	// 용혼원석들
 				{
 					if( !(this->DragonSoul_IsQualified()) )
 					{
@@ -6405,6 +6405,58 @@ void CHARACTER::RemoveSpecifyItem(DWORD vnum, DWORD count)
 		sys_log(0, "CHARACTER::RemoveSpecifyItem cannot remove enough item vnum %u, still remain %d", vnum, count);
 }
 
+int CHARACTER::CountSpecifyTypeItem(BYTE type) const
+{
+	int	count = 0;
+
+	for (int i = 0; i < INVENTORY_MAX_NUM; ++i)
+	{
+		LPITEM pItem = GetInventoryItem(i);
+		if (pItem != NULL && pItem->GetType() == type)
+		{
+			count += pItem->GetCount();
+		}
+	}
+
+	return count;
+}
+
+void CHARACTER::RemoveSpecifyTypeItem(BYTE type, DWORD count)
+{
+	if (0 == count)
+		return;
+
+	for (UINT i = 0; i < INVENTORY_MAX_NUM; ++i)
+	{
+		if (NULL == GetInventoryItem(i))
+			continue;
+
+		if (GetInventoryItem(i)->GetType() != type)
+			continue;
+
+		//개인 상점에 등록된 물건이면 넘어간다. (개인 상점에서 판매될때 이 부분으로 들어올 경우 문제!)
+		if(m_pkMyShop)
+		{
+			bool isItemSelling = m_pkMyShop->IsSellingItem(GetInventoryItem(i)->GetID());
+			if (isItemSelling)
+				continue;
+		}
+
+		if (count >= GetInventoryItem(i)->GetCount())
+		{
+			count -= GetInventoryItem(i)->GetCount();
+			GetInventoryItem(i)->SetCount(0);
+
+			if (0 == count)
+				return;
+		}
+		else
+		{
+			GetInventoryItem(i)->SetCount(GetInventoryItem(i)->GetCount() - count);
+			return;
+		}
+	}
+}
 
 void CHARACTER::AutoGiveItem(LPITEM item, bool longOwnerShip)
 {
