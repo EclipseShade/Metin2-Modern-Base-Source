@@ -700,7 +700,7 @@ DWORD GET_ATTACK_SPEED(LPCHARACTER ch)
         return 1000;
 
 	LPITEM item = ch->GetWear(WEAR_WEAPON);
-	DWORD default_bonus = SPEEDHACK_LIMIT_BONUS;    // 유두리 공속(기본 80)
+	DWORD default_bonus = SPEEDHACK_LIMIT_BONUS;
 	DWORD riding_bonus = 0;
 
 	if (ch->IsRiding())
