@@ -60,9 +60,9 @@ db: .
 	$(MAKE) -C db
 	
 quest: .
-	@touch quest/Depend
-	$(MAKE) -C quest clean
-	$(MAKE) -C quest
+	@touch ../ExternGame/quest/Depend
+	$(MAKE) -C ../ExternGame/quest clean
+	$(MAKE) -C ../ExternGame/quest
 
 clean:
 	$(MAKE) -C ../ExternGame/liblua clean
@@ -71,10 +71,10 @@ clean:
 	$(MAKE) -C ../ExternGame/libpoly clean
 	$(MAKE) -C ../ExternGame/libthecore/src clean
 	$(MAKE) -C ../ExternGame/lzo clean
+	$(MAKE) -C ../ExternGame/quest clean
 	
 	$(MAKE) -C db clean
 	$(MAKE) -C game clean
-	$(MAKE) -C quest clean
 
 all: 
 	@echo "--------------------------------------"
@@ -117,9 +117,9 @@ all:
 	$(MAKE) -C db clean
 	$(MAKE) -C db
 	
-	@touch quest/Depend
-	$(MAKE) -C quest clean
-	$(MAKE) -C quest
+	@touch ../ExternGame/quest/Depend
+	$(MAKE) -C ../ExternGame/quest clean
+	$(MAKE) -C ../ExternGame/quest
 
 	@echo "--------------------------------------"
 	@echo "Full Build End"
