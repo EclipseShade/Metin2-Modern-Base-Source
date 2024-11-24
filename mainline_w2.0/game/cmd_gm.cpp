@@ -815,6 +815,62 @@ ACMD(do_mob)
 	}
 }
 
+ACMD(do_mob_ld)
+{
+	char	arg1[256], arg2[256], arg3[256], arg4[256];
+	DWORD	vnum = 0;
+
+	two_arguments(two_arguments(argument, arg1, sizeof(arg1), arg2, sizeof(arg2)), arg3, sizeof(arg3), arg4, sizeof(arg4));
+
+	if (!*arg1)
+	{
+		ch->ChatPacket(CHAT_TYPE_INFO, "Usage: mob <mob vnum>");
+		return;
+	}
+
+	const CMob* pkMob = NULL;
+
+	if (isnhdigit(*arg1))
+	{
+		str_to_number(vnum, arg1);
+
+		if ((pkMob = CMobManager::instance().Get(vnum)) == NULL)
+			vnum = 0;
+	}
+	else
+	{
+		pkMob = CMobManager::Instance().Get(arg1, true);
+
+		if (pkMob)
+			vnum = pkMob->m_table.dwVnum;
+	}
+
+	if (vnum == 0)
+	{
+		ch->ChatPacket(CHAT_TYPE_INFO, "No such mob by that vnum");
+		return;
+	}
+
+	int dir = 1;
+	long x, y;
+
+	if (*arg2)
+		str_to_number(x, arg2);
+	if (*arg3)
+		str_to_number(y, arg3);
+	if (*arg4)
+		str_to_number(dir, arg4);
+
+
+	CHARACTER_MANAGER::instance().SpawnMob(vnum, 
+		ch->GetMapIndex(),
+		x*100, 
+		y*100, 
+		ch->GetZ(),
+		pkMob->m_table.bType == CHAR_TYPE_STONE,
+		dir);
+}
+
 struct FuncPurge
 {
 	LPCHARACTER m_pkGM;
