@@ -12,7 +12,7 @@
 #include "mob_manager.h"
 #include "motion.h"
 #include "sectree_manager.h"
-#include "shop.h"
+#include "shop_manager.h"
 #include "regen.h"
 #include "text_file_loader.h"
 #include "skill.h"

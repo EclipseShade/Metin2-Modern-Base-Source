@@ -429,8 +429,7 @@ static void CleanUpForEarlyExit() {
 	CancelReloadSpamEvent();
 }
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
 #ifdef DEBUG_ALLOC
 	DebugAllocator::StaticSetUp();
 #endif

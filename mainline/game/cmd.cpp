@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "utils.h"
 #include "config.h"
 #include "char.h"
@@ -734,4 +735,3 @@ void interpret_command(LPCHARACTER ch, const char * argument, size_t len)
 		}
 	}
 }
-

@@ -6,7 +6,7 @@
 #include "party.h"
 #include "xmas_event.h"
 #include "char_manager.h"
-#include "shop.h"
+#include "shop_manager.h"
 #include "guild.h"
 
 namespace quest

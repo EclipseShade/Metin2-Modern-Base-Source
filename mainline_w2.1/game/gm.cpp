@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "constants.h"
 #include "gm.h"
 #include "locale_service.h"
@@ -66,7 +67,7 @@ BYTE gm_new_get_level( const char * name, const char * host, const char* account
 
 	// GERMAN_GM_NOT_CHECK_HOST
 	// 독일 버전은 호스트 체크를 하지 않는다.
-	if ( LC_IsEurope() && !LC_IsTaiwan() )
+	if ( LC_IsEurope() && !LC_IsTaiwan() || LC_IsSingapore() )
 	{
 	    if (account)
 	    {
@@ -114,4 +115,3 @@ BYTE gm_get_level(const char * name, const char * host, const char* account)
 {
 	return gm_new_get_level( name, host, account );
 }
-
