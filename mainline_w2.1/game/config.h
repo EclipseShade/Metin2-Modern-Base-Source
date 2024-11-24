@@ -93,6 +93,8 @@ extern std::string	g_stAdminPagePassword;
 extern int	SPEEDHACK_LIMIT_COUNT;
 extern int 	SPEEDHACK_LIMIT_BONUS;
 
+extern int g_iSyncHackLimitCount;
+
 extern int g_server_id;
 extern std::string g_strWebMallURL;
 
