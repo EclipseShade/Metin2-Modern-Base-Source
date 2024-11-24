@@ -3,7 +3,7 @@
 #ifdef __FreeBSD__
 	#include <md5.h>
 #else
-	#include "../../libthecore/include/xmd5.h"
+	#include "../../ExternGame/libthecore/include/xmd5.h"
 #endif
 
 #include "utils.h"

@@ -22,6 +22,7 @@ ACMD(do_warp);
 ACMD(do_goto);
 ACMD(do_item);
 ACMD(do_mob);
+ACMD(do_mob_ld);
 ACMD(do_mob_aggresive);
 ACMD(do_mob_coward);
 ACMD(do_mob_map);
@@ -298,6 +299,7 @@ struct command_info cmd_info[] =
 	{ "item",		do_item,		0,			POS_DEAD,	GM_GOD		},
 
 	{ "mob",		do_mob,			0,			POS_DEAD,	GM_HIGH_WIZARD	},
+	{ "mob_ld",		do_mob_ld,			0,			POS_DEAD,	GM_HIGH_WIZARD	}, /* 몹의 위치와 방향을 설정해 소환 /mob_ld vnum x y dir */
 	{ "ma",		do_mob_aggresive,	0,			POS_DEAD,	GM_HIGH_WIZARD	},
 	{ "mc",		do_mob_coward,		0,			POS_DEAD,	GM_HIGH_WIZARD	},
 	{ "mm",		do_mob_map,		0,			POS_DEAD,	GM_HIGH_WIZARD	},
@@ -722,7 +724,7 @@ void interpret_command(LPCHARACTER ch, const char * argument, size_t len)
 	{
 		if (cmd_info[icmd].gm_level >= GM_LOW_WIZARD)
 		{
-			if (LC_IsEurope() == true || /*LC_IsNewCIBN() == true || */LC_IsCanada() == true || LC_IsBrazil() == true)
+			if (LC_IsEurope() == true || /*LC_IsNewCIBN() == true || */LC_IsCanada() == true || LC_IsBrazil() == true || LC_IsSingapore() == true)
 			{
 				char buf[1024];
 				snprintf( buf, sizeof(buf), "%s", argument );
