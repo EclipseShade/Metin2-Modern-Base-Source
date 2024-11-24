@@ -136,6 +136,8 @@ int			HackShield_CheckCycleTime = passes_per_sec * 180;
 bool		bXTrapEnabled = false;
 
 int gPlayerMaxLevel = 99;
+int gShutdownAge = 0;
+int gShutdownEnable = 0;
 
 /*
  * NOTE : 핵 체크 On/Off. CheckIn할때 false로 수정했으면 반드시 확인하고 고쳐놓을것!
@@ -854,6 +856,12 @@ void config_init(const string& st_localeServiceName)
 			continue;
 		}
 
+		TOKEN("item_count_limit")
+		{
+			str_to_number(g_bItemCountLimit, value_string);
+			continue;
+		}
+		
 		TOKEN("shutdowned")
 		{
 			g_bNoMoreClient = true;
@@ -865,7 +873,49 @@ void config_init(const string& st_localeServiceName)
 			g_bNoRegen = true;
 			continue;
 		}
+		
+		TOKEN("shop_price_3x_disable")
+		{
+			g_bEmpireShopPriceTrippleDisable = true;
+			continue;
+		}
 
+		TOKEN("shout_addon")
+		{
+			g_bShoutAddonEnable = true;
+			continue;
+		}
+		
+		TOKEN("enable_all_mount_attack")
+		{
+			g_bAllMountAttack = true;
+			continue;
+		}		
+		
+		TOKEN("disable_change_attr_time")
+		{
+			g_bDisableItemBonusChangeTime = true;
+			continue;
+		}
+		
+		TOKEN("disable_prism_item")
+		{
+			g_bDisablePrismNeed = true;
+			continue;
+		}
+		
+		TOKEN("global_shout")
+		{
+			g_bGlobalShoutEnable = true;
+			continue;
+		}
+				
+		TOKEN("disable_emotion_mask")
+		{
+			g_bDisableEmotionMask = true;
+			continue;
+		}
+		
 		TOKEN("traffic_profile")
 		{
 			g_bTrafficProfileOn = true;
@@ -1120,7 +1170,17 @@ void config_init(const string& st_localeServiceName)
 
 			fprintf(stderr, "PLAYER_MAX_LEVEL: %d\n", gPlayerMaxLevel);
 		}
+		TOKEN("shutdown_age")
+		{
+			str_to_number(gShutdownAge, value_string);
+			fprintf(stderr, "SHUTDOWN_AGE: %d\n", gShutdownAge);
 
+		}
+		TOKEN("shutdown_enable")
+		{
+			str_to_number(gShutdownEnable, value_string);
+			fprintf(stderr, "SHUTDOWN_ENABLE: %d\n", gShutdownEnable);
+		}
 		TOKEN("block_char_creation")
 		{
 			int tmp = 0;
