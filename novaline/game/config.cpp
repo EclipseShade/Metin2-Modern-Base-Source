@@ -349,12 +349,10 @@ void config_init(const string& st_localeServiceName)
 		exit(1);
 	}
 
-	// public ip가 없어도 BIND_IP하면 게임 돌아가는데에는 아무런 지장이 없기 때문에
-	// 주석처리 함.
 	if (!GetIPInfo())
 	{
-	//	fprintf(stderr, "Can not get public ip address\n");
-	//	exit(1);
+		fprintf(stderr, "Can not get public ip address\n");
+		exit(1);
 	}
 
 	char db_host[2][64], db_user[2][64], db_pwd[2][64], db_db[2][64];
