@@ -2312,12 +2312,11 @@ ACMD(do_in_game_mall)
 		return;
 	}
 
-	/*
 	if (LC_IsCanada() == true)
 	{
 		ch->ChatPacket(CHAT_TYPE_COMMAND, "mall http://mall.z8games.com/mall_entry.aspx?tb=m2");
 		return;
-	}*/
+	}
 
 	if (LC_IsEurope() == true)
 	{
