@@ -219,15 +219,13 @@ struct FuncShout
 
 	void operator () (LPDESC d)
 	{
-	
 		// ADDED GLOBAL SHOUT OPTION
 		if (!d->GetCharacter())
 			return;
-			
-		if(!g_bGlobalShoutEnable && (d->GetCharacter()->GetGMLevel() == GM_PLAYER && d->GetEmpire() != m_bEmpire))
+
+		if (!g_bGlobalShoutEnable && (d->GetCharacter()->GetGMLevel() == GM_PLAYER && d->GetEmpire() != m_bEmpire))
 			return;
-		
-		
+
 		d->GetCharacter()->ChatPacket(CHAT_TYPE_SHOUT, "%s", m_str);
 	}
 };
