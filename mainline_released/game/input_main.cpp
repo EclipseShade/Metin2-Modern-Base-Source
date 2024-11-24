@@ -1329,10 +1329,8 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 						ch->GetPoint(POINT_ATT_SPEED),
 						ch->IsRiding() ? "yes" : "no");*/
 
-#if 0	
-	sys_log(0, "COMBO: %s arg:%u seq:%u delta:%d checkspeedhack:%d",
-			ch->GetName(), bArg, ch->GetComboSequence(), ComboInterval - ch->GetValidComboInterval(), CheckSpeedHack);
-#endif
+	sys_log(0, "COMBO: Name: %s bArg: %u GetComboSequence: %u delta:%d GetValidComboInterval: %d checkspeedhack: %d", ch->GetName(), bArg, ch->GetComboSequence(), ComboInterval - ch->GetValidComboInterval(), CheckSpeedHack);
+
 	// bArg 14 ~ 21번 까지 총 8콤보 가능
 	// 1. 첫 콤보(14)는 일정 시간 이후에 반복 가능
 	// 2. 15 ~ 21번은 반복 불가능
@@ -1459,7 +1457,7 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 
 			// 2013 09 11 CYH edited
 			//float normalAttackDuration = CMotionManager::instance().GetNormalAttackDuration(ch->GetRaceNum());
-			//int k = (int) (normalAttackDuration / ((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f);			
+			//int k = (int) (normalAttackDuration / ((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f);
 			//ch->SetValidComboInterval(k);
 			ch->SetValidComboInterval( ClacValidComboInterval(ch, bArg) );
 			ch->SetLastComboTime(dwTime);
@@ -1882,7 +1880,7 @@ int CInputMain::SyncPosition(LPCHARACTER ch, const char * c_pcData, size_t uiByt
 		}
 		
 		const float fDist = DISTANCE_SQRT( (victim->GetX() - e->lX) / 100, (victim->GetY() - e->lY) / 100 );
-		static const long g_lValidSyncInterval = 50 * 1000; // 100ms -> 50ms 2013 09 11 CYH
+		static const long g_lValidSyncInterval = 100 * 1000; // 100ms
 		const timeval &tvLastSyncTime = victim->GetLastSyncTime();
 		timeval *tvDiff = timediff(&tvCurTime, &tvLastSyncTime);
 		

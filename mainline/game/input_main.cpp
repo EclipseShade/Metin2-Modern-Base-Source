@@ -1273,6 +1273,39 @@ static const int ComboSequenceBySkillLevel[3][8] =
 
 #define COMBO_HACK_ALLOWABLE_MS	100
 
+// [2013 09 11 CYH]
+DWORD ClacValidComboInterval( LPCHARACTER ch, BYTE bArg )
+{
+	int nInterval = 300;
+	float fAdjustNum = 1.5f; // 일반 유저가 speed hack 에 걸리는 것을 막기 위해. 2013.09.10 CYH
+
+	if( !ch )
+	{
+		sys_err( "ClacValidComboInterval() ch is NULL");
+		return nInterval;
+	}	
+
+	if( bArg == 13 )
+	{
+		float normalAttackDuration = CMotionManager::instance().GetNormalAttackDuration(ch->GetRaceNum());
+		nInterval = (int) (normalAttackDuration / (((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f) + fAdjustNum );
+	}
+	else if( bArg == 14 )
+	{		
+		nInterval = (int)(ani_combo_speed(ch, 1 ) / ((ch->GetPoint(POINT_ATT_SPEED) / 100.f) + fAdjustNum) );
+	}
+	else if( bArg > 14 && bArg << 22 )
+	{
+		nInterval = (int)(ani_combo_speed(ch, bArg - 13 ) / ((ch->GetPoint(POINT_ATT_SPEED) / 100.f) + fAdjustNum) );
+	}
+	else
+	{
+		sys_err( "ClacValidComboInterval() Invalid bArg(%d) ch(%s)", bArg, ch->GetName() );		
+	}	
+
+	return nInterval;
+}
+
 bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack)
 {
 	//	죽거나 기절 상태에서는 공격할 수 없으므로, skip한다.
@@ -1286,10 +1319,18 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 		return false;
 	int ComboInterval = dwTime - ch->GetLastComboTime();
 	int HackScalar = 0; // 기본 스칼라 단위 1
-#if 0	
-	sys_log(0, "COMBO: %s arg:%u seq:%u delta:%d checkspeedhack:%d",
-			ch->GetName(), bArg, ch->GetComboSequence(), ComboInterval - ch->GetValidComboInterval(), CheckSpeedHack);
-#endif
+
+	// [2013 09 11 CYH] debugging log
+		/*sys_log(0, "COMBO_TEST_LOG: %s arg:%u interval:%d valid:%u atkspd:%u riding:%s",
+						ch->GetName(),
+						bArg,
+						ComboInterval,
+						ch->GetValidComboInterval(),
+						ch->GetPoint(POINT_ATT_SPEED),
+						ch->IsRiding() ? "yes" : "no");*/
+
+	sys_log(0, "COMBO: Name: %s bArg: %u GetComboSequence: %u delta:%d GetValidComboInterval: %d checkspeedhack: %d", ch->GetName(), bArg, ch->GetComboSequence(), ComboInterval - ch->GetValidComboInterval(), CheckSpeedHack);
+
 	// bArg 14 ~ 21번 까지 총 8콤보 가능
 	// 1. 첫 콤보(14)는 일정 시간 이후에 반복 가능
 	// 2. 15 ~ 21번은 반복 불가능
@@ -1314,7 +1355,9 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 		}
 
 		ch->SetComboSequence(1);
-		ch->SetValidComboInterval((int) (ani_combo_speed(ch, 1) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+		// 2013 09 11 CYH edited
+		//ch->SetValidComboInterval((int) (ani_combo_speed(ch, 1) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+		ch->SetValidComboInterval( ClacValidComboInterval(ch, bArg) );
 		ch->SetLastComboTime(dwTime);
 	}
 	else if (bArg > 14 && bArg < 22)
@@ -1369,7 +1412,9 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 			else
 				ch->SetComboSequence(ch->GetComboSequence() + 1);
 
-			ch->SetValidComboInterval((int) (ani_combo_speed(ch, bArg - 13) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+			// 2013 09 11 CYH edited
+			//ch->SetValidComboInterval((int) (ani_combo_speed(ch, bArg - 13) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+			ch->SetValidComboInterval( ClacValidComboInterval(ch, bArg) );
 			ch->SetLastComboTime(dwTime);
 		}
 	}
@@ -1409,9 +1454,12 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 				ch->SetLastComboTime(dwTime);
 			}
 			*/
-			float normalAttackDuration = CMotionManager::instance().GetNormalAttackDuration(ch->GetRaceNum());
-			int k = (int) (normalAttackDuration / ((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f);
-			ch->SetValidComboInterval(k);
+
+			// 2013 09 11 CYH edited
+			//float normalAttackDuration = CMotionManager::instance().GetNormalAttackDuration(ch->GetRaceNum());
+			//int k = (int) (normalAttackDuration / ((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f);
+			//ch->SetValidComboInterval(k);
+			ch->SetValidComboInterval( ClacValidComboInterval(ch, bArg) );
 			ch->SetLastComboTime(dwTime);
 			// END_OF_POLYMORPH_BUG_FIX
 		}
@@ -1812,23 +1860,23 @@ int CInputMain::SyncPosition(LPCHARACTER ch, const char * c_pcData, size_t uiByt
 		if (fDistWithSyncOwner > fLimitDistWithSyncOwner)
 		{
 			// g_iSyncHackLimitCount번 까지는 봐줌.
-			//if (ch->GetSyncHackCount() < g_iSyncHackLimitCount)
-			//{
-			//	ch->SetSyncHackCount(ch->GetSyncHackCount() + 1);
-			//	continue;
-			//}
-			//else
-			//{
+			if (ch->GetSyncHackCount() < g_iSyncHackLimitCount)
+			{
+				ch->SetSyncHackCount(ch->GetSyncHackCount() + 1);
+				continue;
+			}
+			else
+			{
 				LogManager::instance().HackLog( "SYNC_POSITION_HACK", ch );
 
 				sys_err( "Too far SyncPosition DistanceWithSyncOwner(%f)(%s) from Name(%s) CH(%d,%d) VICTIM(%d,%d) SYNC(%d,%d)",
 					fDistWithSyncOwner, victim->GetName(), ch->GetName(), ch->GetX(), ch->GetY(), victim->GetX(), victim->GetY(),
 					e->lX, e->lY );
 
-			//	ch->GetDesc()->SetPhase(PHASE_CLOSE);
+				ch->GetDesc()->SetPhase(PHASE_CLOSE);
 
-			//	return -1;
-			//}
+				return -1;
+			}
 		}
 		
 		const float fDist = DISTANCE_SQRT( (victim->GetX() - e->lX) / 100, (victim->GetY() - e->lY) / 100 );

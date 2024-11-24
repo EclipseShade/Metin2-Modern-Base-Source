@@ -19,6 +19,7 @@
 
 #include "protocol.h"
 #include "auction_manager.h"
+
 extern int auction_server;
 
 const char* auction_table_name [_AUCTION_MAX] = {"auction", "wish_auction", "my_auction", "my_wish_auction"};
