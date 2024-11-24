@@ -2,6 +2,7 @@
 #define __INC_GUILD_MANAGER_H
 
 #include "Peer.h"
+
 #include <queue>
 #include <utility>
 
