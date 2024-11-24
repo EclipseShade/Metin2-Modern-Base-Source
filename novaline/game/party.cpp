@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "utils.h"
 #include "char.h"
 #include "party.h"
@@ -1707,31 +1708,27 @@ int CParty::ComputePartyBonusExpPercent()
 	// END_OF_UPGRADE_PARTY_BONUS
 }
 
-bool CParty::IsPartyInDungeon(int mapIndex)
-{
+bool CParty::IsPartyInDungeon(int mapIndex) {
 	// 파티원이 mapIndex인 던젼안에 있는지 순서대로 검사
-	for(TMemberMap::iterator it = m_memberMap.begin(); it != m_memberMap.end(); ++it)
-	{
+	for(TMemberMap::iterator it = m_memberMap.begin(); it != m_memberMap.end(); ++it) {
 		LPCHARACTER ch = it->second.pCharacter;
 
-		if(NULL == ch)
-		{			
+		if(NULL == ch) {			
 			continue;
 		}		
 
 		LPDUNGEON d = ch->GetDungeon();
 
-		if(NULL == d)
-		{
+		if(NULL == d) {
 			sys_log(0,"not in dungeon");
 			continue;
 		}		
 		
-		if( mapIndex == (d->GetMapIndex())/10000 )
-		{			
+		if( mapIndex == (d->GetMapIndex())/10000 ) {			
 			return true;
 		}
 		
 	}
+	
 	return false;
 }
