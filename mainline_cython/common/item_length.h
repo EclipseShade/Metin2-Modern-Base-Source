@@ -24,6 +24,7 @@ enum EItemValueIdice
 {
 	ITEM_VALUE_DRAGON_SOUL_POLL_OUT_BONUS_IDX = 0,
 	ITEM_VALUE_CHARGING_AMOUNT_IDX = 0,
+	ITEM_VALUE_SECONDARY_COIN_UNIT_IDX = 0,
 };
 enum EItemDragonSoulSockets
 {
@@ -72,6 +73,9 @@ enum EItemTypes
 	ITEM_DS,				//29 //용혼석
 	ITEM_SPECIAL_DS,		//30 // 특수한 용혼석 (DS_SLOT에 착용하는 UNIQUE 아이템이라 생각하면 됨)
 	ITEM_EXTRACT,			//31 추출도구.
+	ITEM_SECONDARY_COIN,	//32 ?? 명도전??
+	ITEM_RING,				//33 반지
+	ITEM_BELT,				//34 벨트
 };
 
 enum EMetinSubTypes
@@ -211,6 +215,8 @@ enum EUseSubTypes
 	USE_UNBIND,
 	USE_TIME_CHARGE_PER,
 	USE_TIME_CHARGE_FIX,				// 28
+	USE_PUT_INTO_BELT_SOCKET,			// 29 벨트 소켓에 사용할 수 있는 아이템 
+	USE_PUT_INTO_RING_SOCKET,			// 30 반지 소켓에 사용할 수 있는 아이템 (유니크 반지 말고, 새로 추가된 반지 슬롯)
 };
 
 enum EExtractSubTypes
