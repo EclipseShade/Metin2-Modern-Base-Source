@@ -24,7 +24,7 @@
 #include "regen.h"
 #include "monarch.h"
 #include "exchange.h"
-#include "shop.h"
+#include "shop_manager.h"
 #include "castle.h"
 #include "dev_log.h"
 #include "ani.h"
