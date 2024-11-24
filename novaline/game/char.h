@@ -444,8 +444,7 @@ class CTrigger
 		int	(*pFunc) (TRIGGERPARAM);
 };
 
-EVENTINFO(char_event_info)
-{
+EVENTINFO(char_event_info) {
 	DynamicCharacterPtr ch;
 };
 
