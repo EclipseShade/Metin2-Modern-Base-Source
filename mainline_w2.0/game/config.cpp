@@ -97,6 +97,7 @@ WORD	teen_port	= 0;
 
 int SPEEDHACK_LIMIT_COUNT   = 50;
 int SPEEDHACK_LIMIT_BONUS   = 80;
+int g_iSyncHackLimitCount = 10;
 
 //시야 = VIEW_RANGE + VIEW_BONUS_RANGE
 //VIEW_BONUSE_RANGE : 클라이언트와 시야 처리에서너무 딱 떨어질경우 문제가 발생할수있어 500CM의 여분을 항상준다.
@@ -979,6 +980,11 @@ void config_init(const string& st_localeServiceName)
 		TOKEN("teen_port")
 		{
 			str_to_number(teen_port, value_string);
+		}
+
+		TOKEN("synchack_limit_count")
+		{
+			str_to_number(g_iSyncHackLimitCount, value_string);
 		}
 
 		TOKEN("speedhack_limit_count")
