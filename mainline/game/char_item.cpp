@@ -139,6 +139,8 @@ bool IS_SUMMONABLE_ZONE(int map_index)
 		case 216 : // ¾Æ±Íµ¿±¼
 		case 217 : // °Å¹Ì ´øÀü 3Ãþ
 		case 208 : // ÃµÀÇ µ¿±¼ (¿ë¹æ)
+
+		case 113 : // OX Event ¸Ê
 			return false;
 	}
 

@@ -43,7 +43,7 @@ extern bool	map_allow_find(int index);
 extern void	map_allow_copy(long * pl, int size);
 extern bool	no_wander;
 
-extern int	g_iUserLimit;
+extern int		g_iUserLimit;
 extern time_t	g_global_time;
 
 const char *	get_table_postfix();
@@ -113,6 +113,8 @@ extern int  HackShield_CheckCycleTime;
 extern bool bXTrapEnabled;
 
 extern int gPlayerMaxLevel;
+
+extern bool gHackCheckEnable;
 
 extern bool g_BlockCharCreation;
 

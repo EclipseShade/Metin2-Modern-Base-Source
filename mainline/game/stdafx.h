@@ -21,6 +21,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <fstream>
 
 #ifdef __GNUC__
 	#include <float.h>

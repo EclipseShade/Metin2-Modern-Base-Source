@@ -782,7 +782,7 @@ int GetDropPerKillPct(int iMinimum, int iDefault, int iDeltaPercent, const char 
 
 	if ((iVal = quest::CQuestManager::instance().GetEventFlag(c_pszFlag)))
 	{
-		if (!test_server)
+		if (!test_server && !LC_IsJapan())
 		{
 			if (iVal < iMinimum)
 				iVal = iDefault;

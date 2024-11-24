@@ -2276,7 +2276,7 @@ void CInputMain::PartyRemove(LPCHARACTER ch, const char* c_pData)
 
 	LPPARTY pParty = ch->GetParty();
 	if (pParty->GetLeaderPID() == ch->GetPlayerID())
-	{		
+	{
 		if (ch->GetDungeon())
 		{
 			ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<파티> 던젼내에서는 파티원을 추방할 수 없습니다."));

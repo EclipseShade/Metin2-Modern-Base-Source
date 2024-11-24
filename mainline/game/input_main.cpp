@@ -2342,6 +2342,13 @@ void CInputMain::PartyRemove(LPCHARACTER ch, const char* c_pData)
 		}
 		else
 		{
+			// 적룡성에서 파티장이 던젼 밖에서 파티 해산 못하게 막자
+			if(pParty->IsPartyInDungeon(351))
+			{
+				ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<파티>던전 안에 파티원이 있어 파티를 해산 할 수 없습니다."));
+				return;
+			}
+
 			// leader can remove any member
 			if (p->pid == ch->GetPlayerID() || pParty->GetMemberCount() == 2)
 			{

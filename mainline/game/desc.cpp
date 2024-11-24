@@ -202,6 +202,7 @@ EVENTFUNC(ping_event)
 #ifdef ENABLE_LIMIT_TIME
 	if ((unsigned)get_global_time() >= GLOBAL_LIMIT_TIME)
 	{
+		sys_err("Server life time expired.");
 		extern void ClearAdminPages();
 		ClearAdminPages();
 		extern g_bShutdown;

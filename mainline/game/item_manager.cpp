@@ -387,6 +387,14 @@ LPITEM ITEM_MANAGER::CreateItem(DWORD vnum, DWORD count, DWORD id, bool bTryMagi
 			item->SetSocket(0, dwSkillVnum);
 		}
 	}
+	else
+	{
+		// 100% 확률로 속성이 붙어야 하는데 안 붙어있다면 새로 붙힌다. ...............
+		if (100 == table->bAlterToMagicItemPct && 0 == item->GetAttributeCount())
+		{
+			item->AlterToMagicItem();
+		}
+	}
 
 	if (item->GetType() == ITEM_QUEST)
 	{
