@@ -240,7 +240,7 @@ CCI * P2P_MANAGER::Find(const char * c_pszName)
 	else
 	{
 		char szName[CHARACTER_NAME_MAX_LEN + 1];
-		trim_and_lower(c_pszName, szName, sizeof(szName));
+		str_lower(c_pszName, szName, sizeof(szName));
 
 		it = m_map_pkCCI.find(szName);
 	}

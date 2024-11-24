@@ -4,6 +4,7 @@
 #include "../../ExternGame/libsql/AsyncSQL.h"
 
 #include "any_function.h"
+#include "locale_service.h"
 
 enum GOLDBAR_HOW
 {
@@ -54,6 +55,7 @@ class LogManager : public singleton<LogManager>
 		void		DetailLoginLog(bool isLogin, LPCHARACTER ch);
 		void		DragonSlayLog(DWORD dwGuildID, DWORD dwDragonVnum, DWORD dwStartTime, DWORD dwEndTime);
 		void		HackShieldLog(unsigned long ErrorCode, LPCHARACTER ch);
+		void		InvalidServerLog(enum eLocalization eLocaleType, const char* pcszIP, const char* pszRevision);
 
 	private:
 		void		Query(const char * c_pszFormat, ...);

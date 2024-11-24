@@ -6,7 +6,6 @@
 #include "char.h"
 #include "desc.h"
 #include "item.h"
-#include "locale_service.h"
 
 static char	__escape_hint[1024];
 
@@ -344,3 +343,7 @@ void LogManager::HackShieldLog(unsigned long ErrorCode, LPCHARACTER ch)
 	}
 }
 
+void LogManager::InvalidServerLog(enum eLocalization eLocaleType, const char* pcszIP, const char* pszRevision)
+{
+	Query("INSERT INTO invalid_server_log(locale_type, log_date, ip, revision) VALUES(%d, NOW(), '%s', %s)", eLocaleType, pcszIP, pszRevision);
+}
