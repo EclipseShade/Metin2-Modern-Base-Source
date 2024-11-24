@@ -1137,6 +1137,9 @@ class CHARACTER : public CEntity, public CFSM, public CHorseRider
 		LPITEM			FindSpecifyItem(DWORD vnum) const;
 		LPITEM			FindItemByID(DWORD id) const;
 
+		int				CountSpecifyTypeItem(BYTE type) const;
+		void			RemoveSpecifyTypeItem(BYTE type, DWORD count = 1);
+
 		bool			IsEquipUniqueItem(DWORD dwItemVnum) const;
 
 		// CHECK_UNIQUE_GROUP
@@ -2035,6 +2038,17 @@ class CHARACTER : public CEntity, public CFSM, public CHorseRider
 		bool		DragonSoul_RefineWindow_Close();
 		LPENTITY	DragonSoul_RefineWindow_GetOpener() { return  m_pointsInstant.m_pDragonSoulRefineWindowOpener; }
 		bool		DragonSoul_RefineWindow_CanRefine();
+
+	private:
+		// SyncPosition을 악용하여 타유저를 이상한 곳으로 보내는 핵 방어하기 위하여,
+		// SyncPosition이 일어날 때를 기록.
+		timeval		m_tvLastSyncTime;
+		int			m_iSyncHackCount;
+	public:
+		void			SetLastSyncTime(const timeval &tv) { memcpy(&m_tvLastSyncTime, &tv, sizeof(timeval)); }
+		const timeval&	GetLastSyncTime() { return m_tvLastSyncTime; }
+		void			SetSyncHackCount(int iCount) { m_iSyncHackCount = iCount;}
+		int		
 };
 
 ESex GET_SEX(LPCHARACTER ch);
