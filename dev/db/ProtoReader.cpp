@@ -98,10 +98,21 @@ int get_Item_Type_Value(string inputString)
 
 }
 
-int get_Item_SubType_Value(int type_value, string inputString) 
-{
-	static string arSub1[] = { "WEAPON_SWORD", "WEAPON_DAGGER", "WEAPON_BOW", "WEAPON_TWO_HANDED",
-				"WEAPON_BELL", "WEAPON_FAN", "WEAPON_ARROW", "WEAPON_MOUNT_SPEAR", "WEAPON_CLAW" };
+int get_Item_SubType_Value(unsigned int type_value, string inputString) {
+	static string arSub1[] = {
+		"WEAPON_SWORD", 
+		"WEAPON_DAGGER", 
+		"WEAPON_BOW", 
+		"WEAPON_TWO_HANDED",
+		"WEAPON_BELL", 
+		"WEAPON_FAN", 
+		"WEAPON_ARROW", 
+		"WEAPON_MOUNT_SPEAR", 
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		"WEAPON_CLAW",
+#endif
+	};
+
 	static string arSub2[] = { "ARMOR_BODY", "ARMOR_HEAD", "ARMOR_SHIELD", "ARMOR_WRIST", "ARMOR_FOOTS",
 				"ARMOR_NECK", "ARMOR_EAR", "ARMOR_NUM_TYPES"};
 	static string arSub3[] = { "USE_POTION", "USE_TALISMAN", "USE_TUNING", "USE_MOVE", "USE_TREASURE_BOX", "USE_MONEYBAG", "USE_BAIT",
@@ -233,17 +244,30 @@ int get_Item_SubType_Value(int type_value, string inputString)
 	return retInt;
 }
 
-
-
-
-
-int get_Item_AntiFlag_Value(string inputString) 
-{
-
-	string arAntiFlag[] = {"ANTI_FEMALE", "ANTI_MALE", "ANTI_MUSA", "ANTI_ASSASSIN", "ANTI_SURA", "ANTI_MUDANG",
-							"ANTI_GET", "ANTI_DROP", "ANTI_SELL", "ANTI_EMPIRE_A", "ANTI_EMPIRE_B", "ANTI_EMPIRE_C",
-							"ANTI_SAVE", "ANTI_GIVE", "ANTI_PKDROP", "ANTI_STACK", "ANTI_MYSHOP", "ANTI_SAFEBOX", "ANTI_WOLFMAN"};
-
+int get_Item_AntiFlag_Value(string inputString) {
+	string arAntiFlag[] = {
+		"ANTI_FEMALE", 
+		"ANTI_MALE", 
+		"ANTI_MUSA", 
+		"ANTI_ASSASSIN", 
+		"ANTI_SURA", 
+		"ANTI_MUDANG",
+		"ANTI_GET", 
+		"ANTI_DROP", 
+		"ANTI_SELL", 
+		"ANTI_EMPIRE_A", 
+		"ANTI_EMPIRE_B", 
+		"ANTI_EMPIRE_C",
+		"ANTI_SAVE", 
+		"ANTI_GIVE", 
+		"ANTI_PKDROP", 
+		"ANTI_STACK", 
+		"ANTI_MYSHOP", 
+		"ANTI_SAFEBOX", 
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		"ANTI_WOLFMAN",
+#endif
+	};
 
 	int retValue = 0;
 	string* arInputString = StringSplit(inputString, "|");				//프로토 정보 내용을 단어별로 쪼갠 배열.
@@ -374,8 +398,7 @@ int get_Item_LimitType_Value(string inputString)
 }
 
 
-int get_Item_ApplyType_Value(string inputString)
-{
+int get_Item_ApplyType_Value(string inputString) {
 	string arApplyType[] = {"APPLY_NONE", "APPLY_MAX_HP", "APPLY_MAX_SP", "APPLY_CON", "APPLY_INT", "APPLY_STR", "APPLY_DEX", "APPLY_ATT_SPEED",
 			"APPLY_MOV_SPEED", "APPLY_CAST_SPEED", "APPLY_HP_REGEN", "APPLY_SP_REGEN", "APPLY_POISON_PCT", "APPLY_STUN_PCT",
 			"APPLY_SLOW_PCT", "APPLY_CRITICAL_PCT", "APPLY_PENETRATE_PCT", "APPLY_ATTBONUS_HUMAN", "APPLY_ATTBONUS_ANIMAL",
@@ -392,8 +415,10 @@ int get_Item_ApplyType_Value(string inputString)
 			"APPLY_SKILL_DEFEND_BONUS", "APPLY_NORMAL_HIT_DEFEND_BONUS", "APPLY_PC_BANG_EXP_BONUS", "APPLY_PC_BANG_DROP_BONUS",
 			"APPLY_EXTRACT_HP_PCT", "APPLY_RESIST_WARRIOR", "APPLY_RESIST_ASSASSIN", "APPLY_RESIST_SURA", "APPLY_RESIST_SHAMAN",
 			"APPLY_ENERGY",	"APPLY_DEF_GRADE", "APPLY_COSTUME_ATTR_BONUS", "APPLY_MAGIC_ATTBONUS_PER", "APPLY_MELEE_MAGIC_ATTBONUS_PER",
-			"APPLY_RESIST_ICE", "APPLY_RESIST_EARTH", "APPLY_RESIST_DARK", "APPLY_ANTI_CRITICAL_PCT", "APPLY_ANTI_PENETRATE_PCT", 
+			"APPLY_RESIST_ICE", "APPLY_RESIST_EARTH", "APPLY_RESIST_DARK", "APPLY_ANTI_CRITICAL_PCT", "APPLY_ANTI_PENETRATE_PCT",
+#ifdef ENABLE_WOLFMAN_CHARACTER
 			"APPLY_ATTBONUS_WOLFMAN", "APPLY_RESIST_WOLFMAN", "APPLY_RESIST_CLAW",
+#endif
 	};
 
 	int retInt = -1;
