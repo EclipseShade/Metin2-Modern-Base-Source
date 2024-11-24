@@ -583,5 +583,4 @@ bool CShop::IsSellingItem(DWORD itemID)
 	}
 
 	return isSelling;
-
 }
