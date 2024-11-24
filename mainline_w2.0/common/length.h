@@ -62,6 +62,9 @@ enum EMisc
 	DRAGON_SOUL_REFINE_GRID_SIZE = 15,
 	MAX_AMOUNT_OF_MALL_BONUS	= 20,
 
+
+	WEAR_MAX_NUM				= 32,
+
 	//LIMIT_GOLD
 	GOLD_MAX = 2000000000,
 
@@ -71,6 +74,33 @@ enum EMisc
 	//END_LIMIT_GOLD
 
 	OPENID_AUTHKEY_LEN = 32, 
+	
+
+	SHOP_TAB_NAME_MAX = 32,
+	SHOP_TAB_COUNT_MAX = 3,
+
+	BELT_INVENTORY_SLOT_WIDTH = 4,
+	BELT_INVENTORY_SLOT_HEIGHT= 4,
+
+	BELT_INVENTORY_SLOT_COUNT = BELT_INVENTORY_SLOT_WIDTH * BELT_INVENTORY_SLOT_HEIGHT,
+
+
+/**
+	 **** Co?c¡¾iAo C?¢¥c ¥ì? ?????? ?¥ì?? A¢´¢¬¢ç (DB¡ío Item Position) ****
+	+------------------------------------------------------+ 0
+	| A©©¢¬??I ¡¾a?¡í ?I???a¢¬¢ç (45A¡© * 2?a??Ao) 90A¡©           | 
+	+------------------------------------------------------+ 90 = INVENTORY_MAX_NUM(90)
+	| A©©¢¬??I ???? ?¢¨ (A??eA©¬?I ??????) 32A¡©                |
+	+------------------------------------------------------+ 122 = INVENTORY_MAX_NUM(90) + WEAR_MAX_NUM(32)
+	| ?e???¢ç ???? ?¢¨ (A??eA©¬?I ?e???¢ç) 12A¡©                | 
+	+------------------------------------------------------+ 134 = 122 + DS_SLOT_MAX(6) * DRAGON_SOUL_DECK_MAX_NUM(2)
+	| ?e???¢ç ???? ?¢¨ ???? (??A¡À ??¡íc?e) 18A¡©               | 
+	+------------------------------------------------------+ 152 = 134 + DS_SLOT_MAX(6) * DRAGON_SOUL_DECK_RESERVED_MAX_NUM(3)
+	| ?¡×?¢ç ?I???a¢¬¢ç (?¡×?¢ç A??e¢©??¢§¢¬¢¬ ?¡×?¢ç ¡¤??¡×?¢§ ¥ì?¢Òo ?¡Æ??)|
+	+------------------------------------------------------+ 168 = 152 + BELT_INVENTORY_SLOT_COUNT(16) = INVENTORY_AND_EQUIP_CELL_MAX
+	| ??¡íc?e                                               |
+	+------------------------------------------------------+ ??
+*/
 };
 
 enum EMatrixCard
@@ -425,6 +455,7 @@ enum EWindows
 	SAFEBOX,
 	MALL,
 	DRAGON_SOUL_INVENTORY,
+	BELT_INVENTORY,
 #ifdef __AUCTION__
 	AUCTION,
 #endif
@@ -654,6 +685,19 @@ enum EDragonSoulRefineWindowSize
 {
 	DRAGON_SOUL_REFINE_GRID_MAX = 15,
 };
+
+enum EMisc2
+{
+	DRAGON_SOUL_EQUIP_SLOT_START = INVENTORY_MAX_NUM + WEAR_MAX_NUM,
+	DRAGON_SOUL_EQUIP_SLOT_END = DRAGON_SOUL_EQUIP_SLOT_START + (DS_SLOT_MAX * DRAGON_SOUL_DECK_MAX_NUM),
+	DRAGON_SOUL_EQUIP_RESERVED_SLOT_END = DRAGON_SOUL_EQUIP_SLOT_END + (DS_SLOT_MAX * DRAGON_SOUL_DECK_RESERVED_MAX_NUM),
+
+	BELT_INVENTORY_SLOT_START = DRAGON_SOUL_EQUIP_RESERVED_SLOT_END,
+	BELT_INVENTORY_SLOT_END = BELT_INVENTORY_SLOT_START + BELT_INVENTORY_SLOT_COUNT,
+
+	INVENTORY_AND_EQUIP_SLOT_MAX = BELT_INVENTORY_SLOT_END,
+};
+
 #pragma pack(push, 1)
 
 typedef struct SItemPos
