@@ -2,6 +2,7 @@
 #define __INC_METIN_II_GAME_SPEEDSERVER_H__
 
 #include "../common/length.h"
+
 #include <list>
 
 // castle.cpp 에 있는 것을 복붙 하였다
