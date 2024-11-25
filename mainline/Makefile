@@ -4,7 +4,7 @@ CXX=g++
 PLATFORM = $(shell file /bin/ls | cut -d' ' -f3 | cut -d'-' -f1)
 BSD_VERSION = $(shell uname -v 2>&1 | cut -d' ' -f2 | cut -d'.' -f1)
 
-default: libthecore libpoly libgame liblua libsql libserverkey lzo game db quest
+default: libthecore libpoly libgame liblua libsql libserverkey lzo game db quest cryptopp
 	@echo "--------------------------------------"
 	@echo "Build Done"
 	@echo "--------------------------------------"
@@ -47,6 +47,12 @@ lzo: .
 	$(MAKE) -C ../ExternGame/lzo clean
 	$(MAKE) -C ../ExternGame/lzo
 
+cryptopp: .
+	@touch ../ExternGame/cryptopp565/Depend
+	$(MAKE) -C ../ExternGame/cryptopp565 dep
+	$(MAKE) -C ../ExternGame/cryptopp565 clean
+	$(MAKE) -C ../ExternGame/cryptopp565
+	
 game: .
 	@touch game/Depend
 	$(MAKE) -C game dep
@@ -65,11 +71,12 @@ quest: .
 	$(MAKE) -C quest
 
 clean:
+	$(MAKE) -C ../ExternGame/libthecore/src clean
+	$(MAKE) -C ../ExternGame/libgame/src clean
+	$(MAKE) -C ../ExternGame/cryptopp565 clean
+	$(MAKE) -C ../ExternGame/libpoly clean
 	$(MAKE) -C ../ExternGame/liblua clean
 	$(MAKE) -C ../ExternGame/libsql clean
-	$(MAKE) -C ../ExternGame/libgame/src clean
-	$(MAKE) -C ../ExternGame/libpoly clean
-	$(MAKE) -C ../ExternGame/libthecore/src clean
 	$(MAKE) -C ../ExternGame/lzo clean
 	
 	$(MAKE) -C db clean
@@ -106,6 +113,11 @@ all:
 
 	$(MAKE) -C ../ExternGame/lzo clean
 	$(MAKE) -C ../ExternGame/lzo
+
+	@touch ../ExternGame/cryptopp565/Depend
+	$(MAKE) -C ../ExternGame/cryptopp565 dep
+	$(MAKE) -C ../ExternGame/cryptopp565 clean
+	$(MAKE) -C ../ExternGame/cryptopp565
 	
 	@touch game/Depend
 	$(MAKE) -C game dep
