@@ -48,8 +48,6 @@ lzo: .
 	$(MAKE) -C ../ExternGame/lzo
 
 cryptopp: .
-	@touch ../ExternGame/cryptopp565/Depend
-	$(MAKE) -C ../ExternGame/cryptopp565 dep
 	$(MAKE) -C ../ExternGame/cryptopp565 clean
 	$(MAKE) -C ../ExternGame/cryptopp565
 	
@@ -114,8 +112,6 @@ all:
 	$(MAKE) -C ../ExternGame/lzo clean
 	$(MAKE) -C ../ExternGame/lzo
 
-	@touch ../ExternGame/cryptopp565/Depend
-	$(MAKE) -C ../ExternGame/cryptopp565 dep
 	$(MAKE) -C ../ExternGame/cryptopp565 clean
 	$(MAKE) -C ../ExternGame/cryptopp565
 	

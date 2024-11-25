@@ -26,6 +26,7 @@ INCDIR += -I../../ExternGame/libhackshield/include
 INCDIR += -I../../ExternGame/libxtrap/include
 INCDIR += -I../../ExternGame/liblua/include
 INCDIR += -I../../ExternGame/libserverkey
+INCDIR += -I../../ExternGame
 INCDIR += -I../../libdevil
 INCDIR += -I/usr/local/include
 
@@ -33,6 +34,7 @@ INCDIR += -I/usr/local/include
 LIBDIR += -L../../ExternGame/libhackshield/lib
 LIBDIR += -L../../ExternGame/libthecore/lib
 LIBDIR += -L../../ExternGame/libserverkey
+LIBDIR += -L../../ExternGame/cryptopp565
 LIBDIR += -L../../ExternGame/libgame/lib
 LIBDIR += -L../../ExternGame/liblua/lib
 LIBDIR += -L../../ExternGame/libpoly
