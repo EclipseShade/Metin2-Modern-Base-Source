@@ -1,10 +1,12 @@
 #### Game Task:
-- [x] Compiling on FreeBSD 9.3
-- [x] Compiling on FreeBSD 10.3
-- [x] Compiling on FreeBSD 11.3
-- [ ] Compiling on FreeBSD 12.3
-- [ ] Compiling on FreeBSD 13.3
-- [ ] Compiling on FreeBSD 14.3
+| FreeBSD Version | Status              |
+|------------------|--------------------|
+| 9.3              | ✔️ Compiled       |
+| 10.3             | ✔️ Compiled       |
+| 11.3             | ✔️ Compiled       |
+| 12.3             | ❌ Not Compiled   |
+| 13.3             | ❌ Not Compiled   |
+| 14.3             | ❌ Not Compiled   |
 #
 - [ ] Compiling on Visual Studio 2008
 - [ ] Compiling on Visual Studio 2013
