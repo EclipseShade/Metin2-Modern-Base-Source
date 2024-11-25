@@ -26,6 +26,7 @@ INCDIR += -I../../ExternGame/libhackshield/include
 INCDIR += -I../../ExternGame/libxtrap/include
 INCDIR += -I../../ExternGame/liblua/include
 INCDIR += -I../../ExternGame/libserverkey
+INCDIR += -I../../ExternGame
 INCDIR += -I../../libdevil
 INCDIR += -I/usr/local/include
 
@@ -33,6 +34,7 @@ INCDIR += -I/usr/local/include
 LIBDIR += -L../../ExternGame/libhackshield/lib
 LIBDIR += -L../../ExternGame/libthecore/lib
 LIBDIR += -L../../ExternGame/libserverkey
+LIBDIR += -L../../ExternGame/cryptopp565
 LIBDIR += -L../../ExternGame/libgame/lib
 LIBDIR += -L../../ExternGame/liblua/lib
 LIBDIR += -L../../ExternGame/libpoly
@@ -41,7 +43,7 @@ LIBDIR += -L /usr/local/lib/mysql
 LIBDIR += -L /usr/local/lib
 LIBDIR += -L../../libdevil
 
-# LIBS
+# Libs
 LIBS = -pthread -lm -lmd
 LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame
 LIBS += -lc++ -lboost_system
@@ -51,8 +53,8 @@ LIBS += -lcryptopp -lcrypto
 LIBS += -lserverkey
 LIBS += -lIL
 
-# LIBS unused:
-#LIBS += -lpng -ltiff -lmng -llcms -ljpeg
+# Libs Unused:
+# LIBS += -lpng -ltiff -lmng -llcms -ljpeg
 
 USE_STACKTRACE = 0
 ifeq ($(USE_STACKTRACE), 1)
