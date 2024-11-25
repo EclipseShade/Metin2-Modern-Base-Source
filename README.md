@@ -13,7 +13,7 @@
 | Visual Studio     | Status             |
 |------------------|---------------------|
 | 2008              | ✔️ Compiled       |
-| 2013              | ❌ Not Compiled   |
+| 2013              | ✔️ Compiled       |
 | 2022              | ❌ Not Compiled   |
 #
 
