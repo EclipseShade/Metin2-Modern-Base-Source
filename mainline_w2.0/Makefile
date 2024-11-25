@@ -9,15 +9,23 @@ default: libthecore libpoly libgame liblua libsql libserverkey lzo game db quest
 	@echo "Build Done"
 	@echo "--------------------------------------"
 
+cryptopp: .
+	$(MAKE) -C ../ExternGame/cryptopp565 clean
+	$(MAKE) -C ../ExternGame/cryptopp565
+	
+liblua: .
+	$(MAKE) -C ../ExternGame/liblua clean
+	$(MAKE) -C ../ExternGame/liblua
+
+lzo: .
+	$(MAKE) -C ../ExternGame/lzo clean
+	$(MAKE) -C ../ExternGame/lzo
+
 libserverkey: .
 	@touch ../ExternGame/libserverkey/Depend
 	$(MAKE) -C ../ExternGame/libserverkey dep
 	$(MAKE) -C ../ExternGame/libserverkey clean
 	$(MAKE) -C ../ExternGame/libserverkey
-
-liblua: .
-	$(MAKE) -C ../ExternGame/liblua clean
-	$(MAKE) -C ../ExternGame/liblua
 
 libsql: .
 	@touch ../ExternGame/libsql/Depend
@@ -42,14 +50,10 @@ libthecore: .
 	$(MAKE) -C ../ExternGame/libthecore/src dep
 	$(MAKE) -C ../ExternGame/libthecore/src clean
 	$(MAKE) -C ../ExternGame/libthecore/src
-	
-lzo: .
-	$(MAKE) -C ../ExternGame/lzo clean
-	$(MAKE) -C ../ExternGame/lzo
 
-cryptopp: .
-	$(MAKE) -C ../ExternGame/cryptopp565 clean
-	$(MAKE) -C ../ExternGame/cryptopp565
+quest: .
+	$(MAKE) -C ../ExternGame/quest clean
+	$(MAKE) -C ../ExternGame/quest
 	
 game: .
 	@touch game/Depend
@@ -62,10 +66,6 @@ db: .
 	$(MAKE) -C db dep
 	$(MAKE) -C db clean
 	$(MAKE) -C db
-	
-quest: .
-	$(MAKE) -C quest clean
-	$(MAKE) -C quest
 
 clean:
 	$(MAKE) -C ../ExternGame/libthecore/src clean
@@ -120,8 +120,8 @@ all:
 	$(MAKE) -C ../ExternGame/libthecore/src clean
 	$(MAKE) -C ../ExternGame/libthecore/src
 	
-	$(MAKE) -C quest clean
-	$(MAKE) -C quest
+	$(MAKE) -C ../ExternGame/quest clean
+	$(MAKE) -C ../ExternGame/quest
 	
 	@touch game/Depend
 	$(MAKE) -C game dep
