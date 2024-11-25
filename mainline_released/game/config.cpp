@@ -50,7 +50,7 @@ bool		china_event_server = false;
 bool		guild_mark_server = true;
 BYTE		guild_mark_min_level = 3;
 bool		no_wander = false;
-int		g_iUserLimit = 32768;
+int			g_iUserLimit = 32768;
 
 char		g_szPublicIP[16] = "0";
 char		g_szInternalIP[16] = "0";
@@ -128,6 +128,14 @@ int			HackShield_CheckCycleTime = passes_per_sec * 180;
 bool		bXTrapEnabled = false;
 
 int gPlayerMaxLevel = 99;
+int gShutdownAge = 0;
+int gShutdownEnable = 0;
+
+/*
+ * NOTE : 핵 체크 On/Off. CheckIn할때 false로 수정했으면 반드시 확인하고 고쳐놓을것!
+ * 이걸로 생길수있는 똥은 책임안짐 ~ ity ~
+ */
+bool gHackCheckEnable = false;
 
 bool g_BlockCharCreation = false;
 
@@ -333,6 +341,8 @@ void config_init(const string& st_localeServiceName)
 		exit(1);
 	}
 
+	// public ip가 없어도 BIND_IP하면 게임 돌아가는데에는 아무런 지장이 없기 때문에
+	// 주석처리 함.
 	if (!GetIPInfo())
 	{
 		fprintf(stderr, "Can not get public ip address\n");
@@ -1106,7 +1116,17 @@ void config_init(const string& st_localeServiceName)
 
 			fprintf(stderr, "PLAYER_MAX_LEVEL: %d\n", gPlayerMaxLevel);
 		}
+		TOKEN("shutdown_age")
+		{
+			str_to_number(gShutdownAge, value_string);
+			fprintf(stderr, "SHUTDOWN_AGE: %d\n", gShutdownAge);
 
+		}
+		TOKEN("shutdown_enable")
+		{
+			str_to_number(gShutdownEnable, value_string);
+			fprintf(stderr, "SHUTDOWN_ENABLE: %d\n", gShutdownEnable);
+		}
 		TOKEN("block_char_creation")
 		{
 			int tmp = 0;
@@ -1196,12 +1216,22 @@ void config_init(const string& st_localeServiceName)
 		fclose(fp);
 	}
 
+	if(!gHackCheckEnable)	// Hack 체크가 비활성화인 경우
+	{
+		assert(test_server);	// 테스트 서버가 아니라면 assert
+	}
+
 	LoadValidCRCList();
 	LoadStateUserCount();
 
 	CWarMapManager::instance().LoadWarMapInfo(NULL);
 
 	FN_log_adminpage();
+	if (g_szPublicIP[0] == '0')
+	{
+		fprintf(stderr, "Can not get public ip address\n");
+		exit(1);
+	}
 }
 
 const char* get_table_postfix()

@@ -239,7 +239,7 @@ bool CPetActor::_UpdateFollowAI()
 			m_originalMoveSpeed = mobData->m_table.sMovingSpeed;
 	}
 	float	START_FOLLOW_DISTANCE = 300.0f;		// 이 거리 이상 떨어지면 쫓아가기 시작함
-	float	START_RUN_DISTANCE = 900.0f;		// 이 거리 이상 떨어지면 뛰어서 쫓아감.
+	float	START_RUN_DISTANCE = 1000.0f;		// 이 거리 이상 떨어지면 뛰어서 쫓아감.
 
 	float	RESPAWN_DISTANCE = 4500.f;			// 이 거리 이상 멀어지면 주인 옆으로 소환함.
 	int		APPROACH = 200;						// 접근 거리

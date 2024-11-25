@@ -1273,6 +1273,39 @@ static const int ComboSequenceBySkillLevel[3][8] =
 
 #define COMBO_HACK_ALLOWABLE_MS	100
 
+// [2013 09 11 CYH]
+DWORD ClacValidComboInterval( LPCHARACTER ch, BYTE bArg )
+{
+	int nInterval = 300;
+	float fAdjustNum = 1.5f; // 일반 유저가 speed hack 에 걸리는 것을 막기 위해. 2013.09.10 CYH
+
+	if( !ch )
+	{
+		sys_err( "ClacValidComboInterval() ch is NULL");
+		return nInterval;
+	}	
+
+	if( bArg == 13 )
+	{
+		float normalAttackDuration = CMotionManager::instance().GetNormalAttackDuration(ch->GetRaceNum());
+		nInterval = (int) (normalAttackDuration / (((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f) + fAdjustNum );
+	}
+	else if( bArg == 14 )
+	{		
+		nInterval = (int)(ani_combo_speed(ch, 1 ) / ((ch->GetPoint(POINT_ATT_SPEED) / 100.f) + fAdjustNum) );
+	}
+	else if( bArg > 14 && bArg << 22 )
+	{
+		nInterval = (int)(ani_combo_speed(ch, bArg - 13 ) / ((ch->GetPoint(POINT_ATT_SPEED) / 100.f) + fAdjustNum) );
+	}
+	else
+	{
+		sys_err( "ClacValidComboInterval() Invalid bArg(%d) ch(%s)", bArg, ch->GetName() );		
+	}	
+
+	return nInterval;
+}
+
 bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack)
 {
 	//	죽거나 기절 상태에서는 공격할 수 없으므로, skip한다.

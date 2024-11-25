@@ -113,6 +113,10 @@ extern int  HackShield_CheckCycleTime;
 extern bool bXTrapEnabled;
 
 extern int gPlayerMaxLevel;
+extern int gShutdownAge;
+extern int gShutdownEnable;	// 기본 0. config에서 지정해야함.
+
+extern bool gHackCheckEnable;
 
 extern bool g_BlockCharCreation;
 

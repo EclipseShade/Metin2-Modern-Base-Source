@@ -12,9 +12,6 @@ BINDIR = ..
 OBJDIR = OBJDIR
 $(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
 
-# Standard Setting
-LIBS = -pthread -lm -lmd
-
 # -Wunused: This flag enables all the warnings about unused declarations. This includes unused variables, functions, parameters, and more. It is a general flag that encompasses many specific warnings.
 # -Wunused-function: This is a more specific flag that only warns about functions that are declared but not used. If you use this flag, you'll receive warnings only for unused functions, while turning off other unused-related warnings.
 CFLAGS = -g -Wall -O2 -m32 -pipe -fexceptions -D_THREAD_SAFE -DNDEBUG -Wunused-local-typedefs -Wunused -Wunused-function
@@ -25,45 +22,39 @@ else
 CFLAGS += -mcpu=i686
 endif
 
-# DevIL
-INCDIR += -I../../libdevil
-LIBDIR += -L../../libdevil
-LIBS += -lIL 
-
-# unused LIBS+= -lpng -ltiff -lmng -llcms -ljpeg
-
-# MySQL | MariaDB
-LIBDIR += -L /usr/local/lib/mysql
-
-LIBS += -lmysqlclient -lz
-LIBS += -lcryptopp
-
-# HackShield
+# IncDir
 INCDIR += -I../../ExternGame/libhackshield/include
-LIBDIR += -L../../ExternGame/libhackshield/lib
-LIBS += -lanticpxsvr
-
-# XTrap
 INCDIR += -I../../ExternGame/libxtrap/include
-
-# LibSQL
-LIBDIR += -L../../ExternGame/libsql
-
-# Project Library
-INCDIR += -I/usr/local/include
-LIBDIR += -L/usr/local/lib
-
 INCDIR += -I../../ExternGame/liblua/include
 INCDIR += -I../../ExternGame/libserverkey
+INCDIR += -I../../ExternGame
+INCDIR += -I../../libdevil
+INCDIR += -I/usr/local/include
 
-LIBDIR += -L../../ExternGame/libthecore/lib 
-LIBDIR += -L../../ExternGame/libpoly 
-LIBDIR += -L../../ExternGame/libgame/lib 
-LIBDIR += -L../../ExternGame/liblua/lib 
+# LibDir
+LIBDIR += -L../../ExternGame/libhackshield/lib
+LIBDIR += -L../../ExternGame/libthecore/lib
 LIBDIR += -L../../ExternGame/libserverkey
+LIBDIR += -L../../ExternGame/cryptopp565
+LIBDIR += -L../../ExternGame/libgame/lib
+LIBDIR += -L../../ExternGame/liblua/lib
+LIBDIR += -L../../ExternGame/libpoly
+LIBDIR += -L../../ExternGame/libsql
+LIBDIR += -L /usr/local/lib/mysql
+LIBDIR += -L /usr/local/lib
+LIBDIR += -L../../libdevil
 
-LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame 
+# Libs
+LIBS = -pthread -lm -lmd
+LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame
 LIBS += -lc++ -lboost_system
+LIBS += -lmysqlclient -lz
+LIBS += -lanticpxsvr
+LIBS += -lcryptopp
+LIBS += -lIL
+
+# Libs Unused:
+# LIBS += -lpng -ltiff -lmng -llcms -ljpeg
 
 USE_STACKTRACE = 0
 ifeq ($(USE_STACKTRACE), 1)

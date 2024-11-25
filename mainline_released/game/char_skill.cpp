@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include <sstream>
 
 #include "utils.h"
 #include "config.h"
@@ -3502,8 +3501,8 @@ bool CHARACTER::CanUseSkill(DWORD dwSkillVnum) const
 		//마운트 탈것중 고급말만 스킬 사용가능
 		if(GetMountVnum())
 		{
-			if( GetMountVnum() < 20209 && GetMountVnum() > 20212)
-				if (GetMountVnum() != 20215 || GetMountVnum() != 20218 || GetMountVnum() != 20220)
+			if( !((GetMountVnum() >= 20209 && GetMountVnum() <= 20212)	||
+				GetMountVnum() == 20215 || GetMountVnum() == 20218 || GetMountVnum() == 20225	)	)
 					return false;
 		}
 
