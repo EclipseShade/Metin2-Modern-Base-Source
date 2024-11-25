@@ -64,7 +64,6 @@ db: .
 	$(MAKE) -C db
 	
 quest: .
-	@touch quest/Depend
 	$(MAKE) -C quest clean
 	$(MAKE) -C quest
 
