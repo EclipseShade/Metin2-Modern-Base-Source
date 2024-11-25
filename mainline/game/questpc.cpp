@@ -240,8 +240,7 @@ namespace quest
 		qi.size = sizeof(struct packet_quest_info);
 		qi.index = m_RunningQuestState->iIndex;
 		qi.flag = m_iSendToClient;
-		qi.c_index = CQuestManager::instance().ReadQuestCategoryFile(qi.index);
-				
+
 		TEMP_BUFFER buf;
 		buf.write(&qi, sizeof(qi));
 

@@ -1,5 +1,5 @@
 #include "stdafx.h"
-
+#include <fstream>
 #include "constants.h"
 #include "buffer_manager.h"
 #include "packet.h"

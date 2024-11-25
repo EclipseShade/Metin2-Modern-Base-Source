@@ -10,7 +10,7 @@
 void putItemIntoTable(); //(테이블, 테스트여부)
 
 int get_Item_Type_Value(std::string inputString);
-int get_Item_SubType_Value(unsigned int type_value, std::string inputString);
+int get_Item_SubType_Value(int type_value, std::string inputString);
 int get_Item_AntiFlag_Value(std::string inputString);
 int get_Item_Flag_Value(std::string inputString);
 int get_Item_WearFlag_Value(std::string inputString);

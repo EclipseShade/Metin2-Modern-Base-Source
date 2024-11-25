@@ -2042,7 +2042,7 @@ bool CHARACTER::UseItemEx(LPITEM item, TItemPos DestCell)
 					}
 				}
 
-				if( (dwBoxVnum > 51500 && dwBoxVnum < 52000) || (dwBoxVnum >= 50255 && dwBoxVnum <= 50260) )	// ¿ëÈ¥¿ø¼®µé
+				if( dwBoxVnum > 51500 && dwBoxVnum < 52000 )	// ¿ëÈ¥¿ø¼®µé
 				{
 					if( !(this->DragonSoul_IsQualified()) )
 					{
@@ -5088,11 +5088,6 @@ bool CHARACTER::UseItemEx(LPITEM item, TItemPos DestCell)
 			if (Blend_Item_find(item->GetVnum()))
 			{
 				int		affect_type		= AFFECT_BLEND;
-				if (item->GetSocket(0) >= _countof(aApplyInfo))
-				{
-					sys_err ("INVALID BLEND ITEM(id : %d, vnum : %d). APPLY TYPE IS %d.", item->GetID(), item->GetVnum(), item->GetSocket(0));
-					return false;
-				}
 				int		apply_type		= aApplyInfo[item->GetSocket(0)].bPointType;
 				int		apply_value		= item->GetSocket(1);
 				int		apply_duration	= item->GetSocket(2);
@@ -5587,7 +5582,7 @@ bool CHARACTER::MoveItem(TItemPos Cell, TItemPos DestCell, BYTE count)
 			sys_log(0, "%s: ITEM_STACK %s (window: %d, cell : %d) -> (window:%d, cell %d) count %d", GetName(), item->GetName(), Cell.window_type, Cell.cell, 
 				DestCell.window_type, DestCell.cell, count);
 
-			count = MIN(g_bItemCountLimit - item2->GetCount(), count);
+			count = MIN(200 - item2->GetCount(), count);
 
 			item->SetCount(item->GetCount() - count);
 			item2->SetCount(item2->GetCount() + count);
@@ -5792,7 +5787,7 @@ bool CHARACTER::PickupItem(DWORD dwVID)
 							if (j != ITEM_SOCKET_MAX_NUM)
 								continue;
 
-							BYTE bCount2 = MIN(g_bItemCountLimit - item2->GetCount(), bCount);
+							BYTE bCount2 = MIN(200 - item2->GetCount(), bCount);
 							bCount -= bCount2;
 
 							item2->SetCount(item2->GetCount() + bCount2);
@@ -6516,7 +6511,7 @@ LPITEM CHARACTER::AutoGiveItem(DWORD dwItemVnum, BYTE bCount, int iRarePct, bool
 						bCount = p->alValues[1];
 				}
 
-				BYTE bCount2 = MIN(g_bItemCountLimit - item->GetCount(), bCount);
+				BYTE bCount2 = MIN(200 - item->GetCount(), bCount);
 				bCount -= bCount2;
 
 				item->SetCount(item->GetCount() + bCount2);

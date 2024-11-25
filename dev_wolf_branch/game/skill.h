@@ -1,7 +1,7 @@
 #ifndef __INC_METIN_II_GAME_CSkillManager_H__
 #define __INC_METIN_II_GAME_CSkillManager_H__
 
-#include "../../ExternGame/libpoly/Poly.h"
+#include "../../libpoly/Poly.h"
 
 enum ESkillFlags
 {
@@ -169,7 +169,7 @@ enum ESkillIndexes
 	GUILD_SKILL_END = 162,
 
 	GUILD_SKILL_COUNT = GUILD_SKILL_END - GUILD_SKILL_START + 1,
-#ifdef ENABLE_WOLFMAN_CHARACTER
+
 	// 수인족 스킬
 	SKILL_CHAYEOL		= 170,			// 차열 (공격) : 늑대가 바람을 가르듯 적을 찢어 발긴다 : 총 공격력 %.0f-%.0f 크리티컬 확률 증가, 출혈 확률 %.0f%% 무기 보너스 // 무사 삼연참
 	SKILL_SALPOONG		= 171,			// 살풍 (공격) : 전방으로 죽음을 부르는 바람을 일으킨다. // 무사 검풍
@@ -177,7 +177,7 @@ enum ESkillIndexes
 	SKILL_PASWAE		= 173,			// 파쇄 (공격) : 상대의 갑옷을 찢어 발긴다. // 무사 삼연참 (단, 1회만 타격)
 	SKILL_JEOKRANG		= 174,			// 적랑빙의 (버프) : 붉은 늑대의 영혼을 빙의한다. // 공격력 +%.0f, 방어력 -%.0f, 이동 속도 -%.0f, 상대 방어 무시 확률 %.0f%% // 무사 천근추
 	SKILL_CHEONGRANG	= 175,			// 청랑빙의 (버프) : 푸른 늑대의 영혼을 빙의한다. // 공격력 -%.0f, 방어력 -%.0f, 이동 속도 +%.0f, 일정 확률로 스턴 유발
-#endif
+
 };
 
 class CSkillProto
@@ -186,7 +186,7 @@ class CSkillProto
 		char	szName[64];
 		DWORD	dwVnum;			// 번호
 
-		DWORD	dwType;			// 0: 전직업, 1: 무사, 2: 자객, 3: 수라, 4: 무당
+		DWORD	dwType;			// 0: 전직업, 1: 무사, 2: 자객, 3: 수라, 4: 무당, 5: 모름, 6: 모름, 7: 수인족
 		BYTE	bMaxLevel;		// 최대 수련도
 		BYTE	bLevelLimit;		// 레벨제한
 		int	iSplashRange;		// 스플래쉬 거리 제한

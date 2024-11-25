@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "stdafx.h" 
 
 #include "../common/billing.h"
 
@@ -207,21 +207,20 @@ int CInputP2P::Guild(LPDESC d, const char* c_pData, size_t uiBytes)
 	return 0;
 }
 
-struct FuncShout {
+
+struct FuncShout
+{
 	const char * m_str;
 	BYTE m_bEmpire;
 
-	FuncShout(const char * str, BYTE bEmpire) : m_str(str), m_bEmpire(bEmpire) {}
+	FuncShout(const char * str, BYTE bEmpire) : m_str(str), m_bEmpire(bEmpire)
+	{
+	}   
 
-	void operator () (LPDESC d) {
-		// ADDED GLOBAL SHOUT OPTION
-		if (!d->GetCharacter()) {
+	void operator () (LPDESC d)
+	{
+		if (!d->GetCharacter() || (d->GetCharacter()->GetGMLevel() == GM_PLAYER && d->GetEmpire() != m_bEmpire))
 			return;
-		}
-
-		if (!g_bGlobalShoutEnable && (d->GetCharacter()->GetGMLevel() == GM_PLAYER && d->GetEmpire() != m_bEmpire)) {
-			return;
-		}
 
 		d->GetCharacter()->ChatPacket(CHAT_TYPE_SHOUT, "%s", m_str);
 	}

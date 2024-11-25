@@ -14,7 +14,6 @@ CBuffOnAttributes::CBuffOnAttributes(LPCHARACTER pOwner, BYTE point_type, std::v
 
 CBuffOnAttributes::~CBuffOnAttributes()
 {
-	Off();
 }
 
 void CBuffOnAttributes::Initialize()
@@ -117,19 +116,6 @@ void CBuffOnAttributes::ChangeBuffValue(BYTE bNewValue)
 			m_pBuffOwner->ApplyPoint(it->first, -sum_of_attr_value * m_bBuffValue / 100);
 		}
 		m_bBuffValue = bNewValue;
-	}
-}
-
-void CBuffOnAttributes::GiveAllAttributes()
-{
-	if (0 == m_bBuffValue)
-		return;
-	for (TMapAttr::iterator it = m_map_additional_attrs.begin(); it != m_map_additional_attrs.end(); it++)
-	{
-		BYTE apply_type = it->first;
-		int apply_value = it->second * m_bBuffValue / 100;
-		
-		m_pBuffOwner->ApplyPoint(apply_type, apply_value);
 	}
 }
 

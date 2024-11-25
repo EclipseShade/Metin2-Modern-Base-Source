@@ -1,7 +1,5 @@
 #include "stdafx.h"
-
-#include "../../ExternGame/libgame/include/grid.h"
-
+#include "../../libgame/include/grid.h"
 #include "constants.h"
 #include "utils.h"
 #include "config.h"
@@ -237,8 +235,8 @@ int CShop::Buy(LPCHARACTER ch, BYTE pos)
 
 	DWORD dwPrice = r_item.price;
 
-	if (it->second)	// if other empire, price is triple
-		dwPrice *= 3;
+	//if (it->second)	// if other empire, price is triple
+	//	dwPrice *= 3;
 
 	if (ch->GetGold() < (int) dwPrice)
 	{
@@ -255,7 +253,7 @@ int CShop::Buy(LPCHARACTER ch, BYTE pos)
 
 	if (!item)
 		return SHOP_SUBHEADER_GC_SOLD_OUT;
-
+	/*
 	if (!m_pkPC)
 	{
 		if (quest::CQuestManager::instance().GetEventFlag("hivalue_item_sell") == 0)
@@ -267,7 +265,7 @@ int CShop::Buy(LPCHARACTER ch, BYTE pos)
 			}
 		}
 	}
-
+	*/
 	int iEmptyPos;
 	if (item->IsDragonSoul())
 	{
@@ -593,4 +591,5 @@ bool CShop::IsSellingItem(DWORD itemID)
 	}
 
 	return isSelling;
+
 }

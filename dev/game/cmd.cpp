@@ -1,5 +1,4 @@
 #include "stdafx.h"
-
 #include "utils.h"
 #include "config.h"
 #include "char.h"
@@ -725,7 +724,7 @@ void interpret_command(LPCHARACTER ch, const char * argument, size_t len)
 	{
 		if (cmd_info[icmd].gm_level >= GM_LOW_WIZARD)
 		{
-			if (LC_IsEurope() == true || /*LC_IsNewCIBN() == true || */LC_IsCanada() == true || LC_IsBrazil() == true || LC_IsSingapore() == true)
+			if (LC_IsEurope() == true || /*LC_IsNewCIBN() == true || */LC_IsCanada() == true)
 			{
 				char buf[1024];
 				snprintf( buf, sizeof(buf), "%s", argument );
@@ -735,3 +734,4 @@ void interpret_command(LPCHARACTER ch, const char * argument, size_t len)
 		}
 	}
 }
+

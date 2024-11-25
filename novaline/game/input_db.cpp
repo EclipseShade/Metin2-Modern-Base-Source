@@ -164,6 +164,7 @@ void CInputDB::LoginSuccess(DWORD dwHandle, const char *data)
 
 	d->BindAccountTable(pTab);
 
+
 	if (!bFound) // 캐릭터가 없으면 랜덤한 제국으로 보낸다.. -_-
 	{
 		TPacketGCEmpire pe;

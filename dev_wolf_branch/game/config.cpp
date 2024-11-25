@@ -34,14 +34,6 @@ int		ping_event_second_cycle = passes_per_sec * 60;
 bool	g_bNoMoreClient = false;
 bool	g_bNoRegen = false;
 bool	g_bNoPasspod = false;
-bool	g_bEmpireShopPriceTrippleDisable = false;
-bool	g_bShoutAddonEnable = false;
-bool	g_bGlobalShoutEnable = false;
-bool	g_bDisablePrismNeed = false;
-bool	g_bDisableEmotionMask = false;
-bool	g_bDisableItemBonusChangeTime = false;
-bool	g_bAllMountAttack = false;
-BYTE	g_bItemCountLimit = 200;
 
 // TRAFFIC_PROFILER
 bool		g_bTrafficProfileOn = false;

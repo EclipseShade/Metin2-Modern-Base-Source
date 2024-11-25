@@ -80,10 +80,10 @@
 #include <execinfo.h>
 #endif
 
-// 윈도우에서 테스트할 때는 항상 서버키 체크
-#ifdef _WIN32
-	//#define _USE_SERVER_KEY_
-#endif
+//// 윈도우에서 테스트할 때는 항상 서버키 체크
+//#ifdef _WIN32
+	#define _USE_SERVER_KEY_
+//#endif
 #include "check_server.h"
 
 extern void WriteVersion();

@@ -3,6 +3,7 @@
 
 #include "sectree.h"
 
+
 typedef struct SMapRegion
 {
 	int			index;

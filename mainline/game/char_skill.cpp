@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <sstream>
 
 #include "utils.h"
 #include "config.h"

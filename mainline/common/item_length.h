@@ -84,7 +84,8 @@ enum EMetinSubTypes
 	METIN_GOLD,
 };
 
-enum EWeaponSubTypes {
+enum EWeaponSubTypes
+{
 	WEAPON_SWORD,
 	WEAPON_DAGGER,
 	WEAPON_BOW,
@@ -93,10 +94,6 @@ enum EWeaponSubTypes {
 	WEAPON_FAN,
 	WEAPON_ARROW,
 	WEAPON_MOUNT_SPEAR,
-#ifdef ENABLE_WOLFMAN_CHARACTER
-	WEAPON_CLAW,
-#endif
-
 	WEAPON_NUM_TYPES,
 };
 
@@ -288,7 +285,8 @@ enum EItemFlag
 	ITEM_FLAG_APPLICABLE		= (1 << 14),
 };
 
-enum EItemAntiFlag {
+enum EItemAntiFlag
+{
 	ITEM_ANTIFLAG_FEMALE	= (1 << 0), // 여성 사용 불가
 	ITEM_ANTIFLAG_MALE		= (1 << 1), // 남성 사용 불가
 	ITEM_ANTIFLAG_WARRIOR	= (1 << 2), // 무사 사용 불가
@@ -307,9 +305,6 @@ enum EItemAntiFlag {
 	ITEM_ANTIFLAG_STACK		= (1 << 15), // 합칠 수 없음
 	ITEM_ANTIFLAG_MYSHOP	= (1 << 16), // 개인 상점에 올릴 수 없음
 	ITEM_ANTIFLAG_SAFEBOX	= (1 << 17), // 창고에 넣을 수 없음
-#ifdef ENABLE_WOLFMAN_CHARACTER
-	ITEM_ANTIFLAG_WOLFMAN	= (1 << 18),// 수인족 사용 불가
-#endif
 };
 
 enum EItemWearableFlag

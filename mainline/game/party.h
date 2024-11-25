@@ -196,8 +196,6 @@ class CParty
 		void		RequestSetMemberLevel(DWORD pid, BYTE level);
 		void		P2PSetMemberLevel(DWORD pid, BYTE level);
 
-		bool		IsPartyInDungeon(int mapIndex);
-
 	protected:
 		void		IncreaseOwnership();
 

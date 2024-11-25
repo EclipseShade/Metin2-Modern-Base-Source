@@ -1931,37 +1931,7 @@ typedef struct packet_script
     WORD        size;
 	BYTE		skin;
     WORD        src_size;
-	BYTE		quest_flag;
 } TPacketGCScript;
-
-typedef struct packet_change_speed
-{
-	BYTE		header;
-	DWORD		vid;
-	WORD		moving_speed;
-} TPacketGCChangeSpeed;
-
-typedef struct packet_mount
-{
-    BYTE        header;
-    DWORD       vid;
-    DWORD       mount_vid;
-    BYTE        pos;
-	DWORD		_x, _y;
-} TPacketGCMount;
-
-typedef struct packet_move
-{	
-	BYTE		bHeader;
-	BYTE		bFunc;
-	BYTE		bArg;
-	BYTE		bRot;
-	DWORD		dwVID;
-	LONG		lX;
-	LONG		lY;
-	DWORD		dwTime;
-	DWORD		dwDuration;
-} TPacketGCMove;
 
 typedef struct packet_target
 {
@@ -1977,6 +1947,35 @@ typedef struct packet_damage_info
 	BYTE flag;
 	int  damage;
 } TPacketGCDamageInfo;
+
+typedef struct packet_mount
+{
+    BYTE        header;
+    DWORD       vid;
+    DWORD       mount_vid;
+    BYTE        pos;
+	DWORD		_x, _y;
+} TPacketGCMount;
+
+typedef struct packet_change_speed
+{
+	BYTE		header;
+	DWORD		vid;
+	WORD		moving_speed;
+} TPacketGCChangeSpeed;
+
+typedef struct packet_move
+{	
+	BYTE		bHeader;
+	BYTE		bFunc;
+	BYTE		bArg;
+	BYTE		bRot;
+	DWORD		dwVID;
+	LONG		lX;
+	LONG		lY;
+	DWORD		dwTime;
+	DWORD		dwDuration;
+} TPacketGCMove;
 
 enum
 {
@@ -1994,7 +1993,6 @@ typedef struct packet_quest_info
 	BYTE header;
 	WORD size;
 	WORD index;
-	WORD c_index;
 	BYTE flag;
 } TPacketGCQuestInfo;
 

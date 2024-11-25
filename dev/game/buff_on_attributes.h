@@ -15,9 +15,6 @@ public:
 	void AddBuffFromItem(LPITEM pItem);
 	// m_bBuffValue를 바꾸고, 버프의 값도 바꿈.
 	void ChangeBuffValue(BYTE bNewValue);
-	// CHRACTRE::ComputePoints에서 속성치를 초기화하고 다시 계산하므로, 
-	// 버프 속성치들을 강제적으로 owner에게 줌.
-	void GiveAllAttributes();
 
 	// m_p_vec_buff_wear_targets에 해당하는 모든 아이템의 attribute를 type별로 합산하고,
 	// 그 attribute들의 (m_bBuffValue)% 만큼을 버프로 줌.

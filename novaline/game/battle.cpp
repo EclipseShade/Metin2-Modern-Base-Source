@@ -1,5 +1,4 @@
 #include "stdafx.h"
-
 #include "utils.h"
 #include "config.h"
 #include "desc.h"
@@ -700,7 +699,7 @@ DWORD GET_ATTACK_SPEED(LPCHARACTER ch)
         return 1000;
 
 	LPITEM item = ch->GetWear(WEAR_WEAPON);
-	DWORD default_bonus = SPEEDHACK_LIMIT_BONUS;
+	DWORD default_bonus = SPEEDHACK_LIMIT_BONUS;    // 유두리 공속(기본 80)
 	DWORD riding_bonus = 0;
 
 	if (ch->IsRiding())

@@ -826,11 +826,6 @@ void Cube_InformationInitialize()
 				for (TCubeValueVector::iterator existMaterialIter = existInfo.material.begin(); existInfo.material.end() != existMaterialIter; ++existMaterialIter)
 				{
 					TItemTable* existMaterialProto = ITEM_MANAGER::Instance().GetTable(existMaterialIter->vnum);
-					if (NULL == existMaterialProto)
-					{
-						sys_err("There is no item(%u)", existMaterialIter->vnum);
-						return false;
-					}
 					SItemNameAndLevel existItemInfo = SplitItemNameAndLevelFromName(existMaterialProto->szName);
 
 					if (0 < existItemInfo.level)

@@ -1,8 +1,9 @@
 #include "stdafx.h"
 
+#include "constants.h"
+
 #include "../common/teen_packet.h"
 
-#include "constants.h"
 #include "config.h"
 #include "utils.h"
 #include "input.h"

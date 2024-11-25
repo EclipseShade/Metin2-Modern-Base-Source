@@ -1,3 +1,4 @@
+
 #ifndef __INC_METIN_II_GAME_CONFIG_H__
 #define __INC_METIN_II_GAME_CONFIG_H__
 
@@ -33,15 +34,6 @@ extern bool	china_event_server;
 
 extern bool	g_bNoMoreClient;
 extern bool	g_bNoRegen;
-
-extern bool	g_bEmpireShopPriceTrippleDisable;
-extern bool g_bShoutAddonEnable;
-extern bool g_bGlobalShoutEnable;
-extern bool g_bDisablePrismNeed;
-extern bool g_bDisableEmotionMask;
-extern BYTE g_bItemCountLimit;
-extern bool g_bDisableItemBonusChangeTime;
-extern bool	g_bAllMountAttack;
 
 extern bool	g_bTrafficProfileOn;		///< true ÀÌ¸é TrafficProfiler ¸¦ ÄÒ´Ù.
 

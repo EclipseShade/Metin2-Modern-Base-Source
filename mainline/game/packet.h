@@ -1328,7 +1328,6 @@ struct packet_script
 	WORD	size;
 	BYTE	skin;
 	WORD	src_size;
-	BYTE	quest_flag;
 };
 
 typedef struct packet_change_speed
@@ -1473,7 +1472,6 @@ struct packet_quest_info
 	BYTE header;
 	WORD size;
 	WORD index;
-	WORD c_index;
 	BYTE flag;
 };
 

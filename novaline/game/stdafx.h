@@ -21,21 +21,18 @@
 #include <string>
 #include <vector>
 #include <sstream>
-#include <fstream>
 
 #ifdef __GNUC__
-	#include <float.h>
-	#include <tr1/unordered_map>
-	#include <tr1/unordered_set>
-	
-	#define TR1_NS std::tr1
+#include <float.h>
+#include <tr1/unordered_map>
+#include <tr1/unordered_set>
+#define TR1_NS std::tr1
 #else
-	#include <boost/unordered_map.hpp>
-	#include <boost/unordered_set.hpp>
-	
-	#define TR1_NS boost
-	#define isdigit iswdigit
-	#define isspace iswspace
+#include <boost/unordered_map.hpp>
+#include <boost/unordered_set.hpp>
+#define TR1_NS boost
+#define isdigit iswdigit
+#define isspace iswspace
 #endif
 
 #include "typedef.h"
@@ -45,11 +42,10 @@
 #define PASSES_PER_SEC(sec) ((sec) * passes_per_sec)
 
 #ifndef M_PI
-	#define M_PI    3.14159265358979323846 /* pi */
+#define M_PI    3.14159265358979323846 /* pi */
 #endif
-
 #ifndef M_PI_2
-	#define M_PI_2  1.57079632679489661923 /* pi/2 */
+#define M_PI_2  1.57079632679489661923 /* pi/2 */
 #endif
 
 #define IN

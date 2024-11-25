@@ -8,7 +8,6 @@
 #include <utility>
 
 #include "../common/singleton.h"
-
 #include "utils.h"
 
 class SpamManager : public singleton<SpamManager>
