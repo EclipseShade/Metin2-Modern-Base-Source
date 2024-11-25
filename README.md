@@ -11,6 +11,7 @@
 
 #### Client:
 | Visual Studio     | Status             |
+|------------------|---------------------|
 | 2008              | ✔️ Not Compiled   |
 | 2013              | ❌ Not Compiled   |
 | 2022              | ❌ Not Compiled   |
