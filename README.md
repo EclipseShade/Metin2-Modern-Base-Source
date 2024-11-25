@@ -9,10 +9,11 @@
 | 14.3             | ❌ Not Compiled   |
 #
 
-#### Client Task:
-- [x] Compiling on Visual Studio 2008
-- [ ] Compiling on Visual Studio 2013
-- [ ] Compiling on Visual Studio 2022
+#### Client:
+| Visual Studio     | Status             |
+| 2008              | ✔️ Not Compiled   |
+| 2013              | ❌ Not Compiled   |
+| 2022              | ❌ Not Compiled   |
 
 **FreeBSD 10.3 - Instalation Guide**
 - [FreeBSD 10.3 Instalation Guide](https://github.com/EclipseShade/Metin2-Source/wiki/FreeBSD-10.3-Instalation-Guide)
