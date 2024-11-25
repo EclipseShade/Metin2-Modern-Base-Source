@@ -3,7 +3,7 @@
 
 #ifdef _IMPROVED_PACKET_ENCRYPTION_
 
-#include <cryptopp/cryptlib.h>
+#include <cryptopp565/cryptlib.h>
 
 // Forward declaration
 class KeyAgreement;

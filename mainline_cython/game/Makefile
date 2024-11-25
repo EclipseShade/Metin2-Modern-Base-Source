@@ -12,8 +12,6 @@ BINDIR = ..
 OBJDIR = OBJDIR
 $(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
 
-# Standard Setting
-LIBS = -pthread -lm -lmd
 # Removed -fno-rtti 
 CFLAGS = -g -Wall -O2 -m32 -pipe -fexceptions -D_THREAD_SAFE -DNDEBUG # -D_USE_SERVER_KEY_
 
@@ -23,34 +21,36 @@ else
 CFLAGS += -mcpu=i686
 endif
 
-# DevIL
-INCDIR += -I../../libdevil
-LIBDIR += -L../../libdevil
-
 # IncDir
 INCDIR += -I../../ExternGame/libhackshield/include
-INCDIR += -I../../ExternGame/liblua/include
 INCDIR += -I../../ExternGame/libxtrap/include
+INCDIR += -I../../ExternGame/liblua/include
 INCDIR += -I../../ExternGame/libserverkey
+INCDIR += -I../../ExternGame
+INCDIR += -I../../libdevil
 INCDIR += -I/usr/local/include
 
 # LibDir
 LIBDIR += -L../../ExternGame/libhackshield/lib
-LIBDIR += -L../../ExternGame/libthecore/lib 
-LIBDIR += -L../../ExternGame/libpoly 
-LIBDIR += -L../../ExternGame/libsql 
-LIBDIR += -L../../ExternGame/libgame/lib 
-LIBDIR += -L../../ExternGame/liblua/lib 
+LIBDIR += -L../../ExternGame/libthecore/lib
 LIBDIR += -L../../ExternGame/libserverkey
-LIBDIR += -L/usr/local/lib
+LIBDIR += -L../../ExternGame/cryptopp565
+LIBDIR += -L../../ExternGame/libgame/lib
+LIBDIR += -L../../ExternGame/liblua/lib
+LIBDIR += -L../../ExternGame/libpoly
+LIBDIR += -L../../ExternGame/libsql
 LIBDIR += -L /usr/local/lib/mysql
+LIBDIR += -L /usr/local/lib
+LIBDIR += -L../../libdevil
 
 # Libs
-LIBS += -lmysqlclient -lz
+LIBS = -pthread -lm -lmd
 LIBS += -lthecore -lpoly -llua -llualib -lsql -lgame
-LIBS += -lcryptopp
+LIBS += -lc++ -lboost_system
+LIBS += -lmysqlclient -lz
 LIBS += -lanticpxsvr
-LIBS += -lc++ -lIL -lboost_system
+LIBS += -lcryptopp
+LIBS += -lIL
 
 # Libs Unused:
 # LIBS += -lpng -ltiff -lmng -llcms -ljpeg
@@ -124,6 +124,6 @@ tag:
 	ctags *.cpp *.h *.c
 
 dep:
-	makedepend -f Depend $(INCDIR) -I/usr/include/c++/4.2 -p$(OBJDIR)/ $(CPPFILE) $(CFILE) $(MAINCPP) 2> /dev/null > Depend
+	makedepend -f Depend $(INCDIR) -I/usr/include/c++/4.2 -p $(OBJDIR)/ $(CPPFILE) $(CFILE) $(MAINCPP) 2> /dev/null > Depend
 
 sinclude Depend
