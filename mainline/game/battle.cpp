@@ -746,6 +746,8 @@ void SET_ATTACKED_TIME(LPCHARACTER ch, LPCHARACTER victim, DWORD current_time)
 
 bool IS_SPEED_HACK(LPCHARACTER ch, LPCHARACTER victim, DWORD current_time)
 {
+	if(!gHackCheckEnable) return false;
+
 	if (ch->m_kAttackLog.dwVID == victim->GetVID())
 	{
 		if (current_time - ch->m_kAttackLog.dwTime < GET_ATTACK_SPEED(ch))
