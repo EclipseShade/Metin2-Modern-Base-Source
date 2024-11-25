@@ -1,8 +1,19 @@
-**Requirements Programs**
-- Visual Studio 2008 | Visual Studio 2013
-- FreeBSD 9.3 | 10.3
-- WinSCP
-- Putty
+#### Game Task:
+- [x] Compiling on FreeBSD 9.3
+- [x] Compiling on FreeBSD 10.3
+- [x] Compiling on FreeBSD 11.3
+- [ ] Compiling on FreeBSD 12.3
+- [ ] Compiling on FreeBSD 13.3
+- [ ] Compiling on FreeBSD 14.3
+#
+- [ ] Compiling on Visual Studio 2008
+- [ ] Compiling on Visual Studio 2013
+- [ ] Compiling on Visual Studio 2022
+
+#### Client Task:
+- [x] Compiling on Visual Studio 2008
+- [ ] Compiling on Visual Studio 2013
+- [ ] Compiling on Visual Studio 2022
 
 **FreeBSD 10.3 - Instalation Guide**
 - [FreeBSD 10.3 Instalation Guide](https://github.com/EclipseShade/Metin2-Source/wiki/FreeBSD-10.3-Instalation-Guide)
