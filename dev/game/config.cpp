@@ -345,8 +345,8 @@ void config_init(const string& st_localeServiceName)
 	// 주석처리 함.
 	if (!GetIPInfo())
 	{
-	//	fprintf(stderr, "Can not get public ip address\n");
-	//	exit(1);
+		fprintf(stderr, "Can not get public ip address\n");
+		exit(1);
 	}
 
 	char db_host[2][64], db_user[2][64], db_pwd[2][64], db_db[2][64];
