@@ -1,6 +1,6 @@
 **Requirements Programs**
-- Visual Studio 2008
-- FreeBSD 10.3
+- Visual Studio 2008 | Visual Studio 2013
+- FreeBSD 9.3 | 10.3
 - WinSCP
 - Putty
 
