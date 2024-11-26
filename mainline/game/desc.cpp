@@ -151,7 +151,7 @@ void DESC::Destroy()
 			db_clientdesc->DBPacket(HEADER_GD_LOGOUT, m_dwHandle, &pack, sizeof(TLogoutPacket));
 		}
 
-		CShutdownManager::instance().RemoveDesc((LPDESC)this);
+//fix		CShutdownManager::instance().RemoveDesc((LPDESC)this);
 	}
 
 	if (m_sock != INVALID_SOCKET)
