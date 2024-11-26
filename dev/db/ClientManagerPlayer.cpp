@@ -436,7 +436,7 @@ char* CClientManager::GetCommand(char* str)
 	if( str[0] == '[' )
 	{
 		tok = strtok(str,"]");			
-		strcat(command,&tok[1]);		
+		strcat(command, &tok[1]);		
 	}
 
 	return command;
