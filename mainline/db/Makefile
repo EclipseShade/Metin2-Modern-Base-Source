@@ -22,10 +22,10 @@ CFLAGS += -mcpu=i686
 endif
 
 # LibDir
-LIBDIR += -L../../ExternGame/libthecore/lib 
-LIBDIR += -L../../ExternGame/libsql 
-LIBDIR += -L../../ExternGame/libpoly 
+LIBDIR += -L../../ExternGame/libthecore/lib
 LIBDIR += -L../../ExternGame/libgame/lib
+LIBDIR += -L../../ExternGame/libpoly
+LIBDIR += -L../../ExternGame/libsql
 LIBDIR += -L /usr/local/lib/mysql
 
 # Libs
