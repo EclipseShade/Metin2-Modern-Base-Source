@@ -11,6 +11,7 @@
 #include "locale_service.h"
 #include "auth_brazil.h"
 #include "db.h"
+#include "check_server.h"
 
 extern time_t get_global_time();
 extern int openid_server;
@@ -355,7 +356,7 @@ void CInputAuth::LoginOpenID(LPDESC d, const char * c_pData)
 	{
 		sys_log(0, "ChannelServiceLogin [%s]", szLogin);
 
-		DBManager::instance().ReturnQuery(QID_AUTH_LOGIN_OPENID, dwKey, p,
+		DBManager::instance().ReturnQuery(QID_AUTH_LOGIN, dwKey, p,
 				"SELECT '%s',password,securitycode,social_id,id,status,availDt - NOW() > 0,"
 				"UNIX_TIMESTAMP(silver_expire),"
 				"UNIX_TIMESTAMP(gold_expire),"
@@ -372,7 +373,7 @@ void CInputAuth::LoginOpenID(LPDESC d, const char * c_pData)
 	// END_OF_CHANNEL_SERVICE_LOGIN
 	else
 	{
-		DBManager::instance().ReturnQuery(QID_AUTH_LOGIN_OPENID, dwKey, p, 
+		DBManager::instance().ReturnQuery(QID_AUTH_LOGIN, dwKey, p, 
 				"SELECT PASSWORD('%s'),password,securitycode,social_id,id,status,availDt - NOW() > 0,"
 				"UNIX_TIMESTAMP(silver_expire),"
 				"UNIX_TIMESTAMP(gold_expire),"
@@ -441,6 +442,7 @@ int CInputAuth::auth_OpenID(const char *authKey, const char *ipAddr, char *rID)
     }
 
     // read reply
+    {
 	char reply[1024] = {0};
 	int len;
 //#ifndef __WIN32__
@@ -507,14 +509,15 @@ int CInputAuth::auth_OpenID(const char *authKey, const char *ipAddr, char *rID)
 			break;
 		default:
 			break;
+		}
 
 		return 5;
-		}
 	}
 
 	strcpy(rID, id);
 
 	return 0;
+    }
 }
 
 

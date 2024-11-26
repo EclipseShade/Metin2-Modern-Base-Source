@@ -335,36 +335,33 @@ int Start()
 		return false;
 	}
 
-	if( g_bHotBackup )
+	if (CConfig::instance().GetValue("SQL_HOTBACKUP", line, 256))
 	{
-		if (CConfig::instance().GetValue("SQL_HOTBACKUP", line, 256))
+		sscanf(line, " %s %s %s %s %d ", szAddr, szDB, szUser, szPassword, &iPort);
+		sys_log(0, "connecting to MySQL server (hotbackup)");
+
+		int iRetry = 5;
+
+		do
 		{
-			sscanf(line, " %s %s %s %s %d ", szAddr, szDB, szUser, szPassword, &iPort);
-			sys_log(0, "connecting to MySQL server (hotbackup)");
-
-			int iRetry = 5;
-
-			do
+			if (CDBManager::instance().Connect(SQL_HOTBACKUP, szAddr, iPort, szDB, szUser, szPassword))
 			{
-				if (CDBManager::instance().Connect(SQL_HOTBACKUP, szAddr, iPort, szDB, szUser, szPassword))
-				{
-					sys_log(0, "   OK");
-					break;
-				}
-
-				sys_log(0, "   failed, retrying in 5 seconds");
-				fprintf(stderr, "   failed, retrying in 5 seconds");
-				sleep(5);
+				sys_log(0, "   OK");
+				break;
 			}
-			while (iRetry--);
 
-			fprintf(stderr, "Success HOTBACKUP\n");
+			sys_log(0, "   failed, retrying in 5 seconds");
+			fprintf(stderr, "   failed, retrying in 5 seconds");
+			sleep(5);
 		}
-		else
-		{
-			sys_err("SQL_HOTBACKUP not configured");
-			return false;
-		}
+		while (iRetry--);
+
+		fprintf(stderr, "Success HOTBACKUP\n");
+	}
+	else
+	{
+		sys_err("SQL_HOTBACKUP not configured");
+		return false;
 	}
 	
 	if (!CNetPoller::instance().Create())
@@ -383,15 +380,12 @@ int Start()
 
 	sys_log(0, "   OK");
 
-	if(g_bHotBackup)
+	if (!PlayerHB::instance().Initialize())
 	{
-		if (!PlayerHB::instance().Initialize())
-		{
-			sys_err("cannot initialize player hotbackup");
-			return false;
-		}
+		sys_err("cannot initialize player hotbackup");
+		return false;
 	}
-	
+
 #ifndef __WIN32__
 	signal(SIGUSR1, emergency_sig);
 #endif
