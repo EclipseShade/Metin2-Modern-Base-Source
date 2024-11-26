@@ -66,6 +66,6 @@ clean:
 
 dep:
 	@touch Depend
-	makedepend -fDepend $(INCDIR) -I/usr/include/c++/3.3 -I/usr/include/c++/4.2 -p$(OBJDIR)/ $(SRCS) 2> /dev/null
+	makedepend -f Depend $(INCDIR) -I/usr/include/c++/4.2 -p $(OBJDIR)/ $(SRCS) 2> /dev/null
 
 sinclude Depend
