@@ -231,11 +231,11 @@ void GetTextTagInfo(const char * src, int src_len, int & hyperlinks, bool & colo
 
 int ProcessTextTag(LPCHARACTER ch, const char * c_pszText, size_t len)
 {
-	//개인상점중에 금강경을 사용할 경우
+	//2012.05.17 김용욱
 	//0 : 정상적으로 사용
 	//1 : 금강경 부족
 	//2 : 금강경이 있으나, 개인상점에서 사용중
-	//3 : 기타
+	//3 : 교환중
 	//4 : 에러
 	int hyperlinks;
 	bool colored;
