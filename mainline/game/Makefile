@@ -6,32 +6,28 @@ P4_VERSION = $(shell svnversion -n .)
 
 CC = g++
 
-INCDIR =
-LIBDIR =
 BINDIR = ..
 OBJDIR = OBJDIR
 $(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
 
 # -Wunused: This flag enables all the warnings about unused declarations. This includes unused variables, functions, parameters, and more. It is a general flag that encompasses many specific warnings.
 # -Wunused-function: This is a more specific flag that only warns about functions that are declared but not used. If you use this flag, you'll receive warnings only for unused functions, while turning off other unused-related warnings.
-CFLAGS = -g -Wall -O2 -m32 -pipe -fexceptions -D_THREAD_SAFE -DNDEBUG -Wunused-local-typedefs -Wunused -Wunused-function
-
-ifeq ($(GCC_VERSION), 4)
-CFLAGS += -mtune=i686 -fstack-protector-all
-else
-CFLAGS += -mcpu=i686
-endif
+CFLAGS = -g -Wall -O2 -m32 -mtune=i686 -fstack-protector-all -pipe -fexceptions -D_THREAD_SAFE -DNDEBUG -Wunused-local-typedefs -Wunused -Wunused-function
 
 # IncDir
+INCDIR = -I/usr/local/include
+
 INCDIR += -I../../ExternGame/libhackshield/include
 INCDIR += -I../../ExternGame/libxtrap/include
 INCDIR += -I../../ExternGame/liblua/include
 INCDIR += -I../../ExternGame/libserverkey
 INCDIR += -I../../ExternGame
 INCDIR += -I../../libdevil
-INCDIR += -I/usr/local/include
 
 # LibDir
+LIBDIR = -L /usr/local/lib
+LIBDIR += -L /usr/local/lib/mysql
+
 LIBDIR += -L../../ExternGame/libhackshield/lib
 LIBDIR += -L../../ExternGame/libthecore/lib
 LIBDIR += -L../../ExternGame/libserverkey
@@ -40,8 +36,6 @@ LIBDIR += -L../../ExternGame/libgame/lib
 LIBDIR += -L../../ExternGame/liblua/lib
 LIBDIR += -L../../ExternGame/libpoly
 LIBDIR += -L../../ExternGame/libsql
-LIBDIR += -L /usr/local/lib/mysql
-LIBDIR += -L /usr/local/lib
 LIBDIR += -L../../libdevil
 
 # Libs
