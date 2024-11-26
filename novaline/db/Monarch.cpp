@@ -55,6 +55,8 @@ void CMonarch::ElectMonarch()
 
 		++s[idx];
 
+		if (g_test_server)
+			sys_log (0, "[MONARCH_VOTE] pid(%d) come to vote candidacy pid(%d)", it->second->pid, m_vec_MonarchCandidacy[idx].pid);
 	}
 
 	delete [] s;
@@ -167,7 +169,8 @@ bool CMonarch::TakeMoney(int Empire, DWORD pid, int64_t Money)
 
 	CDBManager::instance().AsyncQuery(szQuery);
 
-	sys_log(0, "[MONARCH] Take money from empire (%d) - gold value (%lld)", Empire, m_MonarchInfo.money[Empire]);
+	if (g_test_server)
+		sys_log(0, "[MONARCH] Take money from empire (%d) - gold value (%lld)", Empire, m_MonarchInfo.money[Empire]);
 	return true;
 }
 
@@ -228,6 +231,8 @@ bool CMonarch::SetMonarch(const char * name)
 		strlcpy(p->name[Empire], row[idx++], sizeof(p->name[Empire]));
         p->money[Empire] = atoll(row[idx++]);
 	
+		if (g_test_server)
+			sys_log(0, "[Set_MONARCH] Empire %d pid %d money %lld windate %s", Empire, p->pid[Empire], p->money[Empire], p->date[Empire]);
     }
     delete pMsg;
 
