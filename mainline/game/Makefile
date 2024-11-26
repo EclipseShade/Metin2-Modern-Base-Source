@@ -47,14 +47,6 @@ LIBS += -lanticpxsvr
 LIBS += -lcryptopp
 LIBS += -lIL
 
-# Libs Unused:
-# LIBS += -lpng -ltiff -lmng -llcms -ljpeg
-
-USE_STACKTRACE = 0
-ifeq ($(USE_STACKTRACE), 1)
-LIBS += /usr/local/lib/libexecinfo.a
-endif
-
 TARGET  = $(BINDIR)/game_r$(P4_VERSION)_$(PLATFORM)
 
 CFILE	= minilzo.c
