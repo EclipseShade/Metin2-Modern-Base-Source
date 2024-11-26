@@ -35,6 +35,15 @@ extern bool	china_event_server;
 extern bool	g_bNoMoreClient;
 extern bool	g_bNoRegen;
 
+extern bool	g_bEmpireShopPriceTrippleDisable;
+extern bool g_bShoutAddonEnable;
+extern bool g_bGlobalShoutEnable;
+extern bool g_bDisablePrismNeed;
+extern bool g_bDisableEmotionMask;
+extern BYTE g_bItemCountLimit;
+extern bool g_bDisableItemBonusChangeTime;
+extern bool	g_bAllMountAttack;
+
 extern bool	g_bTrafficProfileOn;		///< true 이면 TrafficProfiler 를 켠다.
 
 extern BYTE	g_bChannel;
@@ -43,7 +52,7 @@ extern bool	map_allow_find(int index);
 extern void	map_allow_copy(long * pl, int size);
 extern bool	no_wander;
 
-extern int	g_iUserLimit;
+extern int		g_iUserLimit;
 extern time_t	g_global_time;
 
 const char *	get_table_postfix();
@@ -93,6 +102,8 @@ extern std::string	g_stAdminPagePassword;
 extern int	SPEEDHACK_LIMIT_COUNT;
 extern int 	SPEEDHACK_LIMIT_BONUS;
 
+extern int g_iSyncHackLimitCount;
+
 extern int g_server_id;
 extern std::string g_strWebMallURL;
 
@@ -111,6 +122,10 @@ extern int  HackShield_CheckCycleTime;
 extern bool bXTrapEnabled;
 
 extern int gPlayerMaxLevel;
+extern int gShutdownAge;
+extern int gShutdownEnable;	// 기본 0. config에서 지정해야함.
+
+extern bool gHackCheckEnable;
 
 extern bool g_BlockCharCreation;
 

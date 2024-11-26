@@ -8,6 +8,7 @@
 #include "char.h"
 #include "char_manager.h"
 #include "questmanager.h"
+#include "text_file_loader.h"
 #include "lzo_manager.h"
 #include "item.h"
 #include "config.h"
@@ -15,7 +16,6 @@
 #include "target.h"
 #include "party.h"
 #include "locale_service.h"
-
 #include "dungeon.h"
 
 DWORD g_GoldDropTimeLimitValue = 0;
@@ -210,6 +210,80 @@ namespace quest
 			pPC->EndRunning();
 		}
 
+	}
+
+	int CQuestManager::ReadQuestCategoryFile(WORD q_index)
+	{
+		
+		ifstream inf((g_stQuestDir + "/questcategory.txt").c_str());
+		int line = 0;
+		int c_qi = 99;
+
+		if (!inf.is_open())
+			sys_err( "QUEST Cannot open 'questcategory.txt'");
+		else
+			sys_log(0, "QUEST can open 'questcategory.txt' (%s)", g_stQuestDir.c_str() );
+
+		while (1)
+		{
+			//받은 quest_index를 quest_name로 변환 후 비교
+			string qn = CQuestManager::instance().GetQuestNameByIndex(q_index);
+
+			unsigned int category_num;
+
+			//enum
+			//{
+			//	MAIN_QUEST,		//0
+			//	SUB_QUEST,		//1
+			//	COLLECT_QUEST,	//2
+			//	LEVELUP_QUEST,	//3
+			//	SCROLL_QUEST,	//4
+			//	SYSTEM_QUEST,	//5
+			//};
+
+			inf >> category_num;
+
+			line++;
+
+			if (inf.fail())
+				break;
+
+			string s;
+			getline(inf, s);
+			unsigned int li = 0, ri = s.size()-1;
+			while (li < s.size() && isspace(s[li])) li++;
+			while (ri > 0 && isspace(s[ri])) ri--;
+
+			if (ri < li) 
+			{
+				sys_err("QUEST questcategory.txt:%d:npc name error",line);
+				continue;
+			}
+
+			s = s.substr(li, ri-li+1);
+
+			int	n = 0;
+			str_to_number(n, s.c_str());
+			if (n)
+				continue;
+
+			//cout << '-' << s << '-' << endl;
+			if ( test_server )
+				sys_log(0, "QUEST reading script of %s(%d)", s.c_str(), category_num);
+
+			if (qn == s)
+			{
+				c_qi = category_num;
+				break;
+			}
+		}
+
+		// notarget quest
+		//m_mapNPC[0].Set(0, "notarget");
+
+
+		//enum 순서대로 카테고리 인덱스를 리턴
+		return c_qi;
 	}
 
 	void CQuestManager::Input(unsigned int pc, const char* msg)
@@ -584,6 +658,8 @@ namespace quest
 				return;
 			}
 
+			//퀘스트 창에서 퀘스트 클릭과 NPC 클릭시의 구분을 위한 플래그
+			m_bQuestInfoFlag = 1;
 			m_mapNPC[QUEST_NO_NPC].OnInfo(*pPC, quest_index);
 		}
 		else
@@ -966,6 +1042,11 @@ namespace quest
 		packet_script.skin = m_iCurrentSkin;
 		packet_script.src_size = m_strScript.size();
 		packet_script.size = packet_script.src_size + sizeof(struct packet_script);
+		packet_script.quest_flag = 0;
+
+		//퀘스트 창에서 퀘스트 클릭과 NPC 클릭시의 구분을 위한 플래그
+		if(m_bQuestInfoFlag == 1)
+			packet_script.quest_flag = 1;
 
 		TEMP_BUFFER buf;
 		buf.write(&packet_script, sizeof(struct packet_script));
@@ -975,8 +1056,10 @@ namespace quest
 
 		if (test_server)
 			sys_log(0, "m_strScript %s size %d", m_strScript.c_str(), buf.size());
+			sys_log(0, "SendScript=====================On Quest flag %d", packet_script.quest_flag);
 
 		ClearScript();
+		m_bQuestInfoFlag = 0;
 	}
 
 	const char* CQuestManager::GetQuestStateName(const string& quest_name, const int state_index)
@@ -1722,14 +1805,15 @@ namespace quest
 		}
 	}
 
-	void CQuestManager::CancelServerTimers(DWORD arg)
-	{
+	void CQuestManager::CancelServerTimers(DWORD arg) {
 		itertype(m_mapServerTimer) it = m_mapServerTimer.begin();
-		for ( ; it != m_mapServerTimer.end(); ++it) {
+		for ( ; it != m_mapServerTimer.end();) {
 			if (it->first.second == arg) {
 				LPEVENT event = it->second;
 				event_cancel(&event);
-				m_mapServerTimer.erase(it);
+				m_mapServerTimer.erase(it++);
+			} else {
+				++it;
 			}
 		}
 	}

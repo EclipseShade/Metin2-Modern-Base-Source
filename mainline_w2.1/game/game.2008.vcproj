@@ -791,6 +791,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\item_manager_private_types.h"
+				>
+			</File>
+			<File
+				RelativePath=".\item_manager_read_tables.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\locale.cpp"
 				>
 			</File>
@@ -1248,6 +1256,22 @@
 			</File>
 			<File
 				RelativePath=".\shop.h"
+				>
+			</File>
+			<File
+				RelativePath=".\shop_manager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\shop_manager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\shopEx.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\shopEx.h"
 				>
 			</File>
 			<File

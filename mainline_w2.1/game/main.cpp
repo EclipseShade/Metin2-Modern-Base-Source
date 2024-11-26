@@ -12,7 +12,7 @@
 #include "mob_manager.h"
 #include "motion.h"
 #include "sectree_manager.h"
-#include "shop.h"
+#include "shop_manager.h"
 #include "regen.h"
 #include "text_file_loader.h"
 #include "skill.h"
@@ -82,7 +82,7 @@
 
 // 윈도우에서 테스트할 때는 항상 서버키 체크
 #ifdef _WIN32
-	#define _USE_SERVER_KEY_
+	//#define _USE_SERVER_KEY_
 #endif
 #include "check_server.h"
 
@@ -429,7 +429,8 @@ static void CleanUpForEarlyExit() {
 	CancelReloadSpamEvent();
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
 #ifdef DEBUG_ALLOC
 	DebugAllocator::StaticSetUp();
 #endif
@@ -521,7 +522,7 @@ int main(int argc, char **argv) {
 
 	Metin2Server_Check();
 
-#ifdef _WIN32 && _USE_SERVER_KEY_
+#if defined(_WIN32) && defined(_USE_SERVER_KEY_)
 	if (CheckServer::IsFail())
 	{
 		return 1;

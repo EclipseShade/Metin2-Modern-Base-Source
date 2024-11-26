@@ -37,15 +37,15 @@ class CShop
 		bool	Create(DWORD dwVnum, DWORD dwNPCVnum, TShopItemTable * pItemTable);
 		void	SetShopItems(TShopItemTable * pItemTable, BYTE bItemCount);
 
-		void	SetPCShop(LPCHARACTER ch);
-		bool	IsPCShop()	{ return m_pkPC ? true : false; }
+		virtual void	SetPCShop(LPCHARACTER ch);
+		virtual bool	IsPCShop()	{ return m_pkPC ? true : false; }
 
 		// 게스트 추가/삭제
-		bool	AddGuest(LPCHARACTER ch,DWORD owner_vid, bool bOtherEmpire);
+		virtual bool	AddGuest(LPCHARACTER ch,DWORD owner_vid, bool bOtherEmpire);
 		void	RemoveGuest(LPCHARACTER ch);
 
 		// 물건 구입
-		int	Buy(LPCHARACTER ch, BYTE pos);
+		virtual int	Buy(LPCHARACTER ch, BYTE pos);
 
 		// 게스트에게 패킷을 보냄
 		void	BroadcastUpdateItem(BYTE pos);
@@ -54,7 +54,7 @@ class CShop
 		int		GetNumberByVnum(DWORD dwVnum);
 
 		// 아이템이 상점에 등록되어 있는지 알려준다.
-		bool	IsSellingItem(DWORD itemID);
+		virtual bool	IsSellingItem(DWORD itemID);
 
 		DWORD	GetVnum() { return m_dwVnum; }
 		DWORD	GetNPCVnum() { return m_dwNPCVnum; }
@@ -62,7 +62,7 @@ class CShop
 	protected:
 		void	Broadcast(const void * data, int bytes);
 
-	private:
+	protected:
 		DWORD				m_dwVnum;
 		DWORD				m_dwNPCVnum;
 

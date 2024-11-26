@@ -10,7 +10,7 @@
 #include "packet.h"
 #include "protocol.h"
 #include "mob_manager.h"
-#include "shop.h"
+#include "shop_manager.h"
 #include "sectree_manager.h"
 #include "skill.h"
 #include "questmanager.h"
@@ -594,7 +594,12 @@ void CInputDB::Boot(const char* data)
 
 	if (size)
 	{
-		CShopManager::instance().Initialize((TShopTable *) data, size);
+		if (!CShopManager::instance().Initialize((TShopTable *) data, size))
+		{
+			sys_err("shop table Initialize error");
+			thecore_shutdown();
+			return;
+		}
 		data += size * sizeof(TShopTable);
 	}
 

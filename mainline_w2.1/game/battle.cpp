@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "utils.h"
 #include "config.h"
 #include "desc.h"
@@ -699,7 +700,7 @@ DWORD GET_ATTACK_SPEED(LPCHARACTER ch)
         return 1000;
 
 	LPITEM item = ch->GetWear(WEAR_WEAPON);
-	DWORD default_bonus = SPEEDHACK_LIMIT_BONUS;    // 유두리 공속(기본 80)
+	DWORD default_bonus = SPEEDHACK_LIMIT_BONUS;
 	DWORD riding_bonus = 0;
 
 	if (ch->IsRiding())
@@ -745,6 +746,8 @@ void SET_ATTACKED_TIME(LPCHARACTER ch, LPCHARACTER victim, DWORD current_time)
 
 bool IS_SPEED_HACK(LPCHARACTER ch, LPCHARACTER victim, DWORD current_time)
 {
+	if(!gHackCheckEnable) return false;
+
 	if (ch->m_kAttackLog.dwVID == victim->GetVID())
 	{
 		if (current_time - ch->m_kAttackLog.dwTime < GET_ATTACK_SPEED(ch))

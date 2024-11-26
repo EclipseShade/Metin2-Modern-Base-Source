@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#include "../common/VnumHelper.h"
+
 #include "utils.h"
 #include "config.h"
 #include "char.h"
@@ -18,9 +20,6 @@
 #include "locale_service.h"
 #include "item.h"
 #include "item_manager.h"
-
-#include "../common/VnumHelper.h"
-
 #include "DragonSoul.h"
 #include "cube.h"
 
@@ -763,7 +762,7 @@ class CItemDropInfo
 		}
 };
 
-std::vector<CItemDropInfo> g_vec_pkCommonDropItem[MOB_RANK_MAX_NUM];
+extern std::vector<CItemDropInfo> g_vec_pkCommonDropItem[MOB_RANK_MAX_NUM];
 
 // 20050503.ipkn.
 // iMinimum 보다 작으면 iDefault 세팅 (단, iMinimum은 0보다 커야함)
@@ -774,14 +773,14 @@ int GetDropPerKillPct(int iMinimum, int iDefault, int iDeltaPercent, const char 
 
 	if ((iVal = quest::CQuestManager::instance().GetEventFlag(c_pszFlag)))
 	{
-		/*if (!test_server)
+		if (!test_server && !LC_IsJapan())
 		{
 			if (iVal < iMinimum)
 				iVal = iDefault;
 
 			if (iVal < 0)
 				iVal = iDefault;
-		}*/
+		}
 	}
 
 	if (iVal == 0)

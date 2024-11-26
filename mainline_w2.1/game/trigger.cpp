@@ -5,7 +5,7 @@
 #include "sectree_manager.h"
 #include "battle.h"
 #include "affect.h"
-#include "shop.h"
+#include "shop_manager.h"
 
 int	OnClickShop(TRIGGERPARAM);
 int	OnClickTalk(TRIGGERPARAM);

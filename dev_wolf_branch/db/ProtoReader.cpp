@@ -25,8 +25,8 @@ string trim(const string& str){return trim_left(trim_right(str));}
 
 static string* StringSplit(string strOrigin, string strTok)
 {
-    int     cutAt;                            //자르는위치
-    int     index     = 0;                    //문자열인덱스
+    unsigned int	cutAt;                            //자르는위치
+    int				index     = 0;                    //문자열인덱스
     string* strResult = new string[30];		  //결과return 할변수
 
     //strTok을찾을때까지반복
@@ -84,7 +84,7 @@ int get_Item_Type_Value(string inputString)
 	
 	int retInt = -1;
 	//cout << "Type : " << typeStr << " -> ";
-	for (int j=0;j<sizeof(arType)/sizeof(arType[0]);j++) {
+	for (unsigned int j=0;j<sizeof(arType)/sizeof(arType[0]);j++) {
 		string tempString = arType[j];
 		if	(inputString.find(tempString)!=string::npos && tempString.find(inputString)!=string::npos) {
 			//cout << j << " ";
@@ -98,7 +98,7 @@ int get_Item_Type_Value(string inputString)
 
 }
 
-int get_Item_SubType_Value(int type_value, string inputString) 
+int get_Item_SubType_Value(unsigned int type_value, string inputString) 
 {
 	static string arSub1[] = { "WEAPON_SWORD", "WEAPON_DAGGER", "WEAPON_BOW", "WEAPON_TWO_HANDED",
 				"WEAPON_BELL", "WEAPON_FAN", "WEAPON_ARROW", "WEAPON_MOUNT_SPEAR", 
@@ -255,9 +255,9 @@ int get_Item_AntiFlag_Value(string inputString)
 
 	int retValue = 0;
 	string* arInputString = StringSplit(inputString, "|");				//프로토 정보 내용을 단어별로 쪼갠 배열.
-	for(int i =0;i<sizeof(arAntiFlag)/sizeof(arAntiFlag[0]);i++) {
+	for(unsigned int i =0;i<sizeof(arAntiFlag)/sizeof(arAntiFlag[0]);i++) {
 		string tempString = arAntiFlag[i];
-		for (int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
+		for (unsigned int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
 		{
 			string tempString2 = arInputString[j];
 			if (tempString2.compare(tempString)==0) {				//일치하는지 확인.
@@ -284,9 +284,9 @@ int get_Item_Flag_Value(string inputString)
 
 	int retValue = 0;
 	string* arInputString = StringSplit(inputString, "|");				//프로토 정보 내용을 단어별로 쪼갠 배열.
-	for(int i =0;i<sizeof(arFlag)/sizeof(arFlag[0]);i++) {
+	for(unsigned int i =0;i<sizeof(arFlag)/sizeof(arFlag[0]);i++) {
 		string tempString = arFlag[i];
-		for (int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
+		for (unsigned int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
 		{
 			string tempString2 = arInputString[j];
 			if (tempString2.compare(tempString)==0) {				//일치하는지 확인.
@@ -312,9 +312,9 @@ int get_Item_WearFlag_Value(string inputString)
 
 	int retValue = 0;
 	string* arInputString = StringSplit(inputString, "|");				//프로토 정보 내용을 단어별로 쪼갠 배열.
-	for(int i =0;i<sizeof(arWearrFlag)/sizeof(arWearrFlag[0]);i++) {
+	for(unsigned int i =0;i<sizeof(arWearrFlag)/sizeof(arWearrFlag[0]);i++) {
 		string tempString = arWearrFlag[i];
-		for (int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
+		for (unsigned int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
 		{
 			string tempString2 = arInputString[j];
 			if (tempString2.compare(tempString)==0) {				//일치하는지 확인.
@@ -338,9 +338,9 @@ int get_Item_Immune_Value(string inputString)
 
 	int retValue = 0;
 	string* arInputString = StringSplit(inputString, "|");				//프로토 정보 내용을 단어별로 쪼갠 배열.
-	for(int i =0;i<sizeof(arImmune)/sizeof(arImmune[0]);i++) {
+	for(unsigned int i =0;i<sizeof(arImmune)/sizeof(arImmune[0]);i++) {
 		string tempString = arImmune[i];
-		for (int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
+		for (unsigned int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
 		{
 			string tempString2 = arInputString[j];
 			if (tempString2.compare(tempString)==0) {				//일치하는지 확인.
@@ -366,7 +366,7 @@ int get_Item_LimitType_Value(string inputString)
 	
 	int retInt = -1;
 	//cout << "LimitType : " << limitTypeStr << " -> ";
-	for (int j=0;j<sizeof(arLimitType)/sizeof(arLimitType[0]);j++) {
+	for (unsigned int j=0;j<sizeof(arLimitType)/sizeof(arLimitType[0]);j++) {
 		string tempString = arLimitType[j];
 		string tempInputString = trim(inputString);
 		if	(tempInputString.compare(tempString)==0)
@@ -408,7 +408,7 @@ int get_Item_ApplyType_Value(string inputString)
 
 	int retInt = -1;
 	//cout << "ApplyType : " << applyTypeStr << " -> ";
-	for (int j=0;j<sizeof(arApplyType)/sizeof(arApplyType[0]);j++) {
+	for (unsigned int j=0;j<sizeof(arApplyType)/sizeof(arApplyType[0]);j++) {
 		string tempString = arApplyType[j];
 		string tempInputString = trim(inputString);
 		if	(tempInputString.compare(tempString)==0)
@@ -434,7 +434,7 @@ int get_Mob_Rank_Value(string inputString)
 
 	int retInt = -1;
 	//cout << "Rank : " << rankStr << " -> ";
-	for (int j=0;j<sizeof(arRank)/sizeof(arRank[0]);j++) {
+	for (unsigned int j=0;j<sizeof(arRank)/sizeof(arRank[0]);j++) {
 		string tempString = arRank[j];
 		string tempInputString = trim(inputString);
 		if	(tempInputString.compare(tempString)==0) 
@@ -456,7 +456,7 @@ int get_Mob_Type_Value(string inputString)
 
 	int retInt = -1;
 	//cout << "Type : " << typeStr << " -> ";
-	for (int j=0;j<sizeof(arType)/sizeof(arType[0]);j++) {
+	for (unsigned int j=0;j<sizeof(arType)/sizeof(arType[0]);j++) {
 		string tempString = arType[j];
 		string tempInputString = trim(inputString);
 		if	(tempInputString.compare(tempString)==0) 
@@ -477,7 +477,7 @@ int get_Mob_BattleType_Value(string inputString)
 
 	int retInt = -1;
 	//cout << "Battle Type : " << battleTypeStr << " -> ";
-	for (int j=0;j<sizeof(arBattleType)/sizeof(arBattleType[0]);j++) {
+	for (unsigned int j=0;j<sizeof(arBattleType)/sizeof(arBattleType[0]);j++) {
 		string tempString = arBattleType[j];
 		string tempInputString = trim(inputString);
 		if	(tempInputString.compare(tempString)==0) 
@@ -498,7 +498,7 @@ int get_Mob_Size_Value(string inputString)
 
 	int retInt = 0;
 	//cout << "Size : " << sizeStr << " -> ";
-	for (int j=0;j<sizeof(arSize)/sizeof(arSize[0]);j++) {
+	for (unsigned int j=0;j<sizeof(arSize)/sizeof(arSize[0]);j++) {
 		string tempString = arSize[j];
 		string tempInputString = trim(inputString);
 		if	(tempInputString.compare(tempString)==0) 
@@ -520,9 +520,9 @@ int get_Mob_AIFlag_Value(string inputString)
 
 	int retValue = 0;
 	string* arInputString = StringSplit(inputString, ",");				//프로토 정보 내용을 단어별로 쪼갠 배열.
-	for(int i =0;i<sizeof(arAIFlag)/sizeof(arAIFlag[0]);i++) {
+	for(unsigned int i =0;i<sizeof(arAIFlag)/sizeof(arAIFlag[0]);i++) {
 		string tempString = arAIFlag[i];
-		for (int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
+		for (unsigned int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
 		{
 			string tempString2 = arInputString[j];
 			if (tempString2.compare(tempString)==0) {				//일치하는지 확인.
@@ -545,9 +545,9 @@ int get_Mob_RaceFlag_Value(string inputString)
 
 	int retValue = 0;
 	string* arInputString = StringSplit(inputString, ",");				//프로토 정보 내용을 단어별로 쪼갠 배열.
-	for(int i =0;i<sizeof(arRaceFlag)/sizeof(arRaceFlag[0]);i++) {
+	for(unsigned int i =0;i<sizeof(arRaceFlag)/sizeof(arRaceFlag[0]);i++) {
 		string tempString = arRaceFlag[i];
-		for (int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
+		for (unsigned int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
 		{
 			string tempString2 = arInputString[j];
 			if (tempString2.compare(tempString)==0) {				//일치하는지 확인.
@@ -569,9 +569,9 @@ int get_Mob_ImmuneFlag_Value(string inputString)
 
 	int retValue = 0;
 	string* arInputString = StringSplit(inputString, ",");				//프로토 정보 내용을 단어별로 쪼갠 배열.
-	for(int i =0;i<sizeof(arImmuneFlag)/sizeof(arImmuneFlag[0]);i++) {
+	for(unsigned int i =0;i<sizeof(arImmuneFlag)/sizeof(arImmuneFlag[0]);i++) {
 		string tempString = arImmuneFlag[i];
-		for (int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
+		for (unsigned int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
 		{
 			string tempString2 = arInputString[j];
 			if (tempString2.compare(tempString)==0) {				//일치하는지 확인.
@@ -704,7 +704,7 @@ bool Set_Proto_Item_Table(TItemTable *itemTable, cCsvTable &csvTable,std::map<in
 	int col = 0;
 
 	int dataArray[33];
-	for (int i=0; i<sizeof(dataArray)/sizeof(dataArray[0]);i++) {
+	for (unsigned int i=0; i<sizeof(dataArray)/sizeof(dataArray[0]);i++) {
 		int validCheck = 0;
 		if (i==2) {
 			dataArray[i] = get_Item_Type_Value(csvTable.AsStringByIndex(col));
@@ -747,7 +747,7 @@ bool Set_Proto_Item_Table(TItemTable *itemTable, cCsvTable &csvTable,std::map<in
 		{
 			std::ostringstream dataStream;
 
-			for (int j = 0; j < i; ++j)
+			for (unsigned int j = 0; j < i; ++j)
 				dataStream << dataArray[j] << ",";
 
 			//fprintf(stderr, "ItemProto Reading Failed : Invalid value.\n");
@@ -763,7 +763,7 @@ bool Set_Proto_Item_Table(TItemTable *itemTable, cCsvTable &csvTable,std::map<in
 	// vnum 및 vnum range 읽기.
 	{
 		std::string s(csvTable.AsStringByIndex(0));
-		int pos = s.find("~");
+		unsigned int pos = s.find("~");
 		// vnum 필드에 '~'가 없다면 패스
 		if (std::string::npos == pos)
 		{

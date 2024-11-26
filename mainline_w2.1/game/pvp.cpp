@@ -403,7 +403,11 @@ bool CPVPManager::CanAttack(LPCHARACTER pkChr, LPCHARACTER pkVictim)
 			case 20214:		// 난폭한 전갑순순록	
 			case 20215:		// 용맹한 전갑순순록	
 			case 20217:		// 난폭한 전갑암순록	
-			case 20218:		// 용맹한 전갑암순록	
+			case 20218:		// 용맹한 전갑암순록
+			case 20224:		// 난폭한 전갑석룡자
+			case 20225:		// 용맹한 전갑석룡자
+			case 20226:		//	유니콘
+			case 20227:
 				break;
 
 			default:

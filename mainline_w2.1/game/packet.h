@@ -1235,7 +1235,9 @@ enum EPacketShopSubHeaders
 	SHOP_SUBHEADER_GC_SOLDOUT,
 	SHOP_SUBHEADER_GC_INVENTORY_FULL,
 	SHOP_SUBHEADER_GC_INVALID_POS,
-	SHOP_SUBHEADER_GC_SOLD_OUT
+	SHOP_SUBHEADER_GC_SOLD_OUT,
+	SHOP_SUBHEADER_GC_START_EX,
+	SHOP_SUBHEADER_GC_NOT_ENOUGH_MONEY_EX,
 };
 
 struct packet_shop_item
@@ -1243,6 +1245,7 @@ struct packet_shop_item
 	DWORD       vnum;
 	DWORD       price;
 	BYTE        count;
+	BYTE		display_pos;
 	long	alSockets[ITEM_SOCKET_MAX_NUM];
 	TPlayerItemAttribute aAttr[ITEM_ATTRIBUTE_MAX_NUM];
 };
@@ -1252,6 +1255,18 @@ typedef struct packet_shop_start
 	DWORD   owner_vid;
 	struct packet_shop_item	items[SHOP_HOST_ITEM_MAX_NUM];
 } TPacketGCShopStart;
+
+typedef struct packet_shop_start_ex // 다음에 TSubPacketShopTab* shop_tabs 이 따라옴.
+{
+	typedef struct sub_packet_shop_tab 
+	{
+		char name[SHOP_TAB_NAME_MAX];
+		BYTE coin_type;
+		packet_shop_item items[SHOP_HOST_ITEM_MAX_NUM];
+	} TSubPacketShopTab;
+	DWORD owner_vid;
+	BYTE shop_tab_count;
+} TPacketGCShopStartEx;
 
 typedef struct packet_shop_update_item
 {
@@ -1313,6 +1328,7 @@ struct packet_script
 	WORD	size;
 	BYTE	skin;
 	WORD	src_size;
+	BYTE	quest_flag;
 };
 
 typedef struct packet_change_speed
@@ -1457,6 +1473,7 @@ struct packet_quest_info
 	BYTE header;
 	WORD size;
 	WORD index;
+	WORD c_index;
 	BYTE flag;
 };
 

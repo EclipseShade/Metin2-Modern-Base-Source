@@ -22,6 +22,7 @@
 #include "battle.h"
 #include "affect.h"
 #include "shop.h"
+#include "shop_manager.h"
 #include "safebox.h"
 #include "regen.h"
 #include "pvp.h"
@@ -373,6 +374,9 @@ void CHARACTER::Initialize()
 	m_fDamMul = 1.0f;
 
 	m_pointsInstant.iDragonSoulActiveDeck = -1;
+
+	memset(&m_tvLastSyncTime, 0, sizeof(m_tvLastSyncTime));
+	m_iSyncHackCount = 0;
 }
 
 void CHARACTER::Create(const char * c_pszName, DWORD vid, bool isPC)
@@ -499,6 +503,15 @@ void CHARACTER::Destroy()
 		m_pkMall = NULL;
 	}
 
+	for (TMapBuffOnAttrs::iterator it = m_map_buff_on_attrs.begin();  it != m_map_buff_on_attrs.end(); it++)
+	{
+		if (NULL != it->second)
+		{
+			M2_DELETE(it->second);
+		}
+	}
+	m_map_buff_on_attrs.clear();
+
 	m_set_pkChrSpawnedBy.clear();
 
 	StopMuyeongEvent();
@@ -536,15 +549,6 @@ void CHARACTER::Destroy()
 
 	//event_cancel(&m_pkAffectEvent);
 	ClearAffect();
-
-	for (TMapBuffOnAttrs::iterator it = m_map_buff_on_attrs.begin();  it != m_map_buff_on_attrs.end(); it++)
-	{
-		if (NULL != it->second)
-		{
-			M2_DELETE(it->second);
-		}
-	}
-	m_map_buff_on_attrs.clear();
 
 	event_cancel(&m_pkDestroyWhenIdleEvent);
 
@@ -3712,12 +3716,34 @@ void CHARACTER::ApplyPoint(BYTE bApplyType, int iVal)
 			// END_OF_SKILL_DAMAGE_BONUS
 			break;
 
+		// NOTE: 아이템에 의한 최대HP 보너스나 퀘스트 보상 보너스가 똑같은 방식을 사용하므로
+		// 그냥 MAX_HP만 계산하면 퀘스트 보상의 경우 문제가 생김. 사실 원래 이쪽이 합리적이기도 하고..
+		// 바꾼 공식은 현재 최대 hp와 보유 hp의 비율을 구한 뒤 바뀔 최대 hp를 기준으로 hp를 보정한다.
+		// 원래 PointChange에서 하는게 좋을것 같은데 설계 문제로 어려워서 skip..
+		// SP도 똑같이 계산한다.
+		// Mantis : 101460			~ ity ~
+		case APPLY_MAX_HP:
+		case APPLY_MAX_HP_PCT:
+			{
+				int i = GetMaxHP(); if(i == 0) break;
+				PointChange(aApplyInfo[bApplyType].bPointType, iVal);
+				float fRatio = (float)GetMaxHP() / (float)i;
+				PointChange(POINT_HP, GetHP() * fRatio - GetHP());
+			}
+			break;
+
+		case APPLY_MAX_SP:
+		case APPLY_MAX_SP_PCT:
+			{
+				int i = GetMaxSP(); if(i == 0) break;
+				PointChange(aApplyInfo[bApplyType].bPointType, iVal);
+				float fRatio = (float)GetMaxSP() / (float)i;
+				PointChange(POINT_SP, GetSP() * fRatio - GetSP());
+			}
+			break;
+
 		case APPLY_STR:
 		case APPLY_DEX:
-		case APPLY_MAX_HP:
-		case APPLY_MAX_SP:
-		case APPLY_MAX_HP_PCT:
-		case APPLY_MAX_SP_PCT:
 		case APPLY_ATT_SPEED:
 		case APPLY_MOV_SPEED:
 		case APPLY_CAST_SPEED:
@@ -4209,6 +4235,10 @@ bool CHARACTER::SetSyncOwner(LPCHARACTER ch, bool bRemoveFromList)
 
 			m_pkChrSyncOwner = ch;
 			m_pkChrSyncOwner->m_kLst_pkChrSyncOwned.push_back(this);
+
+			// SyncOwner가 바뀌면 LastSyncTime을 초기화한다.
+			static const timeval zero_tv = {0, 0};
+			SetLastSyncTime(zero_tv);
 
 			sys_log(1, "SetSyncOwner set %s %p to %s", GetName(), this, ch->GetName());
 		}
@@ -5904,9 +5934,13 @@ void CHARACTER::ResetPoint(int iLv)
 	SetRandomHP((iLv - 1) * number(JobInitialPoints[GetJob()].hp_per_lv_begin, JobInitialPoints[GetJob()].hp_per_lv_end));
 	SetRandomSP((iLv - 1) * number(JobInitialPoints[GetJob()].sp_per_lv_begin, JobInitialPoints[GetJob()].sp_per_lv_end));
 
-	//PointChange(POINT_STAT, ((MINMAX(1, iLv, 99) - 1) * 3) + GetPoint(POINT_LEVEL_STEP) - GetPoint(POINT_STAT));
-	PointChange(POINT_STAT, ((MINMAX(1, iLv, 90) - 1) * 3) + GetPoint(POINT_LEVEL_STEP) - GetPoint(POINT_STAT));
-
+	//PointChange(POINT_STAT, ((MINMAX(1, iLv, 90) - 1) * 3) + GetPoint(POINT_LEVEL_STEP) - GetPoint(POINT_STAT));
+	
+	if(iLv <= 90)
+		PointChange(POINT_STAT, ((MINMAX(1, iLv, 90) - 1) * 3) + GetPoint(POINT_LEVEL_STEP) - GetPoint(POINT_STAT));
+	else
+		PointChange(POINT_STAT, 270 - GetPoint(POINT_STAT));
+	
 	ComputePoints();
 
 	// 회복

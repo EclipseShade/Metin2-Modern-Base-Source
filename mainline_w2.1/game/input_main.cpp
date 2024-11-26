@@ -13,6 +13,7 @@
 #include "item_manager.h"
 #include "cmd.h"
 #include "shop.h"
+#include "shop_manager.h"
 #include "safebox.h"
 #include "regen.h"
 #include "battle.h"
@@ -1272,6 +1273,39 @@ static const int ComboSequenceBySkillLevel[3][8] =
 
 #define COMBO_HACK_ALLOWABLE_MS	100
 
+// [2013 09 11 CYH]
+DWORD ClacValidComboInterval( LPCHARACTER ch, BYTE bArg )
+{
+	int nInterval = 300;
+	float fAdjustNum = 1.5f; // 일반 유저가 speed hack 에 걸리는 것을 막기 위해. 2013.09.10 CYH
+
+	if( !ch )
+	{
+		sys_err( "ClacValidComboInterval() ch is NULL");
+		return nInterval;
+	}	
+
+	if( bArg == 13 )
+	{
+		float normalAttackDuration = CMotionManager::instance().GetNormalAttackDuration(ch->GetRaceNum());
+		nInterval = (int) (normalAttackDuration / (((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f) + fAdjustNum );
+	}
+	else if( bArg == 14 )
+	{		
+		nInterval = (int)(ani_combo_speed(ch, 1 ) / ((ch->GetPoint(POINT_ATT_SPEED) / 100.f) + fAdjustNum) );
+	}
+	else if( bArg > 14 && bArg << 22 )
+	{
+		nInterval = (int)(ani_combo_speed(ch, bArg - 13 ) / ((ch->GetPoint(POINT_ATT_SPEED) / 100.f) + fAdjustNum) );
+	}
+	else
+	{
+		sys_err( "ClacValidComboInterval() Invalid bArg(%d) ch(%s)", bArg, ch->GetName() );		
+	}	
+
+	return nInterval;
+}
+
 bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack)
 {
 	//	죽거나 기절 상태에서는 공격할 수 없으므로, skip한다.
@@ -1285,6 +1319,16 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 		return false;
 	int ComboInterval = dwTime - ch->GetLastComboTime();
 	int HackScalar = 0; // 기본 스칼라 단위 1
+
+	// [2013 09 11 CYH] debugging log
+		/*sys_log(0, "COMBO_TEST_LOG: %s arg:%u interval:%d valid:%u atkspd:%u riding:%s",
+						ch->GetName(),
+						bArg,
+						ComboInterval,
+						ch->GetValidComboInterval(),
+						ch->GetPoint(POINT_ATT_SPEED),
+						ch->IsRiding() ? "yes" : "no");*/
+
 #if 0	
 	sys_log(0, "COMBO: %s arg:%u seq:%u delta:%d checkspeedhack:%d",
 			ch->GetName(), bArg, ch->GetComboSequence(), ComboInterval - ch->GetValidComboInterval(), CheckSpeedHack);
@@ -1313,7 +1357,9 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 		}
 
 		ch->SetComboSequence(1);
-		ch->SetValidComboInterval((int) (ani_combo_speed(ch, 1) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+		// 2013 09 11 CYH edited
+		//ch->SetValidComboInterval((int) (ani_combo_speed(ch, 1) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+		ch->SetValidComboInterval( ClacValidComboInterval(ch, bArg) );
 		ch->SetLastComboTime(dwTime);
 	}
 	else if (bArg > 14 && bArg < 22)
@@ -1368,7 +1414,9 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 			else
 				ch->SetComboSequence(ch->GetComboSequence() + 1);
 
-			ch->SetValidComboInterval((int) (ani_combo_speed(ch, bArg - 13) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+			// 2013 09 11 CYH edited
+			//ch->SetValidComboInterval((int) (ani_combo_speed(ch, bArg - 13) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+			ch->SetValidComboInterval( ClacValidComboInterval(ch, bArg) );
 			ch->SetLastComboTime(dwTime);
 		}
 	}
@@ -1408,9 +1456,12 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 				ch->SetLastComboTime(dwTime);
 			}
 			*/
-			float normalAttackDuration = CMotionManager::instance().GetNormalAttackDuration(ch->GetRaceNum());
-			int k = (int) (normalAttackDuration / ((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f);
-			ch->SetValidComboInterval(k);
+
+			// 2013 09 11 CYH edited
+			//float normalAttackDuration = CMotionManager::instance().GetNormalAttackDuration(ch->GetRaceNum());
+			//int k = (int) (normalAttackDuration / ((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f);			
+			//ch->SetValidComboInterval(k);
+			ch->SetValidComboInterval( ClacValidComboInterval(ch, bArg) );
 			ch->SetLastComboTime(dwTime);
 			// END_OF_POLYMORPH_BUG_FIX
 		}
@@ -1779,6 +1830,9 @@ int CInputMain::SyncPosition(LPCHARACTER ch, const char * c_pcData, size_t uiByt
 	const TPacketCGSyncPositionElement* e = 
 		reinterpret_cast<const TPacketCGSyncPositionElement*>(c_pcData + sizeof(TPacketCGSyncPosition));
 
+	timeval tvCurTime;
+	gettimeofday(&tvCurTime, NULL);
+
 	for (int i = 0; i < iCount; ++i, ++e)
 	{
 		LPCHARACTER victim = CHARACTER_MANAGER::instance().Find(e->dwVID);
@@ -1798,14 +1852,64 @@ int CInputMain::SyncPosition(LPCHARACTER ch, const char * c_pcData, size_t uiByt
 		if (!victim->SetSyncOwner(ch))
 			continue;
 
-		const float fDist = DISTANCE_SQRT( (victim->GetX() - e->lX) / 100, (victim->GetY() - e->lY) / 100 );
-
-		if( fDist < 25.0f )
+		const float fDistWithSyncOwner = DISTANCE_SQRT( (victim->GetX() - ch->GetX()) / 100, (victim->GetY() - ch->GetY()) / 100 );
+		static const float fLimitDistWithSyncOwner = 2500.f + 1000.f;
+		// victim과의 거리가 2500 + a 이상이면 핵으로 간주.
+		//	거리 참조 : 클라이언트의 __GetSkillTargetRange, __GetBowRange 함수
+		//	2500 : 스킬 proto에서 가장 사거리가 긴 스킬의 사거리, 또는 활의 사거리
+		//	a = POINT_BOW_DISTANCE 값... 인데 실제로 사용하는 값인지는 잘 모르겠음. 아이템이나 포션, 스킬, 퀘스트에는 없는데...
+		//		그래도 혹시나 하는 마음에 버퍼로 사용할 겸해서 1000.f 로 둠...
+		if (fDistWithSyncOwner > fLimitDistWithSyncOwner)
 		{
-			victim->Sync(e->lX, e->lY);
-			buffer_write(lpBuf, e, sizeof(TPacketCGSyncPositionElement));
+			// g_iSyncHackLimitCount번 까지는 봐줌.
+			if (ch->GetSyncHackCount() < g_iSyncHackLimitCount)
+			{
+				ch->SetSyncHackCount(ch->GetSyncHackCount() + 1);
+				continue;
+			}
+			else
+			{
+				LogManager::instance().HackLog( "SYNC_POSITION_HACK", ch );
+
+				sys_err( "Too far SyncPosition DistanceWithSyncOwner(%f)(%s) from Name(%s) CH(%d,%d) VICTIM(%d,%d) SYNC(%d,%d)",
+					fDistWithSyncOwner, victim->GetName(), ch->GetName(), ch->GetX(), ch->GetY(), victim->GetX(), victim->GetY(),
+					e->lX, e->lY );
+
+				ch->GetDesc()->SetPhase(PHASE_CLOSE);
+
+				return -1;
+			}
 		}
-		else
+		
+		const float fDist = DISTANCE_SQRT( (victim->GetX() - e->lX) / 100, (victim->GetY() - e->lY) / 100 );
+		static const long g_lValidSyncInterval = 100 * 1000; // 100ms
+		const timeval &tvLastSyncTime = victim->GetLastSyncTime();
+		timeval *tvDiff = timediff(&tvCurTime, &tvLastSyncTime);
+		
+		// SyncPosition을 악용하여 타유저를 이상한 곳으로 보내는 핵 방어하기 위하여,
+		// 같은 유저를 g_lValidSyncInterval ms 이내에 다시 SyncPosition하려고 하면 핵으로 간주.
+		if (tvDiff->tv_sec == 0 && tvDiff->tv_usec < g_lValidSyncInterval)
+		{
+			// g_iSyncHackLimitCount번 까지는 봐줌.
+			if (ch->GetSyncHackCount() < g_iSyncHackLimitCount)
+			{
+				ch->SetSyncHackCount(ch->GetSyncHackCount() + 1);
+				continue;
+			}
+			else
+			{
+				LogManager::instance().HackLog( "SYNC_POSITION_HACK", ch );
+
+				sys_err( "Too often SyncPosition Interval(%ldms)(%s) from Name(%s) VICTIM(%d,%d) SYNC(%d,%d)",
+					tvDiff->tv_sec * 1000 + tvDiff->tv_usec / 1000, victim->GetName(), ch->GetName(), victim->GetX(), victim->GetY(),
+					e->lX, e->lY );
+
+				ch->GetDesc()->SetPhase(PHASE_CLOSE);
+
+				return -1;
+			}
+		}
+		else if( fDist > 25.0f )
 		{
 			LogManager::instance().HackLog( "SYNC_POSITION_HACK", ch );
 
@@ -1816,6 +1920,12 @@ int CInputMain::SyncPosition(LPCHARACTER ch, const char * c_pcData, size_t uiByt
 			ch->GetDesc()->SetPhase(PHASE_CLOSE);
 
 			return -1;
+		}
+		else
+		{
+			victim->SetLastSyncTime(tvCurTime);
+			victim->Sync(e->lX, e->lY);
+			buffer_write(lpBuf, e, sizeof(TPacketCGSyncPositionElement));
 		}
 	}
 

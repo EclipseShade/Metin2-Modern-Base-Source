@@ -34,6 +34,14 @@ int		ping_event_second_cycle = passes_per_sec * 60;
 bool	g_bNoMoreClient = false;
 bool	g_bNoRegen = false;
 bool	g_bNoPasspod = false;
+bool	g_bEmpireShopPriceTrippleDisable = false;
+bool	g_bShoutAddonEnable = false;
+bool	g_bGlobalShoutEnable = false;
+bool	g_bDisablePrismNeed = false;
+bool	g_bDisableEmotionMask = false;
+bool	g_bDisableItemBonusChangeTime = false;
+bool	g_bAllMountAttack = false;
+BYTE	g_bItemCountLimit = 200;
 
 // TRAFFIC_PROFILER
 bool		g_bTrafficProfileOn = false;
@@ -50,7 +58,7 @@ bool		china_event_server = false;
 bool		guild_mark_server = true;
 BYTE		guild_mark_min_level = 3;
 bool		no_wander = false;
-int		g_iUserLimit = 32768;
+int			g_iUserLimit = 32768;
 
 char		g_szPublicIP[16] = "0";
 char		g_szInternalIP[16] = "0";
@@ -97,6 +105,7 @@ WORD	teen_port	= 0;
 
 int SPEEDHACK_LIMIT_COUNT   = 50;
 int SPEEDHACK_LIMIT_BONUS   = 80;
+int g_iSyncHackLimitCount = 10;
 
 //시야 = VIEW_RANGE + VIEW_BONUS_RANGE
 //VIEW_BONUSE_RANGE : 클라이언트와 시야 처리에서너무 딱 떨어질경우 문제가 발생할수있어 500CM의 여분을 항상준다.
@@ -127,6 +136,14 @@ int			HackShield_CheckCycleTime = passes_per_sec * 180;
 bool		bXTrapEnabled = false;
 
 int gPlayerMaxLevel = 99;
+int gShutdownAge = 0;
+int gShutdownEnable = 0;
+
+/*
+ * NOTE : 핵 체크 On/Off. CheckIn할때 false로 수정했으면 반드시 확인하고 고쳐놓을것!
+ * 이걸로 생길수있는 똥은 책임안짐 ~ ity ~
+ */
+bool gHackCheckEnable = false;
 
 bool g_BlockCharCreation = false;
 
@@ -332,6 +349,8 @@ void config_init(const string& st_localeServiceName)
 		exit(1);
 	}
 
+	// public ip가 없어도 BIND_IP하면 게임 돌아가는데에는 아무런 지장이 없기 때문에
+	// 주석처리 함.
 	if (!GetIPInfo())
 	{
 		fprintf(stderr, "Can not get public ip address\n");
@@ -839,6 +858,12 @@ void config_init(const string& st_localeServiceName)
 			continue;
 		}
 
+		TOKEN("item_count_limit")
+		{
+			str_to_number(g_bItemCountLimit, value_string);
+			continue;
+		}
+		
 		TOKEN("shutdowned")
 		{
 			g_bNoMoreClient = true;
@@ -850,7 +875,49 @@ void config_init(const string& st_localeServiceName)
 			g_bNoRegen = true;
 			continue;
 		}
+		
+		TOKEN("shop_price_3x_disable")
+		{
+			g_bEmpireShopPriceTrippleDisable = true;
+			continue;
+		}
 
+		TOKEN("shout_addon")
+		{
+			g_bShoutAddonEnable = true;
+			continue;
+		}
+		
+		TOKEN("enable_all_mount_attack")
+		{
+			g_bAllMountAttack = true;
+			continue;
+		}		
+		
+		TOKEN("disable_change_attr_time")
+		{
+			g_bDisableItemBonusChangeTime = true;
+			continue;
+		}
+		
+		TOKEN("disable_prism_item")
+		{
+			g_bDisablePrismNeed = true;
+			continue;
+		}
+		
+		TOKEN("global_shout")
+		{
+			g_bGlobalShoutEnable = true;
+			continue;
+		}
+				
+		TOKEN("disable_emotion_mask")
+		{
+			g_bDisableEmotionMask = true;
+			continue;
+		}
+		
 		TOKEN("traffic_profile")
 		{
 			g_bTrafficProfileOn = true;
@@ -981,6 +1048,11 @@ void config_init(const string& st_localeServiceName)
 			str_to_number(teen_port, value_string);
 		}
 
+		TOKEN("synchack_limit_count")
+		{
+			str_to_number(g_iSyncHackLimitCount, value_string);
+		}
+
 		TOKEN("speedhack_limit_count")
 		{
 			str_to_number(SPEEDHACK_LIMIT_COUNT, value_string);
@@ -1100,7 +1172,17 @@ void config_init(const string& st_localeServiceName)
 
 			fprintf(stderr, "PLAYER_MAX_LEVEL: %d\n", gPlayerMaxLevel);
 		}
+		TOKEN("shutdown_age")
+		{
+			str_to_number(gShutdownAge, value_string);
+			fprintf(stderr, "SHUTDOWN_AGE: %d\n", gShutdownAge);
 
+		}
+		TOKEN("shutdown_enable")
+		{
+			str_to_number(gShutdownEnable, value_string);
+			fprintf(stderr, "SHUTDOWN_ENABLE: %d\n", gShutdownEnable);
+		}
 		TOKEN("block_char_creation")
 		{
 			int tmp = 0;
@@ -1190,12 +1272,22 @@ void config_init(const string& st_localeServiceName)
 		fclose(fp);
 	}
 
+	if(!gHackCheckEnable)	// Hack 체크가 비활성화인 경우
+	{
+		assert(test_server);	// 테스트 서버가 아니라면 assert
+	}
+
 	LoadValidCRCList();
 	LoadStateUserCount();
 
 	CWarMapManager::instance().LoadWarMapInfo(NULL);
 
 	FN_log_adminpage();
+	if (g_szPublicIP[0] == '0')
+	{
+		fprintf(stderr, "Can not get public ip address\n");
+		exit(1);
+	}
 }
 
 const char* get_table_postfix()
