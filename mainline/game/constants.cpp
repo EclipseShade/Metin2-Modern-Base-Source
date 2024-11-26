@@ -18,7 +18,10 @@ TJobInitialPoints JobInitialPoints[JOB_MAX_NUM] =
 	{   6,  4,  3,  3,  600,   200,     40,    20,    36, 44,     18, 22,     800,      5,      1, 3  }, // JOB_WARRIOR  16
 	{   4,  3,  6,  3,  650,   200,     40,    20,    36, 44,     18, 22,     800,      5,      1, 3  }, // JOB_ASSASSIN 16
 	{   5,  3,  3,  5,  650,   200,     40,    20,    36, 44,     18, 22,     800,      5,      1, 3  }, // JOB_SURA	 16
-	{   3,  4,  3,  6,  700,   200,     40,    20,    36, 44,     18, 22,     800,      5,      1, 3  }  // JOB_SHAMANa  16
+	{   3,  4,  3,  6,  700,   200,     40,    20,    36, 44,     18, 22,     800,      5,      1, 3  }, // JOB_SHAMANa  16
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	{   6,  6,  2,  2,  600,   200,     40,    20,    36, 44,     18, 22,     800,      5,      1, 3  }, // JOB_WOLFMAN  16  // TODO: 4개능력치 초기값 외에 다른 스탯 필요 (기획자한테 요청)
+#endif
 };
 
 const TMobRankStat MobRankStats[MOB_RANK_MAX_NUM] =
@@ -914,6 +917,11 @@ const TApplyInfo aApplyInfo[MAX_APPLY_NUM] =
 	{ POINT_RESIST_DARK,		},   // APPLY_RESIST_DARK,	89
 	{ POINT_RESIST_CRITICAL,		},   // APPLY_ANTI_CRITICAL_PCT,	90
 	{ POINT_RESIST_PENETRATE,		},   // APPLY_ANTI_PENETRATE_PCT,	91
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	{ POINT_ATTBONUS_WOLFMAN,		},	 // APPLY_ATTBONUS_WOLFMAN,		//92 수인족에게 강함
+	{ POINT_RESIST_WOLFMAN,			},	 // APPLY_RESIST_WOLFMAN,		//93 수인족에게 저항
+	{ POINT_RESIST_CLAW,			},	 // APPLY_RESIST_CLAW,			//94 CLAW에게 저항
+#endif
 };
 
 const int aiItemMagicAttributePercentHigh[ITEM_ATTRIBUTE_MAX_LEVEL] =
