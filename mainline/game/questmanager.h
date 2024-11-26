@@ -109,6 +109,8 @@ namespace quest
 			// event occurs in one state
 			void		Select(unsigned int pc, unsigned int selection);
 			void		Resume(unsigned int pc);
+			
+			int			ReadQuestCategoryFile(WORD q_index);
 			void		Input(unsigned int pc, const char* msg);
 			void		Confirm(unsigned int pc, EQuestConfirmType confirm, unsigned int pc2 = 0);
 			void		SelectItem(unsigned int pc, unsigned int selection);
@@ -212,6 +214,7 @@ namespace quest
 			PC*				m_pCurrentPC;
 
 			string			m_strScript;
+			bool			m_bQuestInfoFlag;
 
 			int				m_iCurrentSkin;
 
