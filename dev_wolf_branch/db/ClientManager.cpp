@@ -3701,8 +3701,9 @@ bool CClientManager::InitializeLocalization()
 				sys_err("locale[LOCALE] = UNKNOWN(%s)", locale.szValue);
 				exit(0);
 			}
-
+			sys_log(0,"before call SetLocale: %s",g_stLocale.c_str());
 			CDBManager::instance().SetLocale(g_stLocale.c_str());
+			sys_log(0,"Called SetLocale");
 		}
 		else if (strcmp(locale.szKey, "DB_NAME_COLUMN") == 0)
 		{
