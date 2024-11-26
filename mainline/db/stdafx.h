@@ -15,6 +15,6 @@
 #include "../common/singleton.h"
 #include "../common/utils.h"
 #include "../common/stl.h"
-#include "../common/service.h"
+#include "../common/CommonDefines.h"
 
 #endif

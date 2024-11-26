@@ -1,6 +1,11 @@
 #ifndef __INC_SERVICE_H__
 #define __INC_SERVICE_H__
 
+
+/* SECURITY IMPROVEMENT */
+#define ENABLE_PORT_SECURITY
+
+/* DEFAULT YMIR MACRO */
 	#define _IMPROVED_PACKET_ENCRYPTION_
 	#define __PET_SYSTEM__
 	#define __UDP_BLOCK__
