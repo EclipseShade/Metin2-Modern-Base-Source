@@ -98,6 +98,7 @@ class CClientManager : public CNetBase, public singleton<CClientManager>
 	void	MainLoop();
 	void	Quit();
 
+	void	GetPeerP2PHostNames(std::string& peerHostNames);
 	void	SetTablePostfix(const char* c_pszTablePostfix);
 	void	SetPlayerIDStart(int iIDStart);
 	int	GetPlayerIDStart() { return m_iPlayerIDStart; }
