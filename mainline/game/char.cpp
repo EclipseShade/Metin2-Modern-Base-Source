@@ -7273,7 +7273,7 @@ bool CHARACTER::CanWarp() const
 DWORD CHARACTER::GetNextExp() const
 {
 	if (PLAYER_EXP_TABLE_MAX < GetLevel())
-		return 2500000000;
+		return 2500000000UL;
 	else
 		return exp_table[GetLevel()];
 }
