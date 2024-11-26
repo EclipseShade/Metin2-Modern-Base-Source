@@ -62,6 +62,8 @@ enum EMisc
 	DRAGON_SOUL_REFINE_GRID_SIZE = 15,
 	MAX_AMOUNT_OF_MALL_BONUS	= 20,
 
+	WEAR_MAX_NUM				= 32,
+
 	//LIMIT_GOLD
 	GOLD_MAX = 2000000000,
 
@@ -71,6 +73,32 @@ enum EMisc
 	//END_LIMIT_GOLD
 
 	OPENID_AUTHKEY_LEN = 32, 
+
+	SHOP_TAB_NAME_MAX = 32,
+	SHOP_TAB_COUNT_MAX = 3,
+
+	BELT_INVENTORY_SLOT_WIDTH = 4,
+	BELT_INVENTORY_SLOT_HEIGHT= 4,
+
+	BELT_INVENTORY_SLOT_COUNT = BELT_INVENTORY_SLOT_WIDTH * BELT_INVENTORY_SLOT_HEIGHT,
+
+
+/**
+	 **** 현재까지 할당 된 아이템 영역 정리 (DB상 Item Position) ****
+	+------------------------------------------------------+ 0
+	| 캐릭터 기본 인벤토리 (45칸 * 2페이지) 90칸           | 
+	+------------------------------------------------------+ 90 = INVENTORY_MAX_NUM(90)
+	| 캐릭터 장비 창 (착용중인 아이템) 32칸                |
+	+------------------------------------------------------+ 122 = INVENTORY_MAX_NUM(90) + WEAR_MAX_NUM(32)
+	| 용혼석 장비 창 (착용중인 용혼석) 12칸                | 
+	+------------------------------------------------------+ 134 = 122 + DS_SLOT_MAX(6) * DRAGON_SOUL_DECK_MAX_NUM(2)
+	| 용혼석 장비 창 예약 (아직 미사용) 18칸               | 
+	+------------------------------------------------------+ 152 = 134 + DS_SLOT_MAX(6) * DRAGON_SOUL_DECK_RESERVED_MAX_NUM(3)
+	| 벨트 인벤토리 (벨트 착용시에만 벨트 레벨에 따라 활성)|
+	+------------------------------------------------------+ 168 = 152 + BELT_INVENTORY_SLOT_COUNT(16) = INVENTORY_AND_EQUIP_CELL_MAX
+	| 미사용                                               |
+	+------------------------------------------------------+ ??
+*/
 };
 
 enum EMatrixCard
@@ -102,7 +130,13 @@ enum EWearPositions
     WEAR_ABILITY8,  // 18
 	WEAR_COSTUME_BODY,	// 19
 	WEAR_COSTUME_HAIR,	// 20
-	WEAR_MAX_NUM = 32	// 21
+	
+	WEAR_RING1,			// 21	: 신규 반지슬롯1 (왼쪽)
+	WEAR_RING2,			// 22	: 신규 반지슬롯2 (오른쪽)
+
+	WEAR_BELT,			// 23	: 신규 벨트슬롯
+
+	WEAR_MAX = 32	// 
 };
 
 enum EDragonSoulDeckType
@@ -110,6 +144,8 @@ enum EDragonSoulDeckType
 	DRAGON_SOUL_DECK_0,
 	DRAGON_SOUL_DECK_1,
 	DRAGON_SOUL_DECK_MAX_NUM = 2,
+
+	DRAGON_SOUL_DECK_RESERVED_MAX_NUM = 3,	// NOTE: 중요! 아직 사용중이진 않지만, 3페이지 분량을 예약 해 둠. DS DECK을 늘릴 경우 반드시 그 수만큼 RESERVED에서 차감해야 함!
 };
 
 enum ESex
@@ -156,6 +192,10 @@ enum EJobs
 	JOB_ASSASSIN,
 	JOB_SURA,
 	JOB_SHAMAN,
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	JOB_WOLFMAN,		// 수인족. 개발코드명이 WOLFMAN. (기획자가 정했씀. 나중에 WOLF GIRL 생겨도 나한테 머라하지마셈ㅠㅠ)
+#endif
+
 	JOB_MAX_NUM
 };
 
@@ -397,7 +437,11 @@ enum EApplyTypes
 
 	APPLY_ANTI_CRITICAL_PCT,	//90 크리티컬 저항
 	APPLY_ANTI_PENETRATE_PCT,	//91 관통타격 저항
-
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	APPLY_ATTBONUS_WOLFMAN,		//92 수인족에게 강함
+	APPLY_RESIST_WOLFMAN,		//93 수인족에게 저항
+	APPLY_RESIST_CLAW,			//94 CLAW무기에 저항
+#endif
 
 	MAX_APPLY_NUM,              // 
 };
@@ -425,6 +469,7 @@ enum EWindows
 	SAFEBOX,
 	MALL,
 	DRAGON_SOUL_INVENTORY,
+	BELT_INVENTORY,
 #ifdef __AUCTION__
 	AUCTION,
 #endif
@@ -654,6 +699,19 @@ enum EDragonSoulRefineWindowSize
 {
 	DRAGON_SOUL_REFINE_GRID_MAX = 15,
 };
+
+enum EMisc2
+{
+	DRAGON_SOUL_EQUIP_SLOT_START = INVENTORY_MAX_NUM + WEAR_MAX_NUM,
+	DRAGON_SOUL_EQUIP_SLOT_END = DRAGON_SOUL_EQUIP_SLOT_START + (DS_SLOT_MAX * DRAGON_SOUL_DECK_MAX_NUM),
+	DRAGON_SOUL_EQUIP_RESERVED_SLOT_END = DRAGON_SOUL_EQUIP_SLOT_END + (DS_SLOT_MAX * DRAGON_SOUL_DECK_RESERVED_MAX_NUM),
+
+	BELT_INVENTORY_SLOT_START = DRAGON_SOUL_EQUIP_RESERVED_SLOT_END,
+	BELT_INVENTORY_SLOT_END = BELT_INVENTORY_SLOT_START + BELT_INVENTORY_SLOT_COUNT,
+
+	INVENTORY_AND_EQUIP_SLOT_MAX = BELT_INVENTORY_SLOT_END,
+};
+
 #pragma pack(push, 1)
 
 typedef struct SItemPos
@@ -680,7 +738,8 @@ typedef struct SItemPos
 			return false;
 		case INVENTORY:
 		case EQUIPMENT:
-			return cell < (INVENTORY_MAX_NUM + WEAR_MAX_NUM + DS_SLOT_MAX * DRAGON_SOUL_DECK_MAX_NUM);
+		case BELT_INVENTORY:
+			return cell < INVENTORY_AND_EQUIP_SLOT_MAX;
 		case DRAGON_SOUL_INVENTORY:
 			return cell < (DRAGON_SOUL_INVENTORY_MAX_NUM);
 		// 동적으로 크기가 정해지는 window는 valid 체크를 할 수가 없다.
@@ -695,7 +754,23 @@ typedef struct SItemPos
 	
 	bool IsEquipPosition() const
 	{
-		return (INVENTORY == window_type || EQUIPMENT == window_type) && cell >= INVENTORY_MAX_NUM && cell < INVENTORY_MAX_NUM + WEAR_MAX_NUM;
+		return ((INVENTORY == window_type || EQUIPMENT == window_type) && cell >= INVENTORY_MAX_NUM && cell < INVENTORY_MAX_NUM + WEAR_MAX_NUM)
+			|| IsDragonSoulEquipPosition();
+	}
+
+	bool IsDragonSoulEquipPosition() const
+	{
+		return (DRAGON_SOUL_EQUIP_SLOT_START <= cell) && (DRAGON_SOUL_EQUIP_SLOT_END > cell);
+	}
+
+	bool IsBeltInventoryPosition() const
+	{
+		return (BELT_INVENTORY_SLOT_START <= cell) && (BELT_INVENTORY_SLOT_END > cell);
+	}
+
+	bool IsDefaultInventoryPosition() const
+	{
+		return INVENTORY == window_type && cell < INVENTORY_MAX_NUM;
 	}
 
 	bool operator==(const struct SItemPos& rhs) const
@@ -710,7 +785,11 @@ typedef struct SItemPos
 
 const TItemPos NPOS (RESERVED_WINDOW, WORD_MAX);
 
-
+typedef enum
+{
+	SHOP_COIN_TYPE_GOLD, // DEFAULT VALUE
+	SHOP_COIN_TYPE_SECONDARY_COIN,
+} EShopCoinType;
 
 #pragma pack(pop)
 
