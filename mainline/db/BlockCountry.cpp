@@ -8,7 +8,6 @@
 #include "stdafx.h"
 
 #include "BlockCountry.h"
-
 #include "DBManager.h"
 
 #define DO_ALL_BLOCK_IP(iter)	\

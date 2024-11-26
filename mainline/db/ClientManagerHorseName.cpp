@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "ClientManager.h"
 
 void CClientManager::UpdateHorseName(TPacketUpdateHorseName* data, CPeer* peer)

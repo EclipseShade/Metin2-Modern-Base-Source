@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "ClientManager.h"
 #include "Main.h"
 #include "Config.h"

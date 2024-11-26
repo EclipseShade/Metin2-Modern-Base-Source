@@ -1,8 +1,6 @@
-
 #include "stdafx.h"
 
 #include "ClientManager.h"
-
 #include "Main.h"
 #include "QID.h"
 #include "ItemAwardManager.h"
@@ -10,7 +8,6 @@
 #include "Cache.h"
 
 extern bool g_bHotBackup;
-
 extern std::string g_stLocale;
 extern int g_test_server;
 extern int g_log;

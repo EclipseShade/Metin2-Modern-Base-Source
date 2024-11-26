@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "MoneyLog.h"
 #include "ClientManager.h"
 #include "Peer.h"

@@ -1,7 +1,6 @@
+#include "stdafx.h"
+
 #include "Monarch.h"
-
-#include "../common/utils.h"
-
 #include "Main.h"
 #include "ClientManager.h"
 

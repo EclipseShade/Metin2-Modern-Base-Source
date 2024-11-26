@@ -1,11 +1,10 @@
-
 #include "stdafx.h"
-#include "Cache.h"
 
+#include "Cache.h"
 #include "QID.h"
 #include "ClientManager.h"
 #ifdef __AUCTION__
-#include "AuctionManager.h"
+	#include "AuctionManager.h"
 #endif
 #include "Main.h"
 

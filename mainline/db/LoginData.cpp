@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "LoginData.h"
 #include "ClientManager.h"
 

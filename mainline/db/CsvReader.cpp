@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "CsvReader.h"
 #include <fstream>
 #include <algorithm>

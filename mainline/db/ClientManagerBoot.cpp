@@ -1,5 +1,5 @@
-#include <map>
 #include "stdafx.h"
+
 #include "ClientManager.h"
 #include "Main.h"
 #include "Monarch.h"

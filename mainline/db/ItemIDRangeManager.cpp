@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "ItemIDRangeManager.h"
 #include "Main.h"
 #include "DBManager.h"

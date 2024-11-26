@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "GuildManager.h"
 #include "Main.h"
 #include "ClientManager.h"

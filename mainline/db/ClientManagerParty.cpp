@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "ClientManager.h"
 #include "Config.h"
 #include "DBManager.h"

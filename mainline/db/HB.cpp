@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "HB.h"
 #include "Main.h"
 #include "DBManager.h"

@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "Marriage.h"
 #include "Main.h"
 #include "DBManager.h"

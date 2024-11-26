@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "NetBase.h"
 #include "Config.h"
 #include "ClientManager.h"

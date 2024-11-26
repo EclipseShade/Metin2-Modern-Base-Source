@@ -1,11 +1,11 @@
 #include "stdafx.h"
+
 #include "ClientManager.h"
 #include "Main.h"
 #include "Config.h"
 #include "DBManager.h"
 #include "QID.h"
 #include "GuildManager.h"
-
 
 void CClientManager::GuildCreate(CPeer * peer, DWORD dwGuildID)
 {

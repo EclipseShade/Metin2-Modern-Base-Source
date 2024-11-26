@@ -1,12 +1,10 @@
 #include "stdafx.h"
+
 #include "QID.h"
 #include "DBManager.h"
 #include "ItemAwardManager.h"
 #include "Peer.h"
-
 #include "ClientManager.h"
-
-
 
 DWORD g_dwLastCachedItemAwardID = 0;
 ItemAwardManager::ItemAwardManager()

@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "Lock.h"
 
 CLock::CLock()
