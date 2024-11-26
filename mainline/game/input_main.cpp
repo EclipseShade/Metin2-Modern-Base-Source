@@ -1319,6 +1319,16 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 		return false;
 	int ComboInterval = dwTime - ch->GetLastComboTime();
 	int HackScalar = 0; // ±âº» ½ºÄ®¶ó ´ÜÀ§ 1
+
+	// [2013 09 11 CYH] debugging log
+		/*sys_log(0, "COMBO_TEST_LOG: %s arg:%u interval:%d valid:%u atkspd:%u riding:%s",
+						ch->GetName(),
+						bArg,
+						ComboInterval,
+						ch->GetValidComboInterval(),
+						ch->GetPoint(POINT_ATT_SPEED),
+						ch->IsRiding() ? "yes" : "no");*/
+
 #if 0	
 	sys_log(0, "COMBO: %s arg:%u seq:%u delta:%d checkspeedhack:%d",
 			ch->GetName(), bArg, ch->GetComboSequence(), ComboInterval - ch->GetValidComboInterval(), CheckSpeedHack);
@@ -1347,7 +1357,9 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 		}
 
 		ch->SetComboSequence(1);
-		ch->SetValidComboInterval((int) (ani_combo_speed(ch, 1) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+		// 2013 09 11 CYH edited
+		//ch->SetValidComboInterval((int) (ani_combo_speed(ch, 1) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+		ch->SetValidComboInterval( ClacValidComboInterval(ch, bArg) );
 		ch->SetLastComboTime(dwTime);
 	}
 	else if (bArg > 14 && bArg < 22)
@@ -1402,7 +1414,9 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 			else
 				ch->SetComboSequence(ch->GetComboSequence() + 1);
 
-			ch->SetValidComboInterval((int) (ani_combo_speed(ch, bArg - 13) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+			// 2013 09 11 CYH edited
+			//ch->SetValidComboInterval((int) (ani_combo_speed(ch, bArg - 13) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+			ch->SetValidComboInterval( ClacValidComboInterval(ch, bArg) );
 			ch->SetLastComboTime(dwTime);
 		}
 	}
@@ -1442,9 +1456,12 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 				ch->SetLastComboTime(dwTime);
 			}
 			*/
-			float normalAttackDuration = CMotionManager::instance().GetNormalAttackDuration(ch->GetRaceNum());
-			int k = (int) (normalAttackDuration / ((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f);
-			ch->SetValidComboInterval(k);
+
+			// 2013 09 11 CYH edited
+			//float normalAttackDuration = CMotionManager::instance().GetNormalAttackDuration(ch->GetRaceNum());
+			//int k = (int) (normalAttackDuration / ((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f);			
+			//ch->SetValidComboInterval(k);
+			ch->SetValidComboInterval( ClacValidComboInterval(ch, bArg) );
 			ch->SetLastComboTime(dwTime);
 			// END_OF_POLYMORPH_BUG_FIX
 		}
@@ -1845,23 +1862,23 @@ int CInputMain::SyncPosition(LPCHARACTER ch, const char * c_pcData, size_t uiByt
 		if (fDistWithSyncOwner > fLimitDistWithSyncOwner)
 		{
 			// g_iSyncHackLimitCount¹ø ±îÁö´Â ºÁÁÜ.
-			//if (ch->GetSyncHackCount() < g_iSyncHackLimitCount)
-			//{
-			//	ch->SetSyncHackCount(ch->GetSyncHackCount() + 1);
-			//	continue;
-			//}
-			//else
-			//{
+			if (ch->GetSyncHackCount() < g_iSyncHackLimitCount)
+			{
+				ch->SetSyncHackCount(ch->GetSyncHackCount() + 1);
+				continue;
+			}
+			else
+			{
 				LogManager::instance().HackLog( "SYNC_POSITION_HACK", ch );
 
 				sys_err( "Too far SyncPosition DistanceWithSyncOwner(%f)(%s) from Name(%s) CH(%d,%d) VICTIM(%d,%d) SYNC(%d,%d)",
 					fDistWithSyncOwner, victim->GetName(), ch->GetName(), ch->GetX(), ch->GetY(), victim->GetX(), victim->GetY(),
 					e->lX, e->lY );
 
-			//	ch->GetDesc()->SetPhase(PHASE_CLOSE);
+				ch->GetDesc()->SetPhase(PHASE_CLOSE);
 
-			//	return -1;
-			//}
+				return -1;
+			}
 		}
 		
 		const float fDist = DISTANCE_SQRT( (victim->GetX() - e->lX) / 100, (victim->GetY() - e->lY) / 100 );

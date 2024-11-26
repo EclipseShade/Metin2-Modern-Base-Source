@@ -11,7 +11,7 @@ BSD_VERSION = $(shell uname -v 2>&1 | cut -d' ' -f2 | cut -d'.' -f1)
 P4_VERSION = $(shell svnversion -n .)
 $(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
 
-TARGET = $(BINDIR)/db_mainline_$(P4_VERSION)
+TARGET = $(BINDIR)/db_r$(P4_VERSION)
 
 CFLAGS = -g -Wall -O2 -pipe -fno-rtti -fno-exceptions -pthread -D_THREAD_SAFE
 
