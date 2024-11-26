@@ -694,7 +694,14 @@ int CInputMain::Chat(LPCHARACTER ch, const char * data, size_t uiBytes)
 	}
 
 	char chatbuf[CHAT_MAX_LEN + 1];
-	int len = snprintf(chatbuf, sizeof(chatbuf), "%s : %s", ch->GetName(), buf);
+	int len;
+	if (g_bShoutAddonEnable)
+	{
+		int len = snprintf(chatbuf, sizeof(chatbuf), "[%s]%s : %s", LC_TEXT(c_apszEmpireNames[ch->GetEmpire()]), ch->GetName(), buf);
+	} else {
+		int len = snprintf(chatbuf, sizeof(chatbuf), "%s : %s", ch->GetName(), buf);
+	}
+	
 
 	if (CHAT_TYPE_SHOUT == pinfo->type)
 	{
@@ -728,7 +735,7 @@ int CInputMain::Chat(LPCHARACTER ch, const char * data, size_t uiBytes)
 
 	if (pinfo->type == CHAT_TYPE_SHOUT)
 	{
-		const int SHOUT_LIMIT_LEVEL = g_iUseLocale ? 15 : 3;
+		const int SHOUT_LIMIT_LEVEL = 15;
 
 		if (ch->GetLevel() < SHOUT_LIMIT_LEVEL)
 		{

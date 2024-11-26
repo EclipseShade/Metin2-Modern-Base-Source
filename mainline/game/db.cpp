@@ -20,6 +20,7 @@
 #include "pcbang.h"
 #include "spam.h"
 #include "auth_brazil.h"
+#include "shutdown_manager.h"
 
 extern bool g_bNoPasspod;
 extern std::string g_stBlockDate;
@@ -1083,6 +1084,18 @@ void DBManager::AnalyzeReturnQuery(SQLMsg * pMsg)
 						sys_log(0, "   ALREADY");
 						M2_DELETE(pinfo);
 					}
+					else if(!CShutdownManager::Instance().CheckCorrectSocialID(szSocialID) && !test_server)
+					{
+						LoginFailure(d, "BADSCLID");
+						sys_log(0, "   BADSCLID");
+						M2_DELETE(pinfo);
+					}
+					else if(CShutdownManager::Instance().CheckShutdownAge(szSocialID) && CShutdownManager::Instance().CheckShutdownTime())
+					{
+						LoginFailure(d, "AGELIMIT");
+						sys_log(0, "   AGELIMIT");
+						M2_DELETE(pinfo);
+					}
 					else if (strcmp(szStatus, "OK"))
 					{
 						LoginFailure(d, szStatus);
@@ -1125,7 +1138,7 @@ void DBManager::AnalyzeReturnQuery(SQLMsg * pMsg)
 							break;
 						}
 
-						sys_log(0, "QID_AUTH_LOGIN_OPENID: SUCCESS %s", pinfo->login);
+						sys_log(0, "QID_AUTH_LOGIN: SUCCESS %s", pinfo->login);
 					}
 				}
 			}

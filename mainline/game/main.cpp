@@ -536,6 +536,16 @@ int main(int argc, char **argv)
 	//if game server
 	if (!g_bAuthServer)
 	{
+		if (!CheckServer::CheckIp(g_szPublicIP)) {
+			char pszRevision[128] = "I don't care";	
+#ifdef _WIN32
+			fprintf(stderr, "[main] Check IP failed\n");
+#else 
+//			strncpy (pszRevision,  __P4_VERSION__, sizeof(pszRevision));
+#endif
+			LogManager::Instance().InvalidServerLog(LC_GetLocalType(), g_szPublicIP, pszRevision);
+		}
+
 		//hackshield
 		if (isHackShieldEnable)
 		{

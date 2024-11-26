@@ -49,6 +49,8 @@
 
 #include "DragonSoul.h"
 
+#include "shutdown_manager.h"
+
 #ifdef __AUCTION__
 #include "auction_manager.h"
 #endif
@@ -179,6 +181,9 @@ void CInputDB::LoginSuccess(DWORD dwHandle, const char *data)
 
 	d->SetPhase(PHASE_SELECT);
 	d->SendLoginSuccessPacket();
+
+	// __SHUTDOWN::Shutdown Register
+	CShutdownManager::Instance().AddDesc(d);
 
 	sys_log(0, "InputDB::login_success: %s", pTab->login);
 }

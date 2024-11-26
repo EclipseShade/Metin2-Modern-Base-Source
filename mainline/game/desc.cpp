@@ -18,6 +18,7 @@
 #include "locale_service.h"
 #include "HackShield.h"
 #include "log.h"
+#include "shutdown_manager.h"
 
 extern int max_bytes_written;
 extern int current_bytes_written;
@@ -149,6 +150,8 @@ void DESC::Destroy()
 
 			db_clientdesc->DBPacket(HEADER_GD_LOGOUT, m_dwHandle, &pack, sizeof(TLogoutPacket));
 		}
+
+		CShutdownManager::instance().RemoveDesc((LPDESC)this);
 	}
 
 	if (m_sock != INVALID_SOCKET)
@@ -202,6 +205,7 @@ EVENTFUNC(ping_event)
 #ifdef ENABLE_LIMIT_TIME
 	if ((unsigned)get_global_time() >= GLOBAL_LIMIT_TIME)
 	{
+		sys_err("Server life time expired.");
 		extern void ClearAdminPages();
 		ClearAdminPages();
 		extern g_bShutdown;
