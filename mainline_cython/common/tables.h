@@ -152,6 +152,9 @@ enum
 	HEADER_GD_REQUEST_CHARGE_CASH	= 137,
 
 	HEADER_GD_DELETE_AWARDID	= 138,	// delete gift notify icon
+	
+	HEADER_GD_UPDATE_CHANNELSTATUS	= 139,
+	HEADER_GD_REQUEST_CHANNELSTATUS	= 140,
 
 	HEADER_GD_SETUP			= 0xff,
 
@@ -285,6 +288,7 @@ enum
 #endif
 	HEADER_DG_RESULT_CHARGE_CASH	= 179,
 	HEADER_DG_ITEMAWARD_INFORMER	= 180,	//gift notify
+	HEADER_DG_RESPOND_CHANNELSTATUS		= 181,
 
 	HEADER_DG_MAP_LOCATIONS		= 0xfe,
 	HEADER_DG_P2P			= 0xff,
@@ -598,8 +602,8 @@ typedef struct SShopItemTable
 	BYTE		count;
 
     TItemPos	pos;			// PC 상점에만 이용
-	DWORD		price;	// PC 상점에만 이용
-	BYTE		display_pos; // PC 상점에만 이용, 보일 위치.
+	DWORD		price;	// PC, shop_table_ex.txt 상점에만 이용
+	BYTE		display_pos; // PC, shop_table_ex.txt 상점에만 이용, 보일 위치.
 } TShopItemTable;
 
 typedef struct SShopTable
@@ -1466,6 +1470,12 @@ typedef struct tDeleteAwardID
 {
 	DWORD dwID;
 } TPacketDeleteAwardID;
+
+typedef struct SChannelStatus
+{
+	short nPort;
+	BYTE bStatus;
+} TChannelStatus;
 
 #pragma pack()
 #endif
