@@ -4,6 +4,7 @@
 #include "../common/VnumHelper.h"
 
 #include "char.h"
+
 #include "config.h"
 #include "utils.h"
 #include "crc32.h"
@@ -1320,7 +1321,11 @@ void CHARACTER::Disconnect(const char * c_pszReason)
 	p.bHeader = HEADER_GG_LOGOUT;
 	strlcpy(p.szName, GetName(), sizeof(p.szName));
 	P2P_MANAGER::instance().Send(&p, sizeof(TPacketGGLogout));
-	LogManager::instance().CharLog(this, 0, "LOGOUT", "");
+	char buf[51];
+	snprintf(buf, sizeof(buf), "%s %d %d %ld %d", 
+		inet_ntoa(GetDesc()->GetAddr().sin_addr), GetGold(), g_bChannel, GetMapIndex(), GetAlignment());
+
+	LogManager::instance().CharLog(this, 0, "LOGOUT", buf);
 
 	if (LC_IsYMIR() || LC_IsKorea() || LC_IsBrazil())
 	{
@@ -2110,11 +2115,12 @@ void CHARACTER::ComputeBattlePoints()
 				iStatAtk = (4 * GetPoint(POINT_ST) + 2 * GetPoint(POINT_IQ)) / 3;
 				break;
 
+#ifdef ENABLE_WOLFMAN_CHARACTER
 			case JOB_WOLFMAN:
 				// TODO: 수인족 공격력 공식 기획자에게 요청
 				iStatAtk = (2 * GetPoint(POINT_ST));
 				break;
-
+#endif
 			default:
 				sys_err("invalid job %d", GetJob());
 				iStatAtk = (2 * GetPoint(POINT_ST));
@@ -2388,6 +2394,11 @@ void CHARACTER::ComputePoints()
 	if (NULL != pPetSystem)
 	{
 		pPetSystem->RefreshBuff();
+	}
+
+	for (TMapBuffOnAttrs::iterator it = m_map_buff_on_attrs.begin(); it != m_map_buff_on_attrs.end(); it++)
+	{
+		it->second->GiveAllAttributes();
 	}
 
 	UpdatePacket();
@@ -3031,6 +3042,7 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 
 			sys_log(0, "LEVELUP: %s %d NEXT EXP %d", GetName(), GetLevel(), GetNextExp());
 
+#ifdef ENABLE_WOLFMAN_CHARACTER
 			// WOLFMAN 수인족 특수처리 (수인족은 직군이 하나이므로, 5레벨이 되면 무조건 1번 직군으로 설정함. 하드코딩 ㅈㅅ)
 			if (GetJob() == JOB_WOLFMAN)
 			{
@@ -3039,7 +3051,7 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 				else
 					SetSkillGroup(0);
 			}
-				
+#endif		
 			PointChange(POINT_NEXT_EXP,	GetNextExp(), false);
 
 			if (amount)
@@ -3365,6 +3377,19 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 
 				SetGold(GetGold() + amount);
 				val = GetGold();
+				if (LC_IsBrazil())
+				{
+					if (0 == val)
+					{
+						static time_t last_dump_time = 0;
+						if (last_dump_time + 86400 < get_global_time())
+						{
+							last_dump_time = get_global_time();
+							core_dump();
+						}
+						LogManager::instance().CharLog(this, amount, "ZERO_GOLD", "");
+					}
+				}
 			}
 			break;
 
@@ -5925,13 +5950,13 @@ void CHARACTER::ResetPoint(int iLv)
 	SetRandomHP((iLv - 1) * number(JobInitialPoints[GetJob()].hp_per_lv_begin, JobInitialPoints[GetJob()].hp_per_lv_end));
 	SetRandomSP((iLv - 1) * number(JobInitialPoints[GetJob()].sp_per_lv_begin, JobInitialPoints[GetJob()].sp_per_lv_end));
 
-	PointChange(POINT_STAT, ((MINMAX(1, iLv, 99) - 1) * 3) + GetPoint(POINT_LEVEL_STEP) - GetPoint(POINT_STAT));
-	/*
+	//PointChange(POINT_STAT, ((MINMAX(1, iLv, 90) - 1) * 3) + GetPoint(POINT_LEVEL_STEP) - GetPoint(POINT_STAT));
+	
 	if(iLv <= 90)
 		PointChange(POINT_STAT, ((MINMAX(1, iLv, 90) - 1) * 3) + GetPoint(POINT_LEVEL_STEP) - GetPoint(POINT_STAT));
 	else
-		PointChange(POINT_STAT, 270);
-	*/
+		PointChange(POINT_STAT, 270 - GetPoint(POINT_STAT));
+	
 	ComputePoints();
 
 	// 회복
@@ -6874,7 +6899,9 @@ ESex GET_SEX(LPCHARACTER ch)
 		case MAIN_RACE_SURA_M:
 		case MAIN_RACE_ASSASSIN_M:
 		case MAIN_RACE_SHAMAN_M:
+#ifdef ENABLE_WOLFMAN_CHARACTER
 		case MAIN_RACE_WOLFMAN_M:
+#endif
 			return SEX_MALE;
 
 		case MAIN_RACE_ASSASSIN_W:

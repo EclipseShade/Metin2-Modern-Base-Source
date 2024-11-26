@@ -231,11 +231,11 @@ void GetTextTagInfo(const char * src, int src_len, int & hyperlinks, bool & colo
 
 int ProcessTextTag(LPCHARACTER ch, const char * c_pszText, size_t len)
 {
-	//개인상점중에 금강경을 사용할 경우
+	//2012.05.17 김용욱
 	//0 : 정상적으로 사용
 	//1 : 금강경 부족
 	//2 : 금강경이 있으나, 개인상점에서 사용중
-	//3 : 기타
+	//3 : 교환중
 	//4 : 에러
 	int hyperlinks;
 	bool colored;
@@ -247,7 +247,10 @@ int ProcessTextTag(LPCHARACTER ch, const char * c_pszText, size_t len)
 
 	if (ch->GetExchange())
 	{
-		return 3;
+		if (hyperlinks == 0)
+			return 0;
+		else
+			return 3;
 	}
 
 	int nPrismCount = ch->CountSpecifyItem(ITEM_PRISM);
@@ -446,10 +449,11 @@ int CInputMain::Whisper(LPCHARACTER ch, const char * data, size_t uiBytes)
 						char buf[128];
 						int len;
 						if (3==processReturn) //교환중
-							len = snprintf(buf, sizeof(buf), LC_TEXT("사용할수 없습니다."), pTable->szLocaleName);
+							len = snprintf(buf, sizeof(buf), LC_TEXT("다른 거래중(창고,교환,상점)에는 개인상점을 사용할 수 없습니다."), pTable->szLocaleName);
 						else
 							len = snprintf(buf, sizeof(buf), LC_TEXT("%s이 필요합니다."), pTable->szLocaleName);
 						
+
 						if (len < 0 || len >= (int) sizeof(buf))
 							len = sizeof(buf) - 1;
 
@@ -690,7 +694,14 @@ int CInputMain::Chat(LPCHARACTER ch, const char * data, size_t uiBytes)
 	}
 
 	char chatbuf[CHAT_MAX_LEN + 1];
-	int len = snprintf(chatbuf, sizeof(chatbuf), "%s : %s", ch->GetName(), buf);
+	int len;
+	if (g_bShoutAddonEnable)
+	{
+		int len = snprintf(chatbuf, sizeof(chatbuf), "[%s]%s : %s", LC_TEXT(c_apszEmpireNames[ch->GetEmpire()]), ch->GetName(), buf);
+	} else {
+		int len = snprintf(chatbuf, sizeof(chatbuf), "%s : %s", ch->GetName(), buf);
+	}
+	
 
 	if (CHAT_TYPE_SHOUT == pinfo->type)
 	{
@@ -713,7 +724,7 @@ int CInputMain::Chat(LPCHARACTER ch, const char * data, size_t uiBytes)
 		if (NULL != pTable)
 		{
 			if (3==processReturn) //교환중
-				ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("사용할수 없습니다."), pTable->szLocaleName);
+				ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("다른 거래중(창고,교환,상점)에는 개인상점을 사용할 수 없습니다."), pTable->szLocaleName);
 			else
 				ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("%s이 필요합니다."), pTable->szLocaleName);
 						
@@ -724,7 +735,7 @@ int CInputMain::Chat(LPCHARACTER ch, const char * data, size_t uiBytes)
 
 	if (pinfo->type == CHAT_TYPE_SHOUT)
 	{
-		const int SHOUT_LIMIT_LEVEL = g_iUseLocale ? 15 : 3;
+		const int SHOUT_LIMIT_LEVEL = 15;
 
 		if (ch->GetLevel() < SHOUT_LIMIT_LEVEL)
 		{
@@ -1269,6 +1280,39 @@ static const int ComboSequenceBySkillLevel[3][8] =
 
 #define COMBO_HACK_ALLOWABLE_MS	100
 
+// [2013 09 11 CYH]
+DWORD ClacValidComboInterval( LPCHARACTER ch, BYTE bArg )
+{
+	int nInterval = 300;
+	float fAdjustNum = 1.5f; // 일반 유저가 speed hack 에 걸리는 것을 막기 위해. 2013.09.10 CYH
+
+	if( !ch )
+	{
+		sys_err( "ClacValidComboInterval() ch is NULL");
+		return nInterval;
+	}	
+
+	if( bArg == 13 )
+	{
+		float normalAttackDuration = CMotionManager::instance().GetNormalAttackDuration(ch->GetRaceNum());
+		nInterval = (int) (normalAttackDuration / (((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f) + fAdjustNum );
+	}
+	else if( bArg == 14 )
+	{		
+		nInterval = (int)(ani_combo_speed(ch, 1 ) / ((ch->GetPoint(POINT_ATT_SPEED) / 100.f) + fAdjustNum) );
+	}
+	else if( bArg > 14 && bArg << 22 )
+	{
+		nInterval = (int)(ani_combo_speed(ch, bArg - 13 ) / ((ch->GetPoint(POINT_ATT_SPEED) / 100.f) + fAdjustNum) );
+	}
+	else
+	{
+		sys_err( "ClacValidComboInterval() Invalid bArg(%d) ch(%s)", bArg, ch->GetName() );		
+	}	
+
+	return nInterval;
+}
+
 bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack)
 {
 	if(!gHackCheckEnable) return false;
@@ -1284,6 +1328,16 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 		return false;
 	int ComboInterval = dwTime - ch->GetLastComboTime();
 	int HackScalar = 0; // 기본 스칼라 단위 1
+
+	// [2013 09 11 CYH] debugging log
+		/*sys_log(0, "COMBO_TEST_LOG: %s arg:%u interval:%d valid:%u atkspd:%u riding:%s",
+						ch->GetName(),
+						bArg,
+						ComboInterval,
+						ch->GetValidComboInterval(),
+						ch->GetPoint(POINT_ATT_SPEED),
+						ch->IsRiding() ? "yes" : "no");*/
+
 #if 0	
 	sys_log(0, "COMBO: %s arg:%u seq:%u delta:%d checkspeedhack:%d",
 			ch->GetName(), bArg, ch->GetComboSequence(), ComboInterval - ch->GetValidComboInterval(), CheckSpeedHack);
@@ -1297,7 +1351,6 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 		if (CheckSpeedHack && ComboInterval > 0 && ComboInterval < ch->GetValidComboInterval() - COMBO_HACK_ALLOWABLE_MS)
 		{
 			// FIXME 첫번째 콤보는 이상하게 빨리 올 수가 있어서 300으로 나눔 -_-;
-			
 			// 다수의 몬스터에 의해 다운되는 상황에서 공격을 하면
 			// 첫번째 콤보가 매우 적은 인터벌로 들어오는 상황 발생.
 			// 이로 인해 콤보핵으로 튕기는 경우가 있어 다음 코드 비 활성화.
@@ -1313,7 +1366,9 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 		}
 
 		ch->SetComboSequence(1);
-		ch->SetValidComboInterval((int) (ani_combo_speed(ch, 1) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+		// 2013 09 11 CYH edited
+		//ch->SetValidComboInterval((int) (ani_combo_speed(ch, 1) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+		ch->SetValidComboInterval( ClacValidComboInterval(ch, bArg) );
 		ch->SetLastComboTime(dwTime);
 	}
 	else if (bArg > 14 && bArg < 22)
@@ -1368,7 +1423,9 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 			else
 				ch->SetComboSequence(ch->GetComboSequence() + 1);
 
-			ch->SetValidComboInterval((int) (ani_combo_speed(ch, bArg - 13) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+			// 2013 09 11 CYH edited
+			//ch->SetValidComboInterval((int) (ani_combo_speed(ch, bArg - 13) / (ch->GetPoint(POINT_ATT_SPEED) / 100.f)));
+			ch->SetValidComboInterval( ClacValidComboInterval(ch, bArg) );
 			ch->SetLastComboTime(dwTime);
 		}
 	}
@@ -1408,9 +1465,12 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 				ch->SetLastComboTime(dwTime);
 			}
 			*/
-			float normalAttackDuration = CMotionManager::instance().GetNormalAttackDuration(ch->GetRaceNum());
-			int k = (int) (normalAttackDuration / ((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f);
-			ch->SetValidComboInterval(k);
+
+			// 2013 09 11 CYH edited
+			//float normalAttackDuration = CMotionManager::instance().GetNormalAttackDuration(ch->GetRaceNum());
+			//int k = (int) (normalAttackDuration / ((float) ch->GetPoint(POINT_ATT_SPEED) / 100.f) * 900.f);			
+			//ch->SetValidComboInterval(k);
+			ch->SetValidComboInterval( ClacValidComboInterval(ch, bArg) );
 			ch->SetLastComboTime(dwTime);
 			// END_OF_POLYMORPH_BUG_FIX
 		}
@@ -1462,8 +1522,6 @@ bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack
 	}
 
 	return HackScalar;
-	
-
 }
 
 void CInputMain::Move(LPCHARACTER ch, const char * data)
@@ -1493,7 +1551,7 @@ void CInputMain::Move(LPCHARACTER ch, const char * data)
 
 	// 텔레포트 핵 체크
 
-//	if (!test_server)
+//	if (!test_server)	//2012.05.15 김용욱 : 테섭에서 (무적상태로) 다수 몬스터 상대로 다운되면서 공격시 콤보핵으로 죽는 문제가 있었다.
 	{
 		const float fDist = DISTANCE_SQRT((ch->GetX() - pinfo->lX) / 100, (ch->GetY() - pinfo->lY) / 100);
 
@@ -1803,6 +1861,35 @@ int CInputMain::SyncPosition(LPCHARACTER ch, const char * c_pcData, size_t uiByt
 		if (!victim->SetSyncOwner(ch))
 			continue;
 
+		const float fDistWithSyncOwner = DISTANCE_SQRT( (victim->GetX() - ch->GetX()) / 100, (victim->GetY() - ch->GetY()) / 100 );
+		static const float fLimitDistWithSyncOwner = 2500.f + 1000.f;
+		// victim과의 거리가 2500 + a 이상이면 핵으로 간주.
+		//	거리 참조 : 클라이언트의 __GetSkillTargetRange, __GetBowRange 함수
+		//	2500 : 스킬 proto에서 가장 사거리가 긴 스킬의 사거리, 또는 활의 사거리
+		//	a = POINT_BOW_DISTANCE 값... 인데 실제로 사용하는 값인지는 잘 모르겠음. 아이템이나 포션, 스킬, 퀘스트에는 없는데...
+		//		그래도 혹시나 하는 마음에 버퍼로 사용할 겸해서 1000.f 로 둠...
+		if (fDistWithSyncOwner > fLimitDistWithSyncOwner)
+		{
+			// g_iSyncHackLimitCount번 까지는 봐줌.
+			if (ch->GetSyncHackCount() < g_iSyncHackLimitCount)
+			{
+				ch->SetSyncHackCount(ch->GetSyncHackCount() + 1);
+				continue;
+			}
+			else
+			{
+				LogManager::instance().HackLog( "SYNC_POSITION_HACK", ch );
+
+				sys_err( "Too far SyncPosition DistanceWithSyncOwner(%f)(%s) from Name(%s) CH(%d,%d) VICTIM(%d,%d) SYNC(%d,%d)",
+					fDistWithSyncOwner, victim->GetName(), ch->GetName(), ch->GetX(), ch->GetY(), victim->GetX(), victim->GetY(),
+					e->lX, e->lY );
+
+				ch->GetDesc()->SetPhase(PHASE_CLOSE);
+
+				return -1;
+			}
+		}
+		
 		const float fDist = DISTANCE_SQRT( (victim->GetX() - e->lX) / 100, (victim->GetY() - e->lY) / 100 );
 		static const long g_lValidSyncInterval = 100 * 1000; // 100ms
 		const timeval &tvLastSyncTime = victim->GetLastSyncTime();
@@ -1886,6 +1973,7 @@ void CInputMain::ScriptButton(LPCHARACTER ch, const void* c_pData)
 	}
 	else if (p->idx & 0x80000000)
 	{
+		//퀘스트 창에서 클릭시(__SelectQuest) 여기로
 		quest::CQuestManager::Instance().QuestInfo(ch->GetPlayerID(), p->idx & 0x7fffffff);
 	}
 	else
@@ -2087,6 +2175,19 @@ void CInputMain::SafeboxCheckout(LPCHARACTER ch, const char * c_pData, bool bMal
 		}
 
 		pkSafebox->Remove(p->bSafePos);
+		if (bMall)
+		{
+			if (NULL == pkItem->GetProto())
+			{
+				sys_err ("pkItem->GetProto() == NULL (id : %d)",pkItem->GetID());
+				return ;
+			}
+			// 100% 확률로 속성이 붙어야 하는데 안 붙어있다면 새로 붙힌다. ...............
+			if (100 == pkItem->GetProto()->bAlterToMagicItemPct && 0 == pkItem->GetAttributeCount())
+			{
+				pkItem->AlterToMagicItem();
+			}
+		}
 		pkItem->AddToCharacter(ch, p->ItemPos);
 		ITEM_MANAGER::instance().FlushDelayedSave(pkItem);
 	}
@@ -2253,6 +2354,13 @@ void CInputMain::PartyRemove(LPCHARACTER ch, const char* c_pData)
 		}
 		else
 		{
+			// 적룡성에서 파티장이 던젼 밖에서 파티 해산 못하게 막자
+			if(pParty->IsPartyInDungeon(351))
+			{
+				ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<파티>던전 안에 파티원이 있어 파티를 해산 할 수 없습니다."));
+				return;
+			}
+
 			// leader can remove any member
 			if (p->pid == ch->GetPlayerID() || pParty->GetMemberCount() == 2)
 			{

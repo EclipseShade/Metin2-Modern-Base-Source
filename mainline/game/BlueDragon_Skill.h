@@ -47,7 +47,9 @@ struct FSkillBreath
 							case JOB_ASSASSIN:	ptr = "assa";	break;
 							case JOB_SURA:		ptr = "sura";	break;
 							case JOB_SHAMAN:	ptr = "muda";	break;
-
+#ifdef ENABLE_WOLFMAN_CHARACTER
+							case JOB_WOLFMAN:	ptr = "wolf";	break;	// TODO: 블루드래곤 수인족 전투 처리
+#endif
 							default:
 							case JOB_MAX_NUM:	return;
 						}
@@ -70,7 +72,9 @@ struct FSkillBreath
 							case JOB_ASSASSIN:	ptr = "assa";	break;
 							case JOB_SURA:		ptr = "sura";	break;
 							case JOB_SHAMAN:	ptr = "muda";	break;
-
+#ifdef ENABLE_WOLFMAN_CHARACTER
+							case JOB_WOLFMAN:	ptr = "wolf";	break;	// TODO: 블루드래곤 수인족 전투 처리
+#endif
 							default:
 							case JOB_MAX_NUM:	return;
 						}
@@ -225,7 +229,9 @@ struct FSkillEarthQuake
 							case JOB_ASSASSIN:	ptr = "assa";	break;
 							case JOB_SURA:		ptr = "sura";	break;
 							case JOB_SHAMAN:	ptr = "muda";	break;
-
+#ifdef ENABLE_WOLFMAN_CHARACTER
+							case JOB_WOLFMAN:	ptr = "wolf";	break;	// TODO: 블루드래곤 수인족 전투 처리
+#endif
 							default:
 							case JOB_MAX_NUM:	return;
 						}
@@ -243,7 +249,9 @@ struct FSkillEarthQuake
 							case JOB_ASSASSIN:	ptr = "assa";	break;
 							case JOB_SURA:		ptr = "sura";	break;
 							case JOB_SHAMAN:	ptr = "muda";	break;
-
+#ifdef ENABLE_WOLFMAN_CHARACTER
+							case JOB_WOLFMAN:	ptr = "wolf";	break;	// TODO: 블루드래곤 수인족 전투 처리
+#endif
 							default:
 							case JOB_MAX_NUM:	return;
 						}

@@ -2115,6 +2115,12 @@ void CHARACTER::ComputeBattlePoints()
 				iStatAtk = (4 * GetPoint(POINT_ST) + 2 * GetPoint(POINT_IQ)) / 3;
 				break;
 
+#ifdef ENABLE_WOLFMAN_CHARACTER
+			case JOB_WOLFMAN:
+				// TODO: 수인족 공격력 공식 기획자에게 요청
+				iStatAtk = (2 * GetPoint(POINT_ST));
+				break;
+#endif
 			default:
 				sys_err("invalid job %d", GetJob());
 				iStatAtk = (2 * GetPoint(POINT_ST));
@@ -3036,6 +3042,16 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 
 			sys_log(0, "LEVELUP: %s %d NEXT EXP %d", GetName(), GetLevel(), GetNextExp());
 
+#ifdef ENABLE_WOLFMAN_CHARACTER
+			// WOLFMAN 수인족 특수처리 (수인족은 직군이 하나이므로, 5레벨이 되면 무조건 1번 직군으로 설정함. 하드코딩 ㅈㅅ)
+			if (GetJob() == JOB_WOLFMAN)
+			{
+				if (5 <= val)
+					SetSkillGroup(1);
+				else
+					SetSkillGroup(0);
+			}
+#endif		
 			PointChange(POINT_NEXT_EXP,	GetNextExp(), false);
 
 			if (amount)
@@ -6883,6 +6899,9 @@ ESex GET_SEX(LPCHARACTER ch)
 		case MAIN_RACE_SURA_M:
 		case MAIN_RACE_ASSASSIN_M:
 		case MAIN_RACE_SHAMAN_M:
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case MAIN_RACE_WOLFMAN_M:
+#endif
 			return SEX_MALE;
 
 		case MAIN_RACE_ASSASSIN_W:

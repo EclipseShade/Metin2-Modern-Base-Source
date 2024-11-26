@@ -275,7 +275,9 @@ bool CMotionManager::Build()
 		"data/pc2/assassin",
 		"data/pc2/sura",
 		"data/pc2/shaman",
+#ifdef ENABLE_WOLFMAN_CHARACTER
 		"data/pc3/wolfman",
+#endif
 	};
 	
 	for (int i = 0; i < MAIN_RACE_MAX_NUM; ++i)

@@ -42,7 +42,6 @@
 #endif
 
 extern int g_server_id;
-
 extern int g_nPortalLimitTime;
 
 ACMD(do_user_horse_ride)
