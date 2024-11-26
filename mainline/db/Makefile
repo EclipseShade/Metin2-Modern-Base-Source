@@ -28,6 +28,9 @@ LIBDIR += -L../../ExternGame/libpoly
 LIBDIR += -L../../ExternGame/libsql
 LIBDIR += -L /usr/local/lib/mysql
 
+# IncDir
+INCDIR += -I/usr/local/include
+
 # Libs
 LIBS = -lthecore -lmysqlclient -lsql -lpoly -lgame -lm -lz
 LIBS += -lc++
