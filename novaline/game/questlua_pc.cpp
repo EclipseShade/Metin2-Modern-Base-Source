@@ -2070,11 +2070,11 @@ teleport_area:
 		//		3: 이미 같은 이름이 사용중
 		//		4: 성공
 		//		5: 해당 기능 지원하지 않음
-		//if ( LC_IsEurope() )
-		//{
-		//	lua_pushnumber(L, 5);
-		//	return 1;
-		//}
+		if ( LC_IsEurope() )
+		{
+			lua_pushnumber(L, 5);
+			return 1;
+		}
 
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
