@@ -761,6 +761,12 @@ void CHARACTER::RemoveGoodAffect()
 	RemoveAffect(SKILL_KWAESOK);
 	RemoveAffect(SKILL_JEUNGRYEOK);
 	RemoveAffect(SKILL_GICHEON);
+
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	// 수인족(WOLFMEN) 버프 추가
+	RemoveAffect(SKILL_JEOKRANG);
+	RemoveAffect(SKILL_CHEONGRANG);
+#endif
 }
 
 bool CHARACTER::IsGoodAffect(BYTE bAffectType) const
@@ -789,6 +795,11 @@ bool CHARACTER::IsGoodAffect(BYTE bAffectType) const
 		case (SKILL_KWAESOK):
 		case (SKILL_JEUNGRYEOK):
 		case (SKILL_GICHEON):
+
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case (SKILL_JEOKRANG):
+		case (SKILL_CHEONGRANG):
+#endif
 			return true;
 	}
 	return false;

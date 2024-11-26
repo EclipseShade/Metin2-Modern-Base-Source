@@ -4256,6 +4256,9 @@ ACMD (do_attr_full_set)
 	case JOB_ASSASSIN:
 	case JOB_SURA:
 	case JOB_SHAMAN:
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	case JOB_WOLFMAN:
+#endif
 		{
 			// 무사 몸빵 셋팅.
 			// 이것만 나와 있어서 임시로 모든 직군 다 이런 속성 따름.

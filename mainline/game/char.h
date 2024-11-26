@@ -44,6 +44,10 @@ enum
 	MAIN_RACE_ASSASSIN_M,
 	MAIN_RACE_SURA_W,
 	MAIN_RACE_SHAMAN_M,
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	MAIN_RACE_WOLFMAN_M,
+#endif
+
 	MAIN_RACE_MAX_NUM,
 };
 
@@ -286,6 +290,12 @@ enum EPointTypes
 	POINT_RESIST_CRITICAL = 136,		// 크리티컬 저항	: 상대의 크리티컬 확률을 감소
 	POINT_RESIST_PENETRATE = 137,		// 관통타격 저항	: 상대의 관통타격 확률을 감소
 
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	POINT_ATTBONUS_WOLFMAN,				// 138 수인족에게 강함
+	POINT_RESIST_WOLFMAN,				// 139 수인족에게 저항
+	POINT_RESIST_CLAW,					// 140 CLAW에 저항
+#endif
+
 	//POINT_MAX_NUM = 129	common/length.h
 };
 
@@ -444,8 +454,7 @@ class CTrigger
 		int	(*pFunc) (TRIGGERPARAM);
 };
 
-EVENTINFO(char_event_info)
-{
+EVENTINFO(char_event_info) {
 	DynamicCharacterPtr ch;
 };
 

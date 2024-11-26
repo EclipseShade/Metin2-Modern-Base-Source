@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include <sstream>
+
 #include "constants.h"
 #include "char.h"
 #include "char_manager.h"
@@ -1326,6 +1326,33 @@ namespace quest
 		}
 	}
 
+	int _get_special_item_group( lua_State* L )
+	{
+		if (!lua_isnumber (L, 1))
+		{
+			sys_err("invalid argument");
+			return 0;
+		}
+
+		const CSpecialItemGroup* pItemGroup = ITEM_MANAGER::instance().GetSpecialItemGroup((DWORD)lua_tonumber(L, 1));
+
+		if (!pItemGroup)
+		{
+			sys_err("cannot find special item group %d", (DWORD)lua_tonumber(L, 1));
+			return 0;
+		}
+
+		int count = pItemGroup->GetGroupSize();
+		
+		for (int i = 0; i < count; i++)
+		{
+			lua_pushnumber(L, (int)pItemGroup->GetVnum(i));
+			lua_pushnumber(L, (int)pItemGroup->GetCount(i));
+		}
+
+		return count*2;
+	}
+
 	void RegisterGlobalFunctionTable(lua_State* L)
 	{
 		extern int quest_setstate(lua_State* L);
@@ -1410,6 +1437,7 @@ namespace quest
 			{	"get_locale_base_path",			_get_locale_base_path			},
 			{	"purge_area",					_purge_area						},
 			{	"warp_all_in_area_to_area",		_warp_all_in_area_to_area		},
+			{	"get_special_item_group",		_get_special_item_group			},
 
 			{	NULL,	NULL	}
 		};
