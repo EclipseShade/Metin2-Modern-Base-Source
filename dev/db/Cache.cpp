@@ -271,6 +271,11 @@ void CItemPriceListTableCache::OnFlush()
 	
 	m_bNeedQuery = false;
 }
+
+CItemPriceListTableCache::~CItemPriceListTableCache()
+{
+}
+
 // END_OF_MYSHOP_PRICE_LIST
 #ifdef __AUCTION__
 CAuctionItemInfoCache::CAuctionItemInfoCache()
