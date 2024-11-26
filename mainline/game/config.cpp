@@ -34,6 +34,14 @@ int		ping_event_second_cycle = passes_per_sec * 60;
 bool	g_bNoMoreClient = false;
 bool	g_bNoRegen = false;
 bool	g_bNoPasspod = false;
+bool	g_bEmpireShopPriceTrippleDisable = false;
+bool	g_bShoutAddonEnable = false;
+bool	g_bGlobalShoutEnable = false;
+bool	g_bDisablePrismNeed = false;
+bool	g_bDisableEmotionMask = false;
+bool	g_bDisableItemBonusChangeTime = false;
+bool	g_bAllMountAttack = false;
+BYTE	g_bItemCountLimit = 200;
 
 // TRAFFIC_PROFILER
 bool		g_bTrafficProfileOn = false;
@@ -850,6 +858,12 @@ void config_init(const string& st_localeServiceName)
 			continue;
 		}
 
+		TOKEN("item_count_limit")
+		{
+			str_to_number(g_bItemCountLimit, value_string);
+			continue;
+		}
+		
 		TOKEN("shutdowned")
 		{
 			g_bNoMoreClient = true;
@@ -861,7 +875,49 @@ void config_init(const string& st_localeServiceName)
 			g_bNoRegen = true;
 			continue;
 		}
+		
+		TOKEN("shop_price_3x_disable")
+		{
+			g_bEmpireShopPriceTrippleDisable = true;
+			continue;
+		}
 
+		TOKEN("shout_addon")
+		{
+			g_bShoutAddonEnable = true;
+			continue;
+		}
+		
+		TOKEN("enable_all_mount_attack")
+		{
+			g_bAllMountAttack = true;
+			continue;
+		}		
+		
+		TOKEN("disable_change_attr_time")
+		{
+			g_bDisableItemBonusChangeTime = true;
+			continue;
+		}
+		
+		TOKEN("disable_prism_item")
+		{
+			g_bDisablePrismNeed = true;
+			continue;
+		}
+		
+		TOKEN("global_shout")
+		{
+			g_bGlobalShoutEnable = true;
+			continue;
+		}
+				
+		TOKEN("disable_emotion_mask")
+		{
+			g_bDisableEmotionMask = true;
+			continue;
+		}
+		
 		TOKEN("traffic_profile")
 		{
 			g_bTrafficProfileOn = true;
