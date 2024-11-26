@@ -18,8 +18,8 @@
 #
 
 # TO-DO List:
-- [ ] Quest Renewal: https://metin2.dev/topic/30275-official-quest-renewal/
-
+- [ ] GF_Quest Renewal: https://metin2.dev/topic/30275-official-quest-renewal/
+- [ ] GF_Ship Defense (Hydra Dungeon) https://metin2.dev/topic/29527-ship-defense-hydra-dungeon/
 #
 
 #### FreeBSD 10.3 - Instalation Guide
