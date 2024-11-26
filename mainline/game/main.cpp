@@ -247,6 +247,7 @@ void heartbeat(LPHEART ht, int pulse)
 #ifdef ENABLE_LIMIT_TIME
 		if ((unsigned)get_global_time() >= GLOBAL_LIMIT_TIME)
 		{
+			sys_err("Server life time expired.");
 			g_bShutdown = true;
 		}
 #endif
@@ -686,6 +687,7 @@ int start(int argc, char **argv)
 #ifdef ENABLE_LIMIT_TIME
 	if ((unsigned)get_global_time() >= GLOBAL_LIMIT_TIME)
 	{
+		sys_err("Server life time expired.");
 		return 0;
 	}
 #endif
@@ -837,7 +839,7 @@ int start(int argc, char **argv)
 		}
 		else
 		{
-			fprintf(stderr, "MasterAuth %d", LC_GetLocalType());
+			fprintf(stderr, "MasterAuth %d\n", LC_GetLocalType());
 		}
 	}
 	/* game server to teen server */

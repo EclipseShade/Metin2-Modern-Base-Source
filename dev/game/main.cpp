@@ -80,10 +80,10 @@
 #include <execinfo.h>
 #endif
 
-//// 윈도우에서 테스트할 때는 항상 서버키 체크
-//#ifdef _WIN32
-	#define _USE_SERVER_KEY_
-//#endif
+// 윈도우에서 테스트할 때는 항상 서버키 체크
+#ifdef _WIN32
+	//#define _USE_SERVER_KEY_
+#endif
 #include "check_server.h"
 
 extern void WriteVersion();
@@ -398,7 +398,8 @@ static void CleanUpForEarlyExit() {
 	CancelReloadSpamEvent();
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
 #ifdef DEBUG_ALLOC
 	DebugAllocator::StaticSetUp();
 #endif
@@ -488,6 +489,15 @@ int main(int argc, char **argv) {
 	Blend_Item_init();
 	ani_init();
 	PanamaLoad();
+
+	Metin2Server_Check();
+
+#if defined(_WIN32) && defined(_USE_SERVER_KEY_)
+	if (CheckServer::IsFail())
+	{
+		return 1;
+	}
+#endif
 
 	if ( g_bTrafficProfileOn )
 		TrafficProfiler::instance().Initialize( TRAFFIC_PROFILE_FLUSH_CYCLE, "ProfileLog" );
@@ -923,6 +933,12 @@ int idle()
 		memset(&thecore_profiler[0], 0, sizeof(thecore_profiler));
 		memset(&s_dwProfiler[0], 0, sizeof(s_dwProfiler));
 	}
+#ifdef _USE_SERVER_KEY_
+	if (Metin2Server_IsInvalid() && 0 == (thecore_random() % 7146))
+	{
+		return 0; // shutdown
+	}
+#endif
 
 #ifdef __WIN32__
 	if (_kbhit()) {

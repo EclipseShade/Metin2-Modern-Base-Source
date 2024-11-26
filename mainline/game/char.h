@@ -395,6 +395,10 @@ typedef struct character_point_instant
 
 	WORD			parts[PART_MAX_NUM];
 
+// 아... 진짜 욕을 안 할래야 안 할 수가 없다.
+// char는 인벤을 BYTE array로 grid를 관리하고, exchange나 cube는 CGrid로 grid를 관리하고 뭐냐 이거...
+// grid를 만들어 놨으면 grid를 쓰란 말이야!!!
+// ㅅㅂ 용혼석 인벤을 똑같이 따라서 만든 나도 잘못했다 ㅠㅠ
 	LPITEM			pItems[INVENTORY_AND_EQUIP_SLOT_MAX];
 	BYTE			bItemGrid[INVENTORY_AND_EQUIP_SLOT_MAX];
 

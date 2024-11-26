@@ -49,9 +49,8 @@
 
 //auction_temp
 #ifdef __AUCTION__
-	#include "auction_manager.h"
+#include "auction_manager.h"
 #endif
-
 const int ITEM_BROKEN_METIN_VNUM = 28960;
 
 // CHANGE_ITEM_ATTRIBUTES
@@ -2042,7 +2041,7 @@ bool CHARACTER::UseItemEx(LPITEM item, TItemPos DestCell)
 					}
 				}
 
-				if( dwBoxVnum > 51500 && dwBoxVnum < 52000 )	// 용혼원석들
+				if( (dwBoxVnum > 51500 && dwBoxVnum < 52000) || (dwBoxVnum >= 50255 && dwBoxVnum <= 50260) )	// 용혼원석들
 				{
 					if( !(this->DragonSoul_IsQualified()) )
 					{
@@ -5088,6 +5087,11 @@ bool CHARACTER::UseItemEx(LPITEM item, TItemPos DestCell)
 			if (Blend_Item_find(item->GetVnum()))
 			{
 				int		affect_type		= AFFECT_BLEND;
+				if (item->GetSocket(0) >= _countof(aApplyInfo))
+				{
+					sys_err ("INVALID BLEND ITEM(id : %d, vnum : %d). APPLY TYPE IS %d.", item->GetID(), item->GetVnum(), item->GetSocket(0));
+					return false;
+				}
 				int		apply_type		= aApplyInfo[item->GetSocket(0)].bPointType;
 				int		apply_value		= item->GetSocket(1);
 				int		apply_duration	= item->GetSocket(2);
@@ -5465,8 +5469,21 @@ bool CHARACTER::DropGold(int gold)
 			//Motion(MOTION_PICKUP);
 			PointChange(POINT_GOLD, -gold, true);
 
-			if (gold > 1000) // 천원 이상만 기록한다.
-				LogManager::instance().CharLog(this, gold, "DROP_GOLD", "");
+			// 브라질에 돈이 없어진다는 버그가 있는데,
+			// 가능한 시나리오 중에 하나는,
+			// 메크로나, 핵을 써서 1000원 이하의 돈을 계속 버려 골드를 0으로 만들고, 
+			// 돈이 없어졌다고 복구 신청하는 것일 수도 있다.
+			// 따라서 그런 경우를 잡기 위해 낮은 수치의 골드에 대해서도 로그를 남김.
+			if (LC_IsBrazil() == true)
+			{
+				if (gold >= 213)
+					LogManager::instance().CharLog(this, gold, "DROP_GOLD", "");
+			}
+			else
+			{
+				if (gold > 1000) // 천원 이상만 기록한다.
+					LogManager::instance().CharLog(this, gold, "DROP_GOLD", "");
+			}
 
 			if (false == LC_IsBrazil())
 			{
@@ -5733,8 +5750,21 @@ void CHARACTER::GiveGold(int iAmount)
 	{
 		PointChange(POINT_GOLD, iAmount, true);
 
-		if (iAmount > 1000) // 천원 이상만 기록한다.
-			LogManager::instance().CharLog(this, iAmount, "GET_GOLD", "");
+		// 브라질에 돈이 없어진다는 버그가 있는데,
+		// 가능한 시나리오 중에 하나는,
+		// 메크로나, 핵을 써서 1000원 이하의 돈을 계속 버려 골드를 0으로 만들고, 
+		// 돈이 없어졌다고 복구 신청하는 것일 수도 있다.
+		// 따라서 그런 경우를 잡기 위해 낮은 수치의 골드에 대해서도 로그를 남김.
+		if (LC_IsBrazil() == true)
+		{
+			if (iAmount >= 213)
+				LogManager::instance().CharLog(this, iAmount, "GET_GOLD", "");
+		}
+		else
+		{
+			if (iAmount > 1000) // 천원 이상만 기록한다.
+				LogManager::instance().CharLog(this, iAmount, "GET_GOLD", "");
+		}
 	}
 }
 
@@ -6273,8 +6303,10 @@ void CHARACTER::BuffOnAttr_ValueChange(BYTE bType, BYTE bOldValue, BYTE bNewValu
 	}
 	else
 	{
-		assert (m_map_buff_on_attrs.end() != it);
-		it->second->ChangeBuffValue(bNewValue);
+		if (m_map_buff_on_attrs.end() == it)
+			return;
+		else
+			it->second->ChangeBuffValue(bNewValue);
 	}
 }
 

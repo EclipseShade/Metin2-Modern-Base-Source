@@ -1308,6 +1308,8 @@ DWORD ClacValidComboInterval( LPCHARACTER ch, BYTE bArg )
 
 bool CheckComboHack(LPCHARACTER ch, BYTE bArg, DWORD dwTime, bool CheckSpeedHack)
 {
+	if(!gHackCheckEnable) return false;
+
 	//	죽거나 기절 상태에서는 공격할 수 없으므로, skip한다.
 	//	이렇게 하지 말고, CHRACTER::CanMove()에 
 	//	if (IsStun() || IsDead()) return false;
@@ -1964,6 +1966,7 @@ void CInputMain::ScriptButton(LPCHARACTER ch, const void* c_pData)
 	}
 	else if (p->idx & 0x80000000)
 	{
+		//퀘스트 창에서 클릭시(__SelectQuest) 여기로
 		quest::CQuestManager::Instance().QuestInfo(ch->GetPlayerID(), p->idx & 0x7fffffff);
 	}
 	else
@@ -2344,6 +2347,13 @@ void CInputMain::PartyRemove(LPCHARACTER ch, const char* c_pData)
 		}
 		else
 		{
+			// 적룡성에서 파티장이 던젼 밖에서 파티 해산 못하게 막자
+			if(pParty->IsPartyInDungeon(351))
+			{
+				ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<파티>던전 안에 파티원이 있어 파티를 해산 할 수 없습니다."));
+				return;
+			}
+
 			// leader can remove any member
 			if (p->pid == ch->GetPlayerID() || pParty->GetMemberCount() == 2)
 			{

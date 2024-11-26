@@ -387,6 +387,14 @@ LPITEM ITEM_MANAGER::CreateItem(DWORD vnum, DWORD count, DWORD id, bool bTryMagi
 			item->SetSocket(0, dwSkillVnum);
 		}
 	}
+	else
+	{
+		// 100% 확률로 속성이 붙어야 하는데 안 붙어있다면 새로 붙힌다. ...............
+		if (100 == table->bAlterToMagicItemPct && 0 == item->GetAttributeCount())
+		{
+			item->AlterToMagicItem();
+		}
+	}
 
 	if (item->GetType() == ITEM_QUEST)
 	{
@@ -977,6 +985,7 @@ bool ITEM_MANAGER::CreateDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, std::
 	
 	// BuyerTheitGloves Item Group
 	{
+		// by mhh 일단 임시로 일본은 일반 drop 과 동일하게 적용
 		if (pkKiller->GetPremiumRemainSeconds(PREMIUM_ITEM) > 0 ||
 				pkKiller->IsEquipUniqueGroup(UNIQUE_GROUP_DOUBLE_ITEM))
 		{

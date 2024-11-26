@@ -444,7 +444,8 @@ class CTrigger
 		int	(*pFunc) (TRIGGERPARAM);
 };
 
-EVENTINFO(char_event_info) {
+EVENTINFO(char_event_info)
+{
 	DynamicCharacterPtr ch;
 };
 
@@ -1997,6 +1998,19 @@ class CHARACTER : public CEntity, public CFSM, public CHorseRider
 	private:
 		bool IsValidItemPosition(TItemPos Pos) const;
 
+		//독일 선물 기능 패킷 임시 저장
+	private:
+		unsigned int itemAward_vnum;
+		char		 itemAward_cmd[20];
+		//bool		 itemAward_flag;
+	public:
+		unsigned int GetItemAward_vnum() { return itemAward_vnum; }
+		char*		 GetItemAward_cmd() { return itemAward_cmd;	  }
+		//bool		 GetItemAward_flag() { return itemAward_flag; }
+		void		 SetItemAward_vnum(unsigned int vnum) { itemAward_vnum = vnum; }
+		void		 SetItemAward_cmd(char* cmd) { strcpy(itemAward_cmd,cmd); }
+		//void		 SetItemAward_flag(bool flag) { itemAward_flag = flag; }
+
 	public:
 		//용혼석
 		
@@ -2028,19 +2042,6 @@ class CHARACTER : public CEntity, public CFSM, public CHorseRider
 		bool		DragonSoul_RefineWindow_Close();
 		LPENTITY	DragonSoul_RefineWindow_GetOpener() { return  m_pointsInstant.m_pDragonSoulRefineWindowOpener; }
 		bool		DragonSoul_RefineWindow_CanRefine();
-
-		//독일 선물 기능 패킷 임시 저장
-	private:
-		unsigned int itemAward_vnum;
-		char		 itemAward_cmd[20];
-		//bool		 itemAward_flag;
-	public:
-		unsigned int GetItemAward_vnum() { return itemAward_vnum; }
-		char*		 GetItemAward_cmd() { return itemAward_cmd;	  }
-		//bool		 GetItemAward_flag() { return itemAward_flag; }
-		void		 SetItemAward_vnum(unsigned int vnum) { itemAward_vnum = vnum; }
-		void		 SetItemAward_cmd(char* cmd) { strcpy(itemAward_cmd,cmd); }
-		//void		 SetItemAward_flag(bool flag) { itemAward_flag = flag; }
 
 	private:
 		// SyncPosition을 악용하여 타유저를 이상한 곳으로 보내는 핵 방어하기 위하여,

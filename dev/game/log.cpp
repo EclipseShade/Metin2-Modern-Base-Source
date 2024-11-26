@@ -6,6 +6,7 @@
 #include "char.h"
 #include "desc.h"
 #include "item.h"
+#include "locale_service.h"
 
 static char	__escape_hint[1024];
 

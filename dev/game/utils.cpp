@@ -146,6 +146,7 @@ int CalculateDuration(int iSpd, int iDur)
 
 	return iDur * i / 100;
 }
+
 double uniform_random(double a, double b)
 {
 	return thecore_random() / (RAND_MAX + 1.f) * (b - a) + a;

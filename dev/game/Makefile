@@ -28,9 +28,11 @@ INCDIR += -I../../ExternGame/liblua/include
 INCDIR += -I../../ExternGame/libserverkey
 INCDIR += -I../../ExternGame
 INCDIR += -I../../libdevil
-INCDIR += -I/usr/local/include
 
 # LibDir
+LIBDIR = -L /usr/local/lib
+LIBDIR += -L /usr/local/lib/mysql
+
 LIBDIR += -L../../ExternGame/libhackshield/lib
 LIBDIR += -L../../ExternGame/libthecore/lib
 LIBDIR += -L../../ExternGame/libserverkey
@@ -39,8 +41,6 @@ LIBDIR += -L../../ExternGame/libgame/lib
 LIBDIR += -L../../ExternGame/liblua/lib
 LIBDIR += -L../../ExternGame/libpoly
 LIBDIR += -L../../ExternGame/libsql
-LIBDIR += -L /usr/local/lib/mysql
-LIBDIR += -L /usr/local/lib
 LIBDIR += -L../../libdevil
 
 # Libs

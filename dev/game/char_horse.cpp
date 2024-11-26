@@ -230,7 +230,7 @@ void CHARACTER::HorseSummon(bool bSummon, bool bFromFar, DWORD dwVnum, const cha
 	{
 		if (!m_chHorse)
 			return;
-		
+
 		LPCHARACTER chHorse = m_chHorse;
 
 		chHorse->SetRider(NULL); // m_chHorse assign to NULL
@@ -244,18 +244,17 @@ void CHARACTER::HorseSummon(bool bSummon, bool bFromFar, DWORD dwVnum, const cha
 			M2_DESTROY_CHARACTER(chHorse);
 		}
 		else
-		{			
+		{
 			// 멀어지면서 사라지는 처리 하기
 			chHorse->SetNowWalking(false);
 			float fx, fy;
 			chHorse->SetRotation(GetDegreeFromPositionXY(chHorse->GetX(), chHorse->GetY(), GetX(), GetY())+180);
 			GetDeltaByDegree(chHorse->GetRotation(), 3500, &fx, &fy);
 			chHorse->Goto((long)(chHorse->GetX()+fx), (long) (chHorse->GetY()+fy));
-			chHorse->SendMovePacket(FUNC_WAIT, 0, 0, 0, 0);			
+			chHorse->SendMovePacket(FUNC_WAIT, 0, 0, 0, 0);
 		}
 
 		m_chHorse = NULL;
-		
 	}
 }
 

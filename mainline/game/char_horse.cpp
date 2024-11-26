@@ -234,6 +234,10 @@ void CHARACTER::HorseSummon(bool bSummon, bool bFromFar, DWORD dwVnum, const cha
 		LPCHARACTER chHorse = m_chHorse;
 
 		chHorse->SetRider(NULL); // m_chHorse assign to NULL
+		
+		// 말시체가 소환되어 있을때 상점 열면 bFromFar를 false로 만들어 말 시체를 사라지게 한다.
+		if ((GetHorseHealth() <= 0))
+			bFromFar = false;
 
 		if (!bFromFar)
 		{
