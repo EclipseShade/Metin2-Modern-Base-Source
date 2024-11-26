@@ -1805,16 +1805,14 @@ namespace quest
 		}
 	}
 
-	void CQuestManager::CancelServerTimers(DWORD arg)
-	{
+	void CQuestManager::CancelServerTimers(DWORD arg) {
 		itertype(m_mapServerTimer) it = m_mapServerTimer.begin();
 		for ( ; it != m_mapServerTimer.end();) {
 			if (it->first.second == arg) {
 				LPEVENT event = it->second;
 				event_cancel(&event);
 				m_mapServerTimer.erase(it++);
-			}
-			else {
+			} else {
 				++it;
 			}
 		}
