@@ -202,7 +202,7 @@ int Start()
 
 	if (!CConfig::instance().GetValue("TABLE_POSTFIX", szBuf, 256))
 	{
-		//sys_err("TABLE_POSTFIX not configured use default");
+		sys_err("TABLE_POSTFIX not configured use default");
 		szBuf[0] = '\0';
 	}
 
