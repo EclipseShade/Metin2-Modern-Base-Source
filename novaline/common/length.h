@@ -192,6 +192,10 @@ enum EJobs
 	JOB_ASSASSIN,
 	JOB_SURA,
 	JOB_SHAMAN,
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	JOB_WOLFMAN,		// 수인족. 개발코드명이 WOLFMAN. (기획자가 정했씀. 나중에 WOLF GIRL 생겨도 나한테 머라하지마셈ㅠㅠ)
+#endif
+
 	JOB_MAX_NUM
 };
 
@@ -433,7 +437,11 @@ enum EApplyTypes
 
 	APPLY_ANTI_CRITICAL_PCT,	//90 크리티컬 저항
 	APPLY_ANTI_PENETRATE_PCT,	//91 관통타격 저항
-
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	APPLY_ATTBONUS_WOLFMAN,		//92 수인족에게 강함
+	APPLY_RESIST_WOLFMAN,		//93 수인족에게 저항
+	APPLY_RESIST_CLAW,			//94 CLAW무기에 저항
+#endif
 
 	MAX_APPLY_NUM,              // 
 };
