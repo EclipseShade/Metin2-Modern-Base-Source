@@ -20,6 +20,8 @@
 # TO-DO List:
 - [ ] GF_Quest Renewal: https://metin2.dev/topic/30275-official-quest-renewal/
 - [ ] GF_Ship Defense (Hydra Dungeon) https://metin2.dev/topic/29527-ship-defense-hydra-dungeon/
+- [ ] GF_Loot Filter https://metin2.dev/topic/30077-official-loot-filter-reversed/
+- [ ] GF_Inventory Expansion https://metin2.dev/topic/15244-official-inventory-expansion/page/7/#comment-167339
 #
 
 #### FreeBSD 10.3 - Instalation Guide
