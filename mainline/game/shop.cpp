@@ -456,8 +456,17 @@ bool CShop::AddGuest(LPCHARACTER ch, DWORD owner_vid, bool bOtherEmpire)
 
 		pack2.items[i].vnum = item.vnum;
 
+		// REMOVED_EMPIRE_PRICE_LIFT
+		
+		int iPriceLift = 3;
+		if (g_bEmpireShopPriceTrippleDisable)
+		{
+			iPriceLift = 1;
+		}
+		
+		
 		if (bOtherEmpire) // no empire price penalty for pc shop
-			pack2.items[i].price = item.price * 3;
+			pack2.items[i].price = item.price * iPriceLift;
 		else
 			pack2.items[i].price = item.price;
 
