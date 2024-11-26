@@ -8,10 +8,10 @@ OBJDIR = .obj
 
 GCC_VERSION = $(shell $(CC) --version 2>&1 | grep "(GCC)" | cut -d' ' -f3  | cut -d'.' -f1)
 BSD_VERSION = $(shell uname -v 2>&1 | cut -d' ' -f2 | cut -d'.' -f1)
-P4_VERSION = $(shell svnversion -n .)
+SVN_VERSION = $(shell svnversion -n .)
 $(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
 
-TARGET = $(BINDIR)/db_r$(P4_VERSION)
+TARGET = $(BINDIR)/db_r$(SVN_VERSION)
 
 CFLAGS = -g -Wall -O2 -pipe -fno-rtti -fno-exceptions -pthread -D_THREAD_SAFE
 
@@ -53,7 +53,7 @@ $(OBJDIR)/%.o: %.cpp
 	@$(CC) $(CFLAGS) $(INCDIR) -c $< -o $@
 
 $(OBJDIR)/version.o: version.cpp
-	@$(CC) $(CFLAGS) -D__USER__=\"$(USER)\" -D__HOSTNAME__=\"$(HOSTNAME)\" -D__PWD__=\"$(PWD)\" -D__P4_VERSION__=\"$(P4_VERSION)\" -c $< -o $@
+	@$(CC) $(CFLAGS) -D__USER__=\"$(USER)\" -D__HOSTNAME__=\"$(HOSTNAME)\" -D__PWD__=\"$(PWD)\" -D__P4_VERSION__=\"$(SVN_VERSION)\" -c $< -o $@
 	@echo compile $<
 
 $(OBJDIR):
