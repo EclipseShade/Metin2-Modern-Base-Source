@@ -2,7 +2,8 @@ PLATFORM = $(shell file /bin/ls | cut -d' ' -f3 | cut -d'-' -f1)
 
 GCC_VERSION = $(shell $(CC) --version 2>&1 | grep "(GCC)" | cut -d' ' -f3  | cut -d'.' -f1)
 BSD_VERSION = $(shell uname -v 2>&1 | cut -d' ' -f2 | cut -d'.' -f1)
-P4_VERSION = $(shell svnversion -n .)
+P4_VERSION = 45000
+#P4_VERSION = $(shell svnversion -n .)
 
 CC = g++
 

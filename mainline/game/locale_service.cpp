@@ -452,24 +452,6 @@ static void __LocaleService_Init_DEFAULT()
 	g_setQuestObjectDir.insert(g_stQuestDir + "/object");
 }
 
-static void __LocaleService_Init_JAPAN()
-{
-	g_stLocale = "sjis";
-	g_stServiceBasePath = "locale/japan";
-	g_stQuestDir = "locale/japan/quest";
-	g_stServiceMapPath = "locale/japan/map";
-
-	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert("locale/japan/quest/object");
-	g_stLocaleFilename = "locale/japan/sjis_string.txt";
-
-	g_iUseLocale = TRUE;
-
-	check_name = check_name_sjis;
-	is_twobyte = is_twobyte_sjis;
-	exp_table = exp_table_euckr;
-}
-
 static void __LocaleService_Init_English()
 {
 	g_stLocale = "";
@@ -502,24 +484,6 @@ static void __LocaleService_Init_HongKong()
 	is_twobyte = is_twobyte_big5;
 }
 
-static void __LocaleService_Init_NewCIBN()
-{
-	g_stLocale = "gb2312";
-	g_stServiceBasePath = "locale/newcibn";
-	g_stQuestDir = "locale/newcibn/quest";
-	g_stServiceMapPath = "locale/newcibn/map";
-
-	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert("locale/newcibn/quest/object");
-	g_stLocaleFilename = "locale/newcibn/locale_string.txt";
-
-	g_iUseLocale = TRUE;
-
-	check_name = check_name_gb2312;
-	is_twobyte = is_twobyte_gb2312;
-	//exp_table = exp_table_newcibn;
-}
-
 static void __LocaleService_Init_Germany()
 {
 	g_stLocale="latin1";
@@ -536,20 +500,6 @@ static void __LocaleService_Init_Germany()
 	check_name = check_name_alphabet;
 	
 	PK_PROTECT_LEVEL = 15;
-}
-
-static void __LocaleService_Init_Korea()
-{
-	g_stLocale="euckr";
-	g_stServiceBasePath = "locale/korea";
-	g_stQuestDir = "locale/korea/quest";
-	g_stServiceMapPath = "locale/korea/map";
-
-	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert("locale/korea/quest/object");
-
-	g_iUseLocale = TRUE;
-	exp_table = exp_table_euckr;
 }
 
 static void __LocaleService_Init_France()
@@ -726,22 +676,6 @@ static void __LocaleService_Init_Brazil()
 	check_name = check_name_alphabet;
 
 	g_iUseLocale = TRUE;
-}
-
-static void __LocaleService_Init_YMIR()
-{
-	g_stLocaleFilename = "";
-
-	g_stServiceBasePath = "locale/" + g_stServiceName;
-	g_stServiceMapPath = g_stServiceBasePath + "/map";
-	g_stQuestDir = g_stServiceBasePath + "/quest";
-
-	g_setQuestObjectDir.clear();	
-	g_setQuestObjectDir.insert(g_stQuestDir + "/object");
-
-	PK_PROTECT_LEVEL = 30;
-
-	exp_table = exp_table_euckr;
 }
 
 static void __LocaleService_Init_Russia() 
@@ -924,41 +858,6 @@ static void __LocaleService_Init_Netherlands()
 	PK_PROTECT_LEVEL = 15;
 }
 
-static void __LocaleService_Init_Singapore()
-{
-	g_stLocale = "latin1";
-	g_stServiceBasePath = "locale/singapore";
-	g_stQuestDir		= "locale/singapore/quest";
-	g_stServiceMapPath	= "locale/singapore/map";
-
-	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert("locale/singapore/quest/object");
-	g_stLocaleFilename = "locale/singapore/locale_string.txt";
-
-	check_name	= check_name_alphabet;
-
-	g_iUseLocale = TRUE;
-	exp_table = exp_table_newcibn;
-}
-
-static void __LocaleService_Init_Vietnam()
-{
-	g_stLocale 			= "latin1";
-	g_stServiceBasePath = "locale/vietnam";
-	g_stQuestDir		= "locale/vietnam/quest";
-	g_stServiceMapPath	= "locale/vietnam/map";
-
-	g_setQuestObjectDir.clear();
-	g_setQuestObjectDir.insert("locale/vietnam/quest/object");
-	g_stLocaleFilename = "locale/vietnam/locale_string.txt";
-
-	check_name	= check_name_alphabet;
-
-	g_iUseLocale = TRUE;
-	exp_table = exp_table_newcibn;
-
-}
-
 static void __LocaleService_Init_Thailand()
 {
 	g_stLocale 			= "latin1";
@@ -1047,11 +946,7 @@ bool LocaleService_Init(const std::string& c_rstServiceName)
 
 	g_stServiceName = c_rstServiceName;
 
-	if ( "japan" == g_stServiceName)
-	{
-		__LocaleService_Init_JAPAN();
-	}
-	else if ( "english" == g_stServiceName)
+	if ( "english" == g_stServiceName)
 	{
 		__LocaleService_Init_English();
 	}
@@ -1059,17 +954,9 @@ bool LocaleService_Init(const std::string& c_rstServiceName)
 	{
 		__LocaleService_Init_HongKong();
 	}
-	else if ( "newcibn" == g_stServiceName)
-	{
-		__LocaleService_Init_NewCIBN();
-	}
 	else if ( "germany" == g_stServiceName)
 	{
 		__LocaleService_Init_Germany();
-	}
-	else if ( "korea" == g_stServiceName)
-	{
-		__LocaleService_Init_Korea();
 	}
 	else if ( "france" == g_stServiceName)
 	{
@@ -1111,10 +998,6 @@ bool LocaleService_Init(const std::string& c_rstServiceName)
 	{
 		__LocaleService_Init_Brazil();
 	}
-	else if ( "ymir" == g_stServiceName)
-	{
-		__LocaleService_Init_YMIR();
-	}
 	else if ( "russia" == g_stServiceName)
 	{
 		__LocaleService_Init_Russia();
@@ -1154,14 +1037,6 @@ bool LocaleService_Init(const std::string& c_rstServiceName)
 	else if ( "netherlands" == g_stServiceName)
 	{
 		__LocaleService_Init_Netherlands();
-	}
-	else if ( "singapore" == g_stServiceName)
-	{
-		__LocaleService_Init_Singapore();
-	}
-	else if ( "vietnam" == g_stServiceName)
-	{
-		__LocaleService_Init_Vietnam();
 	}
 	else if ( "thailand" == g_stServiceName)
 	{
