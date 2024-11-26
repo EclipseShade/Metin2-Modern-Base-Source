@@ -1,5 +1,7 @@
 #include "stdafx.h"
-#include "../../libgame/include/grid.h"
+
+#include "../../ExternGame/libgame/include/grid.h"
+
 #include "constants.h"
 #include "utils.h"
 #include "config.h"
@@ -235,8 +237,8 @@ int CShop::Buy(LPCHARACTER ch, BYTE pos)
 
 	DWORD dwPrice = r_item.price;
 
-	//if (it->second)	// if other empire, price is triple
-	//	dwPrice *= 3;
+	if (it->second)	// if other empire, price is triple
+		dwPrice *= 3;
 
 	if (ch->GetGold() < (int) dwPrice)
 	{
@@ -253,7 +255,7 @@ int CShop::Buy(LPCHARACTER ch, BYTE pos)
 
 	if (!item)
 		return SHOP_SUBHEADER_GC_SOLD_OUT;
-	/*
+
 	if (!m_pkPC)
 	{
 		if (quest::CQuestManager::instance().GetEventFlag("hivalue_item_sell") == 0)
@@ -265,7 +267,7 @@ int CShop::Buy(LPCHARACTER ch, BYTE pos)
 			}
 		}
 	}
-	*/
+
 	int iEmptyPos;
 	if (item->IsDragonSoul())
 	{
@@ -440,15 +442,14 @@ bool CShop::AddGuest(LPCHARACTER ch, DWORD owner_vid, bool bOtherEmpire)
 		const SHOP_ITEM & item = m_itemVector[i];
 
 		//HIVALUE_ITEM_EVENT
-		//if (quest::CQuestManager::instance().GetEventFlag("hivalue_item_sell") == 0)
-		//{
+		if (quest::CQuestManager::instance().GetEventFlag("hivalue_item_sell") == 0)
+		{
 			//축복의 구슬 && 만년한철 이벤트 
-		//	if (item.vnum == 70024 || item.vnum == 70035)
-		//	{				
-		//		continue;
-		//	}
-		//}
-		
+			if (item.vnum == 70024 || item.vnum == 70035)
+			{				
+				continue;
+			}
+		}
 		//END_HIVALUE_ITEM_EVENT
 		if (m_pkPC && !item.pkItem)
 			continue;
