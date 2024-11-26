@@ -16,7 +16,6 @@
 #include "questlua.h"
 #include "locale_service.h"
 #include "XTrapManager.h"
-#include "shutdown_manager.h"
 
 #ifndef __GNUC__
 #include <boost/bind.hpp>
@@ -732,9 +731,6 @@ void CHARACTER_MANAGER::Update(int iPulse)
 
 	// 지연된 DestroyCharacter 하기
 	FlushPendingDestroy();
-
-	// ShutdownManager Update
-	CShutdownManager::Instance().Update();
 }
 
 void CHARACTER_MANAGER::ProcessDelayedSave()

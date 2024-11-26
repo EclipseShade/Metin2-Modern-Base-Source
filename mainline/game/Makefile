@@ -86,7 +86,7 @@ CPPFILE = BattleArena.cpp FSM.cpp MarkConvert.cpp MarkImage.cpp MarkManager.cpp 
 		  auction_manager.cpp FileMonitor_FreeBSD.cpp ClientPackageCryptInfo.cpp cipher.cpp\
 		  buff_on_attributes.cpp check_server.cpp dragon_soul_table.cpp DragonSoul.cpp\
 		  group_text_parse_tree.cpp char_dragonsoul.cpp questlua_dragonsoul.cpp\
-		  shop_manager.cpp shopEx.cpp item_manager_read_tables.cpp shutdown_manager.cpp
+		  shop_manager.cpp shopEx.cpp item_manager_read_tables.cpp
 
 
 COBJS	= $(CFILE:%.c=$(OBJDIR)/%.o)

@@ -489,15 +489,6 @@ int main(int argc, char **argv) {
 	ani_init();
 	PanamaLoad();
 
-	Metin2Server_Check();
-
-#if defined(_WIN32) && defined(_USE_SERVER_KEY_)
-	if (CheckServer::IsFail())
-	{
-		return 1;
-	}
-#endif
-
 	if ( g_bTrafficProfileOn )
 		TrafficProfiler::instance().Initialize( TRAFFIC_PROFILE_FLUSH_CYCLE, "ProfileLog" );
 
