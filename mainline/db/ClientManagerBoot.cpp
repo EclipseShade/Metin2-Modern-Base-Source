@@ -197,13 +197,11 @@ bool CClientManager::InitializeMobTable()
 	//	1) 'mob_names.txt' 파일을 읽어서 (a)[localMap] 맵을 만든다.
 	//<(a)localMap 맵 생성>
 	map<int,const char*> localMap;
-	bool isNameFile = true;
 	//<파일 읽기>
 	cCsvTable nameData;
 	if(!nameData.Load("mob_names.txt",'\t'))
 	{
 		fprintf(stderr, "mob_names.txt 파일을 읽어오지 못했습니다\n");
-		isNameFile = false;
 	} else {
 		nameData.Next();	//설명row 생략.
 		while(nameData.Next()) {
@@ -597,13 +595,11 @@ bool CClientManager::InitializeItemTable()
 	//=================================================================================//
 	//	1) 'item_names.txt' 파일을 읽어서 (a)[localMap](vnum:name) 맵을 만든다.
 	//=================================================================================//
-	bool isNameFile = true;
 	map<int,const char*> localMap;
 	cCsvTable nameData;
 	if(!nameData.Load("item_names.txt",'\t'))
 	{
 		fprintf(stderr, "item_names.txt 파일을 읽어오지 못했습니다\n");
-		isNameFile = false;
 	} else {
 		nameData.Next();
 		while(nameData.Next()) {
@@ -699,7 +695,6 @@ bool CClientManager::InitializeItemTable()
 
 	m_vec_itemTable.resize(data.m_File.GetRowCount() - 1 + addNumber);
 	memset(&m_vec_itemTable[0], 0, sizeof(TItemTable) * m_vec_itemTable.size());
-	int testValue =  m_vec_itemTable.size();
 
 	TItemTable * item_table = &m_vec_itemTable[0];
 
@@ -1342,18 +1337,14 @@ bool CClientManager::InitializeMonarch()
 	return true;
 }
 
-bool CClientManager::MirrorMobTableIntoDB()
-{
-	for (itertype(m_vec_mobTable) it = m_vec_mobTable.begin(); it != m_vec_mobTable.end(); it++)
-	{
+bool CClientManager::MirrorMobTableIntoDB() {
+	for (itertype(m_vec_mobTable) it = m_vec_mobTable.begin(); it != m_vec_mobTable.end(); it++) {
 		const TMobTable& t = *it;
 		char query[4096];
-		if (g_stLocaleNameColumn == "name")
-		{
-			snprintf(query, sizeof(query),
-				"replace into mob_proto%s "
-				"("
-				"vnum, name, type, rank, battle_type, level, size, ai_flag, setRaceFlag, setImmuneFlag, "
+	
+		snprintf(query, sizeof(query),
+			"replace into mob_proto%s ("
+				"vnum, name, locale_name, type, rank, battle_type, level, size, ai_flag, setRaceFlag, setImmuneFlag, "
 				"on_click, empire, drop_item, resurrection_vnum, folder, "
 				"st, dx, ht, iq, damage_min, damage_max, max_hp, regen_cycle, regen_percent, exp, "
 				"gold_min, gold_max, def, attack_speed, move_speed, aggressive_hp_pct, aggressive_sight, attack_range, polymorph_item, "
@@ -1366,61 +1357,7 @@ bool CClientManager::MirrorMobTableIntoDB()
 				"skill_vnum0, skill_level0, skill_vnum1, skill_level1, skill_vnum2, skill_level2, "
 				"skill_vnum3, skill_level3, skill_vnum4, skill_level4, "
 				"sp_berserk, sp_stoneskin, sp_godspeed, sp_deathblow, sp_revive"
-				") "
-				"values ("
-
-				"%d, \"%s\", %d, %d, %d, %d, %d, %u, %u, %u, " 
-				"%d, %d, %d, %d, '%s', "
-				"%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, "
-				"%d, %d, %d, %d, %d, %d, %d, %d, %d, "
-
-				"%d, %d, %d, %d, %d, %d, "
-				"%d, %d, %d, %d, %d, %d, "
-				"%d, %d, %d, %d, %d, "
-				"%f, %d, %d, "
-
-				"%d, %d, %d, %d, %d, %d, "
-				"%d, %d, %d, %d, "
-				"%d, %d, %d, %d, %d"
-				")",
-				GetTablePostfix(), /*g_stLocaleNameColumn.c_str(),*/
-
-				t.dwVnum, t.szName, /*t.szLocaleName, */t.bType, t.bRank, t.bBattleType, t.bLevel, t.bSize, t.dwAIFlag, t.dwRaceFlag, t.dwImmuneFlag,
-				t.bOnClickType, t.bEmpire, t.dwDropItemVnum, t.dwResurrectionVnum, t.szFolder,
-				t.bStr, t.bDex, t.bCon, t.bInt, t.dwDamageRange[0], t.dwDamageRange[1], t.dwMaxHP, t.bRegenCycle, t.bRegenPercent, t.dwExp,
-
-				t.dwGoldMin, t.dwGoldMax, t.wDef, t.sAttackSpeed, t.sMovingSpeed, t.bAggresiveHPPct, t.wAggressiveSight, t.wAttackRange, t.dwPolymorphItemVnum,
-				t.cEnchants[0], t.cEnchants[1], t.cEnchants[2], t.cEnchants[3], t.cEnchants[4], t.cEnchants[5],
-				t.cResists[0], t.cResists[1], t.cResists[2], t.cResists[3], t.cResists[4], t.cResists[5],
-				t.cResists[6], t.cResists[7], t.cResists[8], t.cResists[9], t.cResists[10], 
-				t.fDamMultiply, t.dwSummonVnum, t.dwDrainSP, 
-
-				t.Skills[0].dwVnum, t.Skills[0].bLevel, t.Skills[1].dwVnum, t.Skills[1].bLevel, t.Skills[2].dwVnum, t.Skills[2].bLevel, 
-				t.Skills[3].dwVnum, t.Skills[3].bLevel, t.Skills[4].dwVnum, t.Skills[4].bLevel, 
-				t.bBerserkPoint, t.bStoneSkinPoint, t.bGodSpeedPoint, t.bDeathBlowPoint, t.bRevivePoint
-				);
-		}
-		else
-		{
-			snprintf(query, sizeof(query),
-				"replace into mob_proto%s "
-				"("
-				"vnum, name, %s, type, rank, battle_type, level, size, ai_flag, setRaceFlag, setImmuneFlag, "
-				"on_click, empire, drop_item, resurrection_vnum, folder, "
-				"st, dx, ht, iq, damage_min, damage_max, max_hp, regen_cycle, regen_percent, exp, "
-				"gold_min, gold_max, def, attack_speed, move_speed, aggressive_hp_pct, aggressive_sight, attack_range, polymorph_item, "
-
-				"enchant_curse, enchant_slow, enchant_poison, enchant_stun, enchant_critical, enchant_penetrate, "
-				"resist_sword, resist_twohand, resist_dagger, resist_bell, resist_fan, resist_bow, "
-				"resist_fire, resist_elect, resist_magic, resist_wind, resist_poison, "
-				"dam_multiply, summon, drain_sp, "
-
-				"skill_vnum0, skill_level0, skill_vnum1, skill_level1, skill_vnum2, skill_level2, "
-				"skill_vnum3, skill_level3, skill_vnum4, skill_level4, "
-				"sp_berserk, sp_stoneskin, sp_godspeed, sp_deathblow, sp_revive"
-				") "
-				"values ("
-
+			") values ("
 				"%d, \"%s\", \"%s\", %d, %d, %d, %d, %d, %u, %u, %u, " 
 				"%d, %d, %d, %d, '%s', "
 				"%d, %d, %d, %d, %d, %d, %d, %d, %d, %d, "
@@ -1434,8 +1371,8 @@ bool CClientManager::MirrorMobTableIntoDB()
 				"%d, %d, %d, %d, %d, %d, "
 				"%d, %d, %d, %d, "
 				"%d, %d, %d, %d, %d"
-				")",
-				GetTablePostfix(), g_stLocaleNameColumn.c_str(),
+			")",
+				GetTablePostfix(),
 
 				t.dwVnum, t.szName, t.szLocaleName, t.bType, t.bRank, t.bBattleType, t.bLevel, t.bSize, t.dwAIFlag, t.dwRaceFlag, t.dwImmuneFlag,
 				t.bOnClickType, t.bEmpire, t.dwDropItemVnum, t.dwResurrectionVnum, t.szFolder,
@@ -1450,38 +1387,34 @@ bool CClientManager::MirrorMobTableIntoDB()
 				t.Skills[0].dwVnum, t.Skills[0].bLevel, t.Skills[1].dwVnum, t.Skills[1].bLevel, t.Skills[2].dwVnum, t.Skills[2].bLevel, 
 				t.Skills[3].dwVnum, t.Skills[3].bLevel, t.Skills[4].dwVnum, t.Skills[4].bLevel, 
 				t.bBerserkPoint, t.bStoneSkinPoint, t.bGodSpeedPoint, t.bDeathBlowPoint, t.bRevivePoint
-				);
-		}
+		);
 
 		CDBManager::instance().AsyncQuery(query);
 	}
 	return true;
 }
 
-bool CClientManager::MirrorItemTableIntoDB()
-{
-	for (itertype(m_vec_itemTable) it = m_vec_itemTable.begin(); it != m_vec_itemTable.end(); it++)
-	{
-		if (g_stLocaleNameColumn != "name")
-		{
-			const TItemTable& t = *it;
-			char query[4096];
-			snprintf(query, sizeof(query),
-				"replace into item_proto%s ("
-				"vnum, type, subtype, name, %s, gold, shop_buy_price, weight, size, "
+bool CClientManager::MirrorItemTableIntoDB() {
+	for (itertype(m_vec_itemTable) it = m_vec_itemTable.begin(); it != m_vec_itemTable.end(); it++) {
+		const TItemTable& t = *it;
+		char query[4096];
+			
+		snprintf(query, sizeof(query),
+			"replace into item_proto%s ("
+				"vnum, type, subtype, name, locale_name, gold, shop_buy_price, weight, size, "
 				"flag, wearflag, antiflag, immuneflag, "
 				"refined_vnum, refine_set, magic_pct, socket_pct, addon_type, "
 				"limittype0, limitvalue0, limittype1, limitvalue1, "
 				"applytype0, applyvalue0, applytype1, applyvalue1, applytype2, applyvalue2, "
-				"value0, value1, value2, value3, value4, value5 ) "
-				"values ("
+				"value0, value1, value2, value3, value4, value5"
+			") values ("
 				"%d, %d, %d, \"%s\", \"%s\", %d, %d, %d, %d, "
 				"%d, %d, %d, %d, "
 				"%d, %d, %d, %d, %d, "
-				"%d, %d, %d, %d, "
-				"%d, %d, %d, %d, %d, %d, "
-				"%d, %d, %d, %d, %d, %d )",
-				GetTablePostfix(), g_stLocaleNameColumn.c_str(), 
+				"%d, %ld, %d, %ld, "
+				"%d, %ld, %d, %ld, %d, %ld, "
+				"%ld, %ld, %ld, %ld, %ld, %ld )",
+				GetTablePostfix(), 
 				t.dwVnum, t.bType, t.bSubType, t.szName, t.szLocaleName, t.dwGold, t.dwShopBuyPrice, t.bWeight, t.bSize,
 				t.dwFlags, t.dwWearFlags, t.dwAntiFlags, t.dwImmuneFlag, 
 				t.dwRefinedVnum, t.wRefineSet, t.bAlterToMagicItemPct, t.bGainSocketPct, t.sAddonType,
@@ -1489,35 +1422,6 @@ bool CClientManager::MirrorItemTableIntoDB()
 				t.aApplies[0].bType, t.aApplies[0].lValue, t.aApplies[1].bType, t.aApplies[1].lValue, t.aApplies[2].bType, t.aApplies[2].lValue,
 				t.alValues[0], t.alValues[1], t.alValues[2], t.alValues[3], t.alValues[4], t.alValues[5]);
 			CDBManager::instance().AsyncQuery(query);
-		}
-		else
-		{
-			const TItemTable& t = *it;
-			char query[4096];
-			snprintf(query, sizeof(query),
-				"replace into item_proto%s ("
-				"vnum, type, subtype, name, gold, shop_buy_price, weight, size, "
-				"flag, wearflag, antiflag, immuneflag, "
-				"refined_vnum, refine_set, magic_pct, socket_pct, addon_type, "
-				"limittype0, limitvalue0, limittype1, limitvalue1, "
-				"applytype0, applyvalue0, applytype1, applyvalue1, applytype2, applyvalue2, "
-				"value0, value1, value2, value3, value4, value5 ) "
-				"values ("
-				"%d, %d, %d, \"%s\", %d, %d, %d, %d, "
-				"%d, %d, %d, %d, "
-				"%d, %d, %d, %d, %d, "
-				"%d, %d, %d, %d, "
-				"%d, %d, %d, %d, %d, %d, "
-				"%d, %d, %d, %d, %d, %d )",
-				GetTablePostfix(), 
-				t.dwVnum, t.bType, t.bSubType, t.szName, t.dwGold, t.dwShopBuyPrice, t.bWeight, t.bSize,
-				t.dwFlags, t.dwWearFlags, t.dwAntiFlags, t.dwImmuneFlag, 
-				t.dwRefinedVnum, t.wRefineSet, t.bAlterToMagicItemPct, t.bGainSocketPct, t.sAddonType,
-				t.aLimits[0].bType, t.aLimits[0].lValue, t.aLimits[1].bType, t.aLimits[1].lValue,
-				t.aApplies[0].bType, t.aApplies[0].lValue, t.aApplies[1].bType, t.aApplies[1].lValue, t.aApplies[2].bType, t.aApplies[2].lValue,
-				t.alValues[0], t.alValues[1], t.alValues[2], t.alValues[3], t.alValues[4], t.alValues[5]);
-			CDBManager::instance().AsyncQuery(query);
-		}
 	}
 	return true;
 }
