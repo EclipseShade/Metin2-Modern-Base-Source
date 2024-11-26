@@ -13,13 +13,10 @@ $(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
 
 TARGET = $(BINDIR)/db_r$(SVN_VERSION)
 
-CFLAGS = -g -Wall -O2 -pipe -fno-rtti -fno-exceptions -pthread -D_THREAD_SAFE
+CFLAGS = -g -Wall -O2 -mtune=i686 -pipe -fno-rtti -fno-exceptions -pthread -D_THREAD_SAFE
 
-ifeq ($(GCC_VERSION), 4)
-CFLAGS += -mtune=i686
-else
-CFLAGS += -mcpu=i686
-endif
+# IncDir
+INCDIR += -I/usr/local/include
 
 # LibDir
 LIBDIR += -L../../ExternGame/libthecore/lib
@@ -27,9 +24,6 @@ LIBDIR += -L../../ExternGame/libgame/lib
 LIBDIR += -L../../ExternGame/libpoly
 LIBDIR += -L../../ExternGame/libsql
 LIBDIR += -L /usr/local/lib/mysql
-
-# IncDir
-INCDIR += -I/usr/local/include
 
 # Libs
 LIBS = -lthecore -lmysqlclient -lsql -lpoly -lgame -lm -lz
