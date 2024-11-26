@@ -1359,8 +1359,10 @@ ACMD(do_observer_exit)
 
 ACMD(do_view_equip)
 {
-	if (ch->GetGMLevel() <= GM_PLAYER)
+	if (ch->GetGMLevel() <= GM_PLAYER) {
+		ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("Diese Funktion steht dir ab Level 15 zu verf?ung."));
 		return;
+	}
 
 	char arg1[256];
 	one_argument(argument, arg1, sizeof(arg1));
@@ -1376,7 +1378,7 @@ ACMD(do_view_equip)
 
 		if (!tch->IsPC())
 			return;
-		/*
+		
 		   int iSPCost = ch->GetMaxSP() / 3;
 
 		   if (ch->GetSP() < iSPCost)
@@ -1385,7 +1387,7 @@ ACMD(do_view_equip)
 		   return;
 		   }
 		   ch->PointChange(POINT_SP, -iSPCost);
-		 */
+		 
 		tch->SendEquipment(ch);
 	}
 }

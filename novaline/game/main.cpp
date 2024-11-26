@@ -80,10 +80,10 @@
 #include <execinfo.h>
 #endif
 
-//// 윈도우에서 테스트할 때는 항상 서버키 체크
-//#ifdef _WIN32
-	#define _USE_SERVER_KEY_
-//#endif
+// 윈도우에서 테스트할 때는 항상 서버키 체크
+#ifdef _WIN32
+	//#define _USE_SERVER_KEY_
+#endif
 #include "check_server.h"
 
 extern void WriteVersion();
@@ -808,7 +808,7 @@ int start(int argc, char **argv)
 		}
 		else
 		{
-			fprintf(stderr, "MasterAuth %d", LC_GetLocalType());
+			fprintf(stderr, "MasterAuth %d\n", LC_GetLocalType());
 		}
 	}
 	/* game server to teen server */
@@ -922,6 +922,12 @@ int idle()
 		memset(&thecore_profiler[0], 0, sizeof(thecore_profiler));
 		memset(&s_dwProfiler[0], 0, sizeof(s_dwProfiler));
 	}
+#ifdef _USE_SERVER_KEY_
+	if (Metin2Server_IsInvalid() && 0 == (thecore_random() % 7146))
+	{
+		return 0; // shutdown
+	}
+#endif
 
 #ifdef __WIN32__
 	if (_kbhit()) {

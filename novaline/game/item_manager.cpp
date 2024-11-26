@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#include "../common/VnumHelper.h"
+
 #include "utils.h"
 #include "config.h"
 #include "char.h"
@@ -18,9 +20,6 @@
 #include "locale_service.h"
 #include "item.h"
 #include "item_manager.h"
-
-#include "../common/VnumHelper.h"
-
 #include "DragonSoul.h"
 #include "cube.h"
 
@@ -782,7 +781,7 @@ int GetDropPerKillPct(int iMinimum, int iDefault, int iDeltaPercent, const char 
 
 	if ((iVal = quest::CQuestManager::instance().GetEventFlag(c_pszFlag)))
 	{
-		if (!test_server)
+		if (!test_server && !LC_IsJapan())
 		{
 			if (iVal < iMinimum)
 				iVal = iDefault;
@@ -843,7 +842,7 @@ bool ITEM_MANAGER::GetDropPct(LPCHARACTER pkChr, LPCHARACTER pkKiller, OUT int& 
 	iRandRange = iRandRange * 100 / 
 		(100 + 
 		 CPrivManager::instance().GetPriv(pkKiller, PRIV_ITEM_DROP) + 
-		 (pkKiller->IsEquipUniqueItem(UNIQUE_ITEM_DOUBLE_ITEM)?100:0));
+		 pkKiller->IsEquipUniqueItem(UNIQUE_ITEM_DOUBLE_ITEM)?100:0);
 
 	if (distribution_test_server) iRandRange /= 3;
 
@@ -1593,7 +1592,6 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 			vec_item.push_back(item);
 	}
 	
-	/* 2013라마단 이벤트 위해 주석처리함
 	if ( GetDropPerKillPct(100, g_iUseLocale ? 2000 : 800, iDeltaPercent, "ramadan_drop") >= number(1, iRandRange) )
 	{
 		const static DWORD ramadan_item = 30315;
@@ -1601,7 +1599,6 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 		if ( (item=CreateItem(ramadan_item, 1, 0, true)) )
 			vec_item.push_back(item);
 	}
-	*/
 
 	if ( GetDropPerKillPct(100, g_iUseLocale ? 2000 : 800, iDeltaPercent, "easter_drop") >= number(1, iRandRange) )
 	{

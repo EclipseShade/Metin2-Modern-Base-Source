@@ -454,10 +454,11 @@ int CInputMain::Whisper(LPCHARACTER ch, const char * data, size_t uiBytes)
 						char buf[128];
 						int len;
 						if (3==processReturn) //교환중
-							len = snprintf(buf, sizeof(buf), LC_TEXT("사용할수 없습니다."), pTable->szLocaleName);
+							len = snprintf(buf, sizeof(buf), LC_TEXT("다른 거래중(창고,교환,상점)에는 개인상점을 사용할 수 없습니다."), pTable->szLocaleName);
 						else
 							len = snprintf(buf, sizeof(buf), LC_TEXT("%s이 필요합니다."), pTable->szLocaleName);
 						
+
 						if (len < 0 || len >= (int) sizeof(buf))
 							len = sizeof(buf) - 1;
 
@@ -2132,6 +2133,19 @@ void CInputMain::SafeboxCheckout(LPCHARACTER ch, const char * c_pData, bool bMal
 		}
 
 		pkSafebox->Remove(p->bSafePos);
+		if (bMall)
+		{
+			if (NULL == pkItem->GetProto())
+			{
+				sys_err ("pkItem->GetProto() == NULL (id : %d)",pkItem->GetID());
+				return ;
+			}
+			// 100% 확률로 속성이 붙어야 하는데 안 붙어있다면 새로 붙힌다. ...............
+			if (100 == pkItem->GetProto()->bAlterToMagicItemPct && 0 == pkItem->GetAttributeCount())
+			{
+				pkItem->AlterToMagicItem();
+			}
+		}
 		pkItem->AddToCharacter(ch, p->ItemPos);
 		ITEM_MANAGER::instance().FlushDelayedSave(pkItem);
 	}
@@ -2291,7 +2305,7 @@ void CInputMain::PartyRemove(LPCHARACTER ch, const char* c_pData)
 
 	LPPARTY pParty = ch->GetParty();
 	if (pParty->GetLeaderPID() == ch->GetPlayerID())
-	{		
+	{
 		if (ch->GetDungeon())
 		{
 			ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<파티> 던젼내에서는 파티원을 추방할 수 없습니다."));

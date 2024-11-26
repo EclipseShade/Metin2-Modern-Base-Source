@@ -4548,7 +4548,7 @@ bool CHARACTER::UseItemEx(LPITEM item, TItemPos DestCell)
 										return false;
 									}
 
-									if (GM_PLAYER == GetGMLevel() && false == test_server)
+									if (GM_PLAYER == GetGMLevel() && false == test_server && false == g_bDisableItemBonusChangeTime)
 									{
 										//
 										// Event Flag 를 통해 이전에 아이템 속성 변경을 한 시간으로 부터 충분한 시간이 흘렀는지 검사하고
@@ -5599,7 +5599,7 @@ bool CHARACTER::MoveItem(TItemPos Cell, TItemPos DestCell, BYTE count)
 			sys_log(0, "%s: ITEM_STACK %s (window: %d, cell : %d) -> (window:%d, cell %d) count %d", GetName(), item->GetName(), Cell.window_type, Cell.cell, 
 				DestCell.window_type, DestCell.cell, count);
 
-			count = MIN(200 - item2->GetCount(), count);
+			count = MIN(g_bItemCountLimit - item2->GetCount(), count);
 
 			item->SetCount(item->GetCount() - count);
 			item2->SetCount(item2->GetCount() + count);
@@ -5817,7 +5817,7 @@ bool CHARACTER::PickupItem(DWORD dwVID)
 							if (j != ITEM_SOCKET_MAX_NUM)
 								continue;
 
-							BYTE bCount2 = MIN(200 - item2->GetCount(), bCount);
+							BYTE bCount2 = MIN(g_bItemCountLimit - item2->GetCount(), bCount);
 							bCount -= bCount2;
 
 							item2->SetCount(item2->GetCount() + bCount2);
@@ -6543,7 +6543,7 @@ LPITEM CHARACTER::AutoGiveItem(DWORD dwItemVnum, BYTE bCount, int iRarePct, bool
 						bCount = p->alValues[1];
 				}
 
-				BYTE bCount2 = MIN(200 - item->GetCount(), bCount);
+				BYTE bCount2 = MIN(g_bItemCountLimit - item->GetCount(), bCount);
 				bCount -= bCount2;
 
 				item->SetCount(item->GetCount() + bCount2);

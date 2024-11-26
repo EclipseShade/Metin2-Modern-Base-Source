@@ -367,51 +367,55 @@ bool CPVPManager::CanAttack(LPCHARACTER pkChr, LPCHARACTER pkVictim)
 	}
 	else
 	{
-		switch( pkChr->GetMountVnum() )
+	
+		if(!g_bAllMountAttack)
 		{
-			case 0:
-			case 20030:
-			case 20110:
-			case 20111:
-			case 20112:
-			case 20113:
-			case 20114:
-			case 20115:
-			case 20116:
-			case 20117:
-			case 20118:
-				//신규 탈것 고급
-			case 20205:
-			case 20206:
-			case 20207:
-			case 20208:
-			case 20209:
-			case 20210:
-			case 20211:
-			case 20212:
-			case 20119:		// 라마단 흑마
-			case 20219:		// 라마단 흑마 클론 (할로윈용)
-			case 20220:		// 크리스마스 탈것
-			case 20221:		// 전갑 백웅
-			case 20222:		// 전갑 팬더
-			case 20120:
-			case 20121:
-			case 20122:
-			case 20123:
-			case 20124:
-			case 20125:
-			case 20214:		// 난폭한 전갑순순록	
-			case 20215:		// 용맹한 전갑순순록	
-			case 20217:		// 난폭한 전갑암순록	
-			case 20218:		// 용맹한 전갑암순록
-			case 20224:		// 난폭한 전갑석룡자
-			case 20225:		// 용맹한 전갑석룡자
-			case 20226:		//	유니콘
-			case 20227:
-				break;
+			switch( pkChr->GetMountVnum() )
+			{
+				case 0:
+				case 20030:
+				case 20110:
+				case 20111:
+				case 20112:
+				case 20113:
+				case 20114:
+				case 20115:
+				case 20116:
+				case 20117:
+				case 20118:
+					//신규 탈것 고급
+				case 20205:
+				case 20206:
+				case 20207:
+				case 20208:
+				case 20209:
+				case 20210:
+				case 20211:
+				case 20212:
+				case 20119:		// 라마단 흑마
+				case 20219:		// 라마단 흑마 클론 (할로윈용)
+				case 20220:		// 크리스마스 탈것
+				case 20221:		// 전갑 백웅
+				case 20222:		// 전갑 팬더
+				case 20120:
+				case 20121:
+				case 20122:
+				case 20123:
+				case 20124:
+				case 20125:
+				case 20214:		// 난폭한 전갑순순록	
+				case 20215:		// 용맹한 전갑순순록	
+				case 20217:		// 난폭한 전갑암순록	
+				case 20218:		// 용맹한 전갑암순록
+				case 20224:		// 난폭한 전갑석룡자
+				case 20225:		// 용맹한 전갑석룡자
+				case 20226:		//	유니콘
+				case 20227:
+					break;
 
-			default:
-				return false;
+				default:
+					return true;
+			}
 		}
 	}
 

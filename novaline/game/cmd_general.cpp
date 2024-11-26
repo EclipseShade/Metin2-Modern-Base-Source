@@ -3,7 +3,7 @@
 #ifdef __FreeBSD__
 	#include <md5.h>
 #else
-	#include "../../libthecore/include/xmd5.h"
+	#include "../../ExternGame/libthecore/include/xmd5.h"
 #endif
 
 #include "utils.h"
@@ -42,6 +42,7 @@
 #endif
 
 extern int g_server_id;
+
 extern int g_nPortalLimitTime;
 
 ACMD(do_user_horse_ride)
@@ -1358,8 +1359,7 @@ ACMD(do_observer_exit)
 
 ACMD(do_view_equip)
 {
-	if (ch->GetLevel() <= 14)
-	{
+	if (ch->GetGMLevel() <= GM_PLAYER) {
 		ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("Diese Funktion steht dir ab Level 15 zu verf?ung."));
 		return;
 	}
@@ -1383,8 +1383,8 @@ ACMD(do_view_equip)
 
 		   if (ch->GetSP() < iSPCost)
 		   {
-				ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("Du hast nicht genug MP."));
-				return;
+		   ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("정신력이 부족하여 다른 사람의 장비를 볼 수 없습니다."));
+		   return;
 		   }
 		   ch->PointChange(POINT_SP, -iSPCost);
 		 
@@ -2302,13 +2302,19 @@ ACMD(do_in_game_mall)
 		ch->ChatPacket(CHAT_TYPE_COMMAND, "mall http://mt2.oge.jp/itemmall/itemList.php");
 		return;
 	}
-	
+
 	if (LC_IsNewCIBN() == true && test_server)
 	{
 		ch->ChatPacket(CHAT_TYPE_COMMAND, "mall http://218.99.6.51/04_mall/mall/login.htm");
 		return;
 	}
-	
+
+	if (LC_IsSingapore() == true)
+	{
+		ch->ChatPacket(CHAT_TYPE_COMMAND, "mall http://www.metin2.sg/ishop.php");
+		return;
+	}
+
 	/*
 	if (LC_IsCanada() == true)
 	{

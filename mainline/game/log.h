@@ -4,6 +4,7 @@
 #include "../../ExternGame/libsql/AsyncSQL.h"
 
 #include "any_function.h"
+#include "locale_service.h"
 
 enum GOLDBAR_HOW
 {

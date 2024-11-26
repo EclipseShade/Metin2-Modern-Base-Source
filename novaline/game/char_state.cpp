@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+
 #include "config.h"
 #include "utils.h"
 #include "vector.h"

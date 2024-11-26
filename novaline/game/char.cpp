@@ -1321,7 +1321,11 @@ void CHARACTER::Disconnect(const char * c_pszReason)
 	p.bHeader = HEADER_GG_LOGOUT;
 	strlcpy(p.szName, GetName(), sizeof(p.szName));
 	P2P_MANAGER::instance().Send(&p, sizeof(TPacketGGLogout));
-	LogManager::instance().CharLog(this, 0, "LOGOUT", "");
+	char buf[51];
+	snprintf(buf, sizeof(buf), "%s %d %d %ld %d", 
+		inet_ntoa(GetDesc()->GetAddr().sin_addr), GetGold(), g_bChannel, GetMapIndex(), GetAlignment());
+
+	LogManager::instance().CharLog(this, 0, "LOGOUT", buf);
 
 	if (LC_IsYMIR() || LC_IsKorea() || LC_IsBrazil())
 	{
@@ -2386,6 +2390,11 @@ void CHARACTER::ComputePoints()
 		pPetSystem->RefreshBuff();
 	}
 
+	for (TMapBuffOnAttrs::iterator it = m_map_buff_on_attrs.begin(); it != m_map_buff_on_attrs.end(); it++)
+	{
+		it->second->GiveAllAttributes();
+	}
+
 	UpdatePacket();
 }
 
@@ -3352,6 +3361,19 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 
 				SetGold(GetGold() + amount);
 				val = GetGold();
+				if (LC_IsBrazil())
+				{
+					if (0 == val)
+					{
+						static time_t last_dump_time = 0;
+						if (last_dump_time + 86400 < get_global_time())
+						{
+							last_dump_time = get_global_time();
+							core_dump();
+						}
+						LogManager::instance().CharLog(this, amount, "ZERO_GOLD", "");
+					}
+				}
 			}
 			break;
 

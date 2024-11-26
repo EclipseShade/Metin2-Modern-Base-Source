@@ -1,7 +1,8 @@
 #ifndef __INC_METIN_II_DB_MANAGER_H__
 #define __INC_METIN_II_DB_MANAGER_H__
 
-#include "../../libsql/AsyncSQL.h"
+#include "../../ExternGame/libsql/AsyncSQL.h"
+
 #include "any_function.h"
 
 enum
@@ -16,6 +17,7 @@ enum
 	QID_SAFEBOX_SIZE,
 	QID_DB_STRING,
 	QID_AUTH_LOGIN,
+	QID_AUTH_LOGIN_OPENID,
 	QID_LOTTO,
 	QID_HIGHSCORE_REGISTER,
 	QID_HIGHSCORE_SHOW,
@@ -36,6 +38,7 @@ enum
 	// END_PROTECT_CHILD_FOR_NEWCIBN
 
 	QID_BRAZIL_CREATE_ID,
+	QID_JAPAN_CREATE_ID,
 };
 
 typedef struct SUseTime
