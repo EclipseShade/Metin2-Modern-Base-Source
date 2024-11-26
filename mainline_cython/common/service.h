@@ -3,6 +3,7 @@
 
 	#define _IMPROVED_PACKET_ENCRYPTION_
 	#define __PET_SYSTEM__
+	#define __UDP_BLOCK__
 	
 #endif
 
@@ -18,7 +19,7 @@
 
 
 /* UNUSED YMIR MACROS
-	#define __UDP_BLOCK__
+
 	#define __AUCTION__
 
 #define __LIMIT_TIME__
