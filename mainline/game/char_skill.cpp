@@ -221,6 +221,11 @@ bool CHARACTER::IsLearnableSkill(DWORD dwSkillVnum) const
 	if (pkSkill->dwType - 1 == GetJob())
 		return true;
 
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	// 수인족 스킬
+	if (7 == pkSkill->dwType && JOB_WOLFMAN == GetJob())
+		return true;
+#endif
 	if (6 == pkSkill->dwType)
 	{
 		if (SKILL_7_A_ANTI_TANHWAN <= dwSkillVnum && dwSkillVnum <= SKILL_7_D_ANTI_YONGBI)
@@ -664,6 +669,9 @@ bool CHARACTER::SkillLevelDown(DWORD dwVnum)
 		case 3:
 		case 4:
 		case 6:
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case 7:
+#endif
 			idx = POINT_SKILL;
 			break;
 		case 5:
@@ -780,6 +788,9 @@ void CHARACTER::SkillLevelUp(DWORD dwVnum, BYTE bMethod)
 			case 3:
 			case 4:
 			case 6:
+#ifdef ENABLE_WOLFMAN_CHARACTER
+			case 7:
+#endif
 				idx = POINT_SKILL;
 				break;
 
@@ -2995,8 +3006,11 @@ void CHARACTER::ResetMobSkillCooltime()
 bool CHARACTER::IsUsableSkillMotion(DWORD dwMotionIndex) const
 {
 	DWORD selfJobGroup = (GetJob()+1) * 10 + GetSkillGroup();
-
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	const DWORD SKILL_NUM = 176;
+#else
 	const DWORD SKILL_NUM = 158;
+#endif
 	static DWORD s_anSkill2JobGroup[SKILL_NUM] = {
 		0, // common_skill 0
 		11, // job_skill 1
@@ -3156,14 +3170,38 @@ bool CHARACTER::IsUsableSkillMotion(DWORD dwMotionIndex) const
 		0, // job_skill 155
 		0, // job_skill 156
 		0, // job_skill 157
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		0, // empty(reserved)	158
+		0, // empty(reserved)	159
+		0, // empty(reserved)	160
+		0, // empty(reserved)	161
+		0, // empty(reserved)	162
+		0, // empty(reserved)	163
+		0, // empty(reserved)	164
+		0, // empty(reserved)	165
+		0, // empty(reserved)	166
+		0, // empty(reserved)	167
+		0, // empty(reserved)	168
+		0, // empty(reserved)	169
+		51, // job_skill(WOLFMAN SKILL)	170
+		51, // job_skill(WOLFMAN SKILL)	171
+		51, // job_skill(WOLFMAN SKILL)	172
+		51, // job_skill(WOLFMAN SKILL)	173
+		51, // job_skill(WOLFMAN SKILL)	174
+		51, // job_skill(WOLFMAN SKILL)	175
+#endif
 	}; // s_anSkill2JobGroup
 
 	const DWORD MOTION_MAX_NUM 	= 124;
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	const DWORD SKILL_LIST_MAX_COUNT	= 6;
+#else
 	const DWORD SKILL_LIST_MAX_COUNT	= 5;
+#endif
 
 	static DWORD s_anMotion2SkillVnumList[MOTION_MAX_NUM][SKILL_LIST_MAX_COUNT] =
 	{
-		// 스킬수   무사스킬ID  자객스킬ID  수라스킬ID  무당스킬ID
+		// 스킬수   무사스킬ID  자객스킬ID  수라스킬ID  무당스킬ID	수인족(WOLFMAN) 스킬ID
 		{   0,		0,			0,			0,			0		}, //  0
 
 		// 1번 직군 기본 스킬
@@ -3484,6 +3522,9 @@ bool CHARACTER::CanUseSkill(DWORD dwSkillVnum) const
 			{ {	31,	32,	33,	34,	35,	36	}, {	46,	47,	48,	49,	50,	51	} },
 			{ {	61,	62,	63,	64,	65,	66	}, {	76,	77,	78,	79,	80,	81	} },
 			{ {	91,	92,	93,	94,	95,	96	}, {	106,107,108,109,110,111	} },
+#ifdef ENABLE_WOLFMAN_CHARACTER
+			{ {	170,	171,	172,	173,	174,	175	}, {	106,107,108,109,110,111	} },
+#endif
 		};
 
 		const DWORD* pSkill = SkillList[ GetJob() ][ GetSkillGroup()-1 ];
