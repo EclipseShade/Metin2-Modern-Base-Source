@@ -1,8 +1,6 @@
 #ifndef __INC_METiN_II_DBSERV_STDAFX_H__
 #define __INC_METiN_II_DBSERV_STDAFX_H__
 
-#include <sstream>
-
 #include "../../ExternGame/libthecore/include/stdafx.h"
 
 #ifndef __WIN32__

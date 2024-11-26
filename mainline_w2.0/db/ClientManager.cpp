@@ -73,6 +73,19 @@ void CClientManager::SetPlayerIDStart(int iIDStart)
 	m_iPlayerIDStart = iIDStart;
 }
 
+void CClientManager::GetPeerP2PHostNames(std::string& peerHostNames)
+{
+	std::ostringstream oss(std::ostringstream::out);
+
+	for (itertype(m_peerList) it = m_peerList.begin(); it != m_peerList.end(); ++it)
+	{
+		CPeer * peer = *it;
+		oss << peer->GetHost() << " " << peer->GetP2PPort() << " channel : " << (int)(peer->GetChannel()) << "\n";
+	}
+	
+	peerHostNames += oss.str();
+}
+
 void CClientManager::Destroy()
 {
 	m_mChannelStatus.clear();
@@ -3125,6 +3138,11 @@ int CClientManager::Process()
 		{
 			// 유니크 아이템을 위한 시간을 보낸다.
 			CClientManager::instance().SendTime();
+
+			// 현재 연결된 peer의 host 및 port를 출력한다.
+			std::string st;
+			CClientManager::instance().GetPeerP2PHostNames(st);
+			sys_log(0, "Current Peer host names...\n%s", st.c_str());
 		}
 
 		if (!(thecore_heart->pulse % (thecore_heart->passes_per_sec * 3600)))	// 한시간에 한번
@@ -3683,8 +3701,9 @@ bool CClientManager::InitializeLocalization()
 				sys_err("locale[LOCALE] = UNKNOWN(%s)", locale.szValue);
 				exit(0);
 			}
-
+			sys_log(0,"before call SetLocale: %s",g_stLocale.c_str());
 			CDBManager::instance().SetLocale(g_stLocale.c_str());
+			sys_log(0,"Called SetLocale");
 		}
 		else if (strcmp(locale.szKey, "DB_NAME_COLUMN") == 0)
 		{

@@ -6,20 +6,17 @@ LIBDIR =
 BINDIR = ..
 OBJDIR = .obj
 
-GCC_VERSION = 4
+GCC_VERSION = $(shell $(CC) --version 2>&1 | grep "(GCC)" | cut -d' ' -f3  | cut -d'.' -f1)
 BSD_VERSION = $(shell uname -v 2>&1 | cut -d' ' -f2 | cut -d'.' -f1)
-SVN_VERSION = $(shell svn info |grep Revision: |cut -c11-)
+SVN_VERSION = $(shell svnversion -n .)
 $(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
 
 TARGET = $(BINDIR)/db_r$(SVN_VERSION)
 
-CFLAGS = -g -Wall -O2 -pipe -fno-rtti -fno-exceptions -pthread -D_THREAD_SAFE
+CFLAGS = -g -Wall -O2 -mtune=i686 -pipe -fno-rtti -fno-exceptions -pthread -D_THREAD_SAFE
 
-ifeq ($(GCC_VERSION), 4)
-CFLAGS += -mtune=i686
-else
-CFLAGS += -mcpu=i686
-endif
+# IncDir
+INCDIR += -I/usr/local/include
 
 # LibDir
 LIBDIR += -L../../ExternGame/libthecore/lib
@@ -28,9 +25,7 @@ LIBDIR += -L../../ExternGame/libpoly
 LIBDIR += -L../../ExternGame/libsql
 LIBDIR += -L /usr/local/lib/mysql
 
-# IncDir
-INCDIR += -I/usr/local/include
-
+# Libs
 LIBS = -lthecore -lmysqlclient -lsql -lpoly -lgame -lm -lz
 LIBS += -lc++
 
@@ -55,7 +50,7 @@ $(OBJDIR)/%.o: %.cpp
 	@$(CC) $(CFLAGS) $(INCDIR) -c $< -o $@
 
 $(OBJDIR)/version.o: version.cpp
-	@$(CC) $(CFLAGS) -D__USER__=\"$(USER)\" -D__HOSTNAME__=\"$(HOSTNAME)\" -D__PWD__=\"$(PWD)\" -D__SVN_VERSION__=\"$(SVN_VERSION)\" -c $< -o $@
+	@$(CC) $(CFLAGS) -D__USER__=\"$(USER)\" -D__HOSTNAME__=\"$(HOSTNAME)\" -D__PWD__=\"$(PWD)\" -D__P4_VERSION__=\"$(SVN_VERSION)\" -c $< -o $@
 	@echo compile $<
 
 $(OBJDIR):
@@ -66,6 +61,6 @@ clean:
 
 dep:
 	@touch Depend
-	makedepend -f Depend $(INCDIR) -I/usr/include/c++/4.2 -p $(OBJDIR)/ $(SRCS) 2> /dev/null
+	makedepend -fDepend $(INCDIR) -I/usr/include/c++/4.2 -p $(OBJDIR)/ $(SRCS) 2> /dev/null
 
 sinclude Depend

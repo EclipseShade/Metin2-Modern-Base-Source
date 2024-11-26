@@ -227,10 +227,11 @@ void CItemPriceListTableCache::UpdateList(const TItemPriceListTable* pUpdateList
 
 		if (tmpvec.size() < sizeAddOldDataSize)
 			sizeAddOldDataSize = tmpvec.size();
-
-		thecore_memcpy(m_data.aPriceInfo + pUpdateList->byCount, &tmpvec[0], sizeof(TItemPriceInfo) * sizeAddOldDataSize);
-		m_data.byCount += sizeAddOldDataSize;
-
+		if (tmpvec.size() != 0)
+		{
+			thecore_memcpy(m_data.aPriceInfo + pUpdateList->byCount, &tmpvec[0], sizeof(TItemPriceInfo) * sizeAddOldDataSize);
+			m_data.byCount += sizeAddOldDataSize;
+		}
 		nDeletedNum = tmpvec.size() - sizeAddOldDataSize;
 	}
 	else
@@ -270,6 +271,11 @@ void CItemPriceListTableCache::OnFlush()
 	
 	m_bNeedQuery = false;
 }
+
+CItemPriceListTableCache::~CItemPriceListTableCache()
+{
+}
+
 // END_OF_MYSHOP_PRICE_LIST
 #ifdef __AUCTION__
 CAuctionItemInfoCache::CAuctionItemInfoCache()

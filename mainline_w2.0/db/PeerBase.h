@@ -47,10 +47,12 @@ class CPeerBase : public CNetBase
 	int		GetSendLength();
 
 	const char *	GetHost() { return m_host; }
+	WORD	GetPort() { return m_wPort; }
 
     protected:
 	char		m_host[MAX_HOST_LENGTH + 1];
 	socket_t	m_fd;
+	WORD		m_wPort;
 
     private:
 	int		m_BytesRemain;

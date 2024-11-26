@@ -380,12 +380,15 @@ int Start()
 
 	sys_log(0, "   OK");
 
-	if (!PlayerHB::instance().Initialize())
+	if(g_bHotBackup)
 	{
-		sys_err("cannot initialize player hotbackup");
-		return false;
+		if (!PlayerHB::instance().Initialize())
+		{
+			sys_err("cannot initialize player hotbackup");
+			return false;
+		}
 	}
-
+	
 #ifndef __WIN32__
 	signal(SIGUSR1, emergency_sig);
 #endif

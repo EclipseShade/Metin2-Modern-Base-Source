@@ -40,6 +40,7 @@ class CItemPriceListTableCache : public cache< TItemPriceListTable >
 	 * 캐시 만료 시간을 설정한다.
 	 */
 	CItemPriceListTableCache(void);
+	virtual ~CItemPriceListTableCache();
 
 	/// 리스트 갱신
 	/**

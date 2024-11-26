@@ -36,6 +36,7 @@ class CClientManager : public CNetBase, public singleton<CClientManager>
 	typedef boost::unordered_set<CItemCache *, boost::hash<CItemCache*> > TItemCacheSet;
 	typedef boost::unordered_map<DWORD, TItemCacheSet *> TItemCacheSetPtrMap;
 	typedef boost::unordered_map<DWORD, CItemPriceListTableCache*> TItemPriceListCacheMap;
+	typedef boost::unordered_map<short, BYTE> TChannelStatusMap;
 
 	// MYSHOP_PRICE_LIST
 	/// 아이템 가격정보 리스트 요청 정보
@@ -97,6 +98,7 @@ class CClientManager : public CNetBase, public singleton<CClientManager>
 	void	MainLoop();
 	void	Quit();
 
+	void	GetPeerP2PHostNames(std::string& peerHostNames);
 	void	SetTablePostfix(const char* c_pszTablePostfix);
 	void	SetPlayerIDStart(int iIDStart);
 	int	GetPlayerIDStart() { return m_iPlayerIDStart; }
@@ -443,6 +445,8 @@ class CClientManager : public CNetBase, public singleton<CClientManager>
 	TItemPriceListCacheMap m_mapItemPriceListCache;  ///< 플레이어별 아이템 가격정보 리스트
 	// END_OF_MYSHOP_PRICE_LIST
 
+	TChannelStatusMap m_mChannelStatus;
+
 	struct TPartyInfo
 	{
 	    BYTE bRole;
@@ -541,6 +545,8 @@ class CClientManager : public CNetBase, public singleton<CClientManager>
 	void ResetLastPlayerID(const TPacketNeedLoginLogInfo* data);
 	//delete gift notify icon
 	void DeleteAwardId(TPacketDeleteAwardID* data);
+	void UpdateChannelStatus(TChannelStatus* pData);
+	void RequestChannelStatus(CPeer* peer, DWORD dwHandle);
 #ifdef __AUCTION__
 	void EnrollInAuction (CPeer * peer, DWORD owner_id, AuctionEnrollProductInfo* data);
 	void EnrollInSale (CPeer * peer, DWORD owner_id, AuctionEnrollSaleInfo* data);

@@ -7,7 +7,6 @@
 #include "../../ExternGame/libgame/include/grid.h"
 
 #include "ClientManager.h"
-
 #include "Main.h"
 #include "Config.h"
 #include "DBManager.h"
@@ -74,8 +73,22 @@ void CClientManager::SetPlayerIDStart(int iIDStart)
 	m_iPlayerIDStart = iIDStart;
 }
 
+void CClientManager::GetPeerP2PHostNames(std::string& peerHostNames)
+{
+	std::ostringstream oss(std::ostringstream::out);
+
+	for (itertype(m_peerList) it = m_peerList.begin(); it != m_peerList.end(); ++it)
+	{
+		CPeer * peer = *it;
+		oss << peer->GetHost() << " " << peer->GetP2PPort() << " channel : " << (int)(peer->GetChannel()) << "\n";
+	}
+	
+	peerHostNames += oss.str();
+}
+
 void CClientManager::Destroy()
 {
+	m_mChannelStatus.clear();
 	for (itertype(m_peerList) i = m_peerList.begin(); i != m_peerList.end(); ++i)
 		(*i)->Destroy();
 
@@ -2677,6 +2690,12 @@ void CClientManager::ProcessPackets(CPeer * peer)
 				DeleteAwardId((TPacketDeleteAwardID*) data);
 				break;
 
+			case HEADER_GD_UPDATE_CHANNELSTATUS:
+				UpdateChannelStatus((SChannelStatus*) data);
+				break;
+			case HEADER_GD_REQUEST_CHANNELSTATUS:
+				RequestChannelStatus(peer, dwHandle);
+				break;
 #ifdef __AUCTION__
 			case HEADER_GD_COMMAND_AUCTION:
 			{
@@ -3119,6 +3138,11 @@ int CClientManager::Process()
 		{
 			// 유니크 아이템을 위한 시간을 보낸다.
 			CClientManager::instance().SendTime();
+
+			// 현재 연결된 peer의 host 및 port를 출력한다.
+			std::string st;
+			CClientManager::instance().GetPeerP2PHostNames(st);
+			sys_log(0, "Current Peer host names...\n%s", st.c_str());
 		}
 
 		if (!(thecore_heart->pulse % (thecore_heart->passes_per_sec * 3600)))	// 한시간에 한번
@@ -3677,8 +3701,9 @@ bool CClientManager::InitializeLocalization()
 				sys_err("locale[LOCALE] = UNKNOWN(%s)", locale.szValue);
 				exit(0);
 			}
-
+			sys_log(0,"before call SetLocale: %s",g_stLocale.c_str());
 			CDBManager::instance().SetLocale(g_stLocale.c_str());
+			sys_log(0,"Called SetLocale");
 		}
 		else if (strcmp(locale.szKey, "DB_NAME_COLUMN") == 0)
 		{
@@ -4301,6 +4326,28 @@ void CClientManager::DeleteAwardId(TPacketDeleteAwardID *data)
 		sys_log(0,"DELETE_AWARDID : could not find the id: %d", data->dwID);
 	}
 
+}
+
+void CClientManager::UpdateChannelStatus(TChannelStatus* pData)
+{
+	TChannelStatusMap::iterator it = m_mChannelStatus.find(pData->nPort);
+	if (it != m_mChannelStatus.end()) {
+		it->second = pData->bStatus;
+	}
+	else {
+		m_mChannelStatus.insert(TChannelStatusMap::value_type(pData->nPort, pData->bStatus));
+	}
+}
+
+void CClientManager::RequestChannelStatus(CPeer* peer, DWORD dwHandle)
+{
+	const int nSize = m_mChannelStatus.size();
+	peer->EncodeHeader(HEADER_DG_RESPOND_CHANNELSTATUS, dwHandle, sizeof(TChannelStatus)*nSize+sizeof(int));
+	peer->Encode(&nSize, sizeof(int));
+	for (TChannelStatusMap::iterator it = m_mChannelStatus.begin(); it != m_mChannelStatus.end(); it++) {
+		peer->Encode(&it->first, sizeof(short));
+		peer->Encode(&it->second, sizeof(BYTE));
+	}
 }
 
 void CClientManager::ResetLastPlayerID(const TPacketNeedLoginLogInfo* data)

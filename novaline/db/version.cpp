@@ -4,12 +4,12 @@
 void WriteVersion()
 {
 #ifndef __WIN32__
-	FILE* fp(fopen("ver.txt", "w"));
+	FILE* fp(fopen("VERSION.txt", "w"));
 
 	if (NULL != fp)
 	{
-		fprintf(fp, "db svn revision: %s\n", __SVN_VERSION__);
-		//fprintf(fp, "%s@%s:%s\n", __USER__, __HOSTNAME__, __PWD__);
+		fprintf(fp, "game perforce revision: %s\n", __P4_VERSION__);
+		fprintf(fp, "%s@%s:%s\n", __USER__, __HOSTNAME__, __PWD__);
 		fclose(fp);
 	}
 	else
