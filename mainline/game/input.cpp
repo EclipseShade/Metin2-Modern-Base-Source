@@ -275,11 +275,21 @@ int CInputHandshake::Analyze(LPDESC d, BYTE bHeader, const char * c_pData)
 
 	if (bHeader == HEADER_CG_TEXT)
 	{
+#ifdef ENABLE_PORT_SECURITY
+		if (IsEmptyAdminPage() || !IsAdminPage(inet_ntoa(d->GetAddr().sin_addr))) { // block if adminpage is not set or if not admin
+			sys_log(0, "SOCKET_CMD: BLOCK FROM(%s)", d->GetHostName());
+			d->SetPhase(PHASE_CLOSE);
+			
+			return 0;
+		}
+#endif
 		++c_pData;
 		const char * c_pSep;
 
-		if (!(c_pSep = strchr(c_pData, '\n')))	// \n을 찾는다.
-			return -1;
+		if (!(c_pSep = strchr(c_pData, '\n'))) {
+			d->SetPhase(PHASE_CLOSE); // @fixme187
+			return 0; // @fixme187
+		}
 
 		if (*(c_pSep - 1) == '\r')
 			--c_pSep;
@@ -304,7 +314,6 @@ int CInputHandshake::Analyze(LPDESC d, BYTE bHeader, const char * c_pData)
 			else
 				stResult = "YES";
 		}
-		//else if (!stBuf.compare("SHOWMETHEMONEY"))
 		else if (stBuf == g_stAdminPagePassword)
 		{
 			if (!IsEmptyAdminPage())
