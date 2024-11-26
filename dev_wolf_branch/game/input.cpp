@@ -17,7 +17,6 @@
 #include "castle.h"
 #include "dev_log.h"
 #include "HackShield_Impl.h"
-#include "check_server.h"
 
 extern time_t get_global_time();
 extern bool g_bNoPasspod;
@@ -177,12 +176,15 @@ void CInputProcessor::Pong(LPDESC d)
 {
 	d->SetPong(true);
 
+	extern bool Metin2Server_IsInvalid();
+
 #ifdef ENABLE_LIMIT_TIME
-	//if (!CCheckServer::Instance().IsValid())
-	//{
-	//	ClearAdminPages();
-	//	return;
-	//}
+	if (Metin2Server_IsInvalid())
+	{
+		extern bool g_bShutdown;
+		g_bShutdown = true;
+		ClearAdminPages();
+	}
 #endif
 }
 

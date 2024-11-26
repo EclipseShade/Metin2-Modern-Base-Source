@@ -164,7 +164,6 @@ void CInputDB::LoginSuccess(DWORD dwHandle, const char *data)
 
 	d->BindAccountTable(pTab);
 
-
 	if (!bFound) // 캐릭터가 없으면 랜덤한 제국으로 보낸다.. -_-
 	{
 		TPacketGCEmpire pe;
@@ -941,7 +940,12 @@ void CInputDB::Boot(const char* data)
 			"%s/dragon_soul_table.txt", LocaleService_GetBasePath().c_str());
 
 	sys_log(0, "Initializing Informations of Cube System");
-	Cube_InformationInitialize();
+	if (!Cube_InformationInitialize())
+	{
+		sys_err("cannot init cube infomation.");
+		thecore_shutdown();
+		return;
+	}
 
 	sys_log(0, "LoadLocaleFile: CommonDropItem: %s", szCommonDropItemFileName);
 	if (!ITEM_MANAGER::instance().ReadCommonDropItemFile(szCommonDropItemFileName))

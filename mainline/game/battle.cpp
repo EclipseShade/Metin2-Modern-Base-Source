@@ -308,6 +308,12 @@ int CalcAttBonus(LPCHARACTER pkAttacker, LPCHARACTER pkVictim, int iAtk)
 			case JOB_SHAMAN:
 				iAtk += (iAtk * pkAttacker->GetPoint(POINT_ATTBONUS_SHAMAN)) / 100;
 				break;
+
+#ifdef ENABLE_WOLFMAN_CHARACTER
+			case JOB_WOLFMAN:
+				iAtk += (iAtk * pkAttacker->GetPoint(POINT_ATTBONUS_WOLFMAN)) / 100;
+				break;
+#endif
 		}
 	}
 
@@ -330,6 +336,12 @@ int CalcAttBonus(LPCHARACTER pkAttacker, LPCHARACTER pkVictim, int iAtk)
 			case JOB_SHAMAN:
 				iAtk -= (iAtk * pkVictim->GetPoint(POINT_RESIST_SHAMAN)) / 100;
 				break;
+
+#ifdef ENABLE_WOLFMAN_CHARACTER
+			case JOB_WOLFMAN:
+				iAtk -= (iAtk * pkVictim->GetPoint(POINT_RESIST_WOLFMAN)) / 100;
+				break;
+#endif
 		}
 	}
 

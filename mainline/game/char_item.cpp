@@ -49,8 +49,9 @@
 
 //auction_temp
 #ifdef __AUCTION__
-#include "auction_manager.h"
+	#include "auction_manager.h"
 #endif
+
 const int ITEM_BROKEN_METIN_VNUM = 28960;
 
 // CHANGE_ITEM_ATTRIBUTES
@@ -7121,6 +7122,10 @@ bool CHARACTER::ItemProcess_Hair(LPITEM item, int iDestCell)
 			hair -= 69750;
 			break;
 
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case JOB_WOLFMAN:
+			break; // NOTE: 이 헤어코드는 안 쓰이므로 패스. (현재 헤어시스템은 이미 코스튬으로 대체 된 상태임)
+#endif
 		default :
 			return false;
 			break;
@@ -7446,6 +7451,13 @@ bool CHARACTER::CanEquipNow(const LPITEM item, const TItemPos& srcCell, const TI
 			if (item->GetAntiFlag() & ITEM_ANTIFLAG_SURA)
 				return false;
 			break;
+
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case JOB_WOLFMAN:
+			if (item->GetAntiFlag() & ITEM_ANTIFLAG_WOLFMAN)
+				return false;
+			break;
+#endif
 	}
 
 	for (int i = 0; i < ITEM_LIMIT_MAX_NUM; ++i)

@@ -2042,7 +2042,7 @@ bool CHARACTER::UseItemEx(LPITEM item, TItemPos DestCell)
 					}
 				}
 
-				if( dwBoxVnum > 51500 && dwBoxVnum < 52000 )	// 용혼원석들
+				if( (dwBoxVnum > 51500 && dwBoxVnum < 52000) || (dwBoxVnum >= 50255 && dwBoxVnum <= 50260) )	// 용혼원석들
 				{
 					if( !(this->DragonSoul_IsQualified()) )
 					{
@@ -4549,7 +4549,7 @@ bool CHARACTER::UseItemEx(LPITEM item, TItemPos DestCell)
 										return false;
 									}
 
-									if (GM_PLAYER == GetGMLevel() && false == test_server)
+									if (GM_PLAYER == GetGMLevel() && false == test_server && false == g_bDisableItemBonusChangeTime)
 									{
 										//
 										// Event Flag 를 통해 이전에 아이템 속성 변경을 한 시간으로 부터 충분한 시간이 흘렀는지 검사하고
@@ -5088,6 +5088,11 @@ bool CHARACTER::UseItemEx(LPITEM item, TItemPos DestCell)
 			if (Blend_Item_find(item->GetVnum()))
 			{
 				int		affect_type		= AFFECT_BLEND;
+				if (item->GetSocket(0) >= _countof(aApplyInfo))
+				{
+					sys_err ("INVALID BLEND ITEM(id : %d, vnum : %d). APPLY TYPE IS %d.", item->GetID(), item->GetVnum(), item->GetSocket(0));
+					return false;
+				}
 				int		apply_type		= aApplyInfo[item->GetSocket(0)].bPointType;
 				int		apply_value		= item->GetSocket(1);
 				int		apply_duration	= item->GetSocket(2);
@@ -5465,8 +5470,21 @@ bool CHARACTER::DropGold(int gold)
 			//Motion(MOTION_PICKUP);
 			PointChange(POINT_GOLD, -gold, true);
 
-			if (gold > 1000) // 천원 이상만 기록한다.
-				LogManager::instance().CharLog(this, gold, "DROP_GOLD", "");
+			// 브라질에 돈이 없어진다는 버그가 있는데,
+			// 가능한 시나리오 중에 하나는,
+			// 메크로나, 핵을 써서 1000원 이하의 돈을 계속 버려 골드를 0으로 만들고, 
+			// 돈이 없어졌다고 복구 신청하는 것일 수도 있다.
+			// 따라서 그런 경우를 잡기 위해 낮은 수치의 골드에 대해서도 로그를 남김.
+			if (LC_IsBrazil() == true)
+			{
+				if (gold >= 213)
+					LogManager::instance().CharLog(this, gold, "DROP_GOLD", "");
+			}
+			else
+			{
+				if (gold > 1000) // 천원 이상만 기록한다.
+					LogManager::instance().CharLog(this, gold, "DROP_GOLD", "");
+			}
 
 			if (false == LC_IsBrazil())
 			{
@@ -5582,7 +5600,7 @@ bool CHARACTER::MoveItem(TItemPos Cell, TItemPos DestCell, BYTE count)
 			sys_log(0, "%s: ITEM_STACK %s (window: %d, cell : %d) -> (window:%d, cell %d) count %d", GetName(), item->GetName(), Cell.window_type, Cell.cell, 
 				DestCell.window_type, DestCell.cell, count);
 
-			count = MIN(200 - item2->GetCount(), count);
+			count = MIN(g_bItemCountLimit - item2->GetCount(), count);
 
 			item->SetCount(item->GetCount() - count);
 			item2->SetCount(item2->GetCount() + count);
@@ -5733,8 +5751,21 @@ void CHARACTER::GiveGold(int iAmount)
 	{
 		PointChange(POINT_GOLD, iAmount, true);
 
-		if (iAmount > 1000) // 천원 이상만 기록한다.
-			LogManager::instance().CharLog(this, iAmount, "GET_GOLD", "");
+		// 브라질에 돈이 없어진다는 버그가 있는데,
+		// 가능한 시나리오 중에 하나는,
+		// 메크로나, 핵을 써서 1000원 이하의 돈을 계속 버려 골드를 0으로 만들고, 
+		// 돈이 없어졌다고 복구 신청하는 것일 수도 있다.
+		// 따라서 그런 경우를 잡기 위해 낮은 수치의 골드에 대해서도 로그를 남김.
+		if (LC_IsBrazil() == true)
+		{
+			if (iAmount >= 213)
+				LogManager::instance().CharLog(this, iAmount, "GET_GOLD", "");
+		}
+		else
+		{
+			if (iAmount > 1000) // 천원 이상만 기록한다.
+				LogManager::instance().CharLog(this, iAmount, "GET_GOLD", "");
+		}
 	}
 }
 
@@ -5787,7 +5818,7 @@ bool CHARACTER::PickupItem(DWORD dwVID)
 							if (j != ITEM_SOCKET_MAX_NUM)
 								continue;
 
-							BYTE bCount2 = MIN(200 - item2->GetCount(), bCount);
+							BYTE bCount2 = MIN(g_bItemCountLimit - item2->GetCount(), bCount);
 							bCount -= bCount2;
 
 							item2->SetCount(item2->GetCount() + bCount2);
@@ -6273,8 +6304,10 @@ void CHARACTER::BuffOnAttr_ValueChange(BYTE bType, BYTE bOldValue, BYTE bNewValu
 	}
 	else
 	{
-		assert (m_map_buff_on_attrs.end() != it);
-		it->second->ChangeBuffValue(bNewValue);
+		if (m_map_buff_on_attrs.end() == it)
+			return;
+		else
+			it->second->ChangeBuffValue(bNewValue);
 	}
 }
 
@@ -6511,7 +6544,7 @@ LPITEM CHARACTER::AutoGiveItem(DWORD dwItemVnum, BYTE bCount, int iRarePct, bool
 						bCount = p->alValues[1];
 				}
 
-				BYTE bCount2 = MIN(200 - item->GetCount(), bCount);
+				BYTE bCount2 = MIN(g_bItemCountLimit - item->GetCount(), bCount);
 				bCount -= bCount2;
 
 				item->SetCount(item->GetCount() + bCount2);
@@ -7089,9 +7122,10 @@ bool CHARACTER::ItemProcess_Hair(LPITEM item, int iDestCell)
 			hair -= 69750;
 			break;
 
+#ifdef ENABLE_WOLFMAN_CHARACTER
 		case JOB_WOLFMAN:
 			break; // NOTE: 이 헤어코드는 안 쓰이므로 패스. (현재 헤어시스템은 이미 코스튬으로 대체 된 상태임)
-
+#endif
 		default :
 			return false;
 			break;
@@ -7418,8 +7452,12 @@ bool CHARACTER::CanEquipNow(const LPITEM item, const TItemPos& srcCell, const TI
 				return false;
 			break;
 
+#ifdef ENABLE_WOLFMAN_CHARACTER
 		case JOB_WOLFMAN:
-			break; // TODO: 수인족 아이템 착용가능여부 처리
+			if (item->GetAntiFlag() & ITEM_ANTIFLAG_WOLFMAN)
+				return false;
+			break;
+#endif
 	}
 
 	for (int i = 0; i < ITEM_LIMIT_MAX_NUM; ++i)

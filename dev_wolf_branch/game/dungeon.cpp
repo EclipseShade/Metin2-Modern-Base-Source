@@ -444,7 +444,11 @@ LPDUNGEON CDungeonManager::Create(long lOriginalMapIndex)
 	}
 
 	LPDUNGEON pDungeon = M2_NEW CDungeon(id, lOriginalMapIndex, lMapIndex);
-
+	if (!pDungeon)
+	{
+		sys_err("M2_NEW CDungeon failed");
+		return NULL;
+	}
 	m_map_pkDungeon.insert(std::make_pair(id, pDungeon));
 	m_map_pkMapDungeon.insert(std::make_pair(lMapIndex, pDungeon));
 

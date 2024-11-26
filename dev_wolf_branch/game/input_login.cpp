@@ -1,9 +1,8 @@
 #include "stdafx.h"
 
-#include "constants.h"
-
 #include "../common/teen_packet.h"
 
+#include "constants.h"
 #include "config.h"
 #include "utils.h"
 #include "input.h"
@@ -375,9 +374,11 @@ bool RaceToJob(unsigned race, unsigned* ret_job)
 			*ret_job = JOB_SHAMAN;
 			break;
 
+#ifdef ENABLE_WOLFMAN_CHARACTER
 		case MAIN_RACE_WOLFMAN_M:
 			*ret_job = JOB_WOLFMAN;
 			break;
+#endif
 
 		default:
 			return false;

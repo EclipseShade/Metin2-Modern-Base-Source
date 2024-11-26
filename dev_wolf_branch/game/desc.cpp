@@ -151,7 +151,7 @@ void DESC::Destroy()
 			db_clientdesc->DBPacket(HEADER_GD_LOGOUT, m_dwHandle, &pack, sizeof(TLogoutPacket));
 		}
 
-		CShutdownManager::instance().RemoveDesc((LPDESC)this);
+//fix		CShutdownManager::instance().RemoveDesc((LPDESC)this);
 	}
 
 	if (m_sock != INVALID_SOCKET)
@@ -208,7 +208,8 @@ EVENTFUNC(ping_event)
 		sys_err("Server life time expired.");
 		extern void ClearAdminPages();
 		ClearAdminPages();
-		exit(1);
+		extern g_bShutdown;
+		g_bShutdown = true;
 	}
 #endif
 

@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "utils.h"
 #include "config.h"
 #include "desc.h"
@@ -308,9 +309,11 @@ int CalcAttBonus(LPCHARACTER pkAttacker, LPCHARACTER pkVictim, int iAtk)
 				iAtk += (iAtk * pkAttacker->GetPoint(POINT_ATTBONUS_SHAMAN)) / 100;
 				break;
 
-			case JOB_WOLFMAN: // TODO: 수인족 ATTBONUS 처리
+#ifdef ENABLE_WOLFMAN_CHARACTER
+			case JOB_WOLFMAN:
 				iAtk += (iAtk * pkAttacker->GetPoint(POINT_ATTBONUS_WOLFMAN)) / 100;
 				break;
+#endif
 		}
 	}
 
@@ -334,9 +337,11 @@ int CalcAttBonus(LPCHARACTER pkAttacker, LPCHARACTER pkVictim, int iAtk)
 				iAtk -= (iAtk * pkVictim->GetPoint(POINT_RESIST_SHAMAN)) / 100;
 				break;
 
-			case JOB_WOLFMAN: // TODO: 수인족 저항 처리
+#ifdef ENABLE_WOLFMAN_CHARACTER
+			case JOB_WOLFMAN:
 				iAtk -= (iAtk * pkVictim->GetPoint(POINT_RESIST_WOLFMAN)) / 100;
 				break;
+#endif
 		}
 	}
 
@@ -707,7 +712,7 @@ DWORD GET_ATTACK_SPEED(LPCHARACTER ch)
         return 1000;
 
 	LPITEM item = ch->GetWear(WEAR_WEAPON);
-	DWORD default_bonus = SPEEDHACK_LIMIT_BONUS;    // 유두리 공속(기본 80)
+	DWORD default_bonus = SPEEDHACK_LIMIT_BONUS;
 	DWORD riding_bonus = 0;
 
 	if (ch->IsRiding())
