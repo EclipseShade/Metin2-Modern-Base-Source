@@ -28,9 +28,7 @@ LIBDIR += -L../../ExternGame/libpoly
 LIBDIR += -L../../ExternGame/libsql
 LIBDIR += -L /usr/local/lib/mysql
 
-# IncDir
-INCDIR += -I/usr/local/include
-
+# Libs
 LIBS = -lthecore -lmysqlclient -lsql -lpoly -lgame -lm -lz
 LIBS += -lc++
 
@@ -66,6 +64,6 @@ clean:
 
 dep:
 	@touch Depend
-	makedepend -fDepend $(INCDIR) -I/usr/include/c++/3.3 -I/usr/include/c++/4.2 -p$(OBJDIR)/ $(SRCS) 2> /dev/null
+	makedepend -fDepend $(INCDIR) -I/usr/include/c++/4.2 -p $(OBJDIR)/ $(SRCS) 2> /dev/null
 
 sinclude Depend
