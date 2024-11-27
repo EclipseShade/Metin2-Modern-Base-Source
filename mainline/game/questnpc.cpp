@@ -1,6 +1,5 @@
 #include "stdafx.h"
-#include <fstream>
-#include <sstream>
+
 #include "questmanager.h"
 #include "profiler.h"
 #include "config.h"
@@ -9,7 +8,6 @@
 // questpc.h: PC::typedef Quest
 // questpc.h: PC::typedef map<unsigned long, QuestState> QuestInfo;
 // typedef 
-
 
 namespace quest
 {

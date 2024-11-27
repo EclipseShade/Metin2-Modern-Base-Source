@@ -1,8 +1,6 @@
 #ifndef _M2_CHECK_SERVER_KEY_H_
 #define _M2_CHECK_SERVER_KEY_H_
 
-#include <string>
-#include <vector>
 #include "CheckServerKey.h"
 
 class CheckServer

@@ -22,24 +22,6 @@ inline void stl_lowers(std::string& rstRet)
 		rstRet[i] = tolower(rstRet[i]);
 }
 
-struct stringhash       
-{
-	size_t operator () (const std::string & str) const
-	{
-		const unsigned char * s = (const unsigned char*) str.c_str();
-		const unsigned char * end = s + str.size();
-		size_t h = 0;
-
-		while (s < end)
-		{
-			h *= 16777619;
-			h ^= *(s++);
-		}
-
-		return h;
-	}
-};
-
 // code from tr1/functional_hash.h
 template<typename T>
 struct hash;
@@ -95,16 +77,6 @@ namespace std
 
 			a.clear();
 		}
-
-	template <typename T> T MIN(T a, T b)
-	{
-		return a < b ? a : b;
-	}
-
-	template <typename T> T MAX(T a, T b)
-	{
-		return a > b ? a : b;
-	}
 
 	template <typename T> T MINMAX(T min, T value, T max)
 	{

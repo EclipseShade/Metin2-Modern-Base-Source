@@ -8,8 +8,6 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <vector>
-#include <algorithm>
 
 typedef unsigned char BYTE;
 typedef unsigned long DWORD;

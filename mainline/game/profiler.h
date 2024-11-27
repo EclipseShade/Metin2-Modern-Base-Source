@@ -31,22 +31,18 @@ class CProfiler : public singleton<CProfiler>
 			std::string strName;
 		} TProfileAccumData;
 
-		struct stringhash
-		{
-			size_t operator () (const std::string& str) const
-			{
-				const unsigned char * s = (const unsigned char *) str.c_str();
+		struct stringhash {
+			size_t operator () (const std::string & str) const {
+				const unsigned char * s = (const unsigned char*) str.c_str();
 				const unsigned char * end = s + str.size();
 				size_t h = 0;
 
-				while (s < end)
-				{
+				while (s < end) {
 					h *= 16777619;
-					h ^= (unsigned char) *(unsigned char *) (s++);
+					h ^= *(s++);
 				}
 
 				return h;
-
 			}
 		};
 

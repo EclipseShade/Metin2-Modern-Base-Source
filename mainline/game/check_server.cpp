@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "check_server.h"
 
 std::vector<std::string> CheckServer::keys_;

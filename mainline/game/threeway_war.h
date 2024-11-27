@@ -3,8 +3,6 @@
 
 #include <boost/unordered_map.hpp>
 
-#include "../common/stl.h"
-
 struct ForkedSungziMapInfo
 {
 	int m_iForkedSung;

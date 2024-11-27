@@ -3,8 +3,6 @@
 
 #include <boost/unordered_map.hpp>
 
-#include "../common/stl.h"
-
 #include "entity.h"
 #include "FSM.h"
 #include "horse_rider.h"

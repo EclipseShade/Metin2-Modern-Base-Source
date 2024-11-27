@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include <sstream>
 
 #include "desc.h"
 #include "party.h"

@@ -14,9 +14,6 @@
 #include <boost/bind.hpp>
 #include "item.h"
 #include "desc_client.h"
-
-#include "../common/tables.h"
-
 #include "protocol.h"
 #include "auction_manager.h"
 

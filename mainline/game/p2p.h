@@ -4,8 +4,7 @@
 #include <boost/unordered_map.hpp>
 
 #include "input.h"
-
-#include "../common/stl.h"
+#include "profiler.h"
 
 typedef struct _CCI
 {
@@ -57,7 +56,7 @@ class P2P_MANAGER : public singleton<P2P_MANAGER>
 		CInputProcessor *	m_pkInputProcessor;
 		int			m_iHandleCount;
 
-		typedef boost::unordered_map<std::string, CCI *, stringhash> TCCIMap;
+		typedef boost::unordered_map<std::string, CCI *, CProfiler::stringhash> TCCIMap;
 		typedef boost::unordered_map<DWORD, CCI*> TPIDCCIMap;
 
 		TR1_NS::unordered_set<LPDESC> m_set_pkPeers;

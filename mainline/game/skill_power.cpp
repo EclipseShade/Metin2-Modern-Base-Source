@@ -1,7 +1,5 @@
 #include "stdafx.h"
 
-#include "../common/length.h"
-
 #include "skill_power.h"
 
 bool CTableBySkill::Check() const

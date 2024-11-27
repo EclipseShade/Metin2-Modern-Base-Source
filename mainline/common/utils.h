@@ -1,3 +1,6 @@
+#ifndef UTILS_H
+#define UTILS_H
+
 /*----- atoi function -----*/
 inline bool str_to_number (bool& out, const char *in)
 {
@@ -107,3 +110,4 @@ inline bool str_to_number (long double& out, const char *in)
 
 
 /*----- atoi function -----*/
+#endif

@@ -1,13 +1,5 @@
-/*********************************************************************
- * date        : 2006.11.20
- * file        : cube.cpp
- * author      : mhh
- * description : 
- */
-
-#define _cube_cpp_
-
 #include "stdafx.h"
+
 #include "constants.h"
 #include "utils.h"
 #include "log.h"
@@ -17,13 +9,9 @@
 #include "item.h"
 #include "item_manager.h"
 
-#include <sstream>
-
 extern int test_server;
 
-
 #define RETURN_IF_CUBE_IS_NOT_OPENED(ch) if (!(ch)->IsCubeOpen()) return
-
 
 /*--------------------------------------------------------*/
 /*                   GLOBAL VARIABLES                     */

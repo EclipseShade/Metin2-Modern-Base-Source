@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "constants.h"
 #include "utils.h"
 #include "desc.h"
@@ -19,7 +20,7 @@
 #include "shutdown_manager.h"
 
 #ifndef __GNUC__
-#include <boost/bind.hpp>
+	#include <boost/bind.hpp>
 #endif
 
 CHARACTER_MANAGER::CHARACTER_MANAGER() :

@@ -2,9 +2,6 @@
 
 #include "ClientPackageCryptInfo.h"
 
-#include "../common/stl.h"
-
-
 CClientPackageCryptInfo::CClientPackageCryptInfo() : m_pSerializedCryptKeyStream(NULL), m_nCryptKeyPackageCnt(0)
 {
 }

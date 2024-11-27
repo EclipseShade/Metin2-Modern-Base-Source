@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include <sstream>
+
 #ifndef __WIN32__
-#include <ifaddrs.h>
+	#include <ifaddrs.h>
 #endif
 
 #include "constants.h"

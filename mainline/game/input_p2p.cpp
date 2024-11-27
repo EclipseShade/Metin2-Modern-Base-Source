@@ -1,7 +1,5 @@
 #include "stdafx.h"
 
-#include "../common/billing.h"
-
 #include "config.h"
 #include "desc_client.h"
 #include "desc_manager.h"
@@ -23,7 +21,6 @@
 #include "pcbang.h"
 #include "skill.h"
 #include "threeway_war.h"
-
 
 ////////////////////////////////////////////////////////////////////////////////
 // Input Processor

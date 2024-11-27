@@ -1,13 +1,7 @@
 #ifndef __INC_SPAM_MANAGER_H__
 #define __INC_SPAM_MANAGER_H__
 
-#include <string.h>
-#include <ctype.h>
-#include <string>
-#include <vector>
-#include <utility>
-
-#include "../common/singleton.h"
+#include "stdafx.h"
 
 #include "utils.h"
 

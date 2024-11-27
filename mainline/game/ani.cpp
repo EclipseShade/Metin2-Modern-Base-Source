@@ -1,13 +1,5 @@
-/*********************************************************************
- * date        : 2007.11.16
- * file        : ani.cpp
- * author      : mhh
- * description : 
- */
-
-#define _ani_cpp_
-
 #include "stdafx.h"
+
 #include "char.h"
 #include "item.h"
 #include "ani.h"

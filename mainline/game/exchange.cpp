@@ -12,9 +12,6 @@
 #include "log.h"
 #include "db.h"
 #include "locale_service.h"
-
-#include "../common/length.h"
-
 #include "exchange.h"
 #include "DragonSoul.h"
 

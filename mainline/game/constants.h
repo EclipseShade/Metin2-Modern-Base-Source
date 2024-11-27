@@ -1,8 +1,6 @@
 #ifndef __INC_METIN_II_GAME_CONSTANTS_H__
 #define __INC_METIN_II_GAME_CONSTANTS_H__
 
-#include "../common/tables.h"
-
 enum EMonsterChatState
 {
 	MONSTER_CHAT_WAIT,

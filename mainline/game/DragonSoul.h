@@ -1,8 +1,6 @@
 #ifndef __INC_METIN_II_GAME_DRAGON_SOUL_H__
 #define __INC_METIN_II_GAME_DRAGON_SOUL_H__
 
-#include "../common/length.h"
-
 class CHARACTER;
 class CItem;
 

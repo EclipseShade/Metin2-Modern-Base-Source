@@ -6,6 +6,7 @@
 #include <string> // Include for std::string
 #include <cstddef> // For std::size_t
 #include <cstring>  // For C-style string functions
+#include <utility> // For std::pair
 
 #include <ctype.h>
 #include <map>

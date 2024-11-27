@@ -1,7 +1,5 @@
 #include <boost/unordered_map.hpp>
 
-#include "../common/stl.h"
-
 class CDragonLair
 {
 	public:

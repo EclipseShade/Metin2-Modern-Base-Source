@@ -1,7 +1,4 @@
-
 #include "stdafx.h"
-
-#include <sstream>
 
 #include "questmanager.h"
 #include "questlua.h"
