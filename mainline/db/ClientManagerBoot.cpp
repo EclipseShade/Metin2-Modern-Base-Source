@@ -219,9 +219,9 @@ bool CClientManager::InitializeMobTable()
 	//1. 파일 읽어오기
 	bool isTestFile = true;
 	cCsvTable test_data;
-	if(!test_data.Load("mob_proto_test.txt",'\t'))
+	if(!test_data.Load("../data/mob_proto_test.txt",'\t'))
 	{
-		fprintf(stderr, "테스트 파일이 없습니다. 그대로 진행합니다.\n");
+		fprintf(stderr, "../data/mob_proto_test.txt this file doesn't exist! \n");
 		isTestFile = false;
 	}
 	//2. (c)[test_map_mobTableByVnum](vnum:TMobTable) 맵 생성.
@@ -260,8 +260,8 @@ bool CClientManager::InitializeMobTable()
 
 	//1. 파일 읽기.
 	cCsvTable data;
-	if(!data.Load("mob_proto.txt",'\t')) {
-		fprintf(stderr, "mob_proto.txt 파일을 읽어오지 못했습니다\n");
+	if(!data.Load("../data/mob_proto.txt",'\t')) {
+		fprintf(stderr, "../data/mob_proto.txt this file doesn't exist! \n");
 		return false;
 	}
 	data.Next();					//설명 row 넘어가기
@@ -278,9 +278,9 @@ bool CClientManager::InitializeMobTable()
 	}
 	//data를 다시 첫줄로 옮긴다.(다시 읽어온다;;)
 	data.Destroy();
-	if(!data.Load("mob_proto.txt",'\t'))
+	if(!data.Load("../data/mob_proto.txt",'\t'))
 	{
-		fprintf(stderr, "mob_proto.txt 파일을 읽어오지 못했습니다\n");
+		fprintf(stderr, "../data/mob_proto.txt this file doesn't exist! \n");
 		return false;
 	}
 	data.Next(); //맨 윗줄 제외 (아이템 칼럼을 설명하는 부분)
@@ -397,9 +397,9 @@ bool CClientManager::InitializeMobTable()
 	test_data.Destroy();
 	isTestFile = true;
 	test_data;
-	if(!test_data.Load("mob_proto_test.txt",'\t'))
+	if(!test_data.Load("../data/mob_proto_test.txt",'\t'))
 	{
-		fprintf(stderr, "테스트 파일이 없습니다. 그대로 진행합니다.\n");
+		fprintf(stderr, "../data/mob_proto_test.txt this file doesn't exist! \n");
 		isTestFile = false;
 	}
 	if(isTestFile) {
@@ -597,9 +597,9 @@ bool CClientManager::InitializeItemTable()
 	//=================================================================================//
 	map<int,const char*> localMap;
 	cCsvTable nameData;
-	if(!nameData.Load("item_names.txt",'\t'))
+	if(!nameData.Load("../data/item_names.txt",'\t'))
 	{
-		fprintf(stderr, "item_names.txt 파일을 읽어오지 못했습니다\n");
+		fprintf(stderr, "../data/item_names.txt this file doesn't exist! \n");
 	} else {
 		nameData.Next();
 		while(nameData.Next()) {
@@ -615,9 +615,9 @@ bool CClientManager::InitializeItemTable()
 	map<DWORD, TItemTable *> test_map_itemTableByVnum;
 	//1. 파일 읽어오기.
 	cCsvTable test_data;
-	if(!test_data.Load("item_proto_test.txt",'\t'))
+	if(!test_data.Load("../data/item_proto_test.txt",'\t'))
 	{
-		fprintf(stderr, "item_proto_test.txt 파일을 읽어오지 못했습니다\n");
+		fprintf(stderr, "../data/item_proto_test.txt this file doesn't exist! \n");
 		//return false;
 	} else {
 		test_data.Next();	//설명 로우 넘어가기.
@@ -659,9 +659,9 @@ bool CClientManager::InitializeItemTable()
 
 	//파일 읽어오기.
 	cCsvTable data;
-	if(!data.Load("item_proto.txt",'\t'))
+	if(!data.Load("../data/item_proto.txt",'\t'))
 	{
-		fprintf(stderr, "item_proto.txt 파일을 읽어오지 못했습니다\n");
+		fprintf(stderr, "../data/item_proto.txt this file doesn't exist! \n");
 		return false;
 	}
 	data.Next(); //맨 윗줄 제외 (아이템 칼럼을 설명하는 부분)
@@ -686,9 +686,9 @@ bool CClientManager::InitializeItemTable()
 	}
 	//data를 다시 첫줄로 옮긴다.(다시 읽어온다;;)
 	data.Destroy();
-	if(!data.Load("item_proto.txt",'\t'))
+	if(!data.Load("../data/item_proto.txt",'\t'))
 	{
-		fprintf(stderr, "item_proto.txt 파일을 읽어오지 못했습니다\n");
+		fprintf(stderr, "../data/item_proto.txt this file doesn't exist! \n");
 		return false;
 	}
 	data.Next(); //맨 윗줄 제외 (아이템 칼럼을 설명하는 부분)
@@ -774,9 +774,9 @@ bool CClientManager::InitializeItemTable()
 	//	4) (b)[test_map_itemTableByVnum]의 row중, (!)[item_table]에 없는 것을 추가한다.
 	//========================================================================//
 	test_data.Destroy();
-	if(!test_data.Load("item_proto_test.txt",'\t'))
+	if(!test_data.Load("../data/item_proto_test.txt",'\t'))
 	{
-		fprintf(stderr, "item_proto_test.txt 파일을 읽어오지 못했습니다\n");
+		fprintf(stderr, "../data/item_proto_test.txt this file doesn't exist! \n");
 		//return false;
 	} else {
 		test_data.Next();	//설명 로우 넘어가기.
