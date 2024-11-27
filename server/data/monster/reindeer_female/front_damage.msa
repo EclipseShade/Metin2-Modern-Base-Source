@@ -1,0 +1,6 @@
+ScriptType               MotionData
+
+MotionFileName           "d:/ymir work/npc/reindeer_female/front_damage.gr2"
+MotionDuration           0.500000
+Accumulation             0.00	0.00	0.00
+

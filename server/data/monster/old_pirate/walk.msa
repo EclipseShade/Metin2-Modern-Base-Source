@@ -1,0 +1,6 @@
+ScriptType               MotionData
+
+MotionFileName           "d:/ymir work/npc/old_pirate/walk.gr2"
+MotionDuration           1.000000
+Accumulation             0.00	-100.55	0.00
+

@@ -1,0 +1,6 @@
+ScriptType               MotionData
+
+MotionFileName           "d:/ymir work/npc/guard_leader/walk.gr2"
+MotionDuration           1.000000
+Accumulation             0.00	-71.16	0.00
+

@@ -1,0 +1,6 @@
+ScriptType               MotionData
+
+MotionFileName           "d:/ymir work/npc/redguild_guard_m/walk.gr2"
+MotionDuration           1.000000
+Accumulation             0.00	-145.00	0.00
+

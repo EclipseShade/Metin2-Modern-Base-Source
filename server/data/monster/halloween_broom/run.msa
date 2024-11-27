@@ -1,0 +1,6 @@
+ScriptType               MotionData
+
+MotionFileName           "d:/ymir work/npc2/halloween_broom/run.gr2"
+MotionDuration           0.500000
+Accumulation             0.00	-350.00	0.00
+

@@ -1,0 +1,6 @@
+ScriptType               MotionData
+
+MotionFileName           "d:/ymir work/npc/timid_boy/walk.gr2"
+MotionDuration           1.000000
+Accumulation             0.00	-46.46	0.00
+

@@ -1,0 +1,7 @@
+### To compile all the quests written in here, you just have to do:
+## ./pre_qc.py -ac
+### OR
+## python pre_qc.py -ac
+
+## GENERAL
+systems/game_option.quest
