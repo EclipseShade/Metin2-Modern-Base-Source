@@ -1,13 +1,5 @@
-/*********************************************************************
- * date        : 2007.02.24
- * file        : blend_item.cpp
- * author      : mhh
- * description : 
- */
-
-#define _blend_item_cpp_
-
 #include "stdafx.h"
+
 #include "constants.h"
 #include "log.h"
 #include "dev_log.h"
@@ -16,7 +8,6 @@
 #include "blend_item.h"
 
 #define DO_ALL_BLEND_INFO(iter)	for (iter=s_blend_info.begin(); iter!=s_blend_info.end(); ++iter)
-
 
 struct BLEND_ITEM_INFO
 {

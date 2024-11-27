@@ -46,5 +46,5 @@ class CHackShieldImpl
 #endif
 };
 
-#endif /* HACK_SHIELD_IMPL_H_ */
+#endif
 

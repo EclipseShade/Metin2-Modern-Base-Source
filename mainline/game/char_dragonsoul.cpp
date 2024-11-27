@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "char.h"
 #include "item.h"
 #include "desc.h"

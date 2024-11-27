@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 //#define __MAIN__
 #ifdef __MAIN__
 

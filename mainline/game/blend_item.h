@@ -1,10 +1,3 @@
-/*********************************************************************
- * date        : 2007.02.24
- * file        : blend_item.h
- * author      : mhh
- * description : 
- */
-
 #ifndef _blend_item_h_
 #define _blend_item_h_
 

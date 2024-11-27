@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "file_loader.h"
 
 CMemoryTextFileLoader::CMemoryTextFileLoader()

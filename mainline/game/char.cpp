@@ -1,10 +1,6 @@
 #include "stdafx.h"
 
-#include "../common/teen_packet.h"
-#include "../common/VnumHelper.h"
-
 #include "char.h"
-
 #include "config.h"
 #include "utils.h"
 #include "crc32.h"

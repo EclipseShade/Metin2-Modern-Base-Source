@@ -1,8 +1,7 @@
-
 #include "stdafx.h"
 
+#include "config.h"
 #include "DragonLair.h"
-
 #include "entity.h"
 #include "sectree_manager.h"
 #include "char.h"
@@ -11,8 +10,6 @@
 #include "regen.h"
 #include "log.h"
 #include "utils.h"
-
-extern int passes_per_sec;
 
 struct FWarpToDragronLairWithGuildMembers
 {

@@ -2,7 +2,7 @@
 #define __INC_ITEM_MANAGER__
 
 #ifdef M2_USE_POOL
-#include "pool.h"
+	#include "pool.h"
 #endif
 
 // special_item_group.txt에서 정의하는 속성 그룹

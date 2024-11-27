@@ -1,15 +1,4 @@
-/*********************************************************************
- * date        : 2007.06.07
- * file        : input_teen.cpp
- * author      : mhh
- * description : 
- */
-
-#define _input_teen_cpp_
-
 #include "stdafx.h"
-
-#include "../common/teen_packet.h"
 
 #include "constants.h"
 #include "input.h"

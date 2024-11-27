@@ -1,8 +1,8 @@
 #include "stdafx.h"
+
 #include "constants.h"
 #include "config.h"
 #include "log.h"
-
 #include "char.h"
 #include "desc.h"
 #include "item.h"

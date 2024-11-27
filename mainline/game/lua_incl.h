@@ -1,3 +1,6 @@
+#ifndef __LUA_INC__H
+#define __LUA_INC__H
+
 #if !defined(_MSC_VER) && defined(__cplusplus)
 extern "C" {
 #endif
@@ -8,4 +11,6 @@ extern "C" {
 
 #if !defined(_MSC_VER) && defined(__cplusplus)
 }
+#endif
+
 #endif

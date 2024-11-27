@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include <time.h>
 #include "SpeedServer.h"
 #include "locale_service.h"

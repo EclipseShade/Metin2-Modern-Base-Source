@@ -1,8 +1,6 @@
-
 #include "stdafx.h"
 
 #include "HackShield.h"
-
 #include "HackShield_Impl.h"
 #include "config.h"
 

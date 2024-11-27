@@ -1,3 +1,5 @@
+#ifndef __OX_EVENT__H
+#define __OX_EVENT__H
 
 #define OXEVENT_MAP_INDEX 113
 
@@ -63,3 +65,4 @@ class COXEventManager : public singleton<COXEventManager>
 		DWORD GetAttenderCount() { return m_map_attender.size(); }
 };
 
+#endif

@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "buffer_manager.h"
 
 TEMP_BUFFER::TEMP_BUFFER(int Size, bool bForceDelete)

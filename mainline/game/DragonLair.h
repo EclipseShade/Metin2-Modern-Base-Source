@@ -1,3 +1,6 @@
+#ifndef __INC_METIN_II_DRAGON_LAIR__H
+#define __INC_METIN_II_DRAGON_LAIR__H
+
 #include <boost/unordered_map.hpp>
 
 class CDragonLair
@@ -32,3 +35,4 @@ class CDragonLairManager : public singleton<CDragonLairManager>
 		boost::unordered_map<DWORD, CDragonLair*> LairMap_;
 };
 
+#endif

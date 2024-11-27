@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "char.h"
 #include "mob_manager.h"
 #include "affect.h"

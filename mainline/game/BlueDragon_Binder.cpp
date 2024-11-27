@@ -1,8 +1,6 @@
-
 #include "stdafx.h"
 
 #include "BlueDragon_Binder.h"
-
 #include "questmanager.h"
 
 unsigned int BlueDragon_GetSkillFactor(const size_t cnt, ...)

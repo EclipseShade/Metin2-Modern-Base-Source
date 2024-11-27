@@ -1,3 +1,5 @@
+#ifndef __PCBANG__H
+#define __PCBANG__H
 
 typedef unsigned long PCBang_IP;
 typedef unsigned long PCBang_ID;
@@ -24,3 +26,4 @@ class CPCBangManager : public singleton<CPCBangManager>
 		bool IsPCBangIP(const char* c_szIP);
 };
 
+#endif

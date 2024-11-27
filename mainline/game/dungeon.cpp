@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "dungeon.h"
 #include "char.h"
 #include "char_manager.h"

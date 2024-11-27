@@ -1,12 +1,3 @@
-/**
- *
- * @file	TrafficProfiler.h
- * @brief	TrafficProfiler class definition file
- * @author	Bang2ni
- * @version	05/07/07 Bang2ni - First release.
- * 
- */
-
 #ifndef _METIN_II_TRAFFICPROFILER_H_
 #define _METIN_II_TRAFFICPROFILER_H_
 

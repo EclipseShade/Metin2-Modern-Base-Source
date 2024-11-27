@@ -19,6 +19,8 @@
 #include "../common/stl.h"
 #include "../common/billing.h"
 #include "../common/singleton.h"
+#include "../common/teen_packet.h"
+#include "../common/VnumHelper.h"
 
 // Standard Libraries
 #include <algorithm>	// For std::transform (used for applying a function to a range of elements)

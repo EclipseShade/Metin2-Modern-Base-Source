@@ -1,4 +1,3 @@
-
 #ifndef __POLYMORPH_UTILS__
 #define __POLYMORPH_UTILS__
 
@@ -33,4 +32,4 @@ class CPolymorphUtils : public singleton<CPolymorphUtils>
 		bool BookUpgrade(LPCHARACTER pChar, LPITEM pItem);
 };
 
-#endif /*__POLYMORPH_UTILS__*/
+#endif

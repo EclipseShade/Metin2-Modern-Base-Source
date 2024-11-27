@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "char.h"
 #include "desc.h"
 #include "sectree_manager.h"

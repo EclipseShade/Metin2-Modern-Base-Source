@@ -1,3 +1,6 @@
+#ifndef __INC_ITEM_MANAGER_PRIVATE_TYPES__H
+#define __INC_ITEM_MANAGER_PRIVATE_TYPES__H
+
 class CItemDropInfo
 {
 public:
@@ -28,3 +31,4 @@ typedef struct SDropItem
 	int		iCount;
 } TDropItem;
 
+#endif

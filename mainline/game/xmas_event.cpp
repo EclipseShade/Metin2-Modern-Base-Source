@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "config.h"
 #include "xmas_event.h"
 #include "desc.h"

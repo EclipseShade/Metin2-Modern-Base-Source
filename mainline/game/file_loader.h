@@ -19,5 +19,5 @@ class CMemoryTextFileLoader
 		std::vector<std::string> m_stLineVector;
 };
 
-#endif /* __INC_METIN_II_COMMON_FILE_LOADER_H__ */
+#endif
 

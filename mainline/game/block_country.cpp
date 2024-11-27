@@ -1,22 +1,12 @@
-/*********************************************************************
- * date        : 2007.05.31
- * file        : block_country.cpp
- * author      : mhh
- * description : 
- */
-
-#define _block_country_cpp_
-
 #include "stdafx.h"
+
 #include "constants.h"
 #include "block_country.h"
 #include "dev_log.h"
 
 #define DEC_ITER(iter)			std::vector<T_BLOCK_IP*>::iterator	iter
 #define DO_ALL_BLOCKED_IP(iter)	for ((iter)=s_blocked_ip.begin(); (iter)!=s_blocked_ip.end(); ++(iter))
-
 #define DEC_EXCEPTION_ITER(iter)	std::set<std::string>::iterator	iter
-
 
 typedef struct {
 	DWORD	ip_from;

@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "crc32.h"
 
 static unsigned long CRCTable[256] = 

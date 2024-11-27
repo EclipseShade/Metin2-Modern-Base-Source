@@ -1,7 +1,5 @@
 #include "stdafx.h"
 
-#include <stack>
-
 #include "utils.h"
 #include "config.h"
 #include "char.h"
@@ -37,12 +35,8 @@
 #include "dev_log.h"
 #include "pcbang.h"
 #include "threeway_war.h"
-
 #include "safebox.h"
 #include "shop.h"
-
-#include "../common/VnumHelper.h"
-
 #include "DragonSoul.h"
 #include "buff_on_attributes.h"
 #include "belt_inventory_helper.h"

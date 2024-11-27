@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "MarkImage.h"
 
 #include "crc32.h"

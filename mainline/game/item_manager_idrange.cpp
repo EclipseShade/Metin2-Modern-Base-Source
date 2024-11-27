@@ -1,5 +1,5 @@
-
 #include "stdafx.h"
+
 #include "desc_client.h"
 #include "item_manager.h"
 

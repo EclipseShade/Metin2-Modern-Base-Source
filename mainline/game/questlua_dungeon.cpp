@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "constants.h"
 #include "questmanager.h"
 #include "questlua.h"
@@ -10,7 +11,6 @@
 #include "packet.h"
 #include "desc_client.h"
 #include "desc_manager.h"
-
 
 #undef sys_err
 #ifndef __WIN32__

@@ -1,13 +1,5 @@
-/*********************************************************************
- * date        : 2007.11.16
- * file        : ani.h
- * author      : mhh
- * description : 
- */
-
 #ifndef _ani_h_
 #define _ani_h_
-
 
 void ani_init();
 DWORD ani_attack_speed(LPCHARACTER ch);

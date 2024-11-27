@@ -1,3 +1,6 @@
+#ifndef __MAP_LOCATION__H
+#define __MAP_LOCATION__H
+
 class CMapLocation : public singleton<CMapLocation>
 {
 	public:
@@ -15,3 +18,4 @@ class CMapLocation : public singleton<CMapLocation>
 		std::map<long, TLocation> m_map_address;
 };      
 
+#endif

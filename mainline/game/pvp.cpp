@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "constants.h"
 #include "pvp.h"
 #include "crc32.h"

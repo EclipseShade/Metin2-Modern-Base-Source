@@ -1,5 +1,7 @@
 #include "stdafx.h"
+
 #include "../../libgame/include/grid.h"
+
 #include "locale_service.h"
 #include "config.h"
 #include "desc.h"

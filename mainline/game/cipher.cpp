@@ -30,7 +30,6 @@
 #include <cryptopp565/skipjack.h>
 #include <cryptopp565/tea.h>
 
-
 using namespace CryptoPP;
 
 // Block cipher algorithm selector abstract base class.

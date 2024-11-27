@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "constants.h"
 #include "questmanager.h"
 #include "packet.h"

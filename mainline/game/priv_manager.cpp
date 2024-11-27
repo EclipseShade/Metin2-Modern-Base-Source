@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "constants.h"
 #include "priv_manager.h"
 #include "char.h"

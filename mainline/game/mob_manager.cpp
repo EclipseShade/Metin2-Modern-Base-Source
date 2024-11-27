@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "char.h"
 #include "char_manager.h"
 #include "item_manager.h"

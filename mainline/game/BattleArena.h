@@ -1,3 +1,6 @@
+#ifndef __INC_METIN_II_BATTLE_ARENA_H__
+#define __INC_METIN_II_BATTLE_ARENA_H__
+
 const static int nBATTLE_ARENA_MAP[] = { 0, 190, 191, 192 };
 const static std::string strRegen[] =
 {
@@ -39,3 +42,4 @@ class CBattleArena : public singleton<CBattleArena>
 		void SpawnRandomStone();
 };
 
+#endif

@@ -1,4 +1,3 @@
-
 #ifndef STABLE_PRIORITY_QUEUE_H_
 #define STABLE_PRIORITY_QUEUE_H_
 
@@ -39,5 +38,4 @@ class stable_priority_queue
 		}
 };
 
-#endif /* STABLE_PRIORITY_QUEUE_H_ */
-
+#endif

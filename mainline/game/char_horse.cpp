@@ -12,8 +12,6 @@
 #include "locale_service.h"
 #include "arena.h"
 
-#include "../common/VnumHelper.h"
-
 bool CHARACTER::StartRiding()
 {
 	if (IsDead() == true)

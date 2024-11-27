@@ -1,13 +1,12 @@
 #include "stdafx.h"
+
+#include "config.h"
 #include "constants.h"
 #include "monarch.h"
 #include "char.h"
 #include "sectree_manager.h"
 #include "desc_client.h"
 #include "dev_log.h"
-
-extern int test_server;
-extern int passes_per_sec;
 
 CMonarch::CMonarch()
 {

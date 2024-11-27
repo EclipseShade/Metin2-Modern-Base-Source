@@ -1,8 +1,6 @@
-
 #include "stdafx.h"
 
 #include "map_location.h"
-
 #include "sectree_manager.h"
 
 CMapLocation g_mapLocations;

@@ -1,4 +1,4 @@
-// Local Includes
+#include "stdafx.h"
 
 #include <cassert>
 #include <cstdlib>

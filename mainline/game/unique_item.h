@@ -1,4 +1,3 @@
-
 #ifndef __INC_METIN2_UNIQUE_ITEM_H
 #define __INC_METIN2_UNIQUE_ITEM_H
 

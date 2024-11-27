@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
-#include "../common/VnumHelper.h"
-
+#include "config.h"
 #include "utils.h"
 #include "vector.h"
 #include "char.h"
@@ -13,7 +12,6 @@
 #include "item_manager.h"
 #include "item.h"
 
-extern int passes_per_sec;
 EVENTINFO(petsystem_event_info)
 {
 	CPetSystem* pPetSystem;

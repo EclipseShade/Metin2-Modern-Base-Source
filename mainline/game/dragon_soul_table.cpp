@@ -1,9 +1,11 @@
 #include "stdafx.h"
+
 #include "constants.h"
 #include "group_text_parse_tree.h"
 #include "dragon_soul_table.h"
 #include "item_manager.h"
 #include <boost/lexical_cast.hpp>
+
 const std::string g_astGradeName[] =
 {
 	"grade_normal",

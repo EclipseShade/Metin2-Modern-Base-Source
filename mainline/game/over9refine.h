@@ -1,4 +1,3 @@
-
 #ifndef OVER_9_REFINE_MANAGER_H_
 #define OVER_9_REFINE_MANAGER_H_
 
@@ -21,5 +20,4 @@ class COver9RefineManager : public singleton<COver9RefineManager>
 		DWORD GetMaterialVnum(DWORD baseVnum);
 };
 
-#endif /* OVER_9_REFINE_MANAGER_H_ */
-
+#endif

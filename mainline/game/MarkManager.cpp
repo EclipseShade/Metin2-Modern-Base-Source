@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "MarkManager.h"
 
+#include "MarkManager.h"
 #include "crc32.h"
 
 CGuildMarkImage * CGuildMarkManager::__NewImage()

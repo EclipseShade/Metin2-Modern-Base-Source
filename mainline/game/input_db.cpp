@@ -1,4 +1,5 @@
-#include "stdafx.h" 
+#include "stdafx.h"
+
 #include "constants.h"
 #include "config.h"
 #include "utils.h"
@@ -28,17 +29,13 @@
 #include "wedding.h"
 #include "login_data.h"
 #include "unique_item.h"
-
 #include "monarch.h"
 #include "affect.h"
 #include "castle.h"
 #include "block_country.h"
 #include "motion.h"
-
 #include "dev_log.h"
-
 #include "log.h"
-
 #include "horsename_manager.h"
 #include "pcbang.h"
 #include "gm.h"
@@ -46,17 +43,16 @@
 #include "map_location.h"
 #include "HackShield.h"
 #include "XTrapManager.h"
-
 #include "DragonSoul.h"
-
 #include "shutdown_manager.h"
 
 #ifdef __AUCTION__
-#include "auction_manager.h"
+	#include "auction_manager.h"
 #endif
+
 extern BYTE		g_bAuthServer;
 #ifdef __AUCTION__
-extern int auction_server;
+	extern int auction_server;
 #endif
 extern void gm_insert(const char * name, BYTE level);
 extern BYTE	gm_get_level(const char * name, const char * host, const char* account );

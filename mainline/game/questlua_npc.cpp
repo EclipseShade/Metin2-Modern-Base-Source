@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "utils.h"
 #include "config.h"
 #include "questmanager.h"

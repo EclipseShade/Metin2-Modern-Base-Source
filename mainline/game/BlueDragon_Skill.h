@@ -1,3 +1,5 @@
+#ifndef __BLUE_DRAGON_SKILL__H
+#define __BLUE_DRAGON_SKILL__H
 
 struct FSkillBreath
 {
@@ -348,3 +350,4 @@ struct FSkillEarthQuake
 	}
 };
 
+#endif

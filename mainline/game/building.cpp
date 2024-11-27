@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "constants.h"
 #include "sectree_manager.h"
 #include "item_manager.h"

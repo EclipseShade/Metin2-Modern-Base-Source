@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "MarkManager.h"
 
 #ifdef __WIN32__

@@ -1,10 +1,3 @@
-/* vi: set sw=4 ts=8 cino=g0,\:0 : */
-/*********************************************************************
- * date        : 2010.4.7
- * file        : auth_brazil.h
- * author      : mhh
- * description : 
- */
 #ifndef __auth_brazil_h_1270647899__
 #define __auth_brazil_h_1270647899__
 

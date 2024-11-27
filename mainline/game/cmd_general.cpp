@@ -35,8 +35,6 @@
 #include "threeway_war.h"
 #include "log.h"
 
-#include "../common/VnumHelper.h"
-
 #ifdef __AUCTION__
 	#include "auction_manager.h"
 #endif

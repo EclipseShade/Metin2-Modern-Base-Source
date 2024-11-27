@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "config.h"
 #include "threeway_war.h"
 #include "questlua.h"
 #include "questmanager.h"
@@ -8,8 +9,6 @@
 #include "p2p.h"
 #include "locale_service.h"
 #include "threeway_war.h"
-
-extern int passes_per_sec;
 
 namespace quest
 {

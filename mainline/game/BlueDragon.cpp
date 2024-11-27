@@ -1,11 +1,7 @@
-
 #include "stdafx.h"
 
+#include "config.h"
 #include "BlueDragon.h"
-
-extern int test_server;
-extern int passes_per_sec;
-
 #include "vector.h"
 #include "utils.h"
 #include "char.h"

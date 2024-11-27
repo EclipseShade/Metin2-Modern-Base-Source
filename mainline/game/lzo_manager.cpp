@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "lzo_manager.h"
 
 LZOManager::LZOManager()

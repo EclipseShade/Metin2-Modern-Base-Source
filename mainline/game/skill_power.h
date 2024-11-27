@@ -1,4 +1,3 @@
-
 #ifndef METIN2_TABLE_BY_SKILL_
 #define METIN2_TABLE_BY_SKILL_
 
@@ -39,5 +38,4 @@ class CTableBySkill : public singleton<CTableBySkill>
 		int * m_aiSkillDamageByLevel;
 };
 
-#endif /* METIN2_TABLE_BY_SKILL_ */
-
+#endif

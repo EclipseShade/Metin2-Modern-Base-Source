@@ -1,5 +1,6 @@
 //#define __FISHING_MAIN__
 #include "stdafx.h"
+
 #include "constants.h"
 #include "fishing.h"
 #include "locale_service.h"

@@ -1,4 +1,3 @@
-
 #ifndef __INC_METIN_II_GAME_CONFIG_H__
 #define __INC_METIN_II_GAME_CONFIG_H__
 
@@ -129,5 +128,4 @@ extern bool gHackCheckEnable;
 
 extern bool g_BlockCharCreation;
 
-#endif /* __INC_METIN_II_GAME_CONFIG_H__ */
-
+#endif

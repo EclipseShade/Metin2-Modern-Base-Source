@@ -1,13 +1,5 @@
-/*********************************************************************
- * date        : 2007.04.07
- * file        : castle.h
- * author      : mhh
- * description : 
- */
-
 #ifndef _castle_h_
 #define _castle_h_
-
 
 #define MAX_CASTLE_GUARD_REGION		4	// 경비병 배치 구역
 #define MAX_CASTLE_GUARD_PER_REGION	10	// 한지역에 배치할수있는 경비병그룹

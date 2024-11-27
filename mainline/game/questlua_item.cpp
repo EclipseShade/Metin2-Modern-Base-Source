@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "questmanager.h"
 #include "char.h"
 #include "item.h"

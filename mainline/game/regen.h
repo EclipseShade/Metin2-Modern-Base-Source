@@ -1,3 +1,6 @@
+#ifndef __INC_REGEN__H
+#define __INC_REGEN__H
+
 #include "dungeon.h"
 
 enum
@@ -90,3 +93,5 @@ extern void	regen_free();
 
 extern bool	is_regen_exception(long x, long y);
 extern void	regen_reset(int x, int y);
+
+#endif

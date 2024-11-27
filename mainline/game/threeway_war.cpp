@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "config.h"
 #include "threeway_war.h"
 #include "p2p.h"
 #include "locale_service.h"
@@ -12,9 +13,6 @@
 #include "sectree_manager.h"
 #include "regen.h"
 #include "log.h"
-
-extern int test_server;
-extern int passes_per_sec;
 
 EVENTINFO(regen_mob_event_info)
 {

@@ -1,13 +1,5 @@
-/**
- *
- * @file	TrafficProfiler.cpp
- * @brief	TrafficProfiler class implementation file
- * @author	Bang2ni
- * @version	05/07/07 Bang2ni - First release.
- *
- */
-
 #include "stdafx.h"
+
 #include "TrafficProfiler.h"
 
 TrafficProfiler::TrafficProfiler()

@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "config.h"
 #include "utils.h"
 #include "desc_client.h"
@@ -9,7 +10,6 @@
 #include "buffer_manager.h"
 #include "guild_manager.h"
 #include "db.h"
-
 #include "party.h"
 
 extern LPFDWATCH	main_fdw;

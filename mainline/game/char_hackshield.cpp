@@ -1,8 +1,6 @@
-
 #include "stdafx.h"
 
 #include "char.h"
-
 #include "config.h"
 #include "event.h"
 #include "HackShield.h"

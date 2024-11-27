@@ -1,7 +1,5 @@
 #include "stdafx.h"
 
-#include "../common/VnumHelper.h"
-
 #include "utils.h"
 #include "config.h"
 #include "char.h"

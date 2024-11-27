@@ -1,15 +1,5 @@
-/*********************************************************************
- * date        : 2007.04.07
- * file        : castle.cpp
- * author      : mhh
- * description : 
- * 봉화 번호   : 11506 - 11510
- * 메틴석 번호 : 8012 - 8014, 8024-8027
- */
-
-#define _castle_cpp_
-
 #include "stdafx.h"
+
 #include "constants.h"
 #include "config.h"
 #include "char_manager.h"
@@ -26,9 +16,7 @@
 #define EMPIRE_YELLOW	2	// 천조
 #define EMPIRE_BLUE		3	// 진노
 
-
 #define SIEGE_EVENT_PULSE	PASSES_PER_SEC(60*5)	// 5분
-
 
 #define GET_CAHR_MANAGER()								CHARACTER_MANAGER::instance()
 #define GET_CASTLE(empire)								(s_castle+(empire))

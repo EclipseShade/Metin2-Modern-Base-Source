@@ -1,9 +1,3 @@
-/*
- *    Filename: event.h
- * Description: 이벤트 관련 (timed event)
- *
- *      Author: 김한주 (aka. 비엽, Cronan), 송영진 (aka. myevan, 빗자루)
- */
 #ifndef __INC_LIBTHECORE_EVENT_H__
 #define __INC_LIBTHECORE_EVENT_H__
 

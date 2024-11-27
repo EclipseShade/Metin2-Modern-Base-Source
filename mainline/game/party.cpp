@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "utils.h"
 #include "char.h"
 #include "party.h"

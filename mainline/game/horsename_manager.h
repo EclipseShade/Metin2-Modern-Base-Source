@@ -1,3 +1,5 @@
+#ifndef __HORSE_MANAGER_H
+#define __HORSE_MANAGER_H
 
 class CHorseNameManager : public singleton<CHorseNameManager>
 {
@@ -16,3 +18,4 @@ class CHorseNameManager : public singleton<CHorseNameManager>
 		void Validate(LPCHARACTER pChar);
 };
 
+#endif

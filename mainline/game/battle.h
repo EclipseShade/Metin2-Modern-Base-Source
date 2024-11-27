@@ -2,6 +2,7 @@
 #define __INC_METIN_II_GAME_BATTLE_H__
 
 #include "char.h"
+#include "config.h"
 
 enum EBattleTypes       // 상대방 기준
 {

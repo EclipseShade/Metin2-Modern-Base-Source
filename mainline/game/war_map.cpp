@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "war_map.h"
 #include "sectree_manager.h"
 #include "char.h"

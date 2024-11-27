@@ -1,5 +1,3 @@
-// See http://www.boost.org/libs/any for Documentation.
-
 #ifndef __IPKN_ANY_FUNCTION_VARIATION_OF_BOOST_ANY_INCLUDED
 #define __IPKN_ANY_FUNCTION_VARIATION_OF_BOOST_ANY_INCLUDED
 
