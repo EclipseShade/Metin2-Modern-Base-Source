@@ -615,10 +615,13 @@ bool Set_Proto_Mob_Table(TMobTable *mobTable, cCsvTable &csvTable,std::map<int,c
 	//TYPE
 	int typeValue = get_Mob_Type_Value(csvTable.AsStringByIndex(col++));
 	mobTable->bType = typeValue;
+	
 	//BATTLE_TYPE
 	int battleTypeValue = get_Mob_BattleType_Value(csvTable.AsStringByIndex(col++));
 	mobTable->bBattleType = battleTypeValue;
 
+	col++;		// [NEW] ScalePct -> [CURRENTLY SKIP]
+	
 	str_to_number(mobTable->bLevel, csvTable.AsStringByIndex(col++));
 	//SIZE
 	int sizeValue = get_Mob_Size_Value(csvTable.AsStringByIndex(col++));
