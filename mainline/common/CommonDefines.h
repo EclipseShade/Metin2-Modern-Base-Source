@@ -16,10 +16,11 @@
 
 
 
-
-
-
-
+#ifdef GF_ENABLE_MOB_PROTO
+	#define GF_ENABLE_MOB_PROTO_SCALE_PCT
+	#define GF_ENABLE_MOB_PROTO_RESIST_BLEEDING
+//	#define GF_ENABLE_MOB_PROTO_SUNG_MA
+#endif
 
 
 

@@ -620,7 +620,9 @@ bool Set_Proto_Mob_Table(TMobTable *mobTable, cCsvTable &csvTable,std::map<int,c
 	int battleTypeValue = get_Mob_BattleType_Value(csvTable.AsStringByIndex(col++));
 	mobTable->bBattleType = battleTypeValue;
 
+#ifdef GF_ENABLE_MOB_PROTO_SCALE_PCT
 	col++;		// [NEW] ScalePct -> [CURRENTLY SKIP]
+#endif
 	
 	str_to_number(mobTable->bLevel, csvTable.AsStringByIndex(col++));
 	//SIZE
@@ -648,6 +650,14 @@ bool Set_Proto_Mob_Table(TMobTable *mobTable, cCsvTable &csvTable,std::map<int,c
 	str_to_number(mobTable->bDex, csvTable.AsStringByIndex(col++));
 	str_to_number(mobTable->bCon, csvTable.AsStringByIndex(col++));
 	str_to_number(mobTable->bInt, csvTable.AsStringByIndex(col++));
+	
+#ifdef GF_ENABLE_MOB_PROTO_SUNG_MA
+	col++;		// [NEW] SungMaSt -> [CURRENTLY SKIP]
+	col++;		// [NEW] SungMaDx -> [CURRENTLY SKIP]
+	col++;		// [NEW] SungMaHt -> [CURRENTLY SKIP]
+	col++;		// [NEW] SungMaIq -> [CURRENTLY SKIP]
+#endif
+
 	str_to_number(mobTable->dwDamageRange[0], csvTable.AsStringByIndex(col++));
 	str_to_number(mobTable->dwDamageRange[1], csvTable.AsStringByIndex(col++));
 	str_to_number(mobTable->dwMaxHP, csvTable.AsStringByIndex(col++));
@@ -656,6 +666,11 @@ bool Set_Proto_Mob_Table(TMobTable *mobTable, cCsvTable &csvTable,std::map<int,c
 	str_to_number(mobTable->dwGoldMin, csvTable.AsStringByIndex(col++));
 	str_to_number(mobTable->dwGoldMax, csvTable.AsStringByIndex(col++));
 	str_to_number(mobTable->dwExp,	csvTable.AsStringByIndex(col++));
+
+#ifdef GF_ENABLE_MOB_PROTO_SUNG_MA
+	col++;		// [NEW] SungMaExp -> [CURRENTLY SKIP]
+#endif
+
 	str_to_number(mobTable->wDef, csvTable.AsStringByIndex(col++));
 	str_to_number(mobTable->sAttackSpeed, csvTable.AsStringByIndex(col++));
 	str_to_number(mobTable->sMovingSpeed, csvTable.AsStringByIndex(col++));
@@ -670,6 +685,10 @@ bool Set_Proto_Mob_Table(TMobTable *mobTable, cCsvTable &csvTable,std::map<int,c
 
 	for (int i = 0; i < MOB_RESISTS_MAX_NUM; ++i)
 		str_to_number(mobTable->cResists[i], csvTable.AsStringByIndex(col++));
+
+#ifdef GF_ENABLE_MOB_PROTO_RESIST_BLEEDING
+	col++;		// [NEW] ResistBleeding -> [CURRENTLY SKIP]
+#endif
 
 	str_to_number(mobTable->fDamMultiply, csvTable.AsStringByIndex(col++));
 	str_to_number(mobTable->dwSummonVnum, csvTable.AsStringByIndex(col++));
