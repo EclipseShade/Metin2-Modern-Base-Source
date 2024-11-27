@@ -1,6 +1,6 @@
 #include "StdAfx.h"
-#include "PythonNonPlayer.h"
 
+#include "PythonNonPlayer.h"
 #include "InstanceBase.h"
 #include "PythonCharacterManager.h"
 

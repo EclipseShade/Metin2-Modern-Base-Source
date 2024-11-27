@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "PythonMiniMap.h"
 
 PyObject * miniMapSetScale(PyObject * poSelf, PyObject * poArgs)

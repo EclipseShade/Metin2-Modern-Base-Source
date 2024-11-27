@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "../eterLib/Profiler.h"
 
 PyObject * profilerPush(PyObject * poSelf, PyObject * poArgs)

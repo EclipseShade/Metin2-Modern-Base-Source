@@ -1,6 +1,6 @@
 #include "StdAfx.h"
-#include "PythonPlayer.h"
 
+#include "PythonPlayer.h"
 #include "InstanceBase.h"
 
 void CPythonPlayer::SetAttackKeyState(bool isPress)

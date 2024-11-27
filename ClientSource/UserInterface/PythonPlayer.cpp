@@ -1,7 +1,9 @@
 #include "StdAfx.h"
+
 #include "PythonPlayerEventHandler.h"
 #include "PythonApplication.h"
 #include "PythonItem.h"
+
 #include "../eterbase/Timer.h"
 
 #include "AbstractPlayer.h"

@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "PythonNetworkStream.h"
 #include "PythonNonPlayer.h"
 #include "AbstractApplication.h"

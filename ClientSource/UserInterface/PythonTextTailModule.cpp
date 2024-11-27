@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "PythonTextTail.h"
 #include "PythonCharacterManager.h"
 

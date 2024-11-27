@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "PythonExchange.h"
 
 void CPythonExchange::SetSelfName(const char *name)

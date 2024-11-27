@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "MarkImage.h"
 
 #if !defined(_MSC_VER)

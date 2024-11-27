@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "ProcessScanner.h"
 
 #include <tlhelp32.h>

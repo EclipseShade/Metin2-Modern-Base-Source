@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "PythonNetworkStream.h"
 
 void CPythonNetworkStream::OnRemoteDisconnect()

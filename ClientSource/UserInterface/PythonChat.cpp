@@ -1,8 +1,9 @@
 #include "StdAfx.h"
-#include "PythonChat.h"
 
+#include "PythonChat.h"
 #include "AbstractApplication.h"
 #include "PythonCharacterManager.h"
+
 #include "../eterbase/Timer.h"
 
 int CPythonChat::TChatSet::ms_iChatModeSize = CHAT_TYPE_MAX_NUM;

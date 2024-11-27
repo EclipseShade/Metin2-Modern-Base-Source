@@ -1,6 +1,8 @@
 #include "StdAfx.h"
+
 #include "PythonSystem.h"
 #include "PythonBackground.h"
+
 #include "../eterlib/StateManager.h"
 #include "../gamelib/MapOutDoor.h"
 

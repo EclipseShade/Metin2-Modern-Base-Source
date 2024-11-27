@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "Packet.h"
 #include "ServerStateChecker.h"
 

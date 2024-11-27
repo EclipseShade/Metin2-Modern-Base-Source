@@ -1,9 +1,7 @@
 #include "StdAfx.h"
+
 #include "InstanceBase.h"
 #include "PythonBackground.h"
-
-
-
 
 void CInstanceBase::SCRIPT_SetPixelPosition(float fx, float fy)
 {

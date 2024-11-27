@@ -1,5 +1,7 @@
 #include "StdAfx.h"
+
 #include "PythonApplication.h"
+
 #include "../eterlib/Camera.h"
 #include "../CWebBrowser/CWebBrowser.h"
 

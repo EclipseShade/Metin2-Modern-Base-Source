@@ -1,7 +1,9 @@
 #include "StdAfx.h"
+
 #include "PythonPlayer.h"
 #include "PythonPlayerEventHandler.h"
 #include "PythonApplication.h"
+
 #include "../eterlib/Camera.h"
 #include "../eterbase/Timer.h"
 

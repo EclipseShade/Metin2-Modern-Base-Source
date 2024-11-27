@@ -1,6 +1,8 @@
 #include "StdAfx.h"
+
 #include "InstanceBase.h"
 #include "PythonBackground.h"
+
 #include "../eterLib/GrpMath.h"
 
 void CInstanceBase::SetAttackSpeed(UINT uAtkSpd)

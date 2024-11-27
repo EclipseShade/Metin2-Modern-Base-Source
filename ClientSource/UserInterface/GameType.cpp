@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "GameType.h"
 
 std::string g_strResourcePath = "d:/ymir work/";

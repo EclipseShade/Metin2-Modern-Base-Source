@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "Hackshield.h"
 
 #ifdef USE_AHNLAB_HACKSHIELD

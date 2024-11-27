@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #if defined(CHECK_LATEST_DATA_FILES)
 #include "CheckLatestFiles.h"
 #include "resource.h"

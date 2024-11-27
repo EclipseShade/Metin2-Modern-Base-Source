@@ -1,11 +1,11 @@
 #include "StdAfx.h"
+
 #include "PythonNetworkStream.h"
 #include "PythonItem.h"
 #include "PythonShop.h"
 #include "PythonExchange.h"
 #include "PythonSafeBox.h"
 #include "PythonCharacterManager.h"
-
 #include "AbstractPlayer.h"
 
 //////////////////////////////////////////////////////////////////////////

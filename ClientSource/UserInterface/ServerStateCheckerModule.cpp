@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "ServerStateChecker.h"
 
 PyObject * ServerStateCheckerCreate(PyObject* poSelf, PyObject* poArgs)

@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "PythonShop.h"
 
+#include "PythonShop.h"
 #include "PythonNetworkStream.h"
 
 //BOOL CPythonShop::GetSlotItemID(DWORD dwSlotPos, DWORD* pdwItemID)

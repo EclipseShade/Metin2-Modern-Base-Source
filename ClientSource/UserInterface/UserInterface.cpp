@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "PythonApplication.h"
 #include "ProcessScanner.h"
 #include "PythonExceptionSender.h"

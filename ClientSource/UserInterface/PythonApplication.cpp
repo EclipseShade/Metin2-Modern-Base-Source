@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "../eterBase/Error.h"
 #include "../eterlib/Camera.h"
 #include "../eterlib/AttributeInstance.h"
@@ -802,7 +803,7 @@ bool CPythonApplication::Process()
 						}
 
 						// 일정 프레임 속도에 맞추어주는쪽에 눈에 편하다
-						// 아래에서 한번 하면 됬다.
+						// 아래에서 한번 하면 됬�?
 						//if (m_dwCurRenderTime<dwBufRenderTime)
 						//	Sleep(dwBufRenderTime-m_dwCurRenderTime);			
 

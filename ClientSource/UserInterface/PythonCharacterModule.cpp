@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "PythonCharacterManager.h"
 #include "PythonNonPlayer.h"
 

@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "PythonApplication.h"
 
 PyObject * sndPlaySound(PyObject * poSelf, PyObject * poArgs)

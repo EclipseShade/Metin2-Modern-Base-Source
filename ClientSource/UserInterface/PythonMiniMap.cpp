@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "../eterLib/StateManager.h"
 #include "../eterLib/GrpSubImage.h"
 #include "../eterlib/Camera.h"

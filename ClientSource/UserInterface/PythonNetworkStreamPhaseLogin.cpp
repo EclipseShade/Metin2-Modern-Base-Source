@@ -1,9 +1,9 @@
 #include "StdAfx.h"
+
 #include "PythonNetworkStream.h"
 #include "Packet.h"
 #include "Test.h"
 #include "AccountConnector.h"
-
 #include "Hackshield.h"
 #include "WiseLogicXTrap.h"
 

@@ -1413,58 +1413,6 @@
 				RelativePath=".\Locale_inc.h"
 				>
 			</File>
-			<File
-				RelativePath=".\Locale_inc_BR.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Locale_inc_CA.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Locale_inc_dev.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Locale_inc_EU.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Locale_inc_EU2.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Locale_inc_GB.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Locale_inc_HK.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Locale_inc_JP.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Locale_inc_KO.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Locale_inc_KO_DEV.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Locale_inc_NEWCIBN.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Locale_inc_SG.h"
-				>
-			</File>
-			<File
-				RelativePath=".\Locale_inc_VI.h"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Network"

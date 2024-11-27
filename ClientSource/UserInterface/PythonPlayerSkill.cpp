@@ -1,10 +1,12 @@
 #include "StdAfx.h"
+
 #include "PythonPlayer.h"
 #include "PythonTextTail.h"
 #include "PythonNetworkStream.h"
 #include "InstanceBase.h"
 #include "PythonChat.h"
 #include "PythonGuild.h"
+
 #include "../GameLib/ItemManager.h"
 
 void CPythonPlayer::ClearAffects()

@@ -424,45 +424,6 @@
     <ClInclude Include="Locale_inc.h">
       <Filter>Locale</Filter>
     </ClInclude>
-    <ClInclude Include="Locale_inc_BR.h">
-      <Filter>Locale</Filter>
-    </ClInclude>
-    <ClInclude Include="Locale_inc_CA.h">
-      <Filter>Locale</Filter>
-    </ClInclude>
-    <ClInclude Include="Locale_inc_dev.h">
-      <Filter>Locale</Filter>
-    </ClInclude>
-    <ClInclude Include="Locale_inc_EU.h">
-      <Filter>Locale</Filter>
-    </ClInclude>
-    <ClInclude Include="Locale_inc_EU2.h">
-      <Filter>Locale</Filter>
-    </ClInclude>
-    <ClInclude Include="Locale_inc_GB.h">
-      <Filter>Locale</Filter>
-    </ClInclude>
-    <ClInclude Include="Locale_inc_HK.h">
-      <Filter>Locale</Filter>
-    </ClInclude>
-    <ClInclude Include="Locale_inc_JP.h">
-      <Filter>Locale</Filter>
-    </ClInclude>
-    <ClInclude Include="Locale_inc_KO.h">
-      <Filter>Locale</Filter>
-    </ClInclude>
-    <ClInclude Include="Locale_inc_KO_DEV.h">
-      <Filter>Locale</Filter>
-    </ClInclude>
-    <ClInclude Include="Locale_inc_NEWCIBN.h">
-      <Filter>Locale</Filter>
-    </ClInclude>
-    <ClInclude Include="Locale_inc_SG.h">
-      <Filter>Locale</Filter>
-    </ClInclude>
-    <ClInclude Include="Locale_inc_VI.h">
-      <Filter>Locale</Filter>
-    </ClInclude>
     <ClInclude Include="AccountConnector.h">
       <Filter>Network</Filter>
     </ClInclude>

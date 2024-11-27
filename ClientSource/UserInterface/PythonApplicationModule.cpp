@@ -1,6 +1,8 @@
 #include "StdAfx.h"
+
 #include "Resource.h"
 #include "PythonApplication.h"
+
 #include "../EterLib/Camera.h"
 
 extern bool PERF_CHECKER_RENDER_GAME;

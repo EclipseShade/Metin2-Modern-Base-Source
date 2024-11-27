@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "GuildMarkUploader.h"
 #include "Packet.h"
 #include "Test.h"

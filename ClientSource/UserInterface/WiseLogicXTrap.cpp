@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "Locale.h"
 #include "WiseLogicXTrap.h"
 

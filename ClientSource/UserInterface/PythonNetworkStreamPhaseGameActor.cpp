@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "PythonNetworkStream.h"
 #include "NetworkActorManager.h"
 #include "PythonBackground.h"
@@ -6,10 +7,6 @@
 #include "PythonApplication.h"
 #include "AbstractPlayer.h"
 #include "../gamelib/ActorInstance.h"
-
-
-
-
 
 void CPythonNetworkStream::__GlobalPositionToLocalPosition(LONG& rGlobalX, LONG& rGlobalY)
 {

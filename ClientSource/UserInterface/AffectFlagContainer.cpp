@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "AffectFlagContainer.h"
 
 CAffectFlagContainer::CAffectFlagContainer()

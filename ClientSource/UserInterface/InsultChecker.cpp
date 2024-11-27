@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "InsultChecker.h"
 
 CInsultChecker& CInsultChecker::GetSingleton()

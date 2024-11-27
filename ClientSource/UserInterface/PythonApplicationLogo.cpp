@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "PythonApplication.h"
 
 static bool bInitializedLogo = false;
@@ -94,7 +95,7 @@ int CPythonApplication::OnLogoUpdate()
 
 	BYTE* pBuffer = m_pCaptureBuffer; LONG lBufferSize = m_lBufferSize;
 
-	// 재생이 안됬을 경우 재생.
+	// 재생이 안됬�?경우 재생.
 	if(!m_bLogoPlay) { m_pMediaCtrl->Run(); m_bLogoPlay = true; }
 
 	// 읽어온 버퍼가 0인경우 버퍼를 재할당.
@@ -157,7 +158,7 @@ int CPythonApplication::OnLogoUpdate()
 		
 	}
 
-	// 준비됬으면 버퍼에서 텍스쳐로 복사해온다.
+	// 준비됬으�?버퍼에서 텍스쳐로 복사해온다.
 	LPDIRECT3DTEXTURE8 tex = m_pLogoTex->GetD3DTexture();
 	D3DLOCKED_RECT rt;
 	ZeroMemory(&rt, sizeof(rt));

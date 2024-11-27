@@ -1,8 +1,5 @@
-// PythonBackground.cpp: implementation of the CPythonBackground class.
-//
-//////////////////////////////////////////////////////////////////////
-
 #include "stdafx.h"
+
 #include "../eterlib/CullingManager.h"
 #include "../eterlib/Camera.h"
 #include "../eterPack/EterPackManager.h"

@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "InstanceBase.h"
 #include "PythonTextTail.h"
 #include "AbstractApplication.h"

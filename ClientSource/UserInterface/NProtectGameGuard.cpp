@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "NProtectGameGuard.h"
 
 #ifdef USE_NPROTECT_GAMEGUARD

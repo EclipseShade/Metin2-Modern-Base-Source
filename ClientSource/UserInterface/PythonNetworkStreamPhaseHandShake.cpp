@@ -1,8 +1,11 @@
 #include "StdAfx.h"
+
 #include "PythonNetworkStream.h"
 #include "PythonApplication.h"
 #include "Packet.h"
+
 #include "../eterpack/EterPackManager.h"
+
 #include "Hackshield.h"
 #include "WiseLogicXTrap.h"
 

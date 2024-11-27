@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "PythonSystem.h"
 
 PyObject * systemGetWidth(PyObject* poSelf, PyObject* poArgs)

@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "PythonQuest.h"
 
 void CPythonQuest::RegisterQuestInstance(const SQuestInstance & c_rQuestInstance)

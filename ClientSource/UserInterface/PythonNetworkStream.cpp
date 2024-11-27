@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "../eterLib/NetPacketHeaderMap.h"
 
 #include "PythonNetworkStream.h"

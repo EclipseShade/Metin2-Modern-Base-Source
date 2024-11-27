@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "NetworkActorManager.h"
 #include "PythonCharacterManager.h"
 #include "PythonItem.h"

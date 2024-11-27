@@ -1,7 +1,9 @@
 #include "StdAfx.h"
+
 #include "PythonCharacterManager.h"
 #include "PythonBackground.h"
 #include "InstanceBase.h"
+
 #include "../gamelib/RaceManager.h"
 
 //////////////////////////////////////////////////////////////////////////

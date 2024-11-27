@@ -1,5 +1,7 @@
 #include "StdAfx.h"
+
 #include "../EffectLib/EffectManager.h"
+
 #include "PythonCharacterManager.h"
 
 PyObject * effectRegisterEffect(PyObject * poSelf, PyObject * poArgs)
