@@ -18,7 +18,7 @@ string g_stServiceName;
 string g_stServiceBasePath = ".";
 string g_stServiceMapPath = "data/map";
 
-string g_stLocale = "euckr";
+string g_stLocale = "utf8";
 string g_stLocaleFilename;
 
 BYTE PK_PROTECT_LEVEL = 30;
