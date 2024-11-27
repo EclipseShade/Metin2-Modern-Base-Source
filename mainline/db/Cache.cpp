@@ -17,7 +17,7 @@ extern int g_iItemPriceListTableCacheFlushSeconds;
 // END_OF_MYSHOP_PRICE_LIST
 //
 extern int g_item_count;
-extern int test_server;
+extern int g_test_server;
 const int auctionMinFlushSec = 1800;
 
 CItemCache::CItemCache()
@@ -44,7 +44,7 @@ void CItemCache::Delete() {
 
 	//char szQuery[QUERY_MAX_LEN];
 	//szQuery[QUERY_MAX_LEN] = '\0';
-	if (test_server) {
+	if (g_test_server) {
 		sys_log(0, "ItemCache::Delete : DELETE %u", m_data.id);
 	}
 
@@ -63,7 +63,7 @@ void CItemCache::OnFlush() {
 		snprintf(szQuery, sizeof(szQuery), "DELETE FROM item%s WHERE id=%u", GetTablePostfix(), m_data.id);
 		CDBManager::instance().ReturnQuery(szQuery, QID_ITEM_DESTROY, 0, NULL);
 
-		if (test_server) {
+		if (g_test_server) {
 			sys_log(0, "ItemCache::Flush : DELETE %u %s", m_data.id, szQuery);
 		}
 	}
@@ -141,7 +141,7 @@ void CItemCache::OnFlush() {
 		char szItemQuery[QUERY_MAX_LEN + QUERY_MAX_LEN];
 		snprintf(szItemQuery, sizeof(szItemQuery), "REPLACE INTO item%s (%s) VALUES(%s)", GetTablePostfix(), szColumns, szValues);
 
-		if (test_server) {
+		if (g_test_server) {
 			sys_log(0, "ItemCache::Flush :REPLACE  (%s)", szItemQuery);
 		}
 
@@ -167,7 +167,7 @@ CPlayerTableCache::~CPlayerTableCache()
 }
 
 void CPlayerTableCache::OnFlush() {
-	if (test_server) {
+	if (g_test_server) {
 		sys_log(0, "PlayerTableCache::Flush : %s", m_data.name);
 	}
 
@@ -294,7 +294,7 @@ void CAuctionItemInfoCache::Delete() {
 		return;
 	}
 
-	if (test_server) {
+	if (g_test_server) {
 		sys_log(0, "CAuctionItemInfoCache::Delete : DELETE %u", m_data.item_id);
 	}
 

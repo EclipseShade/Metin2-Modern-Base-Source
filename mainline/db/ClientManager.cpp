@@ -30,7 +30,7 @@ extern int g_iItemCacheFlushSeconds;
 extern int g_log;
 extern std::string g_stLocale;
 extern std::string g_stLocaleNameColumn;
-extern int test_server;
+extern int g_test_server;
 bool CreateItemTableFromRes(MYSQL_RES * res, std::vector<TPlayerItem> * pVec, DWORD dwPID);
 
 DWORD g_dwUsageMax = 0;
@@ -426,7 +426,7 @@ void CClientManager::QUERY_BOOT(CPeer* peer, TPacketGDBoot * p)
 	}
 	//END_MONARCE
 
-	if (test_server) {
+	if (g_test_server) {
 		sys_log(0, "MONARCHCandidacy Size %d", CMonarch::instance().MonarchCandidacySize());
 	}
 
@@ -1310,7 +1310,7 @@ void CClientManager::QUERY_ITEM_SAVE(CPeer * pkPeer, const char * c_pData)
 
 			if (it != m_map_pkItemCacheSetPtr.end())
 			{
-				if (test_server) {
+				if (g_test_server) {
 					sys_log(0, "ITEM_CACHE: safebox owner %u id %u", c->Get()->owner, c->Get()->id);
 				}
 
@@ -1362,7 +1362,7 @@ void CClientManager::QUERY_ITEM_SAVE(CPeer * pkPeer, const char * c_pData)
 #endif
 	else
 	{
-		if (test_server) {
+		if (g_test_server) {
 			sys_log(0, "QUERY_ITEM_SAVE => PutItemCache() owner %d id %d vnum %d ", p->owner, p->id, p->vnum);
 		}
 
@@ -1573,7 +1573,7 @@ void CClientManager::UpdateItemCache()
 		// 아이템은 Flush만 한다.
 		if (c->CheckFlushTimeout())
 		{
-			if (test_server) {
+			if (g_test_server) {
 				sys_log(0, "UpdateItemCache ==> Flush() vnum %d id owner %d", c->Get()->vnum, c->Get()->id, c->Get()->owner);
 			}
 
@@ -1775,7 +1775,7 @@ void CClientManager::DeleteLoginData(CLoginData * pkLD)
 }
 
 void CClientManager::QUERY_AUTH_LOGIN(CPeer * pkPeer, DWORD dwHandle, TPacketGDAuthLogin * p) {
-	if (test_server) {
+	if (g_test_server) {
 		sys_log(0, "QUERY_AUTH_LOGIN %d %d %s", p->dwID, p->dwLoginKey, p->szLogin);
 	}
 	
@@ -2290,7 +2290,7 @@ void CClientManager::ProcessPackets(CPeer * peer)
 		if (header != 10)
 			sys_log(0, " ProcessPacket Header [%d] Handle[%d] Length[%d] iCount[%d]", header, dwHandle, dwLength, iCount);
 #endif
-		if (test_server) {
+		if (g_test_server) {
 			if (header != 10) {
 				sys_log(0, " ProcessPacket Header [%d] Handle[%d] Length[%d] iCount[%d]", header, dwHandle, dwLength, iCount);
 			}
@@ -2998,7 +2998,7 @@ int CClientManager::Process()
 
 		if (!(thecore_heart->pulse % thecore_heart->passes_per_sec))
 		{
-			if (test_server) {
+			if (g_test_server) {
 			
 				if (!(thecore_heart->pulse % thecore_heart->passes_per_sec * 10))	
 					
@@ -3871,7 +3871,7 @@ void CClientManager::UpdateItemCacheSet(DWORD pid) {
 	itertype(m_map_pkItemCacheSetPtr) it = m_map_pkItemCacheSetPtr.find(pid);
 
 	if (it == m_map_pkItemCacheSetPtr.end()) {
-		if (test_server) {
+		if (g_test_server) {
 			sys_log(0, "UPDATE_ITEMCACHESET : UpdateItemCacheSet ==> No ItemCacheSet pid(%d)", pid);
 		}
 		
@@ -3904,7 +3904,7 @@ void CClientManager::Election(CPeer * peer, DWORD dwHandle, const char* data) {
 	int Success = 0;
 
 	if (!(Success = CMonarch::instance().VoteMonarch(selectingpid, idx))) {
-		if (test_server) {
+		if (g_test_server) {
 			sys_log(0, "[MONARCH_VOTE] Failed %d %d", idx, selectingpid);
 		}
 		
@@ -3914,7 +3914,7 @@ void CClientManager::Election(CPeer * peer, DWORD dwHandle, const char* data) {
 	}
 	else
 	{
-		if (test_server) {
+		if (g_test_server) {
 			sys_log(0, "[MONARCH_VOTE] Success %d %d", idx, selectingpid);
 		}
 		
@@ -3931,7 +3931,7 @@ void CClientManager::Candidacy(CPeer *  peer, DWORD dwHandle, const char* data) 
 	data += sizeof(DWORD);
 
 	if (!CMonarch::instance().AddCandidacy(pid, data)) {
-		if (test_server) {
+		if (g_test_server) {
 			sys_log(0, "[MONARCH_CANDIDACY] Failed %d %s", pid, data);
 		}
 
@@ -3942,7 +3942,7 @@ void CClientManager::Candidacy(CPeer *  peer, DWORD dwHandle, const char* data) 
 	}
 	else
 	{
-		if (test_server) {
+		if (g_test_server) {
 			sys_log(0, "[MONARCH_CANDIDACY] Success %d %s", pid, data);
 		}
 
@@ -3979,7 +3979,7 @@ void CClientManager::AddMonarchMoney(CPeer * peer, DWORD dwHandle, const char * 
 	int Money = *(int *) data;
 	data += sizeof(int);
 
-	if (test_server) {
+	if (g_test_server) {
 		sys_log(0, "[MONARCH] Add money Empire(%d) Money(%d)", Empire, Money);
 	}
 
@@ -4014,7 +4014,7 @@ void CClientManager::DecMonarchMoney(CPeer * peer, DWORD dwHandle, const char * 
 	int Money = *(int *) data;
 	data += sizeof(int);
 		
-	if (test_server) {
+	if (g_test_server) {
 		sys_log(0, "[MONARCH] Dec money Empire(%d) Money(%d)", Empire, Money);
 	}
 
@@ -4052,7 +4052,7 @@ void CClientManager::TakeMonarchMoney(CPeer * peer, DWORD dwHandle, const char *
 	int Money = *(int *) data;
 	data += sizeof(int);
 
-	if (test_server) {
+	if (g_test_server) {
 		sys_log(0, "[MONARCH] Take money Empire(%d) Money(%d)", Empire, Money);
 	}
 
@@ -4122,7 +4122,7 @@ void CClientManager::SetMonarch(CPeer * peer, DWORD dwHandle, const char * data)
 
 	strlcpy(szName, data, sizeof(szName));
 
-	if (test_server) {
+	if (g_test_server) {
 		sys_log(0, "[MONARCH_GM] Set Monarch name(%s)", szName);
 	}
 	
@@ -4165,7 +4165,7 @@ void CClientManager::RMMonarch(CPeer * peer, DWORD dwHandle, const char * data) 
 
 	strlcpy(szName, data, sizeof(szName));
 	
-	if (test_server) {
+	if (g_test_server) {
 		sys_log(0, "[MONARCH_GM] Remove Monarch name(%s)", szName);
 	}
 	
