@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "Cache.h"
+#include "Config.h"
 #include "QID.h"
 #include "ClientManager.h"
 #ifdef __AUCTION__
@@ -11,7 +12,6 @@
 extern CPacketInfo g_item_info;
 extern int g_iPlayerCacheFlushSeconds;
 extern int g_iItemCacheFlushSeconds;
-extern int g_test_server;
 // MYSHOP_PRICE_LIST
 extern int g_iItemPriceListTableCacheFlushSeconds;
 // END_OF_MYSHOP_PRICE_LIST
@@ -36,15 +36,16 @@ CItemCache::~CItemCache()
 // 이미 사라진 아이템인데... 확인사살??????
 // fixme
 // by rtsummit
-void CItemCache::Delete()
-{
-	if (m_data.vnum == 0)
+void CItemCache::Delete() {
+	if (m_data.vnum == 0) {
 		return;
+	}
 
 	//char szQuery[QUERY_MAX_LEN];
 	//szQuery[QUERY_MAX_LEN] = '\0';
-	if (g_test_server)
+	if (test_server) {
 		sys_log(0, "ItemCache::Delete : DELETE %u", m_data.id);
+	}
 
 	m_data.vnum = 0;
 	m_bNeedQuery = true;
@@ -55,16 +56,15 @@ void CItemCache::Delete()
 	//m_lastUpdateTime = time(0) - m_expireTime; // 바로 타임아웃 되도록 하자.
 }
 
-void CItemCache::OnFlush()
-{
-	if (m_data.vnum == 0) // vnum이 0이면 삭제하라고 표시된 것이다.
-	{
+void CItemCache::OnFlush() {
+	if (m_data.vnum == 0) { // vnum이 0이면 삭제하라고 표시된 것이다.
 		char szQuery[QUERY_MAX_LEN];
 		snprintf(szQuery, sizeof(szQuery), "DELETE FROM item%s WHERE id=%u", GetTablePostfix(), m_data.id);
 		CDBManager::instance().ReturnQuery(szQuery, QID_ITEM_DESTROY, 0, NULL);
 
-		if (g_test_server)
+		if (test_server) {
 			sys_log(0, "ItemCache::Flush : DELETE %u %s", m_data.id, szQuery);
+		}
 	}
 	else
 	{
@@ -140,8 +140,9 @@ void CItemCache::OnFlush()
 		char szItemQuery[QUERY_MAX_LEN + QUERY_MAX_LEN];
 		snprintf(szItemQuery, sizeof(szItemQuery), "REPLACE INTO item%s (%s) VALUES(%s)", GetTablePostfix(), szColumns, szValues);
 
-		if (g_test_server)	
+		if (test_server) {
 			sys_log(0, "ItemCache::Flush :REPLACE  (%s)", szItemQuery);
+		}
 
 		CDBManager::instance().ReturnQuery(szItemQuery, QID_ITEM_SAVE, 0, NULL);
 
@@ -164,10 +165,10 @@ CPlayerTableCache::~CPlayerTableCache()
 {
 }
 
-void CPlayerTableCache::OnFlush()
-{
-	if (g_test_server)
+void CPlayerTableCache::OnFlush() {
+	if (test_server) {
 		sys_log(0, "PlayerTableCache::Flush : %s", m_data.name);
+	}
 
 	char szQuery[QUERY_MAX_LEN];
 	CreatePlayerSaveQuery(szQuery, sizeof(szQuery), &m_data);
@@ -287,13 +288,14 @@ CAuctionItemInfoCache::~CAuctionItemInfoCache()
 
 }
 
-void CAuctionItemInfoCache::Delete()
-{
-	if (m_data.item_num == 0)
+void CAuctionItemInfoCache::Delete() {
+	if (m_data.item_num == 0) {
 		return;
+	}
 
-	if (g_test_server)
+	if (test_server) {
 		sys_log(0, "CAuctionItemInfoCache::Delete : DELETE %u", m_data.item_id);
+	}
 
 	m_data.item_num = 0;
 	m_bNeedQuery = true;

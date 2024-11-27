@@ -23,7 +23,6 @@
 #include "locale_service.h"
 #include "BlueDragon.h"
 
-BOOL g_test_server;
 extern LPCHARACTER FindVictim(LPCHARACTER pkChr, int iMaxDistance);
 
 namespace
@@ -716,12 +715,12 @@ void CHARACTER::__StateIdle_Monster()
 
 			// NOTE: 몬스터가 IDLE 상태에서 주변을 서성거릴 때, 현재 무조건 뛰어가게 되어 있음. (절대로 걷지 않음)
 			// 그래픽 팀에서 몬스터가 걷는 모습도 보고싶다고 해서 임시로 특정확률로 걷거나 뛰게 함. (게임의 전반적인 느낌이 틀려지기 때문에 일단 테스트 모드에서만 작동)
-			if (g_test_server)
-			{
-				if (number(0, 100) < 60)
+			if (test_server) {
+				if (number(0, 100) < 60) {
 					SetNowWalking(false);
-				else
+				} else {
 					SetNowWalking(true);
+				}
 			}
 
 			if (Goto(GetX() + (int) fx, GetY() + (int) fy))
@@ -835,8 +834,7 @@ void CHARACTER::StateMove()
 			LPCHARACTER victim = GetVictim();
 			UpdateAggrPoint(victim, DAMAGE_TYPE_NORMAL, -(victim->GetLevel() / 3 + 1));
 
-			if (g_test_server)
-			{
+			if (test_server) {
 				// 몬스터가 적을 쫓아가는 것이면 무조건 뛰어간다.
 				SetNowWalking(false);
 			}
