@@ -142,7 +142,6 @@ int g_shutdown_disconnect_force_pulse;
 int g_shutdown_core_pulse;
 bool g_bShutdown=false;
 
-extern int speed_server;
 #ifdef __AUCTION__
 extern int auction_server;
 #endif

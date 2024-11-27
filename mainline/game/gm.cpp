@@ -1,10 +1,9 @@
 #include "stdafx.h"
 
+#include "config.h"
 #include "constants.h"
 #include "gm.h"
 #include "locale_service.h"
-
-extern int test_server;
 
 //ADMIN_MANAGER
 typedef struct 

@@ -64,7 +64,6 @@ extern const BYTE g_aBuffOnAttrPoints;
 extern bool RaceToJob(unsigned race, unsigned *ret_job);
 
 extern int g_nPortalLimitTime;
-extern int test_server;
 
 extern bool IS_SUMMONABLE_ZONE(int map_index); // char_item.cpp
 bool CAN_ENTER_ZONE(const LPCHARACTER& ch, int map_index);

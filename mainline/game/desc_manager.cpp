@@ -15,8 +15,6 @@
 #include "dev_log.h"
 #include "ClientPackageCryptInfo.h"
 
-extern int g_test_server;
-
 struct valid_ip
 {
 	const char *	ip;
@@ -542,7 +540,7 @@ void DESC_MANAGER::SendClientPackageCryptKey( LPDESC desc )
 
 	if( packet.KeyStreamLen > 0 )
 	{
-		if (g_test_server)
+		if (test_server)
 		{
 			// keys를 string으로 남기는 건 문제가 있음. 중간에 NULL 있으면 잘릴테니.. 그래도 혹시 모르니 남김.
 			sys_log(0, "[PackageCryptInfo] send to %s. (keys: %s, len: %d)", desc->GetAccountTable().login, std::string((char*)packet.pDataKeyStream).c_str(), packet.KeyStreamLen);

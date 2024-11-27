@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "config.h"
 #include "constants.h"
 #include "utils.h"
 #include "log.h"
@@ -8,8 +9,6 @@
 #include "locale_service.h"
 #include "item.h"
 #include "item_manager.h"
-
-extern int test_server;
 
 #define RETURN_IF_CUBE_IS_NOT_OPENED(ch) if (!(ch)->IsCubeOpen()) return
 

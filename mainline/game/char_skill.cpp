@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "utils.h"
 #include "config.h"
+#include "utils.h"
 #include "vector.h"
 #include "char.h"
 #include "char_manager.h"
@@ -20,8 +20,6 @@
 #include "log.h"
 #include "unique_item.h"
 #include "questmanager.h"
-
-extern int test_server;
 
 static const DWORD s_adwSubSkillVnums[] =
 {

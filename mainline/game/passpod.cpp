@@ -1,10 +1,10 @@
 #include "stdafx.h"
 
+#include "config.h"
 #include "constants.h"
 #include "passpod.h"
 
 extern BOOL g_test_server;
-extern int test_server;
 const char ERR_STRINGS[6][32] = 
 {
 	"AUTH_SUCCESS" ,

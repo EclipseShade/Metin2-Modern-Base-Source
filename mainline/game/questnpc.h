@@ -1,9 +1,8 @@
 #ifndef QUEST_NPC
 #define QUEST_NPC
 
+#include "config.h"
 #include "questpc.h"
-
-extern int test_server;
 
 namespace quest
 {

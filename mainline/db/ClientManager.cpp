@@ -27,7 +27,6 @@
 
 extern int g_iPlayerCacheFlushSeconds;
 extern int g_iItemCacheFlushSeconds;
-extern int g_test_server;
 extern int g_log;
 extern std::string g_stLocale;
 extern std::string g_stLocaleNameColumn;
@@ -426,8 +425,9 @@ void CClientManager::QUERY_BOOT(CPeer* peer, TPacketGDBoot * p)
 	}
 	//END_MONARCE
 
-	if (g_test_server)
+	if (test_server) {
 		sys_log(0, "MONARCHCandidacy Size %d", CMonarch::instance().MonarchCandidacySize());
+	}
 
 	peer->EncodeWORD(0xffff);
 }
@@ -1309,8 +1309,9 @@ void CClientManager::QUERY_ITEM_SAVE(CPeer * pkPeer, const char * c_pData)
 
 			if (it != m_map_pkItemCacheSetPtr.end())
 			{
-				if (g_test_server)
+				if (test_server) {
 					sys_log(0, "ITEM_CACHE: safebox owner %u id %u", c->Get()->owner, c->Get()->id);
+				}
 
 				it->second->erase(c);
 			}
@@ -1360,8 +1361,9 @@ void CClientManager::QUERY_ITEM_SAVE(CPeer * pkPeer, const char * c_pData)
 #endif
 	else
 	{
-		if (g_test_server)
+		if (test_server) {
 			sys_log(0, "QUERY_ITEM_SAVE => PutItemCache() owner %d id %d vnum %d ", p->owner, p->id, p->vnum);
+		}
 
 		PutItemCache(p);
 	}
@@ -1570,8 +1572,9 @@ void CClientManager::UpdateItemCache()
 		// 아이템은 Flush만 한다.
 		if (c->CheckFlushTimeout())
 		{
-			if (g_test_server)
+			if (test_server) {
 				sys_log(0, "UpdateItemCache ==> Flush() vnum %d id owner %d", c->Get()->vnum, c->Get()->id, c->Get()->owner);
+			}
 
 			c->Flush();
 
@@ -1770,10 +1773,11 @@ void CClientManager::DeleteLoginData(CLoginData * pkLD)
 		pkLD->SetDeleted(true);
 }
 
-void CClientManager::QUERY_AUTH_LOGIN(CPeer * pkPeer, DWORD dwHandle, TPacketGDAuthLogin * p)
-{
-	if (g_test_server)
+void CClientManager::QUERY_AUTH_LOGIN(CPeer * pkPeer, DWORD dwHandle, TPacketGDAuthLogin * p) {
+	if (test_server) {
 		sys_log(0, "QUERY_AUTH_LOGIN %d %d %s", p->dwID, p->dwLoginKey, p->szLogin);
+	}
+	
 	CLoginData * pkLD = GetLoginDataByLogin(p->szLogin);
 
 	if (pkLD)
@@ -2285,10 +2289,10 @@ void CClientManager::ProcessPackets(CPeer * peer)
 		if (header != 10)
 			sys_log(0, " ProcessPacket Header [%d] Handle[%d] Length[%d] iCount[%d]", header, dwHandle, dwLength, iCount);
 #endif
-		if (g_test_server)
-		{
-			if (header != 10)
+		if (test_server) {
+			if (header != 10) {
 				sys_log(0, " ProcessPacket Header [%d] Handle[%d] Length[%d] iCount[%d]", header, dwHandle, dwLength, iCount);
+			}
 		}
 
 
@@ -2993,8 +2997,7 @@ int CClientManager::Process()
 
 		if (!(thecore_heart->pulse % thecore_heart->passes_per_sec))
 		{
-			if (g_test_server)
-			{
+			if (test_server) {
 			
 				if (!(thecore_heart->pulse % thecore_heart->passes_per_sec * 10))	
 					
@@ -3863,14 +3866,14 @@ void CClientManager::BreakMarriage(CPeer * peer, const char * data)
 }
 //END_BREAK_MARIIAGE
 
-void CClientManager::UpdateItemCacheSet(DWORD pid)
-{
+void CClientManager::UpdateItemCacheSet(DWORD pid) {
 	itertype(m_map_pkItemCacheSetPtr) it = m_map_pkItemCacheSetPtr.find(pid);
 
-	if (it == m_map_pkItemCacheSetPtr.end())
-	{
-		if (g_test_server)
+	if (it == m_map_pkItemCacheSetPtr.end()) {
+		if (test_server) {
 			sys_log(0, "UPDATE_ITEMCACHESET : UpdateItemCacheSet ==> No ItemCacheSet pid(%d)", pid);
+		}
+		
 		return;
 	}
 
@@ -3887,8 +3890,7 @@ void CClientManager::UpdateItemCacheSet(DWORD pid)
 		sys_log(0, "UPDATE_ITEMCACHESET : UpdateItemCachsSet pid(%d)", pid);
 }
 
-void CClientManager::Election(CPeer * peer, DWORD dwHandle, const char* data)
-{
+void CClientManager::Election(CPeer * peer, DWORD dwHandle, const char* data) {
 	DWORD idx;
 	DWORD selectingpid;
 
@@ -3900,35 +3902,37 @@ void CClientManager::Election(CPeer * peer, DWORD dwHandle, const char* data)
 
 	int Success = 0;
 
-	if (!(Success = CMonarch::instance().VoteMonarch(selectingpid, idx)))
-	{
-		if (g_test_server)
-		sys_log(0, "[MONARCH_VOTE] Failed %d %d", idx, selectingpid);
+	if (!(Success = CMonarch::instance().VoteMonarch(selectingpid, idx))) {
+		if (test_server) {
+			sys_log(0, "[MONARCH_VOTE] Failed %d %d", idx, selectingpid);
+		}
+		
 		peer->EncodeHeader(HEADER_DG_ELECT_MONARCH, dwHandle, sizeof(int));
 		peer->Encode(&Success, sizeof(int));
 		return;
 	}
 	else
 	{
-		if (g_test_server)
-		sys_log(0, "[MONARCH_VOTE] Success %d %d", idx, selectingpid);
+		if (test_server) {
+			sys_log(0, "[MONARCH_VOTE] Success %d %d", idx, selectingpid);
+		}
+		
 		peer->EncodeHeader(HEADER_DG_ELECT_MONARCH, dwHandle, sizeof(int));
 		peer->Encode(&Success, sizeof(int));
 		return;
 	}
 
 }
-void CClientManager::Candidacy(CPeer *  peer, DWORD dwHandle, const char* data)
-{
+void CClientManager::Candidacy(CPeer *  peer, DWORD dwHandle, const char* data) {
 	DWORD pid;
 
 	pid = *(DWORD *) data;
 	data += sizeof(DWORD);
 
-	if (!CMonarch::instance().AddCandidacy(pid, data))
-	{
-		if (g_test_server)
+	if (!CMonarch::instance().AddCandidacy(pid, data)) {
+		if (test_server) {
 			sys_log(0, "[MONARCH_CANDIDACY] Failed %d %s", pid, data);
+		}
 
 		peer->EncodeHeader(HEADER_DG_CANDIDACY, dwHandle, sizeof(int) + 32);
 		peer->Encode(0, sizeof(int));
@@ -3937,8 +3941,9 @@ void CClientManager::Candidacy(CPeer *  peer, DWORD dwHandle, const char* data)
 	}
 	else
 	{
-		if (g_test_server)
+		if (test_server) {
 			sys_log(0, "[MONARCH_CANDIDACY] Success %d %s", pid, data);
+		}
 
 		for (itertype(m_peerList) it = m_peerList.begin(); it != m_peerList.end(); ++it)
 		{
@@ -3966,16 +3971,16 @@ void CClientManager::Candidacy(CPeer *  peer, DWORD dwHandle, const char* data)
 	}
 }
 
-void CClientManager::AddMonarchMoney(CPeer * peer, DWORD dwHandle, const char * data)
-{
+void CClientManager::AddMonarchMoney(CPeer * peer, DWORD dwHandle, const char * data) {
 	int Empire = *(int *) data;
 	data += sizeof(int);
 
 	int Money = *(int *) data;
 	data += sizeof(int);
 
-	if (g_test_server)
+	if (test_server) {
 		sys_log(0, "[MONARCH] Add money Empire(%d) Money(%d)", Empire, Money);
+	}
 
 	CMonarch::instance().AddMoney(Empire, Money);
 	
@@ -4001,16 +4006,16 @@ void CClientManager::AddMonarchMoney(CPeer * peer, DWORD dwHandle, const char * 
 
 	}
 }
-void CClientManager::DecMonarchMoney(CPeer * peer, DWORD dwHandle, const char * data)
-{
+void CClientManager::DecMonarchMoney(CPeer * peer, DWORD dwHandle, const char * data) {
 	int Empire = *(int *) data;
 	data += sizeof(int);
 
 	int Money = *(int *) data;
 	data += sizeof(int);
 		
-	if (g_test_server)
+	if (test_server) {
 		sys_log(0, "[MONARCH] Dec money Empire(%d) Money(%d)", Empire, Money);
+	}
 
 	CMonarch::instance().DecMoney(Empire, Money);
 	
@@ -4036,8 +4041,7 @@ void CClientManager::DecMonarchMoney(CPeer * peer, DWORD dwHandle, const char * 
 	}
 }
 
-void CClientManager::TakeMonarchMoney(CPeer * peer, DWORD dwHandle, const char * data)
-{
+void CClientManager::TakeMonarchMoney(CPeer * peer, DWORD dwHandle, const char * data) {
 	int Empire = *(int *) data;
 	data += sizeof(int);
 
@@ -4047,8 +4051,9 @@ void CClientManager::TakeMonarchMoney(CPeer * peer, DWORD dwHandle, const char *
 	int Money = *(int *) data;
 	data += sizeof(int);
 
-	if (g_test_server)
+	if (test_server) {
 		sys_log(0, "[MONARCH] Take money Empire(%d) Money(%d)", Empire, Money);
+	}
 
 	if (CMonarch::instance().TakeMoney(Empire, pid, Money) == true)
 	{
@@ -4111,14 +4116,14 @@ void CClientManager::RMCandidacy(CPeer * peer, DWORD dwHandle, const char * data
 	}
 }
 
-void CClientManager::SetMonarch(CPeer * peer, DWORD dwHandle, const char * data)
-{
+void CClientManager::SetMonarch(CPeer * peer, DWORD dwHandle, const char * data) {
 	char szName[32];
 
 	strlcpy(szName, data, sizeof(szName));
 
-	if (g_test_server)
-		sys_log(0, "[MONARCH_GM] Set Monarch name(%s)", szName); 
+	if (test_server) {
+		sys_log(0, "[MONARCH_GM] Set Monarch name(%s)", szName);
+	}
 	
 	int iRet = CMonarch::instance().SetMonarch(szName) ? 1 : 0;
 
@@ -4154,14 +4159,14 @@ void CClientManager::SetMonarch(CPeer * peer, DWORD dwHandle, const char * data)
 	}
 }
 
-void CClientManager::RMMonarch(CPeer * peer, DWORD dwHandle, const char * data)
-{
+void CClientManager::RMMonarch(CPeer * peer, DWORD dwHandle, const char * data) {
 	char szName[32];
 
 	strlcpy(szName, data, sizeof(szName));
 	
-	if (g_test_server)
-		sys_log(0, "[MONARCH_GM] Remove Monarch name(%s)", szName); 
+	if (test_server) {
+		sys_log(0, "[MONARCH_GM] Remove Monarch name(%s)", szName);
+	}
 	
 	CMonarch::instance().DelMonarch(szName);
 	

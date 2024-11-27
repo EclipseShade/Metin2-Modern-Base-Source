@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "config.h"
 #include "constants.h"
 #include "questmanager.h"
 #include "packet.h"
@@ -7,8 +8,6 @@
 #include "char.h"
 #include "desc_client.h"
 #include "questevent.h"
-
-extern int test_server;
 
 namespace quest
 {
