@@ -3,7 +3,7 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
-Project: "EffectLib"=..\eter2\EffectLib\EffectLib.dsp - Package Owner=<4>
+Project: "EffectLib"=..\ClientSource\EffectLib\EffectLib.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -15,7 +15,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "EterPack"=..\eter2\EterPack\EterPack.dsp - Package Owner=<4>
+Project: "EterPack"=..\ClientSource\EterPack\EterPack.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -27,7 +27,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "PRTerrainLib"=..\eter2\PRTerrainLib\PRTerrainLib.dsp - Package Owner=<4>
+Project: "PRTerrainLib"=..\ClientSource\PRTerrainLib\PRTerrainLib.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -39,7 +39,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "SpeedTreeLib"=..\eter2\SpeedTreeLib\SpeedTreeLib.dsp - Package Owner=<4>
+Project: "SpeedTreeLib"=..\ClientSource\SpeedTreeLib\SpeedTreeLib.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -51,7 +51,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "SphereLib"=..\eter2\SphereLib\SphereLib.dsp - Package Owner=<4>
+Project: "SphereLib"=..\ClientSource\SphereLib\SphereLib.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -111,7 +111,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "eterBase"=..\eter2\EterBase\eterBase.dsp - Package Owner=<4>
+Project: "eterBase"=..\ClientSource\EterBase\eterBase.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -123,7 +123,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "eterGrnLib"=..\eter2\EterGrnLib\eterGrnLib.dsp - Package Owner=<4>
+Project: "eterGrnLib"=..\ClientSource\EterGrnLib\eterGrnLib.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -135,7 +135,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "eterImageLib"=..\eter2\EterImageLib\eterImageLib.dsp - Package Owner=<4>
+Project: "eterImageLib"=..\ClientSource\EterImageLib\eterImageLib.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -147,7 +147,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "eterlib"=..\eter2\EterLib\eterlib.dsp - Package Owner=<4>
+Project: "eterlib"=..\ClientSource\EterLib\eterlib.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -159,7 +159,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "gamelib"=..\eter2\GameLib\gamelib.dsp - Package Owner=<4>
+Project: "gamelib"=..\ClientSource\GameLib\gamelib.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -171,7 +171,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "mileslib"=..\eter2\MilesLib\mileslib.dsp - Package Owner=<4>
+Project: "mileslib"=..\ClientSource\MilesLib\mileslib.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -183,7 +183,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "scriptLib"=..\eter2\ScriptLib\scriptLib.dsp - Package Owner=<4>
+Project: "scriptLib"=..\ClientSource\ScriptLib\scriptLib.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
