@@ -17,6 +17,7 @@ extern int g_iItemPriceListTableCacheFlushSeconds;
 // END_OF_MYSHOP_PRICE_LIST
 //
 extern int g_item_count;
+extern int test_server;
 const int auctionMinFlushSec = 1800;
 
 CItemCache::CItemCache()

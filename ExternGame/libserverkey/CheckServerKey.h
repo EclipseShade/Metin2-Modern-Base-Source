@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __CHECK_SERVER_H
+#define __CHECK_SERVER_H
 
 #include "SIM.h"
 #ifdef _WIN32
@@ -97,3 +98,5 @@ static FORCEINLINE bool CheckServerKey(const char* serverKey, const char* ip, co
 	}
 	return true;
 }
+
+#endif

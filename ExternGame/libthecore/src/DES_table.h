@@ -1,3 +1,6 @@
+#ifndef __LIBTHECORE_DES_TABLE_H__
+#define __LIBTHECORE_DES_TABLE_H__
+
 static DWORD SP_boxes[8][64]=
 {
     /* 0 */
@@ -324,3 +327,4 @@ static DWORD KeyPerm[8][64] =
     }
 };
 
+#endif

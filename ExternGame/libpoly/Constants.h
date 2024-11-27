@@ -1,3 +1,6 @@
+#ifndef __POLY_CONSTANTS_H__
+#define __POLY_CONSTANTS_H__
+
 #define MAXVALUE        0
 #define NONE            MAXVALUE
 #define ROOT            MAXVALUE + 1
@@ -34,3 +37,5 @@
 #define SIGN		MAXVALUE + 28
 
 #define MAXSTACK        100
+
+#endif

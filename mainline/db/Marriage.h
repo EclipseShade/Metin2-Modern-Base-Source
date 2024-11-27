@@ -1,4 +1,3 @@
-// vim: ts=4 sw=4
 #ifndef __MARRIAGE_H
 #define __MARRIAGE_H
 

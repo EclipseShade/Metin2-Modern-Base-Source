@@ -184,10 +184,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\libsql.h"
-				>
-			</File>
-			<File
 				RelativePath=".\Semaphore.h"
 				>
 			</File>

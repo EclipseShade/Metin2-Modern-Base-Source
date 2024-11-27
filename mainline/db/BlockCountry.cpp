@@ -1,10 +1,3 @@
-/*********************************************************************
- * date        : 2007.05.31
- * file        : BlockCountry.cpp
- * author      : mhh
- * description : 
- */
-
 #include "stdafx.h"
 
 #include "BlockCountry.h"

@@ -1,4 +1,3 @@
-// vim:ts=8 sw=4
 #ifndef __INC_METIN_II_PLAYERHB_H__
 #define __INC_METIN_II_PLAYERHB_H__
 

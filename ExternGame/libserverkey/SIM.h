@@ -1,4 +1,6 @@
-#pragma once
+#ifndef __SIM_H__
+#define __SIM_H__
+
 
 #include <cstdio>  // For printf and snprintf
 #include <cstdlib> // For atoi and strtol
@@ -374,3 +376,5 @@ private:
 	IPRanges ipranges;
 	IPs ips;
 };
+
+#endif

@@ -6,7 +6,6 @@
 #include <queue>
 #include <utility>
 
-#include "../../ExternGame/libsql/libsql.h"
 #include "../../ExternGame/libpoly/Poly.h"
 
 enum

@@ -1,9 +1,3 @@
-// vim: ts=4 sw=4
-// Date        : 2007.05.31
-// File        : BlockCountry.h
-// Author      : mhh
-// Description : 
-
 #ifndef __INC_METIN_II_BLOCKCOUNTRY_H__
 #define __INC_METIN_II_BLOCKCOUNTRY_H__
 

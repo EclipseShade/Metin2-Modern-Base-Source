@@ -30,6 +30,7 @@ extern int g_iItemCacheFlushSeconds;
 extern int g_log;
 extern std::string g_stLocale;
 extern std::string g_stLocaleNameColumn;
+extern int test_server;
 bool CreateItemTableFromRes(MYSQL_RES * res, std::vector<TPlayerItem> * pVec, DWORD dwPID);
 
 DWORD g_dwUsageMax = 0;
