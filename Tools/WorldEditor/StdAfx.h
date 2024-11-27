@@ -28,16 +28,16 @@
 
 #include <il/il.h>
 
-#include "../../Client/EterLib/StdAfx.h"
-#include "../../Client/EterBase/StdAfx.h"
-#include "../../Client/EterGrnLib/StdAfx.h"
-#include "../../Client/EterImageLib/StdAfx.h"
-#include "../../Client/PRTerrainLib/StdAfx.h"
-#include "../../Client/GameLib/StdAfx.h"
-#include "../../Client/EffectLib/StdAfx.h"
-#include "../../Client/MilesLib/StdAfx.h"
-#include "../../Client/ScriptLib/Resource.h"
-#include "../../Client/SpeedTreeLib/StdAfx.h"
+#include "../ClientSource/EterLib/StdAfx.h"
+#include "../ClientSource/EterBase/StdAfx.h"
+#include "../ClientSource/EterGrnLib/StdAfx.h"
+#include "../ClientSource/EterImageLib/StdAfx.h"
+#include "../ClientSource/PRTerrainLib/StdAfx.h"
+#include "../ClientSource/GameLib/StdAfx.h"
+#include "../ClientSource/EffectLib/StdAfx.h"
+#include "../ClientSource/MilesLib/StdAfx.h"
+#include "../ClientSource/ScriptLib/Resource.h"
+#include "../ClientSource/SpeedTreeLib/StdAfx.h"
 
 #include "Type.h"
 #include "Util.h"
