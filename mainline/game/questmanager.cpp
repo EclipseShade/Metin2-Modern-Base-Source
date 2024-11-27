@@ -89,10 +89,11 @@ namespace quest
 			ifstream inf((g_stQuestDir + "/questnpc.txt").c_str());
 			int line = 0;
 
-			if (!inf.is_open())
-				sys_err( "QUEST Cannot open 'questnpc.txt'");
-			else
-				sys_log(0, "QUEST can open 'questnpc.txt' (%s)", g_stQuestDir.c_str() );
+			if (!inf.is_open()) {
+				sys_err("QUEST Cannot open 'questnpc.txt' in directory: '%s'", g_stQuestDir.c_str());
+			} else {
+				sys_log(0, "QUEST can open 'questnpc.txt' (%s)", g_stQuestDir.c_str());
+			}
 
 			while (1)
 			{
