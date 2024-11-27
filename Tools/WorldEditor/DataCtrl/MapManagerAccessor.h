@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../Client/gamelib/MapManager.h"
-#include "../../Client/gamelib/MonsterAreaInfo.h"
+#include "../../ClientSource/gamelib/MapManager.h"
+#include "../../ClientSource/gamelib/MonsterAreaInfo.h"
 
 class CShadowRenderHelper;
 class CPropertyTreeControler;

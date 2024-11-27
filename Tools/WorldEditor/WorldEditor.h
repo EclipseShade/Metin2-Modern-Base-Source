@@ -14,14 +14,14 @@
 
 #include "resource.h"       // main symbols
 
-#include "../../Client/eterlib/GrpDevice.h"
-#include "../../Client/eterPack/EterPackManager.h"
-#include "../../Client/milesLib/SoundManager.h"
-#include "../../Client/EffectLib/EffectManager.h"
-#include "../../Client/gamelib/FlyingObjectManager.h"
-#include "../../Client/EterLib/GrpLightManager.h"
-#include "../../Client/gamelib/GameEventManager.h"
-#include "../../Client/EterLib/CullingManager.h"
+#include "../ClientSource/eterlib/GrpDevice.h"
+#include "../ClientSource/eterPack/EterPackManager.h"
+#include "../ClientSource/milesLib/SoundManager.h"
+#include "../ClientSource/EffectLib/EffectManager.h"
+#include "../ClientSource/gamelib/FlyingObjectManager.h"
+#include "../ClientSource/EterLib/GrpLightManager.h"
+#include "../ClientSource/gamelib/GameEventManager.h"
+#include "../ClientSource/EterLib/CullingManager.h"
 
 //------------------------//
 // Temporary Code

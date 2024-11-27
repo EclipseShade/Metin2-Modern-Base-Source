@@ -2,13 +2,15 @@
 //
 
 #include "stdafx.h"
+
 #include "WorldEditor.h"
 #include "MainFrm.h"
 #include "WorldEditorDoc.h"
 #include "WorldEditorView.h"
 #include "Dialog/DlgGoto.h"
 #include "DataCtrl/ShadowRenderHelper.h"
-#include "../../Client/eterlib/Camera.h"
+
+#include "../../ClientSource/eterlib/Camera.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

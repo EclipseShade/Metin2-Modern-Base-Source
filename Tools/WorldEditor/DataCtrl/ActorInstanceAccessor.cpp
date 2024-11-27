@@ -1,7 +1,8 @@
 #include "StdAfx.h"
 #include "ActorInstanceAccessor.h"
-#include "../../../Client/EffectLib/EffectManager.h"
-#include "../../../Client/gamelib/FlyingObjectManager.h"
+
+#include "../../ClientSource/EffectLib/EffectManager.h"
+#include "../../ClientSource/gamelib/FlyingObjectManager.h"
 
 void CActorInstanceAccessor::ClearAttachingObject()
 {

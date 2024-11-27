@@ -1,14 +1,17 @@
 #include "StdAfx.h"
+
 #include "MapAccessorOutdoor.h"
 #include "MapAccessorTerrain.h"
 #include "NonPlayerCharacterInfo.h"
+
 #include "../Dialog/MapArrangeHeightProgressDialog.h"
 #include "../MainFrm.h"
 #include "../WorldEditorDoc.h"
 #include "../WorldEditorView.h"
-#include "../../../Client/eterlib/Camera.h"
-#include "../../../Client/gamelib/TerrainPatch.h"
-#include "../../../Client/gamelib/TerrainQuadtree.h"
+
+#include "../../ClientSource/eterlib/Camera.h"
+#include "../../ClientSource/gamelib/TerrainPatch.h"
+#include "../../ClientSource/gamelib/TerrainQuadtree.h"
 
 CMapOutdoorAccessor *			CMapOutdoorAccessor::ms_pThis = NULL;
 CMapArrangeHeightProgress *		CMapOutdoorAccessor::ms_pkProgressDialog = NULL;

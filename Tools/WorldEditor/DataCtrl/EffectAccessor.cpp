@@ -1,5 +1,6 @@
 #include "StdAfx.h"
-#include "../../../Client/EterPack/EterPackManager.h"
+
+#include "../../ClientSource/EterPack/EterPackManager.h"
 
 void CEffectElementBaseAccessor::SaveScript(int iBaseTab, FILE * File)
 {

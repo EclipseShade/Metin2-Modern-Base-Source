@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "ObjectData.h"
 
 BOOL CObjectData::LoadModelScript(const char * c_szFileName)

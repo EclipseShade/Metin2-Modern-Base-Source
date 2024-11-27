@@ -3,10 +3,12 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
+
 #include "../worldeditor.h"
 #include "ShadowRenderHelper.h"
 #include "MapAccessorOutdoor.h"
-#include "../../../Client/eterlib/Camera.h"
+
+#include "../../ClientSource/eterlib/Camera.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE

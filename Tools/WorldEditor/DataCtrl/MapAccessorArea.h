@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../Client/gamelib/Area.h"
+#include "../../ClientSource/gamelib/Area.h"
 
 class CAreaAccessor : public CArea
 {

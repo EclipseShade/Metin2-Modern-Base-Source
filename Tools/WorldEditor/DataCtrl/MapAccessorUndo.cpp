@@ -2,11 +2,13 @@
 
 // Test Code
 #include "MapAccessorOutdoor.h"
+
 #include "../WorldEditor.h"
 #include "../MainFrm.h"
 #include "../WorldEditorDoc.h"
 #include "../WorldEditorView.h"
-#include "../../../Client/eterlib/Camera.h"
+
+#include "../../ClientSource/eterlib/Camera.h"
 
 #include "MapAccessorTerrain.h"
 

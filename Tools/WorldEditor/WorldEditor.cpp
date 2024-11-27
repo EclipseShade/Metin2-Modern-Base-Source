@@ -9,7 +9,8 @@
 #include "WorldEditorView.h"
 
 #include "DataCtrl/NonPlayerCharacterInfo.h"
-#include "../../Client/eterlib/Camera.h"
+
+#include "../../ClientSource/eterlib/Camera.h"
 
 #include <SpeedTreeRT.h>
 

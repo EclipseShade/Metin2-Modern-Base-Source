@@ -1,5 +1,6 @@
 #pragma once
-#include "../../Client/gamelib/RaceMotionData.h"
+
+#include "../../ClientSource/gamelib/RaceMotionData.h"
 
 class CRaceMotionDataAccessor : public CRaceMotionData
 {

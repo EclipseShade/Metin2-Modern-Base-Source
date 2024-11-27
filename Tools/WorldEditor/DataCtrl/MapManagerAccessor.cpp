@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "MapManagerAccessor.h"
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -10,8 +11,10 @@
 // Test Code
 #include "../MainFrm.h"
 #include "../DockingBar/MapTreeLoader.h"
-#include "../../../Client/gamelib/Property.h"
-#include "../../../Client/EterPack/EterPackManager.h"
+
+#include "../../ClientSource/gamelib/Property.h"
+#include "../../ClientSource/EterPack/EterPackManager.h"
+
 #include "ShadowRenderHelper.h"
 #include "MiniMapRenderHelper.h"
 #include "MapAccessorOutdoor.h"

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../Client/gamelib/MapOutdoor.h"
+#include "../../ClientSource/gamelib/MapOutdoor.h"
 
 class CTerrainAccessor;
 class CMapArrangeHeightProgress;

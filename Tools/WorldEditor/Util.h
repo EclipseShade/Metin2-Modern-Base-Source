@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../ClientSource/eterGrnLib/ModelInstance.h"
+#include "../ClientSource/eterGrnLib/ModelInstance.h"
 #include "./DockingBar/PageCtrl.h"
 
 void CreateBitmapButton(CButton * pButton, int iBitmapID, CBitmap & rBitmap);

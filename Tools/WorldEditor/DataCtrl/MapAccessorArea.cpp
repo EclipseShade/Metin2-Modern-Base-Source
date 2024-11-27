@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 #include "MapAccessorArea.h"
-#include "../../../Client/EffectLib/EffectManager.h"
-#include "../../../Client/gamelib/Property.h"
+
+#include "../../ClientSource/EffectLib/EffectManager.h"
+#include "../../ClientSource/gamelib/Property.h"
+
 #include "MapAccessorOutdoor.h"
 
 FILE * CAreaAccessor::ms_LogFile;

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "../../Client/EffectLib/EffectElementBase.h"
-#include "../../Client/EffectLib/ParticleSystemData.h"
-#include "../../Client/EffectLib/EffectMesh.h"
-#include "../../Client/EffectLib/SimpleLightData.h"
-#include "../../Client/EffectLib/EffectData.h"
-#include "../../Client/EffectLib/EffectInstance.h"
+#include "../../ClientSource/EffectLib/EffectElementBase.h"
+#include "../../ClientSource/EffectLib/ParticleSystemData.h"
+#include "../../ClientSource/EffectLib/EffectMesh.h"
+#include "../../ClientSource/EffectLib/SimpleLightData.h"
+#include "../../ClientSource/EffectLib/EffectData.h"
+#include "../../ClientSource/EffectLib/EffectInstance.h"
 
 // Data
 class CEffectElementBaseAccessor : public CEffectElementBase

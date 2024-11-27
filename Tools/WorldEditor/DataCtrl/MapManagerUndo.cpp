@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "MapManagerAccessor.h"
 #include "MapAccessorOutdoor.h"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../Client/gamelib/AreaTerrain.h"
+#include "../../ClientSource/gamelib/AreaTerrain.h"
 
 class CTerrainAccessor : public CTerrain
 {

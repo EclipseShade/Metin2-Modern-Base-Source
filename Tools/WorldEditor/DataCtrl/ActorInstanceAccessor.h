@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../Client/gamelib/ActorInstance.h"
+#include "../../ClientSource/gamelib/ActorInstance.h"
 
 class CActorInstanceAccessor : public CActorInstance
 {

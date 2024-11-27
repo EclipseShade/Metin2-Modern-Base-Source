@@ -1,5 +1,7 @@
 #include "StdAfx.h"
+
 #include "../WorldEditor.h"
+
 #include "MapAccessorTerrain.h"
 #include "MapAccessorOutdoor.h"
 #include <fcntl.h>

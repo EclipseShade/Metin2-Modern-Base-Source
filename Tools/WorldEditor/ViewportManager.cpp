@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "ViewportManager.h"
-#include "../../Client/eterlib/Camera.h"
+
+#include "../../ClientSource/eterlib/Camera.h"
 
 #include "MainFrm.h"
 #include "WorldEditorDoc.h"

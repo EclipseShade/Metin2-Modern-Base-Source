@@ -6,7 +6,8 @@
 #include "../worldeditor.h"
 #include "MiniMapRenderHelper.h"
 #include "MapAccessorOutdoor.h"
-#include "../../../Client/eterlib/Camera.h"
+
+#include "../../ClientSource/eterlib/Camera.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
