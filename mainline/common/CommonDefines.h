@@ -1,6 +1,9 @@
 #ifndef __INC_SERVICE_H__
 #define __INC_SERVICE_H__
 
+#define GF_ENABLE_MOB_PROTO
+
+
 
 /* SECURITY IMPROVEMENT */
 #define ENABLE_PORT_SECURITY
