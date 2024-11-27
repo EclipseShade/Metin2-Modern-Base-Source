@@ -1,4 +1,3 @@
-// vim: ts=8 sw=4
 #ifndef __INC_MONEY_LOG
 #define __INC_MONEY_LOG
 

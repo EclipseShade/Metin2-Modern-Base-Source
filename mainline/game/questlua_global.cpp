@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "config.h"
 #include "constants.h"
 #include "char.h"
 #include "char_manager.h"
@@ -7,7 +8,6 @@
 #include "questmanager.h"
 #include "questlua.h"
 #include "questevent.h"
-#include "config.h"
 #include "mining.h"
 #include "fishing.h"
 #include "priv_manager.h"

@@ -26,6 +26,7 @@ extern int passes_per_sec;
 extern int save_event_second_cycle;
 extern int ping_event_second_cycle;
 extern int test_server;
+extern int speed_server;
 extern bool	guild_mark_server;
 extern BYTE guild_mark_min_level;
 extern bool	distribution_test_server;
