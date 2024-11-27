@@ -1,6 +1,8 @@
 #include "StdAfx.h"
+
 #include "../MainFrm.h"
-#include "../../../Client/eterlib/Camera.h"
+
+#include "../../Client/Source/eterlib/Camera.h"
 
 D3DXCOLOR CSceneBase::ms_GridLarge;
 D3DXCOLOR CSceneBase::ms_GridSmall;

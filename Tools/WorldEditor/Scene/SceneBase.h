@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../Client/eterlib/GrpTextInstance.h"
+#include "../../ClientSource/eterlib/GrpTextInstance.h"
 
 #define WORLDEDITOR_CAMERA	3
 

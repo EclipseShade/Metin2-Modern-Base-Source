@@ -1,8 +1,10 @@
 #include "StdAfx.h"
+
 #include "SceneObject.h"
-#include "../../../Client/eterlib/Camera.h"
-#include "../../../Client/EffectLib/EffectManager.h"
-#include "../../../Client/gamelib/itemdata.h"
+
+#include "../../ClientSource/eterlib/Camera.h"
+#include "../../ClientSource/EffectLib/EffectManager.h"
+#include "../../ClientSource/gamelib/itemdata.h"
 
 void CSceneObject::Refresh()
 {

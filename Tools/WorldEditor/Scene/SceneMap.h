@@ -3,8 +3,8 @@
 // Test Code
 #include "SceneMapCursor.h"
 
-#include "../../Client/gamelib/TerrainDecal.h"
-#include "../../Client/gamelib/SnowEnvironment.h"
+#include "../../ClientSource/gamelib/TerrainDecal.h"
+#include "../../ClientSource/gamelib/SnowEnvironment.h"
 
 class CMapManagerAccessor;
 class CMonsterAreaInfo;

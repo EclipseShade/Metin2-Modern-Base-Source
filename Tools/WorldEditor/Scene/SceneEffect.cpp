@@ -1,8 +1,10 @@
 #include "StdAfx.h"
 #include "SceneEffect.h"
+
 #include "../MainFrm.h"
 #include "../WorldEditor.h"
-#include "../../../Client/eterlib/Camera.h"
+
+#include "../../ClientSource/eterlib/Camera.h"
 
 class CPositionChangeEventReceiver : public CEffectTranslationDialog::IEventReciever
 {

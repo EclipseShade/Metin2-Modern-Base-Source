@@ -1,4 +1,5 @@
 #include "StdAfx.h"
+
 #include "PickingArrow.h"
 
 int CPickingArrows::m_dwIndex = 0;

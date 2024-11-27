@@ -8,10 +8,10 @@
 #include "../MainFrm.h"
 #include "../DataCtrl/ShadowRenderHelper.h"
 #include "../DataCtrl/MapAccessorOutdoor.h"
-#include "../../../Client/eterlib/Camera.h"
+#include "../../ClientSource/eterlib/Camera.h"
 #include "../DataCtrl/MapAccessorTerrain.h"
 #include "../DataCtrl/NonPlayerCharacterInfo.h"
-#include "../../../Client/milesLib/SoundManager.h"
+#include "../../ClientSource/milesLib/SoundManager.h"
 #include "../DataCtrl/MiniMapRenderHelper.h"
 
 struct FGetPortalID

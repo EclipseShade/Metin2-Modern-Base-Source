@@ -1,7 +1,9 @@
 #include "StdAfx.h"
 
 #include "..\WorldEditor.h"
-#include "../../../Client/eterlib/Camera.h"
+
+#include "../../ClientSource/eterlib/Camera.h"
+
 #include "../MainFrm.h"
 
 void CSceneObject::UpdateActorInstanceMotion()

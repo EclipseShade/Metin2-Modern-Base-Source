@@ -1,6 +1,8 @@
 #include "StdAfx.h"
+
 #include "SceneEffect.h"
-#include "../../../Client/eterlib/Camera.h"
+
+#include "../../ClientSource/eterlib/Camera.h"
 
 void CSceneEffect::OnKeyDown(int iChar)
 {

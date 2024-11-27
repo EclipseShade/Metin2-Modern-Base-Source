@@ -1,9 +1,12 @@
 #include "Stdafx.h"
+
 #include "SceneFly.h"
-#include "../../../Client/gamelib/FlyingData.h"
-#include "../../../Client/gamelib/FlyingInstance.h"
-#include "../../../Client/EffectLib/EffectManager.h"
-#include "../../../Client/eterlib/GrpMath.h"
+
+#include "../../ClientSource/gamelib/FlyingData.h"
+#include "../../ClientSource/gamelib/FlyingInstance.h"
+#include "../../ClientSource/EffectLib/EffectManager.h"
+#include "../../ClientSource/eterlib/GrpMath.h"
+
 CSceneFly::CSceneFly()
 	: start(0.0f,300.0f,0.0f)
 {
