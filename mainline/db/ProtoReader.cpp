@@ -685,6 +685,9 @@ bool Set_Proto_Mob_Table(TMobTable *mobTable, cCsvTable &csvTable,std::map<int,c
 
 	for (int i = 0; i < MOB_RESISTS_MAX_NUM; ++i)
 		str_to_number(mobTable->cResists[i], csvTable.AsStringByIndex(col++));
+#ifdef GF_ENABLE_MOB_PROTO_RESIST_CLAW
+	col++;		// [NEW] ResistClaw -> [CURRENTLY SKIP]
+#endif
 
 #ifdef GF_ENABLE_MOB_PROTO_RESIST_BLEEDING
 	col++;		// [NEW] ResistBleeding -> [CURRENTLY SKIP]
