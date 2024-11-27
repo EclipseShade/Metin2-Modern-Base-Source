@@ -26,7 +26,7 @@ int Start();
 
 std::string g_stTablePostfix;
 std::string g_stLocaleNameColumn = "name";
-std::string g_stLocale = "euckr";
+std::string g_stLocale = "utf8";
 std::string g_stPlayerDBName = "";
 
 
