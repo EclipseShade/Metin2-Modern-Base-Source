@@ -14,8 +14,6 @@
 
 #include "Semaphore.h"
 
-#define QUERY_MAX_LEN 8192
-
 typedef struct _SQLResult
 {
 	_SQLResult()
