@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "locale.h"
 #include "empire_text_convert.h"
 
 namespace 

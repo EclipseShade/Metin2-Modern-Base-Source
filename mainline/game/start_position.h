@@ -1,6 +1,7 @@
 #ifndef __START_POSITION_H
 #define __START_POSITION_H
 
+#include "locale.h"
 #include "locale_service.h"
 
 extern char g_nation_name[4][32];

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "locale.h"
 #include "utils.h"
 #include "config.h"
 #include "char.h"

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "locale.h"
 #include "locale_service.h"
 #include "constants.h"
 #include "banword.h"

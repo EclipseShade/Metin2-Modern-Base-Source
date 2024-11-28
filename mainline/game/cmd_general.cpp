@@ -6,6 +6,7 @@
 	#include "../../ExternGame/libthecore/include/xmd5.h"
 #endif
 
+#include "locale.h"
 #include "utils.h"
 #include "config.h"
 #include "desc_client.h"

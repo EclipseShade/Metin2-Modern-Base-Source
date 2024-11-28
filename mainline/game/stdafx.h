@@ -53,7 +53,6 @@
 #endif
 
 #include "typedef.h"
-#include "locale.hpp"
 #include "event.h"
 
 #define PASSES_PER_SEC(sec) ((sec) * passes_per_sec)

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "locale.h"
 #include "config.h"
 #include "DragonLair.h"
 #include "entity.h"

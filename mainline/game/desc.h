@@ -1,6 +1,7 @@
 #ifndef __INC_METIN_II_GAME_DESC_H__
 #define __INC_METIN_II_GAME_DESC_H__
 
+#include "locale.h"
 #include "constants.h"
 #include "input.h"
 #ifdef _IMPROVED_PACKET_ENCRYPTION_

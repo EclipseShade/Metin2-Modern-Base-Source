@@ -4,6 +4,7 @@
 	#include <ifaddrs.h>
 #endif
 
+#include "locale.h"
 #include "constants.h"
 #include "utils.h"
 #include "log.h"

@@ -1,7 +1,8 @@
 #include "stdafx.h"
 
-#include "constants.h"
 #include "config.h"
+#include "locale.h"
+#include "constants.h"
 #include "packet.h"
 #include "desc.h"
 #include "buffer_manager.h"

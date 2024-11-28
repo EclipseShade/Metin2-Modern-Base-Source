@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "locale.h"
 #include "questmanager.h"
 #include "profiler.h"
 #include "config.h"

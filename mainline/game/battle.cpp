@@ -1,7 +1,8 @@
 #include "stdafx.h"
 
-#include "utils.h"
 #include "config.h"
+#include "locale.h"
+#include "utils.h"
 #include "desc.h"
 #include "char.h"
 #include "char_manager.h"

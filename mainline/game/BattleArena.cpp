@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "config.h"
+#include "locale.h"
 #include "constants.h"
 #include "BattleArena.h"
 #include "start_position.h"

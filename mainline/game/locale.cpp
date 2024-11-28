@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include "locale.h"
 #include "locale_service.h"
 
 typedef std::map< std::string, std::string > LocaleStringMapType;
