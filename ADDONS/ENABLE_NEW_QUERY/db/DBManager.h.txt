@@ -1,0 +1,13 @@
+# FIND IN: class CDBManager : public singleton<CDBManager>
+
+	void			ReturnQuery(const char * c_pszQuery, int iType, DWORD dwIdent, void * pvData, int iSlot = SQL_PLAYER);
+	void			AsyncQuery(const char * c_pszQuery, int iSlot = SQL_PLAYER);
+	SQLMsg *		DirectQuery(const char * c_pszQuery, int iSlot = SQL_PLAYER);
+
+# ADD UNDER:
+
+#ifdef ENABLE_NEW_QUERY
+	void			ReturnQueryPrepare(const std::string& query, int iType, DWORD dwIdent, void * pvData, int iSlot = SQL_PLAYER);
+	void			AsyncQueryPrepare(const std::string& query, int iSlot = SQL_PLAYER);
+	SQLMsg*			DirectQueryPrepare(const std::string& query, int iSlot = SQL_PLAYER);
+#endif

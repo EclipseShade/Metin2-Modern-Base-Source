@@ -6,8 +6,6 @@
 //                             코드 by 꼬붕 후로그래머 아노아~ = _=)b
 #include <mysql/mysql.h>
 
-#include "../../ExternGame/libsql/AsyncSQL.h"
-
 #define SQL_SAFE_LENGTH(size)	(size * 2 + 1)
 #define QUERY_SAFE_LENGTH(size)	(1024 + SQL_SAFE_LENGTH(size))
 
@@ -46,6 +44,12 @@ class CDBManager : public singleton<CDBManager>
 	void			ReturnQuery(const char * c_pszQuery, int iType, DWORD dwIdent, void * pvData, int iSlot = SQL_PLAYER);
 	void			AsyncQuery(const char * c_pszQuery, int iSlot = SQL_PLAYER);
 	SQLMsg *		DirectQuery(const char * c_pszQuery, int iSlot = SQL_PLAYER);
+
+#ifdef ENABLE_NEW_QUERY
+	void			ReturnQueryPrepare(const std::string& query, int iType, DWORD dwIdent, void * pvData, int iSlot = SQL_PLAYER);
+	void			AsyncQueryPrepare(const std::string& query, int iSlot = SQL_PLAYER);
+	SQLMsg*			DirectQueryPrepare(const std::string& query, int iSlot = SQL_PLAYER);
+#endif
 
 	SQLMsg *		PopResult();
 	SQLMsg * 		PopResult(eSQL_SLOT slot );
@@ -90,9 +94,7 @@ class CDBManager : public singleton<CDBManager>
 	//CHARSET
 	public:
 	void SetLocale(const char * szLocale );
-	void QueryLocaleSet();
-	private:
-	
+	void QueryLocaleSet();	
 	//END_CHARSET
 };
 

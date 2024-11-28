@@ -3,6 +3,7 @@
 
 #include <map>
 
+#include "../../ExternGame/libsql/AsyncSQL.h"
 #include "../../ExternGame/libthecore/include/stdafx.h"
 
 #ifndef __WIN32__

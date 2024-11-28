@@ -714,3 +714,64 @@ void CAsyncSQL2::SetLocale(const std::string & stLocale)
 	QueryLocaleSet();
 }
 
+#define ENABLE_NEW_QUERY
+#ifdef ENABLE_NEW_QUERY
+SQLMsg* CAsyncSQL::DirectQueryPrepare(const std::string& query) {
+    if (m_ulThreadID != mysql_thread_id(&m_hDB)) {
+        sys_err("MySQL connection was reconnected. Setting query locale.");
+        
+        while (!QueryLocaleSet());
+        
+        m_ulThreadID = mysql_thread_id(&m_hDB);
+    }
+
+	//SQLMsg* msg = new SQLMsg;
+	//std::unique_ptr<SQLMsg> msg(new SQLMsg());
+	SQLMsg* msg = new SQLMsg;
+
+    // Initialize SQLMsg properties
+    msg->m_pkSQL = &m_hDB;
+    msg->iID = ++m_iMsgCount;
+    msg->stQuery = query;
+
+    // Execute the query
+    if (mysql_real_query(&m_hDB, msg->stQuery.c_str(), msg->stQuery.length())) {
+        std::ostringstream errorMsg;
+        errorMsg << "AsyncSQL::DirectQuery: mysql_query error: "  
+				<< mysql_error(&m_hDB)  
+				<< " query: " 
+				<< msg->stQuery;
+        
+        sys_err(errorMsg.str().c_str()); // Log the error
+        msg->uiSQLErrno = mysql_errno(&m_hDB); // Store SQL error number
+        
+        return nullptr;
+    }
+
+	msg->Store();
+	
+    return msg;
+}
+
+void CAsyncSQL::ReturnQuery(const std::string& query, void * pvUserData) {
+	SQLMsg * p = new SQLMsg;
+
+	p->m_pkSQL = &m_hDB;
+	p->iID = ++m_iMsgCount;
+	p->stQuery = query;
+	p->bReturn = true;
+	p->pvUserData = pvUserData;
+
+	PushQuery(p);
+}
+
+void CAsyncSQL::AsyncQueryPrepare(const std::string& query) {
+	SQLMsg* msg = new SQLMsg;
+
+	msg->m_pkSQL = &m_hDB;
+	msg->iID = ++m_iMsgCount;
+	msg->stQuery = query;
+
+	PushQuery(msg);
+}
+#endif

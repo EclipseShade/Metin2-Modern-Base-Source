@@ -188,3 +188,29 @@ void CDBManager::QueryLocaleSet()
 	}
 }
 
+#ifdef ENABLE_NEW_QUERY
+void CDBManager::AsyncQueryPrepare(const std::string& query, int iSlot) {
+	assert(iSlot < SQL_MAX_NUM);
+	m_asyncSQL[iSlot]->AsyncQueryPrepare(query);
+	++g_query_count[1];
+}
+
+void CDBManager::ReturnQueryPrepare(const std::string& query, int iType, IDENT dwIdent, void * udata, int iSlot) {
+	assert(iSlot < SQL_MAX_NUM);
+	//sys_log(0, "ReturnQuery %s", c_pszQuery);
+	CQueryInfo * p = new CQueryInfo;
+
+	p->iType = iType;
+	p->dwIdent = dwIdent;
+	p->pvData = udata;
+
+	m_mainSQL[iSlot]->ReturnQuery(query, p);
+
+	//g_query_info.Add(iType);
+	++g_query_count[0];
+}
+
+SQLMsg* CDBManager::DirectQueryPrepare(const std::string& query, int iSlot) {
+    return m_directSQL[iSlot]->DirectQueryPrepare(query);
+}
+#endif
