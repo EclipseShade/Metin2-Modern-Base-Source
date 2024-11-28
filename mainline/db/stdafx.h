@@ -2,6 +2,8 @@
 #define __INC_METiN_II_DBSERV_STDAFX_H__
 
 #include <map>
+#include <sstream>
+#include <string>
 
 #include "../../ExternGame/libsql/AsyncSQL.h"
 #include "../../ExternGame/libthecore/include/stdafx.h"
