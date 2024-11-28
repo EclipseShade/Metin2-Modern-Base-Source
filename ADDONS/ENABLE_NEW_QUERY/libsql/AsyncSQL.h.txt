@@ -6,6 +6,7 @@
 
 # ADD UNDER:
 
+#define ENABLE_NEW_QUERY
 #ifdef ENABLE_NEW_QUERY
 		void		AsyncQueryPrepare(const std::string& query);
 		void		ReturnQueryPrepare(const std::string& query, void * pvUserData);

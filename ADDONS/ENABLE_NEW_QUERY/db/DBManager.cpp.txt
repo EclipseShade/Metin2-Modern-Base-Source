@@ -20,7 +20,7 @@ void CDBManager::ReturnQueryPrepare(const std::string& query, int iType, IDENT d
 	p->dwIdent = dwIdent;
 	p->pvData = udata;
 
-	m_mainSQL[iSlot]->ReturnQuery(query, p);
+	m_mainSQL[iSlot]->ReturnQuery(query.c_str(), p);
 
 	//g_query_info.Add(iType);
 	++g_query_count[0];

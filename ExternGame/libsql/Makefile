@@ -9,13 +9,7 @@ SVN_VERSION = $(shell svnversion -n -c . | cut -d':' -f2)
 
 BIN     = ./libsql.a
 
-ifeq ($(GCC_VERSION), 4)
-IFLAGS = -I../libmysql/7.x-5.1.35
 CFLAGS  = $(IFLAGS) -Wall -O2 -pipe -mtune=i686 -D_THREAD_SAFE -fno-exceptions 
-else
-IFLAGS = -I../libmysql/5.x-5.1.35
-CFLAGS  = $(IFLAGS) -Wall -O2 -pipe -mcpu=i686 -D_THREAD_SAFE -fno-exceptions 
-endif
 
 LIBS =
 

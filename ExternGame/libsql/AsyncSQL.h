@@ -126,10 +126,10 @@ class CAsyncSQL
 		void		ReturnQuery(const char * c_pszQuery, void * pvUserData);
 		SQLMsg *	DirectQuery(const char * c_pszQuery);
 
+#define ENABLE_NEW_QUERY
 #ifdef ENABLE_NEW_QUERY
 		void		AsyncQueryPrepare(const std::string& query);
 		void		ReturnQueryPrepare(const std::string& query, void * pvUserData);
-		
 		SQLMsg*		DirectQueryPrepare(const std::string& query);
 #endif
 

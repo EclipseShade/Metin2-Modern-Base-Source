@@ -4,6 +4,8 @@
 
 #include <cstdlib>
 #include <cstring>
+#include <sstream>
+#include <string>
 
 #include "AsyncSQL.h"
 
@@ -745,7 +747,7 @@ SQLMsg* CAsyncSQL::DirectQueryPrepare(const std::string& query) {
         sys_err(errorMsg.str().c_str()); // Log the error
         msg->uiSQLErrno = mysql_errno(&m_hDB); // Store SQL error number
         
-        return nullptr;
+        return NULL;
     }
 
 	msg->Store();
