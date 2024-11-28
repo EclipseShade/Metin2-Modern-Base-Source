@@ -514,8 +514,6 @@ bool CClientManager::InitializeShopTable()
 
 bool CClientManager::InitializeQuestItemTable()
 {
-	using namespace std;
-
 	static const char * s_szQuery = "SELECT vnum, name, %s FROM quest_item_proto ORDER BY vnum";
 
 	char query[1024];
