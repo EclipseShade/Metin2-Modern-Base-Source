@@ -291,8 +291,6 @@ namespace quest
 
 	int npc_get_vid_attack_mul(lua_State* L)
 	{
-		CQuestManager& q = CQuestManager::instance();
-
 		lua_Number vid = lua_tonumber(L, 1);
 		LPCHARACTER targetChar = CHARACTER_MANAGER::instance().Find(vid);
 
@@ -307,8 +305,6 @@ namespace quest
 	
 	int npc_set_vid_attack_mul(lua_State* L)
 	{
-		CQuestManager& q = CQuestManager::instance();
-
 		lua_Number vid = lua_tonumber(L, 1);
 		lua_Number attack_mul = lua_tonumber(L, 2);
 
@@ -322,8 +318,6 @@ namespace quest
 
 	int npc_get_vid_damage_mul(lua_State* L)
 	{
-		CQuestManager& q = CQuestManager::instance();
-
 		lua_Number vid = lua_tonumber(L, 1);
 		LPCHARACTER targetChar = CHARACTER_MANAGER::instance().Find(vid);
 
@@ -338,8 +332,6 @@ namespace quest
 	
 	int npc_set_vid_damage_mul(lua_State* L)
 	{
-		CQuestManager& q = CQuestManager::instance();
-
 		lua_Number vid = lua_tonumber(L, 1);
 		lua_Number damage_mul = lua_tonumber(L, 2);
 
