@@ -1529,4 +1529,10 @@ void initapp()
 	PyModule_AddIntConstant(poModule, "USE_OPENID",	0);
 	PyModule_AddIntConstant(poModule, "OPENID_TEST",	0);
 #endif /* USE_OPENID */
+
+#ifdef ENABLE_MINIMAP_TELEPORT_CLICK
+	PyModule_AddIntConstant(poModule, "ENABLE_MINIMAP_TELEPORT_CLICK", 1);
+#else
+	PyModule_AddIntConstant(poModule, "ENABLE_MINIMAP_TELEPORT_CLICK", 0);
+#endif
 }

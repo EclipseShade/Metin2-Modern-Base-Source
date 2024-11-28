@@ -1,0 +1,11 @@
+# FIND IN: bool CPythonMiniMap::GetAtlasInfo(float fScreenX, float fScreenY, std::string & rReturnString, float * pReturnPosX, float * pReturnPosY, DWORD * pdwTextColor, DWORD * pdwGuildID)
+
+	float fRealX = (fScreenX - m_fAtlasScreenX) * (m_fAtlasMaxX / m_fAtlasImageSizeX);
+	float fRealY = (fScreenY - m_fAtlasScreenY) * (m_fAtlasMaxY / m_fAtlasImageSizeY);
+
+# ADD UNDER:
+
+#ifdef ENABLE_MINIMAP_TELEPORT_CLICK
+	*pReturnPosX = fRealX;
+	*pReturnPosY = fRealY;
+#endif

@@ -1,0 +1,15 @@
+# FIND IN: void initapp()
+
+#ifdef ENABLE_COSTUME_SYSTEM
+	PyModule_AddIntConstant(poModule, "ENABLE_COSTUME_SYSTEM",	1);
+#else
+	PyModule_AddIntConstant(poModule, "ENABLE_COSTUME_SYSTEM",	0);
+#endif
+
+# ADD UNDER:
+
+#ifdef ENABLE_MINIMAP_TELEPORT_CLICK
+	PyModule_AddIntConstant(poModule, "ENABLE_MINIMAP_TELEPORT_CLICK", 1);
+#else
+	PyModule_AddIntConstant(poModule, "ENABLE_MINIMAP_TELEPORT_CLICK", 0);
+#endif

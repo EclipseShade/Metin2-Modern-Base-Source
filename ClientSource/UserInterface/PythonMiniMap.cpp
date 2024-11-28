@@ -1122,6 +1122,11 @@ bool CPythonMiniMap::GetAtlasInfo(float fScreenX, float fScreenY, std::string & 
 	float fRealX = (fScreenX - m_fAtlasScreenX) * (m_fAtlasMaxX / m_fAtlasImageSizeX);
 	float fRealY = (fScreenY - m_fAtlasScreenY) * (m_fAtlasMaxY / m_fAtlasImageSizeY);
 
+#ifdef ENABLE_MINIMAP_TELEPORT_CLICK
+	*pReturnPosX = fRealX;
+	*pReturnPosY = fRealY;
+#endif
+
 	//((float) CTerrainImpl::CELLSCALE) * 10.0f
 	float fCheckWidth = (m_fAtlasMaxX / m_fAtlasImageSizeX) * 5.0f;
 	float fCheckHeight = (m_fAtlasMaxY / m_fAtlasImageSizeY) * 5.0f;
