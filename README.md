@@ -18,6 +18,7 @@
 #
 
 ## TO-DO ADDONS LIST:
+- [ ] GR_GET_TEXT_LENGHT: https://metin2.dev/topic/30167-official-appgettextlength-gettextwidth-reversed/
 - [ ] GF_CLIP_MASKING https://metin2.dev/topic/30047-official-clip-masking-reversed/
 - [ ] GF_MOUSE_WHEEL: https://metin2.dev/topic/30068-official-mouse-wheel-top-windowscroll-reversed/
 - [ ] GF_Quest Renewal: https://metin2.dev/topic/30275-official-quest-renewal/
