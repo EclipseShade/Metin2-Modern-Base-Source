@@ -528,8 +528,14 @@ bool CPythonMiniMap::Create()
 	const std::string strImageRoot = "D:/ymir work/ui/";
 	const std::string strImageFilter = strImageRoot + "minimap_image_filter.dds";
 	const std::string strImageCamera = strImageRoot + "minimap_camera.dds";
+
+#ifdef ENABLE_MINIMAP_WHITEMARK_CIRCLE
+	const std::string strPlayerMark = strImageRoot + "minimap/whitemark_circle.tga";
+	const std::string strWhiteMark = strImageRoot + "minimap/whitemark_circle.tga";
+#else
 	const std::string strPlayerMark = strImageRoot + "minimap/playermark.sub";
 	const std::string strWhiteMark = strImageRoot + "minimap/whitemark.sub";
+#endif
 
 	// ¹Ì´Ï¸Ê Ä¿¹ö
 	CGraphicImage * pImage = (CGraphicImage *) CResourceManager::Instance().GetResourcePointer(strImageFilter.c_str());
