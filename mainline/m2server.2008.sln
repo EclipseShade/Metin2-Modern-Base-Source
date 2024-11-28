@@ -55,7 +55,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{FDF84D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utilities", "Utilities", "{12B8EA69-291D-48D9-9F47-DE82A4BD47A2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qc", "..\ExternGame\qc.2008.vcproj", "{3783243F-5E36-4B96-9A13-7BFF00F15B34}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "qc", "..\ExternGame\quest\qc.2008.vcproj", "{3783243F-5E36-4B96-9A13-7BFF00F15B34}"
 	ProjectSection(ProjectDependencies) = postProject
 		{EC666345-5F4E-4A4E-8C66-C7A6326F8235} = {EC666345-5F4E-4A4E-8C66-C7A6326F8235}
 	EndProjectSection
