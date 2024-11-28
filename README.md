@@ -17,7 +17,7 @@
 | 2022              | ❌ Not Compiled   |
 #
 
-# TO-DO ADDONS LIST:
+## TO-DO ADDONS LIST:
 - [ ] GF_CLIP_MASKING https://metin2.dev/topic/30047-official-clip-masking-reversed/
 - [ ] GF_MOUSE_WHEEL: https://metin2.dev/topic/30068-official-mouse-wheel-top-windowscroll-reversed/
 - [ ] GF_Quest Renewal: https://metin2.dev/topic/30275-official-quest-renewal/
@@ -28,11 +28,11 @@
 - [ ] GF_Client_Locale_String https://metin2.dev/topic/29790-official-client-locale-stringreversed/page/3/#comment-166975
 #
 
-# TO-DO Improve Code:
+## TO-DO Improve Code:
 - [ ] remove all using namespace
 #
 
-# CONTRIBUTES RULES:
+## CONTRIBUTES RULES:
 - [1] Use Standar Libraries if possible
 - [2] All .cpp file need to have included "stdafx.h
 - [3] All .h file need to have .cpp file
