@@ -197,13 +197,11 @@ void LogManager::ChangeNameLog(DWORD pid, const char *old_name, const char *new_
 			get_table_postfix(), pid, old_name, new_name, ip);
 }
 
-void LogManager::GMCommandLog(DWORD dwPID, const char* szName, const char* szIP, BYTE byChannel, const char* szCommand)
-{
+void LogManager::GMCommandLog(DWORD dwPID, const char* szName, const char* szIP, BYTE byChannel, const char* szCommand) {
 	m_sql.EscapeString(__escape_hint, sizeof(__escape_hint), szCommand, strlen(szCommand));
 
-	Query("INSERT DELAYED INTO command_log%s (userid, server, ip, port, username, command, date ) "
-			"VALUES(%u, 999, '%s', %u, '%s', '%s', NOW()) ",
-			get_table_postfix(), dwPID, szIP, byChannel, szName, __escape_hint);
+	Query("INSERT INTO command_log%s (userid, server, ip, port, username, command, date ) VALUES (%u, 999, '%s', %u, '%s', '%s', NOW()) ",	//@fix1
+	get_table_postfix(), dwPID, szIP, byChannel, szName, __escape_hint);
 }
 
 void LogManager::RefineLog(DWORD pid, const char* item_name, DWORD item_id, int item_refine_level, int is_success, const char* how)
@@ -213,7 +211,6 @@ void LogManager::RefineLog(DWORD pid, const char* item_name, DWORD item_id, int 
 	Query("INSERT INTO refinelog%s (pid, item_name, item_id, step, time, is_success, setType) VALUES(%u, '%s', %u, %d, NOW(), %d, '%s')",
 			get_table_postfix(), pid, __escape_hint, item_id, item_refine_level, is_success, how);
 }
-
 
 void LogManager::ShoutLog(BYTE bChannel, BYTE bEmpire, const char * pszText)
 {
