@@ -20,6 +20,7 @@
 #include "item_manager.h"
 #include "DragonSoul.h"
 #include "cube.h"
+#include "item_manager_private_types.h"
 
 ITEM_MANAGER::ITEM_MANAGER()
 	: m_iTopOfTable(0), m_dwVIDCount(0), m_dwCurrentID(0)
@@ -747,28 +748,6 @@ DWORD lotto()
 	}
 	while (1);
 }
-
-
-class CItemDropInfo
-{
-	public:
-		CItemDropInfo(int iLevelStart, int iLevelEnd, int iPercent, DWORD dwVnum) :
-			m_iLevelStart(iLevelStart), m_iLevelEnd(iLevelEnd), m_iPercent(iPercent), m_dwVnum(dwVnum)
-			{
-			}
-
-		int	m_iLevelStart;
-		int	m_iLevelEnd;
-		int	m_iPercent; // 1 ~ 1000
-		DWORD	m_dwVnum;
-
-		friend bool operator < (const CItemDropInfo & l, const CItemDropInfo & r)
-		{
-			return l.m_iLevelEnd < r.m_iLevelEnd;
-		}
-};
-
-extern std::vector<CItemDropInfo> g_vec_pkCommonDropItem[MOB_RANK_MAX_NUM];
 
 // 20050503.ipkn.
 // iMinimum 보다 작으면 iDefault 세팅 (단, iMinimum은 0보다 커야함)
