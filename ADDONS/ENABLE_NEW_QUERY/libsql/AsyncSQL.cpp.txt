@@ -39,7 +39,7 @@ SQLMsg* CAsyncSQL::DirectQueryPrepare(const std::string& query) {
     return msg;
 }
 
-void CAsyncSQL::ReturnQuery(const std::string& query, void * pvUserData) {
+void CAsyncSQL::ReturnQueryPrepare(const std::string& query, void * pvUserData) {
 	SQLMsg * p = new SQLMsg;
 
 	p->m_pkSQL = &m_hDB;
