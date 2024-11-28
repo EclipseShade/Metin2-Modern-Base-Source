@@ -1,0 +1,26 @@
+//Find
+	void CWindow::Hide()
+	{
+		...
+	}
+
+///Add
+#ifdef GF_ENABLE_MOUSE_WHEEL
+	bool CWindow::OnMouseWheelButtonUp()
+	{
+		bool bValue = false;
+		if (PyCallClassMemberFunc(m_poHandler, "OnMouseWheelButtonUp", BuildEmptyTuple(), &bValue))
+			return bValue;
+
+		return false;
+	}
+
+	bool CWindow::OnMouseWheelButtonDown()
+	{
+		bool bValue = false;
+		if (PyCallClassMemberFunc(m_poHandler, "OnMouseWheelButtonDown", BuildEmptyTuple(), &bValue))
+			return bValue;
+
+		return false;
+	}
+#endif

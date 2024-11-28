@@ -1,0 +1,42 @@
+//Find
+void CPythonApplication::OnMouseWheel(int nLen)
+{
+	CCameraManager& rkCmrMgr=CCameraManager::Instance();
+	CCamera* pkCmrCur=rkCmrMgr.GetCurrentCamera();
+	if (pkCmrCur)
+		pkCmrCur->Wheel(nLen);
+}
+
+///Change
+void CPythonApplication::OnMouseWheel(int nLen)
+{
+#ifdef GF_ENABLE_MOUSE_WHEEL
+	bool bUIWheel = false;
+
+	if (nLen > 0)
+		bUIWheel = UI::CWindowManager::Instance().OnMouseWheelButtonUp();
+	else
+		bUIWheel = UI::CWindowManager::Instance().OnMouseWheelButtonDown();
+	
+	if (!bUIWheel)
+	{
+		CCameraManager& rkCmrMgr = CCameraManager::Instance();
+		CCamera* pkCmrCur = rkCmrMgr.GetCurrentCamera();
+		if (pkCmrCur)
+			pkCmrCur->Wheel(nLen);
+	}
+#else
+	CCameraManager& rkCmrMgr=CCameraManager::Instance();
+	CCamera* pkCmrCur=rkCmrMgr.GetCurrentCamera();
+	if (pkCmrCur)
+		pkCmrCur->Wheel(nLen);
+#endif
+}
+
+//Find in void CPythonApplication::OnMouseLeftButtonDoubleClick(int x, int y)
+	rkWndMgr.RunMouseLeftButtonDown(x, y);
+
+///Change
+#if !defined(GF_MOUSE_WHEEL)
+	rkWndMgr.RunMouseLeftButtonDown(x, y);
+#endif

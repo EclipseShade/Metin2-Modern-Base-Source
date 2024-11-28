@@ -1,0 +1,24 @@
+///Add new funcs
+#ifdef GF_ENABLE_MOUSE_WHEEL
+PyObject* wndMgrSetWheelTopWindow(PyObject* poSelf, PyObject* poArgs)
+{
+	UI::CWindow* pWindow;
+	if (!PyTuple_GetWindow(poArgs, 0, &pWindow))
+		return Py_BuildException();
+	
+	UI::CWindowManager::Instance().SetWheelTopWindow(pWindow);
+	return Py_BuildNone();
+}
+
+PyObject* wndMgrClearWheelTopWindow(PyObject* poSelf, PyObject* poArgs)
+{
+	UI::CWindowManager::Instance().ClearWheelTopWindow();
+	return Py_BuildNone();
+}
+#endif
+
+///Add to void initwndMgr()
+#ifdef GF_ENABLE_MOUSE_WHEEL
+		{ "SetWheelTopWindow",			wndMgrSetWheelTopWindow,			METH_VARARGS },
+		{ "ClearWheelTopWindow",		wndMgrClearWheelTopWindow,			METH_VARARGS },
+#endif

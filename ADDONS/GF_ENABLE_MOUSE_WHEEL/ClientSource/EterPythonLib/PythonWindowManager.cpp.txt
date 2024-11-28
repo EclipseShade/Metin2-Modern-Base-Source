@@ -1,0 +1,71 @@
+//Find
+		m_pLockWindow(NULL),
+
+///Add
+#ifdef GF_ENABLE_MOUSE_WHEEL
+		m_pTopWindow(NULL),
+#endif
+
+//Find in CWindowManager::~CWindowManager()
+		m_pRootWindow = NULL;
+
+///Add
+#ifdef GF_ENABLE_MOUSE_WHEEL
+		m_pTopWindow = NULL;
+#endif
+
+//Find in void CWindowManager::NotifyDestroyWindow(CWindow * pWindow)
+		if (pWindow == m_pLockWindow)
+			m_pLockWindow = NULL;
+
+///Add
+#ifdef GF_ENABLE_MOUSE_WHEEL
+		if (pWindow == m_pTopWindow)
+			m_pTopWindow = NULL;
+#endif
+
+//Find
+	void CWindowManager::OnceIgnoreMouseLeftButtonUpEvent()
+	{
+		...
+	}
+
+///Add
+#ifdef GF_ENABLE_MOUSE_WHEEL
+	bool CWindowManager::OnMouseWheelButtonUp()
+	{
+		if (m_pTopWindow)
+			return m_pTopWindow->OnMouseWheelButtonUp();
+
+		return false;
+	}
+	
+	bool CWindowManager::OnMouseWheelButtonDown()
+	{
+		if (m_pTopWindow)
+			return m_pTopWindow->OnMouseWheelButtonDown();
+		
+		return false;
+	}
+
+	void CWindowManager::SetWheelTopWindow(CWindow* pWindow)
+	{
+		m_pTopWindow = pWindow;
+	}
+
+	void CWindowManager::ClearWheelTopWindow()
+	{
+		m_pTopWindow = NULL;
+	}
+#endif
+
+//Find in void CWindowManager::SetTopUIWindow()
+		if (pTopWindow)
+		{
+			SetTop(pTopWindow);
+		}
+
+///Add
+#ifdef GF_ENABLE_MOUSE_WHEEL
+		m_pTopWindow = pTopWindow;
+#endif
