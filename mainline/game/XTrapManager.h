@@ -63,4 +63,4 @@ private:
 
 };
 
-#endif /* _XTRAP_MANAGER_H_ */
+#endif // _XTRAP_MANAGER_H_
