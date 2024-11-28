@@ -39,6 +39,7 @@
 - [4] Only acceptable pure .h and .cpp files do not create .inc or .hpp files
 - [5] Do not create if in cases! you can create additional function that will be called from case!
 - [6] use if {}, codes like if(....) return false; without {} won't be acceptable
+- [7] using namespace std; etc are not allowed.
 
 #### FreeBSD 10.3 - Instalation Guide
 - [FreeBSD 10.3 Instalation Guide](https://github.com/EclipseShade/Metin2-Source/wiki/FreeBSD-10.3-Instalation-Guide)
