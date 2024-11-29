@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(ProjectDir)../libmysql/6.0.2/win32;$(ProjectDir)../../Extern/include;"
+				AdditionalIncludeDirectories="$(ProjectDir)..\..\ExternWindowsGame\libmysql\6.0.2\win32"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;__WIN32__;_USE_32BIT_TIME_T"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -111,7 +111,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(ProjectDir)../libmysql/6.0.2/win32;../external"
+				AdditionalIncludeDirectories="$(ProjectDir)..\..\ExternWindowsGame\libmysql\6.0.2\win32"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;__WIN32__"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
