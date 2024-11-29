@@ -1,7 +1,7 @@
 ##### GAME
-| FreeBSD Version | Status              | Visual Studio | Status              |
+| FreeBSD Version  | Status             | Visual Studio | Status                |
 |------------------|--------------------|------------------|--------------------|
-| 9.3              | ✔️ Compiled       | 2008              | ❌ Not Compiled   |
+| 9.3              | ✔️ Compiled       | 2008              | ✔️ Compiled       |
 | 10.3             | ✔️ Compiled       | 2013              | ❌ Not Compiled   |
 | 11.3             | ✔️ Compiled       | 2022              | ❌ Not Compiled   |
 | 12.3             | ❌ Not Compiled   |
