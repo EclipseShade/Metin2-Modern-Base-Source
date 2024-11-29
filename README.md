@@ -1,12 +1,12 @@
 ##### GAME
-| FreeBSD Version  | Status             | Visual Studio | Status                | Debian / Ubuntu         | Status              |
-|------------------|--------------------|------------------|--------------------|-------------------------|---------------------|
-| 9.3              | ✔️ Compiled       | 2008              | ✔️ Compiled       | Debian 7 / Ubuntu 20.4  | ❌ Not compiled     |
-| 10.3             | ✔️ Compiled       | 2013              | ❌ Not Compiled   |
-| 11.3             | ✔️ Compiled       | 2022              | ❌ Not Compiled   |
-| 12.3             | ❌ Not Compiled   |
-| 13.3             | ❌ Not Compiled   |
-| 14.3             | ❌ Not Compiled   |
+| FreeBSD Version  | Status  | Visual Studio | Status                | Debian / Ubuntu         | Status              |
+|------------------|---------|------------------|--------------------|-------------------------|---------------------|
+| 9.3              | ✔️     | 2008              | ✔️ Compiled       | Debian 7 / Ubuntu 20.4  | ❌ Not compiled     |
+| 10.3             | ✔️     | 2013              | ❌ Not Compiled   |
+| 11.3             | ✔️     | 2022              | ❌ Not Compiled   |
+| 12.3             | ❌     |
+| 13.3             | ❌     |
+| 14.3             | ❌     |
 #
 
 #### Client:
