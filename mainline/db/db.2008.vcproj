@@ -123,7 +123,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32"
+				AdditionalIncludeDirectories="$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__WIN32__;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
