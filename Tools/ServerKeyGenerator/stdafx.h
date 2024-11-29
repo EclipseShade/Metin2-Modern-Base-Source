@@ -1,0 +1,6 @@
+#ifndef __SERVER_KEY_GENERATOR_STDAFX__H
+#define __SERVER_KEY_GENERATOR_STDAFX__H
+
+//todos
+
+#endif
