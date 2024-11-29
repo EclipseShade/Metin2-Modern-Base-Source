@@ -13,6 +13,7 @@
 	#define __PET_SYSTEM__
 	#define __UDP_BLOCK__
 	
+	#define LC_TEXT(str) locale_find(str)
 #endif
 
 
