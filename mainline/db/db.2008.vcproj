@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)../../libmysql/6.0.2/win32&quot;;&quot;$(ProjectDir)../../../Extern/include&quot;"
+				AdditionalIncludeDirectories="$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;__WIN32__;_CRT_SECURE_NO_WARNINGS;_USE_32BIT_TIME_T;_WIN32"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -69,7 +69,7 @@
 				AdditionalDependencies="mysqlclient.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(ProjectDir)../../libmysql/6.0.2/win32/lib&quot;;&quot;$(ProjectDir)../../../Extern/lib&quot;"
+				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32/lib"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -123,7 +123,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)../../libmysql/6.0.2/win32&quot;;&quot;$(ProjectDir)../../external/&quot;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__WIN32__;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
@@ -145,7 +145,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="mysqlclient.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="$(ProjectDir)../../libmysql/6.0.2/win32/lib"
+				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32/lib"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
@@ -267,6 +267,7 @@
 				RelativePath=".\DBManager.h"
 				>
 			</File>
+<!--
 			<File
 				RelativePath=".\grid.cpp"
 				>
@@ -275,6 +276,7 @@
 				RelativePath=".\grid.h"
 				>
 			</File>
+-->
 			<File
 				RelativePath=".\GuildManager.cpp"
 				>
