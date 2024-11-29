@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)&quot;;&quot;$(ProjectDir)../../../liblua/include&quot;;&quot;$(ProjectDir)../../../../Extern/include&quot;"
+				AdditionalIncludeDirectories="$(ProjectDir)../liblua/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;__WIN32__"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -120,7 +120,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)&quot;;&quot;$(ProjectDir)../../../liblua/include&quot;;&quot;$(ProjectDir)../../../external/&quot;"
+				AdditionalIncludeDirectories="$(ProjectDir)../liblua/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__WIN32__"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
