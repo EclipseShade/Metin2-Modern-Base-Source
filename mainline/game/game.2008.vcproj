@@ -66,10 +66,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="mysqlclient.lib ws2_32.lib DevIL-1.7.8d.lib DevILU-1.7.8d.lib DevILUT-1.7.8d.lib"
+				AdditionalDependencies="mysqlclient.lib ws2_32.lib DevIL-1.7.8d.lib DevILU-1.7.8d.lib DevILUT-1.7.8d.lib cryptlib.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;$(ProjectDir)../../libmysql/6.0.2/win32/lib&quot;;&quot;$(ProjectDir)../../libdevil/win32/lib&quot;;&quot;$(ProjectDir)../../../Extern/lib&quot;;$(ProjectDir)../../../Extern/openssl/lib"
+				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32/lib;$(ProjectDir)../../ExternWindowsGame/libdevil/win32/lib;$(ProjectDir)../../ExternWindowsGame/openssl/lib"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
