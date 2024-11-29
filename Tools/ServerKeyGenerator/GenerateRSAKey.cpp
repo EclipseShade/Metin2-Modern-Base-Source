@@ -1,5 +1,5 @@
-#include <fstream>
-#include <sstream>
+#include "stdafx.h"
+
 #include "time.h"
 #include "RSACrypto.h"
 

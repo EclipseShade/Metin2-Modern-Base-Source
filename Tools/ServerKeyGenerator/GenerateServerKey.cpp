@@ -1,7 +1,7 @@
+#include "stdafx.h"
+
 #include "ServerKey.Gen.h"
 #include "SIM.h"
-#include <fstream>
-#include <atlenc.h>
 #include "RSACrypto.h"
 
 using namespace Security;

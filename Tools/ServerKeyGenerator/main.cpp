@@ -1,6 +1,4 @@
-#include <windows.h>
-#include <tchar.h>
-#include <stdio.h>
+#include "stdafx.h"
 
 int generateRSAKey();
 int generateSERVERKEY(const char* path);
