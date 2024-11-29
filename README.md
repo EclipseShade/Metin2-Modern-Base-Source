@@ -10,11 +10,11 @@
 #
 
 #### Client:
-| Visual Studio     | Status             |
-|------------------|---------------------|
-| 2008              | ✔️ Compiled       |
-| 2013              | ✔️ Compiled       |
-| 2022              | ❌ Not Compiled   |
+| Visual Studio     |
+|-------------------|
+| ✔️ 2008          |
+| ✔️ 2013          |
+| ❌ 2022          |
 #
 
 ## TO-DO ADDONS LIST:
