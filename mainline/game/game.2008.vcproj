@@ -66,10 +66,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="mysqlclient.lib ws2_32.lib DevIL-1.7.8d.lib DevILU-1.7.8d.lib DevILUT-1.7.8d.lib cryptlib.lib"
+				AdditionalDependencies="mysqlclient.lib ws2_32.lib DevIL-1.7.8d.lib cryptlib.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32/lib;$(ProjectDir)../../ExternWindowsGame/libdevil/win32/lib;$(ProjectDir)../../ExternWindowsGame/openssl/lib"
+				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32/lib;$(ProjectDir)../../ExternWindowsGame/libdevil/win32/lib;$(ProjectDir)../../ExternWindowsGame/openssl/lib$(ProjectDir)../../ExternGame/cryptopp565/Release"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -125,7 +125,7 @@
 				AdditionalOptions="/MP"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)&quot;;&quot;$(ProjectDir)../../liblua/include&quot;;&quot;$(ProjectDir)../../libmysql/6.0.2/win32&quot;;&quot;$(ProjectDir)../../libdevil/&quot;;&quot;$(ProjectDir)../../libxtrap/include&quot;;&quot;$(ProjectDir)../../external/&quot;"
+				AdditionalIncludeDirectories="$(ProjectDir)../../ExternGame/liblua/include;$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32;$(ProjectDir)../../ExternWindowsGame/libdevil;$(ProjectDir)../../ExternGame/libxtrap/include;$(ProjectDir)../ExternGame/include;$(ProjectDir)../../libserverkey;$(ProjectDir)../ExternWindowsGame/openssl/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__WIN32__;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
@@ -145,9 +145,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cryptlib.lib mysqlclient.lib ws2_32.lib DevIL-1.7.8.lib DevILU-1.7.8.lib DevILUT-1.7.8.lib"
+				AdditionalDependencies="cryptlib.lib mysqlclient.lib ws2_32.lib DevIL-1.7.8.lib cryptlib.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;$(ProjectDir)../../libmysql/6.0.2/win32/lib&quot;;&quot;$(ProjectDir)../../libdevil/win32/lib&quot;;&quot;$(ProjectDir)../../external/lib&quot;"
+				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32/lib;$(ProjectDir)../../ExternWindowsGame/libdevil/win32/lib;$(ProjectDir)../../ExternWindowsGame/openssl/lib$(ProjectDir)../../ExternGame/cryptopp565/Release"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
