@@ -1,7 +1,7 @@
 #ifndef _M2_CHECK_SERVER_KEY_H_
 #define _M2_CHECK_SERVER_KEY_H_
 
-#include "CheckServerKey.h"
+#include "../ExternGame/libserverkey/CheckServerKey.h"
 
 class CheckServer
 {
