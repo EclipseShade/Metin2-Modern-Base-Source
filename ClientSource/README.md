@@ -1,15 +1,11 @@
-#### Compiling
-| Visual Studio     | Status             |
-|------------------|---------------------|
-| 2008              | ✔️ Compiled       |
-| 2013              | ✔️ Compiled       |
-| 2022              | ❌ Not Compiled   |
-
-#### NOTE
-- you need recompile in Visual Studio Cryptopp565 from ExternClient for Visual Studio 2008+
-
-#### Client Info:
-- Python 2.7
+#### Client Libraries:
+```
+- Boost [version unknown]
 - Cryptopp565
 - Granny 2.11.8
-- ...
+- il (libdevil) [version unknown]
+- libjpeg-6b
+- lzo-2.03
+- Python 2.7
+- DX8 [Direct 8]
+
