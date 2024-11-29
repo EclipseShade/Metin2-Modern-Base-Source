@@ -96,7 +96,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)/Bin"
+			OutputDirectory="$(ProjectDir)/Bin"
 			IntermediateDirectory="$(ProjectDir)/Intermediate/$(TargetName)"
 			ConfigurationType="1"
 			CharacterSet="2"
