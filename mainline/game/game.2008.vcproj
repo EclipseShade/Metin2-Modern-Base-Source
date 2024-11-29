@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(ProjectDir)&quot;;&quot;$(ProjectDir)../../liblua/include&quot;;&quot;$(ProjectDir)../../libmysql/6.0.2/win32&quot;;&quot;$(ProjectDir)../../libdevil/&quot;;&quot;$(ProjectDir)../../libxtrap/include&quot;;&quot;$(ProjectDir)../../../Extern/include&quot;;&quot;$(ProjectDir)../../../Extern&quot;;$(ProjectDir)../../libserverkey;$(ProjectDir)../../../Extern/openssl/include;"
+				AdditionalIncludeDirectories="&quot;$(ProjectDir)&quot;;&quot;$(ProjectDir)../ExternGame/liblua/include&quot;;&quot;$(ProjectDir)../ExternGame/libmysql/6.0.2/win32&quot;;&quot;$(ProjectDir)../ExternGame/libdevil/&quot;;&quot;$(ProjectDir)../ExternGame/libxtrap/include&quot;;&quot;$(ProjectDir)../ExternGame/include&quot;;&quot;$(ProjectDir)../ExternGame&quot;;$(ProjectDir)../../libserverkey;$(ProjectDir)../ExternGame/openssl/include;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;__WIN32__;_CRT_SECURE_NO_WARNINGS;_USE_32BIT_TIME_T;_WIN32"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
