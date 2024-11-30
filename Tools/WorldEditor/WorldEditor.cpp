@@ -16,7 +16,7 @@
 
 #pragma comment(linker, "/NODEFAULTLIB:libci.lib")
 
-#pragma comment( lib, "python22.lib" )
+#pragma comment( lib, "python27.lib" )
 #pragma comment( lib, "granny2.lib" )
 #pragma comment( lib, "mss32.lib" )
 
