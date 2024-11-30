@@ -10,7 +10,7 @@
 
 #include "DataCtrl/NonPlayerCharacterInfo.h"
 
-#include "../../ClientSource/eterlib/Camera.h"
+#include "../ClientSource/eterlib/Camera.h"
 
 #include <SpeedTreeRT.h>
 
