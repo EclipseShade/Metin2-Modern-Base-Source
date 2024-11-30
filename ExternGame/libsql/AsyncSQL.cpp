@@ -125,9 +125,6 @@ bool CAsyncSQL::Connect()
 	//mysql_options(&m_hDB, MYSQL_SET_CHARSET_NAME, m_stLocale.c_str());
 	if (!m_stLocale.empty())
 	{
-		//mysql_options(&m_hDB, MYSQL_SET_CHARSET_DIR , " /usr/local/share/mysql/charsets/");
-		//mysql_options(&m_hDB, MYSQL_SET_CHARSET_DIR , "/usr/local/share/mysql/charsets");
-		//mysql_options(&m_hDB, MYSQL_SET_CHARSET_DIR , "/usr/local/share/mysql");
 		if (mysql_options(&m_hDB, MYSQL_SET_CHARSET_NAME, m_stLocale.c_str()) != 0)
 		{
 			fprintf(stderr, "mysql_option failed : MYSQL_SET_CHARSET_NAME %s ", mysql_error(&m_hDB));
@@ -147,13 +144,7 @@ bool CAsyncSQL::Connect()
 
 	fprintf(stdout, "AsyncSQL: connected to %s (reconnect %d)\n", m_stHost.c_str(), m_hDB.reconnect);
 
-	// db cache는 common db의 LOCALE 테이블에서 locale을 알아오고, 이후 character set을 수정한다.
-	// 따라서 최초 Connection을 맺을 때에는 locale을 모르기 때문에 character set을 정할 수가 없음에도 불구하고,
-	// 강제로 character set을 euckr로 정하도록 되어있어 이 부분을 주석처리 하였다.
-	// (아래 주석을 풀면 mysql에 euckr이 안 깔려있는 디비에 접근할 수가 없다.)
-	//while (!QueryLocaleSet());
 	m_ulThreadID = mysql_thread_id(&m_hDB);
-
 	m_bConnected = true;
 	return true;
 }
