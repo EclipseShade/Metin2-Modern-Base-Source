@@ -5,9 +5,9 @@ extern "C" {
 #include <lauxlib.h>
 #include <lualib.h>
 
-#include "../liblua/src/lzio.h"
-#include "../liblua/src/llex.h"
-#include "../liblua/src/lstring.h"
+#include "../ExternGame/liblua/src/lzio.h"
+#include "../ExternGame/liblua/src/llex.h"
+#include "../ExternGame/liblua/src/lstring.h"
 
 #if !defined(_MSC_VER) && defined(__cplusplus)
 }
