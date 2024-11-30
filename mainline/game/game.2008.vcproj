@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(ProjectDir)../../ExternGame/liblua/include;$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include;$(ProjectDir)../../ExternWindowsGame/libdevil;$(ProjectDir)../../ExternGame/libxtrap/include;$(ProjectDir)../ExternGame/include;$(ProjectDir)../../libserverkey;$(ProjectDir)../ExternWindowsGame/openssl/include"
+				AdditionalIncludeDirectories="$(ProjectDir)../../ExternGame/liblua/include;$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include;$(ProjectDir)../../ExternWindowsGame/libdevil;$(ProjectDir)../../ExternGame/libxtrap/include;$(ProjectDir)../ExternGame/include;$(ProjectDir)../../libserverkey;$(ProjectDir)../ExternWindowsGame/openssl/include;$(ProjectDir)../../../ExternClient/binary_include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;__WIN32__;_CRT_SECURE_NO_WARNINGS;_USE_32BIT_TIME_T;_WIN32"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
@@ -125,7 +125,7 @@
 				AdditionalOptions="/MP"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(ProjectDir)../../ExternGame/liblua/include;$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include;$(ProjectDir)../../ExternWindowsGame/libdevil;$(ProjectDir)../../ExternGame/libxtrap/include;$(ProjectDir)../ExternGame/include;$(ProjectDir)../../libserverkey;$(ProjectDir)../ExternWindowsGame/openssl/include"
+				AdditionalIncludeDirectories="$(ProjectDir)../../ExternGame/liblua/include;$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include;$(ProjectDir)../../ExternWindowsGame/libdevil;$(ProjectDir)../../ExternGame/libxtrap/include;$(ProjectDir)../ExternGame/include;$(ProjectDir)../../libserverkey;$(ProjectDir)../ExternWindowsGame/openssl/include;$(ProjectDir)../../../ExternClient/binary_include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__WIN32__;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
