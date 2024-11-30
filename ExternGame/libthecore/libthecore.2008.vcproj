@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(ProjectDir)include;$(ProjectDir)../../ExternClient/binary_include"
+				AdditionalIncludeDirectories="$(ProjectDir)include;$(ProjectDir)../../../ExternClient/binary_include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;__WIN32__;_CRT_SECURE_NO_DEPRECATE;_USE_32BIT_TIME_T"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -112,7 +112,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(ProjectDir)include;$(ProjectDir)../../ExternClient/binary_include"
+				AdditionalIncludeDirectories="$(ProjectDir)include;$(ProjectDir)../../../ExternClient/binary_include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;__WIN32__;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
