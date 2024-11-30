@@ -180,7 +180,5 @@ extern const int aiAccessorySocketPutPct[ITEM_ACCESSORY_SOCKET_MAX_NUM + 1];
 long FN_get_apply_type(const char *apply_type_string);
 
 // END_OF_ACCESSORY_REFINE
-
-long FN_get_apply_type(const char *apply_type_string);
 #endif
 
