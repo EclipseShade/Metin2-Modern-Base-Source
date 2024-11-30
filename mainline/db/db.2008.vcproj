@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include"
+				AdditionalIncludeDirectories="$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include;$(ProjectDir)../../../ExternClient/binary_include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;__WIN32__;_CRT_SECURE_NO_WARNINGS;_USE_32BIT_TIME_T;_WIN32"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -123,7 +123,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include"
+				AdditionalIncludeDirectories="$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include;$(ProjectDir)../../../ExternClient/binary_include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__WIN32__;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
