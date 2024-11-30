@@ -22,7 +22,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(ProjectDir).."
+			OutputDirectory="../bin"
 			IntermediateDirectory="$(ProjectDir)OBJDIR/$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="2"
@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(ProjectDir)../../ExternGame/liblua/include;$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32;$(ProjectDir)../../ExternWindowsGame/libdevil;$(ProjectDir)../../ExternGame/libxtrap/include;$(ProjectDir)../ExternGame/include;$(ProjectDir)../../libserverkey;$(ProjectDir)../ExternWindowsGame/openssl/include"
+				AdditionalIncludeDirectories="$(ProjectDir)../../ExternGame/liblua/include;$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include;$(ProjectDir)../../ExternWindowsGame/libdevil;$(ProjectDir)../../ExternGame/libxtrap/include;$(ProjectDir)../ExternGame/include;$(ProjectDir)../../libserverkey;$(ProjectDir)../ExternWindowsGame/openssl/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;__WIN32__;_CRT_SECURE_NO_WARNINGS;_USE_32BIT_TIME_T;_WIN32"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
@@ -69,7 +69,7 @@
 				AdditionalDependencies="mysqlclient.lib ws2_32.lib DevIL-1.7.8d.lib cryptlib.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32/lib;$(ProjectDir)../../ExternWindowsGame/libdevil/win32/lib;$(ProjectDir)../../ExternWindowsGame/openssl/lib;$(ProjectDir)../../ExternGame/cryptopp565/Debug"
+				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/lib;$(ProjectDir)../../ExternWindowsGame/libdevil/win32/lib;$(ProjectDir)../../ExternWindowsGame/openssl/lib;$(ProjectDir)../../ExternGame/cryptopp565/Debug"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -99,7 +99,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(ProjectDir).."
+			OutputDirectory="../bin"
 			IntermediateDirectory="$(ProjectDir)OBJDIR/$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="2"
@@ -125,7 +125,7 @@
 				AdditionalOptions="/MP"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(ProjectDir)../../ExternGame/liblua/include;$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32;$(ProjectDir)../../ExternWindowsGame/libdevil;$(ProjectDir)../../ExternGame/libxtrap/include;$(ProjectDir)../ExternGame/include;$(ProjectDir)../../libserverkey;$(ProjectDir)../ExternWindowsGame/openssl/include"
+				AdditionalIncludeDirectories="$(ProjectDir)../../ExternGame/liblua/include;$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include;$(ProjectDir)../../ExternWindowsGame/libdevil;$(ProjectDir)../../ExternGame/libxtrap/include;$(ProjectDir)../ExternGame/include;$(ProjectDir)../../libserverkey;$(ProjectDir)../ExternWindowsGame/openssl/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__WIN32__;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
@@ -145,9 +145,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="cryptlib.lib mysqlclient.lib ws2_32.lib DevIL-1.7.8.lib cryptlib.lib"
+				AdditionalDependencies="mysqlclient.lib ws2_32.lib DevIL-1.7.8.lib cryptlib.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32/lib;$(ProjectDir)../../ExternWindowsGame/libdevil/win32/lib;$(ProjectDir)../../ExternWindowsGame/openssl/lib;$(ProjectDir)../../ExternGame/cryptopp565/Release"
+				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/lib;$(ProjectDir)../../ExternWindowsGame/libdevil/win32/lib;$(ProjectDir)../../ExternWindowsGame/openssl/lib;$(ProjectDir)../../ExternGame/cryptopp565/Release"
 				IgnoreDefaultLibraryNames="libcmt"
 				GenerateDebugInformation="true"
 				SubSystem="1"
