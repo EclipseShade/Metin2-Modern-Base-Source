@@ -21,7 +21,7 @@ class CStmt
 		void    Error(const char * c_pszMsg);
 
 	public:
-		int	iRows;
+		uint64_t	iRows;
 
 	private:
 		void    Destroy();
