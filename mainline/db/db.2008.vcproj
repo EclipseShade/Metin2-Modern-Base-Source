@@ -22,7 +22,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="..\..\db"
+			OutputDirectory="..\db"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="2"
@@ -98,7 +98,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="../../bin"
+			OutputDirectory="../bin"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="2"
@@ -267,16 +267,6 @@
 				RelativePath=".\DBManager.h"
 				>
 			</File>
-<!--
-			<File
-				RelativePath=".\grid.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\grid.h"
-				>
-			</File>
--->
 			<File
 				RelativePath=".\GuildManager.cpp"
 				>
