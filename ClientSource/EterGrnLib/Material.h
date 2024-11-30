@@ -1,6 +1,6 @@
 #pragma once
 
-#include <granny.h>
+#include <granny-2.11.8/granny.h>
 #include <windows.h>
 #include <d3d8.h>
 

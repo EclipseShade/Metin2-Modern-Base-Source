@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include <EterBase/Filename.h>
 #include <EterBase/CRC32.h>
-#include <granny.h>
+#include <granny-2.11.8/granny.h>
 
 #pragma warning(push)
 #pragma warning(disable:4100)
