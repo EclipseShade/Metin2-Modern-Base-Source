@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../../Client/gamelib/PropertyLoader.h"
+#include "../../ClientSource/gamelib/PropertyLoader.h"
 
 class CTreeLoader : public CPropertyLoader
 {

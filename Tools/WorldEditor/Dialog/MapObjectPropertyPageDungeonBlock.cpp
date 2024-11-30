@@ -5,7 +5,7 @@
 #include "..\worldeditor.h"
 #include "MapObjectProperty.h"
 #include "MapObjectPropertyPageDungeonBlock.h"
-#include "../../../Client/gamelib/Property.h"
+#include "../../ClientSource/gamelib/Property.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

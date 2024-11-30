@@ -5,7 +5,7 @@
 #include "..\worldeditor.h"
 #include "FlyTabPage.h"
 #include "../MainFrm.h"
-#include "../../../Client/gamelib/FlyingData.h"
+#include "../../ClientSource/gamelib/FlyingData.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

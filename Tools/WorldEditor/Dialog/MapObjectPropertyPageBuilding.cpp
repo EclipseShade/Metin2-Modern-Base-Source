@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "..\WorldEditor.h"
 #include "MapObjectPropertyPageBuilding.h"
-#include "../../../Client/gamelib/Property.h"
+#include "../../ClientSource/gamelib/Property.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

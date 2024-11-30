@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "..\WorldEditor.h"
 #include "ObjectModelTypeEquipmentSubPage.h"
-#include "../../../Client/gamelib/ItemData.h"
+#include "../../ClientSource/gamelib/ItemData.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

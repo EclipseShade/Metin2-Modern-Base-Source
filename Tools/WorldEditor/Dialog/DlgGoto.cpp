@@ -9,7 +9,7 @@
 #include "../WorldEditorDoc.h"
 #include "../WorldEditorView.h"
 #include "../DataCtrl/MapAccessorOutdoor.h"
-#include "../../../Client/eterlib/Camera.h"
+#include "../../ClientSource/eterlib/Camera.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

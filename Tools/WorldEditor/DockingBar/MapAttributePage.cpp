@@ -6,7 +6,7 @@
 #include "mapattributepage.h"
 #include "../DataCtrl/MapAccessorTerrain.h"
 #include "../DataCtrl/NonPlayerCharacterInfo.h"
-#include "../../../Client/gamelib/MonsterAreaInfo.h"
+#include "../../ClientSource/gamelib/MonsterAreaInfo.h"
 
 #include "MainFrm.h"
 #include "WorldEditorDoc.h"
