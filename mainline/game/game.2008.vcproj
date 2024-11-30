@@ -175,7 +175,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy /Y $(TargetPath) $(OutDir)\..\auth\auth.exe"
+				CommandLine=""
 			/>
 		</Configuration>
 	</Configurations>
