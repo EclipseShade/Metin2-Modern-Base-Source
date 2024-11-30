@@ -37,15 +37,12 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(ProjectDir)..\..\ExternWindowsGame\mariadb-10.6.5-win32\include;$(ProjectDir)..\..\..\ExternClient/binary_include"
+				AdditionalIncludeDirectories="$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include;$(ProjectDir)../../ExternWindowsGame"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;__WIN32__;_USE_32BIT_TIME_T"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -102,16 +99,13 @@
 				Name="VCXMLDataGeneratorTool"
 			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-			/>
-			<Tool
 				Name="VCMIDLTool"
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(ProjectDir)..\..\ExternWindowsGame\mariadb-10.6.5-win32\include;$(ProjectDir)..\..\..\ExternClient/binary_include"
+				AdditionalIncludeDirectories="$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include;$(ProjectDir)../../ExternWindowsGame"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;__WIN32__"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
