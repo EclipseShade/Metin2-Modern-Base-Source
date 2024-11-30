@@ -70,6 +70,7 @@
 				OutputFile="$(OutDir)\$(ProjectName)_d.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/lib;$(ProjectDir)../../ExternWindowsGame/libdevil/win32/lib;$(ProjectDir)../../ExternWindowsGame/openssl/lib;$(ProjectDir)../../ExternGame/cryptopp565/Win32/Output/Debug"
+				IgnoreDefaultLibraryNames="libcmt"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
