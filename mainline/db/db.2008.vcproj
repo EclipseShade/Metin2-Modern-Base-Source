@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32"
+				AdditionalIncludeDirectories="$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;__WIN32__;_CRT_SECURE_NO_WARNINGS;_USE_32BIT_TIME_T;_WIN32"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -66,10 +66,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="mysqlclient.lib"
+				AdditionalDependencies="libmariadb.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32/lib"
+				AdditionalLibraryDirectories="$(ProjectDir)../../mariadb-10.6.5-win32/lib"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -98,7 +98,7 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="../bin/release"
+			OutputDirectory="../../bin"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="2"
@@ -123,7 +123,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32"
+				AdditionalIncludeDirectories="$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__WIN32__;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
@@ -143,9 +143,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="mysqlclient.lib"
+				AdditionalDependencies="libmariadb.lib Ws2_32.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/libmysql/6.0.2/win32/lib"
+				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/lib"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
