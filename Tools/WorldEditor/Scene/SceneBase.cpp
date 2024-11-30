@@ -2,7 +2,7 @@
 
 #include "../MainFrm.h"
 
-#include "../../Client/Source/eterlib/Camera.h"
+#include "../../ClientSource/eterlib/Camera.h"
 
 D3DXCOLOR CSceneBase::ms_GridLarge;
 D3DXCOLOR CSceneBase::ms_GridSmall;
