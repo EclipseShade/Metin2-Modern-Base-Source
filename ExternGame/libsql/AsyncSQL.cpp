@@ -142,7 +142,11 @@ bool CAsyncSQL::Connect()
 	if (0 != mysql_options(&m_hDB, MYSQL_OPT_RECONNECT, &reconnect))
 		fprintf(stderr, "mysql_option: %s\n", mysql_error(&m_hDB));
 
-	fprintf(stdout, "AsyncSQL: connected to %s (reconnect %d)\n", m_stHost.c_str(), m_hDB.reconnect);
+	#ifdef MARIADB_BASE_VERSION
+		fprintf(stdout, "AsyncSQL: connected to %s (reconnect %d)\n", m_stHost.c_str(), reconnect);
+	#else
+		fprintf(stdout, "AsyncSQL: connected to %s (reconnect %d)\n", m_stHost.c_str(), m_hDB.reconnect);
+	#endif
 
 	m_ulThreadID = mysql_thread_id(&m_hDB);
 	m_bConnected = true;
