@@ -2,10 +2,11 @@
 #include <sys/time.h>
 #endif
 
+#include <sstream> // for std::ostringstream
+#include <string>  // for std::string
+
 #include <cstdlib>
 #include <cstring>
-#include <sstream>
-#include <string>
 
 #include "AsyncSQL.h"
 
@@ -258,15 +259,13 @@ SQLMsg * CAsyncSQL::DirectQuery(const char * c_pszQuery)
 	p->iID = ++m_iMsgCount;
 	p->stQuery = c_pszQuery;
 
-	if (mysql_real_query(&m_hDB, p->stQuery.c_str(), p->stQuery.length()))
-	{
-		char buf[1024];
+	if (mysql_real_query(&m_hDB, p->stQuery.c_str(), p->stQuery.length())) {
+		std::ostringstream errorMsg;
 
-		snprintf(buf, sizeof(buf),
-				"AsyncSQL::DirectQuery : mysql_query error: %s\nquery: %s",
-				mysql_error(&m_hDB), p->stQuery.c_str());
-
-		sys_err(buf);
+		errorMsg << "AsyncSQL::DirectQuery : mysql_query error: " << mysql_error(&m_hDB) << "\nquery: " << p->stQuery;
+		
+		sys_err(errorMsg.str().c_str());
+		
 		p->uiSQLErrno = mysql_errno(&m_hDB);
 	}
 
@@ -466,10 +465,10 @@ void __timediff(struct timeval *a, struct timeval *b, struct timeval *rslt)
 	}
 }
 
-class cProfiler
+class cAsyncProfiler
 {
 	public:
-		cProfiler() 
+		cAsyncProfiler() 
 		{
 			m_nInterval = 0 ;
 
@@ -480,7 +479,7 @@ class cProfiler
 			Start(); 
 		}
 
-		cProfiler(int nInterval = 100000)
+		cAsyncProfiler(int nInterval = 100000)
 		{
 			m_nInterval = nInterval;
 
@@ -526,7 +525,7 @@ class cProfiler
 
 void CAsyncSQL::ChildLoop()
 {
-	cProfiler profiler(500000); // 0.5√ 
+	cAsyncProfiler profiler(500000); // 0.5√ 
 
 	while (!m_bEnd)
 	{
