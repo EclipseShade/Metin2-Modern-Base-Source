@@ -31,9 +31,9 @@ typedef struct _SQLResult
 	}
 
 	MYSQL_RES *	pSQLResult;
-	uint32_t		uiNumRows;
-	uint32_t		uiAffectedRows;
-	uint32_t		uiInsertID;
+	uint64_t		uiNumRows;
+	uint64_t		uiAffectedRows;
+	uint64_t		uiInsertID;
 } SQLResult;
 
 typedef struct _SQLMsg
