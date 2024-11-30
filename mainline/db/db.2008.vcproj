@@ -66,7 +66,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libmariadb.lib Ws2_32.lib"
+				AdditionalDependencies="libmariadb.lib ws2_32.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/lib"
@@ -143,7 +143,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libmariadb.lib Ws2_32.lib"
+				AdditionalDependencies="libmariadb.lib ws2_32.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/lib"
 				GenerateDebugInformation="true"
