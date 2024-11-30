@@ -93,6 +93,12 @@ ifeq ($(ARFLAGS),rv)
 ARFLAGS = r
 endif
 
+IS_FREEBSD := $(shell uname | $(EGREP) -i -c "freebsd")
+
+ifeq ($(IS_FREEBSD),1)
+    CXX := g++
+endif
+
 ###########################################################
 #####               X86/X32/X64 Options               #####
 ###########################################################
