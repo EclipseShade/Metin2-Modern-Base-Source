@@ -33,6 +33,7 @@
 
 ## TO-DO Improve Code:
 - [ ] remove all using namespace
+- [ ] change all sprintf to std::ostringstream 
 #
 
 ## CONTRIBUTES RULES:
