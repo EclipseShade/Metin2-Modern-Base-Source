@@ -1,0 +1,14 @@
+ExternGame->libsql\asyncsql.h
+
+typedef struct _SQLResult
+{
+...
+
+uint64_t		uiNumRows;	//fix2
+uint64_t		uiAffectedRows;	//fix2
+uint64_t		uiInsertID;	//fix2
+
+
+warning C4244: '=' : conversion from 'my_ulonglong' to 'uint32_t', possible loss of data
+warning C4244: '=' : conversion from 'my_ulonglong' to 'uint32_t', possible loss of data
+warning C4244: '=' : conversion from 'my_ulonglong' to 'uint32_t', possible loss of data
