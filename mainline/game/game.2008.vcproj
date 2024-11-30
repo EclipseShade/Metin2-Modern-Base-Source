@@ -45,7 +45,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(ProjectDir)../../ExternGame/liblua/include;$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include;$(ProjectDir)../../ExternWindowsGame/libdevil;$(ProjectDir)../../ExternGame/libxtrap/include;$(ProjectDir)../../ExternWindowsGame/openssl/include;$(ProjectDir)../../ExternWindowsGame"
+				AdditionalIncludeDirectories="$(ProjectDir)../../ExternGame/liblua/include;$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include;$(ProjectDir)../../ExternWindowsGame/libdevil;$(ProjectDir)../../ExternGame/libxtrap/include;$(ProjectDir)../../ExternWindowsGame/openssl/include;$(ProjectDir)../../ExternWindowsGame;$(ProjectDir)../../ExternGame"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;__WIN32__;_CRT_SECURE_NO_WARNINGS;_USE_32BIT_TIME_T;_WIN32"
 				MinimalRebuild="false"
 				BasicRuntimeChecks="3"
@@ -66,7 +66,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libmariadb.lib DevIL-1.7.8d.lib cryptlib.lib msvcrt.lib"
+				AdditionalDependencies="libmariadb.lib DevIL-1.7.8d.lib cryptlib.lib msvcrtd.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/lib;$(ProjectDir)../../ExternWindowsGame/libdevil/win32/lib;$(ProjectDir)../../ExternWindowsGame/openssl/lib;$(ProjectDir)../../ExternGame/cryptopp565/Win32/Output/Debug"
@@ -126,7 +126,7 @@
 				AdditionalOptions="/MP"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(ProjectDir)../../ExternGame/liblua/include;$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include;$(ProjectDir)../../ExternWindowsGame/libdevil;$(ProjectDir)../../ExternGame/libxtrap/include;$(ProjectDir)../../ExternWindowsGame/openssl/include;$(ProjectDir)../../ExternWindowsGame"
+				AdditionalIncludeDirectories="$(ProjectDir)../../ExternGame/liblua/include;$(ProjectDir)../../ExternWindowsGame/mariadb-10.6.5-win32/include;$(ProjectDir)../../ExternWindowsGame/libdevil;$(ProjectDir)../../ExternGame/libxtrap/include;$(ProjectDir)../../ExternWindowsGame/openssl/include;$(ProjectDir)../../ExternWindowsGame;$(ProjectDir)../../ExternGame"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__WIN32__;_CRT_SECURE_NO_WARNINGS"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
