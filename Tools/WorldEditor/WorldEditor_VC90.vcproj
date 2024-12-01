@@ -23,7 +23,7 @@
 		<Configuration
 			Name="MfcRelease|Win32"
 			OutputDirectory="D:\ymir work\bin\"
-			IntermediateDirectory="../obj/VC90/$(ProjectName)_$(ConfigurationName)"
+			IntermediateDirectory="obj/VC90/$(ProjectName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="1"
@@ -123,7 +123,7 @@
 		<Configuration
 			Name="MfcDebug|Win32"
 			OutputDirectory="D:\ymir work\bin\"
-			IntermediateDirectory="../obj/VC90/$(ProjectName)_$(ConfigurationName)"
+			IntermediateDirectory="obj/VC90/$(ProjectName)_$(ConfigurationName)"
 			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
 			UseOfMFC="1"
