@@ -1,9 +1,0 @@
-#!
-rm ERROR_LOG.txt
-rm LIB_BUILD_LOG.txt
-rm DB_BUILD_LOG.txt
-rm GAME_BUILD_LOG.txt
-rm DESCRIPTION.txt
-rm DESCRIPTION
-
-exit 0
