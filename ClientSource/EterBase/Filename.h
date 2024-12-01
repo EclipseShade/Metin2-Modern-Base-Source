@@ -1,90 +1,68 @@
-///////////////////////////////////////////////////////////////////////  
-//	CFilename Class
-//
-//	(c) 2003 IDV, Inc.
-//
-//	*** INTERACTIVE DATA VISUALIZATION (IDV) PROPRIETARY INFORMATION ***
-//
-//	This software is supplied under the terms of a license agreement or
-//	nondisclosure agreement with Interactive Data Visualization and may
-//	not be copied or disclosed except in accordance with the terms of
-//	that agreement.
-//
-//      Copyright (c) 2001-2003 IDV, Inc.
-//      All Rights Reserved.
-//
-//		IDV, Inc.
-//		1233 Washington St. Suite 610
-//		Columbia, SC 29201
-//		Voice: (803) 799-1699
-//		Fax:   (803) 931-0320
-//		Web:   http://www.idvinc.com
-//
-
-
 #pragma once
 #include <string>
 using namespace std;
 
-///////////////////////////////////////////////////////////////////////  
-//	CFilename Class
+class CFilename
+{
+	public:
+		CFilename() { }
+		CFilename(const char* pFilename) { m_sRaw = pFilename; }
+		CFilename(std::string strFilename) { m_sRaw = strFilename; }
 
-//class CFilename
-//{
-//	public:
-//		CFilename() { }
-//		CFilename(const char* pFilename) { m_sRaw = pFilename; }
-//		CFilename(std::string strFilename) { m_sRaw = strFilename; }
-//
-//		virtual ~CFilename() {}
-//
-//		operator const string() const { return m_sRaw; }
-//		operator string&() { return m_sRaw; }
-//		CFilename& operator =(const CFilename& r) { m_sRaw = r.m_sRaw; return *this; }
-//		bool operator ==(const CFilename& r) const { return m_sRaw == r.m_sRaw; }
-//		CFilename operator +(const CFilename& r) const { return CFilename(m_sRaw + r.m_sRaw); }
-//		CFilename& operator +=(const CFilename& r) { m_sRaw += r.m_sRaw; return *this; }
-//		const char& operator[](size_t nIdx) const { return m_sRaw[nIdx]; } 
-//		const char* c_str() const { return m_sRaw.c_str(); }
-//		size_t find(const char* pcszSrc) const { return m_sRaw.find(pcszSrc); }
-//		bool empty() const { return m_sRaw.empty(); }
-//		size_t size() const { return m_sRaw.size(); }
-//		size_t length() const { return m_sRaw.length(); }
-//
-//		string& GetString() { return m_sRaw; }
-//		
-//		void ChangeDosPath()
-//		{
-//			size_t nLength = m_sRaw.length();
-//
-//			for (size_t i = 0; i < nLength; ++i)
-//			{
-//				if (m_sRaw.at(i) == '/')
-//					m_sRaw.at(i) = '\\';
-//			}
-//		}
-//
-//		void StringPath()
-//		{
-//			size_t nLength = m_sRaw.length();		
-//
-//			for (size_t i = 0; i<nLength; ++i)
-//			{
-//				if (m_sRaw.at(i) == '\\')
-//					m_sRaw.at(i) = '/';
-//				else
-//					m_sRaw.at(i) = (char)tolower(m_sRaw.at(i));
-//			}
-//		}
-//
-//		CFilename GetName(void);           // if filename is "/idv/code/file.cpp", it returns "file"
-//		CFilename GetExtension(void);      // if filename is "/idv/code/file.cpp", it returns "cpp"
-//		CFilename GetPath(void);           // if filename is "/idv/code/file.cpp", it returns "/idv/code"
-//		CFilename NoExtension(void);       // if filename is "/idv/code/file.cpp", it returns "/idv/code/file"
-//		CFilename NoPath(void);            // if filename is "/idv/code/file.cpp", it returns "file.cpp"
-//		string m_sRaw;
-//};
+		virtual ~CFilename() {}
 
+		operator const string() const { return m_sRaw; }
+		operator string&() { return m_sRaw; }
+		CFilename& operator =(const CFilename& r) { m_sRaw = r.m_sRaw; return *this; }
+		bool operator ==(const CFilename& r) const { return m_sRaw == r.m_sRaw; }
+		CFilename operator +(const CFilename& r) const { return CFilename(m_sRaw + r.m_sRaw); }
+		CFilename& operator +=(const CFilename& r) { m_sRaw += r.m_sRaw; return *this; }
+		const char& operator[](size_t nIdx) const { return m_sRaw[nIdx]; } 
+		const char* c_str() const { return m_sRaw.c_str(); }
+		size_t find(const char* pcszSrc) const { return m_sRaw.find(pcszSrc); }
+		bool empty() const { return m_sRaw.empty(); }
+		size_t size() const { return m_sRaw.size(); }
+		size_t length() const { return m_sRaw.length(); }
+
+		string& GetString() { return m_sRaw; }
+		
+		void ChangeDosPath()
+		{
+			size_t nLength = m_sRaw.length();
+
+			for (size_t i = 0; i < nLength; ++i)
+			{
+				if (m_sRaw.at(i) == '/')
+					m_sRaw.at(i) = '\\';
+			}
+		}
+
+		void StringPath()
+		{
+			size_t nLength = m_sRaw.length();		
+
+			for (size_t i = 0; i<nLength; ++i)
+			{
+				if (m_sRaw.at(i) == '\\')
+					m_sRaw.at(i) = '/';
+				else
+					m_sRaw.at(i) = (char)tolower(m_sRaw.at(i));
+			}
+		}
+
+		CFilename GetName(void);           // if filename is "/idv/code/file.cpp", it returns "file"
+		CFilename GetExtension(void);      // if filename is "/idv/code/file.cpp", it returns "cpp"
+		CFilename GetPath(void);           // if filename is "/idv/code/file.cpp", it returns "/idv/code"
+		CFilename NoExtension(void);       // if filename is "/idv/code/file.cpp", it returns "/idv/code/file"
+		CFilename NoPath(void);            // if filename is "/idv/code/file.cpp", it returns "file.cpp"
+
+		int compare (const char* s) const { return m_sRaw.compare(s); }
+		friend CFilename operator +(const string alfa, const CFilename& beta);
+
+		string m_sRaw;
+};
+
+inline CFilename operator +(const string alfa, const CFilename& beta) { return beta + alfa; }
 
 ///////////////////////////////////////////////////////////////////////  
 //	CFileNameHelper Class
