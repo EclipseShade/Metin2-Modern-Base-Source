@@ -31,11 +31,6 @@
 - [ ] GF_Client_Locale_String https://metin2.dev/topic/29790-official-client-locale-stringreversed/page/3/#comment-166975
 #
 
-## TO-DO Improve Code:
-- [ ] remove all using namespace
-- [ ] change all sprintf to std::ostringstream 
-#
-
 ## CONTRIBUTES RULES:
 - [1] Use Standar Libraries if possible
 - [2] All .cpp file need to have included "stdafx.h
