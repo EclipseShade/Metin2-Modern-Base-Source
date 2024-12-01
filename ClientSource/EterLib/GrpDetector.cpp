@@ -12,13 +12,13 @@ struct FIsEqualD3DDisplayMode
 	{
 		if (rkD3DDMTest.Width!=m_pkD3DDMChk->Width)
 			return FALSE;
-		
+
 		if (rkD3DDMTest.Height!=m_pkD3DDMChk->Height)
 			return FALSE;
-		
+
 		if (rkD3DDMTest.Format!=m_pkD3DDMChk->Format)
 			return FALSE;
-		
+
 		return TRUE;
 	}
 

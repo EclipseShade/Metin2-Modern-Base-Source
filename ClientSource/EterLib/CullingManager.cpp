@@ -21,13 +21,12 @@ void CCullingManager::RayTraceCallback(const Vector3d &/*p1*/,          // sourc
 #ifdef SPHERELIB_STRICT
 		if (sphere->IS_SPHERE)
 			puts("CCullingManager::RayTraceCallback");
-#endif		
+#endif
 		m_list.push_back((CGraphicObjectInstance *)sphere->GetUserData());
 	}
 		//f((CGraphicObjectInstance *)sphere->GetUserData());
 	//}
 }
-
 
 void CCullingManager::VisibilityCallback(const Frustum &/*f*/,SpherePack *sphere,ViewState state)
 {
@@ -93,7 +92,6 @@ void CCullingManager::Reset()
 void CCullingManager::Update()
 {
 	// TODO : update each object
-	// 하지말고 각자 하게 해보자
 
 	//DWORD time = ELTimer_GetMSec();
 	//Reset();
@@ -174,3 +172,4 @@ void CCullingManager::FindRayDistance(const Vector3d &p1, const Vector3d &dir, f
 	m_list.clear();
 	m_Factory->RayTrace(p1,dir,this);
 }
+

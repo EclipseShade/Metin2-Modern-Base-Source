@@ -47,3 +47,4 @@ class CFuncObject
 		T *	m_pSelfObject;
 		void (T::*m_pFuncObject) ();
 };
+

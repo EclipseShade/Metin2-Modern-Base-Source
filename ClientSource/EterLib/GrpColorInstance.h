@@ -31,3 +31,4 @@ class CGraphicColorInstance
 };
 
 typedef CDynamicPool<CGraphicColorInstance> TGraphicColorInstancePool;
+

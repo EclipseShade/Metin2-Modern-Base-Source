@@ -62,7 +62,7 @@ void CBlockTexture::Render(int ix, int iy)
 		}
 	}
 
-	TPDTVertex vertices[4];	
+	TPDTVertex vertices[4];
 	vertices[0].position.x	= isx - 0.5f;
 	vertices[0].position.y	= isy - 0.5f;
 	vertices[0].position.z	= 0.0f;
@@ -84,7 +84,7 @@ void CBlockTexture::Render(int ix, int iy)
 	vertices[3].position.x	= iex - 0.5f;
 	vertices[3].position.y	= iey - 0.5f;
 	vertices[3].position.z	= 0.0f;
-	vertices[3].texCoord	= TTextureCoordinate(eu, ev);	
+	vertices[3].texCoord	= TTextureCoordinate(eu, ev);
 	vertices[3].diffuse		= 0xffffffff;
 
 	if (CGraphicBase::SetPDTStream(vertices, 4))
@@ -110,16 +110,14 @@ void CBlockTexture::InvalidateRect(const RECT & c_rsrcRect)
 		return;
 	}
 
-
 	// DIBBAR_LONGSIZE_BUGFIX
-	const RECT clipRect = { 				
+	const RECT clipRect = {
 		max(c_rsrcRect.left - dstRect.left, 0),
 		max(c_rsrcRect.top - dstRect.top, 0),
 		min(c_rsrcRect.right - dstRect.left, dstRect.right - dstRect.left),
 		min(c_rsrcRect.bottom - dstRect.top, dstRect.bottom - dstRect.top),
 	};
 	// END_OF_DIBBAR_LONGSIZE_BUGFIX
-
 
 	DWORD * pdwSrc;
 	pdwSrc = (DWORD *)m_pDIB->GetPointer();
@@ -154,7 +152,7 @@ void CBlockTexture::InvalidateRect(const RECT & c_rsrcRect)
 }
 
 bool CBlockTexture::Create(CGraphicDib * pDIB, const RECT & c_rRect, DWORD dwWidth, DWORD dwHeight)
-{	
+{
 	if (FAILED(ms_lpd3dDevice->CreateTexture(dwWidth, dwHeight, 0, 0, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, &m_lpd3dTexture)))
 	{
 		Tracef("Failed to create block texture %u, %u\n", dwWidth, dwHeight);
@@ -181,3 +179,4 @@ CBlockTexture::~CBlockTexture()
 	safe_release(m_lpd3dTexture);
 	m_lpd3dTexture = NULL;
 }
+

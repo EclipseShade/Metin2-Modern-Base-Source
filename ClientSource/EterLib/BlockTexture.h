@@ -24,3 +24,4 @@ class CBlockTexture : public CGraphicBase
 		DWORD m_dwHeight;
 		LPDIRECT3DTEXTURE8 m_lpd3dTexture;
 };
+

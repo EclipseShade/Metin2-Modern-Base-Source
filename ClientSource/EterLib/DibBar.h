@@ -31,3 +31,4 @@ class CDibBar
 		DWORD m_dwWidth;
 		DWORD m_dwHeight;
 };
+

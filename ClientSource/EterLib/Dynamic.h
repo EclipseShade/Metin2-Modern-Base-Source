@@ -27,7 +27,7 @@ class CDynamic
 		{
 			if (m_pObject)
 				ms_objectPool.Free(m_pObject);
-							
+
 			Initialize();
 		}
 
@@ -35,7 +35,7 @@ class CDynamic
 		{
 			if (!m_pObject)
 				m_pObject = ms_objectPool.Alloc();
-					
+
 			return m_pObject;
 		}
 
@@ -51,7 +51,7 @@ class CDynamic
 			assert(m_pObject != NULL);
 			return m_pObject;
 		}
-		
+
 		T* operator->() const
 		{
 			assert(m_pObject != NULL);
@@ -73,3 +73,4 @@ class CDynamic
 
 template<typename T>
 CDynamicPool<T> CDynamic<T>::ms_objectPool;
+

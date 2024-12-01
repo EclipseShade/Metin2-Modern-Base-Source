@@ -67,3 +67,4 @@ class CEventManager : public CSingleton<CEventManager>
 		typedef std::priority_queue<IEvent *, std::vector<IEvent *>, EventComparisonFunc> TEventQueue;
 		TEventQueue	m_eventQueue;
 };
+

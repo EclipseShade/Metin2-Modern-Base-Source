@@ -16,3 +16,4 @@ class CDirect3DXBuffer
 	protected:
 		LPD3DXBUFFER m_lpd3dxBuffer;
 };
+

@@ -11,7 +11,7 @@
 
 #include "GrpBase.h"
 
-class CDecal  
+class CDecal
 {
 public:
 
@@ -30,10 +30,10 @@ public:
 	virtual void Render();
 
 protected:
-	//
+
 	D3DXVECTOR3		m_v3Center;
 	D3DXVECTOR3		m_v3Normal;
-	
+
 	// Clip Plane
 	D3DXPLANE		m_v4LeftPlane;
 	D3DXPLANE		m_v4RightPlane;
@@ -42,11 +42,9 @@ protected:
 	D3DXPLANE		m_v4FrontPlane;
 	D3DXPLANE		m_v4BackPlane;
 
-	// 개수
 	DWORD			m_dwVertexCount;
 	DWORD			m_dwPrimitiveCount;
 
-	// 버택스 버퍼와 인댁스 버퍼
 //	CGraphicVertexBuffer	m_GraphicVertexBuffer;
 //	CGraphicIndexBuffer		m_GraphicIndexBuffer;
 
@@ -58,27 +56,27 @@ protected:
 		DWORD			m_dwPrimitiveCount;
 		DWORD			m_dwVBOffset;
 	} TTRIANGLEFANSTRUCT;
-	
+
 	std::vector<TTRIANGLEFANSTRUCT> m_TriangleFanStructVector;
 
 	TPDTVertex		m_Vertices[MAX_DECAL_VERTICES];
 	WORD			m_Indices[MAX_DECAL_VERTICES];
-	
+
 	const float m_cfDecalEpsilon;
 
 protected:
 	bool AddPolygon(DWORD dwAddCount, const D3DXVECTOR3 *c_pv3Vertex, const D3DXVECTOR3 *c_pv3Normal);
 	void ClipMesh(DWORD dwPrimitiveCount, const D3DXVECTOR3 *c_pv3Vertex, const D3DXVECTOR3 *c_pv3Normal);
-	DWORD ClipPolygon(DWORD dwVertexCount, 
-		const D3DXVECTOR3 *c_pv3Vertex, 
-		const D3DXVECTOR3 *c_pv3Normal, 
-		D3DXVECTOR3 *c_pv3NewVertex, 
+	DWORD ClipPolygon(DWORD dwVertexCount,
+		const D3DXVECTOR3 *c_pv3Vertex,
+		const D3DXVECTOR3 *c_pv3Normal,
+		D3DXVECTOR3 *c_pv3NewVertex,
 		D3DXVECTOR3 *c_pv3NewNormal) const;
-	static DWORD ClipPolygonAgainstPlane(const D3DXPLANE& v4Plane, 
+	static DWORD ClipPolygonAgainstPlane(const D3DXPLANE& v4Plane,
 		DWORD dwVertexCount,
-		const D3DXVECTOR3 *c_pv3Vertex, 
-		const D3DXVECTOR3 *c_pv3Normal, 
-		D3DXVECTOR3 *c_pv3NewVertex, 
+		const D3DXVECTOR3 *c_pv3Vertex,
+		const D3DXVECTOR3 *c_pv3Normal,
+		D3DXVECTOR3 *c_pv3NewVertex,
 		D3DXVECTOR3 *c_pv3NewNormal);
 };
 /*
@@ -93,11 +91,11 @@ public:
 	void Remove(CDecal * pDecal);
 	void Update();
 	void Render();
-	
+
 private:
 	std::vector<CDecal *>	m_DecalPtrVector;
-	
 };
 
 */
 #endif // !defined(AFX_DECAL_H__E3D27DFC_30CB_4995_B9B9_396B5E8A5F02__INCLUDED_)
+

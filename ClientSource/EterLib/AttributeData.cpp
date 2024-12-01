@@ -61,7 +61,6 @@ bool CAttributeData::OnLoad(int /*iSize*/, const void * c_pvBuf)
 {
 	if (!c_pvBuf)
 	{
-		// NOTE: 파일이 존재하지 않으면 다른곳에서 그래픽 모델을 기반으로 충돌 데이터를 생성하니 리소스를 파괴하지 않고 유지시킴.
 		return true;
 	}
 
@@ -198,3 +197,4 @@ CAttributeData::CAttributeData(const char * c_szFileName) : CResource(c_szFileNa
 CAttributeData::~CAttributeData()
 {
 }
+

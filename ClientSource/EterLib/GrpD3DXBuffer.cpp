@@ -39,3 +39,4 @@ int  CDirect3DXBuffer::GetSize()
 	assert(m_lpd3dxBuffer!=NULL);
 	return m_lpd3dxBuffer->GetBufferSize();
 }
+

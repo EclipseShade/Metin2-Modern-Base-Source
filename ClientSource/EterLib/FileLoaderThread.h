@@ -6,7 +6,7 @@
 #include "Mutex.h"
 #include "../eterBase/MappedFile.h"
 
-class CFileLoaderThread 
+class CFileLoaderThread
 {
 	public:
 		typedef struct SData
@@ -23,7 +23,7 @@ class CFileLoaderThread
 		~CFileLoaderThread();
 
 		int Create(void * arg);
-	
+
 	public:
 		void	Request(std::string & c_rstFileName);
 		bool	Fetch(TData ** ppData);
@@ -35,7 +35,7 @@ class CFileLoaderThread
 
 		void *					Arg() const		{ return m_pArg; }
 		void					Arg(void * arg) { m_pArg = arg; }
-		
+
 		HANDLE					m_hThread;
 
 	private:
@@ -61,3 +61,4 @@ class CFileLoaderThread
 };
 
 #endif
+

@@ -24,7 +24,7 @@ void CGraphicColorInstance::Clear()
 
 void CGraphicColorInstance::SetColorReference(const CGraphicColor & c_rSrcColor)
 {
-	m_srcColor = c_rSrcColor;	
+	m_srcColor = c_rSrcColor;
 	m_dstColor = c_rSrcColor;
 	m_curColor = c_rSrcColor;
 }

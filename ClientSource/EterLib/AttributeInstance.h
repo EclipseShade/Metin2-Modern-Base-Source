@@ -15,7 +15,6 @@ class CAttributeInstance
 
 		const char * GetDataFileName() const;
 
-		// NOTE : Object Àü¿ë
 		void SetObjectPointer(CAttributeData * pAttributeData);
 		void RefreshObject(const D3DXMATRIX & c_rmatGlobal);
 		CAttributeData * GetObjectPointer() const;
@@ -64,3 +63,4 @@ class CAttributeInstance
 
 		static CDynamicPool<CAttributeInstance> ms_kPool;
 };
+

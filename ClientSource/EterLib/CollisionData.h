@@ -11,7 +11,7 @@ typedef struct SPlaneData
 {
 	D3DXVECTOR3 v3Position;
 	D3DXVECTOR3 v3Normal;
-	
+
 	D3DXVECTOR3 v3QuadPosition[4];
 	D3DXVECTOR3 v3InsideVector[4];
 } TPlaneData;
@@ -20,7 +20,6 @@ typedef struct SAABBData
 {
 	D3DXVECTOR3 v3Min;
 	D3DXVECTOR3 v3Max;
-
 } TAABBData;
 
 typedef struct SOBBData
@@ -28,7 +27,6 @@ typedef struct SOBBData
 	D3DXVECTOR3 v3Min;
 	D3DXVECTOR3 v3Max;
 	D3DXMATRIX matRot;
-
 } TOBBData;
 
 typedef struct SCylinderData
@@ -61,7 +59,7 @@ class CStaticCollisionData
 public:
 	DWORD dwType;
 	char szName[32+1];
-	
+
 	D3DXVECTOR3 v3Position;
 	float fDimensions[3];
 	D3DXQUATERNION quatRotation;
@@ -86,7 +84,6 @@ class CBaseCollisionInstance
 		{
 			return OnCollisionDynamicSphere(s);
 		}
-		
 
 		D3DXVECTOR3 GetCollisionMovementAdjust(const CDynamicSphereInstance & s) const
 		{
@@ -204,3 +201,4 @@ class CCylinderCollisionInstance : public CBaseCollisionInstance
 typedef std::vector<CSphereCollisionInstance> CSphereCollisionInstanceVector;
 typedef std::vector<CDynamicSphereInstance> CDynamicSphereInstanceVector;
 typedef std::vector<CBaseCollisionInstance*> CCollisionInstanceVector;
+

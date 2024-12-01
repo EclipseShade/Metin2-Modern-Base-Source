@@ -66,7 +66,7 @@ void CGraphicColor::Set(DWORD pack)
 DWORD CGraphicColor::GetPackValue() const
 {
 	DWORD packValue=0;
-	
+
 	packValue  = int(255.0f * m_a);packValue <<= 8;
 	packValue |= int(255.0f * m_r);packValue <<= 8;
 	packValue |= int(255.0f * m_g);packValue <<= 8;

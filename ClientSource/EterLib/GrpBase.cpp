@@ -21,7 +21,7 @@ void D3DXVECTOR3ToPixelPosition(const D3DXVECTOR3& c_rv3Src, D3DXVECTOR3* pv3Dst
 
 UINT					CGraphicBase::ms_iD3DAdapterInfo=0;
 UINT					CGraphicBase::ms_iD3DDevInfo=0;
-UINT					CGraphicBase::ms_iD3DModeInfo=0;		
+UINT					CGraphicBase::ms_iD3DModeInfo=0;
 D3D_CDisplayModeAutoDetector				CGraphicBase::ms_kD3DDetector;
 
 HWND CGraphicBase::ms_hWnd;
@@ -75,13 +75,11 @@ int						CGraphicBase::ms_iWavingPower;
 DWORD					CGraphicBase::ms_dwFlashingEndTime;
 D3DXCOLOR				CGraphicBase::ms_FlashingColor;
 
-// Terrain picking용 Ray... CCamera 이용하는 버전.. 기존의 Ray와 통합 필요...
 CRay					CGraphicBase::ms_Ray;
 bool					CGraphicBase::ms_bSupportDXT = true;
 bool					CGraphicBase::ms_isLowTextureMemory = false;
 bool					CGraphicBase::ms_isHighTextureMemory = false;
 
-// 2004.11.18.myevan.DynamicVertexBuffer로 교체
 /*
 std::vector<TIndex>		CGraphicBase::ms_lineIdxVector;
 std::vector<TIndex>		CGraphicBase::ms_lineTriIdxVector;
@@ -111,7 +109,7 @@ bool CGraphicBase::IsHighTextureMemory()
 }
 
 bool CGraphicBase::IsFastTNL()
-{ 
+{
 	if (ms_dwD3DBehavior & D3DCREATE_HARDWARE_VERTEXPROCESSING ||
 		ms_dwD3DBehavior & D3DCREATE_MIXED_VERTEXPROCESSING)
 	{
@@ -168,18 +166,17 @@ bool CGraphicBase::SetPDTStream(SPDTVertexRaw* pSrcVertices, UINT uVtxCount)
 	TPDTVertex* pDstVertices;
 	if (FAILED(
 		plpd3dFillRectVB->Lock(0, sizeof(TPDTVertex)*uVtxCount, (BYTE**)&pDstVertices, D3DLOCK_DISCARD)
-	)) 
+	))
 	{
 		STATEMANAGER.SetStreamSource(0, NULL, 0);
 		return false;
 	}
-	
-	
+
 	memcpy(pDstVertices, pSrcVertices, sizeof(TPDTVertex)*uVtxCount);
 
 	plpd3dFillRectVB->Unlock();
 
-	STATEMANAGER.SetStreamSource(0, plpd3dFillRectVB, sizeof(TPDTVertex));	
+	STATEMANAGER.SetStreamSource(0, plpd3dFillRectVB, sizeof(TPDTVertex));
 
 	return true;
 }
@@ -307,7 +304,6 @@ void CGraphicBase::SetPerspective(float fov, float aspect, float nearz, float fa
 {
 	ms_fFieldOfView = fov;
 
-
 	//if (ms_d3dPresentParameter.BackBufferWidth>0 && ms_d3dPresentParameter.BackBufferHeight>0)
 	//	ms_fAspect = float(ms_d3dPresentParameter.BackBufferWidth)/float(ms_d3dPresentParameter.BackBufferHeight);
 	//else
@@ -317,7 +313,7 @@ void CGraphicBase::SetPerspective(float fov, float aspect, float nearz, float fa
 	ms_fFarY = farz;
 
 	//CCameraManager::Instance().SetCurrentCamera(CCameraManager::DEFAULT_PERSPECTIVE_CAMERA);
-	D3DXMatrixPerspectiveFovRH(&ms_matProj, D3DXToRadian(fov), ms_fAspect, nearz, farz);		
+	D3DXMatrixPerspectiveFovRH(&ms_matProj, D3DXToRadian(fov), ms_fAspect, nearz, farz);
 	//UpdatePipeLineMatrix();
 	UpdateProjMatrix();
 }
@@ -510,3 +506,4 @@ CGraphicBase::CGraphicBase()
 CGraphicBase::~CGraphicBase()
 {
 }
+

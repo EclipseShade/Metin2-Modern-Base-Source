@@ -18,7 +18,6 @@ struct RangeTester : public SpherePackCallback
 	virtual ~RangeTester()
 	{}
 
-
 	virtual void RayTraceCallback(const Vector3d &p1,          // source pos of ray
 		const Vector3d &dir,          // dest pos of ray
 		float distance,
@@ -28,12 +27,11 @@ struct RangeTester : public SpherePackCallback
 #ifdef SPHERELIB_STRICT
 		if (sphere->IS_SPHERE)
 			puts("RangeTester::RayTraceCallback");
-#endif	
+#endif
 		if (dist<=0.0f || dist>=distance)
 			(*f)((CGraphicObjectInstance *)sphere->GetUserData());
 	};
-	
-	
+
 	virtual void VisibilityCallback(const Frustum &f,SpherePack *sphere,ViewState state){};
 
 	virtual void RangeTestCallback(const Vector3d &p,float distance,SpherePack *sphere,ViewState state)
@@ -41,7 +39,7 @@ struct RangeTester : public SpherePackCallback
 #ifdef SPHERELIB_STRICT
 		if (sphere->IS_SPHERE)
 			puts("RangeTester::RangeTestCallback");
-#endif	
+#endif
 		if (state!=VS_OUTSIDE)
 			(*f)((CGraphicObjectInstance *)sphere->GetUserData());
 	}
@@ -50,7 +48,7 @@ struct RangeTester : public SpherePackCallback
 	{
 #ifdef SPHERELIB_STRICT
 		if (sphere->IS_SPHERE)
-			puts("RangeTester::PointTest2dCallback");	
+			puts("RangeTester::PointTest2dCallback");
 #endif
 		if (state!=VS_OUTSIDE)
 		{
@@ -76,16 +74,15 @@ public:
 		float distance,
 		const Vector3d &sect,
 		SpherePack *sphere);
-	
-	
+
 	virtual void VisibilityCallback(const Frustum &f,SpherePack *sphere,ViewState state);
-	
-	void RangeTestCallback(const Vector3d &p,float distance,SpherePack *sphere,ViewState state);	
+
+	void RangeTestCallback(const Vector3d &p,float distance,SpherePack *sphere,ViewState state);
 
 	void Reset();
 	void Update();
 	void Process();
-	
+
 	void FindRange(const Vector3d &p, float radius);
 	void FindRay(const Vector3d &p1, const Vector3d &dir);
 	void FindRayDistance(const Vector3d &p1, const Vector3d &dir, float distance);
@@ -111,7 +108,7 @@ public:
 	void ForInRange(const Vector3d &p, float radius, T* pFunc)
 	{
 		RangeTester<T> r(pFunc);
-		m_Factory->RangeTest(p, radius, &r/*this*/);	
+		m_Factory->RangeTest(p, radius, &r/*this*/);
 	}
 
 	template <class T>
@@ -124,14 +121,14 @@ public:
 		p2.y = p.y+50000.0f*dir.y;
 		p2.z = p.z+50000.0f*dir.z;
 			// p + (50000.0f*dir);//(p.x+(dir.x*50000.0f),p.y+(dir.y*50000.0f),p.z+(dir.z*50000.0f));*/
-		m_Factory->RayTrace(p1, dir, &r/*this*/);		
+		m_Factory->RayTrace(p1, dir, &r/*this*/);
 	}
 
 	template <class T>
 	void ForInRayDistance(const Vector3d &p, const Vector3d &dir, float distance, T* pFunc)
 	{
 		RangeTester<T> r(pFunc, distance);
-		m_Factory->RayTrace(p, dir, &r/*this*/);		
+		m_Factory->RayTrace(p, dir, &r/*this*/);
 	}
 
 	CullingHandle Register(CGraphicObjectInstance * ob);
@@ -147,3 +144,4 @@ protected:
 
 	SpherePackFactory * m_Factory;
 };
+

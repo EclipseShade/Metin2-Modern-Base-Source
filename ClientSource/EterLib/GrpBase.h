@@ -92,9 +92,9 @@ typedef struct SPNT2Vertex
 } TPNT2Vertex;
 
 typedef struct SPDT2Vertex
-{	
+{
 	TPosition	position;
-	DWORD		diffuse;	
+	DWORD		diffuse;
 	TTextureCoordinate texCoord;
 	TTextureCoordinate texCoord2;
 } TPDT2Vertex;
@@ -136,11 +136,11 @@ class CGraphicBase
 		static const D3DXMATRIX & GetIdentityMatrix();
 
 		enum
-		{			
-			DEFAULT_IB_LINE, 
-			DEFAULT_IB_LINE_TRI, 
-			DEFAULT_IB_LINE_RECT, 
-			DEFAULT_IB_LINE_CUBE, 
+		{
+			DEFAULT_IB_LINE,
+			DEFAULT_IB_LINE_TRI,
+			DEFAULT_IB_LINE_RECT,
+			DEFAULT_IB_LINE_CUBE,
 			DEFAULT_IB_FILL_TRI,
 			DEFAULT_IB_FILL_RECT,
 			DEFAULT_IB_FILL_CUBE,
@@ -174,14 +174,14 @@ class CGraphicBase
 
 		void		MultMatrix( const D3DXMATRIX* pMat );
 		void		MultMatrixLocal( const D3DXMATRIX* pMat );
-	
+
 		void		Translate(float x, float y, float z);
 		void		Rotate(float degree, float x, float y, float z);
 		void		RotateLocal(float degree, float x, float y, float z);
 		void		RotateYawPitchRollLocal(float fYaw, float fPitch, float fRoll);
 		void		Scale(float x, float y, float z);
-		void		PopMatrix();		
-		void		LoadMatrix(const D3DXMATRIX & c_rSrcMatrix);		
+		void		PopMatrix();
+		void		LoadMatrix(const D3DXMATRIX & c_rSrcMatrix);
 		void		GetMatrix(D3DXMATRIX * pRetMatrix) const;
 		const		D3DXMATRIX * GetMatrixPointer() const;
 
@@ -202,7 +202,7 @@ class CGraphicBase
 
 		void		UpdateProjMatrix();
 		void		UpdateViewMatrix();
-		
+
 		void		SetViewport(DWORD dwX, DWORD dwY, DWORD dwWidth, DWORD dwHeight, float fMinZ, float fMaxZ);
 		static void		GetBackBufferSize(UINT* puWidth, UINT* puHeight);
 		static bool		IsTLVertexClipping();
@@ -213,7 +213,7 @@ class CGraphicBase
 		static void SetDefaultIndexBuffer(UINT eDefIB);
 		static bool SetPDTStream(SPDTVertexRaw* pVertices, UINT uVtxCount);
 		static bool SetPDTStream(SPDTVertex* pVertices, UINT uVtxCount);
-		
+
 	protected:
 		static D3DXMATRIX				ms_matIdentity;
 
@@ -230,7 +230,6 @@ class CGraphicBase
 		void		UpdatePipeLineMatrix();
 
 	protected:
-		// 각종 D3DX Mesh 들 (컬루젼 데이터 등을 표시활 때 쓴다)
 		static LPD3DXMESH				ms_lpSphereMesh;
 		static LPD3DXMESH				ms_lpCylinderMesh;
 
@@ -242,7 +241,7 @@ class CGraphicBase
 
 		static UINT						ms_iD3DAdapterInfo;
 		static UINT						ms_iD3DDevInfo;
-		static UINT						ms_iD3DModeInfo;		
+		static UINT						ms_iD3DModeInfo;
 		static D3D_CDisplayModeAutoDetector				ms_kD3DDetector;
 
 		static HWND						ms_hWnd;
@@ -255,7 +254,7 @@ class CGraphicBase
 		static DWORD					ms_faceCount;
 		static D3DCAPS8					ms_d3dCaps;
 		static D3DPRESENT_PARAMETERS	ms_d3dPresentParameter;
-		
+
 		static DWORD					ms_dwD3DBehavior;
 		static DWORD					ms_ptVS;
 		static DWORD					ms_pntVS;
@@ -274,7 +273,6 @@ class CGraphicBase
 		static float					ms_fNearY;
 		static float					ms_fFarY;
 
-		// 2004.11.18.myevan.DynamicVertexBuffer로 교체
 		/*
 		static std::vector<TIndex>		ms_lineIdxVector;
 		static std::vector<TIndex>		ms_lineTriIdxVector;
@@ -292,10 +290,8 @@ class CGraphicBase
 		static DWORD					ms_dwFlashingEndTime;
 		static D3DXCOLOR				ms_FlashingColor;
 
-		// Terrain picking용 Ray... CCamera 이용하는 버전.. 기존의 Ray와 통합 필요...
  		static CRay						ms_Ray;
 
-		// 
 		static bool						ms_bSupportDXT;
 		static bool						ms_isLowTextureMemory;
 		static bool						ms_isHighTextureMemory;
@@ -303,10 +299,10 @@ class CGraphicBase
 		enum
 		{
 			PDT_VERTEX_NUM = 16,
-			PDT_VERTEXBUFFER_NUM = 100,				
+			PDT_VERTEXBUFFER_NUM = 100,
 		};
-		
-		
+
 		static LPDIRECT3DVERTEXBUFFER8	ms_alpd3dPDTVB[PDT_VERTEXBUFFER_NUM];
 		static LPDIRECT3DINDEXBUFFER8	ms_alpd3dDefIB[DEFAULT_IB_NUM];
 };
+

@@ -11,7 +11,6 @@ bool CAttributeInstance::Picking(const D3DXVECTOR3 & v, const D3DXVECTOR3 & dir,
 {
 	if (IsEmpty())
 		return FALSE;
-	//fy *= -1.0f;
 
 	bool bPicked = false;
 	float nx = 0;
@@ -29,7 +28,7 @@ bool CAttributeInstance::Picking(const D3DXVECTOR3 & v, const D3DXVECTOR3 & dir,
 			D3DXVECTOR3 x;
 			float t;
 			t = - D3DXVec3Dot(&(v-cv0),&n)/D3DXVec3Dot(&dir,&n);
-			
+
 			x = v+t*dir;
 
 			D3DXVECTOR3 temp;
@@ -54,17 +53,17 @@ bool CAttributeInstance::Picking(const D3DXVECTOR3 & v, const D3DXVECTOR3 & dir,
 				ny = x.y;
 			}
 			bPicked = true;
-	}	
+	}
 	if (bPicked)
 	{
 		out_x = nx;
 		out_y = ny;
-	} 
+	}
 	return bPicked;
 }
 
 BOOL CAttributeInstance::GetHeight(float fx, float fy, float * pfHeight)
-{	
+{
 	if(IsEmpty())
 		return FALSE;
 
@@ -213,3 +212,4 @@ CAttributeInstance::CAttributeInstance()
 CAttributeInstance::~CAttributeInstance()
 {
 }
+

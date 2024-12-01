@@ -6,7 +6,6 @@ void CColorTransitionHelper::Clear(const float & c_rfRed,
 								   const float & c_rfBlue,
 								   const float & c_rfAlpha)
 {
-
 	m_fSrcRed	= c_rfRed;
 	m_fSrcGreen	= c_rfGreen;
 	m_fSrcBlue	= c_rfBlue;
@@ -25,7 +24,7 @@ void CColorTransitionHelper::Clear(const float & c_rfRed,
 void CColorTransitionHelper::SetSrcColor(const float & c_rfRed,
 										 const float & c_rfGreen,
 										 const float & c_rfBlue,
-										 const float & c_rfAlpha) 
+										 const float & c_rfAlpha)
 {
 	m_fSrcRed	= c_rfRed;
 	m_fSrcGreen	= c_rfGreen;
@@ -33,10 +32,10 @@ void CColorTransitionHelper::SetSrcColor(const float & c_rfRed,
 	m_fSrcAlpha	= c_rfAlpha;
 }
 
-void CColorTransitionHelper::SetTransition(const float & c_rfRed, 
-										   const float & c_rfGreen, 
-										   const float & c_rfBlue, 
-										   const float & c_rfAlpha, 
+void CColorTransitionHelper::SetTransition(const float & c_rfRed,
+										   const float & c_rfGreen,
+										   const float & c_rfBlue,
+										   const float & c_rfAlpha,
 										   const DWORD & dwDuration)
 {
 	m_fDstRed	= c_rfRed;
@@ -90,15 +89,16 @@ bool CColorTransitionHelper::Update()
 
 const D3DCOLOR & CColorTransitionHelper::GetCurColor()
 {
-	return m_dwCurColor; 
+	return m_dwCurColor;
 }
 
 CColorTransitionHelper::CColorTransitionHelper():m_bTransitionStarted(false)
 {
-	Clear(0.0f, 0.0f, 0.0f, 0.0f); 
+	Clear(0.0f, 0.0f, 0.0f, 0.0f);
 }
 
 CColorTransitionHelper::~CColorTransitionHelper()
 {
-	Clear(0.0f, 0.0f, 0.0f, 0.0f); 
+	Clear(0.0f, 0.0f, 0.0f, 0.0f);
 }
+

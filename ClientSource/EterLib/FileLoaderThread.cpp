@@ -70,7 +70,7 @@ void CFileLoaderThread::Shutdown()
 		return;
 
 	BOOL bRet;
-	
+
 	m_bShutdowned = true;
 
 	do
@@ -79,22 +79,22 @@ void CFileLoaderThread::Shutdown()
 	}
 	while (!bRet);
 
-	WaitForSingleObject(m_hThread, 10000);	// 쓰레드가 종료 되기를 10초 기다림
+	WaitForSingleObject(m_hThread, 10000);
 }
 
 UINT CFileLoaderThread::Execute(void * /*pvArg*/)
 {
 	while (!m_bShutdowned)
 	{
-		DWORD dwWaitResult; 
+		DWORD dwWaitResult;
 
 		dwWaitResult = WaitForSingleObject(m_hSemaphore, INFINITE);
 
 		if (m_bShutdowned)
 			break;
 
-		switch (dwWaitResult) 
-		{ 
+		switch (dwWaitResult)
+		{
 			case WAIT_OBJECT_0:
 				{
 					Process();
@@ -178,3 +178,4 @@ void CFileLoaderThread::Process()	// called in loader thread
 
 	Sleep(g_iLoadingDelayTime);
 }
+

@@ -11,10 +11,9 @@
 
 CEnvironmentMap::CEnvironmentMap()
 {
-
 }
 
 CEnvironmentMap::~CEnvironmentMap()
 {
-
 }
+

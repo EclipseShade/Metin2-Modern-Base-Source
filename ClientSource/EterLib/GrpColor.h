@@ -1,6 +1,6 @@
 #pragma once
 
-class CGraphicColor 
+class CGraphicColor
 {
 	public:
 		CGraphicColor(const CGraphicColor& c_rSrcColor);
@@ -26,3 +26,4 @@ class CGraphicColor
 		float m_b;
 		float m_a;
 };
+

@@ -110,7 +110,7 @@ void CDibBar::__BuildTextureBlockList(DWORD dwWidth, DWORD dwHeight, DWORD dwMax
 			if (pTexture)
 				m_kVec_pkBlockTexture.push_back(pTexture);
 		}
-		
+
 		CBlockTexture * pTexture = __BuildTextureBlock(dwxCount*dwxStep, y*dwyStep,
 													   dwxRest, dwyStep,
 													   dwxTexRest, dwMax);
@@ -161,3 +161,4 @@ CDibBar::CDibBar()
 CDibBar::~CDibBar()
 {
 }
+

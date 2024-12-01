@@ -18,8 +18,7 @@ class CGraphicCollisionObject : public CGraphicBase
 		bool IntersectSphere(const D3DXVECTOR3 & c_rv3Position, float fRadius, const D3DXVECTOR3 & c_rv3RayOriginal, const D3DXVECTOR3 & c_rv3RayDirection);
 		bool IntersectCylinder(const D3DXVECTOR3 & c_rv3Position, float fRadius, float fHeight, const D3DXVECTOR3 & c_rv3RayOriginal, const D3DXVECTOR3 & c_rv3RayDirection);
 
-		// NOTE : ms_vtPickRayOrig와 ms_vtPickRayDir를 CGraphicBGase가 가지고 있는데
-		//        굳이 인자로 넣어줘야 하는 이유가 있는가? Customize를 위해서? - [levites]
 		bool IntersectSphere(const D3DXVECTOR3 & c_rv3Position, float fRadius);
 		bool IntersectCylinder(const D3DXVECTOR3 & c_rv3Position, float fRadius, float fHeight);
 };
+

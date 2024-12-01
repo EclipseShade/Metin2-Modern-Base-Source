@@ -69,3 +69,4 @@ class CAttributeData : public CResource
 		CStaticCollisionDataVector m_StaticCollisionDataVector;
 		THeightDataVector m_HeightDataVector;
 };
+
