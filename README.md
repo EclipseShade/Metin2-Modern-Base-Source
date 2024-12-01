@@ -32,15 +32,15 @@
 #
 
 ## CONTRIBUTES RULES:
-- [1] Use Standar Libraries if possible
-- [2] All .cpp file need to have included "stdafx.h
-- [3] All .h file need to have .cpp file
-- [4] Only acceptable pure .h and .cpp files do not create .inc or .hpp files
-- [5] Do not create if in cases! you can create additional function that will be called from case!
-- [6] use if {}, codes like if(....) return false; without {} won't be acceptable
-- [7] using namespace std; etc are not allowed.
+- Use Standar Libraries if possible
+- All .cpp file need to have included "stdafx.h
+- All .h file need to have .cpp file
+- Only acceptable pure .h and .cpp files do not create .inc or .hpp files
+- Do not create if in cases! you can create additional function that will be called from case!
+- use if {}, codes like if(....) return false; without {} won't be acceptable
+- using namespace std; etc are not allowed.
 
-#### FreeBSD 10.3 - Instalation Guide
+#### FreeBSD 9x-11x - Instalation Guide
 - [FreeBSD 10.3 Instalation Guide](https://github.com/EclipseShade/Metin2-Source/wiki/FreeBSD-10.3-Instalation-Guide)
 #
 
