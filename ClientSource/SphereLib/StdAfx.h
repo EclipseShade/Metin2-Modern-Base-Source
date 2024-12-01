@@ -4,6 +4,8 @@
 //#define SPHERELIB_STRICT
 //#include <crtdbg.h>
 
+#include <string>
+
 #include <d3d8.h>
 #include <d3dx8.h>
 
