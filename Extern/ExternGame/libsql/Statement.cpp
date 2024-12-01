@@ -1,7 +1,6 @@
-#include "Statement.h"
+#include "stdafx.h"
 
-#include <cstdlib>
-#include <cstring>
+#include "Statement.h"
 
 CStmt::CStmt()
 {

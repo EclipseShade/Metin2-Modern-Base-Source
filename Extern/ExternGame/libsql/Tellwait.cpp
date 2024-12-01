@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #ifndef __WIN32__
 
 #include <stdio.h>
