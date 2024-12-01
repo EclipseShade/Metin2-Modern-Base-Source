@@ -14,9 +14,9 @@ static JOCTET * buffer;
 static unsigned char*dest;
 static int len;
 static int destlen;
-static unsigned char*data;
+static unsigned char* jpeg_data;
 static int pos;
-static int size;
+static int jpeg_size;
 
 static void file_init_destination(j_compress_ptr cinfo) 
 { 
@@ -213,22 +213,22 @@ int jpeg_save_to_mem(unsigned char*data, int width, int height, int quality, uns
 void mem_init_source (j_decompress_ptr cinfo)
 {
     struct jpeg_source_mgr* mgr = cinfo->src;
-    mgr->next_input_byte = data;
-    mgr->bytes_in_buffer = size;
+    mgr->next_input_byte = jpeg_data;
+    mgr->bytes_in_buffer = jpeg_size;
     //printf("init %d\n", size - mgr->bytes_in_buffer);
 }
 
 boolean mem_fill_input_buffer (j_decompress_ptr cinfo)
 {
     struct jpeg_source_mgr* mgr = cinfo->src;
-    printf("fill %d\n", size - mgr->bytes_in_buffer);
+    printf("fill %d\n", jpeg_size - mgr->bytes_in_buffer);
     return 0;
 }
 
 void mem_skip_input_data (j_decompress_ptr cinfo, long num_bytes)
 {
     struct jpeg_source_mgr* mgr = cinfo->src;
-    printf("skip %d +%d\n", size - mgr->bytes_in_buffer, num_bytes);
+    printf("skip %d +%d\n", jpeg_size - mgr->bytes_in_buffer, num_bytes);
     if(num_bytes<=0)
 	return;
     mgr->next_input_byte += num_bytes;
@@ -238,9 +238,9 @@ void mem_skip_input_data (j_decompress_ptr cinfo, long num_bytes)
 boolean mem_resync_to_restart (j_decompress_ptr cinfo, int desired)
 {
     struct jpeg_source_mgr* mgr = cinfo->src;
-    printf("resync %d\n", size - mgr->bytes_in_buffer);
-    mgr->next_input_byte = data;
-    mgr->bytes_in_buffer = size;
+    printf("resync %d\n", jpeg_size - mgr->bytes_in_buffer);
+    mgr->next_input_byte = jpeg_data;
+    mgr->bytes_in_buffer = jpeg_size;
     return 1;
 }
 
@@ -258,13 +258,13 @@ int jpeg_load_from_mem(unsigned char*_data, int _size, unsigned char*dest, int w
     int y;
 	//int x;
 
-    data = _data;
-    size = _size;
+    jpeg_data = _data;
+    jpeg_size = _size;
 
     jpeg_create_decompress(&cinfo); 
 
-    mgr.next_input_byte = data;
-    mgr.bytes_in_buffer = size;
+    mgr.next_input_byte = jpeg_data;
+    mgr.bytes_in_buffer = jpeg_size;
     mgr.init_source        =mem_init_source ;
     mgr.fill_input_buffer  =mem_fill_input_buffer ;
     mgr.skip_input_data    =mem_skip_input_data ;
