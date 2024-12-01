@@ -194,48 +194,48 @@ public:
 	{ 
 		return mNextSibling; 
 	}
-	SpherePack * _GetPrevSibling(void) const 
-	{ 
+	SpherePack * _GetPrevSibling(void) const
+	{
 		return mPrevSibling; 
 	}
 	SpherePack * GetChildren(void)    const { return mChildren; }
-	
+
 	SpherePack * GetNext(void)     const { return mNext; };
 	SpherePack * GetPrevious(void) const { return mPrevious; };
-	
+
 	void SetNext(SpherePack *pack) { mNext = pack; };
 	void SetPrevious(SpherePack *pack) { mPrevious = pack; };
-	
+
 	void * GetUserData(void) const { return mUserData; };
 	void   SetUserData(void *data, bool isSphere) { mUserData = data; IS_SPHERE=isSphere;};
-	
+
 	float DistanceSquared(const SpherePack *pack) const { return mCenter.DistanceSq( pack->mCenter );  };
-	
-	inline void LostChild(SpherePack *pack);
-	
+
+	void LostChild(SpherePack *pack);
+
 	const Vector3d& GetPos(void) const { return mCenter; };
-	
-	inline void Render(unsigned int color);
-	
-	inline bool Recompute(float gravy);
-	
+
+	void Render(unsigned int color);
+
+	bool Recompute(float gravy);
+
 	int GetChildCount(void) const { return mChildCount; };
-	
+
 #if DEMO
 	void SetColor(unsigned int color) { mColor = color; };
 	unsigned int GetColor(void) const { return mColor; };
 #endif
-	
+
 	void SetFifo1(SpherePack **fifo)
 	{
 		mFifo1 = fifo;
 	};
-	
+
 	void SetFifo2(SpherePack **fifo)
 	{
 		mFifo2 = fifo;
 	};
-	
+
 	void ComputeBindingDistance(SpherePack *parent)
 	{
 		mBindingDistance = parent->GetRadius() - GetRadius();
@@ -244,28 +244,27 @@ public:
 		else
 			mBindingDistance*=mBindingDistance;
 	}
-	
+
 	void VisibilityTest(const Frustum &f,
 		SpherePackCallback *callback,
 		ViewState state);
-	
+
 	void RayTrace(const Vector3d &p1,           // origin of Ray
 		const Vector3d &dir,          // direction of Ray
 		float distance,                      // length of ray.
 		SpherePackCallback *callback);
-	
-	
+
 	void RangeTest(const Vector3d &p,
 		float distance,
 		SpherePackCallback *callback,
 		ViewState state);
-	
+
 	void PointTest2d(const Vector3d &p,
 		SpherePackCallback *callback,
 		ViewState state);
 
 	void Reset(void);
-	
+
 private:
 	SpherePack       *mNext;
 	SpherePack       *mPrevious; // used by pool memory management linked list code
