@@ -3,62 +3,6 @@
 // Test Code
 #include "ObjectAnimationAccessor.h"
 
-class CFilename
-{
-	public:
-		CFilename() { }
-		CFilename(const char* pFilename) { m_sRaw = pFilename; }
-		CFilename(std::string strFilename) { m_sRaw = strFilename; }
-
-		virtual ~CFilename() {}
-
-		operator const string() const { return m_sRaw; }
-		operator string&() { return m_sRaw; }
-		CFilename& operator =(const CFilename& r) { m_sRaw = r.m_sRaw; return *this; }
-		bool operator ==(const CFilename& r) const { return m_sRaw == r.m_sRaw; }
-		CFilename operator +(const CFilename& r) const { return CFilename(m_sRaw + r.m_sRaw); }
-		CFilename& operator +=(const CFilename& r) { m_sRaw += r.m_sRaw; return *this; }
-		const char& operator[](size_t nIdx) const { return m_sRaw[nIdx]; } 
-		const char* c_str() const { return m_sRaw.c_str(); }
-		size_t find(const char* pcszSrc) const { return m_sRaw.find(pcszSrc); }
-		bool empty() const { return m_sRaw.empty(); }
-		size_t size() const { return m_sRaw.size(); }
-		size_t length() const { return m_sRaw.length(); }
-
-		string& GetString() { return m_sRaw; }
-		
-		void ChangeDosPath()
-		{
-			size_t nLength = m_sRaw.length();
-
-			for (size_t i = 0; i < nLength; ++i)
-			{
-				if (m_sRaw.at(i) == '/')
-					m_sRaw.at(i) = '\\';
-			}
-		}
-
-		void StringPath()
-		{
-			size_t nLength = m_sRaw.length();		
-
-			for (size_t i = 0; i<nLength; ++i)
-			{
-				if (m_sRaw.at(i) == '\\')
-					m_sRaw.at(i) = '/';
-				else
-					m_sRaw.at(i) = (char)tolower(m_sRaw.at(i));
-			}
-		}
-
-		CFilename GetName(void);           // if filename is "/idv/code/file.cpp", it returns "file"
-		CFilename GetExtension(void);      // if filename is "/idv/code/file.cpp", it returns "cpp"
-		CFilename GetPath(void);           // if filename is "/idv/code/file.cpp", it returns "/idv/code"
-		CFilename NoExtension(void);       // if filename is "/idv/code/file.cpp", it returns "/idv/code/file"
-		CFilename NoPath(void);            // if filename is "/idv/code/file.cpp", it returns "file.cpp"
-		string m_sRaw;
-};
-
 class CObjectData
 {
 	public:
