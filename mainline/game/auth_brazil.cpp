@@ -21,11 +21,10 @@
 
 #include "auth_brazil.h"
 
-static const char* FN_md5(const char *src)
-{
-    static char s_buffer[512];
-
-    memset(s_buffer, 0x00, sizeof(s_buffer));
+static const char* FN_md5(const char *src) {
+	static char s_buffer[512];
+	
+	memset(s_buffer, 0x00, sizeof(s_buffer));
 
     unsigned char digest[16] = {0};
     MD5_CTX md5;
@@ -35,11 +34,11 @@ static const char* FN_md5(const char *src)
 
     int offset = 0;
     for (int i=0; i<16; ++i) {
-	offset += sprintf(s_buffer + offset, "%02x", digest[i]);
-					        }
+		offset += sprintf(s_buffer + offset, "%02x", digest[i]);
+	}
+	
     return s_buffer;
 }
-
 
 static int FN_make_request(const char *login, const char *password, /*out*/ char *dst, int dst_size)
 {
