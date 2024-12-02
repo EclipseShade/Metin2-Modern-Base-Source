@@ -13,7 +13,12 @@
 #endif
 
 #ifndef itertype
-#define itertype(v) decltype((v).begin())
+	#if _MSC_VER <= 1500
+		#define itertype(v) typeof((v).begin())
+		//#define typeof decltype((v).begin())
+	#else
+		#define itertype(v) decltype((v).begin())
+	#endif
 #endif
 
 inline void stl_lowers(std::string& rstRet)

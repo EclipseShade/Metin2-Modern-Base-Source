@@ -102,7 +102,12 @@ enum EEntityTypes
 };
 
 #ifndef itertype
-#define itertype(v) decltype((v).begin())
+	#if _MSC_VER <= 1500	//Visual Studio 2008
+		#define itertype(v) typeof((v).begin())
+		#define decltype typeof((v).begin())
+	#else 					//Visual Studio 2008+
+		#define itertype(v) decltype((v).begin())
+	#endif
 #endif
 
 #endif /* __INC_METIN_II_GAME_TYPEDEF_H__ */

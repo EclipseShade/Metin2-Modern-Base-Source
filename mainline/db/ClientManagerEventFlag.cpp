@@ -34,8 +34,11 @@ void CClientManager::SetEventFlag(TPacketSetEventFlag* p) {
     ForwardPacket(HEADER_DG_SET_EVENT_FLAG, p, sizeof(TPacketSetEventFlag));
 
     bool bChanged = false;
-
+	#if _MSC_VER <= 1500
+	typeof(m_map_lEventFlag.begin()) it = m_map_lEventFlag.find(p->szFlagName);
+	#else
     auto it = m_map_lEventFlag.find(p->szFlagName);
+	#endif
     if (it == m_map_lEventFlag.end()) {
         bChanged = true;
         m_map_lEventFlag.insert(std::make_pair(std::string(p->szFlagName), p->lValue));
