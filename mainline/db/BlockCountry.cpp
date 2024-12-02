@@ -30,63 +30,56 @@ CBlockCountry::~CBlockCountry()
 	m_block_ip.clear();
 }
 
+bool CBlockCountry::Load() {
+    std::ostringstream queryIpToCountry;
+    queryIpToCountry << "SELECT IP_FROM, IP_TO, COUNTRY_NAME FROM iptocountry";
+    SQLMsg * pMsg = CDBManager::instance().DirectQuery(queryIpToCountry.str().c_str(), SQL_ACCOUNT);
 
-bool CBlockCountry::Load()
-{
-	// load blocked ip
-	{
-		char szQuery[256];
-		snprintf(szQuery, sizeof(szQuery), "SELECT IP_FROM, IP_TO, COUNTRY_NAME FROM iptocountry");
-		SQLMsg * pMsg = CDBManager::instance().DirectQuery(szQuery, SQL_ACCOUNT);
+    if (pMsg->Get()->uiNumRows == 0) {
+        std::ostringstream errorStream;
+        errorStream << "DirectQuery failed(" << queryIpToCountry.str() << ")";
+        sys_err(errorStream.str().c_str());
+        delete pMsg;
+        return false;
+    }
 
-		if (pMsg->Get()->uiNumRows == 0)
-		{
-			sys_err(" DirectQuery failed(%s)", szQuery);
-			delete pMsg;
-			return false;
-		}
+    MYSQL_ROW row;
+    for (int n = 0; (row = mysql_fetch_row(pMsg->Get()->pSQLResult)) != NULL; ++n) {
+        BLOCK_IP *block_ip = new BLOCK_IP;
+        block_ip->ip_from = strtoul(row[0], NULL, 10);
+        block_ip->ip_to = strtoul(row[1], NULL, 10);
+        strlcpy(block_ip->country, row[2], sizeof(block_ip->country));
 
-		MYSQL_ROW row;
-		for (int n = 0; (row = mysql_fetch_row(pMsg->Get()->pSQLResult)) != NULL; ++n)
-		{
-			BLOCK_IP	*block_ip = new BLOCK_IP;
-			block_ip->ip_from	= strtoul(row[0], NULL, 10);
-			block_ip->ip_to		= strtoul(row[1], NULL, 10);
-			strlcpy(block_ip->country, row[2], sizeof(block_ip->country));
+        m_block_ip.push_back(block_ip);
 
-			m_block_ip.push_back(block_ip);
-			sys_log(0, "BLOCKED_IP : %u - %u", block_ip->ip_from, block_ip->ip_to);
+        std::ostringstream logStream;
+        logStream << "BLOCKED_IP : " << block_ip->ip_from << " - " << block_ip->ip_to;
+        sys_log(0, logStream.str().c_str());
+    }
+    delete pMsg;
 
-		}
-		delete pMsg;
-	}
+    std::ostringstream queryBlockException;
+    queryBlockException << "SELECT login FROM block_exception";
+    pMsg = CDBManager::instance().DirectQuery(queryBlockException.str().c_str(), SQL_ACCOUNT);
 
+    if (pMsg->Get()->uiNumRows == 0) {
+        std::ostringstream errorStream;
+        errorStream << "DirectQuery failed(" << queryBlockException.str() << ")";
+        sys_err(errorStream.str().c_str());
+        delete pMsg;
+        return true;
+    }
 
-	// load block exception account
-	{
-		char szQuery[256];
-		snprintf(szQuery, sizeof(szQuery), "SELECT login FROM block_exception");
-		SQLMsg * pMsg = CDBManager::instance().DirectQuery(szQuery, SQL_ACCOUNT);
+    for (int n = 0; (row = mysql_fetch_row(pMsg->Get()->pSQLResult)) != NULL; ++n) {
+        const char *login = row[0];
 
-		if (pMsg->Get()->uiNumRows == 0)
-		{
-			sys_err(" DirectQuery failed(%s)", szQuery);
-			delete pMsg;
-			return true;
-		}
+        m_block_exception.push_back(strdup(login));
 
-		MYSQL_ROW row;
-		for (int n = 0; (row = mysql_fetch_row(pMsg->Get()->pSQLResult)) != NULL; ++n)
-		{
-			const char	*login = row[0];
-
-			m_block_exception.push_back(strdup(login));
-
-			sys_log(0, "BLOCK_EXCEPTION = %s", login);
-
-		}
-		delete pMsg;
-	}
+        std::ostringstream exceptionLogStream;
+        exceptionLogStream << "BLOCK_EXCEPTION = " << login;
+        sys_log(0, exceptionLogStream.str().c_str());
+    }
+    delete pMsg;
 
     return true;
 }
