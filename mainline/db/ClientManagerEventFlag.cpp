@@ -45,12 +45,12 @@ void CClientManager::SetEventFlag(TPacketSetEventFlag* p) {
     }
 
     if (bChanged) {
-        std::ostringstream oss;
-        oss << "REPLACE INTO quest" << GetTablePostfix()
+        std::ostringstream query;
+        query << "REPLACE INTO quest" << GetTablePostfix()
             << " (dwPID, szName, szState, lValue) VALUES(0, '"
             << p->szFlagName << "', '', " << p->lValue << ")";
 
-        CDBManager::instance().AsyncQueryPrepare(szQuery.str());
+        CDBManager::instance().AsyncQueryPrepare(query.str());
 
         std::ostringstream logOss;
         logOss << "HEADER_GD_SET_EVENT_FLAG : Changed CClientmanager::SetEventFlag("
