@@ -35,6 +35,7 @@
 #include <fstream>		// For file stream classes (e.g., std::ifstream, std::ofstream)
 #include <utility>		// For std::pair (a simple container for two values)
 #include <functional>	// For std::function (to store functions or function objects)
+#include <iomanip>		// For std::setw and std::setfill
 
 #ifdef __GNUC__
 	#include <float.h>
