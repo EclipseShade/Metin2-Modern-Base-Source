@@ -142,10 +142,7 @@ void *debug_realloc (void *block, size_t oldsize, size_t size) {
   }
 }
 
-
 /* }====================================================================== */
-
-
 
 /*
 ** {======================================================
@@ -153,28 +150,21 @@ void *debug_realloc (void *block, size_t oldsize, size_t size) {
 ** =======================================================
 */
 
-
 static char *buildop (Proto *p, int pc, char *buff) {
-  Instruction i = p->code[pc];
-  OpCode o = GET_OPCODE(i);
-  const char *name = luaP_opnames[o];
-  int line = getline(p, pc);
-  sprintf(buff, "(%4d) %4d - ", line, pc);
-  switch (getOpMode(o)) {  
-    case iABC:
-      sprintf(buff+strlen(buff), "%-12s%4d %4d %4d", name,
-              GETARG_A(i), GETARG_B(i), GETARG_C(i));
-      break;
-    case iABx:
-      sprintf(buff+strlen(buff), "%-12s%4d %4d", name, GETARG_A(i), GETARG_Bx(i));
-      break;
-    case iAsBx:
-      sprintf(buff+strlen(buff), "%-12s%4d %4d", name, GETARG_A(i), GETARG_sBx(i));
-      break;
-  }
-  return buff;
+	Instruction i = p->code[pc];
+	OpCode o = GET_OPCODE(i);
+	
+	const char *name = luaP_opnames[o];
+	int line = getline(p, pc);
+	sprintf(buff, "(%4d) %4d - ", line, pc);
+	
+	switch (getOpMode(o)) {  
+		case iABC: sprintf(buff+strlen(buff), "%-12s%4d %4d %4d", name, GETARG_A(i), GETARG_B(i), GETARG_C(i)); break;
+		case iABx: sprintf(buff+strlen(buff), "%-12s%4d %4d", name, GETARG_A(i), GETARG_Bx(i)); break;
+		case iAsBx: sprintf(buff+strlen(buff), "%-12s%4d %4d", name, GETARG_A(i), GETARG_sBx(i)); break;
+	}
+	return buff;
 }
-
 
 #if 0
 void luaI_printcode (Proto *pt, int size) {
