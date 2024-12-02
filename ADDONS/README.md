@@ -10,3 +10,9 @@
 - [ ] GF_Inventory Expansion https://metin2.dev/topic/15244-official-inventory-expansion/page/7/#comment-167339
 - [ ] GF_Move_Channel https://metin2.dev/topic/27974-official-move-channel/
 - [ ] GF_Client_Locale_String https://metin2.dev/topic/29790-official-client-locale-stringreversed/page/3/#comment-166975
+
+## FEATURES:
+- ENABLE_MINIMAP_TELEPORT_CLICK
+- ENABLE_MINIMAP_WHITEMARK_CIRCLE
+- ENABLE_NEW_QUERY
+- FIX_ME (list of fix)
