@@ -11,7 +11,6 @@
 #else
 #define sys_err TraceError
 #define sys_log //(n, format, ...) Tracenf(format, __VA_ARGS__)
-#define thecore_memcpy memcpy
 #define itertype(cont) typeof(cont.begin())
 #endif
 
@@ -291,7 +290,7 @@ void SGuildMarkBlock::CopyFrom(const BYTE * pbCompBuf, DWORD dwCompSize, DWORD c
 		return;
 
 	m_sizeCompBuf = dwCompSize;
-	thecore_memcpy(m_abCompBuf, pbCompBuf, dwCompSize);
+	memcpy(m_abCompBuf, pbCompBuf, dwCompSize);
 	m_crc = crc;
 	//printf("SGuildMarkBlock::CopyFrom: %u > %u crc %u\n", sizeof(Pixel) * SGuildMarkBlock::SIZE, m_sizeCompBuf, m_crc);
 }
