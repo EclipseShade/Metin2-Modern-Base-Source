@@ -48,51 +48,53 @@ int MyBidBoard::GetMoney (DWORD player_id, DWORD item_id)
 		return it->second;
 }
 
-bool MyBidBoard::Delete (DWORD player_id, DWORD item_id)
-{
-	TMyBidBoard::iterator pc_it = pc_map.find (player_id);
-	if (pc_it == pc_map.end())
-	{
-		return false;
-	}
-	TItemMap* item_map = pc_it->second;
-	TItemMap::iterator it = item_map->find (item_id);
-	if (it == item_map->end())
-		return false;
-	else
-	{
-		item_map->erase(it);
-	}
-	char szQuery[512];
-	snprintf(szQuery, sizeof(szQuery), "DELETE FROM my_bid WHERE player_id = %d and item_id = %d", player_id, item_id);
-	CDBManager::instance().AsyncQuery(szQuery);
-	return true;
+bool MyBidBoard::Delete(DWORD player_id, DWORD item_id) {
+    TMyBidBoard::iterator pc_it = pc_map.find(player_id);
+
+    if (pc_it == pc_map.end()) {
+        return false;
+    }
+
+    TItemMap* item_map = pc_it->second;
+    TItemMap::iterator it = item_map->find(item_id);
+
+    if (it == item_map->end()) {
+        return false;
+    } else {
+        item_map->erase(it);
+    }
+
+    std::ostringstream msg;
+    msg << "DELETE FROM my_bid WHERE player_id = " << player_id << " AND item_id = " << item_id;
+
+    CDBManager::instance().AsyncQueryPrepare(msg.str());
+    
+    return true;
 }
 
-void MyBidBoard::Insert (DWORD player_id, DWORD item_id, int money)
-{
-	TMyBidBoard::iterator pc_it = pc_map.find (player_id);
-	TItemMap* item_map;
-	if (pc_it == pc_map.end())
-	{
-		item_map = new TItemMap();
-		pc_map.insert (TMyBidBoard::value_type (player_id, item_map));
-	}
-	else
-		item_map = pc_it->second;
+void MyBidBoard::Insert(DWORD player_id, DWORD item_id, int money) {
+    TMyBidBoard::iterator pc_it = pc_map.find(player_id);
+    TItemMap* item_map;
 
-	TItemMap::iterator it = item_map->find (item_id);
-	if (it == item_map->end())
-	{
-		item_map->insert (TItemMap::value_type (item_id, money));
-	}
-	else
-	{
-		it->second = money;
-	}
-	char szQuery[512];
-	snprintf(szQuery, sizeof(szQuery), "REPLACE INTO my_bid VALUES (%d, %d, %d)", player_id, item_id, money);
-	CDBManager::instance().AsyncQuery(szQuery);
+    if (pc_it == pc_map.end()) {
+        item_map = new TItemMap();
+        pc_map.insert(TMyBidBoard::value_type(player_id, item_map));
+    } else {
+        item_map = pc_it->second;
+    }
+
+    TItemMap::iterator it = item_map->find(item_id);
+    if (it == item_map->end()) {
+        item_map->insert(TItemMap::value_type(item_id, money));
+    } else {
+        it->second = money;
+    }
+
+    std::ostringstream my_bid;
+    my_bid << "REPLACE INTO my_bid VALUES (" << player_id << ", " << item_id << ", " << money << ")";
+    std::string query = my_bid.str();
+
+    CDBManager::instance().AsyncQueryPrepare(query);
 }
 
 AuctionManager::AuctionManager()
@@ -103,8 +105,8 @@ AuctionManager::~AuctionManager()
 {
 }
 
-void AuctionManager::Initialize()
-{	auction_item_cache_map.clear();
+void AuctionManager::Initialize(){	
+	auction_item_cache_map.clear();
 	LoadAuctionItem();
 	LoadAuctionInfo();
 	LoadSaleInfo();
@@ -112,84 +114,75 @@ void AuctionManager::Initialize()
 	LoadMyBidInfo();
 }
 
-void AuctionManager::LoadAuctionItem()
-{
-	char szQuery[512];
-	snprintf(szQuery, sizeof(szQuery), 
-		"SELECT id,	owner_id, count, vnum, socket0, socket1, socket2, "
-		"attrtype0, attrvalue0, "
-		"attrtype1, attrvalue1, "
-		"attrtype2, attrvalue2, "
-		"attrtype3, attrvalue3, "
-		"attrtype4, attrvalue4, "
-		"attrtype5, attrvalue5, "
-		"attrtype6, attrvalue6  "
-		"FROM item WHERE window = 'AUCTION'");
+void AuctionManager::LoadAuctionItem() {
+    std::ostringstream auctionQuery;
 
-	SQLMsg *msg = CDBManager::instance().DirectQuery(szQuery);
+    auctionQuery << "SELECT id, owner_id, count, vnum, socket0, socket1, socket2, "
+                   "attrtype0, attrvalue0, "
+                   "attrtype1, attrvalue1, "
+                   "attrtype2, attrvalue2, "
+                   "attrtype3, attrvalue3, "
+                   "attrtype4, attrvalue4, "
+                   "attrtype5, attrvalue5, "
+                   "attrtype6, attrvalue6 "
+                   "FROM item WHERE window = 'AUCTION'";
 
-	MYSQL_RES *res = msg->Get()->pSQLResult;
-	
-	if (!res)
-	{
-		return;
-	}
-	int rows;
+    SQLMsg *msg = CDBManager::instance().DirectQueryPrepare(auctionQuery.str().c_str());
 
-	if ((rows = mysql_num_rows(res)) <= 0)	// 데이터 없음
-	{
-		return;
-	}
+    MYSQL_RES *res = msg->Get()->pSQLResult;
 
-	for (int i = 0; i < rows; ++i)
-	{
-		MYSQL_ROW row = mysql_fetch_row(res);
-		TPlayerItem item;
+    if (!res) {
+        return;
+    }
+    int rows;
 
-		int cur = 0;
+    if ((rows = mysql_num_rows(res)) <= 0) {
+        return;
+    }
 
-		str_to_number(item.id, row[cur++]);
-		str_to_number(item.owner, row[cur++]);
-		item.window = AUCTION;
-		str_to_number(item.count, row[cur++]);
-		str_to_number(item.vnum, row[cur++]);
-		str_to_number(item.alSockets[0], row[cur++]);
-		str_to_number(item.alSockets[1], row[cur++]);
-		str_to_number(item.alSockets[2], row[cur++]);
+    for (int i = 0; i < rows; ++i) {
+        MYSQL_ROW row = mysql_fetch_row(res);
+        TPlayerItem item;
 
-		for (int j = 0; j < ITEM_ATTRIBUTE_MAX_NUM; j++)
-		{
-			str_to_number(item.aAttr[j].bType, row[cur++]);
-			str_to_number(item.aAttr[j].sValue, row[cur++]);
-		}
-		InsertItemCache(&item, true);
-	}
-	return;
+        int cur = 0;
+
+        str_to_number(item.id, row[cur++]);
+        str_to_number(item.owner, row[cur++]);
+        item.window = AUCTION;
+        str_to_number(item.count, row[cur++]);
+        str_to_number(item.vnum, row[cur++]);
+        str_to_number(item.alSockets[0], row[cur++]);
+        str_to_number(item.alSockets[1], row[cur++]);
+        str_to_number(item.alSockets[2], row[cur++]);
+
+        for (int j = 0; j < ITEM_ATTRIBUTE_MAX_NUM; j++) {
+            str_to_number(item.aAttr[j].bType, row[cur++]);
+            str_to_number(item.aAttr[j].sValue, row[cur++]);
+        }
+
+        InsertItemCache(&item, true);
+    }
+    return;
 }
 
-void AuctionManager::LoadAuctionInfo()
-{
-	char szQuery[512];
-	snprintf(szQuery, sizeof(szQuery), 
-		"select * from auction");
+void AuctionManager::LoadAuctionInfo() {
+	std::ostringstream auctionQuery;
+	auctionQuery << "SELECT * FROM auction";
 
-	SQLMsg *msg = CDBManager::instance().DirectQuery(szQuery);
+	SQLMsg *msg = CDBManager::instance().DirectQueryPrepare(auctionQuery.str().c_str());
 
 	MYSQL_RES *res = msg->Get()->pSQLResult;
 	
-	if (!res)
-	{
+	if (!res) {
 		return;
 	}
 	int rows;
 
-	if ((rows = mysql_num_rows(res)) <= 0)	// 데이터 없음
-	{
+	if ((rows = mysql_num_rows(res)) <= 0) {
 		return;
 	}
 
-	for (int i = 0; i < rows; ++i)
-	{
+	for (int i = 0; i < rows; ++i) {
 		MYSQL_ROW row = mysql_fetch_row(res);
 		TAuctionItemInfo auctionItemInfo;
 
@@ -211,29 +204,24 @@ void AuctionManager::LoadAuctionInfo()
 	return;
 }
 
-void AuctionManager::LoadSaleInfo()
-{
-	char szQuery[512];
-	snprintf(szQuery, sizeof(szQuery), 
-		"select * from sale");
+void AuctionManager::LoadSaleInfo() {
+    std::ostringstream queryAuctionSale;
+    queryAuctionSale << "SELECT * FROM sale";
 
-	SQLMsg *msg = CDBManager::instance().DirectQuery(szQuery);
+    SQLMsg *msg = CDBManager::instance().DirectQueryPrepare(queryAuctionSale.str().c_str());
 
-	MYSQL_RES *res = msg->Get()->pSQLResult;
+    MYSQL_RES *res = msg->Get()->pSQLResult;
 	
-	if (!res)
-	{
+	if (!res) {
 		return;
 	}
 	int rows;
 
-	if ((rows = mysql_num_rows(res)) <= 0)	// 데이터 없음
-	{
+	if ((rows = mysql_num_rows(res)) <= 0) {
 		return;
 	}
 
-	for (int i = 0; i < rows; ++i)
-	{
+	for (int i = 0; i < rows; ++i) {
 		MYSQL_ROW row = mysql_fetch_row(res);
 		TSaleItemInfo saleItemInfo;
 
@@ -254,6 +242,7 @@ void AuctionManager::LoadSaleInfo()
 	}
 	return;
 }
+
 void AuctionManager::LoadWishInfo()
 {
 	char szQuery[512];
@@ -296,63 +285,59 @@ void AuctionManager::LoadWishInfo()
 	return;
 }
 
-void AuctionManager::LoadMyBidInfo ()
-{
-	char szQuery[512];
-	snprintf(szQuery, sizeof(szQuery), 
-		"select * from my_bid");
+void AuctionManager::LoadMyBidInfo() {
+    std::ostringstream my_bid;
+    my_bid << "select * from my_bid";
 
-	SQLMsg *msg = CDBManager::instance().DirectQuery(szQuery);
+    SQLMsg *msg = CDBManager::instance().DirectQuery(my_bid.str().c_str());
 
-	MYSQL_RES *res = msg->Get()->pSQLResult;
-	
-	if (!res)
-	{
-		return;
-	}
-	int rows;
+    MYSQL_RES *res = msg->Get()->pSQLResult;
 
-	if ((rows = mysql_num_rows(res)) <= 0)	// 데이터 없음
-	{
-		return;
-	}
+    if (!res) {
+        return;
+    }
+    int rows;
 
-	for (int i = 0; i < rows; ++i)
-	{
-		MYSQL_ROW row = mysql_fetch_row(res);
+    if ((rows = mysql_num_rows(res)) <= 0) {    // No data
+        return;
+    }
 
-		int cur = 0;
-		DWORD player_id;
-		DWORD item_id;
-		int money;
+    for (int i = 0; i < rows; ++i) {
+        MYSQL_ROW row = mysql_fetch_row(res);
 
-		str_to_number(player_id, row[cur++]);
-		str_to_number(item_id, row[cur++]);
-		str_to_number(money, row[cur++]);
+        int cur = 0;
+        DWORD player_id;
+        DWORD item_id;
+        int money;
 
-		InsertMyBid (player_id, item_id, money);
-	}
-	return;
+        str_to_number(player_id, row[cur++]);
+        str_to_number(item_id, row[cur++]);
+        str_to_number(money, row[cur++]);
+
+        InsertMyBid(player_id, item_id, money);
+    }
+
+    return;
 }
 
-inline CItemCache* AuctionManager::GetItemCache(DWORD item_id)
-{
+inline CItemCache* AuctionManager::GetItemCache(DWORD item_id) {
 	TItemCacheMap::iterator it = auction_item_cache_map.find (item_id);
-	if (it == auction_item_cache_map.end())
+	if (it == auction_item_cache_map.end()) {
 		return NULL;
-	else
+	} else {
 		return it->second;
+	}
 }
 
-void AuctionManager::Boot(CPeer* peer)
-{
+void AuctionManager::Boot(CPeer* peer) {
 	peer->EncodeWORD(sizeof(TPlayerItem));
 	peer->EncodeWORD(auction_item_cache_map.size());
 
 	itertype(auction_item_cache_map) auction_item_cache_map_it = auction_item_cache_map.begin();
 
-	while (auction_item_cache_map_it != auction_item_cache_map.end())
+	while (auction_item_cache_map_it != auction_item_cache_map.end()) {
 		peer->Encode((auction_item_cache_map_it++)->second->Get(), sizeof(TPlayerItem));
+	}
 	
 	Auction.Boot(peer);
 	Sale.Boot(peer);
@@ -360,28 +345,24 @@ void AuctionManager::Boot(CPeer* peer)
 	MyBid.Boot(peer);
 }
 
-bool AuctionManager::InsertItemCache(CItemCache *item_cache, bool bSkipQuery)
-{
+bool AuctionManager::InsertItemCache(CItemCache *item_cache, bool bSkipQuery) {
 	CItemCache* c = GetItemCache (item_cache->Get(false)->id);
-	if (c != NULL)
-	{
+	if (c != NULL) {
 		return false;
 	}
+	
 	auction_item_cache_map.insert(TItemCacheMap::value_type(item_cache->Get(true)->id, item_cache));
 	item_cache->OnFlush();
 	return true;
 }
 
-bool AuctionManager::InsertItemCache(TPlayerItem * pNew, bool bSkipQuery)
-{
+bool AuctionManager::InsertItemCache(TPlayerItem * pNew, bool bSkipQuery) {
 	CItemCache* c = GetItemCache (pNew->id);
-	if (c != NULL)
-	{
+	if (c != NULL) {
 		return false;
 	}
 	
 	c = new CItemCache();
-
 	c->Put(pNew, bSkipQuery);
 
 	auction_item_cache_map.insert(TItemCacheMap::value_type(pNew->id, c));
@@ -389,11 +370,9 @@ bool AuctionManager::InsertItemCache(TPlayerItem * pNew, bool bSkipQuery)
 	return true;
 }
 
-bool AuctionManager::DeleteItemCache(DWORD item_id)
-{
+bool AuctionManager::DeleteItemCache(DWORD item_id) {
 	CItemCache* c = GetItemCache (item_id);
-	if (c == NULL)
-	{
+	if (c == NULL) {
 		return false;
 	}
 
@@ -402,67 +381,70 @@ bool AuctionManager::DeleteItemCache(DWORD item_id)
 	return true;
 }
 
-AuctionResult AuctionManager::EnrollInAuction(CItemCache* item_cache, TAuctionItemInfo &item_info)
-{
-	CItemCache* c = GetItemCache (item_info.item_id);
-	if (c != NULL)
-	{
-		sys_err ("item id : %d is already in AuctionManager", item_info.item_id);
-		return AUCTION_FAIL;
-	}
+AuctionResult AuctionManager::EnrollInAuction(CItemCache* item_cache, TAuctionItemInfo &item_info) {
+    CItemCache* c = GetItemCache(item_info.item_id);
+    if (c != NULL) {
+        std::ostringstream oss;
+        oss << "item id : " << item_info.item_id << " is already in AuctionManager";
+        sys_err(oss.str().c_str());
+        return AUCTION_FAIL;
+    }
 
-	if (!Auction.InsertItemInfo (&item_info))
-	{
-		sys_err ("item id : %d is already in AuctionBoard", item_info.item_id);
-		return AUCTION_FAIL;
-	}
+    if (!Auction.InsertItemInfo(&item_info)) {
+        std::ostringstream oss;
+        oss << "item id : " << item_info.item_id << " is already in AuctionBoard";
+        sys_err(oss.str().c_str());
+        return AUCTION_FAIL;
+    }
 
-	item_cache->Get()->window = AUCTION;
-	item_cache->Get()->pos = 9999999;
+    item_cache->Get()->window = AUCTION;
+    item_cache->Get()->pos = 9999999;
 
-	InsertItemCache (item_cache);
-	
-	return AUCTION_SUCCESS;
+    InsertItemCache(item_cache);
+    
+    return AUCTION_SUCCESS;
 }
 
-AuctionResult AuctionManager::EnrollInSale(CItemCache* item_cache, TSaleItemInfo &item_info)
-{
-	CItemCache* c = GetItemCache (item_info.item_id);
-	if (c != NULL)
-	{
-		sys_err ("item id : %d is already in AuctionManager", item_info.item_id);
-		return AUCTION_FAIL;
-	}
+AuctionResult AuctionManager::EnrollInSale(CItemCache* item_cache, TSaleItemInfo &item_info) {
+    CItemCache* c = GetItemCache(item_info.item_id);
+    if (c != NULL) {
+        std::ostringstream oss;
+        oss << "item id : " << item_info.item_id << " is already in AuctionManager";
+        sys_err(oss.str().c_str());
+        return AUCTION_FAIL;
+    }
 
-	if (!Wish.GetItemInfoCache (WishBoard::Key (item_info.item_num, item_info.wisher_id)))
-	{
-		sys_err ("item_num : %d, wisher_id : %d is not in wish auction.", item_info.item_num, item_info.wisher_id);
-		return AUCTION_FAIL;
-	}
-	
-	if (!Sale.InsertItemInfo (&item_info))
-	{
-		sys_err ("item id : %d is already in SaleBoard", item_info.item_id);
-		return AUCTION_FAIL;
-	}
-	
-	item_cache->Get()->window = AUCTION;
-	item_cache->Get()->pos = 999999;
+    if (!Wish.GetItemInfoCache(WishBoard::Key(item_info.item_num, item_info.wisher_id))) {
+        std::ostringstream oss;
+        oss << "item_num : " << item_info.item_num << ", wisher_id : " << item_info.wisher_id << " is not in wish auction.";
+        sys_err(oss.str().c_str());
+        return AUCTION_FAIL;
+    }
 
-	InsertItemCache (item_cache);
-	
-	return AUCTION_SUCCESS;
+    if (!Sale.InsertItemInfo(&item_info)) {
+        std::ostringstream oss;
+        oss << "item id : " << item_info.item_id << " is already in SaleBoard";
+        sys_err(oss.str().c_str());
+        return AUCTION_FAIL;
+    }
+
+    item_cache->Get()->window = AUCTION;
+    item_cache->Get()->pos = 999999;
+
+    InsertItemCache(item_cache);
+
+    return AUCTION_SUCCESS;
 }
 
-AuctionResult AuctionManager::EnrollInWish(TWishItemInfo &item_info)
-{
-	if (!Wish.InsertItemInfo (&item_info))
-	{
-		sys_err ("wisher_id : %d, item_num : %d is already in WishBoard", item_info.offer_id, item_info.item_num);
-		return AUCTION_FAIL;
-	}
-		
-	return AUCTION_SUCCESS;
+AuctionResult AuctionManager::EnrollInWish(TWishItemInfo &item_info) {
+    if (!Wish.InsertItemInfo(&item_info)) {
+        std::ostringstream msg;
+        msg << "wisher_id : " << item_info.offer_id << ", item_num : " << item_info.item_num << " is already in WishBoard";
+        sys_err(msg.str());
+        return AUCTION_FAIL;
+    }
+
+    return AUCTION_SUCCESS;
 }
 
 AuctionResult AuctionManager::Bid(DWORD bidder_id, const char* bidder_name, DWORD item_id, DWORD bid_price)
