@@ -696,41 +696,33 @@ bool FIsLessCubeValue(const CUBE_VALUE& a, const CUBE_VALUE& b)
 	return a.vnum < b.vnum;
 }
 
-void Cube_MakeCubeInformationText()
-{
+void Cube_MakeCubeInformationText() {
 	// 이제 정리된 큐브 결과 및 재료들의 정보로 클라이언트에 보내 줄 정보로 변환함.
-	for (TCubeMapByNPC::iterator iter = cube_info_map.begin(); cube_info_map.end() != iter; ++iter)
-	{
+	for (TCubeMapByNPC::iterator iter = cube_info_map.begin(); cube_info_map.end() != iter; ++iter) {
 		const DWORD& npcVNUM = iter->first;
 		TCubeResultList& resultList = iter->second;
 
-		for (TCubeResultList::iterator resultIter = resultList.begin(); resultList.end() != resultIter; ++resultIter)
-		{
+		for (TCubeResultList::iterator resultIter = resultList.begin(); resultList.end() != resultIter; ++resultIter) {
 			SCubeMaterialInfo& materialInfo = *resultIter;
 			std::string& infoText = materialInfo.infoText;
 
 			
 			// 이놈이 나쁜놈이야
-			if (0 < materialInfo.complicateMaterial.size())
-			{
+			if (0 < materialInfo.complicateMaterial.size()) {
 				std::sort(materialInfo.complicateMaterial.begin(), materialInfo.complicateMaterial.end(), FIsLessCubeValue);
 				std::sort(materialInfo.material.begin(), materialInfo.material.end(), FIsLessCubeValue);
 
 				//// 중복되는 재료들을 지움
-				for (TCubeValueVector::iterator iter = materialInfo.complicateMaterial.begin(); materialInfo.complicateMaterial.end() != iter; ++iter)
-				{
-					for (TCubeValueVector::iterator targetIter = materialInfo.material.begin(); materialInfo.material.end() != targetIter; ++targetIter)
-					{
-						if (*targetIter == *iter)
-						{
+				for (TCubeValueVector::iterator iter = materialInfo.complicateMaterial.begin(); materialInfo.complicateMaterial.end() != iter; ++iter) {
+					for (TCubeValueVector::iterator targetIter = materialInfo.material.begin(); materialInfo.material.end() != targetIter; ++targetIter) {
+						if (*targetIter == *iter) {
 							targetIter = materialInfo.material.erase(targetIter);
 						}
 					}
 				}
 
 				// 72723,1 or 72725,1 or ... 이런 식의 약속된 포맷을 지키는 텍스트를 생성
-				for (TCubeValueVector::iterator iter = materialInfo.complicateMaterial.begin(); materialInfo.complicateMaterial.end() != iter; ++iter)
-				{
+				for (TCubeValueVector::iterator iter = materialInfo.complicateMaterial.begin(); materialInfo.complicateMaterial.end() != iter; ++iter) {
 					char tempBuffer[128];
 					sprintf(tempBuffer, "%d,%d|", iter->vnum, iter->count);
 					
@@ -739,13 +731,13 @@ void Cube_MakeCubeInformationText()
 
 				infoText.erase(infoText.size() - 1);
 
-				if (0 < materialInfo.material.size())
+				if (0 < materialInfo.material.size()) {
 					infoText.push_back('&');
+				}
 			}
 
 			// 중복되지 않는 일반 재료들도 포맷 생성
-			for (TCubeValueVector::iterator iter = materialInfo.material.begin(); materialInfo.material.end() != iter; ++iter)
-			{
+			for (TCubeValueVector::iterator iter = materialInfo.material.begin(); materialInfo.material.end() != iter; ++iter) {
 				char tempBuffer[128];
 				sprintf(tempBuffer, "%d,%d&", iter->vnum, iter->count);
 				infoText += std::string(tempBuffer);
@@ -754,8 +746,7 @@ void Cube_MakeCubeInformationText()
 			infoText.erase(infoText.size() - 1);
 
 			// 만들 때 골드가 필요하다면 골드정보 추가
-			if (0 < materialInfo.gold)
-			{
+			if (0 < materialInfo.gold) {
 				char temp[128];
 				sprintf(temp, "%d", materialInfo.gold);
 				infoText += std::string("/") + temp;
