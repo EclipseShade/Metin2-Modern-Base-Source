@@ -4387,25 +4387,6 @@ void CClientManager::ChargeCash(const TRequestChargeCash* packet) {
     CDBManager::Instance().AsyncQueryPrepare(msg.str().c_str(), SQL_ACCOUNT);
 }
 
-void CClientManager::ChargeCash(const TRequestChargeCash* packet) {
-	std::ostringstream msg;
-	
-	if (ERequestCharge_Cash == packet->eChargeType) {
-		msg << "UPDATE account SET `cash` = `cash` + " << packet->dwAmount << " WHERE id = " << packet->dwAID << " LIMIT 1";
-	} else if(ERequestCharge_Mileage == packet->eChargeType) {
-		msg << "UPDATE account SET `mileage` = `mileage` + " << packet->dwAmount << " WHERE id = " << packet->dwAID << " LIMIT 1";
-	} else {
-		msg << "Invalid request charge type (type : " << packet->eChargeType << ", amount : " << packet->dwAmount << ", aid : " << packet->dwAID << ")";
-		sys_err(msg.str().c_str());
-		return;
-	}
-
-	msg << "Request Charge (type : " << packet->eChargeType << ", amount : " << packet->dwAmount << ", aid : " << packet->dwAID << ")";
-	sys_err(msg.str().c_str());
-
-	CDBManager::Instance().AsyncQueryPrepare(szQuery, SQL_ACCOUNT);
-}
-
 #ifdef __AUCTION__
 void CClientManager::EnrollInAuction (CPeer * peer, DWORD owner_id, AuctionEnrollProductInfo* data)
 {
