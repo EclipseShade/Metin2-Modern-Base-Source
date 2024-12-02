@@ -49,7 +49,9 @@ struct timespec
 #define strlcat(dst, src, size) strcat_s(dst, size, src)
 #define strlcpy(dst, src, size) strncpy_s(dst, size, src, _TRUNCATE)
 #define strtoull(str, endptr, base) _strtoui64(str, endptr, base)
-#define strtof(str, endptr) (float)strtod(str, endptr)
+#if _MSC_VER <= 1500
+	#define strtof(str, endptr) ((float)strtod((str), (endptr)))
+#endif
 #define strcasecmp(s1, s2) stricmp(s1, s2)
 #define strncasecmp(s1, s2, n) strnicmp(s1, s2, n)
 #define atoll(str) _atoi64(str)
