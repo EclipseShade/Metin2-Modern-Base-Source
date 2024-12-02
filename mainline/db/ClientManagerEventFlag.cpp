@@ -66,7 +66,7 @@ void CClientManager::SetEventFlag(TPacketSetEventFlag* p) {
 }
 
 void CClientManager::SendEventFlagsOnSetup(CPeer* peer) {
-	typeof(m_map_lEventFlag.begin()) it;
+	decltype(m_map_lEventFlag.begin()) it;
 
 	for (it = m_map_lEventFlag.begin(); it != m_map_lEventFlag.end(); ++it) {
 		TPacketSetEventFlag p;

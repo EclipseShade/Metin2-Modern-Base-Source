@@ -37,7 +37,7 @@ bool CBanwordManager::CheckString(const char * c_pszString, size_t _len)
 	if (m_hashmap_words.empty())
 		return false;
 
-	typeof(m_hashmap_words.begin()) it = m_hashmap_words.begin();
+	decltype(m_hashmap_words.begin()) it = m_hashmap_words.begin();
 
 	while (it != m_hashmap_words.end())
 	{
@@ -73,7 +73,7 @@ bool CBanwordManager::CheckString(const char * c_pszString, size_t _len)
 
 void CBanwordManager::ConvertString(char * c_pszString, size_t _len)
 {
-	typeof(m_hashmap_words.begin()) it = m_hashmap_words.begin();
+	decltype(m_hashmap_words.begin()) it = m_hashmap_words.begin();
 
 	while (it != m_hashmap_words.end())
 	{

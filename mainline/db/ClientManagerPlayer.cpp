@@ -404,7 +404,7 @@ void CClientManager::ItemAward(CPeer * peer,char* login)
 	std::set<TItemAward *> * pSet = ItemAwardManager::instance().GetByLogin(login_t);	
 	if(pSet == NULL)
 		return;
-	typeof(pSet->begin()) it = pSet->begin();	//taken_time이 NULL인것들 읽어옴	
+	decltype(pSet->begin()) it = pSet->begin();	//taken_time이 NULL인것들 읽어옴	
 	while(it != pSet->end() )
 	{				
 		TItemAward * pItemAward = *(it++);		

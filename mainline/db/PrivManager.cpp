@@ -35,7 +35,7 @@ void CPrivManager::Update()
 		if (p->value != 0 && !p->bRemoved)
 		{
 
-			typeof(m_aPrivGuild[p->type].begin()) it = m_aPrivGuild[p->type].find(p->guild_id);
+			decltype(m_aPrivGuild[p->type].begin()) it = m_aPrivGuild[p->type].find(p->guild_id);
 
 			// ADD_GUILD_PRIV_TIME
 			// 길드에 중복적으로 보너스가 설정되었을 경우 map 의 value 가 갱신(수정) 되었으므로
@@ -73,7 +73,7 @@ void CPrivManager::Update()
 		{
 			// TODO send packet
 			SendChangeCharPriv(p->pid, p->type, 0);
-			typeof(m_aPrivChar[p->type].begin()) it = m_aPrivChar[p->type].find(p->pid);
+			decltype(m_aPrivChar[p->type].begin()) it = m_aPrivChar[p->type].find(p->pid);
 			if (it != m_aPrivChar[p->type].end())
 				m_aPrivChar[p->type].erase(it);
 		}
@@ -89,7 +89,7 @@ void CPrivManager::AddCharPriv(DWORD pid, BYTE type, int value)
 		return;
 	}
 
-	typeof(m_aPrivChar[type].begin()) it = m_aPrivChar[type].find(pid);
+	decltype(m_aPrivChar[type].begin()) it = m_aPrivChar[type].find(pid);
 
 	if (it != m_aPrivChar[type].end())
 		return;
@@ -124,7 +124,7 @@ void CPrivManager::AddGuildPriv(DWORD guild_id, BYTE type, int value, time_t dur
 		return;
 	}
 
-	typeof(m_aPrivGuild[type].begin()) it = m_aPrivGuild[type].find(guild_id);
+	decltype(m_aPrivGuild[type].begin()) it = m_aPrivGuild[type].find(guild_id);
 
 	time_t now = CClientManager::instance().GetCurrentTime();
 	time_t end = now + duration_sec;
@@ -278,13 +278,13 @@ void CPrivManager::SendPrivOnSetup(CPeer* peer)
 			// END_OF_ADD_EMPIRE_PRIV_TIME
 		}
 
-		for (typeof(m_aPrivGuild[i].begin()) it = m_aPrivGuild[i].begin(); it != m_aPrivGuild[i].end();++it)
+		for (decltype(m_aPrivGuild[i].begin()) it = m_aPrivGuild[i].begin(); it != m_aPrivGuild[i].end();++it)
 		{
 			// ADD_GUILD_PRIV_TIME
 			FSendChangeGuildPriv(it->first, i, it->second->value, it->second->end_time_sec)(peer);
 			// END_OF_ADD_GUILD_PRIV_TIME
 		}
-		for (typeof(m_aPrivChar[i].begin()) it = m_aPrivChar[i].begin(); it != m_aPrivChar[i].end(); ++it)
+		for (decltype(m_aPrivChar[i].begin()) it = m_aPrivChar[i].begin(); it != m_aPrivChar[i].end(); ++it)
 		{
 			FSendChangeCharPriv(it->first, i, it->second->value)(peer);
 		}

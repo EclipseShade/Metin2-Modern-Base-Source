@@ -498,7 +498,7 @@ bool CClientManager::InitializeShopTable()
 	m_pShopTable = new TShopTable[map_shop.size()];
 	m_iShopTableSize = map_shop.size();
 
-	typeof(map_shop.begin()) it = map_shop.begin();
+	decltype(map_shop.begin()) it = map_shop.begin();
 
 	int i = 0;
 

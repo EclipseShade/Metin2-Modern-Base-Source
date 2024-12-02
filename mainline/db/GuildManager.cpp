@@ -312,7 +312,7 @@ void CGuildManager::Update()
 	}
 }
 
-#define for_all(cont, it) for (typeof((cont).begin()) it = (cont).begin(); it != (cont).end(); ++it)
+#define for_all(cont, it) for (decltype((cont).begin()) it = (cont).begin(); it != (cont).end(); ++it)
 
 void CGuildManager::OnSetup(CPeer* peer)
 {
@@ -654,7 +654,7 @@ void CGuildManager::AddDeclare(BYTE bType, DWORD guild_from, DWORD guild_to)
 
 void CGuildManager::RemoveDeclare(DWORD guild_from, DWORD guild_to)
 {
-	typeof(m_DeclareMap.begin()) it = m_DeclareMap.find(TGuildDeclareInfo(0, guild_from, guild_to));
+	decltype(m_DeclareMap.begin()) it = m_DeclareMap.find(TGuildDeclareInfo(0, guild_from, guild_to));
 
 	if (it != m_DeclareMap.end())
 		m_DeclareMap.erase(it);

@@ -652,7 +652,7 @@ void CClientManager::RESULT_SAFEBOX_LOAD(CPeer * pkPeer, SQLMsg * msg)
 			{
 				std::vector<std::pair<DWORD, DWORD> > vec_dwFinishedAwardID;
 
-				typeof(pSet->begin()) it = pSet->begin();
+				decltype(pSet->begin()) it = pSet->begin();
 
 				char szQuery[512];
 

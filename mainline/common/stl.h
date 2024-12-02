@@ -13,7 +13,7 @@
 #endif
 
 #ifndef itertype
-#define itertype(v) typeof((v).begin())
+#define itertype(v) decltype((v).begin())
 #endif
 
 inline void stl_lowers(std::string& rstRet)

@@ -102,7 +102,7 @@ enum EEntityTypes
 };
 
 #ifndef itertype
-#define itertype(v) typeof((v).begin())
+#define itertype(v) decltype((v).begin())
 #endif
 
 #endif /* __INC_METIN_II_GAME_TYPEDEF_H__ */
