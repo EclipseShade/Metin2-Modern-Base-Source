@@ -35,11 +35,13 @@
 #define S_ISDIR(m)	(m & _S_IFDIR)
 #define snprintf _snprintf
 
+#if _MSC_VER <= 1500
 struct timespec
 {
     time_t  tv_sec;         /* seconds */
     long    tv_nsec;        /* and nanoseconds */
 };
+#endif
 
 #define __USE_SELECT__
 
