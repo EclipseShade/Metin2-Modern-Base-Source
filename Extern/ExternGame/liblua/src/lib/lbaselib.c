@@ -325,43 +325,29 @@ static int luaB_xpcall (lua_State *L) {
   return lua_gettop(L);  /* return status + all results */
 }
 
+static int luaB_tostring(lua_State *L) {
+    luaL_checkany(L, 1);
+    if (luaL_callmeta(L, 1, "__tostring")) {
+        return 1;
+	}
+ 
+    std::ostringstream msg;
 
-static int luaB_tostring (lua_State *L) {
-  char buff[128];
-  luaL_checkany(L, 1);
-  if (luaL_callmeta(L, 1, "__tostring"))  /* is there a metafield? */
-    return 1;  /* use its value */
-  switch (lua_type(L, 1)) {
-    case LUA_TNUMBER:
-      lua_pushstring(L, lua_tostring(L, 1));
-      return 1;
-    case LUA_TSTRING:
-      lua_pushvalue(L, 1);
-      return 1;
-    case LUA_TBOOLEAN:
-      lua_pushstring(L, (lua_toboolean(L, 1) ? "true" : "false"));
-      return 1;
-    case LUA_TTABLE:
-      sprintf(buff, "table: %p", lua_topointer(L, 1));
-      break;
-    case LUA_TFUNCTION:
-      sprintf(buff, "function: %p", lua_topointer(L, 1));
-      break;
-    case LUA_TUSERDATA:
-    case LUA_TLIGHTUSERDATA:
-      sprintf(buff, "userdata: %p", lua_touserdata(L, 1));
-      break;
-    case LUA_TTHREAD:
-      sprintf(buff, "thread: %p", (void *)lua_tothread(L, 1));
-      break;
-    case LUA_TNIL:
-      lua_pushliteral(L, "nil");
-      return 1;
-  }
-  lua_pushstring(L, buff);
-  return 1;
+    switch (lua_type(L, 1)) {
+        case LUA_TNUMBER: lua_pushstring(L, lua_tostring(L, 1)); return 1;
+        case LUA_TSTRING: lua_pushvalue(L, 1); return 1;
+        case LUA_TBOOLEAN: lua_pushstring(L, (lua_toboolean(L, 1) ? "true" : "false")); return 1;
+        case LUA_TTABLE: msg << "table: " << lua_topointer(L, 1);  break;
+        case LUA_TFUNCTION: msg << "function: " << lua_topointer(L, 1); break;
+        case LUA_TUSERDATA:
+        case LUA_TLIGHTUSERDATA: msg << "userdata: " << lua_touserdata(L, 1); break;
+        case LUA_TTHREAD: msg << "thread: " << (void *)lua_tothread(L, 1); break;
+        case LUA_TNIL: lua_pushliteral(L, "nil"); return 1;
+    }
+
+    lua_pushstring(L, oss.str().c_str());
+    return 1;
 }
-
 
 static int luaB_newproxy (lua_State *L) {
   lua_settop(L, 1);
