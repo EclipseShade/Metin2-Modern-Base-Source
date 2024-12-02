@@ -151,7 +151,7 @@ void CArenaMap::SendArenaMapListTo(LPCHARACTER pChar, DWORD mapIdx) {
             << "stB(" << (CArena*)(*iter)->GetStartPointB().x << ", " 
             << (CArena*)(*iter)->GetStartPointB().y << ")";
         
-        pChar->ChatPacket(CHAT_TYPE_INFO, msg.str());
+        pChar->ChatPacket(CHAT_TYPE_INFO, msg.str().c_str());
     }
 }
 
