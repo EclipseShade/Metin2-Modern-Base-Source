@@ -269,26 +269,29 @@ namespace marriage
 			ch->ChatPacket(CHAT_TYPE_COMMAND, __BuildCommandPlayMusic(szCommand, sizeof(szCommand), 1, m_stMusicFileName.c_str()));	
 	}
 
-	const char* WeddingMap::__BuildCommandPlayMusic(char* szCommand, size_t nCmdLen, BYTE bSet, const char* c_szMusicFileName)
-	{
-		if (nCmdLen < 1)
-		{
+	const char* WeddingMap::__BuildCommandPlayMusic(char* szCommand, size_t nCmdLen, BYTE bSet, const char* c_szMusicFileName) {
+		if (nCmdLen < 1) {
 			szCommand[0] = '\0';
 			return "PlayMusic 0 CommandLengthError";
 		}
 
-		snprintf(szCommand, nCmdLen, "PlayMusic %d %s", bSet, c_szMusicFileName);
+		std::ostringstream msg;
+		msg << "PlayMusic " << static_cast<int>(bSet) << " " << c_szMusicFileName;
+		std::string commandStr = msg.str();
+
+		if (commandStr.length() >= nCmdLen) {
+			szCommand[0] = '\0';
+			return "PlayMusic 0 CommandLengthExceeded";
+		}
+
+		std::strncpy(szCommand, commandStr.c_str(), nCmdLen);
+		szCommand[nCmdLen - 1] = '\0';
+
 		return szCommand;
 	}
-	// Manager
 
-	WeddingManager::WeddingManager()
-	{
-	}
-
-	WeddingManager::~WeddingManager()
-	{
-	}
+	WeddingManager::WeddingManager() {}
+	WeddingManager::~WeddingManager() {}
 
 	bool WeddingManager::IsWeddingMap(DWORD dwMapIndex)
 	{
