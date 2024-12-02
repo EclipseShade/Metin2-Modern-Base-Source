@@ -184,19 +184,18 @@ static int io_gc (lua_State *L) {
   return 0;
 }
 
-static int io_tostring(lua_State *L) {
-    std::ostringstream msg;
-    FileHandle *fh = topfile(L, 1);
-    
-    if (fh->f == NULL) {
-        msg << "closed";
-    } else {
-        msg << lua_touserdata(L, 1);
-    }
-    
-    lua_pushfstring(L, "file (%s)", msg.str().c_str());
-    return 1;
+
+static int io_tostring (lua_State *L) {
+  char buff[128];
+  FileHandle *fh = topfile(L, 1);
+  if (fh->f == NULL)
+    strcpy(buff, "closed");
+  else
+    sprintf(buff, "%p", lua_touserdata(L, 1));
+  lua_pushfstring(L, "file (%s)", buff);
+  return 1;
 }
+
 
 static int io_open (lua_State *L) {
   const char *filename = luaL_checkstring(L, 1);
@@ -205,6 +204,7 @@ static int io_open (lua_State *L) {
   *pf = fopen(filename, mode);
   return (*pf == NULL) ? pushresult(L, 0, filename) : 1;
 }
+
 
 static int io_popen (lua_State *L) {
 #if !USE_POPEN
@@ -220,17 +220,20 @@ static int io_popen (lua_State *L) {
 #endif
 }
 
+
 static int io_tmpfile (lua_State *L) {
   FILE **pf = newfile(L);
   *pf = tmpfile();
   return (*pf == NULL) ? pushresult(L, 0, NULL) : 1;
 }
 
+
 static FILE *getiofile (lua_State *L, const char *name) {
   lua_pushstring(L, name);
   lua_rawget(L, lua_upvalueindex(1));
   return tofile(L, -1);
 }
+
 
 static int g_iofile (lua_State *L, const char *name, const char *mode) {
   if (!lua_isnoneornil(L, 1)) {
@@ -256,6 +259,7 @@ static int g_iofile (lua_State *L, const char *name, const char *mode) {
   return 1;
 }
 
+
 static int io_input (lua_State *L) {
   return g_iofile(L, IO_INPUT, "r");
 }
@@ -265,7 +269,9 @@ static int io_output (lua_State *L) {
   return g_iofile(L, IO_OUTPUT, "w");
 }
 
+
 static int io_readline (lua_State *L);
+
 
 static void aux_lines (lua_State *L, int idx, int close) {
   lua_pushliteral(L, FILEHANDLE);
@@ -281,6 +287,7 @@ static int f_lines (lua_State *L) {
   aux_lines(L, 1, 0);
   return 1;
 }
+
 
 static int io_lines (lua_State *L) {
   if (lua_isnoneornil(L, 1)) {  /* no arguments? */
