@@ -5,7 +5,7 @@
 #include <vector>
 
 #if _MSC_VER
-    #include <hash_map>
+    #include <unordered_map>
 #else
     #include <map>
 #endif
@@ -40,8 +40,8 @@ class cCsvAlias
 {
 private:
 #if _MSC_VER
-    typedef stdext::hash_map<std::string, size_t> NAME2INDEX_MAP;
-    typedef stdext::hash_map<size_t, std::string> INDEX2NAME_MAP;
+    typedef std::unordered_map<std::string, size_t> NAME2INDEX_MAP;
+    typedef std::unordered_map<size_t, std::string> INDEX2NAME_MAP;
 #else
     typedef std::map<std::string, size_t> NAME2INDEX_MAP;
     typedef std::map<size_t, std::string> INDEX2NAME_MAP;
