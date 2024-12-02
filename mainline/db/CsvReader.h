@@ -4,10 +4,10 @@
 #include <string>
 #include <vector>
 
-#if _MSC_VER
-    #include <unordered_map>
+#if _MSC_VER <= 1500
+	#include <hash_map>
 #else
-    #include <map>
+    #include <unordered_map>
 #endif
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -39,12 +39,12 @@
 class cCsvAlias
 {
 private:
-#if _MSC_VER
+#if _MSC_VER <= 1500
+    typedef stdext::hash_map<std::string, size_t> NAME2INDEX_MAP;
+    typedef stdext::hash_map<size_t, std::string> INDEX2NAME_MAP;
+#else
     typedef std::unordered_map<std::string, size_t> NAME2INDEX_MAP;
     typedef std::unordered_map<size_t, std::string> INDEX2NAME_MAP;
-#else
-    typedef std::map<std::string, size_t> NAME2INDEX_MAP;
-    typedef std::map<size_t, std::string> INDEX2NAME_MAP;
 #endif
 
     NAME2INDEX_MAP m_Name2Index;  ///< 셀 인덱스 대신으로 사용하기 위한 이름들
