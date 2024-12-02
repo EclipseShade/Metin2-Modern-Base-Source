@@ -14,8 +14,8 @@
 
 #ifndef itertype
 	#if _MSC_VER <= 1500
+		#define decltype typeof
 		#define itertype(v) typeof((v).begin())
-		#define typeof decltype((v).begin())
 	#else
 		#define itertype(v) decltype((v).begin())
 	#endif
