@@ -4384,7 +4384,7 @@ void CClientManager::ChargeCash(const TRequestChargeCash* packet) {
                << ", aid: " << packet->dwAID << ")";
     sys_err(requestMsg.str().c_str());
 
-    CDBManager::Instance().AsyncQuery(msg.str().c_str(), SQL_ACCOUNT);
+    CDBManager::Instance().AsyncQueryPrepare(msg.str().c_str(), SQL_ACCOUNT);
 }
 
 void CClientManager::ChargeCash(const TRequestChargeCash* packet) {
@@ -4403,7 +4403,7 @@ void CClientManager::ChargeCash(const TRequestChargeCash* packet) {
 	msg << "Request Charge (type : " << packet->eChargeType << ", amount : " << packet->dwAmount << ", aid : " << packet->dwAID << ")";
 	sys_err(msg.str().c_str());
 
-	CDBManager::Instance().AsyncQuery(szQuery, SQL_ACCOUNT);
+	CDBManager::Instance().AsyncQueryPrepare(szQuery, SQL_ACCOUNT);
 }
 
 #ifdef __AUCTION__
