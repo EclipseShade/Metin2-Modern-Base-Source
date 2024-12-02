@@ -427,8 +427,8 @@ EVENTFUNC(duel_time_out) {
 
 				info->state++;
 
-				std::ostringstream oss;
 				{
+				std::ostringstream oss;
 				oss << "ARENA: Because of time over, duel is end. PIDA(" 
 					<< pArena->GetPlayerAPID() 
 					<< ") vs PIDB(" 
