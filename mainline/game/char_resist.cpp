@@ -180,29 +180,27 @@ void CHARACTER::AttackedByFire(LPCHARACTER pkAttacker, int amount, int count)
 	m_pkFireEvent = event_create(fire_event, info, 1);
 }
 
-void CHARACTER::AttackedByPoison(LPCHARACTER pkAttacker)
-{
-	if (m_pkPoisonEvent)
+void CHARACTER::AttackedByPoison(LPCHARACTER pkAttacker) {
+	if (m_pkPoisonEvent) {
 		return;
-
-	if (m_bHasPoisoned && !IsPC()) // 몬스터는 독이 한번만 걸린다.
-		return;
-
-	if (pkAttacker && pkAttacker->GetLevel() < GetLevel())
-	{
-		int delta = GetLevel() - pkAttacker->GetLevel();
-
-		if (delta > 8)
-			delta = 8;
-
-		if (number(1, 100) > poison_level_adjust[delta])
-			return;
 	}
 
-	/*if (IsImmune(IMMUNE_POISON))
-	  return;*/
+	if (m_bHasPoisoned && !IsPC()) {
+		return;
+	}
+	
+	if (pkAttacker && pkAttacker->GetLevel() < GetLevel()) {
+		int delta = GetLevel() - pkAttacker->GetLevel();
 
-	// 독 내성 굴림 실패, 독에 걸렸다!
+		if (delta > 8) {
+			delta = 8;
+		}
+
+		if (number(1, 100) > poison_level_adjust[delta]) {
+			return;
+		}
+	}
+
 	m_bHasPoisoned = true;
 
 	AddAffect(AFFECT_POISON, POINT_NONE, 0, AFF_POISON, POISON_LENGTH + 1, 0, true);
@@ -211,71 +209,70 @@ void CHARACTER::AttackedByPoison(LPCHARACTER pkAttacker)
 
 	info->ch = this;
 	info->count = 10;
-	info->attacker_pid = pkAttacker?pkAttacker->GetPlayerID():0;
+	info->attacker_pid = pkAttacker ? pkAttacker->GetPlayerID() : 0;
 
 	m_pkPoisonEvent = event_create(poison_event, info, 1);
 
-	if (test_server && pkAttacker)
-	{
-		char buf[256];
-		snprintf(buf, sizeof(buf), "POISON %s -> %s", pkAttacker->GetName(), GetName());
-		pkAttacker->ChatPacket(CHAT_TYPE_INFO, "%s", buf);
+	if (test_server && pkAttacker) {
+		std::ostringstream msg;
+		msg << "POISON " << pkAttacker->GetName() << " -> " << GetName();
+		pkAttacker->ChatPacket(CHAT_TYPE_INFO, "%s", msg.str().c_str());
 	}
 }
 
-void CHARACTER::RemoveFire()
-{
+void CHARACTER::RemoveFire() {
 	RemoveAffect(AFFECT_FIRE);
 	event_cancel(&m_pkFireEvent);
 }
 
-void CHARACTER::RemovePoison()
-{
+void CHARACTER::RemovePoison() {
 	RemoveAffect(AFFECT_POISON);
 	event_cancel(&m_pkPoisonEvent);
 }
 
-void CHARACTER::ApplyMobAttribute(const TMobTable* table)
-{
-	for (int i = 0; i < MOB_ENCHANTS_MAX_NUM; ++i)
-	{
-		if (table->cEnchants[i] != 0)
+void CHARACTER::ApplyMobAttribute(const TMobTable* table) {
+	for (int i = 0; i < MOB_ENCHANTS_MAX_NUM; ++i) {
+		if (table->cEnchants[i] != 0) {
 			ApplyPoint(aiMobEnchantApplyIdx[i], table->cEnchants[i]);
+		}
 	}
 
-	for (int i = 0; i < MOB_RESISTS_MAX_NUM; ++i)
-	{
-		if (table->cResists[i] != 0)
+	for (int i = 0; i < MOB_RESISTS_MAX_NUM; ++i) {
+		if (table->cResists[i] != 0) {
 			ApplyPoint(aiMobResistsApplyIdx[i], table->cResists[i]);
+		}
 	}
 }
 
-bool CHARACTER::IsImmune(DWORD dwImmuneFlag)
-{
-	if (IS_SET(m_pointsInstant.dwImmuneFlag, dwImmuneFlag))
-	{
-		int immune_pct = 90;
-		int	percent = number(1, 100);
+bool CHARACTER::IsImmune(DWORD dwImmuneFlag) {
+    if (IS_SET(m_pointsInstant.dwImmuneFlag, dwImmuneFlag)) {
+        int immune_pct = 90;    // 90% Immune
+        int percent = number(1, 100);
 
-		if (percent <= immune_pct)	// 90% Immune
-		{
-			if (test_server && IsPC())
-				ChatPacket(CHAT_TYPE_PARTY, "<IMMUNE_SUCCESS> (%s)", GetName()); 
+        std::ostringstream msg;
 
-			return true;
-		}
-		else
-		{
-			if (test_server && IsPC())
-				ChatPacket(CHAT_TYPE_PARTY, "<IMMUNE_FAIL> (%s)", GetName());
+        if (percent <= immune_pct) {
+            if (test_server && IsPC()) {
+                msg << "<IMMUNE_SUCCESS> (" << GetName() << ")";
+                ChatPacket(CHAT_TYPE_PARTY, msg.str().c_str());
+            }
 
-			return false;
-		}
-	}
+            return true;
+        } else {
+            if (test_server && IsPC()) {
+                msg << "<IMMUNE_FAIL> (" << GetName() << ")";
+                ChatPacket(CHAT_TYPE_PARTY, msg.str().c_str());
+            }
 
-	if (test_server && IsPC())
-		ChatPacket(CHAT_TYPE_PARTY, "<IMMUNE_FAIL> (%s) NO_IMMUNE_FLAG", GetName());
+            return false;
+        }
+    }
 
-	return false;
+    if (test_server && IsPC()) {
+        std::ostringstream msg;
+        msg << "<IMMUNE_FAIL> (" << GetName() << ") NO_IMMUNE_FLAG";
+        ChatPacket(CHAT_TYPE_PARTY, msg.str().c_str());
+    }
+
+    return false;
 }
-
