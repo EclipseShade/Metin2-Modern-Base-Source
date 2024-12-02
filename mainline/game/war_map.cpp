@@ -309,23 +309,24 @@ void CWarMap::STeamData::RemoveMember(LPCHARACTER ch)
 	--iMemberCount;
 }
 
+struct FSendUserCount {
+    std::string buf1;
+    std::string buf2;
 
-struct FSendUserCount
-{
-	char buf1[30];
-	char buf2[128];
+    FSendUserCount(DWORD g1, int g1_count, DWORD g2, int g2_count, int observer) {
+        std::ostringstream msgObserve;
+        msgObserve << "ObserverCount " << observer;
+        buf1 = msgObserve.str();
 
-	FSendUserCount(DWORD g1, int g1_count, DWORD g2, int g2_count, int observer)
-	{
-		snprintf(buf1, sizeof(buf1), "ObserverCount %d", observer);
-		snprintf(buf2, sizeof(buf2), "WarUC %u %d %u %d %d", g1, g1_count, g2, g2_count, observer);
-	}
+        std::ostringstream msgWarUC;
+        msgWarUC << "WarUC " << g1 << " " << g1_count << " " << g2 << " " << g2_count << " " << observer;
+        buf2 = msgWarUC.str();
+    }
 
-	void operator() (LPCHARACTER ch)
-	{
-		ch->ChatPacket(CHAT_TYPE_COMMAND, buf1);
-		ch->ChatPacket(CHAT_TYPE_COMMAND, buf2);
-	}
+    void operator() (LPCHARACTER ch) {
+        ch->ChatPacket(CHAT_TYPE_COMMAND, buf1.c_str());
+        ch->ChatPacket(CHAT_TYPE_COMMAND, buf2.c_str());
+    }
 };
 
 void CWarMap::UpdateUserCount()
