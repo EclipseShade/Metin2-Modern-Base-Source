@@ -152,30 +152,27 @@ bool CXTrapManager::LoadXTrapModule()
 	return true;
 }
 
-bool CXTrapManager::LoadClientMapFile( unsigned int iMapIndex )
-{
+bool CXTrapManager::LoadClientMapFile(unsigned int iMapIndex) {
 #ifdef __FreeBSD__
-	//index check
-	if( iMapIndex >= CSFILE_NUM )
-	{
-		return false;
-	}
+    // Index check
+    if (iMapIndex >= CSFILE_NUM) {
+        return false;
+    }
 
-	char szFileName[1024] = {0,};
-	snprintf(szFileName, sizeof(szFileName), "map%d.CS3", iMapIndex+1);
+    std::ostringstream msg;
+    msg << "map" << (iMapIndex + 1) << ".CS3";
+    std::string fileName = msg.str();
 
-	FILE* fi = 0;
-	fi = fopen(szFileName, "rb");
-	if (fi == NULL) 
-	{
-		return false;
-	}
+    FILE* fi = fopen(fileName.c_str(), "rb");
+    if (fi == NULL) {
+        return false;
+    }
 
-	fread(g_XTrap_ClientMap[iMapIndex], XTRAP_CS4_BUFSIZE_MAP, 1, fi);
-	fclose(fi);
+    fread(g_XTrap_ClientMap[iMapIndex], XTRAP_CS4_BUFSIZE_MAP, 1, fi);
+    fclose(fi);
 #endif
 
-	return true;
+    return true;
 }
 
 EVENTINFO(xtrap_cs1_check_info)
