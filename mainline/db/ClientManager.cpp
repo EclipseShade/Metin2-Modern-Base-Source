@@ -73,12 +73,10 @@ void CClientManager::SetPlayerIDStart(int iIDStart)
 	m_iPlayerIDStart = iIDStart;
 }
 
-void CClientManager::GetPeerP2PHostNames(std::string& peerHostNames)
-{
+void CClientManager::GetPeerP2PHostNames(std::string& peerHostNames) {
 	std::ostringstream oss(std::ostringstream::out);
 
-	for (itertype(m_peerList) it = m_peerList.begin(); it != m_peerList.end(); ++it)
-	{
+	for (itertype(m_peerList) it = m_peerList.begin(); it != m_peerList.end(); ++it) {
 		CPeer * peer = *it;
 		oss << peer->GetHost() << " " << peer->GetP2PPort() << " channel : " << (int)(peer->GetChannel()) << "\n";
 	}
@@ -4356,31 +4354,54 @@ void CClientManager::RequestChannelStatus(CPeer* peer, DWORD dwHandle)
 	}
 }
 
-void CClientManager::ResetLastPlayerID(const TPacketNeedLoginLogInfo* data)
-{
+void CClientManager::ResetLastPlayerID(const TPacketNeedLoginLogInfo* data) {
 	CLoginData* pkLD = GetLoginDataByAID( data->dwPlayerID );
 
-	if (NULL != pkLD)
-	{
+	if (NULL != pkLD) {
 		pkLD->SetLastPlayerID( 0 );
 	}
 }
 
-void CClientManager::ChargeCash(const TRequestChargeCash* packet)
-{
-	char szQuery[512];
+void CClientManager::ChargeCash(const TRequestChargeCash* packet) {
+    std::ostringstream msg;
 
-	if (ERequestCharge_Cash == packet->eChargeType)
-		sprintf(szQuery, "update account set `cash` = `cash` + %d where id = %d limit 1", packet->dwAmount, packet->dwAID);
-	else if(ERequestCharge_Mileage == packet->eChargeType)
-		sprintf(szQuery, "update account set `mileage` = `mileage` + %d where id = %d limit 1", packet->dwAmount, packet->dwAID);
-	else
-	{
-		sys_err ("Invalid request charge type (type : %d, amount : %d, aid : %d)", packet->eChargeType, packet->dwAmount, packet->dwAID);
+    if (ERequestCharge_Cash == packet->eChargeType) {
+        msg << "UPDATE account SET `cash` = `cash` + " << packet->dwAmount << " WHERE id = " << packet->dwAID << " LIMIT 1";
+	} else if(ERequestCharge_Mileage == packet->eChargeType) {
+        msg << "UPDATE account SET `mileage` = `mileage` + " << packet->dwAmount << " WHERE id = " << packet->dwAID << " LIMIT 1";
+	} else {
+        std::ostringstream errorMsg;
+        errorMsg << "Invalid request charge type (type: " << packet->eChargeType 
+                  << ", amount: " << packet->dwAmount 
+                  << ", aid: " << packet->dwAID << ")";
+        sys_err(errorMsg.str().c_str());
+        return;
+    }
+
+    std::ostringstream requestMsg;
+    requestMsg << "Request Charge (type: " << packet->eChargeType 
+               << ", amount: " << packet->dwAmount 
+               << ", aid: " << packet->dwAID << ")";
+    sys_err(requestMsg.str().c_str());
+
+    CDBManager::Instance().AsyncQuery(msg.str().c_str(), SQL_ACCOUNT);
+}
+
+void CClientManager::ChargeCash(const TRequestChargeCash* packet) {
+	std::ostringstream msg;
+	
+	if (ERequestCharge_Cash == packet->eChargeType) {
+		msg << "UPDATE account SET `cash` = `cash` + " << packet->dwAmount << " WHERE id = " << packet->dwAID << " LIMIT 1";
+	} else if(ERequestCharge_Mileage == packet->eChargeType) {
+		msg << "UPDATE account SET `mileage` = `mileage` + " << packet->dwAmount << " WHERE id = " << packet->dwAID << " LIMIT 1";
+	} else {
+		msg << "Invalid request charge type (type : " << packet->eChargeType << ", amount : " << packet->dwAmount << ", aid : " << packet->dwAID << ")";
+		sys_err(msg.str().c_str());
 		return;
 	}
 
-	sys_err ("Request Charge (type : %d, amount : %d, aid : %d)", packet->eChargeType, packet->dwAmount, packet->dwAID);
+	msg << "Request Charge (type : " << packet->eChargeType << ", amount : " << packet->dwAmount << ", aid : " << packet->dwAID << ")";
+	sys_err(msg.str().c_str());
 
 	CDBManager::Instance().AsyncQuery(szQuery, SQL_ACCOUNT);
 }
