@@ -198,7 +198,7 @@ void CInputLogin::LoginByKey(LPDESC d, const char * data)
 
 	strlcpy(ptod.szLogin, login, sizeof(ptod.szLogin));
 	ptod.dwLoginKey = pinfo->dwLoginKey;
-	thecore_memcpy(ptod.adwClientKey, pinfo->adwClientKey, sizeof(DWORD) * 4);
+	memcpy(ptod.adwClientKey, pinfo->adwClientKey, sizeof(DWORD) * 4);
 	strlcpy(ptod.szIP, d->GetHostName(), sizeof(ptod.szIP));
 
 	db_clientdesc->DBPacket(HEADER_GD_LOGIN_BY_KEY, d->GetHandle(), &ptod, sizeof(TPacketGDLoginByKey));

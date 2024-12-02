@@ -22,7 +22,7 @@ template <typename T> class cache
 
 		void Put(T * pNew, bool bSkipQuery = false)
 		{
-			thecore_memcpy(&m_data, pNew, sizeof(T));
+			memcpy(&m_data, pNew, sizeof(T));
 			m_lastUpdateTime = time(0);
 
 			if (!bSkipQuery)

@@ -218,7 +218,7 @@ void CItemPriceListTableCache::UpdateList(const TItemPriceListTable* pUpdateList
 
 	m_data.byCount = pUpdateList->byCount;
 
-	thecore_memcpy(m_data.aPriceInfo, pUpdateList->aPriceInfo, sizeof(TItemPriceInfo) * pUpdateList->byCount);
+	memcpy(m_data.aPriceInfo, pUpdateList->aPriceInfo, sizeof(TItemPriceInfo) * pUpdateList->byCount);
 
 	int nDeletedNum;	// 삭제된 가격정보의 갯수
 
@@ -230,7 +230,7 @@ void CItemPriceListTableCache::UpdateList(const TItemPriceListTable* pUpdateList
 			sizeAddOldDataSize = tmpvec.size();
 		if (tmpvec.size() != 0)
 		{
-			thecore_memcpy(m_data.aPriceInfo + pUpdateList->byCount, &tmpvec[0], sizeof(TItemPriceInfo) * sizeAddOldDataSize);
+			memcpy(m_data.aPriceInfo + pUpdateList->byCount, &tmpvec[0], sizeof(TItemPriceInfo) * sizeAddOldDataSize);
 			m_data.byCount += sizeAddOldDataSize;
 		}
 		nDeletedNum = tmpvec.size() - sizeAddOldDataSize;

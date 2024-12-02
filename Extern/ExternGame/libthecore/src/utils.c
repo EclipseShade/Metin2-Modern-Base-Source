@@ -272,7 +272,7 @@ struct tm * tm_calc(const struct tm * curr_tm, int days)
 	new_tm = *localtime(&time_s);
     }
     else    
-	thecore_memcpy(&new_tm, curr_tm, sizeof(struct tm));
+	memcpy(&new_tm, curr_tm, sizeof(struct tm));
 
     if (new_tm.tm_mon == 1)
     {

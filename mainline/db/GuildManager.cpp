@@ -1204,7 +1204,7 @@ bool CGuildManager::ChangeMaster(DWORD dwGID, DWORD dwFrom, DWORD dwTo)
 //////////////////////////////////////////////////////////////////////////////////////////
 CGuildWarReserve::CGuildWarReserve(const TGuildWarReserve & rTable)
 {
-	thecore_memcpy(&m_data, &rTable, sizeof(TGuildWarReserve));
+	memcpy(&m_data, &rTable, sizeof(TGuildWarReserve));
 	m_iLastNoticeMin = -1;
 
 	Initialize();

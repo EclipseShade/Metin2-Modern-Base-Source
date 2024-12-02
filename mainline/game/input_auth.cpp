@@ -191,7 +191,7 @@ void CInputAuth::Login(LPDESC d, const char * c_pData)
 	}
 
 	TPacketCGLogin3 * p = M2_NEW TPacketCGLogin3;
-	thecore_memcpy(p, pinfo, sizeof(TPacketCGLogin3));
+	memcpy(p, pinfo, sizeof(TPacketCGLogin3));
 
 	char szPasswd[PASSWD_MAX_LEN * 2 + 1];
 	DBManager::instance().EscapeString(szPasswd, sizeof(szPasswd), passwd, strlen(passwd));
@@ -343,7 +343,7 @@ void CInputAuth::LoginOpenID(LPDESC d, const char * c_pData)
 	}
 
 	TPacketCGLogin3 * p = M2_NEW TPacketCGLogin3;
-	thecore_memcpy(p, pinfo, sizeof(TPacketCGLogin3));
+	memcpy(p, pinfo, sizeof(TPacketCGLogin3));
 
 	char szPasswd[PASSWD_MAX_LEN * 2 + 1];
 	DBManager::instance().EscapeString(szPasswd, sizeof(szPasswd), passwd, strlen(passwd));

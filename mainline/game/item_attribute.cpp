@@ -286,7 +286,7 @@ bool CItem::RemoveAttributeType(BYTE bType)
 
 void CItem::SetAttributes(const TPlayerItemAttribute* c_pAttribute)
 {
-	thecore_memcpy(m_aAttr, c_pAttribute, sizeof(m_aAttr));
+	memcpy(m_aAttr, c_pAttribute, sizeof(m_aAttr));
 	Save();
 }
 

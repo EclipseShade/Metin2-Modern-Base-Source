@@ -280,7 +280,7 @@ void SGuildMarkBlock::CopyFrom(const BYTE * pbCompBuf, DWORD dwCompSize, DWORD c
 		return;
 
 	m_sizeCompBuf = dwCompSize;
-	thecore_memcpy(m_abCompBuf, pbCompBuf, dwCompSize);
+	memcpy(m_abCompBuf, pbCompBuf, dwCompSize);
 	m_crc = crc;
 	//printf("SGuildMarkBlock::CopyFrom: %u > %u crc %u\n", sizeof(Pixel) * SGuildMarkBlock::SIZE, m_sizeCompBuf, m_crc);
 }

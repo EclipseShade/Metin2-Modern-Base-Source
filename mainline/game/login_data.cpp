@@ -22,7 +22,7 @@ CLoginData::CLoginData()
 
 void CLoginData::SetClientKey(const DWORD * c_pdwClientKey)
 {
-	thecore_memcpy(&m_adwClientKey, c_pdwClientKey, sizeof(DWORD) * 4);
+	memcpy(&m_adwClientKey, c_pdwClientKey, sizeof(DWORD) * 4);
 }
 
 const DWORD * CLoginData::GetClientKey()
@@ -141,7 +141,7 @@ const char * CLoginData::GetLogin()
 
 void CLoginData::SetPremium(int * paiPremiumTimes)
 {
-	thecore_memcpy(m_aiPremiumTimes, paiPremiumTimes, sizeof(m_aiPremiumTimes));
+	memcpy(m_aiPremiumTimes, paiPremiumTimes, sizeof(m_aiPremiumTimes));
 }
 
 int CLoginData::GetPremium(BYTE type)

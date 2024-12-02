@@ -130,7 +130,7 @@ void CPeer::SetP2PPort(WORD wPort)
 
 void CPeer::SetMaps(long * pl)
 {
-	thecore_memcpy(m_alMaps, pl, sizeof(m_alMaps));
+	memcpy(m_alMaps, pl, sizeof(m_alMaps));
 }
 
 void CPeer::SendSpareItemIDRange()

@@ -413,8 +413,8 @@ void CHARACTER::SetItem(TItemPos Cell, LPITEM pItem)
 			pack.highlight = (Cell.window_type == DRAGON_SOUL_INVENTORY);
 
 
-			thecore_memcpy(pack.alSockets, pItem->GetSockets(), sizeof(pack.alSockets));
-			thecore_memcpy(pack.aAttr, pItem->GetAttributes(), sizeof(pack.aAttr));
+			memcpy(pack.alSockets, pItem->GetSockets(), sizeof(pack.alSockets));
+			memcpy(pack.aAttr, pItem->GetAttributes(), sizeof(pack.aAttr));
 
 			GetDesc()->Packet(&pack, sizeof(TPacketGCItemSet));
 		}
@@ -1345,7 +1345,7 @@ bool CHARACTER::RefineInformation(BYTE bCell, BYTE bType, int iAdditionalCell)
 	else
 	{
 		p.material_count = prt->material_count;
-		thecore_memcpy(&p.materials, prt->materials, sizeof(prt->materials));
+		memcpy(&p.materials, prt->materials, sizeof(prt->materials));
 	}
 	// END_OF_REFINE_COST
 

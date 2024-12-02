@@ -884,7 +884,7 @@ void CGuildManager::ReserveWarAdd(TGuildWarReserve * p)
 		m_vec_kReserveWar.push_back(pkReserve);
 	}
 
-	thecore_memcpy(&pkReserve->data, p, sizeof(TGuildWarReserve));
+	memcpy(&pkReserve->data, p, sizeof(TGuildWarReserve));
 
 	sys_log(0, "ReserveWarAdd %u gid1 %u power %d gid2 %u power %d handicap %d",
 			pkReserve->data.dwID, p->dwGuildFrom, p->lPowerFrom, p->dwGuildTo, p->lPowerTo, p->lHandicap);

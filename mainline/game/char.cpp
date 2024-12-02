@@ -1238,10 +1238,10 @@ void CHARACTER::CreatePlayerProto(TPlayerTable & tab)
 	if (m_stMobile.length() && !*m_szMobileAuth)
 		strlcpy(tab.szMobile, m_stMobile.c_str(), sizeof(tab.szMobile));
 
-	thecore_memcpy(tab.parts, m_pointsInstant.parts, sizeof(tab.parts));
+	memcpy(tab.parts, m_pointsInstant.parts, sizeof(tab.parts));
 
 	// REMOVE_REAL_SKILL_LEVLES
-	thecore_memcpy(tab.skills, m_pSkillLevels, sizeof(TPlayerSkill) * SKILL_MAX_NUM);
+	memcpy(tab.skills, m_pSkillLevels, sizeof(TPlayerSkill) * SKILL_MAX_NUM);
 	// END_OF_REMOVE_REAL_SKILL_LEVLES
 
 	tab.horse = GetHorseData();
@@ -1751,7 +1751,7 @@ void CHARACTER::SetPlayerProto(const TPlayerTable * t)
 		M2_DELETE_ARRAY(m_pSkillLevels);
 
 	m_pSkillLevels = M2_NEW TPlayerSkill[SKILL_MAX_NUM];
-	thecore_memcpy(m_pSkillLevels, t->skills, sizeof(TPlayerSkill) * SKILL_MAX_NUM);
+	memcpy(m_pSkillLevels, t->skills, sizeof(TPlayerSkill) * SKILL_MAX_NUM);
 	// END_OF_REMOVE_REAL_SKILL_LEVLES
 
 	if (t->lMapIndex >= 10000)
@@ -1818,7 +1818,7 @@ void CHARACTER::SetPlayerProto(const TPlayerTable * t)
 	if (GetHorseLevel() > 0)
 		UpdateHorseDataByLogoff(t->logoff_interval);
 
-	thecore_memcpy(m_aiPremiumTimes, t->aiPremiumTimes, sizeof(t->aiPremiumTimes));
+	memcpy(m_aiPremiumTimes, t->aiPremiumTimes, sizeof(t->aiPremiumTimes));
 
 	m_dwLogOffInterval = t->logoff_interval;
 
@@ -6320,8 +6320,8 @@ void CHARACTER::SendEquipment(LPCHARACTER ch)
 			p.equips[i].vnum = item->GetVnum();
 			p.equips[i].count = item->GetCount();
 
-			thecore_memcpy(p.equips[i].alSockets, item->GetSockets(), sizeof(p.equips[i].alSockets));
-			thecore_memcpy(p.equips[i].aAttr, item->GetAttributes(), sizeof(p.equips[i].aAttr));
+			memcpy(p.equips[i].alSockets, item->GetSockets(), sizeof(p.equips[i].alSockets));
+			memcpy(p.equips[i].aAttr, item->GetAttributes(), sizeof(p.equips[i].aAttr));
 		}
 		else
 		{

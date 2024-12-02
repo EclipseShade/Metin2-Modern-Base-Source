@@ -140,6 +140,5 @@ inline double rint(double x)
 #include "main.h"
 #include "utils.h"
 #include "crypt.h"
-#include "memcpy.h"
 
 #endif // __INC_LIBTHECORE_STDAFX_H__

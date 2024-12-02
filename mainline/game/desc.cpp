@@ -262,13 +262,13 @@ bool DESC::Setup(LPFDWATCH _fdw, socket_t _fd, const struct sockaddr_in & c_rSoc
 #ifndef _IMPROVED_PACKET_ENCRYPTION_
 	if (LC_IsEurope())	
 	{
-		thecore_memcpy(m_adwEncryptionKey, "1234abcd5678efgh", sizeof(DWORD) * 4);
-		thecore_memcpy(m_adwDecryptionKey, "1234abcd5678efgh", sizeof(DWORD) * 4);
+		memcpy(m_adwEncryptionKey, "1234abcd5678efgh", sizeof(DWORD) * 4);
+		memcpy(m_adwDecryptionKey, "1234abcd5678efgh", sizeof(DWORD) * 4);
 	}
 	else
 	{
-		thecore_memcpy(m_adwEncryptionKey, "testtesttesttest", sizeof(DWORD) * 4);
-		thecore_memcpy(m_adwDecryptionKey, "testtesttesttest", sizeof(DWORD) * 4);
+		memcpy(m_adwEncryptionKey, "testtesttesttest", sizeof(DWORD) * 4);
+		memcpy(m_adwDecryptionKey, "testtesttesttest", sizeof(DWORD) * 4);
 	}
 #endif // _IMPROVED_PACKET_ENCRYPTION_
 
@@ -595,7 +595,7 @@ void DESC::SetPhase(int _phase)
 void DESC::BindAccountTable(TAccountTable * pAccountTable)
 {
 	assert(pAccountTable != NULL);
-	thecore_memcpy(&m_accountTable, pAccountTable, sizeof(TAccountTable));
+	memcpy(&m_accountTable, pAccountTable, sizeof(TAccountTable));
 	DESC_MANAGER::instance().ConnectAccount(m_accountTable.login, this);
 }
 
@@ -937,7 +937,7 @@ void DESC::SendLoginSuccessPacket()
 
 	p.handle     = GetHandle();
 	p.random_key = DESC_MANAGER::instance().MakeRandomKey(GetHandle()); // FOR MARK
-	thecore_memcpy(p.players, rTable.players, sizeof(rTable.players));
+	memcpy(p.players, rTable.players, sizeof(rTable.players));
 
 	for (int i = 0; i < PLAYER_PER_ACCOUNT; ++i)
 	{   
@@ -1052,7 +1052,7 @@ void DESC::SetSecurityKey(const DWORD * c_pdwKey)
 	if (g_iUseLocale && !LC_IsKorea())
 		c_pszKey = GetKey_20050304Myevan() + 37;
 
-	thecore_memcpy(&m_adwDecryptionKey, c_pdwKey, 16);
+	memcpy(&m_adwDecryptionKey, c_pdwKey, 16);
 	TEA_Encrypt(&m_adwEncryptionKey[0], &m_adwDecryptionKey[0], (const DWORD *) c_pszKey, 16);
 
 	sys_log(0, "SetSecurityKey decrypt %u %u %u %u encrypt %u %u %u %u", 

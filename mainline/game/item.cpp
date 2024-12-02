@@ -216,7 +216,7 @@ void CItem::UpdatePacket()
 	for (int i = 0; i < ITEM_SOCKET_MAX_NUM; ++i)
 		pack.alSockets[i] = m_alSockets[i];
 
-	thecore_memcpy(pack.aAttr, GetAttributes(), sizeof(pack.aAttr));
+	memcpy(pack.aAttr, GetAttributes(), sizeof(pack.aAttr));
 
 	sys_log(2, "UpdatePacket %s -> %s", GetName(), m_pOwner->GetName());
 	m_pOwner->GetDesc()->Packet(&pack, sizeof(pack));
@@ -1001,7 +1001,7 @@ bool CItem::CreateSocket(BYTE bSlot, BYTE bGold)
 
 void CItem::SetSockets(const long * c_al)
 {
-	thecore_memcpy(m_alSockets, c_al, sizeof(m_alSockets));
+	memcpy(m_alSockets, c_al, sizeof(m_alSockets));
 	Save();
 }
 
@@ -1999,8 +1999,8 @@ void CItem::CopyToRawData (TPlayerItem* new_item)
 	new_item->count = m_dwCount;
 
 	new_item->vnum = GetVnum();
-	thecore_memcpy (new_item->alSockets, m_alSockets, sizeof (m_alSockets));
-	thecore_memcpy (new_item->aAttr, m_aAttr, sizeof (m_aAttr));
+	memcpy (new_item->alSockets, m_alSockets, sizeof (m_alSockets));
+	memcpy (new_item->aAttr, m_aAttr, sizeof (m_aAttr));
 
 	new_item->owner = m_pOwner->GetPlayerID();
 }

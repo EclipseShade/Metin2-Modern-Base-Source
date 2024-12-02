@@ -601,7 +601,7 @@ void CGuild::LoadGuildData(SQLMsg* pmsg)
 
 	m_data.skill_point = (BYTE) strtoul(row[4], (char **) NULL, 10);
 	if (row[5])
-		thecore_memcpy(m_data.abySkill, row[5], sizeof(BYTE) * GUILD_SKILL_COUNT);
+		memcpy(m_data.abySkill, row[5], sizeof(BYTE) * GUILD_SKILL_COUNT);
 	else
 		memset(m_data.abySkill, 0, sizeof(BYTE) * GUILD_SKILL_COUNT);
 
@@ -649,7 +649,7 @@ void CGuild::SendDBSkillUpdate(int amount)
 	guild_skill.guild_id = m_data.guild_id;
 	guild_skill.amount = amount;
 	guild_skill.skill_point = m_data.skill_point;
-	thecore_memcpy(guild_skill.skill_levels, m_data.abySkill, sizeof(BYTE) * GUILD_SKILL_COUNT);
+	memcpy(guild_skill.skill_levels, m_data.abySkill, sizeof(BYTE) * GUILD_SKILL_COUNT);
 
 	db_clientdesc->DBPacket(HEADER_GD_GUILD_SKILL_UPDATE, 0, &guild_skill, sizeof(guild_skill));
 }
@@ -1467,7 +1467,7 @@ void CGuild::UpdateSkill(BYTE skill_point, BYTE* skill_levels)
 	  }
 	  }*/
 
-	thecore_memcpy(m_data.abySkill, skill_levels, sizeof(BYTE) * GUILD_SKILL_COUNT);
+	memcpy(m_data.abySkill, skill_levels, sizeof(BYTE) * GUILD_SKILL_COUNT);
 	ComputeGuildPoints();
 }
 

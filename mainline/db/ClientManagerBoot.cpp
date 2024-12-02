@@ -504,7 +504,7 @@ bool CClientManager::InitializeShopTable()
 
 	while (it != map_shop.end())
 	{
-		thecore_memcpy((m_pShopTable + i), (it++)->second, sizeof(TShopTable));
+		memcpy((m_pShopTable + i), (it++)->second, sizeof(TShopTable));
 		sys_log(0, "SHOP: #%d items: %d", (m_pShopTable + i)->dwVnum, (m_pShopTable + i)->byItemCount);
 		++i;
 	}

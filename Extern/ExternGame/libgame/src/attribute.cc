@@ -124,7 +124,7 @@ CAttribute::CAttribute(DWORD * attr, DWORD width, DWORD height) // attr을 읽어서
 	Alloc();
 
 	if (dataType == D_DWORD) // D_DWORD일 때는 원본 속성과 같으므로 단지 복사.
-	    thecore_memcpy(data, attr, sizeof(DWORD) * width * height);
+	    memcpy(data, attr, sizeof(DWORD) * width * height);
 	else
 	{
 	    // 아니면 컨버트 해야 한다.
@@ -245,7 +245,7 @@ void CAttribute::CopyRow(DWORD y, DWORD * row)
     }
 
     if (dwordPtr)
-	thecore_memcpy(row, dwordPtr[y], sizeof(DWORD) * width);
+	memcpy(row, dwordPtr[y], sizeof(DWORD) * width);
     else
     {
 	if (bytePtr)

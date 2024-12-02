@@ -420,7 +420,7 @@ void DESC_MANAGER::UpdateLocalUserCount()
 	f = std::for_each(c_ref_set.begin(), c_ref_set.end(), f);
 
 	m_iLocalUserCount = f.iTotalCount;
-	thecore_memcpy(m_aiEmpireUserCount, f.aiEmpireUserCount, sizeof(m_aiEmpireUserCount));
+	memcpy(m_aiEmpireUserCount, f.aiEmpireUserCount, sizeof(m_aiEmpireUserCount));
 
 	m_aiEmpireUserCount[1] += P2P_MANAGER::instance().GetEmpireUserCount(1);
 	m_aiEmpireUserCount[2] += P2P_MANAGER::instance().GetEmpireUserCount(2);

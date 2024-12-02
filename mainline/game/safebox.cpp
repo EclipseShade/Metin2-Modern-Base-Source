@@ -78,8 +78,8 @@ bool CSafebox::Add(DWORD dwPos, LPITEM pkItem)
 	pack.count	= pkItem->GetCount();
 	pack.flags	= pkItem->GetFlag();
 	pack.anti_flags	= pkItem->GetAntiFlag();
-	thecore_memcpy(pack.alSockets, pkItem->GetSockets(), sizeof(pack.alSockets));
-	thecore_memcpy(pack.aAttr, pkItem->GetAttributes(), sizeof(pack.aAttr));
+	memcpy(pack.alSockets, pkItem->GetSockets(), sizeof(pack.alSockets));
+	memcpy(pack.aAttr, pkItem->GetAttributes(), sizeof(pack.aAttr));
 
 	m_pkChrOwner->GetDesc()->Packet(&pack, sizeof(pack));
 	sys_log(1, "SAFEBOX: ADD %s %s count %d", m_pkChrOwner->GetName(), pkItem->GetName(), pkItem->GetCount());

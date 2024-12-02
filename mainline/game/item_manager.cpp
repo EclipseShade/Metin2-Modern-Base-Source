@@ -65,7 +65,7 @@ bool ITEM_MANAGER::Initialize(TItemTable * table, int size)
 	int	i;
 
 	m_vec_prototype.resize(size);
-	thecore_memcpy(&m_vec_prototype[0], table, sizeof(TItemTable) * size);
+	memcpy(&m_vec_prototype[0], table, sizeof(TItemTable) * size);
 	for (int i = 0; i < size; i++)
 	{
 		if (0 != m_vec_prototype[i].dwVnumRange)
@@ -468,8 +468,8 @@ void ITEM_MANAGER::SaveSingleItem(LPITEM item)
 	t.count = item->GetCount();
 	t.vnum = item->GetOriginalVnum();
 	t.owner = (t.window == SAFEBOX || t.window == MALL) ? item->GetOwner()->GetDesc()->GetAccountTable().id : item->GetOwner()->GetPlayerID();
-	thecore_memcpy(t.alSockets, item->GetSockets(), sizeof(t.alSockets));
-	thecore_memcpy(t.aAttr, item->GetAttributes(), sizeof(t.aAttr));
+	memcpy(t.alSockets, item->GetSockets(), sizeof(t.alSockets));
+	memcpy(t.aAttr, item->GetAttributes(), sizeof(t.aAttr));
 
 	db_clientdesc->DBPacketHeader(HEADER_GD_ITEM_SAVE, 0, sizeof(TPlayerItem));
 	db_clientdesc->Packet(&t, sizeof(TPlayerItem));

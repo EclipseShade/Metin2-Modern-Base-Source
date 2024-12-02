@@ -198,10 +198,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\memcpy.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\signal.c"
 				>
 			</File>
@@ -269,10 +265,6 @@
 			</File>
 			<File
 				RelativePath=".\include\main.h"
-				>
-			</File>
-			<File
-				RelativePath=".\include\memcpy.h"
 				>
 			</File>
 			<File

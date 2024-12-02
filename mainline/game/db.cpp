@@ -488,8 +488,8 @@ void DBManager::SendAuthLogin(LPDESC d)
 	ptod.bBillType = pkLD->GetBillType();
 	ptod.dwBillID = pkLD->GetBillID();
 
-	thecore_memcpy(ptod.iPremiumTimes, pkLD->GetPremiumPtr(), sizeof(ptod.iPremiumTimes));
-	thecore_memcpy(&ptod.adwClientKey, pkLD->GetClientKey(), sizeof(DWORD) * 4);
+	memcpy(ptod.iPremiumTimes, pkLD->GetPremiumPtr(), sizeof(ptod.iPremiumTimes));
+	memcpy(&ptod.adwClientKey, pkLD->GetClientKey(), sizeof(DWORD) * 4);
 
 	db_clientdesc->DBPacket(HEADER_GD_AUTH_LOGIN, d->GetHandle(), &ptod, sizeof(TPacketGDAuthLogin));
 	sys_log(0, "SendAuthLogin %s key %u", ptod.szLogin, ptod.dwID);

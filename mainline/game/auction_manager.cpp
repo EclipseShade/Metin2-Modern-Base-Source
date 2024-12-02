@@ -117,7 +117,7 @@ bool AuctionBoard::InsertItemInfo (TAuctionItemInfo* item_info)
 	}
 
 	c = new TAuctionItemInfo();
-	thecore_memcpy (c, item_info, sizeof(TAuctionItemInfo));
+	memcpy (c, item_info, sizeof(TAuctionItemInfo));
 
 	c->item_proto = ITEM_MANAGER::instance().GetTable(c->item_num);
 	item_map.insert(TItemInfoMap::value_type(item_info->item_id, c));
@@ -171,7 +171,7 @@ bool AuctionBoard::UpdateItemInfo (TAuctionItemInfo* item_info)
 		return false;
 	}
 
-	thecore_memcpy (c, item_info, sizeof(TAuctionItemInfo));
+	memcpy (c, item_info, sizeof(TAuctionItemInfo));
 	return true;
 }
 
@@ -353,7 +353,7 @@ bool SaleBoard::InsertItemInfo (TSaleItemInfo* item_info)
 		return false;
 	}
 	c = new TSaleItemInfo ();
-	thecore_memcpy (c, item_info, sizeof(TSaleItemInfo));
+	memcpy (c, item_info, sizeof(TSaleItemInfo));
 
 	c->item_proto = ITEM_MANAGER::instance().GetTable(c->item_num);
 
@@ -458,7 +458,7 @@ bool WishBoard::InsertItemInfo (TWishItemInfo* item_info)
 	if (item_it == item_map->end())
 	{
 		TWishItemInfo* c = new TWishItemInfo();
-		thecore_memcpy (c, item_info, sizeof(TWishItemInfo));
+		memcpy (c, item_info, sizeof(TWishItemInfo));
 
 		c->item_proto = ITEM_MANAGER::instance().GetTable(c->item_num);
 		item_map->insert (TItemMap::value_type (item_num, c));
@@ -1235,7 +1235,7 @@ void AuctionManager::recv_result_auction (DWORD commander_id, TPacketDGResultAuc
 			cmd_result++;
 			TAuctionItemInfo* new_item_info = (TAuctionItemInfo*)cmd_result;
 			TAuctionItemInfo* old_item_info = Auction.GetItemInfo (new_item_info->get_item_id());
-			thecore_memcpy (old_item_info, new_item_info, sizeof(TAuctionItemInfo));
+			memcpy (old_item_info, new_item_info, sizeof(TAuctionItemInfo));
 			MyBid.Insert(new_item_info->bidder_id, new_item_info->item_id, new_item_info->get_bid_price());
 			if (ch != NULL)
 			{
@@ -1252,7 +1252,7 @@ void AuctionManager::recv_result_auction (DWORD commander_id, TPacketDGResultAuc
 			cmd_result++;
 			TAuctionItemInfo* new_item_info = (TAuctionItemInfo*)cmd_result;
 			TAuctionItemInfo* old_item_info = Auction.GetItemInfo (new_item_info->get_item_id());
-			thecore_memcpy (old_item_info, new_item_info, sizeof(TAuctionItemInfo));
+			memcpy (old_item_info, new_item_info, sizeof(TAuctionItemInfo));
 			if (ch != NULL)
 			{
 				ch->ChatPacket(CHAT_TYPE_INFO, "즉구 해버렸어.");

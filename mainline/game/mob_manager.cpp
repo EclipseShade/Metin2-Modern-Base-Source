@@ -66,7 +66,7 @@ bool CMobManager::Initialize(TMobTable * pTable, int iSize)
 	{
 		CMob * pkMob = M2_NEW CMob;
 
-		thecore_memcpy(&pkMob->m_table, t, sizeof(TMobTable));
+		memcpy(&pkMob->m_table, t, sizeof(TMobTable));
 
 		m_map_pkMobByVnum.insert(std::map<DWORD, CMob *>::value_type(t->dwVnum, pkMob));
 		m_map_pkMobByName.insert(std::map<std::string, CMob *>::value_type(t->szLocaleName, pkMob));

@@ -262,7 +262,7 @@ socket_t socket_connect(const char* host, WORD port)
 	    return -1;
 	}
 
-	thecore_memcpy((char* ) &server_addr.sin_addr, hp->h_addr, sizeof(server_addr.sin_addr));
+	memcpy((char* ) &server_addr.sin_addr, hp->h_addr, sizeof(server_addr.sin_addr));
     }
 
     server_addr.sin_family = AF_INET;

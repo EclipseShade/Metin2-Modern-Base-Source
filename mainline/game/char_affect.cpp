@@ -453,7 +453,7 @@ void CHARACTER::LoadAffect(DWORD dwCount, TPacketAffectElement * pElements)
 		info->pid = GetPlayerID();
 		info->count = dwCount;
 		info->data = M2_NEW char[sizeof(TPacketAffectElement) * dwCount];
-		thecore_memcpy(info->data, pElements, sizeof(TPacketAffectElement) * dwCount);
+		memcpy(info->data, pElements, sizeof(TPacketAffectElement) * dwCount);
 
 		event_create(load_affect_login_event, info, PASSES_PER_SEC(1));
 

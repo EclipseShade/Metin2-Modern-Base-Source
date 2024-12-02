@@ -38,7 +38,7 @@ CObject::CObject(TObject * pData, TObjectProto * pProto)
 {
 	CEntity::Initialize(ENTITY_OBJECT);
 
-	thecore_memcpy(&m_data, pData, sizeof(TObject));
+	memcpy(&m_data, pData, sizeof(TObject));
 }
 
 CObject::~CObject()
@@ -316,7 +316,7 @@ void CObject::RegenNPC()
 
 CLand::CLand(TLand * pData)
 {
-	thecore_memcpy(&m_data, pData, sizeof(TLand));
+	memcpy(&m_data, pData, sizeof(TLand));
 }
 
 CLand::~CLand()
@@ -648,7 +648,7 @@ void CManager::Destroy()
 bool CManager::LoadObjectProto(const TObjectProto * pProto, int size) // from DB
 {
 	m_vec_kObjectProto.resize(size);
-	thecore_memcpy(&m_vec_kObjectProto[0], pProto, sizeof(TObjectProto) * size);
+	memcpy(&m_vec_kObjectProto[0], pProto, sizeof(TObjectProto) * size);
 
 	for (int i = 0; i < size; ++i)
 	{

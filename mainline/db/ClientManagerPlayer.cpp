@@ -242,7 +242,7 @@ void CClientManager::QUERY_PLAYER_LOAD(CPeer * peer, DWORD dwHandle, TPlayerLoad
 
 		pkLD->SetPlay(true);
 		SendLoginToBilling(pkLD, true);
-		thecore_memcpy(pTab->aiPremiumTimes, pkLD->GetPremiumPtr(), sizeof(pTab->aiPremiumTimes));
+		memcpy(pTab->aiPremiumTimes, pkLD->GetPremiumPtr(), sizeof(pTab->aiPremiumTimes));
 
 		peer->EncodeHeader(HEADER_DG_PLAYER_LOAD_SUCCESS, dwHandle, sizeof(TPlayerTable));
 		peer->Encode(pTab, sizeof(TPlayerTable));
@@ -287,7 +287,7 @@ void CClientManager::QUERY_PLAYER_LOAD(CPeer * peer, DWORD dwHandle, TPlayerLoad
 				TPlayerItem * p = c->Get();
 
 				if (p->vnum) // vnum이 없으면 삭제된 아이템이다.
-					thecore_memcpy(&s_items[dwCount++], p, sizeof(TPlayerItem));
+					memcpy(&s_items[dwCount++], p, sizeof(TPlayerItem));
 			}
 
 			if (g_test_server)
@@ -486,14 +486,14 @@ bool CreatePlayerTableFromRes(MYSQL_RES * res, TPlayerTable * pkTab)
 	str_to_number(pkTab->parts[PART_HAIR], row[col++]);
 
 	if (row[col])
-		thecore_memcpy(pkTab->skills, row[col], sizeof(pkTab->skills));
+		memcpy(pkTab->skills, row[col], sizeof(pkTab->skills));
 	else
 		memset(&pkTab->skills, 0, sizeof(pkTab->skills));
 
 	col++;
 
 	if (row[col])
-		thecore_memcpy(pkTab->quickslot, row[col], sizeof(pkTab->quickslot));
+		memcpy(pkTab->quickslot, row[col], sizeof(pkTab->quickslot));
 	else
 		memset(pkTab->quickslot, 0, sizeof(pkTab->quickslot));
 
@@ -647,7 +647,7 @@ void CClientManager::RESULT_PLAYER_LOAD(CPeer * peer, MYSQL_RES * pRes, ClientHa
 
 	pkLD->SetPlay(true);
 	SendLoginToBilling(pkLD, true);
-	thecore_memcpy(tab.aiPremiumTimes, pkLD->GetPremiumPtr(), sizeof(tab.aiPremiumTimes));
+	memcpy(tab.aiPremiumTimes, pkLD->GetPremiumPtr(), sizeof(tab.aiPremiumTimes));
 
 	peer->EncodeHeader(HEADER_DG_PLAYER_LOAD_SUCCESS, pkInfo->dwHandle, sizeof(TPlayerTable));
 	peer->Encode(&tab, sizeof(TPlayerTable));

@@ -164,13 +164,13 @@ void buffer_write(LPBUFFER& buffer, const void *src, int length)
 	if (buffer->write_point_pos + length >= buffer->mem_size)
 		buffer_realloc(buffer, buffer->mem_size + length + MIN(10240, length));
 
-	thecore_memcpy(buffer->write_point, src, length);
+	memcpy(buffer->write_point, src, length);
 	buffer_write_proceed(buffer, length);
 }
 
 void buffer_read(LPBUFFER buffer, void * buf, int bytes)
 {
-	thecore_memcpy(buf, buffer->read_point, bytes);
+	memcpy(buf, buffer->read_point, bytes);
 	buffer_read_proceed(buffer, bytes);
 }
 
@@ -277,7 +277,7 @@ void buffer_realloc(LPBUFFER& buffer, int length)
 
 	temp = buffer_new (length);
 	sys_log(0, "reallocating buffer to %d, current %d", temp->mem_size, buffer->mem_size);
-	thecore_memcpy(temp->mem_data, buffer->mem_data, buffer->mem_size);
+	memcpy(temp->mem_data, buffer->mem_data, buffer->mem_size);
 
 	read_point_pos = buffer->read_point - buffer->mem_data;
 

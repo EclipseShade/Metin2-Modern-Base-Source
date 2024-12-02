@@ -14,7 +14,7 @@ endif
 LIBS    = 
 
 OBJFILES = socket.o fdwatch.o buffer.o signal.o log.o utils.o \
-	kstbl.o hangul.o heart.o main.o tea.o des.o gost.o memcpy.o
+	kstbl.o hangul.o heart.o main.o tea.o des.o gost.o
 
 default:
 	$(MAKE) $(BIN)
@@ -35,8 +35,8 @@ dep:
 $(OBJFILES):
 	$(CC) $(CFLAGS) -c $<
 
-memcpy: memcpy.o utils.o log.o
-	$(CC) $(CFLAGS) -c -D__MAIN__ memcpy.c
-	$(CC) $(CFLAGS) -o memcpy memcpy.o utils.o log.o
+memcpy: utils.o log.o
+	$(CC) $(CFLAGS) -c -D__MAIN__
+	$(CC) $(CFLAGS) -o memcpy utils.o log.o
 
 include Depend

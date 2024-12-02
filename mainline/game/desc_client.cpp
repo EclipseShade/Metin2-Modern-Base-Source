@@ -197,7 +197,7 @@ void CLIENT_DESC::SetPhase(int iPhase)
 								strlcpy(pck.szHost, d->GetHostName(), sizeof(pck.szHost));
 								pck.dwLoginKey = d->GetLoginKey();
 #ifndef _IMPROVED_PACKET_ENCRYPTION_
-								thecore_memcpy(pck.adwClientKey, d->GetDecryptionKey(), 16);
+								memcpy(pck.adwClientKey, d->GetDecryptionKey(), 16);
 #endif
 
 								buf.write(&pck, sizeof(TPacketLoginOnSetup));

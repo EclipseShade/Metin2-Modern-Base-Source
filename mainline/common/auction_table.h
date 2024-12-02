@@ -42,7 +42,7 @@ public:
 		offer_price= _offer_price;
 		price = _price;
 		offer_id = _offer_id;
-		thecore_memcpy(shown_name, _shown_name, strlen(_shown_name) + 1);
+		memcpy(shown_name, _shown_name, strlen(_shown_name) + 1);
 		expired_time = _expired_time;
 		item_id = _item_id;
 		bidder_id = _bidder_id;
@@ -64,7 +64,7 @@ public:
 	const char* get_bidder_name () { return shown_name; }
 	void set_bidder_name (const char* new_bidder_name)
 	{
-		thecore_memcpy(shown_name, new_bidder_name, strlen(new_bidder_name) + 1);
+		memcpy(shown_name, new_bidder_name, strlen(new_bidder_name) + 1);
 	}
 } TAuctionItemInfo;
 
@@ -79,7 +79,7 @@ typedef struct _sale : public _base_auction
 		item_num = _item_num;
 		offer_price= _offer_price;
 		offer_id = _offer_id;
-		thecore_memcpy(shown_name, _shown_name, strlen(_shown_name) + 1);
+		memcpy(shown_name, _shown_name, strlen(_shown_name) + 1);
 		item_id = _item_id;
 		wisher_id = _wisher_id;
 	}
@@ -101,7 +101,7 @@ typedef struct _wish : public _base_auction
 		item_num = _item_num;
 		offer_price= _offer_price;
 		offer_id = _offer_id;
-		thecore_memcpy(shown_name, _shown_name, strlen(_shown_name) + 1);
+		memcpy(shown_name, _shown_name, strlen(_shown_name) + 1);
 		expired_time = _expired_time;
 		empire = _empire;
 	}

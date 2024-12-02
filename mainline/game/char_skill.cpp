@@ -161,7 +161,7 @@ void CHARACTER::SkillLevelPacket()
 	TPacketGCSkillLevel pack;
 
 	pack.bHeader = HEADER_GC_SKILL_LEVEL;
-	thecore_memcpy(&pack.skills, m_pSkillLevels, sizeof(TPlayerSkill) * SKILL_MAX_NUM);
+	memcpy(&pack.skills, m_pSkillLevels, sizeof(TPlayerSkill) * SKILL_MAX_NUM);
 	GetDesc()->Packet(&pack, sizeof(TPacketGCSkillLevel));
 }
 
