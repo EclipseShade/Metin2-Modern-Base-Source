@@ -11,9 +11,9 @@ CFLAGS   = -std=c++11 -Wall -O2 -pipe -g -I$(INCLUDE)
 LIBS     = 
 
 # Source Files and Object Files
-SRCFILES = socket.cpp fdwatch.cpp buffer.cpp signal.cpp log.cpp utils.cpp \
-           kstbl.cpp hangul.cpp heart.cpp main.cpp tea.cpp des.cpp gost.cpp
-OBJFILES = $(SRCFILES:.cpp=.o)
+SRCFILES = socket.c fdwatch.c buffer.c signal.c log.c utils.c \
+           kstbl.c hangul.c heart.c main.c tea.c des.c gost.c
+OBJFILES = $(SRCFILES:.c=.o)
 
 # Default target
 default: $(BIN)
@@ -34,7 +34,7 @@ dep:
 	$(CC) $(CFLAGS) -MM $(SRCFILES) > Depend
 
 # Object file compilation
-%.o: %.cpp
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Special target for memcpy
