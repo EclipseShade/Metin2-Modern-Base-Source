@@ -2,7 +2,7 @@ CXX = g++
 
 BIN = ./libpoly.a
 
-CFLAGS = -Wall -O2 -pipe -fno-exceptions -fno-rtti
+CFLAGS = -std=c++11 -Wall -O2 -pipe -fno-exceptions -fno-rtti
 
 LIBS =
 
