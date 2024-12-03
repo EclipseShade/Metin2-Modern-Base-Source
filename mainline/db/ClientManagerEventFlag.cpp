@@ -34,9 +34,9 @@ void CClientManager::SetEventFlag(TPacketSetEventFlag* p) {
     ForwardPacket(HEADER_DG_SET_EVENT_FLAG, p, sizeof(TPacketSetEventFlag));
 
     bool bChanged = false;
-	#if _MSC_VER <= 1500
+	#if _MSC_VER == 1500 // Visual Studio 2008
 	typeof(m_map_lEventFlag.begin()) it = m_map_lEventFlag.find(p->szFlagName);
-	#else
+	#elif _MSC_VER > 1500 || __FreeBSD__
     auto it = m_map_lEventFlag.find(p->szFlagName);
 	#endif
     if (it == m_map_lEventFlag.end()) {
