@@ -19,10 +19,6 @@
 #include "XTrapManager.h"
 #include "shutdown_manager.h"
 
-#ifndef __GNUC__
-	#include <boost/bind.hpp>
-#endif
-
 CHARACTER_MANAGER::CHARACTER_MANAGER() :
 	m_iVIDCount(0),
 	m_pkChrSelectedStone(NULL),
