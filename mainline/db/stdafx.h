@@ -29,7 +29,7 @@
 
 /* Support For Older Versions */
 #ifndef itertype
-	#if _MSC_VER <= 1500 || __FreeBSD__
+	#if _MSC_VER > 1500 || __FreeBSD__
 		#include <unordered_map>
 		#include <unordered_set>
 		
