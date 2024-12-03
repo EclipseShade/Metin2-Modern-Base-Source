@@ -1,24 +1,18 @@
-CXX	= g++
+CXX     = g++
 BIN_DIR = ../lib
-BIN = $(BIN_DIR)/libgame.a
+BIN     = $(BIN_DIR)/libgame.a
 
-GCC_VERSION = $(shell $(CC) --version 2>&1 | grep "(GCC)" | cut -d' ' -f3  | cut -d'.' -f1)
+CFLAGS  = -Wall -O2 -pipe -fno-exceptions -I../include
+LIBS    =
 
-ifeq ($(GCC_VERSION), 4)
-CFLAGS = -Wall -O2 -pipe -mtune=i686 -fno-exceptions -I../include
-else
-CFLAGS = -Wall -O2 -pipe -mcpu=i686 -fno-exceptions -I../include
-endif
+# Specify the source files corresponding to the object files
+SRCFILES = grid.cc attribute.cc targa.cc
+OBJFILES = $(SRCFILES:.cc=.o)
 
-LIBS =
-
-OBJFILES = grid.o attribute.o targa.o
-
-default:
-	$(MAKE) $(BIN)
+default: $(BIN)
 
 $(BIN): $(OBJFILES)
-	if [ ! -d $(BIN_DIR) ]; then mkdir $(BIN_DIR); fi
+	if [ ! -d $(BIN_DIR) ]; then mkdir -p $(BIN_DIR); fi
 	ar cru $(BIN) $(OBJFILES) $(LIBS)
 	ranlib $(BIN)
 	chmod 700 $(BIN)
@@ -29,10 +23,9 @@ clean:
 
 dep:
 	touch Depend
-	$(CXX) $(CFLAGS) -MM *.cc > Depend
+	$(CXX) $(CFLAGS) -MM $(SRCFILES) > Depend
 
-$(OBJFILES):
-	$(CXX) $(CFLAGS) -c $<
+%.o: %.cc
+	$(CXX) $(CFLAGS) -c $< -o $@
 
-include Depend
-
+sinclude Depend
