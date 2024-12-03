@@ -2,7 +2,7 @@ CXX     = g++
 BIN_DIR = ../lib
 BIN     = $(BIN_DIR)/libgame.a
 
-CFLAGS  = -Wall -O2 -pipe -fno-exceptions -I../include
+CFLAGS  = -std=c++11 -Wall -O2 -pipe -fno-exceptions -I../include
 LIBS    =
 
 # Specify the source files corresponding to the object files
