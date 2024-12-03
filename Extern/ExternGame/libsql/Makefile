@@ -2,7 +2,7 @@ CXX     = g++
 
 BIN     = ./libsql.a
 
-CFLAGS  = -Wall -O2 -pipe -D_THREAD_SAFE -fno-exceptions 
+CFLAGS  = -std=c++11 -Wall -O2 -pipe -D_THREAD_SAFE -fno-exceptions 
 
 LIBS =
 
