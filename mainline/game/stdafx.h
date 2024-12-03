@@ -60,6 +60,15 @@ namespace std {
 	#define auto_ptr unique_ptr
 #endif
 
+#ifndef itertype
+	#if _MSC_VER > 1500 || __FreeBSD__
+		#define itertype(v) decltype((v).begin())
+	#elif _MSC_VER <= 1500	//Visual Studio 2008
+		#define itertype(v) typeof((v).begin())
+		#define decltype typeof((v).begin())
+	#endif
+#endif
+
 #ifdef __GNUC__
 	#include <float.h>
 	#include <tr1/unordered_map>
