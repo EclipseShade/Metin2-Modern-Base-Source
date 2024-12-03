@@ -56,6 +56,13 @@ namespace std {
 	}
 }
 
+#if __linux__
+	#define strlcpy strncpy
+	
+	#define auto_ptr unique_ptr
+	#define itertype(v) decltype((v).begin())
+#endif
+
 #ifndef itertype
 	#if _MSC_VER > 1500 || __FreeBSD__
 		#define auto_ptr unique_ptr
