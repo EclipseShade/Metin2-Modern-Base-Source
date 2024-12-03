@@ -2,7 +2,10 @@
 #define __INC_METiN_II_DBSERV_STDAFX_H__
 
 // Standard Libraries
+#include <unordered_map>
+#include <unordered_set>
 #include <functional>
+#include <algorithm>
 #include <sstream>
 #include <string>
 #include <memory>
@@ -29,10 +32,7 @@
 
 /* Support For Older Versions */
 #ifndef itertype
-	#if _MSC_VER > 1500 || __FreeBSD__
-		#include <unordered_map>
-		#include <unordered_set>
-		
+	#if _MSC_VER > 1500 || __FreeBSD__		
 		#define auto_ptr unique_ptr
 		#define itertype(v) decltype((v).begin())
 	#elif _MSC_VER == 1500
