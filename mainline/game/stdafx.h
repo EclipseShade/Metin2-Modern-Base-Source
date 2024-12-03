@@ -36,6 +36,7 @@
 #include <utility>		// For std::pair (a simple container for two values)
 #include <functional>	// For std::function (to store functions or function objects)
 #include <iomanip>		// For std::setw and std::setfill
+#include <unordered_map>
 
 #ifdef __GNUC__
 	#include <float.h>
@@ -123,8 +124,6 @@
 #include <tuple>                // For std::tuple, a fixed-size collection of heterogeneous values.
 #include <type_traits>          // For type manipulation and traits.
 #include <typeinfo>             // For runtime type information.
-#include <unordered_map>        // For std::unordered_map, hash table-based associative container.
-#include <unordered_set>        // For std::unordered_set, hash table-based unique container.
 #include <utility>              // For std::pair and utility functions.
 #include <variant>              // For std::variant, a type-safe union.
 #include <valarray>             // For valarray, optimized for numerical tasks.
