@@ -1230,7 +1230,7 @@ void CGuild::SkillLevelUp(DWORD dwVnum)
 	  }
 	  break;
 	  }*/
-#if _MSC_VER <= 1500
+#if _MSC_VER == 1500
 	for_each(m_memberOnline.begin(), m_memberOnline.end(), std::bind1st(std::mem_fun_ref(&CGuild::SendSkillInfoPacket),*this));
 #else
 	for (auto& member : m_memberOnline) {
@@ -1501,7 +1501,7 @@ void CGuild::GuildPointChange(BYTE type, int amount, bool save)
 				SaveSkill();
 			}
 
-#if _MSC_VER <= 1500
+#if _MSC_VER == 1500
 			for_each(m_memberOnline.begin(), m_memberOnline.end(), std::bind1st(std::mem_fun_ref(&CGuild::SendSkillInfoPacket),*this));
 #else
 			for (auto& member : m_memberOnline) {
