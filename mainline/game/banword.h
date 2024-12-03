@@ -1,8 +1,6 @@
 #ifndef BANWORD_MANAGER_H_
 #define BANWORD_MANAGER_H_
 
-#include <boost/unordered_map.hpp>
-
 class CBanwordManager : public singleton<CBanwordManager>
 {
 	public:

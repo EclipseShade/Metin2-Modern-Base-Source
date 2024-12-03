@@ -14,7 +14,7 @@ class CharacterVectorInteractor;
 class CHARACTER_MANAGER : public singleton<CHARACTER_MANAGER>
 {
 	public:
-		typedef TR1_NS::unordered_map<std::string, LPCHARACTER> NAME_MAP;
+		typedef std::unordered_map<std::string, LPCHARACTER> NAME_MAP;
 
 		CHARACTER_MANAGER();
 		virtual ~CHARACTER_MANAGER();
@@ -116,8 +116,8 @@ class CHARACTER_MANAGER : public singleton<CHARACTER_MANAGER>
 		int					m_iUserDamageRatePremium;
 		int					m_iVIDCount;
 
-		TR1_NS::unordered_map<DWORD, LPCHARACTER> m_map_pkChrByVID;
-		TR1_NS::unordered_map<DWORD, LPCHARACTER> m_map_pkChrByPID;
+		std::unordered_map<DWORD, LPCHARACTER> m_map_pkChrByVID;
+		std::unordered_map<DWORD, LPCHARACTER> m_map_pkChrByPID;
 		NAME_MAP			m_map_pkPCChr;
 
 		char				dummy1[1024];	// memory barrier
@@ -143,7 +143,7 @@ class CHARACTER_MANAGER : public singleton<CHARACTER_MANAGER>
 	template<class Func>	
 Func CHARACTER_MANAGER::for_each_pc(Func f)
 {
-	TR1_NS::unordered_map<DWORD, LPCHARACTER>::iterator it;
+	std::unordered_map<DWORD, LPCHARACTER>::iterator it;
 
 	for (it = m_map_pkChrByPID.begin(); it != m_map_pkChrByPID.end(); ++it)
 		f(it->second);

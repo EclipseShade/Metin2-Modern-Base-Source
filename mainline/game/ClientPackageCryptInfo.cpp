@@ -51,19 +51,6 @@ bool CClientPackageCryptInfo::LoadPackageCryptFile( const char* pCryptFile )
 		}
 	}
 
-	//about SDB data
-	//total packagecnt (4byte)
-	//	for	packagecnt 
-	//		db name hash 4byte( stl.h stringhash ) +child node size(4byte)
-
-	//stream to client
-	//		sdb file cnt( 4byte )
-	//		for	sdb file cnt
-	//			filename hash ( stl.h stringhash )
-	//			related map name size(4), relate map name
-	//			sdb block size( 1byte )
-	//			sdb blocks 
-
 	int iSDBPackageCnt;
 	fread(&iSDBPackageCnt, sizeof(int), 1, fp);
 	

@@ -5,8 +5,6 @@
 
 #include "../common/auction_table.h"
 
-#include <boost/unordered_map.hpp>
-
 #define GRADE_LOW 30
 #define GRADE_MID 60
 #define GRADE_HIGH 90

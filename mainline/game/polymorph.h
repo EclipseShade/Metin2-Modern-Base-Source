@@ -1,8 +1,6 @@
 #ifndef __POLYMORPH_UTILS__
 #define __POLYMORPH_UTILS__
 
-#include <boost/unordered_map.hpp>
-
 #define POLYMORPH_SKILL_ID	129
 #define POLYMORPH_BOOK_ID	50322
 

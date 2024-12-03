@@ -49,7 +49,7 @@ void ITEM_MANAGER::Destroy()
 
 void ITEM_MANAGER::GracefulShutdown()
 {
-	TR1_NS::unordered_set<LPITEM>::iterator it = m_set_pkItemForDelayedSave.begin();
+	std::unordered_set<LPITEM>::iterator it = m_set_pkItemForDelayedSave.begin();
 
 	while (it != m_set_pkItemForDelayedSave.end())
 		SaveSingleItem(*(it++));
@@ -432,7 +432,7 @@ void ITEM_MANAGER::DelayedSave(LPITEM item)
 
 void ITEM_MANAGER::FlushDelayedSave(LPITEM item)
 {
-	TR1_NS::unordered_set<LPITEM>::iterator it = m_set_pkItemForDelayedSave.find(item);
+	std::unordered_set<LPITEM>::iterator it = m_set_pkItemForDelayedSave.find(item);
 
 	if (it == m_set_pkItemForDelayedSave.end())
 	{
@@ -477,8 +477,8 @@ void ITEM_MANAGER::SaveSingleItem(LPITEM item)
 
 void ITEM_MANAGER::Update()
 {
-	TR1_NS::unordered_set<LPITEM>::iterator it = m_set_pkItemForDelayedSave.begin();
-	TR1_NS::unordered_set<LPITEM>::iterator this_it;
+	std::unordered_set<LPITEM>::iterator it = m_set_pkItemForDelayedSave.begin();
+	std::unordered_set<LPITEM>::iterator this_it;
 
 	while (it != m_set_pkItemForDelayedSave.end())
 	{
@@ -548,7 +548,7 @@ void ITEM_MANAGER::DestroyItem(LPITEM item, const char* file, size_t line)
 		}
 	}
 
-	TR1_NS::unordered_set<LPITEM>::iterator it = m_set_pkItemForDelayedSave.find(item);
+	std::unordered_set<LPITEM>::iterator it = m_set_pkItemForDelayedSave.find(item);
 
 	if (it != m_set_pkItemForDelayedSave.end())
 		m_set_pkItemForDelayedSave.erase(it);

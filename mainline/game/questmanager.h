@@ -1,8 +1,6 @@
 #ifndef __METIN2_SERVER_QUEST_MANAGER__
 #define __METIN2_SERVER_QUEST_MANAGER__
 
-#include <boost/unordered_map.hpp>
-
 #include "questnpc.h"
 
 class ITEM;

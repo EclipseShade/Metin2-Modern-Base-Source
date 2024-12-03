@@ -1,8 +1,6 @@
 #ifndef __INC_CLIENTPACKAGE_CRYPTINFO_H
 #define __INC_CLIENTPACKAGE_CRYPTINFO_H
 
-#include <boost/unordered_map.hpp>
-
 #pragma pack(1)
 
 typedef struct SSupplementaryDataBlockInfo

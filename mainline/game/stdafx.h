@@ -16,7 +16,6 @@
 #include "../common/CommonDefines.h"
 #include "../common/tables.h"
 #include "../common/length.h"
-#include "../common/stl.h"
 #include "../common/billing.h"
 #include "../common/singleton.h"
 #include "../common/teen_packet.h"
@@ -37,6 +36,29 @@
 #include <functional>	// For std::function (to store functions or function objects)
 #include <iomanip>		// For std::setw and std::setfill
 #include <unordered_map>
+#include <unordered_set>
+#include <memory>
+#include <stack>
+
+inline void stl_lowers(std::string& rstRet)
+{
+	for (size_t i = 0; i < rstRet.length(); ++i)
+		rstRet[i] = tolower(rstRet[i]);
+}
+
+namespace std {
+	template <typename T> T MINMAX(T min, T value, T max)
+	{
+		T tv;
+
+		tv = (min > value ? min : value);
+		return (max < tv) ? max : tv;
+	}
+} 
+
+#if _MSC_VER > 1500
+	#define auto_ptr unique_ptr
+#endif
 
 #ifdef __GNUC__
 	#include <float.h>
@@ -45,10 +67,7 @@
 	#include <ext/functional>
 	
 	#define TR1_NS std::tr1
-#else
-	#include <boost/unordered_map.hpp>
-	#include <boost/unordered_set.hpp>
-	
+#else	
 	#define TR1_NS boost
 	#define isdigit iswdigit
 	#define isspace iswspace

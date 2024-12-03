@@ -30,7 +30,7 @@ typedef CHARACTER* LPCHARACTER;
 #endif
 typedef std::vector<LPCHARACTER> CHARACTER_VECTOR;
 typedef std::list<LPCHARACTER> CHARACTER_LIST;
-typedef TR1_NS::unordered_set<LPCHARACTER> CHARACTER_SET;
+typedef std::unordered_set<LPCHARACTER> CHARACTER_SET;
 
 class CItem;
 #ifdef USE_DEBUG_PTR
@@ -58,7 +58,7 @@ typedef DebugPtr<CEntity> LPENTITY;
 typedef CEntity* LPENTITY;
 #endif
 typedef std::vector<LPENTITY> ENTITY_VECTOR;
-typedef TR1_NS::unordered_set<LPENTITY> ENTITY_SET;
+typedef std::unordered_set<LPENTITY> ENTITY_SET;
 
 class SECTREE;
 #ifdef USE_DEBUG_PTR

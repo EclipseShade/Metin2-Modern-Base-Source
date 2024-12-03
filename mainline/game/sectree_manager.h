@@ -224,7 +224,7 @@ class SECTREE_MANAGER : public singleton<SECTREE_MANAGER>
 		std::map<DWORD, std::vector<npc_info> > m_mapNPCPosition;
 
 		// <Factor> Circular private map indexing
-		typedef TR1_NS::unordered_map<long, int> PrivateIndexMapType;
+		typedef std::unordered_map<long, int> PrivateIndexMapType;
 		PrivateIndexMapType next_private_index_map_;
 };
 

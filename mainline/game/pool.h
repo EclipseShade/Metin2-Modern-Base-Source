@@ -232,7 +232,7 @@ public:
 		pool->Release(p);
 	}
 private:
-	typedef TR1_NS::unordered_map<size_t, Pool*> PoolMapType;
+	typedef std::unordered_map<size_t, Pool*> PoolMapType;
 	PoolMapType pools_;
 };
 

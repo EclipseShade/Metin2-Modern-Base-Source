@@ -49,7 +49,7 @@ class CPVP
 
 class CPVPManager : public singleton<CPVPManager>
 {
-	typedef std::map<DWORD, TR1_NS::unordered_set<CPVP*> > CPVPSetMap;
+	typedef std::map<DWORD, std::unordered_set<CPVP*> > CPVPSetMap;
 
 	public:
 	CPVPManager();

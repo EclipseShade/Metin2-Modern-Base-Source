@@ -1,8 +1,6 @@
 #ifndef THREE_WAY_WAR_EVENT_
 #define THREE_WAY_WAR_EVENT_
 
-#include <boost/unordered_map.hpp>
-
 struct ForkedSungziMapInfo
 {
 	int m_iForkedSung;

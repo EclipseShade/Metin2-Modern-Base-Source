@@ -51,7 +51,7 @@ void P2P_MANAGER::Boot(LPDESC d)
 
 void P2P_MANAGER::FlushOutput()
 {
-	TR1_NS::unordered_set<LPDESC>::iterator it = m_set_pkPeers.begin();
+	std::unordered_set<LPDESC>::iterator it = m_set_pkPeers.begin();
 
 	while (it != m_set_pkPeers.end())
 	{
@@ -89,7 +89,7 @@ void P2P_MANAGER::RegisterConnector(LPDESC d)
 
 void P2P_MANAGER::UnregisterConnector(LPDESC d)
 {
-	TR1_NS::unordered_set<LPDESC>::iterator it = m_set_pkPeers.find(d);
+	std::unordered_set<LPDESC>::iterator it = m_set_pkPeers.find(d);
 
 	if (it != m_set_pkPeers.end())
 	{
@@ -115,7 +115,7 @@ void P2P_MANAGER::EraseUserByDesc(LPDESC d)
 
 void P2P_MANAGER::Send(const void * c_pvData, int iSize, LPDESC except)
 {
-	TR1_NS::unordered_set<LPDESC>::iterator it = m_set_pkPeers.begin();
+	std::unordered_set<LPDESC>::iterator it = m_set_pkPeers.begin();
 
 	while (it != m_set_pkPeers.end())
 	{
@@ -269,7 +269,7 @@ int P2P_MANAGER::GetDescCount()
 
 void P2P_MANAGER::GetP2PHostNames(std::string& hostNames)
 {
-	TR1_NS::unordered_set<LPDESC>::iterator it = m_set_pkPeers.begin();
+	std::unordered_set<LPDESC>::iterator it = m_set_pkPeers.begin();
 
 	std::ostringstream oss(std::ostringstream::out);
 

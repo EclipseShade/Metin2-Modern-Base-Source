@@ -7,7 +7,7 @@ class CParty;
 
 class CDungeon
 {
-	typedef TR1_NS::unordered_map<LPPARTY, int> TPartyMap;
+	typedef std::unordered_map<LPPARTY, int> TPartyMap;
 	typedef std::map<std::string, LPCHARACTER> TUniqueMobMap;
 
 	public:

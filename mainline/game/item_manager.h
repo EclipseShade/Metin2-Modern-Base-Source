@@ -433,7 +433,7 @@ class ITEM_MANAGER : public singleton<ITEM_MANAGER>
 		TItemIDRangeTable	m_ItemIDRange;
 		TItemIDRangeTable	m_ItemIDSpareRange;
 
-		TR1_NS::unordered_set<LPITEM> m_set_pkItemForDelayedSave;
+		std::unordered_set<LPITEM> m_set_pkItemForDelayedSave;
 		std::map<DWORD, LPITEM>		m_map_pkItemByID;
 		std::map<DWORD, DWORD>		m_map_dwEtcItemDropProb;
 		std::map<DWORD, CDropItemGroup*> m_map_pkDropItemGroup;

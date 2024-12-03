@@ -240,7 +240,7 @@ void CPVPManager::ConnectEx(LPCHARACTER pkChr, bool bDisconnect)
 
 	DWORD dwVID = bDisconnect ? 0 : pkChr->GetVID();
 
-	TR1_NS::unordered_set<CPVP*>::iterator it2 = it->second.begin();
+	std::unordered_set<CPVP*>::iterator it2 = it->second.begin();
 
 	while (it2 != it->second.end())
 	{
@@ -267,7 +267,7 @@ void CPVPManager::GiveUp(LPCHARACTER pkChr, DWORD dwKillerPID) // This method is
 		return;
 
 	sys_log(1, "PVPManager::Dead %d", pkChr->GetPlayerID());
-	TR1_NS::unordered_set<CPVP*>::iterator it2 = it->second.begin();
+	std::unordered_set<CPVP*>::iterator it2 = it->second.begin();
 
 	while (it2 != it->second.end())
 	{
@@ -312,7 +312,7 @@ bool CPVPManager::Dead(LPCHARACTER pkChr, DWORD dwKillerPID)
 	bool found = false;
 
 	sys_log(1, "PVPManager::Dead %d", pkChr->GetPlayerID());
-	TR1_NS::unordered_set<CPVP*>::iterator it2 = it->second.begin();
+	std::unordered_set<CPVP*>::iterator it2 = it->second.begin();
 
 	while (it2 != it->second.end())
 	{

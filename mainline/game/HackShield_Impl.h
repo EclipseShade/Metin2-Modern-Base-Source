@@ -1,7 +1,6 @@
 #ifndef HACK_SHIELD_IMPL_H_
 #define HACK_SHIELD_IMPL_H_
 
-#include <boost/unordered_map.hpp>
 
 #ifdef __FreeBSD__
 // Live build only

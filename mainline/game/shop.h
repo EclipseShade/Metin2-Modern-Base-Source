@@ -68,7 +68,7 @@ class CShop
 
 		CGrid *				m_pGrid;
 
-		typedef TR1_NS::unordered_map<LPCHARACTER, bool> GuestMapType;
+		typedef std::unordered_map<LPCHARACTER, bool> GuestMapType;
 		GuestMapType m_map_guest;
 		std::vector<SHOP_ITEM>		m_itemVector;	// 이 상점에서 취급하는 물건들
 

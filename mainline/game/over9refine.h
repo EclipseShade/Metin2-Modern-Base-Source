@@ -1,8 +1,6 @@
 #ifndef OVER_9_REFINE_MANAGER_H_
 #define OVER_9_REFINE_MANAGER_H_
 
-#include <boost/unordered_map.hpp>
-
 class COver9RefineManager : public singleton<COver9RefineManager>
 {
 	private :

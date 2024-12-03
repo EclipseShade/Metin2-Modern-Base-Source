@@ -1,8 +1,6 @@
 #ifndef __INC_METIN_II_GAME_PROFILER_H__
 #define __INC_METIN_II_GAME_PROFILER_H__
 
-#include <boost/unordered_map.hpp>
-
 class CProfiler : public singleton<CProfiler>
 {
 	public:

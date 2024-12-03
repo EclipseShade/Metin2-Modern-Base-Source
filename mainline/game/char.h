@@ -1,8 +1,6 @@
 #ifndef __INC_METIN_II_CHAR_H__
 #define __INC_METIN_II_CHAR_H__
 
-#include <boost/unordered_map.hpp>
-
 #include "entity.h"
 #include "FSM.h"
 #include "horse_rider.h"

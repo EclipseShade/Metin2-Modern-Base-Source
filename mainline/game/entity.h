@@ -6,7 +6,7 @@ class SECTREE;
 class CEntity
 {
 	public:
-		typedef TR1_NS::unordered_map<LPENTITY, int> ENTITY_MAP;
+		typedef std::unordered_map<LPENTITY, int> ENTITY_MAP;
 
 	public:
 		CEntity();

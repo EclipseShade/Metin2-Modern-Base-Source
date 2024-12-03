@@ -1,8 +1,6 @@
 #ifndef P2P_MANAGER_H_
 #define P2P_MANAGER_H_
 
-#include <boost/unordered_map.hpp>
-
 #include "input.h"
 #include "profiler.h"
 
@@ -59,7 +57,7 @@ class P2P_MANAGER : public singleton<P2P_MANAGER>
 		typedef std::unordered_map<std::string, CCI *, CProfiler::stringhash> TCCIMap;
 		typedef std::unordered_map<DWORD, CCI*> TPIDCCIMap;
 
-		TR1_NS::unordered_set<LPDESC> m_set_pkPeers;
+		std::unordered_set<LPDESC> m_set_pkPeers;
 		TCCIMap			m_map_pkCCI;
 		TPIDCCIMap		m_map_dwPID_pkCCI;
 		int			m_aiEmpireUserCount[EMPIRE_MAX_NUM];
