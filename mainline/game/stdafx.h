@@ -56,7 +56,7 @@ namespace std {
 	}
 } 
 
-#if _MSC_VER > 1500
+#if _MSC_VER > 1500 || __FreeBSD__
 	#define auto_ptr unique_ptr
 #endif
 
