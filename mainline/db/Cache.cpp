@@ -29,14 +29,6 @@ CItemCache::~CItemCache()
 {
 }
 
-// 이거 이상한데...
-// Delete를 했으면, Cache도 해제해야 하는것 아닌가???
-// 근데 Cache를 해제하는 부분이 없어.
-// 못 찾은 건가?
-// 이렇게 해놓으면, 계속 시간이 될 때마다 아이템을 계속 지워...
-// 이미 사라진 아이템인데... 확인사살??????
-// fixme
-// by rtsummit
 void CItemCache::Delete() {
 	if (m_data.vnum == 0) {
 		return;
