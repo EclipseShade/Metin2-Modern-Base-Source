@@ -35,7 +35,7 @@
 		
 		#define auto_ptr unique_ptr
 		#define itertype(v) decltype((v).begin())
-	#elif _MSC_VER <= 1500
+	#elif _MSC_VER == 1500
 		using std::undordered_map = std::map;
 		using std::undordered_set = std::set;
 		using std::hash = std::hash;
