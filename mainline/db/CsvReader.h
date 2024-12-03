@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 
-#if _MSC_VER <= 1500
-	#include <hash_map>
+#if _MSC_VER == 1500
+	#include <map>
 #else
     #include <unordered_map>
 #endif
@@ -42,7 +42,7 @@ private:
 #if _MSC_VER > 1500 || __FreeBSD__
     typedef std::unordered_map<std::string, size_t> NAME2INDEX_MAP;
     typedef std::unordered_map<size_t, std::string> INDEX2NAME_MAP;
-#elif _MSC_VER <= 1500
+#elif _MSC_VER == 1500	// Visual Studio 2008
     typedef std::map<std::string, size_t> NAME2INDEX_MAP;
     typedef std::map<size_t, std::string> INDEX2NAME_MAP;
 #endif
