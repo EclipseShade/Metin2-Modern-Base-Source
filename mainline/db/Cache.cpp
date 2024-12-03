@@ -12,12 +12,12 @@
 extern CPacketInfo g_item_info;
 extern int g_iPlayerCacheFlushSeconds;
 extern int g_iItemCacheFlushSeconds;
+extern int g_test_server;
 // MYSHOP_PRICE_LIST
 extern int g_iItemPriceListTableCacheFlushSeconds;
 // END_OF_MYSHOP_PRICE_LIST
 //
 extern int g_item_count;
-extern int g_test_server;
 const int auctionMinFlushSec = 1800;
 
 CItemCache::CItemCache()
@@ -34,8 +34,6 @@ void CItemCache::Delete() {
 		return;
 	}
 
-	//char szQuery[QUERY_MAX_LEN];
-	//szQuery[QUERY_MAX_LEN] = '\0';
 	if (g_test_server) {
 		sys_log(0, "ItemCache::Delete : DELETE %u", m_data.id);
 	}
@@ -44,13 +42,10 @@ void CItemCache::Delete() {
 	m_bNeedQuery = true;
 	m_lastUpdateTime = time(0);
 	OnFlush();
-	
-	//m_bNeedQuery = false;
-	//m_lastUpdateTime = time(0) - m_expireTime; // 바로 타임아웃 되도록 하자.
 }
 
 void CItemCache::OnFlush() {
-	if (m_data.vnum == 0) { // vnum이 0이면 삭제하라고 표시된 것이다.
+	if (m_data.vnum == 0) {
 		char szQuery[QUERY_MAX_LEN];
 		snprintf(szQuery, sizeof(szQuery), "DELETE FROM item%s WHERE id=%u", GetTablePostfix(), m_data.id);
 		CDBManager::instance().ReturnQuery(szQuery, QID_ITEM_DESTROY, 0, NULL);
@@ -182,10 +177,6 @@ CItemPriceListTableCache::CItemPriceListTableCache()
 
 void CItemPriceListTableCache::UpdateList(const TItemPriceListTable* pUpdateList)
 {
-	//
-	// 이미 캐싱된 아이템과 중복된 아이템을 찾고 중복되지 않는 이전 정보는 tmpvec 에 넣는다.
-	//
-
 	std::vector<TItemPriceInfo> tmpvec;
 
 	for (uint idx = 0; idx < m_data.byCount; ++idx)
@@ -198,10 +189,6 @@ void CItemPriceListTableCache::UpdateList(const TItemPriceListTable* pUpdateList
 			tmpvec.push_back(m_data.aPriceInfo[idx]);
 	}
 
-	//
-	// pUpdateList 를 m_data 에 복사하고 남은 공간을 tmpvec 의 앞에서 부터 남은 만큼 복사한다.
-	// 
-
 	if (pUpdateList->byCount > SHOP_PRICELIST_MAX_NUM)
 	{
 		sys_err("Count overflow!");
@@ -212,7 +199,7 @@ void CItemPriceListTableCache::UpdateList(const TItemPriceListTable* pUpdateList
 
 	thecore_memcpy(m_data.aPriceInfo, pUpdateList->aPriceInfo, sizeof(TItemPriceInfo) * pUpdateList->byCount);
 
-	int nDeletedNum;	// 삭제된 가격정보의 갯수
+	int nDeletedNum;
 
 	if (pUpdateList->byCount < SHOP_PRICELIST_MAX_NUM)
 	{
@@ -232,8 +219,8 @@ void CItemPriceListTableCache::UpdateList(const TItemPriceListTable* pUpdateList
 
 	m_bNeedQuery = true;
 
-	sys_log(0, 
-			"ItemPriceListTableCache::UpdateList : OwnerID[%u] Update [%u] Items, Delete [%u] Items, Total [%u] Items", 
+	sys_log(0,
+			"ItemPriceListTableCache::UpdateList : OwnerID[%u] Update [%u] Items, Delete [%u] Items, Total [%u] Items",
 			m_data.dwOwnerID, pUpdateList->byCount, nDeletedNum, m_data.byCount);
 }
 
@@ -241,16 +228,8 @@ void CItemPriceListTableCache::OnFlush()
 {
 	char szQuery[QUERY_MAX_LEN];
 
-	//
-	// 이 캐시의 소유자에 대한 기존에 DB 에 저장된 아이템 가격정보를 모두 삭제한다.
-	//
-
 	snprintf(szQuery, sizeof(szQuery), "DELETE FROM myshop_pricelist%s WHERE owner_id = %u", GetTablePostfix(), m_data.dwOwnerID);
 	CDBManager::instance().ReturnQuery(szQuery, QID_ITEMPRICE_DESTROY, 0, NULL);
-
-	//
-	// 캐시의 내용을 모두 DB 에 쓴다.
-	//
 
 	for (int idx = 0; idx < m_data.byCount; ++idx)
 	{
@@ -261,7 +240,7 @@ void CItemPriceListTableCache::OnFlush()
 	}
 
 	sys_log(0, "ItemPriceListTableCache::Flush : OwnerID[%u] Update [%u]Items", m_data.dwOwnerID, m_data.byCount);
-	
+
 	m_bNeedQuery = false;
 }
 
