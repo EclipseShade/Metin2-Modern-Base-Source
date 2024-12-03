@@ -60,8 +60,10 @@ struct timespec
 #define localtime_r(timet, result) localtime_s(result, timet)
 #define strtok_r(s, delim, ptrptr) strtok_s(s, delim, ptrptr)
 
-#include <boost/typeof/typeof.hpp>
-#define typeof(t) BOOST_TYPEOF(t)
+#if _MSC_VER <= 1500
+	#include <boost/typeof/typeof.hpp>
+	#define typeof(t) BOOST_TYPEOF(t)
+#endif
 
 // dummy declaration of non-supported signals
 #define SIGUSR1     30  /* user defined signal 1 */

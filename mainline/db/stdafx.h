@@ -1,13 +1,6 @@
 #ifndef __INC_METiN_II_DBSERV_STDAFX_H__
 #define __INC_METiN_II_DBSERV_STDAFX_H__
 
-//Common
-#include "../common/CommonDefines.h"
-#include "../common/length.h"
-#include "../common/tables.h"
-#include "../common/singleton.h"
-#include "../common/utils.h"
-
 // Standard Libraries
 #include <sstream>
 #include <string>
@@ -16,6 +9,9 @@
 #include <map>
 #include <set>
 
+#include "../../ExternGame/libsql/AsyncSQL.h"
+#include "../../ExternGame/libthecore/include/stdafx.h"
+
 #ifndef __WIN32__
 	#include <semaphore.h>
 #else
@@ -23,18 +19,19 @@
 	#define isspace iswspace
 #endif
 
-#include "../../ExternGame/libsql/AsyncSQL.h"
-#include "../../ExternGame/libthecore/include/stdafx.h"
+//Common
+#include "../common/CommonDefines.h"
+#include "../common/length.h"
+#include "../common/tables.h"
+#include "../common/singleton.h"
+#include "../common/utils.h"
 
 /* Support For Older Versions */
 #ifndef itertype
 	#if _MSC_VER <= 1500
-		#include <boost/unordered_map.hpp>
-		#include <boost/unordered_set.hpp>
-
-		using std::undordered_map = boost::unordered_map;
-		using std::undordered_set = boost::unordered_set;
-		using std::hash = boost::hash;
+		using std::undordered_map = std::map;
+		using std::undordered_set = std::set;
+		using std::hash = std::hash;
 		
 		#define decltype typeof
 		#define itertype(v) typeof((v).begin())
@@ -46,3 +43,5 @@
 		#define itertype(v) decltype((v).begin())
 	#endif
 #endif
+
+#endif //__INC_METiN_II_DBSERV_STDAFX_H__
