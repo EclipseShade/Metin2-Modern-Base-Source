@@ -29,19 +29,19 @@
 
 /* Support For Older Versions */
 #ifndef itertype
-	#if _MSC_VER <= 1500
+	#if _MSC_VER <= 1500 || __FreeBSD__
+		#include <unordered_map>
+		#include <unordered_set>
+		
+		#define auto_ptr unique_ptr
+		#define itertype(v) decltype((v).begin())
+	#elif _MSC_VER <= 1500
 		using std::undordered_map = std::map;
 		using std::undordered_set = std::set;
 		using std::hash = std::hash;
 		
 		#define decltype typeof
 		#define itertype(v) typeof((v).begin())
-	#else
-		#include <unordered_map>
-		#include <unordered_set>
-		
-		#define auto_ptr unique_ptr
-		#define itertype(v) decltype((v).begin())
 	#endif
 #endif
 
