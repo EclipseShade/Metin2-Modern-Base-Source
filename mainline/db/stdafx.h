@@ -2,6 +2,7 @@
 #define __INC_METiN_II_DBSERV_STDAFX_H__
 
 // Standard Libraries
+#include <functional>
 #include <sstream>
 #include <string>
 #include <memory>
