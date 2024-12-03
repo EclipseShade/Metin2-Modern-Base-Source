@@ -25,23 +25,22 @@ string trim(const string& str){return trim_left(trim_right(str));}
 
 static string* StringSplit(string strOrigin, string strTok)
 {
-    unsigned int	cutAt;                            //자르는위치
-    int				index     = 0;                    //문자열인덱스
-    string* strResult = new string[30];		  //결과return 할변수
+    unsigned int	cutAt;
+    int				index     = 0;
+    string* strResult = new string[30];
 
-    //strTok을찾을때까지반복
     while ((cutAt = strOrigin.find_first_of(strTok)) != strOrigin.npos)
     {
-       if (cutAt > 0)  //자르는위치가0보다크면(성공시)
+       if (cutAt > 0)
        {
-            strResult[index++] = strOrigin.substr(0, cutAt);  //결과배열에추가
+            strResult[index++] = strOrigin.substr(0, cutAt);
        }
-       strOrigin = strOrigin.substr(cutAt+1);  //원본은자른부분제외한나머지
+       strOrigin = strOrigin.substr(cutAt+1);
     }
 
-    if(strOrigin.length() > 0)  //원본이아직남았으면
+    if(strOrigin.length() > 0)
     {
-        strResult[index++] = strOrigin.substr(0, cutAt);  //나머지를결과배열에추가
+        strResult[index++] = strOrigin.substr(0, cutAt);
     }
 
 	for( int i=0;i<index;i++)
@@ -49,7 +48,7 @@ static string* StringSplit(string strOrigin, string strTok)
 		strResult[i] = trim(strResult[i]);
 	}
 
-    return strResult;  //결과return
+    return strResult;
 }
 
 
@@ -263,7 +262,7 @@ int get_Item_AntiFlag_Value(string inputString)
 			if (tempString2.compare(tempString)==0) {				//일치하는지 확인.
 				retValue = retValue + pow((float)2,(float)i);
 			}
-			
+
 			if(tempString2.compare("") == 0)
 				break;
 		}
@@ -292,7 +291,7 @@ int get_Item_Flag_Value(string inputString)
 			if (tempString2.compare(tempString)==0) {				//일치하는지 확인.
 				retValue = retValue + pow((float)2,(float)i);
 			}
-			
+
 			if(tempString2.compare("") == 0)
 				break;
 		}
@@ -311,16 +310,16 @@ int get_Item_WearFlag_Value(string inputString)
 
 
 	int retValue = 0;
-	string* arInputString = StringSplit(inputString, "|");				//프로토 정보 내용을 단어별로 쪼갠 배열.
+	string* arInputString = StringSplit(inputString, "|");
 	for(unsigned int i =0;i<sizeof(arWearrFlag)/sizeof(arWearrFlag[0]);i++) {
 		string tempString = arWearrFlag[i];
-		for (unsigned int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
+		for (unsigned int j=0; j<30 ; j++)
 		{
 			string tempString2 = arInputString[j];
-			if (tempString2.compare(tempString)==0) {				//일치하는지 확인.
+			if (tempString2.compare(tempString)==0) {
 				retValue = retValue + pow((float)2,(float)i);
 			}
-			
+
 			if(tempString2.compare("") == 0)
 				break;
 		}
@@ -331,19 +330,18 @@ int get_Item_WearFlag_Value(string inputString)
 	return retValue;
 }
 
-int get_Item_Immune_Value(string inputString) 
+int get_Item_Immune_Value(string inputString)
 {
-
 	string arImmune[] = {"PARA","CURSE","STUN","SLEEP","SLOW","POISON","TERROR"};
 
 	int retValue = 0;
-	string* arInputString = StringSplit(inputString, "|");				//프로토 정보 내용을 단어별로 쪼갠 배열.
+	string* arInputString = StringSplit(inputString, "|");
 	for(unsigned int i =0;i<sizeof(arImmune)/sizeof(arImmune[0]);i++) {
 		string tempString = arImmune[i];
-		for (unsigned int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
+		for (unsigned int j=0; j<30 ; j++)
 		{
 			string tempString2 = arInputString[j];
-			if (tempString2.compare(tempString)==0) {				//일치하는지 확인.
+			if (tempString2.compare(tempString)==0) {
 				retValue = retValue + pow((float)2,(float)i);
 			}
 			
@@ -357,13 +355,10 @@ int get_Item_Immune_Value(string inputString)
 	return retValue;
 }
 
-
-
-
 int get_Item_LimitType_Value(string inputString)
 {
 	string arLimitType[] = {"LIMIT_NONE", "LEVEL", "STR", "DEX", "INT", "CON", "PC_BANG", "REAL_TIME", "REAL_TIME_FIRST_USE", "TIMER_BASED_ON_WEAR"};
-	
+
 	int retInt = -1;
 	//cout << "LimitType : " << limitTypeStr << " -> ";
 	for (unsigned int j=0;j<sizeof(arLimitType)/sizeof(arLimitType[0]);j++) {
@@ -380,7 +375,6 @@ int get_Item_LimitType_Value(string inputString)
 
 	return retInt;
 }
-
 
 int get_Item_ApplyType_Value(string inputString)
 {
@@ -412,7 +406,7 @@ int get_Item_ApplyType_Value(string inputString)
 		string tempString = arApplyType[j];
 		string tempInputString = trim(inputString);
 		if	(tempInputString.compare(tempString)==0)
-		{ 
+		{
 			//cout << j << " ";
 			retInt =  j;
 			break;
@@ -421,12 +415,7 @@ int get_Item_ApplyType_Value(string inputString)
 	//cout << endl;
 
 	return retInt;
-
 }
-
-
-//몬스터 프로토도 읽는다.
-
 
 int get_Mob_Rank_Value(string inputString) 
 {
@@ -449,7 +438,6 @@ int get_Mob_Rank_Value(string inputString)
 	return retInt;
 }
 
-
 int get_Mob_Type_Value(string inputString)
 {
 	string arType[] = { "MONSTER", "NPC", "STONE", "WARP", "DOOR", "BUILDING", "PC", "POLYMORPH_PC", "HORSE", "GOTO"};
@@ -459,7 +447,7 @@ int get_Mob_Type_Value(string inputString)
 	for (unsigned int j=0;j<sizeof(arType)/sizeof(arType[0]);j++) {
 		string tempString = arType[j];
 		string tempInputString = trim(inputString);
-		if	(tempInputString.compare(tempString)==0) 
+		if	(tempInputString.compare(tempString)==0)
 		{
 			//cout << j << " ";
 			retInt =  j;
@@ -480,8 +468,8 @@ int get_Mob_BattleType_Value(string inputString)
 	for (unsigned int j=0;j<sizeof(arBattleType)/sizeof(arBattleType[0]);j++) {
 		string tempString = arBattleType[j];
 		string tempInputString = trim(inputString);
-		if	(tempInputString.compare(tempString)==0) 
-		{ 
+		if	(tempInputString.compare(tempString)==0)
+		{
 			//cout << j << " ";
 			retInt =  j;
 			break;
@@ -501,7 +489,7 @@ int get_Mob_Size_Value(string inputString)
 	for (unsigned int j=0;j<sizeof(arSize)/sizeof(arSize[0]);j++) {
 		string tempString = arSize[j];
 		string tempInputString = trim(inputString);
-		if	(tempInputString.compare(tempString)==0) 
+		if	(tempInputString.compare(tempString)==0)
 		{
 			//cout << j << " ";
 			retInt =  j + 1;
@@ -528,7 +516,7 @@ int get_Mob_AIFlag_Value(string inputString)
 			if (tempString2.compare(tempString)==0) {				//일치하는지 확인.
 				retValue = retValue + pow((float)2,(float)i);
 			}
-			
+
 			if(tempString2.compare("") == 0)
 				break;
 		}
@@ -544,16 +532,16 @@ int get_Mob_RaceFlag_Value(string inputString)
 		"ATT_ELEC","ATT_FIRE","ATT_ICE","ATT_WIND","ATT_EARTH","ATT_DARK"};
 
 	int retValue = 0;
-	string* arInputString = StringSplit(inputString, ",");				//프로토 정보 내용을 단어별로 쪼갠 배열.
+	string* arInputString = StringSplit(inputString, ",");
 	for(unsigned int i =0;i<sizeof(arRaceFlag)/sizeof(arRaceFlag[0]);i++) {
 		string tempString = arRaceFlag[i];
-		for (unsigned int j=0; j<30 ; j++)		//최대 30개 단어까지. (하드코딩)
+		for (unsigned int j=0; j<30 ; j++)
 		{
 			string tempString2 = arInputString[j];
-			if (tempString2.compare(tempString)==0) {				//일치하는지 확인.
+			if (tempString2.compare(tempString)==0) {
 				retValue = retValue + pow((float)2,(float)i);
 			}
-			
+
 			if(tempString2.compare("") == 0)
 				break;
 		}
@@ -577,7 +565,7 @@ int get_Mob_ImmuneFlag_Value(string inputString)
 			if (tempString2.compare(tempString)==0) {				//일치하는지 확인.
 				retValue = retValue + pow((float)2,(float)i);
 			}
-			
+
 			if(tempString2.compare("") == 0)
 				break;
 		}
@@ -585,28 +573,24 @@ int get_Mob_ImmuneFlag_Value(string inputString)
 	delete []arInputString;
 	//cout << "Immune Flag : " << immuneFlagStr << " -> " << retValue << endl;
 
-
 	return retValue;
 }
 
-
 #ifndef __DUMP_PROTO__
 
-//몹 테이블을 셋팅해준다.
 bool Set_Proto_Mob_Table(TMobTable *mobTable, cCsvTable &csvTable,std::map<int,const char*> &nameMap)
 {
 	int col = 0;
 	str_to_number(mobTable->dwVnum, csvTable.AsStringByIndex(col++));
 	strlcpy(mobTable->szName, csvTable.AsStringByIndex(col++), sizeof(mobTable->szName));
 
-	//3. 지역별 이름 넣어주기.
 	map<int,const char*>::iterator it;
 	it = nameMap.find(mobTable->dwVnum);
 	if (it != nameMap.end()) {
 		const char * localeName = it->second;
-		strlcpy(mobTable->szLocaleName, localeName, sizeof (mobTable->szLocaleName));
+		strlcpy(mobTable->szLocaleName, localeName, sizeof(mobTable->szLocaleName));
 	} else {
-		strlcpy(mobTable->szLocaleName, mobTable->szName, sizeof (mobTable->szLocaleName));
+		strlcpy(mobTable->szLocaleName, mobTable->szName, sizeof(mobTable->szLocaleName));
 	}
 
 	//RANK
@@ -615,17 +599,15 @@ bool Set_Proto_Mob_Table(TMobTable *mobTable, cCsvTable &csvTable,std::map<int,c
 	//TYPE
 	int typeValue = get_Mob_Type_Value(csvTable.AsStringByIndex(col++));
 	mobTable->bType = typeValue;
-	
 	//BATTLE_TYPE
 	int battleTypeValue = get_Mob_BattleType_Value(csvTable.AsStringByIndex(col++));
 	mobTable->bBattleType = battleTypeValue;
-	
+
 	str_to_number(mobTable->bLevel, csvTable.AsStringByIndex(col++));
 	
 #ifdef GF_ENABLE_MOB_PROTO_SCALE_PCT
 	col++;		// [NEW] ScalePct -> [CURRENTLY SKIP]
 #endif
-
 	//SIZE
 	int sizeValue = get_Mob_Size_Value(csvTable.AsStringByIndex(col++));
 	mobTable->bSize = sizeValue;
@@ -645,7 +627,7 @@ bool Set_Proto_Mob_Table(TMobTable *mobTable, cCsvTable &csvTable,std::map<int,c
 
 	strlcpy(mobTable->szFolder, csvTable.AsStringByIndex(col++), sizeof(mobTable->szFolder));
 
-	str_to_number(mobTable->bOnClickType, csvTable.AsStringByIndex(col++));	
+	str_to_number(mobTable->bOnClickType, csvTable.AsStringByIndex(col++));
 
 	str_to_number(mobTable->bStr, csvTable.AsStringByIndex(col++));
 	str_to_number(mobTable->bDex, csvTable.AsStringByIndex(col++));
@@ -782,7 +764,7 @@ bool Set_Proto_Item_Table(TItemTable *itemTable, cCsvTable &csvTable,std::map<in
 
 			exit(0);
 		}
-		
+
 		col = col + 1;
 	}
 
@@ -790,7 +772,6 @@ bool Set_Proto_Item_Table(TItemTable *itemTable, cCsvTable &csvTable,std::map<in
 	{
 		std::string s(csvTable.AsStringByIndex(0));
 		unsigned int pos = s.find("~");
-		// vnum 필드에 '~'가 없다면 패스
 		if (std::string::npos == pos)
 		{
 			itemTable->dwVnum = dataArray[0];
@@ -814,14 +795,13 @@ bool Set_Proto_Item_Table(TItemTable *itemTable, cCsvTable &csvTable,std::map<in
 	}
 
 	strlcpy(itemTable->szName, csvTable.AsStringByIndex(1), sizeof(itemTable->szName));
-	//지역별 이름 넣어주기.
 	map<int,const char*>::iterator it;
 	it = nameMap.find(itemTable->dwVnum);
 	if (it != nameMap.end()) {
 		const char * localeName = it->second;
-		strlcpy(itemTable->szLocaleName, localeName, sizeof (itemTable->szLocaleName));
+		strlcpy(itemTable->szLocaleName, localeName, sizeof(itemTable->szLocaleName));
 	} else {
-		strlcpy(itemTable->szLocaleName, itemTable->szName, sizeof (itemTable->szLocaleName));
+		strlcpy(itemTable->szLocaleName, itemTable->szName, sizeof(itemTable->szLocaleName));
 	}
 	itemTable->bType = dataArray[2];
 	itemTable->bSubType = dataArray[3];
@@ -868,7 +848,7 @@ bool Set_Proto_Item_Table(TItemTable *itemTable, cCsvTable &csvTable,std::map<in
 
 	//test
 	str_to_number(itemTable->bWeight, "0");
-			
+
 	return true;
 }
 
