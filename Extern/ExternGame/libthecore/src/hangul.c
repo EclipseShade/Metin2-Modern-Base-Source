@@ -44,7 +44,7 @@ const char *first_han(const BYTE *str)
 {
     unsigned char high, low;
     int len, i;
-    char *p = "±×¿Ü";
+    const char *p = "±×¿Ü";
 
     static const char* wansung[] =
     {
@@ -57,9 +57,9 @@ const char *first_han(const BYTE *str)
     static const char* johab[] =
     {
 	"ˆa", "Œa", "a", "”a", "˜a",
-	"œa", " a", "¤a", "¨a", "¬a",
-	"°a", "´a", "¸a", "¼a", "Àa",
-	"Äa", "?", "?", "?", "" 
+	"œa", " a", "?", "?", "?",
+	"?", "?", "?", "?", "?",
+	"?", "?", "?", "?", "" 
     };
 
     len = strlen((const char*) str);
