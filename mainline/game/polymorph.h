@@ -17,9 +17,9 @@ enum POLYMORPH_BONUS_TYPE
 class CPolymorphUtils : public singleton<CPolymorphUtils>
 {
 	private :
-		boost::unordered_map<DWORD, DWORD> m_mapSPDType;
-		boost::unordered_map<DWORD, DWORD> m_mapATKType;
-		boost::unordered_map<DWORD, DWORD> m_mapDEFType;
+		std::unordered_map<DWORD, DWORD> m_mapSPDType;
+		std::unordered_map<DWORD, DWORD> m_mapATKType;
+		std::unordered_map<DWORD, DWORD> m_mapDEFType;
 
 	public :
 		CPolymorphUtils();

@@ -66,8 +66,8 @@ struct SItemNameAndLevel
 
 // 자료구조나 이런거 병신인건 이해좀... 누구땜에 영혼이 없는 상태에서 만들었씀
 typedef std::vector<SCubeMaterialInfo>								TCubeResultList;
-typedef boost::unordered_map<DWORD, TCubeResultList>				TCubeMapByNPC;				// 각각의 NPC별로 어떤 걸 만들 수 있고 재료가 뭔지...
-typedef boost::unordered_map<DWORD, std::string>					TCubeResultInfoTextByNPC;	// 각각의 NPC별로 만들 수 있는 목록을 정해진 포맷으로 정리한 정보
+typedef std::unordered_map<DWORD, TCubeResultList>				TCubeMapByNPC;				// 각각의 NPC별로 어떤 걸 만들 수 있고 재료가 뭔지...
+typedef std::unordered_map<DWORD, std::string>					TCubeResultInfoTextByNPC;	// 각각의 NPC별로 만들 수 있는 목록을 정해진 포맷으로 정리한 정보
 
 TCubeMapByNPC cube_info_map;
 TCubeResultInfoTextByNPC cube_result_info_map_by_npc;				// 네이밍 존나 병신같다 ㅋㅋㅋ

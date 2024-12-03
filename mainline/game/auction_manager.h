@@ -56,11 +56,11 @@ public:
 
 
 private:
-	typedef boost::unordered_map <DWORD, TAuctionItemInfo*> TItemInfoMap;
+	typedef std::unordered_map <DWORD, TAuctionItemInfo*> TItemInfoMap;
 	TItemInfoMap item_map;
 
 	typedef std::map <DWORD, TAuctionItemInfo*> TItemMap;
-	typedef boost::unordered_map <DWORD, TItemMap*> TPCMap;
+	typedef std::unordered_map <DWORD, TItemMap*> TPCMap;
 
 	TPCMap offer_map;
 
@@ -84,11 +84,11 @@ public:
 class SaleBoard
 {
 private:
-	typedef boost::unordered_map <DWORD, TSaleItemInfo*> TItemInfoMap;
+	typedef std::unordered_map <DWORD, TSaleItemInfo*> TItemInfoMap;
 	TItemInfoMap item_map;
 	
 	typedef std::map <DWORD, TSaleItemInfo*> TItemMap;
-	typedef boost::unordered_map <DWORD, TItemMap*> TPCMap;
+	typedef std::unordered_map <DWORD, TItemMap*> TPCMap;
 
 	TPCMap wisher_map;
 	TPCMap seller_map;
@@ -112,7 +112,7 @@ class WishBoard
 {
 private:
 	typedef std::map <DWORD, TWishItemInfo*> TItemMap;
-	typedef boost::unordered_map <DWORD, TItemMap*> TPCMap;
+	typedef std::unordered_map <DWORD, TItemMap*> TPCMap;
 	TPCMap wisher_map;
 
 public:
@@ -131,7 +131,7 @@ class MyBidBoard
 private:
 	typedef std::pair <int, bool> BidInfo;
 	typedef std::map <DWORD, BidInfo > TItemMap;
-	typedef boost::unordered_map <DWORD, TItemMap*> TMyBidBoard;
+	typedef std::unordered_map <DWORD, TItemMap*> TMyBidBoard;
 	// bidder_id가 key
 	TMyBidBoard pc_map;
 
@@ -154,7 +154,7 @@ public:
 class AuctionManager : public singleton <AuctionManager> 
 {
 private :
-	typedef boost::unordered_map<DWORD, LPITEM> TItemMap;
+	typedef std::unordered_map<DWORD, LPITEM> TItemMap;
 	TItemMap auction_item_map;
 
 	// auction에 등록된 정보 중 가격, 등등 아이템 테이블에 포함되지 않는 정보들을 관리하는 것들

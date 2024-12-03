@@ -15,7 +15,7 @@ CPolymorphUtils::CPolymorphUtils()
 
 POLYMORPH_BONUS_TYPE CPolymorphUtils::GetBonusType(DWORD dwVnum)
 {
-	boost::unordered_map<DWORD, DWORD>::iterator iter;
+	std::unordered_map<DWORD, DWORD>::iterator iter;
 
 	iter = m_mapSPDType.find(dwVnum);
 

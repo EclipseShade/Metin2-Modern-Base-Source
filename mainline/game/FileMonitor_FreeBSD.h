@@ -34,7 +34,7 @@ public:
 	}
 
 private:
-	typedef boost::unordered_map<std::string, FileIOContext_FreeBSD> TMonitorFileHashMap;
+	typedef std::unordered_map<std::string, FileIOContext_FreeBSD> TMonitorFileHashMap;
 	typedef std::vector<struct kevent>	TEventList;
 	
 	TMonitorFileHashMap	m_FileLists;

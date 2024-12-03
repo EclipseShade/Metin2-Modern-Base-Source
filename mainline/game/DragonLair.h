@@ -32,7 +32,7 @@ class CDragonLairManager : public singleton<CDragonLairManager>
 		size_t GetLairCount () const { return LairMap_.size(); }
 
 	private:
-		boost::unordered_map<DWORD, CDragonLair*> LairMap_;
+		std::unordered_map<DWORD, CDragonLair*> LairMap_;
 };
 
 #endif

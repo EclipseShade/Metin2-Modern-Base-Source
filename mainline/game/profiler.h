@@ -46,7 +46,7 @@ class CProfiler : public singleton<CProfiler>
 			}
 		};
 
-		typedef boost::unordered_map<std::string, TProfileAccumData> TProfileAccumDataMap;
+		typedef std::unordered_map<std::string, TProfileAccumData> TProfileAccumDataMap;
 
 	public:
 		CProfiler()

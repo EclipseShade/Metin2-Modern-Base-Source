@@ -16,7 +16,7 @@ class DESC_MANAGER : public singleton<DESC_MANAGER>
 		typedef std::map<int, LPDESC>					DESC_HANDLE_MAP;
 		typedef std::map<DWORD, LPDESC>					DESC_HANDSHAKE_MAP;
 		typedef std::map<DWORD, LPDESC>					DESC_ACCOUNTID_MAP;
-		typedef boost::unordered_map<std::string, LPDESC>	DESC_LOGINNAME_MAP;
+		typedef std::unordered_map<std::string, LPDESC>	DESC_LOGINNAME_MAP;
 		typedef std::map<DWORD, DWORD>					DESC_HANDLE_RANDOM_KEY_MAP;
 
 	public:

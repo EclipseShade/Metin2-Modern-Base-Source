@@ -103,7 +103,7 @@ private:
 
 	} TPerFileSDBInfo;
 
-	typedef boost::unordered_map<std::string, TPerFileSDBInfo > TPackageSDBMap;	//key: related map name
+	typedef std::unordered_map<std::string, TPerFileSDBInfo > TPackageSDBMap;	//key: related map name
 	TPackageSDBMap	  m_mapPackageSDB;
 
 

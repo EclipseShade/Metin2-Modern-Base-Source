@@ -57,7 +57,7 @@ private:
 		LPEVENT m_pCheckEvent;
 	};
 
-	typedef boost::unordered_map<DWORD, sSessionInfo> ClientSessionMap;
+	typedef std::unordered_map<DWORD, sSessionInfo> ClientSessionMap;
 
 	ClientSessionMap	m_mapClientSessions;
 

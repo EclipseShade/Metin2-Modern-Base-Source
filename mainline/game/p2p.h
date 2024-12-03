@@ -56,8 +56,8 @@ class P2P_MANAGER : public singleton<P2P_MANAGER>
 		CInputProcessor *	m_pkInputProcessor;
 		int			m_iHandleCount;
 
-		typedef boost::unordered_map<std::string, CCI *, CProfiler::stringhash> TCCIMap;
-		typedef boost::unordered_map<DWORD, CCI*> TPIDCCIMap;
+		typedef std::unordered_map<std::string, CCI *, CProfiler::stringhash> TCCIMap;
+		typedef std::unordered_map<DWORD, CCI*> TPIDCCIMap;
 
 		TR1_NS::unordered_set<LPDESC> m_set_pkPeers;
 		TCCIMap			m_map_pkCCI;

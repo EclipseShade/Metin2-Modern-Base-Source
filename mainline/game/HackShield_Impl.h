@@ -38,10 +38,10 @@ class CHackShieldImpl
 #ifdef __FreeBSD__
 		AHNHS_SERVER_HANDLE handle_;
 
-		typedef boost::unordered_map<DWORD, AHNHS_CLIENT_HANDLE> ClientHandleContainer;
+		typedef std::unordered_map<DWORD, AHNHS_CLIENT_HANDLE> ClientHandleContainer;
 		ClientHandleContainer CliehtHandleMap_;
 
-		typedef boost::unordered_map<DWORD, bool> ClientCheckContainer;
+		typedef std::unordered_map<DWORD, bool> ClientCheckContainer;
 		ClientCheckContainer ClientCheckMap_;
 #endif
 };

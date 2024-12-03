@@ -237,8 +237,8 @@ namespace quest
 				}
 			};
 
-			typedef boost::unordered_map<string, int, stringhash> THashMapQuestName;
-			typedef boost::unordered_map<unsigned int, vector<char> > THashMapQuestStartScript;
+			typedef std::unordered_map<string, int, stringhash> THashMapQuestName;
+			typedef std::unordered_map<unsigned int, vector<char> > THashMapQuestStartScript;
 
 			THashMapQuestName			m_hmQuestName;
 			THashMapQuestStartScript	m_hmQuestStartScript;

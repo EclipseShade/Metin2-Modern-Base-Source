@@ -564,7 +564,6 @@ int main(int argc, char **argv) {
 				return 0;
 			}
 #if defined (__FreeBSD__) && defined(__FILEMONITOR__)
-			//PFN_FileChangeListener pNotifyFunc = boost::bind( &CXTrapManager::NotifyMapFileChanged, CXTrapManager::instance(), _1 );
 			PFN_FileChangeListener pNotifyFunc = &(CXTrapManager::NotifyMapFileChanged);
 
 			const std::string strMap1Name = "map1.CS3";

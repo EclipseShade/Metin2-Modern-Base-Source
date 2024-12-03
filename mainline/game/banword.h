@@ -15,7 +15,7 @@ class CBanwordManager : public singleton<CBanwordManager>
 		void ConvertString(char * c_pszString, size_t _len);
 
 	protected:
-		typedef boost::unordered_map<std::string, bool> TBanwordHashmap;
+		typedef std::unordered_map<std::string, bool> TBanwordHashmap;
 		TBanwordHashmap m_hashmap_words;
 };
 

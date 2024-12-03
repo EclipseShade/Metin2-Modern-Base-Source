@@ -1462,7 +1462,7 @@ class CHARACTER : public CEntity, public CFSM, public CHorseRider
 		//
 	protected:
 		TPlayerSkill*					m_pSkillLevels;
-		boost::unordered_map<BYTE, int>		m_SkillDamageBonus;
+		std::unordered_map<BYTE, int>		m_SkillDamageBonus;
 		std::map<int, TSkillUseInfo>	m_SkillUseInfo;
 
 		////////////////////////////////////////////////////////////////////////////////////////

@@ -89,7 +89,7 @@ EVENTINFO(spam_event_info)
 	}
 };
 
-typedef boost::unordered_map<std::string, std::pair<unsigned int, LPEVENT> > spam_score_of_ip_t;
+typedef std::unordered_map<std::string, std::pair<unsigned int, LPEVENT> > spam_score_of_ip_t;
 spam_score_of_ip_t spam_score_of_ip;
 
 EVENTFUNC(block_chat_by_ip_event)

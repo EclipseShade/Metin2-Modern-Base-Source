@@ -3718,7 +3718,7 @@ void CHARACTER::ApplyPoint(BYTE bApplyType, int iVal)
 				if (0 == iAdd)
 					iChange = -iChange;
 
-				boost::unordered_map<BYTE, int>::iterator iter = m_SkillDamageBonus.find(bSkillVnum);
+				std::unordered_map<BYTE, int>::iterator iter = m_SkillDamageBonus.find(bSkillVnum);
 
 				if (iter == m_SkillDamageBonus.end())
 					m_SkillDamageBonus.insert(std::make_pair(bSkillVnum, iChange));

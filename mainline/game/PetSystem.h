@@ -95,7 +95,7 @@ private:
 class CPetSystem
 {
 public:
-	typedef	boost::unordered_map<DWORD,	CPetActor*>		TPetActorMap;		/// <VNUM, PetActor> map. (한 캐릭터가 같은 vnum의 펫을 여러개 가질 일이 있을까..??)
+	typedef	std::unordered_map<DWORD,	CPetActor*>		TPetActorMap;		/// <VNUM, PetActor> map. (한 캐릭터가 같은 vnum의 펫을 여러개 가질 일이 있을까..??)
 
 public:
 	CPetSystem(LPCHARACTER owner);
