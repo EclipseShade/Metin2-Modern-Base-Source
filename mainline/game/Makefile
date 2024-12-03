@@ -13,7 +13,7 @@ $(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
 
 # -Wunused: This flag enables all the warnings about unused declarations. This includes unused variables, functions, parameters, and more. It is a general flag that encompasses many specific warnings.
 # -Wunused-function: This is a more specific flag that only warns about functions that are declared but not used. If you use this flag, you'll receive warnings only for unused functions, while turning off other unused-related warnings.
-CFLAGS = -g -Wall -O2 -m32 -mtune=i686 -fstack-protector-all -pipe -fexceptions -D_THREAD_SAFE -DNDEBUG -Wunused-local-typedefs -Wunused -Wunused-function
+CFLAGS = -std=c++11 -g -Wall -O2 -m32 -mtune=i686 -fstack-protector-all -pipe -fexceptions -D_THREAD_SAFE -DNDEBUG -Wunused-local-typedefs -Wunused -Wunused-function
 
 # IncDir
 INCDIR = -I/usr/local/include
