@@ -2,7 +2,7 @@
 #### SERVER: https://github.com/EclipseShade/Metin2-Modern-Base-Server
 #### CLIENT: https://github.com/EclipseShade/Metin2-Modern-Base-Client
 
-##### GAME
+##### Server Source
 |  FreeBSD | Visual Studio | Debian  | Ubuntu           | 
 |----------|---------------|---------|------------------|
 | ✔️ 9.3   | ✔️ 2008       | ❌ 7  | ❌ 18.04         | 
@@ -16,9 +16,7 @@
 #### Client:
 | Visual Studio     |
 |-------------------|
-| ✔️ 2008          |
-| ✔️ 2013          |
-| ✔️ 2022          |
+| ✔️ 2008  - 2022  |
 #
 
 ## CONTRIBUTES RULES:
