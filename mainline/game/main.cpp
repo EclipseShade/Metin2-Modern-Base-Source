@@ -64,7 +64,6 @@
 #include "SpeedServer.h"
 #include "XTrapManager.h"
 #include "DragonSoul.h"
-#include <boost/bind.hpp>
 
 //#define __FILEMONITOR__
 
