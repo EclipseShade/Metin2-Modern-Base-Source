@@ -54,14 +54,12 @@ namespace std {
 		tv = (min > value ? min : value);
 		return (max < tv) ? max : tv;
 	}
-} 
-
-#if _MSC_VER > 1500 || __FreeBSD__
-	#define auto_ptr unique_ptr
-#endif
+}
 
 #ifndef itertype
 	#if _MSC_VER > 1500 || __FreeBSD__
+		#define auto_ptr unique_ptr
+		
 		#define itertype(v) decltype((v).begin())
 	#elif _MSC_VER <= 1500	//Visual Studio 2008
 		#define itertype(v) typeof((v).begin())
