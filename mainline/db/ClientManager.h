@@ -1,9 +1,6 @@
 #ifndef __INC_CLIENTMANAGER_H__
 #define __INC_CLIENTMANAGER_H__
 
-#include <boost/unordered_map.hpp>
-#include <boost/unordered_set.hpp>
-
 #include "../common/building.h"
 #include "../common/auction_table.h"
 
@@ -30,12 +27,12 @@ class CClientManager : public CNetBase, public singleton<CClientManager>
 {
     public:
 	typedef std::list<CPeer *>			TPeerList;
-	typedef boost::unordered_map<DWORD, CPlayerTableCache *> TPlayerTableCacheMap;
-	typedef boost::unordered_map<DWORD, CItemCache *> TItemCacheMap;
-	typedef boost::unordered_set<CItemCache *, boost::hash<CItemCache*> > TItemCacheSet;
-	typedef boost::unordered_map<DWORD, TItemCacheSet *> TItemCacheSetPtrMap;
-	typedef boost::unordered_map<DWORD, CItemPriceListTableCache*> TItemPriceListCacheMap;
-	typedef boost::unordered_map<short, BYTE> TChannelStatusMap;
+	typedef std::unordered_map<DWORD, CPlayerTableCache *> TPlayerTableCacheMap;
+	typedef std::unordered_map<DWORD, CItemCache *> TItemCacheMap;
+	typedef std::unordered_set<CItemCache *, std::hash<CItemCache*> > TItemCacheSet;
+	typedef std::unordered_map<DWORD, TItemCacheSet *> TItemCacheSetPtrMap;
+	typedef std::unordered_map<DWORD, CItemPriceListTableCache*> TItemPriceListCacheMap;
+	typedef std::unordered_map<short, BYTE> TChannelStatusMap;
 
 	// MYSHOP_PRICE_LIST
 	/// 아이템 가격정보 리스트 요청 정보
@@ -391,19 +388,19 @@ class CClientManager : public CNetBase, public singleton<CClientManager>
 	CPeer *					m_pkAuthPeer;
 
 	// LoginKey, LoginData pair
-	typedef boost::unordered_map<DWORD, CLoginData *> TLoginDataByLoginKey;
+	typedef std::unordered_map<DWORD, CLoginData *> TLoginDataByLoginKey;
 	TLoginDataByLoginKey			m_map_pkLoginData;
 
 	// Login LoginData pair
-	typedef boost::unordered_map<std::string, CLoginData *> TLoginDataByLogin;
+	typedef std::unordered_map<std::string, CLoginData *> TLoginDataByLogin;
 	TLoginDataByLogin			m_map_pkLoginDataByLogin;
 	
 	// AccountID LoginData pair
-	typedef boost::unordered_map<DWORD, CLoginData *> TLoginDataByAID;
+	typedef std::unordered_map<DWORD, CLoginData *> TLoginDataByAID;
 	TLoginDataByAID				m_map_pkLoginDataByAID;
 
 	// Login LoginData pair (실제 로그인 되어있는 계정)
-	typedef boost::unordered_map<std::string, CLoginData *> TLogonAccountMap;
+	typedef std::unordered_map<std::string, CLoginData *> TLogonAccountMap;
 	TLogonAccountMap			m_map_kLogonAccount;
 
 	int					m_iPlayerIDStart;
@@ -509,7 +506,7 @@ class CClientManager : public CNetBase, public singleton<CClientManager>
 	    }
 	};
 
-	typedef boost::unordered_map<DWORD, TLogoutPlayer*> TLogoutPlayerMap;
+	typedef std::unordered_map<DWORD, TLogoutPlayer*> TLogoutPlayerMap;
 	TLogoutPlayerMap m_map_logout;
 	
 	void InsertLogoutPlayer(DWORD pid);
