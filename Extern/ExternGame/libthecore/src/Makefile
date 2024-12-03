@@ -1,26 +1,19 @@
-CC	= g++
-BIN_DIR = ../lib
-BIN     = $(BIN_DIR)/libthecore.a
-INCLUDE = ../include
+CC      = g++
+BIN_DIR  = ../lib
+BIN      = $(BIN_DIR)/libthecore.a
+INCLUDE  = ../include
 
-GCC_VERSION = $(shell $(CC) --version 2>&1 | grep "(GCC)" | cut -d' ' -f3  | cut -d'.' -f1)
+CFLAGS   = -Wall -O2 -pipe -g -I$(INCLUDE)
 
-ifeq ($(GCC_VERSION), 4)
-CFLAGS  = -Wall -O2 -pipe -mtune=i686 -g -I$(INCLUDE)
-else
-CFLAGS  = -Wall -O2 -pipe -mcpu=i686 -g -I$(INCLUDE)
-endif
-
-LIBS    = 
+LIBS     = 
 
 OBJFILES = socket.o fdwatch.o buffer.o signal.o log.o utils.o \
-	kstbl.o hangul.o heart.o main.o tea.o des.o gost.o
+           kstbl.o hangul.o heart.o main.o tea.o des.o gost.o
 
-default:
-	$(MAKE) $(BIN)
+default: $(BIN)
 
 $(BIN): $(OBJFILES)
-	if [ ! -d $(BIN_DIR) ]; then mkdir $(BIN_DIR); fi
+	mkdir -p $(BIN_DIR)
 	ar cru $(BIN) $(OBJFILES) $(LIBS)
 	ranlib $(BIN)
 	chmod 700 $(BIN)
@@ -32,11 +25,11 @@ clean:
 dep:
 	$(CC) $(CFLAGS) -MM *.c > Depend
 
-$(OBJFILES):
-	$(CC) $(CFLAGS) -c $<
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 memcpy: utils.o log.o
-	$(CC) $(CFLAGS) -c -D__MAIN__
-	$(CC) $(CFLAGS) -o memcpy utils.o log.o
+	$(CC) $(CFLAGS) -c -D__MAIN__ memcpy.c
+	$(CC) $(CFLAGS) -o memcpy utils.o log.o memcpy.o
 
-include Depend
+sinclude Depend

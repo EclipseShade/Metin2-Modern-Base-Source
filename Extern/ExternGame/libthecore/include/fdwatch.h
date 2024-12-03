@@ -19,8 +19,18 @@
     typedef struct kevent *	LPKEVENT;
     typedef int			KQUEUE;
 
-    struct fdwatch
-    {
+    struct fdwatch {
+#if __linux__
+#ifdef __USE_SELECT__  // Select-based implementation
+    fd_set rfd_set;         // Set for read file descriptors
+    fd_set wfd_set;         // Set for write file descriptors
+    fd_set working_rfd_set; // Working copy for read file descriptors
+    fd_set working_wfd_set; // Working copy for write file descriptors
+    socket_t *select_fds;   // Array of file descriptors for select
+    int *select_rfdidx;     // Array of indices for read file descriptors
+    int nselect_fds;        // Number of file descriptors in select
+#endif
+#endif
 	KQUEUE		kq;
 
 	int		nfiles;
@@ -49,8 +59,7 @@
 	FDW_EOF			= 8,
     };
 
-    struct fdwatch
-    {
+    struct fdwatch {
 	fd_set rfd_set;
 	fd_set wfd_set;
 
