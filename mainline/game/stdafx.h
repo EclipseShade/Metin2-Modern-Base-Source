@@ -58,6 +58,7 @@ namespace std {
 
 #if __linux__
 	#define strlcpy strncpy
+	#define strlcat strncat
 	
 	#define auto_ptr unique_ptr
 	#define itertype(v) decltype((v).begin())
