@@ -1,7 +1,5 @@
 CXX = g++
 
-GCC_VERSION = $(shell $(CXX) --version 2>&1 | grep "(GCC)" | cut -d' ' -f3  | cut -d'.' -f1)
-
 BIN = ./libpoly.a
 
 CFLAGS = -Wall -O2 -pipe -fno-exceptions -fno-rtti
