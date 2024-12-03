@@ -311,7 +311,7 @@ void CGuildManager::Update()
 		sys_log(0, "GuildWar: GUILD sending start of wait start war %d %d", ws.GID[0], ws.GID[1]);
 	}
 }
-#if _MSC_VER <= 1500
+#if _MSC_VER == 1500
 	#define for_all(cont, it) for (typeof((cont).begin()) it = (cont).begin(); it != (cont).end(); ++it)
 	#define decltype typeof
 #else
