@@ -61,7 +61,7 @@ namespace std {
 		#define auto_ptr unique_ptr
 		
 		#define itertype(v) decltype((v).begin())
-	#elif _MSC_VER <= 1500	//Visual Studio 2008
+	#elif _MSC_VER == 1500	//Visual Studio 2008
 		#define itertype(v) typeof((v).begin())
 		#define decltype typeof((v).begin())
 	#endif
