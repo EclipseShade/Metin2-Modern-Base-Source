@@ -11,7 +11,6 @@
 #include "item_manager.h"
 #include "log.h"
 #include "db.h"
-#include <boost/bind.hpp>
 #include "item.h"
 #include "desc_client.h"
 #include "protocol.h"
