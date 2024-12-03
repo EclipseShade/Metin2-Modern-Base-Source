@@ -36,7 +36,7 @@ void CClientManager::SetEventFlag(TPacketSetEventFlag* p) {
     bool bChanged = false;
 	#if _MSC_VER == 1500 // Visual Studio 2008
 	typeof(m_map_lEventFlag.begin()) it = m_map_lEventFlag.find(p->szFlagName);
-	#elif _MSC_VER > 1500 || __FreeBSD__
+	#elif _MSC_VER > 1500 || __FreeBSD__ || __linux__
     auto it = m_map_lEventFlag.find(p->szFlagName);
 	#endif
     if (it == m_map_lEventFlag.end()) {
