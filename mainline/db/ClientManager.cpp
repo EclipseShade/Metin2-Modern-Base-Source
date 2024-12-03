@@ -27,10 +27,11 @@
 
 extern int g_iPlayerCacheFlushSeconds;
 extern int g_iItemCacheFlushSeconds;
+extern int g_test_server;
 extern int g_log;
 extern std::string g_stLocale;
 extern std::string g_stLocaleNameColumn;
-extern int g_test_server;
+
 bool CreateItemTableFromRes(MYSQL_RES * res, std::vector<TPlayerItem> * pVec, DWORD dwPID);
 
 DWORD g_dwUsageMax = 0;
@@ -82,7 +83,7 @@ void CClientManager::GetPeerP2PHostNames(std::string& peerHostNames)
 		CPeer * peer = *it;
 		oss << peer->GetHost() << " " << peer->GetP2PPort() << " channel : " << (int)(peer->GetChannel()) << "\n";
 	}
-	
+
 	peerHostNames += oss.str();
 }
 
@@ -104,17 +105,17 @@ void CClientManager::Destroy()
 bool CClientManager::Initialize()
 {
 	int tmpValue;
-	
+
 	//BOOT_LOCALIZATION
 	if (!InitializeLocalization())
 	{
 		fprintf(stderr, "Failed Localization Infomation so exit\n");
 		return false;
 	}
-		
+
 	//END_BOOT_LOCALIZATION
 	//ITEM_UNIQUE_ID
-	
+
 	if (!InitializeNowItemID())
 	{
 		fprintf(stderr, " Item range Initialize Failed. Exit DBCache Server\n");
@@ -177,10 +178,8 @@ bool CClientManager::Initialize()
 
 	sys_log(0, "CHINA_EVENT_SERVER %s", CClientManager::instance().IsChinaEventServer()?"true":"false");
 
-
 	LoadEventFlag();
 
-	// database character-set을 강제로 맞춤
 	if (g_stLocale == "big5" || g_stLocale == "sjis")
 	    CDBManager::instance().QueryLocaleSet();
 
@@ -193,7 +192,6 @@ void CClientManager::MainLoop()
 
 	sys_log(0, "ClientManager pointer is %p", this);
 
-	// 메인루프
 	while (!m_bShutdowned)
 	{
 		while ((tmp = CDBManager::instance().PopResult()))
@@ -208,16 +206,12 @@ void CClientManager::MainLoop()
 		log_rotate();
 	}
 
-	//
-	// 메인루프 종료처리
-	//
 	sys_log(0, "MainLoop exited, Starting cache flushing");
 
 	signal_timer_disable();
 
 	itertype(m_map_playerCache) it = m_map_playerCache.begin();
 
-	//플레이어 테이블 캐쉬 플러쉬	
 	while (it != m_map_playerCache.end())
 	{
 		CPlayerTableCache * c = (it++)->second;
@@ -227,9 +221,8 @@ void CClientManager::MainLoop()
 	}
 	m_map_playerCache.clear();
 
-	
 	itertype(m_map_itemCache) it2 = m_map_itemCache.begin();
-	//아이템 플러쉬
+
 	while (it2 != m_map_itemCache.end())
 	{
 		CItemCache * c = (it2++)->second;
@@ -240,9 +233,7 @@ void CClientManager::MainLoop()
 	m_map_itemCache.clear();
 
 	// MYSHOP_PRICE_LIST
-	//
-	// 개인상점 아이템 가격 리스트 Flush
-	//
+
 	for (itertype(m_mapItemPriceListCache) itPriceList = m_mapItemPriceListCache.begin(); itPriceList != m_mapItemPriceListCache.end(); ++itPriceList)
 	{
 		CItemPriceListTableCache* pCache = itPriceList->second;
@@ -261,17 +252,17 @@ void CClientManager::Quit()
 
 void CClientManager::QUERY_BOOT(CPeer* peer, TPacketGDBoot * p)
 {
-	const BYTE bPacketVersion = 6; // BOOT 패킷이 바뀔때마다 번호를 올리도록 한다.
+	const BYTE bPacketVersion = 6;
 
 	std::vector<tAdminInfo> vAdmin;
 	std::vector<std::string> vHost;
 
 	__GetHostInfo(vHost);
-	__GetAdminInfo(p->szIP, vAdmin);	
+	__GetAdminInfo(p->szIP, vAdmin);
 
 	sys_log(0, "QUERY_BOOT : AdminInfo (Request ServerIp %s) ", p->szIP);
 
-	DWORD dwPacketSize = 
+	DWORD dwPacketSize =
 		sizeof(DWORD) +
 		sizeof(BYTE) +
 		sizeof(WORD) + sizeof(WORD) + sizeof(TMobTable) * m_vec_mobTable.size() +
@@ -283,7 +274,7 @@ void CClientManager::QUERY_BOOT(CPeer* peer, TPacketGDBoot * p)
 		sizeof(WORD) + sizeof(WORD) + sizeof(TItemAttrTable) * m_vec_itemRareTable.size() +
 		sizeof(WORD) + sizeof(WORD) + sizeof(TBanwordTable) * m_vec_banwordTable.size() +
 		sizeof(WORD) + sizeof(WORD) + sizeof(building::TLand) * m_vec_kLandTable.size() +
-		sizeof(WORD) + sizeof(WORD) + sizeof(building::TObjectProto) * m_vec_kObjectProto.size() + 
+		sizeof(WORD) + sizeof(WORD) + sizeof(building::TObjectProto) * m_vec_kObjectProto.size() +
 		sizeof(WORD) + sizeof(WORD) + sizeof(building::TObject) * m_map_pkObjectTable.size() +
 #ifdef __AUCTION__
 		sizeof(WORD) + sizeof(WORD) + sizeof(TPlayerItem) * AuctionManager::instance().GetAuctionItemSize() +
@@ -298,9 +289,9 @@ void CClientManager::QUERY_BOOT(CPeer* peer, TPacketGDBoot * p)
 		sizeof(WORD) + sizeof(WORD) + 16 * vHost.size() +
 		sizeof(WORD) + sizeof(WORD) +  sizeof(tAdminInfo) *  vAdmin.size() +
 		//END_ADMIN_MANAGER
-		sizeof(WORD) + sizeof(WORD) + sizeof(TMonarchInfo) + 
+		sizeof(WORD) + sizeof(WORD) + sizeof(TMonarchInfo) +
 		sizeof(WORD) + sizeof(WORD) + sizeof(MonarchCandidacy)* CMonarch::instance().MonarchCandidacySize() +
-		sizeof(WORD); 
+		sizeof(WORD);
 
 	peer->EncodeHeader(HEADER_DG_BOOT, 0, dwPacketSize);
 	peer->Encode(&dwPacketSize, sizeof(DWORD));
