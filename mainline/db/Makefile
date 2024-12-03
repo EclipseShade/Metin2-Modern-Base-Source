@@ -13,7 +13,7 @@ $(shell if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi)
 
 TARGET = $(BINDIR)/db_r$(SVN_VERSION)
 
-CFLAGS = -g -Wall -O2 -mtune=i686 -pipe -fno-rtti -fno-exceptions -pthread -D_THREAD_SAFE
+CFLAGS = -std=c++11 -g -Wall -O2 -mtune=i686 -pipe -fno-rtti -fno-exceptions -pthread -D_THREAD_SAFE
 
 # IncDir
 INCDIR += -I/usr/local/include
