@@ -1,9 +1,3 @@
-/*
- *    Filename: heart.c
- * Description: fps 에 한번씩 호출되는 "심장" 이다.
- *
- *      Author: 비엽 aka. Cronan
- */
 #define __LIBTHECORE__
 #include "stdafx.h"
 
@@ -57,8 +51,6 @@ int heart_idle(LPHEART ht)
 	missed_pulse += process_time.tv_usec / ht->opt_time.tv_usec;
     }
 
-	// 바빠서 pulse도 놓쳤는데 잘 시간이 어딨어...
-	// 펄스 fps 어차피 틀어져있는데, 정확히 맞추는 건 중요하지 않아.
 	if (missed_pulse > 0)
 	{
 		gettimeofday(&ht->last_time, (struct timezone *) 0);
