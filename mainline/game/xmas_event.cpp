@@ -15,7 +15,6 @@ namespace xmas
 	{
 		if (name == "xmas_snow" || name == "xmas_boom" || name == "xmas_song" || name == "xmas_tree")
 		{
-			// 뿌려준다
 			const DESC_MANAGER::DESC_SET & c_ref_set = DESC_MANAGER::instance().GetClientSet();
 
 			for (itertype(c_ref_set) it = c_ref_set.begin(); it != c_ref_set.end(); ++it)
@@ -45,13 +44,11 @@ namespace xmas
 				{
 					CharacterVectorInteractor i;
 
-					// 없으면 만들어준다
 					if (!CHARACTER_MANAGER::instance().GetCharactersByRaceNum(MOB_XMAS_TREE_VNUM, i))
 						CHARACTER_MANAGER::instance().SpawnMob(MOB_XMAS_TREE_VNUM, 61, 76500 + 358400, 60900 + 153600, 0, false, -1);
 				}
 				else if (prev_value > 0 && value == 0)
 				{
-					// 있으면 지워준다
 					CharacterVectorInteractor i;
 
 					if (CHARACTER_MANAGER::instance().GetCharactersByRaceNum(MOB_XMAS_TREE_VNUM, i))
@@ -69,7 +66,7 @@ namespace xmas
 			switch (value)
 			{
 				case 0:
-					// 있으면 지우는 코드
+
 					{
 						CharacterVectorInteractor i;
 
@@ -85,7 +82,7 @@ namespace xmas
 					break;
 
 				case 1:
-					// 내가 서한산이면 산타 없으면 만들고 상태를 2로 만든다.
+
 					if (map_allow_find(61))
 					{
 						quest::CQuestManager::instance().RequestSetEventFlag("xmas_santa", 2);
@@ -107,7 +104,7 @@ namespace xmas
 	{
 		long lMapIndex;
 
-		spawn_santa_info() 
+		spawn_santa_info()
 		: lMapIndex( 0 )
 		{
 		}
@@ -161,7 +158,6 @@ namespace xmas
 	{
 		if ( spawn == true )
 		{
-			// 없으면 만들어준다
 			struct SNPCSellFireworkPosition
 			{
 				long lMapIndex;
@@ -200,7 +196,6 @@ namespace xmas
 		{
 			CharacterVectorInteractor i;
 
-			// 있으면 지워준다
 			if (CHARACTER_MANAGER::instance().GetCharactersByRaceNum(MOB_XMAS_FIRWORK_SELLER_VNUM, i))
 			{
 				CharacterVectorInteractor::iterator it = i.begin();
@@ -211,3 +206,4 @@ namespace xmas
 		}
 	}
 }
+
