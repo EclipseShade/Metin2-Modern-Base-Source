@@ -42,7 +42,7 @@ bool CShopManager::Initialize(TShopTable * table, int size)
 	if (!m_map_pkShop.empty())
 		return false;
 
-	int i; 
+	int i;
 
 	for (i = 0; i < size; ++i, ++table)
 	{
@@ -98,15 +98,11 @@ LPSHOP CShopManager::GetByNPCVnum(DWORD dwVnum)
 	return (it->second);
 }
 
-/*
- * 인터페이스 함수들
- */
-
-// 상점 거래를 시작
 bool CShopManager::StartShopping(LPCHARACTER pkChr, LPCHARACTER pkChrShopKeeper, int iShopVnum)
 {
 	if (pkChr->GetShopOwner() == pkChrShopKeeper)
 		return false;
+
 	// this method is only for NPC
 	if (pkChrShopKeeper->IsPC())
 		return false;
@@ -184,12 +180,11 @@ void CShopManager::DestroyPCShop(LPCHARACTER ch)
 	//PREVENT_ITEM_COPY;
 	ch->SetMyShopTime();
 	//END_PREVENT_ITEM_COPY
-	
+
 	m_map_pkShopByPC.erase(ch->GetVID());
 	M2_DELETE(pkShop);
 }
 
-// 상점 거래를 종료
 void CShopManager::StopShopping(LPCHARACTER ch)
 {
 	LPSHOP shop;
@@ -200,12 +195,11 @@ void CShopManager::StopShopping(LPCHARACTER ch)
 	//PREVENT_ITEM_COPY;
 	ch->SetMyShopTime();
 	//END_PREVENT_ITEM_COPY
-	
+
 	shop->RemoveGuest(ch);
 	sys_log(0, "SHOP: END: %s", ch->GetName());
 }
 
-// 아이템 구입
 void CShopManager::Buy(LPCHARACTER ch, BYTE pos)
 {
 	if (!ch->GetShop())
@@ -245,7 +239,7 @@ void CShopManager::Buy(LPCHARACTER ch, BYTE pos)
 
 	int ret = pkShop->Buy(ch, pos);
 
-	if (SHOP_SUBHEADER_GC_OK != ret) // 문제가 있었으면 보낸다.
+	if (SHOP_SUBHEADER_GC_OK != ret)
 	{
 		TPacketGCShop pack;
 
@@ -276,7 +270,7 @@ void CShopManager::Sell(LPCHARACTER ch, BYTE bCell, BYTE bCount)
 		ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("상점과의 거리가 너무 멀어 물건을 팔 수 없습니다."));
 		return;
 	}
-	
+
 	LPITEM item = ch->GetInventoryItem(bCell);
 
 	if (!item)
@@ -314,8 +308,7 @@ void CShopManager::Sell(LPCHARACTER ch, BYTE bCell, BYTE bCount)
 		dwPrice *= bCount;
 
 	dwPrice /= 5;
-	
-	//세금 계산
+
 	DWORD dwTax = 0;
 	int iVal = 3;
 	
@@ -352,8 +345,6 @@ void CShopManager::Sell(LPCHARACTER ch, BYTE bCell, BYTE bCount)
 
 	if (bCount == item->GetCount())
 	{
-		// 한국에는 아이템을 버리고 복구해달라는 진상유저들이 많아서
-		// 상점 판매시 속성로그를 남긴다.
 		if (LC_IsYMIR())
 			item->AttrLog();
 
@@ -362,10 +353,11 @@ void CShopManager::Sell(LPCHARACTER ch, BYTE bCell, BYTE bCount)
 	else
 		item->SetCount(item->GetCount() - bCount);
 
-	//군주 시스템 : 세금 징수
 	CMonarch::instance().SendtoDBAddMoney(dwTax, ch->GetEmpire(), ch);
 
 	ch->PointChange(POINT_GOLD, dwPrice, false);
+	if (test_server)
+		ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("Item sold for %d yang"), dwPrice);
 }
 
 bool CompareShopItemName(const SShopItemTable& lhs, const SShopItemTable& rhs)
@@ -391,7 +383,7 @@ bool ConvertToShopItemTable(IN CGroupNode* pNode, OUT TShopTableEx& shopTable)
 		sys_err("Group %s does not have name.", pNode->GetNodeName().c_str());
 		return false;
 	}
-	
+
 	if (shopTable.name.length() >= SHOP_TAB_NAME_MAX)
 	{
 		sys_err("Shop name length must be less than %d. Error in Group %s, name %s", SHOP_TAB_NAME_MAX, pNode->GetNodeName().c_str(), shopTable.name.c_str());
@@ -403,7 +395,7 @@ bool ConvertToShopItemTable(IN CGroupNode* pNode, OUT TShopTableEx& shopTable)
 	{
 		stCoinType = "Gold";
 	}
-	
+
 	if (boost::iequals(stCoinType, "Gold"))
 	{
 		shopTable.coinType = SHOP_COIN_TYPE_GOLD;
@@ -440,7 +432,7 @@ bool ConvertToShopItemTable(IN CGroupNode* pNode, OUT TShopTableEx& shopTable)
 			sys_err("row(%d) of group items of group %s does not have vnum column", i, pNode->GetNodeName().c_str());
 			return false;
 		}
-		
+
 		if (!pItemGroup->GetValue(i, "count", shopItems[i].count))
 		{
 			sys_err("row(%d) of group items of group %s does not have count column", i, pNode->GetNodeName().c_str());
@@ -493,8 +485,6 @@ bool ConvertToShopItemTable(IN CGroupNode* pNode, OUT TShopTableEx& shopTable)
 
 bool CShopManager::ReadShopTableEx(const char* stFileName)
 {
-	// file 유무 체크.
-	// 없는 경우는 에러로 처리하지 않는다.
 	FILE* fp = fopen(stFileName, "rb");
 	if (NULL == fp)
 		return true;
@@ -543,8 +533,8 @@ bool CShopManager::ReadShopTableEx(const char* stFileName)
 			sys_err("%d cannot have both original shop and extended shop", npcVnum);
 			return false;
 		}
-		
-		map_npcShop.insert(TMapNPCshop::value_type(npcVnum, table));	
+
+		map_npcShop.insert(TMapNPCshop::value_type(npcVnum, table));
 	}
 
 	for (TMapNPCshop::iterator it = map_npcShop.begin(); it != map_npcShop.end(); ++it)
@@ -557,7 +547,7 @@ bool CShopManager::ReadShopTableEx(const char* stFileName)
 			return false;
 		}
 		TShopMap::iterator shop_it = m_map_pkShopByNPCVnum.find(npcVnum);
-		
+
 		LPSHOPEX pkShopEx = NULL;
 		if (m_map_pkShopByNPCVnum.end() == shop_it)
 		{
@@ -592,3 +582,4 @@ bool CShopManager::ReadShopTableEx(const char* stFileName)
 
 	return true;
 }
+
