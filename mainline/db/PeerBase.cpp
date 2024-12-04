@@ -48,7 +48,7 @@ bool CPeerBase::Accept(socket_t fd_accept)
 		Destroy();
 		return false;
 	}
-	
+
 #ifdef ENABLE_PORT_SECURITY
 	// refuse if remote host != localhost (only the same machine must be able to connect in here)
 	std::string targetIP = inet_ntoa(peer.sin_addr);
