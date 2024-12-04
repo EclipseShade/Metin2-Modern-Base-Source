@@ -162,7 +162,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\DES_table.h"
+				RelativePath=".\src\DES_table.c"
 				>
 			</File>
 			<File
