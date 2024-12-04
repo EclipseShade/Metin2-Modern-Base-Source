@@ -49,7 +49,11 @@
     extern float	get_float_time();
     extern DWORD	get_dword_time();
 
-    extern char *	time_str(time_t ct);
+	#if _MSC_VER == 1500
+		extern "C" char *time_str(time_t ct);
+	#else
+		extern char *	time_str(time_t ct);
+	#endif
 
 #define CREATE(result, type, number)  do { \
 	if (!((result) = (type *) calloc ((number), sizeof(type)))) { \
