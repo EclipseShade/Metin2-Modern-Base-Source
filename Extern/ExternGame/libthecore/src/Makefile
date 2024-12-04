@@ -1,20 +1,17 @@
-CC	= g++
+CXX	= g++
 BIN_DIR = ../lib
 BIN     = $(BIN_DIR)/libthecore.a
-INCLUDE = ../include
+INCLUDE = -I../include
 
-GCC_VERSION = $(shell $(CC) --version 2>&1 | grep "(GCC)" | cut -d' ' -f3  | cut -d'.' -f1)
+GCC_VERSION = $(shell $(CXX) --version 2>&1 | grep "(GCC)" | cut -d' ' -f3  | cut -d'.' -f1)
 
-ifeq ($(GCC_VERSION), 4)
-CFLAGS  = -Wall -O2 -pipe -mtune=i686 -g -I$(INCLUDE)
-else
-CFLAGS  = -Wall -O2 -pipe -mcpu=i686 -g -I$(INCLUDE)
-endif
+CFLAGS  = -m32 -Wall -O2 -pipe -g $(INCLUDE)
+CFLAGS += -std=c++11 -Wno-invalid-source-encoding
 
-LIBS    = 
+LIBS    =
 
 OBJFILES = socket.o fdwatch.o buffer.o signal.o log.o utils.o \
-	kstbl.o hangul.o heart.o main.o tea.o des.o gost.o memcpy.o
+	kstbl.o hangul.o heart.o main.o tea.o des.o gost.o memcpy.o DES_table.o
 
 default:
 	$(MAKE) $(BIN)
@@ -30,13 +27,13 @@ clean:
 	rm -f $(BIN)
 
 dep:
-	$(CC) $(CFLAGS) -MM *.c > Depend
+	$(CXX) $(CFLAGS) -MM *.c > Depend
 
 $(OBJFILES):
-	$(CC) $(CFLAGS) -c $<
+	$(CXX) $(CFLAGS) -c $<
 
 memcpy: memcpy.o utils.o log.o
-	$(CC) $(CFLAGS) -c -D__MAIN__ memcpy.c
-	$(CC) $(CFLAGS) -o memcpy memcpy.o utils.o log.o
+	$(CXX) $(CFLAGS) -c -D__MAIN__ memcpy.c
+	$(CXX) $(CFLAGS) -o memcpy memcpy.o utils.o log.o
 
 include Depend
