@@ -22,7 +22,7 @@ extern "C" {
     extern int DES_Decrypt(DWORD *DstBuffer, const DWORD * SrcBuffer, const DWORD *KeyAddress, DWORD Length, DWORD *IVector);
 
 #ifdef __cplusplus
-};
+}
 #endif
 
 #endif
