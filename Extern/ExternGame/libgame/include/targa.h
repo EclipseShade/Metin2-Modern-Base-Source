@@ -6,11 +6,11 @@
 struct TGA_HEADER
 {
     char idLen;		// 0
-    char palType;	// 파레트있으면 1, 없음 0
-    char imgType;	// 파레트있으면 1, 없음 2
+    char palType;
+    char imgType;
     WORD colorBegin;	// 0
-    WORD colorCount;	// 파레트 있으면 256, 없음 0
-    char palEntrySize;	// 파레트 있으면 24, 없음 0
+    WORD colorCount;
+    char palEntrySize;
     WORD left;
     WORD top;
     WORD width;
