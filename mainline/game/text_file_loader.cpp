@@ -19,7 +19,7 @@ CTextFileLoader::CTextFileLoader()
 }
 
 CTextFileLoader::~CTextFileLoader()
-{	
+{
 }
 
 const char * CTextFileLoader::GetFileName()
@@ -426,7 +426,6 @@ BOOL CTextFileLoader::GetTokenVector4(const std::string & c_rstrKey, D3DXVECTOR4
 
 	return TRUE;
 }
-
 
 BOOL CTextFileLoader::GetTokenPosition(const std::string & c_rstrKey, D3DXVECTOR3 * pVector)
 {
