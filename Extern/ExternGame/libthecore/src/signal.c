@@ -1,9 +1,3 @@
-/*
- *    Filename: signal.c
- * Description: 시그널 관련 함수.
- *
- *      Author: 비엽 aka. Cronan
- */
 #define __LIBTHECORE__
 #include "stdafx.h"
 
@@ -25,18 +19,19 @@ RETSIGTYPE checkpointing(int sig)
 {
     if (!tics)
     {
-	sys_err("CHECKPOINT shutdown: tics did not updated.");
-	abort();
+        sys_err("CHECKPOINT shutdown: tics did not updated.");
+        if (bCheckpointCheck)
+            abort();
     }
     else
-	tics = 0;
+		tics = 0;
 }
 
 
 RETSIGTYPE hupsig(int sig)
 {
     shutdowned = TRUE;
-    sys_err("SIGHUP, SIGINT, SIGTERM signal has been received. shutting down.");
+    sys_log(0, "SIGHUP, SIGINT, SIGTERM signal has been received. shutting down."); // @warme012
 }
 
 RETSIGTYPE usrsig(int sig)
