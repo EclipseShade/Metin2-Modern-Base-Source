@@ -34,7 +34,7 @@ bool isEurope()
 DWORD GetGuildWarWaitStartDuration()
 {
 	// const int GUILD_WAR_WAIT_START_DURATION = 60;
-	// const int GUILD_WAR_WAIT_START_DURATION = 5; 
+	// const int GUILD_WAR_WAIT_START_DURATION = 5;
 
 	if (isEurope() == true) return 60;
 	else return 5;
@@ -49,7 +49,7 @@ DWORD GetGuildWarReserveSeconds()
 	else return 10;
 }
 
-namespace 
+namespace
 {
 	struct FSendPeerWar
 	{
@@ -146,8 +146,8 @@ void CGuildManager::ParseResult(SQLResult * pRes)
 		str_to_number(r_info.gold, row[6]);
 		str_to_number(r_info.level, row[7]);
 
-		sys_log(0, 
-				"GuildWar: %-24s ladder %-5d win %-3d draw %-3d loss %-3d", 
+		sys_log(0,
+				"GuildWar: %-24s ladder %-5d win %-3d draw %-3d loss %-3d",
 				r_info.szName,
 				r_info.ladder_point,
 				r_info.win,
@@ -189,10 +189,9 @@ void CGuildManager::Initialize()
 void CGuildManager::Load(DWORD dwGuildID)
 {
 	char szQuery[1024];
-
 	snprintf(szQuery, sizeof(szQuery), "SELECT id, name, ladder_point, win, draw, loss, gold, level FROM guild%s WHERE id=%u", GetTablePostfix(), dwGuildID);
-	std::auto_ptr<SQLMsg> pmsg(CDBManager::instance().DirectQuery(szQuery));
 
+	std::auto_ptr<SQLMsg> pmsg(CDBManager::instance().DirectQuery(szQuery));
 	if (pmsg->Get()->uiNumRows)
 		ParseResult(pmsg->Get());
 }
@@ -243,7 +242,7 @@ void CGuildManager::ResultRanking(MYSQL_RES * pRes)
 
 void CGuildManager::Update()
 {
-	ProcessReserveWar(); // 예약 전쟁 처리
+	ProcessReserveWar();
 
 	time_t now = CClientManager::instance().GetCurrentTime();
 
@@ -251,7 +250,7 @@ void CGuildManager::Update()
 	{
 		// UNKNOWN_GUILD_MANAGE_UPDATE_LOG
 		/*
-		   sys_log(0, "GuildManager::Update size %d now %d top %d, %s(%u) vs %s(%u)", 
+		   sys_log(0, "GuildManager::Update size %d now %d top %d, %s(%u) vs %s(%u)",
 		   m_WarMap.size(),
 		   now,
 		   m_pqOnWar.top().first,
@@ -271,7 +270,7 @@ void CGuildManager::Update()
 			if (e)
 			{
 				if (!e->bEnd)
-					WarEnd(e->GID[0], e->GID[1], false); 
+					WarEnd(e->GID[0], e->GID[1], false);
 
 				delete e;
 			}
@@ -394,7 +393,7 @@ bool CGuildManager::IsHalfWinLadderPoint(DWORD dwGuildWinner, DWORD dwGuildLoser
 
 	itertype(m_mapGuildWarEndTime[GID1]) it = m_mapGuildWarEndTime[GID1].find(GID2);
 
-	if (it != m_mapGuildWarEndTime[GID1].end() && 
+	if (it != m_mapGuildWarEndTime[GID1].end() &&
 			it->second + GUILD_WAR_LADDER_HALF_PENALTY_TIME > CClientManager::instance().GetCurrentTime())
 		return true;
 
@@ -463,7 +462,7 @@ void CGuildManager::RemoveWar(DWORD GID1, DWORD GID2)
 }
 
 //
-// 길드전 비정상 종료 및 필드전 종료
+
 //
 void CGuildManager::WarEnd(DWORD GID1, DWORD GID2, bool bForceDraw)
 {
@@ -494,7 +493,7 @@ void CGuildManager::WarEnd(DWORD GID1, DWORD GID2, bool bForceDraw)
 
 	bool bDraw = false;
 
-	if (!bForceDraw) // 강제 무승부가 아닐 경우에는 점수를 체크한다.
+	if (!bForceDraw)
 	{
 		if (pData->iScore[0] > pData->iScore[1])
 		{
@@ -509,7 +508,7 @@ void CGuildManager::WarEnd(DWORD GID1, DWORD GID2, bool bForceDraw)
 		else
 			bDraw = true;
 	}
-	else // 강제 무승부일 경우에는 무조건 무승부
+	else
 		bDraw = true;
 
 	if (bDraw)
@@ -517,15 +516,14 @@ void CGuildManager::WarEnd(DWORD GID1, DWORD GID2, bool bForceDraw)
 	else
 		ProcessWinLose(win_guild, lose_guild);
 
-	// DB 서버에서 자체적으로 끝낼 때도 있기 때문에 따로 패킷을 보내줘야 한다.
 	CClientManager::instance().for_each_peer(FSendPeerWar(0, GUILD_WAR_END, GID1, GID2));
 
 	RemoveWar(GID1, GID2);
 }
 
 //
-// 길드전 정상 종료
-// 
+
+//
 void CGuildManager::RecvWarOver(DWORD dwGuildWinner, DWORD dwGuildLoser, bool bDraw, long lWarPrice)
 {
 	sys_log(0, "GuildWar: RecvWarOver : winner %u vs %u draw? %d war_price %d", dwGuildWinner, dwGuildLoser, bDraw ? 1 : 0, lWarPrice);
@@ -572,7 +570,7 @@ void CGuildManager::RecvWarOver(DWORD dwGuildWinner, DWORD dwGuildLoser, bool bD
 void CGuildManager::RecvWarEnd(DWORD GID1, DWORD GID2)
 {
 	sys_log(0, "GuildWar: RecvWarEnded : %u vs %u", GID1, GID2);
-	WarEnd(GID1, GID2, true); // 무조건 비정상 종료 시켜야 한다.
+	WarEnd(GID1, GID2, true);
 }
 
 void CGuildManager::StartWar(BYTE bType, DWORD GID1, DWORD GID2, CGuildWarReserve * pkReserve)
@@ -681,7 +679,7 @@ bool CGuildManager::TakeBetPrice(DWORD dwGuildTo, DWORD dwGuildFrom, long lWarPr
 
 	if (it_from->second.gold < lWarPrice || it_to->second.gold < lWarPrice)
 	{
-		sys_log(0, "TakeBetPrice: not enough gold %u %d to %u %d", 
+		sys_log(0, "TakeBetPrice: not enough gold %u %d to %u %d",
 				dwGuildFrom, it_from->second.gold, dwGuildTo, it_to->second.gold);
 		return false;
 	}
@@ -705,7 +703,7 @@ bool CGuildManager::WaitStart(TPacketGuildWar * p)
 	TGuildWaitStartInfo info(p->bType, p->dwGuildFrom, p->dwGuildTo, p->lWarPrice, p->lInitialScore, NULL);
 	m_pqWaitStart.push(std::make_pair(dwCurTime + GetGuildWarWaitStartDuration(), info));
 
-	sys_log(0, 
+	sys_log(0,
 			"GuildWar: WaitStart g1 %d g2 %d price %d start at %u",
 			p->dwGuildFrom,
 			p->dwGuildTo,
@@ -746,7 +744,6 @@ void CGuildManager::ChangeLadderPoint(DWORD GID, int change)
 	sys_log(0, "GuildManager::ChangeLadderPoint %u %d", GID, r.ladder_point);
 	sys_log(0, "%s", buf);
 
-	// Packet 보내기
 	TPacketGuildLadder p;
 
 	p.dwGuild = GID;
@@ -809,7 +806,6 @@ void CGuildManager::WithdrawMoney(CPeer* peer, DWORD dwGuild, INT iGold)
 		return;
 	}
 
-	// 돈이있으니 출금하고 올려준다
 	if (it->second.gold >= iGold)
 	{
 		it->second.gold -= iGold;
@@ -840,7 +836,7 @@ void CGuildManager::WithdrawMoneyReply(DWORD dwGuild, BYTE bGiveSuccess, INT iGo
 }
 
 //
-// 예약 길드전(관전자가 배팅할 수 있다)
+
 //
 const int c_aiScoreByLevel[GUILD_MAX_LEVEL+1] =
 {
@@ -870,7 +866,7 @@ const int c_aiScoreByLevel[GUILD_MAX_LEVEL+1] =
 const int c_aiScoreByRanking[GUILD_RANK_MAX_NUM+1] =
 {
 	0,
-	55000,	// 1위
+	55000,
 	50000,
 	45000,
 	40000,
@@ -879,7 +875,7 @@ const int c_aiScoreByRanking[GUILD_RANK_MAX_NUM+1] =
 	28000,
 	24000,
 	21000,
-	18000,	// 10위
+	18000,
 	15000,
 	12000,
 	10000,
@@ -889,12 +885,12 @@ const int c_aiScoreByRanking[GUILD_RANK_MAX_NUM+1] =
 	3000,
 	2000,
 	1000,
-	500		// 20위
+	500
 };
 
 void CGuildManager::BootReserveWar()
 {
-	const char * c_apszQuery[2] = 
+	const char * c_apszQuery[2] =
 	{
 		"SELECT id, guild1, guild2, UNIX_TIMESTAMP(time), type, warprice, initscore, bet_from, bet_to, power1, power2, handicap FROM guild_war_reservation WHERE started=1 AND winner=-1",
 		"SELECT id, guild1, guild2, UNIX_TIMESTAMP(time), type, warprice, initscore, bet_from, bet_to, power1, power2, handicap FROM guild_war_reservation WHERE started=0"
@@ -933,8 +929,7 @@ void CGuildManager::BootReserveWar()
 
 			char buf[512];
 			snprintf(buf, sizeof(buf), "GuildWar: BootReserveWar : step %d id %u GID1 %u GID2 %u", i, t.dwID, t.dwGuildFrom, t.dwGuildTo);
-			// i == 0 이면 길드전 도중 DB가 튕긴 것이므로 무승부 처리한다.
-			// 또는, 5분 이하 남은 예약 길드전도 무승부 처리한다. (각자의 배팅액을 돌려준다)
+
 			//if (i == 0 || (int) t.dwTime - CClientManager::instance().GetCurrentTime() < 60 * 5)
 			if (i == 0 || (int) t.dwTime - CClientManager::instance().GetCurrentTime() < 0)
 			{
@@ -959,8 +954,8 @@ int GetAverageGuildMemberLevel(DWORD dwGID)
 {
 	char szQuery[QUERY_MAX_LEN];
 
-	snprintf(szQuery, sizeof(szQuery), 
-			"SELECT AVG(level) FROM guild_member%s, player%s AS p WHERE guild_id=%u AND guild_member%s.pid=p.id", 
+	snprintf(szQuery, sizeof(szQuery),
+			"SELECT AVG(level) FROM guild_member%s, player%s AS p WHERE guild_id=%u AND guild_member%s.pid=p.id",
 			GetTablePostfix(), GetTablePostfix(), dwGID, GetTablePostfix());
 
 	std::auto_ptr<SQLMsg> msg(CDBManager::instance().DirectQuery(szQuery));
@@ -1011,7 +1006,6 @@ bool CGuildManager::ReserveWar(TPacketGuildWar * p)
 
 	int lvp, rkp, alv, mc;
 
-	// 파워 계산
 	TGuild & k1 = TouchGuild(GID1);
 
 	lvp = c_aiScoreByLevel[MIN(GUILD_MAX_LEVEL, k1.level)];
@@ -1027,7 +1021,6 @@ bool CGuildManager::ReserveWar(TPacketGuildWar * p)
 	t.lPowerFrom = (long) polyPower.Eval();
 	sys_log(0, "GuildWar: %u lvp %d rkp %d alv %d mc %d power %d", GID1, lvp, rkp, alv, mc, t.lPowerFrom);
 
-	// 파워 계산
 	TGuild & k2 = TouchGuild(GID2);
 
 	lvp = c_aiScoreByLevel[MIN(GUILD_MAX_LEVEL, k2.level)];
@@ -1043,7 +1036,6 @@ bool CGuildManager::ReserveWar(TPacketGuildWar * p)
 	t.lPowerTo = (long) polyPower.Eval();
 	sys_log(0, "GuildWar: %u lvp %d rkp %d alv %d mc %d power %d", GID2, lvp, rkp, alv, mc, t.lPowerTo);
 
-	// 핸디캡 계산
 	if (t.lPowerTo > t.lPowerFrom)
 	{
 		polyHandicap.SetVar("pA", t.lPowerTo);
@@ -1058,7 +1050,6 @@ bool CGuildManager::ReserveWar(TPacketGuildWar * p)
 	t.lHandicap = (long) polyHandicap.Eval();
 	sys_log(0, "GuildWar: handicap %d", t.lHandicap);
 
-	// 쿼리
 	char szQuery[512];
 
 	snprintf(szQuery, sizeof(szQuery),
@@ -1095,7 +1086,7 @@ void CGuildManager::ProcessReserveWar()
 		CGuildWarReserve * pk = it2->second;
 		TGuildWarReserve & r = pk->GetDataRef();
 
-		if (!r.bStarted && r.dwTime - 1800 <= dwCurTime) // 30분 전부터 알린다.
+		if (!r.bStarted && r.dwTime - 1800 <= dwCurTime)
 		{
 			int iMin = (int) ceil((int)(r.dwTime - dwCurTime) / 60.0);
 
@@ -1163,7 +1154,7 @@ bool CGuildManager::Bet(DWORD dwID, const char * c_pszLogin, DWORD dwGold, DWORD
 	if (!it->second->Bet(c_pszLogin, dwGold, dwGuild))
 	{
 		sys_log(0, "WAR_RESERVE: Bet: cannot bet id %u, login %s, gold %u, guild %u", dwID, c_pszLogin, dwGold, dwGuild);
-		snprintf(szQuery, sizeof(szQuery), "INSERT INTO item_award (login, vnum, socket0, given_time) VALUES('%s', %d, %u, NOW())", 
+		snprintf(szQuery, sizeof(szQuery), "INSERT INTO item_award (login, vnum, socket0, given_time) VALUES('%s', %d, %u, NOW())",
 				c_pszLogin, ITEM_ELK_VNUM, dwGold);
 		CDBManager::instance().AsyncQuery(szQuery);
 		return false;
@@ -1216,7 +1207,6 @@ void CGuildWarReserve::Initialize()
 	snprintf(szQuery, sizeof(szQuery), "SELECT login, guild, gold FROM guild_war_bet WHERE war_id=%u", m_data.dwID);
 
 	std::auto_ptr<SQLMsg> msgbet(CDBManager::instance().DirectQuery(szQuery));
-
 	if (msgbet->Get()->uiNumRows)
 	{
 		MYSQL_RES * res = msgbet->Get()->pSQLResult;
@@ -1240,7 +1230,7 @@ void CGuildWarReserve::Initialize()
 
 void CGuildWarReserve::OnSetup(CPeer * peer)
 {
-	if (m_data.bStarted) // 이미 시작된 것은 보내지 않는다.
+	if (m_data.bStarted)
 		return;
 
 	FSendPeerWar(m_data.bType, GUILD_WAR_RESERVE, m_data.dwGuildFrom, m_data.dwGuildTo) (peer);
@@ -1288,12 +1278,11 @@ bool CGuildWarReserve::Bet(const char * pszLogin, DWORD dwGold, DWORD dwGuild)
 		return false;
 	}
 
-	snprintf(szQuery, sizeof(szQuery), 
+	snprintf(szQuery, sizeof(szQuery),
 			"INSERT INTO guild_war_bet (war_id, login, gold, guild) VALUES(%u, '%s', %u, %u)",
 			m_data.dwID, pszLogin, dwGold, dwGuild);
 
 	std::auto_ptr<SQLMsg> pmsg(CDBManager::instance().DirectQuery(szQuery));
-
 	if (pmsg->Get()->uiAffectedRows == 0 || pmsg->Get()->uiAffectedRows == (uint32_t)-1)
 	{
 		sys_log(0, "GuildWarReserve::Bet: failed. cannot insert row to guild_war_bet table");
@@ -1307,7 +1296,7 @@ bool CGuildWarReserve::Bet(const char * pszLogin, DWORD dwGold, DWORD dwGuild)
 
 	CClientManager::instance().ForwardPacket(HEADER_DG_GUILD_WAR_RESERVE_ADD, &m_data, sizeof(TGuildWarReserve));
 
-	snprintf(szQuery, sizeof(szQuery), "UPDATE guild_war_reservation SET bet_from=%u,bet_to=%u WHERE id=%u", 
+	snprintf(szQuery, sizeof(szQuery), "UPDATE guild_war_reservation SET bet_from=%u,bet_to=%u WHERE id=%u",
 			m_data.dwBetFrom, m_data.dwBetTo, m_data.dwID);
 
 	CDBManager::instance().AsyncQuery(szQuery);
@@ -1326,10 +1315,9 @@ bool CGuildWarReserve::Bet(const char * pszLogin, DWORD dwGold, DWORD dwGuild)
 }
 
 //
-// 무승부 처리: 대부분 승부가 나야 정상이지만, 서버 문제 등 특정 상황일 경우에는
-//              무승부 처리가 있어야 한다.
+
 //
-void CGuildWarReserve::Draw() 
+void CGuildWarReserve::Draw()
 {
 	char szQuery[1024];
 
@@ -1353,10 +1341,10 @@ void CGuildWarReserve::Draw()
 		while (it != mapBet.end())
 		{
 			if (iRow == 0)
-				iLen += snprintf(szQuery + iLen, sizeof(szQuery) - iLen, "('%s', %d, %u, NOW())", 
+				iLen += snprintf(szQuery + iLen, sizeof(szQuery) - iLen, "('%s', %d, %u, NOW())",
 						it->first.c_str(), ITEM_ELK_VNUM, it->second.second);
 			else
-				iLen += snprintf(szQuery + iLen, sizeof(szQuery) - iLen, ",('%s', %d, %u, NOW())", 
+				iLen += snprintf(szQuery + iLen, sizeof(szQuery) - iLen, ",('%s', %d, %u, NOW())",
 						it->first.c_str(), ITEM_ELK_VNUM, it->second.second);
 
 			it++;
@@ -1399,7 +1387,7 @@ void CGuildWarReserve::End(int iScoreFrom, int iScoreTo)
 	}
 	else
 	{
-		if (m_data.lHandicap > iScoreTo - iScoreFrom) 
+		if (m_data.lHandicap > iScoreTo - iScoreFrom)
 		{
 			sys_log(0, "WAR_REWARD: End: failed to overcome handicap, To is strong but From won");
 			dwWinner = m_data.dwGuildFrom;
@@ -1412,7 +1400,7 @@ void CGuildWarReserve::End(int iScoreFrom, int iScoreTo)
 	}
 
 	char szQuery[1024];
-	snprintf(szQuery, sizeof(szQuery), "UPDATE guild_war_reservation SET started=1,winner=%u,result1=%d,result2=%d WHERE id=%u", 
+	snprintf(szQuery, sizeof(szQuery), "UPDATE guild_war_reservation SET started=1,winner=%u,result1=%d,result2=%d WHERE id=%u",
 			dwWinner, iScoreFrom, iScoreTo, m_data.dwID);
 	CDBManager::instance().AsyncQuery(szQuery);
 
@@ -1459,7 +1447,6 @@ void CGuildWarReserve::End(int iScoreFrom, int iScoreTo)
 
 			double ratio = (double) it->second.second / dwWinnerBet;
 
-			// 10% 세금 공제 후 분배
 			sys_log(0, "WAR_REWARD: %s %u ratio %f", it->first.c_str(), it->second.second, ratio);
 
 			DWORD dwGold = (DWORD) (dwTotalBet * ratio * 0.9);
