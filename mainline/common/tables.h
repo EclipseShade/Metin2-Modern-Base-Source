@@ -3,11 +3,10 @@
 
 #include "length.h"
 
+
+
 typedef	DWORD IDENT;
 
-/**
- * @version 05/06/10	Bang2ni - Myshop Pricelist 관련 패킷 HEADER_XX_MYSHOP_PRICELIST_XXX 추가
- */
 enum
 {
 	HEADER_GD_LOGIN				= 1,
@@ -104,8 +103,8 @@ enum
 	HEADER_GD_BILLING_CHECK		= 106,
 	HEADER_GD_MALL_LOAD			= 107,
 
-	HEADER_GD_MYSHOP_PRICELIST_UPDATE	= 108,		///< 가격정보 갱신 요청
-	HEADER_GD_MYSHOP_PRICELIST_REQ		= 109,		///< 가격정보 리스트 요청
+	HEADER_GD_MYSHOP_PRICELIST_UPDATE	= 108,
+	HEADER_GD_MYSHOP_PRICELIST_REQ		= 109,
 
 	HEADER_GD_BLOCK_CHAT				= 110,
 
@@ -116,21 +115,21 @@ enum
 	// END_OF_PCBANG_IP_LIST_BY_AUTH
 
 	HEADER_GD_HAMMER_OF_TOR			= 114,
-	HEADER_GD_RELOAD_ADMIN			= 115,			///<운영자 정보 요청
-	HEADER_GD_BREAK_MARRIAGE		= 116,			///< 결혼 파기
-	HEADER_GD_ELECT_MONARCH			= 117,			///< 군주 투표
-	HEADER_GD_CANDIDACY				= 118,			///< 군주 등록
-	HEADER_GD_ADD_MONARCH_MONEY		= 119,			///< 군주 돈 증가 
-	HEADER_GD_TAKE_MONARCH_MONEY	= 120,			///< 군주 돈 감소 
-	HEADER_GD_COME_TO_VOTE			= 121,			///< 표결
-	HEADER_GD_RMCANDIDACY			= 122,			///< 후보 제거 (운영자)
-	HEADER_GD_SETMONARCH			= 123,			///<군주설정 (운영자)
-	HEADER_GD_RMMONARCH			= 124,			///<군주삭제
-	HEADER_GD_DEC_MONARCH_MONEY = 125,
+	HEADER_GD_RELOAD_ADMIN			= 115,
+	HEADER_GD_BREAK_MARRIAGE		= 116,
+	HEADER_GD_ELECT_MONARCH			= 117,
+	HEADER_GD_CANDIDACY				= 118,
+	HEADER_GD_ADD_MONARCH_MONEY		= 119,
+	HEADER_GD_TAKE_MONARCH_MONEY	= 120,
+	HEADER_GD_COME_TO_VOTE			= 121,
+	HEADER_GD_RMCANDIDACY			= 122,
+	HEADER_GD_SETMONARCH			= 123,
+	HEADER_GD_RMMONARCH				= 124,
+	HEADER_GD_DEC_MONARCH_MONEY		= 125,
 
-	HEADER_GD_CHANGE_MONARCH_LORD = 126,
-	HEADER_GD_BLOCK_COUNTRY_IP		= 127,		// 광대역 IP-Block
-	HEADER_GD_BLOCK_EXCEPTION		= 128,		// 광대역 IP-Block 예외
+	HEADER_GD_CHANGE_MONARCH_LORD	= 126,
+	HEADER_GD_BLOCK_COUNTRY_IP		= 127,
+	HEADER_GD_BLOCK_EXCEPTION		= 128,
 
 	HEADER_GD_REQ_CHANGE_GUILD_MASTER	= 129,
 
@@ -139,11 +138,10 @@ enum
 	HEADER_GD_UPDATE_HORSE_NAME		= 131,
 	HEADER_GD_REQ_HORSE_NAME		= 132,
 
-	HEADER_GD_DC					= 133,		// Login Key를 지움
+	HEADER_GD_DC					= 133,
 
 	HEADER_GD_VALID_LOGOUT			= 134,
 
-	// AUCTION
 #ifdef __AUCTION__
 	HEADER_GD_GET_AUCTION_LIST		= 135,
 	HEADER_GD_COMMAND_AUCTION		= 136,
@@ -151,8 +149,7 @@ enum
 
 	HEADER_GD_REQUEST_CHARGE_CASH	= 137,
 
-	HEADER_GD_DELETE_AWARDID	= 138,	// delete gift notify icon
-	
+	HEADER_GD_DELETE_AWARDID		= 138,	// delete gift notify icon	
 	HEADER_GD_UPDATE_CHANNELSTATUS	= 139,
 	HEADER_GD_REQUEST_CHANNELSTATUS	= 140,
 
@@ -241,7 +238,7 @@ enum
 	HEADER_DG_BILLING_REPAIR		= 128,
 	HEADER_DG_BILLING_EXPIRE		= 129,
 	HEADER_DG_BILLING_LOGIN		= 130,
-	HEADER_DG_VCARD			= 131,
+	HEADER_DG_VCARD				= 131,
 	HEADER_DG_BILLING_CHECK		= 132,
 
 	HEADER_DG_CREATE_OBJECT		= 140,
@@ -257,23 +254,23 @@ enum
 	HEADER_DG_WEDDING_START		= 155,
 	HEADER_DG_WEDDING_END		= 156,
 
-	HEADER_DG_MYSHOP_PRICELIST_RES	= 157,		///< 가격정보 리스트 응답
-	HEADER_DG_RELOAD_ADMIN = 158, 				///< 운영자 정보 리로드 
-	HEADER_DG_BREAK_MARRIAGE = 159,				///< 결혼 파기
-	HEADER_DG_ELECT_MONARCH			= 160,			///< 군주 투표
-	HEADER_DG_CANDIDACY				= 161,			///< 군주 등록
-	HEADER_DG_ADD_MONARCH_MONEY		= 162,			///< 군주 돈 증가 
-	HEADER_DG_TAKE_MONARCH_MONEY	= 163,			///< 군주 돈 감소 
-	HEADER_DG_COME_TO_VOTE			= 164,			///< 표결
-	HEADER_DG_RMCANDIDACY			= 165,			///< 후보 제거 (운영자)
-	HEADER_DG_SETMONARCH			= 166,			///<군주설정 (운영자)
-	HEADER_DG_RMMONARCH			= 167,			///<군주삭제
+	HEADER_DG_MYSHOP_PRICELIST_RES	= 157,
+	HEADER_DG_RELOAD_ADMIN = 158,
+	HEADER_DG_BREAK_MARRIAGE = 159,
+	HEADER_DG_ELECT_MONARCH			= 160,
+	HEADER_DG_CANDIDACY				= 161,
+	HEADER_DG_ADD_MONARCH_MONEY		= 162,
+	HEADER_DG_TAKE_MONARCH_MONEY	= 163,
+	HEADER_DG_COME_TO_VOTE			= 164,
+	HEADER_DG_RMCANDIDACY			= 165,
+	HEADER_DG_SETMONARCH			= 166,
+	HEADER_DG_RMMONARCH			= 167,
 	HEADER_DG_DEC_MONARCH_MONEY = 168,
 
 	HEADER_DG_CHANGE_MONARCH_LORD_ACK = 169,
 	HEADER_DG_UPDATE_MONARCH_INFO	= 170,
-	HEADER_DG_BLOCK_COUNTRY_IP		= 171,		// 광대역 IP-Block
-	HEADER_DG_BLOCK_EXCEPTION		= 172,		// 광대역 IP-Block 예외 account
+	HEADER_DG_BLOCK_COUNTRY_IP		= 171,
+	HEADER_DG_BLOCK_EXCEPTION		= 172,
 
 	HEADER_DG_ACK_CHANGE_GUILD_MASTER = 173,
 
@@ -288,10 +285,10 @@ enum
 #endif
 	HEADER_DG_RESULT_CHARGE_CASH	= 179,
 	HEADER_DG_ITEMAWARD_INFORMER	= 180,	//gift notify
-	HEADER_DG_RESPOND_CHANNELSTATUS		= 181,
+	HEADER_DG_RESPOND_CHANNELSTATUS	= 181,
 
-	HEADER_DG_MAP_LOCATIONS		= 0xfe,
-	HEADER_DG_P2P			= 0xff,
+	HEADER_DG_MAP_LOCATIONS			= 0xfe,
+	HEADER_DG_P2P					= 0xff,
 
 	HEADER_GP_CONFIRM_PASSPOD = 1,
 	HEADER_PG_CONFIRM_PASSPOD = 2,
@@ -341,7 +338,6 @@ typedef struct SRequestChargeCash
 	DWORD		dwAID;		// id(primary key) - Account Table
 	DWORD		dwAmount;
 	ERequestChargeType	eChargeType;
-
 } TRequestChargeCash;
 
 typedef struct SSimplePlayer
@@ -393,7 +389,7 @@ typedef struct SPlayerItem
 	DWORD	count;
 
 	DWORD	vnum;
-	long	alSockets[ITEM_SOCKET_MAX_NUM];	// 소켓번호
+	long	alSockets[ITEM_SOCKET_MAX_NUM];
 
 	TPlayerItemAttribute    aAttr[ITEM_ATTRIBUTE_MAX_NUM];
 
@@ -588,7 +584,7 @@ typedef struct SSkillTable
 	DWORD	preSkillVnum;
 	BYTE	preSkillLevel;
 
-	long	lMaxHit; 
+	long	lMaxHit;
 	char	szSplashAroundDamageAdjustPoly[100 + 1];
 
 	BYTE	bSkillAttrType;
@@ -601,9 +597,9 @@ typedef struct SShopItemTable
 	DWORD		vnum;
 	BYTE		count;
 
-    TItemPos	pos;			// PC 상점에만 이용
-	DWORD		price;	// PC, shop_table_ex.txt 상점에만 이용
-	BYTE		display_pos; // PC, shop_table_ex.txt 상점에만 이용, 보일 위치.
+    TItemPos	pos;
+	DWORD		price;
+	BYTE		display_pos;
 } TShopItemTable;
 
 typedef struct SShopTable
@@ -667,13 +663,10 @@ typedef struct SItemTable : public SEntityTable
 	BYTE	bSpecular;
 	BYTE	bGainSocketPct;
 
-	short int	sAddonType; // 기본 속성
+	short int	sAddonType;
 
-	// 아래 limit flag들은 realtime에 체크 할 일이 많고, 아이템 VNUM당 고정된 값인데,
-	// 현재 구조대로 매번 아이템마다 필요한 경우에 LIMIT_MAX_NUM까지 루프돌면서 체크하는 부하가 커서 미리 저장 해 둠.
-	char		cLimitRealTimeFirstUseIndex;		// 아이템 limit 필드값 중에서 LIMIT_REAL_TIME_FIRST_USE 플래그의 위치 (없으면 -1)
-	char		cLimitTimerBasedOnWearIndex;		// 아이템 limit 필드값 중에서 LIMIT_TIMER_BASED_ON_WEAR 플래그의 위치 (없으면 -1) 
-
+	char		cLimitRealTimeFirstUseIndex;
+	char		cLimitTimerBasedOnWearIndex;
 } TItemTable;
 
 struct TItemAttrTable
@@ -710,7 +703,7 @@ typedef struct SPlayerLoadPacket
 {
 	DWORD	account_id;
 	DWORD	player_id;
-	BYTE	account_index;	/* account 에서의 위치 */
+	BYTE	account_index;
 } TPlayerLoadPacket;
 
 typedef struct SPlayerCreatePacket
@@ -787,9 +780,9 @@ typedef struct SEmpireSelectPacket
 typedef struct SPacketGDSetup
 {
 	char	szPublicIP[16];	// Public IP which listen to users
-	BYTE	bChannel;	// 채널
-	WORD	wListenPort;	// 클라이언트가 접속하는 포트 번호
-	WORD	wP2PPort;	// 서버끼리 연결 시키는 P2P 포트 번호
+	BYTE	bChannel;
+	WORD	wListenPort;
+	WORD	wP2PPort;
 	long	alMaps[32];
 	DWORD	dwLoginCount;
 	BYTE	bAuthServer;
@@ -850,7 +843,6 @@ typedef struct SPacketGuildChangeMemberData
 	BYTE level;
 	BYTE grade;
 } TPacketGuildChangeMemberData;
-
 
 typedef struct SPacketDGLoginAlready
 {
@@ -967,8 +959,6 @@ typedef struct SPacketGuildWar
 	long	lInitialScore;
 } TPacketGuildWar;
 
-// Game -> DB : 상대적 변화값
-// DB -> Game : 토탈된 최종값
 typedef struct SPacketGuildWarScore
 {
 	DWORD dwGuildGainPoint;
@@ -989,8 +979,8 @@ typedef struct SRefineTable
 	//DWORD result_vnum;
 	DWORD id;
 	BYTE material_count;
-	int cost; // 소요 비용
-	int prob; // 확률
+	int cost;
+	int prob;
 	TRefineMaterial materials[REFINE_MATERIAL_MAX_NUM];
 } TRefineTable;
 
@@ -1074,15 +1064,12 @@ typedef struct SPacketGDLoginByKey
 	char	szIP[MAX_HOST_LENGTH + 1];
 } TPacketGDLoginByKey;
 
-/**
- * @version 05/06/08	Bang2ni - 지속시간 추가
- */
 typedef struct SPacketGiveGuildPriv
 {
 	BYTE type;
 	int value;
 	DWORD guild_id;
-	time_t duration_sec;	///< 지속시간
+	time_t duration_sec;
 } TPacketGiveGuildPriv;
 typedef struct SPacketGiveEmpirePriv
 {
@@ -1116,16 +1103,13 @@ typedef struct SPacketDGChangeCharacterPriv
 	BYTE bLog;
 } TPacketDGChangeCharacterPriv;
 
-/**
- * @version 05/06/08	Bang2ni - 지속시간 추가
- */
 typedef struct SPacketDGChangeGuildPriv
 {
 	BYTE type;
 	int value;
 	DWORD guild_id;
 	BYTE bLog;
-	time_t end_time_sec;	///< 지속시간
+	time_t end_time_sec;
 } TPacketDGChangeGuildPriv;
 
 typedef struct SPacketDGChangeEmpirePriv
@@ -1248,7 +1232,7 @@ typedef struct SGuildReserve
 	long	lHandicap;
 } TGuildWarReserve;
 
-typedef struct
+typedef struct SPacketGDGuildWarBet
 {
 	DWORD	dwWarID;
 	char	szLogin[LOGIN_MAX_LEN + 1];
@@ -1258,7 +1242,7 @@ typedef struct
 
 // Marriage
 
-typedef struct
+typedef struct SPacketMarriageAdd
 {
 	DWORD dwPID1;
 	DWORD dwPID2;
@@ -1267,7 +1251,7 @@ typedef struct
 	char szName2[CHARACTER_NAME_MAX_LEN + 1];
 } TPacketMarriageAdd;
 
-typedef struct
+typedef struct SPacketMarriageUpdate
 {
 	DWORD dwPID1;
 	DWORD dwPID2;
@@ -1275,61 +1259,58 @@ typedef struct
 	BYTE  byMarried;
 } TPacketMarriageUpdate;
 
-typedef struct
+typedef struct SPacketMarriageRemove
 {
 	DWORD dwPID1;
 	DWORD dwPID2;
 } TPacketMarriageRemove;
 
-typedef struct
+typedef struct SPacketWeddingRequest
 {
 	DWORD dwPID1;
 	DWORD dwPID2;
 } TPacketWeddingRequest;
 
-typedef struct
+typedef struct SPacketWeddingReady
 {
 	DWORD dwPID1;
 	DWORD dwPID2;
 	DWORD dwMapIndex;
 } TPacketWeddingReady;
 
-typedef struct
+typedef struct SPacketWeddingStart
 {
 	DWORD dwPID1;
 	DWORD dwPID2;
 } TPacketWeddingStart;
 
-typedef struct
+typedef struct SPacketWeddingEnd
 {
 	DWORD dwPID1;
 	DWORD dwPID2;
 } TPacketWeddingEnd;
 
-/// 개인상점 가격정보의 헤더. 가변 패킷으로 이 뒤에 byCount 만큼의 TItemPriceInfo 가 온다.
 typedef struct SPacketMyshopPricelistHeader
-{ 
-	DWORD	dwOwnerID;	///< 가격정보를 가진 플레이어 ID 
-	BYTE	byCount;	///< 가격정보 갯수
+{
+	DWORD	dwOwnerID;
+	BYTE	byCount;
 } TPacketMyshopPricelistHeader;
 
-/// 개인상점의 단일 아이템에 대한 가격정보
 typedef struct SItemPriceInfo
 {
-	DWORD	dwVnum;		///< 아이템 vnum
-	DWORD	dwPrice;	///< 가격
+	DWORD	dwVnum;
+	DWORD	dwPrice;
 } TItemPriceInfo;
 
-/// 개인상점 아이템 가격정보 리스트 테이블
 typedef struct SItemPriceListTable
 {
-	DWORD	dwOwnerID;	///< 가격정보를 가진 플레이어 ID
-	BYTE	byCount;	///< 가격정보 리스트의 갯수
+	DWORD	dwOwnerID;
+	BYTE	byCount;
 
-	TItemPriceInfo	aPriceInfo[SHOP_PRICELIST_MAX_NUM];	///< 가격정보 리스트
+	TItemPriceInfo	aPriceInfo[SHOP_PRICELIST_MAX_NUM];
 } TItemPriceListTable;
 
-typedef struct
+typedef struct SPacketBlockChat
 {
 	char szName[CHARACTER_NAME_MAX_LEN + 1];
 	long lDuration;
@@ -1347,12 +1328,12 @@ typedef struct SPacketPCBangIP
 //ADMIN_MANAGER
 typedef struct TAdminInfo
 {
-	int m_ID;				//고유ID
-	char m_szAccount[32];	//계정
-	char m_szName[32];		//캐릭터이름
-	char m_szContactIP[16];	//접근아이피
-	char m_szServerIP[16];  //서버아이피
-	int m_Authority;		//권한
+	int m_ID;
+	char m_szAccount[32];
+	char m_szName[32];
+	char m_szContactIP[16];
+	char m_szServerIP[16];
+	int m_Authority;
 } tAdminInfo;
 //END_ADMIN_MANAGER
 
@@ -1373,20 +1354,19 @@ typedef struct SPacketReloadAdmin
 
 typedef struct TMonarchInfo
 {
-	DWORD pid[4];  // 군주의 PID
-	int64_t money[4];  // 군주의 별개 돈	
-	char name[4][32];  // 군주의 이름	
-	char date[4][32];  // 군주 등록 날짜
+	DWORD pid[4];
+	int64_t money[4];
+	char name[4][32];
+	char date[4][32];
 } MonarchInfo;
 
 typedef struct TMonarchElectionInfo
 {
-	DWORD pid;  // 투표 한사람 PID
-	DWORD selectedpid; // 투표 당한 PID ( 군주 참가자 )
-	char date[32]; // 투표 날짜
+	DWORD pid;
+	DWORD selectedpid;
+	char date[32];
 } MonarchElectionInfo;
 
-// 군주 출마자
 typedef struct tMonarchCandidacy
 {
 	DWORD pid;
@@ -1458,14 +1438,13 @@ typedef struct tNeedLoginLogInfo
 	DWORD dwPlayerID;
 } TPacketNeedLoginLogInfo;
 
-//독일 선물 알림 기능 테스트용 패킷 정보
 typedef struct tItemAwardInformer
 {
 	char	login[LOGIN_MAX_LEN + 1];
-	char	command[20];		//명령어
-	unsigned int vnum;			//아이템
+	char	command[20];
+	unsigned int vnum;
 } TPacketItemAwardInfromer;
-// 선물 알림 기능 삭제용 패킷 정보
+
 typedef struct tDeleteAwardID
 {
 	DWORD dwID;
