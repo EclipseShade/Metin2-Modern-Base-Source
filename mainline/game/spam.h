@@ -46,3 +46,4 @@ class SpamManager : public singleton<SpamManager>
 };
 
 #endif
+
