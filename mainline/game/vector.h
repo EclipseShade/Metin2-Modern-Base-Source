@@ -15,3 +15,4 @@ extern void     GetDeltaByDegree(float fDegree, float fDistance, float *x, float
 extern float	GetDegreeDelta(float iDegree, float iDegree2);
 
 #endif
+
