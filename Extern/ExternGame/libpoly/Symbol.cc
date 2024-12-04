@@ -8,12 +8,11 @@ CSymbol::CSymbol()
 
 CSymbol::~CSymbol()
 {
-
 }
 
 bool CSymbol::Equal(CSymbol dif)
 {
-    if (dif.iType/10 == iType/10) 
+    if (dif.iType/10 == iType/10)
 	return true;
     return false;
 }
