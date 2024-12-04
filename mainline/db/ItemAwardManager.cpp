@@ -58,7 +58,7 @@ void ItemAwardManager::Load(SQLMsg * pMsg)
 			strcpy(cmdStr,whyStr);	//명령어 얻는 과정에서 토큰쓰면 원본도 토큰화 되기 때문
 			char command[20] = "";
 			strcpy(command,CClientManager::instance().GetCommand(cmdStr));	// command 얻기
-			//sys_err("%d,  %s",pItemAward->dwID,command);
+
 			if( !(strcmp(command,"GIFT") ))	// command 가 GIFT이면
 			{
 				TPacketItemAwardInfromer giftData;
