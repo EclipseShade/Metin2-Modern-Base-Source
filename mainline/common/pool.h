@@ -19,13 +19,13 @@ class CPoolNode : public T
 		}
 
 	public:
-		CPoolNode<T> * m_pNext;	
+		CPoolNode<T> * m_pNext;
 		CPoolNode<T> * m_pPrev;
 };
 
 template<typename T>
 class CDynamicPool
-{	
+{
 	public:
 		typedef CPoolNode<T> TNode;
 
@@ -65,7 +65,7 @@ class CDynamicPool
 		{
 			TNode* pnewNode;
 
-			if (m_pFreeList) 
+			if (m_pFreeList)
 			{
 				pnewNode = m_pFreeList;
 				m_pFreeList = m_pFreeList->m_pNext;
@@ -76,7 +76,7 @@ class CDynamicPool
 			}
 
 			if (!pnewNode)
-				return NULL;		
+				return NULL;	
 
 			if (!m_pUsedList)
 			{
