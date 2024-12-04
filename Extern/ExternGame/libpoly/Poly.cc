@@ -55,20 +55,15 @@ double CPoly::Eval()
 	int stNow;
 	double save[MAXSTACK],t;
 	int iSp=0;
-	if (ErrorOccur) 
+	if (ErrorOccur)
 	{
-		/*THROW(new CEvalException("Evaluate Error"));*/ 
 		return 0;
 	}
 
-	//TEST
-	//list<int>::iterator pos = tokenBase.begin();
-	//list<double>::iterator posn = numBase.begin();
 	vector<int>::iterator pos = tokenBase.begin();
 	vector<double>::iterator posn = numBase.begin();
 	while (pos != tokenBase.end())
 	{
-
 		stNow=*pos;
 		++pos;
 		switch (stNow)
@@ -77,47 +72,38 @@ double CPoly::Eval()
 				save[iSp++]=*posn++; break;
 			case ID:
 				save[iSp++]=
-					lSymbol[ *pos ]->dVal; 
+					lSymbol[ *pos ]->dVal;
 				pos++;
 				break;
-				//case '+':
 			case PLU:
 				iSp--;
 				save[iSp-1]+=save[iSp]; break;
-				//case '-':
 			case MIN:
 				iSp--;
 				save[iSp-1]-=save[iSp]; break;
-				//case '*':
 			case MUL:
 				iSp--;
 				save[iSp-1]*=save[iSp]; break;
-				//case '%':
 			case MOD:
 				iSp--;
-				if (save[iSp]==0) 
+				if (save[iSp]==0)
 				{
-					//THROW(new CEvalException("Divide by 0"));
 					return 0;
 				}
 				save[iSp-1]=fmod(save[iSp-1],save[iSp]); break;
-				//case '/':
 			case DIV:
 				iSp--;
-				if (save[iSp]==0) 
+				if (save[iSp]==0)
 				{
-					//THROW(new CEvalException("Divide by 0"));
 					return 0;
 				}
 				save[iSp-1]/=save[iSp]; break;
-				//case '^':
 			case POW:
 				iSp--;
 				save[iSp-1]=pow(save[iSp-1],save[iSp]); break;
 			case ROOT:
-				if (save[iSp-1]<0) 
+				if (save[iSp-1]<0)
 				{
-					//THROW(new CEvalException("Negative in root"));
 					return 0;
 				}
 				save[iSp-1]=sqrt(save[iSp-1]); break;
@@ -131,56 +117,48 @@ double CPoly::Eval()
 				else save[iSp-1] = 1.0f;
 				break;
 			case TAN:
-				if (!(t=cos(save[iSp-1]))) 
+				if (!(t=cos(save[iSp-1])))
 				{
-					//THROW (new CEvalException("Divide by 0"));
 					return 0;
 				}
 				save[iSp-1]=tan(save[iSp-1]); break;
 			case CSC:
-				if (!(t=sin(save[iSp-1]))) 
+				if (!(t=sin(save[iSp-1])))
 				{
-					//THROW(new CEvalException("Divide by 0"));
 					return 0;
 				}
 				save[iSp-1]=1/t; break;
 			case SEC:
-				if (!(t=cos(save[iSp-1]))) 
+				if (!(t=cos(save[iSp-1])))
 				{
-					//THROW(new CEvalException("Divide by 0"));
 					return 0;
 				}
 				save[iSp-1]=1/t; break;
 			case COT:
-				if (!(t=sin(save[iSp-1]))) 
+				if (!(t=sin(save[iSp-1])))
 				{
-					//THROW(new CEvalException("Divide by 0"));
 					return 0;
 				}
 				save[iSp-1]=cos(save[iSp-1])/t; break;
 			case LN:
-				if (save[iSp-1]<=0) 
+				if (save[iSp-1]<=0)
 				{
-					//THROW( new CEvalException("Call Log with minus number"));
 					return 0;
 				}
 				save[iSp-1]=log(save[iSp-1]); break;
 			case LOG10:
-				if (save[iSp-1]<=0) 
+				if (save[iSp-1]<=0)
 				{
-					//THROW( new CEvalException("Call Log with minus number"));
 					return 0;
 				}
 				save[iSp-1]=log10(save[iSp-1]); break;
 			case LOG:
-				if (save[iSp-1]<=0) 
+				if (save[iSp-1]<=0)
 				{
-					//THROW( new CEvalException("Call Log with minus number"));
 					return 0;
 				}
-				if (save[iSp-2]<=0 || save[iSp-2]==1) 
+				if (save[iSp-2]<=0 || save[iSp-2]==1)
 				{
-					//THROW( new CEvalException("Call Log with minus number"));
 					return 0;
 				}
 
@@ -205,13 +183,8 @@ double CPoly::Eval()
 						save[iSp-2]=(save[iSp-2]>save[iSp-1])?save[iSp-2]:save[iSp-1];
 						iSp--;
 						break;
-						/*case MOD:
-						  save[iSp-2]=fmod(save[iSp-2],save[iSp-1]);
-						  iSp--;
-						  break;*/
 			default:
 						return 0;
-						//THROW(new CEvalException("Token Error"));
 		}
 	}
 	return save[iSp-1];
@@ -225,16 +198,14 @@ int CPoly::Analyze(const char * pszStr)
     if (0 == strData.length())
 	return true;
 
-    //DisposeList();
     ErrorOccur = false;
     uiLookPos = 0;
     iLookAhead = lexan();
 
     expr();
 
-    if (tokenBase.empty()) 
+    if (tokenBase.empty())
     {
-	//THROW(new CParseException("No Data"));
 	return false;
     }
 
@@ -244,8 +215,6 @@ int CPoly::Analyze(const char * pszStr)
 void CPoly::Clear()
 {
     int i;
-    //while (!tokenBase.IsEmpty()) listBase.RemoveTail();
-    //while (!numBase.IsEmpty()) numBase.RemoveTail();
     tokenBase.clear();
     numBase.clear();
 
@@ -254,13 +223,12 @@ void CPoly::Clear()
 	if (lSymbol[i]) delete lSymbol[i];
 	lSymbol[i]=NULL;
     }
-    //lSymbol.FreeExtra();
     lSymbol.clear();
     SymbolIndex.clear();
     STSize=0;
 }
 
-void CPoly::expr() 
+void CPoly::expr()
 {
     int t;
 
@@ -290,7 +258,6 @@ void CPoly::expr()
 	    case EOS: case ')': case ',': return;
 	    default:
 					  error();
-					  //THROW( new CParseException("Error Parsing"));
 					  return;
 	}
     }
@@ -351,7 +318,7 @@ int CPoly::lexan()
 	    {
 		iToken=insert(localSymbol,ID);
 	    }
-	    return lSymbol[(/*FindIndex*/(iToken))]->token;
+	    return lSymbol[(iToken)]->token;
 	}
 	else
 	{
@@ -415,7 +382,7 @@ void CPoly::expo()
 	case NUM:
 	    emit(NUM, iToken); match(NUM); break;
 	case ID:
-	    emit(ID,(int)/*FindIndex*/(iToken)); match(ID); break;
+	    emit(ID,(int)(iToken)); match(ID); break;
 	case ROOT:
 	case SIN:
 	case COT:
@@ -445,7 +412,6 @@ void CPoly::expo()
 	    break;
 	default:
 	    error();
-	    //THROW( new CParseException("Error Parsing"));
     }
 }
 
@@ -458,16 +424,16 @@ void CPoly::emit(int t, int tval)
 {
     switch (t)
     {
-	case '+': 
+	case '+':
 	    tokenBase.push_back(PLU);
 	    break;
-	case '-': 
+	case '-':
 	    tokenBase.push_back(MIN);
 	    break;
-	case '*': 
+	case '*':
 	    tokenBase.push_back(MUL);
 	    break;
-	case '/': 
+	case '/':
 	    tokenBase.push_back(DIV);
 	    break;
 	case '%':
@@ -500,13 +466,12 @@ void CPoly::emit(int t, int tval)
 	    tokenBase.push_back(t);
 	    numBase.push_back(iNumToken);
 	    break;
-	case ID:  
+	case ID:
 	    tokenBase.push_back(t);
 	    tokenBase.push_back(tval); break;
 	default:
 	    error();
 	    Clear();
-	    //THROW( new CParseException("Error Parsing"));
 	    return;
     }
 }
@@ -536,9 +501,6 @@ int CPoly::insert(const string & s, int tok)
 {
 	int i;
 	bool bAdded=false;
-	//s.MakeLower();
-	//transform(s.begin(),s.end(),s.begin(),std::tolower);
-	//lSymbol.SetAtGrow(STSize,new CSymTable(tok,s));
 	lSymbol.push_back(new CSymTable(tok,s));
 	for (i=0;i<STSize;i++)
 	{
@@ -551,7 +513,6 @@ int CPoly::insert(const string & s, int tok)
 	}
 	if (!bAdded)
 	{
-		//SymbolIndex.SetAtGrow(STSize,STSize);
 		SymbolIndex.push_back(STSize);
 	}
 	STSize++;
@@ -560,11 +521,10 @@ int CPoly::insert(const string & s, int tok)
 
 int CPoly::SetVar(const string & strName, double dVar)
 {
-    //transform(strName.begin(),strName.end(),s.begin(),std::tolower);
     if (ErrorOccur) return false;
     int index = find(strName);
     if (index == -1) return false;
-    CSymTable * stVar = lSymbol[(/*FindIndex*/(index))];
+    CSymTable * stVar = lSymbol[(index)];
     stVar->dVal = dVar;
     return true;
 }
@@ -574,7 +534,7 @@ double CPoly::GetVar(const std::string & strName)
     if (ErrorOccur) return false;
     int index = find(strName);
     if (index == -1) return false;
-    CSymTable * stVar = lSymbol[(/*FindIndex*/(index))];
+    CSymTable * stVar = lSymbol[(index)];
 	if(!stVar)
 		return -1;
 	return stVar->dVal;
