@@ -30,7 +30,7 @@ struct TGuildDeclareInfo
 
 	bool operator < (const TGuildDeclareInfo& r) const
 	{
-		return dwGuildID[0] < r.dwGuildID[0] || dwGuildID[0] == r.dwGuildID[0] && dwGuildID[1] < r.dwGuildID[1];
+		return ((dwGuildID[0] < r.dwGuildID[0]) || ((dwGuildID[0] == r.dwGuildID[0]) && (dwGuildID[1] < r.dwGuildID[1])));
 	}
 
 	TGuildDeclareInfo& operator = (const TGuildDeclareInfo& r)
@@ -64,7 +64,7 @@ struct TGuildWaitStartInfo
 
 	bool operator < (const TGuildWaitStartInfo& r) const
 	{
-		return GID[0] < r.GID[0] || GID[0] == r.GID[0] && GID[1] < r.GID[1];
+		return ((GID[0] < r.GID[0]) || ((GID[0] == r.GID[0]) && (GID[1] < r.GID[1])));
 	}
 };
 
@@ -100,7 +100,7 @@ struct TGuildSkillUsed
 
 inline bool operator < (const TGuildSkillUsed& a, const TGuildSkillUsed& b)
 {
-    return a.GID < b.GID || a.GID == b.GID && a.dwSkillVnum < b.dwSkillVnum;
+    return ((a.GID < b.GID) || ((a.GID == b.GID) && (a.dwSkillVnum < b.dwSkillVnum)));
 }
 
 typedef struct SGuild
@@ -151,7 +151,7 @@ class CGuildWarReserve
 	void	SetLastNoticeMin(int iMin) { m_iLastNoticeMin = iMin; }
 
     private:
-	CGuildWarReserve();  // 기본 생성자를 사용하지 못하도록 의도적으로 구현하지 않음
+	CGuildWarReserve();
 
 	TGuildWarReserve				m_data;
 	// <login, <guild, gold>>
@@ -203,9 +203,8 @@ class CGuildManager : public singleton<CGuildManager>
 	void	ResultRanking(MYSQL_RES * pRes);
 	int	GetRanking(DWORD dwGID);
 
-	//
 	// Reserve War
-	//
+
 	void	BootReserveWar();
 	bool	ReserveWar(TPacketGuildWar * p);
 	void	ProcessReserveWar();
@@ -236,7 +235,7 @@ class CGuildManager : public singleton<CGuildManager>
 	std::map<DWORD, TGuild>					m_map_kGuild;
 	std::map<DWORD, std::map<DWORD, time_t> >		m_mapGuildWarEndTime;
 
-	std::set<TGuildDeclareInfo>				m_DeclareMap; // 선전 포고 상태를 저장
+	std::set<TGuildDeclareInfo>				m_DeclareMap;
 	std::map<DWORD, std::map<DWORD, TGuildWarInfo> >	m_WarMap;
 
 	typedef std::pair<time_t, TGuildWarPQElement *>	stPairGuildWar;
