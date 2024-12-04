@@ -74,6 +74,9 @@ struct SPointOnType
 	{ "MANASHIELD",	POINT_MANASHIELD	},
 	{ "SKILL_DAMAGE_BONUS", POINT_SKILL_DAMAGE_BONUS	},
 	{ "NORMAL_HIT_DAMAGE_BONUS", POINT_NORMAL_HIT_DAMAGE_BONUS	},
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	{ "BLEEDING_PCT",	POINT_BLEEDING_PCT	},
+#endif
 	{ "\n",		POINT_NONE		},
 };
 
@@ -288,7 +291,7 @@ bool CSkillManager::Initialize(TSkillTable * pTab, int iSize)
 			continue;
 		}
 
-		sys_log(0, "#%-3d %-24s type %u flag %u affect %u point_poly: %s", 
+		sys_log(0, "#%-3d %-24s type %u flag %u affect %u point_poly: %s",
 				pkProto->dwVnum, pkProto->szName, pkProto->dwType, pkProto->dwFlag, pkProto->dwAffectFlag, t->szPointPoly);
 
 		map_pkSkillProto.insert(std::map<DWORD, CSkillProto *>::value_type(pkProto->dwVnum, pkProto));
@@ -296,7 +299,6 @@ bool CSkillManager::Initialize(TSkillTable * pTab, int iSize)
 
 	if (!bError)
 	{
-		// 기존 테이블의 내용을 지운다.
 		itertype(m_map_pkSkillProto) it = m_map_pkSkillProto.begin();
 
 		while (it != m_map_pkSkillProto.end()) {
@@ -306,7 +308,6 @@ bool CSkillManager::Initialize(TSkillTable * pTab, int iSize)
 
 		m_map_pkSkillProto.clear();
 
-		// 새로운 내용을 삽입
 		it = map_pkSkillProto.begin();
 
 		while (it != map_pkSkillProto.end())
