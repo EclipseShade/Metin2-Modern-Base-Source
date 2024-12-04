@@ -23,6 +23,6 @@ int getopt(int argc, TCHAR *argv[], TCHAR *optstring);
 extern char* _optarg;
 extern int _optind;
 
-int getopt(int argc, char *const argv[], const char *optstring);
+int _getopt(int argc, char *const argv[], const char *optstring);
 
 #endif //XGETOPT_H
