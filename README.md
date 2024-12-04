@@ -1,6 +1,7 @@
 # Metin2-Modern-Base-Source
 #### SERVER: https://github.com/EclipseShade/Metin2-Modern-Base-Server
 #### CLIENT: https://github.com/EclipseShade/Metin2-Modern-Base-Client
+#### CLIENTSOURCE: https://github.com/EclipseShade/Metin2-Modern-Base-ClientSource
 
 ##### Server Source
 |  FreeBSD | Visual Studio | Debian  | Ubuntu           | 
