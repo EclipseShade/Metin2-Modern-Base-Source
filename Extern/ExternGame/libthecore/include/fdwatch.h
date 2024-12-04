@@ -12,7 +12,7 @@
 	FDW_READ		= 1,
 	FDW_WRITE		= 2,
 	FDW_WRITE_ONESHOT	= 4,
-	FDW_EOF			= 8,
+	FDW_EOF			= 8
     };
 
     typedef struct kevent	KEVENT;
