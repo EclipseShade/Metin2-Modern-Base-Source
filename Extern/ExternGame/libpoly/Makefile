@@ -5,7 +5,7 @@ GCC_VERSION = $(shell $(CC) --version 2>&1 | grep "(GCC)" | cut -d' ' -f3  | cut
 
 
 CFLAGS  = -m32 -Wall -O2 -pipe -fno-exceptions -fno-rtti
-CFLAGS += -std=c++20
+CFLAGS += -std=c++11
 
 OBJFILES = Base.o Poly.o SymTable.o Symbol.o
 
