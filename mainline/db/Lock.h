@@ -19,7 +19,7 @@ class CLock
 	void	Lock();
 	void	Unlock();
 
-    private:	
+    private:
 	lock_t	m_lock;
 	bool	m_bLocked;
 };
