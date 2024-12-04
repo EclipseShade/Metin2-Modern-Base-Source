@@ -1,9 +1,6 @@
 #ifndef __INC_METIN2_DB_DBMANAGER_H__
 #define __INC_METIN2_DB_DBMANAGER_H__
 
-// 디비 커넥션 클래스의 목적은...  디비에 접속해서 쿼리보내고 결과 받아오는
-// 모든 일들을 처리한다.
-//                             코드 by 꼬붕 후로그래머 아노아~ = _=)b
 #include <mysql/mysql.h>
 
 #define SQL_SAFE_LENGTH(size)	(size * 2 + 1)
@@ -89,7 +86,7 @@ class CDBManager : public singleton<CDBManager>
 	CAsyncSQL2 *	 	m_directSQL[SQL_MAX_NUM];
 	CAsyncSQL2 *		m_asyncSQL[SQL_MAX_NUM];
 
-	int			m_quit;		// looping flag
+	int			m_quit;
 
 	//CHARSET
 	public:
