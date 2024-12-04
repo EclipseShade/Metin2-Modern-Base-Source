@@ -38,4 +38,5 @@ class stable_priority_queue
 		}
 };
 
-#endif
+#endif /* STABLE_PRIORITY_QUEUE_H_ */
+
