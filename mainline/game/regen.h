@@ -56,7 +56,7 @@ EVENTINFO(regen_event_info)
 {
 	LPREGEN 	regen;
 
-	regen_event_info() 
+	regen_event_info()
 	: regen( 0 )
 	{
 	}
@@ -79,19 +79,19 @@ EVENTINFO(dungeon_regen_event_info)
 	LPREGEN 	regen;
 	CDungeon::IdType dungeon_id;
 
-	dungeon_regen_event_info() 
+	dungeon_regen_event_info()
 	: regen( 0 )
 	, dungeon_id( 0 )
 	{
 	}
 };
 
-extern bool	regen_load(const char *filename, long lMapIndex, int base_x, int base_y); 
+extern bool	regen_load(const char *filename, long lMapIndex, int base_x, int base_y);
 extern bool	regen_do(const char* filename, long lMapIndex, int base_x, int base_y, LPDUNGEON pDungeon, bool bOnce = true );
 extern bool	regen_load_in_file(const char* filename, long lMapIndex, int base_x, int base_y );
 extern void	regen_free();
 
 extern bool	is_regen_exception(long x, long y);
 extern void	regen_reset(int x, int y);
-
 #endif
+
