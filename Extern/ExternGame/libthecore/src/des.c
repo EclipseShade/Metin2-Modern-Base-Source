@@ -1,5 +1,4 @@
 #include "stdafx.h"
-#include "DES_table.h"
 
 #define DES_ECB_ENCRYPT 0
 #define DES_ECB_DECRYPT 1
