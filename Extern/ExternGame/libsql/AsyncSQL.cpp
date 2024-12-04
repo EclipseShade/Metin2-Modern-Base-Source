@@ -9,6 +9,7 @@
 
 #include <cstdlib>
 #include <cstring>
+#include <memory>
 
 #include "AsyncSQL.h"
 
@@ -25,7 +26,7 @@ CAsyncSQL::CAsyncSQL()
 	: m_stHost(""), m_stUser(""), m_stPassword(""), m_stDB(""), m_stLocale(""),
 	m_iMsgCount(0), m_bEnd(false),
 #ifndef __WIN32__
-	m_hThread(0), 
+	m_hThread(0),
 #else
 	m_hThread(INVALID_HANDLE_VALUE),
 #endif
@@ -109,7 +110,7 @@ bool CAsyncSQL::QueryLocaleSet()
 	if (mysql_set_character_set(&m_hDB, m_stLocale.c_str()))
 	{
 		sys_err("cannot set locale %s by 'mysql_set_character_set', errno %u %s", m_stLocale.c_str(), mysql_errno(&m_hDB) , mysql_error(&m_hDB));
-		return false; 
+		return false;
 	}
 
 	sys_log(0, "\t--mysql_set_character_set(%s)", m_stLocale.c_str());
@@ -136,7 +137,7 @@ bool CAsyncSQL::Connect()
 
 	if (!mysql_real_connect(&m_hDB, m_stHost.c_str(), m_stUser.c_str(), m_stPassword.c_str(), m_stDB.c_str(), m_iPort, NULL, CLIENT_MULTI_STATEMENTS))
 	{
-		fprintf(stderr, "mysql_real_connect: %s\n", mysql_error(&m_hDB));
+		fprintf(stderr, "mysql_real_connect failed: %s\n", mysql_error(&m_hDB));
 		return false;
 	}
 
@@ -146,9 +147,9 @@ bool CAsyncSQL::Connect()
 		fprintf(stderr, "mysql_option: %s\n", mysql_error(&m_hDB));
 
 	#ifdef MARIADB_BASE_VERSION
-		fprintf(stdout, "AsyncSQL: connected to %s (reconnect %d)\n", m_stHost.c_str(), reconnect);
+		fprintf(stdout, "AsyncSQL: connected to %s (reconnect %d) [MARIADB]\n", m_stHost.c_str(), reconnect);
 	#else
-		fprintf(stdout, "AsyncSQL: connected to %s (reconnect %d)\n", m_stHost.c_str(), m_hDB.reconnect);
+		fprintf(stdout, "AsyncSQL: connected to %s (reconnect %d) [MYSQL]\n", m_stHost.c_str(), m_hDB.reconnect);
 	#endif
 
 	m_ulThreadID = mysql_thread_id(&m_hDB);
@@ -159,10 +160,10 @@ bool CAsyncSQL::Connect()
 bool CAsyncSQL::Setup(CAsyncSQL * sql, bool bNoThread)
 {
 	return Setup(sql->m_stHost.c_str(),
-			sql->m_stUser.c_str(), 
-			sql->m_stPassword.c_str(), 
-			sql->m_stDB.c_str(), 
-			sql->m_stLocale.c_str(), 
+			sql->m_stUser.c_str(),
+			sql->m_stPassword.c_str(),
+			sql->m_stDB.c_str(),
+			sql->m_stLocale.c_str(),
 			bNoThread,
 			sql->m_iPort);
 }
@@ -183,13 +184,6 @@ bool CAsyncSQL::Setup(const char * c_pszHost, const char * c_pszUser, const char
 
 	if (!bNoThread)
 	{
-		/*
-		if (!mysql_thread_safe())//
-	    {
-			fprintf(stderr, "FATAL ERROR!! mysql client library was not compiled with thread safety\n");
-			return false;
-		}
-		*/
 #ifndef __WIN32__
 		m_mtxQuery = new pthread_mutex_t;
 		m_mtxResult = new pthread_mutex_t;
@@ -250,7 +244,7 @@ SQLMsg * CAsyncSQL::DirectQuery(const char * c_pszQuery)
 {
 	if (m_ulThreadID != mysql_thread_id(&m_hDB))
 	{
-		sys_err("MySQL connection was reconnected. querying locale set");
+		sys_log(0, "MySQL connection was reconnected. querying locale set"); // @warme012
 		while (!QueryLocaleSet());
 		m_ulThreadID = mysql_thread_id(&m_hDB);
 	}
@@ -265,9 +259,8 @@ SQLMsg * CAsyncSQL::DirectQuery(const char * c_pszQuery)
 		std::ostringstream errorMsg;
 
 		errorMsg << "AsyncSQL::DirectQuery : mysql_query error: " << mysql_error(&m_hDB) << "\nquery: " << p->stQuery;
-		
+
 		sys_err(errorMsg.str().c_str());
-		
 		p->uiSQLErrno = mysql_errno(&m_hDB);
 	}
 
@@ -396,7 +389,7 @@ int CAsyncSQL::CopyQuery()
 
 	//m_map_kSQLMsgUnfinished.erase(iID);
 
-	int count = m_queue_query_copy.size();	
+	int count = m_queue_query_copy.size();
 
 	MUTEX_UNLOCK(m_mtxQuery);
 	return count;
@@ -427,8 +420,6 @@ void	CAsyncSQL::AddCopiedQueryCount(int iCopiedQuery)
 {
 	m_iCopiedQuery += iCopiedQuery;
 }
-
-
 
 DWORD CAsyncSQL::CountQuery()
 {
@@ -470,7 +461,7 @@ void __timediff(struct timeval *a, struct timeval *b, struct timeval *rslt)
 class cAsyncProfiler
 {
 	public:
-		cAsyncProfiler() 
+		cAsyncProfiler()
 		{
 			m_nInterval = 0 ;
 
@@ -478,7 +469,7 @@ class cAsyncProfiler
 			memset( &now, 0, sizeof(now) );
 			memset( &interval, 0, sizeof(interval) );
 
-			Start(); 
+			Start();
 		}
 
 		cAsyncProfiler(int nInterval = 100000)
@@ -489,7 +480,7 @@ class cAsyncProfiler
 			memset( &now, 0, sizeof(now) );
 			memset( &interval, 0, sizeof(interval) );
 
-			Start(); 
+			Start();
 		}
 
 		void Start()
@@ -499,12 +490,12 @@ class cAsyncProfiler
 
 		void Stop()
 		{
-			gettimeofday(&now, (struct timezone*) 0); 
+			gettimeofday(&now, (struct timezone*) 0);
 			__timediff(&now, &prev, &interval);
 		}
 
 		bool IsOk()
-		{ 
+		{
 			if (interval.tv_sec > (m_nInterval / 1000000))
 				return false;
 
@@ -527,7 +518,7 @@ class cAsyncProfiler
 
 void CAsyncSQL::ChildLoop()
 {
-	cAsyncProfiler profiler(500000); // 0.5초
+	cAsyncProfiler profiler(500000);
 
 	while (!m_bEnd)
 	{
@@ -544,7 +535,6 @@ void CAsyncSQL::ChildLoop()
 
 		while (count--)
 		{
-			//시간 체크 시작 
 			profiler.Start();
 
 			if (!PeekQueryFromCopyQueue(&p))
@@ -552,7 +542,7 @@ void CAsyncSQL::ChildLoop()
 
 			if (m_ulThreadID != mysql_thread_id(&m_hDB))
 			{
-				sys_err("MySQL connection was reconnected. querying locale set");
+				sys_log(0, "MySQL connection was reconnected. querying locale set"); // @warme012
 				while (!QueryLocaleSet());
 				m_ulThreadID = mysql_thread_id(&m_hDB);
 			}
@@ -561,7 +551,7 @@ void CAsyncSQL::ChildLoop()
 			{
 				p->uiSQLErrno = mysql_errno(&m_hDB);
 
-				sys_err("AsyncSQL: query failed: %s (query: %s errno: %d)", 
+				sys_err("AsyncSQL: query failed: %s (query: %s errno: %d)",
 						mysql_error(&m_hDB), p->stQuery.c_str(), p->uiSQLErrno);
 
 				switch (p->uiSQLErrno)
@@ -588,10 +578,9 @@ void CAsyncSQL::ChildLoop()
 			}
 
 			profiler.Stop();
-			
-			// 0.5초 이상 걸렸으면 로그에 남기기
+
 			if (!profiler.IsOk())
-				sys_log(0, "[QUERY : LONG INTERVAL(OverSec %ld.%ld)] : %s", 
+				sys_log(0, "[QUERY : LONG INTERVAL(OverSec %ld.%ld)] : %s",
 						profiler.GetResultSec(), profiler.GetResultUSec(), p->stQuery.c_str());
 
 			PopQueryFromCopyQueue();
@@ -614,7 +603,7 @@ void CAsyncSQL::ChildLoop()
 	{
 		if (m_ulThreadID != mysql_thread_id(&m_hDB))
 		{
-			sys_err("MySQL connection was reconnected. querying locale set");
+			sys_log(0, "MySQL connection was reconnected. querying locale set"); // @warme012
 			while (!QueryLocaleSet());
 			m_ulThreadID = mysql_thread_id(&m_hDB);
 		}
@@ -691,9 +680,8 @@ size_t CAsyncSQL::EscapeString(char* dst, size_t dstSize, const char *src, size_
 
 	if (dstSize < srcSize * 2 + 1)
 	{
-		// \0이 안붙어있을 때를 대비해서 256 바이트만 복사해서 로그로 출력
 		char tmp[256];
-		size_t tmpLen = sizeof(tmp) > srcSize ? srcSize : sizeof(tmp); // 둘 중에 작은 크기
+		size_t tmpLen = sizeof(tmp) > srcSize ? srcSize : sizeof(tmp);
 		strlcpy(tmp, src, tmpLen);
 
 		sys_err("FATAL ERROR!! not enough buffer size (dstSize %u srcSize %u src%s: %s)",
