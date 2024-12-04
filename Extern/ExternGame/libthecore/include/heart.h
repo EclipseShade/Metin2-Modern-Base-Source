@@ -20,7 +20,7 @@ struct heart
 
 extern LPHEART	heart_new(int opt_usec, HEARTFUNC func);
 extern void	heart_delete(LPHEART ht);
-extern int	heart_idle(LPHEART ht);	// 몇 pulse가 지났나 리턴한다.
+extern int	heart_idle(LPHEART ht);
 extern void	heart_beat(LPHEART ht, int pulses);
 
 #endif
