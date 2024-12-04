@@ -46,9 +46,6 @@ int OnClickShop(TRIGGERPARAM)
 	return 1;
 }
 
-/*
- * 몬스터 AI 함수들을 BattleAI 클래스로 수정
- */
 int OnIdleDefault(TRIGGERPARAM)
 {
 	if (ch->OnIdle())
@@ -78,7 +75,7 @@ class FuncFindMobVictim
 
 			LPCHARACTER pkChr = (LPCHARACTER) ent;
 
-			if (pkChr->IsBuilding() && 
+			if (pkChr->IsBuilding() &&
 				(pkChr->IsAffectFlag(AFF_BUILDING_CONSTRUCTION_SMALL) ||
 				 pkChr->IsAffectFlag(AFF_BUILDING_CONSTRUCTION_LARGE) ||
 				 pkChr->IsAffectFlag(AFF_BUILDING_UPGRADE)))
@@ -90,18 +87,18 @@ class FuncFindMobVictim
 			{
 				if ( !pkChr->IsMonster() || !m_pkChr->IsAttackMob() || m_pkChr->IsAggressive()  )
 					return false;
-					
+
 			}
 
 			if (pkChr->IsDead())
 				return false;
 
-			if (pkChr->IsAffectFlag(AFF_EUNHYUNG) || 
+			if (pkChr->IsAffectFlag(AFF_EUNHYUNG) ||
 					pkChr->IsAffectFlag(AFF_INVISIBILITY) ||
 					pkChr->IsAffectFlag(AFF_REVIVE_INVISIBLE))
 				return false;
 
-			if (pkChr->IsAffectFlag(AFF_TERROR) && m_pkChr->IsImmune(IMMUNE_TERROR) == false )	// 공포 처리
+			if (pkChr->IsAffectFlag(AFF_TERROR) && m_pkChr->IsImmune(IMMUNE_TERROR) == false )
 			{
 				if ( pkChr->GetLevel() >= m_pkChr->GetLevel() )
 					return false;
@@ -118,7 +115,6 @@ class FuncFindMobVictim
 				if ( pkChr->GetEmpire() == 2 )
 					return false;
 			}
-			
 
 			if ( m_pkChr->IsNoAttackJinno() )
 			{
@@ -138,8 +134,7 @@ class FuncFindMobVictim
 
 		LPCHARACTER GetVictim()
 		{
-			// 근처에 건물이 있고 피가 많이 있다면 건물을 공격한다. 건물만 있어도 건물을 공격
-			if (m_pkChrBuilding && m_pkChr->GetHP() * 2 > m_pkChr->GetMaxHP() || !m_pkChrVictim)
+			if ((m_pkChrBuilding && ((m_pkChr->GetHP() * 2) > m_pkChr->GetMaxHP())) || !m_pkChrVictim)
 			{
 				return m_pkChrBuilding;
 			}
@@ -163,7 +158,7 @@ LPCHARACTER FindVictim(LPCHARACTER pkChr, int iMaxDistance)
 {
 	FuncFindMobVictim f(pkChr, iMaxDistance);
 	if (pkChr->GetSectree() != NULL) {
-		pkChr->GetSectree()->ForEachAround(f);	
+		pkChr->GetSectree()->ForEachAround(f);
 	}
 	return f.GetVictim();
 }
