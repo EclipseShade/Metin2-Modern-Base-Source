@@ -440,19 +440,19 @@ AuctionResult AuctionManager::EnrollInWish(TWishItemInfo &item_info) {
     if (!Wish.InsertItemInfo(&item_info)) {
         std::ostringstream msg;
         msg << "wisher_id : " << item_info.offer_id << ", item_num : " << item_info.item_num << " is already in WishBoard";
-        sys_err(msg.str());
+        sys_err(msg.str().c_str());
         return AUCTION_FAIL;
     }
 
     return AUCTION_SUCCESS;
 }
 
-AuctionResult AuctionManager::Bid(DWORD bidder_id, const char* bidder_name, DWORD item_id, DWORD bid_price)
-{
+AuctionResult AuctionManager::Bid(DWORD bidder_id, const char* bidder_name, DWORD item_id, DWORD bid_price) {
 	CItemCache* c = GetItemCache (item_id);
-	if (c == NULL)
-	{
-		sys_err ("item id : %d does not exist in auction.", item_id);
+	if (c == NULL) {
+		std::ostringstream msg;
+		msg << "Item ID: " << item_id << " does not exist in auction.";
+		sys_err(msg.str().c_str());
 		return AUCTION_FAIL;
 	}
 
@@ -489,7 +489,9 @@ AuctionResult AuctionManager::Impur(DWORD purchaser_id, const char* purchaser_na
 	CItemCache* c = GetItemCache (item_id);
 	if (c == NULL)
 	{
-		sys_err ("item id : %d does not exist in auction.", item_id);
+		std::ostringstream msg;
+		msg << "item id : " << item_id << " does not exist in auction.";
+		sys_err(msg.str().c_str());
 		return AUCTION_FAIL;
 	}
 
@@ -516,7 +518,9 @@ AuctionResult AuctionManager::GetAuctionedItem (DWORD actor_id, DWORD item_id, T
 	CItemCache* c = GetItemCache (item_id);
 	if (c == NULL)
 	{
-		sys_err ("item id : %d does not exist in auction.", item_id);
+		std::ostringstream msg;
+		msg << "item id : " << item_id << " does not exist in auction.";
+		sys_err(msg.str());
 		return AUCTION_FAIL;
 	}
 
@@ -542,9 +546,10 @@ AuctionResult AuctionManager::GetAuctionedItem (DWORD actor_id, DWORD item_id, T
 AuctionResult AuctionManager::BuySoldItem (DWORD actor_id, DWORD item_id, TPlayerItem& item)
 {
 	CItemCache* c = GetItemCache (item_id);
-	if (c == NULL)
-	{
-		sys_err ("item id : %d does not exist in auction.", item_id);
+	if (c == NULL) {
+		std::ostringstream msg;
+		msg << "item id : " << item_id << " does not exist in auction.";
+		sys_err(msg.str());
 		return AUCTION_FAIL;
 	}
 
@@ -565,9 +570,10 @@ AuctionResult AuctionManager::BuySoldItem (DWORD actor_id, DWORD item_id, TPlaye
 AuctionResult AuctionManager::CancelAuction (DWORD actor_id, DWORD item_id, TPlayerItem& item)
 {
 	CItemCache* c = GetItemCache (item_id);
-	if (c == NULL)
-	{
-		sys_err ("item id : %d does not exist in auction.", item_id);
+	if (c == NULL) {
+		std::ostringstream msg;
+		msg << "item id : " << item_id << " does not exist in auction.";
+		sys_err(msg.str());
 		return AUCTION_FAIL;
 	}
 
@@ -599,9 +605,10 @@ AuctionResult AuctionManager::CancelWish (DWORD actor_id, DWORD item_num)
 AuctionResult AuctionManager::CancelSale (DWORD actor_id, DWORD item_id, TPlayerItem& item)
 {
 	CItemCache* c = GetItemCache (item_id);
-	if (c == NULL)
-	{
-		sys_err ("item id : %d does not exist in auction.", item_id);
+	if (c == NULL) {
+		std::ostringstream msg;
+		msg << "item id : " << item_id << " does not exist in auction.";
+		sys_err(msg.str());
 		return AUCTION_FAIL;
 	}
 
@@ -618,11 +625,11 @@ AuctionResult AuctionManager::CancelSale (DWORD actor_id, DWORD item_id, TPlayer
 	return AUCTION_SUCCESS;
 }
 
-AuctionResult AuctionManager::DeleteAuctionItem (DWORD actor_id, DWORD item_id)
-{
-	if (DeleteItemCache (item_id) == false)
-	{
-		sys_err ("item id : %d does not exist in auction.", item_id);
+AuctionResult AuctionManager::DeleteAuctionItem (DWORD actor_id, DWORD item_id) {
+	if (!DeleteItemCache(item_id)) {
+		std::ostringstream msg;
+		msg << "item id : " << item_id << " does not exist in auction.";
+		sys_err(msg.str().c_str());
 		return AUCTION_FAIL;
 	}
 
@@ -634,11 +641,11 @@ AuctionResult AuctionManager::DeleteAuctionItem (DWORD actor_id, DWORD item_id)
 	return AUCTION_SUCCESS;
 }
 
-AuctionResult AuctionManager::DeleteSaleItem (DWORD actor_id, DWORD item_id)
-{
-	if (DeleteItemCache (item_id) == false)
-	{
-		sys_err ("item id : %d does not exist in auction.", item_id);
+AuctionResult AuctionManager::DeleteSaleItem (DWORD actor_id, DWORD item_id) {
+	if (!DeleteItemCache(item_id)) {
+		std::ostringstream msg;
+		msg << "item id : " << item_id << " does not exist in auction.";
+		sys_err(msg.str().c_str());
 		return AUCTION_FAIL;
 	}
 
@@ -650,12 +657,12 @@ AuctionResult AuctionManager::DeleteSaleItem (DWORD actor_id, DWORD item_id)
 	return AUCTION_SUCCESS;
 }
 
-AuctionResult AuctionManager::ReBid(DWORD bidder_id, const char* bidder_name, DWORD item_id, DWORD bid_price)
-{
+AuctionResult AuctionManager::ReBid(DWORD bidder_id, const char* bidder_name, DWORD item_id, DWORD bid_price) {
 	CItemCache* c = GetItemCache (item_id);
-	if (c == NULL)
-	{
-		sys_err ("item id : %d does not exist in auction.", item_id);
+	if (c == NULL) {
+		ostrstream msg;
+		msg << "item id : " << item_id << " does not exist in auction." << ends;
+		sys_err(msg.str());
 		return AUCTION_FAIL;
 	}
 
