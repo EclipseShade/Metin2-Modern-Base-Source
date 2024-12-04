@@ -1,40 +1,6 @@
 #ifndef __INC_LIBTHECORE_STDAFX_H__
 #define __INC_LIBTHECORE_STDAFX_H__
 
-#if !defined(CXX11_ENABLED) && __cplusplus >= 201103L
-	#define CXX11_ENABLED
-#endif
-
-#if !defined(_HAS_CXX11) && __cplusplus >= 201103L
-	#define _HAS_CXX11
-#endif
-
-#if !defined(_HAS_CXX14) && __cplusplus >= 201402L
-	#define _HAS_CXX14
-#endif
-
-#if !defined(_HAS_CXX17) && __cplusplus > 201402L
-	#define _HAS_CXX17
-#endif
-
-#if !defined(_HAS_CXX20) && __cplusplus > 201703L
-	#define _HAS_CXX20
-#endif
-
-#if defined(__clang__) || defined(_HAS_CXX11)
-#	ifndef __STDC_LIMIT_MACROS
-#		define __STDC_LIMIT_MACROS
-#	endif
-#	include <cinttypes>
-#	include <cstdint>
-#else
-#	include <inttypes.h>
-#	include <stdint.h>
-#	ifndef INT64_MAX
-#		define INT64_MAX 0x7fFFffFFffFFffFFLL
-#	endif
-#endif
-
 #if defined(__GNUC__)
 #define INLINE __inline__
 #elif defined(_MSC_VER)
