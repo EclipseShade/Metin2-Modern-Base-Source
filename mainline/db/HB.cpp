@@ -67,15 +67,15 @@ bool PlayerHB::Query(DWORD id)
 		snprintf(szFind, sizeof(szFind), "CREATE TABLE `player%s`", GetTablePostfix());
 		int pos = m_stCreateTableQuery.find(szFind);
 
-		if (pos < 0)
-		{
-			sys_err("cannot find %s ", szFind);	
-		//	sys_err("cannot find %s in %s", szFind, m_stCreateTableQuery.c_str());
+		if (pos < 0) {
+			std::ostringstream oss;
+			oss << "cannot find " << szFind << " ";
+			sys_err(oss.str().c_str());
 			return false;
 		}
 
 		snprintf(szQuery, sizeof(szQuery), "CREATE TABLE IF NOT EXISTS %s%s", szTableName, m_stCreateTableQuery.c_str() + strlen(szFind));
-	//	sys_log(0, "%s", szQuery);
+
 		std::auto_ptr<SQLMsg> pMsg(CDBManager::instance().DirectQuery(szQuery, SQL_HOTBACKUP));
 		m_stTableName = szTableName;
 	}
