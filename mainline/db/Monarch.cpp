@@ -276,9 +276,10 @@ bool CMonarch::DelMonarch(const char * name)
 			snprintf(szQuery, sizeof(szQuery), "DELETE FROM monarch WHERE empire=%d", Empire);
 			SQLMsg * pMsg = CDBManager::instance().DirectQuery(szQuery, SQL_PLAYER);
 
-			if (pMsg->Get()->uiNumRows == 0)
-			{
-				sys_err(" DirectQuery failed(%s)", szQuery);
+			if (pMsg->Get()->uiNumRows == 0) {
+				ostringstreamstream oss;
+				oss << " DirectQuery failed(" << szQuery << ")";
+				sys_err(oss.str().c_str());
 				delete pMsg;
 				return false;
 			}
