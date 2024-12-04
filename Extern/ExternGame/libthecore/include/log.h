@@ -9,11 +9,9 @@ extern "C"
     extern void log_destroy(void);
     extern void log_rotate(void);
 
-	// 로그 레벨 처리 (레벨은 bitvector로 처리된다)
 	extern void log_set_level(unsigned int level);
 	extern void log_unset_level(unsigned int level);
 
-	// 로그 파일을 얼만큼 보관하는가에 대한 함수
 	extern void log_set_expiration_days(unsigned int days);
 	extern int log_get_expiration_days(void);
 
@@ -28,7 +26,7 @@ extern "C"
 
 #ifndef __WIN32__
 #define sys_err(fmt, args...) _sys_err(__FUNCTION__, __LINE__, fmt, ##args)
-#else 
+#else
 #define sys_err(fmt, ...) _sys_err(__FUNCTION__, __LINE__, fmt, __VA_ARGS__)
 #endif	// __WIN32__
 
