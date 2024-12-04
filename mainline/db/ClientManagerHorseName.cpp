@@ -16,7 +16,6 @@ void CClientManager::UpdateHorseName(TPacketUpdateHorseName* data, CPeer* peer)
 void CClientManager::AckHorseName(DWORD dwPID, CPeer* peer)
 {
 	char szQuery[512];
-
 	snprintf(szQuery, sizeof(szQuery), "SELECT name FROM horse_name WHERE id = %u", dwPID);
 
 	std::auto_ptr<SQLMsg> pmsg(CDBManager::instance().DirectQuery(szQuery));
