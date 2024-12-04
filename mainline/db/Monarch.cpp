@@ -31,7 +31,7 @@ bool CMonarch::VoteMonarch(DWORD pid, DWORD selectdpid)
 				"INSERT INTO monarch_election(pid, selectedpid, electiondata) VALUES(%d, %d, now())", pid, selectdpid);
 
 		CDBManager::instance().AsyncQuery(szQuery);
-		return 1;	
+		return 1;
 	}
 
 	return 0;
@@ -47,7 +47,7 @@ void CMonarch::ElectMonarch()
 
 	int idx = 0;
 
-	for (; it != m_map_MonarchElection.end(); ++it)	
+	for (; it != m_map_MonarchElection.end(); ++it)
 	{
 		if ((idx =  GetCandidacyIndex(it->second->pid)) < 0)
 			continue;
@@ -64,13 +64,13 @@ void CMonarch::ElectMonarch()
 bool CMonarch::IsCandidacy(DWORD pid)
 {
 	VEC_MONARCHCANDIDACY::iterator it = m_vec_MonarchCandidacy.begin();
-	
+
 	for (; it != m_vec_MonarchCandidacy.end(); ++it)
 	{
 		if (it->pid == pid)
 			return false;
 	}
-			
+
 	return true;
 }
 
@@ -83,7 +83,7 @@ bool CMonarch::AddCandidacy(DWORD pid, const char * name)
 
 	info.pid = pid;
 	strlcpy(info.name, name, sizeof(info.name));
-	m_vec_MonarchCandidacy.push_back(info);	
+	m_vec_MonarchCandidacy.push_back(info);
 
 	char szQuery[256];
 	snprintf(szQuery, sizeof(szQuery),
@@ -104,13 +104,12 @@ bool CMonarch::DelCandidacy(const char * name)
 			snprintf(szQuery, sizeof(szQuery),
 					"DELETE FROM monarch_candidacy WHERE pid=%d ", it->pid);
 			CDBManager::instance().AsyncQuery(szQuery);
-		
+
 			m_vec_MonarchCandidacy.erase (it);
 			return true;
 		}
 	}
 	return false;
-
 }
 
 bool CMonarch::IsMonarch(int Empire, DWORD pid)
@@ -129,7 +128,7 @@ bool CMonarch::AddMoney(int Empire, int64_t Money)
 
 	int64_t Money64 = m_MonarchInfo.money[Empire];
 
-	char szQuery[1024];	
+	char szQuery[1024];
 	snprintf(szQuery, sizeof(szQuery), "UPDATE monarch SET money=%lld WHERE empire=%d", Money64, Empire);
 
 	CDBManager::instance().AsyncQuery(szQuery);
@@ -145,7 +144,7 @@ bool CMonarch::DecMoney(int Empire, int64_t Money)
 
 	int64_t Money64 = m_MonarchInfo.money[Empire];
 
-	char szQuery[1024];	
+	char szQuery[1024];
 	snprintf(szQuery, sizeof(szQuery), "UPDATE monarch SET money=%lld WHERE empire=%d", Money64, Empire);
 
 	CDBManager::instance().AsyncQuery(szQuery);
@@ -159,11 +158,11 @@ bool CMonarch::TakeMoney(int Empire, DWORD pid, int64_t Money)
 
 	if (m_MonarchInfo.money[Empire] < Money)
 		return false;
-	
+
 	m_MonarchInfo.money[Empire] -= Money;
 
-	char szQuery[1024];	
-	snprintf(szQuery, sizeof(szQuery), 
+	char szQuery[1024];
+	snprintf(szQuery, sizeof(szQuery),
 			"UPDATE monarch SET money=%lld WHERE empire=%d", m_MonarchInfo.money[Empire], Empire);
 
 	CDBManager::instance().AsyncQuery(szQuery);
@@ -197,7 +196,7 @@ bool CMonarch::LoadMonarch()
 
         str_to_number(p->money[Empire], row[3]);
 		strlcpy(p->date[Empire], row[4], sizeof(p->date[Empire]));
-		
+
        	sys_log(0, "[LOAD_MONARCH] Empire %d pid %d money %lld windate %s name %s", Empire, p->pid[Empire], p->money[Empire], p->date[Empire], row[2]);
     }
 
@@ -209,7 +208,6 @@ bool CMonarch::SetMonarch(const char * name)
 {
 	MonarchInfo * p = &m_MonarchInfo;
     char szQuery[256];
-
 	snprintf(szQuery, sizeof(szQuery), "SELECT player_index.empire, player.id, player.name, player.gold FROM player JOIN player_index ON player_index.id = player.account_id WHERE player.name = '%s'", name);
     SQLMsg * pMsg = CDBManager::instance().DirectQuery(szQuery, SQL_PLAYER);
 
@@ -229,13 +227,12 @@ bool CMonarch::SetMonarch(const char * name)
         str_to_number(p->pid[Empire], row[idx++]);
 		strlcpy(p->name[Empire], row[idx++], sizeof(p->name[Empire]));
         p->money[Empire] = atoll(row[idx++]);
-	
+
 		if (g_test_server)
 			sys_log(0, "[Set_MONARCH] Empire %d pid %d money %lld windate %s", Empire, p->pid[Empire], p->money[Empire], p->date[Empire]);
     }
     delete pMsg;
 
-	//db¿¡ ÀÔ·Â
 	snprintf(szQuery, sizeof(szQuery),
 					"REPLACE INTO monarch (empire, name, windate, money) VALUES(%d, %d, now(), %lld)", Empire, p->pid[Empire], p->money[Empire]);
 
@@ -246,7 +243,6 @@ bool CMonarch::SetMonarch(const char * name)
 bool CMonarch::DelMonarch(int Empire)
 {
 	char szQuery[256];
-
 	snprintf(szQuery, sizeof(szQuery), "DELETE FROM monarch WHERE empire=%d", Empire);
 	SQLMsg * pMsg = CDBManager::instance().DirectQuery(szQuery, SQL_PLAYER);
 
@@ -284,14 +280,13 @@ bool CMonarch::DelMonarch(const char * name)
 			}
 
 			delete pMsg;
-
 			memset(m_MonarchInfo.name[Empire], 0, 32);
 			m_MonarchInfo.money[Empire] = 0;
 			m_MonarchInfo.pid[Empire] = 0;
 			return true;
 		}
 	}
-		
+
 	return false;
 }
 
@@ -302,7 +297,7 @@ int CMonarch::GetCandidacyIndex(DWORD pid)
 	for (int n = 0; it != m_vec_MonarchCandidacy.end(); ++it, ++n)
 	{
 		if (it->pid == pid)
-			return n;		
+			return n;
 	}
 
 	return -1;
