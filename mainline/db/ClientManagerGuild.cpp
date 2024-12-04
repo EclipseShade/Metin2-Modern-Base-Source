@@ -39,9 +39,10 @@ void CClientManager::GuildAddMember(CPeer* peer, TPacketGDGuildAddMember * p)
 
 	std::auto_ptr<SQLMsg> pmsg(CDBManager::instance().DirectQuery(szQuery));
 
-	if (pmsg->Get()->uiNumRows == 0)
-	{
-		sys_err("Query failed when getting guild member data %s", pmsg->stQuery.c_str());
+	if (pmsg->Get()->uiNumRows == 0) {
+		ostringstreamstream oss;
+		oss << "Query failed when getting guild member data " << pmsg->stQuery;
+		sys_err(oss.str().c_str());
 		return;
 	}
 
