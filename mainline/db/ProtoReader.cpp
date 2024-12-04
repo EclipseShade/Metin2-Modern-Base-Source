@@ -213,7 +213,6 @@ int get_Item_SubType_Value(unsigned int type_value, string inputString)
 		return -1;
 	}
 
-	//아이템 타입의 서브타입 어레이가 존재하는지 알아보고, 없으면 0 리턴
 	if (arSubType[type_value]==0) {
 		return 0;
 	}
@@ -842,11 +841,9 @@ bool Set_Proto_Item_Table(TItemTable *itemTable, cCsvTable &csvTable,std::map<in
 	for (i = 0; i < ITEM_VALUES_MAX_NUM; ++i)
 		itemTable->alValues[i] = dataArray[24+i];
 
-	//column for 'Specular'
 	itemTable->bGainSocketPct = dataArray[31];
 	itemTable->sAddonType = dataArray[32];
 
-	//test
 	str_to_number(itemTable->bWeight, "0");
 
 	return true;
