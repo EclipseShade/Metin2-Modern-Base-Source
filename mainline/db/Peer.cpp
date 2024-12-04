@@ -87,7 +87,7 @@ bool CPeer::PeekPacket(int & iBytesProceed, BYTE & header, DWORD & dwHandle, DWO
 	//sys_log(0, "%d header %d handle %u length %u", GetRecvLength(), header, dwHandle, dwLength);
 	if (iBytesProceed + dwLength + 9 > (DWORD) GetRecvLength())
 	{
-		sys_log(0, "PeekPacket: not enough buffer size: len %u, recv %d", 
+		sys_log(0, "PeekPacket: not enough buffer size: len %u, recv %d",
 				9+dwLength, GetRecvLength()-iBytesProceed);
 		return false;
 	}
@@ -191,8 +191,7 @@ bool CPeer::CheckItemIDRangeCollision(TItemIDRangeTable itemRange)
 				m_itemSpareRange.dwMin, m_itemSpareRange.dwMax, itemRange.dwMin, itemRange.dwMax);
 		return false;
 	}
-	
+
 	return true;
 }
-
 
