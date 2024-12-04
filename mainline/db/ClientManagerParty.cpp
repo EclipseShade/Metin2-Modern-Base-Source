@@ -102,7 +102,7 @@ void CClientManager::QUERY_PARTY_STATE_CHANGE(CPeer* peer, TPacketPartyStateChan
 
 	if (p->bFlag)
 		pit->second.bRole = p->bRole;
-	else 
+	else
 		pit->second.bRole = 0;
 
 	ForwardPacket(HEADER_DG_PARTY_STATE_CHANGE, p, sizeof(TPacketPartyStateChange), peer->GetChannel(), peer);
