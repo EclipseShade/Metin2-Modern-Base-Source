@@ -18,7 +18,7 @@ EVENTINFO(regen_mob_event_info)
 {
 	DWORD dwMapIndex;
 
-	regen_mob_event_info() 
+	regen_mob_event_info()
 	: dwMapIndex( 0 )
 	{
 	}
@@ -35,10 +35,9 @@ EVENTFUNC(regen_mob_event)
 	}
 
 	int iMapIndex = info->dwMapIndex;
-	
+
 	char filename[128];
 	std::string szFilename(GetSungziMapPath());
-
 
 	int choice = quest::CQuestManager::instance().GetEventFlag("threeway_war_choice");
 	if (0 == choice)
@@ -162,9 +161,9 @@ bool CThreeWayWar::LoadSetting(const char* szFileName)
 
 			sungziinfo.m_stMapName = static_cast<std::string>(szSungziName);
 
-			SungZiInfoMap_.push_back( sungziinfo );
+			SungZiInfoMap_.push_back(sungziinfo);
 
-			MapIndexSet_.insert( sungziinfo.m_iForkedSung );
+			MapIndexSet_.insert(sungziinfo.m_iForkedSung);
 		}
 		else if (0 == strncmp(szLine, "pass:", 5))
 		{
@@ -182,11 +181,11 @@ bool CThreeWayWar::LoadSetting(const char* szFileName)
 			passinfo.m_stMapName[1] = static_cast<std::string>(szPassName[1]);
 			passinfo.m_stMapName[2] = static_cast<std::string>(szPassName[2]);
 
-			PassInfoMap_.push_back( passinfo );
+			PassInfoMap_.push_back(passinfo);
 
-			MapIndexSet_.insert( passinfo.m_iForkedPass[0] );
-			MapIndexSet_.insert( passinfo.m_iForkedPass[1] );
-			MapIndexSet_.insert( passinfo.m_iForkedPass[2] );
+			MapIndexSet_.insert(passinfo.m_iForkedPass[0]);
+			MapIndexSet_.insert(passinfo.m_iForkedPass[1]);
+			MapIndexSet_.insert(passinfo.m_iForkedPass[2]);
 		}
 	}
 
@@ -318,13 +317,11 @@ void CThreeWayWar::onDead(LPCHARACTER pChar, LPCHARACTER pkKiller)
 	if (NULL == pkKiller || true != pkKiller->IsPC())
 		return;
 
-	// 같은 제국은 계산하지 않음
 	if (pChar->GetEmpire() == pkKiller->GetEmpire())
 		return;
 
 	int nKillScore = GetKillScore(pkKiller->GetEmpire());
 
-	// 제국 킬 스코어가 -1일경우는 탈락국가이기때문에 점수 체크를 하면 안된다.
 	if (nKillScore >= 0)
 	{
 		nKillScore += GetKillValue(pChar->GetLevel());
@@ -361,7 +358,7 @@ void CThreeWayWar::onDead(LPCHARACTER pChar, LPCHARACTER pkKiller)
 			return;
 
 		//----------------------
-		//카운트 초기화 
+
 		//----------------------
 		SetKillScore(1, 0);
 		SetKillScore(2, 0);
@@ -371,7 +368,7 @@ void CThreeWayWar::onDead(LPCHARACTER pChar, LPCHARACTER pkKiller)
 		quest::warp_all_to_map_my_empire_event_info * info;
 
 		//----------------------
-		//탈락국가 퇴장 시키기 : 성지에서 
+
 		//----------------------
 		info = AllocEventInfo<quest::warp_all_to_map_my_empire_event_info>();
 
@@ -384,7 +381,7 @@ void CThreeWayWar::onDead(LPCHARACTER pChar, LPCHARACTER pkKiller)
 		event_create(quest::warp_all_to_map_my_empire_event, info, PASSES_PER_SEC(10));
 
 		//----------------------
-		//탈락국가 퇴장 시키기 : 통로에서 
+
 		//----------------------
 		info = AllocEventInfo<quest::warp_all_to_map_my_empire_event_info>();
 
@@ -397,7 +394,7 @@ void CThreeWayWar::onDead(LPCHARACTER pChar, LPCHARACTER pkKiller)
 		event_create(quest::warp_all_to_map_my_empire_event, info, PASSES_PER_SEC(10));
 
 		//----------------------
-		//성지에 팅기는 국가에 대한 이야기를 마왕이 함!
+
 		//----------------------
 		const std::string Nation(EMPIRE_NAME(bLoseEmpire));
 		const std::string Script(
@@ -410,7 +407,7 @@ void CThreeWayWar::onDead(LPCHARACTER pChar, LPCHARACTER pkKiller)
 		CHARACTER_MANAGER::instance().SendScriptToMap(pChar->GetMapIndex(), Script);
 
 		//----------------------
-		// 공지 한방 날려줌.
+
 		//----------------------
 		char szNotice[512+1];
 		snprintf(szNotice, sizeof(szNotice), LC_TEXT("삼거리 전투에서 %s 국가가 가장먼저 탈락을 하였습니다"), Nation.c_str());
@@ -420,7 +417,7 @@ void CThreeWayWar::onDead(LPCHARACTER pChar, LPCHARACTER pkKiller)
 		LogManager::instance().CharLog(0, 0, 0, 0, "THREEWAY", szNotice, NULL);
 
 		//----------------------
-		// 몹을 리젠한다.
+
 		//----------------------
 		regen_mob_event_info* regen_info = AllocEventInfo<regen_mob_event_info>();
 
@@ -459,7 +456,7 @@ void CThreeWayWar::onDead(LPCHARACTER pChar, LPCHARACTER pkKiller)
 				quest::warp_all_to_map_my_empire_event_info * info;
 
 				//----------------------
-				//탈락국가 퇴장 시키기 : 성지에서 
+
 				//----------------------
 				info = AllocEventInfo<quest::warp_all_to_map_my_empire_event_info>();
 
@@ -472,7 +469,7 @@ void CThreeWayWar::onDead(LPCHARACTER pChar, LPCHARACTER pkKiller)
 				event_create(quest::warp_all_to_map_my_empire_event, info, PASSES_PER_SEC(5));
 
 				//----------------------
-				//탈락국가 퇴장 시키기 : 통로에서 
+
 				//----------------------
 				info = AllocEventInfo<quest::warp_all_to_map_my_empire_event_info>();
 
@@ -487,7 +484,7 @@ void CThreeWayWar::onDead(LPCHARACTER pChar, LPCHARACTER pkKiller)
 		}
 
 		//------------------------------
-		// 최종 스코어 표시 
+
 		//------------------------------
 		{
 			char szBuf[64 + 1];
@@ -497,7 +494,6 @@ void CThreeWayWar::onDead(LPCHARACTER pChar, LPCHARACTER pkKiller)
 			SendNoticeMap(szBuf, GetSungziMapIndex(), false);
 		}
 
-		// 메세지를 띄워준다.
 		LPSECTREE_MAP pSecMap = SECTREE_MANAGER::instance().GetMap(pChar->GetMapIndex());
 
 		if (NULL != pSecMap)
@@ -529,8 +525,8 @@ void CThreeWayWar::onDead(LPCHARACTER pChar, LPCHARACTER pkKiller)
 		}
 
 		//------------------------------
-		// 마지막 보상 : 진구미호 소환 
-		//-----------------------------	
+
+		//-----------------------------
 		for (int n = 0; n < quest::CQuestManager::instance().GetEventFlag("threeway_war_boss_count");)
 		{
 			int x = pChar->GetX();
@@ -556,7 +552,7 @@ void CThreeWayWar::onDead(LPCHARACTER pChar, LPCHARACTER pkKiller)
 				++n;
 			}
 		}
-		
+
 		SetRegenFlag(-1);
 	}
 }
@@ -646,7 +642,7 @@ int GetPassStartX( BYTE bEmpire )
 	return 0;
 }
 
-int GetPassStartY( BYTE bEmpire ) 
+int GetPassStartY( BYTE bEmpire )
 {
 	if (bEmpire > 0 && bEmpire < EMPIRE_MAX_NUM)
 	{
