@@ -7,7 +7,6 @@
 #include "desc.h"
 #include "shutdown_manager.h"
 
-// 싱글턴 생성자 호출하는데가 어딘지 몰라서 여기다 하나 만들어놓음
 CShutdownManager t = CShutdownManager();
 
 CShutdownManager::CShutdownManager() : m_pTime(NULL), m_lTime(0), m_bShutdownAlarm(false)
@@ -52,7 +51,7 @@ void CShutdownManager::Update()
 
 	UpdateTime();
 
-	if(!m_bShutdownAlarm)	// 10분전에 알림 출력.
+	if(!m_bShutdownAlarm)
 	{
 		if(m_pTime->tm_hour >= 23 && m_pTime->tm_min >= 50)
 		{
@@ -80,7 +79,7 @@ void CShutdownManager::Update()
 		}
 
 		m_bShutdownAlarm = false;
-		m_lstDesc.clear();	// 했으면 리스트를 비움.
+		m_lstDesc.clear();
 	}
 }
 
@@ -95,10 +94,9 @@ int CShutdownManager::SearchDesc(LPDESC pDesc)
 		iter++;
 	}
 
-	return -1;	// 리스트에서 찾을 수 없는 경우
+	return -1;
 }
 
-// 셧다운 대상 나이 체크
 bool CShutdownManager::CheckShutdownAge(const char* szSocialID)
 {
 	if(!CheckLocale() || !CheckCorrectSocialID(szSocialID)) return false;
@@ -107,7 +105,7 @@ bool CShutdownManager::CheckShutdownAge(const char* szSocialID)
 
 	int nAge = CharToInt(szSocialID[0]) * 10 + CharToInt(szSocialID[1]);
 
-	if(CharToInt(szSocialID[6]) < 3)	// 주민번호 7번째 자리가 3~4인 경우는 2000년 이후 출생
+	if(CharToInt(szSocialID[6]) < 3)
 	{
 		nAge = m_pTime->tm_year - nAge;
 	}
@@ -122,20 +120,18 @@ bool CShutdownManager::CheckShutdownAge(const char* szSocialID)
 		return false;
 }
 
-// 셧다운 시간 체크
 bool CShutdownManager::CheckShutdownTime()
 {
 	if(!CheckLocale()) return false;
 
 	UpdateTime();
-	
+
 	if(m_pTime->tm_hour < 6)
 		return true;
 	else
 		return false;
 }
 
-// 주민번호 유효성 체크
 bool CShutdownManager::CheckCorrectSocialID(const char* szSocialID)
 {
 	if(!CheckLocale()) return true;
@@ -165,7 +161,7 @@ bool CShutdownManager::CheckCorrectSocialID(const char* szSocialID)
 		+ CharToInt(szSocialID[9]) * 3
 		+ CharToInt(szSocialID[10]) * 4
 		+ CharToInt(szSocialID[11]) * 5;
-	
+
 	int nResult = 11 - (nSum % 11);
 	if(nResult > 9) nResult -= 10;
 
@@ -173,3 +169,4 @@ bool CShutdownManager::CheckCorrectSocialID(const char* szSocialID)
 
 	return true;
 }
+
