@@ -5,7 +5,6 @@
 
 #include "grid.h"
 
-
 CGrid::CGrid(int w, int h) : m_iWidth(w), m_iHeight(h)
 {
     m_pGrid = new char[m_iWidth * m_iHeight];
@@ -31,7 +30,6 @@ void CGrid::Clear()
 
 int CGrid::FindBlank(int w, int h)
 {
-    // 크기가 더 크다면 확인할 필요 없이 그냥 리턴
     if (w > m_iWidth || h > m_iHeight)
 	return -1;
 
@@ -92,7 +90,6 @@ bool CGrid::IsEmpty(int iPos, int w, int h)
 
     int iRow = iPos / m_iWidth;
 
-    // Grid 안쪽인가를 먼저 검사
     if (iRow + h > m_iHeight)
 	return false;
 
