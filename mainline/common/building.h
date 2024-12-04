@@ -1,7 +1,7 @@
 #ifndef __METIN_II_COMMON_BUILDING_H__
 #define __METIN_II_COMMON_BUILDING_H__
 
-namespace building 
+namespace building
 {
 	enum
 	{
@@ -41,8 +41,8 @@ namespace building
 		long	lNPCX;
 		long	lNPCY;
 
-		DWORD	dwGroupVnum; // 같은 그룹은 하나만 건설가능
-		DWORD	dwDependOnGroupVnum; // 지어져 있어야하는 그룹
+		DWORD	dwGroupVnum;
+		DWORD	dwDependOnGroupVnum;
 	} TObjectProto;
 
 	typedef struct SObject
