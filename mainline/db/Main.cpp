@@ -29,19 +29,15 @@ std::string g_stLocaleNameColumn = "name";
 std::string g_stLocale = "utf8";
 std::string g_stPlayerDBName = "";
 
-
 bool g_bHotBackup = false;
 BOOL g_test_server = false;
 
-//단위 초
 int g_iPlayerCacheFlushSeconds = 60*7;
 int g_iItemCacheFlushSeconds = 60*5;
 
-//g_iLogoutSeconds 수치는 g_iPlayerCacheFlushSeconds 와 g_iItemCacheFlushSeconds 보다 길어야 한다.
 int g_iLogoutSeconds = 60*10;
 
 int g_log = 1;
-
 
 // MYSHOP_PRICE_LIST
 int g_iItemPriceListTableCacheFlushSeconds = 540;
@@ -65,7 +61,7 @@ int main() {
 
 	CConfig Config;
 	CNetPoller poller;
-	CDBManager DBManager; 
+	CDBManager DBManager;
 	CClientManager ClientManager;
 	PlayerHB player_hb;
 	CGuildManager GuildManager;
@@ -117,13 +113,13 @@ int main() {
 
 void emptybeat(LPHEART heart, int pulse)
 {
-	if (!(pulse % heart->passes_per_sec))	// 1초에 한번
+	if (!(pulse % heart->passes_per_sec))
 	{
 	}
 }
 
 //
-// @version	05/06/13 Bang2ni - 아이템 가격정보 캐시 flush timeout 설정 추가.
+
 //
 int Start()
 {
@@ -150,8 +146,7 @@ int Start()
 		g_log = 1;
 		fprintf(stderr, "Log On");
 	}
-	
-	
+
 	int tmpValue;
 
 	int heart_beat = 50;
@@ -193,16 +188,15 @@ int Start()
 	if (CConfig::instance().GetValue("DISABLE_HOTBACKUP", &iDisableHotBackup))
 	{
 		if (iDisableHotBackup)
-		{	
+		{
 			sys_log(0, "CONFIG: DISABLE_HOTBACKUP");
 			g_bHotBackup = false;
 		}
 	}
 
-
 	if (!CConfig::instance().GetValue("TABLE_POSTFIX", szBuf, 256))
 	{
-		sys_err("TABLE_POSTFIX not configured use default");
+		sys_log(0, "TABLE_POSTFIX not configured use default"); // @warme012
 		szBuf[0] = '\0';
 	}
 
@@ -221,13 +215,13 @@ int Start()
 	}
 
 	// MYSHOP_PRICE_LIST
-	if (CConfig::instance().GetValue("ITEM_PRICELIST_CACHE_FLUSH_SECONDS", szBuf, 256)) 
+	if (CConfig::instance().GetValue("ITEM_PRICELIST_CACHE_FLUSH_SECONDS", szBuf, 256))
 	{
 		str_to_number(g_iItemPriceListTableCacheFlushSeconds, szBuf);
 		sys_log(0, "ITEM_PRICELIST_CACHE_FLUSH_SECONDS: %d", g_iItemPriceListTableCacheFlushSeconds);
 	}
 	// END_OF_MYSHOP_PRICE_LIST
-	//
+
 	if (CConfig::instance().GetValue("CACHE_FLUSH_LIMIT_PER_SECOND", szBuf, 256))
 	{
 		DWORD dwVal = 0; str_to_number(dwVal, szBuf);
@@ -363,7 +357,7 @@ int Start()
 		sys_err("SQL_HOTBACKUP not configured");
 		return false;
 	}
-	
+
 	if (!CNetPoller::instance().Create())
 	{
 		sys_err("Cannot create network poller");
@@ -374,7 +368,7 @@ int Start()
 
 	if (!CClientManager::instance().Initialize())
 	{
-		sys_log(0, "   failed"); 
+		sys_log(0, "   failed");
 		return false;
 	}
 
