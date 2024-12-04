@@ -10,7 +10,7 @@ extern "C"
     extern void signal_timer_enable(int timeout_seconds);
 
 #ifdef __cplusplus
-};
+}
 #endif
 
 #endif
