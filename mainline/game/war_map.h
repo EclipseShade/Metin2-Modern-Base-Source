@@ -68,7 +68,7 @@ class CWarMap
 		DWORD	GetWinnerGuild();
 		void	UsePotion(LPCHARACTER ch, LPITEM item);
 
-		void	Draw();	// 강제 무승부 처리
+		void	Draw();
 		void	Timeout();
 		void	CheckWarEnd();
 		bool	SetEnded();
@@ -125,8 +125,8 @@ class CWarMap
 
 			void Initialize();
 
-			int GetAccumulatedJoinerCount(); // 누적된 참가자 수
-			int GetCurJointerCount(); // 현재 참가자 수
+			int GetAccumulatedJoinerCount();
+			int GetCurJointerCount();
 
 			void AppendMember(LPCHARACTER ch);
 			void RemoveMember(LPCHARACTER ch);
@@ -175,3 +175,4 @@ template <typename Func> Func CWarMapManager::for_each(Func f)
 }
 
 #endif
+
