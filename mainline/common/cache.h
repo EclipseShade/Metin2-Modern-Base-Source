@@ -57,7 +57,6 @@ template <typename T> class cache
 
 		virtual void OnFlush() = 0;
 
-
 	protected:
 		T       m_data;
 		bool    m_bNeedQuery;
