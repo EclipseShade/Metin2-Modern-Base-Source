@@ -139,7 +139,7 @@ void CTargetManager::CreateTarget(DWORD dwPID,
 		int iArg1,
 		int iArg2,
 		int iMapIndex,
-		const char * c_pszTargetDesc, 
+		const char * c_pszTargetDesc,
 		int iSendFlag)
 {
 	sys_log(0, "CreateTarget : target pid %u quest %u name %s arg %d %d %d",
