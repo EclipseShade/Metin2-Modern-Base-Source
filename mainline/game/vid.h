@@ -52,3 +52,4 @@ class VID
 };
 
 #endif
+
