@@ -78,8 +78,6 @@ LPSECTREE SECTREE_MAP::Find(DWORD x, DWORD y)
 
 void SECTREE_MAP::Build()
 {
-    // 클라이언트에게 반경 150m 캐릭터의 정보를 주기위해
-    // 3x3칸 -> 5x5 칸으로 주변sectree 확대(한국)
     if (LC_IsYMIR() || LC_IsKorea())
     {
 #define NEIGHBOR_LENGTH		5
@@ -107,9 +105,6 @@ void SECTREE_MAP::Build()
 	    }
 	}
 
-	//
-	// 모든 sectree에 대해 주위 sectree들 리스트를 만든다.
-	//
 	MapType::iterator it = map_.begin();
 
 	while (it != map_.end())
@@ -154,16 +149,13 @@ void SECTREE_MAP::Build()
 		{  SECTREE_SIZE,	 SECTREE_SIZE	},
 	};
 
-	//
-	// 모든 sectree에 대해 주위 sectree들 리스트를 만든다.
-	//
 	MapType::iterator it = map_.begin();
 
 	while (it != map_.end())
 	{
 		LPSECTREE tree = it->second;
 
-		tree->m_neighbor_list.push_back(tree); // 자신을 넣는다.
+		tree->m_neighbor_list.push_back(tree);
 
 		sys_log(3, "%dx%d", tree->m_id.coord.x, tree->m_id.coord.y);
 
@@ -192,15 +184,6 @@ SECTREE_MANAGER::SECTREE_MANAGER()
 
 SECTREE_MANAGER::~SECTREE_MANAGER()
 {
-	/*
-	   std::map<DWORD, LPSECTREE_MAP>::iterator it = m_map_pkSectree.begin();
-
-	   while (it != m_map_pkSectree.end())
-	   {
-	   M2_DELETE(it->second);
-	   ++it;
-	   }
-	 */
 }
 
 LPSECTREE_MAP SECTREE_MANAGER::GetMap(long lMapIndex)
@@ -232,7 +215,6 @@ LPSECTREE SECTREE_MANAGER::Get(DWORD dwIndex, DWORD x, DWORD y)
 }
 
 // -----------------------------------------------------------------------------
-// Setting.txt 로 부터 SECTREE 만들기
 // -----------------------------------------------------------------------------
 int SECTREE_MANAGER::LoadSettingFile(long lMapIndex, const char * c_pszSettingFileName, TMapSetting & r_setting)
 {
@@ -337,7 +319,7 @@ void SECTREE_MANAGER::LoadDungeon(int iIndex, const char * c_pszFileName)
 		if (NULL == fgets(buf, 1024, fp))
 			break;
 
-		if (buf[0] == '#' || buf[0] == '/' && buf[1] == '/')
+		if ((buf[0] == '#') || ((buf[0] == '/') && (buf[1] == '/')))
 			continue;
 
 		std::istringstream ins(buf, std::ios_base::in);
@@ -366,12 +348,6 @@ void SECTREE_MANAGER::LoadDungeon(int iIndex, const char * c_pszFileName)
 	sys_log(0, "Dungeon Position Load [%3d]%s count %d", iIndex, c_pszFileName, count);
 }
 
-// Fix me
-// 현재 Town.txt에서 x, y를 그냥 받고, 그걸 이 코드 내에서 base 좌표를 더해주기 때문에
-// 다른 맵에 있는 타운으로 절대 이동할 수 없게 되어있다.
-// 앞에 map이라거나, 기타 다른 식별자가 있으면,
-// 다른 맵의 타운으로도 이동할 수 있게 하자.
-// by rtsummit
 bool SECTREE_MANAGER::LoadMapRegion(const char * c_pszFileName, TMapSetting & r_setting, const char * c_pszMapName)
 {
 	FILE * fp = fopen(c_pszFileName, "r");
@@ -387,7 +363,7 @@ bool SECTREE_MANAGER::LoadMapRegion(const char * c_pszFileName, TMapSetting & r_
 
 	fscanf(fp, " %d %d ", &iX, &iY);
 
-	int iEmpirePositionCount = fscanf(fp, " %d %d %d %d %d %d ", 
+	int iEmpirePositionCount = fscanf(fp, " %d %d %d %d %d %d ",
 			&pos[0].x, &pos[0].y,
 			&pos[1].x, &pos[1].y,
 			&pos[2].x, &pos[2].y);
@@ -415,11 +391,11 @@ bool SECTREE_MANAGER::LoadMapRegion(const char * c_pszFileName, TMapSetting & r_
 	region.strMapName = c_pszMapName;
 
 	region.posSpawn.x = r_setting.iBaseX + (iX * 100);
-	region.posSpawn.y = r_setting.iBaseY + (iY * 100); 
+	region.posSpawn.y = r_setting.iBaseY + (iY * 100);
 
 	r_setting.posSpawn = region.posSpawn;
 
-	sys_log(0, "LoadMapRegion %d x %d ~ %d y %d ~ %d, town %d %d", 
+	sys_log(0, "LoadMapRegion %d x %d ~ %d y %d ~ %d, town %d %d",
 			region.index,
 			region.sx,
 			region.ex,
@@ -479,7 +455,6 @@ bool SECTREE_MANAGER::LoadAttribute(LPSECTREE_MAP pkMapSectree, const char * c_p
 	for (int y = 0; y < iHeight; ++y)
 		for (int x = 0; x < iWidth; ++x)
 		{
-			// UNION 으로 좌표를 합쳐만든 DWORD값을 아이디로 사용한다.
 			SECTREEID id;
 			id.coord.x = (r_setting.iBaseX / SECTREE_SIZE) + x;
 			id.coord.y = (r_setting.iBaseY / SECTREE_SIZE) + y;
@@ -489,7 +464,7 @@ bool SECTREE_MANAGER::LoadAttribute(LPSECTREE_MAP pkMapSectree, const char * c_p
 			// SERVER_ATTR_LOAD_ERROR
 			if (tree == NULL)
 			{
-				sys_err("FATAL ERROR! LoadAttribute(%s) - cannot find sectree(package=%x, coord=(%u, %u), map_index=%u, map_base=(%u, %u))", 
+				sys_err("FATAL ERROR! LoadAttribute(%s) - cannot find sectree(package=%x, coord=(%u, %u), map_index=%u, map_base=(%u, %u))",
 						c_pszFileName, id.package, id.coord.x, id.coord.y, r_setting.iIndex, r_setting.iBaseX, r_setting.iBaseY);
 				sys_err("ERROR_ATTR_POS(%d, %d) attr_size(%d, %d)", x, y, iWidth, iHeight);
 				sys_err("CHECK! 'Setting.txt' and 'server_attr' MAP_SIZE!!");
@@ -507,7 +482,7 @@ bool SECTREE_MANAGER::LoadAttribute(LPSECTREE_MAP pkMapSectree, const char * c_p
 
 			if (tree->m_id.package != id.package)
 			{
-				sys_err("returned tree id mismatch! return %u, request %u", 
+				sys_err("returned tree id mismatch! return %u, request %u",
 						tree->m_id.package, id.package);
 				fclose(fp);
 
@@ -554,7 +529,6 @@ bool SECTREE_MANAGER::GetRecallPositionByEmpire(int iMapIndex, BYTE bEmpire, PIX
 {
 	std::vector<TMapRegion>::iterator it = m_vec_mapRegion.begin();
 
-	// 10000을 넘는 맵은 인스턴스 던전에만 한정되어있다.
 	if (iMapIndex >= 10000)
 	{
 		iMapIndex /= 10000;
@@ -688,7 +662,7 @@ const TMapRegion * SECTREE_MANAGER::FindRegionByPartialName(const char* szMapNam
 		//if (rRegion.index == lMapIndex)
 		//return &rRegion;
 		if (rRegion.strMapName.find(szMapName))
-			return &rRegion; // 캐싱 해서 빠르게 하자
+			return &rRegion;
 	}
 
 	return NULL;
@@ -735,10 +709,8 @@ int SECTREE_MANAGER::GetMapIndex(long x, long y)
 
 int SECTREE_MANAGER::Build(const char * c_pszListFileName, const char* c_pszMapBasePath)
 {
-	if (true == test_server)
-	{
-		sys_log ( 0, "[BUILD] Build %s %s ", c_pszListFileName, c_pszMapBasePath );
-	}
+	if (test_server)
+		sys_log(0, "[BUILD] Build %s %s ", c_pszListFileName, c_pszMapBasePath);
 
 	FILE* fp = fopen(c_pszListFileName, "r");
 
@@ -780,10 +752,9 @@ int SECTREE_MANAGER::Build(const char * c_pszListFileName, const char* c_pszMapB
 			return 0;
 		}
 
-		if (true == test_server)
-			sys_log ( 0,"[BUILD] Build %s %s %d ",c_pszMapBasePath, szMapName, iIndex );
+		if (test_server)
+			sys_log(0,"[BUILD] Build %s %s %d ",c_pszMapBasePath, szMapName, iIndex);
 
-		// 먼저 이 서버에서 이 맵의 몬스터를 스폰해야 하는가 확인 한다.
 		if (map_allow_find(iIndex))
 		{
 			LPSECTREE_MAP pkMapSectree = BuildSectreeFromSetting(setting);
@@ -861,17 +832,6 @@ bool SECTREE_MANAGER::GetValidLocation(long lMapIndex, long x, long y, long & r_
 	{
 		if (lMapIndex >= 10000)
 		{
-/*			long m = lMapIndex / 10000;
-			if (m == 216)
-			{
-				if (GetRecallPositionByEmpire (m, empire, r_pos))
-				{
-					r_lValidMapIndex = m;
-					return true;
-				}
-				else 
-					return false;
-			}*/
 			return GetValidLocation(lMapIndex / 10000, x, y, r_lValidMapIndex, r_pos);
 		}
 		else
@@ -982,7 +942,7 @@ bool SECTREE_MANAGER::GetRandomLocation(long lMapIndex, PIXEL_POSITION & r_pos, 
 
 long SECTREE_MANAGER::CreatePrivateMap(long lMapIndex)
 {
-	if (lMapIndex >= 10000) // 10000번 이상의 맵은 없다. (혹은 이미 private 이다)
+	if (lMapIndex >= 10000)
 		return 0;
 
 	LPSECTREE_MAP pkMapSectree = GetMap(lMapIndex);
@@ -1022,42 +982,6 @@ long SECTREE_MANAGER::CreatePrivateMap(long lMapIndex)
 	}
 	it->second = next_index;
 
-	/*
-	int i;
-
-	for (i = 0; i < 10000; ++i)
-	{
-		if (!GetMap((lMapIndex * 10000) + i))
-			break;
-	}
-	
-	if ( test_server )
-		sys_log( 0, "Create Dungeon : OrginalMapindex %d NewMapindex %d", lMapIndex, i );
-	
-	if ( lMapIndex == 107 || lMapIndex == 108 || lMapIndex == 109 )
-	{
-		if ( test_server )
-		{
-			if ( i > 0 )
-				return NULL;
-		}
-		else
-		{
-			if ( i > 50 )
-				return NULL;
-			
-		}
-	}
-
-	if (i == 10000)
-	{
-		sys_err("not enough private map index (map_index %d)", lMapIndex);
-		return 0;
-	}
-
-	long lNewMapIndex = lMapIndex * 10000 + i;
-	*/
-
 	pkMapSectree = M2_NEW SECTREE_MAP(*pkMapSectree);
 	m_map_pkSectree.insert(std::map<DWORD, LPSECTREE_MAP>::value_type(lNewMapIndex, pkMapSectree));
 
@@ -1093,7 +1017,7 @@ struct FDestroyPrivateMapEntity
 
 void SECTREE_MANAGER::DestroyPrivateMap(long lMapIndex)
 {
-	if (lMapIndex < 10000) // private map 은 인덱스가 10000 이상 이다.
+	if (lMapIndex < 10000)
 		return;
 
 	LPSECTREE_MAP pkMapSectree = GetMap(lMapIndex);
@@ -1101,11 +1025,8 @@ void SECTREE_MANAGER::DestroyPrivateMap(long lMapIndex)
 	if (!pkMapSectree)
 		return;
 
-	// 이 맵 위에 현재 존재하는 것들을 전부 없앤다.
 	// WARNING:
-	// 이 맵에 있지만 어떤 Sectree에도 존재하지 않을 수 있음
-	// 따라서 여기서 delete 할 수 없으므로 포인터가 깨질 수 있으니
-	// 별도 처리를 해야함
+
 	FDestroyPrivateMapEntity f;
 	pkMapSectree->for_each(f);
 
@@ -1121,7 +1042,7 @@ TAreaMap& SECTREE_MANAGER::GetDungeonArea(long lMapIndex)
 
 	if (it == m_map_pkArea.end())
 	{
-		return m_map_pkArea[-1]; // 임시로 빈 Area를 리턴
+		return m_map_pkArea[-1];
 	}
 	return it->second;
 }
@@ -1144,7 +1065,6 @@ void SECTREE_MANAGER::SendNPCPosition(LPCHARACTER ch)
 
 	TNPCPosition np;
 
-	// TODO m_mapNPCPosition[lMapIndex] 를 보내주세요
 	itertype(m_mapNPCPosition[lMapIndex]) it;
 
 	for (it = m_mapNPCPosition[lMapIndex].begin(); it != m_mapNPCPosition[lMapIndex].end(); ++it)
@@ -1185,10 +1105,10 @@ BYTE SECTREE_MANAGER::GetEmpireFromMapIndex(long lMapIndex)
 
 	if ( lMapIndex == 184 || lMapIndex == 185 )
 		return 1;
-	
+
 	if ( lMapIndex == 186 || lMapIndex == 187 )
 		return 2;
-	
+
 	if ( lMapIndex == 188 || lMapIndex == 189 )
 		return 3;
 
@@ -1201,7 +1121,7 @@ BYTE SECTREE_MANAGER::GetEmpireFromMapIndex(long lMapIndex)
 		case 192 :
 			return 3;
 	}
-	
+
 	return 0;
 }
 
@@ -1379,18 +1299,10 @@ bool SECTREE_MANAGER::ForAttrRegion(long lMapIndex, long lStartX, long lStartY, 
 		return mode == ATTR_REGION_MODE_CHECK ? true : false;
 	}
 
-	//
-	// 영역의 좌표를 Cell 의 크기에 맞춰 확장한다.
-	//
-
 	lStartX	-= lStartX % CELL_SIZE;
 	lStartY	-= lStartY % CELL_SIZE;
 	lEndX	+= lEndX % CELL_SIZE;
 	lEndY	+= lEndY % CELL_SIZE;
-
-	//
-	// Cell 좌표를 구한다.
-	// 
 
 	long lCX = lStartX / CELL_SIZE;
 	long lCY = lStartY / CELL_SIZE;
