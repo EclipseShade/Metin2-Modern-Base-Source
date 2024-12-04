@@ -36,6 +36,6 @@ class CStmt
 
 		std::vector<MYSQL_BIND> m_vec_result;
 		unsigned int            m_uiResultCount;
-};  
+};
 
 #endif
