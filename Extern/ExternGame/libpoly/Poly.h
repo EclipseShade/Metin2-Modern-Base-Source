@@ -28,10 +28,10 @@ class CPoly
 		int		insert(const std::string & s, int tok);
 		int		find(const std::string & s);
 		void		emit(int t,int tval);
-		void		match(int t); 
-		void		expo(); 
-		void		factor(); 
-		void		term(); 
+		void		match(int t);
+		void		expo();
+		void		factor();
+		void		term();
 		int		lexan();
 		void		error();
 		void		expr();
@@ -50,7 +50,6 @@ class CPoly
 		std::vector<int>		SymbolIndex;
 		int				STSize;
 		std::string			strData;
-
 };
 
-#endif 
+#endif
