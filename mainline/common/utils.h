@@ -82,6 +82,14 @@ inline bool str_to_number (long long& out, const char *in)
 	return true;
 }
 
+inline bool str_to_number (unsigned long long& out, const char *in)
+{
+	if (0==in || 0==in[0])	return false;
+
+	out = (unsigned long long) strtoull(in, NULL, 10);
+	return true;
+}
+
 inline bool str_to_number (float& out, const char *in)
 {
 	if (0==in || 0==in[0])	return false;
@@ -108,6 +116,4 @@ inline bool str_to_number (long double& out, const char *in)
 }
 #endif
 
-
-/*----- atoi function -----*/
 #endif
