@@ -75,7 +75,6 @@ inline double rint(double x)
 	return ::floor(x+.5);
 }
 
-
 #else
 
 #ifndef __FreeBSD__
