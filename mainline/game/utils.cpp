@@ -47,12 +47,11 @@ size_t str_lower(const char * src, char * dest, size_t dest_size)
 		return len;
 	}
 
-	// \0 자리 확보
 	--dest_size;
 
 	while (*src && len < dest_size)
 	{
-		*dest = LOWER(*src); // LOWER 매크로에서 ++나 --하면 안됨!!
+		*dest = LOWER(*src);
 
 		++src;
 		++dest;
@@ -64,7 +63,7 @@ size_t str_lower(const char * src, char * dest, size_t dest_size)
 }
 
 void skip_spaces(const char **string)
-{   
+{
 	for (; **string != '\0' && isnhspace(**string); ++(*string));
 }
 
@@ -75,32 +74,31 @@ const char *one_argument(const char *argument, char *first_arg, size_t first_siz
 
 	if (!argument || 0 == first_size)
 	{
-		sys_err("one_argument received a NULL pointer!");               
+		sys_err("one_argument received a NULL pointer!");
 		*first_arg = '\0';
-		return NULL;    
-	} 
+		return NULL;
+	}
 
-	// \0 자리 확보
 	--first_size;
 
 	skip_spaces(&argument);
 
 	while (*argument && first_len < first_size)
-	{ 
+	{
 		if (*argument == '\"')
 		{
 			mark = !mark;
-			++argument; 
-			continue;   
+			++argument;
+			continue;
 		}
 
-		if (!mark && isnhspace(*argument))      
+		if (!mark && isnhspace(*argument))
 			break;
 
 		*(first_arg++) = *argument;
-		++argument;     
+		++argument;
 		++first_len;
-	} 
+	}
 
 	*first_arg = '\0';
 
@@ -114,11 +112,10 @@ const char *two_arguments(const char *argument, char *first_arg, size_t first_si
 }
 
 const char *first_cmd(const char *argument, char *first_arg, size_t first_arg_size, size_t *first_arg_len_result)
-{           
+{
 	size_t cur_len = 0;
 	skip_spaces(&argument);
 
-	// \0 자리 확보
 	first_arg_size -= 1;
 
 	while (*argument && !isnhspace(*argument) && cur_len < first_arg_size)
@@ -137,9 +134,9 @@ int CalculateDuration(int iSpd, int iDur)
 {
 	int i = 100 - iSpd;
 
-	if (i > 0) 
+	if (i > 0)
 		i = 100 + i;
-	else if (i < 0) 
+	else if (i < 0)
 		i = 10000 / (100 - i);
 	else
 		i = 100;
@@ -157,15 +154,15 @@ float gauss_random(float avg, float sigma)
 	static bool haveNextGaussian = false;
 	static float nextGaussian = 0.0f;
 
-	if (haveNextGaussian) 
+	if (haveNextGaussian)
 	{
 		haveNextGaussian = false;
 		return nextGaussian * sigma + avg;
-	} 
-	else 
+	}
+	else
 	{
 		double v1, v2, s;
-		do { 
+		do {
 			//v1 = 2 * nextDouble() - 1;   // between -1.0 and 1.0
 			//v2 = 2 * nextDouble() - 1;   // between -1.0 and 1.0
 			v1 = uniform_random(-1.f, 1.f);
