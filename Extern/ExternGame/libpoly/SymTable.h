@@ -3,7 +3,7 @@
 
 #include <string>
 
-class CSymTable  
+class CSymTable
 {
     public:
 	CSymTable(int aTok, std::string aStr);
@@ -14,4 +14,4 @@ class CSymTable
 	std::string	strlex;
 };
 
-#endif 
+#endif
