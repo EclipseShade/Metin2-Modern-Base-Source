@@ -1,4 +1,3 @@
-#CXX	= distcc i386-obrien-freebsd5-g++
 CXX	= g++
 
 PLATFORM = $(shell file /bin/ls | cut -d' ' -f3 | cut -d'-' -f1)
@@ -9,7 +8,9 @@ SVN_VERSION = $(shell svnversion -n -c . | cut -d':' -f2)
 
 BIN     = ./libsql.a
 
-CFLAGS  = $(IFLAGS) -Wall -O2 -pipe -mtune=i686 -D_THREAD_SAFE -fno-exceptions 
+
+CFLAGS  = $(IFLAGS) -m32 -Wall -O2 -pipe -D_THREAD_SAFE -fno-exceptions
+CFLAGS += -std=c++11
 
 LIBS =
 
