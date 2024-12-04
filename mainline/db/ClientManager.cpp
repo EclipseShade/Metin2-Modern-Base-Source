@@ -152,9 +152,10 @@ bool CClientManager::Initialize()
 
 	m_looping = true;
 
-	if (!CConfig::instance().GetValue("PLAYER_DELETE_LEVEL_LIMIT", &m_iPlayerDeleteLevelLimit))
-	{
-		sys_err("conf.txt: Cannot find PLAYER_DELETE_LEVEL_LIMIT, use default level %d", PLAYER_MAX_LEVEL_CONST + 1);
+	if (!CConfig::instance().GetValue("PLAYER_DELETE_LEVEL_LIMIT", &m_iPlayerDeleteLevelLimit)) {
+		std::ostringstream msg;
+		msg << "conf.txt: Cannot find PLAYER_DELETE_LEVEL_LIMIT, use default level " << PLAYER_MAX_LEVEL_CONST + 1;
+		sys_err(msg.str().c_str());
 		m_iPlayerDeleteLevelLimit = PLAYER_MAX_LEVEL_CONST + 1;
 	}
 
@@ -462,11 +463,11 @@ void CClientManager::QUERY_PLAYER_COUNT(CPeer * pkPeer, TPlayerCountPacket * pPa
 	pkPeer->SetUserCount(pPacket->dwCount);
 }
 
-void CClientManager::QUERY_QUEST_SAVE(CPeer * pkPeer, TQuestTable * pTable, DWORD dwLen)
-{
-	if (0 != (dwLen % sizeof(TQuestTable)))
-	{
-		sys_err("invalid packet size %d, sizeof(TQuestTable) == %d", dwLen, sizeof(TQuestTable));
+void CClientManager::QUERY_QUEST_SAVE(CPeer * pkPeer, TQuestTable * pTable, DWORD dwLen) {
+	if (0 != (dwLen % sizeof(TQuestTable))) {
+		ostrstream msg;
+		msg << "invalid packet size " << dwLen << ", sizeof(TQuestTable) == " << sizeof(TQuestTable) << ends;
+		sys_err(msg.str());
 		return;
 	}
 
@@ -632,16 +633,16 @@ void CClientManager::RESULT_SAFEBOX_LOAD(CPeer * pkPeer, SQLMsg * msg)
 			CGrid grid(5, MAX(1, pi->pSafebox->bSize) * 9);
 			bool bEscape = false;
 
-			for (DWORD i = 0; i < s_items.size(); ++i)
-			{
+			for (DWORD i = 0; i < s_items.size(); ++i) {
 				TPlayerItem & r = s_items[i];
 
 				itertype(m_map_itemTableByVnum) it = m_map_itemTableByVnum.find(r.vnum);
 
-				if (it == m_map_itemTableByVnum.end())
-				{
+				if (it == m_map_itemTableByVnum.end()) {
 					bEscape = true;
-					sys_err("invalid item vnum %u in safebox: login %s", r.vnum, pi->login);
+					ostringsream msg;
+					msg << "invalid item vnum " << r.vnum << " in safebox: login " << pi->login;
+					sys_err(msg.str().c_str());
 					break;
 				}
 
@@ -672,9 +673,10 @@ void CClientManager::RESULT_SAFEBOX_LOAD(CPeer * pkPeer, SQLMsg * msg)
 
 					itertype(m_map_itemTableByVnum) it = m_map_itemTableByVnum.find(pItemAward->dwVnum);
 
-					if (it == m_map_itemTableByVnum.end())
-					{
-						sys_err("invalid item vnum %u in item_award: login %s", pItemAward->dwVnum, pi->login);
+					if (it == m_map_itemTableByVnum.end()) {
+						ostringsream msg;
+						msg << "invalid item vnum " << pItemAward->dwVnum << " in item_award: login " << pi->login;
+						sys_err(msg.str());
 						continue;
 					}
 
@@ -746,17 +748,21 @@ void CClientManager::RESULT_SAFEBOX_LOAD(CPeer * pkPeer, SQLMsg * msg)
 
 					{
 						itertype(m_map_itemTableByVnum) it = m_map_itemTableByVnum.find (dwItemVnum);
-						if (it == m_map_itemTableByVnum.end())
-						{
-							sys_err ("Invalid item(vnum : %d). It is not in m_map_itemTableByVnum.", dwItemVnum);
+						if (it == m_map_itemTableByVnum.end()) {
+							ostrstream msg;
+							msg << "Invalid item(vnum : " << dwItemVnum << "). It is not in m_map_itemTableByVnum." << ends;
+							sys_err(msg.str());
 							continue;
 						}
+						
 						TItemTable* item_table = it->second;
-						if (item_table == NULL)
-						{
-							sys_err ("Invalid item_table (vnum : %d). It's value is NULL in m_map_itemTableByVnum.", dwItemVnum);
+						if (item_table == NULL) {
+							ostrstream msg;
+							msg << "Invalid item_table (vnum : " << dwItemVnum << "). It's value is NULL in m_map_itemTableByVnum." << ends;
+							sys_err(msg.str());
 							continue;
 						}
+						
 						if (0 == pItemAward->dwSocket0)
 						{
 							for (int i = 0; i < ITEM_LIMIT_MAX_NUM; i++)
@@ -1774,7 +1780,9 @@ void CClientManager::DeleteLoginData(CLoginData * pkLD)
 
 void CClientManager::QUERY_AUTH_LOGIN(CPeer * pkPeer, DWORD dwHandle, TPacketGDAuthLogin * p) {
 	if (g_test_server) {
-		sys_log(0, "QUERY_AUTH_LOGIN %d %d %s", p->dwID, p->dwLoginKey, p->szLogin);
+		ostringstream msg;
+		msg << "QUERY_AUTH_LOGIN " << p->dwID << " " << p->dwLoginKey << " " << p->szLogin;
+		sys_log(0, msg.str().c_str());
 	}
 	
 	CLoginData * pkLD = GetLoginDataByLogin(p->szLogin);
@@ -1786,9 +1794,10 @@ void CClientManager::QUERY_AUTH_LOGIN(CPeer * pkPeer, DWORD dwHandle, TPacketGDA
 
 	BYTE bResult;
 
-	if (GetLoginData(p->dwLoginKey))
-	{
-		sys_err("LoginData already exist key %u login %s", p->dwLoginKey, p->szLogin);
+	if (GetLoginData(p->dwLoginKey)) {
+		ostringsream msg;
+		msg << "LoginData already exist key " << p->dwLoginKey << " login " << p->szLogin;
+		sys_err(msg.str().c_str());
 		bResult = 0;
 
 		pkPeer->EncodeHeader(HEADER_DG_AUTH_LOGIN, dwHandle, sizeof(BYTE));
@@ -1811,9 +1820,13 @@ void CClientManager::QUERY_AUTH_LOGIN(CPeer * pkPeer, DWORD dwHandle, TPacketGDA
 		strlcpy(r.social_id, p->szSocialID, sizeof(r.social_id));
 		strlcpy(r.passwd, "TEMP", sizeof(r.passwd));
 
-		sys_log(0, "AUTH_LOGIN id(%u) login(%s) social_id(%s) login_key(%u), client_key(%u %u %u %u)",
-				p->dwID, p->szLogin, p->szSocialID, p->dwLoginKey,
-				p->adwClientKey[0], p->adwClientKey[1], p->adwClientKey[2], p->adwClientKey[3]);
+		std::ostringstream msg;
+		msg << "AUTH_LOGIN id(" << p->dwID << ") login(" << p->szLogin 
+			<< ") social_id(" << p->szSocialID << ") login_key(" 
+			<< p->dwLoginKey << "), client_key(" << p->adwClientKey[0] 
+			<< " " << p->adwClientKey[1] << " " << p->adwClientKey[2] 
+			<< " " << p->adwClientKey[3] << ")";
+		sys_log(0, msg.str().c_str());
 
 		bResult = 1;
 
@@ -2034,13 +2047,16 @@ void CClientManager::DeleteObject(DWORD dwID)
 {
 	char szQuery[128];
 
-	snprintf(szQuery, sizeof(szQuery), "DELETE FROM object%s WHERE id=%u", GetTablePostfix(), dwID);
+	std::ostringstream msg;
+	msg << "DELETE FROM object" << GetTablePostfix() << " WHERE id=" << dwID;
+	std::string szQuery = msg.str();
 
-	std::auto_ptr<SQLMsg> pmsg(CDBManager::instance().DirectQuery(szQuery));
+	std::auto_ptr<SQLMsg> pmsg(CDBManager::instance().DirectQueryPrepare(szQuery));
 
-	if (pmsg->Get()->uiAffectedRows == 0 || pmsg->Get()->uiAffectedRows == (uint32_t)-1)
-	{
-		sys_err("no object by id %u", dwID);
+	if (pmsg->Get()->uiAffectedRows == 0 || pmsg->Get()->uiAffectedRows == (uint32_t)-1) {
+		std::ostringstream msgError;
+		msgError << "no object by id " << dwID;
+		sys_err(msgError.str().c_str());
 		return;
 	}
 
@@ -2753,8 +2769,11 @@ void CClientManager::ProcessPackets(CPeer * peer)
 			}
 			break;
 #endif
-			default:					
-				sys_err("Unknown header (header: %d handle: %d length: %d)", header, dwHandle, dwLength);
+			default: {
+					std::ostringstream msg;
+					msg << "Unknown header (header: " << header << " handle: " << dwHandle << " length: " << dwLength << ")";
+					sys_err(msg.str());
+				}
 				break;
 		}
 	}
@@ -2862,9 +2881,7 @@ int CClientManager::AnalyzeQueryResult(SQLMsg * msg)
 			// END_OF_MYSHOP_PRICE_LIST
 	}
 
-	if (!peer)
-	{	
-		//sys_err("CClientManager::AnalyzeQueryResult: peer not exist anymore. (ident: %d)", qi->dwIdent);
+	if (!peer) {
 		delete qi;
 		return true;
 	}
@@ -3170,7 +3187,9 @@ int CClientManager::Process()
 			}
 			else
 			{
-				sys_err("FDWATCH: peer null in event: ident %d", fdwatch_get_ident(m_fdWatcher, idx));
+				ostringsream msg;
+				msg << "FDWATCH: peer null in event: ident " << fdwatch_get_ident(m_fdWatcher, idx);
+				sys_err(msg.str());
 			}
 
 			continue;
@@ -3335,9 +3354,10 @@ bool CClientManager::InitializeLocalization()
 	snprintf(szQuery, sizeof(szQuery), "SELECT mValue, mKey FROM locale");
 	SQLMsg * pMsg = CDBManager::instance().DirectQuery(szQuery, SQL_COMMON);
 
-	if (pMsg->Get()->uiNumRows == 0)
-	{
-		sys_err("InitializeLocalization() ==> DirectQuery failed(%s)", szQuery);
+	if (pMsg->Get()->uiNumRows == 0) {
+		ostrstream errorMsg;
+		errorMsg << "InitializeLocalization() ==> DirectQuery failed(" << szQuery << ")" << ends;
+		sys_err(errorMsg.str());
 		delete pMsg;
 		return false;
 	}
@@ -3700,21 +3720,29 @@ bool CClientManager::InitializeLocalization()
 			}
 			else
 			{
-				sys_err("locale[LOCALE] = UNKNOWN(%s)", locale.szValue);
+				ostringstream msg;
+				msg << "locale[LOCALE] = UNKNOWN(" << locale.szValue << ")";
+				sys_err(msg.str().c_str());
 				exit(0);
 			}
-			sys_log(0,"before call SetLocale: %s",g_stLocale.c_str());
+			std::ostringstream msg;
+			msg << "before call SetLocale: " << g_stLocale;
+			sys_log(0, msg.str().c_str());
 			CDBManager::instance().SetLocale(g_stLocale.c_str());
 			sys_log(0,"Called SetLocale");
 		}
 		else if (strcmp(locale.szKey, "DB_NAME_COLUMN") == 0)
 		{
-			sys_log(0, "locale[DB_NAME_COLUMN] = %s", locale.szValue);
+			ostrstream oss;
+			oss << "locale[DB_NAME_COLUMN] = " << locale.szValue << ends;
+			sys_log(0, oss.str());
 			g_stLocaleNameColumn = locale.szValue;	
 		}
 		else
 		{
-			sys_log(0, "locale[UNKNOWN_KEY(%s)] = %s", locale.szKey, locale.szValue);
+			std::ostringstream oss;
+			oss << "locale[UNKNOWN_KEY(" << locale.szKey << ")] = " << locale.szValue;
+			sys_log(0, oss.str().c_str());
 		}
 		m_vec_Locale.push_back(locale);
 	}	
@@ -3728,20 +3756,20 @@ bool CClientManager::InitializeLocalization()
 
 bool CClientManager::__GetAdminInfo(const char *szIP, std::vector<tAdminInfo> & rAdminVec)
 {
-	//szIP == NULL 일경우  모든서버에 운영자 권한을 갖는다.
-	char szQuery[512];
-	snprintf(szQuery, sizeof(szQuery),
-			"SELECT mID,mAccount,mName,mContactIP,mServerIP,mAuthority FROM gmlist WHERE mServerIP='ALL' or mServerIP='%s'",
-		   	szIP ? szIP : "ALL");
+    std::ostringstream query;
+    query << "SELECT mID,mAccount,mName,mContactIP,mServerIP,mAuthority FROM gmlist WHERE mServerIP='ALL' or mServerIP='"
+          << (szIP ? szIP : "ALL") << "'";
 
-	SQLMsg * pMsg = CDBManager::instance().DirectQuery(szQuery, SQL_COMMON);
+    SQLMsg * pMsg = CDBManager::instance().DirectQueryPrepare(query.str().c_str(), SQL_COMMON);
 
-	if (pMsg->Get()->uiNumRows == 0)
-	{
-		sys_err("__GetAdminInfo() ==> DirectQuery failed(%s)", szQuery);
-		delete pMsg;
-		return false;
-	}
+    if (pMsg->Get()->uiNumRows == 0)
+    {
+        std::ostringstream errorMsg;
+        errorMsg << "__GetAdminInfo() ==> DirectQuery failed(" << query.str() << ")";
+        sys_err(errorMsg.str().c_str());
+        delete pMsg;
+        return false;
+    }
 
 	MYSQL_ROW row;
 	rAdminVec.reserve(pMsg->Get()->uiNumRows);
@@ -3773,8 +3801,14 @@ bool CClientManager::__GetAdminInfo(const char *szIP, std::vector<tAdminInfo> & 
 
 		rAdminVec.push_back(Info);
 
-		sys_log(0, "GM: PID %u Login %s Character %s ContactIP %s ServerIP %s Authority %d[%s]",
-			   	Info.m_ID, Info.m_szAccount, Info.m_szName, Info.m_szContactIP, Info.m_szServerIP, Info.m_Authority, stAuth.c_str());
+		std::ostringstream oss;
+		oss << "GM: PID " << Info.m_ID 
+			<< " Login " << Info.m_szAccount 
+			<< " Character " << Info.m_szName 
+			<< " ContactIP " << Info.m_szContactIP 
+			<< " ServerIP " << Info.m_szServerIP 
+			<< " Authority " << Info.m_Authority << "[" << stAuth << "]";
+		sys_log(0, oss.str().c_str());
 	}
 
 	delete pMsg;
@@ -3788,9 +3822,10 @@ bool CClientManager::__GetHostInfo(std::vector<std::string> & rIPVec)
 	snprintf(szQuery, sizeof(szQuery), "SELECT mIP FROM gmhost");
 	SQLMsg * pMsg = CDBManager::instance().DirectQuery(szQuery, SQL_COMMON);
 
-	if (pMsg->Get()->uiNumRows == 0)
-	{
-		sys_err("__GetHostInfo() ==> DirectQuery failed(%s)", szQuery);
+	if (pMsg->Get()->uiNumRows == 0) {
+		std::ostringstream oss;
+		oss << "__GetHostInfo() ==> DirectQuery failed(" << szQuery << ")";
+		sys_err(oss.str());
 		delete pMsg;
 		return false;
 	}
@@ -4392,23 +4427,27 @@ void CClientManager::EnrollInAuction (CPeer * peer, DWORD owner_id, AuctionEnrol
 {
 	TPlayerTableCacheMap::iterator it = m_map_playerCache.find (owner_id);
 
-	if (it == m_map_playerCache.end())
-	{
-		sys_err ("Invalid Player id %d. how can you get it?", owner_id);
+	if (it == m_map_playerCache.end()) {
+		std::ostringstream oss;
+		oss << "Invalid Player id " << owner_id << ". how can you get it?";
+		sys_err(oss.str().c_str());
 		return;
 	}
+	
 	CItemCache* c = GetItemCache (data->get_item_id());
 
-	if (c == NULL)
-	{
-		sys_err ("Item %d doesn't exist in db cache.", data->get_item_id());
+	if (c == NULL) {
+		ostringstreamstream oss;
+		oss << "Item " << data->get_item_id() << " doesn't exist in db cache.";
+		sys_err(oss.str());
 		return;
 	}
 	TPlayerItem* item = c->Get(false);
 
-	if (item->owner != owner_id)
-	{
-		sys_err ("Player id %d doesn't have item %d.", owner_id, data->get_item_id());
+	if (item->owner != owner_id) {
+		std::ostringstream oss;
+		oss << "Player id " << owner_id << " doesn't have item " << data->get_item_id() << ".";
+		sys_err(oss.str());
 		return;
 	}
 	// 현재 시각 + 24시간 후.
@@ -4460,9 +4499,10 @@ void CClientManager::EnrollInSale (CPeer * peer, DWORD owner_id, AuctionEnrollSa
 {
 	TPlayerTableCacheMap::iterator it = m_map_playerCache.find (owner_id);
 
-	if (it == m_map_playerCache.end())
-	{
-		sys_err ("Invalid Player id %d. how can you get it?", owner_id);
+	if (it == m_map_playerCache.end()) {
+		std::ostringstream oss;
+		oss << "Invalid Player id " << owner_id << ". how can you get it?";
+		sys_err(oss.str().c_str());
 		return;
 	}
 
@@ -4471,16 +4511,18 @@ void CClientManager::EnrollInSale (CPeer * peer, DWORD owner_id, AuctionEnrollSa
 
 	CItemCache* c = GetItemCache (data->get_item_id());
 
-	if (c == NULL)
-	{
-		sys_err ("Item %d doesn't exist in db cache.", data->get_item_id());
+	if (c == NULL) {
+		ostringstream stream;
+		stream << "Item " << data->get_item_id() << " doesn't exist in db cache.";
+		sys_err(stream.str());
 		return;
 	}
 	TPlayerItem* item = c->Get(false);
 
-	if (item->owner != owner_id)
-	{
-		sys_err ("Player id %d doesn't have item %d.", owner_id, data->get_item_id());
+	if (item->owner != owner_id) {
+		ostringstream oss;
+		oss << "Player id " << owner_id << " doesn't have item " << data->get_item_id() << ".";
+		sys_err(oss.str().c_str());
 		return;
 	}
 	// 현재 시각 + 24시간 후.
@@ -4529,13 +4571,13 @@ void CClientManager::EnrollInSale (CPeer * peer, DWORD owner_id, AuctionEnrollSa
 	return;
 }
 
-void CClientManager::EnrollInWish (CPeer * peer, DWORD wisher_id, AuctionEnrollWishInfo* data)
-{
+void CClientManager::EnrollInWish (CPeer * peer, DWORD wisher_id, AuctionEnrollWishInfo* data) {
 	TPlayerTableCacheMap::iterator it = m_map_playerCache.find (wisher_id);
 
-	if (it == m_map_playerCache.end())
-	{
-		sys_err ("Invalid Player id %d. how can you get it?", wisher_id);
+	if (it == m_map_playerCache.end()) {
+		std::ostringstream oss;
+		oss << "Invalid Player id " << wisher_id << ". how can you get it?";
+		sys_err(oss.str().c_str());
 		return;
 	}
 
@@ -4579,16 +4621,16 @@ void CClientManager::EnrollInWish (CPeer * peer, DWORD wisher_id, AuctionEnrollW
 	return;
 }
 
-void CClientManager::AuctionBid (CPeer * peer, DWORD bidder_id, AuctionBidInfo* data)
-{
+void CClientManager::AuctionBid (CPeer * peer, DWORD bidder_id, AuctionBidInfo* data) {
 	TPlayerTableCacheMap::iterator it = m_map_playerCache.find (bidder_id);
 
-	if (it == m_map_playerCache.end())
-	{
-		sys_err ("Invalid Player id %d. how can you get it?", bidder_id);
+	if (it == m_map_playerCache.end()) {
+		ostringstreamstream oss;
+		oss << "Invalid Player id " << bidder_id << ". how can you get it?";
+		sys_err(oss.str().c_str());
 		return;
 	}
-
+	
 	CPlayerTableCache* player_cache = it->second;
 	TPlayerTable* player = player_cache->Get(false);
 
@@ -4633,13 +4675,13 @@ void CClientManager::AuctionBid (CPeer * peer, DWORD bidder_id, AuctionBidInfo* 
 	return;
 }
 
-void CClientManager::AuctionImpur (CPeer * peer, DWORD purchaser_id, AuctionImpurInfo* data)
-{
+void CClientManager::AuctionImpur (CPeer * peer, DWORD purchaser_id, AuctionImpurInfo* data) {
 	TPlayerTableCacheMap::iterator it = m_map_playerCache.find (purchaser_id);
 
-	if (it == m_map_playerCache.end())
-	{
-		sys_err ("Invalid Player id %d. how can you get it?", purchaser_id);
+	if (it == m_map_playerCache.end()) {
+		ostringstreamstream oss;
+		oss << "Invalid Player id " << purchaser_id << ". how can you get it?";
+		sys_err(oss.str().c_str());
 		return;
 	}
 
@@ -4689,9 +4731,11 @@ void CClientManager::AuctionGetAuctionedItem (CPeer * peer, DWORD actor_id, DWOR
 {
 	TPlayerTableCacheMap::iterator it = m_map_playerCache.find (actor_id);
 	AuctionResult result = AUCTION_FAIL;
-	if (it == m_map_playerCache.end())
-	{
-		sys_err ("Invalid Player id %d. how can you get it?", actor_id);
+
+	if (it == m_map_playerCache.end()) {
+		std::ostringstream oss;	
+		oss << "Invalid Player id " << actor_id << ". how can you get it?";
+		sys_err(oss.str().c_str());
 		return;
 	}
 
@@ -4729,9 +4773,10 @@ void CClientManager::AuctionBuySoldItem (CPeer * peer, DWORD actor_id, DWORD ite
 {
 	TPlayerTableCacheMap::iterator it = m_map_playerCache.find (actor_id);
 	AuctionResult result = AUCTION_FAIL;
-	if (it == m_map_playerCache.end())
-	{
-		sys_err ("Invalid Player id %d. how can you get it?", actor_id);
+	if (it == m_map_playerCache.end()) {
+		std::ostringstream oss;	
+		oss << "Invalid Player id " << actor_id << ". how can you get it?";
+		sys_err(oss.str().c_str());
 		return;
 	}
 
@@ -4769,9 +4814,10 @@ void CClientManager::AuctionCancelAuction (CPeer * peer, DWORD actor_id, DWORD i
 {
 	TPlayerTableCacheMap::iterator it = m_map_playerCache.find (actor_id);
 	AuctionResult result = AUCTION_FAIL;
-	if (it == m_map_playerCache.end())
-	{
-		sys_err ("Invalid Player id %d. how can you get it?", actor_id);
+	if (it == m_map_playerCache.end()) {
+		std::ostringstream oss;	
+		oss << "Invalid Player id " << actor_id << ". how can you get it?";
+		sys_err(oss.str().c_str());
 		return;
 	}
 
@@ -4809,9 +4855,10 @@ void CClientManager::AuctionCancelWish (CPeer * peer, DWORD actor_id, DWORD item
 {
 	TPlayerTableCacheMap::iterator it = m_map_playerCache.find (actor_id);
 	AuctionResult result = AUCTION_FAIL;
-	if (it == m_map_playerCache.end())
-	{
-		sys_err ("Invalid Player id %d. how can you get it?", actor_id);
+	if (it == m_map_playerCache.end()) {
+		std::ostringstream oss;	
+		oss << "Invalid Player id " << actor_id << ". how can you get it?";
+		sys_err(oss.str().c_str());
 		return;
 	}
 
@@ -4848,9 +4895,10 @@ void CClientManager::AuctionCancelSale (CPeer * peer, DWORD actor_id, DWORD item
 {
 	TPlayerTableCacheMap::iterator it = m_map_playerCache.find (actor_id);
 	AuctionResult result = AUCTION_FAIL;
-	if (it == m_map_playerCache.end())
-	{
-		sys_err ("Invalid Player id %d. how can you get it?", actor_id);
+	if (it == m_map_playerCache.end()) {
+		std::ostringstream oss;	
+		oss << "Invalid Player id " << actor_id << ". how can you get it?";
+		sys_err(oss.str().c_str());
 		return;
 	}
 
@@ -4888,21 +4936,23 @@ void CClientManager::AuctionDeleteAuctionItem (CPeer * peer, DWORD actor_id, DWO
 {
 	TPlayerTableCacheMap::iterator it = m_map_playerCache.find (actor_id);
 	AuctionResult result = AUCTION_FAIL;
-	if (it == m_map_playerCache.end())
-	{
-		sys_err ("Invalid Player id %d. how can you get it?", actor_id);
+	if (it == m_map_playerCache.end()) {
+		std::ostringstream oss;	
+		oss << "Invalid Player id " << actor_id << ". how can you get it?";
+		sys_err(oss.str().c_str());
 		return;
 	}
 
 	AuctionManager::instance().DeleteAuctionItem (actor_id, item_id);
 }
-void CClientManager::AuctionDeleteSaleItem (CPeer * peer, DWORD actor_id, DWORD item_id)
-{
+void CClientManager::AuctionDeleteSaleItem (CPeer * peer, DWORD actor_id, DWORD item_id) {
 	TPlayerTableCacheMap::iterator it = m_map_playerCache.find (actor_id);
 	AuctionResult result = AUCTION_FAIL;
-	if (it == m_map_playerCache.end())
-	{
-		sys_err ("Invalid Player id %d. how can you get it?", actor_id);
+
+	if (it == m_map_playerCache.end()) {
+		std::ostringstream oss;
+		oss << "Invalid Player id " << actor_id << ". how can you get it?";
+		sys_err(oss.str().c_str());
 		return;
 	}
 
@@ -4915,13 +4965,13 @@ void CClientManager::AuctionDeleteSaleItem (CPeer * peer, DWORD actor_id, DWORD 
 // 이렇게 한 이유는 rebid에 실패 했을 때,
 // 유저의 호주머니에서 뺀 돈을 돌려주기 편하게 하기 위함이다.
 
-void CClientManager::AuctionReBid (CPeer * peer, DWORD bidder_id, AuctionBidInfo* data)
-{
+void CClientManager::AuctionReBid (CPeer * peer, DWORD bidder_id, AuctionBidInfo* data) {
 	TPlayerTableCacheMap::iterator it = m_map_playerCache.find (bidder_id);
 
-	if (it == m_map_playerCache.end())
-	{
-		sys_err ("Invalid Player id %d. how can you get it?", bidder_id);
+	if (it == m_map_playerCache.end()) {
+		ostrstream oss;
+		oss << "Invalid Player id " << bidder_id << ". how can you get it?" << ends;
+		sys_err(oss.str());
 		return;
 	}
 
