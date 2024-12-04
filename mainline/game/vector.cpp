@@ -23,16 +23,16 @@ float DotProduct(VECTOR * pV1, VECTOR * pV2)
 }
 
 float GetDegreeFromPosition(float x, float y)
-{   
+{
 	VECTOR	vtDir;
 	VECTOR	vtStan;
 	float	ret;
 
 	vtDir.x = x;
-	vtDir.y = y; 
+	vtDir.y = y;
 	vtDir.z = 0.0f;
 
-	Normalize(&vtDir, &vtDir); 
+	Normalize(&vtDir, &vtDir);
 
 	vtStan.x = 0.0f;
 	vtStan.y = 1.0f;
@@ -44,7 +44,7 @@ float GetDegreeFromPosition(float x, float y)
 		ret = 360.0f - ret;
 
 	return (ret);
-}   
+}
 
 float GetDegreeFromPositionXY(long sx, long sy, long ex, long ey)
 {
