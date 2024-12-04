@@ -111,7 +111,7 @@ void fdwatch_register(LPFDWATCH fdw, int flag, int fd, int rw)
     {
 	fdw->kqevents[fdw->nkqevents].ident = fd;
 	fdw->kqevents[fdw->nkqevents].flags = flag;
-	fdw->kqevents[fdw->nkqevents].filter = (rw == FDW_READ) ? EVFILT_READ : EVFILT_WRITE; 
+	fdw->kqevents[fdw->nkqevents].filter = (rw == FDW_READ) ? EVFILT_READ : EVFILT_WRITE;
 
 	++fdw->nkqevents;
     }
@@ -187,9 +187,9 @@ int fdwatch_check_event(LPFDWATCH fdw, socket_t fd, unsigned int event_idx)
 	    return FDW_READ;
     }
     else if (fdw->kqrevents[event_idx].filter == EVFILT_WRITE)
-    {   
+    {
 	if (fdw->fd_rw[fd] & FDW_WRITE)
-	{ 
+	{
 	    if (fdw->fd_rw[fd] & FDW_WRITE_ONESHOT)
 		fdw->fd_rw[fd] &= ~FDW_WRITE;
 
