@@ -85,13 +85,13 @@ void CAttribute::Alloc()
     }
 }
 
-CAttribute::CAttribute(DWORD width, DWORD height) // dword 타잎으로 모두 0을 채운다.
+CAttribute::CAttribute(DWORD width, DWORD height)
 {
     Initialize(width, height);
     Alloc();
 }
 
-CAttribute::CAttribute(DWORD * attr, DWORD width, DWORD height) // attr을 읽어서 smart하게 속성을 읽어온다.
+CAttribute::CAttribute(DWORD * attr, DWORD width, DWORD height)
 {
     Initialize(width, height);
 
@@ -102,7 +102,6 @@ CAttribute::CAttribute(DWORD * attr, DWORD width, DWORD height) // attr을 읽어서
 	if (attr[0] != attr[i])
 	    break;
 
-    // 속성이 전부 같으면 단지 defaultAttr만 설정한다.
     if (i == size)
 	defaultAttr = attr[0];
     else
@@ -112,22 +111,19 @@ CAttribute::CAttribute(DWORD * attr, DWORD width, DWORD height) // attr을 읽어서
 	for (i = 0; i < size; ++i)
 	    allAttr |= attr[i];
 
-	// 하위 8비트만 사용할 경우 D_BYTE
 	if (!(allAttr & 0xffffff00))
 	    dataType = D_BYTE;
-	// 하위 16비트만 사용할 경우 D_WORD
 	else if (!(allAttr & 0xffff0000))
 	    dataType = D_WORD;
-	else // 그 이외에는 D_DWORD
+	else
 	    dataType = D_DWORD;
 
 	Alloc();
 
-	if (dataType == D_DWORD) // D_DWORD일 때는 원본 속성과 같으므로 단지 복사.
+	if (dataType == D_DWORD)
 	    thecore_memcpy(data, attr, sizeof(DWORD) * width * height);
 	else
 	{
-	    // 아니면 컨버트 해야 한다.
 	    DWORD * pdw = (DWORD *) attr;
 
 	    if (dataType == D_BYTE)
@@ -199,7 +195,7 @@ void CAttribute::Remove(DWORD x, DWORD y, DWORD attr)
     if (x > width || y > height)
 	return;
 
-    if (!data) // 속성을 삭제할 때 만약 데이터가 없으면 그냥 리턴한다.
+    if (!data)
 	return;
 
     if (bytePtr)
