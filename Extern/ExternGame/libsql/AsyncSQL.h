@@ -11,6 +11,7 @@
 #include <mysql/mysql.h>
 #include <mysql/errmsg.h>
 #include <mysql/mysqld_error.h>
+#include <memory>
 
 #include "Semaphore.h"
 
@@ -97,8 +98,8 @@ typedef struct _SQLMsg
 	int				iID;
 	std::string			stQuery;
 
-	std::vector<SQLResult *>	vec_pkResult;	// result 벡터
-	unsigned int		uiResultPos;	// 현재 result 위치
+	std::vector<SQLResult *>	vec_pkResult;
+	unsigned int		uiResultPos;
 
 	void *			pvUserData;
 	bool			bReturn;
@@ -114,7 +115,7 @@ class CAsyncSQL
 
 		void		Quit();
 
-		bool   		Setup(const char * c_pszHost, const char * c_pszUser, const char * c_pszPassword, const char * c_pszDB, const char * c_pszLocale, 
+		bool   		Setup(const char * c_pszHost, const char * c_pszUser, const char * c_pszPassword, const char * c_pszDB, const char * c_pszLocale,
 			bool bNoThread = false, int iPort = 0);
 		bool		Setup(CAsyncSQL * sql, bool bNoThread = false);
 
