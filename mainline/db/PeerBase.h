@@ -7,7 +7,7 @@ class CPeerBase : public CNetBase
 {
     public:
 	enum
-	{ 
+	{
 	    MAX_HOST_LENGTH		= 30,
 	    MAX_INPUT_LEN		= 1024 * 1024 * 2,
 	    DEFAULT_PACKET_BUFFER_SIZE	= 1024 * 1024 * 2
