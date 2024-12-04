@@ -1,9 +1,3 @@
-/*
- *    Filename: socket.c
- * Description: 소켓 관련 함수 헤더.
- *
- *      Author: 비엽 (server), myevan (Client)
- */
 #ifndef __INC_LIBTHECORE_SOCKET_H__
 #define __INC_LIBTHECORE_SOCKET_H__
 
@@ -39,7 +33,7 @@ typedef int socklen_t;
     extern void		socket_rcvbuf(socket_t s, unsigned int opt);
 
 #ifdef __cplusplus
-};
+}
 #endif
 
 #endif
