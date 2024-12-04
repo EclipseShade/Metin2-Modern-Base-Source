@@ -36,7 +36,7 @@ namespace marriage
 			void ShoutInMap(BYTE type, const char* szMsg);
 		private:
 
-			const char* __BuildCommandPlayMusic(char* szCommand, size_t nCmdLen, BYTE bSet, const char* c_szMusicFileName); 
+			const char* __BuildCommandPlayMusic(char* szCommand, size_t nCmdLen, BYTE bSet, const char* c_szMusicFileName);
 
 		private:
 			DWORD m_dwMapIndex;
@@ -77,3 +77,4 @@ namespace marriage
 	};
 }
 #endif
+
