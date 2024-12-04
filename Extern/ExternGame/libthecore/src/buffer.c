@@ -1,9 +1,3 @@
-/*
- *    Filename: buffer.c
- * Description: Buffer 처리 모듈
- *
- *      Author: 김한주 (aka. 비엽, Cronan)
- */
 #define __LIBTHECORE__
 #include "stdafx.h"
 
@@ -32,7 +26,6 @@ static int buffer_get_exac_pool_index(int size) {
 	}
 	return -1; // too big... not pooled
 }
-// 모든 buffer pool 해제.
 static void buffer_pool_free ()
 {
 	for (int i = 31; i >= 0; i--)
@@ -50,7 +43,6 @@ static void buffer_pool_free ()
 		}
 	}
 }
-// n보다 큰 buffer pool 하나를 해제.
 static bool buffer_larger_pool_free (int n)
 {
 	for (int i = 31; i > n; i--)
@@ -69,12 +61,12 @@ static bool buffer_larger_pool_free (int n)
 }
 bool safe_create(char** pdata, int number)
 {
-	if (!((*pdata) = (char *) calloc (number, sizeof(char)))) 
-	{ 
-		sys_err("calloc failed [%d] %s", errno, strerror(errno)); 
-		return false; 
-	}	
-	else 
+	if (!((*pdata) = (char *) calloc (number, sizeof(char))))
+	{
+		sys_err("calloc failed [%d] %s", errno, strerror(errno));
+		return false;
+	}
+	else
 	{
 		return true;
 	}
@@ -98,17 +90,13 @@ LPBUFFER buffer_new(int size)
 		}
 	}
 
-	if (buffer == NULL) 
+	if (buffer == NULL)
 	{
 		CREATE(buffer, BUFFER, 1);
 		buffer->mem_size = size;
-		// buffer_new에서 calloc failed가 자주 발생하여(터키의 빈약한 머신에서 주로 발생),
-		// calloc이 실패하면, buffer pool을 비우고 다시 시도한다.
 		if (!safe_create(&buffer->mem_data, size))
 		{
-			// 필요한 buffer보다 큰 buffer pool에서 하나를 해제.
 			if (!buffer_larger_pool_free(pool_index))
-				// 실패하면 최후의 수단으로, 모든 pool을 해제한다.
 				buffer_pool_free();
 			CREATE(buffer->mem_data, char, size);
 			sys_err ("buffer pool free success.");
@@ -213,10 +201,8 @@ void buffer_read_proceed(LPBUFFER buffer, int length)
 		length = buffer->length;
 	}
 
-	// 처리할 길이가 버퍼 길이보다 작다면, 버퍼를 남겨두어야 한다.
 	if (length < buffer->length)
 	{
-		// write_point 와 pos 는 그대로 두고 read_point 만 증가 시킨다.
 		if (buffer->read_point + length - buffer->mem_data > buffer->mem_size)
 		{
 			sys_err("buffer_read_proceed: buffer overflow! length %d read_point %d", length, buffer->read_point - buffer->mem_data);
@@ -268,8 +254,6 @@ void buffer_realloc(LPBUFFER& buffer, int length)
 	if (buffer->mem_size >= length)
 		return;
 
-	// i 는 새로 할당된 크기와 이전크기의 차, 실제로 새로 생긴
-	// 메모리의 크기를 뜻한다.
 	i = length - buffer->mem_size;
 
 	if (i <= 0)
@@ -281,7 +265,6 @@ void buffer_realloc(LPBUFFER& buffer, int length)
 
 	read_point_pos = buffer->read_point - buffer->mem_data;
 
-	// write_point 와 read_point 를 재 연결 시킨다.
 	temp->write_point = temp->mem_data + buffer->write_point_pos;
 	temp->write_point_pos = buffer->write_point_pos;
 	temp->read_point = temp->mem_data + read_point_pos;
