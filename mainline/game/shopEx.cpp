@@ -68,10 +68,10 @@ bool CShopEx::AddGuest(LPCHARACTER ch,DWORD owner_vid, bool bOtherEmpire)
 	TPacketGCShopStartEx pack2;
 
 	memset(&pack2, 0, sizeof(pack2));
-	
+
 	pack2.owner_vid = owner_vid;
 	pack2.shop_tab_count = m_vec_shopTabs.size();
-	char temp[8096]; // √÷¥Î 1728 * 3
+	char temp[8096];
 	char* buf = &temp[0];
 	size_t size = 0;
 	for (itertype(m_vec_shopTabs) it = m_vec_shopTabs.begin(); it != m_vec_shopTabs.end(); it++)
@@ -80,7 +80,7 @@ bool CShopEx::AddGuest(LPCHARACTER ch,DWORD owner_vid, bool bOtherEmpire)
 		TPacketGCShopStartEx::TSubPacketShopTab pack_tab;
 		pack_tab.coin_type = shop_tab.coinType;
 		memcpy(pack_tab.name, shop_tab.name.c_str(), SHOP_TAB_NAME_MAX);
-		
+
 		for (BYTE i = 0; i < SHOP_HOST_ITEM_MAX_NUM; i++)
 		{
 			pack_tab.items[i].vnum = shop_tab.items[i].vnum;
@@ -166,7 +166,7 @@ int CShopEx::Buy(LPCHARACTER ch, BYTE pos)
 		}
 		break;
 	}
-	
+
 	LPITEM item;
 
 	item = ITEM_MANAGER::instance().CreateItem(r_item.vnum, r_item.count);
