@@ -151,7 +151,7 @@ bool SECTREE::InsertEntity(LPENTITY pkEnt)
 			if (pkCurTree)
 				pkCurTree->DecreasePC();
 		}
-		else if (m_iPCCount > 0 && !pkChr->IsWarp() && !pkChr->IsGoto()) // PC가 아니고 이 곳에 PC가 있다면 Idle event를 시작 시킨다.
+		else if (m_iPCCount > 0 && !pkChr->IsWarp() && !pkChr->IsGoto())
 		{
 			pkChr->StartStateMachine();
 		}
