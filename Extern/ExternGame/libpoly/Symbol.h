@@ -20,7 +20,7 @@
 #define SY_OPEN		'('
 #define SY_CLOSE	')'
 
-class CSymbol : public CBase   
+class CSymbol : public CBase
 {
     private:
 	int	iType;
@@ -36,4 +36,4 @@ class CSymbol : public CBase
 	bool		Less(CSymbol dif);
 };
 
-#endif 
+#endif
