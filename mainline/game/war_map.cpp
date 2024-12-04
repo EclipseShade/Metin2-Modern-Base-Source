@@ -20,7 +20,7 @@ EVENTINFO(war_map_info)
 	int iStep;
 	CWarMap * pWarMap;
 
-	war_map_info() 
+	war_map_info()
 	: iStep( 0 )
 	, pWarMap( 0 )
 	{
@@ -305,10 +305,8 @@ void CWarMap::STeamData::AppendMember(LPCHARACTER ch)
 
 void CWarMap::STeamData::RemoveMember(LPCHARACTER ch)
 {
-	// set_pidJoiner 는 누적 인원을 계산하기 때문에 제거하지 않는다
 	--iMemberCount;
 }
-
 
 struct FSendUserCount
 {
@@ -331,10 +329,10 @@ struct FSendUserCount
 void CWarMap::UpdateUserCount()
 {
 	FSendUserCount f(
-			m_TeamData[0].dwID, 
-			m_TeamData[0].GetAccumulatedJoinerCount(), 
-			m_TeamData[1].dwID, 
-			m_TeamData[1].GetAccumulatedJoinerCount(), 
+			m_TeamData[0].dwID,
+			m_TeamData[0].GetAccumulatedJoinerCount(),
+			m_TeamData[1].dwID,
+			m_TeamData[1].GetAccumulatedJoinerCount(),
 			m_iObserverCount);
 
 	std::for_each(m_set_pkChr.begin(), m_set_pkChr.end(), f);
@@ -380,7 +378,7 @@ void CWarMap::IncMember(LPCHARACTER ch)
 	}
 	else
 	{
-		++m_iObserverCount; 
+		++m_iObserverCount;
 		sys_log(0, "WarMap +o %d", m_iObserverCount);
 		ch->SetObserverMode(true);
 		ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("관전 모드로 길드전에 참가하셨습니다."));
@@ -689,11 +687,9 @@ bool CWarMap::CheckScore()
 	if (m_bEnded)
 		return true;
 
-	// 30초 이후 부터 확인한다.
 	if (get_dword_time() - m_dwStartTime < 30000)
 		return false;
 
-	// 점수가 같으면 체크하지 않는다.
 	if (m_TeamData[0].iScore == m_TeamData[1].iScore)
 		return false;
 
@@ -724,7 +720,7 @@ bool CWarMap::CheckScore()
 	else if (dwWinner == m_TeamData[1].dwID)
 		iRewardGold = GetRewardGold(1);
 
-	sys_log(0, "WarMap::CheckScore end score %d guild1 %u score guild2 %d %u score %d winner %u reward %d", 
+	sys_log(0, "WarMap::CheckScore end score %d guild1 %u score guild2 %d %u score %d winner %u reward %d",
 			iEndScore,
 			m_TeamData[0].dwID,
 			m_TeamData[0].iScore,
@@ -1004,7 +1000,7 @@ bool CWarMapManager::LoadWarMapInfo(const char * c_pszFileName)
 	k->posStart[0].x = 68 * 100 + 57600;
 	k->posStart[0].y = 69 * 100 + 0;
 	k->posStart[1].x = 171 * 100 + 57600;
-	k->posStart[1].y = 182 * 100 + 0; 
+	k->posStart[1].y = 182 * 100 + 0;
 	k->posStart[2].x = 122 * 100 + 57600;
 	k->posStart[2].y = 131 * 100 + 0;
 
