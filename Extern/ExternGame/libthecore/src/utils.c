@@ -1,9 +1,3 @@
-/*
- *    Filename: utils.c
- * Description: 각종 유틸리티
- *
- *      Author: 비엽 aka. Cronan
- */
 #define __LIBTHECORE__
 #include "stdafx.h"
 
@@ -134,7 +128,6 @@ void trim_and_lower(const char * src, char * dest, size_t dest_size)
 	return;
     }
 
-    // 앞에 빈칸 건너 뛰기
     while (*tmp)
     {
 	if (!isnhspace(*tmp))
@@ -143,12 +136,11 @@ void trim_and_lower(const char * src, char * dest, size_t dest_size)
 	tmp++;
     }
 
-    // \0 확보
     --dest_size;
 
     while (*tmp && len < dest_size)
     {
-	*(dest++) = LOWER(*tmp); // LOWER는 매크로라 ++ 쓰면 안됨
+	*(dest++) = LOWER(*tmp);
 	++tmp;
 	++len;
     }
@@ -157,7 +149,6 @@ void trim_and_lower(const char * src, char * dest, size_t dest_size)
 
     if (len > 0)
     {
-	// 뒤에 빈칸 지우기
 	--dest;
 
 	while (*dest && isnhspace(*dest) && len--)
@@ -179,12 +170,11 @@ void lower_string(const char *src, char *dest, size_t dest_size)
 	return;
     }
 
-    // \0 확보
     --dest_size;
 
     while (*tmp && len < dest_size)
     {
-	*(dest++) = LOWER(*tmp); // LOWER는 매크로라 ++ 쓰면 안됨
+	*(dest++) = LOWER(*tmp);
 	++tmp;
 	++len;
     }
@@ -200,7 +190,7 @@ char *str_dup(const char *source)
     return (strcpy(new_line, source));
 }
 
-/* arg1 이 arg2 의 앞단과 같을 때 1 을 리턴한다. */
+
 int is_abbrev(char *arg1, char *arg2)
 {
     if (!*arg1)
@@ -232,8 +222,7 @@ int filesize(FILE *fp)
 }
 
 
-/* "Name : 비엽" 과 같이 "항목 : 값" 으로 이루어진 문자열에서 
-   항목을 token 으로, 값을 value 로 복사하여 리턴한다. */
+
 void parse_token(char *src, char *token, char *value)
 {
     char *tmp;
@@ -254,10 +243,10 @@ void parse_token(char *src, char *token, char *value)
 	    continue;
 
 	*(value++) = *tmp;
-    }   
+    }
 
     *value = '\0';
-}   
+}
 
 
 struct tm * tm_calc(const struct tm * curr_tm, int days)
@@ -267,11 +256,11 @@ struct tm * tm_calc(const struct tm * curr_tm, int days)
     int                 monthdays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
     if (!curr_tm)
-    {       
+    {
 	time_t time_s = time(0);
 	new_tm = *localtime(&time_s);
     }
-    else    
+    else
 	thecore_memcpy(&new_tm, curr_tm, sizeof(struct tm));
 
     if (new_tm.tm_mon == 1)
@@ -282,7 +271,7 @@ struct tm * tm_calc(const struct tm * curr_tm, int days)
 	    {
 		if (!((new_tm.tm_year + 1900) % 400))
 		    yoon = TRUE;
-	    }   
+	    }
 	    else
 		yoon = TRUE;
 	}
@@ -338,7 +327,7 @@ int MAX(int a, int b)
 
 int MINMAX(int min, int value, int max)
 {
-    register int tv;
+    int tv;
 
     tv = (min > value ? min : value);
     return (max < tv) ? max : tv;
@@ -402,24 +391,15 @@ void thecore_msleep(DWORD dwMillisecond)
 }
 
 void core_dump_unix(const char *who, WORD line)
-{   
+{
     sys_err("*** Dumping Core %s:%d ***", who, line);
 
     fflush(stdout);
-    fflush(stderr); 
+    fflush(stderr);
 
     if (fork() == 0)
         abort();
 }
-
-/*
-uint64_t rdtsc()
-{
-	uint64_t x;
-	__asm__ volatile (".byte 0x0f, 0x31" : "=A" (x));
-	return x;
-}
-*/
 
 #else
 
@@ -442,7 +422,7 @@ void gettimeofday(struct timeval* t, struct timezone* dummy)
 }
 
 void core_dump_unix(const char *who, WORD line)
-{   
+{
 }
 
 #endif
@@ -469,7 +449,6 @@ DWORD get_dword_time()
 {
     struct timeval tv;
     gettimeofday(&tv, NULL);
-    //tv.tv_sec -= 1057699978;
     tv.tv_sec -= get_boot_sec();
     return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
