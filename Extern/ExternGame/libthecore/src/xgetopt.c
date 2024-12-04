@@ -11,7 +11,7 @@
 //     - Added Unicode support
 //
 //     Version 1.1 - 2002 March 10
-//     - Added example to XGetopt.cpp module header 
+//     - Added example to XGetopt.cpp module header
 //
 // This software is released into the public domain.
 // You are free to use it in any way you like.
@@ -155,7 +155,7 @@
 
 TCHAR	*optarg;		// global argument pointer
 int		optind = 0; 	// global argv index
-int optreset = 0;
+int		optreset = 0;
 
 int getopt(int argc, TCHAR *argv[], TCHAR *optstring)
 {
@@ -225,4 +225,36 @@ int getopt(int argc, TCHAR *argv[], TCHAR *optstring)
 	return c;
 }
 
+
+char* _optarg = NULL;
+int _optind = 1;
+
+int getopt(int argc, char *const argv[], const char *optstring)
+{
+	if ((_optind >= argc) || (argv[_optind][0] != '-') || (argv[_optind][0] == 0))
+	{
+		return -1;
+	}
+
+	int opt = argv[_optind][1];
+	const char *p = strchr(optstring, opt);
+
+	if (p == NULL)
+	{
+		return '?';
+	}
+	if (p[1] == ':')
+	{
+		_optind++;
+		if (_optind >= argc)
+		{
+			return '?';
+		}
+		_optarg = argv[_optind];
+		_optind++;
+	}
+	return opt;
+}
+
 #endif // #ifdef __WIN32__
+
