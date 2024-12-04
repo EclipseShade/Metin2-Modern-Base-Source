@@ -135,9 +135,10 @@ bool CItemIDRangeManager::BuildRange(DWORD dwMin, DWORD dwMax, TItemIDRangeTable
 				row = mysql_fetch_row(pMsg->Get()->pSQLResult);
 				str_to_number(count, row[0]);
 
-				if (count > 0)
-				{
-					sys_err("ItemIDRange: Build: %u ~ %u\thave a item", range.dwUsableItemIDMin, range.dwMax);
+				if (count > 0) {
+					ostrstream os;
+					os << "ItemIDRange: Build: " << range.dwUsableItemIDMin << " ~ " << range.dwMax << "\thave a item" << ends;
+					sys_err(os.str());
 					return false;
 				}
 				else
