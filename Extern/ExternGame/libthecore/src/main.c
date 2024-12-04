@@ -1,9 +1,3 @@
-/*
- *    Filename: main.c
- * Description: 라이브러리 초기화/삭제 등
- *
- *      Author: 비엽 aka. Cronan
- */
 #define __LIBTHECORE__
 #include "stdafx.h"
 #include "memory.h"
@@ -16,8 +10,11 @@ volatile int	shutdowned = FALSE;
 volatile int	tics = 0;
 unsigned int	thecore_profiler[NUM_PF];
 
+// newstuff
+int	bCheckpointCheck = 1;
+
 static int pid_init(void)
-{   
+{
 #ifdef __WIN32__
 	return true;
 #else
@@ -26,7 +23,7 @@ static int pid_init(void)
 	{
 		fprintf(fp, "%d", getpid());
 		fclose(fp);
-		sys_err("\nStart of pid: %d\n", getpid());
+		sys_log(0, "\nStart of pid: %d\n", getpid()); // @warme012
 	}
 	else
 	{
@@ -39,12 +36,12 @@ static int pid_init(void)
 }
 
 static void pid_deinit(void)
-{   
+{
 #ifdef __WIN32__
     return;
 #else
     remove("./pid");
-	sys_err("\nEnd of pid\n");
+	sys_log(0, "\nEnd of pid\n"); // @warme012
 #endif
 }
 
@@ -120,5 +117,5 @@ int thecore_is_shutdowned(void)
 
 void thecore_tick(void)
 {
-	++tics;
+	tics = tics + 1;
 }
