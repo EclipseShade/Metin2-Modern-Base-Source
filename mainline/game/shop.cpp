@@ -161,8 +161,8 @@ void CShop::SetShopItems(TShopItemTable * pTable, BYTE bItemCount)
 		if (item.pkItem)
 		{
 			item.vnum = pkItem->GetVnum();
-			item.count = pkItem->GetCount(); // PC 샵의 경우 아이템 개수는 진짜 아이템의 개수여야 한다.
-			item.price = pTable->price; // 가격도 사용자가 정한대로..
+			item.count = pkItem->GetCount();
+			item.price = pTable->price;
 			item.itemid	= pkItem->GetID();
 		}
 		else
@@ -248,7 +248,7 @@ int CShop::Buy(LPCHARACTER ch, BYTE pos)
 
 	LPITEM item;
 
-	if (m_pkPC) // 피씨가 운영하는 샵은 피씨가 실제 아이템을 가지고있어야 한다.
+	if (m_pkPC)
 		item = r_item.pkItem;
 	else
 		item = ITEM_MANAGER::instance().CreateItem(r_item.vnum, r_item.count);
@@ -260,7 +260,6 @@ int CShop::Buy(LPCHARACTER ch, BYTE pos)
 	{
 		if (quest::CQuestManager::instance().GetEventFlag("hivalue_item_sell") == 0)
 		{
-			//축복의 구슬 && 만년한철 이벤트 
 			if (item->GetVnum() == 70024 || item->GetVnum() == 70035)
 			{
 				return SHOP_SUBHEADER_GC_END;
@@ -335,13 +334,11 @@ int CShop::Buy(LPCHARACTER ch, BYTE pos)
 		}
 	}
 
-	// 상점에서 살떄 세금 5%
-	if (!m_pkPC) 
+	if (!m_pkPC)
 	{
 		CMonarch::instance().SendtoDBAddMoney(dwTax, ch->GetEmpire(), ch);
 	}
 
-	// 군주 시스템 : 세금 징수
 	if (m_pkPC)
 	{
 		m_pkPC->SyncQuickslot(QUICKSLOT_TYPE_ITEM, item->GetCell(), 255);
@@ -361,7 +358,7 @@ int CShop::Buy(LPCHARACTER ch, BYTE pos)
 				LogManager::instance().GoldBarLog(ch->GetPlayerID(), item->GetID(), SHOP_BUY, buf);
 				LogManager::instance().GoldBarLog(m_pkPC->GetPlayerID(), item->GetID(), SHOP_SELL, buf);
 			}
-			
+
 			item->RemoveFromCharacter();
 			if (item->IsDragonSoul())
 				item->AddToCharacter(ch, TItemPos(DRAGON_SOUL_INVENTORY, iEmptyPos));
@@ -381,7 +378,6 @@ int CShop::Buy(LPCHARACTER ch, BYTE pos)
 		BroadcastUpdateItem(pos);
 
 		m_pkPC->PointChange(POINT_GOLD, dwPrice, false);
-
 		if (iVal > 0)
 			m_pkPC->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("판매금액의 %d %% 가 세금으로 나가게됩니다"), iVal);
 
@@ -444,9 +440,8 @@ bool CShop::AddGuest(LPCHARACTER ch, DWORD owner_vid, bool bOtherEmpire)
 		//HIVALUE_ITEM_EVENT
 		if (quest::CQuestManager::instance().GetEventFlag("hivalue_item_sell") == 0)
 		{
-			//축복의 구슬 && 만년한철 이벤트 
 			if (item.vnum == 70024 || item.vnum == 70035)
-			{				
+			{
 				continue;
 			}
 		}
@@ -457,14 +452,12 @@ bool CShop::AddGuest(LPCHARACTER ch, DWORD owner_vid, bool bOtherEmpire)
 		pack2.items[i].vnum = item.vnum;
 
 		// REMOVED_EMPIRE_PRICE_LIFT
-		
+
 		int iPriceLift = 3;
 		if (g_bEmpireShopPriceTrippleDisable)
 		{
 			iPriceLift = 1;
 		}
-		
-		
 		if (bOtherEmpire) // no empire price penalty for pc shop
 			pack2.items[i].price = item.price * iPriceLift;
 		else
@@ -592,5 +585,5 @@ bool CShop::IsSellingItem(DWORD itemID)
 	}
 
 	return isSelling;
-
 }
+
