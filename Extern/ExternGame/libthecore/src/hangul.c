@@ -1,9 +1,3 @@
-/*
- *    Filename: hangul.c
- * Description: 한글 관련 구현 소스
- *
- *      Author: 비엽 aka. Cronan
- */
 #define __LIBTHECORE__
 #include "stdafx.h"
 
@@ -22,7 +16,7 @@ int check_han(const char *str)
     if (!str || !*str)
 	return 0;
 
-    for (i = 0; str[i]; i += 2) 
+    for (i = 0; str[i]; i += 2)
     {
 	if (isnhspace(str[i]))
 	    return 0;
@@ -44,13 +38,13 @@ const char *first_han(const BYTE *str)
 {
     unsigned char high, low;
     int len, i;
-    char *p = "그외";
+    const char *p = "그외";
 
     static const char* wansung[] =
     {
 	"가", "가", "나", "다", "다",
 	"라", "마", "바", "바", "사",
-	"사", "아", "자", "자", "차", 
+	"사", "아", "자", "자", "차",
 	"카", "타", "파", "하", ""
     };
 
@@ -59,7 +53,7 @@ const char *first_han(const BYTE *str)
 	"늏", "똞", "륾", "봞", "쁝",
 	"쏿", "쟞", "쨅", "쮉", "촡",
 	"캻", "큑", "퇫", "펈", "픞",
-	"훍", "?", "?", "?", "" 
+	"훍", "?", "?", "?", ""
     };
 
     len = strlen((const char*) str);
@@ -77,7 +71,7 @@ const char *first_han(const BYTE *str)
 
     high = (KStbl[(high - 0xb0) * 94 + low - 0xa1] >> 8) & 0x7c;
 
-    for (i = 0; johab[i][0]; i++) 
+    for (i = 0; johab[i][0]; i++)
     {
 	low = (johab[i][0] & 0x7f);
 
@@ -96,7 +90,7 @@ int under_han(const void * orig)
 
     len = strlen((const char*) str);
 
-    if (len < 2) 
+    if (len < 2)
 	return 0;
 
     if (str[len - 1] == ')')
@@ -108,15 +102,15 @@ int under_han(const void * orig)
     high = str[len - 2];
     low  = str[len - 1];
 
-    if (!is_hangul(&str[len - 2])) 
-	return 0; 
+    if (!is_hangul(&str[len - 2]))
+	return 0;
 
     high = KStbl[(high - 0xb0) * 94 + low - 0xa1] & 0x1f;
 
     if (high < 2)
 	return 0;
 
-    if (high > 28) 
+    if (high > 28)
 	return 0;
 
     return 1;
