@@ -25,7 +25,7 @@ extern "C"
 #define UNDER(str)	under_han(str)
 
 #ifdef __cplusplus
-};
+}
 #endif
 
 #endif
