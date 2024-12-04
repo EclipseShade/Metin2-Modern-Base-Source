@@ -21,7 +21,7 @@ CPrivManager::~CPrivManager()
 }
 
 //
-// @version 05/06/07	Bang2ni - 중복적으로 보너스가 적용 된 길드에 대한 처리
+
 //
 void CPrivManager::Update()
 {
@@ -34,12 +34,10 @@ void CPrivManager::Update()
 
 		if (p->value != 0 && !p->bRemoved)
 		{
-
 			typeof(m_aPrivGuild[p->type].begin()) it = m_aPrivGuild[p->type].find(p->guild_id);
 
 			// ADD_GUILD_PRIV_TIME
-			// 길드에 중복적으로 보너스가 설정되었을 경우 map 의 value 가 갱신(수정) 되었으므로
-			// TPrivGuildData 의 포인터가 같을때 실제로 삭제해 주고 게임서버들에게 cast 해 준다.
+
 			if (it != m_aPrivGuild[p->type].end() && it->second == p) {
 				m_aPrivGuild[p->type].erase(it);
 				SendChangeGuildPriv(p->guild_id, p->type, 0, 0);
@@ -114,7 +112,7 @@ void CPrivManager::AddCharPriv(DWORD pid, BYTE type, int value)
 }
 
 //
-// @version 05/06/07	Bang2ni - 이미 보너스가 적용 된 길드에 보너스 설정
+
 //
 void CPrivManager::AddGuildPriv(DWORD guild_id, BYTE type, int value, time_t duration_sec)
 {
@@ -132,8 +130,7 @@ void CPrivManager::AddGuildPriv(DWORD guild_id, BYTE type, int value, time_t dur
 	m_pqPrivGuild.push(std::make_pair(end, p));
 
 	// ADD_GUILD_PRIV_TIME
-	// 이미 보너스가 설정되 있다면 map 의 value 를 갱신해 준다.
-	// 이전 value 의 포인터는 priority queue 에서 삭제될 때 해제된다.
+
 	if (it != m_aPrivGuild[type].end())
 		it->second = p;
 	else
@@ -159,8 +156,6 @@ void CPrivManager::AddEmpirePriv(BYTE empire, BYTE type, int value, time_t durat
 	time_t now = CClientManager::instance().GetCurrentTime();
 	time_t end = now+duration_sec;
 
-	// 이전 설정값 무효화
-	// priority_queue에 들어있는 pointer == m_aaPrivEmpire[type][empire]
 	{
 		if (m_aaPrivEmpire[type][empire])
 			m_aaPrivEmpire[type][empire]->bRemoved = true;
@@ -177,9 +172,6 @@ void CPrivManager::AddEmpirePriv(BYTE empire, BYTE type, int value, time_t durat
 	sys_log(0, "Empire Priv empire(%d) type(%d) value(%d) duration_sec(%d)", empire, type, value, duration_sec);
 }
 
-/**
- * @version 05/06/08	Bang2ni - 지속시간 추가
- */
 struct FSendChangeGuildPriv
 {
 	FSendChangeGuildPriv(DWORD guild_id, BYTE type, int value, time_t end_time_sec)
