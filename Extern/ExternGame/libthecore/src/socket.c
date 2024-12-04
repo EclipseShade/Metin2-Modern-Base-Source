@@ -1,9 +1,3 @@
-/*
- *    Filename: socket.c
- * Description: 소켓 관련 소스.
- *
- *      Author: 비엽 aka. Cronan
- */
 #define __LIBTHECORE__
 #include "stdafx.h"
 
@@ -33,7 +27,7 @@ int socket_read(socket_t desc, char* read_point, size_t space_left)
     if (ret > 0)
 	return ret;
 
-    if (ret == 0)	// 정상적으로 접속 끊김
+    if (ret == 0)
 	return -1;
 
 #ifdef EINTR            /* Interrupted system call - various platforms */
@@ -73,7 +67,6 @@ int socket_write_tcp(socket_t desc, const char *txt, int length)
 {
     int bytes_written = send(desc, txt, length, 0);
 
-    // 성공
     if (bytes_written > 0)
 	return (bytes_written);
 
@@ -126,7 +119,7 @@ int socket_write(socket_t desc, const char *data, size_t length)
 	    if (errno == EAGAIN)
 		sys_err("socket write would block, about to close!");
 	    else
-		sys_err("write to desc error");   // '보통' 상대편으로 부터 접속이 끊긴 것이다.
+		sys_err("write to desc error");
 
 	    return -1;
 	}
@@ -150,7 +143,7 @@ int socket_bind(const char * ip, int port, int protocol)
     struct sockaddr_in  sa;
 #endif
 
-    if ((s = socket(AF_INET, protocol, 0)) < 0) 
+    if ((s = socket(AF_INET, protocol, 0)) < 0)
     {
 	sys_err("socket: %s", strerror(errno));
 	return -1;
@@ -160,7 +153,7 @@ int socket_bind(const char * ip, int port, int protocol)
 #ifndef __WIN32__
     socket_lingeroff(s);
 #else
-	// Winsock2: SO_DONTLINGER, SO_KEEPALIVE, SO_LINGER, and SO_OOBINLINE are 
+	// Winsock2: SO_DONTLINGER, SO_KEEPALIVE, SO_LINGER, and SO_OOBINLINE are
 	// not supported on sockets of type SOCK_DGRAM
 	if (protocol == SOCK_STREAM) {
 		socket_lingeroff(s);
@@ -169,13 +162,11 @@ int socket_bind(const char * ip, int port, int protocol)
 
     memset(&sa, 0, sizeof(sa));
     sa.sin_family	= AF_INET;
-//윈도우 서버는 개발용으로만 쓰기 때문에 BIND ip를 INADDR_ANY로 고정
-//(테스트의 편의성을 위해)
 #ifndef __WIN32__
     sa.sin_addr.s_addr	= inet_addr(ip);
 #else
 	sa.sin_addr.s_addr	= INADDR_ANY;
-#endif 
+#endif
     sa.sin_port		= htons((unsigned short) port);
 
     if (bind(s, (struct sockaddr *) &sa, sizeof(sa)) < 0)
@@ -247,7 +238,7 @@ socket_t socket_connect(const char* host, WORD port)
     struct sockaddr_in  server_addr;
     int                 rslt;
 
-    /* 소켓주소 구조체 초기화 */
+
     memset(&server_addr, 0, sizeof(server_addr));
 
     if (isdigit(*host))
@@ -280,7 +271,7 @@ socket_t socket_connect(const char* host, WORD port)
     socket_timeout(s, 10, 0);
     socket_lingeron(s);
 
-    /*  연결요청 */
+
     if ((rslt = connect(s, (struct sockaddr *) &server_addr, sizeof(server_addr))) < 0)
     {
 	socket_close(s);
@@ -338,7 +329,7 @@ void socket_nonblock(socket_t s)
     flags = fcntl(s, F_GETFL, 0);
     flags |= O_NONBLOCK;
 
-    if (fcntl(s, F_SETFL, flags) < 0) 
+    if (fcntl(s, F_SETFL, flags) < 0)
     {
 	sys_err("fcntl: nonblock: %s", strerror(errno));
 	return;
@@ -374,13 +365,13 @@ void socket_block(socket_t s)
 
 void socket_dontroute(socket_t s)
 {
-    int set;
+    int set = 0;
 
     if (setsockopt(s, SOL_SOCKET, SO_DONTROUTE, (const char *) &set, sizeof(int)) < 0)
     {
-	sys_err("setsockopt: dontroute: %s", strerror(errno));
-	socket_close(s);
-	return;
+        sys_err("setsockopt: dontroute: %s", strerror(errno));
+        socket_close(s);
+        return;
     }
 }
 
