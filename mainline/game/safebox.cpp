@@ -64,7 +64,7 @@ bool CSafebox::Add(DWORD dwPos, LPITEM pkItem)
 
 	pkItem->SetWindow(m_bWindowMode);
 	pkItem->SetCell(m_pkChrOwner, dwPos);
-	pkItem->Save(); // 강제로 Save를 불러줘야 한다.
+	pkItem->Save();
 	ITEM_MANAGER::instance().FlushDelayedSave(pkItem);
 
 	m_pkGrid->Put(dwPos, 1, pkItem->GetSize());
@@ -143,7 +143,6 @@ bool CSafebox::IsEmpty(DWORD dwPos, BYTE bSize)
 
 void CSafebox::ChangeSize(int iSize)
 {
-	// 현재 사이즈가 인자보다 크면 사이즈를 가만 둔다.
 	if (m_iSize >= iSize)
 		return;
 
@@ -191,7 +190,7 @@ bool CSafebox::MoveItem(BYTE bCell, BYTE bDestCell, BYTE count)
 
 		if ((item2 = GetItem(bDestCell)) && item != item2 && item2->IsStackable() &&
 				!IS_SET(item2->GetAntiFlag(), ITEM_ANTIFLAG_STACK) &&
-				item2->GetVnum() == item->GetVnum()) // 합칠 수 있는 아이템의 경우
+				item2->GetVnum() == item->GetVnum())
 		{
 			for (int i = 0; i < ITEM_SOCKET_MAX_NUM; ++i)
 				if (item2->GetSocket(i) != item->GetSocket(i))
@@ -200,7 +199,7 @@ bool CSafebox::MoveItem(BYTE bCell, BYTE bDestCell, BYTE count)
 			if (count == 0)
 				count = item->GetCount();
 
-			count = MIN(200 - item2->GetCount(), count);
+			count = MIN(g_bItemCountLimit - item2->GetCount(), count);
 
 			if (item->GetCount() >= count)
 				Remove(bCell);
