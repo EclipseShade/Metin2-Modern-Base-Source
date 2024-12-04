@@ -33,36 +33,6 @@ enum
 struct FCollectEntity {
 	void operator()(LPENTITY entity) {
 		// Consider removing sanity check after debug pass
-		/*
-		if (entity->IsType(ENTITY_CHARACTER)) {
-			LPCHARACTER character = (LPCHARACTER)entity;
-			DWORD vid = character->GetVID();
-			LPCHARACTER found = CHARACTER_MANGAER::instance().Find(vid);
-			if (found == NULL || vid != found->GetVID()) {
-				sys_err("<Factor> Invalid character %p", get_pointer(character));
-				return;
-			}
-		} else if (entity->IsType(ENTITY_ITEM)) {
-			LPITEM item = (LPITEM)entity;
-			DWORD vid = item->GetVID();
-			LPITEM found = ITEM_MANGAER::instance().FindByVID(vid);
-			if (found == NULL || vid != found->GetVID()) {
-				sys_err("<Factor> Invalid item %p", get_pointer(item));
-				return;
-			}
-		} else if (entity->IsType(ENTITY_OBJECT)) {
-			LPOBJECT object = (LPOBJECT)entity;
-			DWORD vid = object->GetVID();
-			LPOBJECT found = CManager::instance().FindObjectByVID(vid);
-			if (found == NULL || vid != found->GetVID()) {
-				sys_err("<Factor> Invalid object %p", get_pointer(object));
-				return;
-			}
-		} else {
-			sys_err("<Factor> Invalid entity type %p", get_pointer(entity));
-			return;
-		}
-		*/
 		result.push_back(entity);
 	}
 	template<typename F>
@@ -118,12 +88,6 @@ class SECTREE
 				sectree->for_each_entity(collector);
 			}
 			collector.ForEach(func);
-			/*
-			LPSECTREE_LIST::iterator it_tree = m_neighbor_list.begin();
-			for ( ; it_tree != m_neighbor_list.end(); ++it_tree) {
-				(*it_tree)->for_each_entity(func);
-			}
-			*/
 		}
 
 		template <class _Func> void for_each_for_find_victim(_Func & func)
@@ -132,7 +96,6 @@ class SECTREE
 
 			while (it_tree != m_neighbor_list.end())
 			{
-				//첫번째를 찾으면 바로 리턴
 				if ( (*(it_tree++))->for_each_entity_for_find_victim(func) )
 					return;
 			}
@@ -143,13 +106,11 @@ class SECTREE
 
 			while (it != m_set_entity.end())
 			{
-				//정상적으로 찾으면 바로 리턴
 				if ( func(*it++) )
 					return true;
 			}
 			return false;
 		}
-		
 
 	public:
 		SECTREE();
@@ -176,9 +137,9 @@ class SECTREE
 		DWORD				GetAttribute(long x, long y);
 		bool				IsAttr(long x, long y, DWORD dwFlag);
 
-		void				CloneAttribute(LPSECTREE tree); // private map 처리시 사용
+		void				CloneAttribute(LPSECTREE tree);
 
-		int				GetEventAttribute(long x, long y); // 20050313 현재는 사용하지 않음
+		int				GetEventAttribute(long x, long y);
 
 		void				SetAttribute(DWORD x, DWORD y, DWORD dwAttr);
 		void				RemoveAttribute(DWORD x, DWORD y, DWORD dwAttr);
@@ -209,3 +170,4 @@ class SECTREE
 };
 
 #endif
+
