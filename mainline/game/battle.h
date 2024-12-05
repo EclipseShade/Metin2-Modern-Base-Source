@@ -4,7 +4,7 @@
 #include "char.h"
 #include "config.h"
 
-enum EBattleTypes       // 상대방 기준
+enum EBattleTypes
 {
 	BATTLE_NONE,
 	BATTLE_DAMAGE,
@@ -29,7 +29,6 @@ extern int	battle_count_attackers(LPCHARACTER ch);
 
 extern void	NormalAttackAffect(LPCHARACTER pkAttacker, LPCHARACTER pkVictim);
 
-// 특성 공격
 inline void AttackAffect(LPCHARACTER pkAttacker,
 		LPCHARACTER pkVictim,
 		BYTE att_point,
@@ -77,7 +76,7 @@ inline void SkillAttackAffect(LPCHARACTER pkVictim,
 
 			// SKILL_ATTACK_NO_LOG_TARGET_NAME_FIX
 			if (test_server)
-				pkVictim->ChatPacket(CHAT_TYPE_PARTY, 
+				pkVictim->ChatPacket(CHAT_TYPE_PARTY,
 						"%s(%d%%) -> %s SUCCESS", name, success_pct, name);
 			// END_OF_SKILL_ATTACK_LOG_NO_TARGET_NAME_FIX
 		}
@@ -88,8 +87,7 @@ inline void SkillAttackAffect(LPCHARACTER pkVictim,
 			// END_OF_SKILL_ATTACK_LOG_NO_TARGET_NAME_FIX
 		}
 	}
-} 
-
+}
 
 #define GET_SPEED_HACK_COUNT(ch)		((ch)->m_speed_hack_count)
 #define INCREASE_SPEED_HACK_COUNT(ch)	(++GET_SPEED_HACK_COUNT(ch))
@@ -99,3 +97,4 @@ void	SET_ATTACKED_TIME(LPCHARACTER ch, LPCHARACTER victim, DWORD current_time);
 bool	IS_SPEED_HACK(LPCHARACTER ch, LPCHARACTER victim, DWORD current_time);
 
 #endif
+
