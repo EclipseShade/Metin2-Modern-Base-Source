@@ -38,8 +38,6 @@ void CBuffOnAttributes::RemoveBuffFromItem(LPITEM pItem)
 		{
 			TPlayerItemAttribute attr = pItem->GetAttribute(j);
 			TMapAttr::iterator it = m_map_additional_attrs.find(attr.bType);
-			// m_map_additional_attrs에서 해당 attribute type에 대한 값을 제거하고,
-			// 변경된 값의 (m_bBuffValue)%만큼의 버프 효과 감소
 			if (it != m_map_additional_attrs.end())
 			{
 				int& sum_of_attr_value = it->second;
@@ -74,16 +72,13 @@ void CBuffOnAttributes::AddBuffFromItem(LPITEM pItem)
 		{
 			TPlayerItemAttribute attr = pItem->GetAttribute(j);
 			TMapAttr::iterator it = m_map_additional_attrs.find(attr.bType);
-			
-			// m_map_additional_attrs에서 해당 attribute type에 대한 값이 없다면 추가.
-			// 추가된 값의 (m_bBuffValue)%만큼의 버프 효과 추가
+
 			if (it == m_map_additional_attrs.end())
 			{
 				m_pBuffOwner->ApplyPoint(attr.bType, attr.sValue * m_bBuffValue / 100);
 				m_map_additional_attrs.insert(TMapAttr::value_type(attr.bType, attr.sValue));
 			}
-			// m_map_additional_attrs에서 해당 attribute type에 대한 값이 있다면, 그 값을 증가시키고,
-			// 변경된 값의 (m_bBuffValue)%만큼의 버프 효과 추가
+
 			else
 			{
 				int& sum_of_attr_value = it->second;
@@ -104,14 +99,12 @@ void CBuffOnAttributes::ChangeBuffValue(BYTE bNewValue)
 		Off();
 	else
 	{
-		// 기존에, m_map_additional_attrs의 값의 (m_bBuffValue)%만큼이 버프로 들어가 있었으므로,
-		// (bNewValue)%만큼으로 값을 변경함.
 		for (TMapAttr::iterator it = m_map_additional_attrs.begin(); it != m_map_additional_attrs.end(); it++)
 		{
 			int& sum_of_attr_value = it->second;
 			int old_value = sum_of_attr_value * m_bBuffValue / 100;
 			int new_value = sum_of_attr_value * bNewValue / 100;
-			
+
 			m_pBuffOwner->ApplyPoint(it->first, -sum_of_attr_value * m_bBuffValue / 100);
 		}
 		m_bBuffValue = bNewValue;
@@ -135,7 +128,7 @@ bool CBuffOnAttributes::On(BYTE bValue)
 {
 	if (0 != m_bBuffValue || 0 == bValue)
 		return false;
-	
+
 	int n = m_p_vec_buff_wear_targets->size();
 	m_map_additional_attrs.clear();
 	for (int i = 0; i < n; i++)
@@ -164,7 +157,7 @@ bool CBuffOnAttributes::On(BYTE bValue)
 	{
 		m_pBuffOwner->ApplyPoint(it->first, it->second * bValue / 100);
 	}
-	
+
 	m_bBuffValue = bValue;
 
 	return true;
@@ -181,3 +174,4 @@ void CBuffOnAttributes::Off()
 	}
 	Initialize();
 }
+
