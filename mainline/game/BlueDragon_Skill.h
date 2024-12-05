@@ -50,12 +50,12 @@ struct FSkillBreath
 							case JOB_SURA:		ptr = "sura";	break;
 							case JOB_SHAMAN:	ptr = "muda";	break;
 #ifdef ENABLE_WOLFMAN_CHARACTER
-							case JOB_WOLFMAN:	ptr = "wolf";	break;	// TODO: 블루드래곤 수인족 전투 처리
+							case JOB_WOLFMAN:	ptr = "wolf";	break;
 #endif
+
 							default:
 							case JOB_MAX_NUM:	return;
 						}
-
 
 						int firstDamagePercent =  number(BlueDragon_GetSkillFactor(4, "Skill0", "damage", ptr, "min"), BlueDragon_GetSkillFactor(4, "Skill0", "damage", ptr, "max"));
 						pct += firstDamagePercent;
@@ -75,8 +75,9 @@ struct FSkillBreath
 							case JOB_SURA:		ptr = "sura";	break;
 							case JOB_SHAMAN:	ptr = "muda";	break;
 #ifdef ENABLE_WOLFMAN_CHARACTER
-							case JOB_WOLFMAN:	ptr = "wolf";	break;	// TODO: 블루드래곤 수인족 전투 처리
+							case JOB_WOLFMAN:	ptr = "wolf";	break;
 #endif
+
 							default:
 							case JOB_MAX_NUM:	return;
 						}
@@ -232,8 +233,9 @@ struct FSkillEarthQuake
 							case JOB_SURA:		ptr = "sura";	break;
 							case JOB_SHAMAN:	ptr = "muda";	break;
 #ifdef ENABLE_WOLFMAN_CHARACTER
-							case JOB_WOLFMAN:	ptr = "wolf";	break;	// TODO: 블루드래곤 수인족 전투 처리
+							case JOB_WOLFMAN:	ptr = "wolf";	break;
 #endif
+
 							default:
 							case JOB_MAX_NUM:	return;
 						}
@@ -252,8 +254,9 @@ struct FSkillEarthQuake
 							case JOB_SURA:		ptr = "sura";	break;
 							case JOB_SHAMAN:	ptr = "muda";	break;
 #ifdef ENABLE_WOLFMAN_CHARACTER
-							case JOB_WOLFMAN:	ptr = "wolf";	break;	// TODO: 블루드래곤 수인족 전투 처리
+							case JOB_WOLFMAN:	ptr = "wolf";	break;
 #endif
+
 							default:
 							case JOB_MAX_NUM:	return;
 						}
@@ -285,7 +288,6 @@ struct FSkillEarthQuake
 					SkillAttackAffect( ch, 1000, IMMUNE_STUN, AFFECT_STUN, POINT_NONE, 0, AFF_STUN, sec, "BDRAGON_STUN" );
 
 					sys_log(0, "BlueDragon: EarthQuake to %s addPct(%d) dam(%d) sec(%d)", ch->GetName(), addPct, dam, sec);
-
 
 					VECTOR vec;
 					vec.x = static_cast<float>(pAttacker->GetX() - ch->GetX());
@@ -349,5 +351,5 @@ struct FSkillEarthQuake
 		}
 	}
 };
-
 #endif
+
