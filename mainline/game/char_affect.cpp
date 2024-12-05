@@ -84,13 +84,11 @@ EVENTFUNC(affect_event)
 	if (!ch->UpdateAffect())
 		return 0;
 	else
-		return passes_per_sec; // 1초
+		return passes_per_sec;
 }
 
 bool CHARACTER::UpdateAffect()
 {
-	// affect_event 에서 처리할 일은 아니지만, 1초짜리 이벤트에서 처리하는 것이
-	// 이것 뿐이라 여기서 물약 처리를 한다.
 	if (GetPoint(POINT_HP_RECOVERY) > 0)
 	{
 		if (GetMaxHP() <= GetHP())
@@ -119,7 +117,7 @@ bool CHARACTER::UpdateAffect()
 	{
 		if (GetMaxSP() <= GetSP())
 			PointChange(POINT_SP_RECOVERY, -GetPoint(POINT_SP_RECOVERY));
-		else 
+		else
 		{
 			int iVal;
 
@@ -146,16 +144,13 @@ bool CHARACTER::UpdateAffect()
 	AutoRecoveryItemProcess( AFFECT_AUTO_HP_RECOVERY );
 	AutoRecoveryItemProcess( AFFECT_AUTO_SP_RECOVERY );
 
-	// 스테미나 회복
 	if (GetMaxStamina() > GetStamina())
 	{
 		int iSec = (get_dword_time() - GetStopTime()) / 3000;
 		if (iSec)
-			PointChange(POINT_STAMINA, GetMaxStamina()/1);    
+			PointChange(POINT_STAMINA, GetMaxStamina()/1);
 	}
 
-
-	// ProcessAffect는 affect가 없으면 true를 리턴한다.
 	if (ProcessAffect())
 		if (GetPoint(POINT_HP_RECOVERY) == 0 && GetPoint(POINT_SP_RECOVERY) == 0 && GetStamina() == GetMaxStamina())
 		{
@@ -225,9 +220,6 @@ int CHARACTER::ProcessAffect()
 	bool	bDiff	= false;
 	CAffect	*pkAff	= NULL;
 
-	//
-	// 프리미엄 처리
-	//
 	for (int i = 0; i <= PREMIUM_MAX_NUM; ++i)
 	{
 		int aff_idx = i + AFFECT_PREMIUM_START;
@@ -267,7 +259,6 @@ int CHARACTER::ProcessAffect()
 		}
 	}
 	////////// HAIR_AFFECT
-	//
 
 	CHorseNameManager::instance().Validate(this);
 
@@ -300,8 +291,7 @@ int CHARACTER::ProcessAffect()
 		}
 
 		// AFFECT_DURATION_BUG_FIX
-		// 무한 효과 아이템도 시간을 줄인다.
-		// 시간을 매우 크게 잡기 때문에 상관 없을 것이라 생각됨.
+
 		if ( --pkAff->lDuration <= 0 )
 		{
 			bEnd = true;
@@ -472,7 +462,6 @@ void CHARACTER::LoadAffect(DWORD dwCount, TPacketAffectElement * pElements)
 
 	for (DWORD i = 0; i < dwCount; ++i, ++pElements)
 	{
-		// 무영진은 로드하지않는다.
 		if (pElements->dwType == SKILL_MUYEONG)
 			continue;
 
@@ -511,15 +500,14 @@ void CHARACTER::LoadAffect(DWORD dwCount, TPacketAffectElement * pElements)
 		SendAffectAddPacket(GetDesc(), pkAff);
 
 		ComputeAffect(pkAff, true);
-	
-	
+
 	}
 
 	if ( CArenaManager::instance().IsArenaMap(GetMapIndex()) == true )
 	{
 		RemoveGoodAffect();
 	}
-	
+
 	if (afOld != m_afAffectFlag || lMovSpd != GetPoint(POINT_MOV_SPEED) || lAttSpd != GetPoint(POINT_ATT_SPEED))
 	{
 		UpdatePacket();
@@ -529,7 +517,6 @@ void CHARACTER::LoadAffect(DWORD dwCount, TPacketAffectElement * pElements)
 
 	m_bIsLoadedAffect = true;
 
-	// 용혼석 셋팅 로드 및 초기화
 	DragonSoul_Initialize();
 }
 
@@ -567,21 +554,15 @@ bool CHARACTER::AddAffect(DWORD dwType, BYTE bApplyOn, long lApplyValue, DWORD d
 		}
 	}
 
-	// 이미 있는 효과를 덮어 쓰는 처리
 	if (pkAff && bOverride)
 	{
-		ComputeAffect(pkAff, false); // 일단 효과를 삭제하고
+		ComputeAffect(pkAff, false);
 
 		if (GetDesc())
 			SendAffectRemovePacket(GetDesc(), GetPlayerID(), pkAff->dwType, pkAff->bApplyOn);
 	}
 	else
 	{
-		//
-		// 새 에펙를 추가
-		//
-		// NOTE: 따라서 같은 type 으로도 여러 에펙트를 붙을 수 있다.
-		// 
 		pkAff = CAffect::Acquire();
 		m_list_pkAffect.push_back(pkAff);
 
@@ -641,7 +622,7 @@ void CHARACTER::RefreshAffect()
 
 void CHARACTER::ComputeAffect(CAffect * pkAff, bool bAdd)
 {
-	if (bAdd && pkAff->dwType >= GUILD_SKILL_START && pkAff->dwType <= GUILD_SKILL_END)	
+	if (bAdd && pkAff->dwType >= GUILD_SKILL_START && pkAff->dwType <= GUILD_SKILL_END)
 	{
 		if (!GetGuild())
 			return;
@@ -683,15 +664,6 @@ bool CHARACTER::RemoveAffect(CAffect * pkAff)
 
 	ComputeAffect(pkAff, false);
 
-	// 백기 버그 수정.
-	// 백기 버그는 버프 스킬 시전->둔갑->백기 사용(AFFECT_REVIVE_INVISIBLE) 후 바로 공격 할 경우에 발생한다.
-	// 원인은 둔갑을 시전하는 시점에, 버프 스킬 효과를 무시하고 둔갑 효과만 적용되게 되어있는데,
-	// 백기 사용 후 바로 공격하면 RemoveAffect가 불리게 되고, ComputePoints하면서 둔갑 효과 + 버프 스킬 효과가 된다.
-	// ComputePoints에서 둔갑 상태면 버프 스킬 효과 안 먹히도록 하면 되긴 하는데,
-	// ComputePoints는 광범위하게 사용되고 있어서 큰 변화를 주는 것이 꺼려진다.(어떤 side effect가 발생할지 알기 힘들다.)
-	// 따라서 AFFECT_REVIVE_INVISIBLE가 RemoveAffect로 삭제되는 경우만 수정한다.
-	// 시간이 다 되어 백기 효과가 풀리는 경우는 버그가 발생하지 않으므로 그와 똑같이 함.
-	//		(ProcessAffect를 보면 시간이 다 되어서 Affect가 삭제되는 경우, ComputePoints를 부르지 않는다.)
 	if (AFFECT_REVIVE_INVISIBLE != pkAff->dwType)
 	{
 		ComputePoints();
@@ -761,9 +733,7 @@ void CHARACTER::RemoveGoodAffect()
 	RemoveAffect(SKILL_KWAESOK);
 	RemoveAffect(SKILL_JEUNGRYEOK);
 	RemoveAffect(SKILL_GICHEON);
-
 #ifdef ENABLE_WOLFMAN_CHARACTER
-	// 수인족(WOLFMEN) 버프 추가
 	RemoveAffect(SKILL_JEOKRANG);
 	RemoveAffect(SKILL_CHEONGRANG);
 #endif
@@ -795,8 +765,8 @@ bool CHARACTER::IsGoodAffect(BYTE bAffectType) const
 		case (SKILL_KWAESOK):
 		case (SKILL_JEUNGRYEOK):
 		case (SKILL_GICHEON):
-
 #ifdef ENABLE_WOLFMAN_CHARACTER
+
 		case (SKILL_JEOKRANG):
 		case (SKILL_CHEONGRANG):
 #endif
@@ -808,41 +778,32 @@ bool CHARACTER::IsGoodAffect(BYTE bAffectType) const
 void CHARACTER::RemoveBadAffect()
 {
 	sys_log(0, "RemoveBadAffect %s", GetName());
-	// 독
 	RemovePoison();
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	RemoveBleeding();
+#endif
 	RemoveFire();
 
-	// 스턴           : Value%로 상대방을 5초간 머리 위에 별이 돌아간다. (때리면 1/2 확률로 풀림)               AFF_STUN
 	RemoveAffect(AFFECT_STUN);
 
-	// 슬로우         : Value%로 상대방의 공속/이속 모두 느려진다. 수련도에 따라 달라짐 기술로 사용 한 경우에   AFF_SLOW
 	RemoveAffect(AFFECT_SLOW);
 
-	// 투속마령
 	RemoveAffect(SKILL_TUSOK);
 
-	// 저주
 	//RemoveAffect(SKILL_CURSE);
 
-	// 파법술
 	//RemoveAffect(SKILL_PABUP);
 
-	// 기절           : Value%로 상대방을 기절시킨다. 2초                                                       AFF_FAINT
 	//RemoveAffect(AFFECT_FAINT);
 
-	// 다리묶임       : Value%로 상대방의 이동속도를 떨어트린다. 5초간 -40                                      AFF_WEB
 	//RemoveAffect(AFFECT_WEB);
 
-	// 잠들기         : Value%로 상대방을 10초간 잠재운다. (때리면 풀림)                                        AFF_SLEEP
 	//RemoveAffect(AFFECT_SLEEP);
 
-	// 저주           : Value%로 상대방의 공등/방등 모두 떨어트린다. 수련도에 따라 달라짐 기술로 사용 한 경우에 AFF_CURSE
 	//RemoveAffect(AFFECT_CURSE);
 
-	// 마비           : Value%로 상대방을 4초간 마비시킨다.                                                     AFF_PARA
 	//RemoveAffect(AFFECT_PARALYZE);
 
-	// 부동박부       : 무당 기술
 	//RemoveAffect(SKILL_BUDONG);
 }
 
