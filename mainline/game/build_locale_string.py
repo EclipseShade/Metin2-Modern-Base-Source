@@ -16,7 +16,7 @@ for fileName in glob.glob("*.cpp"):
     lines = open(fileName).readlines()
     for line in lines:
 	linePos = lines.index(line)
-	if isComment: 
+	if isComment:
 	    commentEnd = line.find("*/")
 	    if commentEnd < 0:
 		continue
@@ -42,8 +42,8 @@ for fileName in glob.glob("*.cpp"):
 
 	    if len(line) < pos + 5:
 		break
-    
-	
+
+
 	    if line[pos+4] != "(":
 		break
 
