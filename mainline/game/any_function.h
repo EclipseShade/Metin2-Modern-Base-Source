@@ -277,7 +277,7 @@ class void_binder
 		}
 };
 
-	template <class F, class Arg> 
+	template <class F, class Arg>
 inline void_binder<F> void_bind(const F& f, const Arg& arg)
 {
 	typedef typename F::argument_type arg_type;
