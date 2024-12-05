@@ -175,6 +175,9 @@ void CHARACTER::Initialize()
 	// END_OF_MINING
 
 	m_pkPoisonEvent = NULL;
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	m_pkBleedingEvent = NULL;
+#endif
 	m_pkFireEvent = NULL;
 	m_pkCheckSpeedHackEvent	= NULL;
 	m_speed_hack_count	= 0;
@@ -234,7 +237,9 @@ void CHARACTER::Initialize()
 	m_bItemLoaded = false;
 
 	m_bHasPoisoned = false;
-
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	m_bHasBled = false;
+#endif
 	m_pkDungeon = NULL;
 	m_iEventAttr = 0;
 
@@ -317,18 +322,18 @@ void CHARACTER::Initialize()
 	//PREVENT_TRADE_WINDOW
 	m_isOpenSafebox = 0;
 	//END_PREVENT_TRADE_WINDOW
-	
+
 	//PREVENT_REFINE_HACK
 	m_iRefineTime = 0;
 	//END_PREVENT_REFINE_HACK
-	
+
 	//RESTRICT_USE_SEED_OR_MOONBOTTLE
 	m_iSeedTime = 0;
 	//END_RESTRICT_USE_SEED_OR_MOONBOTTLE
 	//PREVENT_PORTAL_AFTER_EXCHANGE
 	m_iExchangeTime = 0;
 	//END_PREVENT_PORTAL_AFTER_EXCHANGE
-	//
+
 	m_iSafeboxLoadTime = 0;
 
 	m_iMyShopTime = 0;
@@ -436,7 +441,6 @@ void CHARACTER::Destroy()
 	if (GetDesc())
 	{
 		GetDesc()->BindCharacter(NULL);
-//		BindDesc(NULL);
 	}
 
 	if (m_pkExchange)
@@ -470,13 +474,13 @@ void CHARACTER::Destroy()
 		}
 		else
 		{
-			party->Unlink(this); 
+			party->Unlink(this);
 
 			if (!IsPC())
 				party->Quit(GetVID());
 		}
 
-		SetParty(NULL); // 안해도 되지만 안전하게.
+		SetParty(NULL);
 	}
 
 	if (m_pkMobInst)
@@ -526,10 +530,6 @@ void CHARACTER::Destroy()
 	event_cancel(&m_pkCheckSpeedHackEvent);
 	//END_DELAYED_WARP
 
-	// RECALL_DELAY
-	//event_cancel(&m_pkRecallEvent);
-	// END_OF_RECALL_DELAY
-
 	// MINING
 	event_cancel(&m_pkMiningEvent);
 	// END_OF_MINING
@@ -543,7 +543,6 @@ void CHARACTER::Destroy()
 	}
 	m_mapMobSkillEvent.clear();
 
-	//event_cancel(&m_pkAffectEvent);
 	ClearAffect();
 
 	event_cancel(&m_pkDestroyWhenIdleEvent);
@@ -576,16 +575,13 @@ void CHARACTER::OpenMyShop(const char * c_pszSign, TShopItemTable * pTable, BYTE
 		return;
 	}
 
-	if (GetMyShop())	// 이미 샵이 열려 있으면 닫는다.
+	if (GetMyShop())
 	{
 		CloseMyShop();
 		return;
 	}
 
-	// 진행중인 퀘스트가 있으면 상점을 열 수 없다.
 	quest::PC * pPC = quest::CQuestManager::instance().GetPCForce(GetPlayerID());
-
-	// GetPCForce는 NULL일 수 없으므로 따로 확인하지 않음
 	if (pPC->IsRunning())
 		return;
 
@@ -626,8 +622,8 @@ void CHARACTER::OpenMyShop(const char * c_pszSign, TShopItemTable * pTable, BYTE
 	}
 
 	// MYSHOP_PRICE_LIST
-	std::map<DWORD, DWORD> itemkind;  // 아이템 종류별 가격, first: vnum, second: 단일 수량 가격
-	// END_OF_MYSHOP_PRICE_LIST	
+	std::map<DWORD, DWORD> itemkind;
+	// END_OF_MYSHOP_PRICE_LIST
 
 	std::set<TItemPos> cont;
 	for (BYTE i = 0; i < bItemCount; ++i)
@@ -672,12 +668,9 @@ void CHARACTER::OpenMyShop(const char * c_pszSign, TShopItemTable * pTable, BYTE
 	}
 
 	// MYSHOP_PRICE_LIST
-	// 보따리 개수를 감소시킨다. 
-	if (CountSpecifyItem(71049)) { // 비단 보따리는 없애지 않고 가격정보를 저장한다.
 
-		//
-		// 아이템 가격정보를 저장하기 위해 아이템 가격정보 패킷을 만들어 DB 캐시에 보낸다.
-		//
+	if (CountSpecifyItem(71049)) {
+
 		TPacketMyshopPricelistHeader header;
 		TItemPriceInfo info;
 		
@@ -696,12 +689,12 @@ void CHARACTER::OpenMyShop(const char * c_pszSign, TShopItemTable * pTable, BYTE
 		}
 
 		db_clientdesc->DBPacket(HEADER_GD_MYSHOP_PRICELIST_UPDATE, 0, buf.read_peek(), buf.size());
-	} 
+	}
 	// END_OF_MYSHOP_PRICE_LIST
 	else if (CountSpecifyItem(50200))
 		RemoveSpecifyItem(50200, 1);
 	else
-		return; // 보따리가 없으면 중단.
+		return;
 
 	if (m_pkExchange)
 		m_pkExchange->Cancel();
@@ -725,16 +718,13 @@ void CHARACTER::OpenMyShop(const char * c_pszSign, TShopItemTable * pTable, BYTE
 	{
 		HorseSummon( false, true );
 	}
-	// new mount 이용 중에, 개인 상점 열면 자동 unmount
-	// StopRiding으로 뉴마운트까지 처리하면 좋은데 왜 그렇게 안해놨는지 알 수 없다.
 	else if (GetMountVnum())
 	{
 		RemoveAffect(AFFECT_MOUNT);
 		RemoveAffect(AFFECT_MOUNT_BONUS);
 	}
-	//if (!LC_IsNewCIBN())
-		SetPolymorph(30000, true);
 
+	SetPolymorph(30000, true);
 }
 
 void CHARACTER::CloseMyShop()
@@ -809,19 +799,15 @@ void CHARACTER::RestartAtSamePos()
 }
 
 
-// Entity에 내가 나타났다고 패킷을 보낸다.
 void CHARACTER::EncodeInsertPacket(LPENTITY entity)
 {
-
 	LPDESC d;
 
 	if (!(d = entity->GetDesc()))
 		return;
 
-	// 길드이름 버그 수정 코드
 	LPCHARACTER ch = (LPCHARACTER) entity;
 	ch->SendGuildName(GetGuild());
-	// 길드이름 버그 수정 코드
 
 	TPacketGCCharacterAdd pack;
 
@@ -909,7 +895,7 @@ void CHARACTER::EncodeInsertPacket(LPENTITY entity)
 			strlcpy(addPacket.name, GetName(), sizeof(addPacket.name));
 
 			if (GetGuild() != NULL)
-			{	
+			{
 				addPacket.dwGuildID = GetGuild()->GetID();
 			}
 			else
@@ -1247,7 +1233,6 @@ void CHARACTER::CreatePlayerProto(TPlayerTable & tab)
 	tab.horse = GetHorseData();
 }
 
-
 void CHARACTER::SaveReal()
 {
 	if (m_bSkipSave)
@@ -1280,7 +1265,6 @@ void CHARACTER::SaveReal()
 
 void CHARACTER::FlushDelayedSaveItem()
 {
-	// 저장 안된 소지품을 전부 저장시킨다.
 	LPITEM item;
 
 	for (int i = 0; i < INVENTORY_AND_EQUIP_SLOT_MAX; ++i)
@@ -1348,13 +1332,11 @@ void CHARACTER::Disconnect(const char * c_pszReason)
 	if (GetParty())
 		GetParty()->Unlink(this);
 
-	// 죽었을 때 접속끊으면 경험치 줄게 하기
 	if (IsStun() || IsDead())
 	{
 		DeathPenalty(0);
 		PointChange(POINT_HP, 50 - GetHP());
 	}
-
 
 	if (!CHARACTER_MANAGER::instance().FlushDelayedSave(this))
 	{
@@ -1366,7 +1348,7 @@ void CHARACTER::Disconnect(const char * c_pszReason)
 	SaveAffect();
 	m_bIsLoadedAffect = false;
 
-	m_bSkipSave = true; // 이 이후에는 더이상 저장하면 안된다.
+	m_bSkipSave = true;
 
 	quest::CQuestManager::instance().DisconnectPC(this);
 
@@ -1401,7 +1383,6 @@ void CHARACTER::Disconnect(const char * c_pszReason)
 	if (GetDesc())
 	{
 		GetDesc()->BindCharacter(NULL);
-//		BindDesc(NULL);
 	}
 
 	CXTrapManager::instance().DestroyClientSession(this);
@@ -1477,7 +1458,7 @@ bool CHARACTER::Show(long lMapIndex, long x, long y, long z, bool bShowSpawnMoti
 	}
 
 	REMOVE_BIT(m_bAddChrState, ADD_CHARACTER_STATE_SPAWN);
-	
+
 	SetValidComboInterval(0);
 	return true;
 }
@@ -1496,7 +1477,7 @@ static bool		gs_bgmVolEnable = false;
 
 void CHARACTER_SetBGMVolumeEnable()
 {
-	gs_bgmVolEnable = true;	
+	gs_bgmVolEnable = true;
 	sys_log(0, "bgm_info.set_bgm_volume_enable");
 }
 
@@ -1658,7 +1639,11 @@ bool CHARACTER::ChangeSex()
 		case MAIN_RACE_SHAMAN_W:
 			m_points.job = MAIN_RACE_SHAMAN_M;
 			break;
-
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case MAIN_RACE_WOLFMAN_M:
+			m_points.job = MAIN_RACE_WOLFMAN_M;
+			break;
+#endif
 		default:
 			sys_err("CHANGE_SEX: %s unknown race %d", GetName(), src_race);
 			return false;
@@ -1729,6 +1714,7 @@ void CHARACTER::SetPlayerProto(const TPlayerTable * t)
 	else
 		SetGMLevel();
 
+
 	m_bCharType = CHAR_TYPE_PC;
 
 	m_dwPlayerID = t->id;
@@ -1738,7 +1724,7 @@ void CHARACTER::SetPlayerProto(const TPlayerTable * t)
 
 	m_points.voice = t->voice;
 
-	m_points.skill_group = t->skill_group; 
+	m_points.skill_group = t->skill_group;
 
 	m_pointsInstant.bBasePart = t->part_base;
 	SetPart(PART_HAIR, t->parts[PART_HAIR]);
@@ -1798,7 +1784,6 @@ void CHARACTER::SetPlayerProto(const TPlayerTable * t)
 	SetSP(t->sp);
 	SetStamina(t->stamina);
 
-	//GM일때 보호모드  
 	if (!test_server)
 	{
 		if (GetGMLevel() > GM_LOW_WIZARD)
@@ -1824,14 +1809,13 @@ void CHARACTER::SetPlayerProto(const TPlayerTable * t)
 
 	sys_log(0, "PLAYER_LOAD: %s PREMIUM %d %d, LOGGOFF_INTERVAL %u PTR: %p", t->name, m_aiPremiumTimes[0], m_aiPremiumTimes[1], t->logoff_interval, this);
 
-	if (GetGMLevel() != GM_PLAYER) 
+	if (GetGMLevel() != GM_PLAYER)
 	{
 		LogManager::instance().CharLog(this, GetGMLevel(), "GM_LOGIN", "");
 		sys_log(0, "GM_LOGIN(gmlevel=%d, name=%s(%d), pos=(%d, %d)", GetGMLevel(), GetName(), GetPlayerID(), GetX(), GetY());
 	}
 
 #ifdef __PET_SYSTEM__
-	// NOTE: 일단 캐릭터가 PC인 경우에만 PetSystem을 갖도록 함. 유럽 머신당 메모리 사용률때문에 NPC까지 하긴 좀..
 	if (m_petSystem)
 	{
 		m_petSystem->Destroy();
@@ -1854,7 +1838,7 @@ EVENTFUNC(kill_ore_load_event)
 	LPCHARACTER	ch = info->ch;
 	if (ch == NULL) { // <Factor>
 		return 0;
-	}	
+	}
 
 	ch->m_pkMiningEvent = NULL;
 	M2_DESTROY_CHARACTER(ch);
@@ -1918,9 +1902,8 @@ void CHARACTER::SetProto(const CMob * pkMob)
 		else
 			SetPoint(POINT_DEF_GRADE_BONUS, 15);
 
-		//산타용
+
 		//m_dwPlayStartTime = get_dword_time() + 10 * 60 * 1000;
-		//신선자 노해 
 		m_dwPlayStartTime = get_dword_time() + 30 * 1000;
 		if (test_server)
 			m_dwPlayStartTime = get_dword_time() + 30 * 1000;
@@ -1941,7 +1924,7 @@ void CHARACTER::SetProto(const CMob * pkMob)
 		m_stateBattle.Set(this, &CHARACTER::BeginStateEmpty, &CHARACTER::StateFlagBase, &CHARACTER::EndStateEmpty);
 	}
 
-	if (m_bCharType == CHAR_TYPE_HORSE || 
+	if (m_bCharType == CHAR_TYPE_HORSE ||
 			GetRaceNum() == 20101 ||
 			GetRaceNum() == 20102 ||
 			GetRaceNum() == 20103 ||
@@ -1995,7 +1978,7 @@ float CHARACTER::GetMobDamageMultiply() const
 	float fDamMultiply = GetMobTable().fDamMultiply;
 
 	if (IsBerserk())
-		fDamMultiply = fDamMultiply * 2.0f; // BALANCE: 광폭화 시 두배
+		fDamMultiply = fDamMultiply * 2.0f;
 
 	return fDamMultiply;
 }
@@ -2028,7 +2011,7 @@ DWORD CHARACTER::GetMonsterDrainSPPoint() const
 BYTE CHARACTER::GetMobRank() const
 {
 	if (!m_pkMobData)
-		return MOB_RANK_KNIGHT;	// PC일 경우 KNIGHT급
+		return MOB_RANK_KNIGHT;
 
 	return m_pkMobData->m_table.bRank;
 }
@@ -2042,14 +2025,14 @@ BYTE CHARACTER::GetMobSize() const
 }
 
 WORD CHARACTER::GetMobAttackRange() const
-{ 
+{
 	switch (GetMobBattleType())
 	{
 		case BATTLE_TYPE_RANGE:
 		case BATTLE_TYPE_MAGIC:
-			return m_pkMobData->m_table.wAttackRange + GetPoint(POINT_BOW_DISTANCE);  
+			return m_pkMobData->m_table.wAttackRange + GetPoint(POINT_BOW_DISTANCE);
 		default:
-			return m_pkMobData->m_table.wAttackRange; 
+			return m_pkMobData->m_table.wAttackRange;
 	}
 }
 
@@ -2079,7 +2062,7 @@ void CHARACTER::ComputeBattlePoints()
 
 		SetPoint(POINT_ATT_GRADE, iAtt);
 		SetPoint(POINT_DEF_GRADE, iDef);
-		SetPoint(POINT_MAGIC_ATT_GRADE, GetPoint(POINT_ATT_GRADE)); 
+		SetPoint(POINT_MAGIC_ATT_GRADE, GetPoint(POINT_ATT_GRADE));
 		SetPoint(POINT_MAGIC_DEF_GRADE, GetPoint(POINT_DEF_GRADE));
 	}
 	else if (IsPC())
@@ -2090,9 +2073,8 @@ void CHARACTER::ComputeBattlePoints()
 		SetPoint(POINT_MAGIC_ATT_GRADE, GetPoint(POINT_ATT_GRADE));
 		SetPoint(POINT_MAGIC_DEF_GRADE, GetPoint(POINT_DEF_GRADE));
 
-		//
-		// 기본 ATK = 2lev + 2str, 직업에 마다 2str은 바뀔 수 있음
-		//
+		// ATK = 2lev + 2str
+
 		int iAtk = GetLevel() * 2;
 		int iStatAtk = 0;
 
@@ -2110,10 +2092,8 @@ void CHARACTER::ComputeBattlePoints()
 			case JOB_SHAMAN:
 				iStatAtk = (4 * GetPoint(POINT_ST) + 2 * GetPoint(POINT_IQ)) / 3;
 				break;
-
 #ifdef ENABLE_WOLFMAN_CHARACTER
 			case JOB_WOLFMAN:
-				// TODO: 수인족 공격력 공식 기획자에게 요청
 				iStatAtk = (2 * GetPoint(POINT_ST));
 				break;
 #endif
@@ -2123,14 +2103,11 @@ void CHARACTER::ComputeBattlePoints()
 				break;
 		}
 
-		// 말을 타고 있고, 스탯으로 인한 공격력이 ST*2 보다 낮으면 ST*2로 한다.
-		// 스탯을 잘못 찍은 사람 공격력이 더 낮지 않게 하기 위해서다.
 		if (GetMountVnum() && iStatAtk < 2 * GetPoint(POINT_ST))
 			iStatAtk = (2 * GetPoint(POINT_ST));
 
 		iAtk += iStatAtk;
 
-		// 승마(말) : 검수라 데미지 감소  
 		if (GetMountVnum())
 		{
 			if (GetJob() == JOB_SURA && GetSkillGroup() == 1)
@@ -2142,16 +2119,15 @@ void CHARACTER::ComputeBattlePoints()
 				iAtk += (iAtk * GetHorseLevel()) / 30;
 			}
 		}
-		
-		//
+
 		// ATK Setting
-		//
+
 		iAtk += GetPoint(POINT_ATT_GRADE_BONUS);
 
 		PointChange(POINT_ATT_GRADE, iAtk);
 
 		// DEF = LEV + CON + ARMOR
-		int iShowDef = GetLevel() + GetPoint(POINT_HT); // For Ymir(천마)
+		int iShowDef = GetLevel() + GetPoint(POINT_HT);
 		int iDef = GetLevel() + (int) (GetPoint(POINT_HT) / 1.25); // For Other
 		int iArmor = 0;
 
@@ -2167,7 +2143,6 @@ void CHARACTER::ComputeBattlePoints()
 				}
 			}
 
-		// 말 타고 있을 때 방어력이 말의 기준 방어력보다 낮으면 기준 방어력으로 설정
 		if( true == IsHorseRiding() )
 		{
 			if (iArmor < GetHorseArmor())
@@ -2208,7 +2183,7 @@ void CHARACTER::ComputeBattlePoints()
 
 		SetPoint(POINT_ATT_GRADE, iAtt);
 		SetPoint(POINT_DEF_GRADE, iDef);
-		SetPoint(POINT_MAGIC_ATT_GRADE, GetPoint(POINT_ATT_GRADE)); 
+		SetPoint(POINT_MAGIC_ATT_GRADE, GetPoint(POINT_ATT_GRADE));
 		SetPoint(POINT_MAGIC_DEF_GRADE, GetPoint(POINT_DEF_GRADE));
 	}
 }
@@ -2262,18 +2237,14 @@ void CHARACTER::ComputePoints()
 
 	SetPoint(POINT_HP_RECOVERY, lHPRecovery);
 	SetPoint(POINT_SP_RECOVERY, lSPRecovery);
-
-	// PC_BANG_ITEM_ADD
 	SetPoint(POINT_PC_BANG_EXP_BONUS, 0);
 	SetPoint(POINT_PC_BANG_DROP_BONUS, 0);
-	// END_PC_BANG_ITEM_ADD
 
 	int iMaxHP, iMaxSP;
 	int iMaxStamina;
 
 	if (IsPC())
 	{
-		// 최대 생명력/정신력
 		iMaxHP = JobInitialPoints[GetJob()].max_hp + m_points.iRandomHP + GetPoint(POINT_HT) * JobInitialPoints[GetJob()].hp_per_ht;
 		iMaxSP = JobInitialPoints[GetJob()].max_sp + m_points.iRandomSP + GetPoint(POINT_IQ) * JobInitialPoints[GetJob()].sp_per_iq;
 		iMaxStamina = JobInitialPoints[GetJob()].max_stamina + GetPoint(POINT_HT) * JobInitialPoints[GetJob()].stamina_per_con;
@@ -2289,7 +2260,6 @@ void CHARACTER::ComputePoints()
 			}
 		}
 
-		// 기본 값들
 		SetPoint(POINT_MOV_SPEED,	100);
 		SetPoint(POINT_ATT_SPEED,	100);
 		PointChange(POINT_ATT_SPEED, GetPoint(POINT_PARTY_HASTE_BONUS));
@@ -2308,10 +2278,7 @@ void CHARACTER::ComputePoints()
 
 	if (IsPC())
 	{
-		// 말 타고 있을 때는 기본 스탯이 말의 기준 스탯보다 낮으면 높게 만든다.
-		// 따라서 말의 기준 스탯이 무사 기준이므로, 수라/무당은 전체 스탯 합이
-		// 대채적으로 더 올라가게 될 것이다.
-		if (GetMountVnum()) 
+		if (GetMountVnum())
 		{
 			if (GetHorseST() > GetPoint(POINT_ST))
 				PointChange(POINT_ST, GetHorseST() - GetPoint(POINT_ST));
@@ -2330,17 +2297,16 @@ void CHARACTER::ComputePoints()
 
 	ComputeBattlePoints();
 
-	// 기본 HP/SP 설정
 	if (iMaxHP != GetMaxHP())
 	{
-		SetRealPoint(POINT_MAX_HP, iMaxHP); // 기본HP를 RealPoint에 저장해 놓는다.
+		SetRealPoint(POINT_MAX_HP, iMaxHP);
 	}
 
 	PointChange(POINT_MAX_HP, 0);
 
 	if (iMaxSP != GetMaxSP())
 	{
-		SetRealPoint(POINT_MAX_SP, iMaxSP); // 기본SP를 RealPoint에 저장해 놓는다.
+		SetRealPoint(POINT_MAX_SP, iMaxSP);
 	}
 
 	PointChange(POINT_MAX_SP, 0);
@@ -2400,9 +2366,6 @@ void CHARACTER::ComputePoints()
 	UpdatePacket();
 }
 
-// m_dwPlayStartTime의 단위는 milisecond다. 데이터베이스에는 분단위로 기록하기
-// 때문에 플레이시간을 계산할 때 / 60000 으로 나눠서 하는데, 그 나머지 값이 남았
-// 을 때 여기에 dwTimeRemain으로 넣어서 제대로 계산되도록 해주어야 한다.
 void CHARACTER::ResetPlayTime(DWORD dwTimeRemain)
 {
 	m_dwPlayStartTime = get_dword_time() - dwTimeRemain;
@@ -2423,16 +2386,16 @@ EVENTFUNC(recovery_event)
 
 	if (ch == NULL) { // <Factor>
 		return 0;
-	}	
+	}
 
 	if (!ch->IsPC())
 	{
-		//
-		// 몬스터 회복
-		//
 		if (ch->IsAffectFlag(AFF_POISON))
 			return PASSES_PER_SEC(MAX(1, ch->GetMobTable().bRegenCycle));
-
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		if (ch->IsAffectFlag(AFF_BLEEDING))
+			return PASSES_PER_SEC(MAX(1, ch->GetMobTable().bRegenCycle));
+#endif
 		if (2493 == ch->GetMobTable().dwVnum)
 		{
 			int regenPct = BlueDragon_GetRangeFactor("hp_regen", ch->GetHPPct());
@@ -2485,24 +2448,19 @@ EVENTFUNC(recovery_event)
 	}
 	else
 	{
-		//
-		// PC 회복
-		//
 		ch->CheckTarget();
-		//ch->UpdateSectree(); // 여기서 이걸 왜하지?
 		ch->UpdateKillerMode();
 
 		if (ch->IsAffectFlag(AFF_POISON) == true)
 		{
-			// 중독인 경우 자동회복 금지
-			// 파법술인 경우 자동회복 금지
 			return 3;
 		}
-
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		if (ch->IsAffectFlag(AFF_BLEEDING))
+			return 3;
+#endif
 		int iSec = (get_dword_time() - ch->GetLastMoveTime()) / 3000;
 
-		// SP 회복 루틴.
-		// 왜 이걸로 해서 함수로 빼놨는가 ?!
 		ch->DistributeSP(ch);
 
 		if (ch->GetMaxHP() <= ch->GetHP())
@@ -2510,12 +2468,12 @@ EVENTFUNC(recovery_event)
 
 		int iPercent = 0;
 		int iAmount = 0;
-		
+
 		{
 			iPercent = aiRecoveryPercents[MIN(9, iSec)];
 			iAmount = 15 + (ch->GetMaxHP() * iPercent) / 100;
 		}
-		
+
 		iAmount += (iAmount * ch->GetPoint(POINT_HP_REGEN)) / 100;
 
 		sys_log(1, "RECOVERY_EVENT: %s %d HP_REGEN %d HP +%d", ch->GetName(), iPercent, ch->GetPoint(POINT_HP_REGEN), iAmount);
@@ -2533,7 +2491,7 @@ void CHARACTER::StartRecoveryEvent()
 	if (IsDead() || IsStun())
 		return;
 
-	if (IsNPC() && GetHP() >= GetMaxHP()) // 몬스터는 체력이 다 차있으면 시작 안한다.
+	if (IsNPC() && GetHP() >= GetMaxHP())
 		return;
 
 	char_event_info* info = AllocEventInfo<char_event_info>();
@@ -2583,7 +2541,6 @@ void CHARACTER::SetRotation(float fRot)
 	m_pointsInstant.fRot = fRot;
 }
 
-// x, y 방향으로 보고 선다.
 void CHARACTER::SetRotationToXY(long x, long y)
 {
 	SetRotation(GetDegreeFromPositionXY(GetX(), GetY(), x, y));
@@ -2599,18 +2556,12 @@ bool CHARACTER::CanMove() const
 	if (CannotMoveByAffect())
 		return false;
 
-	if (GetMyShop())	// 상점 연 상태에서는 움직일 수 없음
+	if (GetMyShop())
 		return false;
 
-	// 0.2초 전이라면 움직일 수 없다.
-	/*
-	   if (get_float_time() - m_fSyncTime < 0.2f)
-	   return false;
-	 */
 	return true;
 }
 
-// 무조건 x, y 위치로 이동 시킨다.
 bool CHARACTER::Sync(long x, long y)
 {
 	if (!GetSectree())
@@ -2639,7 +2590,6 @@ bool CHARACTER::Sync(long x, long y)
 
 	if (GetDungeon())
 	{
-		// 던젼용 이벤트 속성 변화
 		int iLastEventAttr = m_iEventAttr;
 		m_iEventAttr = new_tree->GetEventAttribute(x, y);
 
@@ -2692,8 +2642,6 @@ void CHARACTER::Stop()
 
 bool CHARACTER::Goto(long x, long y)
 {
-	// TODO 거리체크 필요
-	// 같은 위치면 이동할 필요 없음 (자동 성공)
 	if (GetX() == x && GetY() == y)
 		return false;
 
@@ -2714,14 +2662,12 @@ bool CHARACTER::Goto(long x, long y)
 
 	m_dwStateDuration = 4;
 
-	
 	if (!IsState(m_stateMove))
 	{
 		MonsterLog("[MOVE] %s", GetVictim() ? "대상추적" : "그냥이동");
 
 		if (GetVictim())
 		{
-			//MonsterChat(MONSTER_CHAT_CHASE);
 			MonsterChat(MONSTER_CHAT_ATTACK);
 		}
 	}
@@ -2730,7 +2676,6 @@ bool CHARACTER::Goto(long x, long y)
 
 	return true;
 }
-
 
 DWORD CHARACTER::GetMotionMode() const
 {
@@ -2768,6 +2713,11 @@ DWORD CHARACTER::GetMotionMode() const
 			case WEAPON_FAN:
 				dwMode = MOTION_MODE_FAN;
 				break;
+#ifdef ENABLE_WOLFMAN_CHARACTER
+			case WEAPON_CLAW:
+				dwMode = MOTION_MODE_CLAW;
+				break;
+#endif
 		}
 	}
 	return dwMode;
@@ -2823,14 +2773,8 @@ void CHARACTER::CalculateMoveDuration()
 	m_dwMoveStartTime = get_dword_time();
 }
 
-// x y 위치로 이동 한다. (이동할 수 있는 가 없는 가를 확인 하고 Sync 메소드로 실제 이동 한다)
-// 서버는 char의 x, y 값을 바로 바꾸지만,
-// 클라에서는 이전 위치에서 바꾼 x, y까지 interpolation한다.
-// 걷거나 뛰는 것은 char의 m_bNowWalking에 달려있다.
-// Warp를 의도한 것이라면 Show를 사용할 것.
 bool CHARACTER::Move(long x, long y)
 {
-	// 같은 위치면 이동할 필요 없음 (자동 성공)
 	if (GetX() == x && GetY() == y)
 		return true;
 
@@ -2880,7 +2824,7 @@ int CHARACTER::GetPolymorphPoint(BYTE type) const
 			switch (type)
 			{
 				case POINT_ST:
-					if (GetJob() == JOB_SHAMAN || GetJob() == JOB_SURA && GetSkillGroup() == 2)
+					if ((GetJob() == JOB_SHAMAN) || ((GetJob() == JOB_SURA) && (GetSkillGroup() == 2)))
 						return pMob->m_table.bStr * iPower / 100 + GetPoint(POINT_IQ);
 					return pMob->m_table.bStr * iPower / 100 + GetPoint(POINT_ST);
 
@@ -2992,7 +2936,6 @@ void CHARACTER::SetPoint(BYTE type, int val)
 
 	m_pointsInstant.points[type] = val;
 
-	// 아직 이동이 다 안끝났다면 이동 시간 계산을 다시 해야 한다.
 	if (type == POINT_MOV_SPEED && get_dword_time() < m_dwMoveStartTime + m_dwMoveDuration)
 	{
 		CalculateMoveDuration();
@@ -3037,9 +2980,7 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 			val = GetLevel();
 
 			sys_log(0, "LEVELUP: %s %d NEXT EXP %d", GetName(), GetLevel(), GetNextExp());
-
 #ifdef ENABLE_WOLFMAN_CHARACTER
-			// WOLFMAN 수인족 특수처리 (수인족은 직군이 하나이므로, 5레벨이 되면 무조건 1번 직군으로 설정함. 하드코딩 ㅈㅅ)
 			if (GetJob() == JOB_WOLFMAN)
 			{
 				if (5 <= val)
@@ -3047,7 +2988,7 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 				else
 					SetSkillGroup(0);
 			}
-#endif		
+#endif
 			PointChange(POINT_NEXT_EXP,	GetNextExp(), false);
 
 			if (amount)
@@ -3070,7 +3011,7 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 
 		case POINT_NEXT_EXP:
 			val = GetNextExp();
-			bAmount = false;	// 무조건 bAmount는 false 여야 한다.
+			bAmount = false;
 			break;
 
 		case POINT_EXP:
@@ -3078,27 +3019,25 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 				DWORD exp = GetExp();
 				DWORD next_exp = GetNextExp();
 
-				// 청소년보호
 				if (LC_IsNewCIBN())
 				{
 					if (IsOverTime(OT_NONE))
 					{
-						dev_log(LOG_DEB0, "<EXP_LOG> %s = NONE", GetName());
+						sys_log(1, "<EXP_LOG> %s = NONE", GetName());
 					}
 					else if (IsOverTime(OT_3HOUR))
 					{
 						amount = (amount / 2);
-						dev_log(LOG_DEB0, "<EXP_LOG> %s = 3HOUR", GetName());
+						sys_log(1, "<EXP_LOG> %s = 3HOUR", GetName());
 					}
 					else if (IsOverTime(OT_5HOUR))
 					{
 						amount = 0;
-						dev_log(LOG_DEB0, "<EXP_LOG> %s = 5HOUR", GetName());
+						sys_log(1, "<EXP_LOG> %s = 5HOUR", GetName());
 					}
 				}
 
-				// exp가 0 이하로 가지 않도록 한다
-				if (amount < 0 && exp < -amount)
+				if ((amount < 0) && (exp < (DWORD)(-amount)))
 				{
 					sys_log(1, "%s AMOUNT < 0 %d, CUR EXP: %d", GetName(), -amount, exp);
 					amount = -exp;
@@ -3116,7 +3055,6 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 
 					DWORD iExpBalance = 0;
 
-					// 레벨 업!
 					if (exp + amount >= next_exp)
 					{
 						iExpBalance = (exp + amount) - next_exp;
@@ -3134,7 +3072,6 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 					DWORD q = DWORD(next_exp / 4.0f);
 					int iLevStep = GetRealPoint(POINT_LEVEL_STEP);
 
-					// iLevStep이 4 이상이면 레벨이 올랐어야 하므로 여기에 올 수 없는 값이다.
 					if (iLevStep >= 4)
 					{
 						sys_err("%s LEVEL_STEP bigger than 4! (%d)", GetName(), iLevStep);
@@ -3271,19 +3208,18 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 				amount = MIN(GetMaxStamina() - GetStamina(), amount);
 				SetStamina(GetStamina() + amount);
 				val = GetStamina();
-				
+
 				if (val == 0)
 				{
-					// Stamina가 없으니 걷자!
+					// Stamina
 					SetNowWalking(true);
 				}
 				else if (prev_val == 0)
 				{
-					// 없던 스테미나가 생겼으니 이전 모드 복귀
 					ResetWalking();
 				}
 
-				if (amount < 0 && val != 0) // 감소는 보내지않는다.
+				if (amount < 0 && val != 0)
 					return;
 			}
 			break;
@@ -3293,7 +3229,6 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 				SetPoint(type, GetPoint(type) + amount);
 
 				//SetMaxHP(GetMaxHP() + amount);
-				// 최대 생명력 = (기본 최대 생명력 + 추가) * 최대생명력%
 				int hp = GetRealPoint(POINT_MAX_HP);
 				int add_hp = MIN(3500, hp * GetPoint(POINT_MAX_HP_PCT) / 100);
 				add_hp += GetPoint(POINT_MAX_HP);
@@ -3310,7 +3245,6 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 				SetPoint(type, GetPoint(type) + amount);
 
 				//SetMaxSP(GetMaxSP() + amount);
-				// 최대 정신력 = (기본 최대 정신력 + 추가) * 최대정신력%
 				int sp = GetRealPoint(POINT_MAX_SP);
 				int add_sp = MIN(800, sp * GetPoint(POINT_MAX_SP_PCT) / 100);
 				add_sp += GetPoint(POINT_MAX_SP);
@@ -3352,22 +3286,21 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 					return;
 				}
 
-				// 청소년보호
 				if (LC_IsNewCIBN() && amount > 0)
 				{
 					if (IsOverTime(OT_NONE))
 					{
-						dev_log(LOG_DEB0, "<GOLD_LOG> %s = NONE", GetName());
+						sys_log(1, "<GOLD_LOG> %s = NONE", GetName());
 					}
 					else if (IsOverTime(OT_3HOUR))
 					{
 						amount = (amount / 2);
-						dev_log(LOG_DEB0, "<GOLD_LOG> %s = 3HOUR", GetName());
+						sys_log(1, "<GOLD_LOG> %s = 3HOUR", GetName());
 					}
 					else if (IsOverTime(OT_5HOUR))
 					{
 						amount = 0;
-						dev_log(LOG_DEB0, "<GOLD_LOG> %s = 5HOUR", GetName());
+						sys_log(1, "<GOLD_LOG> %s = 5HOUR", GetName());
 					}
 				}
 
@@ -3428,20 +3361,26 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 		case POINT_HP_RECOVERY:
 		case POINT_SP_RECOVERY:
 
-		case POINT_ATTBONUS_HUMAN:	// 42 인간에게 강함
-		case POINT_ATTBONUS_ANIMAL:	// 43 동물에게 데미지 % 증가
-		case POINT_ATTBONUS_ORC:		// 44 웅귀에게 데미지 % 증가
-		case POINT_ATTBONUS_MILGYO:	// 45 밀교에게 데미지 % 증가
-		case POINT_ATTBONUS_UNDEAD:	// 46 시체에게 데미지 % 증가
-		case POINT_ATTBONUS_DEVIL:	// 47 마귀(악마)에게 데미지 % 증가
+		case POINT_ATTBONUS_HUMAN:	// 42
+		case POINT_ATTBONUS_ANIMAL:	// 43
+		case POINT_ATTBONUS_ORC:	// 44
+		case POINT_ATTBONUS_MILGYO:	// 45
+		case POINT_ATTBONUS_UNDEAD:	// 46
+		case POINT_ATTBONUS_DEVIL:	// 47
 
 		case POINT_ATTBONUS_MONSTER:
 		case POINT_ATTBONUS_SURA:
 		case POINT_ATTBONUS_ASSASSIN:
 		case POINT_ATTBONUS_WARRIOR:
 		case POINT_ATTBONUS_SHAMAN:
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case POINT_ATTBONUS_WOLFMAN:
+#endif
 
 		case POINT_POISON_PCT:
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case POINT_BLEEDING_PCT:
+#endif
 		case POINT_STUN_PCT:
 		case POINT_SLOW_PCT:
 
@@ -3454,18 +3393,21 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 		case POINT_RESIST_PENETRATE:
 		case POINT_CURSE_PCT:
 
-		case POINT_STEAL_HP:		// 48 생명력 흡수
-		case POINT_STEAL_SP:		// 49 정신력 흡수
+		case POINT_STEAL_HP:		// 48
+		case POINT_STEAL_SP:		// 49
 
-		case POINT_MANA_BURN_PCT:	// 50 마나 번
-		case POINT_DAMAGE_SP_RECOVER:	// 51 공격당할 시 정신력 회복 확률
+		case POINT_MANA_BURN_PCT:	// 50
+		case POINT_DAMAGE_SP_RECOVER:	// 51
 		case POINT_RESIST_NORMAL_DAMAGE:
 		case POINT_RESIST_SWORD:
 		case POINT_RESIST_TWOHAND:
 		case POINT_RESIST_DAGGER:
-		case POINT_RESIST_BELL: 
-		case POINT_RESIST_FAN: 
+		case POINT_RESIST_BELL:
+		case POINT_RESIST_FAN:
 		case POINT_RESIST_BOW:
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case POINT_RESIST_CLAW:
+#endif
 		case POINT_RESIST_FIRE:
 		case POINT_RESIST_ELEC:
 		case POINT_RESIST_MAGIC:
@@ -3473,11 +3415,14 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 		case POINT_RESIST_ICE:
 		case POINT_RESIST_EARTH:
 		case POINT_RESIST_DARK:
-		case POINT_REFLECT_MELEE:	// 67 공격 반사
-		case POINT_REFLECT_CURSE:	// 68 저주 반사
-		case POINT_POISON_REDUCE:	// 69 독데미지 감소
-		case POINT_KILL_SP_RECOVER:	// 70 적 소멸시 MP 회복
-		case POINT_KILL_HP_RECOVERY:	// 75  
+		case POINT_REFLECT_MELEE:	// 67
+		case POINT_REFLECT_CURSE:	// 68
+		case POINT_POISON_REDUCE:	// 69
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case POINT_BLEEDING_REDUCE:
+#endif
+		case POINT_KILL_SP_RECOVER:	// 70
+		case POINT_KILL_HP_RECOVERY:	// 75
 		case POINT_HIT_HP_RECOVERY:
 		case POINT_HIT_SP_RECOVERY:
 		case POINT_MANASHIELD:
@@ -3486,7 +3431,7 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 		case POINT_SKILL_DAMAGE_BONUS:
 		case POINT_NORMAL_HIT_DAMAGE_BONUS:
 
-			// DEPEND_BONUS_ATTRIBUTES 
+			// DEPEND_BONUS_ATTRIBUTES
 		case POINT_SKILL_DEFEND_BONUS:
 		case POINT_NORMAL_HIT_DEFEND_BONUS:
 			SetPoint(type, GetPoint(type) + amount);
@@ -3505,6 +3450,9 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 		case POINT_RESIST_ASSASSIN :
 		case POINT_RESIST_SURA :
 		case POINT_RESIST_SHAMAN :
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case POINT_RESIST_WOLFMAN :
+#endif
 
 			SetPoint(type, GetPoint(type) + amount);
 			val = GetPoint(type);
@@ -3526,18 +3474,16 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 			val = GetPoint(type);
 			break;
 
-			// PC_BANG_ITEM_ADD		
 		case POINT_PC_BANG_EXP_BONUS :
 		case POINT_PC_BANG_DROP_BONUS :
 		case POINT_RAMADAN_CANDY_BONUS_EXP:
 			SetPoint(type, amount);
 			val = GetPoint(type);
 			break;
-			// END_PC_BANG_ITEM_ADD		
 
-		case POINT_EXP_DOUBLE_BONUS:	// 71  
-		case POINT_GOLD_DOUBLE_BONUS:	// 72  
-		case POINT_ITEM_DROP_BONUS:	// 73  
+		case POINT_EXP_DOUBLE_BONUS:	// 71
+		case POINT_GOLD_DOUBLE_BONUS:	// 72
+		case POINT_ITEM_DROP_BONUS:	// 73
 		case POINT_POTION_BONUS:	// 74
 			if (GetPoint(type) + amount > 100)
 			{
@@ -3549,20 +3495,22 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 			val = GetPoint(type);
 			break;
 
-		case POINT_IMMUNE_STUN:		// 76 
+		case POINT_IMMUNE_STUN:		// 76
 			SetPoint(type, GetPoint(type) + amount);
 			val = GetPoint(type);
 			if (val)
 			{
+				// ChatPacket(CHAT_TYPE_INFO, "IMMUNE_STUN SET_BIT type(%u) amount(%d)", type, amount);
 				SET_BIT(m_pointsInstant.dwImmuneFlag, IMMUNE_STUN);
 			}
 			else
 			{
+				// ChatPacket(CHAT_TYPE_INFO, "IMMUNE_STUN REMOVE_BIT type(%u) amount(%d)", type, amount);
 				REMOVE_BIT(m_pointsInstant.dwImmuneFlag, IMMUNE_STUN);
 			}
 			break;
 
-		case POINT_IMMUNE_SLOW:		// 77  
+		case POINT_IMMUNE_SLOW:		// 77
 			SetPoint(type, GetPoint(type) + amount);
 			val = GetPoint(type);
 			if (val)
@@ -3575,7 +3523,7 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 			}
 			break;
 
-		case POINT_IMMUNE_FALL:	// 78   
+		case POINT_IMMUNE_FALL:	// 78
 			SetPoint(type, GetPoint(type) + amount);
 			val = GetPoint(type);
 			if (val)
@@ -3689,7 +3637,7 @@ void CHARACTER::ApplyPoint(BYTE bApplyType, int iVal)
 	switch (bApplyType)
 	{
 		case APPLY_NONE:			// 0
-			break;;
+			break;
 
 		case APPLY_CON:
 			PointChange(POINT_HT, iVal);
@@ -3697,7 +3645,7 @@ void CHARACTER::ApplyPoint(BYTE bApplyType, int iVal)
 			PointChange(POINT_MAX_STAMINA, (iVal * JobInitialPoints[GetJob()].stamina_per_con));
 			break;
 
-		case APPLY_INT: 
+		case APPLY_INT:
 			PointChange(POINT_IQ, iVal);
 			PointChange(POINT_MAX_SP, (iVal * JobInitialPoints[GetJob()].sp_per_iq));
 			break;
@@ -3705,9 +3653,8 @@ void CHARACTER::ApplyPoint(BYTE bApplyType, int iVal)
 		case APPLY_SKILL:
 			// SKILL_DAMAGE_BONUS
 			{
-				// 최상위 비트 기준으로 8비트 vnum, 9비트 add, 15비트 change
 				// 00000000 00000000 00000000 00000000
-				// ^^^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^
+
 				// vnum     ^ add       change
 				BYTE bSkillVnum = (BYTE) (((DWORD)iVal) >> 24);
 				int iAdd = iVal & 0x00800000;
@@ -3728,12 +3675,6 @@ void CHARACTER::ApplyPoint(BYTE bApplyType, int iVal)
 			// END_OF_SKILL_DAMAGE_BONUS
 			break;
 
-		// NOTE: 아이템에 의한 최대HP 보너스나 퀘스트 보상 보너스가 똑같은 방식을 사용하므로
-		// 그냥 MAX_HP만 계산하면 퀘스트 보상의 경우 문제가 생김. 사실 원래 이쪽이 합리적이기도 하고..
-		// 바꾼 공식은 현재 최대 hp와 보유 hp의 비율을 구한 뒤 바뀔 최대 hp를 기준으로 hp를 보정한다.
-		// 원래 PointChange에서 하는게 좋을것 같은데 설계 문제로 어려워서 skip..
-		// SP도 똑같이 계산한다.
-		// Mantis : 101460			~ ity ~
 		case APPLY_MAX_HP:
 		case APPLY_MAX_HP_PCT:
 			{
@@ -3762,6 +3703,9 @@ void CHARACTER::ApplyPoint(BYTE bApplyType, int iVal)
 		case APPLY_HP_REGEN:
 		case APPLY_SP_REGEN:
 		case APPLY_POISON_PCT:
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case APPLY_BLEEDING_PCT:
+#endif
 		case APPLY_STUN_PCT:
 		case APPLY_SLOW_PCT:
 		case APPLY_CRITICAL_PCT:
@@ -3774,8 +3718,11 @@ void CHARACTER::ApplyPoint(BYTE bApplyType, int iVal)
 		case APPLY_ATTBONUS_DEVIL:
 		case APPLY_ATTBONUS_WARRIOR:	// 59
 		case APPLY_ATTBONUS_ASSASSIN:	// 60
-		case APPLY_ATTBONUS_SURA:	// 61
-		case APPLY_ATTBONUS_SHAMAN:	// 62
+		case APPLY_ATTBONUS_SURA:		// 61
+		case APPLY_ATTBONUS_SHAMAN:		// 62
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case APPLY_ATTBONUS_WOLFMAN:
+#endif
 		case APPLY_ATTBONUS_MONSTER:	// 63
 		case APPLY_STEAL_HP:
 		case APPLY_STEAL_SP:
@@ -3789,6 +3736,9 @@ void CHARACTER::ApplyPoint(BYTE bApplyType, int iVal)
 		case APPLY_RESIST_BELL:
 		case APPLY_RESIST_FAN:
 		case APPLY_RESIST_BOW:
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case APPLY_RESIST_CLAW:
+#endif
 		case APPLY_RESIST_FIRE:
 		case APPLY_RESIST_ELEC:
 		case APPLY_RESIST_MAGIC:
@@ -3801,15 +3751,18 @@ void CHARACTER::ApplyPoint(BYTE bApplyType, int iVal)
 		case APPLY_ANTI_CRITICAL_PCT:
 		case APPLY_ANTI_PENETRATE_PCT:
 		case APPLY_POISON_REDUCE:
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case APPLY_BLEEDING_REDUCE:
+#endif
 		case APPLY_KILL_SP_RECOVER:
 		case APPLY_EXP_DOUBLE_BONUS:
 		case APPLY_GOLD_DOUBLE_BONUS:
 		case APPLY_ITEM_DROP_BONUS:
 		case APPLY_POTION_BONUS:
 		case APPLY_KILL_HP_RECOVER:
-		case APPLY_IMMUNE_STUN:	
-		case APPLY_IMMUNE_SLOW:	
-		case APPLY_IMMUNE_FALL:	
+		case APPLY_IMMUNE_STUN:
+		case APPLY_IMMUNE_SLOW:
+		case APPLY_IMMUNE_FALL:
 		case APPLY_BOW_DISTANCE:
 		case APPLY_ATT_GRADE_BONUS:
 		case APPLY_DEF_GRADE_BONUS:
@@ -3836,12 +3789,15 @@ void CHARACTER::ApplyPoint(BYTE bApplyType, int iVal)
 		case APPLY_RESIST_WARRIOR :
 		case APPLY_RESIST_ASSASSIN :
 		case APPLY_RESIST_SURA :
-		case APPLY_RESIST_SHAMAN :	
-		case APPLY_ENERGY:					// 82 기력
-		case APPLY_DEF_GRADE:				// 83 방어력. DEF_GRADE_BONUS는 클라에서 두배로 보여지는 의도된 버그(...)가 있다.
-		case APPLY_COSTUME_ATTR_BONUS:		// 84 코스튬 아이템에 붙은 속성치 보너스
-		case APPLY_MAGIC_ATTBONUS_PER:		// 85 마법 공격력 +x%
-		case APPLY_MELEE_MAGIC_ATTBONUS_PER:			// 86 마법 + 밀리 공격력 +x%
+		case APPLY_RESIST_SHAMAN :
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case APPLY_RESIST_WOLFMAN :
+#endif
+		case APPLY_ENERGY:					// 82
+		case APPLY_DEF_GRADE:				// 83
+		case APPLY_COSTUME_ATTR_BONUS:		// 84
+		case APPLY_MAGIC_ATTBONUS_PER:		// 85
+		case APPLY_MELEE_MAGIC_ATTBONUS_PER:// 86
 			PointChange(aApplyInfo[bApplyType].bPointType, iVal);
 			break;
 
@@ -3883,7 +3839,7 @@ EVENTFUNC(save_event)
 
 	if (ch == NULL) { // <Factor>
 		return 0;
-	}	
+	}
 	sys_log(1, "SAVE_EVENT: %s", ch->GetName());
 	ch->Save();
 	ch->FlushDelayedSaveItem();
@@ -3926,7 +3882,6 @@ void CHARACTER::MonsterLog(const char* format, ...)
 	else
 		len += len2;
 
-	// \0 문자 포함
 	++len;
 
 	va_end(args);
@@ -4016,9 +3971,8 @@ void CHARACTER::mining(LPCHARACTER chLoad)
 		return;
 	}
 
-	int count = number(5, 15); // 동작 횟수, 한 동작당 2초
+	int count = number(5, 15);
 
-	// 채광 동작을 보여줌
 	TPacketGCDigMotion p;
 	p.header = HEADER_GC_DIG_MOTION;
 	p.vid = GetVID();
@@ -4039,7 +3993,6 @@ void CHARACTER::fishing()
 		return;
 	}
 
-	// 못감 속성에서 낚시를 시도한다?
 	{
 		LPSECTREE_MAP pkSectreeMap = SECTREE_MANAGER::instance().GetMap(GetMapIndex());
 
@@ -4058,7 +4011,6 @@ void CHARACTER::fishing()
 
 	LPITEM rod = GetWear(WEAR_WEAPON);
 
-	// 낚시대 장착
 	if (!rod || rod->GetType() != ITEM_ROD)
 	{
 		ChatPacket(CHAT_TYPE_INFO, LC_TEXT("낚시대를 장착 하세요."));
@@ -4136,8 +4088,6 @@ void CHARACTER::SetNextStatePulse(int iNextPulse)
 		MonsterLog("다음상태로어서가자");
 }
 
-
-// 캐릭터 인스턴스 업데이트 함수.
 void CHARACTER::UpdateCharacter(DWORD dwPulse)
 {
 	CFSM::Update();
@@ -4176,7 +4126,7 @@ WORD CHARACTER::GetOriginalPart(BYTE bPartPos) const
 	switch (bPartPos)
 	{
 		case PART_MAIN:
-			if (!IsPC()) // PC가 아닌 경우 현재 파트를 그대로 리턴
+			if (!IsPC())
 				return GetPart(PART_MAIN);
 			else
 				return m_pointsInstant.bBasePart;
@@ -4217,7 +4167,6 @@ bool CHARACTER::SetSyncOwner(LPCHARACTER ch, bool bRemoveFromList)
 		if (m_pkChrSyncOwner)
 			sys_log(1, "SyncRelease %s %p from %s", GetName(), this, m_pkChrSyncOwner->GetName());
 
-		// 리스트에서 제거하지 않더라도 포인터는 NULL로 셋팅되어야 한다.
 		m_pkChrSyncOwner = NULL;
 	}
 	else
@@ -4225,12 +4174,10 @@ bool CHARACTER::SetSyncOwner(LPCHARACTER ch, bool bRemoveFromList)
 		if (!IsSyncOwner(ch))
 			return false;
 
-		// 거리가 200 이상이면 SyncOwner가 될 수 없다.
 		if (DISTANCE_APPROX(GetX() - ch->GetX(), GetY() - ch->GetY()) > 250)
 		{
 			sys_log(1, "SetSyncOwner distance over than 250 %s %s", GetName(), ch->GetName());
 
-			// SyncOwner일 경우 Owner로 표시한다.
 			if (m_pkChrSyncOwner == ch)
 				return true;
 
@@ -4248,7 +4195,6 @@ bool CHARACTER::SetSyncOwner(LPCHARACTER ch, bool bRemoveFromList)
 			m_pkChrSyncOwner = ch;
 			m_pkChrSyncOwner->m_kLst_pkChrSyncOwned.push_back(this);
 
-			// SyncOwner가 바뀌면 LastSyncTime을 초기화한다.
 			static const timeval zero_tv = {0, 0};
 			SetLastSyncTime(zero_tv);
 
@@ -4258,9 +4204,6 @@ bool CHARACTER::SetSyncOwner(LPCHARACTER ch, bool bRemoveFromList)
 		m_fSyncTime = get_float_time();
 	}
 
-	// TODO: Sync Owner가 같더라도 계속 패킷을 보내고 있으므로,
-	//       동기화 된 시간이 3초 이상 지났을 때 풀어주는 패킷을
-	//       보내는 방식으로 하면 패킷을 줄일 수 있다.
 	TPacketGCOwnership pack;
 
 	pack.bHeader	= HEADER_GC_OWNERSHIP;
@@ -4276,7 +4219,7 @@ struct FuncClearSync
 	void operator () (LPCHARACTER ch)
 	{
 		assert(ch != NULL);
-		ch->SetSyncOwner(NULL, false);	// false 플래그로 해야 for_each 가 제대로 돈다.
+		ch->SetSyncOwner(NULL, false);
 	}
 };
 
@@ -4284,7 +4227,6 @@ void CHARACTER::ClearSync()
 {
 	SetSyncOwner(NULL);
 
-	// 아래 for_each에서 나를 m_pkChrSyncOwner로 가진 자들의 포인터를 NULL로 한다.
 	std::for_each(m_kLst_pkChrSyncOwned.begin(), m_kLst_pkChrSyncOwned.end(), FuncClearSync());
 	m_kLst_pkChrSyncOwned.clear();
 }
@@ -4294,8 +4236,6 @@ bool CHARACTER::IsSyncOwner(LPCHARACTER ch) const
 	if (m_pkChrSyncOwner == ch)
 		return true;
 
-	// 마지막으로 동기화 된 시간이 3초 이상 지났다면 소유권이 아무에게도
-	// 없다. 따라서 아무나 SyncOwner이므로 true 리턴
 	if (get_float_time() - m_fSyncTime >= 3.0f)
 		return true;
 
@@ -4312,8 +4252,6 @@ void CHARACTER::SetParty(LPPARTY pkParty)
 
 	sys_log(1, "PARTY set to %p", get_pointer(pkParty));
 
-	//if (m_pkDungeon && IsPC())
-	//SetDungeon(NULL);
 	m_pkParty = pkParty;
 
 	if (IsPC())
@@ -4328,13 +4266,12 @@ void CHARACTER::SetParty(LPPARTY pkParty)
 }
 
 // PARTY_JOIN_BUG_FIX
-/// 파티 가입 event 정보
 EVENTINFO(TPartyJoinEventInfo)
 {
-	DWORD	dwGuestPID;		///< 파티에 참여할 캐릭터의 PID
-	DWORD	dwLeaderPID;		///< 파티 리더의 PID
+	DWORD	dwGuestPID;
+	DWORD	dwLeaderPID;
 
-	TPartyJoinEventInfo() 
+	TPartyJoinEventInfo()
 	: dwGuestPID( 0 )
 	, dwLeaderPID( 0 )
 	{
@@ -4375,7 +4312,7 @@ bool CHARACTER::RequestToParty(LPCHARACTER leader)
 	}
 
 	if (m_pkPartyRequestEvent)
-		return false; 
+		return false;
 
 	if (!IsPC() || !leader->IsPC())
 		return false;
@@ -4399,15 +4336,15 @@ bool CHARACTER::RequestToParty(LPCHARACTER leader)
 			return false;
 
 		case PERR_DUNGEON:
-			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<파티> 던전 안에서는 파티 초대를 할 수 없습니다.")); 
+			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<파티> 던전 안에서는 파티 초대를 할 수 없습니다."));
 			return false;
 
 		case PERR_OBSERVER:
-			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<파티> 관전 모드에선 파티 초대를 할 수 없습니다.")); 
+			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<파티> 관전 모드에선 파티 초대를 할 수 없습니다."));
 			return false;
 
 		case PERR_LVBOUNDARY:
-			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<파티> -30 ~ +30 레벨 이내의 상대방만 초대할 수 있습니다.")); 
+			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<파티> -30 ~ +30 레벨 이내의 상대방만 초대할 수 있습니다."));
 			return false;
 
 		case PERR_LOWLEVEL:
@@ -4415,18 +4352,18 @@ bool CHARACTER::RequestToParty(LPCHARACTER leader)
 			return false;
 
 		case PERR_HILEVEL:
-			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<파티> 파티내 최저 레벨 보다 30레벨이 높아 초대할 수 없습니다.")); 
+			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<파티> 파티내 최저 레벨 보다 30레벨이 높아 초대할 수 없습니다."));
 			return false;
 
-		case PERR_ALREADYJOIN: 	
+		case PERR_ALREADYJOIN:
 			return false;
 
 		case PERR_PARTYISFULL:
-			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<파티> 더 이상 파티원을 초대할 수 없습니다.")); 
+			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<파티> 더 이상 파티원을 초대할 수 없습니다."));
 			return false;
 
 		default:
-			sys_err("Do not process party join error(%d)", errcode); 
+			sys_err("Do not process party join error(%d)", errcode);
 			return false;
 	}
 
@@ -4493,13 +4430,13 @@ void CHARACTER::AcceptToParty(LPCHARACTER member)
 
 	if (!GetParty())
 		member->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("상대방이 파티에 속해있지 않습니다."));
-	else 
+	else
 	{
 		if (GetPlayerID() != GetParty()->GetLeaderPID())
 			return;
 
 		PartyJoinErrCode errcode = IsPartyJoinableCondition(this, member);
-		switch (errcode) 
+		switch (errcode)
 		{
 			case PERR_NONE: 		member->PartyJoin(this); return;
 			case PERR_SERVER:		member->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("<파티> 서버 문제로 파티 관련 처리를 할 수 없습니다.")); break;
@@ -4521,10 +4458,6 @@ void CHARACTER::AcceptToParty(LPCHARACTER member)
 	member->ChatPacket(CHAT_TYPE_COMMAND, "PartyRequestDenied");
 }
 
-/**
- * 파티 초대 event callback 함수.
- * event 가 발동하면 초대 거절로 처리한다.
- */
 EVENTFUNC(party_invite_event)
 {
 	TPartyJoinEventInfo * pInfo = dynamic_cast<TPartyJoinEventInfo *>(  event->info );
@@ -4610,19 +4543,12 @@ void CHARACTER::PartyInvite(LPCHARACTER pchInvitee)
 	if (m_PartyInviteEventMap.end() != m_PartyInviteEventMap.find(pchInvitee->GetPlayerID()))
 		return;
 
-	//
-	// EventMap 에 이벤트 추가
-	// 
 	TPartyJoinEventInfo* info = AllocEventInfo<TPartyJoinEventInfo>();
 
 	info->dwGuestPID = pchInvitee->GetPlayerID();
 	info->dwLeaderPID = GetPlayerID();
 
 	m_PartyInviteEventMap.insert(EventMap::value_type(pchInvitee->GetPlayerID(), event_create(party_invite_event, info, PASSES_PER_SEC(10))));
-
-	//
-	// 초대 받는 character 에게 초대 패킷 전송
-	// 
 
 	TPacketGCPartyInvite p;
 	p.header = HEADER_GC_PARTY_INVITE;
@@ -4693,10 +4619,6 @@ void CHARACTER::PartyInviteAccept(LPCHARACTER pchInvitee)
 			sys_err("ignore party join error(%d)", errcode);
 			return;
 	}
-
-	//
-	// 파티 가입 처리
-	// 
 
 	if (GetParty())
 		pchInvitee->PartyJoin(this);
@@ -4884,13 +4806,7 @@ void CHARACTER::OnMove(bool bIsAttack)
 		{
 			ClearAffectedEunhyung();
 		}
-
-		/*if (IsAffectFlag(AFF_JEONSIN))
-		  RemoveAffect(SKILL_JEONSINBANGEO);*/
 	}
-
-	/*if (IsAffectFlag(AFF_GUNGON))
-	  RemoveAffect(SKILL_GUNGON);*/
 
 	// MINING
 	mining_cancel();
@@ -4908,17 +4824,14 @@ void CHARACTER::OnClick(LPCHARACTER pkChrCauser)
 	DWORD vid = GetVID();
 	sys_log(0, "OnClick %s[vnum %d ServerUniqueID %d, pid %d] by %s", GetName(), GetRaceNum(), vid, GetPlayerID(), pkChrCauser->GetName());
 
-	// 상점을 연상태로 퀘스트를 진행할 수 없다.
 	{
-		// 단, 자신은 자신의 상점을 클릭할 수 있다.
-		if (pkChrCauser->GetMyShop() && pkChrCauser != this) 
+		if (pkChrCauser->GetMyShop() && pkChrCauser != this)
 		{
 			sys_err("OnClick Fail (%s->%s) - pc has shop", pkChrCauser->GetName(), GetName());
 			return;
 		}
 	}
 
-	// 교환중일때 퀘스트를 진행할 수 없다.
 	{
 		if (pkChrCauser->GetExchange())
 		{
@@ -4929,16 +4842,14 @@ void CHARACTER::OnClick(LPCHARACTER pkChrCauser)
 
 	if (IsPC())
 	{
-		// 타겟으로 설정된 경우는 PC에 의한 클릭도 퀘스트로 처리하도록 합니다.
 		if (!CTargetManager::instance().GetTargetInfo(pkChrCauser->GetPlayerID(), TARGET_TYPE_VID, GetVID()))
 		{
-			// 2005.03.17.myevan.타겟이 아닌 경우는 개인 상점 처리 기능을 작동시킨다.
 			if (GetMyShop())
 			{
 				if (pkChrCauser->IsDead() == true) return;
 
 				//PREVENT_TRADE_WINDOW
-				if (pkChrCauser == this) // 자기는 가능
+				if (pkChrCauser == this)
 				{
 					if ((GetExchange() || IsOpenSafebox() || GetShopOwner()) || IsCubeOpen())
 					{
@@ -4946,17 +4857,14 @@ void CHARACTER::OnClick(LPCHARACTER pkChrCauser)
 						return;
 					}
 				}
-				else // 다른 사람이 클릭했을때
+				else
 				{
-					// 클릭한 사람이 교환/창고/개인상점/상점이용중이라면 불가
 					if ((pkChrCauser->GetExchange() || pkChrCauser->IsOpenSafebox() || pkChrCauser->GetMyShop() || pkChrCauser->GetShopOwner()) || pkChrCauser->IsCubeOpen() )
 					{
 						pkChrCauser->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("다른 거래중(창고,교환,상점)에는 개인상점을 사용할 수 없습니다."));
 						return;
 					}
 
-					// 클릭한 대상이 교환/창고/상점이용중이라면 불가
-					//if ((GetExchange() || IsOpenSafebox() || GetShopOwner()))
 					if ((GetExchange() || IsOpenSafebox() || IsCubeOpen()))
 					{
 						pkChrCauser->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("상대방이 다른 거래를 하고 있는 중입니다."));
@@ -4983,21 +4891,19 @@ void CHARACTER::OnClick(LPCHARACTER pkChrCauser)
 		}
 	}
 
-	// 청소년은 퀘스트 못함
 	if (LC_IsNewCIBN())
 	{
 		if (pkChrCauser->IsOverTime(OT_3HOUR))
 		{
-			sys_log(0, "Teen OverTime : name = %s, hour = %d)", pkChrCauser->GetName(), 3);
+			sys_log(0, "Play OverTime : name = %s, hour = %d)", pkChrCauser->GetName(), 3);
 			return;
 		}
 		else if (pkChrCauser->IsOverTime(OT_5HOUR))
 		{
-			sys_log(0, "Teen OverTime : name = %s, hour = %d)", pkChrCauser->GetName(), 5);
+			sys_log(0, "Play OverTime : name = %s, hour = %d)", pkChrCauser->GetName(), 5);
 			return;
 		}
 	}
-
 
 	pkChrCauser->SetQuestNPCID(GetVID());
 
@@ -5006,23 +4912,15 @@ void CHARACTER::OnClick(LPCHARACTER pkChrCauser)
 		return;
 	}
 
-
-	// NPC 전용 기능 수행 : 상점 열기 등
 	if (!IsPC())
 	{
 		if (!m_triggerOnClick.pFunc)
 		{
-			// NPC 트리거 시스템 로그 보기
-			//sys_err("%s.OnClickFailure(%s) : triggerOnClick.pFunc is EMPTY(pid=%d)", 
-			//			pkChrCauser->GetName(),
-			//			GetName(),
-			//			pkChrCauser->GetPlayerID());
 			return;
 		}
 
 		m_triggerOnClick.pFunc(this, pkChrCauser);
 	}
-
 }
 
 BYTE CHARACTER::GetGMLevel() const
@@ -5077,7 +4975,6 @@ void CHARACTER::ClearStone()
 {
 	if (!m_set_pkChrSpawnedBy.empty())
 	{
-		// 내가 스폰시킨 몬스터들을 모두 죽인다.
 		FuncDeadSpawnedByStone f;
 		std::for_each(m_set_pkChrSpawnedBy.begin(), m_set_pkChrSpawnedBy.end(), f);
 		m_set_pkChrSpawnedBy.clear();
@@ -5148,9 +5045,9 @@ void CHARACTER::SetTarget(LPCHARACTER pkChrTarget)
 
 		p.dwVID	= m_pkChrTarget->GetVID();
 
-		if (m_pkChrTarget->IsPC() && !m_pkChrTarget->IsPolymorphed() || m_pkChrTarget->GetMaxHP() <= 0)
+		if ((m_pkChrTarget->IsPC() && !m_pkChrTarget->IsPolymorphed()) || (m_pkChrTarget->GetMaxHP() <= 0))
 			p.bHPPercent = 0;
-		else 
+		else
 		{
 			if (m_pkChrTarget->GetRaceNum() == 20101 ||
 					m_pkChrTarget->GetRaceNum() == 20102 ||
@@ -5202,6 +5099,8 @@ void CHARACTER::BroadcastTargetPacket()
 
 	if (IsPC())
 		p.bHPPercent = 0;
+	else if (GetMaxHP() <= 0) // @fixme136
+		p.bHPPercent = 0;
 	else
 		p.bHPPercent = MINMAX(0, (GetHP() * 100) / GetMaxHP(), 100);
 
@@ -5252,10 +5151,6 @@ void CHARACTER::ExitToSavedLocation()
 	m_lExitMapIndex = 0;
 }
 
-// fixme 
-// 지금까진 privateMapIndex 가 현재 맵 인덱스와 같은지 체크 하는 것을 외부에서 하고,
-// 다르면 warpset을 불렀는데
-// 이를 warpset 안으로 넣자.
 bool CHARACTER::WarpSet(long x, long y, long lPrivateMapIndex)
 {
 	if (!IsPC())
@@ -5284,7 +5179,7 @@ bool CHARACTER::WarpSet(long x, long y, long lPrivateMapIndex)
 		{
 			const TMapRegion * rMapRgn = SECTREE_MANAGER::instance().GetMapRegion(lMapIndex);
 			{
-				DESC_MANAGER::instance().SendClientPackageSDBToLoadMap( GetDesc(), rMapRgn->strMapName.c_str() );	
+				DESC_MANAGER::instance().SendClientPackageSDBToLoadMap( GetDesc(), rMapRgn->strMapName.c_str() );
 			}
 		}
 	}
@@ -5293,7 +5188,7 @@ bool CHARACTER::WarpSet(long x, long y, long lPrivateMapIndex)
 	{
 		if (lPrivateMapIndex / 10000 != lMapIndex)
 		{
-			sys_err("Invalid map inedx %d, must be child of %d", lPrivateMapIndex, lMapIndex);
+			sys_err("Invalid map index %d, must be child of %d", lPrivateMapIndex, lMapIndex);
 			return false;
 		}
 
@@ -5327,12 +5222,9 @@ bool CHARACTER::WarpSet(long x, long y, long lPrivateMapIndex)
 
 	GetDesc()->Packet(&p, sizeof(TPacketGCWarp));
 
-	//if (!LC_IsNewCIBN())
-	{
-		char buf[256];
-		snprintf(buf, sizeof(buf), "%s MapIdx %ld DestMapIdx%ld DestX%ld DestY%ld Empire%d", GetName(), GetMapIndex(), lPrivateMapIndex, x, y, GetEmpire());
-		LogManager::instance().CharLog(this, 0, "WARP", buf);
-	}
+	char buf[256];
+	snprintf(buf, sizeof(buf), "%s MapIdx %ld DestMapIdx%ld DestX%ld DestY%ld Empire%d", GetName(), GetMapIndex(), lPrivateMapIndex, x, y, GetEmpire());
+	LogManager::instance().CharLog(this, 0, "WARP", buf);
 
 	return true;
 }
@@ -5352,7 +5244,6 @@ void CHARACTER::WarpEnd()
 
 	if (!map_allow_find(index))
 	{
-		// 이 곳으로 워프할 수 없으므로 워프하기 전 좌표로 되돌리자.
 		sys_err("location %d %d not allowed to login this server", m_posWarp.x, m_posWarp.y);
 		GetDesc()->SetPhase(PHASE_CLOSE);
 		return;
@@ -5386,18 +5277,10 @@ bool CHARACTER::Return()
 	if (!IsNPC())
 		return false;
 
-	int x, y;
-	/*
-	   float fDist = DISTANCE_SQRT(m_pkMobData->m_posLastAttacked.x - GetX(), m_pkMobData->m_posLastAttacked.y - GetY());
-	   float fx, fy;
-	   GetDeltaByDegree(GetRotation(), fDist, &fx, &fy);
-	   x = GetX() + (int) fx;
-	   y = GetY() + (int) fy;
-	 */
 	SetVictim(NULL);
 
-	x = m_pkMobInst->m_posLastAttacked.x;
-	y = m_pkMobInst->m_posLastAttacked.y;
+	int x = m_pkMobInst->m_posLastAttacked.x;
+	int y = m_pkMobInst->m_posLastAttacked.y;
 
 	SetRotationToXY(x, y);
 
@@ -5426,14 +5309,13 @@ bool CHARACTER::Follow(LPCHARACTER pkChr, float fMinDistance)
 	// TRENT_MONSTER
 	if (IS_SET(m_pointsInstant.dwAIFlag, AIFLAG_NOMOVE))
 	{
-		if (pkChr->IsPC()) // 쫓아가는 상대가 PC일 때
+		if (pkChr->IsPC())
 		{
 			// If i'm in a party. I must obey party leader's AI.
 			if (!GetParty() || !GetParty()->GetLeader() || GetParty()->GetLeader() == this)
 			{
-				if (get_dword_time() - m_pkMobInst->m_dwLastAttackedTime >= 15000) // 마지막으로 공격받은지 15초가 지났고
+				if (get_dword_time() - m_pkMobInst->m_dwLastAttackedTime >= 15000)
 				{
-					// 마지막 맞은 곳으로 부터 50미터 이상 차이나면 포기하고 돌아간다.
 					if (m_pkMobData->m_table.wAttackRange < DISTANCE_APPROX(pkChr->GetX() - GetX(), pkChr->GetY() - GetY()))
 						if (Return())
 							return true;
@@ -5447,14 +5329,13 @@ bool CHARACTER::Follow(LPCHARACTER pkChr, float fMinDistance)
 	long x = pkChr->GetX();
 	long y = pkChr->GetY();
 
-	if (pkChr->IsPC()) // 쫓아가는 상대가 PC일 때
+	if (pkChr->IsPC())
 	{
 		// If i'm in a party. I must obey party leader's AI.
 		if (!GetParty() || !GetParty()->GetLeader() || GetParty()->GetLeader() == this)
 		{
-			if (get_dword_time() - m_pkMobInst->m_dwLastAttackedTime >= 15000) // 마지막으로 공격받은지 15초가 지났고
+			if (get_dword_time() - m_pkMobInst->m_dwLastAttackedTime >= 15000)
 			{
-				// 마지막 맞은 곳으로 부터 50미터 이상 차이나면 포기하고 돌아간다.
 				if (5000 < DISTANCE_APPROX(m_pkMobInst->m_posLastAttacked.x - GetX(), m_pkMobInst->m_posLastAttacked.y - GetY()))
 					if (Return())
 						return true;
@@ -5469,14 +5350,11 @@ bool CHARACTER::Follow(LPCHARACTER pkChr, float fMinDistance)
 				return true;
 	}
 
-	if (pkChr->IsState(pkChr->m_stateMove) && 
-		GetMobBattleType() != BATTLE_TYPE_RANGE && 
+	if (pkChr->IsState(pkChr->m_stateMove) &&
+		GetMobBattleType() != BATTLE_TYPE_RANGE &&
 		GetMobBattleType() != BATTLE_TYPE_MAGIC &&
 		false == IsPet())
 	{
-		// 대상이 이동중이면 예측 이동을 한다
-		// 나와 상대방의 속도차와 거리로부터 만날 시간을 예상한 후
-		// 상대방이 그 시간까지 직선으로 이동한다고 가정하여 거기로 이동한다.
 		float rot = pkChr->GetRotation();
 		float rot_delta = GetDegreeDelta(rot, GetDegreeFromPositionXY(GetX(), GetY(), pkChr->GetX(), pkChr->GetY()));
 
@@ -5508,7 +5386,6 @@ bool CHARACTER::Follow(LPCHARACTER pkChr, float fMinDistance)
 		}
 	}
 
-	// 가려는 위치를 바라봐야 한다.
 	SetRotationToXY(x, y);
 
 	float fDist = DISTANCE_SQRT(x - GetX(), y - GetY());
@@ -5520,7 +5397,6 @@ bool CHARACTER::Follow(LPCHARACTER pkChr, float fMinDistance)
 
 	if (IsChangeAttackPosition(pkChr) && GetMobRank() < MOB_RANK_BOSS)
 	{
-		// 상대방 주변 랜덤한 곳으로 이동
 		SetChangeAttackPositionTime();
 
 		int retry = 16;
@@ -5546,23 +5422,19 @@ bool CHARACTER::Follow(LPCHARACTER pkChr, float fMinDistance)
 				break;
 		}
 
-		//sys_log(0, "근처 어딘가로 이동 %s retry %d", GetName(), retry);
 		if (!Goto(dx, dy))
 			return false;
 	}
 	else
 	{
-		// 직선 따라가기
 		float fDistToGo = fDist - fMinDistance;
 		GetDeltaByDegree(GetRotation(), fDistToGo, &fx, &fy);
 
-		//sys_log(0, "직선으로 이동 %s", GetName());
 		if (!Goto(GetX() + (int) fx, GetY() + (int) fy))
 			return false;
 	}
 
 	SendMovePacket(FUNC_WAIT, 0, 0, 0, 0);
-	//MonsterLog("쫓아가기; %s", pkChr->GetName());
 	return true;
 }
 
@@ -5679,9 +5551,6 @@ void CHARACTER::LoadSafebox(int iSize, DWORD dwGold, int iItemCount, TPlayerItem
 
 void CHARACTER::ChangeSafeboxSize(BYTE bSize)
 {
-	//if (!m_pkSafebox)
-	//return;
-
 	TPacketCGSafeboxSize p;
 
 	p.bHeader = HEADER_GC_SAFEBOX_SIZE;
@@ -5817,7 +5686,7 @@ bool CHARACTER::BuildUpdatePartyPacket(TPacketGCPartyUpdate & out)
 }
 
 int CHARACTER::GetLeadershipSkillLevel() const
-{ 
+{
 	return GetSkillLevel(SKILL_LEADERSHIP);
 }
 
@@ -5827,7 +5696,7 @@ void CHARACTER::QuerySafeboxSize()
 	{
 		DBManager::instance().ReturnQuery(QID_SAFEBOX_SIZE,
 				GetPlayerID(),
-				NULL, 
+				NULL,
 				"SELECT size FROM safebox%s WHERE account_id = %u",
 				get_table_postfix(),
 				GetDesc()->GetAccountTable().id);
@@ -5848,7 +5717,6 @@ int CHARACTER::GetSafeboxSize() const
 
 void CHARACTER::SetNowWalking(bool bWalkFlag)
 {
-	//if (m_bNowWalking != bWalkFlag || IsNPC())
 	if (m_bNowWalking != bWalkFlag)
 	{
 		if (bWalkFlag)
@@ -5861,7 +5729,6 @@ void CHARACTER::SetNowWalking(bool bWalkFlag)
 			m_bNowWalking = false;
 		}
 
-		//if (m_bNowWalking)
 		{
 			TPacketGCWalkMode p;
 			p.vid = GetVID();
@@ -5889,7 +5756,6 @@ void CHARACTER::StartStaminaConsume()
 		return;
 	PointChange(POINT_STAMINA, 0);
 	m_bStaminaConsume = true;
-	//ChatPacket(CHAT_TYPE_COMMAND, "StartStaminaConsume %d %d", STAMINA_PER_STEP * passes_per_sec, GetStamina());
 	if (IsStaminaHalfConsume())
 		ChatPacket(CHAT_TYPE_COMMAND, "StartStaminaConsume %d %d", STAMINA_PER_STEP * passes_per_sec / 2, GetStamina());
 	else
@@ -5955,7 +5821,6 @@ void CHARACTER::ResetPoint(int iLv)
 	
 	ComputePoints();
 
-	// 회복
 	PointChange(POINT_HP, GetMaxHP() - GetHP());
 	PointChange(POINT_SP, GetMaxSP() - GetSP());
 
@@ -5965,17 +5830,17 @@ void CHARACTER::ResetPoint(int iLv)
 }
 
 bool CHARACTER::IsChangeAttackPosition(LPCHARACTER target) const
-{ 
+{
 	if (!IsNPC())
 		return true;
 
 	DWORD dwChangeTime = AI_CHANGE_ATTACK_POISITION_TIME_NEAR;
 
-	if (DISTANCE_APPROX(GetX() - target->GetX(), GetY() - target->GetY()) > 
+	if (DISTANCE_APPROX(GetX() - target->GetX(), GetY() - target->GetY()) >
 		AI_CHANGE_ATTACK_POISITION_DISTANCE + GetMobAttackRange())
 		dwChangeTime = AI_CHANGE_ATTACK_POISITION_TIME_FAR;
 
-	return get_dword_time() - m_dwLastChangeAttackPositionTime > dwChangeTime; 
+	return get_dword_time() - m_dwLastChangeAttackPositionTime > dwChangeTime;
 }
 
 void CHARACTER::GiveRandomSkillBook()
@@ -6086,7 +5951,7 @@ void CHARACTER::MonsterChat(BYTE bMonsterChatType)
 		if (number(0, 60))
 			return;
 
-		snprintf(sbuf, sizeof(sbuf), 
+		snprintf(sbuf, sizeof(sbuf),
 				"(locale.monster_chat[%i] and locale.monster_chat[%i][%d] or '')",
 				GetRaceNum(), GetRaceNum(), bMonsterChatType*3 + number(1, 3));
 	}
@@ -6155,7 +6020,7 @@ LPITEM CHARACTER::GetQuestItemPtr() const
 }
 
 LPDUNGEON CHARACTER::GetDungeonForce() const
-{ 
+{
 	if (m_lWarpMapIndex > 10000)
 		return CDungeonManager::instance().FindByMapIndex(m_lWarpMapIndex);
 
@@ -6232,11 +6097,6 @@ void CHARACTER::SetPolymorph(DWORD dwRaceNum, bool bMaintainStat)
 		PointChange(POINT_HT, 0);
 	}
 
-	// 폴리모프 상태에서 죽는 경우, 폴리모프가 풀리게 되는데
-	// 폴리 모프 전후로 valid combo interval이 다르기 때문에
-	// Combo 핵 또는 Hacker로 인식하는 경우가 있다.
-	// 따라서 폴리모프를 풀거나 폴리모프 하게 되면,
-	// valid combo interval을 reset한다.
 	SetValidComboInterval(0);
 	SetComboSequence(0);
 
@@ -6262,6 +6122,9 @@ void CHARACTER::DetermineDropMetinStone()
 	const int METIN_STONE_NUM = 14;
 	static DWORD c_adwMetin[METIN_STONE_NUM] = 
 	{
+#if defined(ENABLE_WOLFMAN_CHARACTER) && defined(USE_WOLFMAN_STONES)
+		28012,
+#endif
 		28030,
 		28031,
 		28032,
@@ -6300,7 +6163,7 @@ void CHARACTER::DetermineDropMetinStone()
 				else
 				{
 					iGradePct -= iLevelGradePortion;
-					m_dwDropMetinStone += 100; // 돌 +a -> +(a+1)이 될때마다 100씩 증가
+					m_dwDropMetinStone += 100;
 				}
 			}
 		}
@@ -6333,7 +6196,7 @@ void CHARACTER::SendEquipment(LPCHARACTER ch)
 
 bool CHARACTER::CanSummon(int iLeaderShip)
 {
-	return (iLeaderShip >= 20 || iLeaderShip >= 12 && m_dwLastDeadTime + 180 > get_dword_time());
+	return ((iLeaderShip >= 20) || ((iLeaderShip >= 12) && ((m_dwLastDeadTime + 180) > get_dword_time())));
 }
 
 
@@ -6348,12 +6211,8 @@ void CHARACTER::MountVnum(DWORD vnum)
 	if (m_bIsObserver)
 		return;
 
-	//NOTE : Mount한다고 해서 Client Side의 객체를 삭제하진 않는다.
-	//그리고 서버Side에서 탔을때 위치 이동은 하지 않는다. 왜냐하면 Client Side에서 Coliision Adjust를 할수 있는데
-	//객체를 소멸시켰다가 서버위치로 이동시키면 이때 collision check를 하지는 않으므로 배경에 끼거나 뚫고 나가는 문제가 존재한다.
 	m_posDest.x = m_posStart.x = GetX();
 	m_posDest.y = m_posStart.y = GetY();
-	//EncodeRemovePacket(this);
 	EncodeInsertPacket(this);
 
 	ENTITY_MAP::iterator it = m_map_view.begin();
@@ -6362,18 +6221,12 @@ void CHARACTER::MountVnum(DWORD vnum)
 	{
 		LPENTITY entity = (it++)->first;
 
-		//Mount한다고 해서 Client Side의 객체를 삭제하진 않는다.
-		//EncodeRemovePacket(entity);
-		//if (!m_bIsObserver)
 		EncodeInsertPacket(entity);
 
-		//if (!entity->IsObserverMode())
-		//	entity->EncodeInsertPacket(this);
 	}
 
 	SetValidComboInterval(0);
 	SetComboSequence(0);
-
 	ComputePoints();
 }
 
@@ -6448,8 +6301,8 @@ namespace {
 					return;
 
 				if (!pkChr->CanHandleItem(false, true))
-					return;	
-				
+					return;
+
 				if (m_bUseWarp)
 					pkChr->WarpSet(m_lTargetX, m_lTargetY);
 				else
@@ -6484,7 +6337,7 @@ EVENTFUNC(warp_npc_event)
 
 	if (ch == NULL) { // <Factor>
 		return 0;
-	}	
+	}
 
 	if (!ch->GetSectree())
 	{
@@ -6498,7 +6351,6 @@ EVENTFUNC(warp_npc_event)
 
 	return passes_per_sec / 2;
 }
-
 
 void CHARACTER::StartWarpNPCEvent()
 {
@@ -6608,10 +6460,6 @@ bool CHARACTER::WarpToPID(DWORD dwPID)
 	}
 	else
 	{
-		// 다른 서버에 로그인된 사람이 있음 -> 메시지 보내 좌표를 받아오자
-		// 1. A.pid, B.pid 를 뿌림
-		// 2. B.pid를 가진 서버가 뿌린서버에게 A.pid, 좌표 를 보냄
-		// 3. 워프
 		CCI * pcci = P2P_MANAGER::instance().FindByPID(dwPID);
 
 		if (!pcci)
@@ -6644,7 +6492,7 @@ bool CHARACTER::WarpToPID(DWORD dwPID)
 			p.dwTargetPID = dwPID;
 			pcci->pkDesc->Packet(&p, sizeof(TPacketGGFindPosition));
 
-			if (test_server) 
+			if (test_server)
 				ChatPacket(CHAT_TYPE_PARTY, "sent find position packet for teleport");
 		}
 	}
@@ -6672,7 +6520,6 @@ int CHARACTER::ComputeRefineFee(int iCost, int iMultiply) const
 		if (pGuild == GetGuild())
 			return iCost * iMultiply * 9 / 10;
 
-		// 다른 제국 사람이 시도하는 경우 추가로 3배 더
 		LPCHARACTER chRefineNPC = CHARACTER_MANAGER::instance().Find(m_dwRefineNPCVID);
 		if (chRefineNPC && chRefineNPC->GetEmpire() != GetEmpire())
 			return iCost * iMultiply * 3;
@@ -6692,7 +6539,6 @@ void CHARACTER::PayRefineFee(int iTotalMoney)
 
 	if (pGuild)
 	{
-		// 자기 길드이면 iTotalMoney에 이미 10%가 제외되어있다
 		if (pGuild != GetGuild())
 		{
 			pGuild->RequestDepositMoney(this, iFee);
@@ -6704,7 +6550,6 @@ void CHARACTER::PayRefineFee(int iTotalMoney)
 }
 // END_OF_ADD_REFINE_BUILDING
 
-//Hack 방지를 위한 체크.
 bool CHARACTER::IsHack(bool bSendMsg, bool bCheckShopOwner, int limittime)
 {
 	const int iPulse = thecore_pulse();
@@ -6712,7 +6557,6 @@ bool CHARACTER::IsHack(bool bSendMsg, bool bCheckShopOwner, int limittime)
 	if (test_server)
 		bSendMsg = true;
 
-	//창고 연후 체크
 	if (iPulse - GetSafeboxLoadTime() < PASSES_PER_SEC(limittime))
 	{
 		if (bSendMsg)
@@ -6720,10 +6564,9 @@ bool CHARACTER::IsHack(bool bSendMsg, bool bCheckShopOwner, int limittime)
 
 		if (test_server)
 			ChatPacket(CHAT_TYPE_INFO, "[TestOnly]Pulse %d LoadTime %d PASS %d", iPulse, GetSafeboxLoadTime(), PASSES_PER_SEC(limittime));
-		return true; 
+		return true;
 	}
 
-	//거래관련 창 체크
 	if (bCheckShopOwner)
 	{
 		if (GetExchange() || GetMyShop() || GetShopOwner() || IsOpenSafebox() || IsCubeOpen())
@@ -6746,7 +6589,6 @@ bool CHARACTER::IsHack(bool bSendMsg, bool bCheckShopOwner, int limittime)
 	}
 
 	//PREVENT_PORTAL_AFTER_EXCHANGE
-	//교환 후 시간체크
 	if (iPulse - GetExchangeTime()  < PASSES_PER_SEC(limittime))
 	{
 		if (bSendMsg)
@@ -6767,7 +6609,7 @@ bool CHARACTER::IsHack(bool bSendMsg, bool bCheckShopOwner, int limittime)
 	{
 		if (bSendMsg)
 			ChatPacket(CHAT_TYPE_INFO, LC_TEXT("아이템 개량후 %d초 이내에는 귀환부,귀환기억부를 사용할 수 없습니다."), limittime);
-		return true; 
+		return true;
 	}
 	//END_PREVENT_ITEM_COPY
 
@@ -6792,7 +6634,7 @@ void CHARACTER::Say(const std::string & s)
 	packet_script.skin = 1;
 	packet_script.src_size = s.size();
 	packet_script.size = packet_script.src_size + sizeof(struct packet_script);
-	
+
 	TEMP_BUFFER buf;
 
 	buf.write(&packet_script, sizeof(struct packet_script));
@@ -6811,7 +6653,7 @@ void CHARACTER::InitMC()
 {
 	for (int n = 0; n < MI_MAX; ++n)
 	{
-		m_dwMonarchCooltime[n] = thecore_pulse(); 
+		m_dwMonarchCooltime[n] = thecore_pulse();
 	}
 
 	m_dwMonarchCooltimelimit[MI_HEAL] = PASSES_PER_SEC(MC_HEAL);
@@ -6845,10 +6687,10 @@ bool CHARACTER::IsMCOK(enum MONARCH_INDEX e) const
 	{
 		if (test_server)
 			sys_log(0, " Pulse %d cooltime %d, limit %d", iPulse, GetMC(e), GetMCL(e));
-		
+
 		return false;
 	}
-	
+
 	if (test_server)
 		sys_log(0, " Pulse %d cooltime %d, limit %d", iPulse, GetMC(e), GetMCL(e));
 
@@ -6878,7 +6720,7 @@ bool CHARACTER::IsSiegeNPC() const
 //------------------------------------------------
 void CHARACTER::UpdateDepositPulse()
 {
-	m_deposit_pulse = thecore_pulse() + PASSES_PER_SEC(60*5);	// 5분
+	m_deposit_pulse = thecore_pulse() + PASSES_PER_SEC(60*5);
 }
 
 bool CHARACTER::CanDeposit() const
@@ -6907,12 +6749,14 @@ ESex GET_SEX(LPCHARACTER ch)
 			return SEX_FEMALE;
 	}
 
-	/* default sex = male */
+	// default sex = male
 	return SEX_MALE;
 }
 
 int CHARACTER::GetHPPct() const
 {
+	if (GetMaxHP() <= 0) // @fixme136
+		return 0;
 	return (GetHP() * 100) / GetMaxHP();
 }
 
@@ -6978,7 +6822,7 @@ struct FFindReviver
 		pChar = NULL;
 		HasReviver = false;
 	}
-	
+
 	void operator() (LPCHARACTER ch)
 	{
 		if (ch->IsMonster() != true)
@@ -7083,7 +6927,7 @@ void CHARACTER::StartCheckSpeedHackEvent()
 
 	info->ch = this;
 
-	m_pkCheckSpeedHackEvent = event_create(check_speedhack_event, info, PASSES_PER_SEC(60));	// 1분
+	m_pkCheckSpeedHackEvent = event_create(check_speedhack_event, info, PASSES_PER_SEC(60));
 }
 
 void CHARACTER::GoHome()
@@ -7131,7 +6975,7 @@ EVENTFUNC(destroy_when_idle_event)
 	LPCHARACTER ch = info->ch;
 	if (ch == NULL) { // <Factor>
 		return 0;
-	}	
+	}
 
 	if (ch->GetVictim())
 	{
@@ -7237,7 +7081,6 @@ BYTE CHARACTER::GetChatCounter() const
 	return m_bChatCounter;
 }
 
-// 말이나 다른것을 타고 있나?
 bool CHARACTER::IsRiding() const
 {
 	return IsHorseRiding() || GetMountVnum();
@@ -7276,5 +7119,5 @@ DWORD CHARACTER::GetNextExp() const
 
 int	CHARACTER::GetSkillPowerByLevel(int level, bool bMob) const
 {
-	return CTableBySkill::instance().GetSkillPowerByLevelFromType(GetJob(), GetSkillGroup(), MINMAX(0, level, SKILL_MAX_LEVEL), bMob); 
+	return CTableBySkill::instance().GetSkillPowerByLevelFromType(GetJob(), GetSkillGroup(), MINMAX(0, level, SKILL_MAX_LEVEL), bMob);
 }
