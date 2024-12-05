@@ -1,43 +1,36 @@
 #ifndef _castle_h_
 #define _castle_h_
 
-#define MAX_CASTLE_GUARD_REGION		4	// 경비병 배치 구역
-#define MAX_CASTLE_GUARD_PER_REGION	10	// 한지역에 배치할수있는 경비병그룹
-#define MAX_CASTLE_FROG				20	// 황금 두꺼비
-#define MAX_CASTLE_TOWER			10	// 봉화 최대 소환 개수
-#define MIN_CASTLE_TOWER			5	// 봉화 최소 소환 개수
+#define MAX_CASTLE_GUARD_REGION		4
+#define MAX_CASTLE_GUARD_PER_REGION	10
+#define MAX_CASTLE_FROG				20
+#define MAX_CASTLE_TOWER			10
+#define MIN_CASTLE_TOWER			5
 
-
-#define CASTLE_FROG_PRICE		100000000	// 황금두꺼비 가격 (1억)
-#define CASTLE_FROG_VNUM		11505	// 황금두꺼비 번호
-//#define CASTLE_TOWER_VNUM		11506	// 봉화 번호
+#define CASTLE_FROG_PRICE		100000000
+#define CASTLE_FROG_VNUM		11505
 #define IS_CASTLE_MAP(map)		(181==(map)||182==(map)||(183)==(map))
 //#define IS_CASTLE_TOWER(vnum)	(11506==(vnum)||11507==(vnum)||11508==(vnum)||11509==(vnum) || 11510==(vnum))
 
-
 enum CASTLE_STATE
 {
-	CASTLE_SIEGE_NONE,			// 평화모드
-	CASTLE_SIEGE_STRUGGLE,		// 공성중
-	CASTLE_SIEGE_END			// 수성에 성공했다면 1시간동안 봉화를 깰 수 있다.
+	CASTLE_SIEGE_NONE,
+	CASTLE_SIEGE_STRUGGLE,
+	CASTLE_SIEGE_END
 };
-
 
 struct CASTLE_DATA
 {
-	LPCHARACTER	frog[MAX_CASTLE_FROG];	// 황금두꺼비
+	LPCHARACTER	frog[MAX_CASTLE_FROG];
 
-	LPCHARACTER	guard[MAX_CASTLE_GUARD_REGION][MAX_CASTLE_GUARD_PER_REGION];	// 경비병 리더
-	DWORD		guard_group[MAX_CASTLE_GUARD_REGION][MAX_CASTLE_GUARD_PER_REGION];	// 경비병 리더
+	LPCHARACTER	guard[MAX_CASTLE_GUARD_REGION][MAX_CASTLE_GUARD_PER_REGION];
+	DWORD		guard_group[MAX_CASTLE_GUARD_REGION][MAX_CASTLE_GUARD_PER_REGION];
 
-	LPCHARACTER	tower[MAX_CASTLE_TOWER];	// 봉화
+	LPCHARACTER	tower[MAX_CASTLE_TOWER];
 
 	LPEVENT		siege_event;
 	LPEVENT		stone_event;
 };
-
-
-
 
 /* extern functions */
 bool		castle_boot();
