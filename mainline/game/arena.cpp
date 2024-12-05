@@ -131,7 +131,7 @@ bool CArena::CheckArea(WORD startA_X, WORD startA_Y, WORD startB_X, WORD startB_
 {
 	if (m_StartPointA.x == startA_X && m_StartPointA.y == startA_Y &&
 			m_StartPointB.x == startB_X && m_StartPointB.y == startB_Y)
-		return false;	
+		return false;
 	return true;
 }
 
@@ -154,7 +154,7 @@ void CArenaMap::SendArenaMapListTo(LPCHARACTER pChar, DWORD mapIdx)
 
 	for (; iter != m_listArena.end(); iter++)
 	{
-		pChar->ChatPacket(CHAT_TYPE_INFO, "ArenaMapInfo Map: %d stA(%d, %d) stB(%d, %d)", mapIdx, 
+		pChar->ChatPacket(CHAT_TYPE_INFO, "ArenaMapInfo Map: %d stA(%d, %d) stB(%d, %d)", mapIdx,
 				(CArena*)(*iter)->GetStartPointA().x, (CArena*)(*iter)->GetStartPointA().y,
 				(CArena*)(*iter)->GetStartPointB().x, (CArena*)(*iter)->GetStartPointB().y);
 	}
@@ -296,7 +296,7 @@ EVENTFUNC(ready_to_start_event)
 				duelStart.header = HEADER_GC_DUEL_START;
 				duelStart.wSize = sizeof(TPacketGCDuelStart) + 4;
 
-				DWORD dwOppList[8]; // 최대 파티원 8명 이므로..
+				DWORD dwOppList[8];
 
 				dwOppList[0] = (DWORD)chB->GetVID();
 				TEMP_BUFFER buf;
@@ -304,7 +304,6 @@ EVENTFUNC(ready_to_start_event)
 				buf.write(&duelStart, sizeof(TPacketGCDuelStart));
 				buf.write(&dwOppList[0], 4);
 				chA->GetDesc()->Packet(buf.read_peek(), buf.size());
-
 
 				dwOppList[0] = (DWORD)chA->GetVID();
 				TEMP_BUFFER buf2;
@@ -345,7 +344,7 @@ EVENTFUNC(ready_to_start_event)
 
 				TEMP_BUFFER buf;
 				TEMP_BUFFER buf2;
-				DWORD dwOppList[8]; // 최대 파티원 8명 이므로..
+				DWORD dwOppList[8];
 				TPacketGCDuelStart duelStart;
 				duelStart.header = HEADER_GC_DUEL_START;
 				duelStart.wSize = sizeof(TPacketGCDuelStart) + 4;
@@ -462,7 +461,7 @@ EVENTFUNC(duel_time_out)
 		}
 	}
 
-	return 0; 
+	return 0;
 }
 
 bool CArena::StartDuel(LPCHARACTER pCharFrom, LPCHARACTER pCharTo, int nSetPoint, int nMinute)
@@ -684,7 +683,6 @@ bool CArenaMap::CanAttack(LPCHARACTER pCharAttacker, LPCHARACTER pCharVictim)
 
 bool CArena::CanAttack(DWORD dwPIDA, DWORD dwPIDB)
 {
-	// 1:1 전용 다대다 할 경우 수정 필요
 	if (m_dwPIDA == dwPIDA && m_dwPIDB == dwPIDB) return true;
 	if (m_dwPIDA == dwPIDB && m_dwPIDB == dwPIDA) return true;
 
@@ -734,7 +732,6 @@ bool CArena::OnDead(DWORD dwPIDA, DWORD dwPIDB)
 
 	if (pCharA == NULL && pCharB == NULL)
 	{
-		// 둘다 접속이 끊어졌다 ?!
 		SendChatPacketToObserver(CHAT_TYPE_NOTICE, LC_TEXT("대련자 문제로 인하여 대련을 중단합니다."));
 		restart = false;
 	}
@@ -817,7 +814,6 @@ bool CArena::OnDead(DWORD dwPIDA, DWORD dwPIDB)
 	}
 	else
 	{
-		// 오면 안된다 ?!
 	}
 
 	if (restart == false)
@@ -1103,7 +1099,7 @@ bool CArena::RegisterObserverPtr(LPCHARACTER pChar)
 	return true;
 }
 
-bool CArenaManager::IsLimitedItem( long lMapIndex, DWORD dwVnum )
+bool CArenaManager::IsLimitedItem(long lMapIndex, DWORD dwVnum)
 {
 	if ( IsArenaMap( lMapIndex ) == true )
 	{
