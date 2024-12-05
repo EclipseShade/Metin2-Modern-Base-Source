@@ -97,7 +97,7 @@ void CObject::EncodeInsertPacket(LPENTITY entity)
 	if (!(d = entity->GetDesc()))
 		return;
 
-	sys_log(0, "ObjectInsertPacket vid %u vnum %u rot %f %f %f", 
+	sys_log(0, "ObjectInsertPacket vid %u vnum %u rot %f %f %f",
 			m_dwVID, m_data.dwVnum, m_data.xRot, m_data.yRot, m_data.zRot);
 
 	TPacketGCCharacterAdd pack;
@@ -113,10 +113,8 @@ void CObject::EncodeInsertPacket(LPENTITY entity)
 	pack.z              = GetZ();
 	pack.wRaceNum       = m_data.dwVnum;
 
-	// 빌딩 회전 정보(벽일때는 문 위치)를 변환
 	pack.dwAffectFlag[0] = unsigned(m_data.xRot);
 	pack.dwAffectFlag[1] = unsigned(m_data.yRot);
-
 
 	if (GetLand())
 	{
@@ -290,7 +288,6 @@ void CObject::RegenNPC()
 			false,
 			(int)m_data.zRot);
 
-
 	if (!m_chNPC)
 	{
 		sys_err("Cannot create guild npc");
@@ -299,7 +296,6 @@ void CObject::RegenNPC()
 
 	m_chNPC->SetGuild(pGuild);
 
-	// 힘의 신전일 경우 길드 레벨을 길마에게 저장해놓는다
 	if ( m_pProto->dwVnum == 14061 || m_pProto->dwVnum == 14062 || m_pProto->dwVnum == 14063 )
 	{
 		quest::PC* pPC = quest::CQuestManager::instance().GetPC(pGuild->GetMasterPID());
@@ -476,10 +472,10 @@ struct FIsIn
 {
 	long sx, sy;
 	long ex, ey;
-	
+
 	bool bIn;
 	FIsIn (	long sx_, long sy_, long ex_, long ey_)
-		: sx(sx_), sy(sy_), ex(ex_), ey(ey_), bIn(false) 
+		: sx(sx_), sy(sy_), ex(ex_), ey(ey_), bIn(false)
 	{}
 
 	void operator () (LPENTITY ent)
@@ -514,7 +510,7 @@ bool CLand::RequestCreateObject(DWORD dwVnum, long lMapIndex, long x, long y, fl
 	if (!r)
 		return false;
 
-	sys_log(0, "RequestCreateObject(vnum=%u, map=%d, pos=(%d,%d), rot=(%.1f,%.1f,%.1f) region(%d,%d ~ %d,%d)", 
+	sys_log(0, "RequestCreateObject(vnum=%u, map=%d, pos=(%d,%d), rot=(%.1f,%.1f,%.1f) region(%d,%d ~ %d,%d)",
 			dwVnum, lMapIndex, x, y, xRot, yRot, zRot, r->sx, r->sy, r->ex, r->ey);
 
 	x += r->sx;
@@ -554,7 +550,7 @@ bool CLand::RequestCreateObject(DWORD dwVnum, long lMapIndex, long x, long y, fl
 		}
 		FIsIn f (osx, osy, oex, oey);
 		rkSecTreeMgr.GetMap(lMapIndex)->for_each(f);
-		
+
 		if (f.bIn)
 		{
 			sys_err("another object already exist");
@@ -691,17 +687,10 @@ TObjectProto * CManager::GetObjectProto(DWORD dwVnum)
 
 bool CManager::LoadLand(TLand * pTable) // from DB
 {
-	// MapAllow에 없는 맵의 땅일지라도 load를 해야한다.
-	//	건물(object)이 어느 길드에 속해 있는지 알기 위해서는 건물이 세위진 땅이 어느 길드 소속인지 알아한다.
-	//	만약 땅을 load해 놓지 않으면 길드 건물이 어느 길드에 소속된 건지 알지 못해서
-	//	길드 건물에 의한 길드 버프를 받지 못한다.
-	//if (!map_allow_find(pTable->lMapIndex))
-	//	return false;
-
 	CLand * pkLand = M2_NEW CLand(pTable);
 	m_map_pkLand.insert(std::make_pair(pkLand->GetID(), pkLand));
 
-	sys_log(0, "LAND: %u map %d %dx%d w %u h %u", 
+	sys_log(0, "LAND: %u map %d %dx%d w %u h %u",
 			pTable->dwID, pTable->lMapIndex, pTable->x, pTable->y, pTable->width, pTable->height);
 
 	return true;
@@ -854,7 +843,7 @@ bool CManager::LoadObject(TObject * pTable, bool isBoot) // from DB
 
 	// BUILDING_NPC
 	if (!isBoot)
-	{ 
+	{
 		if (pkProto->dwNPCVnum)
 			pkObj->RegenNPC();
 
@@ -892,7 +881,7 @@ void CManager::FinalizeBoot()
 
 		const TLand & r = pkLand->GetData();
 
-		// LAND_MASTER_LOG	
+		// LAND_MASTER_LOG
 		sys_log(0, "LandMaster map_index=%d pos=(%d, %d)", r.lMapIndex, r.x, r.y);
 		// END_OF_LAND_MASTER_LOG
 
@@ -956,14 +945,12 @@ void CManager::SendLandList(LPDESC d, long lMapIndex)
 		if (r.lMapIndex != lMapIndex)
 			continue;
 
-		//
 		LPCHARACTER ch  = d->GetCharacter();
 		if (ch)
 		{
 			CGuild *guild = CGuildManager::instance().FindGuild(r.dwGuildID);
 			ch->SendGuildName(guild);
 		}
-		//
 
 		e.dwID = r.dwID;
 		e.x = r.x;
@@ -1079,7 +1066,6 @@ void CLand::DrawWall(DWORD dwVnum, long nMapIndex, long& x, long& y, char length
 	}
 }
 
-
 bool CLand::RequestCreateWall(long nMapIndex, float rot)
 {
 	const bool 	WALL_ANOTHER_CHECKING_ENABLE = false;
@@ -1094,7 +1080,7 @@ bool CLand::RequestCreateWall(long nMapIndex, float rot)
 	int wall_half_w = 1000;
 	int wall_half_h = 1362;
 
-	if (rot == 0.0f) 		// 남쪽 문
+	if (rot == 0.0f)
 	{
 		int door_x = wall_x;
 		int door_y = wall_y + wall_half_h;
@@ -1102,8 +1088,8 @@ bool CLand::RequestCreateWall(long nMapIndex, float rot)
 		RequestCreateObject(WALL_BACK_VNUM,	nMapIndex, wall_x, wall_y - wall_half_h, door_x, door_y,   0.0f, WALL_ANOTHER_CHECKING_ENABLE);
 		RequestCreateObject(WALL_LEFT_VNUM,	nMapIndex, wall_x - wall_half_w, wall_y, door_x, door_y,   0.0f, WALL_ANOTHER_CHECKING_ENABLE);
 		RequestCreateObject(WALL_RIGHT_VNUM,	nMapIndex, wall_x + wall_half_w, wall_y, door_x, door_y,   0.0f, WALL_ANOTHER_CHECKING_ENABLE);
-	}	
-	else if (rot == 180.0f)		// 북쪽 문
+	}
+	else if (rot == 180.0f)
 	{
 		int door_x = wall_x;
 		int door_y = wall_y - wall_half_h;
@@ -1112,7 +1098,7 @@ bool CLand::RequestCreateWall(long nMapIndex, float rot)
 		RequestCreateObject(WALL_LEFT_VNUM,	nMapIndex, wall_x - wall_half_w, wall_y, door_x, door_y,   0.0f, WALL_ANOTHER_CHECKING_ENABLE);
 		RequestCreateObject(WALL_RIGHT_VNUM,	nMapIndex, wall_x + wall_half_w, wall_y, door_x, door_y,   0.0f, WALL_ANOTHER_CHECKING_ENABLE);
 	}
-	else if (rot == 90.0f)		// 동쪽 문 
+	else if (rot == 90.0f)
 	{
 		int door_x = wall_x + wall_half_h;
 		int door_y = wall_y;
@@ -1121,7 +1107,7 @@ bool CLand::RequestCreateWall(long nMapIndex, float rot)
 		RequestCreateObject(WALL_LEFT_VNUM,	nMapIndex, wall_x, wall_y - wall_half_w, door_x, door_y,  90.0f, WALL_ANOTHER_CHECKING_ENABLE);
 		RequestCreateObject(WALL_RIGHT_VNUM,	nMapIndex, wall_x, wall_y + wall_half_w, door_x, door_y,  90.0f, WALL_ANOTHER_CHECKING_ENABLE);
 	}
-	else if (rot == 270.0f)		// 서쪽 문 
+	else if (rot == 270.0f)
 	{
 		int door_x = wall_x - wall_half_h;
 		int door_y = wall_y;
@@ -1135,7 +1121,7 @@ bool CLand::RequestCreateWall(long nMapIndex, float rot)
 	{
 		RequestCreateObject(FLAG_VNUM, nMapIndex, land.x + 50, 			land.y + 50, 0, 0, 0.0, WALL_ANOTHER_CHECKING_ENABLE);
 		RequestCreateObject(FLAG_VNUM, nMapIndex, land.x + land.width - 50,	land.y + 50, 0, 0, 90.0, WALL_ANOTHER_CHECKING_ENABLE);
-		RequestCreateObject(FLAG_VNUM, nMapIndex, land.x + land.width - 50,	land.y + land.height - 50, 0, 0, 180.0, WALL_ANOTHER_CHECKING_ENABLE); 
+		RequestCreateObject(FLAG_VNUM, nMapIndex, land.x + land.width - 50,	land.y + land.height - 50, 0, 0, 180.0, WALL_ANOTHER_CHECKING_ENABLE);
 		RequestCreateObject(FLAG_VNUM, nMapIndex, land.x + 50, 			land.y + land.height - 50, 0, 0, 270.0, WALL_ANOTHER_CHECKING_ENABLE);
 	}
 	return true;
@@ -1159,7 +1145,6 @@ void CLand::RequestDeleteWall()
 				RequestDeleteObject(id);
 				break;
 		}
-
 
 		if (test_server)
 		{
