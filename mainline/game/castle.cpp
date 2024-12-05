@@ -12,12 +12,12 @@
 #include "char.h"
 #include "sectree_manager.h"
 
-#define EMPIRE_NONE		0	// 아무국가 아님
-#define EMPIRE_RED		1	// 신수
-#define EMPIRE_YELLOW	2	// 천조
-#define EMPIRE_BLUE		3	// 진노
+#define EMPIRE_NONE		0
+#define EMPIRE_RED		1
+#define EMPIRE_YELLOW	2
+#define EMPIRE_BLUE		3
 
-#define SIEGE_EVENT_PULSE	PASSES_PER_SEC(60*5)	// 5분
+#define SIEGE_EVENT_PULSE	PASSES_PER_SEC(60*5)
 
 #define GET_CAHR_MANAGER()								CHARACTER_MANAGER::instance()
 #define GET_CASTLE(empire)								(s_castle+(empire))
@@ -32,7 +32,6 @@
 #define DO_ALL_TOWER(i)			for (int i = 0; i < MAX_CASTLE_TOWER; ++i)
 #define DO_ALL_FROG(i)			for (int i = 0; i < MAX_CASTLE_FROG; ++i)
 
-
 #define GET_SIEGE_STATE()			s_siege_state
 #define GET_SIEGE_EMPIRE()			s_sige_empire
 #define GET_SIEGE_EVENT(empire)		(GET_CASTLE(empire)->siege_event)
@@ -41,11 +40,9 @@
 #define GET_TOWER_REGION(empire)	s_tower_region[empire]
 #define GET_STONE_REGION(empire)	s_tower_region[empire]
 
-
 static CASTLE_DATA	*s_castle		= NULL;
 static CASTLE_STATE	s_siege_state	= CASTLE_SIEGE_NONE;
 static int			s_sige_empire	= EMPIRE_NONE;
-
 
 struct POSITION
 {
@@ -159,8 +156,6 @@ static POSITION	s_frog_pos[4][MAX_CASTLE_FROG] = {
 	}
 };
 
-
-/* 경비병 경비구역 */
 struct GUARD_REGION
 {
 	int	sx, sy, ex, ey;
@@ -208,7 +203,6 @@ static GUARD_REGION s_tower_region[4] = {
 	{ 85, 135, 420, 265 }
 };
 
-
 static long FN_castle_map_index(int empire);
 
 EVENTINFO(castle_event_info)
@@ -236,7 +230,6 @@ EVENTFUNC(castle_siege_event)
 
 	info->pulse += SIEGE_EVENT_PULSE;
 
-	// 공성 시작후 30분 이내라면 안내만 하자
 	if (info->pulse < PASSES_PER_SEC(30*60))
 	{
 		snprintf(buf, sizeof(buf), LC_TEXT("%s에서 봉화를 둘러싸고 전투가 진행중입니다."),
@@ -261,7 +254,7 @@ EVENTFUNC(castle_siege_event)
 
 				GET_SIEGE_STATE() = CASTLE_SIEGE_END;
 
-				return PASSES_PER_SEC(60*30);	// 30분
+				return PASSES_PER_SEC(60*30);
 			}
 			break;
 		case CASTLE_SIEGE_END:
@@ -271,7 +264,6 @@ EVENTFUNC(castle_siege_event)
 	}
 	return 0;
 }
-
 
 static DWORD FN_random_stone()
 {
@@ -302,7 +294,6 @@ EVENTINFO(castle_stone_event_info)
 	}
 };
 
-
 EVENTFUNC(castle_stone_event)
 {
 	struct castle_stone_event_info	*info = dynamic_cast<castle_stone_event_info*>( event->info );
@@ -320,7 +311,6 @@ EVENTFUNC(castle_stone_event)
 	if (NULL == sectree_map)
 		return 0;
 
-	/* 15마리씩  2번 소환 */
 	const int SPAWN_COUNT = 15;
 
 	if (info->spawn_count < (SPAWN_COUNT * 2))
@@ -340,15 +330,13 @@ EVENTFUNC(castle_stone_event)
 		info->spawn_count += SPAWN_COUNT;
 
 		if (info->spawn_count < (SPAWN_COUNT * 2))
-			return PASSES_PER_SEC(30 * 60);	// 30분
+			return PASSES_PER_SEC(30 * 60);
 		else
 			return 0;
 	}
 
 	return 0;
 }
-
-
 
 LPCHARACTER castle_spawn_frog_force(int empire, int empty_index);
 
@@ -415,7 +403,6 @@ static bool FN_is_castle_map(int map_index)
 	}
 	return false;
 }
-
 
 bool castle_boot()
 {
@@ -587,24 +574,22 @@ void castle_start_siege(int empire, int tower_count)
 
 	castle_spawn_tower(empire, tower_count);
 
-	/* 공성 타이머 시작 */
 	{
 		castle_event_info* info = AllocEventInfo<castle_event_info>();
 
 		info->empire = empire;
 		info->pulse	= 0;
 
-		GET_SIEGE_EVENT(empire) = event_create(castle_siege_event, info, /*5분*/SIEGE_EVENT_PULSE);
+		GET_SIEGE_EVENT(empire) = event_create(castle_siege_event, info, SIEGE_EVENT_PULSE);
 	}
 
-	/* 메틴석 소환 타이머 시작 */
 	{
 		castle_stone_event_info* info = AllocEventInfo<castle_stone_event_info>();
 
 		info->spawn_count = 0;
 		info->empire = empire;
 
-		GET_STONE_EVENT(empire) = event_create(castle_stone_event, info, /* 1초 */PASSES_PER_SEC(1));
+		GET_STONE_EVENT(empire) = event_create(castle_stone_event, info, PASSES_PER_SEC(1));
 	}
 }
 
@@ -632,13 +617,11 @@ void castle_end_siege()
 	}
 }
 
-
 LPCHARACTER castle_spawn_frog(int empire)
 {
 	int		dir = 1;
 	long	map_index	= FN_castle_map_index(empire);
 
-	/* 황금두꺼비 소환할 곳이 있나? */
 	POSITION	*empty_pos = FN_empty_frog_pos(empire);
 	if (NULL == empty_pos)
 		return NULL;
@@ -656,7 +639,6 @@ LPCHARACTER castle_spawn_frog(int empire)
 	{
 		frog->SetEmpire(empire);
 		int empty_index	= FN_empty_frog_index(empire);
-		// 스폰성공
 		GET_FROG(empire, empty_index) = frog;
 		return frog;
 	}
@@ -690,7 +672,6 @@ LPCHARACTER castle_spawn_frog_force(int empire, int empty_index)
 	return NULL;
 }
 
-
 LPCHARACTER castle_spawn_guard(int empire, DWORD group_vnum, int region_index)
 {
 	LPCHARACTER	mob;
@@ -722,7 +703,6 @@ LPCHARACTER castle_spawn_guard(int empire, DWORD group_vnum, int region_index)
 
 	return mob;
 }
-
 
 static DWORD FN_random_tower()
 {
@@ -767,7 +747,6 @@ bool castle_spawn_tower(int empire, int tower_count)
 	if (NULL == sectree_map)
 		return false;
 
-	// 초기화
 	DO_ALL_TOWER(i)
 	{
 		if (GET_TOWER(empire, i))
@@ -775,7 +754,7 @@ bool castle_spawn_tower(int empire, int tower_count)
 		GET_TOWER(empire, i) = NULL;
 	}
 
-	int	spawn_count = MINMAX(MIN_CASTLE_TOWER, tower_count, MAX_CASTLE_TOWER);	// 5 ~ 10마리
+	int	spawn_count = MINMAX(MIN_CASTLE_TOWER, tower_count, MAX_CASTLE_TOWER);
 
 	for (int j = 0; j < spawn_count; ++j)
 	{
@@ -791,7 +770,6 @@ bool castle_spawn_tower(int empire, int tower_count)
 	return true;
 }
 
-/* 경비병리더가 죽으면 단순하게 슬롯만 비운다. */
 void castle_guard_die(LPCHARACTER ch, LPCHARACTER killer)
 {
 	int	empire = ch->GetEmpire();
@@ -811,8 +789,6 @@ void castle_guard_die(LPCHARACTER ch, LPCHARACTER killer)
 	castle_save();
 }
 
-
-/* 황금 두꺼비가 죽으면 killer에게 1천만냥 */
 void castle_frog_die(LPCHARACTER ch, LPCHARACTER killer)
 {
 	if (NULL == ch || NULL == killer)
@@ -826,15 +802,13 @@ void castle_frog_die(LPCHARACTER ch, LPCHARACTER killer)
 		{
 			GET_FROG(empire, i) = NULL;
 
-			killer->PointChange(POINT_GOLD, 10000000 /*1천만*/, true);
-			//CMonarch::instance().SendtoDBAddMoney(30000000/*3천만*/, killer->GetEmpire(), killer);
+			killer->PointChange(POINT_GOLD, 10000000, true);
 			castle_save();
 			return;
 		}
 	}
 }
 
-/* 봉화가 모두 죽으면(?) 공성전이 끝난다 */
 void castle_tower_die(LPCHARACTER ch, LPCHARACTER killer)
 {
 	char	buf[1024] = {0};
@@ -889,7 +863,6 @@ void castle_tower_die(LPCHARACTER ch, LPCHARACTER killer)
 	}
 }
 
-
 int castle_guard_count(int empire, int region_index)
 {
 	int count = 0;
@@ -901,7 +874,6 @@ int castle_guard_count(int empire, int region_index)
 	}
 	return count;
 }
-
 
 int castle_frog_count(int empire)
 {
@@ -918,27 +890,21 @@ bool castle_is_guard_vnum(DWORD vnum)
 {
 	switch (vnum)
 	{
-		/* 상급 창경비병 */
 		case 11112:
 		case 11114:
 		case 11116:
-		/* 중급 창경비병 */
 		case 11106:
 		case 11108:
 		case 11110:
-		/* 하급 창경비병 */
 		case 11100:
 		case 11102:
 		case 11104:
-		/* 상급 활경비병 */
 		case 11113:
 		case 11115:
 		case 11117:
-		/* 중급 활경비병 */
 		case 11107:
 		case 11109:
 		case 11111:
-		/* 하급 활경비병 */
 		case 11101:
 		case 11103:
 		case 11105:
@@ -952,34 +918,31 @@ int castle_cost_of_hiring_guard(DWORD group_vnum)
 {
 	switch (group_vnum)
 	{
-		/* 하급 */
-		case 9501:	/* 신수 창경비 */
-		case 9511:	/* 진노 창경비 */
-		case 9521:	/* 천조 창경비 */
+		case 9501:
+		case 9511:
+		case 9521:
 
-		case 9502:	/* 신수 활경비 */
-		case 9512:	/* 진노 활경비 */
-		case 9522:	/* 천조 활경비 */
+		case 9502:
+		case 9512:
+		case 9522:
 			return (100*10000);
 
-		/* 중급 */
-		case 9503:	/* 신수 창경비 */
-		case 9513:	/* 진노 창경비 */
-		case 9523:	/* 천조 창경비 */
+		case 9503:
+		case 9513:
+		case 9523:
 
-		case 9504:	/* 신수 활경비 */
-		case 9514:	/* 진노 활경비 */
-		case 9524:	/* 천조 활경비 */
+		case 9504:
+		case 9514:
+		case 9524:
 			return (300*10000);
 
-		/* 상급 */
-		case 9505:	/* 신수 창경비 */
-		case 9515:	/* 진노 창경비 */
-		case 9525:	/* 천조 창경비 */
+		case 9505:
+		case 9515:
+		case 9525:
 
-		case 9506:	/* 신수 활경비 */
-		case 9516:	/* 진노 활경비 */
-		case 9526:	/* 천조 활경비 */
+		case 9506:
+		case 9516:
+		case 9526:
 			return (1000*10000);
 	}
 
@@ -999,7 +962,6 @@ bool castle_can_attack(LPCHARACTER ch, LPCHARACTER victim)
 
 	if (CASTLE_SIEGE_END == GET_SIEGE_STATE())
 	{
-		// 수성에 성공했을때 같은 제국만 봉화를 칠 수 있음
 		if (castle_is_tower_vnum(victim->GetRaceNum()))
 		{
 			if (ch->GetEmpire() == victim->GetEmpire())
@@ -1009,7 +971,6 @@ bool castle_can_attack(LPCHARACTER ch, LPCHARACTER victim)
 		}
 	}
 
-	// 같은 제국은 파괴 불가
 	if (ch->GetEmpire() == victim->GetEmpire())
 		return false;
 
@@ -1018,7 +979,7 @@ bool castle_can_attack(LPCHARACTER ch, LPCHARACTER victim)
 
 bool castle_frog_to_empire_money(LPCHARACTER ch)
 {
-	if (NULL == ch) 
+	if (NULL == ch)
 		return false;
 
 	int empire = ch->GetEmpire();
@@ -1033,7 +994,7 @@ bool castle_frog_to_empire_money(LPCHARACTER ch)
 		if (false == CMonarch::instance().SendtoDBAddMoney(CASTLE_FROG_PRICE, empire, ch))
 			return false;
 
-		GET_FROG(empire, i) = NULL; // 등록해제
+		GET_FROG(empire, i) = NULL;
 		npc->Dead(/*killer*/NULL, /*immediate_dead*/true);
 		return true;
 	}
