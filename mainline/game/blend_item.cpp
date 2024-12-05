@@ -17,7 +17,6 @@ struct BLEND_ITEM_INFO
 	int		apply_duration[MAX_BLEND_ITEM_VALUE];
 };
 
-
 typedef std::vector<BLEND_ITEM_INFO*>	T_BLEND_ITEM_INFO;
 T_BLEND_ITEM_INFO	s_blend_info;
 
@@ -97,10 +96,12 @@ bool	Blend_Item_load(char *file)
 				return false;
 			}
 
-			if (0 == (blend_item_info->apply_type = FN_get_apply_type(v)))
+			blend_item_info->apply_type = FN_get_apply_type(v);
+			
+			if (blend_item_info->apply_type == 0) 
 			{
-				sys_err ("Invalid apply_type(%s)", v);
-				return false;
+			    sys_err("Invalid apply_type(%s)", v);
+			    return false;
 			}
 		}
 		else TOKEN("apply_value")
@@ -115,7 +116,7 @@ bool	Blend_Item_load(char *file)
 					return false;
 				}
 
-				str_to_number(blend_item_info->apply_value[i], v); 
+				str_to_number(blend_item_info->apply_value[i], v);
 			}
 		}
 		else TOKEN("apply_duration")
@@ -162,12 +163,6 @@ static int FN_random_index()
 	return 0;
 }
 
-// 충기환의 확률 테이블
-// blend.txt에서 확률도 받도록 고치면 깔끔하겠지만
-// 각 나라별로 item proto 등을 따로 관리하므로,
-// 혼란이 올 수 있어 이렇게 추가한다.
-// by rtsummit
-
 static int FN_ECS_random_index()
 {
 	int	percent = number(1,100);
@@ -186,7 +181,6 @@ static int FN_ECS_random_index()
 	return 0;
 }
 
-
 bool	Blend_Item_set_value(LPITEM item)
 {
 	BLEND_ITEM_INFO	*blend_info;
@@ -200,7 +194,7 @@ bool	Blend_Item_set_value(LPITEM item)
 			int	apply_type;
 			int	apply_value;
 			int	apply_duration;
-	
+
 			if (item->GetVnum() == 51002)
 			{
 				apply_type		= blend_info->apply_type;
