@@ -27,16 +27,15 @@ class CGuildMarkManager : public singleton<CGuildMarkManager>
 		void SaveSymbol(const char* filename);
 		void UploadSymbol(DWORD guildID, int iSize, const BYTE* pbyData);
 
-		//
 		// Mark
-		//
+
 		void SetMarkPathPrefix(const char * prefix);
 
-		bool LoadMarkIndex(); // 마크 인덱스 불러오기 (서버에서만 사용)
-		bool SaveMarkIndex(); // 마크 인덱스 저장하기
+		bool LoadMarkIndex();
+		bool SaveMarkIndex();
 
-		void LoadMarkImages(); // 모든 마크 이미지를 불러오기
-		void SaveMarkImage(DWORD imgIdx); // 마크 이미지 저장
+		void LoadMarkImages();
+		void SaveMarkImage(DWORD imgIdx);
 
 		bool GetMarkImageFilename(DWORD imgIdx, std::string & path) const;
 		bool AddMarkIDByGuildID(DWORD guildID, DWORD markID);
@@ -55,9 +54,9 @@ class CGuildMarkManager : public singleton<CGuildMarkManager>
 		bool GetBlockCRCList(DWORD imgIdx, DWORD * crcList);
 
 	private:
-		// 
+
 		// Mark
-		//
+
 		CGuildMarkImage * __NewImage();
 		void __DeleteImage(CGuildMarkImage * pkImgDel);
 
@@ -73,10 +72,11 @@ class CGuildMarkManager : public singleton<CGuildMarkManager>
 		std::string		m_pathPrefix;
 
 	private:
-		//
+
 		// Symbol
-		//
+
 		std::map<DWORD, TGuildSymbol> m_mapSymbol;
 };
 
 #endif
+
