@@ -5,8 +5,8 @@
 
 enum
 {
-	BLACKSMITH_MOB = 20016, // 확률 개량
-	ALCHEMIST_MOB = 20001, // 100% 개량 성공 
+	BLACKSMITH_MOB = 20016,
+	ALCHEMIST_MOB = 20001,
 
 	BLACKSMITH_WEAPON_MOB = 20044,
 	BLACKSMITH_ARMOR_MOB = 20045,
@@ -31,6 +31,6 @@ class CRefineManager : public singleton<CRefineManager>
 
 	private:
 	TRefineRecipeMap    m_map_RefineRecipe;
-
 };
 #endif
+
