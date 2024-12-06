@@ -47,22 +47,22 @@ static void _send_bonus_info(LPCHARACTER ch)
 
 	if (item_drop_bonus)
 	{
-		ch->ChatPacket(CHAT_TYPE_NOTICE, 
+		ch->ChatPacket(CHAT_TYPE_NOTICE,
 				LC_TEXT("아이템 드롭률  %d%% 추가 이벤트 중입니다."), item_drop_bonus);
 	}
 	if (gold_drop_bonus)
 	{
-		ch->ChatPacket(CHAT_TYPE_NOTICE, 
+		ch->ChatPacket(CHAT_TYPE_NOTICE,
 				LC_TEXT("골드 드롭률 %d%% 추가 이벤트 중입니다."), gold_drop_bonus);
 	}
 	if (gold10_drop_bonus)
 	{
-		ch->ChatPacket(CHAT_TYPE_NOTICE, 
+		ch->ChatPacket(CHAT_TYPE_NOTICE,
 				LC_TEXT("대박골드 드롭률 %d%% 추가 이벤트 중입니다."), gold10_drop_bonus);
 	}
 	if (exp_bonus)
 	{
-		ch->ChatPacket(CHAT_TYPE_NOTICE, 
+		ch->ChatPacket(CHAT_TYPE_NOTICE,
 				LC_TEXT("경험치 %d%% 추가 획득 이벤트 중입니다."), exp_bonus);
 	}
 }
@@ -71,13 +71,13 @@ static bool FN_is_battle_zone(LPCHARACTER ch)
 {
 	switch (ch->GetMapIndex())
 	{
-		case 1:         // 신수 1차 마을
-		case 2:         // 신수 2차 마을
-		case 21:        // 천조 1차 마을
-		case 23:        // 천조 2차 마을
-		case 41:        // 진노 1차 마을
-		case 43:        // 진노 2차 마을
-		case 113:       // OX 맵
+		case 1:
+		case 2:
+		case 21:
+		case 23:
+		case 41:
+		case 43:
+		case 113:
 			return false;
 	}
 
@@ -95,7 +95,7 @@ void CInputLogin::Login(LPDESC d, const char * data)
 
 	TPacketGCLoginFailure failurePacket;
 
-	if (g_iUseLocale && !test_server)
+	if (!test_server)
 	{
 		failurePacket.header = HEADER_GC_LOGIN_FAILURE;
 		strlcpy(failurePacket.szStatus, "VERSION", sizeof(failurePacket.szStatus));
@@ -133,7 +133,7 @@ void CInputLogin::Login(LPDESC d, const char * data)
 	strlcpy(login_packet.login, login, sizeof(login_packet.login));
 	strlcpy(login_packet.passwd, pinfo->passwd, sizeof(login_packet.passwd));
 
-	db_clientdesc->DBPacket(HEADER_GD_LOGIN, d->GetHandle(), &login_packet, sizeof(TLoginPacket)); 
+	db_clientdesc->DBPacket(HEADER_GD_LOGIN, d->GetHandle(), &login_packet, sizeof(TLoginPacket));
 }
 
 void CInputLogin::LoginByKey(LPDESC d, const char * data)
@@ -255,7 +255,7 @@ void CInputLogin::CharacterSelect(LPDESC d, const char * data)
 
 	if (c_r.players[pinfo->index].bChangeName)
 	{
-		sys_err("name must be changed idx %d, login %s, name %s", 
+		sys_err("name must be changed idx %d, login %s, name %s",
 				pinfo->index, c_r.login, c_r.players[pinfo->index].szName);
 		return;
 	}
@@ -290,7 +290,7 @@ bool NewPlayerTable(TPlayerTable * table,
 	table->job = job;
 	table->voice = 0;
 	table->part_base = shape;
-	
+
 	table->st = JobInitialPoints[job].st;
 	table->dx = JobInitialPoints[job].dx;
 	table->ht = JobInitialPoints[job].ht;
@@ -371,13 +371,11 @@ bool RaceToJob(unsigned race, unsigned* ret_job)
 		case MAIN_RACE_SHAMAN_W:
 			*ret_job = JOB_SHAMAN;
 			break;
-
 #ifdef ENABLE_WOLFMAN_CHARACTER
 		case MAIN_RACE_WOLFMAN_M:
 			*ret_job = JOB_WOLFMAN;
 			break;
 #endif
-
 		default:
 			return false;
 			break;
@@ -385,7 +383,6 @@ bool RaceToJob(unsigned race, unsigned* ret_job)
 	return true;
 }
 
-// 신규 캐릭터 지원
 bool NewPlayerTable2(TPlayerTable * table, const char * name, BYTE race, BYTE shape, BYTE bEmpire)
 {
 	if (race >= MAIN_RACE_MAX_NUM)
@@ -397,19 +394,19 @@ bool NewPlayerTable2(TPlayerTable * table, const char * name, BYTE race, BYTE sh
 	unsigned job;
 
 	if (!RaceToJob(race, &job))
-	{	
+	{
 		sys_err("NewPlayerTable2.RACE_TO_JOB_ERROR(%d)\n", race);
 		return false;
 	}
 
-	sys_log(0, "NewPlayerTable2(name=%s, race=%d, job=%d)", name, race, job); 
+	sys_log(0, "NewPlayerTable2(name=%s, race=%d, job=%d)", name, race, job);
 
 	memset(table, 0, sizeof(TPlayerTable));
 
 	strlcpy(table->name, name, sizeof(table->name));
 
 	table->level		= 1;
-	table->job			= race;	// 직업대신 종족을 넣는다
+	table->job			= race;
 	table->voice		= 0;
 	table->part_base	= shape;
 
@@ -440,9 +437,9 @@ void CInputLogin::CharacterCreate(LPDESC d, const char * data)
 	TPlayerCreatePacket player_create_packet;
 
 	sys_log(0, "PlayerCreate: name %s pos %d job %d shape %d",
-			pinfo->name, 
-			pinfo->index, 
-			pinfo->job, 
+			pinfo->name,
+			pinfo->index,
+			pinfo->job,
 			pinfo->shape);
 
 	TPacketGCLoginFailure packFailure;
@@ -455,7 +452,6 @@ void CInputLogin::CharacterCreate(LPDESC d, const char * data)
 		return;
 	}
 
-	// 사용할 수 없는 이름이거나, 잘못된 평상복이면 생설 실패
 	if (!check_name(pinfo->name) || pinfo->shape > 1)
 	{
 		if (LC_IsCanada() == true)
@@ -505,8 +501,8 @@ void CInputLogin::CharacterCreate(LPDESC d, const char * data)
 	player_create_packet.account_index	= pinfo->index;
 
 	sys_log(0, "PlayerCreate: name %s account_id %d, TPlayerCreatePacketSize(%d), Packet->Gold %d",
-			pinfo->name, 
-			pinfo->index, 
+			pinfo->name,
+			pinfo->index,
 			sizeof(TPlayerCreatePacket),
 			player_create_packet.player_table.gold);
 
@@ -575,7 +571,7 @@ void CInputLogin::Entergame(LPDESC d, const char * data)
 		PIXEL_POSITION pos2;
 		SECTREE_MANAGER::instance().GetRecallPositionByEmpire(ch->GetMapIndex(), ch->GetEmpire(), pos2);
 
-		sys_err("!GetMovablePosition (name %s %dx%d map %d changed to %dx%d)", 
+		sys_err("!GetMovablePosition (name %s %dx%d map %d changed to %dx%d)",
 				ch->GetName(),
 				pos.x, pos.y,
 				ch->GetMapIndex(),
@@ -585,7 +581,6 @@ void CInputLogin::Entergame(LPDESC d, const char * data)
 
 	CGuildManager::instance().LoginMember(ch);
 
-	// 캐릭터를 맵에 추가 
 	ch->Show(ch->GetMapIndex(), pos.x, pos.y, pos.z);
 
 	SECTREE_MANAGER::instance().SendNPCPosition(ch);
@@ -593,10 +588,10 @@ void CInputLogin::Entergame(LPDESC d, const char * data)
 
 	d->SetPhase(PHASE_GAME);
 
-	if(ch->GetItemAward_cmd())																		//게임페이즈 들어가면
-		quest::CQuestManager::instance().ItemInformer(ch->GetPlayerID(),ch->GetItemAward_vnum());	//questmanager 호출
-	
-	sys_log(0, "ENTERGAME: %s %dx%dx%d %s map_index %d", 
+	if(ch->GetItemAward_cmd())
+		quest::CQuestManager::instance().ItemInformer(ch->GetPlayerID(),ch->GetItemAward_vnum());
+
+	sys_log(0, "ENTERGAME: %s %dx%dx%d %s map_index %d",
 			ch->GetName(), ch->GetX(), ch->GetY(), ch->GetZ(), d->GetHostName(), ch->GetMapIndex());
 
 	if (ch->GetHorseLevel() > 0)
@@ -604,10 +599,8 @@ void CInputLogin::Entergame(LPDESC d, const char * data)
 		ch->EnterHorse();
 	}
 
-	// 플레이시간 레코딩 시작
 	ch->ResetPlayTime();
 
-	// 자동 저장 이벤트 추가
 	ch->StartSaveEvent();
 	ch->StartRecoveryEvent();
 	ch->StartCheckSpeedHackEvent();
@@ -637,7 +630,7 @@ void CInputLogin::Entergame(LPDESC d, const char * data)
 	ch->SendGreetMessage();
 
 	_send_bonus_info(ch);
-	
+
 	for (int i = 0; i <= PREMIUM_MAX_NUM; ++i)
 	{
 		int remain = ch->GetPremiumRemainSeconds(i);
@@ -751,7 +744,7 @@ void CInputLogin::Entergame(LPDESC d, const char * data)
 				}
 			}
 		}
-		else if (memberFlag == MEMBER_NO)		
+		else if (memberFlag == MEMBER_NO)
 		{
 			if (ch->GetGMLevel() == GM_PLAYER)
 				ch->WarpSet(EMPIRE_START_X(ch->GetEmpire()), EMPIRE_START_Y(ch->GetEmpire()));
@@ -763,10 +756,8 @@ void CInputLogin::Entergame(LPDESC d, const char * data)
 	}
 	else if (ch->GetMapIndex() == 113)
 	{
-		// ox 이벤트 맵
 		if (COXEventManager::instance().Enter(ch) == false)
 		{
-			// ox 맵 진입 허가가 나지 않음. 플레이어면 마을로 보내자
 			if (ch->GetGMLevel() == GM_PLAYER)
 				ch->WarpSet(EMPIRE_START_X(ch->GetEmpire()), EMPIRE_START_Y(ch->GetEmpire()));
 		}
@@ -802,7 +793,6 @@ void CInputLogin::Entergame(LPDESC d, const char * data)
 			db_clientdesc->DBPacket(HEADER_GD_REQ_HORSE_NAME, 0, &pid, sizeof(DWORD));
 	}
 
-	// 중립맵에 들어갔을때 안내하기
 	if (g_noticeBattleZone)
 	{
 		if (FN_is_battle_zone(ch))
@@ -862,19 +852,18 @@ int CInputLogin::GuildSymbolUpload(LPDESC d, const char* c_pData, size_t uiBytes
 
 	if (iSymbolSize <= 0 || iSymbolSize > 64 * 1024)
 	{
-		// 64k 보다 큰 길드 심볼은 올릴수없다
-		// 접속을 끊고 무시
 		d->SetPhase(PHASE_CLOSE);
 		return 0;
 	}
 
-	// 땅을 소유하지 않은 길드인 경우.
 	if (!test_server)
+	{
 		if (!building::CManager::instance().FindLandByGuild(p->guild_id))
 		{
 			d->SetPhase(PHASE_CLOSE);
 			return 0;
 		}
+	}
 
 	sys_log(0, "GuildSymbolUpload Do Upload %02X%02X%02X%02X %d", c_pData[7], c_pData[8], c_pData[9], c_pData[10], sizeof(*p));
 
@@ -907,7 +896,7 @@ void CInputLogin::GuildSymbolCRC(LPDESC d, const char* c_pData)
 		d->BufferedPacket(&GCPacket, sizeof(GCPacket));
 		d->Packet(&pkGS->raw[0], pkGS->raw.size());
 
-		sys_log(0, "SendGuildSymbolHead %02X%02X%02X%02X Size %d", 
+		sys_log(0, "SendGuildSymbolHead %02X%02X%02X%02X Size %d",
 				pkGS->raw[0], pkGS->raw[1], pkGS->raw[2], pkGS->raw[3], pkGS->raw.size());
 	}
 }
@@ -949,7 +938,7 @@ void CInputLogin::GuildMarkUpload(LPDESC d, const char* c_pData)
 void CInputLogin::GuildMarkIDXList(LPDESC d, const char* c_pData)
 {
 	CGuildMarkManager & rkMarkMgr = CGuildMarkManager::instance();
-	
+
 	DWORD bufSize = sizeof(WORD) * 2 * rkMarkMgr.GetMarkCount();
 	char * buf = NULL;
 
@@ -966,12 +955,12 @@ void CInputLogin::GuildMarkIDXList(LPDESC d, const char* c_pData)
 
 	if (buf)
 	{
-		d->BufferedPacket(&p, sizeof(p));
+		d->BufferedPacket(p);
 		d->LargePacket(buf, bufSize);
 		free(buf);
 	}
 	else
-		d->Packet(&p, sizeof(p));
+		d->Packet(p);
 
 	sys_log(0, "MARK_SERVER: GuildMarkIDXList %d bytes sent.", p.bufSize);
 }
@@ -984,15 +973,15 @@ void CInputLogin::GuildMarkCRCList(LPDESC d, const char* c_pData)
 	CGuildMarkManager::instance().GetDiffBlocks(pCG->imgIdx, pCG->crclist, mapDiffBlocks);
 
 	DWORD blockCount = 0;
-	TEMP_BUFFER buf(1024 * 1024); // 1M 버퍼
+	TEMP_BUFFER buf(1024 * 1024);
 
 	for (itertype(mapDiffBlocks) it = mapDiffBlocks.begin(); it != mapDiffBlocks.end(); ++it)
 	{
 		BYTE posBlock = it->first;
 		const SGuildMarkBlock & rkBlock = *it->second;
 
-		buf.write(&posBlock, sizeof(BYTE));
-		buf.write(&rkBlock.m_sizeCompBuf, sizeof(DWORD));
+		buf.write(posBlock);
+		buf.write(rkBlock.m_sizeCompBuf);
 		buf.write(rkBlock.m_abCompBuf, rkBlock.m_sizeCompBuf);
 
 		++blockCount;
@@ -1009,11 +998,11 @@ void CInputLogin::GuildMarkCRCList(LPDESC d, const char* c_pData)
 
 	if (buf.size() > 0)
 	{
-		d->BufferedPacket(&pGC, sizeof(TPacketGCMarkBlock));
+		d->BufferedPacket(pGC);
 		d->LargePacket(buf.read_peek(), buf.size());
 	}
 	else
-		d->Packet(&pGC, sizeof(TPacketGCMarkBlock));
+		d->Packet(pGC);
 }
 
 int CInputLogin::Analyze(LPDESC d, BYTE bHeader, const char * c_pData)
