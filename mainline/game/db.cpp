@@ -23,7 +23,6 @@ extern bool g_bNoPasspod;
 extern std::string g_stBlockDate;
 extern int openid_server;
 
-//중국 passpod 전용 함수 
 bool CheckPasspod(const char * account)
 {
 	char szQuery[1024];
@@ -268,7 +267,7 @@ void DBManager::FlushBilling(bool bForce)
 		{
 			CLoginData * pkLD = (it++)->second;
 
-			if (pkLD->IsBilling())    
+			if (pkLD->IsBilling())
 				PushBilling(pkLD);
 		}
 	}
@@ -359,7 +358,7 @@ void DBManager::FlushBilling(bool bForce)
 		}
 
 		if (dwCount < m_vec_kUseTime.size())
-		{   
+		{
 			int nNewSize = m_vec_kUseTime.size() - dwCount;
 			memcpy(&m_vec_kUseTime[0], &m_vec_kUseTime[dwCount], sizeof(TUseTime) * nNewSize);
 			m_vec_kUseTime.resize(nNewSize);
@@ -426,13 +425,12 @@ void DBManager::FlushBilling(bool bForce)
 			}
 		}
 	}
-
 }
 
 void DBManager::CheckBilling()
 {
 	std::vector<DWORD> vec;
-	vec.push_back(0); // 카운트를 위해 미리 비워둔다.
+	vec.push_back(0);
 
 	//sys_log(0, "CheckBilling: map size %d", m_map_pkLoginData.size());
 
@@ -449,7 +447,7 @@ void DBManager::CheckBilling()
 		}
 	}
 
-	vec[0] = vec.size() - 1; // 비워둔 곳에 사이즈를 넣는다, 사이즈 자신은 제외해야 하므로 -1
+	vec[0] = vec.size() - 1;
 	db_clientdesc->DBPacket(HEADER_GD_BILLING_CHECK, 0, &vec[0], sizeof(DWORD) * vec.size());
 }
 
@@ -481,7 +479,7 @@ void DBManager::SendAuthLogin(LPDESC d)
 
 	TPacketGDAuthLogin ptod;
 	ptod.dwID = r.id;
-	
+
 	trim_and_lower(r.login, ptod.szLogin, sizeof(ptod.szLogin));
 	strlcpy(ptod.szSocialID, r.social_id, sizeof(ptod.szSocialID));
 	ptod.dwLoginKey = d->GetLoginKey();
@@ -689,7 +687,7 @@ void DBManager::AnalyzeReturnQuery(SQLMsg * pMsg)
 					M2_DELETE(pinfo);
 					break;
 				}
-				//위치 변경 - By SeMinZ
+
 				d->SetLogin(pinfo->login);
 
 				sys_log(0, "QID_AUTH_LOGIN: START %u %p", qi->dwIdent, get_pointer(d));
@@ -956,18 +954,18 @@ void DBManager::AnalyzeReturnQuery(SQLMsg * pMsg)
 					{ 
 						sys_err("error column %d", col);
 						M2_DELETE(pinfo);
-					   	break; 
+					   	break;
 					}
-					
+
 					strlcpy(szEncrytPassword, row[col++], sizeof(szEncrytPassword));
 
-					if (!row[col]) 
+					if (!row[col])
 					{
 					   	sys_err("error column %d", col);
 						M2_DELETE(pinfo);
 					   	break;
 				   	}
-				
+
 					strlcpy(szPassword, row[col++], sizeof(szPassword));
 
 					if (!row[col]) 
@@ -981,8 +979,8 @@ void DBManager::AnalyzeReturnQuery(SQLMsg * pMsg)
 					}
 
 					if (!row[col])
-				   	{ 
-						sys_err("error column %d", col); 
+				   	{
+						sys_err("error column %d", col);
 						M2_DELETE(pinfo);
 						break;
 				   	}
@@ -995,12 +993,12 @@ void DBManager::AnalyzeReturnQuery(SQLMsg * pMsg)
 						M2_DELETE(pinfo);
 					   	break;
 				   	}
-				
+
 					str_to_number(dwID, row[col++]);
-					
-					if (!row[col]) 
+
+					if (!row[col])
 					{
-					   	sys_err("error column %d", col); 
+					   	sys_err("error column %d", col);
 						M2_DELETE(pinfo);
 						break;
 				   	}
@@ -1054,10 +1052,9 @@ void DBManager::AnalyzeReturnQuery(SQLMsg * pMsg)
 
 					if (true == LC_IsBrazil())
 					{
-						nPasswordDiff = 0; // 브라질 버전에서는 비밀번호 체크를 하지 않는다.
+						nPasswordDiff = 0;
 					}
 
-					//OpenID : OpenID 의 경우, 비밀번호 체크를 하지 않는다.
 					if (openid_server)
 					{
 						nPasswordDiff = 0;
@@ -1102,8 +1099,7 @@ void DBManager::AnalyzeReturnQuery(SQLMsg * pMsg)
 					else
 					{
 						if (LC_IsEurope())
-						{
-							//stBlockData >= 0 == 날짜가 BlockDate 보다 미래 
+						{ 
 							if (strncmp(szCreateDate, g_stBlockDate.c_str(), 8) >= 0)
 							{
 								LoginFailure(d, "BLKLOGIN");
@@ -1126,7 +1122,6 @@ void DBManager::AnalyzeReturnQuery(SQLMsg * pMsg)
 						DESC_MANAGER::instance().ConnectAccount(r.login, d);
 
 						d->SetMatrixCode(szMatrixCode);
-
 						if (!g_bBilling)
 						{
 							LoginPrepare(BILLING_FREE, 0, 0, d, pinfo->adwClientKey, aiPremiumTimes);
@@ -1193,7 +1188,7 @@ void DBManager::AnalyzeReturnQuery(SQLMsg * pMsg)
 				if (pMsg->Get()->uiNumRows > 0)
 				{
 					MYSQL_ROW row = mysql_fetch_row(pMsg->Get()->pSQLResult);
-					
+
 					int iLimitDt = 0;
 					str_to_number(iLimitDt, row[0]);
 
@@ -1357,7 +1352,7 @@ void DBManager::AnalyzeReturnQuery(SQLMsg * pMsg)
 		case QID_BLOCK_CHAT_LIST:
 			{
 				LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID(qi->dwIdent);
-				
+
 				if (ch == NULL)
 					break;
 				if (pMsg->Get()->uiNumRows)
@@ -1593,7 +1588,7 @@ size_t DBManager::EscapeString(char* dst, size_t dstSize, const char *src, size_
 }
 
 //
-// Common SQL 
+// Common SQL
 //
 AccountDB::AccountDB() :
 	m_IsConnect(false)
@@ -1748,3 +1743,4 @@ void AccountDB::AnalyzeReturnQuery(SQLMsg * pMsg)
 
 	M2_DELETE(qi);
 }
+
