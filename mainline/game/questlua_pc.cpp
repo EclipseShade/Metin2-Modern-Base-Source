@@ -34,11 +34,10 @@ extern int g_nPortalLimitTime;
 extern LPCLIENT_DESC db_clientdesc;
 const int ITEM_BROKEN_METIN_VNUM = 28960;
 
-namespace quest 
+namespace quest
 {
-	//
 	// "pc" Lua functions
-	//
+
 	int pc_has_master_skill(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
@@ -73,7 +72,7 @@ namespace quest
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
-		if (!lua_isnumber(L, 1)) 
+		if (!lua_isnumber(L, 1))
 		{
 			sys_err("wrong skill index");
 			return 0;
@@ -87,7 +86,7 @@ namespace quest
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
-		if (!lua_isnumber(L, 1)) 
+		if (!lua_isnumber(L, 1))
 		{
 			sys_err("wrong map index");
 			return 0;
@@ -107,7 +106,7 @@ namespace quest
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
-		if (!lua_isnumber(L, 1)) 
+		if (!lua_isnumber(L, 1))
 		{
 			sys_err("wrong map index");
 			return 0;
@@ -179,12 +178,12 @@ namespace quest
 			return 1;
 		}
 		//END_PREVENT_HACK
-	
+
 		if ( test_server )
 			ch->ChatPacket( CHAT_TYPE_INFO, "pc_warp %d %d %d",(int)lua_tonumber(L,1),
 					(int)lua_tonumber(L,2),map_index );
 		ch->WarpSet((int)lua_tonumber(L, 1), (int)lua_tonumber(L, 2), map_index);
-		
+
 		lua_pushboolean(L, true);
 
 		return 1;
@@ -192,7 +191,7 @@ namespace quest
 
 	int pc_warp_local(lua_State * L)
 	{
-		if (!lua_isnumber(L, 1)) 
+		if (!lua_isnumber(L, 1))
 		{
 			sys_err("no map index argument");
 			return 0;
@@ -227,34 +226,6 @@ namespace quest
 			sys_err("y coordinate overflow max: %d input: %d", region->ey - region->sy, y);
 			return 0;
 		}
-
-		/*
-		int iPulse = thecore_pulse();	
-		if ( pkChr->GetExchange() || pkChr->GetMyShop() || pkChr->GetShopOwner() || pkChr->IsOpenSafebox() )
-		{
-			pkChr->ChatPacket( CHAT_TYPE_INFO, LC_TEXT("거래창,창고 등을 연 상태에서는 다른곳으로 이동할수 없습니다" ));
-
-			return;
-		}
-		//PREVENT_PORTAL_AFTER_EXCHANGE
-		//교환 후 시간체크
-		if ( iPulse - pkChr->GetExchangeTime()  < PASSES_PER_SEC(60) )
-		{
-			pkChr->ChatPacket( CHAT_TYPE_INFO, LC_TEXT("거래 후 1분 이내에는 다른지역으로 이동 할 수 없습니다." ) );
-			return;
-		}
-		//END_PREVENT_PORTAL_AFTER_EXCHANGE
-		//PREVENT_ITEM_COPY
-		{
-			if ( iPulse - pkChr->GetMyShopTime() < PASSES_PER_SEC(60) )
-			{
-				pkChr->ChatPacket( CHAT_TYPE_INFO, LC_TEXT("거래 후 1분 이내에는 다른지역으로 이동 할 수 없습니다." ) );
-				return;
-			}
-
-		}
-		//END_PREVENT_ITEM_COPY
-		*/
 
 		CQuestManager::instance().GetCurrentCharacterPtr()->WarpSet(region->sx + x, region->sy + y);
 		return 0;
@@ -398,7 +369,7 @@ namespace quest
 		int count = 0;
 
 		ch->GiveItemFromSpecialItemGroup(dwGroupVnum, dwVnums, dwCounts, item_gets, count);
-		
+
 		for (int i = 0; i < count; i++)
 		{
 			if (!item_gets[i])
@@ -452,7 +423,7 @@ namespace quest
 
 		DWORD dwVnum;
 
-		if (lua_isnumber(L,2)) // 번호인경우 번호로 준다.
+		if (lua_isnumber(L,2))
 			dwVnum = (int) lua_tonumber(L, 2);
 		else if (!ITEM_MANAGER::instance().GetVnum(lua_tostring(L, 2), dwVnum))
 		{
@@ -466,7 +437,7 @@ namespace quest
 		{
 			icount = (int)rint(lua_tonumber(L, 3));
 
-			if (icount <= 0) 
+			if (icount <= 0)
 			{
 				sys_err("QUEST Make item call error : wrong item count : %g", lua_tonumber(L, 2));
 				return 0;
@@ -492,7 +463,7 @@ namespace quest
 
 		DWORD dwVnum;
 
-		if (lua_isnumber(L, 1)) // 번호인경우 번호로 준다.
+		if (lua_isnumber(L, 1))
 		{
 			dwVnum = (int) lua_tonumber(L, 1);
 		}
@@ -508,7 +479,7 @@ namespace quest
 		if (lua_isnumber(L,2) && lua_tonumber(L,2)>0)
 		{
 			icount = (int)rint(lua_tonumber(L,2));
-			if (icount<=0) 
+			if (icount<=0)
 			{
 				sys_err("QUEST Make item call error : wrong item count : %g", lua_tonumber(L,2));
 				lua_pushnumber (L, 0);
@@ -528,7 +499,7 @@ namespace quest
 		{
 			LogManager::instance().GoldBarLog(ch->GetPlayerID(), item->GetID(), QUEST, "quest: give_item2");
 		}
-		
+
 		if (NULL != item)
 			lua_pushnumber (L, item->GetID());
 		else
@@ -548,7 +519,7 @@ namespace quest
 
 		DWORD dwVnum;
 
-		if (lua_isnumber(L, 1)) // 번호인경우 번호로 준다.
+		if (lua_isnumber(L, 1))
 		{
 			dwVnum = (int) lua_tonumber(L, 1);
 		}
@@ -562,7 +533,7 @@ namespace quest
 		if (lua_isnumber(L,2) && lua_tonumber(L,2)>0)
 		{
 			icount = (int)rint(lua_tonumber(L,2));
-			if (icount<=0) 
+			if (icount<=0)
 			{
 				sys_err("QUEST Make item call error : wrong item count : %g", lua_tonumber(L,2));
 				return 0;
@@ -584,7 +555,7 @@ namespace quest
 		{
 			LogManager::instance().GoldBarLog(ch->GetPlayerID(), item->GetID(), QUEST, "quest: give_item2");
 		}
-		
+
 		return 0;
 	}
 
@@ -748,43 +719,43 @@ namespace quest
 		return 1;
 	}
 
-	int pc_get_next_exp(lua_State* L)  
+	int pc_get_next_exp(lua_State* L)
 	{
 		lua_pushnumber(L, CQuestManager::instance().GetCurrentCharacterPtr()->GetNextExp());
 		return 1;
 	}
 
-	int pc_get_exp(lua_State* L)  
+	int pc_get_exp(lua_State* L)
 	{
 		lua_pushnumber(L, CQuestManager::instance().GetCurrentCharacterPtr()->GetExp());
 		return 1;
 	}
 
-	int pc_get_race(lua_State* L)  
+	int pc_get_race(lua_State* L)
 	{
 		lua_pushnumber(L, CQuestManager::instance().GetCurrentCharacterPtr()->GetRaceNum());
 		return 1;
 	}
 
-	int pc_change_sex(lua_State* L)  
+	int pc_change_sex(lua_State* L)
 	{
 		lua_pushnumber(L, CQuestManager::instance().GetCurrentCharacterPtr()->ChangeSex());
 		return 1;
 	}
 
-	int pc_get_job(lua_State* L)  
+	int pc_get_job(lua_State* L)
 	{
 		lua_pushnumber(L, CQuestManager::instance().GetCurrentCharacterPtr()->GetJob());
 		return 1;
 	}
 
-	int pc_get_max_sp(lua_State* L)  
+	int pc_get_max_sp(lua_State* L)
 	{
 		lua_pushnumber(L, CQuestManager::instance().GetCurrentCharacterPtr()->GetMaxSP());
 		return 1;
 	}
 
-	int pc_get_sp(lua_State * L)  
+	int pc_get_sp(lua_State * L)
 	{
 		lua_pushnumber(L, CQuestManager::instance().GetCurrentCharacterPtr()->GetSP());
 		return 1;
@@ -809,7 +780,7 @@ namespace quest
 
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
-		if (val > 0) // 증가시키는 것이므로 무조건 성공 리턴
+		if (val > 0)
 			ch->PointChange(POINT_SP, val);
 		else if (val < 0)
 		{
@@ -826,25 +797,25 @@ namespace quest
 		return 1;
 	}
 
-	int pc_get_max_hp(lua_State * L)  
+	int pc_get_max_hp(lua_State * L)
 	{
 		lua_pushnumber(L, CQuestManager::instance().GetCurrentCharacterPtr()->GetMaxHP());
 		return 1;
 	}
 
-	int pc_get_hp(lua_State * L)  
+	int pc_get_hp(lua_State * L)
 	{
 		lua_pushnumber(L, CQuestManager::instance().GetCurrentCharacterPtr()->GetHP());
 		return 1;
 	}
 
-	int pc_get_level(lua_State * L)  
+	int pc_get_level(lua_State * L)
 	{
 		lua_pushnumber(L, CQuestManager::instance().GetCurrentCharacterPtr()->GetLevel());
 		return 1;
 	}
 
-	int pc_set_level(lua_State * L)  
+	int pc_set_level(lua_State * L)
 	{
 		if (!lua_isnumber(L, 1))
 		{
@@ -856,27 +827,23 @@ namespace quest
 			int newLevel = lua_tonumber(L, 1);
 			LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
-
 			sys_log(0,"QUEST [LEVEL] %s jumpint to level %d", ch->GetName(), (int)rint(lua_tonumber(L,1)));
 
 			PC* pPC = CQuestManager::instance().GetCurrentPC();
 			LogManager::instance().QuestRewardLog(pPC->GetCurrentQuestName().c_str(), ch->GetPlayerID(), ch->GetLevel(), newLevel, 0);
-			
-			//포인트 : 스킬, 서브스킬, 스탯
+
 			ch->PointChange(POINT_SKILL, newLevel - ch->GetLevel());
 			ch->PointChange(POINT_SUB_SKILL, newLevel < 10 ? 0 : newLevel - MAX(ch->GetLevel(), 9));
 			ch->PointChange(POINT_STAT, ((MINMAX(1, newLevel, 90) - ch->GetLevel()) * 3) + ch->GetPoint(POINT_LEVEL_STEP));
-			//레벨
+
 			ch->PointChange(POINT_LEVEL, newLevel - ch->GetLevel());
 			//HP, SP
 			ch->SetRandomHP((newLevel - 1) * number(JobInitialPoints[ch->GetJob()].hp_per_lv_begin, JobInitialPoints[ch->GetJob()].hp_per_lv_end));
 			ch->SetRandomSP((newLevel - 1) * number(JobInitialPoints[ch->GetJob()].sp_per_lv_begin, JobInitialPoints[ch->GetJob()].sp_per_lv_end));
 
-
-			// 회복
 			ch->PointChange(POINT_HP, ch->GetMaxHP() - ch->GetHP());
 			ch->PointChange(POINT_SP, ch->GetMaxSP() - ch->GetSP());
-			
+
 			ch->ComputePoints();
 			ch->PointsPacket();
 			ch->SkillLevelPacket();
@@ -910,7 +877,7 @@ namespace quest
 	}
 
 	int pc_get_wear(lua_State * L)
-	{		
+	{
 		if (!lua_isnumber(L, 1))
 		{
 			sys_err("QUEST wrong set flag");
@@ -921,7 +888,6 @@ namespace quest
 
 		LPITEM item = CQuestManager::instance().GetCurrentCharacterPtr()->GetWear(bCell);
 
-
 		if (!item)
 			lua_pushnil(L);
 		else
@@ -931,13 +897,11 @@ namespace quest
 	}
 
 	int pc_get_money(lua_State * L)
-	{ 
+	{
 		lua_pushnumber(L, CQuestManager::instance().GetCurrentCharacterPtr()->GetGold());
 		return 1;
 	}
 
-	// 20050725.myevan.은둔의 망토 사용중 혼석 수련시 선악치가 두배 소모되는 버그가 발생해
-	// 실제 선악치를 이용해 계산을 하게 한다.
 	int pc_get_real_alignment(lua_State* L)
 	{
 		lua_pushnumber(L, CQuestManager::instance().GetCurrentCharacterPtr()->GetRealAlignment()/10);
@@ -1150,14 +1114,14 @@ namespace quest
 
 		DWORD exp = (DWORD)((exp_table[MINMAX(0, lev, PLAYER_EXP_TABLE_MAX)] * proc) / 100);
 		PC * pPC = CQuestManager::instance().GetCurrentPC();
-		
+
 		LogManager::instance().QuestRewardLog(pPC->GetCurrentQuestName().c_str(), ch->GetPlayerID(), ch->GetLevel(), exp, 0);
 
 		pPC->GiveExp(lua_tostring(L, 1), exp);
 		return 0;
 	}
 
-	int pc_get_empire(lua_State* L)  
+	int pc_get_empire(lua_State* L)
 	{
 		lua_pushnumber(L, CQuestManager::instance().GetCurrentCharacterPtr()->GetEmpire());
 		return 1;
@@ -1192,7 +1156,7 @@ namespace quest
 		return 0;
 	}
 
-	int pc_get_skillgroup(lua_State* L)  
+	int pc_get_skillgroup(lua_State* L)
 	{
 		lua_pushnumber(L, CQuestManager::instance().GetCurrentCharacterPtr()->GetSkillGroup());
 		return 1;
@@ -1263,7 +1227,6 @@ namespace quest
 		ch->RemoveAffect(AFFECT_MOUNT);
 		ch->RemoveAffect(AFFECT_MOUNT_BONUS);
 
-		// 말이 소환되어 따라다니는 상태라면 말부터 없앰
 		if (ch->GetHorse())
 			ch->HorseSummon(false);
 
@@ -1301,7 +1264,7 @@ namespace quest
 
 			}
 		}
-		
+
 		return 0;
 	}
 
@@ -1401,8 +1364,8 @@ namespace quest
 			if (!item)
 				continue;
 
-			if (item->GetType() == ITEM_USE && 
-					item->GetSubType() == USE_TALISMAN && 
+			if (item->GetType() == ITEM_USE &&
+					item->GetSubType() == USE_TALISMAN &&
 					(item->GetValue(0) == 1 || item->GetValue(0) == 2))
 			{
 				int x = item->GetSocket(0);
@@ -1456,8 +1419,8 @@ namespace quest
 			if (!item)
 				continue;
 
-			if (item->GetType() == ITEM_USE && 
-					item->GetSubType() == USE_TALISMAN && 
+			if (item->GetType() == ITEM_USE &&
+					item->GetSubType() == USE_TALISMAN &&
 					(item->GetValue(0) == 1 || item->GetValue(0) == 2))
 			{
 				int item_x = item->GetSocket(0);
@@ -1531,7 +1494,6 @@ namespace quest
 
 		if (pct == 100 || number(1, 100) <= pct)
 		{
-			// 개량 성공
 			lua_pushboolean(L, 1);
 
 			LPITEM pkNewItem = ITEM_MANAGER::instance().CreateItem(item->GetRefinedVnum(), 1, 0, false);
@@ -1558,7 +1520,7 @@ namespace quest
 
 				ITEM_MANAGER::instance().RemoveItem(item, "REMOVE (REFINE SUCCESS)");
 
-				// some tuits need here -_- pkNewItem->AddToCharacter(this, bCell); 
+				// some tuits need here -_- pkNewItem->AddToCharacter(this, bCell);
 				pkNewItem->EquipTo(ch, cell);
 
 				ITEM_MANAGER::instance().FlushDelayedSave(pkNewItem);
@@ -1568,7 +1530,6 @@ namespace quest
 		}
 		else
 		{
-			// 개량 실패
 			lua_pushboolean(L, 0);
 		}
 
@@ -1814,7 +1775,7 @@ namespace quest
 		return 0;
 	}
 
-	// RESET_ONE_SKILL	
+	// RESET_ONE_SKILL
 	int pc_clear_one_skill(lua_State* L)
 	{
 		int vnum = (int)lua_tonumber(L, 1);
@@ -1841,7 +1802,7 @@ namespace quest
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
 		lua_pushboolean(L, ch->GetQuestFlag("skill_group_clear.clear") == 1);
-	
+
 		return 1;
 	}
 
@@ -1854,21 +1815,19 @@ namespace quest
 		return 0;
 	}
 
-	//텔레포트 
 	int pc_teleport ( lua_State * L )
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
-		int x=0,y=0;	
+		int x=0,y=0;
 		if ( lua_isnumber(L, 1) )
 		{
-			// 지역명 워프
 			const int TOWN_NUM = 10;
 			struct warp_by_town_name
 			{
 				const char* name;
 				DWORD x;
 				DWORD y;
-			} ws[TOWN_NUM] = 
+			} ws[TOWN_NUM] =
 			{
 				{"영안읍성",	4743,	9548},
 				{"임지곡",		3235,	9086},
@@ -1906,7 +1865,6 @@ namespace quest
 					}
 					else
 					{
-
 						PIXEL_POSITION pos;
 
 						if (!SECTREE_MANAGER::instance().GetCenterPositionOfMap(pkCCI->lMapIndex, pos))
@@ -1995,7 +1953,7 @@ teleport_area:
 		int	premium_type	= 0;
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
-		if (!lua_isnumber(L, 1)) 
+		if (!lua_isnumber(L, 1))
 		{
 			sys_err("wrong premium index (is not number)");
 			return 0;
@@ -2022,7 +1980,7 @@ teleport_area:
 
 		lua_pushnumber(L, remain_seconds);
 		return 1;
-	}	
+	}
 
 	int pc_send_block_mode(lua_State* L)
 	{
@@ -2036,7 +1994,7 @@ teleport_area:
 	int pc_change_empire(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
-		
+
 		lua_pushnumber(L, ch->ChangeEmpire((unsigned char)lua_tonumber(L, 1)));
 
 		return 1;
@@ -2059,16 +2017,9 @@ teleport_area:
 
 		return 0;
 	}
-	
+
 	int pc_change_name(lua_State* L)
 	{
-		// 리턴값
-		//		0: 새이름을 설정한 뒤 로그아웃을 안했음
-		//		1: 스크립트에서 문자열이 넘어오지 않았음
-		//		2: check_name 을 통과하지 못했음
-		//		3: 이미 같은 이름이 사용중
-		//		4: 성공
-		//		5: 해당 기능 지원하지 않음
 		if ( LC_IsEurope() )
 		{
 			lua_pushnumber(L, 5);
@@ -2108,7 +2059,6 @@ teleport_area:
 			int	count = 0;
 			str_to_number(count, row[0]);
 
-			// 이미 해당 이름을 가진 캐릭터가 있음
 			if ( count != 0 )
 			{
 				lua_pushnumber(L, 3);
@@ -2276,7 +2226,7 @@ teleport_area:
 		ch->PointsPacket();
 		return 1;
 	}
-	
+
 	int pc_get_st( lua_State* L )
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
@@ -2300,7 +2250,7 @@ teleport_area:
 		ch->PointsPacket();
 		return 1;
 	}
-	
+
 	int pc_get_dx( lua_State* L )
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
@@ -2359,8 +2309,6 @@ teleport_area:
 
 		int idx = 1;
 
-		// 용혼석 슬롯은 할 필요 없을 듯.
-		// 이 함수는 탈석서용 함수인 듯 하다.
 		for ( int i=0; i < INVENTORY_MAX_NUM + WEAR_MAX_NUM; i++ )
 		{
 			LPITEM pItem = pChar->GetInventoryItem(i);
@@ -2452,7 +2400,7 @@ teleport_area:
 		return 1;
 	}
 
-	int pc_get_account_id( lua_State* L )
+	int pc_get_account_id(lua_State* L )
 	{
 		LPCHARACTER pChar = CQuestManager::instance().GetCurrentCharacterPtr();
 
@@ -2469,7 +2417,7 @@ teleport_area:
 		return 1;
 	}
 
-	int pc_get_account( lua_State* L )
+	int pc_get_account(lua_State* L )
 	{
 		LPCHARACTER pChar = CQuestManager::instance().GetCurrentCharacterPtr();
 
@@ -2655,7 +2603,7 @@ teleport_area:
 		}
 
 		return count;
-	}		
+	}
 
 	int pc_charge_cash(lua_State * L)
 	{
@@ -2665,7 +2613,7 @@ teleport_area:
 		std::string strChargeType = lua_isstring(L, 2) ? lua_tostring(L, 2) : "";
 
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
-		
+
 		if (NULL == ch || NULL == ch->GetDesc() || 1 > amount || 50000 < amount)
 		{
 			lua_pushboolean(L, 0);
@@ -2708,8 +2656,8 @@ teleport_area:
 
 		DBManager::instance().Query("INSERT INTO item_award (login, vnum, count, given_time, why, mall)select '%s', %d, %d, now(), '%s', 1 from DUAL where not exists (select login, why from item_award where login = '%s' and why  = '%s') ;", 
 			ch->GetDesc()->GetAccountTable().login,
-			dwVnum, 
-			icount, 
+			dwVnum,
+			icount,
 			lua_tostring(L,3),
 			ch->GetDesc()->GetAccountTable().login,
 			lua_tostring(L,3));
@@ -2736,8 +2684,8 @@ teleport_area:
 
 		DBManager::instance().Query("INSERT INTO item_award (login, vnum, count, given_time, why, mall, socket0, socket1, socket2)select '%s', %d, %d, now(), '%s', 1, %s, %s, %s from DUAL where not exists (select login, why from item_award where login = '%s' and why  = '%s') ;", 
 			ch->GetDesc()->GetAccountTable().login,
-			dwVnum, 
-			icount, 
+			dwVnum,
+			icount,
 			lua_tostring(L,3),
 			lua_tostring(L,4),
 			lua_tostring(L,5),
@@ -2749,7 +2697,7 @@ teleport_area:
 		return 1;
 	}
 
-	int pc_get_informer_type(lua_State* L)	//독일 선물 기능
+	int pc_get_informer_type(lua_State* L)
 	{
 		LPCHARACTER pChar = CQuestManager::instance().GetCurrentCharacterPtr();
 
@@ -2795,13 +2743,13 @@ teleport_area:
 
 		lua_pushnumber(L, iDeltaPercent);
 		lua_pushnumber(L, iRandRange);
-		
+
 		return 2;
 	}
 
 	void RegisterPCFunctionTable()
 	{
-		luaL_reg pc_functions[] = 
+		luaL_reg pc_functions[] =
 		{
 			{ "get_wear",		pc_get_wear			},
 			{ "get_player_id",	pc_get_player_id	},
@@ -2903,8 +2851,8 @@ teleport_area:
 			{ "warp_to_guild_war_observer_position", pc_warp_to_guild_war_observer_position	},
 			{ "give_item_from_special_item_group", pc_give_item_from_special_item_group	},
 			{ "learn_grand_master_skill", pc_learn_grand_master_skill	},
-			{ "is_skill_book_no_delay",	pc_is_skill_book_no_delay}, 
-			{ "remove_skill_book_no_delay",	pc_remove_skill_book_no_delay}, 
+			{ "is_skill_book_no_delay",	pc_is_skill_book_no_delay},
+			{ "remove_skill_book_no_delay",	pc_remove_skill_book_no_delay},
 
 			{ "enough_inventory",	pc_enough_inventory	},
 			{ "get_horse_level",	pc_get_horse_level	}, // TO BE DELETED XXX
@@ -2949,9 +2897,9 @@ teleport_area:
             { "give_polymorph_book",    pc_give_polymorph_book  },
             { "upgrade_polymorph_book", pc_upgrade_polymorph_book },
             { "get_premium_remain_sec", pc_get_premium_remain_sec },
-   
+
 			{ "send_block_mode",		pc_send_block_mode	},
-			
+
 			{ "change_empire",			pc_change_empire	},
 			{ "get_change_empire_count",	pc_get_change_empire_count	},
 			{ "set_change_empire_count",	pc_set_change_empire_count	},
@@ -2991,23 +2939,18 @@ teleport_area:
 			{ "get_sig_items",		pc_get_sig_items	},
 
 			{ "charge_cash",		pc_charge_cash		},
-			
-			{ "get_informer_type",	pc_get_informer_type	},	//독일 선물 기능
+
+			{ "get_informer_type",	pc_get_informer_type	},
 			{ "get_informer_item",  pc_get_informer_item	},
 
-			{ "give_award",			pc_give_award			},	//일본 계정당 한번씩 금괴 지급
-			{ "give_award_socket",	pc_give_award_socket	},	//몰 인벤토리에 아이템 지급. 소켓 설정을 위한 함수.
+			{ "give_award",			pc_give_award			},
+			{ "give_award_socket",	pc_give_award_socket	},
 
-			{ "get_killee_drop_pct",	pc_get_killee_drop_pct	}, /* mob_vnum.kill 이벤트에서 killee와 pc와의 level 차이, pc의 프리미엄 드랍률 등등을 고려한 아이템 드랍 확률.
-																    * return 값은 (분자, 분모).
-																    * (말이 복잡한데, CreateDropItem의 GetDropPct의 iDeltaPercent, iRandRange를 return한다고 보면 됨.)
-																	* (이 말이 더 어려울라나 ㅠㅠ)
-																	* 주의사항 : kill event에서만 사용할 것!
-																	*/
-
+			{ "get_killee_drop_pct",	pc_get_killee_drop_pct	},
 			{ NULL,			NULL			}
 		};
 
 		CQuestManager::instance().AddLuaFunctionTable("pc", pc_functions);
 	}
 };
+
