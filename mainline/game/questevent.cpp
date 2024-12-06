@@ -36,7 +36,7 @@ namespace quest
 		if (!q.ServerTimer(info->npc_id, info->arg))
 			return passes_per_sec / 2 + 1;
 
-		if (0 == info->time_cycle)	// 루프가 아니라면 종료 시킨다.
+		if (0 == info->time_cycle)
 		{
 			q.ClearServerTimerNotCancel(info->name, info->arg);
 			M2_DELETE_ARRAY(info->name);
@@ -63,7 +63,7 @@ namespace quest
 			if (!CQuestManager::instance().Timer(info->player_id, info->npc_id))
 				return (passes_per_sec / 2 + 1);
 
-			if (0 == info->time_cycle)	// 루프가 아니라면 종료 시킨다.
+			if (0 == info->time_cycle)
 				goto END_OF_TIMER_EVENT;
 		}
 		else
@@ -124,3 +124,4 @@ END_OF_TIMER_EVENT:
 		return event_create(quest_timer_event, info, ltime_cycle);
 	}
 }
+
