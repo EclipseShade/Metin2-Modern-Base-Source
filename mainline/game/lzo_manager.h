@@ -20,3 +20,4 @@ class LZOManager : public singleton<LZOManager>
 };
 
 #endif
+
