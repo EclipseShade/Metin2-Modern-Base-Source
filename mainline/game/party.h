@@ -5,7 +5,7 @@
 
 enum // unit : minute
 {
-	PARTY_ENOUGH_MINUTE_FOR_EXP_BONUS = 60, // 파티 결성 후 60분 후 부터 추가 경험치 보너스
+	PARTY_ENOUGH_MINUTE_FOR_EXP_BONUS = 60,
 	PARTY_HEAL_COOLTIME_LONG = 60,
 	PARTY_HEAL_COOLTIME_SHORT = 30,
 	PARTY_MAX_MEMBER = 8,
@@ -13,17 +13,17 @@ enum // unit : minute
 };
 
 enum EPartyRole
-{   
-	PARTY_ROLE_NORMAL,  
+{
+	PARTY_ROLE_NORMAL,
 	PARTY_ROLE_LEADER,
 	PARTY_ROLE_ATTACKER,
 	PARTY_ROLE_TANKER,
-	PARTY_ROLE_BUFFER,  
+	PARTY_ROLE_BUFFER,
 	PARTY_ROLE_SKILL_MASTER,
-	PARTY_ROLE_HASTE,   
+	PARTY_ROLE_HASTE,
 	PARTY_ROLE_DEFENDER,
-	PARTY_ROLE_MAX_NUM, 
-};  
+	PARTY_ROLE_MAX_NUM,
+};
 
 enum EPartyExpDistributionModes
 {
@@ -69,12 +69,12 @@ class CPartyManager : public singleton<CPartyManager>
 		void		P2PQuitParty(DWORD pid);
 
 	private:
-		TPartyMap	m_map_pkParty;		// PID로 어느 파티에 있나 검색하기 위한 컨테이너
-		TPartyMap	m_map_pkMobParty;	// Mob 파티는 PID 대신 VID 로 따로 관리한다.
+		TPartyMap	m_map_pkParty;
+		TPartyMap	m_map_pkMobParty;
 
-		TPCPartySet	m_set_pkPCParty;	// 사람들의 파티 전체 집합
+		TPCPartySet	m_set_pkPCParty;
 
-		bool		m_bEnablePCParty;	// 디비가 켜져있지 않으면 사람들의 파티 상태가 변경불가
+		bool		m_bEnablePCParty;
 };
 
 enum EPartyMessages
@@ -112,7 +112,7 @@ class CParty
 		void		Link(LPCHARACTER pkChr);
 		void		Unlink(LPCHARACTER pkChr);
 
-		void		ChatPacketToAllMember(BYTE type, const char* format, ...);	
+		void		ChatPacketToAllMember(BYTE type, const char* format, ...);
 
 		void		UpdateOnlineState(DWORD dwPID, const char* name);
 		void		UpdateOfflineState(DWORD dwPID);
@@ -248,9 +248,7 @@ class CParty
 		TFlagMap	m_map_iFlag;
 
 		LPDUNGEON	m_pkDungeon;
-		// 아귀 동굴용 dungeon 멤버 변수.
-		// 정말 이렇게까지 하고 싶진 않았는데, 던전에서 party 관리가 정말로 개판이라
-		// 그거 고치기 전까지는 이렇게 임시로 해놓는다.
+
 		LPDUNGEON	m_pkDungeon_for_Only_party;
 	public:
 		void SetDungeon_for_Only_party(LPDUNGEON pDungeon);
@@ -320,7 +318,7 @@ template <class Func> bool CParty::ForEachOnMapMemberBool(Func & f, long lMapInd
 				if(f(ch) == false)
 				{
 					return false;
-			
+
 				}
 			}
 		}
