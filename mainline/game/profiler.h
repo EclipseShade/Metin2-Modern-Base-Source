@@ -175,7 +175,7 @@ class CProfiler : public singleton<CProfiler>
 				stLine.assign(p->iDepth * 5, ' ');
 				stLine += p->strName;
 
-				fprintf(fp, "%-30s %10d/%-10d %.2f\n", 
+				fprintf(fp, "%-30s %10d/%-10d %.2f\n",
 						stLine.c_str(),
 						p->iCallingCount, p->iCollapsedTime,
 						p->iCallingCount != 0 ? (float) p->iCollapsedTime / p->iCallingCount : 0.0f);
@@ -268,3 +268,4 @@ template <typename T> class CProfileUnit
 #define PROF_UNIT CProfileUnit<void>
 
 #endif
+
