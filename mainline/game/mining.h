@@ -17,3 +17,4 @@ namespace mining
 }
 
 #endif
+
