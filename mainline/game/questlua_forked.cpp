@@ -12,11 +12,9 @@
 
 namespace quest
 {
-	//
 	// "forked_" lua functions
-	//
 
-	int forked_set_dead_count( lua_State* L )
+	int forked_set_dead_count(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
@@ -27,10 +25,10 @@ namespace quest
 			CThreeWayWar::instance().SetReviveTokenForPlayer( ch->GetPlayerID(), q.GetEventFlag("threeway_war_dead_count") );
 		}
 
-		return 0; 
+		return 0;
 	}
 
-	int forked_get_dead_count( lua_State* L )
+	int forked_get_dead_count(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
@@ -43,10 +41,10 @@ namespace quest
 			lua_pushnumber( L, 0 );
 		}
 
-		return 1; 
+		return 1;
 	}
 
-	int forked_init_kill_count_per_empire( lua_State* L )
+	int forked_init_kill_count_per_empire(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
@@ -55,7 +53,7 @@ namespace quest
 		return 0;
 	}
 
-	int forked_init( lua_State* L )
+	int forked_init(lua_State* L)
 	{
 		CThreeWayWar::instance().Initialize();
 		CThreeWayWar::instance().RandomEventMapSet();
@@ -63,7 +61,7 @@ namespace quest
 		return 0;
 	}
 
-	int forked_sungzi_start_pos( lua_State* L )
+	int forked_sungzi_start_pos(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
@@ -75,7 +73,7 @@ namespace quest
 		return 2;
 	}
 
-	int forked_pass_start_pos( lua_State* L )
+	int forked_pass_start_pos(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
@@ -87,23 +85,23 @@ namespace quest
 		return 2;
 	}
 
-	int forked_sungzi_mapindex (lua_State *L )
+	int forked_sungzi_mapindex(lua_State *L)
 	{
-		lua_pushnumber( L, GetSungziMapIndex() ); 
+		lua_pushnumber(L, GetSungziMapIndex());
 
 		if ( test_server )
 			sys_log ( 0, "forked_sungzi_map_index_by_empire %d", GetSungziMapIndex() );
 		return 1;
 	}
 
-	int forked_pass_mapindex_by_empire( lua_State *L )
+	int forked_pass_mapindex_by_empire(lua_State *L)
 	{
-		lua_pushnumber( L, GetPassMapIndex(lua_tonumber(L,1)) ); 
+		lua_pushnumber( L, GetPassMapIndex(lua_tonumber(L,1))); 
 
 		return 1;
 	}
 
-	int forked_get_pass_path_my_empire( lua_State *L )
+	int forked_get_pass_path_my_empire(lua_State *L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
@@ -113,7 +111,7 @@ namespace quest
 		return 1;
 	}
 
-	int forked_get_pass_path_by_empire( lua_State *L )
+	int forked_get_pass_path_by_empire(lua_State *L)
 	{
 		int iEmpire 	= (int)lua_tonumber(L, 1);
 
@@ -122,14 +120,14 @@ namespace quest
 		return 1;
 	}
 
-	int forked_is_forked_mapindex( lua_State * L )
+	int forked_is_forked_mapindex(lua_State * L)
 	{
 		lua_pushboolean( L, CThreeWayWar::instance().IsThreeWayWarMapIndex(lua_tonumber(L,1)) );
 
 		return 1;
 	}
 
-	int forked_is_sungzi_mapindex( lua_State * L )
+	int forked_is_sungzi_mapindex(lua_State * L)
 	{
 		lua_pushboolean( L, CThreeWayWar::instance().IsSungZiMapIndex(lua_tonumber(L,1)) );
 
@@ -194,7 +192,7 @@ namespace quest
 		return 0;
 	}
 
-	int forked_warp_all_in_map( lua_State * L )
+	int forked_warp_all_in_map(lua_State * L)
 	{
 		int iMapIndexFrom	= (int)lua_tonumber(L, 1 );
 		int iMapIndexTo		= (int)lua_tonumber(L, 2 );
@@ -212,9 +210,9 @@ namespace quest
 		event_create(warp_all_to_map_event, info, PASSES_PER_SEC(iTime));
 
 		return 0;
-	}	
+	}
 
-	int forked_is_registered_user( lua_State* L )
+	int forked_is_registered_user(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
@@ -230,7 +228,7 @@ namespace quest
 		return 1;
 	}
 
-	int forked_register_user( lua_State* L )
+	int forked_register_user(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
@@ -242,16 +240,16 @@ namespace quest
 		return 0;
 	}
 
-	int forked_purge_all_monsters( lua_State* L )
+	int forked_purge_all_monsters(lua_State* L)
 	{
 		CThreeWayWar::instance().RemoveAllMonstersInThreeWay();
 
 		return 0;
 	}
 
-	void RegisterForkedFunctionTable() 
+	void RegisterForkedFunctionTable()
 	{
-		luaL_reg forked_functions[] = 
+		luaL_reg forked_functions[] =
 		{
 			{ "setdeadcount",			forked_set_dead_count				},
 			{ "getdeadcount",			forked_get_dead_count				},
