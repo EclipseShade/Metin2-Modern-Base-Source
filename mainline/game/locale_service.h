@@ -72,3 +72,4 @@ bool LC_IsTaiwan();
 bool LC_IsWorldEdition();
 
 #endif
+
