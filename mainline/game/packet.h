@@ -4,17 +4,17 @@
 enum
 {
 	HEADER_CG_HANDSHAKE				= 0xff,
-	HEADER_CG_PONG				= 0xfe,
+	HEADER_CG_PONG					= 0xfe,
 	HEADER_CG_TIME_SYNC				= 0xfc,
 	HEADER_CG_KEY_AGREEMENT			= 0xfb, // _IMPROVED_PACKET_ENCRYPTION_
 
-	HEADER_CG_LOGIN				= 1,
+	HEADER_CG_LOGIN					= 1,
 	HEADER_CG_ATTACK				= 2,
-	HEADER_CG_CHAT				= 3,
-	HEADER_CG_CHARACTER_CREATE			= 4,
-	HEADER_CG_CHARACTER_DELETE			= 5,
-	HEADER_CG_CHARACTER_SELECT			= 6,
-	HEADER_CG_MOVE				= 7,
+	HEADER_CG_CHAT					= 3,
+	HEADER_CG_CHARACTER_CREATE		= 4,
+	HEADER_CG_CHARACTER_DELETE		= 5,
+	HEADER_CG_CHARACTER_SELECT		= 6,
+	HEADER_CG_MOVE					= 7,
 	HEADER_CG_SYNC_POSITION			= 8,
 	HEADER_CG_ENTERGAME				= 10,
 
@@ -25,46 +25,46 @@ enum
 
 	HEADER_CG_QUICKSLOT_ADD			= 16,
 	HEADER_CG_QUICKSLOT_DEL			= 17,
-	HEADER_CG_QUICKSLOT_SWAP			= 18,
+	HEADER_CG_QUICKSLOT_SWAP		= 18,
 	HEADER_CG_WHISPER				= 19,
 	HEADER_CG_ITEM_DROP2			= 20,
 
 	HEADER_CG_ON_CLICK				= 26,
 	HEADER_CG_EXCHANGE				= 27,
-	HEADER_CG_CHARACTER_POSITION		= 28,
+	HEADER_CG_CHARACTER_POSITION	= 28,
 	HEADER_CG_SCRIPT_ANSWER			= 29,
-	HEADER_CG_QUEST_INPUT_STRING		= 30,
+	HEADER_CG_QUEST_INPUT_STRING	= 30,
 	HEADER_CG_QUEST_CONFIRM			= 31,
 
-	HEADER_CG_SHOP				= 50,
+	HEADER_CG_SHOP					= 50,
 	HEADER_CG_FLY_TARGETING			= 51,
 	HEADER_CG_USE_SKILL				= 52,
-	HEADER_CG_ADD_FLY_TARGETING			= 53,
-	HEADER_CG_SHOOT				= 54,
+	HEADER_CG_ADD_FLY_TARGETING		= 53,
+	HEADER_CG_SHOOT					= 54,
 	HEADER_CG_MYSHOP				= 55,
 
-	HEADER_CG_ITEM_USE_TO_ITEM			= 60,
+	HEADER_CG_ITEM_USE_TO_ITEM		= 60,
 	HEADER_CG_TARGET			 	= 61,
 
-	HEADER_CG_TEXT				= 64,	// @ 로 시작되면 텍스트를 파싱한다.
-	HEADER_CG_WARP				= 65,
+	HEADER_CG_TEXT					= 64,
+	HEADER_CG_WARP					= 65,
 	HEADER_CG_SCRIPT_BUTTON			= 66,
 	HEADER_CG_MESSENGER				= 67,
 
 	HEADER_CG_MALL_CHECKOUT			= 69,
-	HEADER_CG_SAFEBOX_CHECKIN			= 70,	// 아이템을 창고에 넣넎는다.
-	HEADER_CG_SAFEBOX_CHECKOUT			= 71,	// 아이템을 창고로 부터 빼온다.
+	HEADER_CG_SAFEBOX_CHECKIN		= 70,
+	HEADER_CG_SAFEBOX_CHECKOUT		= 71,
 
 	HEADER_CG_PARTY_INVITE			= 72,
-	HEADER_CG_PARTY_INVITE_ANSWER		= 73,
+	HEADER_CG_PARTY_INVITE_ANSWER	= 73,
 	HEADER_CG_PARTY_REMOVE			= 74,
-	HEADER_CG_PARTY_SET_STATE                   = 75,
-	HEADER_CG_PARTY_USE_SKILL			= 76,
-	HEADER_CG_SAFEBOX_ITEM_MOVE			= 77,
-	HEADER_CG_PARTY_PARAMETER			= 78,
+	HEADER_CG_PARTY_SET_STATE		= 75,
+	HEADER_CG_PARTY_USE_SKILL		= 76,
+	HEADER_CG_SAFEBOX_ITEM_MOVE		= 77,
+	HEADER_CG_PARTY_PARAMETER		= 78,
 
-	HEADER_CG_GUILD				= 80,
-	HEADER_CG_ANSWER_MAKE_GUILD			= 81,
+	HEADER_CG_GUILD					= 80,
+	HEADER_CG_ANSWER_MAKE_GUILD		= 81,
 
 	HEADER_CG_FISHING				= 82,
 
@@ -91,211 +91,203 @@ enum
 	// SCRIPT_SELECT_ITEM
 	HEADER_CG_SCRIPT_SELECT_ITEM	= 114,
 	// END_OF_SCRIPT_SELECT_ITEM
-	
-	HEADER_CG_LOGIN5_OPENID			= 116,	//OpenID : 클라이언트로부터 OpenID 인증키를 받는다.
+
+	HEADER_CG_LOGIN5_OPENID			= 116,
 
 //	HEADER_CG_ROULETTE				= 200,
 //	HEADER_CG_RUNUP_MATRIX_ANSWER	= 201,
 
-	//
 	HEADER_CG_PASSPOD_ANSWER		= 202,
 
-	//NOTE : 이런 개XXX 정말 이거 Packet설계한 사람은 누구냐. 이렇게 코딩하고 밥이 넘어가나.
-	//enum을 별도로 구별을 하던가. 아님 namepsace로 구별을 하던가..
-	//정말 packet generator까지는 바라지도 않는다. 이런 씨XX
-	//이러다가 숫자 겹치면 누가 책임지는데???
 	HEADER_CG_HS_ACK				= 203,
 	HEADER_CG_XTRAP_ACK				= 204,
 
-	HEADER_CG_DRAGON_SOUL_REFINE			= 205,
-	HEADER_CG_STATE_CHECKER					= 206,
+	HEADER_CG_DRAGON_SOUL_REFINE	= 205,
+	HEADER_CG_STATE_CHECKER			= 206,
 
-	HEADER_CG_CLIENT_VERSION			= 0xfd,
-	HEADER_CG_CLIENT_VERSION2			= 0xf1,
+	HEADER_CG_CLIENT_VERSION		= 0xfd,
+	HEADER_CG_CLIENT_VERSION2		= 0xf1,
 
 	/********************************************************/
-	HEADER_GC_KEY_AGREEMENT_COMPLETED = 0xfa, // _IMPROVED_PACKET_ENCRYPTION_
-	HEADER_GC_KEY_AGREEMENT			= 0xfb, // _IMPROVED_PACKET_ENCRYPTION_
-	HEADER_GC_TIME_SYNC				= 0xfc,
-	HEADER_GC_PHASE					= 0xfd,
-	HEADER_GC_BINDUDP				= 0xfe,
-	HEADER_GC_HANDSHAKE				= 0xff,
+	HEADER_GC_KEY_AGREEMENT_COMPLETED			= 0xfa, // _IMPROVED_PACKET_ENCRYPTION_
+	HEADER_GC_KEY_AGREEMENT						= 0xfb, // _IMPROVED_PACKET_ENCRYPTION_
+	HEADER_GC_TIME_SYNC							= 0xfc,
+	HEADER_GC_PHASE								= 0xfd,
+	HEADER_GC_BINDUDP							= 0xfe,
+	HEADER_GC_HANDSHAKE							= 0xff,
 
-	HEADER_GC_CHARACTER_ADD			= 1,
-	HEADER_GC_CHARACTER_DEL			= 2,
-	HEADER_GC_MOVE					= 3,
-	HEADER_GC_CHAT					= 4,
-	HEADER_GC_SYNC_POSITION			= 5,
+	HEADER_GC_CHARACTER_ADD						= 1,
+	HEADER_GC_CHARACTER_DEL						= 2,
+	HEADER_GC_MOVE								= 3,
+	HEADER_GC_CHAT								= 4,
+	HEADER_GC_SYNC_POSITION						= 5,
 
-	HEADER_GC_LOGIN_SUCCESS			= 6,
-	HEADER_GC_LOGIN_SUCCESS_NEWSLOT	= 32,
-	HEADER_GC_LOGIN_FAILURE			= 7,
+	HEADER_GC_LOGIN_SUCCESS						= 6,
+	HEADER_GC_LOGIN_SUCCESS_NEWSLOT				= 32,
+	HEADER_GC_LOGIN_FAILURE						= 7,
 
-	HEADER_GC_CHARACTER_CREATE_SUCCESS		= 8,
-	HEADER_GC_CHARACTER_CREATE_FAILURE		= 9,
-	HEADER_GC_CHARACTER_DELETE_SUCCESS		= 10,
+	HEADER_GC_CHARACTER_CREATE_SUCCESS			= 8,
+	HEADER_GC_CHARACTER_CREATE_FAILURE			= 9,
+	HEADER_GC_CHARACTER_DELETE_SUCCESS			= 10,
 	HEADER_GC_CHARACTER_DELETE_WRONG_SOCIAL_ID	= 11,
 
-	HEADER_GC_ATTACK				= 12,
-	HEADER_GC_STUN				= 13,
-	HEADER_GC_DEAD				= 14,
+	HEADER_GC_ATTACK							= 12,
+	HEADER_GC_STUN								= 13,
+	HEADER_GC_DEAD								= 14,
 
-	HEADER_GC_MAIN_CHARACTER_OLD		= 15,
-	HEADER_GC_CHARACTER_POINTS			= 16,
-	HEADER_GC_CHARACTER_POINT_CHANGE		= 17,
-	HEADER_GC_CHANGE_SPEED			= 18,
-	HEADER_GC_CHARACTER_UPDATE			= 19,
-	HEADER_GC_CHARACTER_UPDATE_NEW		= 24,
+	HEADER_GC_MAIN_CHARACTER_OLD				= 15,
+	HEADER_GC_CHARACTER_POINTS					= 16,
+	HEADER_GC_CHARACTER_POINT_CHANGE			= 17,
+	HEADER_GC_CHANGE_SPEED						= 18,
+	HEADER_GC_CHARACTER_UPDATE					= 19,
+	HEADER_GC_CHARACTER_UPDATE_NEW				= 24,
 
-	HEADER_GC_ITEM_DEL				= 20,
-	HEADER_GC_ITEM_SET				= 21,
-	HEADER_GC_ITEM_USE				= 22,
-	HEADER_GC_ITEM_DROP				= 23,
-	HEADER_GC_ITEM_UPDATE			= 25,
+	HEADER_GC_ITEM_DEL							= 20,
+	HEADER_GC_ITEM_SET							= 21,
+	HEADER_GC_ITEM_USE							= 22,
+	HEADER_GC_ITEM_DROP							= 23,
+	HEADER_GC_ITEM_UPDATE						= 25,
 
-	HEADER_GC_ITEM_GROUND_ADD			= 26,
-	HEADER_GC_ITEM_GROUND_DEL			= 27,
+	HEADER_GC_ITEM_GROUND_ADD					= 26,
+	HEADER_GC_ITEM_GROUND_DEL					= 27,
 
-	HEADER_GC_QUICKSLOT_ADD			= 28,
-	HEADER_GC_QUICKSLOT_DEL			= 29,
-	HEADER_GC_QUICKSLOT_SWAP			= 30,
+	HEADER_GC_QUICKSLOT_ADD						= 28,
+	HEADER_GC_QUICKSLOT_DEL						= 29,
+	HEADER_GC_QUICKSLOT_SWAP					= 30,
 
-	HEADER_GC_ITEM_OWNERSHIP			= 31,
+	HEADER_GC_ITEM_OWNERSHIP					= 31,
 
-	HEADER_GC_WHISPER				= 34,
+	HEADER_GC_WHISPER							= 34,
 
-	HEADER_GC_MOTION				= 36,
-	HEADER_GC_PARTS				= 37,
+	HEADER_GC_MOTION							= 36,
+	HEADER_GC_PARTS								= 37,
 
-	HEADER_GC_SHOP				= 38,
-	HEADER_GC_SHOP_SIGN				= 39,
+	HEADER_GC_SHOP								= 38,
+	HEADER_GC_SHOP_SIGN							= 39,
 
-	HEADER_GC_DUEL_START				= 40,
+	HEADER_GC_DUEL_START						= 40,
 	HEADER_GC_PVP                               = 41,
-	HEADER_GC_EXCHANGE				= 42,
-	HEADER_GC_CHARACTER_POSITION		= 43,
+	HEADER_GC_EXCHANGE							= 42,
+	HEADER_GC_CHARACTER_POSITION				= 43,
 
-	HEADER_GC_PING				= 44,
-	HEADER_GC_SCRIPT				= 45,
-	HEADER_GC_QUEST_CONFIRM			= 46,
+	HEADER_GC_PING								= 44,
+	HEADER_GC_SCRIPT							= 45,
+	HEADER_GC_QUEST_CONFIRM						= 46,
 
-	HEADER_GC_MOUNT				= 61,
-	HEADER_GC_OWNERSHIP				= 62,
-	HEADER_GC_TARGET			 	= 63,
+	HEADER_GC_MOUNT								= 61,
+	HEADER_GC_OWNERSHIP							= 62,
+	HEADER_GC_TARGET			 				= 63,
 
-	HEADER_GC_WARP				= 65,
+	HEADER_GC_WARP								= 65,
 
-	HEADER_GC_ADD_FLY_TARGETING			= 69,
-	HEADER_GC_CREATE_FLY			= 70,
-	HEADER_GC_FLY_TARGETING			= 71,
-	HEADER_GC_SKILL_LEVEL_OLD			= 72,
-	HEADER_GC_SKILL_LEVEL			= 76,
+	HEADER_GC_ADD_FLY_TARGETING					= 69,
+	HEADER_GC_CREATE_FLY						= 70,
+	HEADER_GC_FLY_TARGETING						= 71,
+	HEADER_GC_SKILL_LEVEL_OLD					= 72,
+	HEADER_GC_SKILL_LEVEL						= 76,
 
-	HEADER_GC_MESSENGER				= 74,
-	HEADER_GC_GUILD				= 75,
+	HEADER_GC_MESSENGER							= 74,
+	HEADER_GC_GUILD								= 75,
 
-	HEADER_GC_PARTY_INVITE			= 77,
-	HEADER_GC_PARTY_ADD				= 78,
-	HEADER_GC_PARTY_UPDATE			= 79,
-	HEADER_GC_PARTY_REMOVE			= 80,
-	HEADER_GC_QUEST_INFO			= 81,
-	HEADER_GC_REQUEST_MAKE_GUILD		= 82,
-	HEADER_GC_PARTY_PARAMETER			= 83,
+	HEADER_GC_PARTY_INVITE						= 77,
+	HEADER_GC_PARTY_ADD							= 78,
+	HEADER_GC_PARTY_UPDATE						= 79,
+	HEADER_GC_PARTY_REMOVE						= 80,
+	HEADER_GC_QUEST_INFO						= 81,
+	HEADER_GC_REQUEST_MAKE_GUILD				= 82,
+	HEADER_GC_PARTY_PARAMETER					= 83,
 
-	HEADER_GC_SAFEBOX_SET			= 85,
-	HEADER_GC_SAFEBOX_DEL			= 86,
-	HEADER_GC_SAFEBOX_WRONG_PASSWORD		= 87,
-	HEADER_GC_SAFEBOX_SIZE			= 88,
+	HEADER_GC_SAFEBOX_SET						= 85,
+	HEADER_GC_SAFEBOX_DEL						= 86,
+	HEADER_GC_SAFEBOX_WRONG_PASSWORD			= 87,
+	HEADER_GC_SAFEBOX_SIZE						= 88,
 
-	HEADER_GC_FISHING				= 89,
+	HEADER_GC_FISHING							= 89,
 
-	HEADER_GC_EMPIRE				= 90,
+	HEADER_GC_EMPIRE							= 90,
 
-	HEADER_GC_PARTY_LINK			= 91,
-	HEADER_GC_PARTY_UNLINK			= 92,
+	HEADER_GC_PARTY_LINK						= 91,
+	HEADER_GC_PARTY_UNLINK						= 92,
 
-	HEADER_GC_REFINE_INFORMATION_OLD		= 95,
+	HEADER_GC_REFINE_INFORMATION_OLD			= 95,
 
-	HEADER_GC_VIEW_EQUIP			= 99,
+	HEADER_GC_VIEW_EQUIP						= 99,
 
-	HEADER_GC_MARK_BLOCK			= 100,
-	HEADER_GC_MARK_IDXLIST			= 102,
+	HEADER_GC_MARK_BLOCK						= 100,
+	HEADER_GC_MARK_IDXLIST						= 102,
 
-	HEADER_GC_TIME					= 106,
-	HEADER_GC_CHANGE_NAME			= 107,
+	HEADER_GC_TIME								= 106,
+	HEADER_GC_CHANGE_NAME						= 107,
 
-	HEADER_GC_DUNGEON				= 110,
+	HEADER_GC_DUNGEON							= 110,
 
-	HEADER_GC_WALK_MODE				= 111,
-	HEADER_GC_SKILL_GROUP			= 112,
-	HEADER_GC_MAIN_CHARACTER			= 113,
+	HEADER_GC_WALK_MODE							= 111,
+	HEADER_GC_SKILL_GROUP						= 112,
+	HEADER_GC_MAIN_CHARACTER					= 113,
 
-	//	HEADER_GC_USE_POTION			= 114,
-	HEADER_GC_SEPCIAL_EFFECT		= 114,
+	HEADER_GC_SEPCIAL_EFFECT					= 114,
 
-	HEADER_GC_NPC_POSITION			= 115,
+	HEADER_GC_NPC_POSITION						= 115,
 
-	HEADER_GC_MATRIX_CARD			= 116,
-	HEADER_GC_LOGIN_KEY				= 118,
-	HEADER_GC_REFINE_INFORMATION		= 119,
-	HEADER_GC_CHANNEL				= 121,
+	HEADER_GC_MATRIX_CARD						= 116,
+	HEADER_GC_LOGIN_KEY							= 118,
+	HEADER_GC_REFINE_INFORMATION				= 119,
+	HEADER_GC_CHANNEL							= 121,
 
-	// 122 HEADER_GC_MALL_OPEN
-	HEADER_GC_TARGET_UPDATE			= 123,
-	HEADER_GC_TARGET_DELETE			= 124,
-	HEADER_GC_TARGET_CREATE			= 125,
+	HEADER_GC_TARGET_UPDATE						= 123,
+	HEADER_GC_TARGET_DELETE						= 124,
+	HEADER_GC_TARGET_CREATE						= 125,
 
-	HEADER_GC_AFFECT_ADD			= 126,
-	HEADER_GC_AFFECT_REMOVE			= 127,
+	HEADER_GC_AFFECT_ADD						= 126,
+	HEADER_GC_AFFECT_REMOVE						= 127,
 
-	HEADER_GC_MALL_OPEN				= 122,
-	HEADER_GC_MALL_SET				= 128,
-	HEADER_GC_MALL_DEL				= 129,
+	HEADER_GC_MALL_OPEN							= 122,
+	HEADER_GC_MALL_SET							= 128,
+	HEADER_GC_MALL_DEL							= 129,
 
-	HEADER_GC_LAND_LIST				= 130,
-	HEADER_GC_LOVER_INFO			= 131,
-	HEADER_GC_LOVE_POINT_UPDATE			= 132,
+	HEADER_GC_LAND_LIST							= 130,
+	HEADER_GC_LOVER_INFO						= 131,
+	HEADER_GC_LOVE_POINT_UPDATE					= 132,
 
-	HEADER_GC_SYMBOL_DATA			= 133,
+	HEADER_GC_SYMBOL_DATA						= 133,
 
 	// MINING
-	HEADER_GC_DIG_MOTION			= 134,
+	HEADER_GC_DIG_MOTION						= 134,
 	// END_OF_MINING
 
-	HEADER_GC_DAMAGE_INFO           = 135,
-	HEADER_GC_CHAR_ADDITIONAL_INFO	= 136,
+	HEADER_GC_DAMAGE_INFO						= 135,
+	HEADER_GC_CHAR_ADDITIONAL_INFO				= 136,
 
 	// SUPPORT_BGM
-	HEADER_GC_MAIN_CHARACTER3_BGM		= 137,
-	HEADER_GC_MAIN_CHARACTER4_BGM_VOL	= 138,
+	HEADER_GC_MAIN_CHARACTER3_BGM				= 137,
+	HEADER_GC_MAIN_CHARACTER4_BGM_VOL			= 138,
 	// END_OF_SUPPORT_BGM
 
-	HEADER_GC_AUTH_SUCCESS			= 150,
+	HEADER_GC_AUTH_SUCCESS						= 150,
 
-	HEADER_GC_PANAMA_PACK			= 151,
+	HEADER_GC_PANAMA_PACK						= 151,
 
 	//HYBRID CRYPT
-	HEADER_GC_HYBRIDCRYPT_KEYS		= 152,
-	HEADER_GC_HYBRIDCRYPT_SDB		= 153, // SDB means Supplmentary Data Blocks
+	HEADER_GC_HYBRIDCRYPT_KEYS					= 152,
+	HEADER_GC_HYBRIDCRYPT_SDB					= 153, // SDB means Supplmentary Data Blocks
 	//HYBRID CRYPT
 
-	HEADER_GC_AUTH_SUCCESS_OPENID	= 154,
+	HEADER_GC_AUTH_SUCCESS_OPENID				= 154,
 
 	// ROULETTE
-	HEADER_GC_ROULETTE					= 200, 
-	// END_ROULETTE			
-	//
-	HEADER_GC_REQUEST_PASSPOD				= 202,
-	HEADER_GC_REQUEST_PASSPOD_FAILED		= 203,
+	HEADER_GC_ROULETTE							= 200,
+	// END_ROULETTE
 
-	HEADER_GC_HS_REQUEST					= 204,
-	HEADER_GC_XTRAP_CS1_REQUEST				= 205,
+	HEADER_GC_REQUEST_PASSPOD					= 202,
+	HEADER_GC_REQUEST_PASSPOD_FAILED			= 203,
 
-	HEADER_GC_SPECIFIC_EFFECT				= 208,
+	HEADER_GC_HS_REQUEST						= 204,
+	HEADER_GC_XTRAP_CS1_REQUEST					= 205,
 
-	HEADER_GC_DRAGON_SOUL_REFINE			= 209,
-	HEADER_GC_RESPOND_CHANNELSTATUS			= 210,
+	HEADER_GC_SPECIFIC_EFFECT					= 208,
 
+	HEADER_GC_DRAGON_SOUL_REFINE				= 209,
+	HEADER_GC_RESPOND_CHANNELSTATUS				= 210,
 
 	/////////////////////////////////////////////////////////////////////////////
 
@@ -305,7 +297,7 @@ enum
 	HEADER_GG_NOTICE				= 4,
 	HEADER_GG_SHUTDOWN				= 5,
 	HEADER_GG_GUILD				= 6,
-	HEADER_GG_DISCONNECT			= 7,	// 누군가의 접속을 강제로 끊을 때
+	HEADER_GG_DISCONNECT			= 7,
 	HEADER_GG_SHOUT				= 8,
 	HEADER_GG_SETUP				= 9,
 	HEADER_GG_MESSENGER_ADD                     = 10,
@@ -457,7 +449,7 @@ typedef struct SMessengerData
 } TMessengerData;
 
 typedef struct SPacketGGMessenger
-{   
+{
 	BYTE        bHeader;
 	char        szAccount[CHARACTER_NAME_MAX_LEN + 1];
 	char        szCompanion[CHARACTER_NAME_MAX_LEN + 1];
@@ -473,8 +465,8 @@ typedef struct SPacketGGMessengerMobile
 typedef struct SPacketGGFindPosition
 {
 	BYTE header;
-	DWORD dwFromPID; // 저 위치로 워프하려는 사람
-	DWORD dwTargetPID; // 찾는 사람
+	DWORD dwFromPID;
+	DWORD dwTargetPID;
 } TPacketGGFindPosition;
 
 typedef struct SPacketGGWarpCharacter
@@ -515,14 +507,11 @@ typedef struct SPacketGGBlockChat
 	long	lBlockDuration;
 } TPacketGGBlockChat;
 
-/* 클라이언트 측에서 보내는 패킷 */
-
 typedef struct command_text
 {
 	BYTE	bHeader;
 } TPacketCGText;
 
-/* 로그인 (1) */
 typedef struct command_handshake
 {
 	BYTE	bHeader;
@@ -613,7 +602,6 @@ typedef struct command_player_create_success
 	TSimplePlayer	player;
 } TPacketGCPlayerCreateSuccess;
 
-// 공격
 typedef struct command_attack
 {
 	BYTE	bHeader;
@@ -635,7 +623,6 @@ enum EMoveFuncType
 	FUNC_SKILL = 0x80,
 };
 
-// 이동
 typedef struct command_move
 {
 	BYTE	bHeader;
@@ -654,22 +641,19 @@ typedef struct command_sync_position_element
 	long	lY;
 } TPacketCGSyncPositionElement;
 
-// 위치 동기화
-typedef struct command_sync_position	// 가변 패킷
+typedef struct command_sync_position
 {
 	BYTE	bHeader;
 	WORD	wSize;
 } TPacketCGSyncPosition;
 
-/* 채팅 (3) */
-typedef struct command_chat	// 가변 패킷
+typedef struct command_chat
 {
 	BYTE	header;
 	WORD	size;
 	BYTE	type;
 } TPacketCGChat;
 
-/* 귓속말 */
 typedef struct command_whisper
 {
 	BYTE	bHeader;
@@ -808,7 +792,6 @@ typedef struct command_script_answer
 	//BYTE	answer[16 + 1];
 } TPacketCGScriptAnswer;
 
-
 typedef struct command_script_button
 {
 	BYTE        header;
@@ -828,13 +811,10 @@ typedef struct command_quest_confirm
 	DWORD requestPID;
 } TPacketCGQuestConfirm;
 
-/*
- * 서버 측에서 보내는 패킷 
- */
 typedef struct packet_quest_confirm
 {
 	BYTE header;
-	char msg[64+1]; 
+	char msg[64+1];
 	long timeout;
 	DWORD requestPID;
 } TPacketGCQuestConfirm;
@@ -961,7 +941,7 @@ typedef struct packet_add_char
 	BYTE	bAttackSpeed;
 
 	BYTE	bStateFlag;
-	DWORD	dwAffectFlag[2];	// 효과
+	DWORD	dwAffectFlag[2];
 } TPacketGCCharacterAdd;
 
 typedef struct packet_char_additional_info
@@ -977,26 +957,6 @@ typedef struct packet_char_additional_info
 	BYTE	bPKMode;
 	DWORD	dwMountVnum;
 } TPacketGCCharacterAdditionalInfo;
-
-/*
-   typedef struct packet_update_char_old
-   {
-   BYTE	header;
-   DWORD	dwVID;
-
-   WORD        awPart[CHR_EQUIPPART_NUM];
-   BYTE	bMovingSpeed;
-   BYTE	bAttackSpeed;
-
-   BYTE	bStateFlag;
-   DWORD	dwAffectFlag[2];
-
-   DWORD	dwGuildID;
-   short	sAlignment;
-   BYTE	bPKMode;
-   DWORD	dwMountVnum;
-   } TPacketGCCharacterUpdateOld;
- */
 
 typedef struct packet_update_char
 {
@@ -1023,7 +983,7 @@ typedef struct packet_del_char
 	DWORD	id;
 } TPacketGCCharacterDelete;
 
-typedef struct packet_chat	// 가변 패킷
+typedef struct packet_chat
 {
 	BYTE	header;
 	WORD	size;
@@ -1032,7 +992,7 @@ typedef struct packet_chat	// 가변 패킷
 	BYTE	bEmpire;
 } TPacketGCChat;
 
-typedef struct packet_whisper	// 가변 패킷
+typedef struct packet_whisper
 {
 	BYTE	bHeader;
 	WORD	wSize;
@@ -1241,7 +1201,7 @@ enum EPacketShopSubHeaders
 };
 
 struct packet_shop_item
-{   
+{
 	DWORD       vnum;
 	DWORD       price;
 	BYTE        count;
@@ -1256,9 +1216,9 @@ typedef struct packet_shop_start
 	struct packet_shop_item	items[SHOP_HOST_ITEM_MAX_NUM];
 } TPacketGCShopStart;
 
-typedef struct packet_shop_start_ex // 다음에 TSubPacketShopTab* shop_tabs 이 따라옴.
+typedef struct packet_shop_start_ex
 {
-	typedef struct sub_packet_shop_tab 
+	typedef struct sub_packet_shop_tab
 	{
 		char name[SHOP_TAB_NAME_MAX];
 		BYTE coin_type;
@@ -1279,10 +1239,10 @@ typedef struct packet_shop_update_price
 	int				iPrice;
 } TPacketGCShopUpdatePrice;
 
-typedef struct packet_shop	// 가변 패킷
+typedef struct packet_shop
 {
 	BYTE        header;
-	WORD	size; 
+	WORD	size;
 	BYTE        subheader;
 } TPacketGCShop;
 
@@ -1348,7 +1308,7 @@ struct packet_mount
 };
 
 typedef struct packet_move
-{	
+{
 	BYTE		bHeader;
 	BYTE		bFunc;
 	BYTE		bArg;
@@ -1360,7 +1320,6 @@ typedef struct packet_move
 	DWORD		dwDuration;
 } TPacketGCMove;
 
-// 소유권
 typedef struct packet_ownership
 {
 	BYTE		bHeader;
@@ -1368,7 +1327,6 @@ typedef struct packet_ownership
 	DWORD		dwVictimVID;
 } TPacketGCOwnership;
 
-// 위치 동기화 패킷의 bCount 만큼 붙는 단위
 typedef struct packet_sync_position_element
 {
 	DWORD	dwVID;
@@ -1376,11 +1334,10 @@ typedef struct packet_sync_position_element
 	long	lY;
 } TPacketGCSyncPositionElement;
 
-// 위치 동기화
-typedef struct packet_sync_position	// 가변 패킷
+typedef struct packet_sync_position
 {
 	BYTE	bHeader;
-	WORD	wSize;	// 개수 = (wSize - sizeof(TPacketGCSyncPosition)) / sizeof(TPacketGCSyncPositionElement) 
+	WORD	wSize;
 } TPacketGCSyncPosition;
 
 typedef struct packet_fly
@@ -1415,7 +1372,7 @@ typedef struct packet_shoot
 typedef struct packet_duel_start
 {
 	BYTE	header;
-	WORD	wSize;	// DWORD가 몇개? 개수 = (wSize - sizeof(TPacketGCPVPList)) / 4
+	WORD	wSize;
 } TPacketGCDuelStart;
 
 enum EPVPModes
@@ -1431,7 +1388,7 @@ typedef struct packet_pvp
 	BYTE        bHeader;
 	DWORD       dwVIDSrc;
 	DWORD       dwVIDDst;
-	BYTE        bMode;	// 0 이면 끔, 1이면 켬
+	BYTE        bMode;
 } TPacketGCPVP;
 
 typedef struct command_use_skill
@@ -1477,7 +1434,7 @@ struct packet_quest_info
 	BYTE flag;
 };
 
-enum 
+enum
 {
 	MESSENGER_SUBHEADER_GC_LIST,
 	MESSENGER_SUBHEADER_GC_LOGIN,
@@ -1525,7 +1482,7 @@ typedef struct packet_messenger_list_online
 	BYTE length;
 } TPacketGCMessengerListOnline;
 
-enum 
+enum
 {
 	MESSENGER_SUBHEADER_CG_ADD_BY_VID,
 	MESSENGER_SUBHEADER_CG_ADD_BY_NAME,
@@ -1654,7 +1611,7 @@ typedef struct command_party_set_state
 	BYTE flag;
 } TPacketCGPartySetState;
 
-enum 
+enum
 {
 	PARTY_SKILL_HEAL = 1,
 	PARTY_SKILL_WARP = 2
@@ -1744,7 +1701,7 @@ enum GUILD_SUBHEADER_CG
 	GUILD_SUBHEADER_CG_CHANGE_GRADE_AUTHORITY,
 	GUILD_SUBHEADER_CG_OFFER,
 	GUILD_SUBHEADER_CG_POST_COMMENT,
-	GUILD_SUBHEADER_CG_DELETE_COMMENT,    
+	GUILD_SUBHEADER_CG_DELETE_COMMENT,
 	GUILD_SUBHEADER_CG_REFRESH_COMMENT,
 	GUILD_SUBHEADER_CG_CHANGE_MEMBER_GRADE,
 	GUILD_SUBHEADER_CG_USE_SKILL,
@@ -1829,7 +1786,6 @@ typedef struct packet_mark_idxlist
 	BYTE    header;
 	DWORD	bufSize;
 	WORD	count;
-	//뒤에 size * (WORD + WORD)만큼 데이터 붙음
 } TPacketGCMarkIDXList;
 
 typedef struct packet_mark_block
@@ -1838,7 +1794,6 @@ typedef struct packet_mark_block
 	DWORD	bufSize;
 	BYTE	imgIdx;
 	DWORD	count;
-	// 뒤에 64 x 48 x 픽셀크기(4바이트) = 12288만큼 데이터 붙음
 } TPacketGCMarkBlock;
 
 typedef struct command_symbol_upload
@@ -1983,8 +1938,8 @@ typedef struct SPacketGCRefineInformaion
 	DWORD	src_vnum;
 	DWORD	result_vnum;
 	BYTE	material_count;
-	int		cost; // 소요 비용
-	int		prob; // 확률
+	int		cost;
+	int		prob;
 	TRefineMaterial materials[REFINE_MATERIAL_MAX_NUM];
 } TPacketGCRefineInformation;
 
@@ -2059,7 +2014,7 @@ typedef struct pakcet_view_equip
 	} equips[WEAR_MAX_NUM];
 } TPacketViewEquip;
 
-typedef struct 
+typedef struct SLandPacketElement
 {
 	DWORD	dwID;
 	long	x, y;
@@ -2073,7 +2028,7 @@ typedef struct packet_land_list
 	WORD	size;
 } TPacketGCLandList;
 
-typedef struct
+typedef struct SPacketGCTargetCreate
 {
 	BYTE	bHeader;
 	long	lID;
@@ -2082,26 +2037,26 @@ typedef struct
 	BYTE	bType;
 } TPacketGCTargetCreate;
 
-typedef struct
+typedef struct SPacketGCTargetUpdate
 {
 	BYTE	bHeader;
 	long	lID;
 	long	lX, lY;
 } TPacketGCTargetUpdate;
 
-typedef struct
+typedef struct SPacketGCTargetDelete
 {
 	BYTE	bHeader;
 	long	lID;
 } TPacketGCTargetDelete;
 
-typedef struct
+typedef struct SPacketGCAffectAdd
 {
 	BYTE		bHeader;
 	TPacketAffectElement elem;
 } TPacketGCAffectAdd;
 
-typedef struct
+typedef struct SPacketGCAffectRemove
 {
 	BYTE	bHeader;
 	DWORD	dwType;
@@ -2211,23 +2166,21 @@ typedef struct SPacketGCPanamaPack
 	BYTE	abIV[32];
 } TPacketGCPanamaPack;
 
-//TODO :  아우 짱나..가변패킷 사이즈 받아들일수 있게 패킷 핸들러 Refactoring 하자. 
 typedef struct SPacketGCHybridCryptKeys
 {
 	SPacketGCHybridCryptKeys() : m_pStream(NULL) {}
 	~SPacketGCHybridCryptKeys()
 	{
-		//GCC 에선 NULL delete 해도 괜찮나? 일단 안전하게 NULL 체크 하자. ( 근데 이거 C++ 표준아니었나 --a )
 		if( m_pStream )
 		{
 			delete[] m_pStream;
 			m_pStream = NULL;
 		}
 	}
-	
+
 	DWORD GetStreamSize()
 	{
-		return sizeof(bHeader) + sizeof(WORD) + sizeof(int) + KeyStreamLen; 
+		return sizeof(bHeader) + sizeof(WORD) + sizeof(int) + KeyStreamLen;
 	}
 
 	BYTE* GetStreamData()
@@ -2236,7 +2189,7 @@ typedef struct SPacketGCHybridCryptKeys
 			delete[] m_pStream;
 
 		uDynamicPacketSize = (WORD)GetStreamSize();
-		
+
 		m_pStream = new BYTE[ uDynamicPacketSize ];
 
 		memcpy( m_pStream, &bHeader, 1 );
@@ -2250,16 +2203,13 @@ typedef struct SPacketGCHybridCryptKeys
 	}
 
 	BYTE	bHeader;
-	WORD    uDynamicPacketSize; // 빌어먹을 클라  DynamicPacketHeader 구조때문에 맞춰줘야한다 -_-;
+	WORD    uDynamicPacketSize;
 	int		KeyStreamLen;
 	BYTE*   pDataKeyStream;
 
 private:
 	BYTE* m_pStream;
-
-
 } TPacketGCHybridCryptKeys;
-
 
 typedef struct SPacketGCPackageSDB
 {
@@ -2272,10 +2222,10 @@ typedef struct SPacketGCPackageSDB
 			m_pStream = NULL;
 		}
 	}
-	
+
 	DWORD GetStreamSize()
 	{
-		return sizeof(bHeader) + sizeof(WORD) + sizeof(int) + iStreamLen; 
+		return sizeof(bHeader) + sizeof(WORD) + sizeof(int) + iStreamLen;
 	}
 
 	BYTE* GetStreamData()
@@ -2298,14 +2248,12 @@ typedef struct SPacketGCPackageSDB
 	}
 
 	BYTE	bHeader;
-	WORD    uDynamicPacketSize; // 빌어먹을 클라  DynamicPacketHeader 구조때문에 맞춰줘야한다 -_-;
+	WORD    uDynamicPacketSize;
 	int		iStreamLen;
 	BYTE*   m_pDataSDBStream;
 
 private:
 	BYTE* m_pStream;
-
-
 } TPacketGCPackageSDB;
 
 #ifdef _IMPROVED_PACKET_ENCRYPTION_
@@ -2334,7 +2282,6 @@ typedef struct SPacketGCSpecificEffect
 	char effect_file[MAX_EFFECT_FILE_NAME];
 } TPacketGCSpecificEffect;
 
-// 용혼석
 enum EDragonSoulRefineWindowRefineType
 {
 	DragonSoulRefineWindow_UPGRADE,
@@ -2378,7 +2325,7 @@ typedef struct SPacketGCDragonSoulRefine
 typedef struct SPacketCGStateCheck
 {
 	BYTE header;
-	unsigned long key;	
+	unsigned long key;
 	unsigned long index;
 } TPacketCGStateCheck;
 
