@@ -86,7 +86,7 @@ bool CGroupTextParseTreeLoader::LoadGroup(CGroupNode * pGroupNode)
 
 			pNewNode->strGroupName = stTokenVector[1];
 			stl_lowers(pNewNode->strGroupName);
-			
+
 			pGroupNode->SetChildNode(pNewNode->strGroupName.c_str(), pNewNode);
 
 			++m_dwcurLineIndex;
@@ -159,7 +159,7 @@ bool CGroupNode::SetChildNode(const char * c_szKey, CGroupNode* pChildGroup)
 		return false;
 
 	m_mapChildNodes.insert (TMapGroup::value_type (c_szKey, pChildGroup));
-	
+
 	return true;
 }
 
@@ -200,7 +200,6 @@ bool CGroupNode::GetRow(const std::string & c_rstrRowKey, OUT const CGroupNode::
 	return true;
 }
 
-// 참고로, idx랑 txt에 쓰여진 순서랑 관계 없음.
 bool CGroupNode::GetRow(int idx, OUT const CGroupNode::CGroupNodeRow ** ppRow) const
 {
 	if (idx >= m_map_rows.size())
@@ -223,7 +222,6 @@ bool CGroupNode::GetGroupRow(const std::string& stGroupName, const std::string& 
 		if (pChildGroup->GetRow(stRow, ppRow))
 			return true;
 	}
-	// default group을 살펴봄.
 	pChildGroup = GetChildNode("default");
 	if (NULL != pChildGroup)
 	{
@@ -257,3 +255,4 @@ int CGroupNode::CGroupNodeRow::GetSize() const
 {
 	return m_vec_values.size();
 }
+
