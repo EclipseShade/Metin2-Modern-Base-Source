@@ -126,7 +126,7 @@ class CInputMain : public CInputProcessor
 		int			SyncPosition(LPCHARACTER ch, const char * data, size_t uiBytes);
 		void		FlyTarget(LPCHARACTER ch, const char * pcData, BYTE bHeader);
 		void		UseSkill(LPCHARACTER ch, const char * pcData);
-		
+
 		void		ScriptAnswer(LPCHARACTER ch, const void * pvData);
 		void		ScriptButton(LPCHARACTER ch, const void * pvData);
 		void		ScriptSelectItem(LPCHARACTER ch, const void * pvData);
@@ -181,7 +181,7 @@ protected:
 protected:
 	void		MapLocations(const char * c_pData);
 	void		LoginSuccess(DWORD dwHandle, const char *data);
-	void		PlayerCreateFailure(LPDESC d, BYTE bType);	// 0 = 일반 실패 1 = 이미 있음
+	void		PlayerCreateFailure(LPDESC d, BYTE bType);
 	void		PlayerDeleteSuccess(LPDESC d, const char * data);
 	void		PlayerDeleteFail(LPDESC d);
 	void		PlayerLoad(LPDESC d, const char* data);
@@ -277,20 +277,16 @@ protected:
 	void		BlockException(TPacketBlockException * data);
 
 	// MYSHOP_PRICE_LIST
-	/// 아이템 가격정보 리스트 요청에 대한 응답 패킷(HEADER_DG_MYSHOP_PRICELIST_RES) 처리함수
-	/**
-	* @param	d 아이템 가격정보 리스트를 요청한 플레이어의 descriptor
-	* @param	p 패킷데이터의 포인터
-	*/
+
 	void		MyshopPricelistRes( LPDESC d, const TPacketMyshopPricelistHeader* p );
 	// END_OF_MYSHOP_PRICE_LIST
-	//
+
 	//RELOAD_ADMIN
 	void ReloadAdmin( const char * c_pData );
 	//END_RELOAD_ADMIN
 
 	void		DetailLog(const TPacketNeedLoginLogInfo* info);
-	// 독일 선물 기능 테스트
+
 	void		ItemAwardInformer(TPacketItemAwardInfromer* data);
 
 	void		RespondChannelStatus(LPDESC desc, const char* pcData);
