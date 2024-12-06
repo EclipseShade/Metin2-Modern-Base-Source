@@ -41,7 +41,6 @@ void CEntity::ViewReencode()
 		if (!entity->m_bIsObserver)
 			entity->EncodeInsertPacket(this);
 	}
-
 }
 
 void CEntity::ViewInsert(LPENTITY entity, bool recursive)
@@ -98,21 +97,17 @@ class CFuncViewInsert
 
 		void operator () (LPENTITY ent)
 		{
-			// 오브젝트가 아닌 것은 거리를 계산하여 거리가 멀면 추가하지 않는다.
 			if (!ent->IsType(ENTITY_OBJECT))
 				if (DISTANCE_APPROX(ent->GetX() - m_me->GetX(), ent->GetY() - m_me->GetY()) > dwViewRange)
 					return;
 
-			// 나를 대상에 추가
 			m_me->ViewInsert(ent);
 
-			// 둘다 캐릭터면
 			if (ent->IsType(ENTITY_CHARACTER) && m_me->IsType(ENTITY_CHARACTER))
 			{
 				LPCHARACTER chMe = (LPCHARACTER) m_me;
 				LPCHARACTER chEnt = (LPCHARACTER) ent;
 
-				// 대상이 NPC면 StateMachine을 킨다.
 				if (chMe->IsPC() && !chEnt->IsPC() && !chEnt->IsWarp() && !chEnt->IsGoto())
 					chEnt->StartStateMachine();
 			}
@@ -134,14 +129,11 @@ void CEntity::UpdateSectree()
 
 	++m_iViewAge;
 
-	CFuncViewInsert f(this); // 나를 섹트리에 있는 사람들에게 추가
+	CFuncViewInsert f(this);
 	GetSectree()->ForEachAround(f);
 
 	ENTITY_MAP::iterator it, this_it;
 
-	//
-	// m_map_view에서 필요 없는 녀석들 지우기
-	// 
 	if (m_bObserverModeChange)
 	{
 		if (m_bIsObserver)
@@ -155,23 +147,18 @@ void CEntity::UpdateSectree()
 				{
 					LPENTITY ent = this_it->first;
 
-					// 나로 부터 상대방을 지운다.
 					ent->EncodeRemovePacket(this);
 					m_map_view.erase(this_it);
 
-					// 상대로 부터 나를 지운다.
 					ent->ViewRemove(this, false);
 				}
 				else
 				{
-
 					LPENTITY ent = this_it->first;
 
-					// 나로 부터 상대방을 지운다.
 					//ent->EncodeRemovePacket(this);
 					//m_map_view.erase(this_it);
 
-					// 상대로 부터 나를 지운다.
 					//ent->ViewRemove(this, false);
 					EncodeRemovePacket(ent);
 				}
@@ -189,11 +176,9 @@ void CEntity::UpdateSectree()
 				{
 					LPENTITY ent = this_it->first;
 
-					// 나로 부터 상대방을 지운다.
 					ent->EncodeRemovePacket(this);
 					m_map_view.erase(this_it);
 
-					// 상대로 부터 나를 지운다.
 					ent->ViewRemove(this, false);
 				}
 				else
@@ -223,11 +208,9 @@ void CEntity::UpdateSectree()
 				{
 					LPENTITY ent = this_it->first;
 
-					// 나로 부터 상대방을 지운다.
 					ent->EncodeRemovePacket(this);
 					m_map_view.erase(this_it);
 
-					// 상대로 부터 나를 지운다.
 					ent->ViewRemove(this, false);
 				}
 			}
