@@ -35,19 +35,19 @@ namespace quest
 		{
 			lua_pushnumber(L, 1);
 		}
-		
+
 		COXEventManager::instance().SetStatus(OXEVENT_OPEN);
 
 		return 1;
 	}
-	
+
 	int oxevent_close(lua_State* L)
 	{
 		COXEventManager::instance().SetStatus(OXEVENT_CLOSE);
-		
+
 		return 0;
 	}
-	
+
 	int oxevent_quiz(lua_State* L)
 	{
 		if (lua_isnumber(L, 1) && lua_isnumber(L, 2))
@@ -66,7 +66,7 @@ namespace quest
 
 		return 1;
 	}
-	
+
 	int oxevent_get_attender(lua_State* L)
 	{
 		lua_pushnumber(L, (int)COXEventManager::instance().GetAttenderCount());
@@ -77,7 +77,7 @@ namespace quest
 	{
 		int empty;
 
-		end_oxevent_info() 
+		end_oxevent_info()
 		: empty( 0 )
 		{
 		}
@@ -116,10 +116,10 @@ namespace quest
 
 		return 0;
 	}
-	
+
 	void RegisterOXEventFunctionTable()
 	{
-		luaL_reg oxevent_functions[] = 
+		luaL_reg oxevent_functions[] =
 		{
 			{	"get_status",	oxevent_get_status	},
 			{	"open",			oxevent_open		},
@@ -129,7 +129,6 @@ namespace quest
 			{	"end_event",	oxevent_end_event	},
 			{	"end_event_force",	oxevent_end_event_force	},
 			{	"give_item",	oxevent_give_item	},
-
 			{ NULL, NULL}
 		};
 
