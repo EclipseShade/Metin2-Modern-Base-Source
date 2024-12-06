@@ -22,8 +22,8 @@ void gm_new_clear()
 }
 
 void gm_new_insert( const tAdminInfo &rAdminInfo )
-{	
-	sys_log( 0, "InsertGMList(account:%s, player:%s, contact_ip:%s, server_ip:%s, auth:%d)", 
+{
+	sys_log( 0, "InsertGMList(account:%s, player:%s, contact_ip:%s, server_ip:%s, auth:%d)",
 			rAdminInfo.m_szAccount,
 			rAdminInfo.m_szName,
 			rAdminInfo.m_szContactIP,
@@ -46,7 +46,6 @@ void gm_new_insert( const tAdminInfo &rAdminInfo )
 	memcpy ( &t.Info, &rAdminInfo, sizeof ( rAdminInfo ) );
 
 	g_map_GM[rAdminInfo.m_szName] = t;
-
 }
 
 void gm_new_host_inert( const char * host )
@@ -65,7 +64,7 @@ BYTE gm_new_get_level( const char * name, const char * host, const char* account
 		return GM_PLAYER;
 
 	// GERMAN_GM_NOT_CHECK_HOST
-	// 독일 버전은 호스트 체크를 하지 않는다.
+
 	if ( LC_IsEurope() && !LC_IsTaiwan() || LC_IsSingapore() )
 	{
 	    if (account)
@@ -82,7 +81,6 @@ BYTE gm_new_get_level( const char * name, const char * host, const char* account
 	// END_OF_GERMAN_GM_NOT_CHECK_HOST
 	else
 	{
-
 	    if ( host )
 	    {
 		if ( it->second.pset_Host )
@@ -103,12 +101,12 @@ BYTE gm_new_get_level( const char * name, const char * host, const char* account
 		}
 	    }
 	    sys_log(0, "GM_NEW_GET_LEVEL : FIND HOST");
-	    
+
 	    return it->second.Info.m_Authority;
 	}
 	return GM_PLAYER;
 }
-	
+
 //END_ADMIN_MANAGER
 BYTE gm_get_level(const char * name, const char * host, const char* account)
 {
