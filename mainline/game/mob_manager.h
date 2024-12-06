@@ -3,8 +3,8 @@
 
 typedef struct SMobSplashAttackInfo
 {
-	DWORD	dwTiming; // 스킬 사용 후 실제로 데미지 먹힐때까지 기다리는 시간 (ms)
-	DWORD	dwHitDistance; // 스킬 사용시 실제로 스킬 계산이 되는 거리 (전방 몇cm)
+	DWORD	dwTiming;
+	DWORD	dwHitDistance;
 
 	SMobSplashAttackInfo(DWORD dwTiming, DWORD dwHitDistance)
 		: dwTiming(dwTiming)
@@ -37,8 +37,8 @@ class CMobInstance
 	public:
 		CMobInstance();
 
-		PIXEL_POSITION	m_posLastAttacked;	// 마지막 맞은 위치
-		DWORD		m_dwLastAttackedTime;	// 마지막 맞은 시간
+		PIXEL_POSITION	m_posLastAttacked;
+		DWORD		m_dwLastAttackedTime;
 		DWORD		m_dwLastWarpTime;
 
 		bool m_IsBerserk;
@@ -56,7 +56,7 @@ class CMobGroupGroup
 
 		// ADD_MOB_GROUP_GROUP_PROB
 		void AddMember(DWORD dwVnum, int prob = 1)
-		{   
+		{
 			if (prob == 0)
 				return;
 
@@ -105,16 +105,16 @@ class CMobGroup
 		}
 
 		int GetMemberCount()
-		{   
+		{
 			return m_vec_dwMemberVnum.size();
 		}
 
 		void AddMember(DWORD dwVnum)
-		{   
+		{
 			m_vec_dwMemberVnum.push_back(dwVnum);
 		}
 
-	protected:                  
+	protected:
 		DWORD                   m_dwVnum;
 		std::string             m_stName;
 		std::vector<DWORD>      m_vec_dwMemberVnum;
@@ -157,3 +157,4 @@ class CMobManager : public singleton<CMobManager>
 };
 
 #endif
+
