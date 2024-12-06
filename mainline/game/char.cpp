@@ -522,6 +522,9 @@ void CHARACTER::Destroy()
 	event_cancel(&m_pkStunEvent);
 	event_cancel(&m_pkFishingEvent);
 	event_cancel(&m_pkPoisonEvent);
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	event_cancel(&m_pkBleedingEvent);
+#endif
 	event_cancel(&m_pkFireEvent);
 	event_cancel(&m_pkPartyRequestEvent);
 	//DELAYED_WARP
@@ -568,6 +571,11 @@ const char * CHARACTER::GetName() const
 
 void CHARACTER::OpenMyShop(const char * c_pszSign, TShopItemTable * pTable, BYTE bItemCount)
 {
+	if (!CanHandleItem()) // @fixme149
+	{
+		ChatPacket(CHAT_TYPE_INFO, LC_TEXT("다른 거래중(창고,교환,상점)에는 개인상점을 사용할 수 없습니다."));
+		return;
+	}
 	if (GetPart(PART_MAIN) > 2)
 	{
 		ChatPacket(CHAT_TYPE_INFO, LC_TEXT("갑옷을 벗어야 개인 상점을 열 수 있습니다."));
@@ -704,7 +712,7 @@ void CHARACTER::OpenMyShop(const char * c_pszSign, TShopItemTable * pTable, BYTE
 	p.dwVID = GetVID();
 	strlcpy(p.szSign, c_pszSign, sizeof(p.szSign));
 
-	PacketAround(&p, sizeof(TPacketGCShopSign));
+	PacketAround(p);
 
 	m_pkMyShop = CShopManager::instance().CreatePCShop(this, pTable, bItemCount);
 
@@ -845,7 +853,7 @@ void CHARACTER::EncodeInsertPacket(LPENTITY entity)
 		}
 	}
 
-	d->Packet(&pack, sizeof(pack));
+	d->Packet(pack);
 
 	if (IsPC() == true || m_bCharType == CHAR_TYPE_NPC)
 	{
@@ -905,21 +913,21 @@ void CHARACTER::EncodeInsertPacket(LPENTITY entity)
 			addPacket.sAlignment = m_iAlignment / 10;
 		}
 
-		d->Packet(&addPacket, sizeof(TPacketGCCharacterAdditionalInfo));
+		d->Packet(addPacket);
 	}
 
 	if (iDur)
 	{
 		TPacketGCMove pack;
 		EncodeMovePacket(pack, GetVID(), FUNC_MOVE, 0, m_posDest.x, m_posDest.y, iDur, 0, (BYTE) (GetRotation() / 5));
-		d->Packet(&pack, sizeof(pack));
+		d->Packet(pack);
 
 		TPacketGCWalkMode p;
 		p.vid = GetVID();
 		p.header = HEADER_GC_WALK_MODE;
 		p.mode = m_bNowWalking ? WALKMODE_WALK : WALKMODE_RUN;
 
-		d->Packet(&p, sizeof(p));
+		d->Packet(p);
 	}
 
 	if (entity->IsType(ENTITY_CHARACTER) && GetDesc())
@@ -931,7 +939,7 @@ void CHARACTER::EncodeInsertPacket(LPENTITY entity)
 			p.vid = ch->GetVID();
 			p.header = HEADER_GC_WALK_MODE;
 			p.mode = ch->m_bNowWalking ? WALKMODE_WALK : WALKMODE_RUN;
-			GetDesc()->Packet(&p, sizeof(p));
+			GetDesc()->Packet(p);
 		}
 	}
 
@@ -943,7 +951,7 @@ void CHARACTER::EncodeInsertPacket(LPENTITY entity)
 		p.dwVID = GetVID();
 		strlcpy(p.szSign, m_stShopSign.c_str(), sizeof(p.szSign));
 
-		d->Packet(&p, sizeof(TPacketGCShopSign));
+		d->Packet(p);
 	}
 
 	if (entity->IsType(ENTITY_CHARACTER))
@@ -968,7 +976,7 @@ void CHARACTER::EncodeRemovePacket(LPENTITY entity)
 	pack.header	= HEADER_GC_CHARACTER_DEL;
 	pack.id	= m_vid;
 
-	d->Packet(&pack, sizeof(TPacketGCCharacterDelete));
+	d->Packet(pack);
 
 	if (entity->IsType(ENTITY_CHARACTER))
 		sys_log(3, "EntityRemove %s(%d) FROM %s", GetName(), (DWORD) m_vid, ((LPCHARACTER) entity)->GetName());
@@ -1025,11 +1033,11 @@ void CHARACTER::UpdatePacket()
 
 							if (GetEmpire() == pChar->GetEmpire() || pChar->GetGMLevel() > GM_PLAYER)
 							{
-								pEntity->GetDesc()->Packet(&pack, sizeof(pack));
+								pEntity->GetDesc()->Packet(pack);
 							}
 							else
 							{
-								pEntity->GetDesc()->Packet(&pack2, sizeof(pack2));
+								pEntity->GetDesc()->Packet(pack2);
 							}
 						}
 					}
@@ -1037,7 +1045,7 @@ void CHARACTER::UpdatePacket()
 					{
 						if (pEntity->GetDesc() != NULL)
 						{
-							pEntity->GetDesc()->Packet(&pack, sizeof(pack));
+							pEntity->GetDesc()->Packet(pack);
 						}
 					}
 				}
@@ -1046,12 +1054,12 @@ void CHARACTER::UpdatePacket()
 
 		if (GetDesc() != NULL)
 		{
-			GetDesc()->Packet(&pack, sizeof(pack));
+			GetDesc()->Packet(pack);
 		}
 	}
 	else
 	{
-		PacketAround(&pack, sizeof(pack));
+		PacketAround(pack);
 	}
 }
 
@@ -1532,7 +1540,7 @@ void CHARACTER::MainCharacterPacket()
 
 			mainChrPacket.fBGMVol = bgmInfo.vol;
 			strlcpy(mainChrPacket.szBGMName, bgmInfo.name.c_str(), sizeof(mainChrPacket.szBGMName));
-			GetDesc()->Packet(&mainChrPacket, sizeof(TPacketGCMainCharacter4_BGM_VOL));
+			GetDesc()->Packet(mainChrPacket);
 		}
 		else
 		{
@@ -1548,10 +1556,8 @@ void CHARACTER::MainCharacterPacket()
 			mainChrPacket.skill_group = GetSkillGroup();
 			strlcpy(mainChrPacket.szChrName, GetName(), sizeof(mainChrPacket.szChrName));
 			strlcpy(mainChrPacket.szBGMName, bgmInfo.name.c_str(), sizeof(mainChrPacket.szBGMName));
-			GetDesc()->Packet(&mainChrPacket, sizeof(TPacketGCMainCharacter3_BGM));
+			GetDesc()->Packet(mainChrPacket);
 		}
-		//if (m_stMobile.length())
-		//		ChatPacket(CHAT_TYPE_COMMAND, "sms");
 	}
 	// END_OF_SUPPORT_BGM
 	else
@@ -1568,7 +1574,7 @@ void CHARACTER::MainCharacterPacket()
 		pack.empire = GetDesc()->GetEmpire();
 		pack.skill_group = GetSkillGroup();
 		strlcpy(pack.szName, GetName(), sizeof(pack.szName));
-		GetDesc()->Packet(&pack, sizeof(TPacketGCMainCharacter));
+		GetDesc()->Packet(pack);
 
 		if (m_stMobile.length())
 			ChatPacket(CHAT_TYPE_COMMAND, "sms");
@@ -1598,7 +1604,7 @@ void CHARACTER::PointsPacket()
 	for (int i = POINT_ST; i < POINT_MAX_NUM; ++i)
 		pack.points[i] = GetPoint(i);
 
-	GetDesc()->Packet(&pack, sizeof(TPacketGCPoints));
+	GetDesc()->Packet(pack);
 }
 
 bool CHARACTER::ChangeSex()
@@ -1652,7 +1658,7 @@ bool CHARACTER::ChangeSex()
 	return true;
 }
 
-WORD CHARACTER::GetRaceNum() const
+DWORD CHARACTER::GetRaceNum() const // @fixme501
 {
 	if (m_dwPolymorphRace)
 		return m_dwPolymorphRace;
@@ -2324,10 +2330,6 @@ void CHARACTER::ComputePoints()
 		}
 	}
 
-	// 용혼석 시스템
-	// ComputePoints에서는 케릭터의 모든 속성값을 초기화하고,
-	// 아이템, 버프 등에 관련된 모든 속성값을 재계산하기 때문에,
-	// 용혼석 시스템도 ActiveDeck에 있는 모든 용혼석의 속성값을 다시 적용시켜야 한다.
 	if (DragonSoul_IsDeckActivated())
 	{
 		for (int i = WEAR_MAX_NUM + DS_SLOT_MAX * DragonSoul_GetActiveDeck(); 
@@ -2516,7 +2518,7 @@ void CHARACTER::Standup()
 	pack_position.vid		= GetVID();
 	pack_position.position	= POSITION_GENERAL;
 
-	PacketAround(&pack_position, sizeof(pack_position));
+	PacketAround(pack_position);
 }
 
 void CHARACTER::Sitdown(int is_ground)
@@ -2532,7 +2534,7 @@ void CHARACTER::Sitdown(int is_ground)
 	pack_position.header	= HEADER_GC_CHARACTER_POSITION;
 	pack_position.vid		= GetVID();
 	pack_position.position	= POSITION_SITTING_GROUND;
-	PacketAround(&pack_position, sizeof(pack_position));
+	PacketAround(pack_position);
 }
 
 void CHARACTER::SetRotation(float fRot)
@@ -3433,6 +3435,9 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 			// DEPEND_BONUS_ATTRIBUTES
 		case POINT_SKILL_DEFEND_BONUS:
 		case POINT_NORMAL_HIT_DEFEND_BONUS:
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		case POINT_ATTBONUS_CLAW:
+#endif
 			SetPoint(type, GetPoint(type) + amount);
 			val = GetPoint(type);
 			break;
@@ -3625,9 +3630,9 @@ void CHARACTER::PointChange(BYTE type, int amount, bool bAmount, bool bBroadcast
 			pack.amount = 0;
 
 		if (!bBroadcast)
-			GetDesc()->Packet(&pack, sizeof(struct packet_point_change));
+			GetDesc()->Packet(pack);
 		else
-			PacketAround(&pack, sizeof(pack));
+			PacketAround(pack);
 	}
 }
 
@@ -3822,7 +3827,7 @@ void CHARACTER::Motion(BYTE motion, LPCHARACTER victim)
 {
 	struct packet_motion pack_motion;
 	MotionPacketEncode(motion, victim, &pack_motion);
-	PacketAround(&pack_motion, sizeof(struct packet_motion));
+	PacketAround(pack_motion);
 }
 
 EVENTFUNC(save_event)
@@ -3894,7 +3899,7 @@ void CHARACTER::MonsterLog(const char* format, ...)
 	pack_chat.bEmpire	= 0;
 
 	TEMP_BUFFER buf;
-	buf.write(&pack_chat, sizeof(TPacketGCChat));
+	buf.write(pack_chat);
 	buf.write(chatbuf, len);
 
 	CHARACTER_MANAGER::instance().PacketMonsterLog(this, buf.read_peek(), buf.size());
@@ -3923,7 +3928,7 @@ void CHARACTER::ChatPacket(BYTE type, const char * format, ...)
 	pack_chat.bEmpire   = d->GetEmpire();
 
 	TEMP_BUFFER buf;
-	buf.write(&pack_chat, sizeof(struct packet_chat));
+	buf.write(pack_chat);
 	buf.write(chatbuf, len);
 
 	d->Packet(buf.read_peek(), buf.size());
@@ -3959,6 +3964,10 @@ void CHARACTER::mining(LPCHARACTER chLoad)
 	if (!chLoad)
 		return;
 
+	// @fixme128
+	if (GetMapIndex() != chLoad->GetMapIndex() || DISTANCE_APPROX(GetX() - chLoad->GetX(), GetY() - chLoad->GetY()) > 1000)
+		return;
+
 	if (mining::GetRawOreFromLoad(chLoad->GetRaceNum()) == 0)
 		return;
 
@@ -3978,7 +3987,7 @@ void CHARACTER::mining(LPCHARACTER chLoad)
 	p.target_vid = chLoad->GetVID();
 	p.count = count;
 
-	PacketAround(&p, sizeof(p));
+	PacketAround(p);
 
 	m_pkMiningEvent = mining::CreateMiningEvent(this, chLoad, count);
 }
@@ -4108,19 +4117,19 @@ void CHARACTER::SetExchange(CExchange * pkExchange)
 	m_pkExchange = pkExchange;
 }
 
-void CHARACTER::SetPart(BYTE bPartPos, WORD wVal)
+void CHARACTER::SetPart(BYTE bPartPos, DWORD wVal) // @fixme502
 {
 	assert(bPartPos < PART_MAX_NUM);
 	m_pointsInstant.parts[bPartPos] = wVal;
 }
 
-WORD CHARACTER::GetPart(BYTE bPartPos) const
+DWORD CHARACTER::GetPart(BYTE bPartPos) const // @fixme502
 {
 	assert(bPartPos < PART_MAX_NUM);
 	return m_pointsInstant.parts[bPartPos];
 }
 
-WORD CHARACTER::GetOriginalPart(BYTE bPartPos) const
+DWORD CHARACTER::GetOriginalPart(BYTE bPartPos) const // @fixme502
 {
 	switch (bPartPos)
 	{
@@ -4149,6 +4158,15 @@ bool CHARACTER::SetSyncOwner(LPCHARACTER ch, bool bRemoveFromList)
 	if (IS_SET(m_pointsInstant.dwAIFlag, AIFLAG_NOMOVE))
 		return false;
 	// END_OF_TRENT_MONSTER
+
+	if (ch) // @fixme131
+	{
+		if (!battle_is_attackable(ch, this))
+		{
+			SendDamagePacket(ch, 0, DAMAGE_BLOCK);
+			return false;
+		}
+	}
 
 	if (ch == this)
 	{
@@ -4209,7 +4227,7 @@ bool CHARACTER::SetSyncOwner(LPCHARACTER ch, bool bRemoveFromList)
 	pack.dwOwnerVID	= ch ? ch->GetVID() : 0;
 	pack.dwVictimVID	= GetVID();
 
-	PacketAround(&pack, sizeof(TPacketGCOwnership));
+	PacketAround(pack);
 	return true;
 }
 
@@ -4552,7 +4570,7 @@ void CHARACTER::PartyInvite(LPCHARACTER pchInvitee)
 	TPacketGCPartyInvite p;
 	p.header = HEADER_GC_PARTY_INVITE;
 	p.leader_vid = GetVID();
-	pchInvitee->GetDesc()->Packet(&p, sizeof(p));
+	pchInvitee->GetDesc()->Packet(p);
 }
 
 void CHARACTER::PartyInviteAccept(LPCHARACTER pchInvitee)
@@ -4669,16 +4687,6 @@ CHARACTER::PartyJoinErrCode CHARACTER::IsPartyJoinableCondition(const LPCHARACTE
 static bool __party_can_join_by_level(LPCHARACTER leader, LPCHARACTER quest)
 {
 	int	level_limit = 30;
-
-	if (LC_IsCanada())
-		level_limit = 15;
-	else if (LC_IsBrazil() == true)
-	{
-		level_limit = 10;
-	}
-	else
-		level_limit = 30;
-
 	return (abs(leader->GetLevel() - quest->GetLevel()) <= level_limit);
 }
 
@@ -5013,7 +5021,7 @@ void CHARACTER::ClearTarget()
 			abort();
 		}
 
-		pkChr->GetDesc()->Packet(&p, sizeof(TPacketGCTarget));
+		pkChr->GetDesc()->Packet(p);
 	}
 
 	m_set_pkChrTargetedBy.clear();
@@ -5083,7 +5091,7 @@ void CHARACTER::SetTarget(LPCHARACTER pkChrTarget)
 		p.bHPPercent = 0;
 	}
 
-	GetDesc()->Packet(&p, sizeof(TPacketGCTarget));
+	GetDesc()->Packet(p);
 }
 
 void CHARACTER::BroadcastTargetPacket()
@@ -5115,7 +5123,7 @@ void CHARACTER::BroadcastTargetPacket()
 			abort();
 		}
 
-		pkChr->GetDesc()->Packet(&p, sizeof(TPacketGCTarget));
+		pkChr->GetDesc()->Packet(p);
 	}
 }
 
@@ -5219,7 +5227,7 @@ bool CHARACTER::WarpSet(long x, long y, long lPrivateMapIndex)
 	p.lAddr	= lAddr;
 	p.wPort	= wPort;
 
-	GetDesc()->Packet(&p, sizeof(TPacketGCWarp));
+	GetDesc()->Packet(p);
 
 	char buf[256];
 	snprintf(buf, sizeof(buf), "%s MapIdx %ld DestMapIdx%ld DestX%ld DestY%ld Empire%d", GetName(), GetMapIndex(), lPrivateMapIndex, x, y, GetEmpire());
@@ -5399,7 +5407,7 @@ bool CHARACTER::Follow(LPCHARACTER pkChr, float fMinDistance)
 		SetChangeAttackPositionTime();
 
 		int retry = 16;
-		int dx, dy;
+		int dx = 0, dy = 0;
 		int rot = (int) GetDegreeFromPositionXY(x, y, GetX(), GetY());
 
 		while (--retry)
@@ -5517,7 +5525,7 @@ void CHARACTER::LoadSafebox(int iSize, DWORD dwGold, int iItemCount, TPlayerItem
 	p.bHeader = HEADER_GC_SAFEBOX_SIZE;
 	p.bSize = iSize;
 
-	GetDesc()->Packet(&p, sizeof(TPacketCGSafeboxSize));
+	GetDesc()->Packet(p);
 
 	if (!bLoaded)
 	{
@@ -5555,7 +5563,7 @@ void CHARACTER::ChangeSafeboxSize(BYTE bSize)
 	p.bHeader = HEADER_GC_SAFEBOX_SIZE;
 	p.bSize = bSize;
 
-	GetDesc()->Packet(&p, sizeof(TPacketCGSafeboxSize));
+	GetDesc()->Packet(p);
 
 	if (m_pkSafebox)
 		m_pkSafebox->ChangeSize(bSize);
@@ -5609,7 +5617,7 @@ void CHARACTER::LoadMall(int iItemCount, TPlayerItem * pItems)
 	p.bHeader = HEADER_GC_MALL_OPEN;
 	p.bSize = 3 * SAFEBOX_PAGE_SIZE;
 
-	GetDesc()->Packet(&p, sizeof(TPacketCGSafeboxSize));
+	GetDesc()->Packet(p);
 
 	if (!bLoaded)
 	{
@@ -5924,7 +5932,7 @@ void CHARACTER::EffectPacket(int enumEffectType)
 	p.type = enumEffectType;
 	p.vid = GetVID();
 
-	PacketAround(&p, sizeof(TPacketGCSpecialEffect));
+	PacketAround(p);
 }
 
 void CHARACTER::SpecificEffectPacket(const char filename[MAX_EFFECT_FILE_NAME])
@@ -5935,7 +5943,7 @@ void CHARACTER::SpecificEffectPacket(const char filename[MAX_EFFECT_FILE_NAME])
 	p.vid = GetVID();
 	memcpy (p.effect_file, filename, MAX_EFFECT_FILE_NAME);
 
-	PacketAround(&p, sizeof(TPacketGCSpecificEffect));
+	PacketAround(p);
 }
 
 void CHARACTER::MonsterChat(BYTE bMonsterChatType)
@@ -5987,7 +5995,7 @@ void CHARACTER::MonsterChat(BYTE bMonsterChatType)
 	pack_chat.bEmpire	= 0;
 
 	TEMP_BUFFER buf;
-	buf.write(&pack_chat, sizeof(struct packet_chat));
+	buf.write(pack_chat);
 	buf.write(text.c_str(), text.size() + 1);
 
 	PacketAround(buf.read_peek(), buf.size());
@@ -6190,7 +6198,7 @@ void CHARACTER::SendEquipment(LPCHARACTER ch)
 			p.equips[i].vnum = 0;
 		}
 	}
-	ch->GetDesc()->Packet(&p, sizeof(p));
+	ch->GetDesc()->Packet(p);
 }
 
 bool CHARACTER::CanSummon(int iLeaderShip)
@@ -6381,8 +6389,8 @@ void CHARACTER::SyncPacket()
 	pack.bHeader = HEADER_GC_SYNC_POSITION;
 	pack.wSize = sizeof(TPacketGCSyncPosition) + sizeof(elem);
 
-	buf.write(&pack, sizeof(pack));
-	buf.write(&elem, sizeof(elem));
+	buf.write(pack);
+	buf.write(elem);
 
 	PacketAround(buf.read_peek(), buf.size());
 }
@@ -6422,7 +6430,7 @@ void CHARACTER::ConfirmWithMsg(const char* szMsg, int iTimeout, DWORD dwRequestP
 	p.timeout = iTimeout;
 	strlcpy(p.msg, szMsg, sizeof(p.msg));
 
-	GetDesc()->Packet(&p, sizeof(p));
+	GetDesc()->Packet(p);
 }
 
 int CHARACTER::GetPremiumRemainSeconds(BYTE bType) const
@@ -6489,7 +6497,7 @@ bool CHARACTER::WarpToPID(DWORD dwPID)
 			p.header = HEADER_GG_FIND_POSITION;
 			p.dwFromPID = GetPlayerID();
 			p.dwTargetPID = dwPID;
-			pcci->pkDesc->Packet(&p, sizeof(TPacketGGFindPosition));
+			pcci->pkDesc->Packet(p);
 
 			if (test_server)
 				ChatPacket(CHAT_TYPE_PARTY, "sent find position packet for teleport");
@@ -6636,8 +6644,8 @@ void CHARACTER::Say(const std::string & s)
 
 	TEMP_BUFFER buf;
 
-	buf.write(&packet_script, sizeof(struct packet_script));
-	buf.write(&s[0], s.size());
+	buf.write(packet_script);
+	buf.write(s.data(), s.size());
 
 	if (IsPC())
 	{
@@ -6954,7 +6962,7 @@ void CHARACTER::SendGuildName(CGuild* pGuild)
 	pack.guildID	= pGuild->GetID();
 	memcpy(pack.guildName, pGuild->GetName(), GUILD_NAME_MAX_LEN);
 
-	desc->Packet(&pack, sizeof(pack));
+	desc->Packet(pack);
 }
 
 void CHARACTER::SendGuildName(DWORD dwGuildID)
@@ -7111,7 +7119,7 @@ bool CHARACTER::CanWarp() const
 DWORD CHARACTER::GetNextExp() const
 {
 	if (PLAYER_EXP_TABLE_MAX < GetLevel())
-		return 2500000000UL;
+		return 2500000000u;
 	else
 		return exp_table[GetLevel()];
 }
