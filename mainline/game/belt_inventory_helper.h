@@ -9,7 +9,7 @@ class CBeltInventoryHelper
 public:
 	typedef BYTE	TGradeUnit;
 
-	static TGradeUnit GetBeltGradeByRefineLevel(int level)
+	static TGradeUnit GetBeltGradeByRefineLevel(DWORD level)
 	{
 		static TGradeUnit beltGradeByLevelTable[] =
 		{
@@ -27,7 +27,7 @@ public:
 
 		if (level >= _countof(beltGradeByLevelTable))
 		{
-			sys_err("CBeltInventoryHelper::GetBeltGradeByRefineLevel - Overflow level (%d", level);
+			sys_err("CBeltInventoryHelper::GetBeltGradeByRefineLevel - Overflow level (%u)", level);
 			return 0;
 		}
 
