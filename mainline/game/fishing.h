@@ -39,3 +39,4 @@ namespace fishing
 	extern int RealRefineRod(LPCHARACTER ch, LPITEM rod);
 }
 #endif
+
