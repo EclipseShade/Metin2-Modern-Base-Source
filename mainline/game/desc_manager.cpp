@@ -56,7 +56,6 @@ int IsValidIP(struct valid_ip* ip_table, const char *host)
 DESC_MANAGER::DESC_MANAGER() : m_bDestroyed(false)
 {
 	Initialize();
-	//NOTE : Destroy 끝에서 Initialize 를 부르는건 또 무슨 짓이냐..-_-; 정말 
 
 	m_pPackageCrypt = new CClientPackageCryptInfo;
 }
@@ -169,7 +168,7 @@ LPDESC DESC_MANAGER::AcceptDesc(LPFDWATCH fdw, socket_t s)
 		}
 	}
 
-	if (!IsValidIP(admin_ip, host)) // admin_ip 에 등록된 IP 는 최대 사용자 수에 구애받지 않는다.
+	if (!IsValidIP(admin_ip, host))
 	{
 		if (m_iSocketsConnected >= MAX_ALLOW_USER)
 		{
@@ -211,7 +210,7 @@ LPDESC DESC_MANAGER::AcceptP2PDesc(LPFDWATCH fdw, socket_t bind_fd)
 	LPDESC_P2P pkDesc = M2_NEW DESC_P2P;
 
 	if (!pkDesc->Setup(fdw, fd, host, peer.sin_port))
-	{     
+	{
 		sys_err("DESC_MANAGER::AcceptP2PDesc : Setup failed");
 		socket_close(fd);
 		M2_DELETE(pkDesc);
@@ -228,13 +227,13 @@ LPDESC DESC_MANAGER::AcceptP2PDesc(LPFDWATCH fdw, socket_t bind_fd)
 
 void DESC_MANAGER::ConnectAccount(const std::string& login, LPDESC d)
 {
-dev_log(LOG_DEB0, "BBBB ConnectAccount(%s)", login.c_str());
+	sys_log(1, "BBBB ConnectAccount(%s)", login.c_str());
 	m_map_loginName.insert(DESC_LOGINNAME_MAP::value_type(login,d));
 }
 
 void DESC_MANAGER::DisconnectAccount(const std::string& login)
 {
-dev_log(LOG_DEB0, "BBBB DisConnectAccount(%s)", login.c_str());
+	sys_log(1, "BBBB DisConnectAccount(%s)", login.c_str());
 	m_map_loginName.erase(login);
 }
 
@@ -294,7 +293,7 @@ LPDESC DESC_MANAGER::FindByLoginName(const std::string& login)
 	if (m_map_loginName.end() == it)
 		return NULL;
 
-	return (it->second); 
+	return (it->second);
 }
 
 LPDESC DESC_MANAGER::FindByHandle(DWORD handle)
@@ -304,7 +303,7 @@ LPDESC DESC_MANAGER::FindByHandle(DWORD handle)
 	if (m_map_handle.end() == it)
 		return NULL;
 
-	return (it->second); 
+	return (it->second);
 }
 
 const DESC_MANAGER::DESC_SET & DESC_MANAGER::GetClientSet()
@@ -369,7 +368,7 @@ void DESC_MANAGER::TryConnect()
 bool DESC_MANAGER::IsP2PDescExist(const char * szHost, WORD wPort)
 {
 	CLIENT_DESC_SET::iterator it = m_set_pkClientDesc.begin();
-	
+
 	while (it != m_set_pkClientDesc.end())
 	{
 		LPCLIENT_DESC d = *(it++);
@@ -430,7 +429,7 @@ void DESC_MANAGER::UpdateLocalUserCount()
 void DESC_MANAGER::GetUserCount(int & iTotal, int ** paiEmpireUserCount, int & iLocalCount)
 {
 	*paiEmpireUserCount = &m_aiEmpireUserCount[0];
-	
+
 	int iCount = P2P_MANAGER::instance().GetCount();
 	if (iCount < 0)
 	{
@@ -440,17 +439,16 @@ void DESC_MANAGER::GetUserCount(int & iTotal, int ** paiEmpireUserCount, int & i
 	iLocalCount = m_iLocalUserCount;
 }
 
-
 DWORD DESC_MANAGER::MakeRandomKey(DWORD dwHandle)
-{ 
-	DWORD random_key = thecore_random(); 
+{
+	DWORD random_key = thecore_random();
 	m_map_handle_random_key.insert(std::make_pair(dwHandle, random_key));
 	return random_key;
 }
 
 bool DESC_MANAGER::GetRandomKey(DWORD dwHandle, DWORD* prandom_key)
 {
-	DESC_HANDLE_RANDOM_KEY_MAP::iterator it = m_map_handle_random_key.find(dwHandle); 
+	DESC_HANDLE_RANDOM_KEY_MAP::iterator it = m_map_handle_random_key.find(dwHandle);
 
 	if (it == m_map_handle_random_key.end())
 		return false;
@@ -468,7 +466,6 @@ LPDESC DESC_MANAGER::FindByLoginKey(DWORD dwKey)
 
 	return it->second->m_pkDesc;
 }
-
 
 DWORD DESC_MANAGER::CreateLoginKey(LPDESC d)
 {
@@ -522,8 +519,7 @@ void DESC_MANAGER::NotifyClientPackageFileChanged( const std::string& dirName, e
 {
 	 Instance().LoadClientPackageCryptInfo(dirName.c_str());
 }
-#endif 
-
+#endif
 
 void DESC_MANAGER::SendClientPackageCryptKey( LPDESC desc )
 {
@@ -542,7 +538,6 @@ void DESC_MANAGER::SendClientPackageCryptKey( LPDESC desc )
 	{
 		if (test_server)
 		{
-			// keys를 string으로 남기는 건 문제가 있음. 중간에 NULL 있으면 잘릴테니.. 그래도 혹시 모르니 남김.
 			sys_log(0, "[PackageCryptInfo] send to %s. (keys: %s, len: %d)", desc->GetAccountTable().login, std::string((char*)packet.pDataKeyStream).c_str(), packet.KeyStreamLen);
 		}
 		desc->Packet( packet.GetStreamData(), packet.GetStreamSize() );
@@ -560,7 +555,9 @@ void DESC_MANAGER::SendClientPackageSDBToLoadMap( LPDESC desc, const char* pMapN
 	{
 		packet.bHeader      = HEADER_GC_HYBRIDCRYPT_SDB;
 		if( !m_pPackageCrypt->GetRelatedMapSDBStreams( pMapName, &(packet.m_pDataSDBStream), packet.iStreamLen ) )
-			return; 
+			return;
+		if (test_server)
+			sys_log(0, "[PackageCryptInfo] send to %s from map %s. (SDB len: %d)", desc->GetAccountTable().login, pMapName, packet.iStreamLen);
 	}
 
 	if( packet.iStreamLen > 0 )
