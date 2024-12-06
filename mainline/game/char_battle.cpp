@@ -149,7 +149,7 @@ void CHARACTER::DistributeSP(LPCHARACTER pkKiller, int iMethod)
 			else if (bMoving)
 				iAmount = 3 + GetMaxSP() * 2 / 100;
 			else
-				iAmount = 10 + GetMaxSP() * 3 / 100; // 평상시
+				iAmount = 10 + GetMaxSP() * 3 / 100;
 
 			iAmount += (iAmount * pkKiller->GetPoint(POINT_SP_REGEN)) / 100;
 			pkKiller->PointChange(POINT_SP, iAmount);
@@ -164,11 +164,10 @@ void CHARACTER::DistributeSP(LPCHARACTER pkKiller, int iMethod)
 				iAmount = 2 + pkKiller->GetMaxSP() / 100;
 			else
 			{
-				// 평상시
 				if (pkKiller->GetHP() < pkKiller->GetMaxHP())
-					iAmount = 2 + (pkKiller->GetMaxSP() / 100); // 피 다 안찼을때
+					iAmount = 2 + (pkKiller->GetMaxSP() / 100);
 				else
-					iAmount = 9 + (pkKiller->GetMaxSP() / 100); // 기본
+					iAmount = 9 + (pkKiller->GetMaxSP() / 100);
 			}
 
 			iAmount += (iAmount * pkKiller->GetPoint(POINT_SP_REGEN)) / 100;
@@ -177,12 +176,11 @@ void CHARACTER::DistributeSP(LPCHARACTER pkKiller, int iMethod)
 	}
 }
 
-
 bool CHARACTER::Attack(LPCHARACTER pkVictim, BYTE bType)
 {
 	if (test_server)
 		sys_log(0, "[TEST_SERVER] Attack : %s type %d, MobBattleType %d", GetName(), bType, !GetMobBattleType() ? 0 : GetMobAttackRange());
-	//PROF_UNIT puAttack("Attack");
+
 	if (!CanMove())
 		return false;
 
@@ -190,6 +188,10 @@ bool CHARACTER::Attack(LPCHARACTER pkVictim, BYTE bType)
 	if (IS_CASTLE_MAP(GetMapIndex()) && false == castle_can_attack(this, pkVictim))
 		return false;
 	// CASTLE
+
+	// @fixme131
+	if (!battle_is_attackable(this, pkVictim))
+		return false;
 
 	DWORD dwCurrentTime = get_dword_time();
 
@@ -215,9 +217,6 @@ bool CHARACTER::Attack(LPCHARACTER pkVictim, BYTE bType)
 
 	if (bType == 0)
 	{
-		//
-		// 일반 공격
-		//
 		switch (GetMobBattleType())
 		{
 			case BATTLE_TYPE_MELEE:
@@ -306,8 +305,8 @@ void CHARACTER::DeathPenalty(BYTE bTown)
 	{
 		REMOVE_BIT(m_pointsInstant.instant_flag, INSTANT_FLAG_DEATH_PENALTY);
 
-		// NO_DEATH_PENALTY_BUG_FIX 
-		if (LC_IsYMIR()) // 천마 버전에서는 언제나 용신의 가호 아이템을 체크한다.
+		// NO_DEATH_PENALTY_BUG_FIX
+		if (LC_IsYMIR())
 		{
 			if (FindAffect(AFFECT_NO_DEATH_PENALTY))
 			{
@@ -416,7 +415,7 @@ void CHARACTER::Stun()
 
 	CloseMyShop();
 
-	event_cancel(&m_pkRecoveryEvent); // 회복 이벤트를 죽인다.
+	event_cancel(&m_pkRecoveryEvent);
 
 	TPacketGCStun pack;
 	pack.header	= HEADER_GC_STUN;
@@ -537,10 +536,10 @@ bool CHARACTER::IsDead() const
 void CHARACTER::RewardGold(LPCHARACTER pkAttacker)
 {
 	// ADD_PREMIUM
-	bool isAutoLoot = 
+	bool isAutoLoot =
 		(pkAttacker->GetPremiumRemainSeconds(PREMIUM_AUTOLOOT) > 0 ||
 		 pkAttacker->IsEquipUniqueGroup(UNIQUE_GROUP_AUTOLOOT))
-		? true : false; // 제3의 손
+		? true : false;
 	// END_OF_ADD_PREMIUM
 
 	PIXEL_POSITION pos;
@@ -550,9 +549,6 @@ void CHARACTER::RewardGold(LPCHARACTER pkAttacker)
 			return;
 
 	int iTotalGold = 0;
-	//
-	// --------- 돈 드롭 확률 계산 ----------
-	//
 	int iGoldPercent = MobRankStats[GetMobRank()].iGoldPercent;
 
 	if (pkAttacker->IsPC())
@@ -569,7 +565,7 @@ void CHARACTER::RewardGold(LPCHARACTER pkAttacker)
 		iGoldPercent += iGoldPercent;
 	// END_OF_ADD_PREMIUM
 
-	if (iGoldPercent > 100) 
+	if (iGoldPercent > 100)
 		iGoldPercent = 100;
 
 	int iPercent;
@@ -578,42 +574,33 @@ void CHARACTER::RewardGold(LPCHARACTER pkAttacker)
 		iPercent = ((iGoldPercent * PERCENT_LVDELTA_BOSS(pkAttacker->GetLevel(), GetLevel())) / 100);
 	else
 		iPercent = ((iGoldPercent * PERCENT_LVDELTA(pkAttacker->GetLevel(), GetLevel())) / 100);
-	//int iPercent = CALCULATE_VALUE_LVDELTA(pkAttacker->GetLevel(), GetLevel(), iGoldPercent);
 
 	if (number(1, 100) > iPercent)
 		return;
 
 	int iGoldMultipler = GetGoldMultipler();
 
-	if (1 == number(1, 50000)) // 1/50000 확률로 돈이 10배
+	if (1 == number(1, 50000))
 		iGoldMultipler *= 10;
-	else if (1 == number(1, 10000)) // 1/10000 확률로 돈이 5배
+	else if (1 == number(1, 10000))
 		iGoldMultipler *= 5;
 
-	// 개인 적용
 	if (pkAttacker->GetPoint(POINT_GOLD_DOUBLE_BONUS))
 		if (number(1, 100) <= pkAttacker->GetPoint(POINT_GOLD_DOUBLE_BONUS))
 			iGoldMultipler *= 2;
 
-	//
-	// --------- 돈 드롭 배수 결정 ----------
-	//
 	if (test_server)
 		pkAttacker->ChatPacket(CHAT_TYPE_PARTY, "gold_mul %d rate %d", iGoldMultipler, CHARACTER_MANAGER::instance().GetMobGoldAmountRate(pkAttacker));
 
-	//
-	// --------- 실제 드롭 처리 -------------
-	// 
 	LPITEM item;
 
 	int iGold10DropPct = 100;
 	iGold10DropPct = (iGold10DropPct * 100) / (100 + CPrivManager::instance().GetPriv(pkAttacker, PRIV_GOLD10_DROP));
 
-	// MOB_RANK가 BOSS보다 높으면 무조건 돈폭탄
 	if (GetMobRank() >= MOB_RANK_BOSS && !IsStone() && GetMobTable().dwGoldMax != 0)
 	{
 		if (1 == number(1, iGold10DropPct))
-			iGoldMultipler *= 10; // 1% 확률로 돈 10배
+			iGoldMultipler *= 10;
 
 		int iSplitCount = number(25, 35);
 
@@ -636,7 +623,6 @@ void CHARACTER::RewardGold(LPCHARACTER pkAttacker)
 				sys_log(0, "Drop Money gold %d GoldMin %d GoldMax %d", iGold, GetMobTable().dwGoldMax, GetMobTable().dwGoldMax);
 			}
 
-			// NOTE: 돈 폭탄은 제 3의 손 처리를 하지 않음
 			if ((item = ITEM_MANAGER::instance().CreateItem(1, iGold)))
 			{
 				pos.x = GetX() + ((number(-14, 14) + number(-14, 14)) * 23);
@@ -649,12 +635,9 @@ void CHARACTER::RewardGold(LPCHARACTER pkAttacker)
 			}
 		}
 	}
-	// 1% 확률로 돈을 10개 떨어 뜨린다. (10배 드롭임)
+
 	else if (1 == number(1, iGold10DropPct))
 	{
-		//
-		// 돈 폭탄식 드롭
-		//
 		for (int i = 0; i < 10; ++i)
 		{
 			int iGold = number(GetMobTable().dwGoldMin, GetMobTable().dwGoldMax);
@@ -662,11 +645,8 @@ void CHARACTER::RewardGold(LPCHARACTER pkAttacker)
 			iGold *= iGoldMultipler;
 
 			if (iGold == 0)
-			{
 				continue;
-			}
 
-			// NOTE: 돈 폭탄은 제 3의 손 처리를 하지 않음
 			if ((item = ITEM_MANAGER::instance().CreateItem(1, iGold)))
 			{
 				pos.x = GetX() + (number(-7, 7) * 20);
@@ -681,16 +661,13 @@ void CHARACTER::RewardGold(LPCHARACTER pkAttacker)
 	}
 	else
 	{
-		//
-		// 일반적인 방식의 돈 드롭
-		//
 		int iGold = number(GetMobTable().dwGoldMin, GetMobTable().dwGoldMax);
 		iGold = iGold * CHARACTER_MANAGER::instance().GetMobGoldAmountRate(pkAttacker) / 100;
 		iGold *= iGoldMultipler;
 
 		int iSplitCount;
 
-		if (iGold >= 3 && !LC_IsYMIR()) 
+		if (iGold >= 3)
 			iSplitCount = number(1, 3);
 		else if (GetMobRank() >= MOB_RANK_BOSS)
 		{
@@ -729,7 +706,7 @@ void CHARACTER::RewardGold(LPCHARACTER pkAttacker)
 
 void CHARACTER::Reward(bool bItemDrop)
 {
-	if (GetRaceNum() == 5001) // 왜구는 돈을 무조건 드롭
+	if (GetRaceNum() == 5001)
 	{
 		PIXEL_POSITION pos;
 
@@ -764,13 +741,11 @@ void CHARACTER::Reward(bool bItemDrop)
 		return;
 	}
 
-	//PROF_UNIT puReward("Reward");
    	LPCHARACTER pkAttacker = DistributeExp();
 
 	if (!pkAttacker)
 		return;
 
-	//PROF_UNIT pu1("r1");
 	if (pkAttacker->IsPC())
 	{
 		if (GetLevel() - pkAttacker->GetLevel() >= -10)
@@ -805,7 +780,6 @@ void CHARACTER::Reward(bool bItemDrop)
 			}
 		}
 	}
-	//pu1.Pop();
 
 	if (!bItemDrop)
 		return;
@@ -815,19 +789,10 @@ void CHARACTER::Reward(bool bItemDrop)
 	if (!SECTREE_MANAGER::instance().GetMovablePosition(GetMapIndex(), pos.x, pos.y, pos))
 		return;
 
-	//
-	// 돈 드롭
-	//
-	//PROF_UNIT pu2("r2");
 	if (test_server)
 		sys_log(0, "Drop money : Attacker %s", pkAttacker->GetName());
 	RewardGold(pkAttacker);
-	//pu2.Pop();
 
-	//
-	// 아이템 드롭
-	//
-	//PROF_UNIT pu3("r3");
 	LPITEM item;
 
 	static std::vector<LPITEM> s_vec_item;
@@ -888,7 +853,6 @@ void CHARACTER::Reward(bool bItemDrop)
 
 			if (v.empty())
 			{
-				// 데미지를 특별히 많이 준 사람이 없으니 소유권 없음
 				while (iItemIdx >= 0)
 				{
 					item = s_vec_item[iItemIdx--];
@@ -900,7 +864,7 @@ void CHARACTER::Reward(bool bItemDrop)
 					}
 
 					item->AddToGround(GetMapIndex(), pos);
-					// 10% 이하 데미지 준 사람끼리는 소유권없음
+
 					//item->SetOwnership(pkAttacker);
 					item->StartDestroyEvent();
 
@@ -914,7 +878,6 @@ void CHARACTER::Reward(bool bItemDrop)
 			}
 			else
 			{
-				// 데미지 많이 준 사람들 끼리만 소유권 나눠가짐
 				std::vector<LPCHARACTER>::iterator it = v.begin();
 
 				while (iItemIdx >= 0)
@@ -970,20 +933,19 @@ struct TItemDropPenalty
 
 TItemDropPenalty aItemDropPenalty_kor[9] =
 {
-	{   0,   0,  0,  0 },	// 선왕
-	{   0,   0,  0,  0 },	// 영웅
-	{   0,   0,  0,  0 },	// 성자
-	{   0,   0,  0,  0 },	// 지인
-	{   0,   0,  0,  0 },	// 양민
-	{  25,   1,  5,  1 },	// 낭인
-	{  50,   2, 10,  1 },	// 악인
-	{  75,   4, 15,  1 },	// 마두
-	{ 100,   8, 20,  1 },	// 패왕
+	{   0,   0,  0,  0 },
+	{   0,   0,  0,  0 },
+	{   0,   0,  0,  0 },
+	{   0,   0,  0,  0 },
+	{   0,   0,  0,  0 },
+	{  25,   1,  5,  1 },
+	{  50,   2, 10,  1 },
+	{  75,   4, 15,  1 },
+	{ 100,   8, 20,  1 },
 };
 
 void CHARACTER::ItemDropPenalty(LPCHARACTER pkKiller)
 {
-	// 개인상점을 연 상태에서는 아이템을 드롭하지 않는다.
 	if (GetMyShop())
 		return;
 
@@ -1189,8 +1151,6 @@ class FPartyAlignmentCompute
 		int m_iKillerY;
 };
 
-
-
 void CHARACTER::Dead(LPCHARACTER pkKiller, bool bImmediateDead)
 {
 	if (IsDead())
@@ -1214,7 +1174,7 @@ void CHARACTER::Dead(LPCHARACTER pkKiller, bool bImmediateDead)
 	if (!pkKiller && m_dwKillerPID)
 		pkKiller = CHARACTER_MANAGER::instance().FindByPID(m_dwKillerPID);
 
-	m_dwKillerPID = 0; // 반드시 초기화 해야함 DO NOT DELETE THIS LINE UNLESS YOU ARE 1000000% SURE
+	m_dwKillerPID = 0;
 
 	bool isAgreedPVP = false;
 	bool isUnderGuildWar = false;
@@ -1314,7 +1274,6 @@ void CHARACTER::Dead(LPCHARACTER pkKiller, bool bImmediateDead)
 
 				if (GetPoint(POINT_EMPIRE_POINT) < 10)
 				{
-					// TODO : 입구로 날리는 코드를 넣어야 한다.
 				}
 
 				char buf[256];
@@ -1382,7 +1341,7 @@ void CHARACTER::Dead(LPCHARACTER pkKiller, bool bImmediateDead)
 	ClearSync();
 
 	//sys_log(1, "stun cancel %s[%d]", GetName(), (DWORD)GetVID());
-	event_cancel(&m_pkStunEvent); // 기절 이벤트는 죽인다.
+	event_cancel(&m_pkStunEvent);
 
 	if (IsPC())
 	{
@@ -1392,12 +1351,10 @@ void CHARACTER::Dead(LPCHARACTER pkKiller, bool bImmediateDead)
 	}
 	else
 	{
-		// 가드에게 공격받은 몬스터는 보상이 없어야 한다.
 		if (!IS_SET(m_pointsInstant.instant_flag, INSTANT_FLAG_NO_REWARD))
 		{
 			if (!(pkKiller && pkKiller->IsPC() && pkKiller->GetGuild() && pkKiller->GetGuild()->UnderAnyWar(GUILD_WAR_TYPE_FIELD)))
 			{
-				// 부활하는 몬스터는 보상을 주지 않는다.
 				if (GetMobTable().dwResurrectionVnum)
 				{
 					// DUNGEON_MONSTER_REBIRTH_BUG_FIX
@@ -1449,23 +1406,13 @@ void CHARACTER::Dead(LPCHARACTER pkKiller, bool bImmediateDead)
 
 	REMOVE_BIT(m_pointsInstant.instant_flag, INSTANT_FLAG_STUN);
 
-	// 플레이어 캐릭터이면
 	if (GetDesc() != NULL) {
-		//
-		// 클라이언트에 에펙트 패킷을 다시 보낸다.
-		//
 		itertype(m_list_pkAffect) it = m_list_pkAffect.begin();
 
 		while (it != m_list_pkAffect.end())
 			SendAffectAddPacket(GetDesc(), *it++);
 	}
 
-	//
-	// Dead 이벤트 생성,
-	//
-	// Dead 이벤트에서는 몬스터의 경우 몇초 후에 Destroy 되도록 해주며,
-	// PC의 경우 3분 있다가 마을에서 나오도록 해 준다. 3분 내에는 유저로부터
-	// 마을에서 시작할 건지, 여기서 시작할 건지 결정을 받는다.
 	if (isDuel == false)
 	{
 		if (m_pkDeadEvent)
@@ -1579,27 +1526,16 @@ void CHARACTER::SendDamagePacket(LPCHARACTER pAttacker, int Damage, BYTE DamageF
 		{
 			pAttacker->GetDesc()->Packet(&damageInfo, sizeof(TPacketGCDamageInfo));
 		}
-		/*
-		   if (GetArenaObserverMode() == false && GetArena() != NULL)
-		   {
-		   GetArena()->SendPacketToObserver(&damageInfo, sizeof(TPacketGCDamageInfo));
-		   }
-		 */		
 	}
 }
 
 //
-// CHARACTER::Damage 메소드는 this가 데미지를 입게 한다.
-//
 // Arguments
-//    pAttacker		: 공격자
-//    dam		: 데미지
-//    EDamageType	: 어떤 형식의 공격인가?
-//    
+//
 // Return value
 //    true		: dead
 //    false		: not dead yet
-// 
+//
 bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // returns true if dead
 {
 	if (DAMAGE_TYPE_MAGIC == type)
@@ -1667,7 +1603,6 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 		}
 	}
 
-	// 평타가 아닐 때는 공포 처리
 	if (type != DAMAGE_TYPE_NORMAL && type != DAMAGE_TYPE_NORMAL_RANGE)
 	{
 		if (IsAffectFlag(AFF_TERROR))
@@ -1696,22 +1631,10 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 		DAMAGE_CRITICAL = (1 << 5),
 	};
 
-	//PROF_UNIT puAttr("Attr");
-
-	//
-	// 마법형 스킬과, 레인지형 스킬은(궁자객) 크리티컬과, 관통공격 계산을 한다.
-	// 원래는 하지 않아야 하는데 Nerf(다운밸런스)패치를 할 수 없어서 크리티컬과
-	// 관통공격의 원래 값을 쓰지 않고, /2 이상하여 적용한다.
-	// 
-	// 무사 이야기가 많아서 밀리 스킬도 추가
-	//
-	// 20091109 : 무사가 결과적으로 엄청나게 강해진 것으로 결론남, 독일 기준 무사 비율 70% 육박
-	//
 	if (type == DAMAGE_TYPE_MELEE || type == DAMAGE_TYPE_RANGE || type == DAMAGE_TYPE_MAGIC)
 	{
 		if (pAttacker)
 		{
-			// 크리티컬
 			int iCriticalPct = pAttacker->GetPoint(POINT_CRITICAL_PCT);
 
 			if (!IsPC())
@@ -1719,12 +1642,11 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 
 			if (iCriticalPct)
 			{
-				if (iCriticalPct >= 10) // 10보다 크면 5% + (4마다 1%씩 증가), 따라서 수치가 50이면 20%
+				if (iCriticalPct >= 10)
 					iCriticalPct = 5 + (iCriticalPct - 10) / 4;
-				else // 10보다 작으면 단순히 반으로 깎음, 10 = 5%
+				else
 					iCriticalPct /= 2;
 
-				//크리티컬 저항 값 적용.
 				iCriticalPct -= GetPoint(POINT_RESIST_CRITICAL);
 
 				if (number(1, 100) <= iCriticalPct)
@@ -1740,12 +1662,10 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 				}
 			}
 
-			// 관통공격
 			int iPenetratePct = pAttacker->GetPoint(POINT_PENETRATE_PCT);
 
 			if (!IsPC())
 				iPenetratePct += pAttacker->GetMarriageBonus(UNIQUE_ITEM_MARRIAGE_PENETRATE_BONUS);
-
 
 			if (iPenetratePct)
 			{
@@ -1762,16 +1682,13 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 
 				if (iPenetratePct >= 10)
 				{
-					// 10보다 크면 5% + (4마다 1%씩 증가), 따라서 수치가 50이면 20%
 					iPenetratePct = 5 + (iPenetratePct - 10) / 4;
 				}
 				else
 				{
-					// 10보다 작으면 단순히 반으로 깎음, 10 = 5%
 					iPenetratePct /= 2;
 				}
 
-				//관통타격 저항 값 적용.
 				iPenetratePct -= GetPoint(POINT_RESIST_PENETRATE);
 
 				if (number(1, 100) <= iPenetratePct)
@@ -1791,14 +1708,11 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 			}
 		}
 	}
-	// 
-	// 콤보 공격, 활 공격, 즉 평타 일 때만 속성값들을 계산을 한다.
-	//
+
 	else if (type == DAMAGE_TYPE_NORMAL || type == DAMAGE_TYPE_NORMAL_RANGE)
 	{
 		if (type == DAMAGE_TYPE_NORMAL)
 		{
-			// 근접 평타일 경우 막을 수 있음
 			if (GetPoint(POINT_BLOCK) && number(1, 100) <= GetPoint(POINT_BLOCK))
 			{
 				if (test_server)
@@ -1813,7 +1727,6 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 		}
 		else if (type == DAMAGE_TYPE_NORMAL_RANGE)
 		{
-			// 원거리 평타의 경우 피할 수 있음
 			if (GetPoint(POINT_DODGE) && number(1, 100) <= GetPoint(POINT_DODGE))
 			{
 				if (test_server)
@@ -1836,20 +1749,14 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 		if (IsAffectFlag(AFF_HOSIN))
 			dam = dam * (100 - GetPoint(POINT_RESIST_NORMAL_DAMAGE)) / 100;
 
-		//
-		// 공격자 속성 적용
-		//
 		if (pAttacker)
 		{
 			if (type == DAMAGE_TYPE_NORMAL)
 			{
-				// 반사
 				if (GetPoint(POINT_REFLECT_MELEE))
 				{
 					int reflectDamage = dam * GetPoint(POINT_REFLECT_MELEE) / 100;
 
-					// NOTE: 공격자가 IMMUNE_REFLECT 속성을 갖고있다면 반사를 안 하는 게 
-					// 아니라 1/3 데미지로 고정해서 들어가도록 기획에서 요청.
 					if (pAttacker->IsImmune(IMMUNE_REFLECT))
 						reflectDamage = int(reflectDamage / 3.0f + 0.5f);
 
@@ -1857,7 +1764,6 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 				}
 			}
 
-			// 크리티컬
 			int iCriticalPct = pAttacker->GetPoint(POINT_CRITICAL_PCT);
 
 			if (!IsPC())
@@ -1865,7 +1771,6 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 
 			if (iCriticalPct)
 			{
-				//크리티컬 저항 값 적용.
 				iCriticalPct -= GetPoint(POINT_RESIST_CRITICAL);
 
 				if (number(1, 100) <= iCriticalPct)
@@ -1876,7 +1781,6 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 				}
 			}
 
-			// 관통공격
 			int iPenetratePct = pAttacker->GetPoint(POINT_PENETRATE_PCT);
 
 			if (!IsPC())
@@ -1893,11 +1797,8 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 				}
 			}
 
-
 			if (iPenetratePct)
 			{
-				
-				//관통타격 저항 값 적용.
 				iPenetratePct -= GetPoint(POINT_RESIST_PENETRATE);
 
 				if (number(1, 100) <= iPenetratePct)
@@ -1910,7 +1811,6 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 				}
 			}
 
-			// HP 스틸
 			if (pAttacker->GetPoint(POINT_STEAL_HP))
 			{
 				int pct = 1;
@@ -1928,7 +1828,6 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 				}
 			}
 
-			// SP 스틸
 			if (pAttacker->GetPoint(POINT_STEAL_SP))
 			{
 				int pct = 1;
@@ -1955,7 +1854,6 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 				}
 			}
 
-			// 돈 스틸
 			if (pAttacker->GetPoint(POINT_STEAL_GOLD))
 			{
 				if (number(1, 100) <= pAttacker->GetPoint(POINT_STEAL_GOLD))
@@ -1966,7 +1864,6 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 				}
 			}
 
-			// 칠 때마다 HP회복
 			if (pAttacker->GetPoint(POINT_HIT_HP_RECOVERY) && number(0, 4) > 0) // 80% 확률
 			{
 				int i = MIN(dam, iCurHP) * pAttacker->GetPoint(POINT_HIT_HP_RECOVERY) / 100;
@@ -1978,7 +1875,6 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 				}
 			}
 
-			// 칠 때마다 SP회복
 			if (pAttacker->GetPoint(POINT_HIT_SP_RECOVERY) && number(0, 4) > 0) // 80% 확률
 			{
 				int i = MIN(dam, iCurHP) * pAttacker->GetPoint(POINT_HIT_SP_RECOVERY) / 100;
@@ -1990,7 +1886,6 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 				}
 			}
 
-			// 상대방의 마나를 없앤다.
 			if (pAttacker->GetPoint(POINT_MANA_BURN_PCT))
 			{
 				if (number(1, 100) <= pAttacker->GetPoint(POINT_MANA_BURN_PCT))
@@ -1999,9 +1894,6 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 		}
 	}
 
-	//
-	// 평타 또는 스킬로 인한 보너스 피해/방어 계산
-	// 
 	switch (type)
 	{
 		case DAMAGE_TYPE_NORMAL:
@@ -2030,9 +1922,6 @@ bool CHARACTER::Damage(LPCHARACTER pAttacker, int dam, EDamageType type) // retu
 			break;
 	}
 
-	//
-	// 마나쉴드(흑신수호)
-	//
 	if (IsAffectFlag(AFF_MANASHIELD))
 	{
 		// POINT_MANASHIELD 는 작아질수록 좋다
