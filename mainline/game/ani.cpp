@@ -3,7 +3,6 @@
 #include "char.h"
 #include "item.h"
 #include "ani.h"
-#include "dev_log.h"
 
 const char* FN_race_name(int race)
 {
