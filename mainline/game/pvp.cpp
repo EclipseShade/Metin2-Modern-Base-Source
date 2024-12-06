@@ -132,7 +132,7 @@ void CPVP::Win(DWORD dwPID)
 
 	m_bRevenge = true;
 
-	m_players[iSlot].bAgree = true; // 자동으로 동의
+	m_players[iSlot].bAgree = true;
 	m_players[!iSlot].bCanRevenge = true;
 	m_players[!iSlot].bAgree = false;
 
@@ -181,7 +181,6 @@ void CPVPManager::Insert(LPCHARACTER pkChr, LPCHARACTER pkVictim)
 
 	if ((pkPVP = Find(kPVP.m_dwCRC)))
 	{
-		// 복수할 수 있으면 바로 싸움!
 		if (pkPVP->Agree(pkChr->GetPlayerID()))
 		{
 			pkVictim->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("%s님과의 대결 시작!"), pkChr->GetName());
@@ -227,7 +226,7 @@ void CPVPManager::Insert(LPCHARACTER pkChr, LPCHARACTER pkVictim)
 		buf.write(msg, len);
 
 		pkVictimDesc->Packet(buf.read_peek(), buf.size());
-	}	
+	}
 	// END_OF_NOTIFY_PVP_MESSAGE
 }
 
@@ -300,8 +299,6 @@ void CPVPManager::GiveUp(LPCHARACTER pkChr, DWORD dwKillerPID) // This method is
 	}
 }
 
-// 리턴값: 0 = PK, 1 = PVP
-// PVP를 리턴하면 경험치나 아이템을 떨구고 PK면 떨구지 않는다.
 bool CPVPManager::Dead(LPCHARACTER pkChr, DWORD dwKillerPID)
 {
 	CPVPSetMap::iterator it = m_map_pkPVPSetByID.find(pkChr->GetPlayerID());
@@ -355,7 +352,7 @@ bool CPVPManager::CanAttack(LPCHARACTER pkChr, LPCHARACTER pkVictim)
 			return false;
 	}
 
-	if (pkChr == pkVictim)  // 내가 날 칠라고 하네 -_-
+	if (pkChr == pkVictim)
 		return false;
 
 	if (pkVictim->IsNPC() && pkChr->IsNPC() && !pkChr->IsGuardNPC())
@@ -363,7 +360,7 @@ bool CPVPManager::CanAttack(LPCHARACTER pkChr, LPCHARACTER pkVictim)
 
 	if( true == pkChr->IsHorseRiding() )
 	{
-		if( pkChr->GetHorseLevel() > 0 && 1 == pkChr->GetHorseGrade() ) 
+		if( pkChr->GetHorseLevel() > 0 && 1 == pkChr->GetHorseGrade() )
 			return false;
 	}
 	else
@@ -440,7 +437,7 @@ bool CPVPManager::CanAttack(LPCHARACTER pkChr, LPCHARACTER pkVictim)
 
 	if (pkChr->GetEmpire() != pkVictim->GetEmpire())
 	{
-		if ( LC_IsYMIR() == true || LC_IsKorea() == true )
+		// @warme005
 		{
 			if ( pkChr->GetPKMode() == PK_MODE_PROTECT || pkVictim->GetPKMode() == PK_MODE_PROTECT )
 			{
@@ -469,12 +466,10 @@ bool CPVPManager::CanAttack(LPCHARACTER pkChr, LPCHARACTER pkVictim)
 		{
 		    if (g_protectNormalPlayer)
 		    {
-			// 범법자는 평화모드인 착한사람을 공격할 수 없다.
 			if (PK_MODE_PEACE == pkVictim->GetPKMode())
 			    return false;
 		    }
 		}
-
 
 		switch (pkChr->GetPKMode())
 		{
@@ -601,7 +596,6 @@ void CPVPManager::SendList(LPDESC d)
 		if (!pkPVP->m_players[0].dwVID || !pkPVP->m_players[1].dwVID)
 			continue;
 
-		// VID가 둘다 있을 경우에만 보낸다.
 		if (pkPVP->IsFight())
 		{
 			pack.bMode = PVP_MODE_FIGHT;
@@ -656,7 +650,7 @@ void CPVPManager::Process()
 	{
 		CPVP * pvp = (it++)->second;
 
-		if (get_dword_time() - pvp->GetLastFightTime() > 600000) // 10분 이상 싸움이 없었으면
+		if (get_dword_time() - pvp->GetLastFightTime() > 600000)
 		{
 			pvp->Packet(true);
 			Delete(pvp);
