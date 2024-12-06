@@ -19,7 +19,6 @@ class CEntity
 		void			Initialize(int type = -1);
 		void			Destroy();
 
-
 	public:
 		void			SetType(int type);
 		int				GetType() const;
@@ -28,7 +27,7 @@ class CEntity
 		void			ViewCleanup();
 		void			ViewInsert(LPENTITY entity, bool recursive = true);
 		void			ViewRemove(LPENTITY entity, bool recursive = true);
-		void			ViewReencode();	// 주위 Entity에 패킷을 다시 보낸다.
+		void			ViewReencode();
 
 		int				GetViewAge() const	{ return m_iViewAge;	}
 
@@ -42,8 +41,8 @@ class CEntity
 
 		LPSECTREE		GetSectree() const			{ return m_pSectree;	}
 		void			SetSectree(LPSECTREE tree)	{ m_pSectree = tree;	}
-
 		void			UpdateSectree();
+
 		void			PacketAround(const void * data, int bytes, LPENTITY except = NULL);
 		void			PacketView(const void * data, int bytes, LPENTITY except = NULL);
 
@@ -76,3 +75,4 @@ class CEntity
 };
 
 #endif
+
