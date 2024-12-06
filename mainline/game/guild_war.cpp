@@ -23,7 +23,7 @@ enum
 	GUILD_WAR_WAIT_START_DURATION = 10*60
 };
 
-// 
+//
 // Packet
 //
 void CGuild::GuildWarPacket(DWORD dwOppGID, BYTE bWarType, BYTE bWarState)
@@ -119,7 +119,7 @@ int CGuild::GetGuildWarState(DWORD dwOppGID)
 
 	itertype(m_EnemyGuild) it = m_EnemyGuild.find(dwOppGID);
 	return (it != m_EnemyGuild.end()) ? (it->second.state) : GUILD_WAR_NONE;
-} 
+}
 
 int CGuild::GetGuildWarType(DWORD dwOppGID)
 {
@@ -141,12 +141,11 @@ DWORD CGuild::GetGuildWarMapIndex(DWORD dwOppGID)
 	return git->second.map_index;
 }
 
-bool CGuild::CanStartWar(BYTE bGuildWarType) // 타입에 따라 다른 조건이 생길 수도 있음
+bool CGuild::CanStartWar(BYTE bGuildWarType)
 {
 	if (bGuildWarType >= GUILD_WAR_TYPE_MAX_NUM)
 		return false;
 
-	// 테스트시에는 인원수를 확인하지 않는다.
 	if (test_server || quest::CQuestManager::instance().GetEventFlag("guild_war_test") != 0)
 		return GetLadderPoint() > 0;
 
@@ -160,7 +159,7 @@ bool CGuild::UnderWar(DWORD dwOppGID)
 
 	itertype(m_EnemyGuild) it = m_EnemyGuild.find(dwOppGID);
 	return (it != m_EnemyGuild.end()) && (it->second.IsWarBegin());
-} 
+}
 
 DWORD CGuild::UnderAnyWar(BYTE bType)
 {
@@ -310,7 +309,7 @@ void CGuild::RequestDeclareWar(DWORD dwOppGID, BYTE type)
 	{
 		if (!GuildWar_IsWarMap(type))
 		{
-			sys_err("GuildWar.DeclareWar.NOT_EXIST_MAP id(%d -> %d), type(%d), map(%d)", 
+			sys_err("GuildWar.DeclareWar.NOT_EXIST_MAP id(%d -> %d), type(%d), map(%d)",
 					GetID(), dwOppGID, type, GuildWar_GetTypeMapIndex(type));
 
 			map_allow_log();
@@ -318,7 +317,6 @@ void CGuild::RequestDeclareWar(DWORD dwOppGID, BYTE type)
 			return;
 		}
 
-		// 패킷 보내기 to another server
 		TPacketGuildWar p;
 		p.bType = type;
 		p.bWar = GUILD_WAR_SEND_DECLARE;
@@ -330,14 +328,13 @@ void CGuild::RequestDeclareWar(DWORD dwOppGID, BYTE type)
 	}
 
 	switch (it->second.state)
-	{	
+	{
 		case GUILD_WAR_RECV_DECLARE:
 			{
 				const unsigned saved_type = it->second.type;
 
 				if (saved_type == GUILD_WAR_TYPE_FIELD)
 				{
-					// 선전포고 한것을 받아들였다.
 					TPacketGuildWar p;
 					p.bType = saved_type;
 					p.bWar = GUILD_WAR_ON_WAR;
@@ -350,7 +347,7 @@ void CGuild::RequestDeclareWar(DWORD dwOppGID, BYTE type)
 
 				if (!GuildWar_IsWarMap(saved_type))
 				{
-					sys_err("GuildWar.AcceptWar.NOT_EXIST_MAP id(%d -> %d), type(%d), map(%d)", 
+					sys_err("GuildWar.AcceptWar.NOT_EXIST_MAP id(%d -> %d), type(%d), map(%d)",
 							GetID(), dwOppGID, type, GuildWar_GetTypeMapIndex(type));
 
 					map_allow_log();
@@ -368,12 +365,12 @@ void CGuild::RequestDeclareWar(DWORD dwOppGID, BYTE type)
 				p.lWarPrice = guildWarInfo.iWarPrice;
 				p.lInitialScore = guildWarInfo.iInitialScore;
 
-				if (test_server) 
+				if (test_server)
 					p.lInitialScore /= 10;
 
 				db_clientdesc->DBPacket(HEADER_GD_GUILD_WAR, 0, &p, sizeof(p));
 
-				sys_log(0, "GuildWar.WaitStartSendToDB id(%d vs %d), type(%d), bet(%d), map_index(%d)", 
+				sys_log(0, "GuildWar.WaitStartSendToDB id(%d vs %d), type(%d), bet(%d), map_index(%d)",
 						GetID(), dwOppGID, saved_type, guildWarInfo.iWarPrice, guildWarInfo.lMapIndex);
 
 			}
@@ -384,7 +381,7 @@ void CGuild::RequestDeclareWar(DWORD dwOppGID, BYTE type)
 			}
 			break;
 		default:
-			sys_err("GuildWar.DeclareWar.UNKNOWN_STATE[%d]: id(%d vs %d), type(%d), guild(%s:%u)", 
+			sys_err("GuildWar.DeclareWar.UNKNOWN_STATE[%d]: id(%d vs %d), type(%d), guild(%s:%u)",
 					it->second.state, GetID(), dwOppGID, type, GetName(), GetID());
 			break;
 	}
@@ -442,14 +439,12 @@ void CGuild::StartWar(DWORD dwOppGID)
 
 bool CGuild::WaitStartWar(DWORD dwOppGID)
 {
-	//자기자신이면 
 	if (dwOppGID == GetID())
 	{
 		sys_log(0 ,"GuildWar.WaitStartWar.DECLARE_WAR_SELF id(%u -> %u)", GetID(), dwOppGID);
 		return false;
 	}
 
-	//상대방 길드 TGuildWar 를 얻어온다.
 	itertype(m_EnemyGuild) it = m_EnemyGuild.find(dwOppGID);
 	if (it == m_EnemyGuild.end())
 	{
@@ -457,7 +452,6 @@ bool CGuild::WaitStartWar(DWORD dwOppGID)
 		return false;
 	}
 
-	//레퍼런스에 등록하고
 	TGuildWar & gw(it->second);
 
 	if (gw.state == GUILD_WAR_WAIT_START)
@@ -466,10 +460,8 @@ bool CGuild::WaitStartWar(DWORD dwOppGID)
 		return false;
 	}
 
-	//상태를 저장한다.
 	gw.state = GUILD_WAR_WAIT_START;
 
-	//상대편의 길드 클래스 포인터를 얻어오고
 	CGuild* g = CGuildManager::instance().FindGuild(dwOppGID);
 	if (!g)
 	{
@@ -481,16 +473,13 @@ bool CGuild::WaitStartWar(DWORD dwOppGID)
 	const TGuildWarInfo& rkGuildWarInfo = GuildWar_GetTypeInfo(gw.type);
 	// END_OF_GUILDWAR_INFO
 
-
-	// 필드형이면 맵생성 안함
 	if (gw.type == GUILD_WAR_TYPE_FIELD)
 	{
 		sys_log(0 ,"GuildWar.WaitStartWar.FIELD_TYPE id(%u -> %u)", GetID(), dwOppGID);
 		return true;
-	}		
+	}
 
-	// 전쟁 서버 인지 확인
-	sys_log(0 ,"GuildWar.WaitStartWar.CheckWarServer id(%u -> %u), type(%d), map(%d)", 
+	sys_log(0 ,"GuildWar.WaitStartWar.CheckWarServer id(%u -> %u), type(%d), map(%d)",
 			GetID(), dwOppGID, gw.type, rkGuildWarInfo.lMapIndex);
 
 	if (!map_allow_find(rkGuildWarInfo.lMapIndex))
@@ -499,16 +488,14 @@ bool CGuild::WaitStartWar(DWORD dwOppGID)
 		return true;
 	}
 
-
 	DWORD id1 = GetID();
 	DWORD id2 = dwOppGID;
 
 	if (id1 > id2)
 		std::swap(id1, id2);
 
-	//워프 맵을 생성
 	DWORD lMapIndex = CWarMapManager::instance().CreateWarMap(rkGuildWarInfo, id1, id2);
-	if (!lMapIndex) 
+	if (!lMapIndex)
 	{
 		sys_err("GuildWar.WaitStartWar.CREATE_WARMAP_ERROR id(%u vs %u), type(%u), map(%d)", id1, id2, gw.type, rkGuildWarInfo.lMapIndex);
 		CGuildManager::instance().RequestEndWar(GetID(), dwOppGID);
@@ -517,10 +504,8 @@ bool CGuild::WaitStartWar(DWORD dwOppGID)
 
 	sys_log(0, "GuildWar.WaitStartWar.CreateMap id(%u vs %u), type(%u), map(%d) -> map_inst(%u)", id1, id2, gw.type, rkGuildWarInfo.lMapIndex, lMapIndex);
 
-	//길드전 정보에 맵인덱스를 세팅
 	gw.map_index = lMapIndex;
 
-	//양쪽에 등록(?)
 	SetGuildWarMapIndex(dwOppGID, lMapIndex);
 	g->SetGuildWarMapIndex(GetID(), lMapIndex);
 
@@ -547,7 +532,6 @@ void CGuild::RequestRefuseWar(DWORD dwOppGID)
 
 	if (it != m_EnemyGuild.end() && it->second.state == GUILD_WAR_RECV_DECLARE)
 	{
-		// 선전포고를 거절했다.
 		TPacketGuildWar p;
 		p.bWar = GUILD_WAR_REFUSE;
 		p.dwGuildFrom = GetID();
@@ -713,7 +697,7 @@ void CGuild::GuildWarEntryAsk(DWORD dwOppGID)
 		}
 		else
 		{
-			sys_err("GuildWar.GuildWarEntryAsk.SendLetterToMember.QUEST_ERROR pid(%d), quest_name('guild_war_join.quest')", 
+			sys_err("GuildWar.GuildWarEntryAsk.SendLetterToMember.QUEST_ERROR pid(%d), quest_name('guild_war_join.quest')",
 					ch->GetPlayerID(), questIndex);
 			break;
 		}
@@ -723,8 +707,8 @@ void CGuild::GuildWarEntryAsk(DWORD dwOppGID)
 //
 // LADDER POINT
 //
-void CGuild::SetLadderPoint(int point) 
-{ 
+void CGuild::SetLadderPoint(int point)
+{
 	if (m_data.ladder_point != point)
 	{
 		char buf[256];
@@ -735,7 +719,7 @@ void CGuild::SetLadderPoint(int point)
 			ch->ChatPacket(CHAT_TYPE_INFO, buf);
 		}
 	}
-	m_data.ladder_point = point; 
+	m_data.ladder_point = point;
 }
 
 void CGuild::ChangeLadderPoint(int iChange)
@@ -745,5 +729,4 @@ void CGuild::ChangeLadderPoint(int iChange)
 	p.lChange = iChange;
 	db_clientdesc->DBPacket(HEADER_GD_GUILD_CHANGE_LADDER_POINT, 0, &p, sizeof(p));
 }
-
 
