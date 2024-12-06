@@ -35,7 +35,7 @@ void CPartyManager::DeleteAllParty()
 	}
 }
 
-bool CPartyManager::SetParty(LPCHARACTER ch)	// PC만 사용해야 한다!!
+bool CPartyManager::SetParty(LPCHARACTER ch)
 {
 	TPartyMap::iterator it = m_map_pkParty.find(ch->GetPlayerID());
 
@@ -138,11 +138,6 @@ LPPARTY CPartyManager::CreateParty(LPCHARACTER pLeader)
 
 	if (pLeader->IsPC())
 	{
-		//TPacketGGParty p;
-		//p.header	= HEADER_GG_PARTY;
-		//p.subheader	= PARTY_SUBHEADER_GG_CREATE;
-		//p.pid		= pLeader->GetPlayerID();
-		//P2P_MANAGER::instance().Send(&p, sizeof(p));
 		TPacketPartyCreate p;
 		p.dwLeaderPID = pLeader->GetPlayerID();
 
@@ -166,11 +161,6 @@ LPPARTY CPartyManager::CreateParty(LPCHARACTER pLeader)
 
 void CPartyManager::DeleteParty(LPPARTY pParty)
 {
-	//TPacketGGParty p;
-	//p.header = HEADER_GG_PARTY;
-	//p.subheader = PARTY_SUBHEADER_GG_DESTROY;
-	//p.pid = pParty->GetLeaderPID();
-	//P2P_MANAGER::instance().Send(&p, sizeof(p));
 	TPacketPartyDelete p;
 	p.dwLeaderPID = pParty->GetLeaderPID();
 
@@ -291,19 +281,17 @@ void CParty::Initialize()
 	m_pkDungeon_for_Only_party = NULL;
 }
 
-
 void CParty::Destroy()
 {
 	sys_log(2, "Party::Destroy");
 
-	// PC가 만든 파티면 파티매니저에 맵에서 PID를 삭제해야 한다.
 	if (m_bPCParty)
 	{
 		for (TMemberMap::iterator it = m_memberMap.begin(); it != m_memberMap.end(); ++it)
 			CPartyManager::instance().SetPartyMember(it->first, NULL);
 	}
 
-	event_cancel(&m_eventUpdate); 
+	event_cancel(&m_eventUpdate);
 
 	RemoveBonus();
 
@@ -328,7 +316,6 @@ void CParty::Destroy()
 			}
 			else
 			{
-				// NPC일 경우 일정 시간 후 전투 중이 아닐 때 사라지게 하는 이벤트를 시작시킨다.
 				rMember.pCharacter->SetLastAttacked(dwTime);
 				rMember.pCharacter->StartDestroyWhenIdleEvent();
 			}
@@ -339,7 +326,7 @@ void CParty::Destroy()
 
 	m_memberMap.clear();
 	m_itNextOwner = m_memberMap.begin();
-	
+
 	if (m_pkDungeon_for_Only_party != NULL)
 	{
 		m_pkDungeon_for_Only_party->SetPartyNull();
@@ -459,7 +446,7 @@ void CParty::Join(DWORD dwPID)
 		TPacketPartyAdd p;
 		p.dwLeaderPID = GetLeaderPID();
 		p.dwPID = dwPID;
-		p.bState = PARTY_ROLE_NORMAL; // #0000790: [M2EU] CZ 크래쉬 증가: 초기화 중요! 
+		p.bState = PARTY_ROLE_NORMAL;
 		db_clientdesc->DBPacket(HEADER_GD_PARTY_ADD, 0, &p, sizeof(p));
 	}
 }
@@ -505,11 +492,8 @@ void CParty::P2PQuit(DWORD dwPID)
 	if (m_bPCParty)
 		CPartyManager::instance().SetPartyMember(dwPID, NULL);
 
-	// 리더가 나가면 파티는 해산되어야 한다.
 	if (bRole == PARTY_ROLE_LEADER)
 		CPartyManager::instance().DeleteParty(this);
-
-	// 이 아래는 코드를 추가하지 말 것!!! 위 DeleteParty 하면 this는 없다.
 }
 
 void CParty::Quit(DWORD dwPID)
@@ -519,12 +503,6 @@ void CParty::Quit(DWORD dwPID)
 
 	if (m_bPCParty && dwPID != GetLeaderPID())
 	{
-		//TPacketGGParty p;
-		//p.header = HEADER_GG_PARTY;
-		//p.subheader = PARTY_SUBHEADER_GG_QUIT;
-		//p.pid = dwPID;
-		//p.leaderpid = GetLeaderPID();
-		//P2P_MANAGER::instance().Send(&p, sizeof(p));
 		TPacketPartyRemove p;
 		p.dwPID = dwPID;
 		p.dwLeaderPID = GetLeaderPID();
@@ -547,7 +525,6 @@ void CParty::Link(LPCHARACTER pkChr)
 		return;
 	}
 
-	// 플레이어 파티일 경우 업데이트 이벤트 생성
 	if (m_bPCParty && !m_eventUpdate)
 	{
 		party_update_event_info* info = AllocEventInfo<party_update_event_info>();
@@ -616,7 +593,7 @@ void CParty::P2PSetMemberLevel(DWORD pid, BYTE level)
 	}
 }
 
-namespace 
+namespace
 {
 	struct FExitDungeon
 	{
@@ -645,7 +622,6 @@ void CParty::Unlink(LPCHARACTER pkChr)
 	if (pkChr->IsPC())
 	{
 		SendPartyUnlinkOneToAll(pkChr);
-		//SendPartyUnlinkAllToOne(pkChr); // 끊기는 것이므로 구지 Unlink 패킷을 보낼 필요 없다.
 
 		if (it->second.bRole == PARTY_ROLE_LEADER)
 		{
@@ -653,7 +629,6 @@ void CParty::Unlink(LPCHARACTER pkChr)
 
 			if (it->second.pCharacter->GetDungeon())
 			{
-				// TODO: 던젼에 있으면 나머지도 나간다
 				FExitDungeon f;
 				ForEachNearMember(f);
 			}
@@ -901,9 +876,8 @@ void CParty::SendMessage(LPCHARACTER ch, BYTE bMsg, DWORD dwArg1, DWORD dwArg2)
 			}
 			break;
 
-		case PM_ATTACKED_BY:	// 공격 받았음, 리더에게 도움을 요청
+		case PM_ATTACKED_BY:
 			{
-				// 리더가 없을 때
 				LPCHARACTER pkChrVictim = ch->GetVictim();
 
 				if (!pkChrVictim)
@@ -1070,7 +1044,6 @@ void CParty::RemoveBonusForOne(DWORD pid)
 
 void CParty::HealParty()
 {
-	// XXX DELETEME 클라이언트 완료될때까지
 	{
 		return;
 	}
@@ -1100,7 +1073,7 @@ void CParty::HealParty()
 
 void CParty::SummonToLeader(DWORD pid)
 {
-	int xy[12][2] = 
+	int xy[12][2] =
 	{
 		{	250,	0		},
 		{	216,	125		},
@@ -1223,8 +1196,8 @@ void CParty::ComputeRolePoint(LPCHARACTER ch, BYTE bRole, bool bAdd)
 	//SKILL_POWER_BY_LEVEL
 	float k = (float) ch->GetSkillPowerByLevel( MIN(SKILL_MAX_LEVEL, m_iLeadership ) )/ 100.0f;
 	//float k = (float) aiSkillPowerByLevel[MIN(SKILL_MAX_LEVEL, m_iLeadership)] / 100.0f;
-	//
-	//sys_log(0,"ComputeRolePoint %fi %d, %d ", k, SKILL_MAX_LEVEL, m_iLeadership ); 
+
+	//sys_log(0,"ComputeRolePoint %fi %d, %d ", k, SKILL_MAX_LEVEL, m_iLeadership );
 	//END_SKILL_POWER_BY_LEVEL
 
 	switch (bRole)
@@ -1361,7 +1334,6 @@ void CParty::Update()
 
 	bool bLongTimeExpBonusChanged = false;
 
-	// 파티 결성 후 충분한 시간이 지나면 경험치 보너스를 받는다.
 	if (!m_iLongTimeExpBonus && (get_dword_time() - m_dwPartyStartTime > PARTY_ENOUGH_MINUTE_FOR_EXP_BONUS * 60 * 1000 / (g_iUseLocale?1:2)))
 	{
 		bLongTimeExpBonusChanged = true;
@@ -1406,9 +1378,8 @@ void CParty::Update()
 		if (!m_bCanUsePartyHeal && m_iLeadership >= 18)
 			m_dwPartyHealTime = get_dword_time();
 
-		m_bCanUsePartyHeal = m_iLeadership >= 18; // 통솔력 18 이상은 힐을 사용할 수 있음.
+		m_bCanUsePartyHeal = m_iLeadership >= 18;
 
-		// 통솔력 40이상은 파티 힐 쿨타임이 적다.
 		DWORD PartyHealCoolTime = (m_iLeadership >= 40) ? PARTY_HEAL_COOLTIME_SHORT * 60 * 1000 : PARTY_HEAL_COOLTIME_LONG * 60 * 1000;
 
 		if (m_bCanUsePartyHeal)
@@ -1418,7 +1389,7 @@ void CParty::Update()
 				m_bPartyHealReady = true;
 
 				// send heal ready
-				if (0) // XXX  DELETEME 클라이언트 완료될때까지
+				if (0)
 					if (GetLeaderCharacter())
 						GetLeaderCharacter()->ChatPacket(CHAT_TYPE_COMMAND, "PartyHealReady");
 			}
@@ -1516,7 +1487,6 @@ LPDUNGEON CParty::GetDungeon_for_Only_party()
 	return m_pkDungeon_for_Only_party;
 }
 
-
 bool CParty::IsPositionNearLeader(LPCHARACTER ch)
 {
 	if (!m_pkChrLeader)
@@ -1527,7 +1497,6 @@ bool CParty::IsPositionNearLeader(LPCHARACTER ch)
 
 	return true;
 }
-
 
 int CParty::GetExpBonusPercent()
 {
@@ -1542,7 +1511,7 @@ bool CParty::IsNearLeader(DWORD pid)
 	TMemberMap::iterator it = m_memberMap.find(pid);
 
 	if (it == m_memberMap.end())
-		return false;    
+		return false;
 
 	return it->second.bNear;
 }
@@ -1690,7 +1659,6 @@ int CParty::ComputePartyBonusExpPercent()
 	if (leader && (leader->IsEquipUniqueItem(UNIQUE_ITEM_PARTY_BONUS_EXP) || leader->IsEquipUniqueItem(UNIQUE_ITEM_PARTY_BONUS_EXP_MALL)
 		|| leader->IsEquipUniqueItem(UNIQUE_ITEM_PARTY_BONUS_EXP_GIFT) || leader->IsEquipUniqueGroup(10010)))
 	{
-		// 중국측 육도 적용을 확인해야한다.
 		if (g_iUseLocale)
 		{
 			iBonusPartyExpFromItem = 30;
@@ -1710,15 +1678,14 @@ int CParty::ComputePartyBonusExpPercent()
 
 bool CParty::IsPartyInDungeon(int mapIndex)
 {
-	// 파티원이 mapIndex인 던젼안에 있는지 순서대로 검사
 	for(TMemberMap::iterator it = m_memberMap.begin(); it != m_memberMap.end(); ++it)
 	{
 		LPCHARACTER ch = it->second.pCharacter;
 
 		if(NULL == ch)
-		{			
+		{
 			continue;
-		}		
+		}
 
 		LPDUNGEON d = ch->GetDungeon();
 
@@ -1726,13 +1693,13 @@ bool CParty::IsPartyInDungeon(int mapIndex)
 		{
 			sys_log(0,"not in dungeon");
 			continue;
-		}		
-		
+		}
+
 		if( mapIndex == (d->GetMapIndex())/10000 )
-		{			
+		{
 			return true;
 		}
-		
+
 	}
 	return false;
 }
