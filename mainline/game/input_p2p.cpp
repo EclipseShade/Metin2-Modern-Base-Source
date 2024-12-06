@@ -67,7 +67,6 @@ int CInputP2P::Relay(LPDESC d, const char * c_pData, size_t uiBytes)
 	{
 		if (pkChr->IsBlockMode(BLOCK_WHISPER))
 		{
-			// 귓속말 거부 상태에서 귓속말 거부.
 			return p->lSize;
 		}
 
@@ -75,19 +74,17 @@ int CInputP2P::Relay(LPDESC d, const char * c_pData, size_t uiBytes)
 		memcpy(buf, c_pbData, MIN(p->lSize, sizeof(buf)));
 
 		TPacketGCWhisper* p2 = (TPacketGCWhisper*) buf;
-		// bType 상위 4비트: Empire 번호
-		// bType 하위 4비트: EWhisperType
+
 		BYTE bToEmpire = (p2->bType >> 4);
 		p2->bType = p2->bType & 0x0F;
 		if(p2->bType == 0x0F) {
-			// 시스템 메세지 귓속말은 bType의 상위비트까지 모두 사용함.
 			p2->bType = WHISPER_TYPE_SYSTEM;
 		} else {
 			if (!pkChr->IsEquipUniqueGroup(UNIQUE_GROUP_RING_OF_LANGUAGE))
 				if (bToEmpire >= 1 && bToEmpire <= 3 && pkChr->GetEmpire() != bToEmpire)
 				{
 					ConvertEmpireText(bToEmpire,
-							buf + sizeof(TPacketGCWhisper), 
+							buf + sizeof(TPacketGCWhisper),
 							p2->wSize - sizeof(TPacketGCWhisper),
 							10+2*pkChr->GetSkillPower(SKILL_LANGUAGE1 + bToEmpire - 1));
 				}
@@ -183,7 +180,7 @@ int CInputP2P::Guild(LPDESC d, const char* c_pData, size_t uiBytes)
 
 				return sizeof(TPacketGGGuildChat);
 			}
-			
+
 		case GUILD_SUBHEADER_GG_SET_MEMBER_COUNT_BONUS:
 			{
 				if (uiBytes < sizeof(int))
@@ -204,7 +201,6 @@ int CInputP2P::Guild(LPDESC d, const char* c_pData, size_t uiBytes)
 	return 0;
 }
 
-
 struct FuncShout
 {
 	const char * m_str;
@@ -212,19 +208,18 @@ struct FuncShout
 
 	FuncShout(const char * str, BYTE bEmpire) : m_str(str), m_bEmpire(bEmpire)
 	{
-	}   
+	}
 
 	void operator () (LPDESC d)
 	{
-	
+
 		// ADDED GLOBAL SHOUT OPTION
 		if (!d->GetCharacter())
 			return;
 			
 		if(!g_bGlobalShoutEnable && (d->GetCharacter()->GetGMLevel() == GM_PLAYER && d->GetEmpire() != m_bEmpire))
 			return;
-		
-		
+
 		d->GetCharacter()->ChatPacket(CHAT_TYPE_SHOUT, "%s", m_str);
 	}
 };
@@ -337,14 +332,9 @@ void CInputP2P::XmasWarpSanta(const char * c_pData)
 
 	if (p->bChannel == g_bChannel && map_allow_find(p->lMapIndex))
 	{
-		int	iNextSpawnDelay = 60;
+		int	iNextSpawnDelay = 50 * 60;
 
-		if (LC_IsYMIR())
-			iNextSpawnDelay = 20 * 60;
-		else
-			iNextSpawnDelay = 50 * 60;
-
-		xmas::SpawnSanta(p->lMapIndex, iNextSpawnDelay); // 50분있다가 새로운 산타가 나타남 (한국은 20분)
+		xmas::SpawnSanta(p->lMapIndex, iNextSpawnDelay);
 
 		TPacketGGXmasWarpSantaReply pack_reply;
 		pack_reply.bHeader = HEADER_GG_XMAS_WARP_SANTA_REPLY;
@@ -398,7 +388,7 @@ void CInputP2P::BlockChat(const char * c_pData)
 	{
 		sys_log(0, "BLOCK CHAT fail name %s dur %d", p->szName, p->lBlockDuration);
 	}
-}   
+}
 // END_OF_BLOCK_CHAT
 //
 
@@ -441,7 +431,6 @@ int CInputP2P::Analyze(LPDESC d, BYTE bHeader, const char * c_pData)
 			if ((iExtraLen = Relay(d, c_pData, m_iBufferLeft)) < 0)
 				return -1;
 			break;
-
 		case HEADER_GG_NOTICE:
 			if ((iExtraLen = Notice(d, c_pData, m_iBufferLeft)) < 0)
 				return -1;
