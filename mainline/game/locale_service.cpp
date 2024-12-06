@@ -60,19 +60,19 @@ int is_twobyte_big5(const char * str)
 
 	BYTE b1 = str[0];
 	BYTE b2 = str[1];
-			
+
 	BYTE b[2];
 
 	b[0] = b2;
 	b[1] = b1;
-	
+
 	WORD b12 = 0;
 	memcpy(&b12, b, 2);
 
 	if (!(b1 & 0x80))
 		return 0;
 
-	if ((b12 < 0xa440 || b12 > 0xc67e) && (b12 < 0xc940 || b12 > 0xf9d5))  
+	if ((b12 < 0xa440 || b12 > 0xc67e) && (b12 < 0xc940 || b12 > 0xf9d5))
 	{
 		if (test_server)
 		{
@@ -89,7 +89,6 @@ int check_name_independent(const char * str)
 	if (CBanwordManager::instance().CheckString(str, strlen(str)))
 		return 0;
 
-	// 몬스터 이름으로는 만들 수 없다.
 	char szTmp[256];
 	str_lower(str, szTmp, sizeof(szTmp));
 
@@ -130,12 +129,9 @@ int check_name_gb2312(const char * str)
 			b1 = str[i++];
 			b2 = str[i++];
 
-			// 중국 간체는 첫번째 바이트 범위가 b0 -> f7 까지고
-			// 두번째 바이트 범위가 a1 -> fe 다.
 			if (b1 < 0xb0 || b1 > 0xf7 || b2 < 0xa1 || b2 > 0xfe)
 				return 0;
 
-			// 예외가 있다.
 			for (j = 0; j < 5; j++)
 				if (b1 == exceptions[j][0] && b2 == exceptions[j][1])
 					return 0;
@@ -182,34 +178,32 @@ int check_name_big5(const char * str )
 			b[0] = b2;
 			b[1] = b1;
 
-			// 중국 번체 ( big5 : 홍콩 )
-			// 범위는 다음과 같다.
 			//  big5: 0xA140--0xF9D5
 			//  extended big5: 0x40--0x7E and 0xA1--0xFE
 
 			// 0xa440-0xC67E
 			// 0xC940-0xF9D5
-			//
-			/*	
-				Plan Code Range Description 
-				1 A140H - A3E0H Symbol and Chinese Control Code 
-				1 A440H - C67EH Commonly Used Characters 
-				2 C940H - F9D5H Less Commonly Used Characters 
-				UDF FA40H - FEFE User-Defined Characters 
 
-				8E40H - A0FEH User-Defined Characters 
+			/*
+				Plan Code Range Description
+				1 A140H - A3E0H Symbol and Chinese Control Code
+				1 A440H - C67EH Commonly Used Characters
+				2 C940H - F9D5H Less Commonly Used Characters
+				UDF FA40H - FEFE User-Defined Characters
 
-				8140H - 8DFEH User-Defined Characters 
+				8E40H - A0FEH User-Defined Characters
 
-				8181H - 8C82H User-Defined Characters 
+				8140H - 8DFEH User-Defined Characters
 
-				F9D6H - F9F1H User-Defined Characters 
+				8181H - 8C82H User-Defined Characters
+
+				F9D6H - F9F1H User-Defined Characters
 			*/
 
 			WORD b12 = 0;
 			memcpy(&b12, b, 2);
 
-			if ((b12 < 0xa440 || b12 > 0xc67e) && (b12 < 0xc940 || b12 > 0xf9d5)) 
+			if ((b12 < 0xa440 || b12 > 0xc67e) && (b12 < 0xc940 || b12 > 0xf9d5))
 			{
 				if (test_server)
 					sys_log(0, "check_name_big5[%d][%s] %x %x %x", i - 2, str, b1, b2, b12);
@@ -242,15 +236,12 @@ int check_name_euckr(const char * str)
 
 	for (tmp = str; *tmp; ++tmp)
 	{
-		// 한글이 아니고 빈칸이면 잘못된 것
 		if (isnhspace(*tmp))
 			return 0;
 
-		// 한글이 아니고 숫자라면 적합하다.
 		if (isnhdigit(*tmp))
 			continue;
 
-		// 한글이 아니고 영문이라면 적합하다.   
 		if (!ishan(*tmp) && isalpha(*tmp))
 			continue;
 
@@ -282,23 +273,20 @@ int check_name_latin1(const char * str)
 
 	for (tmp = str; *tmp; ++tmp)
 	{
-		// 한글이 아니고 빈칸이면 잘못된 것
 		if (isnhspace(*tmp))
 			return 0;
 
-		// 한글이 아니고 숫자라면 적합하다.
 		if (isnhdigit(*tmp))
 			continue;
 
-		// 한글이 아니고 영문이라면 적합하다.   
 		if (!ishan(*tmp) && isalpha(*tmp))
 			continue;
 
 		unsigned char uc_tmp = *tmp;
 
 		if (uc_tmp == 145 || uc_tmp == 146 || uc_tmp == 196
-				|| uc_tmp == 214 || uc_tmp == 220 || uc_tmp == 223 
-				|| uc_tmp == 228 || uc_tmp == 246 || uc_tmp == 252 ) 
+				|| uc_tmp == 214 || uc_tmp == 220 || uc_tmp == 223
+				|| uc_tmp == 228 || uc_tmp == 246 || uc_tmp == 252 )
 			continue;
 		code = *tmp;
 		code += 256;
@@ -327,7 +315,6 @@ int check_name_alphabet(const char * str)
 
 	for (tmp = str; *tmp; ++tmp)
 	{
-		// 알파벳과 수자만 허용
 		if (isdigit(*tmp) || isalpha(*tmp))
 			continue;
 		else
@@ -347,8 +334,6 @@ bool sjis_is_disable_name_char(const char* src)
 	return false;
 }
 // END_OF_DISABLE_SPECIAL_CHAR_NAMING
-
-
 
 //-----------------------------------------------
 // CHECK SJIS STRING
@@ -376,7 +361,6 @@ int check_name_sjis(const char *str)
 	const char	*p = str;
 	const char	*e = str + strlen(str);	// NULL position
 
-	// 일본은 캐릭터 이름길이 16byte 까지
 	if ( strlen(str) < 2 || strlen(str) > 16 )
 		return 0;
 
@@ -389,7 +373,7 @@ int check_name_sjis(const char *str)
 				return false;
 
 			// END_OF_DISABLE_SPECIAL_CHAR_NAMING
-			// 이문자는 허용되지 않는다.
+
 			if ((BYTE)p[0]==0x81 && (BYTE)p[1]==0x40) return false;
 
 			p += 2;
@@ -397,7 +381,6 @@ int check_name_sjis(const char *str)
 		}
 		else
 		{
-			// 영문이나 수자는 허용한다.
 			if (isalpha(*p) || isdigit(*p))
 			{
 				p += 1;
@@ -409,7 +392,6 @@ int check_name_sjis(const char *str)
 			}
 		}
 	}
-
 
 	return check_name_independent(str);
 }
@@ -449,7 +431,7 @@ static void __LocaleService_Init_DEFAULT() {
 	g_stServiceMapPath = g_stServiceBasePath + "/map";
 	g_stQuestDir = g_stServiceBasePath + "/quest";
 
-	g_setQuestObjectDir.clear();	
+	g_setQuestObjectDir.clear();
 	g_setQuestObjectDir.insert(g_stQuestDir + "/object");
 }
 
@@ -602,7 +584,7 @@ bool LC_InitLocalization( const std::string& szLocal )
 		g_eLocalType = LC_USA;
 	else if ( !g_stLocal.compare("we_korea") ) // ver.WorldEdition for korea
 		g_eLocalType = LC_WE_KOREA;
-	else if ( !g_stLocal.compare("taiwan") ) 
+	else if ( !g_stLocal.compare("taiwan") )
 		g_eLocalType = LC_TAIWAN;
 	else
 		return false;
@@ -610,19 +592,19 @@ bool LC_InitLocalization( const std::string& szLocal )
 	return true;
 }
 
-eLocalization LC_GetLocalType() 
+eLocalization LC_GetLocalType()
 {
 	return g_eLocalType;
 }
 
-bool LC_IsLocale( const eLocalization t ) 
+bool LC_IsLocale( const eLocalization t )
 {
 	return LC_GetLocalType() == t ? true : false;
 }
 
 bool LC_IsYMIR()		{ return LC_GetLocalType() == LC_YMIR ? true : false; }
 bool LC_IsJapan()		{ return LC_GetLocalType() == LC_JAPAN ? true : false; }
-bool LC_IsEnglish()		{ return LC_GetLocalType() == LC_ENGLISH ? true : false; } 
+bool LC_IsEnglish()		{ return LC_GetLocalType() == LC_ENGLISH ? true : false; }
 bool LC_IsHongKong()	{ return LC_GetLocalType() == LC_HONGKONG ? true : false; }
 bool LC_IsNewCIBN()		{ return LC_GetLocalType() == LC_NEWCIBN ? true : false; }
 bool LC_IsGermany()		{ return LC_GetLocalType() == LC_GERMANY ? true : false; }
@@ -659,18 +641,18 @@ bool LC_IsEurope()
 		case LC_DENMARK:
 		case LC_BULGARIA:
 		case LC_CROATIA:
-		case LC_MEXICO: // 남미지만 GF에서 서비스 하므로 여기 넣음
-		case LC_ARABIA: // 중동이지만 GF에서 서비스 하므로 여기 넣음
+		case LC_MEXICO:
+		case LC_ARABIA:
 		case LC_CZECH:
 		case LC_ROMANIA:
 		case LC_HUNGARY:
 		case LC_NETHERLANDS:
 		case LC_USA:
-		case LC_WE_KOREA:	// 한국이지만 UK 버전 기반이므로 여기 넣음
-		case LC_TAIWAN:		// 대만이지만 WE_KOREA 버전 기반이므로 여기 넣음
-		case LC_JAPAN:		// 일본이지만 WE(World Edition -_-) 버전이므로 여기 넣음
+		case LC_WE_KOREA:
+		case LC_TAIWAN:
+		case LC_JAPAN:
 		case LC_NEWCIBN:
-		case LC_CANADA:	// 캐나다 GF에서 서비스 시작
+		case LC_CANADA:
 			return true;
 	}
 
