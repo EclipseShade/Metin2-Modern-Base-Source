@@ -98,7 +98,6 @@ void CEntity::PacketView(const void * data, int bytes, LPENTITY except)
 
 	FuncPacketView f(data, bytes, except);
 
-	// 옵저버 상태에선 내 패킷은 나만 받는다.
 	if (!m_bIsObserver)
 		for_each(m_map_view.begin(), m_map_view.end(), f);
 
