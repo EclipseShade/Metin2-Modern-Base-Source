@@ -12,7 +12,7 @@
 struct FileIOContext_FreeBSD
 {
 	int		fhMonitor;
-	int		idxToEventList;	// evtTrigger & evtMonitor index should be same	
+	int		idxToEventList;	// evtTrigger & evtMonitor index should be same
 	PFN_FileChangeListener pListenFunc;
 };
 
@@ -24,10 +24,10 @@ private:
 public:
 	virtual ~FileMonitorFreeBSD();
 
-	void AddWatch	(const std::string& strFileName, PFN_FileChangeListener pListenerFunc); 
+	void AddWatch	(const std::string& strFileName, PFN_FileChangeListener pListenerFunc);
 	void Update		(DWORD dwPulses);
 
-	static FileMonitorFreeBSD& Instance() 
+	static FileMonitorFreeBSD& Instance()
 	{
 		static FileMonitorFreeBSD theMonitor;
 		return theMonitor;
@@ -36,7 +36,7 @@ public:
 private:
 	typedef boost::unordered_map<std::string, FileIOContext_FreeBSD> TMonitorFileHashMap;
 	typedef std::vector<struct kevent>	TEventList;
-	
+
 	TMonitorFileHashMap	m_FileLists;
 	TEventList			m_MonitoredEventLists;
 	TEventList			m_TriggeredEventLists;
@@ -44,5 +44,5 @@ private:
 	int					m_KernelEventQueue;
 };
 
-
 #endif //FILEMONITOR_FREEBSD_INCLUDED
+
