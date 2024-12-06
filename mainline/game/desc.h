@@ -46,15 +46,12 @@ class CLoginKey
 		LPDESC  m_pkDesc;
 };
 
-
-// sequence 버그 찾기용 데이타
 struct seq_t
 {
 	BYTE	hdr;
 	BYTE	seq;
 };
 typedef std::vector<seq_t>	seq_vector_t;
-// sequence 버그 찾기용 데이타
 
 class DESC
 {
@@ -63,7 +60,7 @@ class DESC
 		{
 			LPDESC desc;
 
-			desc_event_info() 
+			desc_event_info()
 			: desc(0)
 			{
 			}
@@ -117,7 +114,6 @@ class DESC
 
 		void			Log(const char * format, ...);
 
-		// 핸드쉐이크 (시간 동기화)
 		void			StartHandshake(DWORD _dw);
 		void			SendHandshake(DWORD dwCurTime, long lNewDelta);
 		bool			HandshakeProcess(DWORD dwTime, long lDelta, bool bInfiniteRetry=false);
@@ -127,10 +123,10 @@ class DESC
 		DWORD			GetClientTime();
 
 #ifdef _IMPROVED_PACKET_ENCRYPTION_
-		void SendKeyAgreement();
-		void SendKeyAgreementCompleted();
-		bool FinishHandshake(size_t agreed_length, const void* buffer, size_t length);
-		bool IsCipherPrepared();
+		void			SendKeyAgreement();
+		void			SendKeyAgreementCompleted();
+		bool			FinishHandshake(size_t agreed_length, const void* buffer, size_t length);
+		bool			IsCipherPrepared();
 #else
 		// Obsolete encryption stuff here
 		void			SetSecurityKey(const DWORD * c_pdwKey);
@@ -138,7 +134,6 @@ class DESC
 		const DWORD *	GetDecryptionKey() const { return &m_adwDecryptionKey[0]; }
 #endif
 
-		// 제국
 		BYTE			GetEmpire();
 
 		// for p2p
@@ -147,7 +142,7 @@ class DESC
 		void			DisconnectOfSameLogin();
 
 		void			SetAdminMode();
-		bool			IsAdminMode();		// Handshake 에서 어드민 명령을 쓸수있나?
+		bool			IsAdminMode();
 
 		void			SetPong(bool b);
 		bool			IsPong();
@@ -156,7 +151,6 @@ class DESC
 		void			SetNextSequence();
 
 		void			SendLoginSuccessPacket();
-		//void			SendServerStatePacket(int nIndex);
 
 		void			SetMatrixCode(const char * c_psz) { m_stMatrixCode = c_psz; }
 		const char *		GetMatrixCode() { return m_stMatrixCode.c_str(); }
@@ -196,7 +190,6 @@ class DESC
 		CInputDead		m_inputDead;
 		CInputAuth		m_inputAuth;
 
-
 		LPFDWATCH		m_lpFdw;
 		socket_t		m_sock;
 		int				m_iPhase;
@@ -208,7 +201,7 @@ class DESC
 
 		LPBUFFER		m_lpInputBuffer;
 		int				m_iMinInputBufferLen;
-	
+
 		DWORD			m_dwHandshake;
 		DWORD			m_dwHandshakeSentTime;
 		int				m_iHandshakeRetry;
@@ -232,11 +225,10 @@ class DESC
 		WORD			m_wP2PPort;
 		BYTE			m_bP2PChannel;
 
-		bool			m_bAdminMode; // Handshake 에서 어드민 명령을 쓸수있나?
+		bool			m_bAdminMode;
 		bool			m_bPong;
 
 		int			m_iCurrentSequence;
-
 		DWORD			m_dwMatrixRows;
 		DWORD			m_dwMatrixCols;
 		BYTE			m_bMatrixTryCount;
@@ -283,7 +275,6 @@ class DESC
 		const char * GetMatrixCardID() { return m_stMatrixCardID.c_str();}
 		void SetMatrixQuiz( const char * szCode ) { m_stMatrixCode = szCode; }
 		const char * GetMatrixQuiz() { return m_stMatrixCode.c_str(); }
-
 		void SetLogin( const std::string & login ) { m_Login = login; }
 		void SetLogin( const char * login ) { m_Login = login; }
 		const std::string& GetLogin() { return m_Login; }
@@ -294,12 +285,11 @@ class DESC
 
 		void RawPacket(const void * c_pvData, int iSize);
 		void ChatPacket(BYTE type, const char * format, ...);
-
-		/* 시퀀스 버그 찾기용 코드 */
 	public:
 		seq_vector_t	m_seq_vector;
 		void			push_seq (BYTE hdr, BYTE seq);
-		
+
 };
 
 #endif
+
