@@ -14,10 +14,8 @@
 #include "locale_service.h"
 #include "exchange.h"
 #include "DragonSoul.h"
-
 void exchange_packet(LPCHARACTER ch, BYTE sub_header, bool is_me, DWORD arg1, TItemPos arg2, DWORD arg3, void * pvData = NULL);
 
-// 교환 패킷
 void exchange_packet(LPCHARACTER ch, BYTE sub_header, bool is_me, DWORD arg1, TItemPos arg2, DWORD arg3, void * pvData)
 {
 	if (!ch->GetDesc())
@@ -46,10 +44,9 @@ void exchange_packet(LPCHARACTER ch, BYTE sub_header, bool is_me, DWORD arg1, TI
 	ch->GetDesc()->Packet(&pack_exchg, sizeof(pack_exchg));
 }
 
-// 교환을 시작
 bool CHARACTER::ExchangeStart(LPCHARACTER victim)
 {
-	if (this == victim)	// 자기 자신과는 교환을 못한다.
+	if (this == victim)
 		return false;
 
 	if (IsObserverMode())
@@ -76,7 +73,6 @@ bool CHARACTER::ExchangeStart(LPCHARACTER victim)
 	//END_PREVENT_TRADE_WINDOW
 	int iDist = DISTANCE_APPROX(GetX() - victim->GetX(), GetY() - victim->GetY());
 
-	// 거리 체크
 	if (iDist >= EXCHANGE_MAX_DISTANCE)
 		return false;
 
@@ -101,7 +97,6 @@ bool CHARACTER::ExchangeStart(LPCHARACTER victim)
 	victim->GetExchange()->SetCompany(GetExchange());
 	GetExchange()->SetCompany(victim->GetExchange());
 
-	//
 	SetExchangeTime();
 	victim->SetExchangeTime();
 
@@ -125,7 +120,6 @@ CExchange::CExchange(LPCHARACTER pOwner)
 	}
 
 	m_lGold = 0;
-
 	m_pOwner = pOwner;
 	pOwner->SetExchange(this);
 
@@ -144,7 +138,6 @@ bool CExchange::AddItem(TItemPos item_pos, BYTE display_pos)
 	if (!item_pos.IsValidItemPosition())
 		return false;
 
-	// 장비는 교환할 수 없음
 	if (item_pos.IsEquipPosition())
 		return false;
 
@@ -164,7 +157,6 @@ bool CExchange::AddItem(TItemPos item_pos, BYTE display_pos)
 		return false;
 	}
 
-	// 이미 교환창에 추가된 아이템인가?
 	if (item->IsExchanging())
 	{
 		sys_log(0, "EXCHANGE under exchanging");
@@ -192,7 +184,7 @@ bool CExchange::AddItem(TItemPos item_pos, BYTE display_pos)
 
 		item->SetExchanging(true);
 
-		exchange_packet(m_pOwner, 
+		exchange_packet(m_pOwner,
 				EXCHANGE_SUBHEADER_GC_ITEM_ADD,
 				true,
 				item->GetVnum(),
@@ -201,8 +193,8 @@ bool CExchange::AddItem(TItemPos item_pos, BYTE display_pos)
 				item);
 
 		exchange_packet(GetCompany()->GetOwner(),
-				EXCHANGE_SUBHEADER_GC_ITEM_ADD, 
-				false, 
+				EXCHANGE_SUBHEADER_GC_ITEM_ADD,
+				false,
 				item->GetVnum(),
 				TItemPos(RESERVED_WINDOW, display_pos),
 				item->GetCount(),
@@ -213,7 +205,6 @@ bool CExchange::AddItem(TItemPos item_pos, BYTE display_pos)
 		return true;
 	}
 
-	// 추가할 공간이 없음
 	return false;
 }
 
@@ -249,18 +240,12 @@ bool CExchange::AddGold(long gold)
 
 	if (GetOwner()->GetGold() < gold)
 	{
-		// 가지고 있는 돈이 부족.
 		exchange_packet(GetOwner(), EXCHANGE_SUBHEADER_GC_LESS_GOLD, 0, 0, NPOS, 0);
 		return false;
 	}
 
-	if ( LC_IsCanada() == true || LC_IsEurope() == true )
-	{
-		if ( m_lGold > 0 )
-		{
-			return false;
-		}
-	}
+	if (m_lGold > 0)
+		return false;
 
 	Accept(false);
 	GetCompany()->Accept(false);
@@ -272,7 +257,6 @@ bool CExchange::AddGold(long gold)
 	return true;
 }
 
-// 돈이 충분히 있는지, 교환하려는 아이템이 실제로 있는지 확인 한다.
 bool CExchange::Check(int * piItemCount)
 {
 	if (GetOwner()->GetGold() < m_lGold)
@@ -326,12 +310,10 @@ bool CExchange::CheckSpace()
 		s_grid2.Put(i - INVENTORY_MAX_NUM / 2, 1, item->GetSize());
 	}
 
-	// 아... 뭔가 개병신 같지만... 용혼석 인벤을 노멀 인벤 보고 따라 만든 내 잘못이다 ㅠㅠ
 	static std::vector <WORD> s_vDSGrid(DRAGON_SOUL_INVENTORY_MAX_NUM);
-	
-	// 일단 용혼석을 교환하지 않을 가능성이 크므로, 용혼석 인벤 복사는 용혼석이 있을 때 하도록 한다.
+
 	bool bDSInitialized = false;
-	
+
 	for (i = 0; i < EXCHANGE_ITEM_MAX_NUM; ++i)
 	{
 		if (!(item = m_apItems[i]))
@@ -354,7 +336,7 @@ bool CExchange::CheckSpace()
 			WORD wBasePos = DSManager::instance().GetBasePosition(item);
 			if (wBasePos >= DRAGON_SOUL_INVENTORY_MAX_NUM)
 				return false;
-			
+
 			for (int i = 0; i < DRAGON_SOUL_BOX_SIZE; i++)
 			{
 				WORD wPos = wBasePos + i;
@@ -412,7 +394,6 @@ bool CExchange::CheckSpace()
 	return true;
 }
 
-// 교환 끝 (아이템과 돈 등을 실제로 옮긴다)
 bool CExchange::Done()
 {
 	int		empty_pos, i;
@@ -432,7 +413,7 @@ bool CExchange::Done()
 
 		if (empty_pos < 0)
 		{
-			sys_err("Exchange::Done : Cannot find blank position in inventory %s <-> %s item %s", 
+			sys_err("Exchange::Done : Cannot find blank position in inventory %s <-> %s item %s",
 					m_pOwner->GetName(), victim->GetName(), item->GetName());
 			continue;
 		}
@@ -494,7 +475,6 @@ bool CExchange::Done()
 	return true;
 }
 
-// 교환을 동의
 bool CExchange::Accept(bool bAccept)
 {
 	if (m_bAccept == bAccept)
@@ -502,7 +482,6 @@ bool CExchange::Accept(bool bAccept)
 
 	m_bAccept = bAccept;
 
-	// 둘 다 동의 했으므로 교환 성립
 	if (m_bAccept && GetCompany()->m_bAccept)
 	{
 		int	iItemCount;
@@ -511,12 +490,9 @@ bool CExchange::Accept(bool bAccept)
 
 		//PREVENT_PORTAL_AFTER_EXCHANGE
 		GetOwner()->SetExchangeTime();
-		victim->SetExchangeTime();		
+		victim->SetExchangeTime();
 		//END_PREVENT_PORTAL_AFTER_EXCHANGE
 
-		// exchange_check 에서는 교환할 아이템들이 제자리에 있나 확인하고,
-		// 엘크도 충분히 있나 확인한다, 두번째 인자로 교환할 아이템 개수
-		// 를 리턴한다.
 		if (!Check(&iItemCount))
 		{
 			GetOwner()->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("돈이 부족하거나 아이템이 제자리에 없습니다."));
@@ -524,7 +500,6 @@ bool CExchange::Accept(bool bAccept)
 			goto EXCHANGE_END;
 		}
 
-		// 리턴 받은 아이템 개수로 상대방의 소지품에 남은 자리가 있나 확인한다.
 		if (!CheckSpace())
 		{
 			GetOwner()->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("상대방의 소지품에 빈 공간이 없습니다."));
@@ -532,7 +507,6 @@ bool CExchange::Accept(bool bAccept)
 			goto EXCHANGE_END;
 		}
 
-		// 상대방도 마찬가지로..
 		if (!GetCompany()->Check(&iItemCount))
 		{
 			victim->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("돈이 부족하거나 아이템이 제자리에 없습니다."));
@@ -557,12 +531,12 @@ bool CExchange::Accept(bool bAccept)
 
 		if (Done())
 		{
-			if (m_lGold) // 돈이 있을 떄만 저장
+			if (m_lGold)
 				GetOwner()->Save();
 
 			if (GetCompany()->Done())
 			{
-				if (GetCompany()->m_lGold) // 돈이 있을 때만 저장
+				if (GetCompany()->m_lGold)
 					victim->Save();
 
 				// INTERNATIONAL_VERSION
@@ -578,14 +552,12 @@ EXCHANGE_END:
 	}
 	else
 	{
-		// 아니면 accept에 대한 패킷을 보내자.
 		exchange_packet(GetOwner(), EXCHANGE_SUBHEADER_GC_ACCEPT, true, m_bAccept, NPOS, 0);
 		exchange_packet(GetCompany()->GetOwner(), EXCHANGE_SUBHEADER_GC_ACCEPT, false, m_bAccept, NPOS, 0);
 		return true;
 	}
 }
 
-// 교환 취소
 void CExchange::Cancel()
 {
 	exchange_packet(GetOwner(), EXCHANGE_SUBHEADER_GC_END, 0, 0, NPOS, 0);
