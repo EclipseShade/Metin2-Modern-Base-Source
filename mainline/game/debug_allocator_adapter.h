@@ -288,10 +288,10 @@ private:
 	}
 
 #ifndef DBGALLOC_NO_STACKTRACE
-	void PrintStack( std::ostream& out  ) 
+	void PrintStack( std::ostream& out  )
 	{
 		void* 		array[200];
-		std::size_t size; 
+		std::size_t size;
 		char** 		symbols;
 
 		size = backtrace( array, 200 );
@@ -315,3 +315,4 @@ private:
 };
 
 #endif // _DEBUG_ADAPTER_H_
+
