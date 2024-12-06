@@ -238,10 +238,6 @@ bool DESC::Setup(LPFDWATCH _fdw, socket_t _fd, const struct sockaddr_in & c_rSoc
 	m_wPort			= c_rSockAddr.sin_port;
 	m_dwHandle		= _handle;
 
-	//if (LC_IsEurope() == true || LC_IsNewCIBN())
-	//	m_lpOutputBuffer = buffer_new(DEFAULT_PACKET_BUFFER_SIZE * 2);
-	//else
-	//NOTE: 이걸 나라별로 다르게 잡아야할 이유가 있나?
 	m_lpOutputBuffer = buffer_new(DEFAULT_PACKET_BUFFER_SIZE * 2);
 
 	m_iMinInputBufferLen = MAX_INPUT_LEN >> 1;
@@ -251,7 +247,7 @@ bool DESC::Setup(LPFDWATCH _fdw, socket_t _fd, const struct sockaddr_in & c_rSoc
 
 	fdwatch_add_fd(m_lpFdw, m_sock, this, FDW_READ, false);
 
-	// Ping Event 
+	// Ping Event
 	desc_event_info* info = AllocEventInfo<desc_event_info>();
 
 	info->desc = this;
@@ -260,16 +256,8 @@ bool DESC::Setup(LPFDWATCH _fdw, socket_t _fd, const struct sockaddr_in & c_rSoc
 	m_pkPingEvent = event_create(ping_event, info, ping_event_second_cycle);
 
 #ifndef _IMPROVED_PACKET_ENCRYPTION_
-	if (LC_IsEurope())	
-	{
-		thecore_memcpy(m_adwEncryptionKey, "1234abcd5678efgh", sizeof(DWORD) * 4);
-		thecore_memcpy(m_adwDecryptionKey, "1234abcd5678efgh", sizeof(DWORD) * 4);
-	}
-	else
-	{
-		thecore_memcpy(m_adwEncryptionKey, "testtesttesttest", sizeof(DWORD) * 4);
-		thecore_memcpy(m_adwDecryptionKey, "testtesttesttest", sizeof(DWORD) * 4);
-	}
+	thecore_memcpy(m_adwEncryptionKey, "1234abcd5678efgh", sizeof(DWORD) * 4);
+	thecore_memcpy(m_adwDecryptionKey, "1234abcd5678efgh", sizeof(DWORD) * 4);
 #endif // _IMPROVED_PACKET_ENCRYPTION_
 
 	// Set Phase to handshake
@@ -314,7 +302,6 @@ int DESC::ProcessInput()
 
 		int iBytesProceed = 0;
 
-		// false가 리턴 되면 다른 phase로 바뀐 것이므로 다시 프로세스로 돌입한다!
 		while (!m_pInputProcessor->Process(this, buffer_read_peek(m_lpInputBuffer), buffer_size(m_lpInputBuffer), iBytesProceed))
 		{
 			buffer_read_proceed(m_lpInputBuffer, iBytesProceed);
@@ -328,7 +315,6 @@ int DESC::ProcessInput()
 	{
 		int iBytesProceed = 0;
 
-		// false가 리턴 되면 다른 phase로 바뀐 것이므로 다시 프로세스로 돌입한다!
 		while (!m_pInputProcessor->Process(this, buffer_read_peek(m_lpInputBuffer), buffer_size(m_lpInputBuffer), iBytesProceed))
 		{
 			buffer_read_proceed(m_lpInputBuffer, iBytesProceed);
@@ -341,9 +327,7 @@ int DESC::ProcessInput()
 	{
 		int iSizeBuffer = buffer_size(m_lpInputBuffer);
 
-		// 8바이트 단위로만 처리한다. 8바이트 단위에 부족하면 잘못된 암호화 버퍼를 복호화
-		// 할 가능성이 있으므로 짤라서 처리하기로 한다.
-		if (iSizeBuffer & 7) // & 7은 % 8과 같다. 2의 승수에서만 가능
+		if (iSizeBuffer & 7)
 			iSizeBuffer -= iSizeBuffer & 7;
 
 		if (iSizeBuffer > 0)
@@ -361,7 +345,6 @@ int DESC::ProcessInput()
 
 			int iBytesProceed = 0;
 
-			// false가 리턴 되면 다른 phase로 바뀐 것이므로 다시 프로세스로 돌입한다!
 			while (!m_pInputProcessor->Process(this, buffer_read_peek(lpBufferDecrypt), buffer_size(lpBufferDecrypt), iBytesProceed))
 			{
 				if (iBytesProceed > iSizeBuffer)
@@ -437,12 +420,11 @@ void DESC::Packet(const void * c_pvData, int iSize)
 {
 	assert(iSize > 0);
 
-	if (m_iPhase == PHASE_CLOSE) // 끊는 상태면 보내지 않는다.
+	if (m_iPhase == PHASE_CLOSE)
 		return;
 
 	if (m_stRelayName.length() != 0)
 	{
-		// Relay 패킷은 암호화하지 않는다.
 		TPacketGGRelay p;
 
 		p.bHeader = HEADER_GG_RELAY;
@@ -481,7 +463,6 @@ void DESC::Packet(const void * c_pvData, int iSize)
 #ifdef _IMPROVED_PACKET_ENCRYPTION_
 		void* buf = buffer_write_peek(m_lpOutputBuffer);
 
-		
 		if (packet_encode(m_lpOutputBuffer, c_pvData, iSize))
 		{
 			if (cipher_.activated()) {
@@ -496,9 +477,7 @@ void DESC::Packet(const void * c_pvData, int iSize)
 		if (!m_bEncrypted)
 		{
 			if (!packet_encode(m_lpOutputBuffer, c_pvData, iSize))
-			{
 				m_iPhase = PHASE_CLOSE;
-			}
 		}
 		else
 		{
@@ -511,8 +490,6 @@ void DESC::Packet(const void * c_pvData, int iSize)
 			}
 			else
 			{
-				// 암호화에 필요한 충분한 버퍼 크기를 확보한다.
-				/* buffer_adjust_size(m_lpOutputBuffer, iSize + 8); */
 				DWORD * pdwWritePoint = (DWORD *) buffer_write_peek(m_lpOutputBuffer);
 
 				if (packet_encode(m_lpOutputBuffer, c_pvData, iSize))
@@ -554,7 +531,7 @@ void DESC::SetPhase(int _phase)
 	switch (m_iPhase)
 	{
 		case PHASE_CLOSE:
-			// 메신저가 캐릭터단위가 되면서 삭제
+
 			//MessengerManager::instance().Logout(GetAccountTable().login);
 			m_pInputProcessor = &m_inputClose;
 			break;
@@ -564,8 +541,7 @@ void DESC::SetPhase(int _phase)
 			break;
 
 		case PHASE_SELECT:
-			// 메신저가 캐릭터단위가 되면서 삭제
-			//MessengerManager::instance().Logout(GetAccountTable().login); // 의도적으로 break 안검
+
 		case PHASE_LOGIN:
 		case PHASE_LOADING:
 #ifndef _IMPROVED_PACKET_ENCRYPTION_
@@ -691,7 +667,7 @@ bool DESC::HandshakeProcess(DWORD dwTime, long lDelta, bool bInfiniteRetry)
 
 		m_dwClientTime = dwCurTime;
 		m_bHandshaking = false;
-		return true; 
+		return true;
 	}
 
 	long lNewDelta = (long) (dwCurTime - dwTime) / 2;
@@ -707,7 +683,7 @@ bool DESC::HandshakeProcess(DWORD dwTime, long lDelta, bool bInfiniteRetry)
 	if (!bInfiniteRetry)
 		if (++m_iHandshakeRetry > HANDSHAKE_RETRY_LIMIT)
 		{
-			sys_err("handshake retry limit reached! (limit %d character %s)", 
+			sys_err("handshake retry limit reached! (limit %d character %s)",
 					HANDSHAKE_RETRY_LIMIT, GetCharacter() ? GetCharacter()->GetName() : "!NO CHARACTER!");
 			SetPhase(PHASE_CLOSE);
 			return false;
@@ -940,14 +916,14 @@ void DESC::SendLoginSuccessPacket()
 	thecore_memcpy(p.players, rTable.players, sizeof(rTable.players));
 
 	for (int i = 0; i < PLAYER_PER_ACCOUNT; ++i)
-	{   
+	{
 		CGuild* g = CGuildManager::instance().GetLinkedGuild(rTable.players[i].dwID);
 
 		if (g)
-		{   
+		{
 			p.guild_id[i] = g->GetID();
 			strlcpy(p.guild_name[i], g->GetName(), sizeof(p.guild_name[i]));
-		}   
+		}
 		else
 		{
 			p.guild_id[i] = 0;
@@ -957,27 +933,6 @@ void DESC::SendLoginSuccessPacket()
 
 	Packet(&p, sizeof(TPacketGCLoginSuccess));
 }
-
-//void DESC::SendServerStatePacket(int nIndex)
-//{
-//	TPacketGCStateCheck rp;
-//
-//	int iTotal; 
-//	int * paiEmpireUserCount;
-//	int iLocal;
-//
-//	DESC_MANAGER::instance().GetUserCount(iTotal, &paiEmpireUserCount, iLocal);
-//
-//	rp.header	= 1; 
-//	rp.key		= 0;
-//	rp.index	= nIndex;
-//
-//	if (g_bNoMoreClient) rp.state = 0;
-//	else rp.state = iTotal > g_iFullUserCount ? 3 : iTotal > g_iBusyUserCount ? 2 : 1;
-//	
-//	this->Packet(&rp, sizeof(rp));
-//	//printf("STATE_CHECK PACKET PROCESSED.\n");
-//}
 
 void DESC::SetMatrixCardRowsAndColumns(unsigned long rows, unsigned long cols)
 {
@@ -1023,14 +978,14 @@ DWORD DESC::GetLoginKey()
 }
 
 const BYTE* GetKey_20050304Myevan()
-{   
+{
 	static bool bGenerated = false;
-	static DWORD s_adwKey[1938]; 
+	static DWORD s_adwKey[1938];
 
-	if (!bGenerated) 
+	if (!bGenerated)
 	{
 		bGenerated = true;
-		DWORD seed = 1491971513; 
+		DWORD seed = 1491971513;
 
 		for (UINT i = 0; i < BYTE(seed); ++i)
 		{
@@ -1049,13 +1004,12 @@ void DESC::SetSecurityKey(const DWORD * c_pdwKey)
 {
 	const BYTE * c_pszKey = (const BYTE *) "JyTxtHljHJlVJHorRM301vf@4fvj10-v";
 
-	if (g_iUseLocale && !LC_IsKorea())
-		c_pszKey = GetKey_20050304Myevan() + 37;
+	c_pszKey = GetKey_20050304Myevan() + 37;
 
 	thecore_memcpy(&m_adwDecryptionKey, c_pdwKey, 16);
 	TEA_Encrypt(&m_adwEncryptionKey[0], &m_adwDecryptionKey[0], (const DWORD *) c_pszKey, 16);
 
-	sys_log(0, "SetSecurityKey decrypt %u %u %u %u encrypt %u %u %u %u", 
+	sys_log(0, "SetSecurityKey decrypt %u %u %u %u encrypt %u %u %u %u",
 			m_adwDecryptionKey[0], m_adwDecryptionKey[1], m_adwDecryptionKey[2], m_adwDecryptionKey[3],
 			m_adwEncryptionKey[0], m_adwEncryptionKey[1], m_adwEncryptionKey[2], m_adwEncryptionKey[3]);
 }
