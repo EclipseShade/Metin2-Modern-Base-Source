@@ -119,14 +119,6 @@ EVENTFUNC( DragonLair_Collapse_Event )
 	return 0;
 }
 
-
-
-
-
-
-
-
-
 CDragonLair::CDragonLair(DWORD guildID, long BaseMapID, long PrivateMapID)
 	: GuildID_(guildID), BaseMapIndex_(BaseMapID), PrivateMapIndex_(PrivateMapID)
 {
@@ -148,17 +140,6 @@ void CDragonLair::OnDragonDead(LPCHARACTER pDragon)
 
 	LogManager::instance().DragonSlayLog(  GuildID_, pDragon->GetMobTable().dwVnum, StartTime_, get_global_time() );
 }
-
-
-
-
-
-
-
-
-
-
-
 
 CDragonLairManager::CDragonLairManager()
 {
@@ -195,7 +176,7 @@ bool CDragonLairManager::Start(long MapIndexFrom, long BaseMapIndex, DWORD Guild
 
 			pMap->for_each( f );
 
-			LairMap_.insert( std::make_pair(GuildID, M2_NEW CDragonLair(GuildID, BaseMapIndex, instanceMapIndex)) );
+			LairMap_.insert(std::make_pair(GuildID, M2_NEW CDragonLair(GuildID, BaseMapIndex, instanceMapIndex)) );
 
 			std::string strMapBasePath( LocaleService_GetMapPath() );
 
@@ -236,8 +217,6 @@ void CDragonLairManager::OnDragonDead(LPCHARACTER pDragon, DWORD KillerGuildID)
 	}
 
 	iter->second->OnDragonDead( pDragon );
-
-	// 애들 다 집으로 보내고 맵 없애기
 
 	tag_DragonLair_Collapse_EventInfo* info;
 	info = AllocEventInfo<tag_DragonLair_Collapse_EventInfo>();
