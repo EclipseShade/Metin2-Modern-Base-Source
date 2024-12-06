@@ -31,7 +31,6 @@ FileMonitorFreeBSD::~FileMonitorFreeBSD()
 	m_TriggeredEventLists.clear();
 }
 
-
 void FileMonitorFreeBSD::Update(DWORD dwPulses)
 {
 	if( m_KernelEventQueue == INVALID_KERNEL_EVENT || m_FileLists.size() == 0 )
@@ -54,7 +53,7 @@ void FileMonitorFreeBSD::Update(DWORD dwPulses)
 
 			else if (nEventFlags & NOTE_DELETE)
 				eUpdateOption = e_FileUpdate_Deleted;
-				
+
 			else if (nEventFlags & NOTE_EXTEND || nEventFlags & NOTE_WRITE)
 				eUpdateOption = e_FileUpdate_Modified;
 
@@ -91,10 +90,10 @@ void FileMonitorFreeBSD::Update(DWORD dwPulses)
 void FileMonitorFreeBSD::AddWatch(const std::string& strFileName, PFN_FileChangeListener pListenerFunc)
 {
 	int iFileHandle = -1;
-	if( (iFileHandle = open(strFileName.c_str(), O_RDONLY)) == -1) 
+	if( (iFileHandle = open(strFileName.c_str(), O_RDONLY)) == -1)
 	{
 		sys_err("FileMonitorFreeBSD:AddWatch : can`t open file(%s).\n", strFileName.c_str());
-		return; 
+		return;
 	}
 
 	//create kqueue if not exists
@@ -127,11 +126,12 @@ void FileMonitorFreeBSD::AddWatch(const std::string& strFileName, PFN_FileChange
 	//set events
 	struct kevent kTriggerEvent, kMonitorEvent;
 
-   	EV_SET(&kTriggerEvent, iFileHandle, EVFILT_VNODE, 
+   	EV_SET(&kTriggerEvent, iFileHandle, EVFILT_VNODE,
 										EV_ADD | EV_ENABLE | EV_ONESHOT,
 										NOTE_DELETE | NOTE_WRITE | NOTE_EXTEND | NOTE_ATTRIB | NOTE_LINK | NOTE_RENAME | NOTE_REVOKE,
 										0, 0);
 
-	m_TriggeredEventLists.push_back( kTriggerEvent );
-	m_MonitoredEventLists.push_back( kMonitorEvent );
+	m_TriggeredEventLists.push_back(kTriggerEvent);
+	m_MonitoredEventLists.push_back(kMonitorEvent);
 }
+
