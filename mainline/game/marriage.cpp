@@ -22,19 +22,13 @@ namespace marriage
 		DWORD dwVnum;
 		int value[MAX_LOVE_GRADE];
 	} g_ItemBonus[MAX_MARRIAGE_UNIQUE_ITEM] = {
-		{ 71069,	{ 4,	5,	6,	8,  } }, // 관통 증가
-		{ 71070,	{ 10,	12,	15,	20, } }, // 경험치 증가
-		{ 71071,	{ 4,	5,	6,	8,  } }, // 크리티컬 증가
-		{ 71072,	{ -4,	-5,	-6,	-8, } }, // 상대방 공격력 감소
-		{ 71073,	{ 20,	25,	30,	40, } }, // 공격력 증가 (절대값)
-		{ 71074,	{ 12,	16,	20,	30, } }, // 방어력 증가 (절대값)
+		{ 71069,	{ 4,	5,	6,	8,  } },
+		{ 71070,	{ 10,	12,	15,	20, } },
+		{ 71071,	{ 4,	5,	6,	8,  } },
+		{ 71072,	{ -4,	-5,	-6,	-8, } },
+		{ 71073,	{ 20,	25,	30,	40, } },
+		{ 71074,	{ 12,	16,	20,	30, } },
 
-		//{ 71069,	1,	2,	3,	6,	8,  }, // 관통 증가
-		//{ 71070,	5,	7,	10,	15,	20, }, // 경험치 증가
-		//{ 71071,	1,	2,	3,	6,	8,  }, // 크리티컬 증가
-		//{ 71072,	5,	10,	15,	20,	30, }, // 상대방이 입은 데미지를 나에게로
-		//{ 71073,	10,	15,	20,	25,	40, }, // 공격력 증가 (절대값)
-		//{ 71074,	5,	10,	15,	20,	30, }, // 방어력 증가 (절대값)
 	};
 
 	const int MARRIAGE_POINT_PER_DAY = 1;
@@ -88,7 +82,7 @@ namespace marriage
 		int max_limit = 30;
 		if (IsOnline())
 		{
-			if (ch1->GetPremiumRemainSeconds(PREMIUM_MARRIAGE_FAST) > 0 || 
+			if (ch1->GetPremiumRemainSeconds(PREMIUM_MARRIAGE_FAST) > 0 ||
 					ch2->GetPremiumRemainSeconds(PREMIUM_MARRIAGE_FAST) > 0)
 			{
 				point_per_day = MARRIAGE_POINT_PER_DAY_FAST;
@@ -102,17 +96,6 @@ namespace marriage
 		else
 			days /= 86400;
 
-		// 기본 50%
-
-		// 원앙의 깃털 사용중일 때 :
-		// 날짜에 의한 영향 80% 하루당 8%
-		// 전투에 의한 영향 80%
-		// 토탈 100%
-
-		// 비사용중일 때 : 
-		// 날짜에 의한 영향 60% 하루당 6%
-		// 전투에 의한 영향 60%
-		// 토탈 100%
 		return MIN(50 + MIN(days * point_per_day, max_limit) + MIN(love_point / 1000000, max_limit), 100);
 	}
 
@@ -125,11 +108,9 @@ namespace marriage
 
 		return ch1->GetMapIndex() == ch2->GetMapIndex();
 
-		// 파티 체크가 사라졌음
 		/*if (!ch1->GetParty() || ch1->GetParty() != ch2->GetParty())
 		  return false;*/
 
-		// 거리 체크가 사라졌음
 		/*const int DISTANCE = 5000;
 
 		  if (labs(ch1->GetX() - ch2->GetX()) > DISTANCE)
@@ -141,15 +122,11 @@ namespace marriage
 		  return (DISTANCE_APPROX(ch1->GetX() - ch2->GetX(), ch1->GetY() - ch2->GetY()) < DISTANCE);*/
 	}
 
-	// 금슬 수치
 	int TMarriage::GetBonus(DWORD dwItemVnum, bool bShare, LPCHARACTER me)
 	{
 		if (!is_married)
 			return 0;
 
-		// 주변에 없을때는 자기 기능만 적용된다.
-
-		// 해당 아이템이 어떤 기능을 하는지 찾는다.
 		int iFindedBonusIndex=0;
 		{
 			for (iFindedBonusIndex = 0; iFindedBonusIndex < MAX_MARRIAGE_UNIQUE_ITEM; ++iFindedBonusIndex)
@@ -164,7 +141,6 @@ namespace marriage
 
 		if (bShare)
 		{
-			// 두명의 보너스를 합한다.
 			int count = 0;
 			if (NULL != ch1 && ch1->IsEquipUniqueItem(dwItemVnum))
 				count ++;
@@ -179,7 +155,6 @@ namespace marriage
 		}
 		else
 		{
-			// 상대방 것만 계산
 			int count = 0;
 			if (me != ch1 && NULL!= ch1 && ch1->IsEquipUniqueItem(dwItemVnum))
 				count ++;
@@ -209,7 +184,6 @@ namespace marriage
 				SendLoverInfo(ch2, name1, GetMarriagePoint());
 		}
 
-		// 둘 다 이 프로세스에 로그인 중이면 포인터를 연결하고 이벤트 발생
 		if (IsOnline())
 		{
 			ch1->SetMarryPartner(ch2);
@@ -218,7 +192,6 @@ namespace marriage
 			StartNearCheckEvent();
 		}
 
-		// 둘 다 로그인 되어 있다면 패킷을 보낸다.
 		if (is_married)
 		{
 			LPDESC d1, d2;
@@ -409,10 +382,10 @@ namespace marriage
 	}
 
 	void TMarriage::SetMarried()
-	{ 
-		is_married = 1; 
-		bSave = true; 
-		Save(); 
+	{
+		is_married = 1;
+		bSave = true;
+		Save();
 
 		if (IsOnline())
 		{
@@ -493,8 +466,8 @@ namespace marriage
 		return false;
 	}
 
-	bool CManager::IsMarried(DWORD dwPlayerID) 
-	{ 
+	bool CManager::IsMarried(DWORD dwPlayerID)
+	{
 		TMarriage* pkMarriageFinded=Get(dwPlayerID);
 		if (pkMarriageFinded && pkMarriageFinded->is_married)
 			return true;
@@ -502,8 +475,8 @@ namespace marriage
 		return false;
 	}
 
-	bool CManager::IsEngaged(DWORD dwPlayerID) 
-	{ 
+	bool CManager::IsEngaged(DWORD dwPlayerID)
+	{
 		TMarriage* pkMarriageFinded=Get(dwPlayerID);
 		if (pkMarriageFinded && !pkMarriageFinded->is_married)
 			return true;
@@ -511,9 +484,9 @@ namespace marriage
 		return false;
 	}
 
-	bool CManager::IsEngagedOrMarried(DWORD dwPlayerID) 
-	{ 
-		return Get(dwPlayerID) != NULL; 
+	bool CManager::IsEngagedOrMarried(DWORD dwPlayerID)
+	{
+		return Get(dwPlayerID) != NULL;
 	}
 
 	bool CManager::Initialize()
@@ -582,7 +555,6 @@ namespace marriage
 
 			if (A && B)
 			{
-				// 웨딩 맵 요청을 보낸다
 				TPacketWeddingRequest p;
 				p.dwPID1 = dwPID1;
 				p.dwPID2 = dwPID2;
@@ -704,11 +676,9 @@ namespace marriage
 		if (!pwi)
 			return;
 
-		// 결혼자들을 워프시켜야함
 		pMarriage->WarpToWeddingMap(dwPID1);
 		pMarriage->WarpToWeddingMap(dwPID2);
 
-		// 등록해서 메뉴창에서 이름나와야함
 		m_setWedding.insert(make_pair(dwPID1, dwPID2));
 	}
 
@@ -727,7 +697,6 @@ namespace marriage
 			return;
 		}
 
-		// 맵에서 빼내야합니다
 		if (map_allow_find(WEDDING_MAP_INDEX))
 			if (!WeddingManager::instance().End(pMarriage->pWeddingInfo->dwMapIndex))
 			{
@@ -750,3 +719,4 @@ namespace marriage
 		db_clientdesc->DBPacket(HEADER_GD_WEDDING_END, 0, &p, sizeof(p));
 	}
 }
+
