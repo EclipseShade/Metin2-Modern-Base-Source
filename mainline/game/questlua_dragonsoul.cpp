@@ -11,7 +11,7 @@
 #define sys_err(fmt, ...) quest::CQuestManager::instance().QuestError(__FUNCTION__, __LINE__, fmt, __VA_ARGS__)
 #endif
 
-namespace quest 
+namespace quest
 {
 	int ds_open_refine_window(lua_State* L)
 	{
@@ -56,7 +56,7 @@ namespace quest
 
 	void RegisterDragonSoulFunctionTable()
 	{
-		luaL_reg ds_functions[] = 
+		luaL_reg ds_functions[] =
 		{
 			{ "open_refine_window"	, ds_open_refine_window },
 			{ "give_qualification"	, ds_give_qualification },
@@ -67,3 +67,4 @@ namespace quest
 		CQuestManager::instance().AddLuaFunctionTable("ds", ds_functions);
 	}
 };
+
