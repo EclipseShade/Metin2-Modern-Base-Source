@@ -81,14 +81,14 @@ void SendPanamaList(LPDESC d)
 		strlcpy(pack.szPackName, it->first.c_str(), sizeof(pack.szPackName));
 		memcpy(pack.abIV, it->second, sizeof(pack.abIV));
 
-
 		DWORD* ivs = (DWORD*)pack.abIV;
 		for (int i = 0; i != 32 / sizeof(DWORD); i++)
 		{
-			ivs[i] ^= d->GetPanamaKey() + i * 16777619;	// 더블워드단위로 변형된 파나마 키를 XOR 해준다
+			ivs[i] ^= d->GetPanamaKey() + i * 16777619;
 		}
 		++it;
 
 		d->Packet(&pack, sizeof(pack));
 	}
 }
+
