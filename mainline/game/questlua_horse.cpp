@@ -19,9 +19,8 @@ extern int (*check_name) (const char * str);
 
 namespace quest
 {
-	//
 	// "horse" Lua functions
-	//
+
 	int horse_is_riding(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
@@ -68,10 +67,8 @@ namespace quest
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
-		// 소환하면 멀리서부터 달려오는지 여부
 		bool bFromFar = lua_isboolean(L, 1) ? lua_toboolean(L, 1) : false;
 
-		// 소환수의 vnum
 		DWORD horseVnum= lua_isnumber(L, 2) ? lua_tonumber(L, 2) : 0;
 
 		const char* name = lua_isstring(L, 3) ? lua_tostring(L, 3) : 0;
@@ -219,11 +216,6 @@ namespace quest
 
 	int horse_set_name(lua_State* L)
 	{
-		// 리턴값
-		// 0 : 소유한 말이 없다
-		// 1 : 잘못된 이름이다
-		// 2 : 이름 바꾸기 성공
-
 		if ( lua_isstring(L, -1) != true ) return 0;
 
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
@@ -310,7 +302,4 @@ namespace quest
 		CQuestManager::instance().AddLuaFunctionTable("horse", horse_functions);
 	}
 }
-
-
-
 
