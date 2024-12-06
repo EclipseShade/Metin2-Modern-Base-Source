@@ -3,9 +3,9 @@
 #include "locale.h"
 #include "empire_text_convert.h"
 
-namespace 
+namespace
 {
-	struct STextConvertTable 
+	struct STextConvertTable
 	{
 		char acUpper[26];
 		char acLower[26];
