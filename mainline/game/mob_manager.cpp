@@ -61,7 +61,6 @@ bool CMobManager::Initialize(TMobTable * pTable, int iSize)
 
 	TMobTable * t = pTable;
 
-
 	for (int i = 0; i < iSize; ++i, ++t)
 	{
 		CMob * pkMob = M2_NEW CMob;
@@ -77,7 +76,7 @@ bool CMobManager::Initialize(TMobTable * pTable, int iSize)
 			if (pkMob->m_table.Skills[j].dwVnum)
 				++SkillCount;
 
-		sys_log(0, "MOB: #%-5d %-30s LEVEL %u HP %u DEF %u EXP %u DROP_ITEM_VNUM %u SKILL_COUNT %d", 
+		sys_log(0, "MOB: #%-5d %-30s LEVEL %u HP %u DEF %u EXP %u DROP_ITEM_VNUM %u SKILL_COUNT %d",
 				t->dwVnum, t->szLocaleName, t->bLevel, t->dwMaxHP, t->wDef, t->dwExp, t->dwDropItemVnum, SkillCount);
 
 		if (t->bType == CHAR_TYPE_NPC || t->bType == CHAR_TYPE_WARP || t->bType == CHAR_TYPE_GOTO)
@@ -85,7 +84,6 @@ bool CMobManager::Initialize(TMobTable * pTable, int iSize)
 
 		quest::CQuestManager::instance().RegisterNPCVnum(t->dwVnum);
 	}
-
 
 	// LOCALE_SERVICE
 	const int FILE_NAME_LEN = 256;
@@ -96,7 +94,7 @@ bool CMobManager::Initialize(TMobTable * pTable, int iSize)
 			"%s/group.txt", LocaleService_GetBasePath().c_str());
 	snprintf(szGroupGroupFileName, sizeof(szGroupGroupFileName),
 			"%s/group_group.txt", LocaleService_GetBasePath().c_str());
-	
+
 	if (!LoadGroup(szGroupFileName))
 	{
 		sys_err("cannot load %s", szGroupFileName);
