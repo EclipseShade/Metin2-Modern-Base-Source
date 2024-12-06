@@ -16,9 +16,7 @@
 
 namespace quest
 {
-	//
 	// "item" Lua functions
-	//
 
 	int item_get_cell(lua_State* L)
 	{
@@ -142,7 +140,7 @@ namespace quest
 		CQuestManager& q = CQuestManager::instance();
 		LPITEM item = q.GetCurrentItem();
 
-		if (item) 
+		if (item)
 			lua_pushnumber(L, item->GetVnum());
 		else
 			lua_pushnumber(L, 0);
@@ -168,7 +166,7 @@ namespace quest
 			return 1;
 		}
 
-		long lCheckFlag = (long) lua_tonumber(L, 1);	
+		long lCheckFlag = (long) lua_tonumber(L, 1);
 		lua_pushboolean(L, IS_SET(item->GetFlag(), lCheckFlag));
 
 		return 1;
@@ -361,10 +359,10 @@ namespace quest
 		if ( ch == NULL || item == NULL ) return 0;
 
 		lua_pushboolean(L, COver9RefineManager::instance().Change9ToOver9(ch, item));
-		
+
 		return 1;
 	}
-	
+
 	int item_over9refine(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
@@ -373,7 +371,7 @@ namespace quest
 		if ( ch == NULL || item == NULL ) return 0;
 
 		lua_pushboolean(L, COver9RefineManager::instance().Over9Refine(ch, item));
-		
+
 		return 1;
 	}
 
@@ -417,7 +415,7 @@ namespace quest
 
 		return 0;
 	}
-	
+
 	int item_copy_and_give_before_remove(lua_State* L)
 	{
 		lua_pushboolean(L, 0);
@@ -441,12 +439,11 @@ namespace quest
 
 			ITEM_MANAGER::instance().RemoveItem(pItem, "REMOVE (COPY SUCCESS)");
 
-			pkNewItem->AddToCharacter(pChar, TItemPos(INVENTORY, bCell)); 
+			pkNewItem->AddToCharacter(pChar, TItemPos(INVENTORY, bCell));
 			ITEM_MANAGER::instance().FlushDelayedSave(pkNewItem);
 			pkNewItem->AttrLog();
 
-			// ¼º°ø!
-			lua_pushboolean(L, 1);			
+			lua_pushboolean(L, 1);
 		}
 
 		return 1;
@@ -489,3 +486,4 @@ namespace quest
 		CQuestManager::instance().AddLuaFunctionTable("item", item_functions);
 	}
 }
+
