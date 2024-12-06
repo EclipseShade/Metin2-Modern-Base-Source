@@ -8,7 +8,7 @@
 
 // questpc.h: PC::typedef Quest
 // questpc.h: PC::typedef map<unsigned long, QuestState> QuestInfo;
-// typedef 
+// typedef
 
 namespace quest
 {
@@ -35,7 +35,7 @@ namespace quest
 			++itEventName;
 
 			for (itertype(g_setQuestObjectDir) itObjectDir = g_setQuestObjectDir.begin(); itObjectDir != g_setQuestObjectDir.end(); ++itObjectDir)
-			{	
+			{
 				int is = snprintf(buf, sizeof(buf), "%s/%s/%s/", itObjectDir->c_str(), script_name.c_str(), it->first.c_str());
 
 				if (is < 0 || is >= (int) sizeof(buf))
@@ -78,17 +78,16 @@ namespace quest
 
 		CQuestManager & q = CQuestManager::instance();
 
-		//
 		// script_name examples:
 		//   christmas_tree.start -> argument not exist
-		//
+
 		//   guild_manage.start.0.script -> argument exist
 		//   guild_manage.start.0.when
 		//   guild_manage.start.0.arg
 
 		///////////////////////////////////////////////////////////////////////////
 		// Quest name
-		const string stQuestName = s.substr(0, i); 
+		const string stQuestName = s.substr(0, i);
 
 		int quest_index = q.GetQuestIndexByName(stQuestName);
 
@@ -114,7 +113,7 @@ namespace quest
 		int state_index = q.GetQuestStateIndex(stQuestName, stStateName);
 		///////////////////////////////////////////////////////////////////////////
 
-		sys_log(0, "QUEST loading %s : %s [STATE] %s", 
+		sys_log(0, "QUEST loading %s : %s [STATE] %s",
 				filename, stQuestName.c_str(), stStateName.c_str());
 
 		if (i == s.npos)
@@ -125,13 +124,11 @@ namespace quest
 		}
 		else
 		{
-			//
 			// like in example: guild_manage.start.0.blah
 			// NOTE : currently, only CHAT script uses argument
-			//
 
 			///////////////////////////////////////////////////////////////////////////
-			// 순서 Index (여러개 있을 수 있으므로 있는 것임, 실제 index 값은 쓰지 않음)
+
 			j = i;
 			i = s.find('.', i + 1);
 
@@ -141,7 +138,7 @@ namespace quest
 				return;
 			}
 
-			const int index = strtol(s.substr(j + 1, i - j - 1).c_str(), NULL, 10); 
+			const int index = strtol(s.substr(j + 1, i - j - 1).c_str(), NULL, 10);
 			///////////////////////////////////////////////////////////////////////////
 			// Type name
 			j = i;
@@ -248,7 +245,7 @@ namespace quest
 
 			if (argScript.when_condition.size() > 0)
 				sys_log(1, "OnTarget when %s size %d", &argScript.when_condition[0], argScript.when_condition.size());
-	
+
 			if (argScript.when_condition.size() != 0 && !IsScriptTrue(&argScript.when_condition[0], argScript.when_condition.size()))
 				continue;
 
@@ -410,7 +407,6 @@ namespace quest
 
 		void operator()(PC::QuestInfoIterator& itPCQuest, NPC::QuestMapType::iterator& itQuestMap)
 		{
-			// 없으니 새로 시작
 			DWORD dwQuestIndex = itQuestMap->first;
 
 			if (NPC::HasStartState(itQuestMap->second) && CQuestManager::instance().CanStartQuest(dwQuestIndex))
@@ -470,7 +466,7 @@ namespace quest
 			return false;
 		}
 
-		if (pc.IsRunning()) 
+		if (pc.IsRunning())
 		{
 			if (test_server)
 			{
@@ -494,11 +490,9 @@ namespace quest
 			for (int i = 0; i < fMatch.size; i++)
 			{
 				if ( i != 0 ) {
-					//2012.05.14 <김용욱> : 퀘스트 매니저의 m_pCurrentPC가 바뀌는 경우가 발생하여,
-					//두개 이상의 스크립트를 실행시, 두번째 부터는 퀘스트 매니저의 PC 값을 새로 셋팅한다.
-					PC * pPC = CQuestManager::instance().GetPC(pc.GetID());		
+					PC * pPC = CQuestManager::instance().GetPC(pc.GetID());
 				}
-				
+
 				CQuestManager::ExecuteQuestScript(pc, fMatch.vdwQuesIndices[i], fMatch.viPCStates[i],
 					fMatch.vcodes[i], fMatch.vcode_sizes[i]);
 			}
@@ -507,7 +501,7 @@ namespace quest
 		if (fMiss.Matched())
 		{
 			QuestMapType& rmapEventOwnQuest = m_mapOwnQuest[EventIndex];
-			
+
 			for (int i = 0; i < fMiss.size; i++)
 			{
 				AStateScriptType& script = rmapEventOwnQuest[fMiss.vdwNewStartQuestIndices[i]][0];
@@ -544,10 +538,10 @@ namespace quest
 				{
 					bHandled = true;
 					CQuestManager::ExecuteQuestScript(
-							*CQuestManager::instance().GetCurrentPC(), 
+							*CQuestManager::instance().GetCurrentPC(),
 							dwQuestIndex,
-							QUEST_START_STATE_INDEX, 
-							it->second.GetCode(), 
+							QUEST_START_STATE_INDEX,
+							it->second.GetCode(),
 							it->second.GetSize());
 				}
 			}
@@ -574,10 +568,10 @@ namespace quest
 				bHandled = true;
 
 				CQuestManager::ExecuteQuestScript(
-						*CQuestManager::instance().GetCurrentPC(), 
-						itQuestMap->first, 
-						iPCState, 
-						itQuestScript->second.GetCode(), 
+						*CQuestManager::instance().GetCurrentPC(),
+						itQuestMap->first,
+						iPCState,
+						itQuestScript->second.GetCode(),
 						itQuestScript->second.GetSize());
 			}
 		}
@@ -591,7 +585,7 @@ namespace quest
 			return false;
 		}
 
-		if (pc.IsRunning()) 
+		if (pc.IsRunning())
 		{
 			if (test_server)
 			{
@@ -628,7 +622,6 @@ namespace quest
 			bHandled = false;
 		}
 
-
 		void operator()(PC::QuestInfoIterator& itPCQuest, NPC::QuestMapType::iterator& itQuestMap)
 		{
 			DWORD dwQuestIndex = itQuestMap->first;
@@ -644,11 +637,11 @@ namespace quest
 					if (CQuestManager::ExecuteQuestScript(
 								*pPC,
 								dwQuestIndex,
-								QUEST_START_STATE_INDEX, 
-								it->second.GetCode(), 
+								QUEST_START_STATE_INDEX,
+								it->second.GetCode(),
 								it->second.GetSize()))
 					{
-						sys_err("QUEST NOT END RUNNING on Login/Logout - %s", 
+						sys_err("QUEST NOT END RUNNING on Login/Logout - %s",
 								CQuestManager::instance().GetQuestNameByIndex(itQuestMap->first).c_str());
 
 						QuestState& rqs = *pPC->GetRunningQuestState();
@@ -681,12 +674,12 @@ namespace quest
 
 				if (CQuestManager::ExecuteQuestScript(
 							*pPC,
-							itQuestMap->first, 
-							iPCState, 
-							itQuestScript->second.GetCode(), 
+							itQuestMap->first,
+							iPCState,
+							itQuestScript->second.GetCode(),
 							itQuestScript->second.GetSize()))
 				{
-					sys_err("QUEST NOT END RUNNING on Login/Logout - %s", 
+					sys_err("QUEST NOT END RUNNING on Login/Logout - %s",
 							CQuestManager::instance().GetQuestNameByIndex(itQuestMap->first).c_str());
 
 					QuestState& rqs = *pPC->GetRunningQuestState();
@@ -708,7 +701,7 @@ namespace quest
 		}
 
 		/*
-		if (pc.IsRunning()) 
+		if (pc.IsRunning())
 		{
 			if (test_server)
 			{
@@ -737,7 +730,7 @@ namespace quest
 	{
 		const int EventIndex = QUEST_INFO_EVENT;
 
-		if (pc.IsRunning()) 
+		if (pc.IsRunning())
 		{
 			if (test_server)
 			{
@@ -786,7 +779,7 @@ namespace quest
 	{
 		const int EventIndex = QUEST_BUTTON_EVENT;
 
-		if (pc.IsRunning()) 
+		if (pc.IsRunning())
 		{
 			if (test_server)
 			{
@@ -805,7 +798,6 @@ namespace quest
 		QuestMapType & rmapEventOwnQuest = m_mapOwnQuest[EventIndex];
 		QuestMapType::iterator itQuestMap = rmapEventOwnQuest.find(quest_index);
 
-		// 그런 퀘스트가 없음
 		if (itQuestMap == rmapEventOwnQuest.end())
 			return false;
 
@@ -817,7 +809,6 @@ namespace quest
 		}
 		else
 		{
-			// 새로 시작할까요?
 			if (CQuestManager::instance().CanStartQuest(itQuestMap->first, pc) && HasStartState(itQuestMap->second))
 				iState = 0;
 			else
@@ -846,7 +837,7 @@ namespace quest
 				size_t i;
 				for (i = 0; i < itQuestMap->second[QUEST_START_STATE_INDEX].size(); ++i)
 				{
-					if (itQuestMap->second[QUEST_START_STATE_INDEX][i].when_condition.size() == 0 || 
+					if (itQuestMap->second[QUEST_START_STATE_INDEX][i].when_condition.size() == 0 ||
 							IsScriptTrue(&itQuestMap->second[QUEST_START_STATE_INDEX][i].when_condition[0], itQuestMap->second[QUEST_START_STATE_INDEX][i].when_condition.size()))
 						rAvailScript.push_back(&itQuestMap->second[QUEST_START_STATE_INDEX][i]);
 				}
@@ -883,7 +874,7 @@ namespace quest
 
 	bool NPC::OnChat(PC& pc)
 	{
-		if (pc.IsRunning()) 
+		if (pc.IsRunning())
 		{
 			if (test_server)
 			{
@@ -904,12 +895,10 @@ namespace quest
 		FuncMissChatEvent fMiss(AvailScript);
 		MatchingQuest(pc, m_mapOwnArgQuest[EventIndex], fMatch, fMiss);
 
-
 		if (AvailScript.empty())
 			return false;
 
 		{
-
 			ostringstream os;
 			os << "select(";
 			os << '"' << ScriptToString(AvailScript[0]->arg.c_str()) << '"';
@@ -962,9 +951,10 @@ namespace quest
 		else
 			return HandleEvent(pc, QUEST_ITEM_PICK_EVENT);
 	}
-	//독일 선물 기능 테스트
+
 	bool NPC::OnItemInformer(PC& pc, unsigned int vnum)
 	{
 		return HandleEvent(pc, QUEST_ITEM_INFORMER_EVENT);
 	}
 }
+
