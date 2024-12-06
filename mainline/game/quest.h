@@ -61,7 +61,7 @@ namespace quest
 		QUEST_EVENT_COUNT
 	};
 
-	enum 
+	enum
 	{
 		SUSPEND_STATE_NONE,
 		SUSPEND_STATE_PAUSE,
@@ -88,12 +88,11 @@ namespace quest
 
 	struct AArgScript
 	{
-		//
 		// script syntax example
-		// 
+
 		// when namespace.func.arg with when_condition begin ...
 		//                     ---      --------------
-		//                      |             + 
+		//                      |             +
 		std::string arg;  // <--+             |
 		std::vector<char> when_condition;// <-+
 		AStateScriptType script;
@@ -131,3 +130,4 @@ namespace quest
 	};
 }
 #endif
+
