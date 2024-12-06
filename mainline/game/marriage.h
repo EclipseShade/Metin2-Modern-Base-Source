@@ -24,11 +24,11 @@ namespace marriage
 
 		TWeddingInfo * pWeddingInfo;
 
-		TMarriage(DWORD pid1, DWORD pid2, int _love_point, time_t _marry_time, const char* name1, const char* name2) : 
-			m_pid1(pid1), 
-			m_pid2(pid2), 
+		TMarriage(DWORD pid1, DWORD pid2, int _love_point, time_t _marry_time, const char* name1, const char* name2) :
+			m_pid1(pid1),
+			m_pid2(pid2),
 			love_point(_love_point),
-			marry_time(_marry_time), 
+			marry_time(_marry_time),
 			is_married(false),
 			name1(name1),
 			name2(name2),
@@ -145,7 +145,7 @@ namespace marriage
 			}
 			return f;
 		}
-
 }
 
 #endif
+
