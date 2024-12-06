@@ -74,7 +74,7 @@ bool CInputProcessor::Process(LPDESC lpDesc, const void * c_pvOrig, int iBytes, 
 		BYTE bHeader = (BYTE) *(c_pData);
 		const char * c_pszName;
 
-		if (bHeader == 0) // 암호화 처리가 있으므로 0번 헤더는 스킵한다.
+		if (bHeader == 0)
 			iPacketLen = 1;
 		else if (!m_pPacketInfo->Get(bHeader, &iPacketLen, &c_pszName))
 		{
@@ -259,7 +259,6 @@ CInputHandshake::~CInputHandshake()
 	}
 }
 
-
 std::map<DWORD, CLoginSim *> g_sim;
 std::map<DWORD, CLoginSim *> g_simByPID;
 std::vector<TPlayerTable> g_vec_save;
@@ -270,23 +269,24 @@ ACMD(do_block_chat);
 
 int CInputHandshake::Analyze(LPDESC d, BYTE bHeader, const char * c_pData)
 {
-	if (bHeader == 10) // 엔터는 무시
+	if (bHeader == 10)
 		return 0;
 
 	if (bHeader == HEADER_CG_TEXT)
 	{
 #ifdef ENABLE_PORT_SECURITY
-		if (IsEmptyAdminPage() || !IsAdminPage(inet_ntoa(d->GetAddr().sin_addr))) { // block if adminpage is not set or if not admin
+		if (IsEmptyAdminPage() || !IsAdminPage(inet_ntoa(d->GetAddr().sin_addr))) // block if adminpage is not set or if not admin
+		{
 			sys_log(0, "SOCKET_CMD: BLOCK FROM(%s)", d->GetHostName());
 			d->SetPhase(PHASE_CLOSE);
-			
 			return 0;
 		}
 #endif
 		++c_pData;
 		const char * c_pSep;
 
-		if (!(c_pSep = strchr(c_pData, '\n'))) {
+		if (!(c_pSep = strchr(c_pData, '\n')))
+		{
 			d->SetPhase(PHASE_CLOSE); // @fixme187
 			return 0; // @fixme187
 		}
@@ -368,7 +368,7 @@ int CInputHandshake::Analyze(LPDESC d, BYTE bHeader, const char * c_pData)
 		else if (!stBuf.compare("CHECK_P2P_CONNECTIONS"))
 		{
 			std::ostringstream oss(std::ostringstream::out);
-			
+
 			oss << "P2P CONNECTION NUMBER : " << P2P_MANAGER::instance().GetDescCount() << "\n";
 			std::string hostNames;
 			P2P_MANAGER::Instance().GetP2PHostNames(hostNames);
@@ -393,8 +393,8 @@ int CInputHandshake::Analyze(LPDESC d, BYTE bHeader, const char * c_pData)
 		else if (!stBuf.compare(0,15,"DELETE_AWARDID "))
 			{
 				char szTmp[64];
-				std::string msg = stBuf.substr(15,26);	// item_award의 id범위?
-				
+				std::string msg = stBuf.substr(15,26);
+
 				TPacketDeleteAwardID p;
 				p.dwID = (DWORD)(atoi(msg.c_str()));
 				snprintf(szTmp,sizeof(szTmp),"Sent to DB cache to delete ItemAward, id: %d",p.dwID);
@@ -406,10 +406,9 @@ int CInputHandshake::Analyze(LPDESC d, BYTE bHeader, const char * c_pData)
 		else
 		{
 			stResult = "UNKNOWN";
-			
+
 			if (d->IsAdminMode())
 			{
-				// 어드민 명령들
 				if (!stBuf.compare(0, 7, "NOTICE "))
 				{
 					std::string msg = stBuf.substr(7, 50);
@@ -445,8 +444,7 @@ int CInputHandshake::Analyze(LPDESC d, BYTE bHeader, const char * c_pData)
 				{
 					std::string msg = stBuf.substr(3, LOGIN_MAX_LEN);
 
-dev_log(LOG_DEB0, "DC : '%s'", msg.c_str());
-
+					sys_log(1, "DC : '%s'", msg.c_str());
 					TPacketGGDisconnect pgg;
 
 					pgg.bHeader = HEADER_GG_DISCONNECT;
@@ -454,7 +452,6 @@ dev_log(LOG_DEB0, "DC : '%s'", msg.c_str());
 
 					P2P_MANAGER::instance().Send(&pgg, sizeof(TPacketGGDisconnect));
 
-					// delete login key
 					{
 						TPacketDC p;
 						strlcpy(p.login, msg.c_str(), sizeof(p.login));
@@ -567,7 +564,6 @@ dev_log(LOG_DEB0, "DC : '%s'", msg.c_str());
 					std::string strPrivEmpire;
 					is >> strPrivEmpire >> empire >> type >> value >> duration;
 
-					// 최대치 10배
 					value = MINMAX(0, value, 1000);
 					stResult = "PRIV_EMPIRE FAIL";
 
@@ -582,10 +578,9 @@ dev_log(LOG_DEB0, "DC : '%s'", msg.c_str());
 						{
 							stResult = "PRIV_EMPIRE SUCCEED";
 
-							// 시간 단위로 변경
 							duration = duration * (60 * 60);
 
-							sys_log(0, "_give_empire_privileage(empire=%d, type=%d, value=%d, duration=%d) by web", 
+							sys_log(0, "_give_empire_privileage(empire=%d, type=%d, value=%d, duration=%d) by web",
 									empire, type, value, duration);
 							CPrivManager::instance().RequestGiveEmpirePriv(empire, type, value, duration);
 						}
@@ -617,13 +612,11 @@ dev_log(LOG_DEB0, "DC : '%s'", msg.c_str());
 	{
 		if (!guild_mark_server)
 		{
-			// 끊어버려! - 마크 서버가 아닌데 마크를 요청하려고?
 			sys_err("Guild Mark login requested but i'm not a mark server!");
 			d->SetPhase(PHASE_CLOSE);
 			return 0;
 		}
 
-		// 무조건 인증 --;
 		sys_log(0, "MARK_SERVER: Login");
 		d->SetPhase(PHASE_LOGIN);
 		return 0;
@@ -671,9 +664,8 @@ dev_log(LOG_DEB0, "DC : '%s'", msg.c_str());
 	}
 #endif // _IMPROVED_PACKET_ENCRYPTION_
 	else
-		sys_err("Handshake phase does not handle packet %d (fd %d)", bHeader, d->GetSocket());
+		sys_err("Handshake phase does not handle packet %d (fd %d) from %s:%u", bHeader, d->GetSocket(), d->GetHostName(), d->GetPort()); //@warme016 host and port
 
 	return 0;
 }
-
 
