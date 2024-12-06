@@ -18,13 +18,13 @@ enum eFileUpdatedOptions
 
 // TODO : in FreeBSD boost function doesn`t work with boost bind
 // so currently we only support for static function ptr only
-//typedef boost::function< void ( const std::string&, eFileUpdatedOptions ) > PFN_FileChangeListener;      
+//typedef boost::function< void ( const std::string&, eFileUpdatedOptions ) > PFN_FileChangeListener;
 typedef void (* PFN_FileChangeListener )(const std::string&, eFileUpdatedOptions);
 
 struct IFileMonitor
 {
 	virtual void Update		(DWORD dwPulses) = 0;
-	virtual void AddWatch	(const std::string& strFileName, PFN_FileChangeListener pListenerFunc) = 0; 
+	virtual void AddWatch	(const std::string& strFileName, PFN_FileChangeListener pListenerFunc) = 0;
 };
 
 #endif // IFILEMONITOR_INCLUDED
