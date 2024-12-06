@@ -15,7 +15,7 @@ enum
 	GUILD_BASE_POWER = 400,
 	GUILD_POWER_PER_SKILL_LEVEL = 200,
 	GUILD_POWER_PER_LEVEL = 100,
-	GUILD_MINIMUM_LEADERSHIP = 40, 
+	GUILD_MINIMUM_LEADERSHIP = 40,
 	GUILD_WAR_MIN_MEMBER_COUNT = 8,
 	GUILD_LADDER_POINT_PER_LEVEL = 1000,
 	GUILD_CREATE_ITEM_VNUM = 70101,
@@ -26,27 +26,25 @@ struct SGuildMaster
 	DWORD pid;
 };
 
-
 typedef struct SGuildMember
 {
-	DWORD pid; // player 테이블의 id; primary key
-	BYTE grade; // 길드상의 플레이어의 계급 1 to 15 (1이 짱)
+	DWORD pid;
+	BYTE grade;
 	BYTE is_general;
 	BYTE job;
 	BYTE level;
-	DWORD offer_exp; // 공헌한 경험치
+	DWORD offer_exp;
 	BYTE _dummy;
 
 	std::string name;
 
 	SGuildMember(LPCHARACTER ch, BYTE grade, DWORD offer_exp);
 	SGuildMember(DWORD pid, BYTE grade, BYTE is_general, BYTE job, BYTE level, DWORD offer_exp, char* name);
-
 } TGuildMember;
 
 #pragma pack(1)
 typedef struct SGuildMemberPacketData
-{   
+{
 	DWORD pid;
 	BYTE grade;
 	BYTE is_general;
@@ -72,7 +70,7 @@ typedef struct packet_guild_sub_info
 
 typedef struct SGuildGrade
 {
-	char grade_name[GUILD_GRADE_NAME_MAX_LEN+1]; // 8+1 길드장, 길드원 등의 이름
+	char grade_name[GUILD_GRADE_NAME_MAX_LEN+1];
 	BYTE auth_flag;
 } TGuildGrade;
 
@@ -214,7 +212,7 @@ class CGuild
 		void		SaveSkill();
 		void		SaveMember(DWORD pid);
 
-		int		GetMaxMemberCount(); 
+		int		GetMaxMemberCount();
 		int		GetMemberCount() { return m_member.size(); }
 		int		GetTotalLevel() const;
 
@@ -255,8 +253,8 @@ class CGuild
 		void		SkillRecharge();
 		bool		ChargeSP(LPCHARACTER ch, int iSP);
 
-		void		Chat(const char* c_pszText); 
-		void		P2PChat(const char* c_pszText); // 길드 채팅
+		void		Chat(const char* c_pszText);
+		void		P2PChat(const char* c_pszText);
 
 		void		SkillUsableChange(DWORD dwSkillVnum, bool bUsable);
 		void		AdvanceLevel(int iLevel);
@@ -266,7 +264,7 @@ class CGuild
 		void		RequestWithdrawMoney(LPCHARACTER ch, int iGold);
 
 		void		RecvMoneyChange(int iGold);
-		void		RecvWithdrawMoneyGive(int iChangeGold); // bGive==1 이면 길드장에게 주는 걸 시도하고 성공실패를 디비에게 보낸다
+		void		RecvWithdrawMoneyGive(int iChangeGold);
 
 		int		GetGuildMoney() const	{ return m_data.gold; }
 
@@ -277,7 +275,7 @@ class CGuild
 		int		GetGuildWarState(DWORD guild_id);
 		bool		CanStartWar(BYTE bGuildWarType);
 		DWORD		GetWarStartTime(DWORD guild_id);
-		bool		UnderWar(DWORD guild_id); // 전쟁중인가?
+		bool		UnderWar(DWORD guild_id);
 		DWORD		UnderAnyWar(BYTE bType = GUILD_WAR_TYPE_MAX_NUM);
 
 		// War map relative
@@ -292,11 +290,11 @@ class CGuild
 		// War state relative
 		void		NotifyGuildMaster(const char* msg);
 		void		RequestDeclareWar(DWORD guild_id, BYTE type);
-		void		RequestRefuseWar(DWORD guild_id); 
+		void		RequestRefuseWar(DWORD guild_id);
 
-		bool		DeclareWar(DWORD guild_id, BYTE type, BYTE state); 
-		void		RefuseWar(DWORD guild_id); 
-		bool		WaitStartWar(DWORD guild_id); 
+		bool		DeclareWar(DWORD guild_id, BYTE type, BYTE state);
+		void		RefuseWar(DWORD guild_id);
+		bool		WaitStartWar(DWORD guild_id);
 		bool		CheckStartWar(DWORD guild_id);	// check if StartWar method fails (call it before StartWar)
 		void		StartWar(DWORD guild_id);
 		void		EndWar(DWORD guild_id);
@@ -320,27 +318,11 @@ class CGuild
 		bool		HasLand();
 
 		// GUILD_JOIN_BUG_FIX
-		/// character 에게 길드가입 초대를 한다.
-		/**
-		 * @param	pchInviter 초대한 character.
-		 * @param	pchInvitee 초대할 character.
-		 *
-		 * 초대하거나 받을수 없는 상태라면 해당하는 채팅 메세지를 전송한다.
-		 */
+
 		void		Invite( LPCHARACTER pchInviter, LPCHARACTER pchInvitee );
 
-		/// 길드초대에 대한 상대 character 의 수락을 처리한다.
-		/**
-		 * @param	pchInvitee 초대받은 character
-		 *
-		 * 길드에 가입가능한 상태가 아니라면 해당하는 채팅 메세지를 전송한다.
-		 */
 		void		InviteAccept( LPCHARACTER pchInvitee );
 
-		/// 길드초대에 대한 상대 character 의 거부를 처리한다.
-		/**
-		 * @param	dwPID 초대받은 character 의 PID
-		 */
 		void		InviteDeny( DWORD dwPID );
 		// END_OF_GUILD_JOIN_BUG_FIX
 
@@ -377,27 +359,22 @@ class CGuild
 		bool	abSkillUsable[GUILD_SKILL_COUNT];
 
 		// GUILD_JOIN_BUG_FIX
-		/// 길드 가입을 할 수 없을 경우의 에러코드.
+
 		enum GuildJoinErrCode {
-			GERR_NONE			= 0,	///< 처리성공
-			GERR_WITHDRAWPENALTY,		///< 탈퇴후 가입가능한 시간이 지나지 않음
-			GERR_COMMISSIONPENALTY,		///< 해산후 가입가능한 시간이 지나지 않음
-			GERR_ALREADYJOIN,			///< 길드가입 대상 캐릭터가 이미 길드에 가입해 있음
-			GERR_GUILDISFULL,			///< 길드인원 제한 초과
-			GERR_GUILD_IS_IN_WAR,		///< 길드가 현재 전쟁중
-			GERR_INVITE_LIMIT,			///< 길드원 가입 제한 상태
-			GERR_MAX				///< Error code 최고치. 이 앞에 Error code 를 추가한다.
+			GERR_NONE			= 0,
+			GERR_WITHDRAWPENALTY,
+			GERR_COMMISSIONPENALTY,
+			GERR_ALREADYJOIN,
+			GERR_GUILDISFULL,
+			GERR_GUILD_IS_IN_WAR,
+			GERR_INVITE_LIMIT,
+			GERR_MAX
 		};
 
-		/// 길드에 가입 가능한 조건을 검사한다.
-		/**
-		 * @param [in]	pchInvitee 초대받는 character
-		 * @return	GuildJoinErrCode
-		 */
 		GuildJoinErrCode	VerifyGuildJoinableCondition( const LPCHARACTER pchInvitee );
 
 		typedef std::map< DWORD, LPEVENT >	EventMap;
-		EventMap	m_GuildInviteEventMap;	///< 길드 초청 Event map. key: 초대받은 캐릭터의 PID
+		EventMap	m_GuildInviteEventMap;
 		// END_OF_GUILD_JOIN_BUG_FIX
 };
 
