@@ -2,9 +2,8 @@
 
 #include "char.h"
 
-TJobInitialPoints JobInitialPoints[JOB_MAX_NUM] = 
+TJobInitialPoints JobInitialPoints[JOB_MAX_NUM] =
 /*
-   {
    int st, ht, dx, iq;
    int max_hp, max_sp;
    int hp_per_ht, sp_per_iq;
@@ -13,8 +12,7 @@ TJobInitialPoints JobInitialPoints[JOB_MAX_NUM] =
    int max_stamina;
    int stamina_per_con;
    int stamina_per_lv_begin, stamina_per_lv_end;
-   }
- */
+*/
 {
 	// str con dex int 초기HP 초기SP  CON/HP INT/SP  HP랜덤/lv   MP랜덤/lv  초기stam  stam/con stam/lv
 	{   6,  4,  3,  3,  600,   200,     40,    20,    36, 44,     18, 22,     800,      5,      1, 3  }, // JOB_WARRIOR  16
@@ -22,40 +20,34 @@ TJobInitialPoints JobInitialPoints[JOB_MAX_NUM] =
 	{   5,  3,  3,  5,  650,   200,     40,    20,    36, 44,     18, 22,     800,      5,      1, 3  }, // JOB_SURA	 16
 	{   3,  4,  3,  6,  700,   200,     40,    20,    36, 44,     18, 22,     800,      5,      1, 3  }, // JOB_SHAMANa  16
 #ifdef ENABLE_WOLFMAN_CHARACTER
-	{   6,  6,  2,  2,  600,   200,     40,    20,    36, 44,     18, 22,     800,      5,      1, 3  }, // JOB_WOLFMAN  16  // TODO: 4개능력치 초기값 외에 다른 스탯 필요 (기획자한테 요청)
+	{   6,  6,  2,  2,  600,   200,     40,    20,    36, 44,     18, 22,     800,      5,      1, 3  }, // JOB_WOLFMAN  16
 #endif
 };
 
 const TMobRankStat MobRankStats[MOB_RANK_MAX_NUM] =
-/*
-   {
-   int         iGoldPercent;
-   }
- */
+/* { int         iGoldPercent; } */
 {
-	{  20,  }, // MOB_RANK_PAWN, 
-	{  20,  }, // MOB_RANK_S_PAWN, 
-	{  25,  }, // MOB_RANK_KNIGHT, 
-	{  30,  }, // MOB_RANK_S_KNIGHT, 
-	{  50,  }, // MOB_RANK_BOSS, 
+	{  20,  }, // MOB_RANK_PAWN,
+	{  20,  }, // MOB_RANK_S_PAWN,
+	{  25,  }, // MOB_RANK_KNIGHT,
+	{  30,  }, // MOB_RANK_S_KNIGHT,
+	{  50,  }, // MOB_RANK_BOSS,
 	{ 100,  }  // MOB_RANK_KING,
 };
 
 TBattleTypeStat BattleTypeStats[BATTLE_TYPE_MAX_NUM] =
 /*
-   {
    int         AttGradeBias;
    int         DefGradeBias;
    int         MagicAttGradeBias;
    int         MagicDefGradeBias;
-   }
- */
+*/
 {
-	{	  0,	  0,	  0,	-10	}, // BATTLE_TYPE_MELEE, 
+	{	  0,	  0,	  0,	-10	}, // BATTLE_TYPE_MELEE,
 	{	 10,	-20,	-10,	-15	}, // BATTLE_TYPE_RANGE,
-	{	 -5,	 -5,	 10,	 10	}, // BATTLE_TYPE_MAGIC,  
+	{	 -5,	 -5,	 10,	 10	}, // BATTLE_TYPE_MAGIC,
 	{	  0,	  0,	  0,	  0	}, // BATTLE_TYPE_SPECIAL,
-	{	 10,	-10,	  0,	-15	}, // BATTLE_TYPE_POWER,  
+	{	 10,	-10,	  0,	-15	}, // BATTLE_TYPE_POWER,
 	{	-10,	 10,	-10,	  0	}, // BATTLE_TYPE_TANKER,
 	{	 20,	-20,	  0,	-10	}, // BATTLE_TYPE_SUPER_POWER,
 	{	-20,	 20,	-10,	  0	}, // BATTLE_TYPE_SUPER_TANKER,
@@ -191,8 +183,6 @@ const DWORD exp_table_common[PLAYER_EXP_TABLE_MAX + 1] =
 const int * aiPercentByDeltaLev = NULL;
 const int * aiPercentByDeltaLevForBoss = NULL;
 
-// 적과 나와의 레벨차이에 의한 계산에 사용되는 테이블
-// MIN(MAX_EXP_DELTA_OF_LEV - 1, (적렙 + 15) - 내렙))
 const int aiPercentByDeltaLevForBoss_euckr[MAX_EXP_DELTA_OF_LEV] =
 {
 	1,      // -15  0
@@ -227,8 +217,6 @@ const int aiPercentByDeltaLevForBoss_euckr[MAX_EXP_DELTA_OF_LEV] =
 	170,        // 14   29
 	180         // 15   30
 };
-
-
 
 const int aiPercentByDeltaLev_euckr[MAX_EXP_DELTA_OF_LEV] =
 {
@@ -265,7 +253,7 @@ const int aiPercentByDeltaLev_euckr[MAX_EXP_DELTA_OF_LEV] =
 	180,    //  15  30
 };
 
-const DWORD party_exp_distribute_table[PLAYER_MAX_LEVEL_CONST + 1] = 
+const DWORD party_exp_distribute_table[PLAYER_MAX_LEVEL_CONST + 1] =
 {
 	0,
 	10,		10,		10,		10,		15,		15,		20,		25,		30,		40,		// 1 - 10
@@ -282,7 +270,7 @@ const DWORD party_exp_distribute_table[PLAYER_MAX_LEVEL_CONST + 1] =
 	12000,	12000,	12000,	12000,	12000,	12000,	12000,	12000,	12000,	12000,	// 111 - 120
 };
 
-Coord aArroundCoords[ARROUND_COORD_MAX_NUM] = 
+Coord aArroundCoords[ARROUND_COORD_MAX_NUM] =
 {
 	{	     0,	      0	    },
 	{        0,      50     },
@@ -472,10 +460,9 @@ const DWORD guild_exp_table[GUILD_MAX_LEVEL+1] =
 	42000000UL
 };
 
-// INTERNATIONAL_VERSION 길드경험치
 const DWORD guild_exp_table2[GUILD_MAX_LEVEL+1] =
 {
-	0,	
+	0,
 	6000UL,
 	18000UL,
 	36000UL,
@@ -497,7 +484,6 @@ const DWORD guild_exp_table2[GUILD_MAX_LEVEL+1] =
 	4000000UL,
 	16800000UL
 };
-// END_OF_INTERNATIONAL_VERSION 길드경험치
 
 const int aiMobEnchantApplyIdx[MOB_ENCHANTS_MAX_NUM] =
 {
@@ -507,6 +493,9 @@ const int aiMobEnchantApplyIdx[MOB_ENCHANTS_MAX_NUM] =
 	APPLY_STUN_PCT,
 	APPLY_CRITICAL_PCT,
 	APPLY_PENETRATE_PCT,
+#if defined(ENABLE_WOLFMAN_CHARACTER) && !defined(USE_MOB_BLEEDING_AS_POISON)
+	APPLY_BLEEDING_PCT,
+#endif
 };
 
 const int aiMobResistsApplyIdx[MOB_RESISTS_MAX_NUM] =
@@ -522,6 +511,12 @@ const int aiMobResistsApplyIdx[MOB_RESISTS_MAX_NUM] =
 	APPLY_RESIST_MAGIC,
 	APPLY_RESIST_WIND,
 	APPLY_POISON_REDUCE,
+#if defined(ENABLE_WOLFMAN_CHARACTER) && !defined(USE_MOB_CLAW_AS_DAGGER)
+	APPLY_RESIST_CLAW,
+#endif
+#if defined(ENABLE_WOLFMAN_CHARACTER) && !defined(USE_MOB_BLEEDING_AS_POISON)
+	APPLY_BLEEDING_REDUCE,
+#endif
 };
 
 const int aiSocketPercentByQty[5][4] =
@@ -543,6 +538,9 @@ const int aiWeaponSocketQty[WEAPON_NUM_TYPES] =
 	3, // WEAPON_FAN,
 	0, // WEAPON_ARROW,
 	0, // WEAPON_MOUNT_SPEAR
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	3, // WEAPON_CLAW
+#endif
 };
 
 const int aiArmorSocketQty[ARMOR_NUM_TYPES] =
@@ -559,11 +557,7 @@ TItemAttrMap g_map_itemAttr;
 TItemAttrMap g_map_itemRare;
 
 const TApplyInfo aApplyInfo[MAX_APPLY_NUM] =
-/*
-{
-   DWORD dwPointType;
-}
- */
+/* { DWORD dwPointType; }  */
 {
 	// Point Type
 	{ POINT_NONE,			},   // APPLY_NONE,		0
@@ -645,21 +639,19 @@ const TApplyInfo aApplyInfo[MAX_APPLY_NUM] =
 	{ POINT_NORMAL_HIT_DEFEND_BONUS	},	// 74
 	// END_OF_DEFEND_BONUS_ATTRIBUTES
 
-	// PC_BANG_ITEM_ADD
 	{ POINT_PC_BANG_EXP_BONUS	},		// 75
 	{ POINT_PC_BANG_DROP_BONUS	},		// 76
-	// END_PC_BANG_ITEM_ADD
 
-	{ POINT_NONE,		},				// 77 사용시 HP 소모 APPLY_EXTRACT_HP_PCT
+	{ POINT_NONE,		},
 
-	{ POINT_RESIST_WARRIOR,		},		// 78 무사에게 저항 APPLY_RESIST_WARRIOR
-	{ POINT_RESIST_ASSASSIN,	},		// 79 자객에게 저항 APPLY_RESIST_ASSASSIN
-	{ POINT_RESIST_SURA,		},		// 80 수라에게 저항 APPLY_RESIST_SURA
-	{ POINT_RESIST_SHAMAN,		},		// 81 무당에게 저항 APPLY_RESIST_SHAMAN
-	{ POINT_ENERGY				},		// 82 기력 
-	{ POINT_DEF_GRADE			},		// 83 방어력. DEF_GRADE_BONUS는 클라에서 두배로 보여지는 의도된 버그(...)가 있다.
-	{ POINT_COSTUME_ATTR_BONUS	},		// 84 코스튬에 붙은 속성에 대해서만 보너스를 주는 기력
-	{ POINT_MAGIC_ATT_BONUS_PER },			// 85 마법 공격력 +x%
+	{ POINT_RESIST_WARRIOR,		},
+	{ POINT_RESIST_ASSASSIN,	},
+	{ POINT_RESIST_SURA,		},
+	{ POINT_RESIST_SHAMAN,		},
+	{ POINT_ENERGY				},
+	{ POINT_DEF_GRADE			},
+	{ POINT_COSTUME_ATTR_BONUS	},
+	{ POINT_MAGIC_ATT_BONUS_PER },
 	{ POINT_MELEE_MAGIC_ATT_BONUS_PER		},			// 86 APPLY_MELEE_MAGIC_ATTBONUS_PER
 	{ POINT_RESIST_ICE,			},   // APPLY_RESIST_ICE,	87
 	{ POINT_RESIST_EARTH,		},   // APPLY_RESIST_EARTH,	88
@@ -675,20 +667,18 @@ const TApplyInfo aApplyInfo[MAX_APPLY_NUM] =
 
 const int aiItemMagicAttributePercentHigh[ITEM_ATTRIBUTE_MAX_LEVEL] =
 {
-	//25, 25, 40, 8, 2,
 	30, 40, 20, 8, 2
 };
 
 const int aiItemMagicAttributePercentLow[ITEM_ATTRIBUTE_MAX_LEVEL] =
 {
-	//45, 25, 20, 10, 0,
 	50, 40, 10, 0, 0
 };
 
 // ADD_ITEM_ATTRIBUTE
 const int aiItemAttributeAddPercent[ITEM_ATTRIBUTE_MAX_NUM] =
 {
-	100, 80, 60, 50, 30, 0, 0, 
+	100, 80, 60, 50, 30, 0, 0,
 };
 // END_OF_ADD_ITEM_ATTRIBUTE
 
@@ -717,17 +707,17 @@ const int aiSkillBookCountForLevelUp[10] =
 // ADD_GRANDMASTER_SKILL
 const int aiGrandMasterSkillBookCountForLevelUp[10] =
 {
-	3, 3, 5, 5, 7, 7, 10, 10, 10, 20, 
+	3, 3, 5, 5, 7, 7, 10, 10, 10, 20,
 };
 
-const int aiGrandMasterSkillBookMinCount[10] = 
+const int aiGrandMasterSkillBookMinCount[10] =
 {
-//	1, 1, 3, 5, 10, 15, 20, 30, 40, 50, 
+//	1, 1, 3, 5, 10, 15, 20, 30, 40, 50,
 //	3, 3, 5, 5, 10, 10, 15, 15, 20, 30
 	1, 1, 1, 2,  2,  3,  3,  4,  5,  6
 };
 
-const int aiGrandMasterSkillBookMaxCount[10] = 
+const int aiGrandMasterSkillBookMaxCount[10] =
 {
 //	6, 15, 30, 45, 60, 80, 100, 120, 160, 200,
 //	6, 10, 15, 20, 30, 40, 50, 60, 70, 80
@@ -740,14 +730,13 @@ const int CHN_aiPartyBonusExpPercentByMemberCount[9] =
 	0, 0, 12, 18, 26, 40, 53, 70, 100
 };
 
-
 // UPGRADE_PARTY_BONUS
 const int KOR_aiPartyBonusExpPercentByMemberCount[9] =
 {
-	0, 
-	0, 
-	30, // 66% * 2 - 100  
-	60, // 53% * 3 - 100 
+	0,
+	0,
+	30, // 66% * 2 - 100
+	60, // 53% * 3 - 100
 	75, // 44% * 4 - 100
 	90, // 38% * 5 - 100
 	105, // 34% * 6 - 100
@@ -757,14 +746,14 @@ const int KOR_aiPartyBonusExpPercentByMemberCount[9] =
 
 const int KOR_aiUniqueItemPartyBonusExpPercentByMemberCount[9] =
 {
-	0, 
-	0, 
-	15*2, 
-	14*3, 
-	13*4, 
-	12*5, 
-	11*6, 
-	10*7, 
+	0,
+	0,
+	15*2,
+	14*3,
+	13*4,
+	12*5,
+	11*6,
+	10*7,
 	10*8,
 };
 // END_OF_UPGRADE_PARTY_BONUS
@@ -909,36 +898,27 @@ TGuildWarInfo KOR_aGuildWarInfo[GUILD_WAR_TYPE_MAX_NUM] =
 	{ 111,      0,      100,    50,     0,      10      },
 };
 
-//
-// 악세서리 소켓용 수치들
-//
-
-// 다이아몬드로 소켓을 추가할 때 확률
 const int aiAccessorySocketAddPct[ITEM_ACCESSORY_SOCKET_MAX_NUM] =
 {
 	50, 50, 50
 };
 
-// 악세서리 수치 값의 몇%만큼의 성능을 추가하는지
-const int aiAccessorySocketEffectivePct[ITEM_ACCESSORY_SOCKET_MAX_NUM + 1] = 
+const int aiAccessorySocketEffectivePct[ITEM_ACCESSORY_SOCKET_MAX_NUM + 1] =
 {
 	0, 10, 20, 40
 };
 
-// 소켓 지속시간 24, 12, 6
 const int aiAccessorySocketDegradeTime[ITEM_ACCESSORY_SOCKET_MAX_NUM + 1] =
 {
 	0, 3600 * 24, 3600 * 12, 3600 * 6
 };
 
-// 소켓 장착 성공률
 const int aiAccessorySocketPutPct[ITEM_ACCESSORY_SOCKET_MAX_NUM + 1] =
 {
 	90, 80, 70, 0
 };
 // END_OF_ACCESSORY_REFINE
 
-// from import_item_proto.c
 typedef struct SValueName
 {
     const char *	c_pszName;
@@ -1014,7 +994,7 @@ TValueName c_aApplyTypeNames[] =
     { "ATT_BONUS_TO_MOB",	APPLY_ATTBONUS_MONSTER  },
     { "MALL_ATTBONUS",	APPLY_MALL_ATTBONUS	},
     { "MALL_EXPBONUS",	APPLY_MALL_EXPBONUS	},
-    { "MALL_DEFBONUS",	APPLY_MALL_DEFBONUS	},  
+    { "MALL_DEFBONUS",	APPLY_MALL_DEFBONUS	},
     { "MALL_ITEMBONUS",	APPLY_MALL_ITEMBONUS	},
     { "MALL_GOLDBONUS", APPLY_MALL_GOLDBONUS	},
     { "MAX_HP_PCT",	APPLY_MAX_HP_PCT	},
@@ -1023,6 +1003,7 @@ TValueName c_aApplyTypeNames[] =
     { "NORMAL_HIT_DAMAGE_BONUS",APPLY_NORMAL_HIT_DAMAGE_BONUS	},
     { "SKILL_DEFEND_BONUS",	APPLY_SKILL_DEFEND_BONUS	},
     { "NORMAL_HIT_DEFEND_BONUS",APPLY_NORMAL_HIT_DEFEND_BONUS	},
+
     { "PCBANG_EXP_BONUS", APPLY_PC_BANG_EXP_BONUS	},
     { "PCBANG_DROP_BONUS", APPLY_PC_BANG_DROP_BONUS	},
 
@@ -1030,16 +1011,21 @@ TValueName c_aApplyTypeNames[] =
     { "RESIST_ASSASSIN",	APPLY_RESIST_ASSASSIN},
     { "RESIST_SURA",		APPLY_RESIST_SURA},
     { "RESIST_SHAMAN",	APPLY_RESIST_SHAMAN},
-    // by mhh game/affect.h 정의되어있음. INFINITE_AFFECT_DURATION = 0x1FFFFFFF
     { "INFINITE_AFFECT_DURATION", 0x1FFFFFFF	},
-	{ "ENERGY", APPLY_ENERGY },		//	기력
-	{ "COSTUME_ATTR_BONUS", APPLY_COSTUME_ATTR_BONUS },		//	기력
+	{ "ENERGY", APPLY_ENERGY },
+	{ "COSTUME_ATTR_BONUS", APPLY_COSTUME_ATTR_BONUS },
 	{ "MAGIC_ATTBONUS_PER",	APPLY_MAGIC_ATTBONUS_PER	},
     { "MELEE_MAGIC_ATTBONUS_PER",	APPLY_MELEE_MAGIC_ATTBONUS_PER	},
-    
+
+#ifdef ENABLE_WOLFMAN_CHARACTER
+	{ "BLEEDING_REDUCE",APPLY_BLEEDING_REDUCE },
+	{ "BLEEDING_PCT",APPLY_BLEEDING_PCT },
+	{ "ATT_BONUS_TO_WOLFMAN",APPLY_ATTBONUS_WOLFMAN },
+	{ "RESIST_WOLFMAN",APPLY_RESIST_WOLFMAN },
+	{ "RESIST_CLAW",APPLY_RESIST_CLAW },
+#endif
     { NULL,		0			}
 };
-// from import_item_proto.c
 
 long FN_get_apply_type(const char *apply_type_string)
 {
@@ -1051,3 +1037,4 @@ long FN_get_apply_type(const char *apply_type_string)
 	}
 	return 0;
 }
+
