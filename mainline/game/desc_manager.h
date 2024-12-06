@@ -69,7 +69,7 @@ class DESC_MANAGER : public singleton<DESC_MANAGER>
 		void			SendClientPackageSDBToLoadMap( LPDESC desc, const char* pMapName );
 #ifdef __FreeBSD__
 		static void		NotifyClientPackageFileChanged( const std::string& fileName, eFileUpdatedOptions eUpdateOption );
-#endif 
+#endif
 
 	private:
 		bool				m_bDisconnectInvalidCRC;
@@ -98,3 +98,4 @@ class DESC_MANAGER : public singleton<DESC_MANAGER>
 };
 
 #endif
+
