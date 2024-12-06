@@ -21,15 +21,14 @@ struct CUBE_DATA
 	std::vector<CUBE_VALUE>	item;
 	std::vector<CUBE_VALUE>	reward;
 	int						percent;
-	unsigned int			gold;		// 제조시 필요한 금액
+	unsigned int			gold;
 
 	CUBE_DATA();
 
 	bool		can_make_item (LPITEM *items, WORD npc_vnum);
 	CUBE_VALUE*	reward_value ();
 	void		remove_material (LPCHARACTER ch);
-}; 
-
+};
 
 void Cube_init ();
 bool Cube_load (const char *file);
