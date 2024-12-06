@@ -12,22 +12,22 @@ class CLoginData
 		void            SetKey(DWORD dwKey);
 		DWORD           GetKey();
 
-		void		SetLogin(const char * c_pszLogin);
+		void			SetLogin(const char * c_pszLogin);
 		const char *	GetLogin();
 
-		void            SetBillType(BYTE bType);
-		DWORD           GetBillID();
+		void			SetBillType(BYTE bType);
+		DWORD			GetBillID();
 
-		void            SetBillID(DWORD dwID);
-		BYTE            GetBillType();
+		void			SetBillID(DWORD dwID);
+		BYTE			GetBillType();
 
-		void            SetConnectedPeerHandle(DWORD dwHandle);
-		DWORD		GetConnectedPeerHandle();
+		void			SetConnectedPeerHandle(DWORD dwHandle);
+		DWORD			GetConnectedPeerHandle();
 
-		void            SetLogonTime();
-		DWORD		GetLogonTime();
+		void			SetLogonTime();
+		DWORD			GetLogonTime();
 
-		void		SetIP(const char * c_pszIP);
+		void			SetIP(const char * c_pszIP);
 		const char *	GetIP();
 
 		void		SetRemainSecs(long l);
@@ -40,9 +40,8 @@ class CLoginData
 		bool		IsDeleted();
 
 		void		SetPremium(int * paiPremiumTimes);
-		int		GetPremium(BYTE type);
+		int			GetPremium(BYTE type);
 		int *		GetPremiumPtr();
-
 
 	private:
 		DWORD           m_dwKey;
@@ -51,15 +50,13 @@ class CLoginData
 		DWORD           m_dwBillID;
 		DWORD           m_dwConnectedPeerHandle;
 		DWORD           m_dwLogonTime;
-		long		m_lRemainSecs;
-		char		m_szIP[MAX_HOST_LENGTH+1];
-		bool		m_bBilling;
-		bool		m_bDeleted;
-		std::string	m_stLogin;
-		int		m_aiPremiumTimes[PREMIUM_MAX_NUM];
-
-		
-		
+		long			m_lRemainSecs;
+		char			m_szIP[MAX_HOST_LENGTH+1];
+		bool			m_bBilling;
+		bool			m_bDeleted;
+		std::string		m_stLogin;
+		int				m_aiPremiumTimes[PREMIUM_MAX_NUM];
 };
 
 #endif
+
