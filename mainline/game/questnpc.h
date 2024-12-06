@@ -20,13 +20,12 @@ namespace quest
 	class NPC
 	{
 		public:
-			// 인자가 없는 스크립트들
+
 			// first: state number
 			typedef map<int, AStateScriptType> AQuestScriptType;
 			// first: quest number
 			typedef map<unsigned int, AQuestScriptType> QuestMapType;
 
-			// 인자가 있는 스크립트들
 			// first: state number
 			typedef map<int, vector<AArgScript> > AArgQuestScriptType;
 			// first: quest number
@@ -68,7 +67,7 @@ namespace quest
 			bool	OnChat(PC& pc);
 			bool	HasChat();
 
-			bool	OnItemInformer(PC& pc,unsigned int vnum);	// 독일 선물 기능 테스트
+			bool	OnItemInformer(PC& pc,unsigned int vnum);
 
 			bool	OnTarget(PC& pc, DWORD dwQuestIndex, const char * c_pszTargetName, const char * c_pszVerb, bool & bRet);
 			bool	OnUnmount(PC& pc);
@@ -78,7 +77,6 @@ namespace quest
 			// Special item group USE EVENT
 			bool	OnSIGUse(PC& pc, bool bReceiveAll);
 
-
 			bool	HandleEvent(PC& pc, int EventIndex);
 			bool	HandleReceiveAllEvent(PC& pc, int EventIndex);
 			bool	HandleReceiveAllNoWaitEvent(PC& pc, int EventIndex);
@@ -86,7 +84,6 @@ namespace quest
 			bool	ExecuteEventScript(PC& pc, int EventIndex, DWORD dwQuestIndex, int iState);
 
 			unsigned int GetVnum() { return m_vnum; }
-
 
 		protected:
 			template <typename TQuestMapType, typename FuncMatch, typename FuncMiss>
@@ -132,3 +129,4 @@ namespace quest
 		}
 }
 #endif
+
