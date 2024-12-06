@@ -18,13 +18,12 @@ namespace quest
 {
 	using namespace std;
 
-	//
 	// "party" Lua functions
-	//
+
 	int party_clear_ready(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
-		
+
 		if (ch->GetParty())
 		{
 			FPartyClearReady f;
@@ -80,7 +79,7 @@ namespace quest
 	{
 		if (!lua_isstring(L, 1))
 			return 0;
-		
+
 		sys_log(0, "RUN_CINEMA %s", lua_tostring(L, 1));
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
@@ -205,7 +204,6 @@ namespace quest
 		return 1;
 	}
 
-
 	int party_chat(lua_State* L)
 	{
 		LPPARTY pParty = CQuestManager::Instance().GetCurrentCharacterPtr()->GetParty();
@@ -223,10 +221,8 @@ namespace quest
 		return 0;
 	}
 
-
 	int party_is_map_member_flag_lt(lua_State* L)
 	{
-
 		if (!lua_isstring(L, 1) || !lua_isnumber(L, 2))
 		{
 			lua_pushnumber(L, 0);
@@ -318,7 +314,7 @@ namespace quest
 		bool bOverride;
 		bool IsCube;
 
-		FGiveBuff (DWORD _dwType, BYTE _bApplyOn, long _lApplyValue, DWORD _dwFlag, long _lDuration, 
+		FGiveBuff (DWORD _dwType, BYTE _bApplyOn, long _lApplyValue, DWORD _dwFlag, long _lDuration,
 					long _lSPCost, bool _bOverride, bool _IsCube = false)
 			: dwType (_dwType), bApplyOn (_bApplyOn), lApplyValue (_lApplyValue), dwFlag(_dwFlag), lDuration(_lDuration),
 				lSPCost(_lSPCost), bOverride(_bOverride), IsCube(_IsCube)
@@ -328,15 +324,13 @@ namespace quest
 			ch->AddAffect(dwType, bApplyOn, lApplyValue, dwFlag, lDuration, lSPCost, bOverride, IsCube);
 		}
 	};
-	
-	// 파티 단위로 버프 주는 함수.
-	// 같은 맵에 있는 파티원만 영향을 받는다.
+
 	int party_give_buff (lua_State* L)
 	{
 		CQuestManager & q = CQuestManager::instance();
 		LPCHARACTER ch = q.GetCurrentCharacterPtr();
-		
-		if (!lua_isnumber(L, 1) || !lua_isnumber(L, 2) || !lua_isnumber(L, 3) || !lua_isnumber(L, 4) || 
+
+		if (!lua_isnumber(L, 1) || !lua_isnumber(L, 2) || !lua_isnumber(L, 3) || !lua_isnumber(L, 4) ||
 			!lua_isnumber(L, 5) || !lua_isnumber(L, 6) || !lua_isboolean(L, 7) || !lua_isboolean(L, 8))
 		{
 			lua_pushboolean (L, false);
@@ -383,7 +377,7 @@ namespace quest
 		}
 		FPartyPIDCollector f;
 		pParty->ForEachOnMapMember(f, ch->GetMapIndex());
-		
+
 		for (std::vector <DWORD>::iterator it = f.vecPIDs.begin(); it != f.vecPIDs.end(); it++)
 		{
 			lua_pushnumber(L, *it);
@@ -393,7 +387,7 @@ namespace quest
 
 	void RegisterPartyFunctionTable()
 	{
-		luaL_reg party_functions[] = 
+		luaL_reg party_functions[] =
 		{
 			{ "is_leader",		party_is_leader		},
 			{ "is_party",		party_is_party		},
@@ -411,14 +405,11 @@ namespace quest
 			{ "is_in_dungeon",	party_is_in_dungeon	},
 			{ "give_buff",		party_give_buff		},
 			{ "is_map_member_flag_lt",	party_is_map_member_flag_lt	},
-			{ "get_member_pids",		party_get_member_pids	}, // 파티원들의 pid를 return
+			{ "get_member_pids",		party_get_member_pids	},
 			{ NULL,				NULL				}
 		};
 
 		CQuestManager::instance().AddLuaFunctionTable("party", party_functions);
 	}
 }
-
-
-
 
