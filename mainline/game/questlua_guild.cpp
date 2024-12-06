@@ -18,9 +18,8 @@
 
 namespace quest
 {
-	//
 	// "guild" Lua functions
-	//
+
 	int guild_around_ranking_string(lua_State* L)
 	{
 		CQuestManager& q = CQuestManager::instance();
@@ -195,7 +194,7 @@ namespace quest
 		p.dwGuild = (DWORD) lua_tonumber(L, 2);
 		p.dwGold = (DWORD) lua_tonumber(L, 3);
 
-		sys_log(0, "GUILD_WAR_BET: %s login %s war_id %u guild %u gold %u", 
+		sys_log(0, "GUILD_WAR_BET: %s login %s war_id %u guild %u gold %u",
 				ch->GetName(), p.szLogin, p.dwWarID, p.dwGuild, p.dwGold);
 
 		db_clientdesc->DBPacket(HEADER_GD_GUILD_WAR_BET, 0, &p, sizeof(p));
@@ -282,7 +281,7 @@ namespace quest
 	int guild_get_member_count(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
-		
+
 		if ( ch == NULL )
 		{
 			lua_pushnumber(L, 0);
@@ -304,13 +303,6 @@ namespace quest
 
 	int guild_change_master(lua_State* L)
 	{
-		// 리턴값
-		//	0 : 입력한 이름이 잘못되었음 ( 문자열이 아님 )
-		//	1 : 길드장이 아님
-		//	2 : 지정한 이름의 길드원이 없음
-		//	3 : 요청 성공
-		//	4 : 길드가 없음
-
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
 		CGuild* pGuild = ch->GetGuild();
@@ -345,24 +337,6 @@ namespace quest
 
 	int guild_change_master_with_limit(lua_State* L)
 	{
-		// 인자
-		//  arg0 : 새 길드장 이름
-		//  arg1 : 새 길드장 레벨 제한
-		//  arg2 : resign_limit 제한 시간
-		//  arg3 : be_other_leader 제한 시간
-		//  arg4 : be_other_member 제한 시간
-		//  arg5 : 캐시템인가 아닌가
-		//
-		// 리턴값
-		//	0 : 입력한 이름이 잘못되었음 ( 문자열이 아님 )
-		//	1 : 길드장이 아님
-		//	2 : 지정한 이름의 길드원이 없음
-		//	3 : 요청 성공
-		//	4 : 길드가 없음
-		//	5 : 지정한 이름이 온라인이 아님
-		//	6 : 지정한 캐릭터 레벨이 기준레벨보다 낮음
-		//	7 : 새 길드장이 be_other_leader 제한에 걸림
-
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
 		CGuild* pGuild = ch->GetGuild();
