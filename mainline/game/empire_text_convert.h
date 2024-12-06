@@ -5,3 +5,4 @@ bool LoadEmpireTextConvertTable(DWORD dwEmpireID, const char* c_szFileName);
 void ConvertEmpireText(DWORD dwEmpireID, char* szText, size_t len, int iPct);
 
 #endif
+
