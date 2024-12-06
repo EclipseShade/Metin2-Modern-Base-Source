@@ -78,7 +78,6 @@ class CFuncAfterQueryInfo : public CQueryInfo
 
 class CLoginData;
 
-
 class DBManager : public singleton<DBManager>
 {
 	public:
@@ -110,7 +109,7 @@ class DBManager : public singleton<DBManager>
 		void			FlushBilling(bool bForce=false);
 		void			CheckBilling();
 
-		void			StopAllBilling(); // 20050503.ipkn.DB-AUTH 접속 종료시 빌링 테이블 모두 지우기 (재연결시 복구함)
+		void			StopAllBilling();
 
 		DWORD			CountQuery()		{ return m_sql.CountQuery(); }
 		DWORD			CountQueryResult()	{ return m_sql.CountResult(); }
@@ -200,7 +199,7 @@ class AccountDB : public singleton<AccountDB>
 		bool Connect(const char * host, const int port, const char * user, const char * pwd, const char * db);
 		bool ConnectAsync(const char * host, const int port, const char * user, const char * pwd, const char * db, const char * locale);
 
-		SQLMsg* DirectQuery(const char * query);		
+		SQLMsg* DirectQuery(const char * query);
 		void ReturnQuery(int iType, DWORD dwIdent, void * pvData, const char * c_pszFormat, ...);
 		void AsyncQuery(const char* query);
 
@@ -215,8 +214,8 @@ class AccountDB : public singleton<AccountDB>
 		CAsyncSQL2	m_sql_direct;
 		CAsyncSQL2	m_sql;
 		bool		m_IsConnect;
-
 };
 //END_ACCOUNT_DB
 
 #endif
+
