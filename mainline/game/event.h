@@ -10,7 +10,7 @@
 /**
  * Base class for all event info data
  */
-struct event_info_data 
+struct event_info_data
 {
 	event_info_data() {}
 	virtual ~event_info_data() {}
@@ -26,7 +26,7 @@ private:
 	static MemoryPool pool_;
 #endif
 };
-	
+
 typedef struct event EVENT;
 typedef boost::intrusive_ptr<EVENT> LPEVENT;
 typedef long (*TEVENTFUNC) (LPEVENT event, long processing_time);
@@ -75,13 +75,14 @@ extern int		event_count();
 
 #define event_create(func, info, when) event_create_ex(func, info, when)
 extern LPEVENT	event_create_ex(TEVENTFUNC func, event_info_data* info, long when);
-extern void		event_cancel(LPEVENT * event);			// 이벤트 취소
-extern long		event_processing_time(LPEVENT event);	// 수행 시간 리턴
-extern long		event_time(LPEVENT event);			// 남은 시간 리턴
-extern void		event_reset_time(LPEVENT event, long when);	// 실행 시간 재 설정
+extern void		event_cancel(LPEVENT * event);
+extern long		event_processing_time(LPEVENT event);
+extern long		event_time(LPEVENT event);
+extern void		event_reset_time(LPEVENT event, long when);
 extern void		event_set_verbose(int level);
 
 extern event_info_data* FindEventInfo(DWORD dwID);
 extern event_info_data*	event_info(LPEVENT event);
 
 #endif
+
