@@ -171,7 +171,6 @@ void P2P_MANAGER::Login(LPDESC d, const TPacketGGLogin * p)
 	CGuildManager::instance().P2PLoginMember(pkCCI->dwPID);
 	CPartyManager::instance().P2PLogin(pkCCI->dwPID, pkCCI->szName);
 
-	// CCI가 생성시에만 메신저를 업데이트하면 된다.
 	if (UpdateP2P) {
 		std::string name(pkCCI->szName);
 	    MessengerManager::instance().P2PLogin(name);
@@ -261,7 +260,6 @@ int P2P_MANAGER::GetEmpireUserCount(int idx)
 	return m_aiEmpireUserCount[idx];
 }
 
-
 int P2P_MANAGER::GetDescCount()
 {
 	return m_set_pkPeers.size();
@@ -282,3 +280,4 @@ void P2P_MANAGER::GetP2PHostNames(std::string& hostNames)
 	}
 	hostNames += oss.str();
 }
+
