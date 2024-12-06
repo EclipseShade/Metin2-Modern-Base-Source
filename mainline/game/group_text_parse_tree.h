@@ -44,17 +44,17 @@ public:
 	bool IsToken(const std::string & c_rstrKey) const;
 
 	int GetRowCount();
-	
+
 	template <typename T>
-	bool GetValue(size_t i, const std::string & c_rstrColKey, T& tValue) const;	// n번째(map에 들어있는 순서일 뿐, txt의 순서와는 관계 없음) row의 특정 컬럼의 값을 반환하는 함수. 
-																				// 이질적이긴 하지만, 편의를 위한 함수.
+	bool GetValue(size_t i, const std::string & c_rstrColKey, T& tValue) const;
+
 	template <typename T>
 	bool GetValue(const std::string & c_rstrRowKey, const std::string & c_rstrColKey, T& tValue) const;
 	template <typename T>
 	bool GetValue(const std::string & c_rstrRowKey, int index, T& tValue) const;
 
 	bool GetRow(const std::string & c_rstrKey, OUT const CGroupNodeRow ** ppRow) const;
-	// 참고로, idx랑 txt에 쓰여진 순서랑 관계 없음.
+
 	bool GetRow(int idx, OUT const CGroupNodeRow ** ppRow) const;
 	bool GetGroupRow(const std::string& stGroupName, const std::string& stRow, OUT const CGroupNode::CGroupNodeRow ** ppRow) const;
 
@@ -118,10 +118,10 @@ bool CGroupNode::GetValue(size_t i, const std::string & c_rstrColKey, T& tValue)
 {
 	if (i > m_map_rows.size())
 		return FALSE;
-	
+
 	TMapRow::const_iterator row_it = m_map_rows.begin();
 	std::advance(row_it, i);
-	
+
 	itertype(m_map_columnNameToIndex) col_idx_it = m_map_columnNameToIndex.find(c_rstrColKey);
 	if (m_map_columnNameToIndex.end() == col_idx_it)
 	{
@@ -133,7 +133,7 @@ bool CGroupNode::GetValue(size_t i, const std::string & c_rstrColKey, T& tValue)
 	{
 		return FALSE;
 	}
-	
+
 	return row_it->second.GetValue(index, tValue);
 }
 
@@ -156,7 +156,7 @@ bool CGroupNode::GetValue(const std::string & c_rstrRowKey, const std::string & 
 	{
 		return FALSE;
 	}
-	
+
 	return row_it->second.GetValue(index, tValue);
 }
 
@@ -185,7 +185,6 @@ bool CGroupNode::GetGroupValue(const std::string& stGroupName, const std::string
 		if (pChildGroup->GetValue(stRow, iCol, tValue))
 			return true;
 	}
-	// default group을 살펴봄.
 	pChildGroup = GetChildNode("default");
 	if (NULL != pChildGroup)
 	{
@@ -204,7 +203,6 @@ bool CGroupNode::GetGroupValue(const std::string& stGroupName, const std::string
 		if (pChildGroup->GetValue(stRow, stCol, tValue))
 			return true;
 	}
-	// default group을 살펴봄.
 	pChildGroup = GetChildNode("default");
 	if (NULL != pChildGroup)
 	{
