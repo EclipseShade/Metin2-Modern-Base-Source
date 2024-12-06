@@ -113,7 +113,7 @@ namespace quest
 	}
 
 	// only from lua call
-	void PC::SetCurrentQuestStateName(const string& state_name) 
+	void PC::SetCurrentQuestStateName(const string& state_name)
 	{
 		SetFlag(m_stCurQuest + ".__status", CQuestManager::Instance().GetQuestStateIndex(m_stCurQuest,state_name));
 	}
@@ -241,14 +241,14 @@ namespace quest
 		qi.index = m_RunningQuestState->iIndex;
 		qi.flag = m_iSendToClient;
 		qi.c_index = CQuestManager::instance().ReadQuestCategoryFile(qi.index);
-				
+
 		TEMP_BUFFER buf;
 		buf.write(&qi, sizeof(qi));
 
 		if (m_iSendToClient & QUEST_SEND_ISBEGIN)
 		{
 			BYTE temp = m_RunningQuestState->bStart?1:0;
-			buf.write(&temp,1);		
+			buf.write(&temp,1);
 			qi.size+=1;
 
 			sys_log(1, "QUEST BeginFlag %d", (int)temp);
@@ -312,10 +312,9 @@ namespace quest
 		{
 			LPCHARACTER npc = CQuestManager::instance().GetCurrentNPCCharacterPtr();
 			LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
-			// npc 있었던 경우
+
 			if (npc && !npc->IsPC())
 			{
-				// 그 엔피씨가 나에게 락인 경우
 				if (ch->GetPlayerID() == npc->GetQuestNPCID())
 				{
 					npc->SetQuestNPCID(0);
@@ -368,7 +367,6 @@ namespace quest
 					CQuestManager::instance().Letter(ch->GetPlayerID(), dwQuestIndex, iNowState);
 			}
 		}
-
 
 		DoQuestStateChange();
 	}
@@ -465,7 +463,7 @@ namespace quest
 		//SetSendFlag(QUEST_SEND_TITLE);
 		QuestInfo::iterator it = m_QuestInfo.find(CQuestManager::instance().GetQuestIndexByName(quest));
 
-		if (it != m_QuestInfo.end()) 
+		if (it != m_QuestInfo.end())
 		{
 			//(*it)->_title = title;
 			QuestState* old = m_RunningQuestState;
