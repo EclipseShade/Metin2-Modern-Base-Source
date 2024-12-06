@@ -75,7 +75,7 @@ namespace quest
 		return 0;
 	}
 
-	int game_open_safebox(lua_State* /*L*/)
+	int game_open_safebox(lua_State*)
 	{
 		CQuestManager& q = CQuestManager::instance();
 		LPCHARACTER ch = q.GetCurrentCharacterPtr();
@@ -84,7 +84,7 @@ namespace quest
 		return 0;
 	}
 
-	int game_open_mall(lua_State* /*L*/)
+	int game_open_mall(lua_State*)
 	{
 		CQuestManager& q = CQuestManager::instance();
 		LPCHARACTER ch = q.GetCurrentCharacterPtr();
@@ -95,9 +95,8 @@ namespace quest
 
 	int game_drop_item(lua_State* L)
 	{
-		//
 		// Syntax: game.drop_item(50050, 1)
-		//
+
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
 		DWORD item_vnum = (DWORD) lua_tonumber(L, 1);
@@ -181,10 +180,10 @@ namespace quest
 		}
 		return 0;
 	}
-	
+
 	void RegisterGameFunctionTable()
 	{
-		luaL_reg game_functions[] = 
+		luaL_reg game_functions[] =
 		{
 			{ "get_safebox_level",			game_get_safebox_level			},
 			{ "request_make_guild",			game_request_make_guild			},
