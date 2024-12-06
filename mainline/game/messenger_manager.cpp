@@ -110,14 +110,13 @@ void MessengerManager::Logout(MessengerManager::keyA account)
 	}
 
 	m_Relation.erase(account);
-	//m_map_stMobile.erase(account);
 }
 
 void MessengerManager::RequestToAdd(LPCHARACTER ch, LPCHARACTER target)
 {
 	if (!ch->IsPC() || !target->IsPC())
 		return;
-	
+
 	if (quest::CQuestManager::instance().GetPCForce(ch->GetPlayerID())->IsRunning() == true)
 	{
 	    ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("상대방이 친구 추가를 받을 수 없는 상태입니다."));
@@ -193,7 +192,7 @@ void MessengerManager::AddToList(MessengerManager::keyA account, MessengerManage
 		return;
 
 	sys_log(0, "Messenger Add %s %s", account.c_str(), companion.c_str());
-	DBManager::instance().Query("INSERT INTO messenger_list%s VALUES ('%s', '%s')", 
+	DBManager::instance().Query("INSERT INTO messenger_list%s VALUES ('%s', '%s')",
 			get_table_postfix(), account.c_str(), companion.c_str());
 
 	__AddToList(account, companion);
@@ -241,11 +240,9 @@ void MessengerManager::RemoveAllList(keyA account)
 {
 	std::set<keyT>	company(m_Relation[account]);
 
-	/* SQL Data 삭제 */
 	DBManager::instance().Query("DELETE FROM messenger_list%s WHERE account='%s' OR companion='%s'",
 			get_table_postfix(), account.c_str(), account.c_str());
 
-	/* 내가 가지고있는 리스트 삭제 */
 	for (std::set<keyT>::iterator iter = company.begin();
 			iter != company.end();
 			iter++ )
@@ -253,7 +250,6 @@ void MessengerManager::RemoveAllList(keyA account)
 		this->RemoveFromList(account, *iter);
 	}
 
-	/* 복사한 데이타 삭제 */
 	for (std::set<keyT>::iterator iter = company.begin();
 			iter != company.end();
 			)
@@ -263,7 +259,6 @@ void MessengerManager::RemoveAllList(keyA account)
 
 	company.clear();
 }
-
 
 void MessengerManager::SendList(MessengerManager::keyA account)
 {
