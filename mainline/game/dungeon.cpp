@@ -125,7 +125,7 @@ struct FWarpToDungeon
 		{
 			LPSECTREE_MAP pkSectreeMap = SECTREE_MANAGER::instance().GetMap(lMapIndex);
 			m_x = pkSectreeMap->m_setting.posSpawn.x;
-			m_y = pkSectreeMap->m_setting.posSpawn.y; 
+			m_y = pkSectreeMap->m_setting.posSpawn.y;
 		}
 
 	void operator () (LPCHARACTER ch)
@@ -178,7 +178,7 @@ EVENTINFO(dungeon_id_info)
 {
 	CDungeon::IdType dungeon_id;
 
-	dungeon_id_info() 
+	dungeon_id_info()
 	: dungeon_id(0)
 	{
 	}
@@ -187,7 +187,7 @@ EVENTINFO(dungeon_id_info)
 EVENTFUNC(dungeon_dead_event)
 {
 	dungeon_id_info* info = dynamic_cast<dungeon_id_info*>( event->info );
-	
+
 	if ( info == NULL )
 	{
 		sys_err( "dungeon_dead_event> <Factor> Null pointer" );
@@ -391,7 +391,6 @@ void CDungeon::SetPartyNull()
 	m_pParty = NULL;
 }
 
-
 void CDungeonManager::Destroy(CDungeon::IdType dungeon_id)
 {
 	sys_log(0, "DUNGEON destroy : map index %u", dungeon_id);
@@ -432,7 +431,7 @@ LPDUNGEON CDungeonManager::Create(long lOriginalMapIndex)
 {
 	DWORD lMapIndex = SECTREE_MANAGER::instance().CreatePrivateMap(lOriginalMapIndex);
 
-	if (!lMapIndex) 
+	if (!lMapIndex)
 	{
 		sys_log( 0, "Fail to Create Dungeon : OrginalMapindex %d NewMapindex %d", lOriginalMapIndex, lMapIndex );
 		return NULL;
@@ -548,7 +547,6 @@ void CDungeon::SpawnMoveUnique(const char* key, DWORD vnum, const char* pos_from
 			sys_err("Cannot spawn at %d %d", pkSectreeMap->m_setting.iBaseX+((ai.sx+ai.ex)>>1), pkSectreeMap->m_setting.iBaseY+((ai.sy+ai.ey)>>1));
 		}
 	}
-
 }
 
 void CDungeon::SpawnUnique(const char* key, DWORD vnum, const char* pos)
@@ -838,14 +836,14 @@ void CDungeon::SpawnRegen(const char* filename, bool bOnce)
 {
 	if (!filename)
 	{
-		sys_err("CDungeon::SpawnRegen(filename=NULL, bOnce=%d) - m_lMapIndex[%d]", bOnce, m_lMapIndex); 
+		sys_err("CDungeon::SpawnRegen(filename=NULL, bOnce=%d) - m_lMapIndex[%d]", bOnce, m_lMapIndex);
 		return;
 	}
 
 	LPSECTREE_MAP pkSectreeMap = SECTREE_MANAGER::instance().GetMap(m_lMapIndex);
 	if (!pkSectreeMap)
 	{
-		sys_err("CDungeon::SpawnRegen(filename=%s, bOnce=%d) - m_lMapIndex[%d]", filename, bOnce, m_lMapIndex); 
+		sys_err("CDungeon::SpawnRegen(filename=%s, bOnce=%d) - m_lMapIndex[%d]", filename, bOnce, m_lMapIndex);
 		return;
 	}
 	regen_do(filename, m_lMapIndex, pkSectreeMap->m_setting.iBaseX, pkSectreeMap->m_setting.iBaseY, this, bOnce);
@@ -1131,7 +1129,6 @@ struct FExitDungeonToStartPosition
 			{
 				PIXEL_POSITION posWarp;
 
-				// 현재 맵 인덱스를 넣는 것이 아니라 시작하는 맵 인덱스를 넣는다.
 				if (SECTREE_MANAGER::instance().GetRecallPositionByEmpire(g_start_map[ch->GetEmpire()], ch->GetEmpire(), posWarp))
 					ch->WarpSet(posWarp.x, posWarp.y);
 				else
@@ -1281,7 +1278,6 @@ void CDungeon::JumpToEliminateLocation()
 	}
 	else
 	{
-		// 일반 맵으로 워프
 		LPSECTREE_MAP pMap = SECTREE_MANAGER::instance().GetMap(m_lMapIndex);
 
 		if (!pMap)
@@ -1358,3 +1354,4 @@ const CDungeon::ItemGroup* CDungeon::GetItemGroup (std::string& group_name)
 	else
 		return NULL;
 }
+
