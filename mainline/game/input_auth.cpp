@@ -28,11 +28,9 @@ bool FN_IS_VALID_LOGIN_STRING(const char *str)
 
 	for (tmp = str; *tmp; ++tmp)
 	{
-		// 알파벳과 수자만 허용
 		if (isdigit(*tmp) || isalpha(*tmp))
 			continue;
 
-		// 캐나다는 몇몇 특수문자 허용
 		if (LC_IsCanada())
 		{
 			switch (*tmp)
@@ -122,13 +120,12 @@ void CInputAuth::Login(LPDESC d, const char * c_pData)
 
 	if (!g_bAuthServer)
 	{
-		sys_err ("CInputAuth class is not for game server. IP %s might be a hacker.", 
+		sys_err ("CInputAuth class is not for game server. IP %s might be a hacker.",
 			inet_ntoa(d->GetAddr().sin_addr));
 		d->DelayedDisconnect(5);
 		return;
 	}
 
-	// string 무결성을 위해 복사
 	char login[LOGIN_MAX_LEN + 1];
 	trim_and_lower(pinfo->login, login, sizeof(login));
 
@@ -221,8 +218,8 @@ void CInputAuth::Login(LPDESC d, const char * c_pData)
 	// END_OF_CHANNEL_SERVICE_LOGIN
 	else
 	{
-		DBManager::instance().ReturnQuery(QID_AUTH_LOGIN, dwKey, p, 
-				"SELECT PASSWORD('%s'),password,securitycode,social_id,id,status,availDt - NOW() > 0,"
+		DBManager::instance().ReturnQuery(QID_AUTH_LOGIN, dwKey, p,
+				"SELECT PASSWORD('%s'), password, securitycode, social_id, id, status, availDt - NOW() > 0, "
 				"UNIX_TIMESTAMP(silver_expire),"
 				"UNIX_TIMESTAMP(gold_expire),"
 				"UNIX_TIMESTAMP(safebox_expire),"
@@ -231,8 +228,7 @@ void CInputAuth::Login(LPDESC d, const char * c_pData)
 				"UNIX_TIMESTAMP(marriage_fast_expire),"
 				"UNIX_TIMESTAMP(money_drop_rate_expire),"
 				"UNIX_TIMESTAMP(create_time)"
-				" FROM account WHERE login='%s'",
-				szPasswd, szLogin);
+				" FROM account WHERE login='%s'", szPasswd, szLogin);
 	}
 }
 
@@ -520,13 +516,11 @@ int CInputAuth::auth_OpenID(const char *authKey, const char *ipAddr, char *rID)
     }
 }
 
-
 int CInputAuth::Analyze(LPDESC d, BYTE bHeader, const char * c_pData)
 {
-
 	if (!g_bAuthServer)
 	{
-		sys_err ("CInputAuth class is not for game server. IP %s might be a hacker.", 
+		sys_err ("CInputAuth class is not for game server. IP %s might be a hacker.",
 			inet_ntoa(d->GetAddr().sin_addr));
 		d->DelayedDisconnect(5);
 		return 0;
@@ -547,7 +541,6 @@ int CInputAuth::Analyze(LPDESC d, BYTE bHeader, const char * c_pData)
 			Login(d, c_pData);
 			break;
 
-		//2012.07.19 OpenID : 김용욱
 		case HEADER_CG_LOGIN5_OPENID:
 			if (openid_server)
 				LoginOpenID(d, c_pData);
