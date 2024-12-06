@@ -25,7 +25,6 @@ int CItem::GetAttributeSetIndex()
 		switch (GetSubType())
 		{
 			case ARMOR_BODY:
-//			case COSTUME_BODY: // 코스츔 갑옷은 일반 갑옷과 동일한 Attribute Set을 이용하여 랜덤속성 붙음 (ARMOR_BODY == COSTUME_BODY)
 				return ATTRIBUTE_SET_BODY;
 
 			case ARMOR_WRIST:
@@ -38,7 +37,6 @@ int CItem::GetAttributeSetIndex()
 				return ATTRIBUTE_SET_NECK;
 
 			case ARMOR_HEAD:
-//			case COSTUME_HAIR: // 코스츔 헤어는 일반 투구 아이템과 동일한 Attribute Set을 이용하여 랜덤속성 붙음 (ARMOR_HEAD == COSTUME_HAIR)
 				return ATTRIBUTE_SET_HEAD;
 
 			case ARMOR_SHIELD:
@@ -115,7 +113,6 @@ void CItem::AddAttr(BYTE bApply, BYTE bLevel)
 void CItem::PutAttributeWithLevel(BYTE bLevel)
 {
 	int iAttributeSet = GetAttributeSetIndex();
-
 	if (iAttributeSet < 0)
 		return;
 
@@ -126,7 +123,6 @@ void CItem::PutAttributeWithLevel(BYTE bLevel)
 
 	int total = 0;
 
-	// 붙일 수 있는 속성 배열을 구축
 	for (int i = 0; i < MAX_APPLY_NUM; ++i)
 	{
 		const TItemAttrTable & r = g_map_itemAttr[i];
@@ -138,7 +134,6 @@ void CItem::PutAttributeWithLevel(BYTE bLevel)
 		}
 	}
 
-	// 구축된 배열로 확률 계산을 통해 붙일 속성 선정
 	unsigned int prob = number(1, total);
 	int attr_idx = APPLY_NONE;
 
@@ -163,7 +158,6 @@ void CItem::PutAttributeWithLevel(BYTE bLevel)
 
 	const TItemAttrTable & r = g_map_itemAttr[attr_idx];
 
-	// 종류별 속성 레벨 최대값 제한
 	if (bLevel > r.bMaxLevelBySet[iAttributeSet])
 		bLevel = r.bMaxLevelBySet[iAttributeSet];
 
@@ -222,7 +216,7 @@ void CItem::ChangeAttribute(const int* aiChangeProb)
 
 void CItem::AddAttribute()
 {
-	static const int aiItemAddAttributePercent[ITEM_ATTRIBUTE_MAX_LEVEL] = 
+	static const int aiItemAddAttributePercent[ITEM_ATTRIBUTE_MAX_LEVEL] =
 	{
 		40, 50, 10, 0, 0
 	};
@@ -329,7 +323,6 @@ void CItem::SetForceAttribute(int i, BYTE bType, short sValue)
 		LogManager::instance().ItemLog(i, bType, sValue, GetID(), "SET_FORCE_ATTR", "", pszIP ? pszIP : "", GetOriginalVnum());
 	}
 }
-
 
 void CItem::CopyAttributeTo(LPITEM pItem)
 {
