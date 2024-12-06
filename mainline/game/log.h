@@ -65,3 +65,4 @@ class LogManager : public singleton<LogManager>
 };
 
 #endif
+
