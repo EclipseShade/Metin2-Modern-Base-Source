@@ -78,7 +78,7 @@ class CGuildManager : public singleton<CGuildManager>
 		void		ChangeMaster(DWORD dwGID);
 
 	private:
-		typedef std::map<DWORD, CGuild*> TGuildMap;	
+		typedef std::map<DWORD, CGuild*> TGuildMap;
 		TGuildMap m_mapGuild;
 
 		typedef std::set<std::pair<DWORD, DWORD> > TGuildWarContainer;
@@ -106,3 +106,4 @@ template <typename Func> void CGuildManager::for_each_war(Func & f)
 extern void SendGuildWarScore(DWORD dwGuild, DWORD dwGuildOpp, int iDelta, int iBetScoreDelta = 0);
 
 #endif
+
