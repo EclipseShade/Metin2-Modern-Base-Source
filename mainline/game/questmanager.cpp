@@ -45,7 +45,7 @@ namespace quest
 			lua_close(L);
 			L = NULL;
 		}
-	}	
+	}
 
 	bool CQuestManager::Initialize()
 	{
@@ -112,7 +112,7 @@ namespace quest
 				while (li < s.size() && isspace(s[li])) li++;
 				while (ri > 0 && isspace(s[ri])) ri--;
 
-				if (ri < li) 
+				if (ri < li)
 				{
 					sys_err("QUEST questnpc.txt:%d:npc name error",line);
 					continue;
@@ -215,7 +215,6 @@ namespace quest
 
 	int CQuestManager::ReadQuestCategoryFile(WORD q_index)
 	{
-		
 		ifstream inf((g_stQuestDir + "/questcategory.txt").c_str());
 		int line = 0;
 		int c_qi = 99;
@@ -227,7 +226,6 @@ namespace quest
 
 		while (1)
 		{
-			//받은 quest_index를 quest_name로 변환 후 비교
 			string qn = CQuestManager::instance().GetQuestNameByIndex(q_index);
 
 			unsigned int category_num;
@@ -255,7 +253,7 @@ namespace quest
 			while (li < s.size() && isspace(s[li])) li++;
 			while (ri > 0 && isspace(s[ri])) ri--;
 
-			if (ri < li) 
+			if (ri < li)
 			{
 				sys_err("QUEST questcategory.txt:%d:npc name error",line);
 				continue;
@@ -282,8 +280,6 @@ namespace quest
 		// notarget quest
 		//m_mapNPC[0].Set(0, "notarget");
 
-
-		//enum 순서대로 카테고리 인덱스를 리턴
 		return c_qi;
 	}
 
@@ -330,9 +326,6 @@ namespace quest
 
 			if (!pPC->GetRunningQuestState()->chat_scripts.empty())
 			{
-				// 채팅 이벤트인 경우
-				// 현재 퀘스트는 어느 퀘스트를 실행할 것인가를 고르는 퀘스트 이므로
-				// 끝내고 선택된 퀘스트를 실행한다.
 				QuestState& old_qs = *pPC->GetRunningQuestState();
 				CloseState(old_qs);
 
@@ -350,7 +343,7 @@ namespace quest
 			}
 			else
 			{
-				// on default 
+				// on default
 				pPC->GetRunningQuestState()->args=1;
 				lua_pushnumber(pPC->GetRunningQuestState()->co,selection+1);
 
@@ -445,7 +438,6 @@ namespace quest
 			pPC->CancelRunning();
 		}
 
-		// 지우기 전에 로그아웃 한다.
 		Logout(ch->GetPlayerID());
 
 		if (ch == m_pCurrentCharacter)
@@ -456,9 +448,7 @@ namespace quest
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////////////
-	//
-	// Quest Event 관련
-	//
+
 	///////////////////////////////////////////////////////////////////////////////////////////
 	void CQuestManager::Login(unsigned int pc, const char * c_pszQuest)
 	{
@@ -504,21 +494,15 @@ namespace quest
 			if (!CheckQuestLoaded(pPC))
 				return;
 
-			/* [hyo] 몹 kill시 중복 카운팅 이슈 관련한 수정사항
-			   quest script에 when 171.kill begin ... 등의 코드로 인하여 스크립트가 처리되었더라도
-			   바로 return하지 않고 다른 검사도 수행하도록 변경함. (2011/07/21)
-			*/   
 			// call script
 			m_mapNPC[npc].OnKill(*pPC);
 
 			LPCHARACTER ch = GetCurrentCharacterPtr();
 			LPPARTY pParty = ch->GetParty();
 			LPCHARACTER leader = pParty ? pParty->GetLeaderCharacter() : ch;
-
 			if (leader)
 			{
 				m_pCurrentPartyMember = ch;
-
 				if (m_mapNPC[npc].OnPartyKill(*GetPC(leader->GetPlayerID())))
 					return;
 
@@ -659,7 +643,6 @@ namespace quest
 				return;
 			}
 
-			//퀘스트 창에서 퀘스트 클릭과 NPC 클릭시의 구분을 위한 플래그
 			m_bQuestInfoFlag = 1;
 			m_mapNPC[QUEST_NO_NPC].OnInfo(*pPC, quest_index);
 		}
@@ -765,7 +748,6 @@ namespace quest
 		}
 	}
 
-	// Speical Item Group에 정의된 Group Use
 	bool CQuestManager::SIGUse(unsigned int pc, DWORD sig_vnum, LPITEM item, bool bReceiveAll)
 	{
 		if (test_server)
@@ -858,10 +840,10 @@ namespace quest
 
 				if (it == m_mapNPC.end())
 				{
-					sys_err("CQuestManager::Click(pid=%d, target_npc_name=%s) - NOT EXIST NPC RACE VNUM[%d]",
-							pc, 
-							pkChrTarget->GetName(), 
-							dwCurrentNPCRace);
+					sys_log(0, "CQuestManager::Click(pid=%d, target_npc_name=%s) - NOT EXIST NPC RACE VNUM[%d]",
+							pc,
+							pkChrTarget->GetName(),
+							dwCurrentNPCRace); // @warme012
 					return false;
 				}
 
@@ -913,17 +895,16 @@ namespace quest
 		else
 			sys_err("QUEST no such pc id : %d", pc);
 	}
-	//독일 선물 기능 테스트
+
 	void CQuestManager::ItemInformer(unsigned int pc,unsigned int vnum)
 	{
-		
 		PC* pPC;
 		pPC = GetPC(pc);
-		
+
 		m_mapNPC[QUEST_NO_NPC].OnItemInformer(*pPC,vnum);
 	}
 	///////////////////////////////////////////////////////////////////////////////////////////
-	// END OF 퀘스트 이벤트 처리
+
 	///////////////////////////////////////////////////////////////////////////////////////////
 
 	///////////////////////////////////////////////////////////////////////////////////////////
@@ -1045,7 +1026,6 @@ namespace quest
 		packet_script.size = packet_script.src_size + sizeof(struct packet_script);
 		packet_script.quest_flag = 0;
 
-		//퀘스트 창에서 퀘스트 클릭과 NPC 클릭시의 구분을 위한 플래그
 		if(m_bQuestInfoFlag == 1)
 			packet_script.quest_flag = 1;
 
@@ -1087,7 +1067,7 @@ namespace quest
 		lua_getglobal(L, quest_name.c_str());
 		if (lua_isnil(L,-1))
 		{
-			sys_err("QUEST wrong quest state file %s.%s",quest_name.c_str(),state_name.c_str()  );
+			sys_err("QUEST wrong quest state file %s.%s",quest_name.c_str(),state_name.c_str());
 			lua_settop(L,x);
 			return 0;
 		}
@@ -1136,7 +1116,7 @@ namespace quest
 
 	LPITEM CQuestManager::GetCurrentItem()
 	{
-		return GetCurrentCharacterPtr() ? GetCurrentCharacterPtr()->GetQuestItemPtr() : NULL; 
+		return GetCurrentCharacterPtr() ? GetCurrentCharacterPtr()->GetQuestItemPtr() : NULL;
 	}
 
 	void CQuestManager::ClearCurrentItem()
@@ -1152,7 +1132,7 @@ namespace quest
 	}
 
 	LPCHARACTER CQuestManager::GetCurrentNPCCharacterPtr()
-	{ 
+	{
 		return GetCurrentCharacterPtr() ? GetCurrentCharacterPtr()->GetQuestNPC() : NULL; 
 	}
 
@@ -1332,7 +1312,7 @@ namespace quest
 			{
 				mode = "light";
 			}
-			
+
 			const DESC_MANAGER::DESC_SET & c_ref_set = DESC_MANAGER::instance().GetClientSet();
 
 			for (itertype(c_ref_set) it = c_ref_set.begin(); it != c_ref_set.end(); ++it)
@@ -1355,19 +1335,16 @@ namespace quest
 					continue;
 				if (value)
 				{
-					// 밤
 					ch->ChatPacket(CHAT_TYPE_COMMAND, "DayMode dark");
 				}
 				else
 				{
-					// 낮
 					ch->ChatPacket(CHAT_TYPE_COMMAND, "DayMode light");
 				}
 			}
 
 			if (value && !prev_value)
 			{
-				// 없으면 만들어준다
 				struct SNPCSellFireworkPosition
 				{
 					long lMapIndex;
@@ -1380,7 +1357,7 @@ namespace quest
 					{	23,	476,	360 },
 					{	41,	318,	629 },
 					{	43,	478,	375 },
-					{	0,	0,	0   },
+					{	0,	0,	0 },
 				};
 
 				SNPCSellFireworkPosition* p = positions;
@@ -1403,7 +1380,6 @@ namespace quest
 			}
 			else if (!value && prev_value)
 			{
-				// 있으면 지워준다
 				CharacterVectorInteractor i;
 
 				if (CHARACTER_MANAGER::instance().GetCharactersByRaceNum(xmas::MOB_XMAS_FIRWORK_SELLER_VNUM, i))
@@ -1416,7 +1392,7 @@ namespace quest
 				}
 			}
 		}
-		else if (name == "pre_event_hc" && true == LC_IsEurope())
+		else if (name == "pre_event_hc")
 		{
 			const DWORD EventNPC = 20090;
 
@@ -1492,7 +1468,6 @@ namespace quest
 		}
 		else if (name == "new_xmas_event")
 		{
-			// 20126 new산타.
 			static DWORD new_santa = 20126;
 			if (value != 0)
 			{
@@ -1500,7 +1475,7 @@ namespace quest
 				bool map1_santa_exist = false;
 				bool map21_santa_exist = false;
 				bool map41_santa_exist = false;
-				
+
 				if (CHARACTER_MANAGER::instance().GetCharactersByRaceNum(new_santa, i))
 				{
 					CharacterVectorInteractor::iterator it = i.begin();
@@ -1544,7 +1519,7 @@ namespace quest
 			{
 				CharacterVectorInteractor i;
 				CHARACTER_MANAGER::instance().GetCharactersByRaceNum(new_santa, i);
-				
+
 				for (CharacterVectorInteractor::iterator it = i.begin(); it != i.end(); it++)
 				{
 					M2_DESTROY_CHARACTER(*it);
@@ -1631,12 +1606,10 @@ namespace quest
 
 	bool CQuestManager::ExecuteQuestScript(PC& pc, const string& quest_name, const int state, const char* code, const int code_size, vector<AArgScript*>* pChatScripts, bool bUseCache)
 	{
-		// 실행공간을 생성
 		QuestState qs = CQuestManager::instance().OpenState(quest_name, state);
 		if (pChatScripts)
 			qs.chat_scripts.swap(*pChatScripts);
 
-		// 코드를 읽어들임
 		if (bUseCache)
 		{
 			lua_getglobal(qs.co, "__codecache");
@@ -1675,10 +1648,8 @@ namespace quest
 		else
 			luaL_loadbuffer(qs.co, code, code_size, quest_name.c_str());
 
-		// 플레이어와 연결
 		pc.SetQuest(quest_name, qs);
 
-		// 실행
 		QuestState& rqs = *pc.GetRunningQuestState();
 		if (!CQuestManager::instance().RunState(rqs))
 		{
@@ -1833,7 +1804,7 @@ namespace quest
 	{
 		m_pSelectedDungeon = pDungeon;
 	}
-	
+
 	bool CQuestManager::PickupItem(unsigned int pc, LPITEM item)
 	{
 		if (test_server)
