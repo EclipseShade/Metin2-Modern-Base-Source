@@ -169,7 +169,7 @@ static void LoadSkillMotion(CMotionSet* pMotionSet, CMob* pMob, EPublicMotion mo
 		case MOTION_SPECIAL_5 : idx = 4; break;
 
 		default :
-			return;					
+			return;
 	}
 
 	TMobTable* mob_table = &pMob->m_table;
@@ -277,7 +277,7 @@ bool CMotionManager::Build()
 		"data/pc3/wolfman",
 #endif
 	};
-	
+
 	for (int i = 0; i < MAIN_RACE_MAX_NUM; ++i)
 	{
 		CMotionSet * pkMotionSet = M2_NEW CMotionSet;
@@ -324,6 +324,12 @@ bool CMotionManager::Build()
 		pkMotionSet->Load(sz, MOTION_MODE_HORSE, MOTION_RUN);
 		snprintf(sz, sizeof(sz), "%s/horse/walk.msa", c_apszFolderName[i]);
 		pkMotionSet->Load(sz, MOTION_MODE_HORSE, MOTION_WALK);
+#ifdef ENABLE_WOLFMAN_CHARACTER
+		snprintf(sz, sizeof(sz), "%s/claw/run.msa", c_apszFolderName[i]);
+		pkMotionSet->Load(sz, MOTION_MODE_CLAW, MOTION_RUN);
+		snprintf(sz, sizeof(sz), "%s/claw/walk.msa", c_apszFolderName[i]);
+		pkMotionSet->Load(sz, MOTION_MODE_CLAW, MOTION_WALK);
+#endif
 	}
 
 	CMobManager::iterator it = CMobManager::instance().begin();
@@ -406,7 +412,7 @@ CMotion::CMotion() : m_isEmpty(true), m_fDuration(0.0f), m_isAccumulation(false)
 	m_vec3Accumulation.x = 0.0f;
 	m_vec3Accumulation.y = 0.0f;
 	m_vec3Accumulation.z = 0.0f;
-}  
+}
 
 CMotion::~CMotion()
 {
@@ -479,7 +485,7 @@ bool CMotion::LoadMobSkillFromFile(const char * c_pszFileName, CMob* pMob, int i
 						continue;
 
 					case MOTION_EVENT_TYPE_SPECIAL_ATTACKING:
-						// 구 데이터는 하나 라고 가정
+
 						if (!rkTextFileLoader.SetChildNode("spheredata", 0))
 						{
 							sys_err("Motion: no sphere data %s", c_pszFileName);
