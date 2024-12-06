@@ -54,7 +54,7 @@ class ArrayPool {
 public:
 	ArrayPool(size_t array_size, size_t initial_capacity = 0)
 			: free_(NULL),
-			  array_size_(array_size), 
+			  array_size_(array_size),
 			  capacity_(0),
 			  alloc_count_(0),
 			  alloc_index_of_last_release_(0) {
@@ -277,3 +277,4 @@ private:
 #endif
 
 #endif // __INC_METIN_II_GAME_POOL_H__
+
