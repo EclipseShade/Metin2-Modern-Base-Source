@@ -80,7 +80,6 @@
 #include <execinfo.h>
 #endif
 
-// 윈도우에서 테스트할 때는 항상 서버키 체크
 #ifdef _WIN32
 	//#define _USE_SERVER_KEY_
 #endif
@@ -101,11 +100,8 @@ void WriteMallocMessage(const char* p1, const char* p2, const char* p3, const ch
 }
 #endif
 
-// TRAFFIC_PROFILER
-static const DWORD	TRAFFIC_PROFILE_FLUSH_CYCLE = 3600;	///< TrafficProfiler 의 Flush cycle. 1시간 간격
-// END_OF_TRAFFIC_PROFILER
+static const DWORD	TRAFFIC_PROFILE_FLUSH_CYCLE = 3600;
 
-// 게임과 연결되는 소켓
 volatile int	num_events_called = 0;
 int             max_bytes_written = 0;
 int             current_bytes_written = 0;
@@ -230,7 +226,7 @@ extern std::map<DWORD, CLoginSim *> g_simByPID;
 extern std::vector<TPlayerTable> g_vec_save;
 unsigned int save_idx = 0;
 
-void heartbeat(LPHEART ht, int pulse) 
+void heartbeat(LPHEART ht, int pulse)
 {
 	DWORD t;
 
@@ -240,7 +236,6 @@ void heartbeat(LPHEART ht, int pulse)
 
 	t = get_dword_time();
 
-	// 1초마다
 	if (!(pulse % ht->passes_per_sec))
 	{
 #ifdef ENABLE_LIMIT_TIME
@@ -302,23 +297,16 @@ void heartbeat(LPHEART ht, int pulse)
 		}
 	}
 
-	//
-	// 25 PPS(Pulse per second) 라고 가정할 때
-	//
-
-	// 약 1.16초마다
 	if (!(pulse % (passes_per_sec + 4)))
 		CHARACTER_MANAGER::instance().ProcessDelayedSave();
 
-	//4초 마다
 #if defined (__FreeBSD__) && defined(__FILEMONITOR__)
 	if (!(pulse % (passes_per_sec * 5)))
 	{
-		FileMonitorFreeBSD::Instance().Update(pulse); 
+		FileMonitorFreeBSD::Instance().Update(pulse);
 	}
 #endif
 
-	// 약 5.08초마다
 	if (!(pulse % (passes_per_sec * 5 + 2)))
 	{
 		ITEM_MANAGER::instance().Update();
@@ -374,14 +362,11 @@ void Metin2Server_Check()
 	if (LC_IsEurope() || test_server)
 		return;
 
-
-	// 브라질 ip
 	if (strncmp (g_szPublicIP, "189.112.1", 9) == 0)
 	{
 		return;
 	}
 
-	// 캐나다 ip
 	if (strncmp (g_szPublicIP, "74.200.6", 8) == 0)
 	{
 		return;
@@ -405,7 +390,7 @@ void Metin2Server_Check()
 
 	if (0 > sockConnector)
 	{
-		if (true != LC_IsEurope()) // 유럽은 접속을 하지 못하면 인증된 것으로 간주
+		if (true != LC_IsEurope())
 			g_isInvalidServer = true;
 
 		return;
@@ -437,7 +422,7 @@ int main(int argc, char **argv) {
 	ilInit(); // DevIL Initialize
 
 	WriteVersion();
-	
+
 	SECTREE_MANAGER	sectree_manager;
 	CHARACTER_MANAGER	char_manager;
 	ITEM_MANAGER	item_manager;
@@ -577,12 +562,10 @@ int main(int argc, char **argv) {
 	}
 
 	// Client PackageCrypt
-
-	//TODO : make it config
 	const std::string strPackageCryptInfoDir = "package/";
 	if( !desc_manager.LoadClientPackageCryptInfo( strPackageCryptInfoDir.c_str() ) )
 	{
-		sys_err("Failed to Load ClientPackageCryptInfo File(%s)", strPackageCryptInfoDir.c_str());	
+		sys_err("Failed to Load ClientPackageCryptInfo File(%s)", strPackageCryptInfoDir.c_str());
 	}
 
 #if defined (__FreeBSD__) && defined(__FILEMONITOR__)
@@ -688,7 +671,6 @@ int start(int argc, char **argv)
 	bool bVerbose = false;
 	char ch;
 
-	//_malloc_options = "A";
 #if defined(__FreeBSD__) && defined(DEBUG_ALLOC)
 	_malloc_message = WriteMallocMessage;
 #endif
@@ -742,7 +724,7 @@ int start(int argc, char **argv)
 				break;
 
 				// LOCALE_SERVICE
-			case 'n': 
+			case 'n':
 				{
 					if (optind < argc)
 					{
@@ -798,7 +780,7 @@ int start(int argc, char **argv)
 	}
 
 	signal_timer_disable();
-	
+
 	main_fdw = fdwatch_new(4096);
 
 	if ((tcp_socket = socket_tcp_bind(g_szPublicIP, mother_port)) == INVALID_SOCKET)
@@ -807,14 +789,13 @@ int start(int argc, char **argv)
 		return 0;
 	}
 
-	
 #ifndef __UDP_BLOCK__
 	if ((udp_socket = socket_udp_bind(g_szPublicIP, mother_port)) == INVALID_SOCKET)
 	{
 		perror("socket_udp_bind: udp_socket");
 		return 0;
 	}
-#endif	
+#endif
 
 	// if internal ip exists, p2p socket uses internal ip, if not use public ip
 	//if ((p2p_socket = socket_tcp_bind(*g_szInternalIP ? g_szInternalIP : g_szPublicIP, p2p_port)) == INVALID_SOCKET)
@@ -840,7 +821,7 @@ int start(int argc, char **argv)
 		if (g_stAuthMasterIP.length() != 0)
 		{
 			fprintf(stderr, "SlaveAuth");
-			g_pkAuthMasterDesc = DESC_MANAGER::instance().CreateConnectionDesc(main_fdw, g_stAuthMasterIP.c_str(), g_wAuthMasterPort, PHASE_P2P, true); 
+			g_pkAuthMasterDesc = DESC_MANAGER::instance().CreateConnectionDesc(main_fdw, g_stAuthMasterIP.c_str(), g_wAuthMasterPort, PHASE_P2P, true);
 			P2P_MANAGER::instance().RegisterConnector(g_pkAuthMasterDesc);
 			g_pkAuthMasterDesc->SetP2P(g_stAuthMasterIP.c_str(), g_wAuthMasterPort, g_bChannel);
 
@@ -850,7 +831,7 @@ int start(int argc, char **argv)
 			fprintf(stderr, "MasterAuth %d\n", LC_GetLocalType());
 		}
 	}
-	/* game server to teen server */
+	/* game server */
 	else
 	{
 		if (teen_addr[0] && teen_port)
@@ -955,7 +936,7 @@ int idle()
 		num_events_called = 0;
 		current_bytes_written = 0;
 
-		process_time_count = 0; 
+		process_time_count = 0;
 		gettimeofday(&pta, (struct timezone *) 0);
 
 		memset(&thecore_profiler[0], 0, sizeof(thecore_profiler));
@@ -989,7 +970,7 @@ int io_loop(LPFDWATCH fdw)
 	LPDESC	d;
 	int		num_events, event_idx;
 
-	DESC_MANAGER::instance().DestroyClosed(); // PHASE_CLOSE인 접속들을 끊어준다.
+	DESC_MANAGER::instance().DestroyClosed();
 	DESC_MANAGER::instance().TryConnect();
 
 	if ((num_events = fdwatch(fdw, 0)) < 0)
@@ -1033,7 +1014,7 @@ int io_loop(LPFDWATCH fdw)
 				fdwatch_clear_event(fdw, udp_socket, event_idx);
 			}
 			*/
-			continue; 
+			continue;
 		}
 
 		int iRet = fdwatch_check_event(fdw, d->GetSocket(), event_idx);
