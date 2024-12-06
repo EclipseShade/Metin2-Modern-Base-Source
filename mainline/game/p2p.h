@@ -23,19 +23,17 @@ class P2P_MANAGER : public singleton<P2P_MANAGER>
 		P2P_MANAGER();
 		~P2P_MANAGER();
 
-		// 아래 Register* Unregister* pair들은 내부적으로 사실 같은 루틴을 사용한다.
-		// 단지 명시적으로 표시하기 위한 것
 		void			RegisterAcceptor(LPDESC d);
 		void			UnregisterAcceptor(LPDESC d);
 
 		void			RegisterConnector(LPDESC d);
 		void			UnregisterConnector(LPDESC d);
 
-		void			EraseUserByDesc(LPDESC d);	// 해당 desc에 있는 유저들을 지운다.
+		void			EraseUserByDesc(LPDESC d);
 
 		void			FlushOutput();
 
-		void			Boot(LPDESC d);	// p2p 처리에 필요한 정보를 보내준다. (전 캐릭터의 로그인 정보 등)
+		void			Boot(LPDESC d);
 
 		void			Send(const void * c_pvData, int iSize, LPDESC except = NULL);
 
