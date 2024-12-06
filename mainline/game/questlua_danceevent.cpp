@@ -46,7 +46,7 @@ namespace quest
 
 			{	NULL,	NULL}
 		};
-		
+
 		CQuestManager::instance().AddLuaFunctionTable("dance_event", dance_event_functions);
 	}
 }
