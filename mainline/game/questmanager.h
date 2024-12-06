@@ -50,7 +50,7 @@ namespace quest
 			bool		RunState(QuestState& qs);
 
 			PC *		GetPC(unsigned int pc);
-			PC *		GetPCForce(unsigned int pc);	// 현재 PC를 바꾸지 않고 PC 포인터를 가져온다.
+			PC *		GetPCForce(unsigned int pc);
 
 			unsigned int	GetCurrentNPCRace();
 			const string & 	GetCurrentQuestName();
@@ -99,17 +99,15 @@ namespace quest
 
 			void		Letter(DWORD pc);
 			void		Letter(DWORD pc, DWORD quest_index, int state);
-			
-			void		ItemInformer(unsigned int pc, unsigned int vnum);	//독일선물기능
 
-			//
+			void		ItemInformer(unsigned int pc, unsigned int vnum);
 
 			bool		CheckQuestLoaded(PC* pc) { return pc && pc->IsLoaded(); }
 
 			// event occurs in one state
 			void		Select(unsigned int pc, unsigned int selection);
 			void		Resume(unsigned int pc);
-			
+
 			int			ReadQuestCategoryFile(WORD q_index);
 			void		Input(unsigned int pc, const char* msg);
 			void		Confirm(unsigned int pc, EQuestConfirmType confirm, unsigned int pc2 = 0);
@@ -249,9 +247,7 @@ namespace quest
 		public:
 			static bool ExecuteQuestScript(PC& pc, const string& quest_name, const int state, const char* code, const int code_size, vector<AArgScript*>* pChatScripts = NULL, bool bUseCache = true);
 			static bool ExecuteQuestScript(PC& pc, DWORD quest_index, const int state, const char* code, const int code_size, vector<AArgScript*>* pChatScripts = NULL, bool bUseCache = true);
-		
 
-		// begin_other_pc_blcok, end_other_pc_block을 위한 객체들.
 		public:
 			void		BeginOtherPCBlock(DWORD pid);
 			void		EndOtherPCBlock();
@@ -264,3 +260,4 @@ namespace quest
 };
 
 #endif
+
