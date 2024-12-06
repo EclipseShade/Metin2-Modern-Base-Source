@@ -8,7 +8,7 @@ class CMapLocation : public singleton<CMapLocation>
 		{
 			long        addr;
 			WORD        port;
-		} TLocation;    
+		} TLocation;
 
 		bool    Get(long x, long y, long & lMapIndex, long & lAddr, WORD & wPort);
 		bool	Get(int iIndex, long & lAddr, WORD & wPort);
@@ -16,6 +16,7 @@ class CMapLocation : public singleton<CMapLocation>
 
 	protected:
 		std::map<long, TLocation> m_map_address;
-};      
+};
+
 
 #endif
