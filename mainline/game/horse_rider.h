@@ -8,10 +8,10 @@ const int HORSE_MAX_LEVEL = 30;
 
 struct THorseStat
 {
-	int iMinLevel;      // 탑승할 수 있는 최소 레벨
+	int iMinLevel;
 	int iNPCRace;
-	int iMaxHealth;     // 말의 최대 체력
-	int iMaxStamina;    // 말의 최대 스테미너
+	int iMaxHealth;
+	int iMaxStamina;
 	int iST;
 	int iDX;
 	int iHT;
