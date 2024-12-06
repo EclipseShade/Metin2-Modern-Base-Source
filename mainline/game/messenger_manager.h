@@ -22,11 +22,11 @@ class MessengerManager : public singleton<MessengerManager>
 		void	RequestToAdd(LPCHARACTER ch, LPCHARACTER target);
 		void	AuthToAdd(keyA account, keyA companion, bool bDeny);
 
-		void	__AddToList(keyA account, keyA companion);	// 실제 m_Relation, m_InverseRelation 수정하는 메소드
+		void	__AddToList(keyA account, keyA companion);
 		void	AddToList(keyA account, keyA companion);
 
-		void	__RemoveFromList(keyA account, keyA companion); // 실제 m_Relation, m_InverseRelation 수정하는 메소드
-		void	RemoveFromList(keyA account, keyA companion);	
+		void	__RemoveFromList(keyA account, keyA companion);
+		void	RemoveFromList(keyA account, keyA companion);
 
 		void	RemoveAllList(keyA account);
 
@@ -48,3 +48,4 @@ class MessengerManager : public singleton<MessengerManager>
 };
 
 #endif
+
