@@ -20,7 +20,7 @@ public:
 	~DragonSoulTable();
 	typedef std::vector <SApply> TVecApplys;
 	typedef std::map <BYTE, TVecApplys> TMapApplyGroup;
-	
+
 	bool	ReadDragonSoulTableFile(const char * c_pszFileName);
 	bool	GetDragonSoulGroupName(BYTE bType, std::string& stGroupName) const;
 
@@ -72,3 +72,4 @@ private:
 };
 
 #endif
+
