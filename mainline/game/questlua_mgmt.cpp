@@ -46,7 +46,7 @@ namespace quest
 
 		return 0;
 	}
-	
+
 	void RegisterMgmtFunctionTable()
 	{
 		luaL_reg mgmt_functions[] =
@@ -56,7 +56,7 @@ namespace quest
 
 			{	NULL,	NULL}
 		};
-		
+
 		CQuestManager::instance().AddLuaFunctionTable("mgmt", mgmt_functions);
 	}
 }
