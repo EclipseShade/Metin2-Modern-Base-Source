@@ -11,7 +11,7 @@ enum EMonsterChatState
 
 typedef struct SMobRankStat
 {
-	int iGoldPercent;   // µ·ÀÌ ³ª¿Ã È®·ü
+	int iGoldPercent;
 } TMobRankStat;
 
 typedef struct SMobStat
@@ -120,7 +120,7 @@ extern const int		aiMobResistsApplyIdx[MOB_RESISTS_MAX_NUM];
 
 extern const int		aSkillAttackAffectProbByRank[MOB_RANK_MAX_NUM];
 
-extern const int aiItemMagicAttributePercentHigh[ITEM_ATTRIBUTE_MAX_LEVEL]; // 1°³±îÁö
+extern const int aiItemMagicAttributePercentHigh[ITEM_ATTRIBUTE_MAX_LEVEL];
 extern const int aiItemMagicAttributePercentLow[ITEM_ATTRIBUTE_MAX_LEVEL];
 
 extern const int aiItemAttributeAddPercent[ITEM_ATTRIBUTE_MAX_NUM];
@@ -155,7 +155,7 @@ extern const char * c_apszEmpireNames[EMPIRE_MAX_NUM];
 extern const char * c_apszPrivNames[MAX_PRIV_NUM];
 extern const SStoneDropInfo aStoneDrop[STONE_INFO_MAX_NUM];
 
-typedef struct
+typedef struct SGuildWarInfo
 {
 	long lMapIndex;
 	int iWarPrice;
@@ -168,7 +168,7 @@ typedef struct
 extern TGuildWarInfo KOR_aGuildWarInfo[GUILD_WAR_TYPE_MAX_NUM];
 
 // ACCESSORY_REFINE
-enum 
+enum
 {
 	ITEM_ACCESSORY_SOCKET_MAX_NUM = 3
 };
