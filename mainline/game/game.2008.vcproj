@@ -527,14 +527,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dev_log.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\dev_log.h"
-				>
-			</File>
-			<File
 				RelativePath=".\dragon_soul_table.cpp"
 				>
 			</File>

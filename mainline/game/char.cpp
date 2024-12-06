@@ -44,7 +44,6 @@
 #include "monarch.h"
 #include "castle.h"
 #include "arena.h"
-#include "dev_log.h"
 #include "horsename_manager.h"
 #include "pcbang.h"
 #include "gm.h"

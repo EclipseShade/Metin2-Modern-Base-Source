@@ -33,7 +33,8 @@
 // define log level
 // -----------------------------------------------
 #define LOG_WARN        __FILE__,__LINE__,__FUNCTION__,L_WARN
-#define LOG_ERR         __FILE__,__LINE__,__FUNCTION__,L_ERR
+#define 
+         __FILE__,__LINE__,__FUNCTION__,L_ERR
 #define LOG_CRIT        __FILE__,__LINE__,__FUNCTION__,L_CRIT
 #define LOG_INFO        __FILE__,__LINE__,__FUNCTION__,L_INFO
 
@@ -55,15 +56,6 @@
 #define LOG_USR1        __FILE__,__LINE__,__FUNCTION__,L_USR1
 #define LOG_USR2        __FILE__,__LINE__,__FUNCTION__,L_USR2
 #define LOG_USR3        __FILE__,__LINE__,__FUNCTION__,L_USR3
-
-
-
-
-void dev_log(const char *file, int line, const char *function, int level, const char *fmt, ...);
-void dev_log_add_level(int level);
-void dev_log_del_level(int level);
-void dev_log_set_level(int mask);
-
 
 #endif	/* _dev_log_h_ */
 

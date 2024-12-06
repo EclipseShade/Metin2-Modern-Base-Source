@@ -33,7 +33,6 @@
 #include "castle.h"
 #include "BattleArena.h"
 #include "arena.h"
-#include "dev_log.h"
 #include "pcbang.h"
 #include "threeway_war.h"
 #include "safebox.h"

@@ -12,7 +12,6 @@
 #include "messenger_manager.h"
 #include "p2p.h"
 #include "ip_ban.h"
-#include "dev_log.h"
 #include "ClientPackageCryptInfo.h"
 
 struct valid_ip

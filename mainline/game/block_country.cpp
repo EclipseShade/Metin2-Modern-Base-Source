@@ -2,7 +2,6 @@
 
 #include "constants.h"
 #include "block_country.h"
-#include "dev_log.h"
 
 #define DEC_ITER(iter)			std::vector<T_BLOCK_IP*>::iterator	iter
 #define DO_ALL_BLOCKED_IP(iter)	for ((iter)=s_blocked_ip.begin(); (iter)!=s_blocked_ip.end(); ++(iter))
@@ -26,7 +25,7 @@ std::set<std::string>		s_block_exception;
 // static functions
 static void __add_block_exception(const char *login)
 {
-dev_log(LOG_DEB0, "BLOCK_EXCEPTION_ADD : %s", login);
+	sys_log(1, "BLOCK_EXCEPTION_ADD : %s", login);
 
 	DEC_EXCEPTION_ITER(iter);
 	std::string	string_login(login);
@@ -42,7 +41,7 @@ dev_log(LOG_DEB0, "BLOCK_EXCEPTION_ADD : %s", login);
 
 static void __del_block_exception(const char *login)
 {
-dev_log(LOG_DEB0, "BLOCK_EXCEPTION_DEL : %s", login);
+	sys_log(1, "BLOCK_EXCEPTION_DEL : %s", login);
 
 	DEC_EXCEPTION_ITER(iter);
 	std::string	string_login(login);
@@ -58,9 +57,6 @@ dev_log(LOG_DEB0, "BLOCK_EXCEPTION_DEL : %s", login);
 // static functions
 //--------------------------------------
 
-
-
-
 void add_blocked_country_ip(TPacketBlockCountryIp *data)
 {
 	T_BLOCK_IP	*block_ip = M2_NEW T_BLOCK_IP;
@@ -70,9 +66,8 @@ void add_blocked_country_ip(TPacketBlockCountryIp *data)
 
 	s_blocked_ip.push_back(block_ip);
 
-	dev_log(LOG_DEB0, "BLOCKED_IP = %u - %u", block_ip->ip_from, block_ip->ip_to);
+	sys_log(1, "BLOCKED_IP = %u - %u", block_ip->ip_from, block_ip->ip_to);
 }
-
 
 void block_exception(TPacketBlockException *data)
 {
@@ -109,7 +104,7 @@ bool is_blocked_country_ip(const char *user_ip)
 	if (INADDR_NONE == in_address)
 #endif
 	{
-		dev_log(LOG_INFO, "BLOCKED_COUNTRY_IP (%s) : YES", user_ip);
+		sys_log(1, "BLOCKED_COUNTRY_IP (%s) : YES", user_ip);
 		return true;	// 아이피가 괴상하니 일단 블럭처리
 	}
 	ip_number = htonl(st_addr.s_addr);
@@ -119,12 +114,12 @@ bool is_blocked_country_ip(const char *user_ip)
 		block_ip	= *iter;
 		if ( block_ip->ip_from <= ip_number  &&  ip_number <= block_ip->ip_to )
 		{
-			dev_log(LOG_INFO, "BLOCKED_COUNTRY_IP (%s) : YES", user_ip);
+			sys_log(1, "BLOCKED_COUNTRY_IP (%s) : YES", user_ip);
 			return true;
 		}
 	}
 
-	dev_log(LOG_INFO, "BLOCKED_COUNTRY_IP (%s) : NO", user_ip);
+	sys_log(1, "BLOCKED_COUNTRY_IP (%s) : NO", user_ip);
 	return false;
 }
 

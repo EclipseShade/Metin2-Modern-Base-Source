@@ -7,7 +7,6 @@
 #include "db.h"
 #include "protocol.h"
 #include "char.h"
-#include "dev_log.h"
 
 #define HANDSHAKE_XOR                  0x6AB3D224
 

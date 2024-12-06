@@ -6,7 +6,6 @@
 #include "char.h"
 #include "sectree_manager.h"
 #include "desc_client.h"
-#include "dev_log.h"
 
 CMonarch::CMonarch()
 {

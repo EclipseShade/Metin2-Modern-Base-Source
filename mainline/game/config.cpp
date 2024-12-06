@@ -17,7 +17,6 @@
 #include "war_map.h"
 #include "locale_service.h"
 #include "config.h"
-#include "dev_log.h"
 #include "db.h"
 #include "skill_power.h"
 #include "check_server.h"
