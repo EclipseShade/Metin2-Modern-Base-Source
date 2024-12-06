@@ -169,6 +169,6 @@ struct hash<DebugPtr<T> > {
 } // namespace boost
 #endif
 
-
 #endif // DEBUG_ALLOC
 #endif // _DEBUG_PTR_H_
+
