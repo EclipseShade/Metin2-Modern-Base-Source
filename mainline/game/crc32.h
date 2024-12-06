@@ -11,3 +11,4 @@ crc_t	GetFastHash(const char * key, size_t len);
 #define CRC32CASE(buf) GetCaseCRC32(buf, strlen(buf))*/
 
 #endif
+
