@@ -33,9 +33,8 @@ template <class Func> Func CDungeon::ForEachMember(Func f)
 
 namespace quest
 {
-	//
 	// "dungeon" lua functions
-	//
+
 	int dungeon_notice(lua_State* L)
 	{
 		if (!lua_isstring(L, 1))
@@ -244,7 +243,7 @@ namespace quest
 			return 0;
 		}
 
-		if (!lua_isnumber(L, 3)) 
+		if (!lua_isnumber(L, 3))
 		{
 			sys_err("wrong X");
 			return 0;
@@ -611,7 +610,7 @@ namespace quest
 
 				if (pChar == ExceptChar)
 					return;
-					
+
 				if (!pChar->IsPet() && (true == pChar->IsMonster() || true == pChar->IsStone()))
 				{
 					if (x1 <= pChar->GetX() && pChar->GetX() <= x2 && y1 <= pChar->GetY() && pChar->GetY() <= y2)
@@ -622,7 +621,7 @@ namespace quest
 			}
 		}
 	};
-	
+
 	int dungeon_purge_area(lua_State* L)
 	{
 		if (!lua_isnumber(L,1) || !lua_isnumber(L,2) || !lua_isnumber(L,3) || !lua_isnumber(L,4))
@@ -870,7 +869,7 @@ namespace quest
 			long x = (long) lua_tonumber(L, 2);
 			long y = (long) lua_tonumber(L, 3);
 			BYTE dir = (int) lua_tonumber(L, 4);
-			
+
 			LPCHARACTER ch = pDungeon->SpawnMob(dwVnum, x, y, dir);
 			if (ch && !vid)
 				vid = ch->GetVID();
@@ -878,7 +877,7 @@ namespace quest
 		lua_pushnumber(L, vid);
 		return 1;
 	}
-	
+
 	int dungeon_spawn_mob_ac_dir(lua_State* L)
 	{
 		if (!lua_isnumber(L, 1) || !lua_isnumber(L, 2) || !lua_isnumber(L, 3) || !lua_isnumber(L, 4))
@@ -898,7 +897,7 @@ namespace quest
 			long x = (long) lua_tonumber(L, 2);
 			long y = (long) lua_tonumber(L, 3);
 			BYTE dir = (int) lua_tonumber(L, 4);
-			
+
 			LPCHARACTER ch = pDungeon->SpawnMob_ac_dir(dwVnum, x, y, dir);
 			if (ch && !vid)
 				vid = ch->GetVID();
@@ -946,9 +945,8 @@ namespace quest
 
 	int dungeon_spawn_group(lua_State* L)
 	{
-		//
 		// argument: vnum,x,y,radius,aggressive,count
-		//
+
 		if (!lua_isnumber(L, 1) || !lua_isnumber(L, 2) || !lua_isnumber(L, 3) || !lua_isnumber(L, 4) || !lua_isnumber(L, 6))
 		{
 			sys_err("invalid argument");
@@ -999,7 +997,7 @@ namespace quest
 		return 0;
 	}
 
-	int dungeon_exit(lua_State* L) // 던전에 들어오기 전 위치로 보냄
+	int dungeon_exit(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
 
@@ -1007,7 +1005,7 @@ namespace quest
 		return 0;
 	}
 
-	int dungeon_exit_all(lua_State* L) // 던전에 있는 모든 사람을 던전에 들어오기 전 위치로 보냄
+	int dungeon_exit_all(lua_State* L)
 	{
 		CQuestManager& q = CQuestManager::instance();
 		LPDUNGEON pDungeon = q.GetCurrentDungeon();
@@ -1033,7 +1031,7 @@ namespace quest
 				{
 					struct ::packet_script packet_script;
 					TEMP_BUFFER buf;
-					
+
 					for (CDungeon::ItemGroup::const_iterator it = item_group->begin(); it != item_group->end(); it++)
 					{
 						if(ch->CountSpecifyItem(it->first) >= it->second)
@@ -1063,7 +1061,6 @@ namespace quest
 		}
 	};
 
-
 	int dungeon_say_diff_by_item_group(lua_State* L)
 	{
 		if (!lua_isstring(L, 1) || !lua_isstring(L, 2) || !lua_isstring(L, 3))
@@ -1090,7 +1087,7 @@ namespace quest
 		}
 		FSayDungeonByItemGroup f;
 		sys_log (0,"diff_by_item");
-	
+
 		std::string group_name (lua_tostring (L, 1));
 		f.item_group = pDungeon->GetItemGroup (group_name);
 
@@ -1109,11 +1106,11 @@ namespace quest
 
 		return 0;
 	}
-	
+
 	struct FExitDungeonByItemGroup
 	{
 		const CDungeon::ItemGroup* item_group;
-		
+
 		void operator()(LPENTITY ent)
 		{
 			if (ent->IsType(ENTITY_CHARACTER))
@@ -1134,8 +1131,8 @@ namespace quest
 			}
 		}
 	};
-	
-	int dungeon_exit_all_by_item_group (lua_State* L) // 특정 아이템 그룹에 속한 아이템이 없는사람은 강퇴
+
+	int dungeon_exit_all_by_item_group (lua_State* L)
 	{
 		if (!lua_isstring(L, 1))
 		{
@@ -1163,15 +1160,15 @@ namespace quest
 
 		std::string group_name (lua_tostring (L, 1));
 		f.item_group = pDungeon->GetItemGroup (group_name);
-	
+
 		if (f.item_group == NULL)
 		{
 			sys_err ("invalid item group");
 			return 0;
 		}
-		
+
 		pMap -> for_each( f );
-		
+
 		return 0;
 	}
 
@@ -1199,8 +1196,8 @@ namespace quest
 			}
 		}
 	};
-	
-	int dungeon_delete_item_in_item_group_from_all(lua_State* L) // 특정 아이템을 던전 내 pc에게서 삭제.
+
+	int dungeon_delete_item_in_item_group_from_all(lua_State* L)
 	{
 		if (!lua_isstring(L, 1))
 		{
@@ -1236,10 +1233,9 @@ namespace quest
 		}
 
 		pMap -> for_each( f );
-		
+
 		return 0;
 	}
-
 
 	int dungeon_kill_all(lua_State* L)
 	{
@@ -1361,7 +1357,7 @@ namespace quest
 		{
 			return 0;
 		}
-		
+
 		if (lua_gettop(L)<3 || !lua_isnumber(L, 1) || !lua_isnumber(L,2) || !lua_isnumber(L, 3))
 		{
 			return 0;
@@ -1383,7 +1379,7 @@ namespace quest
 		int size = lua_tonumber (L, 2);
 
 		CDungeon::ItemGroup item_group;
-		
+
 		for (int i = 0; i < size; i++)
 		{
 			if (!lua_isnumber (L, i * 2 + 3) || !lua_isnumber (L, i * 2 + 4))
@@ -1398,7 +1394,7 @@ namespace quest
 		{
 			return 0;
 		}
-		
+
 		pDungeon->CreateItemGroup (group_name, item_group);
 		return 0;
 	}
@@ -1425,9 +1421,9 @@ namespace quest
 		return 0;
 	}
 
-	void RegisterDungeonFunctionTable() 
+	void RegisterDungeonFunctionTable()
 	{
-		luaL_reg dungeon_functions[] = 
+		luaL_reg dungeon_functions[] =
 		{
 			{ "join",			dungeon_join		},
 			{ "exit",			dungeon_exit		},
@@ -1496,3 +1492,4 @@ namespace quest
 		CQuestManager::instance().AddLuaFunctionTable("d", dungeon_functions);
 	}
 }
+
