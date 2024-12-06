@@ -60,11 +60,6 @@ class CItem : public CEntity
 		bool		SetCount(DWORD count);
 		DWORD		GetCount();
 
-		// GetVnum과 GetOriginalVnum에 대한 comment
-		// GetVnum은 Masking 된 Vnum이다. 이를 사용함으로써, 아이템의 실제 Vnum은 10이지만, Vnum이 20인 것처럼 동작할 수 있는 것이다.
-		// Masking 값은 ori_to_new.txt에서 정의된 값이다.
-		// GetOriginalVnum은 아이템 고유의 Vnum으로, 로그 남길 때, 클라이언트에 아이템 정보 보낼 때, 저장할 때는 이 Vnum을 사용하여야 한다.
-		// 
 		DWORD		GetVnum() const		{ return m_dwMaskVnum ? m_dwMaskVnum : m_dwVnum;	}
 		DWORD		GetOriginalVnum() const		{ return m_dwVnum;	}
 		BYTE		GetType() const		{ return m_pProto ? m_pProto->bType : 0;	}
@@ -103,7 +98,7 @@ class CItem : public CEntity
 
 		bool		IsPolymorphItem();
 
-		void		ModifyPoints(bool bAdd);	// 아이템의 효과를 캐릭터에 부여 한다. bAdd가 false이면 제거함
+		void		ModifyPoints(bool bAdd);
 
 		bool		CreateSocket(BYTE bSlot, BYTE bGold);
 		const long *	GetSockets()		{ return &m_alSockets[0];	}
@@ -115,14 +110,14 @@ class CItem : public CEntity
 		int		GetSocketCount();
 		bool		AddSocket();
 
-		const TPlayerItemAttribute* GetAttributes()		{ return m_aAttr;	} 
+		const TPlayerItemAttribute* GetAttributes()		{ return m_aAttr;	}
 		const TPlayerItemAttribute& GetAttribute(int i)	{ return m_aAttr[i];	}
 
 		BYTE		GetAttributeType(int i)	{ return m_aAttr[i].bType;	}
 		short		GetAttributeValue(int i){ return m_aAttr[i].sValue;	}
 
 		void		SetAttributes(const TPlayerItemAttribute* c_pAttribute);
-		
+
 		int		FindAttribute(BYTE bType);
 		bool		RemoveAttributeAt(int index);
 		bool		RemoveAttributeType(BYTE bType);
@@ -146,7 +141,7 @@ class CItem : public CEntity
 
 		DWORD		GetLastOwnerPID()	{ return m_dwLastOwnerPID; }
 
-		int		GetAttributeSetIndex(); // 속성 붙는것을 지정한 배열의 어느 인덱스를 사용하는지 돌려준다.
+		int		GetAttributeSetIndex();
 		void		AlterToMagicItem();
 		void		AlterToSocketItem(int iSocketCount);
 
@@ -165,7 +160,6 @@ class CItem : public CEntity
 		void		StopTimerBasedOnWearExpireEvent();
 		void		StopAccessorySocketExpireEvent();
 
-		//			일단 REAL_TIME과 TIMER_BASED_ON_WEAR 아이템에 대해서만 제대로 동작함.
 		int			GetDuration();
 
 		int		GetAttributeCount();
@@ -180,7 +174,7 @@ class CItem : public CEntity
 		bool	IsSameSpecialGroup(const LPITEM item) const;
 
 		// ACCESSORY_REFINE
-		// 액세서리에 광산을 통해 소켓을 추가
+
 		bool		IsAccessoryForSocket();
 
 		int		GetAccessorySocketGrade();
@@ -193,7 +187,6 @@ class CItem : public CEntity
 
 		void		AccessorySocketDegrade();
 
-		// 악세사리 를 아이템에 밖았을때 타이머 돌아가는것( 구리, 등 )
 		void		StartAccessorySocketExpireEvent();
 		void		SetAccessorySocketExpireEvent(LPEVENT pkEvent);
 
@@ -227,7 +220,7 @@ class CItem : public CEntity
 
 	protected:
 		friend class CInputDB;
-		bool		OnAfterCreatedItem();			// 서버상에 아이템이 모든 정보와 함께 완전히 생성(로드)된 후 불리우는 함수.
+		bool		OnAfterCreatedItem();
 
 	public:
 		bool		IsRideItem();
@@ -241,42 +234,33 @@ class CItem : public CEntity
 		bool		MoveToAuction ();
 		void		CopyToRawData (TPlayerItem* item);
 #endif
-		// 독일에서 기존 캐시 아이템과 같지만, 교환 가능한 캐시 아이템을 만든다고 하여,
-		// 오리지널 아이템에, 교환 금지 플래그만 삭제한 새로운 아이템들을 새로운 아이템 대역에 할당하였다.
-		// 문제는 새로운 아이템도 오리지널 아이템과 같은 효과를 내야하는데,
-		// 서버건, 클라건, vnum 기반으로 되어있어
-		// 새로운 vnum을 죄다 서버에 새로 다 박아야하는 안타까운 상황에 맞닿았다.
-		// 그래서 새 vnum의 아이템이면, 서버에서 돌아갈 때는 오리지널 아이템 vnum으로 바꿔서 돌고 하고,
-		// 저장할 때에 본래 vnum으로 바꿔주도록 한다.
 
-		// Mask vnum은 어떤 이유(ex. 위의 상황)로 인해 vnum이 바뀌어 돌아가는 아이템을 위해 있다.
 		void		SetMaskVnum(DWORD vnum)	{	m_dwMaskVnum = vnum; }
 		DWORD		GetMaskVnum()			{	return m_dwMaskVnum; }
 		bool		IsMaskedItem()	{	return m_dwMaskVnum != 0;	}
 
-		// 용혼석
 		bool		IsDragonSoul();
 		int		GiveMoreTime_Per(float fPercent);
 		int		GiveMoreTime_Fix(DWORD dwTime);
 
 	private:
-		TItemTable const * m_pProto;		// 프로토 타잎
+		TItemTable const * m_pProto;
 
 		DWORD		m_dwVnum;
 		LPCHARACTER	m_pOwner;
 
-		BYTE		m_bWindow;		// 현재 아이템이 위치한 윈도우 
-		DWORD		m_dwID;			// 고유번호
-		bool		m_bEquipped;	// 장착 되었는가?
+		BYTE		m_bWindow;
+		DWORD		m_dwID;
+		bool		m_bEquipped;
 		DWORD		m_dwVID;		// VID
-		WORD		m_wCell;		// 위치
-		DWORD		m_dwCount;		// 개수
-		long		m_lFlag;		// 추가 flag
-		DWORD		m_dwLastOwnerPID;	// 마지막 가지고 있었던 사람의 PID
+		WORD		m_wCell;
+		DWORD		m_dwCount;
+		long		m_lFlag;
+		DWORD		m_dwLastOwnerPID;
 
-		bool		m_bExchanging;	///< 현재 교환중 상태 
+		bool		m_bExchanging;
 
-		long		m_alSockets[ITEM_SOCKET_MAX_NUM];	// 아이템 소캣
+		long		m_alSockets[ITEM_SOCKET_MAX_NUM];
 		TPlayerItemAttribute	m_aAttr[ITEM_ATTRIBUTE_MAX_NUM];
 
 		LPEVENT		m_pkDestroyEvent;
@@ -292,7 +276,7 @@ class CItem : public CEntity
 		bool		m_bSkipSave;
 
 		bool		m_isLocked;
-		
+
 		DWORD		m_dwMaskVnum;
 		DWORD		m_dwSIGVnum;
 	public:
@@ -311,7 +295,7 @@ EVENTINFO(item_event_info)
 	LPITEM item;
 	char szOwnerName[CHARACTER_NAME_MAX_LEN];
 
-	item_event_info() 
+	item_event_info()
 	: item( 0 )
 	{
 		::memset( szOwnerName, 0, CHARACTER_NAME_MAX_LEN );
@@ -322,10 +306,11 @@ EVENTINFO(item_vid_event_info)
 {
 	DWORD item_vid;
 
-	item_vid_event_info() 
+	item_vid_event_info()
 	: item_vid( 0 )
 	{
 	}
 };
 
 #endif
+
