@@ -47,6 +47,7 @@ namespace mining
 		{ 30303, 50616, 50636 },
 		{ 30304, 50617, 50637 },
 		{ 30305, 50618, 50638 },
+		{ 30306, 50619, 50639 },
 	};
 
 	int fraction_info[MAX_FRACTION_COUNT][3] =
@@ -115,7 +116,7 @@ namespace mining
 				r -= fraction_info[i][0];
 		}
 
-		return 0; 
+		return 0;
 	}
 
 	void OreDrop(LPCHARACTER ch, DWORD dwLoadVnum)
@@ -167,7 +168,7 @@ namespace mining
 		DWORD pid;
 		DWORD vid_load;
 
-		mining_event_info() 
+		mining_event_info()
 		: pid( 0 )
 		, vid_load( 0 )
 		{
@@ -177,7 +178,7 @@ namespace mining
 	// REFINE_PICK
 	bool Pick_Check(CItem& item)
 	{
-		if (item.GetType() != ITEM_PICK)    
+		if (item.GetType() != ITEM_PICK)
 			return false;
 
 		return true;
@@ -217,7 +218,7 @@ namespace mining
 	{
 		return (number(1,pick.GetValue(1))==1);
 	}
-	
+
 	bool Pick_IsRefineSuccess(CItem& pick)
 	{
 		return (number(1,100) <= pick.GetValue(3));
@@ -311,7 +312,6 @@ namespace mining
 
 		if (Pick_IsPracticeSuccess(pick))
 		{
-
 			if (Pick_Refinable(pick))
 			{
 				ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("곡괭이가 최대 수련도에 도달하였습니다."));
@@ -319,7 +319,7 @@ namespace mining
 			}
 			else
 			{
-				Pick_IncCurExp(pick);	
+				Pick_IncCurExp(pick);
 
 				ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("곡괭이의 수련도가 증가하였습니다! (%d/%d)"),
 						Pick_GetCurExp(pick), Pick_GetMaxExp(pick));
