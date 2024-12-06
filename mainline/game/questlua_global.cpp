@@ -119,7 +119,7 @@ namespace quest
 		return 0;
 	}
 
-	int _set_skin(lua_State* L) // Quest UI style
+	int _set_skin(lua_State* L)
 	{
 		if (lua_isnumber(L, -1))
 		{
@@ -324,7 +324,7 @@ namespace quest
 		LogManager::instance().CharLog(ch, what, how, hint);
 		return 0;
 	}
-	
+
 	int _item_log(lua_State* L)
 	{
 		CQuestManager& q = CQuestManager::instance();
@@ -396,7 +396,7 @@ namespace quest
 		ch->ChatPacket(CHAT_TYPE_INFO, "QUEST_SYSERR %s", lua_tostring(L, 1));
 		return 0;
 	}
-	
+
 	// LUA_ADD_BGM_INFO
 	int _set_bgm_volume_enable(lua_State* L)
 	{
@@ -422,7 +422,7 @@ namespace quest
 
 		return 0;
 	}
-	// END_OF_LUA_ADD_BGM_INFO	
+	// END_OF_LUA_ADD_BGM_INFO
 
 	// LUA_ADD_GOTO_INFO
 	int _add_goto_info(lua_State* L)
@@ -506,7 +506,7 @@ namespace quest
 		}
 
 		if (ch)
-			sys_log(0, "_give_empire_privileage(empire=%d, type=%d, value=%d, time=%d), by quest, %s", 
+			sys_log(0, "_give_empire_privileage(empire=%d, type=%d, value=%d, time=%d), by quest, %s",
 					empire, type, value, time, ch->GetName());
 		else
 			sys_log(0, "_give_empire_privileage(empire=%d, type=%d, value=%d, time=%d), by quest, NULL",
@@ -529,7 +529,7 @@ namespace quest
 			return 0;
 		}
 
-		sys_log(0, "_give_guild_privileage(empire=%d, type=%d, value=%d, time=%d)", 
+		sys_log(0, "_give_guild_privileage(empire=%d, type=%d, value=%d, time=%d)",
 				guild_id, type, value, time);
 
 		CPrivManager::instance().RequestGiveGuildPriv(guild_id,type,value,time);
@@ -552,7 +552,7 @@ namespace quest
 				if (found)
 					os << ", ";
 
-				os << LC_TEXT(c_apszPrivNames[type]) << " : " << 
+				os << LC_TEXT(c_apszPrivNames[type]) << " : " <<
 					pkPrivEmpireData->m_value << "%" << " (" <<
 					((pkPrivEmpireData->m_end_time_sec-get_global_time())/3600.0f) << " hours)" << endl;
 				found = true;
@@ -696,7 +696,6 @@ namespace quest
 		lua_pushnumber(L, get_global_time());
 		return 1;
 	}
-	
 
 	int _get_channel_id(lua_State* L)
 	{
@@ -802,7 +801,6 @@ namespace quest
 		return 1;
 	}
 
-	// 새로운 state를 만든다.
 	int _set_quest_state(lua_State* L)
 	{
 		if (!lua_isstring(L, 1) || !lua_isstring(L, 2))
@@ -812,7 +810,7 @@ namespace quest
 		QuestState * pqs = q.GetCurrentState();
 		PC* pPC = q.GetCurrentPC();
 		//assert(L == pqs->co);
-		if (L!=pqs->co) 
+		if (L!=pqs->co)
 		{
 			luaL_error(L, "running thread != current thread???");
 			sys_log(0,"running thread != current thread???");
@@ -846,13 +844,13 @@ namespace quest
 
 		CQuestManager& q = CQuestManager::instance();
 		PC* pPC = q.GetCurrentPC();
-		
+
 		if (pPC)
 		{
 			std::string stQuestName	= lua_tostring(L, 1);
 			stQuestName += ".__status";
 
-			int nRet = pPC->GetFlag( stQuestName.c_str() ); 
+			int nRet = pPC->GetFlag( stQuestName.c_str() );
 
 			lua_pushnumber(L, nRet );
 
@@ -894,14 +892,14 @@ namespace quest
 		P2P_MANAGER::instance().Send(buf.read_peek(), buf.size()); // HEADER_GG_NOTICE
 
 		SendNotice(s.str().c_str());
-		return 1;	
+		return 1;
 	}
 
 	EVENTINFO(warp_all_to_village_event_info)
 	{
 		DWORD dwWarpMapIndex;
 
-		warp_all_to_village_event_info() 
+		warp_all_to_village_event_info()
 		: dwWarpMapIndex( 0 )
 		{
 		}
@@ -955,7 +953,7 @@ namespace quest
 	{
 		int iMapIndex 	= static_cast<int>(lua_tonumber(L, 1));
 		int iSec		= static_cast<int>(lua_tonumber(L, 2));
-		
+
 		warp_all_to_village_event_info* info = AllocEventInfo<warp_all_to_village_event_info>();
 
 		info->dwWarpMapIndex = iMapIndex;
@@ -970,10 +968,10 @@ namespace quest
 	int _warp_to_village( lua_State * L )
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
-	
+
 		if (NULL != ch)
 		{
-			BYTE bEmpire = ch->GetEmpire();	
+			BYTE bEmpire = ch->GetEmpire();
 			ch->WarpSet( g_start_position[bEmpire][0], g_start_position[bEmpire][1] );
 		}
 
@@ -987,7 +985,7 @@ namespace quest
 
 		Script += "[ENTER]";
 		Script += "[DONE]";
-		
+
 		struct ::packet_script packet_script;
 
 		packet_script.header = HEADER_GC_SCRIPT;
@@ -1036,7 +1034,6 @@ namespace quest
 		return 0;
 	}
 
-	//주의: 몹 리젠이 안되는 맵에서만 사용
 	int _regen_in_map( lua_State * L )
 	{
 		int iMapIndex = static_cast<int>(lua_tonumber(L, 1));
@@ -1190,7 +1187,7 @@ namespace quest
 		return 0;
 	}
 
-	int _get_locale_base_path( lua_State* L )
+	int _get_locale_base_path(lua_State* L)
 	{
 		lua_pushstring( L, LocaleService_GetBasePath().c_str() );
 
@@ -1215,7 +1212,7 @@ namespace quest
 
 				if (pChar == ExceptChar)
 					return;
-					
+
 				if (!pChar->IsPet() && (true == pChar->IsMonster() || true == pChar->IsStone()))
 				{
 					if (x1 <= pChar->GetX() && pChar->GetX() <= x2 && y1 <= pChar->GetY() && pChar->GetY() <= y2)
@@ -1227,7 +1224,7 @@ namespace quest
 		}
 	};
 
-	int _purge_area( lua_State* L )
+	int _purge_area(lua_State* L)
 	{
 		int x1 = lua_tonumber(L, 1);
 		int y1 = lua_tonumber(L, 2);
@@ -1285,7 +1282,7 @@ namespace quest
 		}
 	};
 
-	int _warp_all_in_area_to_area( lua_State* L )
+	int _warp_all_in_area_to_area(lua_State* L)
 	{
 		int from_x1 = lua_tonumber(L, 1);
 		int from_y1 = lua_tonumber(L, 2);
@@ -1326,7 +1323,7 @@ namespace quest
 		}
 	}
 
-	int _get_special_item_group( lua_State* L )
+	int _get_special_item_group(lua_State* L)
 	{
 		if (!lua_isnumber (L, 1))
 		{
@@ -1343,7 +1340,7 @@ namespace quest
 		}
 
 		int count = pItemGroup->GetGroupSize();
-		
+
 		for (int i = 0; i < count; i++)
 		{
 			lua_pushnumber(L, (int)pItemGroup->GetVnum(i));
@@ -1441,7 +1438,7 @@ namespace quest
 
 			{	NULL,	NULL	}
 		};
-	
+
 		int i = 0;
 
 		while (global_functions[i].name != NULL)
