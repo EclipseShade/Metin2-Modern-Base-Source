@@ -12,9 +12,8 @@
 
 namespace quest
 {
-	//
 	// "quest" Lua functions
-	//
+
 	int quest_start(lua_State* L)
 	{
 		CQuestManager& q = CQuestManager::instance();
@@ -122,7 +121,7 @@ namespace quest
 		PC* pPC = q.GetCurrentPC();
 		//assert(L == pqs->co);
 
-		if (L!=pqs->co) 
+		if (L!=pqs->co)
 		{
 			luaL_error(L, "running thread != current thread???");
 			if ( test_server )
@@ -136,7 +135,7 @@ namespace quest
 			//cerr << "QUEST new state" << pPC->GetCurrentQuestName(); << ":"
 			//cerr <<  lua_tostring(L,-1);
 			//cerr << endl;
-			//
+
 			std::string stCurrentState = lua_tostring(L,-1);
 			if ( test_server )
 				sys_log ( 0 ,"questlua->setstate( %s, %s )", pPC->GetCurrentQuestName().c_str(), stCurrentState.c_str() );
@@ -149,7 +148,7 @@ namespace quest
 	int quest_coroutine_yield(lua_State * L)
 	{
 		CQuestManager& q = CQuestManager::instance();
-		// other_pc_block 내부에서는 yield가 일어나서는 안된다. 절대로.
+
 		if (q.IsInOtherPCBlock())
 		{
 			sys_err("FATAL ERROR! Yield occur in other_pc_block.");
@@ -207,7 +206,7 @@ namespace quest
 
 	void RegisterQuestFunctionTable()
 	{
-		luaL_reg quest_functions[] = 
+		luaL_reg quest_functions[] =
 		{
 			{ "setstate",				quest_setstate				},
 			{ "set_state",				quest_setstate				},
@@ -223,21 +222,8 @@ namespace quest
 			{ "done",					quest_done					},
 			{ "getcurrentquestindex",	quest_get_current_quest_index	},
 			{ "no_send",				quest_no_send				},
-			// begin_other_pc_block(pid), end_other_pc_block 사이를 other_pc_block이라고 하자.
-			// other_pc_block에서는 current_pc가 pid로 변경된다.
-			//						끝나면 다시 원래의 current_pc로 돌아간다.
-			/*		이런 것을 위해 만듬.
-					for i, pid in next, pids, nil do
-						q.begin_other_pc_block(pid)
-						if pc.count_item(PASS_TICKET) < 1 then
-							table.insert(criminalNames, pc.get_name())
-							canPass = false
-						end
-						q.end_other_pc_block()
-					end
-			*/
-			// 주의 : other_pc_block 내부에서는 절대로 yield가 일어나서는 안된다.(ex. wait, select, input, ...)
-			{ "begin_other_pc_block",	quest_begin_other_pc_block	}, 
+
+			{ "begin_other_pc_block",	quest_begin_other_pc_block	},
 			{ "end_other_pc_block",		quest_end_other_pc_block	},
 			{ NULL,						NULL						}
 		};
@@ -245,7 +231,4 @@ namespace quest
 		CQuestManager::instance().AddLuaFunctionTable("q", quest_functions);
 	}
 }
-
-
-
 
