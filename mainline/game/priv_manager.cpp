@@ -226,7 +226,6 @@ void CPrivManager::RemoveCharacterPriv(DWORD pid, BYTE type)
 
 int CPrivManager::GetPriv(LPCHARACTER ch, BYTE type)
 {
-	// 캐릭터의 변경 수치가 -라면 무조건 -만 적용되게
 	int val_ch = GetPrivByCharacter(ch->GetPlayerID(), type);
 
 	if (val_ch < 0 && !ch->IsEquipUniqueItem(UNIQUE_ITEM_NO_BAD_LUCK_EFFECT))
@@ -235,7 +234,6 @@ int CPrivManager::GetPriv(LPCHARACTER ch, BYTE type)
 	{
 		int val;
 
-		// 개인, 제국, 길드, 전체 중 큰 값을 취한다.
 		val = MAX(val_ch, GetPrivByEmpire(0, type));
 		val = MAX(val, GetPrivByEmpire(ch->GetEmpire(), type));
 
