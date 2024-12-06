@@ -19,3 +19,4 @@ public:
 };
 
 #endif // _MALLOC_ALLOCATOR_H_
+
