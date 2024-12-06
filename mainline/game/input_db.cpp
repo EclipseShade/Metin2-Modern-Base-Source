@@ -89,7 +89,7 @@ bool GetServerLocation(TAccountTable & rTab, BYTE bEmpire)
 
 			if (!CMapLocation::instance().Get(rTab.players[i].x, rTab.players[i].y, lIndex, rTab.players[i].lAddr, rTab.players[i].wPort))
 			{
-				sys_err("cannot find server for mapindex %d %d x %d (name %s)", 
+				sys_err("cannot find server for mapindex %d %d x %d (name %s)",
 						lIndex,
 						rTab.players[i].x,
 						rTab.players[i].y,
@@ -137,7 +137,7 @@ void CInputDB::LoginSuccess(DWORD dwHandle, const char *data)
 		return;
 	}
 
-	if (strcmp(pTab->status, "OK")) // OK가 아니면
+	if (strcmp(pTab->status, "OK"))
 	{
 		sys_log(0, "CInputDB::LoginSuccess - status[%s] is not OK [%s]", pTab->status, pTab->login);
 
@@ -160,7 +160,7 @@ void CInputDB::LoginSuccess(DWORD dwHandle, const char *data)
 
 	d->BindAccountTable(pTab);
 
-	if (!bFound) // 캐릭터가 없으면 랜덤한 제국으로 보낸다.. -_-
+	if (!bFound)
 	{
 		TPacketGCEmpire pe;
 		pe.bHeader = HEADER_GC_EMPIRE;
@@ -236,7 +236,6 @@ void CInputDB::PlayerCreateSuccess(LPDESC d, const char * data)
 
 	d->Packet(&pack, sizeof(TPacketGCPlayerCreateSuccess));
 
-	// 기본 무기와 귀환부를 지급
 	TPlayerItem t;
 	memset(&t, 0, sizeof(t));
 
@@ -246,11 +245,6 @@ void CInputDB::PlayerCreateSuccess(LPDESC d, const char * data)
 		t.count	= 1;
 		t.owner	= r_Tab.players[pPacketDB->bAccountCharacterIndex].dwID;
 
-		//무사: 자인갑+3,철편투구+3,금편신발+3,남만도+3,백금목걸이+3, 흑단귀걸이+3, 소산부+3, 오각패+3, 흑단팔찌+3 
-		//자객：영린+3,연환두건+3,금편신발+3,마안도+3,화안궁+3,옥목걸이+3, 옥귀걸이+3, 오각패+3, 흑단팔찌+3 
-		//수라：음양갑+3,애희투구+3,금편신발+3,남만도+3,진주목걸이+3, 백금귀걸이+3, 오각패+3, 흑단팔찌+3
-		//무당：서천의+3,태을모+3,금편신발+3,자린선+3,매화령+3,진주목걸이+3, 백금귀걸이+3, 오각패+3, 흑단팔찌+3
-
 		struct SInitialItem
 		{
 			DWORD dwVnum;
@@ -259,14 +253,14 @@ void CInputDB::PlayerCreateSuccess(LPDESC d, const char * data)
 
 		const int MAX_INITIAL_ITEM = 9;
 
-		static SInitialItem initialItems[JOB_MAX_NUM][MAX_INITIAL_ITEM] = 
+		static SInitialItem initialItems[JOB_MAX_NUM][MAX_INITIAL_ITEM] =
 		{
 			{ {11243,	2}, {12223,	3}, {15103,	4}, {   93,	1}, {16143,	8}, {17103,	9}, { 3083,	0}, {13193,	11}, {14103, 12}, },
 			{ {11443,	0}, {12363,	3}, {15103,	4}, { 1053,	2}, { 2083,	1}, {16083,	7}, {17083,	8}, {13193,	9}, {14103,	10}, },
 			{ {11643,	0}, {12503,	2}, {15103,	3}, {   93,	1}, {16123,	4}, {17143,	7}, {13193,	8}, {14103,	9}, {    0,	0}, },
 			{ {11843,	0}, {12643,	1}, {15103,	2}, { 7083,	3}, { 5053,	4}, {16123,	6}, {17143,	7}, {13193,	8}, {14103,	9}, },
 #ifdef ENABLE_WOLFMAN_CHARACTER
-			{ {11243,	2}, {12223,	3}, {15103,	4}, {   93,	1}, {16143,	8}, {17103,	9}, { 3083,	0}, {13193,	11}, {14103, 12}, }, // NOTE: 수인족 초기아이템.. 안쓰이는 코드니 패스
+			{ {21023,	2}, {12223,	3}, {21513,	4}, { 6023,	1}, {16143,	8}, {17103,	9}, { 0,	0}, {13193,	11}, {14103, 12}, },
 #endif
 		};
 
@@ -355,7 +349,7 @@ void CInputDB::PlayerLoad(LPDESC d, const char * data)
 	{
 		lMapIndex = SECTREE_MANAGER::instance().GetMapIndex(pTab->x, pTab->y);
 
-		if (lMapIndex == 0) // 좌표를 찾을 수 없다.
+		if (lMapIndex == 0)
 		{
 			lMapIndex = EMPIRE_START_MAP(d->GetAccountTable().bEmpire);
 			pos.x = EMPIRE_START_X(d->GetAccountTable().bEmpire);
@@ -369,12 +363,6 @@ void CInputDB::PlayerLoad(LPDESC d, const char * data)
 	}
 	pTab->lMapIndex = lMapIndex;
 
-	// Private 맵에 있었는데, Private 맵이 사라진 상태라면 출구로 돌아가야 한다.
-	// ----
-	// 근데 출구로 돌아가야 한다면서... 왜 출구가 아니라 private map 상에 대응되는 pulic map의 위치를 찾냐고...
-	// 역사를 모르니... 또 하드코딩 한다.
-	// 아귀동굴이면, 출구로...
-	// by rtsummit
 	if (!SECTREE_MANAGER::instance().GetValidLocation(pTab->lMapIndex, pTab->x, pTab->y, lMapIndex, pos, d->GetEmpire()))
 	{
 		sys_err("InputDB::PlayerLoad : cannot find valid location %d x %d (name: %s)", pTab->x, pTab->y, pTab->name);
@@ -406,7 +394,7 @@ void CInputDB::PlayerLoad(LPDESC d, const char * data)
 	ch->SetEmpire(d->GetEmpire());
 
 	d->BindCharacter(ch);
-	
+
 	{
 		// P2P Login
 		TPacketGGLogin p;
@@ -421,7 +409,7 @@ void CInputDB::PlayerLoad(LPDESC d, const char * data)
 		P2P_MANAGER::instance().Send(&p, sizeof(TPacketGGLogin));
 
 		char buf[51];
-		snprintf(buf, sizeof(buf), "%s %d %d %ld %d", 
+		snprintf(buf, sizeof(buf), "%s %d %d %ld %d",
 				inet_ntoa(ch->GetDesc()->GetAddr().sin_addr), ch->GetGold(), g_bChannel, ch->GetMapIndex(), ch->GetAlignment());
 		LogManager::instance().CharLog(ch, 0, "LOGIN", buf);
 
@@ -446,12 +434,12 @@ void CInputDB::PlayerLoad(LPDESC d, const char * data)
 	const TMapRegion * rMapRgn = SECTREE_MANAGER::instance().GetMapRegion(lPublicMapIndex);
 	if( rMapRgn )
 	{
-		DESC_MANAGER::instance().SendClientPackageSDBToLoadMap( d, rMapRgn->strMapName.c_str() );	
+		DESC_MANAGER::instance().SendClientPackageSDBToLoadMap( d, rMapRgn->strMapName.c_str() );
 	}
 	//if (!map_allow_find(lMapIndex >= 10000 ? lMapIndex / 10000 : lMapIndex) || !CheckEmpire(ch, lMapIndex))
 	if (!map_allow_find(lPublicMapIndex))
 	{
-		sys_err("InputDB::PlayerLoad : entering %d map is not allowed here (name: %s, empire %u)", 
+		sys_err("InputDB::PlayerLoad : entering %d map is not allowed here (name: %s, empire %u)",
 				lMapIndex, pTab->name, d->GetEmpire());
 
 		ch->SetWarpLocation(EMPIRE_START_MAP(d->GetEmpire()),
@@ -471,7 +459,7 @@ void CInputDB::PlayerLoad(LPDESC d, const char * data)
 	ch->SkillLevelPacket();
 
 	sys_log(0, "InputDB: player_load %s %dx%dx%d LEVEL %d MOV_SPEED %d JOB %d ATG %d DFG %d GMLv %d",
-			pTab->name, 
+			pTab->name,
 			ch->GetX(), ch->GetY(), ch->GetZ(),
 			ch->GetLevel(),
 			ch->GetPoint(POINT_MOV_SPEED),
@@ -501,11 +489,9 @@ void CInputDB::Boot(const char* data)
 {
 	signal_timer_disable();
 
-	// 패킷 사이즈 체크
 	DWORD dwPacketSize = decode_4bytes(data);
 	data += 4;
 
-	// 패킷 버전 체크
 	BYTE bVersion = decode_byte(data);
 	data += 1;
 
@@ -572,7 +558,6 @@ void CInputDB::Boot(const char* data)
 	data += 2;
 	sys_log(0, "BOOT: ITEM: %d", size);
 
-
 	if (size)
 	{
 		ITEM_MANAGER::instance().Initialize((TItemTable *) data, size);
@@ -594,7 +579,6 @@ void CInputDB::Boot(const char* data)
 	size = decode_2bytes(data);
 	data += 2;
 	sys_log(0, "BOOT: SHOP: %d", size);
-
 
 	if (size)
 	{
@@ -686,7 +670,6 @@ void CInputDB::Boot(const char* data)
 
 	data += size * sizeof(TItemAttrTable);
 
-
 	/*
      * ITEM RARE
      */
@@ -717,7 +700,6 @@ void CInputDB::Boot(const char* data)
 	}
 
 	data += size * sizeof(TItemAttrTable);
-
 
 	/*
 	 * BANWORDS
@@ -780,7 +762,7 @@ void CInputDB::Boot(const char* data)
 		data += size * sizeof(TObjectProto);
 
 		/*
-		 * OBJECT 
+		 * OBJECT
 		 */
 		if (decode_2bytes(data) != sizeof(TObject))
 		{
@@ -824,7 +806,7 @@ void CInputDB::Boot(const char* data)
 	data += size * sizeof(TItemIDRangeTable);
 
 	//ADMIN_MANAGER
-	//관리자 등록
+
 	int ChunkSize = decode_2bytes(data );
 	data += 2;
 	int HostSize = decode_2bytes(data );
@@ -833,11 +815,10 @@ void CInputDB::Boot(const char* data)
 	for (int n = 0; n < HostSize; ++n )
 	{
 		gm_new_host_inert(data );
-		sys_log(0, "GM HOST : IP[%s] ", data );		
+		sys_log(0, "GM HOST : IP[%s] ", data );
 		data += ChunkSize;
 	}
-	
-	
+
 	data += 2;
 	int adminsize = decode_2bytes(data );
 	data += 2;
@@ -847,12 +828,12 @@ void CInputDB::Boot(const char* data)
 		tAdminInfo& rAdminInfo = *(tAdminInfo*)data;
 
 		gm_new_insert(rAdminInfo );
-		
+
 		data += sizeof(rAdminInfo );
 	}
-	
+
 	//END_ADMIN_MANAGER
-		
+
 	//MONARCH
 	data += 2;
 	data += 2;
@@ -867,7 +848,7 @@ void CInputDB::Boot(const char* data)
 		if (p.name[n] && *p.name[n])
 			sys_log(0, "[MONARCH] Empire %d Pid %d Money %d %s", n, p.pid[n], p.money[n], p.name[n]);
 	}
-	
+
 	int CandidacySize = decode_2bytes(data);
 	data += 2;
 
@@ -879,7 +860,6 @@ void CInputDB::Boot(const char* data)
 
 	data += CandidacySize * CandidacyCount;
 
-	
 	//END_MONARCH
 
 	WORD endCheck=decode_2bytes(data);
@@ -891,7 +871,7 @@ void CInputDB::Boot(const char* data)
 	}
 	else
 		sys_log(0, "boot packet end check ok [%x]==0xffff", endCheck );
-	data +=2; 
+	data +=2;
 
 	if (!ITEM_MANAGER::instance().SetMaxItemID(*range))
 	{
@@ -906,8 +886,6 @@ void CInputDB::Boot(const char* data)
 		thecore_shutdown();
 		return;
 	}
-
-
 
 	// LOCALE_SERVICE
 	const int FILE_NAME_LEN = 256;
@@ -1009,7 +987,6 @@ void CInputDB::Boot(const char* data)
 
 	// END_OF_LOCALE_SERVICE
 
-
 	building::CManager::instance().FinalizeBoot();
 
 	CMotionManager::instance().Build();
@@ -1037,7 +1014,7 @@ EVENTINFO(quest_login_event_info)
 {
 	DWORD dwPID;
 
-	quest_login_event_info() 
+	quest_login_event_info()
 	: dwPID( 0 )
 	{
 	}
@@ -1154,7 +1131,7 @@ void CInputDB::QuestLoad(LPDESC d, const char * c_pData)
 
 			event_create(quest_login_event, info, PASSES_PER_SEC(1));
 		}
-	}	
+	}
 }
 
 void CInputDB::SafeboxLoad(LPDESC d, const char * c_pData)
@@ -1193,7 +1170,6 @@ void CInputDB::SafeboxLoad(LPDESC d, const char * c_pData)
 	// END_OF_ADD_PREMIUM
 
 	//if (d->GetCharacter()->IsEquipUniqueItem(UNIQUE_ITEM_SAFEBOX_EXPAND))
-	//bSize = 3; // 창고확장권
 
 	//d->GetCharacter()->LoadSafebox(p->bSize * SAFEBOX_PAGE_SIZE, p->dwGold, p->wItemCount, (TPlayerItem *) (c_pData + sizeof(TSafeboxTable)));
 	d->GetCharacter()->LoadSafebox(bSize * SAFEBOX_PAGE_SIZE, p->dwGold, p->wItemCount, (TPlayerItem *) (c_pData + sizeof(TSafeboxTable)));
@@ -1213,7 +1189,6 @@ void CInputDB::SafeboxChangeSize(LPDESC d, const char * c_pData)
 }
 
 //
-// @version	05/06/20 Bang2ni - ReqSafeboxLoad 의 취소
 //
 void CInputDB::SafeboxWrongPassword(LPDESC d)
 {
@@ -1273,8 +1248,7 @@ void CInputDB::LoginAlready(LPDESC d, const char * c_pData)
 	if (!d)
 		return;
 
-	// INTERNATIONAL_VERSION 이미 접속중이면 접속 끊음
-	{ 
+	{
 		TPacketDGLoginAlready * p = (TPacketDGLoginAlready *) c_pData;
 
 		LPDESC d2 = DESC_MANAGER::instance().FindByLoginName(p->szLogin);
@@ -1311,7 +1285,7 @@ void CInputDB::EmpireSelect(LPDESC d, const char * c_pData)
 	pe.bEmpire = rTable.bEmpire;
 	d->Packet(&pe, sizeof(pe));
 
-	for (int i = 0; i < PLAYER_PER_ACCOUNT; ++i) 
+	for (int i = 0; i < PLAYER_PER_ACCOUNT; ++i)
 		if (rTable.players[i].dwID)
 		{
 			rTable.players[i].x = EMPIRE_START_X(rTable.bEmpire);
@@ -1622,10 +1596,7 @@ void CInputDB::AffectLoad(LPDESC d, const char * c_pData)
 		return;
 
 	ch->LoadAffect(dwCount, (TPacketAffectElement *) c_pData);
-	
 }
-	
-
 
 void CInputDB::PartyCreate(const char* c_pData)
 {
@@ -1752,11 +1723,9 @@ void CInputDB::AuthLogin(LPDESC d, const char * c_pData)
 
 	if (bResult)
 	{
-		// Panama 암호화 팩에 필요한 키 보내기
 		SendPanamaList(d);
 		ptoc.dwLoginKey = d->GetLoginKey();
 
-		//NOTE: AuthSucess보다 먼저 보내야지 안그러면 PHASE Close가 되서 보내지지 않는다.-_-
 		//Send Client Package CryptKey
 		{
 			DESC_MANAGER::instance().SendClientPackageCryptKey(d);
@@ -1773,6 +1742,7 @@ void CInputDB::AuthLogin(LPDESC d, const char * c_pData)
 	d->Packet(&ptoc, sizeof(TPacketGCAuthSuccess));
 	sys_log(0, "AuthLogin result %u key %u", bResult, d->GetLoginKey());
 }
+
 void CInputDB::AuthLoginOpenID(LPDESC d, const char * c_pData)
 {
 	if (!d)
@@ -1819,9 +1789,6 @@ void CInputDB::ChangeEmpirePriv(const char* c_pData)
 	// END_OF_ADD_EMPIRE_PRIV_TIME
 }
 
-/**
- * @version 05/06/08	Bang2ni - 지속시간 추가
- */
 void CInputDB::ChangeGuildPriv(const char* c_pData)
 {
 	TPacketDGChangeGuildPriv* p = (TPacketDGChangeGuildPriv*) c_pData;
@@ -2114,10 +2081,8 @@ void CInputDB::MyshopPricelistRes(LPDESC d, const TPacketMyshopPricelistHeader* 
 
 	sys_log(0, "RecvMyshopPricelistRes name[%s]", ch->GetName());
 	ch->UseSilkBotaryReal(p );
-
 }
 // END_OF_MYSHOP_PRICE_LIST
-
 
 //RELOAD_ADMIN
 void CInputDB::ReloadAdmin(const char * c_pData )
@@ -2127,18 +2092,17 @@ void CInputDB::ReloadAdmin(const char * c_pData )
 	c_pData += 2;
 	int HostSize = decode_2bytes(c_pData );
 	c_pData += 2;
-	
+
 	for (int n = 0; n < HostSize; ++n )
 	{
 		gm_new_host_inert(c_pData );
 		c_pData += ChunkSize;
 	}
-	
-	
+
 	c_pData += 2;
 	int size = 	decode_2bytes(c_pData );
 	c_pData += 2;
-	
+
 	for (int n = 0; n < size; ++n )
 	{
 		tAdminInfo& rAdminInfo = *(tAdminInfo*)c_pData;
@@ -2146,20 +2110,18 @@ void CInputDB::ReloadAdmin(const char * c_pData )
 		gm_new_insert(rAdminInfo );
 
 		c_pData += sizeof (tAdminInfo );
-	
+
 		LPCHARACTER pChar = CHARACTER_MANAGER::instance().FindPC(rAdminInfo.m_szName );
 		if (pChar )
 		{
 			pChar->SetGMLevel();
 		}
 	}
-	
 }
 //END_RELOAD_ADMIN
 
 ////////////////////////////////////////////////////////////////////
 // Analyze
-// @version	05/06/10 Bang2ni - 아이템 가격정보 리스트 패킷(HEADER_DG_MYSHOP_PRICELIST_RES) 처리루틴 추가.
 ////////////////////////////////////////////////////////////////////
 int CInputDB::Analyze(LPDESC d, BYTE bHeader, const char * c_pData)
 {
@@ -2295,7 +2257,7 @@ int CInputDB::Analyze(LPDESC d, BYTE bHeader, const char * c_pData)
 		break;
 
 	case HEADER_DG_PARTY_SET_MEMBER_LEVEL:
-		PartySetMemberLevel(c_pData);    
+		PartySetMemberLevel(c_pData);
 		break;
 
 	case HEADER_DG_TIME:
@@ -2462,15 +2424,15 @@ int CInputDB::Analyze(LPDESC d, BYTE bHeader, const char * c_pData)
 		MyshopPricelistRes(DESC_MANAGER::instance().FindByHandle(m_dwHandle), (TPacketMyshopPricelistHeader*) c_pData );
 		break;
 		// END_OF_MYSHOP_PRICE_LIST
-		//
+
 	// RELOAD_ADMIN
 	case HEADER_DG_RELOAD_ADMIN:
-		ReloadAdmin(c_pData );		
+		ReloadAdmin(c_pData );
 		break;
 	//END_RELOAD_ADMIN
 
 	case HEADER_DG_ADD_MONARCH_MONEY:
-		AddMonarchMoney(DESC_MANAGER::instance().FindByHandle(m_dwHandle), c_pData ); 
+		AddMonarchMoney(DESC_MANAGER::instance().FindByHandle(m_dwHandle), c_pData );
 		break;
 
 	case HEADER_DG_DEC_MONARCH_MONEY:
@@ -2498,7 +2460,7 @@ int CInputDB::Analyze(LPDESC d, BYTE bHeader, const char * c_pData)
 
 	case HEADER_DG_ACK_CHANGE_GUILD_MASTER :
 		this->GuildChangeMaster((TPacketChangeGuildMaster*) c_pData);
-		break;	
+		break;
 	case HEADER_DG_ACK_SPARE_ITEM_ID_RANGE :
 		ITEM_MANAGER::instance().SetMaxSpareItemID(*((TItemIDRangeTable*)c_pData) );
 		break;
@@ -2506,14 +2468,14 @@ int CInputDB::Analyze(LPDESC d, BYTE bHeader, const char * c_pData)
 	case HEADER_DG_UPDATE_HORSE_NAME :
 	case HEADER_DG_ACK_HORSE_NAME :
 		CHorseNameManager::instance().UpdateHorseName(
-				((TPacketUpdateHorseName*)c_pData)->dwPlayerID, 
+				((TPacketUpdateHorseName*)c_pData)->dwPlayerID,
 				((TPacketUpdateHorseName*)c_pData)->szHorseName);
 		break;
 
 	case HEADER_DG_NEED_LOGIN_LOG:
 		DetailLog( (TPacketNeedLoginLogInfo*) c_pData );
 		break;
-	// 독일 선물 기능 테스트
+
 	case HEADER_DG_ITEMAWARD_INFORMER:
 		ItemAwardInformer((TPacketItemAwardInfromer*) c_pData);
 		break;
@@ -2549,7 +2511,7 @@ bool CInputDB::Process(LPDESC d, const void * orig, int bytes, int & r_iBytesPro
 		m_dwHandle	= *((DWORD *) (c_pData + 1));	// 4
 		iSize		= *((DWORD *) (c_pData + 5));	// 4
 
-		sys_log(1, "DBCLIENT: header %d handle %d size %d bytes %d", bHeader, m_dwHandle, iSize, bytes); 
+		sys_log(1, "DBCLIENT: header %d handle %d size %d bytes %d", bHeader, m_dwHandle, iSize, bytes);
 
 		if (m_iBufferLeft - 9 < iSize)
 			return true;
@@ -2583,31 +2545,31 @@ void CInputDB::AddMonarchMoney(LPDESC d, const char * data )
 
 	int Money = *(int *) data;
 	data += sizeof(int);
-	
+
 	CMonarch::instance().AddMoney(Money, Empire);
 
-	DWORD pid = CMonarch::instance().GetMonarchPID(Empire);	
+	DWORD pid = CMonarch::instance().GetMonarchPID(Empire);
 
 	LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID(pid);
 
 	if (ch)
 	{
-		if (number(1, 100) > 95) 
+		if (number(1, 100) > 95)
 			ch->ChatPacket(CHAT_TYPE_INFO, LC_TEXT("현재 %s 국고에는 %u 의 돈이 있습니다"), EMPIRE_NAME(Empire), CMonarch::instance().GetMoney(Empire));
 	}
 }
-	
+
 void CInputDB::DecMonarchMoney(LPDESC d, const char * data)
 {
 	int Empire = *(int *) data;
 	data += sizeof(int);
-	
+
 	int Money = *(int *) data;
 	data += sizeof(int);
 
 	CMonarch::instance().DecMoney(Money, Empire);
-	
-	DWORD pid = CMonarch::instance().GetMonarchPID(Empire);	
+
+	DWORD pid = CMonarch::instance().GetMonarchPID(Empire);
 
 	LPCHARACTER ch = CHARACTER_MANAGER::instance().FindByPID(pid);
 
@@ -2621,7 +2583,7 @@ void CInputDB::TakeMonarchMoney(LPDESC d, const char * data)
 {
 	int Empire = *(int *) data;
 	data += sizeof(int);
-	
+
 	int Money = *(int *) data;
 	data += sizeof(int);
 
@@ -2685,28 +2647,28 @@ void CInputDB::DetailLog(const TPacketNeedLoginLogInfo* info)
 }
 
 void CInputDB::ItemAwardInformer(TPacketItemAwardInfromer *data)
-{	
-	LPDESC d = DESC_MANAGER::instance().FindByLoginName(data->login);	//login정보
-	
+{
+	LPDESC d = DESC_MANAGER::instance().FindByLoginName(data->login);
+
 	if(d == NULL)
 		return;
 	else
 	{
 		if (d->GetCharacter())
 		{
-			LPCHARACTER ch = d->GetCharacter();	
-			ch->SetItemAward_vnum(data->vnum);	// ch 에 임시 저장해놨다가 QuestLoad 함수에서 처리
-			ch->SetItemAward_cmd(data->command);		
+			LPCHARACTER ch = d->GetCharacter();
+			ch->SetItemAward_vnum(data->vnum);
+			ch->SetItemAward_cmd(data->command);
 
-			if(d->IsPhase(PHASE_GAME))			//게임페이즈일때
+			if(d->IsPhase(PHASE_GAME))
 			{
-				quest::CQuestManager::instance().ItemInformer(ch->GetPlayerID(),ch->GetItemAward_vnum());	//questmanager 호출
+				quest::CQuestManager::instance().ItemInformer(ch->GetPlayerID(),ch->GetItemAward_vnum());
 			}
 		}
 	}
 }
 
-void CInputDB::RespondChannelStatus(LPDESC desc, const char* pcData) 
+void CInputDB::RespondChannelStatus(LPDESC desc, const char* pcData)
 {
 	if (!desc) {
 		return;
@@ -2724,3 +2686,4 @@ void CInputDB::RespondChannelStatus(LPDESC desc, const char* pcData)
 	desc->Packet(&bSuccess, sizeof(bSuccess));
 	desc->SetChannelStatusRequested(false);
 }
+
