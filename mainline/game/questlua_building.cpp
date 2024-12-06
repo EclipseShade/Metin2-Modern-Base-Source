@@ -10,9 +10,8 @@
 
 namespace quest
 {
-	//
 	// "building" Lua functions
-	//
+
 	int building_get_land_id(lua_State * L)
 	{
 		using namespace building;
@@ -91,13 +90,6 @@ namespace quest
 			return 1;
 		}
 
-		/*
-		if (CManager::instance().FindLandByGuild((DWORD) lua_tonumber(L, 1)))
-			lua_pushboolean(L, true);
-		else
-			lua_pushboolean(L, false);
-		*/
-
 		std::auto_ptr<SQLMsg> pmsg(DBManager::instance().DirectQuery("SELECT COUNT(*) FROM land%s WHERE guild_id = %d", get_table_postfix(), (DWORD)lua_tonumber(L,1)));
 
 		if ( pmsg->Get()->uiNumRows > 0 )
@@ -168,3 +160,4 @@ namespace quest
 		CQuestManager::instance().AddLuaFunctionTable("building", functions);
 	}
 };
+
