@@ -185,7 +185,6 @@ LPITEM ITEM_MANAGER::CreateItem(DWORD vnum, DWORD count, DWORD id, bool bTryMagi
 
 	LPITEM item = NULL;
 
-	//id·Î °Ë»çÇØ¼­ Á¸ÀçÇÑ´Ù¸é -- ¸®ÅÏ! 
 	if (m_map_pkItemByID.find(id) != m_map_pkItemByID.end())
 	{
 		item = m_map_pkItemByID[id];
@@ -194,7 +193,6 @@ LPITEM ITEM_MANAGER::CreateItem(DWORD vnum, DWORD count, DWORD id, bool bTryMagi
 		return NULL;
 	}
 
-	//¾ÆÀÌÅÛ ÇÏ³ª ÇÒ´çÇÏ°í
 #ifdef M2_USE_POOL
 	item = pool_.Construct();
 #else
@@ -203,15 +201,13 @@ LPITEM ITEM_MANAGER::CreateItem(DWORD vnum, DWORD count, DWORD id, bool bTryMagi
 
 	bool bIsNewItem = (0 == id);
 
-	//ÃÊ±âÈ­ ÇÏ°í. Å×ÀÌºí ¼ÂÇÏ°í
 	item->Initialize();
 	item->SetProto(table);
 	item->SetMaskVnum(dwMaskVnum);
 
-	if (item->GetType() == ITEM_ELK) // µ·Àº ID°¡ ÇÊ¿ä¾ø°í ÀúÀåµµ ÇÊ¿ä¾ø´Ù.
+	if (item->GetType() == ITEM_ELK)
 		item->SetSkipSave(true);
 
-	// Unique ID¸¦ ¼¼ÆÃÇÏÀÚ
 	else if (!bIsNewItem)
 	{
 		item->SetID(id);
@@ -221,20 +217,19 @@ LPITEM ITEM_MANAGER::CreateItem(DWORD vnum, DWORD count, DWORD id, bool bTryMagi
 	{
 		item->SetID(GetNewID());
 
-		if (item->GetType() == ITEM_UNIQUE) // À¯´ÏÅ© ¾ÆÀÌÅÛÀº »ý¼º½Ã¿¡ ¼ÒÄÏ¿¡ ³²Àº½Ã°£À» ±â·ÏÇÑ´Ù.
+		if (item->GetType() == ITEM_UNIQUE)
 		{
 			if (item->GetValue(2) == 0)
-				item->SetSocket(ITEM_SOCKET_UNIQUE_REMAIN_TIME, item->GetValue(0)); // °ÔÀÓ ½Ã°£ À¯´ÏÅ©
+				item->SetSocket(ITEM_SOCKET_UNIQUE_REMAIN_TIME, item->GetValue(0));
 			else
 			{
 				//int globalTime = get_global_time();
 				//int lastTime = item->GetValue(0);
 				//int endTime = get_global_time() + item->GetValue(0);
-				item->SetSocket(ITEM_SOCKET_UNIQUE_REMAIN_TIME, get_global_time() + item->GetValue(0)); // ½Ç½Ã°£ À¯´ÏÅ©
+				item->SetSocket(ITEM_SOCKET_UNIQUE_REMAIN_TIME, get_global_time() + item->GetValue(0));
 			}
 		}
 	}
-
 
 	switch (item->GetVnum())
 	{
@@ -259,9 +254,9 @@ LPITEM ITEM_MANAGER::CreateItem(DWORD vnum, DWORD count, DWORD id, bool bTryMagi
 			break;
 	}
 
-	if (item->GetType() == ITEM_ELK) // µ·Àº ¾Æ¹« Ã³¸®°¡ ÇÊ¿äÇÏÁö ¾ÊÀ½
+	if (item->GetType() == ITEM_ELK)
 		;
-	else if (item->IsStackable())  // ÇÕÄ¥ ¼ö ÀÖ´Â ¾ÆÀÌÅÛÀÇ °æ¿ì
+	else if (item->IsStackable())
 	{
 		count = MINMAX(1, count, ITEM_MAX_COUNT);
 
@@ -289,26 +284,22 @@ LPITEM ITEM_MANAGER::CreateItem(DWORD vnum, DWORD count, DWORD id, bool bTryMagi
 
 	for (int i=0 ; i < ITEM_LIMIT_MAX_NUM ; i++)
 	{
-		// ¾ÆÀÌÅÛ »ý¼º ½ÃÁ¡ºÎÅÍ »ç¿ëÇÏÁö ¾Ê¾Æµµ ½Ã°£ÀÌ Â÷°¨µÇ´Â ¹æ½Ä
 		if (LIMIT_REAL_TIME == item->GetLimitType(i))
 		{
 			if (item->GetLimitValue(i))
 			{
-				item->SetSocket(0, time(0) + item->GetLimitValue(i)); 
+				item->SetSocket(0, time(0) + item->GetLimitValue(i));
 			}
 			else
 			{
-				item->SetSocket(0, time(0) + 60*60*24*7); 
+				item->SetSocket(0, time(0) + 60*60*24*7);
 			}
 
 			item->StartRealTimeExpireEvent();
 		}
 
-		// ±âÁ¸ À¯´ÏÅ© ¾ÆÀÌÅÛÃ³·³ Âø¿ë½Ã¿¡¸¸ »ç¿ë°¡´É ½Ã°£ÀÌ Â÷°¨µÇ´Â ¹æ½Ä
 		else if (LIMIT_TIMER_BASED_ON_WEAR == item->GetLimitType(i))
 		{
-			// ÀÌ¹Ì Âø¿ëÁßÀÎ ¾ÆÀÌÅÛÀÌ¸é Å¸ÀÌ¸Ó¸¦ ½ÃÀÛÇÏ°í, »õ·Î ¸¸µå´Â ¾ÆÀÌÅÛÀº »ç¿ë °¡´É ½Ã°£À» ¼¼ÆÃÇØÁØ´Ù. (
-			// ¾ÆÀÌÅÛ¸ô·Î Áö±ÞÇÏ´Â °æ¿ì¿¡´Â ÀÌ ·ÎÁ÷¿¡ µé¾î¿À±â Àü¿¡ Socket0 °ªÀÌ ¼¼ÆÃÀÌ µÇ¾î ÀÖ¾î¾ß ÇÑ´Ù.
 			if (true == item->IsEquipped())
 			{
 				item->StartTimerBasedOnWearExpireEvent();
@@ -320,16 +311,15 @@ LPITEM ITEM_MANAGER::CreateItem(DWORD vnum, DWORD count, DWORD id, bool bTryMagi
 					duration = item->GetLimitValue(i);
 
 				if (0 == duration)
-					duration = 60 * 60 * 10;	// Á¤º¸°¡ ¾Æ¹«°Íµµ ¾øÀ¸¸é µðÆúÆ®·Î 10½Ã°£ ¼¼ÆÃ
+					duration = 60 * 60 * 10;
 
 				item->SetSocket(0, duration);
 			}
 		}
 	}
 
-	if (id == 0) // »õ·Î ¸¸µå´Â ¾ÆÀÌÅÛÀÏ ¶§¸¸ Ã³¸®
+	if (id == 0)
 	{
-		// »õ·ÎÃß°¡µÇ´Â ¾àÃÊµéÀÏ°æ¿ì ¼º´ÉÀ» ´Ù¸£°ÔÃ³¸®
 		if (ITEM_BLEND==item->GetType())
 		{
 			if (Blend_Item_find(item->GetVnum()))
@@ -356,7 +346,6 @@ LPITEM ITEM_MANAGER::CreateItem(DWORD vnum, DWORD count, DWORD id, bool bTryMagi
 		if (table->bGainSocketPct)
 			item->AlterToSocketItem(table->bGainSocketPct);
 
-		// 50300 == ±â¼ú ¼ö·Ã¼­
 		if (vnum == 50300 || vnum == ITEM_SKILLFORGET_VNUM)
 		{
 			DWORD dwSkillVnum;
@@ -388,7 +377,6 @@ LPITEM ITEM_MANAGER::CreateItem(DWORD vnum, DWORD count, DWORD id, bool bTryMagi
 	}
 	else
 	{
-		// 100% È®·ü·Î ¼Ó¼ºÀÌ ºÙ¾î¾ß ÇÏ´Âµ¥ ¾È ºÙ¾îÀÖ´Ù¸é »õ·Î ºÙÈù´Ù. ...............
 		if (100 == table->bAlterToMagicItemPct && 0 == item->GetAttributeCount())
 		{
 			item->AlterToMagicItem();
@@ -416,7 +404,6 @@ LPITEM ITEM_MANAGER::CreateItem(DWORD vnum, DWORD count, DWORD id, bool bTryMagi
 		}
 	}
 
-	// »õ·Î »ý¼ºµÇ´Â ¿ëÈ¥¼® Ã³¸®.
 	if (item->IsDragonSoul() && 0 == id)
 	{
 		DSManager::instance().DragonSoulItemInitialize(item);
@@ -485,7 +472,6 @@ void ITEM_MANAGER::Update()
 		this_it = it++;
 		LPITEM item = *this_it;
 
-		// SLOW_QUERY ÇÃ·¡±×°¡ ÀÖ´Â °ÍÀº Á¾·á½Ã¿¡¸¸ ÀúÀåÇÑ´Ù.
 		if (item->GetOwner() && IS_SET(item->GetFlag(), ITEM_FLAG_SLOW_QUERY))
 			continue;
 
@@ -508,7 +494,6 @@ void ITEM_MANAGER::RemoveItem(LPITEM item, const char * c_pszReason)
 		// SAFEBOX_TIME_LIMIT_ITEM_BUG_FIX
 		if (item->GetWindow() == MALL || item->GetWindow() == SAFEBOX)
 		{
-			// 20050613.ipkn.½Ã°£Á¦ ¾ÆÀÌÅÛÀÌ »óÁ¡¿¡ ÀÖÀ» °æ¿ì ½Ã°£¸¸·á½Ã ¼­¹ö°¡ ´Ù¿îµÈ´Ù.
 			CSafebox* pSafebox = item->GetWindow() == MALL ? o->GetMall() : o->GetSafebox();
 			if (pSafebox)
 			{
@@ -618,7 +603,7 @@ TItemTable * ITEM_MANAGER::GetTable(DWORD vnum)
 				return p;
 			}
 		}
-			
+
 		return NULL;
 	}
 
@@ -633,8 +618,7 @@ int ITEM_MANAGER::RealNumber(DWORD vnum)
 	top = m_vec_prototype.size();
 
 	TItemTable * pTable = &m_vec_prototype[0];
-
-	while (1)
+	while (1) // primitive binary tree search
 	{
 		mid = (bot + top) >> 1;
 
@@ -646,7 +630,7 @@ int ITEM_MANAGER::RealNumber(DWORD vnum)
 
 		if ((pTable + mid)->dwVnum > vnum)
 			top = mid - 1;
-		else        
+		else
 			bot = mid + 1;
 	}
 }
@@ -750,15 +734,14 @@ DWORD lotto()
 }
 
 // 20050503.ipkn.
-// iMinimum º¸´Ù ÀÛÀ¸¸é iDefault ¼¼ÆÃ (´Ü, iMinimumÀº 0º¸´Ù Ä¿¾ßÇÔ)
-// 1, 0 ½ÄÀ¸·Î ON/OFF µÇ´Â ¹æ½ÄÀ» Áö¿øÇÏ±â À§ÇØ Á¸Àç
+
 int GetDropPerKillPct(int iMinimum, int iDefault, int iDeltaPercent, const char * c_pszFlag)
 {
 	int iVal = 0;
 
 	if ((iVal = quest::CQuestManager::instance().GetEventFlag(c_pszFlag)))
 	{
-		if (!test_server && !LC_IsJapan())
+		if (!test_server)
 		{
 			if (iVal < iMinimum)
 				iVal = iDefault;
@@ -771,8 +754,6 @@ int GetDropPerKillPct(int iMinimum, int iDefault, int iDeltaPercent, const char 
 	if (iVal == 0)
 		return 0;
 
-	// ±âº» ¼¼ÆÃÀÏ¶§ (iDeltaPercent=100) 
-	// 40000 iVal ¸¶¸®´ç ÇÏ³ª ´À³¦À» ÁÖ±â À§ÇÑ »ó¼öÀÓ
 	return (40000 * iDeltaPercent / iVal);
 }
 
@@ -816,10 +797,10 @@ bool ITEM_MANAGER::GetDropPct(LPCHARACTER pkChr, LPCHARACTER pkKiller, OUT int& 
 	// END_PC_BANG_ITEM_ADD
 
 	iRandRange = 4000000;
-	iRandRange = iRandRange * 100 / 
-		(100 + 
-		 CPrivManager::instance().GetPriv(pkKiller, PRIV_ITEM_DROP) + 
-		 pkKiller->IsEquipUniqueItem(UNIQUE_ITEM_DOUBLE_ITEM)?100:0);
+	iRandRange = iRandRange * 100 /
+		(100 +
+		 CPrivManager::instance().GetPriv(pkKiller, PRIV_ITEM_DROP) +
+		 (pkKiller->IsEquipUniqueItem(UNIQUE_ITEM_DOUBLE_ITEM)?100:0));
 
 	if (distribution_test_server) iRandRange /= 3;
 
@@ -920,7 +901,7 @@ bool ITEM_MANAGER::CreateDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, std::
 			CMobItemGroup* pGroup = it->second;
 
 			// MOB_DROP_ITEM_BUG_FIX
-			// 20050805.myevan.MobDropItem ¿¡ ¾ÆÀÌÅÛÀÌ ¾øÀ» °æ¿ì CMobItemGroup::GetOne() Á¢±Ù½Ã ¹®Á¦ ¹ß»ý ¼öÁ¤
+
 			if (pGroup && !pGroup->IsEmpty())
 			{
 				int iPercent = 40000 * iDeltaPercent / pGroup->GetKillPerDrop();
@@ -959,10 +940,9 @@ bool ITEM_MANAGER::CreateDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, std::
 			}
 		}
 	}
-	
+
 	// BuyerTheitGloves Item Group
 	{
-		// by mhh ÀÏ´Ü ÀÓ½Ã·Î ÀÏº»Àº ÀÏ¹Ý drop °ú µ¿ÀÏÇÏ°Ô Àû¿ë
 		if (pkKiller->GetPremiumRemainSeconds(PREMIUM_ITEM) > 0 ||
 				pkKiller->IsEquipUniqueGroup(UNIQUE_GROUP_DOUBLE_ITEM))
 		{
@@ -987,8 +967,7 @@ bool ITEM_MANAGER::CreateDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, std::
 			}
 		}
 	}
-	
-	// ÀâÅÛ
+
 	if (pkChr->GetMobDropItemVnum())
 	{
 		itertype(m_map_dwEtcItemDropProb) it = m_map_dwEtcItemDropProb.find(pkChr->GetMobDropItemVnum());
@@ -1019,7 +998,7 @@ bool ITEM_MANAGER::CreateDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, std::
 		}
 	}
 
-	if (pkKiller->IsHorseRiding() && 
+	if (pkKiller->IsHorseRiding() &&
 			GetDropPerKillPct(1000, 1000000, iDeltaPercent, "horse_skill_book_drop") >= number(1, iRandRange))
 	{
 		sys_log(0, "EVENT HORSE_SKILL_BOOK_DROP");
@@ -1043,9 +1022,6 @@ bool ITEM_MANAGER::CreateDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, std::
 				get_table_postfix(), pkKiller->GetPlayerID());
 	}
 
-	//
-	// ½ºÆä¼È µå·Ó ¾ÆÀÌÅÛ
-	// 
 	CreateQuestDropItem(pkChr, pkKiller, vec_item, iDeltaPercent, iRandRange);
 
 	for (itertype(vec_item) it = vec_item.begin(); it != vec_item.end(); ++it)
@@ -1054,9 +1030,6 @@ bool ITEM_MANAGER::CreateDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, std::
 		DBManager::instance().SendMoneyLog(MONEY_LOG_DROP, item->GetVnum(), item->GetCount());
 	}
 
-	//
-	// ½Â·æ°î ÃµÀÇµ¿±¼ 2Ãþ¿¡¼­¸¸ ¼ö·æ¹æ ÀÔÀå±Ç
-	//
 	if (LC_IsYMIR() || LC_IsKorea())
 	{
 		if (73 == pkKiller->GetMapIndex())
@@ -1071,9 +1044,6 @@ bool ITEM_MANAGER::CreateDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, std::
 		}
 	}
 
-	//
-	// ½Â·æ°î 1Ãþ, 2Ãþ¿¡¼­¸¸ 7,8 ½ºÅ³ÀÔ¹®¼­ µå·Ó
-	//
 	if (LC_IsYMIR() || LC_IsKorea())
 	{
 		switch (pkKiller->GetMapIndex())
@@ -1083,9 +1053,9 @@ bool ITEM_MANAGER::CreateDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, std::
 				{
 					int vnum = 0;
 
-					if (2403 == pkChr->GetRaceNum())	// ÃµÀÇ¹ý»ç
+					if (2403 == pkChr->GetRaceNum())
 						vnum = 69200;	// 7½ºÅ³ ÀÔ¹®¼­
-					else if (2411 == pkChr->GetRaceNum())	// ÁøÃµÀÇº´»ç
+					else if (2411 == pkChr->GetRaceNum())
 						vnum = 69201;	// 8½ºÅ³ ÀÔ¹®¼­
 					else
 						break;
@@ -1185,9 +1155,9 @@ static void __DropEvent_CharStone_DropItem(CHARACTER & killer, CHARACTER & victi
 
 		if (level_diff >= +gs_dropEvent_charStone.level_range || level_diff <= -gs_dropEvent_charStone.level_range)
 		{
-			sys_log(log_level, 
+			sys_log(log_level,
 					"dropevent.drop_char_stone.level_range_over: killer(%s: lv%d), victim(%s: lv:%d), level_diff(%d)",
-					killer.GetName(), killer.GetLevel(), victim.GetName(), victim.GetLevel(), level_diff);	
+					killer.GetName(), killer.GetLevel(), victim.GetName(), victim.GetLevel(), level_diff);
 			return;
 		}
 
@@ -1200,9 +1170,9 @@ static void __DropEvent_CharStone_DropItem(CHARACTER & killer, CHARACTER & victi
 		{
 			vec_item.push_back(p_item);
 
-			sys_log(log_level, 
+			sys_log(log_level,
 					"dropevent.drop_char_stone.item_drop: killer(%s: lv%d), victim(%s: lv:%d), item_name(%s)",
-					killer.GetName(), killer.GetLevel(), victim.GetName(), victim.GetLevel(), p_item->GetName());	
+					killer.GetName(), killer.GetLevel(), victim.GetName(), victim.GetLevel(), p_item->GetName());
 		}
 	}
 }
@@ -1242,11 +1212,7 @@ bool DropEvent_CharStone_SetValue(const std::string& name, int value)
 // END_OF_DROPEVENT_CHARSTONE
 
 // fixme
-// À§ÀÇ °Í°ú ÇÔ²² quest·Î »¬°Í »©º¸ÀÚ. 
-// ÀÌ°Å ³Ê¹« ´õ·´ÀÝ¾Æ...
-// ”?. ÇÏµåÄÚµù ½È´Ù ¤Ì¤Ð
-// °è·® ¾ÆÀÌÅÛ º¸»ó ½ÃÀÛ.
-// by rtsummit °íÄ¡ÀÚ ÁøÂ¥
+
 static struct DropEvent_RefineBox
 {
 	int percent_low;
@@ -1286,9 +1252,9 @@ static LPITEM __DropEvent_RefineBox_GetDropItem(CHARACTER & killer, CHARACTER & 
 
 	//if (level_diff >= +gs_dropEvent_refineBox.level_range || level_diff <= -gs_dropEvent_refineBox.level_range)
 	//{
-	//	sys_log(log_level, 
+	//	sys_log(log_level,
 	//		"dropevent.drop_refine_box.level_range_over: killer(%s: lv%d), victim(%s: lv:%d), level_diff(%d)",
-	//		killer.GetName(), killer.GetLevel(), victim.GetName(), victim.GetLevel(), level_diff);	
+	//		killer.GetName(), killer.GetLevel(), victim.GetName(), victim.GetLevel(), level_diff);
 	//	return NULL;
 	//}
 
@@ -1329,9 +1295,9 @@ static void __DropEvent_RefineBox_DropItem(CHARACTER & killer, CHARACTER & victi
 	{
 		vec_item.push_back(p_item);
 
-		sys_log(log_level, 
+		sys_log(log_level,
 			"dropevent.drop_refine_box.item_drop: killer(%s: lv%d), victim(%s: lv:%d), item_name(%s)",
-			killer.GetName(), killer.GetLevel(), victim.GetName(), victim.GetLevel(), p_item->GetName());	
+			killer.GetName(), killer.GetLevel(), victim.GetName(), victim.GetLevel(), p_item->GetName());
 	}
 }
 
@@ -1366,8 +1332,6 @@ bool DropEvent_RefineBox_SetValue(const std::string& name, int value)
 
 	return true;
 }
-// °³·® ¾ÆÀÌÅÛ º¸»ó ³¡.
-
 
 void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, std::vector<LPITEM> & vec_item, int iDeltaPercent, int iRandRange)
 {
@@ -1386,7 +1350,6 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 	// END_OF_DROPEVENT_CHARSTONE
 	__DropEvent_RefineBox_DropItem(*pkKiller, *pkChr, *this, vec_item);
 
-	// Å©¸®½º¸¶½º ¾ç¸»
 	if (quest::CQuestManager::instance().GetEventFlag("xmas_sock"))
 	{
 		//const DWORD SOCK_ITEM_VNUM = 50010;
@@ -1428,7 +1391,6 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 		}
 	}
 
-	// ¿ù±¤ º¸ÇÕ
 	if (quest::CQuestManager::instance().GetEventFlag("drop_moon"))
 	{
 		const DWORD ITEM_VNUM = 50011;
@@ -1474,7 +1436,6 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 		}
 	}
 
-	//À°°¢º¸ÇÕ
 	if (GetDropPerKillPct(100, g_iUseLocale ? 2000 : 800, iDeltaPercent, "2006_drop") >= number(1, iRandRange))
 	{
 		sys_log(0, "À°°¢º¸ÇÕ DROP EVENT ");
@@ -1486,7 +1447,6 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 
 	}
 
-	//À°°¢º¸ÇÕ+
 	if (GetDropPerKillPct(100, g_iUseLocale ? 2000 : 800, iDeltaPercent, "2007_drop") >= number(1, iRandRange))
 	{
 		sys_log(0, "À°°¢º¸ÇÕ DROP EVENT ");
@@ -1497,17 +1457,14 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 			vec_item.push_back(item);
 	}
 
-	// »õÇØ ÆøÁ× ÀÌº¥Æ®
 	if (GetDropPerKillPct(/* minimum */ 100, /* default */ 1000, iDeltaPercent, "newyear_fire") >= number(1, iRandRange))
 	{
-		// Áß±¹Àº ÆøÁ×, ÇÑ±¹ ÆØÀÌ
 		const DWORD ITEM_VNUM_FIRE = g_iUseLocale ? 50107 : 50108;
 
 		if ((item = CreateItem(ITEM_VNUM_FIRE, 1, 0, true)))
 			vec_item.push_back(item);
 	}
 
-	// »õÇØ ´ëº¸¸§ ¿ø¼Ò ÀÌº¥Æ®
 	if (GetDropPerKillPct(100, 500, iDeltaPercent, "newyear_moon") >= number(1, iRandRange))
 	{
 		sys_log(0, "EVENT NEWYEAR_MOON DROP");
@@ -1519,7 +1476,6 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 			vec_item.push_back(item);
 	}
 
-	// ¹ß·»Å¸ÀÎ µ¥ÀÌ ÀÌº¥Æ®. OGEÀÇ ¿ä±¸¿¡ µû¶ó event ÃÖ¼Ò°ªÀ» 1·Î º¯°æ.(´Ù¸¥ ÀÌº¥Æ®´Â ÀÏ´Ü ±×´ë·Î µÒ.)
 	if (GetDropPerKillPct(1, g_iUseLocale ? 2000 : 800, iDeltaPercent, "valentine_drop") >= number(1, iRandRange))
 	{
 		sys_log(0, "EVENT VALENTINE_DROP");
@@ -1531,7 +1487,6 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 			vec_item.push_back(item);
 	}
 
-	// ¾ÆÀÌ½ºÅ©¸² ÀÌº¥Æ®
 	if (GetDropPerKillPct(100, g_iUseLocale ? 2000 : 800, iDeltaPercent, "icecream_drop") >= number(1, iRandRange))
 	{
 		const static DWORD icecream = 50123;
@@ -1540,8 +1495,6 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 			vec_item.push_back(item);
 	}
 
-	// new Å©¸®½º¸¶½º ÀÌº¥Æ®
-	// 53002 : ¾Æ±â ¼ø·Ï ¼ÒÈ¯±Ç
 	if ((pkKiller->CountSpecifyItem(53002) > 0) && (GetDropPerKillPct(50, 100, iDeltaPercent, "new_xmas_event") >= number(1, iRandRange)))
 	{
 		const static DWORD xmas_sock = 50010;
@@ -1568,7 +1521,7 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 		if ( (item=CreateItem(halloween_item, 1, 0, true)) )
 			vec_item.push_back(item);
 	}
-	
+
 	if ( GetDropPerKillPct(100, g_iUseLocale ? 2000 : 800, iDeltaPercent, "ramadan_drop") >= number(1, iRandRange) )
 	{
 		const static DWORD ramadan_item = 30315;
@@ -1585,7 +1538,6 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 			vec_item.push_back(item);
 	}
 
-	// ¿ùµåÄÅ ÀÌº¥Æ®
 	if ( GetDropPerKillPct(100, g_iUseLocale ? 2000 : 800, iDeltaPercent, "football_drop") >= number(1, iRandRange) )
 	{
 		const static DWORD football_item = 50096;
@@ -1594,7 +1546,6 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 			vec_item.push_back(item);
 	}
 
-	// È­ÀÌÆ® µ¥ÀÌ ÀÌº¥Æ®
 	if (GetDropPerKillPct(100, g_iUseLocale ? 2000 : 800, iDeltaPercent, "whiteday_drop") >= number(1, iRandRange))
 	{
 		sys_log(0, "EVENT WHITEDAY_DROP");
@@ -1605,7 +1556,6 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 			vec_item.push_back(item);
 	}
 
-	// ¾î¸°ÀÌ³¯ ¼ö¼ö²²³¢ »óÀÚ ÀÌº¥Æ®
 	if (pkKiller->GetLevel()>=50)
 	{
 		if (GetDropPerKillPct(100, 1000, iDeltaPercent, "kids_day_drop_high") >= number(1, iRandRange))
@@ -1627,7 +1577,6 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 		}
 	}
 
-	// ¿Ã¸²ÇÈ µå·Ó ÀÌº¥Æ®
 	if (pkChr->GetLevel() >= 30 && GetDropPerKillPct(50, 100, iDeltaPercent, "medal_part_drop") >= number(1, iRandRange))
 	{
 		const static DWORD drop_items[] = { 30265, 30266, 30267, 30268, 30269 };
@@ -1638,7 +1587,7 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 	}
 
 	// ADD_GRANDMASTER_SKILL
-	// È¥¼® ¾ÆÀÌÅÛ µå·Ó
+
 	if (pkChr->GetLevel() >= 40 && pkChr->GetMobRank() >= MOB_RANK_BOSS && GetDropPerKillPct(/* minimum */ 1, /* default */ 1000, iDeltaPercent, "three_skill_item") / GetThreeSkillLevelAdjust(pkChr->GetLevel()) >= number(1, iRandRange))
 	{
 		const DWORD ITEM_VNUM = 50513;
@@ -1648,9 +1597,6 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 	}
 	// END_OF_ADD_GRANDMASTER_SKILL
 
-	//
-	// Á¾ÀÚ ¾ÆÀÌÅÛ drop
-	//
 	if (GetDropPerKillPct(100, 1000, iDeltaPercent, "dragon_boat_festival_drop") >= number(1, iRandRange))
 	{
 		const DWORD ITEM_SEED = 50085;
@@ -1659,7 +1605,6 @@ void ITEM_MANAGER::CreateQuestDropItem(LPCHARACTER pkChr, LPCHARACTER pkKiller, 
 			vec_item.push_back(item);
 	}
 
-	// ¹«½ÅÀÇ Ãàº¹¼­¿ë ¸¸³âÇÑÃ¶ drop
 	if (pkKiller->GetLevel() >= 15 && quest::CQuestManager::instance().GetEventFlag("mars_drop"))
 	{
 		const DWORD ITEM_HANIRON = 70035;
@@ -1721,8 +1666,6 @@ DWORD ITEM_MANAGER::GetMaskVnum(DWORD dwVnum)
 		return 0;
 }
 
-// pkNewItemÀ¸·Î ¸ðµç ¼Ó¼º°ú ¼ÒÄÏ °ªµéÀ» ¸ñ»çÇÏ´Â ÇÔ¼ö.
-// ±âÁ¸¿¡ char_item.cpp ÆÄÀÏ¿¡ ÀÖ´ø ·ÎÄÃÇÔ¼öÀÎ TransformRefineItem ±×´ë·Î º¹»çÇÔ
 void ITEM_MANAGER::CopyAllAttrTo(LPITEM pkOldItem, LPITEM pkNewItem)
 {
 	// ACCESSORY_REFINE
@@ -1737,7 +1680,6 @@ void ITEM_MANAGER::CopyAllAttrTo(LPITEM pkOldItem, LPITEM pkNewItem)
 	// END_OF_ACCESSORY_REFINE
 	else
 	{
-		// ¿©±â¼­ ±úÁø¼®ÀÌ ÀÚµ¿ÀûÀ¸·Î Ã»¼Ò µÊ
 		for (int i = 0; i < ITEM_SOCKET_MAX_NUM; ++i)
 		{
 			if (!pkOldItem->GetSocket(i))
@@ -1746,19 +1688,18 @@ void ITEM_MANAGER::CopyAllAttrTo(LPITEM pkOldItem, LPITEM pkNewItem)
 				pkNewItem->SetSocket(i, 1);
 		}
 
-		// ¼ÒÄÏ ¼³Á¤
 		int slot = 0;
 
 		for (int i = 0; i < ITEM_SOCKET_MAX_NUM; ++i)
 		{
 			long socket = pkOldItem->GetSocket(i);
-			const int ITEM_BROKEN_METIN_VNUM = 28960; // ÀÌ°Ç ¹¹ ¶È°°Àº »ó¼ö°¡ 3±ºµ¥³ª ÀÖ³Ä... ÇÏ³ª·Î ÇØ³õÁö¤Ð¤Ð¤Ð ³ª´Â ÆÐ½º È«ÀÌ ÇÒ²¨ÀÓ
+			const int ITEM_BROKEN_METIN_VNUM = 28960;
 			if (socket > 2 && socket != ITEM_BROKEN_METIN_VNUM)
 				pkNewItem->SetSocket(slot++, socket);
 		}
 
 	}
 
-	// ¸ÅÁ÷ ¾ÆÀÌÅÛ ¼³Á¤
 	pkOldItem->CopyAttributeTo(pkNewItem);
 }
+
