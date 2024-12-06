@@ -149,12 +149,11 @@ namespace quest
 			return 0;
 		}
 
-		
 		//PREVENT_HACK
 		if ( ch->IsHack() )
 			return 0;
 		//END_PREVENT_HACK
-		
+
 		pMarriage->WarpToWeddingMap(ch->GetPlayerID());
 		return 0;
 	}
@@ -170,7 +169,6 @@ namespace quest
 		}
 		if (pMarriage->pWeddingInfo)
 		{
-			// 결혼식 끝내기 요청
 			pMarriage->RequestEndWedding();
 		}
 		return 0;
@@ -330,7 +328,7 @@ namespace quest
 
 	void RegisterMarriageFunctionTable()
 	{
-		luaL_reg marriage_functions[] = 
+		luaL_reg marriage_functions[] =
 		{
 			{ "engage_to",		marriage_engage_to	    },
 			{ "remove",			marriage_remove		    },
@@ -352,3 +350,4 @@ namespace quest
 		CQuestManager::instance().AddLuaFunctionTable("marriage", marriage_functions);
 	}
 }
+
