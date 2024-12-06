@@ -45,7 +45,7 @@ class CPacketInfoCG : public CPacketInfo
 		virtual ~CPacketInfoCG();
 };
 
-// PacketInfo P2P 
+// PacketInfo P2P
 class CPacketInfoGG : public CPacketInfo
 {
 	public:
@@ -62,3 +62,4 @@ class CPacketInfoUDP : public CPacketInfo
 };
 
 #endif
+
