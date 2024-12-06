@@ -38,8 +38,8 @@ class CDungeon
 
 	void	IncMonster() { m_iMonsterCount++; sys_log(0, "MonsterCount %d", m_iMonsterCount); }
 	void	DecMonster() { m_iMonsterCount--; CheckEliminated(); }
-	int	CountMonster() { return m_iMonsterCount; }	// 데이터로 리젠한 몬스터의 수
-	int	CountRealMonster();				// 실제로 맵상에 있는 몬스터
+	int	CountMonster() { return m_iMonsterCount; }
+	int	CountRealMonster();
 
 	void	IncPartyMember(LPPARTY pParty, LPCHARACTER ch);
 	void	DecPartyMember(LPPARTY pParty, LPCHARACTER ch);
@@ -103,7 +103,6 @@ class CDungeon
 	void	SetFlag(std::string name, int value);
 	void	SetWarpLocation (long map_index, int x, int y);
 
-	// item group은 item_vnum과 item_count로 구성.
 	typedef std::vector <std::pair <DWORD, int> > ItemGroup;
 	void	CreateItemGroup (std::string& group_name, ItemGroup& item_group);
 	const ItemGroup* GetItemGroup (std::string& group_name);
@@ -142,7 +141,6 @@ class CDungeon
 	bool		m_bExitAllAtEliminate;
 	bool		m_bWarpAtEliminate;
 
-	// 적 전멸시 워프하는 위치
 	int		m_iWarpDelay;
 	long		m_lWarpMapIndex;
 	long		m_lWarpX;
@@ -163,10 +161,6 @@ class CDungeon
 	friend EVENTFUNC(dungeon_exit_all_event);
 	friend EVENTFUNC(dungeon_jump_to_event);
 
-	// 파티 단위 던전 입장을 위한 임시 변수.
-	// m_map_pkParty는 관리가 부실하여 사용할 수 없다고 판단하여,
-	// 임시로 한 파티에 대한 관리를 하는 변수 생성.
-	
 	LPPARTY m_pParty;
 	public :
 	void SetPartyNull();
@@ -195,3 +189,4 @@ class CDungeonManager : public singleton<CDungeonManager>
 };
 
 #endif
+
