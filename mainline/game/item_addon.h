@@ -11,3 +11,4 @@ class CItemAddonManager : public singleton<CItemAddonManager>
 };
 
 #endif
+
