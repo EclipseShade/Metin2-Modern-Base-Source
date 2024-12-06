@@ -235,7 +235,7 @@ namespace quest
 
 	// 
 	// "member" Lua functions
-	//
+
 	int member_chat(lua_State* L)
 	{
 		ostringstream s;
@@ -397,12 +397,10 @@ namespace quest
 		return 1;
 	}
 
-	//
 	// global Lua functions
-	//
-	//
+
 	// Registers Lua function table
-	//
+
 	void CQuestManager::AddLuaFunctionTable(const char * c_pszName, luaL_reg * preg)
 	{
 		lua_newtable(L);
@@ -446,9 +444,6 @@ namespace quest
 		lua_settop(L, x);
 	}
 
-	/**
-	 * @version 05/06/08	Bang2ni - __get_guildid_byname 스크립트 함수 등록
-	 */
 	bool CQuestManager::InitializeLua()
 	{
 		L = lua_open();
@@ -479,7 +474,7 @@ namespace quest
 		RegisterTargetFunctionTable();
 		RegisterArenaFunctionTable();
 		RegisterForkedFunctionTable();
-		RegisterMonarchFunctionTable(); 
+		RegisterMonarchFunctionTable();
 		RegisterOXEventFunctionTable();
 		RegisterMgmtFunctionTable();
 		RegisterBattleArenaFunctionTable();
@@ -489,7 +484,7 @@ namespace quest
 		RegisterDragonSoulFunctionTable();
 
 		{
-			luaL_reg member_functions[] = 
+			luaL_reg member_functions[] =
 			{
 				{ "chat",			member_chat		},
 				{ "set_ready",			member_set_ready	},
@@ -522,9 +517,8 @@ namespace quest
 			AddLuaFunctionTable("mob", mob_functions);
 		}
 
-		//
 		// global namespace functions
-		//
+
 		RegisterGlobalFunctionTable(L);
 
 		// LUA_INIT_ERROR_MESSAGE
@@ -634,7 +628,6 @@ namespace quest
 		int n = luaL_getn(qs.co, -1);
 		qs.args = n;
 		//cout << "select here (1-" << qs.args << ")" << endl;
-		//
 
 		ostringstream os;
 		os << "[QUESTION ";
@@ -657,7 +650,6 @@ namespace quest
 			lua_pop(qs.co,1);
 		}
 		os << "]";
-
 
 		AddScript(os.str());
 		qs.suspend_state = SUSPEND_STATE_SELECT;
@@ -693,7 +685,6 @@ namespace quest
 
 		if (chReply)
 		{
-			// 시간 지나면 알아서 닫힘
 		}
 
 		if (chWait)
@@ -713,12 +704,7 @@ namespace quest
 
 		sys_log(0, "GotoConfirmState vid %u msg '%s', timeout %d", dwVID, szMsg, iTimeout);
 
-		// 1. 상대방에게 확인창 띄움
-		// 2. 나에게 확인 기다린다고 표시하는 창 띄움
-		// 3. 타임아웃 설정 (타임아웃 되면 상대방 창 닫고 나에게도 창 닫으라고 보냄)
-
 		// 1
-		// 상대방이 없는 경우는 그냥 상대방에게 보내지 않는다. 타임아웃에 의해서 넘어가게됨
 		LPCHARACTER ch = CHARACTER_MANAGER::instance().Find(dwVID);
 		if (ch && ch->IsPC())
 		{
@@ -753,9 +739,6 @@ namespace quest
 		qs.suspend_state = SUSPEND_STATE_INPUT;
 		AddScript("[INPUT]");
 		SendScript();
-
-		// 시간 제한을 검
-		//event_create(input_timeout_event, dwEI, PASSES_PER_SEC(iTimeout));
 	}
 
 	void CQuestManager::GotoPauseState(QuestState & qs)
@@ -771,11 +754,9 @@ namespace quest
 		SendScript();
 	}
 
-	//
 	// * OpenState
-	//
+
 	// The beginning of script
-	// 
 
 	QuestState CQuestManager::OpenState(const string& quest_name, int state_index)
 	{
@@ -787,11 +768,10 @@ namespace quest
 		return qs;
 	}
 
-	//
 	// * RunState
-	// 
+
 	// decides script to wait for user input, or finish
-	// 
+
 	bool CQuestManager::RunState(QuestState & qs)
 	{
 		ClearError();
@@ -850,11 +830,10 @@ namespace quest
 		return false;
 	}
 
-	//
 	// * CloseState
-	//
+
 	// makes script end
-	//
+
 	void CQuestManager::CloseState(QuestState& qs)
 	{
 		if (qs.co)
@@ -865,3 +844,4 @@ namespace quest
 		}
 	}
 }
+
