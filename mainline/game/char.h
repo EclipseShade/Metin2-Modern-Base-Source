@@ -407,7 +407,7 @@ typedef struct character_point_instant
 	DWORD			dwImmuneFlag;
 	DWORD			dwLastShoutPulse;
 
-	WORD			parts[PART_MAX_NUM];
+	DWORD			parts[PART_MAX_NUM]; // @fixme502
 
 	LPITEM			pItems[INVENTORY_AND_EQUIP_SLOT_MAX];
 	BYTE			bItemGrid[INVENTORY_AND_EQUIP_SLOT_MAX];
@@ -602,7 +602,7 @@ class CHARACTER : public CEntity, public CFSM, public CHorseRider
 		void			CreatePlayerProto(TPlayerTable & tab);
 
 		void			SetProto(const CMob * c_pkMob);
-		WORD			GetRaceNum() const;
+		DWORD			GetRaceNum() const; // @fixme501
 
 		void			Save();		// DelayedSave
 		void			SaveReal();
@@ -654,9 +654,9 @@ class CHARACTER : public CEntity, public CFSM, public CHorseRider
 		bool			IsPosition(int pos) const	{ return m_pointsInstant.position == pos ? true : false; }
 		int				GetPosition() const		{ return m_pointsInstant.position; }
 
-		void			SetPart(BYTE bPartPos, WORD wVal);
-		WORD			GetPart(BYTE bPartPos) const;
-		WORD			GetOriginalPart(BYTE bPartPos) const;
+		void			SetPart(BYTE bPartPos, DWORD wVal); // @fixme502
+		DWORD			GetPart(BYTE bPartPos) const; // @fixme502
+		DWORD			GetOriginalPart(BYTE bPartPos) const; // @fixme502
 
 		void			SetHP(int hp)		{ m_points.hp = hp; }
 		int				GetHP() const		{ return m_points.hp; }
