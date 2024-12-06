@@ -35,7 +35,7 @@ class CExchange
 		bool		CheckSpace();
 
 	private:
-		CExchange *	m_pCompany;	// 상대방의 CExchange 포인터
+		CExchange *	m_pCompany;
 
 		LPCHARACTER	m_pOwner;
 
@@ -45,9 +45,8 @@ class CExchange
 
 		bool 		m_bAccept;
 		long		m_lGold;
-
 		CGrid *		m_pGrid;
-
 };
 
 #endif
+
