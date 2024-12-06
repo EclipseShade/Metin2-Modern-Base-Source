@@ -49,7 +49,6 @@ const char *quote_find_end(const char *string)
 	{
 		if (quote && *tmp == '\\' && *(tmp + 1))
 		{
-			// \ 다음 문자가 " 면 스킵한다.
 			switch (*(tmp + 1))
 			{
 				case '"':
@@ -138,7 +137,7 @@ void locale_init(const char *filename)
 	if (!fp) return;
 
 	fseek(fp, 0L, SEEK_END);
-	int i = ftell(fp); 
+	int i = ftell(fp);
 	fseek(fp, 0L, SEEK_SET);
 
 	i++;
