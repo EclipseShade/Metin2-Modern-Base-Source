@@ -324,9 +324,6 @@ int CalcAttBonus(LPCHARACTER pkAttacker, LPCHARACTER pkVictim, int iAtk)
 		}
 	}
 
-	//[ mob -> PC ] 원소 속성 방어 적용
-	//2013/01/17
-	//몬스터 속성공격 데미지의 30%에 해당하는 수치에만 저항이 적용됨.
 	if (pkAttacker->IsNPC() && pkVictim->IsPC())
 	{
 		if (pkAttacker->IsRaceFlag(RACE_FLAG_ATT_ELEC))
