@@ -45,15 +45,16 @@ class CMonarch : public singleton<CMonarch>
 		void DefenseUp(BYTE Empire, bool On);
 
 	private:
-		TMonarchInfo m_MonarchInfo;	
+		TMonarchInfo m_MonarchInfo;
 
-		int m_PowerUp[4]; ///< 군주의 사자후
-		int m_DefenseUp[4]; ///< 군주의 금강권
+		int m_PowerUp[4];
+		int m_DefenseUp[4];
 
-		int m_PowerUpCT[4]; ///< 군주의 사자후
-		int m_DefenseUpCT[4]; ///< 군주의 금강권
+		int m_PowerUpCT[4];
+		int m_DefenseUpCT[4];
 };
 
 bool IsMonarchWarpZone (int map_idx);
 
 #endif
+
