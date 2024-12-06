@@ -12,9 +12,8 @@
 
 namespace quest
 {
-	//
 	// "npc" lua functions
-	//
+
 	int npc_open_shop(lua_State * L)
 	{
 		int iShopVnum = 0;
@@ -274,7 +273,6 @@ namespace quest
 		else
 			lua_pushnumber(L, 0);
 
-
 		return 1;
 	}
 
@@ -282,9 +280,8 @@ namespace quest
 	{
 		CQuestManager& q = CQuestManager::instance();
 		LPCHARACTER npc = q.GetCurrentNPCCharacterPtr();
-		
-		lua_pushnumber(L, npc->GetVID());
 
+		lua_pushnumber(L, npc->GetVID());
 
 		return 1;
 	}
@@ -299,10 +296,9 @@ namespace quest
 		else
 			lua_pushnumber(L, 0);
 
-
 		return 1;
 	}
-	
+
 	int npc_set_vid_attack_mul(lua_State* L)
 	{
 		lua_Number vid = lua_tonumber(L, 1);
@@ -326,10 +322,9 @@ namespace quest
 		else
 			lua_pushnumber(L, 0);
 
-
 		return 1;
 	}
-	
+
 	int npc_set_vid_damage_mul(lua_State* L)
 	{
 		lua_Number vid = lua_tonumber(L, 1);
@@ -345,7 +340,7 @@ namespace quest
 
 	void RegisterNPCFunctionTable()
 	{
-		luaL_reg npc_functions[] = 
+		luaL_reg npc_functions[] =
 		{
 			{ "getrace",			npc_get_race			},
 			{ "get_race",			npc_get_race			},
@@ -378,3 +373,4 @@ namespace quest
 		CQuestManager::instance().AddLuaFunctionTable("npc", npc_functions);
 	}
 };
+
