@@ -19,7 +19,6 @@
 
 namespace
 {
-
 	struct FGuildNameSender
 	{
 		FGuildNameSender(DWORD id, const char* guild_name) : id(id), name(guild_name)
@@ -120,7 +119,7 @@ CGuild * CGuildManager::GetLinkedGuild(DWORD pid)
 	if (it == m_map_pkGuildByPID.end())
 		return NULL;
 
-	return it->second; 
+	return it->second;
 }
 
 void CGuildManager::Link(DWORD pid, CGuild* guild)
@@ -158,7 +157,6 @@ void CGuildManager::LoginMember(LPCHARACTER ch)
 		it->second->LoginMember(ch);
 	}
 }
-
 
 CGuild* CGuildManager::TouchGuild(DWORD guild_id)
 {
@@ -302,7 +300,7 @@ struct FGuildCompare : public std::binary_function<CGuild*, CGuild*, bool>
 		if (g1->GetGuildWarLossCount() > g2->GetGuildWarLossCount())
 			return false;
 		int c = strcmp(g1->GetName(), g2->GetName());
-		if (c>0) 
+		if (c>0)
 			return true;
 		return false;
 	}
@@ -357,7 +355,7 @@ void CGuildManager::GetHighRankString(DWORD dwMyGuild, char * buffer, size_t buf
 				len += len2;
 		}
 
-		len2 = snprintf(buffer + len, buflen - len, "%3d | %-12s | %-8d | %4d | %4d | %4d", 
+		len2 = snprintf(buffer + len, buflen - len, "%3d | %-12s | %-8d | %4d | %4d | %4d",
 				GetRank(g),
 				g->GetName(),
 				g->GetLadderPoint(),
@@ -505,7 +503,7 @@ void CGuildManager::RequestWarOver(DWORD dwGuild1, DWORD dwGuild2, DWORD dwGuild
 	TPacketGuildWar p;
 
 	p.bWar = GUILD_WAR_OVER;
-	// 길드전이 끝나도 보상은 없다.
+
 	//p.lWarPrice = lReward;
 	p.lWarPrice = 0;
 	p.bType = dwGuildWinner == 0 ? 1 : 0; // bType == 1 means draw for this packet.
@@ -953,7 +951,6 @@ void CGuildManager::ChangeMaster(DWORD dwGID)
 		iter->second->Load(dwGID);
 	}
 
-	// 업데이트된 정보 보내주기
 	DBManager::instance().FuncQuery(std::bind1st(std::mem_fun(&CGuild::SendGuildDataUpdateToAllMember), iter->second), 
 			"SELECT 1");
 
