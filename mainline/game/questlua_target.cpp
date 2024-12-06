@@ -5,11 +5,10 @@
 #include "sectree_manager.h"
 #include "target.h"
 
-namespace quest 
+namespace quest
 {
-	//
 	// "target" Lua functions
-	//
+
 	int target_pos(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
@@ -56,7 +55,6 @@ namespace quest
 			return 0;
 		}
 
-
 		CTargetManager::instance().CreateTarget(ch->GetPlayerID(),
 				iQuestIndex,
 				lua_tostring(L, 1),
@@ -70,7 +68,6 @@ namespace quest
 		return 0;
 	}
 
-	// 현재 퀘스트에 등록된 타겟을 삭제 한다.
 	int target_delete(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
@@ -87,7 +84,6 @@ namespace quest
 		return 0;
 	}
 
-	// 현재 퀘스트 인덱스로 되어있는 타겟을 모두 삭제한다.
 	int target_clear(lua_State* L)
 	{
 		LPCHARACTER ch = CQuestManager::instance().GetCurrentCharacterPtr();
