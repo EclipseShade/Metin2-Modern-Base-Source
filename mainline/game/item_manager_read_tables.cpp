@@ -146,7 +146,6 @@ bool ITEM_MANAGER::ReadSpecialDropItemFile(const char * c_pszFileName)
 
 		TTokenVector * pTok;
 
-		//
 		std::string stType;
 		int type = CSpecialItemGroup::NORMAL;
 		if (loader.GetTokenString("type", &stType))
@@ -245,6 +244,12 @@ bool ITEM_MANAGER::ReadSpecialDropItemFile(const char * c_pszFileName)
 						{
 							dwVnum = CSpecialItemGroup::POISON;
 						}
+#ifdef ENABLE_WOLFMAN_CHARACTER
+						else if (name == "bleeding")
+						{
+							dwVnum = CSpecialItemGroup::BLEEDING;
+						}
+#endif
 						else if (name == "group")
 						{
 							dwVnum = CSpecialItemGroup::MOB_GROUP;
@@ -302,7 +307,6 @@ bool ITEM_MANAGER::ReadSpecialDropItemFile(const char * c_pszFileName)
 
 	return true;
 }
-
 
 bool ITEM_MANAGER::ConvSpecialDropItemFile()
 {
@@ -379,6 +383,9 @@ bool ITEM_MANAGER::ConvSpecialDropItemFile()
 						name == "slow" ||
 						name == "drain_hp" ||
 						name == "poison" ||
+#ifdef ENABLE_WOLFMAN_CHARACTER
+						name == "bleeding" ||
+#endif
 						name == "group")
 					{
 						dwVnum = 0;
@@ -718,6 +725,7 @@ bool ITEM_MANAGER::ReadMonsterDropItemGroup(const char * c_pszFileName)
 
 					if (iCount < 1)
 					{
+						sys_err("ReadMonsterDropItemGroup : there is no count for item %s : node %s", name.c_str(), stName.c_str());
 						M2_DELETE(pkLevelItemGroup);
 						return false;
 					}
@@ -725,6 +733,7 @@ bool ITEM_MANAGER::ReadMonsterDropItemGroup(const char * c_pszFileName)
 					float fPct = atof(pTok->at(2).c_str());
 					DWORD dwPct = (DWORD)(10000.0f * fPct);
 
+					sys_log(0,"        name %s pct %d count %d", name.c_str(), dwPct, iCount);
 					pkLevelItemGroup->AddItem(dwItemVnum, dwPct, iCount);
 
 					continue;
@@ -920,3 +929,4 @@ bool ITEM_MANAGER::ReadItemVnumMaskTable(const char * c_pszFileName)
 	fclose(fp);
 	return true;
 }
+
