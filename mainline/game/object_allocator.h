@@ -8,10 +8,10 @@
 
 enum { DEFAULT_FREE_TRIGGER_COUNT = 32 };
 
-typedef std::deque<void*> FreeList; 
+typedef std::deque<void*> FreeList;
 
 template <typename OBJ, size_t FREE_TRIGGER>
-class LateAllocator 
+class LateAllocator
 {
 public:
 	LateAllocator() {}
@@ -34,18 +34,18 @@ public:
 	}
 
 	// Allocates a memory block.
-	static void* Alloc(size_t size) 
+	static void* Alloc(size_t size)
 	{
 		void* p = 0;
 
 		if ( m_freeBlockCount > 0 )
-		{	
+		{
 			p = m_freeBlocks.front();
 
 			m_freeBlocks.pop_front();
 
 			--m_freeBlockCount;
-		}	
+		}
 		else
 		{
 #ifdef DEBUG_ALLOC
@@ -62,7 +62,7 @@ public:
 	}
 
 	// Deallocates a memory block.
-	static void Free(void* p) 
+	static void Free(void* p)
 	{
 		if ( p == NULL )
 		{
@@ -84,13 +84,13 @@ public:
 		}
 		else
 		{
-			++m_freeBlockCount;	
+			++m_freeBlockCount;
 
 			m_freeBlocks.push_back(p);
 		}
 	}
 
-	static size_t GetFreeBlockCount() 
+	static size_t GetFreeBlockCount()
 	{
 		return m_freeBlockCount;
 	}
@@ -108,12 +108,12 @@ template <typename OBJ, size_t FREE_TRIGGER>
 FreeList LateAllocator<OBJ, FREE_TRIGGER>::m_freeBlocks;
 
 /**
- * @class ObjectAllocator 
- * 
- * NOTE: One must use M2_OBJ_NEW, M2_OBJ_DELETE macros 
+ * @class ObjectAllocator
+ *
+ * NOTE: One must use M2_OBJ_NEW, M2_OBJ_DELETE macros
  */
-template <typename OBJ, size_t FREE_TRIGGER=DEFAULT_FREE_TRIGGER_COUNT> 
-class ObjectAllocator 
+template <typename OBJ, size_t FREE_TRIGGER=DEFAULT_FREE_TRIGGER_COUNT>
+class ObjectAllocator
 {
 public:
 	ObjectAllocator() {}
@@ -129,7 +129,7 @@ public:
 #ifdef DEBUG_ALLOC
 		size_t& age = *(reinterpret_cast<size_t*>(p) - 1);
 		age = AllocTag::IncreaseAge(age);
-#endif 		
+#endif
 		m_allocator.Free( p );
 	}
 
@@ -137,22 +137,22 @@ public:
 	{
 		void* p = m_allocator.Alloc( size );
 #ifdef DEBUG_ALLOC
-		if (p != NULL) 
+		if (p != NULL)
 		{
 			size_t age = DebugAllocator::MarkAcquired(p, f, l, "new_obj");
 			*(reinterpret_cast<size_t*>(p) - 1) = age;
 		}
-#endif 		
+#endif
 		return p;
 	}
 
-	static size_t GetFreeBlockCount() 
+	static size_t GetFreeBlockCount()
 	{
 		return m_allocator.GetFreeBlockCount();
 	}
 
 private:
-	static LateAllocator<OBJ, FREE_TRIGGER> m_allocator;	
+	static LateAllocator<OBJ, FREE_TRIGGER> m_allocator;
 };
 
 #ifdef DEBUG_ALLOC
@@ -169,3 +169,4 @@ private:
 #endif // DEBUG_ALLOC
 
 #endif // _OBJECT_ALLOCATOR_H_
+
