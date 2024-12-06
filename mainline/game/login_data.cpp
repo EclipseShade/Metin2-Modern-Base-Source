@@ -3,7 +3,7 @@
 #include "constants.h"
 #include "login_data.h"
 
-extern std::string g_stBlockDate; 
+extern std::string g_stBlockDate;
 
 CLoginData::CLoginData()
 {
@@ -45,7 +45,7 @@ void CLoginData::SetBillType(BYTE bType)
 	m_bBillType = bType;
 }
 
-DWORD CLoginData::GetBillID() 
+DWORD CLoginData::GetBillID()
 {
 	return m_dwBillID;
 }
