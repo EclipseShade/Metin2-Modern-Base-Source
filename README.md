@@ -14,12 +14,6 @@
 | ✔️ 14.3  | ✔️ 2022       | ❌ 12 |
 #
 
-#### Client:
-| Visual Studio     |
-|-------------------|
-| ✔️ 2008  - 2022  |
-#
-
 ## CONTRIBUTES RULES:
 - Use Standar Libraries if possible
 - All .cpp file need to have included "stdafx.h
