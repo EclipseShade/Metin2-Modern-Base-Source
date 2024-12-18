@@ -1,1 +1,0 @@
-#define GF_ENABLE_MOUSE_WHEEL
